@@ -84,7 +84,7 @@ flowchart LR
 
 ## 6. 多步骤事件与可恢复性
 
-事件返回“完成”或“等待选择”。PendingDecision 保存 DecisionId、拥有者、来源、可见性、选择约束、剩余预算和结构化 ContinuationState。它不能持有协程、闭包或 UI 回调。
+事件返回“完成”或“等待选择”。头条使用 DecisionGroup 组织两个各自有 Owner 和私有选择槽的 PendingDecision；普通事件仍使用单一决策，详见 [回合与出牌状态机](turn-flow.md)。PendingDecision 保存 DecisionId、拥有者、来源、可见性、选择约束、剩余预算和结构化 ContinuationState。它不能持有协程、闭包或 UI 回调。
 
 ResolveDecisionCommand 必须匹配当前 DecisionId 和负责选择的身份，并重新验证选择。等待期间只接受该状态允许的命令；重复回应不能触发两次后续效果。必须支持在选择中途保存、退出和恢复。
 
@@ -128,3 +128,5 @@ ThemeDefinition 归 Presentation 管理，以 CountryId、CardId、事件类型�
 本轮没有复制规则书、卡牌全文或美术。本文没有宣称全部卡牌规则已经设计完成。下一步按“开局与状态 → 阶段 → 行动 → 卡牌与效果 → 计分终局 → 逐卡牌交互”分别建立知识页；每页必须包含来源、前置条件、输入输出、流程、异常和验收案例。精确卡牌清单、对应勘误与争议裁定仍需逐项核实。
 
 从 [Wiki 索引](index.md) 返回；工程约束见 [AGENTS.md](../../AGENTS.md)。
+
+回合与出牌的具体编排已展开为 [状态机设计](turn-flow.md)，模块描述与数据索引由 Wiki 提供。此补充不代表完整规则集或游戏源码已完成。

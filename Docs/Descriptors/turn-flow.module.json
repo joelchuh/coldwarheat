@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "id": "module.turn-flow",
+  "kind": "module",
+  "description": "定位回合阶段、秘密头条、行动名额、出牌结算栈、回合末候选胜利与存档继续位置；当前是设计，不可作为已实现模块调用。",
+  "status": "planned",
+  "entrypoints": [],
+  "documentation": "Docs/Wiki/turn-flow.md",
+  "planned_entrypoints": [
+    {
+      "path": "Assets/Game/Core/Flow/TurnFlow.cs",
+      "symbol": "AdvanceUntilYield"
+    },
+    {
+      "path": "Assets/Game/Core/Rules/HeadlineRules.cs",
+      "symbol": "BuildDecisionGroup"
+    },
+    {
+      "path": "Assets/Game/Core/Rules/ActionEligibility.cs",
+      "symbol": "GetNextSlot"
+    },
+    {
+      "path": "Assets/Game/Core/Rules/CardPlayRules.cs",
+      "symbol": "BuildResolutionPlan"
+    },
+    {
+      "path": "Assets/Game/Core/Rules/CardDispositionRules.cs",
+      "symbol": "Finalize"
+    },
+    {
+      "path": "Assets/Game/Core/Rules/DecisionResolver.cs",
+      "symbol": "Resolve"
+    }
+  ],
+  "inputs": [
+    "已绑定身份的命令",
+    "权威状态、规则集及参数",
+    "可序列化随机状态"
+  ],
+  "outputs": [
+    "更新后的流程位置",
+    "待选择或终局",
+    "权威事件；必须经过玩家视角过滤"
+  ],
+  "dependencies": [
+    {
+      "path": "Docs/Wiki/architecture.md",
+      "status": "design"
+    },
+    {
+      "path": "Docs/Wiki/operations.md",
+      "status": "design"
+    },
+    {
+      "id": "CardEffectRegistry / VictoryRules / DeckRules",
+      "status": "planned"
+    }
+  ],
+  "data_dependencies": [
+    "rules.deluxe2015.turn-flow"
+  ],
+  "preconditions": [
+    "规则集及被触发的处理器必须齐备",
+    "版本、身份、卡牌用途、决策归属验证通过",
+    "运行实现尚不存在，本描述只用于设计检索"
+  ],
+  "side_effects": [
+    "实现后会修改对局、牌区和随机状态；只能通过权威事务执行"
+  ],
+  "stop_conditions": [
+    "未核实的组合裁定",
+    "数据或处理器缺失",
+    "无效或过期决策",
+    "已终局",
+    "存档版本不兼容"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "sections": [
+        "3",
+        "4",
+        "5",
+        "6.4",
+        "9",
+        "10.3"
+      ]
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "scope": "仅采用回合末太空弃牌等未被新版覆盖的条目；CF-001 旧答案明确排除"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/turn-flow.cases.json",
+      "status": "planned",
+      "count": 36
+    }
+  ],
+  "verification": {
+    "implementation_tested": false,
+    "design_review": "检查源规则版本、转换边界、持久化、保密与异常路径；实际检查记录见工作记录"
+  },
+  "open_items": [
+    "双方同时扣留计分牌的新版组合裁定",
+    "完整卡牌/国家/初始布置数据",
+    "逐卡拦截和回合末效果优先级",
+    "完整军事行动与终局计算"
+  ]
+}

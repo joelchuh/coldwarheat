@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "id": "data.turn-flow",
+  "kind": "data",
+  "status": "ready",
+  "description": "读取已核对的 Deluxe 2015 基础回合参数：时代区间、手牌目标、普通行动名额、头条排序及 DEFCON 恢复；仅为验证过的子集，不是完整开局数据。",
+  "entrypoints": [
+    {
+      "path": "Data/Rulesets/deluxe-2015/turn-flow.json",
+      "symbol": null
+    }
+  ],
+  "dataset_id": "rules.deluxe2015.turn-flow",
+  "inputs": [
+    "参数字段名，或用于定位 era_bands 的 TurnNumber"
+  ],
+  "outputs": [
+    "对应的只读参数值"
+  ],
+  "dependencies": [],
+  "preconditions": [
+    "按 schema_version 检查字段与领域约束",
+    "不得把子集状态当成完整规则集",
+    "实际加载器尚未实现"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "字段缺失、类型错误",
+    "时代区间缺漏或重叠",
+    "规则版本不匹配",
+    "未核实数据被请求"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "sections": [
+        "3.1–3.3",
+        "4.1",
+        "4.5A-D",
+        "8.1.6"
+      ],
+      "checked_on": "2026-09-19"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/turn-flow.cases.json",
+      "status": "planned",
+      "coverage": [
+        "setup",
+        "scheduler",
+        "era",
+        "headline"
+      ]
+    }
+  ],
+  "validation": {
+    "schema_status": "尚未建立通用 JSON Schema；本次用独立字段和领域断言核验数据",
+    "constraints": [
+      "时代区间连续且无重叠",
+      "行动数与手牌目标为正整数",
+      "基础参数与已读取 R2015 对应条款一致",
+      "初始布置顺序与普通行动先后是不同语义字段"
+    ]
+  },
+  "verification": {
+    "dataset_checked_on": "2026-09-19",
+    "runtime_consumers_tested": false
+  }
+}

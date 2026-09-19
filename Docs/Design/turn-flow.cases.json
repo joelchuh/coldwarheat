@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "id": "cases.turn-flow",
+  "description": "回合与出牌状态机的验收设计；按 coverage 或 CaseId 查找，不代表可执行或已通过的测试。",
+  "status": "planned",
+  "cases": [
+    {
+      "id": "SET-01",
+      "coverage": "setup",
+      "given": "初始发牌已完成，进入首回合补牌步骤",
+      "when": "内部推进",
+      "then": "手牌已达本时代目标时不再发牌；InitialDealDone 不重置",
+      "source": "R2015 §3.1、§4.5B",
+      "status": "planned"
+    },
+    {
+      "id": "SET-02",
+      "coverage": "setup",
+      "given": "正在等待初始布置",
+      "when": "玩家读取自己的视角",
+      "then": "可见本人已发手牌，不可见对手手牌",
+      "source": "R2015 §3.1；工程保密",
+      "status": "planned"
+    },
+    {
+      "id": "TURN-01",
+      "coverage": "scheduler",
+      "given": "普通早期时段且无额外效果",
+      "when": "完成一个根行动",
+      "then": "切到另一方；根名额仅记一次，达到双方本时代名额后进入回合末",
+      "source": "R2015 §4.5D",
+      "status": "planned"
+    },
+    {
+      "id": "TURN-02",
+      "coverage": "era",
+      "given": "处于跨时代边界，目标时代未加入",
+      "when": "推进、保存后恢复并重试原转换",
+      "then": "加入目标时代一次，保留原弃牌堆；不在下一回合开始再次加入",
+      "source": "R2015 §4.4；工程幂等",
+      "status": "planned"
+    },
+    {
+      "id": "TURN-03",
+      "coverage": "deck",
+      "given": "抽牌中 DrawPile 耗尽且有弃牌",
+      "when": "继续补牌",
+      "then": "仅把允许重洗的弃牌加入新牌堆，不包含 Removed、InResolution 或 EraReserve",
+      "source": "R2015 §4.3；牌区不变量",
+      "status": "planned"
+    },
+    {
+      "id": "HEAD-01",
+      "coverage": "headline",
+      "given": "普通秘密选择组只有一方锁定",
+      "when": "另一方查看快照、事件、错误与合法选项",
+      "then": "不能读取对方 CardId 或头条值，也不能开始事件结算",
+      "source": "R2015 §4.5C；工程保密",
+      "status": "planned"
+    },
+    {
+      "id": "HEAD-02",
+      "coverage": "headline",
+      "given": "双方头条值相等且无拦截效果",
+      "when": "揭示并建队列",
+      "then": "由参数中的平手优先方先结算；计分头条使用专门比较值",
+      "source": "R2015 §4.5C",
+      "status": "planned"
+    },
+    {
+      "id": "HEAD-03",
+      "coverage": "headline",
+      "given": "已生效的先看对方头条能力",
+      "when": "生成选择组",
+      "then": "先让被要求方锁定并揭示，再接受能力方选择；排序仍由头条排序策略决定",
+      "source": "R2015 §6.4.4",
+      "status": "planned"
+    },
+    {
+      "id": "HEAD-04",
+      "coverage": "concurrency",
+      "given": "双方命令携带同一版本",
+      "when": "串行接收两次选择",
+      "then": "第二个过期命令不扣牌，刷新后以新 CommandId 重交；不泄露第一方秘密",
+      "source": "工程版本协议",
+      "status": "planned"
+    },
+    {
+      "id": "HEAD-05",
+      "coverage": "headline",
+      "given": "第一个事件产生已确认即时终局",
+      "when": "继续调度",
+      "then": "不执行第二个头条；记录游戏结束原因",
+      "source": "R2015 §8.1.3；工程截断",
+      "status": "planned"
+    },
+    {
+      "id": "HEAD-06",
+      "coverage": "identity",
+      "given": "一方以对手事件做头条并由对手选择",
+      "when": "事件需要责任判定",
+      "then": "PlayedBy/PhasingPlayer 与 EffectController/DecisionOwner 分别传递",
+      "source": "R2015 §4.5C",
+      "status": "planned"
+    },
+    {
+      "id": "PLAY-01",
+      "coverage": "ordering",
+      "given": "普通 OPS 用途触发对手事件",
+      "when": "选择 EventBeforeOps",
+      "then": "事件及选择先完成；OPS 预算在随后进入操作步骤时计算",
+      "source": "R2015 §5.2、§7.4",
+      "status": "planned"
+    },
+    {
+      "id": "PLAY-02",
+      "coverage": "ordering",
+      "given": "已选择 OpsBeforeEvent",
+      "when": "OPS 改变了事件前置条件",
+      "then": "到事件步骤才按当时状态判定，不复用选牌时缓存的可用性",
+      "source": "R2015 §5.2；阶段求值设计",
+      "status": "planned"
+    },
+    {
+      "id": "PLAY-03",
+      "coverage": "nesting",
+      "given": "事件要求子出牌且子事件还需玩家选择",
+      "when": "子帧完成",
+      "then": "回到父帧继续位置；不提前切方，不额外消耗根行动名额",
+      "source": "工程帧栈",
+      "status": "planned"
+    },
+    {
+      "id": "PLAY-04",
+      "coverage": "scoring",
+      "given": "计分牌在手，用户尝试普通 OPS 用途",
+      "when": "验证意图",
+      "then": "拒绝，不把其头条比较值当成行动预算",
+      "source": "R2015 §2.2.1、§4.5C",
+      "status": "planned"
+    },
+    {
+      "id": "PLAY-05",
+      "coverage": "eligibility",
+      "given": "无普通手牌但有可用中国牌",
+      "when": "行动资格查询",
+      "then": "不强迫打出中国牌；提供规则允许的选择或跳过分支",
+      "source": "R2015 §9.8",
+      "status": "planned"
+    },
+    {
+      "id": "PLAY-06",
+      "coverage": "eligibility",
+      "given": "中国牌出牌会妨碍计分牌使用",
+      "when": "验证该用途",
+      "then": "拒绝并保留牌状态；不能借普通无牌分支绕过限制",
+      "source": "R2015 §9.5",
+      "status": "planned"
+    },
+    {
+      "id": "ZONE-01",
+      "coverage": "disposition",
+      "given": "有移出标记，但事件前置条件不成立",
+      "when": "到事件步骤并完成出牌",
+      "then": "标为 BlockedPrerequisite，不因标记直接移出",
+      "source": "R2015 §5.2",
+      "status": "planned"
+    },
+    {
+      "id": "ZONE-02",
+      "coverage": "disposition",
+      "given": "有移出标记，事件成立但未改变数值",
+      "when": "完成事件与整张牌",
+      "then": "标为 ResolvedNoChange，仍按已发生事件的去向处理",
+      "source": "R2015 §5.2",
+      "status": "planned"
+    },
+    {
+      "id": "ZONE-03",
+      "coverage": "disposition",
+      "given": "普通卡牌被合法强制弃置",
+      "when": "处理弃牌",
+      "then": "不触发其事件；与使用事件、OPS 的路径分开",
+      "source": "R2015 §5.4",
+      "status": "planned"
+    },
+    {
+      "id": "ZONE-04",
+      "coverage": "china",
+      "given": "合法打出中国牌",
+      "when": "接受出牌并结算",
+      "then": "按中国牌策略转交并锁定可用面，牌不进入普通弃牌堆；帧仅留引用",
+      "source": "R2015 §9.3",
+      "status": "planned"
+    },
+    {
+      "id": "ZONE-05",
+      "coverage": "effects",
+      "given": "持续效果已登记，实体牌也已完成去向",
+      "when": "查询和重洗牌堆",
+      "then": "图标不计作额外实体牌；效果是否继续不由牌区显示决定",
+      "source": "R2015 §2.2.5、§7.3；工程模型",
+      "status": "planned"
+    },
+    {
+      "id": "END-01",
+      "coverage": "victory",
+      "given": "军事行动净结算产生候选赢家，该方扣留计分牌",
+      "when": "完成回合末审核",
+      "then": "不提前宣布分数胜利；按 R2015 例外判候选方失利",
+      "source": "R2015 §10.3.1；CF-001",
+      "status": "planned"
+    },
+    {
+      "id": "END-02",
+      "coverage": "victory",
+      "given": "军事行动产生候选赢家且审核无违规",
+      "when": "结束审核",
+      "then": "确认候选胜利并截断后续回合末步骤",
+      "source": "R2015 §10.3.1",
+      "status": "planned"
+    },
+    {
+      "id": "END-03",
+      "coverage": "audit",
+      "given": "具有回合末太空弃牌能力且扣留计分牌",
+      "when": "进入回合末",
+      "then": "先完成扣留审核，不能先弃牌消除违规",
+      "source": "F2010 PDF pp.20–21",
+      "status": "planned"
+    },
+    {
+      "id": "END-04",
+      "coverage": "audit",
+      "given": "双方同时扣留计分牌，组合裁定未核实",
+      "when": "调用审核裁定",
+      "then": "UnresolvedAdjudication 暂停，保存现场；不凭遍历顺序判输赢",
+      "source": "工程失败边界；待核实裁定",
+      "status": "planned"
+    },
+    {
+      "id": "END-05",
+      "coverage": "expiry",
+      "given": "同时存在回合到期和跨回合持续效果",
+      "when": "清理回合",
+      "then": "仅处理符合边界的到期项，保持其他效果及其继续信息",
+      "source": "工程生命周期；具体效果待逐卡来源",
+      "status": "planned"
+    },
+    {
+      "id": "END-06",
+      "coverage": "final",
+      "given": "已经进入最终计分模式",
+      "when": "中间某地区让暂计分越过普通胜利线",
+      "then": "不按普通分数线截断；最终计分服务完成规定计算与特殊胜负判断",
+      "source": "R2015 §10.3.2",
+      "status": "planned"
+    },
+    {
+      "id": "SYS-01",
+      "coverage": "idempotency",
+      "given": "已接受的选择命令再次到达",
+      "when": "同身份同 ID 同载荷重试",
+      "then": "返回原结果，不扣牌、不掷骰、不再次完成名额",
+      "source": "工程幂等",
+      "status": "planned"
+    },
+    {
+      "id": "SYS-02",
+      "coverage": "atomicity",
+      "given": "新命令目标、身份或 DecisionId 非法",
+      "when": "验证命令",
+      "then": "版本、牌区、随机状态和事件序号不变",
+      "source": "工程事务",
+      "status": "planned"
+    },
+    {
+      "id": "SYS-03",
+      "coverage": "recovery",
+      "given": "子事件等待另一方选择时保存",
+      "when": "加载同版本存档",
+      "then": "恢复组、帧和游标；已执行步骤不重跑",
+      "source": "工程存档",
+      "status": "planned"
+    },
+    {
+      "id": "SYS-04",
+      "coverage": "recovery",
+      "given": "头条一方已锁定另一方未选",
+      "when": "保存并加载",
+      "then": "保持一方锁定与秘密性，继续等待另一方",
+      "source": "工程存档与保密",
+      "status": "planned"
+    },
+    {
+      "id": "SYS-05",
+      "coverage": "fault",
+      "given": "规则包缺少处理器或正式数据",
+      "when": "创建或执行",
+      "then": "在受影响步骤前明确失败，不把缺失解释为无效果或跳过",
+      "source": "工程失败边界",
+      "status": "planned"
+    },
+    {
+      "id": "SYS-06",
+      "coverage": "presentation",
+      "given": "相同命令记录使用不同主题或跳过动画",
+      "when": "重演流程",
+      "then": "相同权威状态摘要，动画回调不能切换阶段",
+      "source": "工程表现分离",
+      "status": "planned"
+    },
+    {
+      "id": "SYS-07",
+      "coverage": "terminal",
+      "given": "已经 Finished",
+      "when": "收到新出牌命令",
+      "then": "拒绝修改，仍允许查询和保存",
+      "source": "工程终局吸收态",
+      "status": "planned"
+    },
+    {
+      "id": "SYS-08",
+      "coverage": "cards",
+      "given": "每次牌区移动后",
+      "when": "检查实体索引",
+      "then": "每张卡唯一位置，引用/效果图标不重复计数",
+      "source": "工程不变量",
+      "status": "planned"
+    }
+  ]
+}
