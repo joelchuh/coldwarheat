@@ -4,11 +4,13 @@
 
 | 知识点 | description | 状态 | 入口 |
 |---|---|---|---|
+| 开发工作流与共享数据 | 查找模块/脚本 JSON 描述、脚本化条件、共享数据与执行边界 | 已采用；自动化工具未实现 | [workflow-and-data.md](workflow-and-data.md) |
+| 工作流策略 JSON | 快速定位结构化开发约定和描述契约 | 已采用 | [workflow-policy.json](../Workflow/workflow-policy.json) |
 | 游戏模块设计 | 查找大模块、规则子模块、命令流程、换画风边界与验收顺序 | v0.1 设计草案；待实现 | [architecture.md](architecture.md) |
 | 行动规则 | 查找影响力、政变、调整、预算、对象契约与验收案例 | v0.2 设计稿；未实现 | [operations.md](operations.md) |
 | 规则资料 | 查找版本来源、FAQ 适用边界和资料冻结缺口 | 已登记；未完整冻结 | [rules-sources.md](rules-sources.md) |
 | 工程边界 | 查找纯 C# 核心、命令、事件、玩家视角、确定性和程序集约束 | 设计约定；待实现 | [AGENTS.md](../../AGENTS.md) |
-| Git 工作流 | 理解本地提交、远程同步、忽略文件及每次工作的收尾方式 | 远程已创建；本地关联待恢复 | [git-workflow.md](git-workflow.md) |
+| Git 工作流 | 理解本地提交、远程同步、忽略文件及每次工作的收尾方式 | 本地已关联；推送另行核验 | [git-workflow.md](git-workflow.md) |
 | GitHub 保存 | 查找 coldwarheat 地址、线上提交方式和本地同步限制 | 已记录 | [GitHub 工作记录](../Worklogs/2026-09-17-github-bootstrap.md) |
 | 初始化记录 | 查找本次建立的文件、实际验证和尚未完成事项 | 已记录 | [工作记录](../Worklogs/2026-09-16-repository-bootstrap.md) |
 

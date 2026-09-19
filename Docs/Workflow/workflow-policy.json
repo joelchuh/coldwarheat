@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "id": "coldwarheat.workflow-policy",
+  "kind": "workflow-policy",
+  "status": "active",
+  "description": "ColdWarStruggle 的开发工作约定：按摘要检索模块和数据；在可复用条件成立时固化脚本；统一管理规则数据并记录验证与 Git 同步结果。",
+  "documentation": "Docs/Wiki/workflow-and-data.md",
+  "scope": [
+    "本仓库的代码模块",
+    "本仓库保留的辅助工作脚本",
+    "本仓库共享规则数据",
+    "项目知识库维护"
+  ],
+  "descriptor_policy": {
+    "modules": "为可独立理解或复用的模块提供描述文件；小型内部函数不逐个建文件",
+    "scripts": "每个正式保留的工作脚本必须配套描述文件",
+    "datasets": "每个正式数据集必须有描述；脚本用 data_dependencies 引用数据集 ID",
+    "required_fields": [
+      "schema_version",
+      "id",
+      "kind",
+      "description",
+      "status",
+      "entrypoints",
+      "inputs",
+      "outputs",
+      "dependencies",
+      "preconditions",
+      "side_effects",
+      "stop_conditions",
+      "rule_sources",
+      "tests"
+    ],
+    "optional_fields": [
+      "data_dependencies",
+      "runtime",
+      "verification",
+      "scriptification_evidence"
+    ],
+    "path_base": "repository-root",
+    "planned_entries": "未实现的符号只放在 planned_entrypoints；entrypoints 留空，不作为可调用实现",
+    "description_is_execution_authorization": false
+  },
+  "script_creation": {
+    "any_of": [
+      {
+        "condition": "repeated_workflow",
+        "min_observed_occurrences": 3,
+        "expected_future_reuse": true,
+        "stable_inputs_outputs_and_steps": true,
+        "evidence": "记录不同实际使用场景；同一次故障的反复重试不自动算成多次需求"
+      },
+      {
+        "condition": "confirmed_fixed_edge_workflow",
+        "fixed_process": true,
+        "accepted_authority": [
+          "用户明确确认",
+          "适用版本的权威规则"
+        ],
+        "evidence": "记录确认内容或规则来源、版本与适用范围"
+      }
+    ],
+    "otherwise": "先直接处理并记录，不提前建立可复用脚本",
+    "one_off_verification_commands": "临时检查命令不因运行而成为正式脚本；准备保留和复用时再满足上述条件"
+  },
+  "data_policy": {
+    "single_authoritative_definition": true,
+    "stable_ids": true,
+    "separate_static_definitions_from_game_state": true,
+    "separate_parameters_from_behavior": true,
+    "read_only_definitions": true,
+    "query_outputs": "程序按 ID 查询并返回必要字段；无需将整个源数据传入模型上下文",
+    "required_checks": [
+      "数据结构",
+      "ID 唯一性",
+      "跨文件引用",
+      "领域约束",
+      "来源和适用版本"
+    ],
+    "on_missing_or_conflicting_data": "明确报错或标为待核实，停止依赖操作，不编造默认业务值",
+    "game_save_binding": [
+      "ruleset_id",
+      "ruleset_version",
+      "data_digest"
+    ]
+  },
+  "execution_policy": {
+    "before_execution": [
+      "读取命中项完整描述",
+      "核对输入、环境、前置条件和副作用",
+      "检查当前任务是否授权本次修改",
+      "限制到明确的工作路径"
+    ],
+    "when_writing": "支持预览或明确列出变更；重试、备份和恢复方式按副作用设计",
+    "on_unexpected_state": "停止并报告，不扩大权限、不静默改换处理策略",
+    "metadata_is_not_executable_code": true
+  },
+  "maintenance": {
+    "update_together": [
+      "实际代码或数据",
+      "对应 JSON 描述",
+      "受影响 Wiki",
+      "工作记录"
+    ],
+    "verification": "检查路径、符号、依赖和描述是否一致；记录实际运行结果，未运行不得标为通过",
+    "git": "审阅差异、按本次范围提交并推送；分别核对本地提交与远程提交，失败保留已完成工作"
+  }
+}

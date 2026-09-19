@@ -6,7 +6,7 @@
 
 本仓库保存工程约定、Wiki、Git 教程和项目 Skill。远程仓库由用户创建，地址为 https://github.com/joelchuh/coldwarheat，当前为公开仓库。
 
-本地项目目录为 E:\TwilightStruggle，目录名称与远程仓库名可以不同。本地 .git 已初始化，但因执行环境写入故障，尚未完成本地首次提交、origin 关联或与远程历史同步。此次线上提交通过 GitHub 网页完成，不代表本地执行过 git push。
+本地项目目录为 E:\TwilightStruggle，目录名称与远程仓库名可以不同。已通过克隆接入完整 Git 历史，main 跟踪 origin/main；旧文件保留在 E:\TwilightStruggle-backup-20260919。同步与推送结果逐次核验，克隆成功不代表已验证推送权限。
 
 尚未创建 Unity 工程、游戏源码或运行游戏测试。
 
@@ -22,7 +22,7 @@
 
 1. 阅读 [AGENTS.md](AGENTS.md) 了解工程边界和当前阶段。
 2. 从 [Wiki 索引](Docs/Wiki/index.md) 的摘要定位主题。
-3. 阅读相关知识点，再按类或函数定位必要源码及测试；当前尚无源码。
+3. 阅读相关知识点，再按类或函数定位必要源码及测试；当前尚无源码。开发须遵循 [模块、数据与脚本工作流](Docs/Wiki/workflow-and-data.md) 及其 JSON 策略。
 4. 初始化经过见 [本地工作记录](Docs/Worklogs/2026-09-16-repository-bootstrap.md)，线上保存状态见 [GitHub 工作记录](Docs/Worklogs/2026-09-17-github-bootstrap.md)。
 
 ## Git 入门

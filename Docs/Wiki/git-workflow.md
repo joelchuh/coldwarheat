@@ -1,7 +1,7 @@
 # Git 工作流与操作理由
 
 > description: 理解本地仓库和 GitHub 的区别，查找提交、同步、Unity 忽略规则及当前恢复步骤。
-> 状态（2026-09-18）：远程仓库已建立；文档通过网页登录提交。本地 E:\TwilightStruggle 尚未关联远程，未完成本地首次提交。
+> 状态（2026-09-19）：E:\TwilightStruggle 已通过克隆接入远程历史，main 跟踪 origin/main。读取、写入和推送能力分别验证；本轮提交结果见工作记录。
 
 ## 三个位置
 
@@ -45,18 +45,11 @@ flowchart LR
     E --> F[push 并核对远程]
 ```
 
-## 当前本地恢复事项
+## 本地恢复记录
 
-本地 .git 已初始化，但目录授权后执行环境出现 setup refresh 错误，Git 配置、首次提交及远程关联尚未成功。线上已通过网页保存提交。本地原文件保留，不能报告本地已经推送成功。
+用户在 CMD 中成功克隆远程仓库，将旧目录改名为 E:\TwilightStruggle-backup-20260919，再将克隆目录改名为正式目录。接入时核验本地 HEAD、origin/main 与 GitHub main 均为 e3f30f0e9939e61d4eceaca1bd267c5ee8d7a168，工作区干净。此后新提交以实际 Git 历史为准。
 
-恢复执行环境后，先检查本地文件和历史，为现有文件保留副本，再核对与线上差异。若 origin 不存在，可设置：
-
-```powershell
-git remote add origin https://github.com/joelchuh/coldwarheat.git
-git fetch origin
-```
-
-origin 是远程地址的惯用别名。若已存在，先检查地址；不要重复添加或盲目修改。当前本地存在未跟踪文件且线上已有历史，不能直接覆盖目录、强推或机械套用空仓库的首次上传命令。接入远程 main 历史时必须保留本地改动。
+备份保留，不自动删除。网页提交、插件权限与本机 Git 登录是不同通道；某个通道成功不代表其余通道可用。
 
 ## 连接完成后的常规同步
 
