@@ -3,7 +3,7 @@
   "id": "data.turn-flow",
   "kind": "data",
   "status": "ready",
-  "description": "读取已核对的 Deluxe 2015 基础回合参数：时代区间、手牌目标、普通行动名额、头条排序及 DEFCON 恢复；仅为验证过的子集，不是完整开局数据。",
+  "description": "读取 Deluxe 2015 的时代、手牌目标、普通行动名额与头条排序；DEFCON参数按数据ID另查。",
   "entrypoints": [
     {
       "path": "Data/Rulesets/deluxe-2015/turn-flow.json",
@@ -17,7 +17,12 @@
   "outputs": [
     "对应的只读参数值"
   ],
-  "dependencies": [],
+  "dependencies": [
+    {
+      "id": "rules.deluxe2015.defcon",
+      "path": "Data/Descriptors/defcon.data.json"
+    }
+  ],
   "preconditions": [
     "按 schema_version 检查字段与领域约束",
     "不得把子集状态当成完整规则集",
@@ -37,10 +42,9 @@
       "sections": [
         "3.1–3.3",
         "4.1",
-        "4.5A-D",
-        "8.1.6"
+        "4.5A-D"
       ],
-      "checked_on": "2026-09-19"
+      "checked_on": "2026-09-21"
     }
   ],
   "tests": [
@@ -65,7 +69,10 @@
     ]
   },
   "verification": {
-    "dataset_checked_on": "2026-09-19",
+    "dataset_checked_on": "2026-09-21",
     "runtime_consumers_tested": false
-  }
+  },
+  "data_dependencies": [
+    "rules.deluxe2015.defcon"
+  ]
 }

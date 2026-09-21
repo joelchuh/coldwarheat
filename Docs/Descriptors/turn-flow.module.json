@@ -52,12 +52,30 @@
       "status": "design"
     },
     {
-      "id": "CardEffectRegistry / VictoryRules / DeckRules",
+      "id": "CardEffectRegistry / DeckRules",
+      "status": "planned"
+    },
+    {
+      "id": "module.defcon",
+      "path": "Docs/Descriptors/defcon.module.json",
+      "status": "planned"
+    },
+    {
+      "id": "module.military-operations",
+      "path": "Docs/Descriptors/military-operations.module.json",
+      "status": "planned"
+    },
+    {
+      "id": "module.victory",
+      "path": "Docs/Descriptors/victory.module.json",
       "status": "planned"
     }
   ],
   "data_dependencies": [
-    "rules.deluxe2015.turn-flow"
+    "rules.deluxe2015.turn-flow",
+    "rules.deluxe2015.defcon",
+    "rules.deluxe2015.military-operations",
+    "rules.deluxe2015.victory"
   ],
   "preconditions": [
     "规则集及被触发的处理器必须齐备",
@@ -90,7 +108,7 @@
     {
       "id": "F2010",
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
-      "scope": "仅采用回合末太空弃牌等未被新版覆盖的条目；CF-001 旧答案明确排除"
+      "scope": "采用未被新版覆盖的太空弃牌与双方扣留一般裁定；排除CF-001旧答案，CF-003仍暂停"
     }
   ],
   "tests": [
@@ -105,9 +123,9 @@
     "design_review": "检查源规则版本、转换边界、持久化、保密与异常路径；实际检查记录见工作记录"
   },
   "open_items": [
-    "双方同时扣留计分牌的新版组合裁定",
+    "CF-003：双方扣留且美国军事候选胜利的交叉裁定等待用户决定",
     "完整卡牌/国家/初始布置数据",
     "逐卡拦截和回合末效果优先级",
-    "完整军事行动与终局计算"
+    "地区计分、太空与特殊终局提供者"
   ]
 }

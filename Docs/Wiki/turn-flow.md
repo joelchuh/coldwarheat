@@ -1,4 +1,4 @@
-# 回合与出牌状态机设计 v0.1
+# 回合与出牌状态机设计 v0.2
 
 > description: 查找阶段转换、头条保密、行动资格、事件与 OPS 次序、卡牌去向、等待选择及恢复规则。
 > 状态：设计完成到本文声明的编排边界；尚无 C# 实现。逐卡事件、计分计算和完整数据集仍需后续完成。
@@ -39,7 +39,7 @@ GameState、随机状态、结算栈、待选择组、已接受命令的去重�
 | Setup.Validate | CreateGame 的完整规则集与种子 | 数据和处理器齐备后建立牌堆、轨道与初始布置上下文；缺失则拒绝创建 |
 | Setup.InitialDeal | 内部发牌步骤 | 发到首个时代的目标手牌数，保留 InitialDealDone |
 | Setup.Deploy | 当前布置方的合法选择 | 依参数指定的初始布置顺序完成双方；玩家在此之前已能查看自己的初始手牌；进入 TurnStart |
-| TurnStart | 内部步骤 | 按边界处理计数器重置、DEFCON 恢复，再补牌，进入 Headline |
+| TurnStart | 内部步骤 | 按各自边界处理计数器与 DEFCON 恢复（军事累计已在期末评估后归零），再补牌，进入 Headline |
 | Headline.Collect | 头条选择组的拥有者 | 收齐且锁定合法选择后统一揭示；特殊能力改变选择策略 |
 | Headline.Resolve | 当前事件需要的选择 | 顺序结算并处理每张牌的去向；无未完成帧后进入 Actions |
 | Actions.OpenSlot | 内部调度 | 根据当前资格建立 ActionContext，等待出牌或规则允许的跳过 |
@@ -131,7 +131,7 @@ CardPlayContext 中区分 NotTriggered、BlockedPrerequisite、Suppressed、Reso
 内部步骤及继续位置：
 
 ```text
-MilitaryAssessment
+MilitaryAssessmentAndReset
 → HeldScoringAudit
 → ConfirmDeferredVictory
 → ChinaReady
@@ -140,17 +140,17 @@ MilitaryAssessment
 → [EnterNextEra + AdvanceTurn | FinalScoring]
 ```
 
-MilitaryAssessment 交给军事行动规则一次性返回双方净结算，不先让一方到达胜利线再计算另一方。由此产生的胜利只存 CandidateWinner。HeldScoringAudit 后才由 VictoryRules 按选定版本确认结果。
+MilitaryAssessmentAndReset 交给军事行动规则一次性返回双方净结算，不先让一方到达胜利线再计算另一方。由此产生的胜利只存 CandidateWinner。评估快照、净分、军事归零与游标一起提交。HeldScoringAudit 后才由 VictoryService 按选定版本确认结果；各责任服务见 [风险与胜负设计](risk-victory.md)。
 
 **版本冲突 CF-001：** F2010 PDF 第 21 页允许军事行动胜利截断扣留牌检查；R2015 §10.3.1 明文规定例外，军事行动达到胜利线后仍须检查获胜方是否扣留计分牌。采用 R2015，排除旧答案。不能把这处处理简化成通用 CheckVictoryImmediately。
 
 本地普通模式在权威侧进行扣留计分牌检查，不公开双方完整剩余手牌。此为数字端保密实现，未启用锦标赛的全手牌展示；违规及胜负依据规则审计。计分牌被合法事件弃置与“留到检查时”分别处理；不要把剩余行动数不足的预警当成所有情形一律禁出牌，事件可能改变手牌。
 
-EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20–21 页说明太空弃牌发生在扣留计分牌检查之后，不能借它补救该违规。持续效果按自己的 ExpiryBoundary 到期；计数器重置不能顺手清掉跨回合效果。
+EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20–21 页说明太空弃牌发生在扣留计分牌检查之后，不能借它补救该违规。持续效果按自己的 ExpiryBoundary 到期；计数器重置不能顺手清掉跨回合效果；军事累计归零已在 MilitaryAssessmentAndReset 完成，此处不再次评估罚分。
 
 跨时代加入与 AdvanceTurn 属于一个有保存位置的转换；末回合不建立不存在的下一回合。FinalScoring 使用单独的胜负检查模式，不能按普通加分逐地区触发分数线胜利（R2015 §10.3.2）；欧洲控制等规则由计分服务显式报告。
 
-**裁定边界：** 双方同时扣留计分牌的旧 FAQ 答案与新版例外之间的组合尚未完成版本核实。该组合使用 UnresolvedAdjudication 暂停并保留现场，不擅自判平局、选择数组第一方或照搬旧答案。此项列入下一批终局裁定；不会阻止本次状态机结构设计，但会阻止完整规则集发布。逐卡回合末效果的相对优先级也必须由各自来源确定，不能靠字典枚举顺序。
+**裁定边界：** 普通双方扣留已按 CF-002 确认 US 胜；双方扣留且 USSR 为军事候选赢家同样判 US 胜。仅双方扣留且 US 为军事候选赢家的 CF-003 仍等待项目选择，当前返回 UnresolvedAdjudication。完整矩阵与案例见 [风险与胜负设计](risk-victory.md)。逐卡回合末效果优先级仍须按来源确定，不能靠字典枚举顺序。
 
 ## 8. 事务、恢复与隐藏信息
 
@@ -174,7 +174,7 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 
 拟定接口见模块 JSON 的 planned_entrypoints；entrypoints 为空，表示还不能调用。职责分别是 TurnFlow.AdvanceUntilYield、HeadlineRules.BuildDecisionGroup、ActionEligibility.GetNextSlot、CardPlayRules.BuildResolutionPlan、CardDispositionRules.Finalize 与 DecisionResolver.Resolve。
 
-参数数据只覆盖本模块已核对的基础时段、头条排序和回合初恢复数值；不是完整可开局规则集。正式国家、卡牌、初始布置、太空和地区计分定义仍未生成。本轮没有为了填满字典编造卡牌数值。
+参数数据只覆盖本模块已核对的基础时段、头条排序；回合初 DEFCON 参数已移到独立 defcon.json；不是完整可开局规则集。正式国家、卡牌、初始布置、太空和地区计分定义仍未生成。本轮没有为了填满字典编造卡牌数值。
 
 验收案例存储在单独 JSON，通过 CaseId 与 coverage 标签检索；状态均为 planned，不能当成已通过的游戏测试。案例覆盖普通转移、终局例外、嵌套事件、牌区、秘密信息、重复命令与读档。开发前完成剩余裁定并建立 M0 测试工程，再把案例逐个转成自动化测试。
 

@@ -1,0 +1,479 @@
+{
+  "schema_version": 1,
+  "id": "cases.risk-victory",
+  "description": "风险与胜负服务验收设计，按ID/coverage检索；全部planned，不是运行测试结果。",
+  "status": "planned",
+  "cases": [
+    {
+      "id": "RV-D-01",
+      "coverage": "defcon",
+      "given": "DEFCON=5",
+      "when": "回合初改善",
+      "then": "仍为5，没有重复轨道变更",
+      "source": "R2015 §8.1.2、§8.1.6",
+      "status": "planned"
+    },
+    {
+      "id": "RV-D-02",
+      "coverage": "defcon",
+      "given": "DEFCON=2",
+      "when": "回合初改善一次",
+      "then": "变为3；重复内部步骤不得再次增加",
+      "source": "R2015 §8.1.6",
+      "status": "planned"
+    },
+    {
+      "id": "RV-D-03",
+      "coverage": "defcon",
+      "given": "DEFCON依次为5、4、3、2；普通政变/调整",
+      "when": "查询欧洲、亚洲、中东、非洲目标",
+      "then": "限制分别为空、欧洲、欧洲+亚洲、欧洲+亚洲+中东；非洲不受此地理限制",
+      "source": "R2015 §8.1.5",
+      "status": "planned"
+    },
+    {
+      "id": "RV-D-04",
+      "coverage": "defcon",
+      "given": "DEFCON=3；东南亚目标标签包含亚洲",
+      "when": "普通调整目标校验",
+      "then": "按亚洲禁止；影响力投放不受此门禁",
+      "source": "R2015 §8.1.5；工程地区映射",
+      "status": "planned"
+    },
+    {
+      "id": "RV-D-05",
+      "coverage": "defcon",
+      "given": "DEFCON=3；来自已核实卡牌的欧洲免费政变授权；战场目标",
+      "when": "尝试政变且失败",
+      "then": "地理门禁豁免，DEFCON降至2；军事累计不增",
+      "source": "R2015 §6.3.4–5、§8.2.5",
+      "status": "planned"
+    },
+    {
+      "id": "RV-D-06",
+      "coverage": "defcon",
+      "given": "DEFCON=2；US为PhasingPlayer，USSR执行导致降级的事件选择",
+      "when": "DEFCON降至1",
+      "then": "US输；不按Actor或EffectController判输",
+      "source": "R2015 §8.1.3",
+      "status": "planned"
+    },
+    {
+      "id": "RV-D-07",
+      "coverage": "defcon",
+      "given": "US头条触发USSR控制的事件；DEFCON=2",
+      "when": "事件导致DEFCON降至1",
+      "then": "US输；头条出牌者为责任方",
+      "source": "R2015 §4.5C、§8.1.3",
+      "status": "planned"
+    },
+    {
+      "id": "RV-D-08",
+      "coverage": "defcon",
+      "given": "DEFCON=2；合法非洲战场目标，普通政变，无特殊拦截",
+      "when": "提交政变",
+      "then": "不因自毁而拒绝；完成基准政变步骤并产生核战终局，后续牌步骤停止",
+      "source": "R2015 §6.3、§8.1.3；工程事务",
+      "status": "planned"
+    },
+    {
+      "id": "RV-D-09",
+      "coverage": "defcon",
+      "given": "当前DEFCON=0，或降级缺失PhasingPlayer",
+      "when": "规划轨道变更",
+      "then": "技术错误；事务不修改状态、不掷骰，不猜败者",
+      "source": "工程不变量",
+      "status": "planned"
+    },
+    {
+      "id": "RV-D-10",
+      "coverage": "defcon",
+      "given": "免费政变仅有欧洲地理豁免；另有未知拦截效果",
+      "when": "尝试以该豁免跳过其他限制",
+      "then": "执行前失败，不把免费解释为所有规则豁免",
+      "source": "R2015 §6.3.5；工程失败边界",
+      "status": "planned"
+    },
+    {
+      "id": "RV-M-01",
+      "coverage": "military",
+      "given": "普通OPS政变，印刷3，经修正军事信用2，骰子另有+1；政变失败",
+      "when": "记录信用",
+      "then": "只记2，不记3或骰子加成",
+      "source": "R2015 §7.4.2、§8.2.3",
+      "status": "planned"
+    },
+    {
+      "id": "RV-M-02",
+      "coverage": "military",
+      "given": "US打出对手战争事件；策略授予USSR奖励2；战争失败",
+      "when": "事件结算",
+      "then": "USSR获得2，US不因出牌获得此奖励",
+      "source": "R2015 §7.5、§8.2.4；奖励2为测试夹具",
+      "status": "planned"
+    },
+    {
+      "id": "RV-M-03",
+      "coverage": "military",
+      "given": "免费政变、调整、影响力、太空各一次",
+      "when": "检查军事累计",
+      "then": "均不凭行动本身增加军事累计",
+      "source": "R2015 §8.2.2、§8.2.5",
+      "status": "planned"
+    },
+    {
+      "id": "RV-M-04",
+      "coverage": "military",
+      "given": "DEFCON=4；US累计2、USSR累计1；US VP=19",
+      "when": "期末评估",
+      "then": "缺额2、3，净+1，候选US；累计归零并保留原快照",
+      "source": "R2015 §4.5E、§8.2.1、§10.3.1",
+      "status": "planned"
+    },
+    {
+      "id": "RV-M-05",
+      "coverage": "military",
+      "given": "DEFCON=4；双方累计2；US VP=19",
+      "when": "期末评估",
+      "then": "双方净罚分0，仍19；没有候选赢家",
+      "source": "R2015 §8.2.1",
+      "status": "planned"
+    },
+    {
+      "id": "RV-M-06",
+      "coverage": "military",
+      "given": "开局DEFCON=5，期末为2；双方累计2",
+      "when": "期末评估",
+      "then": "义务按期末2，双方缺额0",
+      "source": "R2015 §8.2.1",
+      "status": "planned"
+    },
+    {
+      "id": "RV-M-07",
+      "coverage": "military",
+      "given": "本回合累计7；期末DEFCON=5",
+      "when": "评估并进入下一回合",
+      "then": "无罚分，无超额奖励或结转；军事归零",
+      "source": "R2015 §4.5E、§8.2.1；工程累计表示",
+      "status": "planned"
+    },
+    {
+      "id": "RV-M-08",
+      "coverage": "military",
+      "given": "本回合军事评估已提交，内部步骤恢复/重试",
+      "when": "再次推进同AssessmentId",
+      "then": "不再加减VP，不把零累计当成尚未评估的新输入",
+      "source": "工程幂等与恢复",
+      "status": "planned"
+    },
+    {
+      "id": "RV-H-01",
+      "coverage": "held-scoring-matrix",
+      "given": {
+        "us_holds": false,
+        "ussr_holds": false,
+        "military_candidate": null
+      },
+      "when": "同一审核检查点按整组条件裁定",
+      "then": {
+        "outcome": "Continue",
+        "winner": null
+      },
+      "source": "R2015-4.5D;DigitalPrivateAudit",
+      "status": "planned"
+    },
+    {
+      "id": "RV-H-02",
+      "coverage": "held-scoring-matrix",
+      "given": {
+        "us_holds": false,
+        "ussr_holds": false,
+        "military_candidate": "US"
+      },
+      "when": "同一审核检查点按整组条件裁定",
+      "then": {
+        "outcome": "Finished",
+        "winner": "US"
+      },
+      "source": "CF-001",
+      "status": "planned"
+    },
+    {
+      "id": "RV-H-03",
+      "coverage": "held-scoring-matrix",
+      "given": {
+        "us_holds": false,
+        "ussr_holds": false,
+        "military_candidate": "USSR"
+      },
+      "when": "同一审核检查点按整组条件裁定",
+      "then": {
+        "outcome": "Finished",
+        "winner": "USSR"
+      },
+      "source": "CF-001",
+      "status": "planned"
+    },
+    {
+      "id": "RV-H-04",
+      "coverage": "held-scoring-matrix",
+      "given": {
+        "us_holds": true,
+        "ussr_holds": false,
+        "military_candidate": null
+      },
+      "when": "同一审核检查点按整组条件裁定",
+      "then": {
+        "outcome": "Finished",
+        "winner": "USSR"
+      },
+      "source": "R2015-4.5D;DigitalPrivateAudit",
+      "status": "planned"
+    },
+    {
+      "id": "RV-H-05",
+      "coverage": "held-scoring-matrix",
+      "given": {
+        "us_holds": true,
+        "ussr_holds": false,
+        "military_candidate": "US"
+      },
+      "when": "同一审核检查点按整组条件裁定",
+      "then": {
+        "outcome": "Finished",
+        "winner": "USSR"
+      },
+      "source": "CF-001",
+      "status": "planned"
+    },
+    {
+      "id": "RV-H-06",
+      "coverage": "held-scoring-matrix",
+      "given": {
+        "us_holds": true,
+        "ussr_holds": false,
+        "military_candidate": "USSR"
+      },
+      "when": "同一审核检查点按整组条件裁定",
+      "then": {
+        "outcome": "Finished",
+        "winner": "USSR"
+      },
+      "source": "CF-001",
+      "status": "planned"
+    },
+    {
+      "id": "RV-H-07",
+      "coverage": "held-scoring-matrix",
+      "given": {
+        "us_holds": false,
+        "ussr_holds": true,
+        "military_candidate": null
+      },
+      "when": "同一审核检查点按整组条件裁定",
+      "then": {
+        "outcome": "Finished",
+        "winner": "US"
+      },
+      "source": "R2015-4.5D;DigitalPrivateAudit",
+      "status": "planned"
+    },
+    {
+      "id": "RV-H-08",
+      "coverage": "held-scoring-matrix",
+      "given": {
+        "us_holds": false,
+        "ussr_holds": true,
+        "military_candidate": "US"
+      },
+      "when": "同一审核检查点按整组条件裁定",
+      "then": {
+        "outcome": "Finished",
+        "winner": "US"
+      },
+      "source": "CF-001",
+      "status": "planned"
+    },
+    {
+      "id": "RV-H-09",
+      "coverage": "held-scoring-matrix",
+      "given": {
+        "us_holds": false,
+        "ussr_holds": true,
+        "military_candidate": "USSR"
+      },
+      "when": "同一审核检查点按整组条件裁定",
+      "then": {
+        "outcome": "Finished",
+        "winner": "US"
+      },
+      "source": "CF-001",
+      "status": "planned"
+    },
+    {
+      "id": "RV-H-10",
+      "coverage": "held-scoring-matrix",
+      "given": {
+        "us_holds": true,
+        "ussr_holds": true,
+        "military_candidate": null
+      },
+      "when": "同一审核检查点按整组条件裁定",
+      "then": {
+        "outcome": "Finished",
+        "winner": "US"
+      },
+      "source": "CF-002",
+      "status": "planned"
+    },
+    {
+      "id": "RV-H-11",
+      "coverage": "held-scoring-matrix",
+      "given": {
+        "us_holds": true,
+        "ussr_holds": true,
+        "military_candidate": "US"
+      },
+      "when": "同一审核检查点按整组条件裁定",
+      "then": {
+        "outcome": "UnresolvedAdjudication",
+        "winner": null
+      },
+      "source": "CF-003",
+      "status": "planned"
+    },
+    {
+      "id": "RV-H-12",
+      "coverage": "held-scoring-matrix",
+      "given": {
+        "us_holds": true,
+        "ussr_holds": true,
+        "military_candidate": "USSR"
+      },
+      "when": "同一审核检查点按整组条件裁定",
+      "then": {
+        "outcome": "Finished",
+        "winner": "US"
+      },
+      "source": "CF-002",
+      "status": "planned"
+    },
+    {
+      "id": "RV-V-01",
+      "coverage": "victory",
+      "given": "SignedVp=19；同一VP批次US奖2，USSR奖3",
+      "when": "批次关闭",
+      "then": "净值18，不能在给US记账时提前宣布胜利",
+      "source": "R2015 §10.2.3、§10.3.1",
+      "status": "planned"
+    },
+    {
+      "id": "RV-V-02",
+      "coverage": "victory",
+      "given": "SignedVp=-19；已完成独立事件批次净-1；根出牌仍有后续OPS",
+      "when": "关闭该事件批次",
+      "then": "USSR胜并停止余下OPS，不等整张牌动画完成",
+      "source": "R2015 §10.3.1；工程批次边界",
+      "status": "planned"
+    },
+    {
+      "id": "RV-V-03",
+      "coverage": "victory",
+      "given": "US控制欧洲但尚未发生欧洲计分",
+      "when": "其他无关动作结算",
+      "then": "单凭地图控制不自动胜；在欧洲计分检查点才报告胜者",
+      "source": "R2015 §10.3.1",
+      "status": "planned"
+    },
+    {
+      "id": "RV-V-04",
+      "coverage": "victory",
+      "given": "最终计分中间US暂达21，完整剩余结果净-23，无欧洲控制，附加项已齐",
+      "when": "完成最终计分",
+      "then": "最终-2，USSR胜；不得中途按20分截断",
+      "source": "R2015 §10.3.2",
+      "status": "planned"
+    },
+    {
+      "id": "RV-V-05",
+      "coverage": "victory",
+      "given": "最终计分汇总无欧洲控制；总分分别+1、0、-1",
+      "when": "完成最终计分",
+      "then": "分别US胜、平局、USSR胜",
+      "source": "R2015 §10.3.2",
+      "status": "planned"
+    },
+    {
+      "id": "RV-V-06",
+      "coverage": "victory",
+      "given": "最终计分USSR控制欧洲，其他总分有利US",
+      "when": "完成最终计分",
+      "then": "USSR凭欧洲控制胜；不把欧洲换算成固定大额VP",
+      "source": "R2015 §10.3.2",
+      "status": "planned"
+    },
+    {
+      "id": "RV-V-07",
+      "coverage": "victory",
+      "given": "最终计分存在缺失、重复地区或中国牌附加提供者缺失",
+      "when": "准备最终结果",
+      "then": "明确数据错误；不漏算、不按0补齐、不宣布胜利",
+      "source": "工程完整性",
+      "status": "planned"
+    },
+    {
+      "id": "RV-V-08",
+      "coverage": "victory",
+      "given": "卡牌已核实策略产生ExplicitCardEnd",
+      "when": "处理特殊终局信号",
+      "then": "按该卡证据判定，不自动执行回合10全地区最终计分",
+      "source": "工程接口边界；具体卡牌另行核实",
+      "status": "planned"
+    },
+    {
+      "id": "RV-S-01",
+      "coverage": "system",
+      "given": "同一CreditId已应用",
+      "when": "恢复或重复提交",
+      "then": "军事累计不重复；不同CreditId可分别计入",
+      "source": "工程幂等",
+      "status": "planned"
+    },
+    {
+      "id": "RV-S-02",
+      "coverage": "system",
+      "given": "已持久化GameResult",
+      "when": "收到新出牌或重复原命令",
+      "then": "新动作拒绝，重复命令返回原结果，GameResult不改写",
+      "source": "工程终局吸收态",
+      "status": "planned"
+    },
+    {
+      "id": "RV-S-03",
+      "coverage": "system",
+      "given": "审核双方剩余手牌",
+      "when": "生成公开日志与玩家快照",
+      "then": "不泄漏对手非计分牌ID；公开终局原因与必要违规摘要",
+      "source": "既定数字端保密约定",
+      "status": "planned"
+    },
+    {
+      "id": "RV-S-04",
+      "coverage": "system",
+      "given": "持有计分牌且有回合末太空弃牌权",
+      "when": "推进回合末",
+      "then": "先审核并裁定，不能先弃牌消除违规",
+      "source": "F2010 PDF pp20–21",
+      "status": "planned"
+    },
+    {
+      "id": "RV-S-05",
+      "coverage": "system",
+      "given": "相同命令和保存位置，使用不同主题或跳过全部动画",
+      "when": "重放",
+      "then": "同一VP、军事、DEFCON、责任与终局结果",
+      "source": "工程表现分离",
+      "status": "planned"
+    }
+  ]
+}

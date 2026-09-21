@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "id": "data.defcon",
+  "kind": "data",
+  "description": "DEFCON 初值、上下限、每回合恢复和政变/调整地区限制；不含逐卡例外。",
+  "status": "ready",
+  "dataset_id": "rules.deluxe2015.defcon",
+  "entrypoints": [
+    {
+      "path": "Data/Rulesets/deluxe-2015/defcon.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "字段或规则条目ID"
+  ],
+  "outputs": [
+    "只读参数及采用状态"
+  ],
+  "dependencies": [],
+  "preconditions": [
+    "核对版本、领域约束和条目采用状态",
+    "ready仅指文件存在，不代表全部裁定或运行模块齐备"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知ID或字段",
+    "来源或规则集不匹配",
+    "请求未采用的裁定",
+    "跨文件正式数据未齐备"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "checked_on": "2026-09-21",
+      "sections": [
+        "4.5A",
+        "6.3.4–5",
+        "8.1"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/risk-victory.cases.json",
+      "status": "planned"
+    }
+  ],
+  "verification": {
+    "checked_on": "2026-09-21",
+    "runtime_consumers_tested": false
+  },
+  "validation": {
+    "schema_status": "无通用JSON Schema；本次用字段、领域和引用断言校验",
+    "constraints": [
+      "稳定ID唯一",
+      "数值为符合领域的整数",
+      "裁定矩阵条件唯一且覆盖全部组合",
+      "pending裁定不得提供可执行胜者"
+    ]
+  }
+}

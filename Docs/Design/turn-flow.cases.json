@@ -214,7 +214,7 @@
     {
       "id": "END-02",
       "coverage": "victory",
-      "given": "军事行动产生候选赢家且审核无违规",
+      "given": "军事行动产生候选赢家，双方均未扣留计分牌",
       "when": "结束审核",
       "then": "确认候选胜利并截断后续回合末步骤",
       "source": "R2015 §10.3.1",
@@ -232,10 +232,10 @@
     {
       "id": "END-04",
       "coverage": "audit",
-      "given": "双方同时扣留计分牌，组合裁定未核实",
+      "given": "双方同时扣留计分牌，军事净分未产生候选赢家",
       "when": "调用审核裁定",
-      "then": "UnresolvedAdjudication 暂停，保存现场；不凭遍历顺序判输赢",
-      "source": "工程失败边界；待核实裁定",
+      "then": "按CF-002判US胜，与枚举顺序无关；交叉候选组合另见RV-H-10至12",
+      "source": "F2010 PDF p22；CF-002",
       "status": "planned"
     },
     {

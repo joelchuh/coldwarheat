@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "id": "module.military-operations",
+  "kind": "module",
+  "description": "定位军事行动信用、双方缺额净结算与归零快照；用于防止重复记账和逐方早判胜，尚不可调用。",
+  "status": "planned",
+  "entrypoints": [],
+  "documentation": "Docs/Wiki/risk-victory.md",
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/MilitaryOperationsService.cs",
+      "symbol": "PlanCredit"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/MilitaryOperationsService.cs",
+      "symbol": "AssessTurnEnd"
+    }
+  ],
+  "inputs": [
+    "规则授予的MilitaryCredit或期末双方累计及DEFCON",
+    "不可变规则定义及版本绑定"
+  ],
+  "outputs": [
+    "CreditPlan或TurnEndAssessment"
+  ],
+  "dependencies": [
+    {
+      "path": "Docs/Wiki/turn-flow.md",
+      "relation": "由编排层调用；无服务互调环"
+    },
+    {
+      "path": "Docs/Wiki/operations.md",
+      "relation": "接收已验证预算及动作上下文"
+    }
+  ],
+  "data_dependencies": [
+    "rules.deluxe2015.military-operations"
+  ],
+  "preconditions": [
+    "权威事务及身份验证",
+    "相关规则、卡牌处理器及正式数据齐备",
+    "当前为设计，尚无可调用实现"
+  ],
+  "side_effects": [
+    "服务本身规划为纯计算；结果经RuleEngine提交后改变权威对局"
+  ],
+  "stop_conditions": [
+    "已终局",
+    "缺少责任、正式数据或卡牌处理器",
+    "未解决裁定",
+    "不匹配的规则/状态版本",
+    "不合法检查点"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "checked_on": "2026-09-21"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/risk-victory.cases.json",
+      "status": "planned",
+      "coverage_prefix": "RV-M"
+    }
+  ],
+  "verification": {
+    "implementation_tested": false
+  },
+  "open_items": [
+    "正式国家/卡牌目录与逐卡策略"
+  ]
+}

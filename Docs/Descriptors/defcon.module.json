@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "id": "module.defcon",
+  "kind": "module",
+  "description": "查询政变/调整地理门禁、生成DEFCON变更和核战责任信号；只读设计契约，尚不可调用。",
+  "status": "planned",
+  "entrypoints": [],
+  "documentation": "Docs/Wiki/risk-victory.md",
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/DefconService.cs",
+      "symbol": "CheckRestriction"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/DefconService.cs",
+      "symbol": "PlanChange"
+    }
+  ],
+  "inputs": [
+    "已验证行动、目标地区、例外授权、当前DEFCON与责任上下文",
+    "不可变规则定义及版本绑定"
+  ],
+  "outputs": [
+    "RestrictionResult或DefconChangePlan"
+  ],
+  "dependencies": [
+    {
+      "path": "Docs/Wiki/turn-flow.md",
+      "relation": "由编排层调用；无服务互调环"
+    },
+    {
+      "path": "Docs/Wiki/operations.md",
+      "relation": "接收已验证预算及动作上下文"
+    }
+  ],
+  "data_dependencies": [
+    "rules.deluxe2015.defcon"
+  ],
+  "preconditions": [
+    "权威事务及身份验证",
+    "相关规则、卡牌处理器及正式数据齐备",
+    "当前为设计，尚无可调用实现"
+  ],
+  "side_effects": [
+    "服务本身规划为纯计算；结果经RuleEngine提交后改变权威对局"
+  ],
+  "stop_conditions": [
+    "已终局",
+    "缺少责任、正式数据或卡牌处理器",
+    "未解决裁定",
+    "不匹配的规则/状态版本",
+    "不合法检查点"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "checked_on": "2026-09-21"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/risk-victory.cases.json",
+      "status": "planned",
+      "coverage_prefix": "RV-D"
+    }
+  ],
+  "verification": {
+    "implementation_tested": false
+  },
+  "open_items": [
+    "正式国家/卡牌目录与逐卡策略"
+  ]
+}
