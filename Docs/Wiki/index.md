@@ -8,9 +8,11 @@
 | 工作流策略 JSON | 快速定位结构化开发约定和描述契约 | 已采用 | [workflow-policy.json](../Workflow/workflow-policy.json) |
 | 游戏模块设计 | 查找大模块、规则子模块、命令流程、换画风边界与验收顺序 | v0.1 设计草案；待实现 | [architecture.md](architecture.md) |
 | 回合与出牌状态机 | 查找阶段转换、头条保密、事件/OPS 顺序、卡牌去向和读档继续位置 | v0.2 编排设计；待实现 | [turn-flow.md](turn-flow.md) |
-| 风险与胜负服务 | 查找 DEFCON 限制与责任、军事净结算、胜负检查点及扣留计分牌矩阵 | v0.1 设计；CF-003等待选择 | [risk-victory.md](risk-victory.md) |
-| 模块描述目录 | 先按 description 定位模块，再读完整契约与相关代码 | 状态机及三个规则服务均 planned | [catalog.json](../Descriptors/catalog.json) |
-| 共享规则数据目录 | 查找数据集描述、来源与独立参数文件 | 回合、风险与终局参数子集；不是完整规则集 | [catalog.json](../../Data/catalog.json) |
+| 风险与胜负服务 | 查找 DEFCON 限制与责任、军事净结算、胜负检查点及扣留计分牌矩阵 | v0.1 设计；CF-003已确认 | [risk-victory.md](risk-victory.md) |
+| 地区计分与最终汇总 | 查找六地区档位、东南亚权重、最终完整性和中国牌附加分 | v0.1设计；待实现 | [region-scoring.md](region-scoring.md) |
+| 太空竞赛 | 查找8格门槛、先后奖励、领先能力、事件推进与回合衔接 | v0.1设计；待实现 | [space-race.md](space-race.md) |
+| 模块描述目录 | 先按 description 定位模块，再读完整契约与相关代码 | 六个模块描述均 planned | [catalog.json](../Descriptors/catalog.json) |
+| 共享规则数据目录 | 查找数据集描述、来源与独立参数文件 | 七个已核对数据子集；完整地图/卡牌仍待建立 | [catalog.json](../../Data/catalog.json) |
 | 行动规则 | 查找影响力、政变、调整、预算、对象契约与验收案例 | v0.2 设计稿；未实现 | [operations.md](operations.md) |
 | 规则资料 | 查找版本来源、FAQ 适用边界和资料冻结缺口 | 已登记；未完整冻结 | [rules-sources.md](rules-sources.md) |
 | 工程边界 | 查找纯 C# 核心、命令、事件、玩家视角、确定性和程序集约束 | 设计约定；待实现 | [AGENTS.md](../../AGENTS.md) |

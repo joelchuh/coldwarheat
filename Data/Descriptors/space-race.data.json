@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "id": "data.space-race",
+  "kind": "data",
+  "description": "基础太空轨道8格、普通尝试额度及4项领先能力；不启用Turn Zero可选轨道。",
+  "status": "ready",
+  "dataset_id": "rules.deluxe2015.space-race",
+  "entrypoints": [
+    {
+      "path": "Data/Rulesets/deluxe-2015/space-race.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "字段、地区ID、格子ID或卡牌ID"
+  ],
+  "outputs": [
+    "只读参数及来源"
+  ],
+  "dependencies": [],
+  "data_dependencies": [],
+  "preconditions": [
+    "校验结构、版本、ID与领域约束",
+    "完整地图/卡牌引用在正式目录建立后强制校验",
+    "ready仅表示数据文件已存在"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知ID或参数",
+    "非法数值或重复ID",
+    "规则版本不符",
+    "正式目录缺失且试图创建完整对局"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "checked_on": "2026-09-22",
+      "sections": [
+        "3.4",
+        "6.4",
+        "7.4.2"
+      ],
+      "pdf_pages": [
+        7,
+        8,
+        19
+      ]
+    },
+    {
+      "id": "M-DELUXE",
+      "url": "https://s3-us-west-2.amazonaws.com/gmtwebsiteassets/nnts/TSMap11.jpg",
+      "listed_by": "https://www.gmtgames.com/p-927-twilight-struggle-deluxe-edition-8th-printing.aspx",
+      "scope": "GMT产品页地图，仅采用已逐项读取的地区分值、东南亚权重与基础太空轨道；与R2015可见图示交叉核对",
+      "checked_on": "2026-09-22"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/scoring-space.cases.json",
+      "status": "planned"
+    }
+  ],
+  "documentation": "Docs/Wiki/space-race.md",
+  "validation": {
+    "schema_status": "通用JSON Schema尚未建立；使用字段、领域与引用断言",
+    "constraints": [
+      "格子连续从1开始",
+      "骰点范围包含于规则骰子范围",
+      "能力ID唯一且可解析",
+      "OPS门槛正整数"
+    ]
+  },
+  "verification": {
+    "checked_on": "2026-09-22",
+    "runtime_consumers_tested": false
+  }
+}

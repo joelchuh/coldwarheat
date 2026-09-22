@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "id": "module.region-scoring",
+  "kind": "module",
+  "description": "查询六地区档位、东南亚权重和完整最终汇总；纯规则服务设计，尚不可调用。",
+  "status": "planned",
+  "entrypoints": [],
+  "documentation": "Docs/Wiki/region-scoring.md",
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/RegionScoringService.cs",
+      "symbol": "Calculate"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/FinalScoringService.cs",
+      "symbol": "BuildPlan"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/FinalScoringService.cs",
+      "symbol": "Summarize"
+    }
+  ],
+  "inputs": [
+    "同一版本的权威计分快照、地区ID、Normal/Final模式及已核实修正",
+    "完整规则地图与不可变参数定义"
+  ],
+  "outputs": [
+    "双方分项、净VP、EuropeControlWinner与最终完整性证据"
+  ],
+  "dependencies": [
+    {
+      "path": "Docs/Wiki/turn-flow.md",
+      "relation": "由回合编排层调用；本服务不回调编排层"
+    },
+    {
+      "path": "Docs/Wiki/operations.md",
+      "relation": "复用国家控制或有效OPS规则"
+    },
+    {
+      "path": "Docs/Wiki/risk-victory.md",
+      "relation": "编排层将完整VP批次及证据交给胜负服务"
+    }
+  ],
+  "data_dependencies": [
+    "rules.deluxe2015.region-scoring",
+    "cards.deluxe2015.scoring-parameters",
+    "rules.deluxe2015.turn-flow"
+  ],
+  "preconditions": [
+    "当前为设计；尚无可调用实现",
+    "国家集合及控制事实完整；前序事件选择已完成"
+  ],
+  "side_effects": [
+    "规则方法计算计划；RuleEngine在事务中应用状态与事件"
+  ],
+  "stop_conditions": [
+    "地区缺漏、重复或混合快照",
+    "活动计分修正没有已核实处理器",
+    "缺失正式国家/卡牌目录或数据版本不匹配"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "checked_on": "2026-09-22"
+    },
+    {
+      "id": "M-DELUXE",
+      "url": "https://s3-us-west-2.amazonaws.com/gmtwebsiteassets/nnts/TSMap11.jpg",
+      "listed_by": "https://www.gmtgames.com/p-927-twilight-struggle-deluxe-edition-8th-printing.aspx",
+      "scope": "GMT产品页地图，仅采用已逐项读取的地区分值、东南亚权重与基础太空轨道；与R2015可见图示交叉核对",
+      "checked_on": "2026-09-22"
+    },
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "scope": "GMT托管土耳其语汇编中的英文印刷卡图；只采纳指定卡图，不以译文或PDF元数据当作新版勘误",
+      "checked_on": "2026-09-22"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/scoring-space.cases.json",
+      "status": "planned",
+      "coverage_prefix": "SC"
+    }
+  ],
+  "verification": {
+    "implementation_tested": false
+  },
+  "open_items": [
+    "正式地图和卡牌目录",
+    "台海决议、穿梭外交等计分修正策略"
+  ]
+}

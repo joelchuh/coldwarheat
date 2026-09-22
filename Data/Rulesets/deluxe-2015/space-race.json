@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "id": "rules.deluxe2015.space-race",
+  "status": "verified-subset",
+  "description": "基础太空轨道8格、普通尝试额度及4项领先能力；不启用Turn Zero可选轨道。",
+  "sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "checked_on": "2026-09-22",
+      "sections": [
+        "3.4",
+        "6.4",
+        "7.4.2"
+      ],
+      "pdf_pages": [
+        7,
+        8,
+        19
+      ]
+    },
+    {
+      "id": "M-DELUXE",
+      "url": "https://s3-us-west-2.amazonaws.com/gmtwebsiteassets/nnts/TSMap11.jpg",
+      "listed_by": "https://www.gmtgames.com/p-927-twilight-struggle-deluxe-edition-8th-printing.aspx",
+      "scope": "GMT产品页地图，仅采用已逐项读取的地区分值、东南亚权重与基础太空轨道；与R2015可见图示交叉核对",
+      "checked_on": "2026-09-22"
+    }
+  ],
+  "initial_position": 0,
+  "base_attempts_per_turn": 1,
+  "ordinary_advance_steps": 1,
+  "die": {
+    "minimum": 1,
+    "maximum": 6
+  },
+  "attempt_reset_boundary": "TurnStartBeforeHeadline",
+  "spaces": [
+    {
+      "id": "space.earth_satellite",
+      "position": 1,
+      "min_effective_ops": 2,
+      "success_roll": {
+        "min": 1,
+        "max": 3
+      },
+      "vp": {
+        "first": 2,
+        "second": 1
+      },
+      "ability_id": null
+    },
+    {
+      "id": "space.animal_in_space",
+      "position": 2,
+      "min_effective_ops": 2,
+      "success_roll": {
+        "min": 1,
+        "max": 4
+      },
+      "vp": {
+        "first": 0,
+        "second": 0
+      },
+      "ability_id": "ability.space.two_attempts"
+    },
+    {
+      "id": "space.man_in_space",
+      "position": 3,
+      "min_effective_ops": 2,
+      "success_roll": {
+        "min": 1,
+        "max": 3
+      },
+      "vp": {
+        "first": 2,
+        "second": 0
+      },
+      "ability_id": null
+    },
+    {
+      "id": "space.man_in_earth_orbit",
+      "position": 4,
+      "min_effective_ops": 2,
+      "success_roll": {
+        "min": 1,
+        "max": 4
+      },
+      "vp": {
+        "first": 0,
+        "second": 0
+      },
+      "ability_id": "ability.space.headline_after_opponent"
+    },
+    {
+      "id": "space.lunar_orbit",
+      "position": 5,
+      "min_effective_ops": 3,
+      "success_roll": {
+        "min": 1,
+        "max": 3
+      },
+      "vp": {
+        "first": 3,
+        "second": 1
+      },
+      "ability_id": null
+    },
+    {
+      "id": "space.moon_landing",
+      "position": 6,
+      "min_effective_ops": 3,
+      "success_roll": {
+        "min": 1,
+        "max": 4
+      },
+      "vp": {
+        "first": 0,
+        "second": 0
+      },
+      "ability_id": "ability.space.discard_held_card"
+    },
+    {
+      "id": "space.space_shuttle",
+      "position": 7,
+      "min_effective_ops": 3,
+      "success_roll": {
+        "min": 1,
+        "max": 3
+      },
+      "vp": {
+        "first": 4,
+        "second": 2
+      },
+      "ability_id": null
+    },
+    {
+      "id": "space.space_station",
+      "position": 8,
+      "min_effective_ops": 4,
+      "success_roll": {
+        "min": 1,
+        "max": 2
+      },
+      "vp": {
+        "first": 2,
+        "second": 0
+      },
+      "ability_id": "ability.space.eight_action_rounds"
+    }
+  ],
+  "abilities": [
+    {
+      "id": "ability.space.two_attempts",
+      "kind": "AttemptLimit",
+      "value": 2
+    },
+    {
+      "id": "ability.space.headline_after_opponent",
+      "kind": "HeadlineSelectionPolicy",
+      "value": "OpponentRevealsFirst"
+    },
+    {
+      "id": "ability.space.discard_held_card",
+      "kind": "EndTurnDiscardMaximum",
+      "value": 1
+    },
+    {
+      "id": "ability.space.eight_action_rounds",
+      "kind": "ActionRoundAllowance",
+      "value": 8
+    }
+  ],
+  "ability_active_rule": "OwnerAtOrBeyondMilestoneAndOpponentBelowMilestone",
+  "formal_card_catalog_status": "pending"
+}

@@ -1,7 +1,7 @@
 # DEFCON、军事行动与胜负服务设计 v0.1
 
 > description: 定位 DEFCON 目标限制、核战责任、军事行动记账、回合末审核和终局检查点；包含双方面临扣留计分牌的裁定矩阵。
-> 状态：2026-09-21 设计稿；没有 C# 实现、运行测试或完整规则包。RV-H-11 交叉裁定等待用户选择，其他设计可独立审阅。
+> 状态：2026-09-22 设计稿；没有 C# 实现、运行测试或完整规则包。RV-H-11已于2026-09-22由用户确认，新版条款优先判USSR胜。
 > 检索：[模块目录](../Descriptors/catalog.json) → 对应 description → 本文相关节 → planned_entrypoints。参数见[数据目录](../../Data/catalog.json)，案例见[risk-victory.cases.json](../Design/risk-victory.cases.json)。
 
 ## 1. 服务边界
@@ -78,7 +78,7 @@ Assessment、净 VP 应用、双方军事累计归零和步骤游标一起提交
 
 VP 批次以语义来源划分，不以整张牌的 UI 动画或整次根行动划分。对手事件、后续 OPS 和独立触发效果可能属于不同批次；事件需选择时，BatchId 与暂存奖分随帧保存。框架不能以“等待整张牌播完”推迟已经到达的明确终局点。
 
-最终计分接收 RegionScoringService 的结果；必需地区集合由未来计分数据包定义，不在服务再复制。不得漏项、重复计某地区、额外独立计东南亚或在中途越过普通分数线就截断。中国牌的最终附加分、持续计分修正也必须由已核实的卡牌/计分提供者交齐；当前未冻结，缺失时报错，不默认0。欧洲控制用独立胜利标志，不用“大额VP”模拟。
+最终计分接收FinalScoringService汇总的RegionScoringService结果；必需六地区集合从region-scoring数据定义派生，不在服务再复制。不得漏项、重复计某地区、额外独立计东南亚或在中途越过普通分数线就截断。第10回合中国牌持有者1VP已核对并放入scoring-card-parameters；持续计分修正仍须已核实提供者交齐。完整国家与卡牌目录尚未冻结，缺失时报错，不默认0。欧洲控制用独立胜利标志，不用“大额VP”模拟。详见[地区计分](region-scoring.md)。
 
 GameResult 保存 ResultId、Winner 或 Draw、Reason、CheckpointId、SourceRules、StateVersion、公开证据摘要。只有 Continue/Deferred 可以继续。Finished 是吸收态，后续命令不能覆盖原结果；重复命令仍返回原结果。UnresolvedAdjudication 是技术暂停，不是平局、败局或可由玩家跳过的选择。
 
@@ -86,7 +86,7 @@ GameResult 保存 ResultId、Winner 或 Draw、Reason、CheckpointId、SourceRul
 
 [R2015 §10.3.1](https://www.gmtgames.com/nnts/TS_Rules-2015.pdf) 对军事候选赢家明确要求审核；[F2010 官方 FAQ 最后一问，PDF第22页](https://www.gmtgames.com/nnts/FAQv5.pdf) 对双方扣留明确给出 US 胜。FAQ 封面写明设计师认可；[GMT 当前资料入口](https://www.gmtgames.com/p-1138-twilight-struggle-20th-anniversary-hall-of-fame-edition.aspx) 仍将它列在 Deluxe 与旧版资料下。后一点证明来源归属，不证明全部旧答案均有效。
 
-因此关闭“双方扣留的一般情况无依据”的问题（CF-002）；保留一个确实冲突的组合（CF-003）：双方扣留且美国为军事候选赢家。旧 FAQ 的军事先胜免审核条目仍被 CF-001 明确排除，不能借双方裁定把它重新引入。
+因此关闭“双方扣留的一般情况无依据”的问题（CF-002）；交叉组合CF-003（双方扣留且美国为军事候选赢家）现按用户确认的项目解释解决。旧 FAQ 的军事先胜免审核条目仍被 CF-001 明确排除，不能借双方裁定把它重新引入。
 
 以下 candidate 指军事净结算已达到普通胜利线的一方；若更早发生其他合法终局，根本不会到本表。
 
@@ -95,9 +95,9 @@ GameResult 保存 ResultId、Winner 或 Draw、Reason、CheckpointId、SourceRul
 | 否 | 否 | 继续 | US 胜 | USSR 胜 |
 | 是 | 否 | USSR 胜 | USSR 胜 | USSR 胜 |
 | 否 | 是 | US 胜 | US 胜 | US 胜 |
-| 是 | 是 | US 胜 | **CF-003：等待用户选择** | US 胜 |
+| 是 | 是 | US 胜 | USSR 胜（CF-003） | US 胜 |
 
-CF-003 的建议是优先采用新版明确例外，判 US 输，但这是对交叉条件的项目版本解释，不冒充已找到的新版官方专门裁定。用户确认前，该行 winner=null、outcome=UnresolvedAdjudication；其他11种情况均有明确设计结果。记录与案例 RV-H-01 至 RV-H-12 一一对应。
+CF-003于2026-09-22获用户确认：优先采用新版明确例外，判US输。这是项目版本解释，不冒充新版官方专门裁定。该行winner=USSR、outcome=Finished；12种情况均已明确。记录与案例 RV-H-01 至 RV-H-12 一一对应。
 
 普通模式继续使用之前确定的权威侧私密审核，不公开整副剩余手牌；这是数字端产品约定，未启用锦标赛的全手牌展示。违规结果不改写 DEFCON 数值，不伪造一次由另一方触发的降级事件。太空回合末弃牌在审核后，不能用于消除违规。
 
@@ -124,6 +124,6 @@ TurnFlow 调用结果服务，不解析原文或根据文件顺序挑规则。�
 
 [risk-victory.cases.json](../Design/risk-victory.cases.json) 包含基础边界、12格扣留矩阵、双方净分、嵌套责任、终局截断、存档幂等和隐藏信息案例；均为 planned。已核验 JSON 与引用不等于规则引擎测试通过。
 
-后续首先设计地区计分与太空竞赛：它们为本次服务提供完整 ScoringResult、最终地区集合、太空行动资格和回合末能力。再整理逐卡特殊终局/拦截、正式国家与卡牌数据并冻结规则包，之后进入纯 C# 实现。尚未核实的逐卡顺序不靠默认优先级填充。
+地区计分与太空竞赛已形成设计和基础参数，见[地区计分](region-scoring.md)与[太空竞赛](space-race.md)，仍未实现。下一步整理正式国家/卡牌目录与逐卡计分、推进、终局和拦截策略，冻结规则包后进入纯C#实现。尚未核实的逐卡顺序不靠默认优先级填充。
 
 [返回索引](index.md)

@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "id": "data.region-scoring",
+  "kind": "data",
+  "description": "六大地区基础计分、东南亚专用权重与最终计分地区集合；国家目录和逐卡修正另行绑定。",
+  "status": "ready",
+  "dataset_id": "rules.deluxe2015.region-scoring",
+  "entrypoints": [
+    {
+      "path": "Data/Rulesets/deluxe-2015/region-scoring.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "字段、地区ID、格子ID或卡牌ID"
+  ],
+  "outputs": [
+    "只读参数及来源"
+  ],
+  "dependencies": [],
+  "data_dependencies": [],
+  "preconditions": [
+    "校验结构、版本、ID与领域约束",
+    "完整地图/卡牌引用在正式目录建立后强制校验",
+    "ready仅表示数据文件已存在"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知ID或参数",
+    "非法数值或重复ID",
+    "规则版本不符",
+    "正式目录缺失且试图创建完整对局"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "checked_on": "2026-09-22",
+      "sections": [
+        "2.1.1–2",
+        "2.1.7",
+        "10.1–10.3"
+      ],
+      "pdf_pages": [
+        18,
+        19
+      ]
+    },
+    {
+      "id": "M-DELUXE",
+      "url": "https://s3-us-west-2.amazonaws.com/gmtwebsiteassets/nnts/TSMap11.jpg",
+      "listed_by": "https://www.gmtgames.com/p-927-twilight-struggle-deluxe-edition-8th-printing.aspx",
+      "scope": "GMT产品页地图，仅采用已逐项读取的地区分值、东南亚权重与基础太空轨道；与R2015可见图示交叉核对",
+      "checked_on": "2026-09-22"
+    },
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "scope": "GMT托管土耳其语汇编中的英文印刷卡图；只采纳指定卡图，不以译文或PDF元数据当作新版勘误",
+      "checked_on": "2026-09-22",
+      "pdf_pages": [
+        2
+      ],
+      "card_numbers": [
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/scoring-space.cases.json",
+      "status": "planned"
+    }
+  ],
+  "documentation": "Docs/Wiki/region-scoring.md",
+  "validation": {
+    "schema_status": "通用JSON Schema尚未建立；使用字段、领域与引用断言",
+    "constraints": [
+      "六个标准地区ID唯一",
+      "欧洲控制为AutomaticVictory且数值为null",
+      "东南亚权重国家ID不重复",
+      "禁止把东南亚另加进最终地区列表"
+    ]
+  },
+  "verification": {
+    "checked_on": "2026-09-22",
+    "runtime_consumers_tested": false
+  }
+}

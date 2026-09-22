@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "id": "module.space-race",
+  "kind": "module",
+  "description": "查询8格太空尝试、先后奖励、领先能力、事件推进与回合衔接；当前为设计，尚不可调用。",
+  "status": "planned",
+  "entrypoints": [],
+  "documentation": "Docs/Wiki/space-race.md",
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceRaceService.cs",
+      "symbol": "ValidateAttempt"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceRaceService.cs",
+      "symbol": "ResolveAttempt"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceRaceService.cs",
+      "symbol": "PlanEventAdvance"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAbilityRules.cs",
+      "symbol": "Query"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAbilityRules.cs",
+      "symbol": "BuildEndTurnDecision"
+    }
+  ],
+  "inputs": [
+    "权威出牌/事件授权、双方轨道位置、回合计数与有效OPS",
+    "不可变轨道定义与可保存随机源；回合末选择上下文"
+  ],
+  "outputs": [
+    "尝试资格、骰子和推进奖励计划、能力集合或可保存弃牌决策"
+  ],
+  "dependencies": [
+    {
+      "path": "Docs/Wiki/turn-flow.md",
+      "relation": "由回合编排层调用；本服务不回调编排层"
+    },
+    {
+      "path": "Docs/Wiki/operations.md",
+      "relation": "复用国家控制或有效OPS规则"
+    },
+    {
+      "path": "Docs/Wiki/risk-victory.md",
+      "relation": "编排层将完整VP批次及证据交给胜负服务"
+    }
+  ],
+  "data_dependencies": [
+    "rules.deluxe2015.space-race",
+    "rules.deluxe2015.turn-flow"
+  ],
+  "preconditions": [
+    "当前为设计；尚无可调用实现",
+    "普通尝试与事件推进使用各自的授权入口",
+    "卡牌和活动效果策略齐备，随机状态可回滚"
+  ],
+  "side_effects": [
+    "规则方法计算计划；RuleEngine在事务中应用状态与事件"
+  ],
+  "stop_conditions": [
+    "终点、尝试额度不足或OPS不足时拒绝普通尝试",
+    "未知效果政策、非法位置/计数/骰点或到达记录损坏",
+    "已终局、过期命令或绑定版本不符"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "checked_on": "2026-09-22"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "checked_on": "2026-09-22"
+    },
+    {
+      "id": "M-DELUXE",
+      "url": "https://s3-us-west-2.amazonaws.com/gmtwebsiteassets/nnts/TSMap11.jpg",
+      "listed_by": "https://www.gmtgames.com/p-927-twilight-struggle-deluxe-edition-8th-printing.aspx",
+      "scope": "GMT产品页地图，仅采用已逐项读取的地区分值、东南亚权重与基础太空轨道；与R2015可见图示交叉核对",
+      "checked_on": "2026-09-22"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/scoring-space.cases.json",
+      "status": "planned",
+      "coverage_prefix": "SP"
+    }
+  ],
+  "verification": {
+    "implementation_tested": false
+  },
+  "open_items": [
+    "正式卡牌目录及逐卡太空推进/限制策略"
+  ]
+}

@@ -1,0 +1,423 @@
+{
+  "schema_version": 1,
+  "id": "cases.scoring-space",
+  "description": "地区计分与太空竞赛的边界验收设计；按SC/SP检索，全部planned，不是运行测试结果。",
+  "status": "planned",
+  "fixture_policy": "明确给出的合成国家统计仅作算法测试，不替代正式地图；数据错误、事件政策和随机源由未来测试显式注入。",
+  "cases": [
+    {
+      "id": "SC-01",
+      "coverage": "region-scoring",
+      "given": "稳定度3，本方影响力2、对手0，无其他受控国家",
+      "when": "普通地区计分",
+      "then": "本方档位None；有影响力不等于控制",
+      "source": "R2015 §2.1.7、§10.1.1",
+      "status": "planned"
+    },
+    {
+      "id": "SC-02",
+      "coverage": "region-scoring",
+      "given": "合成fixture：US T=3/B=2/N=1；USSR T=3/B=1/N=2；BT=3",
+      "when": "计算档位",
+      "then": "US仅Presence，总控制数平手不能Domination",
+      "source": "R2015 §10.1.1",
+      "status": "planned"
+    },
+    {
+      "id": "SC-03",
+      "coverage": "region-scoring",
+      "given": "fixture：US T=4/B=1/N=3；USSR T=2/B=1/N=1；BT=3",
+      "when": "计算档位",
+      "then": "US仅Presence，战场数平手不能Domination",
+      "source": "R2015 §10.1.1",
+      "status": "planned"
+    },
+    {
+      "id": "SC-04",
+      "coverage": "region-scoring",
+      "given": "fixture：US T=3/B=3/N=0；USSR T=3/B=0/N=3；BT=3",
+      "when": "计算档位",
+      "then": "US仅Presence，虽占全部战场但总数平手不能Control",
+      "source": "R2015 §10.1.1",
+      "status": "planned"
+    },
+    {
+      "id": "SC-05",
+      "coverage": "region-scoring",
+      "given": "fixture：US T=3/B=3/N=0；USSR T=2/B=0/N=2；BT=3",
+      "when": "计算档位",
+      "then": "US为Control；Control不另加非战场条件",
+      "source": "R2015 §10.1.1",
+      "status": "planned"
+    },
+    {
+      "id": "SC-06",
+      "coverage": "region-scoring",
+      "given": "fixture：US T=2/B=2/N=0；USSR T=1/B=0/N=1；BT=3",
+      "when": "计算档位",
+      "then": "US仅Presence；Domination要求至少一个非战场",
+      "source": "R2015 §10.1.1",
+      "status": "planned"
+    },
+    {
+      "id": "SC-07",
+      "coverage": "region-scoring",
+      "given": "中美洲，USSR控古巴、海地、多米尼加；US控危地马拉；无修正",
+      "when": "完整双方计分",
+      "then": "USSR支配得5；US存在得1；净US VP=-4，只提交一个批次",
+      "source": "R2015 §10.1.2示例",
+      "status": "planned"
+    },
+    {
+      "id": "SC-08",
+      "coverage": "region-scoring",
+      "given": "非洲fixture：US支配；B=2、无敌方超级大国邻接或修正",
+      "when": "计算US分项",
+      "then": "基础4加战场2等于6，不再叠加存在1",
+      "source": "R2015 §10.1.1–2；M-DELUXE",
+      "status": "planned"
+    },
+    {
+      "id": "SC-09",
+      "coverage": "region-scoring",
+      "given": "同一受控国既是战场，又邻接敌方超级大国",
+      "when": "计算奖励",
+      "then": "战场1和邻接1均计入；重复邻接记录不能再加分",
+      "source": "R2015 §10.1.2",
+      "status": "planned"
+    },
+    {
+      "id": "SC-10",
+      "coverage": "region-scoring",
+      "given": "同一CountryId同时标东欧和西欧；正式欧洲成员集合包含它",
+      "when": "构造欧洲计分事实",
+      "then": "只计一个国家；输入冲突定义报错",
+      "source": "R2015 §2.1.2；工程ID约束",
+      "status": "planned"
+    },
+    {
+      "id": "SC-11",
+      "coverage": "region-scoring",
+      "given": "US控制泰国、越南；USSR控制老挝/柬埔寨、马来西亚；其余未控",
+      "when": "东南亚计分",
+      "then": "US=3，USSR=2，净+1；不另加泰国战场分，老挝/柬埔寨只计一次",
+      "source": "M-DELUXE；R2015 §2.1.2",
+      "status": "planned"
+    },
+    {
+      "id": "SC-12",
+      "coverage": "region-scoring",
+      "given": "亚洲正常计分且双方控制若干东南亚国家",
+      "when": "计算亚洲",
+      "then": "按亚洲成员与标准档位计分，不叠加东南亚权重结果",
+      "source": "R2015 §2.1.2、§10.1",
+      "status": "planned"
+    },
+    {
+      "id": "SC-13",
+      "coverage": "region-scoring",
+      "given": "某方在欧洲达到Control条件",
+      "when": "依次改变影响力、执行欧洲计分",
+      "then": "单纯控制变化不终局；合法计分给EuropeControlWinner，不对null基础分做算术",
+      "source": "R2015 §10.3.1",
+      "status": "planned"
+    },
+    {
+      "id": "SC-14",
+      "coverage": "region-scoring",
+      "given": "末回合；US持中国牌；六地区结果齐备，无欧洲控制或持续附加分",
+      "when": "构造最终计划与汇总",
+      "then": "恰好六个标准地区；中国牌+1且只一次；不另列东南亚，不触发真实出牌钩子",
+      "source": "R2015 §10.3.2；C-DELUXE-EN #6；工程编排",
+      "status": "planned"
+    },
+    {
+      "id": "SC-15",
+      "coverage": "region-scoring",
+      "given": "最终开始VP=19；地区净值依次+5、-10、0、0、0、0；US持中国牌",
+      "when": "完整最终汇总",
+      "then": "结果+15，US胜；中间到24也必须继续计算全部地区",
+      "source": "R2015 §10.3.2；C-DELUXE-EN #6",
+      "status": "planned"
+    },
+    {
+      "id": "SC-16",
+      "coverage": "region-scoring",
+      "given": "最终开始VP=0；六地区净和=-1；US持中国牌；无欧洲控制",
+      "when": "完整最终汇总",
+      "then": "合计0，平局",
+      "source": "R2015 §10.3.2；C-DELUXE-EN #6",
+      "status": "planned"
+    },
+    {
+      "id": "SC-17",
+      "coverage": "region-scoring",
+      "given": "最终净VP偏US；完整结果同时确认USSR欧洲Control",
+      "when": "胜负判定",
+      "then": "USSR自动胜利，不能只看净VP符号",
+      "source": "R2015 §10.3.2",
+      "status": "planned"
+    },
+    {
+      "id": "SC-18",
+      "coverage": "region-scoring",
+      "given": "最终结果缺一个地区、重复一个地区或来自不同StateVersion，分别构造",
+      "when": "尝试提交",
+      "then": "各场景均失败；不改VP，不把缺失项当0",
+      "source": "工程完整性",
+      "status": "planned"
+    },
+    {
+      "id": "SC-19",
+      "coverage": "region-scoring",
+      "given": "地区缺失正式国家定义、空战场集合或活动计分效果无处理器，分别构造",
+      "when": "计分",
+      "then": "均明确报错；不把缺失当中立、虚构Control或忽略修正",
+      "source": "工程完整性",
+      "status": "planned"
+    },
+    {
+      "id": "SC-20",
+      "coverage": "region-scoring",
+      "given": "同一ScoringId已提交；另有只读预览请求",
+      "when": "重复命令及预览",
+      "then": "重复命令返回原结果；预览不写VP/牌区、不消费RNG、不读取对手秘密手牌",
+      "source": "工程事务与隐藏信息",
+      "status": "planned"
+    },
+    {
+      "id": "SP-01",
+      "coverage": "space-race",
+      "given": "起点0，普通可用牌有效OPS=1",
+      "when": "尝试太空",
+      "then": "拒绝；不弃牌、不增加次数、不消耗随机数",
+      "source": "R2015 §6.4.1",
+      "status": "planned"
+    },
+    {
+      "id": "SP-02",
+      "coverage": "space-race",
+      "given": "起点0，有效OPS=2；固定骰子依次独立设为3和4",
+      "when": "在两个独立fixture尝试",
+      "then": "3成功到1，4失败留0；每个合法尝试均消耗牌和1次额度",
+      "source": "R2015 §6.4.1–2；M-DELUXE",
+      "status": "planned"
+    },
+    {
+      "id": "SP-03",
+      "coverage": "space-race",
+      "given": "起点0，有效OPS=4，固定骰子4",
+      "when": "普通尝试",
+      "then": "失败；OPS不加骰点，不额外推进或提高成功率",
+      "source": "R2015 §6.4.1；M-DELUXE",
+      "status": "planned"
+    },
+    {
+      "id": "SP-04",
+      "coverage": "space-race",
+      "given": "US、USSR依次首次到格1；无其他效果",
+      "when": "顺序推进",
+      "then": "US先到获2；USSR后到获1；奖励各一次",
+      "source": "R2015 §6.4.3；M-DELUXE",
+      "status": "planned"
+    },
+    {
+      "id": "SP-05",
+      "coverage": "space-race",
+      "given": "本方格7、对方格8，有效OPS=4",
+      "when": "骰子2成功进入格8",
+      "then": "后到得0且无第8格独占能力；骰子3的独立场景失败",
+      "source": "R2015 §6.4.3–4；M-DELUXE",
+      "status": "planned"
+    },
+    {
+      "id": "SP-06",
+      "coverage": "space-race",
+      "given": "本方格1、对手格0，已用次数0",
+      "when": "第一次尝试到格2",
+      "then": "本回合后续自己的行动轮可作第二次尝试；本次仍计已用1",
+      "source": "R2015 §6.4.4示例",
+      "status": "planned"
+    },
+    {
+      "id": "SP-07",
+      "coverage": "space-race",
+      "given": "本方格2、对方格1，本方已用1",
+      "when": "对方追至格2后，本方尝试再用牌",
+      "then": "第二次拒绝；不回滚已完成尝试",
+      "source": "R2015 §6.4.4；即时能力查询",
+      "status": "planned"
+    },
+    {
+      "id": "SP-08",
+      "coverage": "space-race",
+      "given": "双方均未享有格2能力，本方已用1",
+      "when": "同回合再次普通尝试",
+      "then": "拒绝；到新回合TurnStart仅重置一次",
+      "source": "R2015 §6.4.2；工程重置边界",
+      "status": "planned"
+    },
+    {
+      "id": "SP-09",
+      "coverage": "space-race",
+      "given": "目标格5；牌面OPS=2，通用合法修正使有效OPS=3",
+      "when": "验证太空资格",
+      "then": "达到3门槛；只有地区专用+1的独立场景仍为2并拒绝",
+      "source": "R2015 §7.4.2；M-DELUXE",
+      "status": "planned"
+    },
+    {
+      "id": "SP-10",
+      "coverage": "space-race",
+      "given": "合法普通带星号对手事件牌用于太空，无外部拦截",
+      "when": "结算一次普通尝试",
+      "then": "不执行牌面事件、不按星号移出；仍进入普通弃牌堆",
+      "source": "R2015 §6.4.5、§7.2",
+      "status": "planned"
+    },
+    {
+      "id": "SP-11",
+      "coverage": "space-race",
+      "given": "中国牌可合法自愿使用；太空资格齐备",
+      "when": "用于太空",
+      "then": "不发亚洲专用OPS；正常转交ChinaState，不进入普通弃牌堆；外部已核实用牌钩子仍处理",
+      "source": "F2010 PDF第4页中国牌问答；工程分工",
+      "status": "planned"
+    },
+    {
+      "id": "SP-12",
+      "coverage": "space-race",
+      "given": "事件只提供OPS预算，没有打出实体牌的授权",
+      "when": "请求普通太空尝试",
+      "then": "拒绝；另有实际打出一张牌的事件授权时单独校验用途",
+      "source": "F2010 §6.4问答",
+      "status": "planned"
+    },
+    {
+      "id": "SP-13",
+      "coverage": "space-race",
+      "given": "已注册事件明确直接前进一格，本方已用普通尝试额度",
+      "when": "PlanEventAdvance",
+      "then": "不消耗普通次数，不自动掷骰；按事件政策处理奖励与牌去向",
+      "source": "R2015 §6.4.2；F2010纳粹科学家问答",
+      "status": "planned"
+    },
+    {
+      "id": "SP-14",
+      "coverage": "space-race",
+      "given": "本方位置8，剩余普通尝试额度大于0",
+      "when": "用牌作普通太空尝试",
+      "then": "拒绝且无消耗",
+      "source": "R2015 §6.4.6",
+      "status": "planned"
+    },
+    {
+      "id": "SP-15",
+      "coverage": "space-race",
+      "given": "US独占格4，新的头条选择组尚未建立",
+      "when": "进入HeadlineCollect",
+      "then": "USSR先锁定并公开，US后选；事件执行排序仍使用头条规则",
+      "source": "R2015 §6.4.4、§4.5C",
+      "status": "planned"
+    },
+    {
+      "id": "SP-16",
+      "coverage": "space-race",
+      "given": "头条双方已锁定，在事件执行中才获得格4能力",
+      "when": "继续本轮头条",
+      "then": "不重开选择、不撤销已公开信息；以后选择组重新查询",
+      "source": "工程阶段边界",
+      "status": "planned"
+    },
+    {
+      "id": "SP-17",
+      "coverage": "space-race",
+      "given": "一方独占格6，有两张合法普通扣留牌，审核已通过",
+      "when": "回合末弃牌决策",
+      "then": "可拒绝或自选一张；不可两张，不随机弃，不触发该牌事件",
+      "source": "R2015 §6.4.4；F2010 PDF第20–21页",
+      "status": "planned"
+    },
+    {
+      "id": "SP-18",
+      "coverage": "space-race",
+      "given": "独占格6，但扣留计分牌审核已导致终局",
+      "when": "请求回合末弃牌",
+      "then": "不产生决策；不能用该能力补救失败，中国牌也不在普通弃牌候选中",
+      "source": "R2015 §10.3.1；F2010 §6.4",
+      "status": "planned"
+    },
+    {
+      "id": "SP-19",
+      "coverage": "space-race",
+      "given": "独占格8；早期正常6轮或后期正常7轮，分别构造",
+      "when": "普通名额结束后查询",
+      "then": "总额度8，对应最多2或1个太空额外名额；遵循原先后顺序，不在获得时插队",
+      "source": "R2015 §6.4.4；M-DELUXE；工程调度",
+      "status": "planned"
+    },
+    {
+      "id": "SP-20",
+      "coverage": "space-race",
+      "given": "格8能力持有人尚有额外名额；对方随后追上格8",
+      "when": "调度下个名额",
+      "then": "取消尚未开始的太空额外名额；不撤销已开始或完成的合法根行动",
+      "source": "R2015 §6.4.4；工程调度",
+      "status": "planned"
+    },
+    {
+      "id": "SP-21",
+      "coverage": "space-race",
+      "given": "独占格8且正常名额已完成",
+      "when": "明确拒绝剩余太空额外名额",
+      "then": "本回合不再反复询问；不允许据此跳过正常名额或撤销其他来源授权",
+      "source": "R2015 §6.4.4 may；工程决策",
+      "status": "planned"
+    },
+    {
+      "id": "SP-22",
+      "coverage": "space-race",
+      "given": "本回合已用1次，事件推进获得能力；或相同TurnStart步骤重复执行",
+      "when": "更新状态",
+      "then": "获得能力不清零次数；回合初同一步骤不会重复重置",
+      "source": "工程计数不变量",
+      "status": "planned"
+    },
+    {
+      "id": "SP-23",
+      "coverage": "space-race",
+      "given": "AttemptId已提交并存档；加载后重试同命令",
+      "when": "恢复及重放",
+      "then": "原骰子、位置、奖励和次数保持；不再掷骰或发先到奖",
+      "source": "工程幂等与可重放性",
+      "status": "planned"
+    },
+    {
+      "id": "SP-24",
+      "coverage": "space-race",
+      "given": "多格事件缺少中间格VP政策，或状态含负次数/越界位置/非法骰点/矛盾到达记录",
+      "when": "规划或结算",
+      "then": "明确失败并回滚；不猜规则，不部分消耗卡牌或RNG",
+      "source": "工程完整性",
+      "status": "planned"
+    },
+    {
+      "id": "SP-25",
+      "coverage": "space-race",
+      "given": "回合末弃牌PendingDecision尚未回答，含拥有者LegalCardIds",
+      "when": "保存、恢复并生成双方视图",
+      "then": "只有拥有者看到候选手牌；恢复继续原决策，不重复弃牌",
+      "source": "工程隐藏信息与保存",
+      "status": "planned"
+    },
+    {
+      "id": "SP-26",
+      "coverage": "space-race",
+      "given": "计分牌被请求用于Space，或活动限制策略缺失",
+      "when": "验证用途",
+      "then": "拒绝无OPS计分牌；策略缺失为可诊断开发故障，不默认放行",
+      "source": "R2015 §6.4.1；工程注册表",
+      "status": "planned"
+    }
+  ]
+}

@@ -150,7 +150,7 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 
 跨时代加入与 AdvanceTurn 属于一个有保存位置的转换；末回合不建立不存在的下一回合。FinalScoring 使用单独的胜负检查模式，不能按普通加分逐地区触发分数线胜利（R2015 §10.3.2）；欧洲控制等规则由计分服务显式报告。
 
-**裁定边界：** 普通双方扣留已按 CF-002 确认 US 胜；双方扣留且 USSR 为军事候选赢家同样判 US 胜。仅双方扣留且 US 为军事候选赢家的 CF-003 仍等待项目选择，当前返回 UnresolvedAdjudication。完整矩阵与案例见 [风险与胜负设计](risk-victory.md)。逐卡回合末效果优先级仍须按来源确定，不能靠字典枚举顺序。
+**裁定边界：** 普通双方扣留已按 CF-002 确认 US 胜；双方扣留且 USSR 为军事候选赢家同样判 US 胜。双方扣留且US为军事候选赢家的CF-003已获用户确认：新版条款优先，判USSR胜。完整矩阵与案例见 [风险与胜负设计](risk-victory.md)。逐卡回合末效果优先级仍须按来源确定，不能靠字典枚举顺序。
 
 ## 8. 事务、恢复与隐藏信息
 
@@ -174,8 +174,19 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 
 拟定接口见模块 JSON 的 planned_entrypoints；entrypoints 为空，表示还不能调用。职责分别是 TurnFlow.AdvanceUntilYield、HeadlineRules.BuildDecisionGroup、ActionEligibility.GetNextSlot、CardPlayRules.BuildResolutionPlan、CardDispositionRules.Finalize 与 DecisionResolver.Resolve。
 
-参数数据只覆盖本模块已核对的基础时段、头条排序；回合初 DEFCON 参数已移到独立 defcon.json；不是完整可开局规则集。正式国家、卡牌、初始布置、太空和地区计分定义仍未生成。本轮没有为了填满字典编造卡牌数值。
+参数数据只覆盖本模块已核对的基础时段、头条排序；回合初 DEFCON 参数已移到独立 defcon.json；不是完整可开局规则集。正式国家、卡牌与初始布置仍未生成；太空轨道和地区计分参数已建立独立数据子集，尚不足以初始化完整对局。本轮没有为了填满字典编造卡牌数值。
 
 验收案例存储在单独 JSON，通过 CaseId 与 coverage 标签检索；状态均为 planned，不能当成已通过的游戏测试。案例覆盖普通转移、终局例外、嵌套事件、牌区、秘密信息、重复命令与读档。开发前完成剩余裁定并建立 M0 测试工程，再把案例逐个转成自动化测试。
 
 [返回索引](index.md)
+
+## 地区计分与太空竞赛衔接（2026-09-22）
+
+- TurnStart在头条前按TurnNumber重置普通太空尝试次数一次；不因获得能力重置。
+- HeadlineCollect建立选择组时查询SpaceAbilityRules；先看对方头条的能力只影响选牌可见性，原排序算法保持适用。
+- ActionEligibility在每个新名额前查询太空能力。格8提供总额度8的可选权益，正常名额结束后按原先后顺序提供；记录本回合已放弃的太空额外名额，能力失效取消尚未开始的名额。
+- PlayCardCommand的Space用途先经过SpaceRaceService.ValidateAttempt，再统一事务结算；正常太空用牌跳过本牌事件，仍处理已核实外部钩子和中国牌独立去向。
+- EndTurnChoices在HeldScoringAudit及候选胜利确认之后查询弃牌能力，保存可拒绝的单卡选择。终局时不再开放补救弃牌。
+- FinalScoring由FinalScoringService从地区数据派生完整六地区计划；收齐中国牌等附加项后一次交VictoryService。不能把最终模式当作真实打出六张计分牌。
+
+契约与参数入口：[地区计分](region-scoring.md)、[太空竞赛](space-race.md)。全部为待实现接口；旧验收案例继续保留，新交互案例见[SC/SP案例](../Design/scoring-space.cases.json)。

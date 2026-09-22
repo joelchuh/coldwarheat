@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "id": "rules.deluxe2015.region-scoring",
+  "status": "verified-subset",
+  "description": "六大地区基础计分、东南亚专用权重与最终计分地区集合；国家目录和逐卡修正另行绑定。",
+  "sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "checked_on": "2026-09-22",
+      "sections": [
+        "2.1.1–2",
+        "2.1.7",
+        "10.1–10.3"
+      ],
+      "pdf_pages": [
+        18,
+        19
+      ]
+    },
+    {
+      "id": "M-DELUXE",
+      "url": "https://s3-us-west-2.amazonaws.com/gmtwebsiteassets/nnts/TSMap11.jpg",
+      "listed_by": "https://www.gmtgames.com/p-927-twilight-struggle-deluxe-edition-8th-printing.aspx",
+      "scope": "GMT产品页地图，仅采用已逐项读取的地区分值、东南亚权重与基础太空轨道；与R2015可见图示交叉核对",
+      "checked_on": "2026-09-22"
+    },
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "scope": "GMT托管土耳其语汇编中的英文印刷卡图；只采纳指定卡图，不以译文或PDF元数据当作新版勘误",
+      "checked_on": "2026-09-22",
+      "pdf_pages": [
+        2
+      ],
+      "card_numbers": [
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "bonus_vp": {
+    "controlled_battleground": 1,
+    "controlled_country_adjacent_to_enemy_superpower": 1
+  },
+  "regions": [
+    {
+      "id": "region.europe",
+      "scoring_kind": "StandardRegion",
+      "base_vp": {
+        "none": 0,
+        "presence": 3,
+        "domination": 7,
+        "control": null
+      },
+      "control_outcome": "AutomaticVictory",
+      "include_in_final": true
+    },
+    {
+      "id": "region.asia",
+      "scoring_kind": "StandardRegion",
+      "base_vp": {
+        "none": 0,
+        "presence": 3,
+        "domination": 7,
+        "control": 9
+      },
+      "control_outcome": "NumericVp",
+      "include_in_final": true
+    },
+    {
+      "id": "region.middle_east",
+      "scoring_kind": "StandardRegion",
+      "base_vp": {
+        "none": 0,
+        "presence": 3,
+        "domination": 5,
+        "control": 7
+      },
+      "control_outcome": "NumericVp",
+      "include_in_final": true
+    },
+    {
+      "id": "region.africa",
+      "scoring_kind": "StandardRegion",
+      "base_vp": {
+        "none": 0,
+        "presence": 1,
+        "domination": 4,
+        "control": 6
+      },
+      "control_outcome": "NumericVp",
+      "include_in_final": true
+    },
+    {
+      "id": "region.central_america",
+      "scoring_kind": "StandardRegion",
+      "base_vp": {
+        "none": 0,
+        "presence": 1,
+        "domination": 3,
+        "control": 5
+      },
+      "control_outcome": "NumericVp",
+      "include_in_final": true
+    },
+    {
+      "id": "region.south_america",
+      "scoring_kind": "StandardRegion",
+      "base_vp": {
+        "none": 0,
+        "presence": 2,
+        "domination": 5,
+        "control": 6
+      },
+      "control_outcome": "NumericVp",
+      "include_in_final": true
+    }
+  ],
+  "southeast_asia": {
+    "id": "region.southeast_asia",
+    "parent_region_id": "region.asia",
+    "scoring_kind": "WeightedControlledCountries",
+    "include_in_final": false,
+    "standard_region_bonuses": false,
+    "country_vp": [
+      {
+        "country_id": "country.burma",
+        "vp": 1
+      },
+      {
+        "country_id": "country.laos_cambodia",
+        "vp": 1
+      },
+      {
+        "country_id": "country.vietnam",
+        "vp": 1
+      },
+      {
+        "country_id": "country.malaysia",
+        "vp": 1
+      },
+      {
+        "country_id": "country.indonesia",
+        "vp": 1
+      },
+      {
+        "country_id": "country.philippines",
+        "vp": 1
+      },
+      {
+        "country_id": "country.thailand",
+        "vp": 2
+      }
+    ],
+    "source_card_id": "card.southeast_asia_scoring"
+  },
+  "formal_country_catalog_status": "pending"
+}

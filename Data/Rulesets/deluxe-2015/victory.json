@@ -1,7 +1,7 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "id": "rules.deluxe2015.victory",
-  "status": "verified-subset-with-open-ruling",
+  "status": "verified-subset",
   "scope": "基础胜负阈值与期末审核矩阵；不是完整终局卡牌数据",
   "sources": [
     {
@@ -137,10 +137,10 @@
       "us_holds": true,
       "ussr_holds": true,
       "military_candidate": "US",
-      "outcome": "UnresolvedAdjudication",
-      "winner": null,
+      "outcome": "Finished",
+      "winner": "USSR",
       "authority": "CF-003",
-      "adoption_status": "pending-user-decision"
+      "adoption_status": "adopted-project-interpretation"
     },
     {
       "case_id": "RV-H-12",
@@ -153,12 +153,21 @@
       "adoption_status": "adopted"
     }
   ],
-  "open_ruling": {
-    "id": "CF-003",
-    "case_id": "RV-H-11",
-    "status": "pending-user-decision",
-    "recommendation": "优先 R2015 军事候选赢家扣留即输，判USSR胜；确认前不执行该建议"
-  },
   "excluded_answer": "F2010 PDF p21: military victory skips held-card audit",
-  "product_policy": "Private authoritative held-scoring audit in normal digital mode"
+  "product_policy": "Private authoritative held-scoring audit in normal digital mode",
+  "project_adjudications": [
+    {
+      "id": "CF-003",
+      "case_id": "RV-H-11",
+      "status": "adopted",
+      "approved_by": "user",
+      "approved_on": "2026-09-22",
+      "decision": "双方扣留且US为军事候选赢家时，新版明确条款优先，US输、USSR胜。",
+      "basis": [
+        "R2015 §10.3.1",
+        "用户明确接受新版条款优先"
+      ],
+      "authority_limit": "用户确认的项目版本解释；不是新增官方专门裁定。"
+    }
+  ]
 }

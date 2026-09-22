@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "cards.deluxe2015.scoring-parameters",
+  "status": "verified-subset",
+  "description": "卡牌特有的计分参数子集；中国牌最终持有奖励与东南亚计分牌移出标志。不是完整卡牌定义。",
+  "sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "scope": "GMT托管土耳其语汇编中的英文印刷卡图；只采纳指定卡图，不以译文或PDF元数据当作新版勘误",
+      "checked_on": "2026-09-22",
+      "pdf_pages": [
+        2
+      ],
+      "card_numbers": [
+        6
+      ]
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "checked_on": "2026-09-22",
+      "sections": [
+        "7.2",
+        "10.3.2"
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "id": "card.china",
+      "parameters": {
+        "final_holder_vp": 1
+      },
+      "applies_at": "Turn10FinalScoring",
+      "basis": "C-DELUXE-EN #6；与R2015最终计分整体判胜结合"
+    },
+    {
+      "id": "card.southeast_asia_scoring",
+      "parameters": {
+        "remove_after_resolved_event": true
+      },
+      "scoring_dataset_id": "rules.deluxe2015.region-scoring",
+      "basis": "R2015 §7.2；地区权重仅在region-scoring定义"
+    }
+  ]
+}
