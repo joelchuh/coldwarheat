@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:ruleset-manifest:1",
+  "title": "ruleset-manifest",
+  "description": "规则包清单契约v1：固定数据版本、内容摘要及覆盖审核；排除主题资源。Schema通过不代表完整规则可开局。",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "ruleset_id": {
+      "type": "string",
+      "pattern": "^ruleset\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+    },
+    "ruleset_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "scope": {
+      "enum": [
+        "fixture",
+        "release-candidate"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "datasets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "dataset_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+          },
+          "content_version": {
+            "type": "string",
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+          },
+          "role": {
+            "enum": [
+              "map",
+              "cards",
+              "rules",
+              "setup"
+            ]
+          },
+          "relative_path": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_./-]+$"
+          },
+          "schema_contract_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "required": [
+          "dataset_id",
+          "content_version",
+          "role",
+          "relative_path",
+          "schema_contract_id",
+          "sha256"
+        ]
+      },
+      "minItems": 1
+    },
+    "coverage_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "pending",
+            "approved"
+          ]
+        },
+        "inventory_reference": {
+          "type": "string",
+          "minLength": 1
+        },
+        "review_record": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "status",
+        "inventory_reference",
+        "review_record"
+      ]
+    },
+    "data_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "required": [
+    "schema_version",
+    "ruleset_id",
+    "ruleset_version",
+    "scope",
+    "description",
+    "datasets",
+    "coverage_review",
+    "data_digest"
+  ]
+}

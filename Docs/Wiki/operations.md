@@ -33,7 +33,7 @@
 | OperationsContext | ContextId、Actor、来源、模式、预算、已花费、限制与快照引用 | 同一行动轮可能包含由事件授予其他玩家的行动 |
 | OperationsBudget | 印刷 OPS、一般修正、条件性奖励、已用预算 | 不把地区奖励永久写回卡牌定义 |
 | ActionRestrictions | 行动种类、地区限制、目标限制、允许的明确豁免 | “忽略 DEFCON 地区限制”不是“忽略所有限制” |
-| CountryDefinition | 稳定度、邻接 ID、地区标签、战场属性 | 静态规则资料可与显示资源分别加载 |
+| CountryDefinition / MapDefinition | 国家保存稳定度、所属地区与基础战场属性；邻接由统一规则图查询 | 详见[数据契约](map-card-contracts.md)，不在国家文件和地图各存一份邻接 |
 | CountryState | 双方当前影响力 | 不存容易与数值失去同步的可修改控制标记 |
 | ResolutionContext | Actor、PhasingPlayer、来源卡、效果步骤、责任语义 | 避免把实际操作者等同于终局责任玩家 |
 | OperationsProgress | 待选择 ID、剩余预算、已结算步骤、继续位置 | 存档恢复后能够继续，不重掷已完成骰子 |

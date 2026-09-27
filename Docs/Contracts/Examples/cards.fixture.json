@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.fixture",
+  "scope": "fixture",
+  "description": "仅供结构契约验证的虚构样例，禁止作为正式地图/卡牌包使用。",
+  "source_catalog": [
+    {
+      "id": "FIXTURE",
+      "url": null,
+      "edition": "not-game-data",
+      "description": "合成样例，不是官方数值或完整规则资料。"
+    }
+  ],
+  "dataset_id": "cards.fixture.definitions",
+  "cards": [
+    {
+      "printed_number": 9001,
+      "name_key": "fixture.event.name",
+      "rules_text_key": "fixture.event.rules",
+      "kind": "Event",
+      "printed_ops": 2,
+      "affiliation": "Neutral",
+      "era": "Early",
+      "deck_entry": "EraDeck",
+      "remove_after_resolved_event": false,
+      "display_persistent_reminder": false,
+      "scoring_region_id": null,
+      "effect_binding": {
+        "effect_id": "effect.fixture_event",
+        "contract_version": "0.1.0",
+        "parameter_refs": []
+      },
+      "source_refs": [
+        {
+          "source_id": "FIXTURE",
+          "locator": "synthetic-contract-example",
+          "verification": "Fixture"
+        }
+      ],
+      "id": "card.fixture_event"
+    },
+    {
+      "printed_number": 9002,
+      "name_key": "fixture.scoring.name",
+      "rules_text_key": "fixture.scoring.rules",
+      "kind": "Scoring",
+      "printed_ops": null,
+      "affiliation": "None",
+      "era": "Early",
+      "deck_entry": "EraDeck",
+      "remove_after_resolved_event": false,
+      "display_persistent_reminder": false,
+      "scoring_region_id": "region.fixture_area",
+      "effect_binding": {
+        "effect_id": "effect.fixture_scoring",
+        "contract_version": "0.1.0",
+        "parameter_refs": []
+      },
+      "source_refs": [
+        {
+          "source_id": "FIXTURE",
+          "locator": "synthetic-contract-example",
+          "verification": "Fixture"
+        }
+      ],
+      "id": "card.fixture_scoring"
+    },
+    {
+      "printed_number": 9003,
+      "name_key": "fixture.china.name",
+      "rules_text_key": "fixture.china.rules",
+      "kind": "China",
+      "printed_ops": 4,
+      "affiliation": "None",
+      "era": null,
+      "deck_entry": "SpecialChina",
+      "remove_after_resolved_event": false,
+      "display_persistent_reminder": false,
+      "scoring_region_id": null,
+      "effect_binding": null,
+      "source_refs": [
+        {
+          "source_id": "FIXTURE",
+          "locator": "synthetic-contract-example",
+          "verification": "Fixture"
+        }
+      ],
+      "id": "card.fixture_china"
+    }
+  ],
+  "effect_contracts": [
+    {
+      "effect_id": "effect.fixture_event",
+      "contract_version": "0.1.0",
+      "description": "仅供绑定结构示例，无效果实现",
+      "handler_key": "fixture.event",
+      "implementation_status": "planned",
+      "parameter_schema_contract_ids": [],
+      "source_refs": [
+        {
+          "source_id": "FIXTURE",
+          "locator": "synthetic-contract-example",
+          "verification": "Fixture"
+        }
+      ]
+    },
+    {
+      "effect_id": "effect.fixture_scoring",
+      "contract_version": "0.1.0",
+      "description": "仅供计分绑定结构示例，无效果实现",
+      "handler_key": "fixture.scoring",
+      "implementation_status": "planned",
+      "parameter_schema_contract_ids": [],
+      "source_refs": [
+        {
+          "source_id": "FIXTURE",
+          "locator": "synthetic-contract-example",
+          "verification": "Fixture"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,408 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:map:1",
+  "title": "map",
+  "description": "规则地图契约v1：地区、国家、超级大国和无向邻接；不含坐标、美术或当前影响力。",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+    },
+    "content_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "ruleset_id": {
+      "type": "string",
+      "pattern": "^ruleset\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+    },
+    "scope": {
+      "enum": [
+        "fixture",
+        "release-candidate"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "edition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "edition",
+          "description"
+        ]
+      },
+      "minItems": 1
+    },
+    "regions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^region\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+          },
+          "kind": {
+            "enum": [
+              "ScoringRegion",
+              "Subregion"
+            ]
+          },
+          "parent_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^region\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "name_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "locator": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "verification": {
+                  "enum": [
+                    "Verified",
+                    "Pending",
+                    "Fixture"
+                  ]
+                }
+              },
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ]
+            },
+            "minItems": 1,
+            "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "parent_id",
+          "name_key",
+          "source_refs"
+        ]
+      },
+      "minItems": 1
+    },
+    "countries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^country\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+          },
+          "name_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "stability": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "base_battleground": {
+            "type": "boolean"
+          },
+          "primary_region_id": {
+            "type": "string",
+            "pattern": "^region\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+          },
+          "subregion_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^region\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "locator": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "verification": {
+                  "enum": [
+                    "Verified",
+                    "Pending",
+                    "Fixture"
+                  ]
+                }
+              },
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ]
+            },
+            "minItems": 1,
+            "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+          }
+        },
+        "required": [
+          "id",
+          "name_key",
+          "stability",
+          "base_battleground",
+          "primary_region_id",
+          "subregion_ids",
+          "source_refs"
+        ]
+      },
+      "minItems": 1
+    },
+    "superpowers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "enum": [
+              "superpower.us",
+              "superpower.ussr"
+            ]
+          },
+          "side": {
+            "enum": [
+              "US",
+              "USSR"
+            ]
+          },
+          "name_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "locator": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "verification": {
+                  "enum": [
+                    "Verified",
+                    "Pending",
+                    "Fixture"
+                  ]
+                }
+              },
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ]
+            },
+            "minItems": 1,
+            "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+          }
+        },
+        "required": [
+          "id",
+          "side",
+          "name_key",
+          "source_refs"
+        ]
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "country_edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "a": {
+            "type": "string",
+            "pattern": "^country\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+          },
+          "b": {
+            "type": "string",
+            "pattern": "^country\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "locator": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "verification": {
+                  "enum": [
+                    "Verified",
+                    "Pending",
+                    "Fixture"
+                  ]
+                }
+              },
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ]
+            },
+            "minItems": 1,
+            "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+          }
+        },
+        "required": [
+          "a",
+          "b",
+          "source_refs"
+        ]
+      },
+      "minItems": 0
+    },
+    "superpower_edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "country_id": {
+            "type": "string",
+            "pattern": "^country\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+          },
+          "superpower_id": {
+            "enum": [
+              "superpower.us",
+              "superpower.ussr"
+            ]
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "locator": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "verification": {
+                  "enum": [
+                    "Verified",
+                    "Pending",
+                    "Fixture"
+                  ]
+                }
+              },
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ]
+            },
+            "minItems": 1,
+            "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+          }
+        },
+        "required": [
+          "country_id",
+          "superpower_id",
+          "source_refs"
+        ]
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "regions",
+    "countries",
+    "superpowers",
+    "country_edges",
+    "superpower_edges"
+  ]
+}

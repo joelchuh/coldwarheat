@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.fixture",
+  "scope": "fixture",
+  "description": "仅供结构契约验证的虚构样例，禁止作为正式地图/卡牌包使用。",
+  "source_catalog": [
+    {
+      "id": "FIXTURE",
+      "url": null,
+      "edition": "not-game-data",
+      "description": "合成样例，不是官方数值或完整规则资料。"
+    }
+  ],
+  "dataset_id": "map.fixture.world",
+  "regions": [
+    {
+      "id": "region.fixture_area",
+      "kind": "ScoringRegion",
+      "parent_id": null,
+      "name_key": "region.fixture_area.name",
+      "source_refs": [
+        {
+          "source_id": "FIXTURE",
+          "locator": "synthetic-contract-example",
+          "verification": "Fixture"
+        }
+      ]
+    },
+    {
+      "id": "region.fixture_subarea",
+      "kind": "Subregion",
+      "parent_id": "region.fixture_area",
+      "name_key": "region.fixture_subarea.name",
+      "source_refs": [
+        {
+          "source_id": "FIXTURE",
+          "locator": "synthetic-contract-example",
+          "verification": "Fixture"
+        }
+      ]
+    }
+  ],
+  "countries": [
+    {
+      "id": "country.fixture_alpha",
+      "name_key": "country.fixture_alpha.name",
+      "stability": 2,
+      "base_battleground": true,
+      "primary_region_id": "region.fixture_area",
+      "subregion_ids": [
+        "region.fixture_subarea"
+      ],
+      "source_refs": [
+        {
+          "source_id": "FIXTURE",
+          "locator": "synthetic-contract-example",
+          "verification": "Fixture"
+        }
+      ]
+    },
+    {
+      "id": "country.fixture_beta",
+      "name_key": "country.fixture_beta.name",
+      "stability": 1,
+      "base_battleground": false,
+      "primary_region_id": "region.fixture_area",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "FIXTURE",
+          "locator": "synthetic-contract-example",
+          "verification": "Fixture"
+        }
+      ]
+    }
+  ],
+  "superpowers": [
+    {
+      "id": "superpower.us",
+      "side": "US",
+      "name_key": "superpower.us.name",
+      "source_refs": [
+        {
+          "source_id": "FIXTURE",
+          "locator": "synthetic-contract-example",
+          "verification": "Fixture"
+        }
+      ]
+    },
+    {
+      "id": "superpower.ussr",
+      "side": "USSR",
+      "name_key": "superpower.ussr.name",
+      "source_refs": [
+        {
+          "source_id": "FIXTURE",
+          "locator": "synthetic-contract-example",
+          "verification": "Fixture"
+        }
+      ]
+    }
+  ],
+  "country_edges": [
+    {
+      "a": "country.fixture_alpha",
+      "b": "country.fixture_beta",
+      "source_refs": [
+        {
+          "source_id": "FIXTURE",
+          "locator": "synthetic-contract-example",
+          "verification": "Fixture"
+        }
+      ]
+    }
+  ],
+  "superpower_edges": [
+    {
+      "country_id": "country.fixture_alpha",
+      "superpower_id": "superpower.us",
+      "source_refs": [
+        {
+          "source_id": "FIXTURE",
+          "locator": "synthetic-contract-example",
+          "verification": "Fixture"
+        }
+      ]
+    }
+  ]
+}

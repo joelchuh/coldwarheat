@@ -1,0 +1,799 @@
+{
+  "schema_version": 1,
+  "id": "cases.map-card-contracts",
+  "description": "结构样例可由JSON Schema验证；跨文件语义与游戏运行场景仍planned，执行结果见工作记录。",
+  "cases": [
+    {
+      "id": "DC-S-01",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "合法的map结构样例；不等于正式可用数据",
+      "schema": "Docs/Contracts/map.schema.json",
+      "fixture": "Docs/Contracts/Examples/map.fixture.json",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "DC-S-02",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "合法的cards结构样例；不等于正式可用数据",
+      "schema": "Docs/Contracts/cards.schema.json",
+      "fixture": "Docs/Contracts/Examples/cards.fixture.json",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "DC-S-03",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "合法的layout结构样例；不等于正式可用数据",
+      "schema": "Docs/Contracts/layout.schema.json",
+      "fixture": "Docs/Contracts/Examples/layout.fixture.json",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "DC-S-04",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "合法的theme结构样例；不等于正式可用数据",
+      "schema": "Docs/Contracts/theme.schema.json",
+      "fixture": "Docs/Contracts/Examples/theme.fixture.json",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "DC-S-05",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "合法的manifest结构样例；不等于正式可用数据",
+      "schema": "Docs/Contracts/manifest.schema.json",
+      "fixture": "Docs/Contracts/Examples/manifest.fixture.json",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "DC-S-06",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "拒绝国家混入视觉坐标",
+      "schema": "Docs/Contracts/map.schema.json",
+      "fixture": "Docs/Contracts/Examples/map.fixture.json",
+      "edits": [
+        {
+          "op": "add",
+          "path": [
+            "countries",
+            0,
+            "position"
+          ],
+          "value": [
+            0.1,
+            0.2
+          ]
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-07",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "拒绝负稳定度",
+      "schema": "Docs/Contracts/map.schema.json",
+      "fixture": "Docs/Contracts/Examples/map.fixture.json",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "countries",
+            0,
+            "stability"
+          ],
+          "value": -1
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-08",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "拒绝非整数稳定度",
+      "schema": "Docs/Contracts/map.schema.json",
+      "fixture": "Docs/Contracts/Examples/map.fixture.json",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "countries",
+            0,
+            "stability"
+          ],
+          "value": 1.5
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-09",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "拒绝超级大国拥有普通稳定度",
+      "schema": "Docs/Contracts/map.schema.json",
+      "fixture": "Docs/Contracts/Examples/map.fixture.json",
+      "edits": [
+        {
+          "op": "add",
+          "path": [
+            "superpowers",
+            0,
+            "stability"
+          ],
+          "value": 5
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-10",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "必须显式给出来源定位",
+      "schema": "Docs/Contracts/map.schema.json",
+      "fixture": "Docs/Contracts/Examples/map.fixture.json",
+      "edits": [
+        {
+          "op": "remove",
+          "path": [
+            "countries",
+            0,
+            "source_refs"
+          ]
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-11",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "只允许两个超级大国节点",
+      "schema": "Docs/Contracts/map.schema.json",
+      "fixture": "Docs/Contracts/Examples/map.fixture.json",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "superpowers"
+          ],
+          "value": [
+            {
+              "id": "superpower.us",
+              "side": "US",
+              "name_key": "superpower.us.name",
+              "source_refs": [
+                {
+                  "source_id": "FIXTURE",
+                  "locator": "synthetic-contract-example",
+                  "verification": "Fixture"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-12",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "普通国家边不能使用超级大国端点",
+      "schema": "Docs/Contracts/map.schema.json",
+      "fixture": "Docs/Contracts/Examples/map.fixture.json",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "country_edges",
+            0,
+            "b"
+          ],
+          "value": "superpower.us"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-13",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "计分牌OPS必须为空",
+      "schema": "Docs/Contracts/cards.schema.json",
+      "fixture": "Docs/Contracts/Examples/cards.fixture.json",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            1,
+            "printed_ops"
+          ],
+          "value": 0
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-14",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "普通事件牌必须有OPS",
+      "schema": "Docs/Contracts/cards.schema.json",
+      "fixture": "Docs/Contracts/Examples/cards.fixture.json",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            0,
+            "printed_ops"
+          ],
+          "value": null
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-15",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "中国牌不得进入EraDeck",
+      "schema": "Docs/Contracts/cards.schema.json",
+      "fixture": "Docs/Contracts/Examples/cards.fixture.json",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            2,
+            "deck_entry"
+          ],
+          "value": "EraDeck"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-16",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "中国牌无普通事件绑定",
+      "schema": "Docs/Contracts/cards.schema.json",
+      "fixture": "Docs/Contracts/Examples/cards.fixture.json",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            2,
+            "effect_binding"
+          ],
+          "value": {
+            "effect_id": "effect.fixture_event",
+            "contract_version": "0.1.0",
+            "parameter_refs": []
+          }
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-17",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "计分牌必须引用地区",
+      "schema": "Docs/Contracts/cards.schema.json",
+      "fixture": "Docs/Contracts/Examples/cards.fixture.json",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            1,
+            "scoring_region_id"
+          ],
+          "value": null
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-18",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "事件牌不能携带计分地区字段值",
+      "schema": "Docs/Contracts/cards.schema.json",
+      "fixture": "Docs/Contracts/Examples/cards.fixture.json",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            0,
+            "scoring_region_id"
+          ],
+          "value": "region.fixture_area"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-19",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "拒绝动态Owner混入定义",
+      "schema": "Docs/Contracts/cards.schema.json",
+      "fixture": "Docs/Contracts/Examples/cards.fixture.json",
+      "edits": [
+        {
+          "op": "add",
+          "path": [
+            "cards",
+            0,
+            "owner"
+          ],
+          "value": "US"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-20",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "拒绝任意代码字符串字段",
+      "schema": "Docs/Contracts/cards.schema.json",
+      "fixture": "Docs/Contracts/Examples/cards.fixture.json",
+      "edits": [
+        {
+          "op": "add",
+          "path": [
+            "cards",
+            0,
+            "effect_binding",
+            "script"
+          ],
+          "value": "run()"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-21",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "拒绝非法JSON Pointer转义",
+      "schema": "Docs/Contracts/cards.schema.json",
+      "fixture": "Docs/Contracts/Examples/cards.fixture.json",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            0,
+            "effect_binding",
+            "parameter_refs"
+          ],
+          "value": [
+            {
+              "dataset_id": "fixture.parameters",
+              "json_pointer": "/a~2b"
+            }
+          ]
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-22",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "二维坐标超出归一化范围",
+      "schema": "Docs/Contracts/layout.schema.json",
+      "fixture": "Docs/Contracts/Examples/layout.fixture.json",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "nodes",
+            0,
+            "anchor"
+          ],
+          "value": [
+            1.2,
+            0.4
+          ]
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-23",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "二维布局拒绝三分量坐标",
+      "schema": "Docs/Contracts/layout.schema.json",
+      "fixture": "Docs/Contracts/Examples/layout.fixture.json",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "nodes",
+            0,
+            "anchor"
+          ],
+          "value": [
+            0.1,
+            0.2,
+            0.3
+          ]
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-24",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "三维布局要求三分量坐标",
+      "schema": "Docs/Contracts/layout.schema.json",
+      "fixture": "Docs/Contracts/Examples/layout.fixture.json",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "layout_kind"
+          ],
+          "value": "Mesh3D"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-25",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "布局拒绝稳定度字段",
+      "schema": "Docs/Contracts/layout.schema.json",
+      "fixture": "Docs/Contracts/Examples/layout.fixture.json",
+      "edits": [
+        {
+          "op": "add",
+          "path": [
+            "nodes",
+            0,
+            "stability"
+          ],
+          "value": 2
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-26",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "主题拒绝卡牌OPS字段",
+      "schema": "Docs/Contracts/theme.schema.json",
+      "fixture": "Docs/Contracts/Examples/theme.fixture.json",
+      "edits": [
+        {
+          "op": "add",
+          "path": [
+            "printed_ops"
+          ],
+          "value": 4
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-27",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "拒绝无效SHA字符串",
+      "schema": "Docs/Contracts/manifest.schema.json",
+      "fixture": "Docs/Contracts/Examples/manifest.fixture.json",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "datasets",
+            0,
+            "sha256"
+          ],
+          "value": "not-a-hash"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-28",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "拒绝绝对Windows路径",
+      "schema": "Docs/Contracts/manifest.schema.json",
+      "fixture": "Docs/Contracts/Examples/manifest.fixture.json",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "datasets",
+            0,
+            "relative_path"
+          ],
+          "value": "E:\\outside.json"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-29",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "拒绝数据ID含TAB混淆摘要分隔",
+      "schema": "Docs/Contracts/manifest.schema.json",
+      "fixture": "Docs/Contracts/Examples/manifest.fixture.json",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "datasets",
+            0,
+            "dataset_id"
+          ],
+          "value": "map.fixture\tworld"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DC-S-30",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "三维布局使用三分量局部坐标，可超出二维归一化范围",
+      "schema": "Docs/Contracts/layout.schema.json",
+      "fixture": "Docs/Contracts/Examples/layout.fixture.json",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "layout_kind"
+          ],
+          "value": "Mesh3D"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "nodes"
+          ],
+          "value": [
+            {
+              "node_id": "country.fixture_alpha",
+              "anchor": [
+                0,
+                0,
+                -2
+              ],
+              "pick_shape_key": "fixture.shape.alpha"
+            },
+            {
+              "node_id": "country.fixture_beta",
+              "anchor": [
+                10,
+                0,
+                -2
+              ],
+              "pick_shape_key": "fixture.shape.beta"
+            },
+            {
+              "node_id": "superpower.us",
+              "anchor": [
+                20,
+                0,
+                -2
+              ],
+              "pick_shape_key": "fixture.shape.us"
+            },
+            {
+              "node_id": "superpower.ussr",
+              "anchor": [
+                30,
+                0,
+                -2
+              ],
+              "pick_shape_key": "fixture.shape.ussr"
+            }
+          ]
+        }
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "DC-S-31",
+      "status": "specified",
+      "validation_layer": "schema",
+      "description": "计分牌允许按正式卡牌事实具有移出标记，不强制所有计分牌为false",
+      "schema": "Docs/Contracts/cards.schema.json",
+      "fixture": "Docs/Contracts/Examples/cards.fixture.json",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            1,
+            "remove_after_resolved_event"
+          ],
+          "value": true
+        }
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "DC-M-01",
+      "status": "planned",
+      "validation_layer": "semantic",
+      "given": "重复国家/卡牌/地区/效果ID或重复印刷编号",
+      "when": "构建目录",
+      "then": "明确拒绝重复，不以后出现记录覆盖",
+      "source": "项目数据契约；规则实例另按R2015核对"
+    },
+    {
+      "id": "DC-M-02",
+      "status": "planned",
+      "validation_layer": "semantic",
+      "given": "无向边自环、反向重复或未知端点",
+      "when": "构建邻接索引",
+      "then": "拒绝；合法单边生成对称邻接查询",
+      "source": "项目数据契约；规则实例另按R2015核对"
+    },
+    {
+      "id": "DC-M-03",
+      "status": "planned",
+      "validation_layer": "semantic",
+      "given": "两个超级大国ID相同或side与ID不匹配",
+      "when": "构建地图",
+      "then": "拒绝；只有US/USSR各一个",
+      "source": "项目数据契约；规则实例另按R2015核对"
+    },
+    {
+      "id": "DC-M-04",
+      "status": "planned",
+      "validation_layer": "semantic",
+      "given": "Subregion指向自身、另一子区或不存在的主区",
+      "when": "地区绑定",
+      "then": "拒绝；国家子区必须与其主区同父",
+      "source": "项目数据契约；规则实例另按R2015核对"
+    },
+    {
+      "id": "DC-M-05",
+      "status": "planned",
+      "validation_layer": "runtime",
+      "given": "奥地利属于东西欧；东南亚属于亚洲",
+      "when": "查询主区并计分",
+      "then": "主区国家按ID去重；子区包含关系保持",
+      "source": "项目数据契约；规则实例另按R2015核对"
+    },
+    {
+      "id": "DC-M-06",
+      "status": "planned",
+      "validation_layer": "runtime",
+      "given": "有国家的视觉边界接触但规则图无边",
+      "when": "查询规则邻接",
+      "then": "不新增邻接；布局与主题无权改变它",
+      "source": "项目数据契约；规则实例另按R2015核对"
+    },
+    {
+      "id": "DC-M-07",
+      "status": "planned",
+      "validation_layer": "semantic",
+      "given": "效果参数dataset_id、JSON Pointer或参数Schema未登记",
+      "when": "绑定卡牌",
+      "then": "拒绝缺失引用；不猜默认值或下载执行代码",
+      "source": "项目数据契约；规则实例另按R2015核对"
+    },
+    {
+      "id": "DC-M-08",
+      "status": "planned",
+      "validation_layer": "runtime",
+      "given": "效果契约声称implemented，但编译注册表无该版本",
+      "when": "规则包加载",
+      "then": "拒绝创建正式对局；不凭声明放行",
+      "source": "项目数据契约；规则实例另按R2015核对"
+    },
+    {
+      "id": "DC-M-09",
+      "status": "planned",
+      "validation_layer": "semantic",
+      "given": "中国牌不为card.china、重复中国牌或正式目录缺少按版本确认的牌",
+      "when": "正式覆盖审核",
+      "then": "与独立审核清单比较后拒绝；fixture仅能做结构验证",
+      "source": "项目数据契约；规则实例另按R2015核对"
+    },
+    {
+      "id": "DC-M-10",
+      "status": "planned",
+      "validation_layer": "runtime",
+      "given": "规则包数据哈希不符，或改了规则内容却沿用旧摘要",
+      "when": "加载/恢复",
+      "then": "拒绝；不能部分发布新规则包",
+      "source": "项目数据契约；规则实例另按R2015核对"
+    },
+    {
+      "id": "DC-M-11",
+      "status": "planned",
+      "validation_layer": "runtime",
+      "given": "fixture样例或coverage pending；缺地图/卡牌/setup或必需规则子集",
+      "when": "创建正式对局",
+      "then": "拒绝；Schema通过不等于允许开局",
+      "source": "项目数据契约；规则实例另按R2015核对"
+    },
+    {
+      "id": "DC-M-12",
+      "status": "planned",
+      "validation_layer": "runtime",
+      "given": "relative_path含../或通过符号链接解析到包外",
+      "when": "读取包",
+      "then": "解析实际路径后拒绝；语法允许相对字符不构成访问授权",
+      "source": "项目数据契约；规则实例另按R2015核对"
+    },
+    {
+      "id": "DC-M-13",
+      "status": "planned",
+      "validation_layer": "semantic",
+      "given": "布局缺国家、重复节点或绘制了一条不存在的规则连线",
+      "when": "视图绑定",
+      "then": "拒绝不完整交互布局；无覆盖的真实规则边使用默认线",
+      "source": "项目数据契约；规则实例另按R2015核对"
+    },
+    {
+      "id": "DC-M-14",
+      "status": "planned",
+      "validation_layer": "runtime",
+      "given": "主题个别美术缺失，或布局拾取形状缺失",
+      "when": "装配视图",
+      "then": "美术可回退占位图；拾取缺失阻止交互视图，不能映射错误国家",
+      "source": "项目数据契约；规则实例另按R2015核对"
+    },
+    {
+      "id": "DC-M-15",
+      "status": "planned",
+      "validation_layer": "runtime",
+      "given": "同规则/命令/RNG，对比两套主题与布局",
+      "when": "重放对局",
+      "then": "权威结果和状态摘要一致，展示允许不同",
+      "source": "项目数据契约；规则实例另按R2015核对"
+    },
+    {
+      "id": "DC-M-16",
+      "status": "planned",
+      "validation_layer": "semantic",
+      "given": "已迁移正式卡牌定义，但旧子集仍保留东南亚移出标记",
+      "when": "发布新规则包",
+      "then": "拒绝双重事实来源，按版本化迁移一次改齐消费者",
+      "source": "项目数据契约；规则实例另按R2015核对"
+    },
+    {
+      "id": "DC-M-17",
+      "status": "planned",
+      "validation_layer": "runtime",
+      "given": "JSON重复键、非有限数字或不支持Schema版本",
+      "when": "加载源文件",
+      "then": "严格拒绝，不默认取最后一个键或自动升级",
+      "source": "项目数据契约；规则实例另按R2015核对"
+    }
+  ]
+}

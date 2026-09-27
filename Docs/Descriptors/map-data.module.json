@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "id": "module.map-data",
+  "kind": "module",
+  "description": "查询规则地区、国家、超级大国和无向邻接的数据契约与校验边界；不涉及地图坐标或画风，Core尚未实现。",
+  "status": "planned",
+  "entrypoints": [],
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Domain/MapDefinition.cs",
+      "symbol": "GetCountry"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Domain/MapDefinition.cs",
+      "symbol": "GetCountryNeighbors"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Domain/MapDefinition.cs",
+      "symbol": "GetSuperpowerNeighbors"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Domain/MapDefinition.cs",
+      "symbol": "GetCountriesInRegion"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Domain/MapDefinition.cs",
+      "symbol": "IsInRegion"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Validation/MapDefinitionValidator.cs",
+      "symbol": "Validate"
+    }
+  ],
+  "documentation": "Docs/Wiki/map-card-contracts.md",
+  "inputs": [
+    "通过结构与语义校验的不可变定义",
+    "稳定ID、数据版本及已核对来源；禁止fixture启动真实对局"
+  ],
+  "outputs": [
+    "只读定义、稳定排序查询结果或明确错误",
+    "卡牌效果仅返回显式注册的版本匹配处理器"
+  ],
+  "dependencies": [
+    {
+      "path": "Docs/Wiki/architecture.md",
+      "relation": "遵循Core/Infrastructure/Presentation依赖边界"
+    }
+  ],
+  "data_dependencies": [
+    "rules.deluxe2015.region-scoring",
+    "rules.deluxe2015.defcon"
+  ],
+  "contract_dependencies": [
+    "urn:coldwarheat:contract:map:1",
+    "urn:coldwarheat:contract:ruleset-manifest:1"
+  ],
+  "preconditions": [
+    "当前只有契约；尚无C#实现",
+    "完整国家/卡牌目录、资料审核及相关处理器齐备后才能创建正式对局"
+  ],
+  "side_effects": [
+    "查询和校验无对局副作用；文件读取由Infrastructure负责"
+  ],
+  "stop_conditions": [
+    "未知/重复ID、损坏引用或不支持版本",
+    "fixture、未核实正式数据、缺少目录覆盖或事件实现",
+    "来源或摘要不匹配"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "sections": [
+        "2.1",
+        "2.2"
+      ],
+      "checked_on": "2026-09-27"
+    },
+    {
+      "id": "PROJECT",
+      "path": "AGENTS.md",
+      "scope": "静态/动态分离、显式效果注册、可替换表现层及存档版本绑定"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/map-card-contracts.cases.json",
+      "status": "mixed-schema-and-planned"
+    }
+  ],
+  "verification": {
+    "implementation_tested": false,
+    "schema_validation_report": "Docs/Worklogs/2026-09-27-map-card-contracts.md"
+  },
+  "open_items": [
+    "正式目录逐项录入与独立审核",
+    "Core与数据加载器实现",
+    "具体卡牌效果参数Schema及处理器"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "content_version": "0.1.0",
+  "scope": "fixture",
+  "description": "合成布局坐标，只展示结构，不表达未来画风。",
+  "layout_id": "layout.fixture.flat",
+  "map_dataset_id": "map.fixture.world",
+  "layout_kind": "Flat2D",
+  "nodes": [
+    {
+      "node_id": "country.fixture_alpha",
+      "anchor": [
+        0.3,
+        0.4
+      ],
+      "pick_shape_key": "fixture.shape.alpha"
+    },
+    {
+      "node_id": "country.fixture_beta",
+      "anchor": [
+        0.6,
+        0.4
+      ],
+      "pick_shape_key": "fixture.shape.beta"
+    },
+    {
+      "node_id": "superpower.us",
+      "anchor": [
+        0.1,
+        0.4
+      ],
+      "pick_shape_key": "fixture.shape.us"
+    },
+    {
+      "node_id": "superpower.ussr",
+      "anchor": [
+        0.9,
+        0.4
+      ],
+      "pick_shape_key": "fixture.shape.ussr"
+    }
+  ],
+  "connection_routes": [
+    {
+      "a": "country.fixture_alpha",
+      "b": "country.fixture_beta",
+      "curve_asset_key": "fixture.curve.alpha_beta"
+    }
+  ]
+}

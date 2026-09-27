@@ -130,3 +130,5 @@ ThemeDefinition 归 Presentation 管理，以 CountryId、CardId、事件类型�
 从 [Wiki 索引](index.md) 返回；工程约束见 [AGENTS.md](../../AGENTS.md)。
 
 回合与出牌的具体编排已展开为 [状态机设计](turn-flow.md)，模块描述与数据索引由 Wiki 提供。此补充不代表完整规则集或游戏源码已完成。
+
+正式数据结构已展开为[地图与卡牌契约](map-card-contracts.md)，包括地图/卡牌/布局/主题/规则包五份Schema；[地图表现边界](map-presentation.md)说明当前未确定画风及未来接入方式。完整正式实例和加载服务仍待实现。

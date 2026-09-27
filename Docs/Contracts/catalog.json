@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "description": "先按description查找地图/卡牌/布局/主题/规则包结构契约。Schema校验仅覆盖结构，不代替语义、资料或运行验证。",
+  "status": "design-contracts",
+  "entries": [
+    {
+      "id": "urn:coldwarheat:contract:map:1",
+      "description": "规则地图契约v1：地区、国家、超级大国和无向邻接；不含坐标、美术或当前影响力。",
+      "status": "schema-defined",
+      "path": "Docs/Contracts/map.schema.json"
+    },
+    {
+      "id": "urn:coldwarheat:contract:cards:1",
+      "description": "卡牌定义与效果绑定契约v1：印刷事实、类型和参数引用；效果代码仅通过显式注册表绑定。",
+      "status": "schema-defined",
+      "path": "Docs/Contracts/cards.schema.json"
+    },
+    {
+      "id": "urn:coldwarheat:contract:map-layout:1",
+      "description": "视觉布局契约v1：节点位置、拾取形状和连线绘制；不声明新的规则邻接。",
+      "status": "schema-defined",
+      "path": "Docs/Contracts/layout.schema.json"
+    },
+    {
+      "id": "urn:coldwarheat:contract:theme:1",
+      "description": "主题资源契约v1：外观资源和展示回退；不影响地图规则、布局选择或卡牌效果。",
+      "status": "schema-defined",
+      "path": "Docs/Contracts/theme.schema.json"
+    },
+    {
+      "id": "urn:coldwarheat:contract:ruleset-manifest:1",
+      "description": "规则包清单契约v1：固定数据版本、内容摘要及覆盖审核；排除主题资源。Schema通过不代表完整规则可开局。",
+      "status": "schema-defined",
+      "path": "Docs/Contracts/manifest.schema.json"
+    }
+  ]
+}

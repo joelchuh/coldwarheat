@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:map-layout:1",
+  "title": "map-layout",
+  "description": "视觉布局契约v1：节点位置、拾取形状和连线绘制；不声明新的规则邻接。",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "content_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "scope": {
+      "enum": [
+        "fixture",
+        "release-candidate"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "layout_id": {
+      "type": "string",
+      "pattern": "^layout\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+    },
+    "map_dataset_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+    },
+    "layout_kind": {
+      "enum": [
+        "Flat2D",
+        "Mesh3D"
+      ]
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "node_id": {
+            "type": "string",
+            "pattern": "^(country\\.[a-z][a-z0-9_.]*|superpower\\.(us|ussr))$"
+          },
+          "anchor": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "maxItems": 3
+          },
+          "pick_shape_key": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "node_id",
+          "anchor",
+          "pick_shape_key"
+        ]
+      },
+      "minItems": 1
+    },
+    "connection_routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "a": {
+            "type": "string",
+            "pattern": "^(country\\.[a-z][a-z0-9_.]*|superpower\\.(us|ussr))$"
+          },
+          "b": {
+            "type": "string",
+            "pattern": "^(country\\.[a-z][a-z0-9_.]*|superpower\\.(us|ussr))$"
+          },
+          "curve_asset_key": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "a",
+          "b",
+          "curve_asset_key"
+        ]
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "content_version",
+    "scope",
+    "description",
+    "layout_id",
+    "map_dataset_id",
+    "layout_kind",
+    "nodes",
+    "connection_routes"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "layout_kind": {
+            "const": "Flat2D"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "nodes": {
+            "items": {
+              "properties": {
+                "anchor": {
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "items": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "layout_kind": {
+            "const": "Mesh3D"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "nodes": {
+            "items": {
+              "properties": {
+                "anchor": {
+                  "minItems": 3,
+                  "maxItems": 3
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

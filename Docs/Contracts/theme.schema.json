@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:theme:1",
+  "title": "theme",
+  "description": "主题资源契约v1：外观资源和展示回退；不影响地图规则、布局选择或卡牌效果。",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "content_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "scope": {
+      "enum": [
+        "fixture",
+        "release-candidate"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "theme_id": {
+      "type": "string",
+      "pattern": "^theme\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+    },
+    "compatible_layout_kinds": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "Flat2D",
+          "Mesh3D"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "default_country_asset_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "default_card_frame_asset_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "country_overrides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "country_id": {
+            "type": "string",
+            "pattern": "^country\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+          },
+          "asset_key": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "country_id",
+          "asset_key"
+        ]
+      },
+      "minItems": 0
+    },
+    "card_overrides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "card_id": {
+            "type": "string",
+            "pattern": "^card\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+          },
+          "art_asset_key": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "card_id",
+          "art_asset_key"
+        ]
+      },
+      "minItems": 0
+    },
+    "font_asset_key": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "content_version",
+    "scope",
+    "description",
+    "theme_id",
+    "compatible_layout_kinds",
+    "default_country_asset_key",
+    "default_card_frame_asset_key",
+    "country_overrides",
+    "card_overrides",
+    "font_asset_key"
+  ]
+}

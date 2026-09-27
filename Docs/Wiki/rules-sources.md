@@ -81,3 +81,9 @@ DEFCON：R2015 §6.3.4–5、§8.1；军事：§4.5E、§7.4.2、§7.5、§8.2�
 | R2015下载副本 | d5c827cf78fc4800e0993c1e3313ec909d3c7da2c1b03b735ccf0042a0c4ac8e |
 | C-DELUXE-EN | 3fded13f03c63154de72af93faceaf8700db19f12c033ff477497232f2c2a0f0 |
 | M-DELUXE | f293f792e6f3565ef7b03b350b5d0bb6fb81c73ec96b313d58ebd886961444f9 |
+
+## 2026-09-27：地图与卡牌结构契约
+
+使用上次已登记SHA-256的R2015副本，复核第2–3页§2.1–2.2：主区与子区、国家与超级大国、规则连线和卡牌基础标记。没有把现代地理边界当邻接，没有把组件总卡数当作已审核基础牌清单。具体国家与逐卡数值尚待完整录入。
+
+字段名、JSON Schema、无向边规范存储、加载门禁与展示分层为项目工程设计，非官方新增规则。结构语法依据[JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/json-schema-core)。五份契约与测试fixture不等于已冻结正式规则包，见[契约设计](map-card-contracts.md)。
