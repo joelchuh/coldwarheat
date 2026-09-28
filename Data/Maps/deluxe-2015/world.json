@@ -1,0 +1,2867 @@
+{
+  "schema_version": 1,
+  "dataset_id": "map.deluxe2015.world",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "Deluxe基础地图：按六主地区排列的84个国家、子区、规则邻接和超级大国边；不含初始布置、坐标、贴图或对局状态。",
+  "source_catalog": [
+    {
+      "id": "M-DELUXE",
+      "url": "https://s3-us-west-2.amazonaws.com/gmtwebsiteassets/nnts/TSMap11.jpg",
+      "edition": "GMT Deluxe map, printed copyright 2009",
+      "description": "国家名框、稳定度、战场底色、地区色及实线/虚线规则邻接；不采用可选中国内战框。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1地图与子区语义；§2.2卡牌印刷标记；§9中国牌特殊生命周期。"
+    }
+  ],
+  "regions": [
+    {
+      "id": "region.europe",
+      "kind": "ScoringRegion",
+      "parent_id": null,
+      "name_key": "region.europe.name",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe region colors/legend",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2.1.2",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "region.asia",
+      "kind": "ScoringRegion",
+      "parent_id": null,
+      "name_key": "region.asia.name",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Asia region colors/legend",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2.1.2",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "region.middle_east",
+      "kind": "ScoringRegion",
+      "parent_id": null,
+      "name_key": "region.middle_east.name",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Middle East region colors/legend",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2.1.2",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "region.africa",
+      "kind": "ScoringRegion",
+      "parent_id": null,
+      "name_key": "region.africa.name",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Africa region colors/legend",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2.1.2",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "region.central_america",
+      "kind": "ScoringRegion",
+      "parent_id": null,
+      "name_key": "region.central_america.name",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Central America region colors/legend",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2.1.2",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "region.south_america",
+      "kind": "ScoringRegion",
+      "parent_id": null,
+      "name_key": "region.south_america.name",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "South America region colors/legend",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2.1.2",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "region.eastern_europe",
+      "kind": "Subregion",
+      "parent_id": "region.europe",
+      "name_key": "region.eastern_europe.name",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Eastern Europe region colors/legend",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2.1.2",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "region.western_europe",
+      "kind": "Subregion",
+      "parent_id": "region.europe",
+      "name_key": "region.western_europe.name",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Western Europe region colors/legend",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2.1.2",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "region.southeast_asia",
+      "kind": "Subregion",
+      "parent_id": "region.asia",
+      "name_key": "region.southeast_asia.name",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Southeast Asia region colors/legend",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2.1.2",
+          "verification": "Verified"
+        }
+      ]
+    }
+  ],
+  "countries": [
+    {
+      "id": "country.canada",
+      "name_key": "country.canada.name",
+      "stability": 4,
+      "base_battleground": false,
+      "primary_region_id": "region.europe",
+      "subregion_ids": [
+        "region.western_europe"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe / Canada box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.uk",
+      "name_key": "country.uk.name",
+      "stability": 5,
+      "base_battleground": false,
+      "primary_region_id": "region.europe",
+      "subregion_ids": [
+        "region.western_europe"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe / United Kingdom box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.norway",
+      "name_key": "country.norway.name",
+      "stability": 4,
+      "base_battleground": false,
+      "primary_region_id": "region.europe",
+      "subregion_ids": [
+        "region.western_europe"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe / Norway box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.sweden",
+      "name_key": "country.sweden.name",
+      "stability": 4,
+      "base_battleground": false,
+      "primary_region_id": "region.europe",
+      "subregion_ids": [
+        "region.western_europe"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe / Sweden box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.finland",
+      "name_key": "country.finland.name",
+      "stability": 4,
+      "base_battleground": false,
+      "primary_region_id": "region.europe",
+      "subregion_ids": [
+        "region.eastern_europe",
+        "region.western_europe"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe / Finland box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.denmark",
+      "name_key": "country.denmark.name",
+      "stability": 3,
+      "base_battleground": false,
+      "primary_region_id": "region.europe",
+      "subregion_ids": [
+        "region.western_europe"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe / Denmark box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.benelux",
+      "name_key": "country.benelux.name",
+      "stability": 3,
+      "base_battleground": false,
+      "primary_region_id": "region.europe",
+      "subregion_ids": [
+        "region.western_europe"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe / Benelux box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.france",
+      "name_key": "country.france.name",
+      "stability": 3,
+      "base_battleground": true,
+      "primary_region_id": "region.europe",
+      "subregion_ids": [
+        "region.western_europe"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe / France box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.spain_portugal",
+      "name_key": "country.spain_portugal.name",
+      "stability": 2,
+      "base_battleground": false,
+      "primary_region_id": "region.europe",
+      "subregion_ids": [
+        "region.western_europe"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe / Spain/Portugal box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.italy",
+      "name_key": "country.italy.name",
+      "stability": 2,
+      "base_battleground": true,
+      "primary_region_id": "region.europe",
+      "subregion_ids": [
+        "region.western_europe"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe / Italy box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.greece",
+      "name_key": "country.greece.name",
+      "stability": 2,
+      "base_battleground": false,
+      "primary_region_id": "region.europe",
+      "subregion_ids": [
+        "region.western_europe"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe / Greece box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.turkey",
+      "name_key": "country.turkey.name",
+      "stability": 2,
+      "base_battleground": false,
+      "primary_region_id": "region.europe",
+      "subregion_ids": [
+        "region.western_europe"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe / Turkey box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.west_germany",
+      "name_key": "country.west_germany.name",
+      "stability": 4,
+      "base_battleground": true,
+      "primary_region_id": "region.europe",
+      "subregion_ids": [
+        "region.western_europe"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe / West Germany box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.east_germany",
+      "name_key": "country.east_germany.name",
+      "stability": 3,
+      "base_battleground": true,
+      "primary_region_id": "region.europe",
+      "subregion_ids": [
+        "region.eastern_europe"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe / East Germany box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.poland",
+      "name_key": "country.poland.name",
+      "stability": 3,
+      "base_battleground": true,
+      "primary_region_id": "region.europe",
+      "subregion_ids": [
+        "region.eastern_europe"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe / Poland box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.czechoslovakia",
+      "name_key": "country.czechoslovakia.name",
+      "stability": 3,
+      "base_battleground": false,
+      "primary_region_id": "region.europe",
+      "subregion_ids": [
+        "region.eastern_europe"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe / Czechoslovakia box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.austria",
+      "name_key": "country.austria.name",
+      "stability": 4,
+      "base_battleground": false,
+      "primary_region_id": "region.europe",
+      "subregion_ids": [
+        "region.eastern_europe",
+        "region.western_europe"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe / Austria box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.hungary",
+      "name_key": "country.hungary.name",
+      "stability": 3,
+      "base_battleground": false,
+      "primary_region_id": "region.europe",
+      "subregion_ids": [
+        "region.eastern_europe"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe / Hungary box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.yugoslavia",
+      "name_key": "country.yugoslavia.name",
+      "stability": 3,
+      "base_battleground": false,
+      "primary_region_id": "region.europe",
+      "subregion_ids": [
+        "region.eastern_europe"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe / Yugoslavia box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.romania",
+      "name_key": "country.romania.name",
+      "stability": 3,
+      "base_battleground": false,
+      "primary_region_id": "region.europe",
+      "subregion_ids": [
+        "region.eastern_europe"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe / Romania box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.bulgaria",
+      "name_key": "country.bulgaria.name",
+      "stability": 3,
+      "base_battleground": false,
+      "primary_region_id": "region.europe",
+      "subregion_ids": [
+        "region.eastern_europe"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Europe / Bulgaria box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.afghanistan",
+      "name_key": "country.afghanistan.name",
+      "stability": 2,
+      "base_battleground": false,
+      "primary_region_id": "region.asia",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Asia / Afghanistan box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.pakistan",
+      "name_key": "country.pakistan.name",
+      "stability": 2,
+      "base_battleground": true,
+      "primary_region_id": "region.asia",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Asia / Pakistan box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.india",
+      "name_key": "country.india.name",
+      "stability": 3,
+      "base_battleground": true,
+      "primary_region_id": "region.asia",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Asia / India box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.burma",
+      "name_key": "country.burma.name",
+      "stability": 2,
+      "base_battleground": false,
+      "primary_region_id": "region.asia",
+      "subregion_ids": [
+        "region.southeast_asia"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Asia / Burma box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.laos_cambodia",
+      "name_key": "country.laos_cambodia.name",
+      "stability": 1,
+      "base_battleground": false,
+      "primary_region_id": "region.asia",
+      "subregion_ids": [
+        "region.southeast_asia"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Asia / Laos/Cambodia box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.thailand",
+      "name_key": "country.thailand.name",
+      "stability": 2,
+      "base_battleground": true,
+      "primary_region_id": "region.asia",
+      "subregion_ids": [
+        "region.southeast_asia"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Asia / Thailand box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.vietnam",
+      "name_key": "country.vietnam.name",
+      "stability": 1,
+      "base_battleground": false,
+      "primary_region_id": "region.asia",
+      "subregion_ids": [
+        "region.southeast_asia"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Asia / Vietnam box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.malaysia",
+      "name_key": "country.malaysia.name",
+      "stability": 2,
+      "base_battleground": false,
+      "primary_region_id": "region.asia",
+      "subregion_ids": [
+        "region.southeast_asia"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Asia / Malaysia box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.indonesia",
+      "name_key": "country.indonesia.name",
+      "stability": 1,
+      "base_battleground": false,
+      "primary_region_id": "region.asia",
+      "subregion_ids": [
+        "region.southeast_asia"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Asia / Indonesia box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.philippines",
+      "name_key": "country.philippines.name",
+      "stability": 2,
+      "base_battleground": false,
+      "primary_region_id": "region.asia",
+      "subregion_ids": [
+        "region.southeast_asia"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Asia / Philippines box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.australia",
+      "name_key": "country.australia.name",
+      "stability": 4,
+      "base_battleground": false,
+      "primary_region_id": "region.asia",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Asia / Australia box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.taiwan",
+      "name_key": "country.taiwan.name",
+      "stability": 3,
+      "base_battleground": false,
+      "primary_region_id": "region.asia",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Asia / Taiwan box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.japan",
+      "name_key": "country.japan.name",
+      "stability": 4,
+      "base_battleground": true,
+      "primary_region_id": "region.asia",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Asia / Japan box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.south_korea",
+      "name_key": "country.south_korea.name",
+      "stability": 3,
+      "base_battleground": true,
+      "primary_region_id": "region.asia",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Asia / South Korea box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.north_korea",
+      "name_key": "country.north_korea.name",
+      "stability": 3,
+      "base_battleground": true,
+      "primary_region_id": "region.asia",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Asia / North Korea box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.lebanon",
+      "name_key": "country.lebanon.name",
+      "stability": 1,
+      "base_battleground": false,
+      "primary_region_id": "region.middle_east",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Middle East / Lebanon box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.syria",
+      "name_key": "country.syria.name",
+      "stability": 2,
+      "base_battleground": false,
+      "primary_region_id": "region.middle_east",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Middle East / Syria box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.israel",
+      "name_key": "country.israel.name",
+      "stability": 4,
+      "base_battleground": true,
+      "primary_region_id": "region.middle_east",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Middle East / Israel box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.iraq",
+      "name_key": "country.iraq.name",
+      "stability": 3,
+      "base_battleground": true,
+      "primary_region_id": "region.middle_east",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Middle East / Iraq box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.iran",
+      "name_key": "country.iran.name",
+      "stability": 2,
+      "base_battleground": true,
+      "primary_region_id": "region.middle_east",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Middle East / Iran box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.jordan",
+      "name_key": "country.jordan.name",
+      "stability": 2,
+      "base_battleground": false,
+      "primary_region_id": "region.middle_east",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Middle East / Jordan box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.gulf_states",
+      "name_key": "country.gulf_states.name",
+      "stability": 3,
+      "base_battleground": false,
+      "primary_region_id": "region.middle_east",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Middle East / Gulf States box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.saudi_arabia",
+      "name_key": "country.saudi_arabia.name",
+      "stability": 3,
+      "base_battleground": true,
+      "primary_region_id": "region.middle_east",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Middle East / Saudi Arabia box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.egypt",
+      "name_key": "country.egypt.name",
+      "stability": 2,
+      "base_battleground": true,
+      "primary_region_id": "region.middle_east",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Middle East / Egypt box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.libya",
+      "name_key": "country.libya.name",
+      "stability": 2,
+      "base_battleground": true,
+      "primary_region_id": "region.middle_east",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Middle East / Libya box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.morocco",
+      "name_key": "country.morocco.name",
+      "stability": 3,
+      "base_battleground": false,
+      "primary_region_id": "region.africa",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Africa / Morocco box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.algeria",
+      "name_key": "country.algeria.name",
+      "stability": 2,
+      "base_battleground": true,
+      "primary_region_id": "region.africa",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Africa / Algeria box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.tunisia",
+      "name_key": "country.tunisia.name",
+      "stability": 2,
+      "base_battleground": false,
+      "primary_region_id": "region.africa",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Africa / Tunisia box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.west_african_states",
+      "name_key": "country.west_african_states.name",
+      "stability": 2,
+      "base_battleground": false,
+      "primary_region_id": "region.africa",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Africa / West African States box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.saharan_states",
+      "name_key": "country.saharan_states.name",
+      "stability": 1,
+      "base_battleground": false,
+      "primary_region_id": "region.africa",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Africa / Saharan States box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.ivory_coast",
+      "name_key": "country.ivory_coast.name",
+      "stability": 2,
+      "base_battleground": false,
+      "primary_region_id": "region.africa",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Africa / Ivory Coast box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.nigeria",
+      "name_key": "country.nigeria.name",
+      "stability": 1,
+      "base_battleground": true,
+      "primary_region_id": "region.africa",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Africa / Nigeria box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.cameroon",
+      "name_key": "country.cameroon.name",
+      "stability": 1,
+      "base_battleground": false,
+      "primary_region_id": "region.africa",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Africa / Cameroon box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.zaire",
+      "name_key": "country.zaire.name",
+      "stability": 1,
+      "base_battleground": true,
+      "primary_region_id": "region.africa",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Africa / Zaire box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.angola",
+      "name_key": "country.angola.name",
+      "stability": 1,
+      "base_battleground": true,
+      "primary_region_id": "region.africa",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Africa / Angola box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.south_africa",
+      "name_key": "country.south_africa.name",
+      "stability": 3,
+      "base_battleground": true,
+      "primary_region_id": "region.africa",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Africa / South Africa box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.botswana",
+      "name_key": "country.botswana.name",
+      "stability": 2,
+      "base_battleground": false,
+      "primary_region_id": "region.africa",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Africa / Botswana box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.zimbabwe",
+      "name_key": "country.zimbabwe.name",
+      "stability": 1,
+      "base_battleground": false,
+      "primary_region_id": "region.africa",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Africa / Zimbabwe box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.southeast_african_states",
+      "name_key": "country.southeast_african_states.name",
+      "stability": 1,
+      "base_battleground": false,
+      "primary_region_id": "region.africa",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Africa / Southeast African States box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.kenya",
+      "name_key": "country.kenya.name",
+      "stability": 2,
+      "base_battleground": false,
+      "primary_region_id": "region.africa",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Africa / Kenya box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.somalia",
+      "name_key": "country.somalia.name",
+      "stability": 2,
+      "base_battleground": false,
+      "primary_region_id": "region.africa",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Africa / Somalia box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.ethiopia",
+      "name_key": "country.ethiopia.name",
+      "stability": 1,
+      "base_battleground": false,
+      "primary_region_id": "region.africa",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Africa / Ethiopia box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.sudan",
+      "name_key": "country.sudan.name",
+      "stability": 1,
+      "base_battleground": false,
+      "primary_region_id": "region.africa",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Africa / Sudan box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.mexico",
+      "name_key": "country.mexico.name",
+      "stability": 2,
+      "base_battleground": true,
+      "primary_region_id": "region.central_america",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Central America / Mexico box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.guatemala",
+      "name_key": "country.guatemala.name",
+      "stability": 1,
+      "base_battleground": false,
+      "primary_region_id": "region.central_america",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Central America / Guatemala box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.el_salvador",
+      "name_key": "country.el_salvador.name",
+      "stability": 1,
+      "base_battleground": false,
+      "primary_region_id": "region.central_america",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Central America / El Salvador box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.honduras",
+      "name_key": "country.honduras.name",
+      "stability": 2,
+      "base_battleground": false,
+      "primary_region_id": "region.central_america",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Central America / Honduras box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.nicaragua",
+      "name_key": "country.nicaragua.name",
+      "stability": 1,
+      "base_battleground": false,
+      "primary_region_id": "region.central_america",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Central America / Nicaragua box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.costa_rica",
+      "name_key": "country.costa_rica.name",
+      "stability": 3,
+      "base_battleground": false,
+      "primary_region_id": "region.central_america",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Central America / Costa Rica box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.panama",
+      "name_key": "country.panama.name",
+      "stability": 2,
+      "base_battleground": true,
+      "primary_region_id": "region.central_america",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Central America / Panama box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.cuba",
+      "name_key": "country.cuba.name",
+      "stability": 3,
+      "base_battleground": true,
+      "primary_region_id": "region.central_america",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Central America / Cuba box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.haiti",
+      "name_key": "country.haiti.name",
+      "stability": 1,
+      "base_battleground": false,
+      "primary_region_id": "region.central_america",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Central America / Haiti box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.dominican_republic",
+      "name_key": "country.dominican_republic.name",
+      "stability": 1,
+      "base_battleground": false,
+      "primary_region_id": "region.central_america",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "Central America / Dominican Republic box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.colombia",
+      "name_key": "country.colombia.name",
+      "stability": 1,
+      "base_battleground": false,
+      "primary_region_id": "region.south_america",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "South America / Colombia box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.venezuela",
+      "name_key": "country.venezuela.name",
+      "stability": 2,
+      "base_battleground": true,
+      "primary_region_id": "region.south_america",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "South America / Venezuela box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.ecuador",
+      "name_key": "country.ecuador.name",
+      "stability": 2,
+      "base_battleground": false,
+      "primary_region_id": "region.south_america",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "South America / Ecuador box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.peru",
+      "name_key": "country.peru.name",
+      "stability": 2,
+      "base_battleground": false,
+      "primary_region_id": "region.south_america",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "South America / Peru box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.bolivia",
+      "name_key": "country.bolivia.name",
+      "stability": 2,
+      "base_battleground": false,
+      "primary_region_id": "region.south_america",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "South America / Bolivia box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.brazil",
+      "name_key": "country.brazil.name",
+      "stability": 2,
+      "base_battleground": true,
+      "primary_region_id": "region.south_america",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "South America / Brazil box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.paraguay",
+      "name_key": "country.paraguay.name",
+      "stability": 2,
+      "base_battleground": false,
+      "primary_region_id": "region.south_america",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "South America / Paraguay box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.uruguay",
+      "name_key": "country.uruguay.name",
+      "stability": 2,
+      "base_battleground": false,
+      "primary_region_id": "region.south_america",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "South America / Uruguay box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.argentina",
+      "name_key": "country.argentina.name",
+      "stability": 2,
+      "base_battleground": true,
+      "primary_region_id": "region.south_america",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "South America / Argentina box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "country.chile",
+      "name_key": "country.chile.name",
+      "stability": 3,
+      "base_battleground": true,
+      "primary_region_id": "region.south_america",
+      "subregion_ids": [],
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "South America / Chile box: stability, battleground title, region colors",
+          "verification": "Verified"
+        }
+      ]
+    }
+  ],
+  "superpowers": [
+    {
+      "id": "superpower.us",
+      "side": "US",
+      "name_key": "superpower.us.name",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "US superpower area and black links",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "superpower.ussr",
+      "side": "USSR",
+      "name_key": "superpower.ussr.name",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "USSR superpower area and black links",
+          "verification": "Verified"
+        }
+      ]
+    }
+  ],
+  "country_edges": [
+    {
+      "a": "country.afghanistan",
+      "b": "country.iran",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "afghanistan <-> iran printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.afghanistan",
+      "b": "country.pakistan",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "afghanistan <-> pakistan printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.algeria",
+      "b": "country.france",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "algeria <-> france printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.algeria",
+      "b": "country.morocco",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "algeria <-> morocco printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.algeria",
+      "b": "country.saharan_states",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "algeria <-> saharan_states printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.algeria",
+      "b": "country.tunisia",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "algeria <-> tunisia printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.angola",
+      "b": "country.botswana",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "angola <-> botswana printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.angola",
+      "b": "country.south_africa",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "angola <-> south_africa printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.angola",
+      "b": "country.zaire",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "angola <-> zaire printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.argentina",
+      "b": "country.chile",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "argentina <-> chile printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.argentina",
+      "b": "country.paraguay",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "argentina <-> paraguay printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.argentina",
+      "b": "country.uruguay",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "argentina <-> uruguay printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.australia",
+      "b": "country.malaysia",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "australia <-> malaysia printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.austria",
+      "b": "country.east_germany",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "austria <-> east_germany printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.austria",
+      "b": "country.hungary",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "austria <-> hungary printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.austria",
+      "b": "country.italy",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "austria <-> italy printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.austria",
+      "b": "country.west_germany",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "austria <-> west_germany printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.benelux",
+      "b": "country.uk",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "benelux <-> uk printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.benelux",
+      "b": "country.west_germany",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "benelux <-> west_germany printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.bolivia",
+      "b": "country.paraguay",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "bolivia <-> paraguay printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.bolivia",
+      "b": "country.peru",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "bolivia <-> peru printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.botswana",
+      "b": "country.south_africa",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "botswana <-> south_africa printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.botswana",
+      "b": "country.zimbabwe",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "botswana <-> zimbabwe printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.brazil",
+      "b": "country.uruguay",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "brazil <-> uruguay printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.brazil",
+      "b": "country.venezuela",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "brazil <-> venezuela printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.bulgaria",
+      "b": "country.greece",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "bulgaria <-> greece printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.bulgaria",
+      "b": "country.turkey",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "bulgaria <-> turkey printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.burma",
+      "b": "country.india",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "burma <-> india printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.burma",
+      "b": "country.laos_cambodia",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "burma <-> laos_cambodia printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.cameroon",
+      "b": "country.nigeria",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "cameroon <-> nigeria printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.cameroon",
+      "b": "country.zaire",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "cameroon <-> zaire printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.canada",
+      "b": "country.uk",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "canada <-> uk printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.chile",
+      "b": "country.peru",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "chile <-> peru printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.colombia",
+      "b": "country.ecuador",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "colombia <-> ecuador printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.colombia",
+      "b": "country.panama",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "colombia <-> panama printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.colombia",
+      "b": "country.venezuela",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "colombia <-> venezuela printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.costa_rica",
+      "b": "country.honduras",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "costa_rica <-> honduras printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.costa_rica",
+      "b": "country.nicaragua",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "costa_rica <-> nicaragua printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.costa_rica",
+      "b": "country.panama",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "costa_rica <-> panama printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.cuba",
+      "b": "country.haiti",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "cuba <-> haiti printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.cuba",
+      "b": "country.nicaragua",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "cuba <-> nicaragua printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.czechoslovakia",
+      "b": "country.east_germany",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "czechoslovakia <-> east_germany printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.czechoslovakia",
+      "b": "country.hungary",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "czechoslovakia <-> hungary printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.czechoslovakia",
+      "b": "country.poland",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "czechoslovakia <-> poland printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.denmark",
+      "b": "country.sweden",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "denmark <-> sweden printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.denmark",
+      "b": "country.west_germany",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "denmark <-> west_germany printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.dominican_republic",
+      "b": "country.haiti",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "dominican_republic <-> haiti printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.east_germany",
+      "b": "country.poland",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "east_germany <-> poland printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.east_germany",
+      "b": "country.west_germany",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "east_germany <-> west_germany printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.ecuador",
+      "b": "country.peru",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "ecuador <-> peru printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.egypt",
+      "b": "country.israel",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "egypt <-> israel printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.egypt",
+      "b": "country.libya",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "egypt <-> libya printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.egypt",
+      "b": "country.sudan",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "egypt <-> sudan printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.el_salvador",
+      "b": "country.guatemala",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "el_salvador <-> guatemala printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.el_salvador",
+      "b": "country.honduras",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "el_salvador <-> honduras printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.ethiopia",
+      "b": "country.somalia",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "ethiopia <-> somalia printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.ethiopia",
+      "b": "country.sudan",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "ethiopia <-> sudan printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.finland",
+      "b": "country.sweden",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "finland <-> sweden printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.france",
+      "b": "country.italy",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "france <-> italy printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.france",
+      "b": "country.spain_portugal",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "france <-> spain_portugal printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.france",
+      "b": "country.uk",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "france <-> uk printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.france",
+      "b": "country.west_germany",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "france <-> west_germany printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.greece",
+      "b": "country.italy",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "greece <-> italy printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.greece",
+      "b": "country.turkey",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "greece <-> turkey printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.greece",
+      "b": "country.yugoslavia",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "greece <-> yugoslavia printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.guatemala",
+      "b": "country.honduras",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "guatemala <-> honduras printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.guatemala",
+      "b": "country.mexico",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "guatemala <-> mexico printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.gulf_states",
+      "b": "country.iraq",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "gulf_states <-> iraq printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.gulf_states",
+      "b": "country.saudi_arabia",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "gulf_states <-> saudi_arabia printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.honduras",
+      "b": "country.nicaragua",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "honduras <-> nicaragua printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.hungary",
+      "b": "country.romania",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "hungary <-> romania printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.hungary",
+      "b": "country.yugoslavia",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "hungary <-> yugoslavia printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.india",
+      "b": "country.pakistan",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "india <-> pakistan printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.indonesia",
+      "b": "country.malaysia",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "indonesia <-> malaysia printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.indonesia",
+      "b": "country.philippines",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "indonesia <-> philippines printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.iran",
+      "b": "country.iraq",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "iran <-> iraq printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.iran",
+      "b": "country.pakistan",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "iran <-> pakistan printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.iraq",
+      "b": "country.jordan",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "iraq <-> jordan printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.iraq",
+      "b": "country.saudi_arabia",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "iraq <-> saudi_arabia printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.israel",
+      "b": "country.jordan",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "israel <-> jordan printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.israel",
+      "b": "country.lebanon",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "israel <-> lebanon printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.israel",
+      "b": "country.syria",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "israel <-> syria printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.italy",
+      "b": "country.spain_portugal",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "italy <-> spain_portugal printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.italy",
+      "b": "country.yugoslavia",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "italy <-> yugoslavia printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.ivory_coast",
+      "b": "country.nigeria",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "ivory_coast <-> nigeria printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.ivory_coast",
+      "b": "country.west_african_states",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "ivory_coast <-> west_african_states printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.japan",
+      "b": "country.philippines",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "japan <-> philippines printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.japan",
+      "b": "country.south_korea",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "japan <-> south_korea printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.japan",
+      "b": "country.taiwan",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "japan <-> taiwan printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.jordan",
+      "b": "country.lebanon",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "jordan <-> lebanon printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.jordan",
+      "b": "country.saudi_arabia",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "jordan <-> saudi_arabia printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.kenya",
+      "b": "country.somalia",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "kenya <-> somalia printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.kenya",
+      "b": "country.southeast_african_states",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "kenya <-> southeast_african_states printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.laos_cambodia",
+      "b": "country.thailand",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "laos_cambodia <-> thailand printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.laos_cambodia",
+      "b": "country.vietnam",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "laos_cambodia <-> vietnam printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.lebanon",
+      "b": "country.syria",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "lebanon <-> syria printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.libya",
+      "b": "country.tunisia",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "libya <-> tunisia printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.malaysia",
+      "b": "country.thailand",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "malaysia <-> thailand printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.morocco",
+      "b": "country.spain_portugal",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "morocco <-> spain_portugal printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.morocco",
+      "b": "country.west_african_states",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "morocco <-> west_african_states printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.nigeria",
+      "b": "country.saharan_states",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "nigeria <-> saharan_states printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.north_korea",
+      "b": "country.south_korea",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "north_korea <-> south_korea printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.norway",
+      "b": "country.sweden",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "norway <-> sweden printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.norway",
+      "b": "country.uk",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "norway <-> uk printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.paraguay",
+      "b": "country.uruguay",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "paraguay <-> uruguay printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.romania",
+      "b": "country.turkey",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "romania <-> turkey printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.romania",
+      "b": "country.yugoslavia",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "romania <-> yugoslavia printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.south_korea",
+      "b": "country.taiwan",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "south_korea <-> taiwan printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.southeast_african_states",
+      "b": "country.zimbabwe",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "southeast_african_states <-> zimbabwe printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.syria",
+      "b": "country.turkey",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "syria <-> turkey printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.thailand",
+      "b": "country.vietnam",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "thailand <-> vietnam printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "a": "country.zaire",
+      "b": "country.zimbabwe",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "zaire <-> zimbabwe printed rule connection",
+          "verification": "Verified"
+        }
+      ]
+    }
+  ],
+  "superpower_edges": [
+    {
+      "country_id": "country.canada",
+      "superpower_id": "superpower.us",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "US <-> canada black connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "country_id": "country.mexico",
+      "superpower_id": "superpower.us",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "US <-> mexico black connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "country_id": "country.cuba",
+      "superpower_id": "superpower.us",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "US <-> cuba black connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "country_id": "country.japan",
+      "superpower_id": "superpower.us",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "US <-> japan black connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "country_id": "country.finland",
+      "superpower_id": "superpower.ussr",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "USSR <-> finland black connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "country_id": "country.poland",
+      "superpower_id": "superpower.ussr",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "USSR <-> poland black connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "country_id": "country.romania",
+      "superpower_id": "superpower.ussr",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "USSR <-> romania black connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "country_id": "country.afghanistan",
+      "superpower_id": "superpower.ussr",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "USSR <-> afghanistan black connection",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "country_id": "country.north_korea",
+      "superpower_id": "superpower.ussr",
+      "source_refs": [
+        {
+          "source_id": "M-DELUXE",
+          "locator": "USSR <-> north_korea black connection",
+          "verification": "Verified"
+        }
+      ]
+    }
+  ]
+}

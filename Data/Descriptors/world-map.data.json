@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "id": "data.world-map",
+  "kind": "data",
+  "description": "Deluxe基础地图：按六主地区排列的84个国家、子区、规则邻接和超级大国边；不含初始布置、坐标、贴图或对局状态。",
+  "status": "ready",
+  "dataset_id": "map.deluxe2015.world",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/map.schema.json",
+  "entrypoints": [
+    {
+      "path": "Data/Maps/deluxe-2015/world.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "稳定ID；按description定位后仅读取所需记录/字段"
+  ],
+  "outputs": [
+    "只读静态定义与来源；不提供可执行效果"
+  ],
+  "dependencies": [],
+  "data_dependencies": [],
+  "preconditions": [
+    "先校验结构、唯一ID、引用、来源与版本",
+    "ready仅代表数据文件可读取，不代表完整规则包可运行"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知ID、损坏引用或未支持版本",
+    "依赖Unresolved参数或planned处理器执行游戏",
+    "缺少setup或可运行规则服务时尝试开局"
+  ],
+  "rule_sources": [
+    {
+      "id": "M-DELUXE",
+      "url": "https://s3-us-west-2.amazonaws.com/gmtwebsiteassets/nnts/TSMap11.jpg",
+      "edition": "GMT Deluxe map, printed copyright 2009",
+      "scope": "国家名框、稳定度、战场底色、地区色及实线/虚线规则邻接；不采用可选中国内战框。",
+      "checked_on": "2026-09-28"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "scope": "§2.1地图与子区语义；§2.2卡牌印刷标记；§9中国牌特殊生命周期。",
+      "checked_on": "2026-09-28"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/map-card-data.cases.json",
+      "status": "data-validation-specified"
+    }
+  ],
+  "documentation": "Docs/Wiki/map-card-data.md",
+  "verification": {
+    "checked_on": "2026-09-28",
+    "runtime_consumers_tested": false,
+    "report": "Docs/Worklogs/2026-09-28-map-card-data.md"
+  },
+  "retrieval_hints": [
+    "countries[id]",
+    "countries按primary_region_id筛选",
+    "country_edges匹配a或b；不把双向查询结果回写为重复边"
+  ]
+}

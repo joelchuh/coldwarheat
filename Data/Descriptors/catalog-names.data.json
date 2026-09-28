@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "id": "data.catalog-names",
+  "kind": "data",
+  "description": "地图和卡牌短标题检索字典；不含规则全文，不参与规则摘要。rules_text_key尚无对应正文，不能静默显示为已完成本地化。",
+  "status": "ready",
+  "dataset_id": "localization.en_us.catalog_names",
+  "content_version": "0.1.0",
+  "schema_path": null,
+  "entrypoints": [
+    {
+      "path": "Data/Localization/en-US.catalog-names.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "稳定ID；按description定位后仅读取所需记录/字段"
+  ],
+  "outputs": [
+    "只读静态定义与来源；不提供可执行效果"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "map.deluxe2015.world",
+    "cards.deluxe2015.definitions"
+  ],
+  "preconditions": [
+    "先校验结构、唯一ID、引用、来源与版本",
+    "ready仅代表数据文件可读取，不代表完整规则包可运行"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知ID、损坏引用或未支持版本",
+    "依赖Unresolved参数或planned处理器执行游戏",
+    "缺少setup或可运行规则服务时尝试开局"
+  ],
+  "rule_sources": [
+    {
+      "id": "M-DELUXE",
+      "url": "https://s3-us-west-2.amazonaws.com/gmtwebsiteassets/nnts/TSMap11.jpg",
+      "edition": "GMT Deluxe map, printed copyright 2009",
+      "scope": "国家名框、稳定度、战场底色、地区色及实线/虚线规则邻接；不采用可选中国内战框。",
+      "checked_on": "2026-09-28"
+    },
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "GMT-hosted compilation, English Deluxe card images",
+      "scope": "仅采用英文印刷卡图编号1–103的标题和基础字段；不以旁列土耳其译文或PDF元数据作为新版勘误。第16页104–110明确标OPTIONAL，当前不启用。",
+      "checked_on": "2026-09-28"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/map-card-data.cases.json",
+      "status": "data-validation-specified"
+    }
+  ],
+  "documentation": "Docs/Wiki/map-card-data.md",
+  "verification": {
+    "checked_on": "2026-09-28",
+    "runtime_consumers_tested": false,
+    "report": "Docs/Worklogs/2026-09-28-map-card-data.md"
+  },
+  "retrieval_hints": [
+    "entries[name_key]"
+  ]
+}

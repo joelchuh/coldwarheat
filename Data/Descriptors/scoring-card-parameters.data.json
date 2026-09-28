@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "data.scoring-card-parameters",
   "kind": "data",
-  "description": "卡牌特有的计分参数子集；中国牌最终持有奖励与东南亚计分牌移出标志。不是完整卡牌定义。",
+  "description": "中国牌最终持有奖励参数；东南亚移出标记已迁至唯一CardDefinition，不再在此保存。",
   "status": "ready",
   "dataset_id": "cards.deluxe2015.scoring-parameters",
   "entrypoints": [
@@ -19,11 +19,11 @@
   ],
   "dependencies": [],
   "data_dependencies": [
-    "rules.deluxe2015.region-scoring"
+    "cards.deluxe2015.definitions"
   ],
   "preconditions": [
     "校验结构、版本、ID与领域约束",
-    "完整地图/卡牌引用在正式目录建立后强制校验",
+    "强制核对card.china存在于卡牌目录；旧v1消费者须迁移东南亚移出标记读取路径",
     "ready仅表示数据文件已存在"
   ],
   "side_effects": [],
@@ -71,7 +71,8 @@
     ]
   },
   "verification": {
-    "checked_on": "2026-09-22",
+    "checked_on": "2026-09-28",
     "runtime_consumers_tested": false
-  }
+  },
+  "content_version": "0.2.0"
 }

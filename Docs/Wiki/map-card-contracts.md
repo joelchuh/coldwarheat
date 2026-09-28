@@ -1,23 +1,23 @@
-# 地图与卡牌数据契约 v0.1
+# 地图与卡牌数据契约 v0.2
 
 > description: 定位国家/地区/邻接、卡牌类型/效果绑定、规则包摘要、加载步骤与正式数据验收边界；不包含地图美术设计。
-> 状态：2026-09-27；结构契约已编写，Core查询/加载服务和完整正式目录尚未实现。JSON Schema校验不代表游戏可运行。
+> 状态：2026-09-28；结构契约及正式地图/卡牌印刷定义已建立，Core查询/加载服务与逐卡效果尚未实现。JSON Schema校验不代表游戏可运行。
 > 入口：[契约目录](../Contracts/catalog.json)、[地图模块](../Descriptors/map-data.module.json)、[卡牌模块](../Descriptors/card-data.module.json)、[地图展示方案](map-presentation.md)、[验收场景](../Design/map-card-contracts.cases.json)。
 
 ## 1. 目标与选择
 
-用户要求继续完成正式地图与卡牌的数据契约，同时保持画风未定。这里完成字段、类型、引用、版本与失败边界；不生成完整世界地图、不自行填写未核实的国家/卡牌事实，也不开始Unity实现。
+用户要求继续完成正式地图与卡牌的数据契约，同时保持画风未定。字段、类型、引用、版本与失败边界已建立；后续按用户授权录入了84国与103牌，见[正式数据](map-card-data.md)。当前仍不开始Unity实现。
 
 选用独立JSON静态定义与纯C#不可变对象。把坐标直接写进国家定义会使布局调整污染规则包；把事实只保存在Unity场景或ScriptableObject里会限制无引擎测试与服务器复用。当前独立数据方案与既有架构一致；将来Unity资源适配器可以消费它，但不能成为第二份规则事实。
 
 ## 2. 文件层次与读取方式
 
-[Docs/Contracts/catalog.json](../Contracts/catalog.json)的description用于选择Schema；Schema内部description及字段说明用于了解结构。它们是契约文件，不是可执行模块或规则数据包，因此不加入Data/catalog.json的七个已核对规则子集。未来正式地图与卡牌实例建立时，须各自登记数据描述与稳定dataset_id。
+[Docs/Contracts/catalog.json](../Contracts/catalog.json)的description用于选择Schema；Schema内部description及字段说明用于了解结构。它们是契约文件，不是可执行模块或规则数据包，因此与Data/catalog.json中的数据实例分开登记。正式地图、卡牌及名称实例已各有数据描述与稳定dataset_id。
 
 | 契约 | 内容 | 权威所属 |
 |---|---|---|
 | map.schema.json | 地区、国家、超级大国、规则邻接与来源 | Core静态定义 |
-| cards.schema.json | 卡牌印刷事实、类型、事件绑定、参数引用和来源 | Core静态定义与显式效果注册契约 |
+| cards-v2.schema.json（v1保留样例兼容） | 卡牌印刷事实、类型、绑定状态、参数引用和来源 | Core静态定义与显式效果注册契约 |
 | layout.schema.json | 显示位置、拾取形状键、连线绘制路径 | Presentation布局 |
 | theme.schema.json | 资源键、卡框、字体和外观覆盖 | Presentation主题 |
 | manifest.schema.json | 规则包文件、版本、摘要及覆盖审核 | Infrastructure加载与会话版本绑定 |
@@ -64,7 +64,7 @@ Core不读JSON；Infrastructure先验证再构造MapDefinition。行动服务查
 | 身份与显示 | id稳定；printed_number仅作来源定位；name_key/rules_text_key指向独立本地化内容，不含卡牌全文或美术 |
 | 印刷事实 | printed_ops、affiliation、era、remove_after_resolved_event、display_persistent_reminder；不存当前修正OPS |
 | 分类与进入方式 | kind=Event/Scoring/China；deck_entry=EraDeck/SpecialChina |
-| 行为入口 | effect_binding(effect_id、contract_version、parameter_refs)、scoring_region_id |
+| 行为入口 | effect_binding(effect_id、contract_version、parameter_binding_status、parameter_refs)、scoring_region_id |
 | 追溯 | source_refs；同一id在一个内容版本中只有一个定义 |
 
 - Event：printed_ops为整数，affiliation为US/USSR/Neutral，era为Early/Mid/Late，具有事件绑定，scoring_region_id为空。
@@ -81,9 +81,9 @@ CardCatalog.GetCard(CardId)返回只读定义。CardEffectRegistry.Resolve(Effec
 
 拟定ICardEffect.Resolve(EffectContext)返回Completed或AwaitingDecision及规则计划。EffectContext提供Actor、PhasingPlayer、EffectController、来源/根帧、不可变定义、隔离状态视图和允许的规则原语；通过已授权的影响力、计分、太空等计划服务组合行为，不直接操作Unity或保存文件。待选择结果带Owner、类型化LegalTargets和版本化ContinuationState；不能保存闭包或任意可执行字符串。
 
-卡牌专用数值放独立参数数据集。parameter_refs使用dataset_id与JSON Pointer定位所需片段；引用必须存在且通过该效果自己的参数Schema。空引用列表仅适用于已核实的无参数效果。事件推进许可、跨步骤VP时点、到期和拦截优先级属于逐卡行为契约，不从卡名或自由文本猜测。本轮没有实现这些逐卡处理器。
+卡牌专用数值放独立参数数据集。parameter_refs使用dataset_id与JSON Pointer定位所需片段；引用必须存在且通过该效果自己的参数Schema。v2通过parameter_binding_status区分Unresolved、NoParameters与Bound。Unresolved和NoParameters要求空引用，但前者只用于尚未完成的定义候选，严禁开局；后者必须逐卡核实。Bound要求非空引用，仍须核对引用和类型。v1继续用于原有合成样例，不静默兼容v2。事件推进许可、跨步骤VP时点、到期和拦截优先级属于逐卡行为契约，不从卡名或自由文本猜测。本轮没有实现这些逐卡处理器。
 
-**既有数据的迁移边界：** 中国牌最终持有VP继续由scoring-card-parameters提供；地区与太空数值仍从现有独立数据集读取。未来建立正式CardDefinition时，东南亚计分牌的移出标记迁到唯一卡牌定义，删除旧参数子集中的重复字段、升级该数据版本并同步消费者。此次只有Schema与fixture，未迁移或复制正式事实；旧子集仍是当前权威来源。禁止两个来源长期并存并靠默认优先级解决冲突。
+**已完成的迁移：** 中国牌最终持有VP继续由scoring-card-parameters提供；地区与太空数值仍从现有独立数据集读取。2026-09-28东南亚计分牌的移出标记已迁到cards.json中的唯一CardDefinition，旧参数条目已删除，scoring-card-parameters升级schema_version=2/content_version=0.2.0；读取卡牌去向的消费者须改用正式定义。禁止两个来源长期并存。
 
 ## 7. 规则包、版本和加载门禁
 
@@ -94,18 +94,18 @@ manifest列出dataset_id、content_version、role、relative_path、schema_contr
 1. 严格JSON解析：拒绝重复键、非有限数字、未知字段及不支持schema_version；文件大小、条目上限使用工程配置，不冒充桌游规则。
 2. 结构校验，然后ID/跨文件引用/图结构/参数类型校验。
 3. 与所选版本的独立审核清单逐ID比较，核对地区与完整国家、卡牌范围、来源采用结论；不能仅检查数组长度，更不能用待校验文件自己生成“预期清单”。
-4. 拒绝fixture、Pending资料、未实现处理器、不支持的效果版本、缺失初始布置或基础规则参数。覆盖审核标记approved也不能替代实际检查。
+4. 拒绝fixture、Pending资料、Unresolved参数、未实现处理器、不支持的效果版本、缺失初始布置或基础规则参数。覆盖审核标记approved也不能替代实际检查。
 5. 对清单中文件的原始UTF-8字节计算SHA-256，比较清单值；不在读取时格式化再哈希。文件换行改变也会改变内容摘要；UTF-8无BOM为发布约定。
 6. 构造不可变索引，在全部成功后一次发布可用RulePack；失败不留半个目录。会话/存档绑定ruleset_id、ruleset_version、data_digest及支持的GameVersion。
 
 DataDigest v1的输入精确定义为UTF-8文本：第一行ruleset_id，第二行ruleset_version；随后按dataset_id的ordinal升序，每行由dataset_id、TAB、content_version、TAB、sha256组成；所有行含结尾LF，无BOM。ID与版本字段禁止TAB/换行。摘要只覆盖规则数据；主题、布局和本地化资源不进此清单。各文件仍要校验角色与契约匹配。算法/代码兼容性另由GameVersion与支持矩阵校验，不能只凭相同数据摘要放行不兼容引擎。
 
-最终基础包必须含且仅含一份map、一份cards、一份setup以及各必需rules数据集；依赖集合来自明确的规则包规范及现有目录，不因JSON结构通过就容许缺项。当前仅有七个规则子集，完整地图、卡牌和setup仍待核实填写。样例manifest只有两文件，刻意标fixture和审核pending，不具备开局资格。
+最终基础包必须含且仅含一份map、一份cards、一份setup以及各必需rules数据集；依赖集合来自明确的规则包规范及现有目录，不因JSON结构通过就容许缺项。当前有七个规则参数子集、正式地图定义、卡牌印刷定义及独立名称字典；setup和逐卡效果仍待完成。样例manifest只有两文件，刻意标fixture和审核pending，不具备开局资格。
 
 ## 8. 校验结果与后续
 
 样例均在[Examples](../Contracts/Examples/README.md)，不放进正式Data目录。结构验证使用真正的Draft 2020-12验证器；跨文件与规则案例见[验收场景](../Design/map-card-contracts.cases.json)，实现状态分别记录。本轮不把一次性检查命令变成正式工程脚本。
 
-下一步按地区分批录入并交叉核对正式国家、规则邻接和初始布置，再按时代录入卡牌基础事实与明确效果契约。完成全部来源与引用审核后，才移除现有数据的pending目录绑定状态，开始规则包冻结。美术风格可在此期间独立讨论。
+按地区的国家/邻接与按时代的卡牌印刷事实已录入，见[正式数据与核对边界](map-card-data.md)。现有数据的目录引用已复核，运行绑定仍未实现。下一步补齐初始布置，逐卡设计参数与执行流程，再做完整规则包审核。美术风格可在此期间独立讨论。
 
 [地图展示方案](map-presentation.md) · [返回索引](index.md)

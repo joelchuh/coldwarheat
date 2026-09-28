@@ -11,11 +11,12 @@
 | 风险与胜负服务 | 查找 DEFCON 限制与责任、军事净结算、胜负检查点及扣留计分牌矩阵 | v0.1 设计；CF-003已确认 | [risk-victory.md](risk-victory.md) |
 | 地区计分与最终汇总 | 查找六地区档位、东南亚权重、最终完整性和中国牌附加分 | v0.1设计；待实现 | [region-scoring.md](region-scoring.md) |
 | 太空竞赛 | 查找8格门槛、先后奖励、领先能力、事件推进与回合衔接 | v0.1设计；待实现 | [space-race.md](space-race.md) |
-| 地图与卡牌数据契约 | 查找正式数据字段、邻接、三类卡牌、效果注册、Schema及加载门禁 | 契约已定义；正式目录与服务待实现 | [map-card-contracts.md](map-card-contracts.md) |
+| 地图与卡牌数据契约 | 查找正式数据字段、邻接、三类卡牌、效果注册、Schema及加载门禁 | 契约与正式印刷定义已建立；服务待实现 | [map-card-contracts.md](map-card-contracts.md) |
+| 正式地图与卡牌数据 | 按地区查84国与邻接，按时代查103张基础牌及效果待实现边界 | 静态定义已录入；不是可运行规则包 | [map-card-data.md](map-card-data.md) |
 | 地图布局与未定画风 | 区分规则图、位置拾取和主题资源，了解2D/3D接入边界 | 设计稿；未选定美术 | [map-presentation.md](map-presentation.md) |
-| 数据结构契约目录 | 按description定位五份JSON Schema与合成样例 | 结构契约；不是完整规则包 | [catalog.json](../Contracts/catalog.json) |
+| 数据结构契约目录 | 按description定位六份JSON Schema（含卡牌v1/v2）与合成样例 | 结构契约；不是完整规则包 | [catalog.json](../Contracts/catalog.json) |
 | 模块描述目录 | 先按 description 定位模块，再读完整契约与相关代码 | 八个模块描述均 planned | [catalog.json](../Descriptors/catalog.json) |
-| 共享规则数据目录 | 查找数据集描述、来源与独立参数文件 | 七个已核对数据子集；完整地图/卡牌仍待建立 | [catalog.json](../../Data/catalog.json) |
+| 共享规则数据目录 | 查找数据集描述、来源与独立参数文件 | 七个参数子集＋地图/卡牌定义＋名称字典；运行服务待实现 | [catalog.json](../../Data/catalog.json) |
 | 行动规则 | 查找影响力、政变、调整、预算、对象契约与验收案例 | v0.2 设计稿；未实现 | [operations.md](operations.md) |
 | 规则资料 | 查找版本来源、FAQ 适用边界和资料冻结缺口 | 已登记；未完整冻结 | [rules-sources.md](rules-sources.md) |
 | 工程边界 | 查找纯 C# 核心、命令、事件、玩家视角、确定性和程序集约束 | 设计约定；待实现 | [AGENTS.md](../../AGENTS.md) |

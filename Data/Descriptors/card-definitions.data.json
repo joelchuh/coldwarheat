@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "id": "data.card-definitions",
+  "kind": "data",
+  "description": "基础编号1–103按早期/中期/后期/中国牌排序；印刷事实已核对，102个非中国牌效果仍待设计和实现。可选104–110不启用。",
+  "status": "ready",
+  "dataset_id": "cards.deluxe2015.definitions",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/cards-v2.schema.json",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/cards.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "稳定ID；按description定位后仅读取所需记录/字段"
+  ],
+  "outputs": [
+    "只读静态定义与来源；不提供可执行效果"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "map.deluxe2015.world"
+  ],
+  "preconditions": [
+    "先校验结构、唯一ID、引用、来源与版本",
+    "ready仅代表数据文件可读取，不代表完整规则包可运行"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知ID、损坏引用或未支持版本",
+    "依赖Unresolved参数或planned处理器执行游戏",
+    "缺少setup或可运行规则服务时尝试开局"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "GMT-hosted compilation, English Deluxe card images",
+      "scope": "仅采用英文印刷卡图编号1–103的标题和基础字段；不以旁列土耳其译文或PDF元数据作为新版勘误。第16页104–110明确标OPTIONAL，当前不启用。",
+      "checked_on": "2026-09-28"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "scope": "§2.1地图与子区语义；§2.2卡牌印刷标记；§9中国牌特殊生命周期。",
+      "checked_on": "2026-09-28"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/map-card-data.cases.json",
+      "status": "data-validation-specified"
+    }
+  ],
+  "documentation": "Docs/Wiki/map-card-data.md",
+  "verification": {
+    "checked_on": "2026-09-28",
+    "runtime_consumers_tested": false,
+    "report": "Docs/Worklogs/2026-09-28-map-card-data.md"
+  },
+  "retrieval_hints": [
+    "cards[id]",
+    "cards按era筛选Early/Mid/Late；China单独筛选",
+    "effect_contracts[effect_id]；当前全部planned"
+  ]
+}

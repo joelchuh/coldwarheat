@@ -1,0 +1,557 @@
+{
+  "schema_version": 1,
+  "description": "正式定义的一次性数据验证案例；runtime条目待实现，schema成功不是开局许可。",
+  "datasets": {
+    "map": "Data/Maps/deluxe-2015/world.json",
+    "cards": "Data/Cards/deluxe-2015/cards.json"
+  },
+  "cases": [
+    {
+      "id": "DATA-M01",
+      "description": "正式地图结构、ID、引用、子区与规范边均有效",
+      "dataset": "map",
+      "validation_layer": "data",
+      "edits": [],
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-M02",
+      "description": "拒绝重复国家ID",
+      "dataset": "map",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "countries",
+            1,
+            "id"
+          ],
+          "value": "country.canada"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-M03",
+      "description": "拒绝自环",
+      "dataset": "map",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "country_edges",
+            0,
+            "b"
+          ],
+          "value": "country.afghanistan"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-M04",
+      "description": "拒绝未知边端点",
+      "dataset": "map",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "country_edges",
+            0,
+            "b"
+          ],
+          "value": "country.unknown"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-M05",
+      "description": "拒绝同一无向边重复",
+      "dataset": "map",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "country_edges",
+            1
+          ],
+          "value": {
+            "a": "country.afghanistan",
+            "b": "country.iran",
+            "source_refs": [
+              {
+                "source_id": "M-DELUXE",
+                "locator": "afghanistan <-> iran printed rule connection",
+                "verification": "Verified"
+              }
+            ]
+          }
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-M06",
+      "description": "拒绝反向存储边",
+      "dataset": "map",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "country_edges",
+            0,
+            "a"
+          ],
+          "value": "country.iran"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "country_edges",
+            0,
+            "b"
+          ],
+          "value": "country.afghanistan"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-M07",
+      "description": "拒绝不属于主地区的子区",
+      "dataset": "map",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "countries",
+            0,
+            "subregion_ids"
+          ],
+          "value": [
+            "region.southeast_asia"
+          ]
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-M08",
+      "description": "拒绝未登记来源",
+      "dataset": "map",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "countries",
+            0,
+            "source_refs",
+            0,
+            "source_id"
+          ],
+          "value": "UNKNOWN"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-M09",
+      "description": "拒绝把坐标混入国家定义",
+      "dataset": "map",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "add",
+          "path": [
+            "countries",
+            0,
+            "anchor"
+          ],
+          "value": [
+            0,
+            0
+          ]
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-M10",
+      "description": "拒绝遗漏正式国家",
+      "dataset": "map",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "remove",
+          "path": [
+            "countries",
+            0
+          ]
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-M11",
+      "description": "拒绝遗漏超级大国边",
+      "dataset": "map",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "remove",
+          "path": [
+            "superpower_edges",
+            0
+          ]
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-M12",
+      "description": "拒绝重复超级大国边",
+      "dataset": "map",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "superpower_edges",
+            1
+          ],
+          "value": {
+            "country_id": "country.canada",
+            "superpower_id": "superpower.us",
+            "source_refs": [
+              {
+                "source_id": "M-DELUXE",
+                "locator": "US <-> canada black connection",
+                "verification": "Verified"
+              }
+            ]
+          }
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-C01",
+      "description": "定义候选允许Unresolved和planned；不代表运行可用",
+      "dataset": "cards",
+      "validation_layer": "data",
+      "edits": [],
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-C02",
+      "description": "拒绝重复印刷编号",
+      "dataset": "cards",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            1,
+            "printed_number"
+          ],
+          "value": 1
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-C03",
+      "description": "拒绝重复卡牌ID",
+      "dataset": "cards",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            1,
+            "id"
+          ],
+          "value": "card.asia_scoring"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-C04",
+      "description": "拒绝零OPS计分牌",
+      "dataset": "cards",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            0,
+            "printed_ops"
+          ],
+          "value": 0
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-C05",
+      "description": "拒绝未知计分地区",
+      "dataset": "cards",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            0,
+            "scoring_region_id"
+          ],
+          "value": "region.unknown"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-C06",
+      "description": "拒绝缺失效果声明",
+      "dataset": "cards",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            3,
+            "effect_binding",
+            "effect_id"
+          ],
+          "value": "effect.unknown"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-C07",
+      "description": "拒绝把中国牌加入时代牌库",
+      "dataset": "cards",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            102,
+            "deck_entry"
+          ],
+          "value": "EraDeck"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-C08",
+      "description": "拒绝可选牌混入当前基础范围",
+      "dataset": "cards",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            0,
+            "printed_number"
+          ],
+          "value": 104
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-C09",
+      "description": "v2拒绝省略参数状态",
+      "dataset": "cards",
+      "validation_layer": "schema",
+      "edits": [
+        {
+          "op": "remove",
+          "path": [
+            "cards",
+            3,
+            "effect_binding",
+            "parameter_binding_status"
+          ]
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-C10",
+      "description": "Unresolved禁止非空引用",
+      "dataset": "cards",
+      "validation_layer": "schema",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            3,
+            "effect_binding",
+            "parameter_refs"
+          ],
+          "value": [
+            {
+              "dataset_id": "rules.deluxe2015.space-race",
+              "json_pointer": ""
+            }
+          ]
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-C11",
+      "description": "Bound不允许空引用",
+      "dataset": "cards",
+      "validation_layer": "schema",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            3,
+            "effect_binding",
+            "parameter_binding_status"
+          ],
+          "value": "Bound"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-C12",
+      "description": "NoParameters结构允许空引用但仍需逐卡证据",
+      "dataset": "cards",
+      "validation_layer": "schema",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            3,
+            "effect_binding",
+            "parameter_binding_status"
+          ],
+          "value": "NoParameters"
+        }
+      ],
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-C13",
+      "description": "Bound结构接受非空引用但跨文件类型另验",
+      "dataset": "cards",
+      "validation_layer": "schema",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            3,
+            "effect_binding",
+            "parameter_binding_status"
+          ],
+          "value": "Bound"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            3,
+            "effect_binding",
+            "parameter_refs"
+          ],
+          "value": [
+            {
+              "dataset_id": "rules.deluxe2015.space-race",
+              "json_pointer": ""
+            }
+          ]
+        }
+      ],
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-C14",
+      "description": "拒绝Defectors编号被误判后期",
+      "dataset": "cards",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            34,
+            "era"
+          ],
+          "value": "Late"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "DATA-R01",
+      "description": "未来RulePackLoader拒绝Unresolved参数、planned处理器、Pending证据及缺少setup",
+      "dataset": "cards",
+      "validation_layer": "runtime",
+      "edits": [],
+      "expected_valid": false,
+      "status": "planned"
+    },
+    {
+      "id": "DATA-R02",
+      "description": "未来两个合法主题对同一规则包和命令序列产生相同权威状态摘要",
+      "dataset": "map",
+      "validation_layer": "runtime",
+      "edits": [],
+      "expected_valid": true,
+      "status": "planned"
+    }
+  ]
+}
