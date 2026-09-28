@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "dataset_id": "setup.deluxe2015.standard",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "Deluxe基础开局：固定影响力、苏联先/美国后自由部署、中国牌初始持有；轨道与手牌数量引用共享参数。无让子、竞价、可选中国内战或Turn Zero。",
+  "source_catalog": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "第4页§3.1–3.4开局及§4.5A–B首回合；子区定义见第2页§2.1.2。"
+    }
+  ],
+  "map_dataset_id": "map.deluxe2015.world",
+  "cards_dataset_id": "cards.deluxe2015.definitions",
+  "initial_values": {
+    "turn_number": {
+      "dataset_id": "rules.deluxe2015.turn-flow",
+      "json_pointer": "/era_bands/0/first_turn"
+    },
+    "hand_target": {
+      "dataset_id": "rules.deluxe2015.turn-flow",
+      "json_pointer": "/era_bands/0/hand_target"
+    },
+    "defcon": {
+      "dataset_id": "rules.deluxe2015.defcon",
+      "json_pointer": "/initial_level"
+    },
+    "space_position": {
+      "dataset_id": "rules.deluxe2015.space-race",
+      "json_pointer": "/initial_position"
+    },
+    "military_earned": {
+      "dataset_id": "rules.deluxe2015.military-operations",
+      "json_pointer": "/initial_earned"
+    },
+    "signed_vp": {
+      "dataset_id": "rules.deluxe2015.victory",
+      "json_pointer": "/initial_signed_vp"
+    }
+  },
+  "default_country_influence_per_side": 0,
+  "initial_card_era": "Early",
+  "china": {
+    "card_id": "card.china",
+    "owner": "USSR",
+    "face": "FaceUp",
+    "source_refs": [
+      {
+        "source_id": "R2015",
+        "locator": "PDF p4 §3.1; §9: separate from ordinary hands/deck",
+        "verification": "Verified"
+      }
+    ]
+  },
+  "deployment_stages": [
+    {
+      "side": "USSR",
+      "fixed_influence": [
+        {
+          "country_id": "country.syria",
+          "amount": 1
+        },
+        {
+          "country_id": "country.iraq",
+          "amount": 1
+        },
+        {
+          "country_id": "country.north_korea",
+          "amount": 3
+        },
+        {
+          "country_id": "country.east_germany",
+          "amount": 3
+        },
+        {
+          "country_id": "country.finland",
+          "amount": 1
+        }
+      ],
+      "free_allocation": {
+        "region_id": "region.eastern_europe",
+        "amount": 6
+      },
+      "source_refs": [
+        {
+          "source_id": "R2015",
+          "locator": "PDF p4 §3.2: fixed locations and Eastern Europe allocation; USSR first",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "side": "US",
+      "fixed_influence": [
+        {
+          "country_id": "country.canada",
+          "amount": 2
+        },
+        {
+          "country_id": "country.iran",
+          "amount": 1
+        },
+        {
+          "country_id": "country.israel",
+          "amount": 1
+        },
+        {
+          "country_id": "country.japan",
+          "amount": 1
+        },
+        {
+          "country_id": "country.australia",
+          "amount": 4
+        },
+        {
+          "country_id": "country.philippines",
+          "amount": 1
+        },
+        {
+          "country_id": "country.south_korea",
+          "amount": 1
+        },
+        {
+          "country_id": "country.panama",
+          "amount": 1
+        },
+        {
+          "country_id": "country.south_africa",
+          "amount": 1
+        },
+        {
+          "country_id": "country.uk",
+          "amount": 5
+        }
+      ],
+      "free_allocation": {
+        "region_id": "region.western_europe",
+        "amount": 7
+      },
+      "source_refs": [
+        {
+          "source_id": "R2015",
+          "locator": "PDF p4 §3.3: fixed locations and Western Europe allocation; US second",
+          "verification": "Verified"
+        }
+      ]
+    }
+  ],
+  "source_refs": [
+    {
+      "source_id": "R2015",
+      "locator": "PDF p4 §3.1–3.4, §4.5A–B; zero influence elsewhere is the absence of an assigned marker",
+      "verification": "Verified"
+    }
+  ]
+}

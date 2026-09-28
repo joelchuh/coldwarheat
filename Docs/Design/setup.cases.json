@@ -1,0 +1,604 @@
+{
+  "schema_version": 1,
+  "description": "开局数据、分配约束的离线参考检查和待实现运行验收。allocation-reference是独立规范模型，不是C#服务测试。",
+  "dataset": "Data/Rulesets/deluxe-2015/setup.json",
+  "schema": "Docs/Contracts/setup.schema.json",
+  "cases": [
+    {
+      "id": "SET-D01",
+      "description": "正式开局Schema、官方固定表、子区与共享引用一致",
+      "validation_layer": "data",
+      "edits": [],
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "SET-D02",
+      "description": "拒绝未知国家",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "deployment_stages",
+            0,
+            "fixed_influence",
+            0,
+            "country_id"
+          ],
+          "value": "country.unknown"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-D03",
+      "description": "拒绝同方固定国家重复",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "deployment_stages",
+            0,
+            "fixed_influence",
+            1,
+            "country_id"
+          ],
+          "value": "country.syria"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-D04",
+      "description": "拒绝交换双方部署顺序",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "deployment_stages",
+            0,
+            "side"
+          ],
+          "value": "US"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "deployment_stages",
+            1,
+            "side"
+          ],
+          "value": "USSR"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-D05",
+      "description": "拒绝苏联份额错误",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "deployment_stages",
+            0,
+            "free_allocation",
+            "amount"
+          ],
+          "value": 7
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-D06",
+      "description": "拒绝美国布置到错误子区",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "deployment_stages",
+            1,
+            "free_allocation",
+            "region_id"
+          ],
+          "value": "region.eastern_europe"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-D07",
+      "description": "拒绝不存在的参数引用",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "initial_values",
+            "hand_target",
+            "json_pointer"
+          ],
+          "value": "/missing"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-D08",
+      "description": "拒绝中国牌初始背面",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "china",
+            "face"
+          ],
+          "value": "FaceDown"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-D09",
+      "description": "拒绝中国牌初始归美国",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "china",
+            "owner"
+          ],
+          "value": "US"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-D10",
+      "description": "拒绝部署金额非整数",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "deployment_stages",
+            0,
+            "fixed_influence",
+            0,
+            "amount"
+          ],
+          "value": 1.5
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-D11",
+      "description": "拒绝额外让子字段",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "add",
+          "path": [
+            "us_bonus_influence"
+          ],
+          "value": 2
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-D12",
+      "description": "拒绝把初值复制为数值",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "initial_values",
+            "defcon"
+          ],
+          "value": 5
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-D13",
+      "description": "拒绝初始时代不是Early",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "initial_card_era"
+          ],
+          "value": "Mid"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-D14",
+      "description": "拒绝未知来源",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "source_refs",
+            0,
+            "source_id"
+          ],
+          "value": "UNREGISTERED"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-D15",
+      "description": "拒绝错误固定影响力即使总量相同",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "deployment_stages",
+            0,
+            "fixed_influence",
+            2,
+            "amount"
+          ],
+          "value": 2
+        },
+        {
+          "op": "replace",
+          "path": [
+            "deployment_stages",
+            0,
+            "fixed_influence",
+            3,
+            "amount"
+          ],
+          "value": 4
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-D16",
+      "description": "拒绝遗漏超级大国以外的初始零状态",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "default_country_influence_per_side"
+          ],
+          "value": 1
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-A01",
+      "description": "苏联可集中全部6点到东德",
+      "validation_layer": "allocation-reference",
+      "side": "USSR",
+      "allocations": [
+        {
+          "country_id": "country.east_germany",
+          "amount": 6
+        }
+      ],
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "SET-A02",
+      "description": "美国可分配西欧7点",
+      "validation_layer": "allocation-reference",
+      "side": "US",
+      "allocations": [
+        {
+          "country_id": "country.west_germany",
+          "amount": 4
+        },
+        {
+          "country_id": "country.italy",
+          "amount": 3
+        }
+      ],
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "SET-A03",
+      "description": "双方可向双子区奥地利部署：苏联",
+      "validation_layer": "allocation-reference",
+      "side": "USSR",
+      "allocations": [
+        {
+          "country_id": "country.austria",
+          "amount": 6
+        }
+      ],
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "SET-A04",
+      "description": "双方可向双子区芬兰部署：美国",
+      "validation_layer": "allocation-reference",
+      "side": "US",
+      "allocations": [
+        {
+          "country_id": "country.finland",
+          "amount": 7
+        }
+      ],
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "SET-A05",
+      "description": "加拿大在西欧子区",
+      "validation_layer": "allocation-reference",
+      "side": "US",
+      "allocations": [
+        {
+          "country_id": "country.canada",
+          "amount": 7
+        }
+      ],
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "SET-A06",
+      "description": "拒绝东欧外的叙利亚作为苏联自由目标",
+      "validation_layer": "allocation-reference",
+      "side": "USSR",
+      "allocations": [
+        {
+          "country_id": "country.syria",
+          "amount": 6
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-A07",
+      "description": "拒绝美国自由放入东德",
+      "validation_layer": "allocation-reference",
+      "side": "US",
+      "allocations": [
+        {
+          "country_id": "country.east_germany",
+          "amount": 7
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-A08",
+      "description": "拒绝重复条目，即使合计正确",
+      "validation_layer": "allocation-reference",
+      "side": "USSR",
+      "allocations": [
+        {
+          "country_id": "country.poland",
+          "amount": 3
+        },
+        {
+          "country_id": "country.poland",
+          "amount": 3
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-A09",
+      "description": "拒绝未花完份额",
+      "validation_layer": "allocation-reference",
+      "side": "US",
+      "allocations": [
+        {
+          "country_id": "country.france",
+          "amount": 6
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-A10",
+      "description": "拒绝超额部署",
+      "validation_layer": "allocation-reference",
+      "side": "USSR",
+      "allocations": [
+        {
+          "country_id": "country.poland",
+          "amount": 7
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-A11",
+      "description": "拒绝负数",
+      "validation_layer": "allocation-reference",
+      "side": "US",
+      "allocations": [
+        {
+          "country_id": "country.france",
+          "amount": 8
+        },
+        {
+          "country_id": "country.italy",
+          "amount": -1
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-A12",
+      "description": "拒绝小数，即使合计正确",
+      "validation_layer": "allocation-reference",
+      "side": "USSR",
+      "allocations": [
+        {
+          "country_id": "country.poland",
+          "amount": 3.5
+        },
+        {
+          "country_id": "country.hungary",
+          "amount": 2.5
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-A13",
+      "description": "拒绝未知国家",
+      "validation_layer": "allocation-reference",
+      "side": "US",
+      "allocations": [
+        {
+          "country_id": "country.unknown",
+          "amount": 7
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-A14",
+      "description": "拒绝空分配",
+      "validation_layer": "allocation-reference",
+      "side": "USSR",
+      "allocations": [],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "SET-R01",
+      "description": "完整基础候选包的102个planned处理器阻止CreateGame，校验失败不消耗随机数",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "SET-R02",
+      "description": "本人在部署前可读8张手牌；对手快照/公共日志不包含CardId、牌库或随机状态",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "SET-R03",
+      "description": "US先于USSR提交部署被拒绝且状态、随机状态不变",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "SET-R04",
+      "description": "同一CommandId重试不重复自由布置；不同意图不能复用同一命令ID",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "SET-R05",
+      "description": "旧ExpectedStateVersion、他人DecisionId和过期阶段被拒绝且无部分影响力",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "SET-R06",
+      "description": "USSR部署提交后崩溃恢复只进入US固定布置，不重复苏联固定或自由布置",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "SET-R07",
+      "description": "InitialDeal提交后恢复不重洗不重发；未提交失败回滚牌区、随机游标及阶段",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "SET-R08",
+      "description": "相同规则包、种子、算法版本和命令序列产生相同牌区与状态摘要",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "SET-R09",
+      "description": "进入首回合DEFCON仍5、每人8张、余牌19，不再次触发InitialDeal",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "SET-R10",
+      "description": "中国牌正面归苏联且不计手牌；每张普通牌恰有一个区域",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "SET-R11",
+      "description": "双方投芬兰即使已有对手控制也只按放置数量消耗自由份额，无OPS加价",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "SET-R12",
+      "description": "非法自由方案不撤销先前已提交的固定布置，也不推进当前部署方",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "SET-R13",
+      "description": "更换主题或跳过动画不改变规则状态；仅权威事务推进流程",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "SET-R14",
+      "description": "重复CreateGame请求返回原会话，不重新随机生成手牌",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "SET-R15",
+      "description": "没有开局重抽或自动跳过分支；不因全是坏牌或断线自动判负",
+      "validation_layer": "runtime",
+      "status": "planned"
+    }
+  ]
+}

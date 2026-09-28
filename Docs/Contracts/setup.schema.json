@@ -1,0 +1,411 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:setup:1",
+  "title": "setup",
+  "description": "基础开局定义v1：有序部署、固定影响力、自由部署范围与共享初值引用；跨文件规则需另作语义校验。",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+    },
+    "content_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "ruleset_id": {
+      "type": "string",
+      "pattern": "^ruleset\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+    },
+    "scope": {
+      "enum": [
+        "fixture",
+        "release-candidate"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "edition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "edition",
+          "description"
+        ]
+      },
+      "minItems": 1
+    },
+    "map_dataset_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "cards_dataset_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "initial_values": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "turn_number": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "json_pointer": {
+              "type": "string",
+              "pattern": "^(/([^~/]|~0|~1)*)*$"
+            }
+          },
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ]
+        },
+        "hand_target": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "json_pointer": {
+              "type": "string",
+              "pattern": "^(/([^~/]|~0|~1)*)*$"
+            }
+          },
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ]
+        },
+        "defcon": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "json_pointer": {
+              "type": "string",
+              "pattern": "^(/([^~/]|~0|~1)*)*$"
+            }
+          },
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ]
+        },
+        "space_position": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "json_pointer": {
+              "type": "string",
+              "pattern": "^(/([^~/]|~0|~1)*)*$"
+            }
+          },
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ]
+        },
+        "military_earned": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "json_pointer": {
+              "type": "string",
+              "pattern": "^(/([^~/]|~0|~1)*)*$"
+            }
+          },
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ]
+        },
+        "signed_vp": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "json_pointer": {
+              "type": "string",
+              "pattern": "^(/([^~/]|~0|~1)*)*$"
+            }
+          },
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ]
+        }
+      },
+      "required": [
+        "turn_number",
+        "hand_target",
+        "defcon",
+        "space_position",
+        "military_earned",
+        "signed_vp"
+      ]
+    },
+    "default_country_influence_per_side": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "initial_card_era": {
+      "enum": [
+        "Early",
+        "Mid",
+        "Late"
+      ]
+    },
+    "china": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "pattern": "^card\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+        },
+        "owner": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "face": {
+          "enum": [
+            "FaceUp",
+            "FaceDown"
+          ]
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "enum": [
+                  "Verified",
+                  "Pending",
+                  "Fixture"
+                ]
+              }
+            },
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ]
+          },
+          "minItems": 1,
+          "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+        }
+      },
+      "required": [
+        "card_id",
+        "owner",
+        "face",
+        "source_refs"
+      ]
+    },
+    "deployment_stages": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "side": {
+            "enum": [
+              "USSR",
+              "US"
+            ]
+          },
+          "fixed_influence": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "country_id": {
+                  "type": "string",
+                  "pattern": "^country\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+                },
+                "amount": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              },
+              "required": [
+                "country_id",
+                "amount"
+              ]
+            }
+          },
+          "free_allocation": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "region_id": {
+                "type": "string",
+                "pattern": "^region\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+              },
+              "amount": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "required": [
+              "region_id",
+              "amount"
+            ]
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "locator": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "verification": {
+                  "enum": [
+                    "Verified",
+                    "Pending",
+                    "Fixture"
+                  ]
+                }
+              },
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ]
+            },
+            "minItems": 1,
+            "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+          }
+        },
+        "required": [
+          "side",
+          "fixed_influence",
+          "free_allocation",
+          "source_refs"
+        ]
+      }
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "locator": {
+            "type": "string",
+            "minLength": 1
+          },
+          "verification": {
+            "enum": [
+              "Verified",
+              "Pending",
+              "Fixture"
+            ]
+          }
+        },
+        "required": [
+          "source_id",
+          "locator",
+          "verification"
+        ]
+      },
+      "minItems": 1,
+      "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+    }
+  },
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "map_dataset_id",
+    "cards_dataset_id",
+    "initial_values",
+    "default_country_influence_per_side",
+    "initial_card_era",
+    "china",
+    "deployment_stages",
+    "source_refs"
+  ]
+}

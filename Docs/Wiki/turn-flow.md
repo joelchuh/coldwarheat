@@ -38,7 +38,7 @@ GameState、随机状态、结算栈、待选择组、已接受命令的去重�
 |---|---|---|
 | Setup.Validate | CreateGame 的完整规则集与种子 | 数据和处理器齐备后建立牌堆、轨道与初始布置上下文；缺失则拒绝创建 |
 | Setup.InitialDeal | 内部发牌步骤 | 发到首个时代的目标手牌数，保留 InitialDealDone |
-| Setup.Deploy | 当前布置方的合法选择 | 依参数指定的初始布置顺序完成双方；玩家在此之前已能查看自己的初始手牌；进入 TurnStart |
+| Setup.Deploy | 当前布置方提交完整自由部署方案 | 按setup.deployment_stages依次执行固定布置及自由部署；此前已能看自己的手牌；完成后进入TurnStart |
 | TurnStart | 内部步骤 | 按各自边界处理计数器与 DEFCON 恢复（军事累计已在期末评估后归零），再补牌，进入 Headline |
 | Headline.Collect | 头条选择组的拥有者 | 收齐且锁定合法选择后统一揭示；特殊能力改变选择策略 |
 | Headline.Resolve | 当前事件需要的选择 | 顺序结算并处理每张牌的去向；无未完成帧后进入 Actions |
@@ -190,3 +190,7 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 - FinalScoring由FinalScoringService从地区数据派生完整六地区计划；收齐中国牌等附加项后一次交VictoryService。不能把最终模式当作真实打出六张计分牌。
 
 契约与参数入口：[地区计分](region-scoring.md)、[太空竞赛](space-race.md)。全部为待实现接口；旧验收案例继续保留，新交互案例见[SC/SP案例](../Design/scoring-space.cases.json)。
+
+## 开局接入更新（2026-09-28）
+
+完整步骤见[初始布置与开局](setup.md)。部署顺序已从turn-flow参数迁至setup.deployment_stages；turn-flow数据版本为schema_version=3。开局不使用普通OPS增加影响力命令；内部发牌和固定布置也必须事务化并防重。开局数据已建立，逐卡处理器与运行服务尚未实现。

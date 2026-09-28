@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "inputs": [
+    "通过资料/结构/引用校验的规则包",
+    "稳定玩家身份；部署数组包含CountryId及整数amount"
+  ],
+  "outputs": [
+    "只读开局定义或开局阶段结果"
+  ],
+  "dependencies": [],
+  "preconditions": [
+    "当前仅数据与设计，尚无C#运行实现",
+    "正式开局须完整规则包、显式效果注册表和可恢复随机源全部就绪"
+  ],
+  "side_effects": [
+    "拟定服务在权威事务中修改初始状态与随机游标；目前无可调用实现"
+  ],
+  "stop_conditions": [
+    "未知国家/地区/参数引用、重复记录或版本不支持",
+    "不完整规则包、未实现处理器或Unresolved参数",
+    "非法部署或过期命令不得部分修改状态"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "第4页§3.1–3.4开局及§4.5A–B首回合；子区定义见第2页§2.1.2。",
+      "checked_on": "2026-09-28",
+      "sections": [
+        "2.1.2",
+        "3.1–3.4",
+        "4.5A–B"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/setup.cases.json",
+      "status": "mixed-data-and-planned"
+    }
+  ],
+  "documentation": "Docs/Wiki/setup.md",
+  "id": "module.setup",
+  "kind": "module",
+  "status": "planned",
+  "description": "开局状态机：先发牌查看手牌，按顺序固定布置与自由部署，幂等进入首回合；不引用Unity或画风。",
+  "entrypoints": [],
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/Setup/SetupRules.cs",
+      "symbol": "ValidateAllocation"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/Setup/SetupFlow.cs",
+      "symbol": "Advance"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Commands/SubmitInitialDeploymentCommand.cs",
+      "symbol": "SubmitInitialDeploymentCommand"
+    }
+  ],
+  "data_dependencies": [
+    "setup.deluxe2015.standard",
+    "map.deluxe2015.world",
+    "cards.deluxe2015.definitions",
+    "rules.deluxe2015.turn-flow",
+    "rules.deluxe2015.defcon",
+    "rules.deluxe2015.space-race",
+    "rules.deluxe2015.military-operations",
+    "rules.deluxe2015.victory"
+  ],
+  "contract_dependencies": [
+    "urn:coldwarheat:contract:setup:1",
+    "urn:coldwarheat:contract:map:1",
+    "urn:coldwarheat:contract:cards:2"
+  ],
+  "verification": {
+    "implementation_tested": false,
+    "report": "Docs/Worklogs/2026-09-28-setup-design.md"
+  }
+}

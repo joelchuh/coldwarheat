@@ -100,12 +100,12 @@ manifest列出dataset_id、content_version、role、relative_path、schema_contr
 
 DataDigest v1的输入精确定义为UTF-8文本：第一行ruleset_id，第二行ruleset_version；随后按dataset_id的ordinal升序，每行由dataset_id、TAB、content_version、TAB、sha256组成；所有行含结尾LF，无BOM。ID与版本字段禁止TAB/换行。摘要只覆盖规则数据；主题、布局和本地化资源不进此清单。各文件仍要校验角色与契约匹配。算法/代码兼容性另由GameVersion与支持矩阵校验，不能只凭相同数据摘要放行不兼容引擎。
 
-最终基础包必须含且仅含一份map、一份cards、一份setup以及各必需rules数据集；依赖集合来自明确的规则包规范及现有目录，不因JSON结构通过就容许缺项。当前有七个规则参数子集、正式地图定义、卡牌印刷定义及独立名称字典；setup和逐卡效果仍待完成。样例manifest只有两文件，刻意标fixture和审核pending，不具备开局资格。
+最终基础包必须含且仅含一份map、一份cards、一份setup以及各必需rules数据集；依赖集合来自明确的规则包规范及现有目录，不因JSON结构通过就容许缺项。当前有七个规则参数子集、正式地图定义、卡牌印刷定义及独立名称字典；[setup定义及开局流程](setup.md)已建立，逐卡效果和运行服务仍待完成。样例manifest只有两文件，刻意标fixture和审核pending，不具备开局资格。
 
 ## 8. 校验结果与后续
 
 样例均在[Examples](../Contracts/Examples/README.md)，不放进正式Data目录。结构验证使用真正的Draft 2020-12验证器；跨文件与规则案例见[验收场景](../Design/map-card-contracts.cases.json)，实现状态分别记录。本轮不把一次性检查命令变成正式工程脚本。
 
-按地区的国家/邻接与按时代的卡牌印刷事实已录入，见[正式数据与核对边界](map-card-data.md)。现有数据的目录引用已复核，运行绑定仍未实现。下一步补齐初始布置，逐卡设计参数与执行流程，再做完整规则包审核。美术风格可在此期间独立讨论。
+按地区的国家/邻接与按时代的卡牌印刷事实已录入，见[正式数据与核对边界](map-card-data.md)。现有数据的目录引用已复核，运行绑定仍未实现。初始布置已建立；下一步逐卡设计参数与执行流程，再做完整规则包审核。美术风格可在此期间独立讨论。
 
 [地图展示方案](map-presentation.md) · [返回索引](index.md)

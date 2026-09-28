@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "inputs": [
+    "通过资料/结构/引用校验的规则包",
+    "稳定玩家身份；部署数组包含CountryId及整数amount"
+  ],
+  "outputs": [
+    "只读开局定义或开局阶段结果"
+  ],
+  "dependencies": [],
+  "preconditions": [
+    "当前仅数据与设计，尚无C#运行实现",
+    "正式开局须完整规则包、显式效果注册表和可恢复随机源全部就绪"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知国家/地区/参数引用、重复记录或版本不支持",
+    "不完整规则包、未实现处理器或Unresolved参数",
+    "非法部署或过期命令不得部分修改状态"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "第4页§3.1–3.4开局及§4.5A–B首回合；子区定义见第2页§2.1.2。",
+      "checked_on": "2026-09-28",
+      "sections": [
+        "2.1.2",
+        "3.1–3.4",
+        "4.5A–B"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/setup.cases.json",
+      "status": "mixed-data-and-planned"
+    }
+  ],
+  "documentation": "Docs/Wiki/setup.md",
+  "id": "data.setup",
+  "kind": "data",
+  "status": "ready",
+  "description": "Deluxe基础开局：固定影响力、苏联先/美国后自由部署、中国牌初始持有；轨道与手牌数量引用共享参数。无让子、竞价、可选中国内战或Turn Zero。",
+  "dataset_id": "setup.deluxe2015.standard",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/setup.schema.json",
+  "entrypoints": [
+    {
+      "path": "Data/Rulesets/deluxe-2015/setup.json",
+      "symbol": null
+    }
+  ],
+  "data_dependencies": [
+    "map.deluxe2015.world",
+    "cards.deluxe2015.definitions",
+    "rules.deluxe2015.turn-flow",
+    "rules.deluxe2015.defcon",
+    "rules.deluxe2015.space-race",
+    "rules.deluxe2015.military-operations",
+    "rules.deluxe2015.victory"
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Worklogs/2026-09-28-setup-design.md"
+  },
+  "retrieval_hints": [
+    "deployment_stages按side筛选；数组顺序即部署顺序",
+    "initial_values按参数名读取引用后解析共享数据；不得猜默认值",
+    "china定义特殊卡的初始状态"
+  ]
+}
