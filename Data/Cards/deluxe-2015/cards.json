@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.1.0",
+  "content_version": "0.2.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础编号1–103按早期/中期/后期/中国牌排序；印刷事实已核对，102个非中国牌效果仍待设计和实现。可选104–110不启用。",
+  "description": "基础编号1–103按时代整理；印刷事实已核对。早期影响力第一批5牌参数已绑定，其余97个非中国牌绑定Unresolved；全部102个处理器仍planned。可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -23,6 +23,12 @@
       "url": null,
       "edition": "Project data design 2026-09-28",
       "description": "效果注册键为项目拟定接口，尚未实现；Unresolved参数绑定不可用于开局。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5, 2010",
+      "description": "仅采用PDF p5 #19关于uncontrolled的明确释义，与R2015及英文卡图一致。"
     }
   ],
   "cards": [
@@ -204,8 +210,13 @@
       "effect_binding": {
         "effect_id": "effect.fidel",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.early_influence_batch1",
+            "json_pointer": "/parameters/fidel"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -312,8 +323,13 @@
       "effect_binding": {
         "effect_id": "effect.romanian_abdication",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.early_influence_batch1",
+            "json_pointer": "/parameters/romanian_abdication"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -393,8 +409,13 @@
       "effect_binding": {
         "effect_id": "effect.nasser",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.early_influence_batch1",
+            "json_pointer": "/parameters/nasser"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -501,8 +522,13 @@
       "effect_binding": {
         "effect_id": "effect.truman_doctrine",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.early_influence_batch1",
+            "json_pointer": "/parameters/truman_doctrine"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -798,8 +824,13 @@
       "effect_binding": {
         "effect_id": "effect.decolonization",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.early_influence_batch1",
+            "json_pointer": "/parameters/decolonization"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -2902,15 +2933,27 @@
     {
       "effect_id": "effect.fidel",
       "contract_version": "0.1.0",
-      "description": "Fidel：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.fidel",
+      "description": "已设计ClearOpponentThenEnsureControl流程及类型化参数；实现仍planned，设计入口Docs/Wiki/early-influence-batch1.md。",
+      "handler_key": "influence.ClearOpponentThenEnsureControl",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:early-influence-parameters:1#/$defs/ClearOpponentThenEnsureControl"
+      ],
       "source_refs": [
         {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p2 English card #8",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.7 control; §5.2 event outcome",
+          "verification": "Verified"
+        },
+        {
           "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "locator": "Docs/Wiki/early-influence-batch1.md: accepted design scope; not implementation evidence",
+          "verification": "Verified"
         }
       ]
     },
@@ -2962,15 +3005,27 @@
     {
       "effect_id": "effect.romanian_abdication",
       "contract_version": "0.1.0",
-      "description": "Romanian Abdication：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.romanian_abdication",
+      "description": "已设计ClearOpponentThenEnsureControl流程及类型化参数；实现仍planned，设计入口Docs/Wiki/early-influence-batch1.md。",
+      "handler_key": "influence.ClearOpponentThenEnsureControl",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:early-influence-parameters:1#/$defs/ClearOpponentThenEnsureControl"
+      ],
       "source_refs": [
         {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p3 English card #12",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.7 control; §5.2 event outcome",
+          "verification": "Verified"
+        },
+        {
           "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "locator": "Docs/Wiki/early-influence-batch1.md: accepted design scope; not implementation evidence",
+          "verification": "Verified"
         }
       ]
     },
@@ -3007,15 +3062,22 @@
     {
       "effect_id": "effect.nasser",
       "contract_version": "0.1.0",
-      "description": "Nasser：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.nasser",
+      "description": "已设计AddThenRemoveFraction流程及类型化参数；实现仍planned，设计入口Docs/Wiki/early-influence-batch1.md。",
+      "handler_key": "influence.AddThenRemoveFraction",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:early-influence-parameters:1#/$defs/AddThenRemoveFraction"
+      ],
       "source_refs": [
         {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p3 English card #15: round removed amount upward",
+          "verification": "Verified"
+        },
+        {
           "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "locator": "Docs/Wiki/early-influence-batch1.md: accepted design scope; not implementation evidence",
+          "verification": "Verified"
         }
       ]
     },
@@ -3067,15 +3129,32 @@
     {
       "effect_id": "effect.truman_doctrine",
       "contract_version": "0.1.0",
-      "description": "Truman Doctrine：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.truman_doctrine",
+      "description": "已设计RemoveOpponentFromUncontrolledCountry流程及类型化参数；实现仍planned，设计入口Docs/Wiki/early-influence-batch1.md。",
+      "handler_key": "influence.RemoveOpponentFromUncontrolledCountry",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:early-influence-parameters:1#/$defs/RemoveOpponentFromUncontrolledCountry"
+      ],
       "source_refs": [
         {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p4 English card #19",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p5 #19: neither superpower controls the target",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.7 and §5.2",
+          "verification": "Verified"
+        },
+        {
           "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "locator": "Docs/Wiki/early-influence-batch1.md: accepted design scope; not implementation evidence",
+          "verification": "Verified"
         }
       ]
     },
@@ -3232,15 +3311,27 @@
     {
       "effect_id": "effect.decolonization",
       "contract_version": "0.1.0",
-      "description": "Decolonization：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.decolonization",
+      "description": "已设计AddToDistinctCountries流程及类型化参数；实现仍planned，设计入口Docs/Wiki/early-influence-batch1.md。",
+      "handler_key": "influence.AddToDistinctCountries",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:early-influence-parameters:1#/$defs/AddToDistinctCountries"
+      ],
       "source_refs": [
         {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p5 English card #30; African and/or Southeast Asian countries",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2; §7.1; §7.4.3 distinguishes direct effects from Operations",
+          "verification": "Verified"
+        },
+        {
           "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "locator": "Docs/Wiki/early-influence-batch1.md: accepted design scope; not implementation evidence",
+          "verification": "Verified"
         }
       ]
     },

@@ -1,0 +1,796 @@
+{
+  "schema_version": 1,
+  "description": "第一批影响力事件的参数与离线效果参考模型检查；不代表已实现C#。运行事务/隐藏信息/恢复案例保持planned。",
+  "dataset": "Data/Cards/deluxe-2015/early-influence-batch1.parameters.json",
+  "schema": "Docs/Contracts/early-influence-parameters.schema.json",
+  "cases": [
+    {
+      "id": "EI1-D01",
+      "description": "五张牌参数、模板、官方固定数值及跨文件绑定有效",
+      "validation_layer": "data",
+      "edits": [],
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-D02",
+      "description": "拒绝未知国家",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "fidel",
+            "target_country_id"
+          ],
+          "value": "country.unknown"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-D03",
+      "description": "拒绝已存在但不符合卡面目标的国家",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "fidel",
+            "target_country_id"
+          ],
+          "value": "country.iran"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-D04",
+      "description": "拒绝纳赛尔错误舍入",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "nasser",
+            "removal_rounding"
+          ],
+          "value": "Floor"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-D05",
+      "description": "拒绝纳赛尔错误增加数值",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "nasser",
+            "add_amount"
+          ],
+          "value": 3
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-D06",
+      "description": "拒绝零除数",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "nasser",
+            "removal_divisor"
+          ],
+          "value": 0
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-D07",
+      "description": "拒绝杜鲁门只排除苏联控制",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "truman_doctrine",
+            "target_control"
+          ],
+          "value": "NotUSSR"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-D08",
+      "description": "拒绝去殖民化重复地区",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "decolonization",
+            "target_region_ids"
+          ],
+          "value": [
+            "region.africa",
+            "region.africa"
+          ]
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-D09",
+      "description": "拒绝把全亚洲当东南亚",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "decolonization",
+            "target_region_ids"
+          ],
+          "value": [
+            "region.africa",
+            "region.asia"
+          ]
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-D10",
+      "description": "拒绝去殖民化每国加2",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "decolonization",
+            "amount_per_country"
+          ],
+          "value": 2
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-D11",
+      "description": "拒绝与参数对象不符的EffectId",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "fidel",
+            "effect_id"
+          ],
+          "value": "effect.nasser"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-D12",
+      "description": "拒绝未知来源",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "fidel",
+            "source_refs",
+            0,
+            "source_id"
+          ],
+          "value": "UNREGISTERED"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-D13",
+      "description": "拒绝可执行脚本字段",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "fidel",
+            "script"
+          ],
+          "value": "run-anything"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-D14",
+      "description": "拒绝错误受益方",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "truman_doctrine",
+            "beneficiary"
+          ],
+          "value": "USSR"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E01",
+      "description": "菲德尔先清US再补到控制",
+      "validation_layer": "effect-reference",
+      "card_id": "card.fidel",
+      "state": {
+        "cuba": {
+          "US": 4,
+          "USSR": 1
+        }
+      },
+      "targets": [],
+      "expected_state": {
+        "cuba": {
+          "US": 0,
+          "USSR": 3
+        }
+      },
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E02",
+      "description": "已有更多苏联影响力不减少",
+      "validation_layer": "effect-reference",
+      "card_id": "card.fidel",
+      "state": {
+        "cuba": {
+          "US": 2,
+          "USSR": 6
+        }
+      },
+      "targets": [],
+      "expected_state": {
+        "cuba": {
+          "US": 0,
+          "USSR": 6
+        }
+      },
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E03",
+      "description": "已控制且无US影响力为正常零变化事件",
+      "validation_layer": "effect-reference",
+      "card_id": "card.fidel",
+      "state": {
+        "cuba": {
+          "US": 0,
+          "USSR": 5
+        }
+      },
+      "targets": [],
+      "expected_state": {
+        "cuba": {
+          "US": 0,
+          "USSR": 5
+        }
+      },
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E04",
+      "description": "罗马尼亚复用清空补足模板",
+      "validation_layer": "effect-reference",
+      "card_id": "card.romanian_abdication",
+      "state": {
+        "romania": {
+          "US": 7,
+          "USSR": 0
+        }
+      },
+      "targets": [],
+      "expected_state": {
+        "romania": {
+          "US": 0,
+          "USSR": 3
+        }
+      },
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E05",
+      "description": "纳赛尔US为0仍加苏联",
+      "validation_layer": "effect-reference",
+      "card_id": "card.nasser",
+      "state": {
+        "egypt": {
+          "US": 0,
+          "USSR": 0
+        }
+      },
+      "targets": [],
+      "expected_state": {
+        "egypt": {
+          "US": 0,
+          "USSR": 2
+        }
+      },
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E06",
+      "description": "US为1移除1",
+      "validation_layer": "effect-reference",
+      "card_id": "card.nasser",
+      "state": {
+        "egypt": {
+          "US": 1,
+          "USSR": 3
+        }
+      },
+      "targets": [],
+      "expected_state": {
+        "egypt": {
+          "US": 0,
+          "USSR": 5
+        }
+      },
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E07",
+      "description": "奇数向上取移除量，5剩2",
+      "validation_layer": "effect-reference",
+      "card_id": "card.nasser",
+      "state": {
+        "egypt": {
+          "US": 5,
+          "USSR": 0
+        }
+      },
+      "targets": [],
+      "expected_state": {
+        "egypt": {
+          "US": 2,
+          "USSR": 2
+        }
+      },
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E08",
+      "description": "偶数6剩3",
+      "validation_layer": "effect-reference",
+      "card_id": "card.nasser",
+      "state": {
+        "egypt": {
+          "US": 6,
+          "USSR": 2
+        }
+      },
+      "targets": [],
+      "expected_state": {
+        "egypt": {
+          "US": 3,
+          "USSR": 4
+        }
+      },
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E09",
+      "description": "较大奇数501剩250",
+      "validation_layer": "effect-reference",
+      "card_id": "card.nasser",
+      "state": {
+        "egypt": {
+          "US": 501,
+          "USSR": 0
+        }
+      },
+      "targets": [],
+      "expected_state": {
+        "egypt": {
+          "US": 250,
+          "USSR": 2
+        }
+      },
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E10",
+      "description": "杜鲁门清除双方均未控制国",
+      "validation_layer": "effect-reference",
+      "card_id": "card.truman_doctrine",
+      "state": {
+        "france": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "targets": [
+        "france"
+      ],
+      "expected_state": {
+        "france": {
+          "US": 3,
+          "USSR": 0
+        }
+      },
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E11",
+      "description": "杜鲁门拒绝US控制国",
+      "validation_layer": "effect-reference",
+      "card_id": "card.truman_doctrine",
+      "state": {
+        "france": {
+          "US": 4,
+          "USSR": 1
+        }
+      },
+      "targets": [
+        "france"
+      ],
+      "expected_state": null,
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E12",
+      "description": "杜鲁门拒绝USSR控制国",
+      "validation_layer": "effect-reference",
+      "card_id": "card.truman_doctrine",
+      "state": {
+        "france": {
+          "US": 0,
+          "USSR": 3
+        }
+      },
+      "targets": [
+        "france"
+      ],
+      "expected_state": null,
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E13",
+      "description": "杜鲁门拒绝欧洲以外目标",
+      "validation_layer": "effect-reference",
+      "card_id": "card.truman_doctrine",
+      "state": {
+        "syria": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "targets": [
+        "syria"
+      ],
+      "expected_state": null,
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E14",
+      "description": "零影响力目标采用无变化解释",
+      "validation_layer": "effect-reference",
+      "card_id": "card.truman_doctrine",
+      "state": {},
+      "targets": [
+        "france"
+      ],
+      "expected_state": {
+        "france": {
+          "US": 0,
+          "USSR": 0
+        }
+      },
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E15",
+      "description": "加拿大属于欧洲",
+      "validation_layer": "effect-reference",
+      "card_id": "card.truman_doctrine",
+      "state": {
+        "canada": {
+          "US": 0,
+          "USSR": 2
+        }
+      },
+      "targets": [
+        "canada"
+      ],
+      "expected_state": {
+        "canada": {
+          "US": 0,
+          "USSR": 0
+        }
+      },
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E16",
+      "description": "杜鲁门拒绝多选",
+      "validation_layer": "effect-reference",
+      "card_id": "card.truman_doctrine",
+      "state": {},
+      "targets": [
+        "france",
+        "italy"
+      ],
+      "expected_state": null,
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E17",
+      "description": "仍有合法目标时不能提交空选择",
+      "validation_layer": "effect-reference",
+      "card_id": "card.truman_doctrine",
+      "state": {},
+      "targets": [],
+      "expected_state": null,
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E18",
+      "description": "全部欧洲被控制时自动无变化完成",
+      "validation_layer": "effect-reference",
+      "card_id": "card.truman_doctrine",
+      "state": {},
+      "targets": [],
+      "expected_state": {},
+      "expected_valid": true,
+      "all_europe_controlled_by": "US",
+      "expected_outcome": "ResolvedNoChange",
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E19",
+      "description": "去殖民化跨两区，敌控不加价",
+      "validation_layer": "effect-reference",
+      "card_id": "card.decolonization",
+      "state": {
+        "angola": {
+          "US": 9,
+          "USSR": 0
+        }
+      },
+      "targets": [
+        "angola",
+        "nigeria",
+        "thailand",
+        "philippines"
+      ],
+      "expected_state": {
+        "angola": {
+          "US": 9,
+          "USSR": 1
+        },
+        "nigeria": {
+          "US": 0,
+          "USSR": 1
+        },
+        "thailand": {
+          "US": 0,
+          "USSR": 1
+        },
+        "philippines": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E20",
+      "description": "去殖民化可以全选东南亚",
+      "validation_layer": "effect-reference",
+      "card_id": "card.decolonization",
+      "state": {},
+      "targets": [
+        "burma",
+        "laos_cambodia",
+        "vietnam",
+        "malaysia"
+      ],
+      "expected_state": {
+        "burma": {
+          "US": 0,
+          "USSR": 1
+        },
+        "laos_cambodia": {
+          "US": 0,
+          "USSR": 1
+        },
+        "vietnam": {
+          "US": 0,
+          "USSR": 1
+        },
+        "malaysia": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E21",
+      "description": "去殖民化不可重复选国",
+      "validation_layer": "effect-reference",
+      "card_id": "card.decolonization",
+      "state": {},
+      "targets": [
+        "angola",
+        "angola",
+        "thailand",
+        "philippines"
+      ],
+      "expected_state": null,
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E22",
+      "description": "去殖民化不可少选",
+      "validation_layer": "effect-reference",
+      "card_id": "card.decolonization",
+      "state": {},
+      "targets": [
+        "angola",
+        "nigeria",
+        "thailand"
+      ],
+      "expected_state": null,
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E23",
+      "description": "去殖民化不可选择东南亚外的印度",
+      "validation_layer": "effect-reference",
+      "card_id": "card.decolonization",
+      "state": {},
+      "targets": [
+        "angola",
+        "nigeria",
+        "india",
+        "philippines"
+      ],
+      "expected_state": null,
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-E24",
+      "description": "去殖民化不可选未知国家",
+      "validation_layer": "effect-reference",
+      "card_id": "card.decolonization",
+      "state": {},
+      "targets": [
+        "unknown",
+        "nigeria",
+        "thailand",
+        "philippines"
+      ],
+      "expected_state": null,
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI1-R01",
+      "description": "US打去殖民化触发苏联事件时选择方USSR，PhasingPlayer仍US",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "EI1-R02",
+      "description": "USSR打杜鲁门触发US事件时选择方US，头条也按受益方选择",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "EI1-R03",
+      "description": "非法/过期/错误拥有者响应不改变状态、牌区、阶段或决策",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "EI1-R04",
+      "description": "同一CommandId或EffectInstanceId成功重试不能重复加减影响力",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "EI1-R05",
+      "description": "AwaitingDecision存档恢复仍绑定原帧和参数摘要；参数不一致拒绝继续",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "EI1-R06",
+      "description": "应用全部增量与完成标记/去重记录同一事务；崩溃不留下半张纳赛尔",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "EI1-R07",
+      "description": "同一主题切换/动画取消不改变合法目标与结果，不触发再次执行",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "EI1-R08",
+      "description": "正常无变化事件照样按星号处理；不等同于BlockedPrerequisite或Suppressed",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "EI1-R09",
+      "description": "未知活动事件干预返回RequiresRuling，不执行部分增量或猜测候选不足处理",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "EI1-R10",
+      "description": "直接增减不消费OPS、不调用随机源、不记军事行动、不降低DEFCON",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "EI1-R11",
+      "description": "公共决策和错误信息不暴露对手手牌、牌库、随机种子或私有父帧",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "EI1-R12",
+      "description": "只有规定计分检查点裁决欧洲控制，事件改变控制权不直接计分判胜",
+      "validation_layer": "runtime",
+      "status": "planned"
+    }
+  ]
+}

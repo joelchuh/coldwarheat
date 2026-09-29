@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "description": "先按description查找地图/卡牌/布局/主题/规则包结构契约。Schema校验仅覆盖结构，不代替语义、资料或运行验证。",
+  "description": "先按description定位地图、卡牌、效果参数、开局、布局、主题与规则包契约；Schema不替代语义、资料和运行验证。",
   "status": "design-contracts",
   "entries": [
     {
@@ -44,6 +44,12 @@
       "description": "基础开局定义v1：有序部署、固定影响力、自由部署范围与共享初值引用；跨文件规则需另作语义校验。",
       "status": "schema-defined",
       "path": "Docs/Contracts/setup.schema.json"
+    },
+    {
+      "id": "urn:coldwarheat:contract:early-influence-parameters:1",
+      "description": "早期影响力第一批参数v1：四种封闭的参数形状；未知字段/操作拒绝，JSON不保存可执行步骤。",
+      "status": "schema-defined",
+      "path": "Docs/Contracts/early-influence-parameters.schema.json"
     }
   ]
 }

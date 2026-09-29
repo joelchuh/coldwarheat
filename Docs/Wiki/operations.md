@@ -152,3 +152,7 @@ INF-A/B、COUP-A/B、REAL-A 的基础期望依据本页规则摘要；其余是�
 以上路径是规划，不生成不存在文件的链接。开始实现时先读对应小节，再用符号定位代码；实际命名变化需同步更新本表。
 
 [返回索引](index.md)
+
+## 事件影响力复用（2026-09-28）
+
+[早期影响力第一批](early-influence-batch1.md)定义AddExact、RemoveAll、RemoveFractionCeiling与EnsureControlByAdding的拟定原语，以及国家选择/继续位置。直接事件不套OPS费用/可达性，但仍检查活动事件的明确拦截；未知组合RequiresRuling，不默认允许。当前为设计，暂无C#实现。

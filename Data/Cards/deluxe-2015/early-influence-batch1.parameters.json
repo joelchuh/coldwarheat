@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.early_influence_batch1",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "早期影响力事件第一批：菲德尔、罗马尼亚退位、纳赛尔、杜鲁门主义、去殖民化的类型化参数；行为流程由具名处理器设计规定，尚无C#实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "GMT-hosted compilation, English Deluxe card images",
+      "description": "仅采用英文印刷卡图编号1–103的标题和基础字段；不以旁列土耳其译文或PDF元数据作为新版勘误。第16页104–110明确标OPTIONAL，当前不启用。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1地图与子区语义；§2.2卡牌印刷标记；§9中国牌特殊生命周期。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5, 2010",
+      "description": "仅采用PDF p5 #19关于uncontrolled的明确释义，与R2015及英文卡图一致。"
+    }
+  ],
+  "parameters": {
+    "fidel": {
+      "card_id": "card.fidel",
+      "effect_id": "effect.fidel",
+      "template": "ClearOpponentThenEnsureControl",
+      "beneficiary": "USSR",
+      "target_country_id": "country.cuba",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p2 English card #8",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.7 control; §5.2 event outcome",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "romanian_abdication": {
+      "card_id": "card.romanian_abdication",
+      "effect_id": "effect.romanian_abdication",
+      "template": "ClearOpponentThenEnsureControl",
+      "beneficiary": "USSR",
+      "target_country_id": "country.romania",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p3 English card #12",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.7 control; §5.2 event outcome",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "nasser": {
+      "card_id": "card.nasser",
+      "effect_id": "effect.nasser",
+      "template": "AddThenRemoveFraction",
+      "beneficiary": "USSR",
+      "target_country_id": "country.egypt",
+      "add_amount": 2,
+      "removal_divisor": 2,
+      "removal_rounding": "Ceiling",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p3 English card #15: round removed amount upward",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "truman_doctrine": {
+      "card_id": "card.truman_doctrine",
+      "effect_id": "effect.truman_doctrine",
+      "template": "RemoveOpponentFromUncontrolledCountry",
+      "beneficiary": "US",
+      "target_region_id": "region.europe",
+      "target_control": "NeitherSide",
+      "target_count": 1,
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p4 English card #19",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p5 #19: neither superpower controls the target",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.7 and §5.2",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "decolonization": {
+      "card_id": "card.decolonization",
+      "effect_id": "effect.decolonization",
+      "template": "AddToDistinctCountries",
+      "beneficiary": "USSR",
+      "target_region_ids": [
+        "region.africa",
+        "region.southeast_asia"
+      ],
+      "target_count": 4,
+      "amount_per_country": 1,
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p5 English card #30; African and/or Southeast Asian countries",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2; §7.1; §7.4.3 distinguishes direct effects from Operations",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

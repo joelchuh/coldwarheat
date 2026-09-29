@@ -1,0 +1,410 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:early-influence-parameters:1",
+  "title": "early-influence-parameters",
+  "description": "早期影响力第一批参数v1：四种封闭的参数形状；未知字段/操作拒绝，JSON不保存可执行步骤。",
+  "$defs": {
+    "ClearOpponentThenEnsureControl": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "pattern": "^card\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+        },
+        "effect_id": {
+          "type": "string",
+          "pattern": "^effect\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+        },
+        "template": {
+          "const": "ClearOpponentThenEnsureControl"
+        },
+        "beneficiary": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "target_country_id": {
+          "type": "string",
+          "pattern": "^country\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "enum": [
+                  "Verified",
+                  "Pending",
+                  "Fixture"
+                ]
+              }
+            },
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ]
+          },
+          "minItems": 1,
+          "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+        }
+      },
+      "required": [
+        "card_id",
+        "effect_id",
+        "template",
+        "beneficiary",
+        "target_country_id",
+        "source_refs"
+      ]
+    },
+    "AddThenRemoveFraction": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "pattern": "^card\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+        },
+        "effect_id": {
+          "type": "string",
+          "pattern": "^effect\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+        },
+        "template": {
+          "const": "AddThenRemoveFraction"
+        },
+        "beneficiary": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "target_country_id": {
+          "type": "string",
+          "pattern": "^country\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+        },
+        "add_amount": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "removal_divisor": {
+          "type": "integer",
+          "minimum": 2
+        },
+        "removal_rounding": {
+          "const": "Ceiling"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "enum": [
+                  "Verified",
+                  "Pending",
+                  "Fixture"
+                ]
+              }
+            },
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ]
+          },
+          "minItems": 1,
+          "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+        }
+      },
+      "required": [
+        "card_id",
+        "effect_id",
+        "template",
+        "beneficiary",
+        "target_country_id",
+        "add_amount",
+        "removal_divisor",
+        "removal_rounding",
+        "source_refs"
+      ]
+    },
+    "RemoveOpponentFromUncontrolledCountry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "pattern": "^card\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+        },
+        "effect_id": {
+          "type": "string",
+          "pattern": "^effect\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+        },
+        "template": {
+          "const": "RemoveOpponentFromUncontrolledCountry"
+        },
+        "beneficiary": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "target_region_id": {
+          "type": "string",
+          "pattern": "^region\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+        },
+        "target_control": {
+          "const": "NeitherSide"
+        },
+        "target_count": {
+          "const": 1
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "enum": [
+                  "Verified",
+                  "Pending",
+                  "Fixture"
+                ]
+              }
+            },
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ]
+          },
+          "minItems": 1,
+          "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+        }
+      },
+      "required": [
+        "card_id",
+        "effect_id",
+        "template",
+        "beneficiary",
+        "target_region_id",
+        "target_control",
+        "target_count",
+        "source_refs"
+      ]
+    },
+    "AddToDistinctCountries": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "pattern": "^card\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+        },
+        "effect_id": {
+          "type": "string",
+          "pattern": "^effect\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+        },
+        "template": {
+          "const": "AddToDistinctCountries"
+        },
+        "beneficiary": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "target_region_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^region\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+          }
+        },
+        "target_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "amount_per_country": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "enum": [
+                  "Verified",
+                  "Pending",
+                  "Fixture"
+                ]
+              }
+            },
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ]
+          },
+          "minItems": 1,
+          "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+        }
+      },
+      "required": [
+        "card_id",
+        "effect_id",
+        "template",
+        "beneficiary",
+        "target_region_ids",
+        "target_count",
+        "amount_per_country",
+        "source_refs"
+      ]
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+    },
+    "content_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "ruleset_id": {
+      "type": "string",
+      "pattern": "^ruleset\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+    },
+    "scope": {
+      "enum": [
+        "fixture",
+        "release-candidate"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "edition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "edition",
+          "description"
+        ]
+      },
+      "minItems": 1
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fidel": {
+          "$ref": "#/$defs/ClearOpponentThenEnsureControl"
+        },
+        "romanian_abdication": {
+          "$ref": "#/$defs/ClearOpponentThenEnsureControl"
+        },
+        "nasser": {
+          "$ref": "#/$defs/AddThenRemoveFraction"
+        },
+        "truman_doctrine": {
+          "$ref": "#/$defs/RemoveOpponentFromUncontrolledCountry"
+        },
+        "decolonization": {
+          "$ref": "#/$defs/AddToDistinctCountries"
+        }
+      },
+      "required": [
+        "fidel",
+        "romanian_abdication",
+        "nasser",
+        "truman_doctrine",
+        "decolonization"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "parameters"
+  ]
+}
