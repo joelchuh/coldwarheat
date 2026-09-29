@@ -15,39 +15,50 @@
   "stop_conditions": [
     "未知模板、缺失参数、来源冲突或重复ID",
     "越界/重复目标、错误拥有者或过期决策",
-    "未实现处理器不得按空效果放行"
+    "未实现处理器不得按空效果放行",
+    "其他跨卡干预仍须裁定；铁娘子活动状态未知时不可视为未生效"
   ],
   "rule_sources": [
-    {
-      "id": "C-DELUXE-EN",
-      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
-      "edition": "GMT-hosted compilation, English Deluxe card images",
-      "description": "仅采用英文印刷卡图编号1–103的标题和基础字段；不以旁列土耳其译文或PDF元数据作为新版勘误。第16页104–110明确标OPTIONAL，当前不启用。"
-    },
-    {
-      "id": "R2015",
-      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
-      "edition": "Deluxe rules 2015",
-      "description": "§2.1地图与子区语义；§2.2卡牌印刷标记；§9中国牌特殊生命周期。"
-    },
     {
       "id": "F2010",
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
       "edition": "FAQ v5, 2010",
       "description": "仅采用PDF p5 #19关于uncontrolled的明确释义，与R2015及英文卡图一致。"
+    },
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "GMT-hosted compilation, English Deluxe card images",
+      "description": "两批共8牌的英文卡图基础效果：p2 #7/#8、p3 #12/#15、p4 #19、p5 #28/#29/#30；另核对p13 #83的禁止关系。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "Deluxe 2015：地区/控制权、游戏时代、事件选择权与结果、直接事件与OPS边界。短缺解释来源另列PROJECT-EI2。"
+    },
+    {
+      "id": "PROJECT-EI2",
+      "url": null,
+      "edition": "Project ruling EI2-RULING-01, 2026-09-30",
+      "description": "用户明确确认：额度牌必须移除可完成额度；东欧动荡选至多3个有苏联影响力国家，每国不足则移除现有量，缺额不转移。详见Docs/Wiki/early-influence-batch2.md。"
     }
   ],
   "tests": [
     {
       "path": "Docs/Design/early-influence-batch1.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/early-influence-batch2.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
-  "documentation": "Docs/Wiki/early-influence-batch1.md",
+  "documentation": "Docs/Wiki/early-influence-batch2.md",
   "id": "module.influence-events",
   "kind": "module",
   "status": "planned",
-  "description": "可复用的事件影响力原语、国家选择器与版本化继续位置；第一批覆盖5张早期牌，运行实现待完成。",
+  "description": "影响力事件原语、国家选择、额度分配与可恢复结算；两批覆盖8牌参数，含按当前时代移除及已核对禁止关系，C#待实现。",
   "entrypoints": [],
   "planned_entrypoints": [
     {
@@ -61,18 +72,25 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Influence/InfluenceEventResolver.cs",
       "symbol": "Resolve"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Influence/RemovalAllocationRules.cs",
+      "symbol": "ValidateAndBuildPlan"
     }
   ],
   "data_dependencies": [
     "effects.deluxe2015.early_influence_batch1",
     "map.deluxe2015.world",
-    "cards.deluxe2015.definitions"
+    "cards.deluxe2015.definitions",
+    "effects.deluxe2015.early_influence_batch2",
+    "rules.deluxe2015.turn-flow"
   ],
   "contract_dependencies": [
-    "urn:coldwarheat:contract:early-influence-parameters:1"
+    "urn:coldwarheat:contract:early-influence-parameters:1",
+    "urn:coldwarheat:contract:early-influence-batch2:1"
   ],
   "verification": {
     "implementation_tested": false,
-    "report": "Docs/Worklogs/2026-09-28-early-influence-batch1.md"
+    "report": "Docs/Design/early-influence-batch2.validation.json"
   }
 }

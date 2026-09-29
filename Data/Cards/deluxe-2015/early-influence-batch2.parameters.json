@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.early_influence_batch2",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "早期影响力第二批：社会主义政府、苏伊士危机的额度移除与东欧动荡的按时代逐国移除；含铁娘子禁止引用及用户确认的短缺策略，C#待实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "GMT-hosted compilation, English Deluxe card images",
+      "description": "本批仅采用英文卡图p2 #7、p5 #28/#29及p13 #83的相关约束；不采用旁列译文作为裁定。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "Deluxe 2015：地区归属、游戏时代、对手事件选择权、事件禁止与卡牌去向。未明确的短缺细节不冒充官方专门裁定。"
+    },
+    {
+      "id": "PROJECT-EI2",
+      "url": null,
+      "edition": "Project ruling EI2-RULING-01, 2026-09-30",
+      "description": "用户明确确认：额度牌必须移除可完成额度；东欧动荡选至多3个有苏联影响力国家，每国不足则移除现有量，缺额不转移。详见Docs/Wiki/early-influence-batch2.md。"
+    }
+  ],
+  "parameters": {
+    "socialist_governments": {
+      "card_id": "card.socialist_governments",
+      "effect_id": "effect.socialist_governments",
+      "template": "BudgetedRemoval",
+      "beneficiary": "USSR",
+      "target_scope": {
+        "kind": "Region",
+        "region_id": "region.western_europe"
+      },
+      "total_amount": 3,
+      "per_country_cap": 2,
+      "blocked_by_effect_id": "effect.the_iron_lady",
+      "shortage_policy": "RemoveMaximumAvailable",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p2 English card #7: event constraints",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2 regions; §5.2 event owner/outcome; §7.1 events",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p13 English card #83: Socialist Governments prohibition",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-EI2",
+          "locator": "EI2-RULING-01: user confirmation 2026-09-30; project interpretation, not official errata",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "suez_crisis": {
+      "card_id": "card.suez_crisis",
+      "effect_id": "effect.suez_crisis",
+      "template": "BudgetedRemoval",
+      "beneficiary": "USSR",
+      "target_scope": {
+        "kind": "CountrySet",
+        "country_ids": [
+          "country.france",
+          "country.uk",
+          "country.israel"
+        ]
+      },
+      "total_amount": 4,
+      "per_country_cap": 2,
+      "blocked_by_effect_id": null,
+      "shortage_policy": "RemoveMaximumAvailable",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p5 English card #28: event constraints",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2 regions; §5.2 event owner/outcome; §7.1 events",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-EI2",
+          "locator": "EI2-RULING-01: user confirmation 2026-09-30; project interpretation, not official errata",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "east_european_unrest": {
+      "card_id": "card.east_european_unrest",
+      "effect_id": "effect.east_european_unrest",
+      "template": "DistinctCountryRemovalByEra",
+      "beneficiary": "US",
+      "target_region_id": "region.eastern_europe",
+      "target_count": 3,
+      "amount_by_era": {
+        "early": 1,
+        "mid": 1,
+        "late": 2
+      },
+      "era_source": {
+        "dataset_id": "rules.deluxe2015.turn-flow",
+        "json_pointer": "/era_bands"
+      },
+      "shortage_policy": "SelectAvailableDistinctThenClampPerCountry",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p5 English card #29: event constraints",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2 regions; §5.2 event owner/outcome; §7.1 events",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§4.1; §4.5H: current turn era, not printed card era",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-EI2",
+          "locator": "EI2-RULING-01: user confirmation 2026-09-30; project interpretation, not official errata",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.2.0",
+  "content_version": "0.3.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础编号1–103按时代整理；印刷事实已核对。早期影响力第一批5牌参数已绑定，其余97个非中国牌绑定Unresolved；全部102个处理器仍planned。可选104–110不启用。",
+  "description": "基础编号1–103按时代整理；印刷事实已核对。两批8牌参数已绑定，其余94个非中国牌绑定Unresolved；全部102个处理器仍planned。可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -29,6 +29,12 @@
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
       "edition": "FAQ v5, 2010",
       "description": "仅采用PDF p5 #19关于uncontrolled的明确释义，与R2015及英文卡图一致。"
+    },
+    {
+      "id": "PROJECT-EI2",
+      "url": null,
+      "edition": "Project ruling EI2-RULING-01, 2026-09-30",
+      "description": "用户明确确认：额度牌必须移除可完成额度；东欧动荡选至多3个有苏联影响力国家，每国不足则移除现有量，缺额不转移。详见Docs/Wiki/early-influence-batch2.md。"
     }
   ],
   "cards": [
@@ -183,8 +189,13 @@
       "effect_binding": {
         "effect_id": "effect.socialist_governments",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.early_influence_batch2",
+            "json_pointer": "/parameters/socialist_governments"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -770,8 +781,13 @@
       "effect_binding": {
         "effect_id": "effect.suez_crisis",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.early_influence_batch2",
+            "json_pointer": "/parameters/suez_crisis"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -797,8 +813,13 @@
       "effect_binding": {
         "effect_id": "effect.east_european_unrest",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.early_influence_batch2",
+            "json_pointer": "/parameters/east_european_unrest"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -2918,15 +2939,37 @@
     {
       "effect_id": "effect.socialist_governments",
       "contract_version": "0.1.0",
-      "description": "Socialist Governments：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.socialist_governments",
+      "description": "socialist_governments：第二批移除效果设计；参数及用户确认短缺策略已绑定，C#未实现。详见 Docs/Wiki/early-influence-batch2.md",
+      "handler_key": "influence.BudgetedRemoval",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:early-influence-batch2:1#/$defs/BudgetedRemoval"
+      ],
       "source_refs": [
         {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p2 English card #7: event constraints",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2 regions; §5.2 event owner/outcome; §7.1 events",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p13 English card #83: Socialist Governments prohibition",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-EI2",
+          "locator": "EI2-RULING-01: user confirmation 2026-09-30; project interpretation, not official errata",
+          "verification": "Verified"
+        },
+        {
           "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "locator": "Docs/Wiki/early-influence-batch2.md: selection and atomic continuation design",
+          "verification": "Verified"
         }
       ]
     },
@@ -3281,30 +3324,69 @@
     {
       "effect_id": "effect.suez_crisis",
       "contract_version": "0.1.0",
-      "description": "Suez Crisis：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.suez_crisis",
+      "description": "suez_crisis：第二批移除效果设计；参数及用户确认短缺策略已绑定，C#未实现。详见 Docs/Wiki/early-influence-batch2.md",
+      "handler_key": "influence.BudgetedRemoval",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:early-influence-batch2:1#/$defs/BudgetedRemoval"
+      ],
       "source_refs": [
         {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p5 English card #28: event constraints",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2 regions; §5.2 event owner/outcome; §7.1 events",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-EI2",
+          "locator": "EI2-RULING-01: user confirmation 2026-09-30; project interpretation, not official errata",
+          "verification": "Verified"
+        },
+        {
           "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "locator": "Docs/Wiki/early-influence-batch2.md: selection and atomic continuation design",
+          "verification": "Verified"
         }
       ]
     },
     {
       "effect_id": "effect.east_european_unrest",
       "contract_version": "0.1.0",
-      "description": "East European Unrest：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.east_european_unrest",
+      "description": "east_european_unrest：第二批移除效果设计；参数及用户确认短缺策略已绑定，C#未实现。详见 Docs/Wiki/early-influence-batch2.md",
+      "handler_key": "influence.DistinctCountryRemovalByEra",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:early-influence-batch2:1#/$defs/DistinctCountryRemovalByEra"
+      ],
       "source_refs": [
         {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p5 English card #29: event constraints",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2 regions; §5.2 event owner/outcome; §7.1 events",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§4.1; §4.5H: current turn era, not printed card era",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-EI2",
+          "locator": "EI2-RULING-01: user confirmation 2026-09-30; project interpretation, not official errata",
+          "verification": "Verified"
+        },
+        {
           "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "locator": "Docs/Wiki/early-influence-batch2.md: selection and atomic continuation design",
+          "verification": "Verified"
         }
       ]
     },

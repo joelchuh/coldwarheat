@@ -1,7 +1,7 @@
 # 冷战早期：印刷卡牌定义
 
 > description: 冷战早期卡牌编号、稳定ID、标题、OPS、阵营及印刷标记的派生浏览表。
-> 唯一来源：[cards.json](../../../Data/Cards/deluxe-2015/cards.json)，content_version=0.2.0；英文卡图按PDF页码核对。表中星号表示事件正常结算后移出；下划线仅作显示提醒，不定义效果持续时间。
+> 唯一来源：[cards.json](../../../Data/Cards/deluxe-2015/cards.json)，content_version=0.3.0；英文卡图按PDF页码核对。表中星号表示事件正常结算后移出；下划线仅作显示提醒，不定义效果持续时间。
 > 所有效果尚未实现；中国牌不进入普通时代牌库。
 
 | 编号 | CardId（card.省略） | 标题 | OPS | 阵营 | 移出星号 | 下划线 | PDF页 |
@@ -45,3 +45,5 @@
 [返回数据索引](../map-card-data.md)
 
 [第一批5张影响力事件参数与效果设计](../early-influence-batch1.md)已建立；印刷字段未改变，事件仍未实现。
+
+[第二批3张移除事件](../early-influence-batch2.md)：额度分配、每国上限与按游戏时代移除；短缺边界按用户确认的项目解释处理。

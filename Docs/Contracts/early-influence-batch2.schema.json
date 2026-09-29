@@ -1,0 +1,343 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:early-influence-batch2:1",
+  "title": "early-influence-batch2",
+  "description": "影响力移除第二批参数v1：封闭的额度移除与按当前时代逐国移除契约；短缺策略按用户确认的项目解释绑定。",
+  "$defs": {
+    "BudgetedRemoval": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "pattern": "^card\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+        },
+        "effect_id": {
+          "type": "string",
+          "pattern": "^effect\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+        },
+        "beneficiary": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "enum": [
+                  "Verified",
+                  "Pending",
+                  "Fixture"
+                ]
+              }
+            },
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ]
+          },
+          "minItems": 1,
+          "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+        },
+        "template": {
+          "const": "BudgetedRemoval"
+        },
+        "target_scope": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "const": "Region"
+                },
+                "region_id": {
+                  "type": "string",
+                  "pattern": "^region\\.[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "kind",
+                "region_id"
+              ]
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "const": "CountrySet"
+                },
+                "country_ids": {
+                  "type": "array",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "pattern": "^country\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+                  }
+                }
+              },
+              "required": [
+                "kind",
+                "country_ids"
+              ]
+            }
+          ]
+        },
+        "total_amount": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "per_country_cap": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "blocked_by_effect_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^effect\\.[a-z][a-z0-9_]*$"
+        },
+        "shortage_policy": {
+          "const": "RemoveMaximumAvailable"
+        }
+      },
+      "required": [
+        "card_id",
+        "effect_id",
+        "beneficiary",
+        "source_refs",
+        "template",
+        "target_scope",
+        "total_amount",
+        "per_country_cap",
+        "blocked_by_effect_id",
+        "shortage_policy"
+      ]
+    },
+    "DistinctCountryRemovalByEra": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "pattern": "^card\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+        },
+        "effect_id": {
+          "type": "string",
+          "pattern": "^effect\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+        },
+        "beneficiary": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "enum": [
+                  "Verified",
+                  "Pending",
+                  "Fixture"
+                ]
+              }
+            },
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ]
+          },
+          "minItems": 1,
+          "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+        },
+        "template": {
+          "const": "DistinctCountryRemovalByEra"
+        },
+        "target_region_id": {
+          "type": "string",
+          "pattern": "^region\\.[a-z][a-z0-9_]*$"
+        },
+        "target_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "amount_by_era": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "early": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "mid": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "late": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "required": [
+            "early",
+            "mid",
+            "late"
+          ]
+        },
+        "era_source": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.turn-flow"
+            },
+            "json_pointer": {
+              "const": "/era_bands"
+            }
+          },
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ]
+        },
+        "shortage_policy": {
+          "const": "SelectAvailableDistinctThenClampPerCountry"
+        }
+      },
+      "required": [
+        "card_id",
+        "effect_id",
+        "beneficiary",
+        "source_refs",
+        "template",
+        "target_region_id",
+        "target_count",
+        "amount_by_era",
+        "era_source",
+        "shortage_policy"
+      ]
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.early_influence_batch2"
+    },
+    "content_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "ruleset_id": {
+      "type": "string",
+      "pattern": "^ruleset\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+    },
+    "scope": {
+      "enum": [
+        "fixture",
+        "release-candidate"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "edition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "edition",
+          "description"
+        ]
+      },
+      "minItems": 1
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "socialist_governments": {
+          "$ref": "#/$defs/BudgetedRemoval"
+        },
+        "suez_crisis": {
+          "$ref": "#/$defs/BudgetedRemoval"
+        },
+        "east_european_unrest": {
+          "$ref": "#/$defs/DistinctCountryRemovalByEra"
+        }
+      },
+      "required": [
+        "socialist_governments",
+        "suez_crisis",
+        "east_european_unrest"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "parameters"
+  ]
+}

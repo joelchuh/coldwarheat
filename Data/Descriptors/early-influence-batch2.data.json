@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "inputs": [
+    "稳定CardId/EffectId；版本匹配的已核对参数与权威事件上下文"
+  ],
+  "outputs": [
+    "只读参数或拟定的影响力增量计划/待选择"
+  ],
+  "dependencies": [],
+  "preconditions": [
+    "ready仅表示参数可读；Bound不表示完整裁定或实现可运行",
+    "事件受益方选择；时代由权威当前回合查询共享era_bands",
+    "铁娘子是否生效必须由持久化活动效果查询，不能根据卡牌所在区域猜测"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知数据/时代/版本/重复ID或未实现处理器",
+    "未支持活动效果返回RequiresRuling；不得扩大EI2-RULING-01适用范围",
+    "越界额度、重复国家、零影响力目标、错误拥有者或过期决策"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "GMT-hosted compilation, English Deluxe card images",
+      "description": "本批仅采用英文卡图p2 #7、p5 #28/#29及p13 #83的相关约束；不采用旁列译文作为裁定。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "Deluxe 2015：地区归属、游戏时代、对手事件选择权、事件禁止与卡牌去向。未明确的短缺细节不冒充官方专门裁定。"
+    },
+    {
+      "id": "PROJECT-EI2",
+      "url": null,
+      "edition": "Project ruling EI2-RULING-01, 2026-09-30",
+      "description": "用户明确确认：额度牌必须移除可完成额度；东欧动荡选至多3个有苏联影响力国家，每国不足则移除现有量，缺额不转移。详见Docs/Wiki/early-influence-batch2.md。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/early-influence-batch2.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "documentation": "Docs/Wiki/early-influence-batch2.md",
+  "id": "data.early-influence-batch2",
+  "kind": "data",
+  "status": "ready",
+  "description": "早期影响力第二批：社会主义政府、苏伊士危机的额度移除与东欧动荡的按时代逐国移除；含铁娘子禁止引用及用户确认的短缺策略，C#待实现。",
+  "dataset_id": "effects.deluxe2015.early_influence_batch2",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/early-influence-batch2.schema.json",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/early-influence-batch2.parameters.json",
+      "symbol": null
+    }
+  ],
+  "data_dependencies": [
+    "map.deluxe2015.world",
+    "rules.deluxe2015.turn-flow"
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/early-influence-batch2.validation.json"
+  },
+  "retrieval_hints": [
+    "parameters按card ID后缀查询；卡牌定义通过JSON Pointer引用唯一参数",
+    "先读模板description，再按Wiki拟定入口定位实现；当前entrypoints无C#"
+  ]
+}

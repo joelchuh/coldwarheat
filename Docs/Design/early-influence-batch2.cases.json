@@ -1,0 +1,1862 @@
+{
+  "schema_version": 1,
+  "description": "第二批移除参数与离线参考案例；EI2-RULING-01为用户确认的项目解释，runtime案例未执行。",
+  "dataset": "Data/Cards/deluxe-2015/early-influence-batch2.parameters.json",
+  "schema": "Docs/Contracts/early-influence-batch2.schema.json",
+  "cases": [
+    {
+      "id": "EI2-D01",
+      "description": "三牌参数、官方印刷约束、用户确认策略及引用有效",
+      "validation_layer": "data",
+      "edits": [],
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "EI2-D02",
+      "description": "拒绝已存在但错误的社会主义政府地区",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "socialist_governments",
+            "target_scope",
+            "region_id"
+          ],
+          "value": "region.europe"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI2-D03",
+      "description": "拒绝错误总额度",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "socialist_governments",
+            "total_amount"
+          ],
+          "value": 4
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI2-D04",
+      "description": "拒绝错误每国上限",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "suez_crisis",
+            "per_country_cap"
+          ],
+          "value": 3
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI2-D05",
+      "description": "拒绝重复名单",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "suez_crisis",
+            "target_scope",
+            "country_ids"
+          ],
+          "value": [
+            "country.france",
+            "country.france",
+            "country.israel"
+          ]
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI2-D06",
+      "description": "拒绝未知国家",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "suez_crisis",
+            "target_scope",
+            "country_ids"
+          ],
+          "value": [
+            "country.france",
+            "country.unknown",
+            "country.israel"
+          ]
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI2-D07",
+      "description": "苏伊士危机名单不能按地理印象加入埃及",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "suez_crisis",
+            "target_scope",
+            "country_ids"
+          ],
+          "value": [
+            "country.france",
+            "country.uk",
+            "country.egypt"
+          ]
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI2-D08",
+      "description": "拒绝错误受益方",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "east_european_unrest",
+            "beneficiary"
+          ],
+          "value": "USSR"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI2-D09",
+      "description": "拒绝错误晚期量",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "east_european_unrest",
+            "amount_by_era",
+            "late"
+          ],
+          "value": 1
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI2-D10",
+      "description": "拒绝复制时代回合边界到卡牌参数",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "east_european_unrest",
+            "late_first_turn"
+          ],
+          "value": 8
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI2-D11",
+      "description": "拒绝未知时代来源",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "east_european_unrest",
+            "era_source",
+            "dataset_id"
+          ],
+          "value": "rules.unknown"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI2-D12",
+      "description": "拒绝误绑禁止效果",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "socialist_governments",
+            "blocked_by_effect_id"
+          ],
+          "value": "effect.nasser"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI2-D13",
+      "description": "拒绝把禁止条件清空",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "socialist_governments",
+            "blocked_by_effect_id"
+          ],
+          "value": null
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI2-D14",
+      "description": "拒绝任意脚本字段",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "suez_crisis",
+            "script"
+          ],
+          "value": "eval(x)"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI2-D15",
+      "description": "拒绝未经确认的短缺策略",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "east_european_unrest",
+            "shortage_policy"
+          ],
+          "value": "AllowEmptyTargets"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI2-D16",
+      "description": "拒绝丢失用户确认来源",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "suez_crisis",
+            "source_refs"
+          ],
+          "value": [
+            {
+              "source_id": "C-DELUXE-EN",
+              "locator": "p5 #28",
+              "verification": "Verified"
+            }
+          ]
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI2-D17",
+      "description": "拒绝未知卡牌配对",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "suez_crisis",
+            "card_id"
+          ],
+          "value": "card.nasser"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI2-D18",
+      "description": "拒绝把小数当作移除量",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "socialist_governments",
+            "total_amount"
+          ],
+          "value": 3.5
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E01",
+      "description": "社会主义政府合法2+1且保留苏联影响力",
+      "validation_layer": "effect-reference",
+      "card_id": "card.socialist_governments",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "france": {
+          "US": 4,
+          "USSR": 2
+        },
+        "italy": {
+          "US": 3,
+          "USSR": 0
+        }
+      },
+      "allocations": [
+        {
+          "country_id": "country.france",
+          "amount": 2
+        },
+        {
+          "country_id": "country.italy",
+          "amount": 1
+        }
+      ],
+      "targets": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "france": {
+          "US": 2,
+          "USSR": 2
+        },
+        "italy": {
+          "US": 2,
+          "USSR": 0
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E02",
+      "description": "社会主义政府合法1+1+1",
+      "validation_layer": "effect-reference",
+      "card_id": "card.socialist_governments",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "france": {
+          "US": 1,
+          "USSR": 0
+        },
+        "italy": {
+          "US": 1,
+          "USSR": 0
+        },
+        "uk": {
+          "US": 1,
+          "USSR": 0
+        }
+      },
+      "allocations": [
+        {
+          "country_id": "country.france",
+          "amount": 1
+        },
+        {
+          "country_id": "country.italy",
+          "amount": 1
+        },
+        {
+          "country_id": "country.uk",
+          "amount": 1
+        }
+      ],
+      "targets": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "france": {
+          "US": 0,
+          "USSR": 0
+        },
+        "italy": {
+          "US": 0,
+          "USSR": 0
+        },
+        "uk": {
+          "US": 0,
+          "USSR": 0
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E03",
+      "description": "拒绝单国移除3点",
+      "validation_layer": "effect-reference",
+      "card_id": "card.socialist_governments",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "france": {
+          "US": 5,
+          "USSR": 0
+        }
+      },
+      "allocations": [
+        {
+          "country_id": "country.france",
+          "amount": 3
+        }
+      ],
+      "targets": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E04",
+      "description": "拒绝有容量时主动少移除",
+      "validation_layer": "effect-reference",
+      "card_id": "card.socialist_governments",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "france": {
+          "US": 4,
+          "USSR": 0
+        },
+        "italy": {
+          "US": 2,
+          "USSR": 0
+        }
+      },
+      "allocations": [
+        {
+          "country_id": "country.france",
+          "amount": 2
+        }
+      ],
+      "targets": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E05",
+      "description": "短缺按每国上限计算并完成全部容量",
+      "validation_layer": "effect-reference",
+      "card_id": "card.socialist_governments",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "france": {
+          "US": 5,
+          "USSR": 0
+        }
+      },
+      "allocations": [
+        {
+          "country_id": "country.france",
+          "amount": 2
+        }
+      ],
+      "targets": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "france": {
+          "US": 3,
+          "USSR": 0
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E06",
+      "description": "零容量正常完成",
+      "validation_layer": "effect-reference",
+      "card_id": "card.socialist_governments",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {},
+      "allocations": [],
+      "targets": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedNoChange",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E07",
+      "description": "奥地利芬兰可作为西欧目标",
+      "validation_layer": "effect-reference",
+      "card_id": "card.socialist_governments",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "austria": {
+          "US": 2,
+          "USSR": 0
+        },
+        "finland": {
+          "US": 1,
+          "USSR": 0
+        }
+      },
+      "allocations": [
+        {
+          "country_id": "country.austria",
+          "amount": 2
+        },
+        {
+          "country_id": "country.finland",
+          "amount": 1
+        }
+      ],
+      "targets": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "austria": {
+          "US": 0,
+          "USSR": 0
+        },
+        "finland": {
+          "US": 0,
+          "USSR": 0
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E08",
+      "description": "拒绝东德作为西欧目标",
+      "validation_layer": "effect-reference",
+      "card_id": "card.socialist_governments",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "east_germany": {
+          "US": 3,
+          "USSR": 0
+        }
+      },
+      "allocations": [
+        {
+          "country_id": "country.east_germany",
+          "amount": 2
+        }
+      ],
+      "targets": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E09",
+      "description": "铁娘子活动时禁止且不产生移除",
+      "validation_layer": "effect-reference",
+      "card_id": "card.socialist_governments",
+      "turn_number": 1,
+      "active_effect_ids": [
+        "effect.the_iron_lady"
+      ],
+      "state": {
+        "france": {
+          "US": 4,
+          "USSR": 0
+        }
+      },
+      "allocations": [],
+      "targets": [],
+      "expected_valid": true,
+      "expected_outcome": "Suppressed",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E10",
+      "description": "未支持活动效果阻止依赖结算",
+      "validation_layer": "effect-reference",
+      "card_id": "card.socialist_governments",
+      "turn_number": 1,
+      "active_effect_ids": [
+        "effect.unknown"
+      ],
+      "state": {
+        "france": {
+          "US": 4,
+          "USSR": 0
+        }
+      },
+      "allocations": [],
+      "targets": [],
+      "expected_valid": true,
+      "expected_outcome": "RequiresRuling",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E11",
+      "description": "苏伊士危机2+2",
+      "validation_layer": "effect-reference",
+      "card_id": "card.suez_crisis",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "france": {
+          "US": 3,
+          "USSR": 1
+        },
+        "uk": {
+          "US": 5,
+          "USSR": 0
+        },
+        "israel": {
+          "US": 2,
+          "USSR": 0
+        }
+      },
+      "allocations": [
+        {
+          "country_id": "country.france",
+          "amount": 2
+        },
+        {
+          "country_id": "country.uk",
+          "amount": 2
+        }
+      ],
+      "targets": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "france": {
+          "US": 1,
+          "USSR": 1
+        },
+        "uk": {
+          "US": 3,
+          "USSR": 0
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E12",
+      "description": "苏伊士危机2+1+1",
+      "validation_layer": "effect-reference",
+      "card_id": "card.suez_crisis",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "france": {
+          "US": 2,
+          "USSR": 0
+        },
+        "uk": {
+          "US": 1,
+          "USSR": 0
+        },
+        "israel": {
+          "US": 1,
+          "USSR": 0
+        }
+      },
+      "allocations": [
+        {
+          "country_id": "country.france",
+          "amount": 2
+        },
+        {
+          "country_id": "country.uk",
+          "amount": 1
+        },
+        {
+          "country_id": "country.israel",
+          "amount": 1
+        }
+      ],
+      "targets": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "france": {
+          "US": 0,
+          "USSR": 0
+        },
+        "uk": {
+          "US": 0,
+          "USSR": 0
+        },
+        "israel": {
+          "US": 0,
+          "USSR": 0
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E13",
+      "description": "苏伊士危机容量3不强凑4",
+      "validation_layer": "effect-reference",
+      "card_id": "card.suez_crisis",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "france": {
+          "US": 3,
+          "USSR": 0
+        },
+        "uk": {
+          "US": 1,
+          "USSR": 0
+        }
+      },
+      "allocations": [
+        {
+          "country_id": "country.france",
+          "amount": 2
+        },
+        {
+          "country_id": "country.uk",
+          "amount": 1
+        }
+      ],
+      "targets": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "france": {
+          "US": 1,
+          "USSR": 0
+        },
+        "uk": {
+          "US": 0,
+          "USSR": 0
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E14",
+      "description": "苏伊士危机没有影响力仍正常发生",
+      "validation_layer": "effect-reference",
+      "card_id": "card.suez_crisis",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {},
+      "allocations": [],
+      "targets": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedNoChange",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E15",
+      "description": "拒绝埃及目标",
+      "validation_layer": "effect-reference",
+      "card_id": "card.suez_crisis",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "egypt": {
+          "US": 4,
+          "USSR": 0
+        }
+      },
+      "allocations": [
+        {
+          "country_id": "country.egypt",
+          "amount": 2
+        }
+      ],
+      "targets": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E16",
+      "description": "拒绝重复国家分拆绕过单国上限",
+      "validation_layer": "effect-reference",
+      "card_id": "card.suez_crisis",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "france": {
+          "US": 4,
+          "USSR": 0
+        },
+        "uk": {
+          "US": 2,
+          "USSR": 0
+        }
+      },
+      "allocations": [
+        {
+          "country_id": "country.france",
+          "amount": 2
+        },
+        {
+          "country_id": "country.france",
+          "amount": 2
+        }
+      ],
+      "targets": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E17",
+      "description": "拒绝零分配项",
+      "validation_layer": "effect-reference",
+      "card_id": "card.suez_crisis",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "france": {
+          "US": 2,
+          "USSR": 0
+        },
+        "uk": {
+          "US": 2,
+          "USSR": 0
+        }
+      },
+      "allocations": [
+        {
+          "country_id": "country.france",
+          "amount": 2
+        },
+        {
+          "country_id": "country.uk",
+          "amount": 2
+        },
+        {
+          "country_id": "country.israel",
+          "amount": 0
+        }
+      ],
+      "targets": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E18",
+      "description": "拒绝负分配项",
+      "validation_layer": "effect-reference",
+      "card_id": "card.suez_crisis",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "france": {
+          "US": 2,
+          "USSR": 0
+        }
+      },
+      "allocations": [
+        {
+          "country_id": "country.france",
+          "amount": -1
+        }
+      ],
+      "targets": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E19",
+      "description": "拒绝非整数分配",
+      "validation_layer": "effect-reference",
+      "card_id": "card.suez_crisis",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "france": {
+          "US": 2,
+          "USSR": 0
+        },
+        "uk": {
+          "US": 2,
+          "USSR": 0
+        }
+      },
+      "allocations": [
+        {
+          "country_id": "country.france",
+          "amount": 1.5
+        },
+        {
+          "country_id": "country.uk",
+          "amount": 2.5
+        }
+      ],
+      "targets": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E20",
+      "description": "拒绝超过现存量而非静默裁剪",
+      "validation_layer": "effect-reference",
+      "card_id": "card.suez_crisis",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "france": {
+          "US": 1,
+          "USSR": 0
+        },
+        "uk": {
+          "US": 2,
+          "USSR": 0
+        },
+        "israel": {
+          "US": 1,
+          "USSR": 0
+        }
+      },
+      "allocations": [
+        {
+          "country_id": "country.france",
+          "amount": 2
+        },
+        {
+          "country_id": "country.uk",
+          "amount": 2
+        }
+      ],
+      "targets": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E21",
+      "description": "铁娘子禁止关系不误伤苏伊士危机",
+      "validation_layer": "effect-reference",
+      "card_id": "card.suez_crisis",
+      "turn_number": 1,
+      "active_effect_ids": [
+        "effect.the_iron_lady"
+      ],
+      "state": {
+        "france": {
+          "US": 2,
+          "USSR": 0
+        }
+      },
+      "allocations": [
+        {
+          "country_id": "country.france",
+          "amount": 2
+        }
+      ],
+      "targets": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "france": {
+          "US": 0,
+          "USSR": 0
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E22",
+      "description": "早期每国移除1",
+      "validation_layer": "effect-reference",
+      "card_id": "card.east_european_unrest",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "poland": {
+          "US": 0,
+          "USSR": 4
+        },
+        "east_germany": {
+          "US": 1,
+          "USSR": 3
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 2
+        }
+      },
+      "allocations": [],
+      "targets": [
+        "country.poland",
+        "country.east_germany",
+        "country.romania"
+      ],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "poland": {
+          "US": 0,
+          "USSR": 3
+        },
+        "east_germany": {
+          "US": 1,
+          "USSR": 2
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E23",
+      "description": "第7回合仍为中期",
+      "validation_layer": "effect-reference",
+      "card_id": "card.east_european_unrest",
+      "turn_number": 7,
+      "active_effect_ids": [],
+      "state": {
+        "poland": {
+          "US": 0,
+          "USSR": 4
+        },
+        "east_germany": {
+          "US": 1,
+          "USSR": 3
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 2
+        }
+      },
+      "allocations": [],
+      "targets": [
+        "country.poland",
+        "country.east_germany",
+        "country.romania"
+      ],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "poland": {
+          "US": 0,
+          "USSR": 3
+        },
+        "east_germany": {
+          "US": 1,
+          "USSR": 2
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E24",
+      "description": "第8回合即晚期每国2",
+      "validation_layer": "effect-reference",
+      "card_id": "card.east_european_unrest",
+      "turn_number": 8,
+      "active_effect_ids": [],
+      "state": {
+        "poland": {
+          "US": 0,
+          "USSR": 4
+        },
+        "east_germany": {
+          "US": 1,
+          "USSR": 3
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 2
+        }
+      },
+      "allocations": [],
+      "targets": [
+        "country.poland",
+        "country.east_germany",
+        "country.romania"
+      ],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "poland": {
+          "US": 0,
+          "USSR": 2
+        },
+        "east_germany": {
+          "US": 1,
+          "USSR": 1
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 0
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E25",
+      "description": "晚期不足2只移除现有量",
+      "validation_layer": "effect-reference",
+      "card_id": "card.east_european_unrest",
+      "turn_number": 10,
+      "active_effect_ids": [],
+      "state": {
+        "poland": {
+          "US": 0,
+          "USSR": 1
+        },
+        "east_germany": {
+          "US": 0,
+          "USSR": 4
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 3
+        }
+      },
+      "allocations": [],
+      "targets": [
+        "country.poland",
+        "country.east_germany",
+        "country.romania"
+      ],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "poland": {
+          "US": 0,
+          "USSR": 0
+        },
+        "east_germany": {
+          "US": 0,
+          "USSR": 2
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E26",
+      "description": "只有2个合格国家则选择两国",
+      "validation_layer": "effect-reference",
+      "card_id": "card.east_european_unrest",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "poland": {
+          "US": 0,
+          "USSR": 2
+        },
+        "finland": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "allocations": [],
+      "targets": [
+        "country.poland",
+        "country.finland"
+      ],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "poland": {
+          "US": 0,
+          "USSR": 1
+        },
+        "finland": {
+          "US": 0,
+          "USSR": 0
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E27",
+      "description": "没有苏联影响力则无选择完成",
+      "validation_layer": "effect-reference",
+      "card_id": "card.east_european_unrest",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "poland": {
+          "US": 3,
+          "USSR": 0
+        }
+      },
+      "allocations": [],
+      "targets": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedNoChange",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E28",
+      "description": "拒绝零影响力国家占用名额",
+      "validation_layer": "effect-reference",
+      "card_id": "card.east_european_unrest",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "poland": {
+          "US": 0,
+          "USSR": 2
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 1
+        },
+        "hungary": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "allocations": [],
+      "targets": [
+        "country.poland",
+        "country.romania",
+        "country.bulgaria"
+      ],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E29",
+      "description": "拒绝重复选同一国家",
+      "validation_layer": "effect-reference",
+      "card_id": "card.east_european_unrest",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "poland": {
+          "US": 0,
+          "USSR": 4
+        },
+        "east_germany": {
+          "US": 1,
+          "USSR": 3
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 2
+        }
+      },
+      "allocations": [],
+      "targets": [
+        "country.poland",
+        "country.poland",
+        "country.east_germany"
+      ],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E30",
+      "description": "拒绝多选4国",
+      "validation_layer": "effect-reference",
+      "card_id": "card.east_european_unrest",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "poland": {
+          "US": 0,
+          "USSR": 4
+        },
+        "east_germany": {
+          "US": 1,
+          "USSR": 3
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 2
+        },
+        "hungary": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "allocations": [],
+      "targets": [
+        "country.poland",
+        "country.east_germany",
+        "country.romania",
+        "country.hungary"
+      ],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E31",
+      "description": "拒绝充足时少选",
+      "validation_layer": "effect-reference",
+      "card_id": "card.east_european_unrest",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "poland": {
+          "US": 0,
+          "USSR": 4
+        },
+        "east_germany": {
+          "US": 1,
+          "USSR": 3
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 2
+        }
+      },
+      "allocations": [],
+      "targets": [
+        "country.poland",
+        "country.romania"
+      ],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E32",
+      "description": "奥地利芬兰属于东欧",
+      "validation_layer": "effect-reference",
+      "card_id": "card.east_european_unrest",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "austria": {
+          "US": 0,
+          "USSR": 1
+        },
+        "finland": {
+          "US": 0,
+          "USSR": 1
+        },
+        "poland": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "allocations": [],
+      "targets": [
+        "country.austria",
+        "country.finland",
+        "country.poland"
+      ],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "austria": {
+          "US": 0,
+          "USSR": 0
+        },
+        "finland": {
+          "US": 0,
+          "USSR": 0
+        },
+        "poland": {
+          "US": 0,
+          "USSR": 0
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E33",
+      "description": "拒绝西德目标",
+      "validation_layer": "effect-reference",
+      "card_id": "card.east_european_unrest",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "poland": {
+          "US": 0,
+          "USSR": 4
+        },
+        "east_germany": {
+          "US": 1,
+          "USSR": 3
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 2
+        },
+        "west_germany": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "allocations": [],
+      "targets": [
+        "country.poland",
+        "country.east_germany",
+        "country.west_germany"
+      ],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E34",
+      "description": "可自由选择较少影响力国家而非强制最大化移除",
+      "validation_layer": "effect-reference",
+      "card_id": "card.east_european_unrest",
+      "turn_number": 8,
+      "active_effect_ids": [],
+      "state": {
+        "poland": {
+          "US": 0,
+          "USSR": 1
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 1
+        },
+        "hungary": {
+          "US": 0,
+          "USSR": 1
+        },
+        "east_germany": {
+          "US": 0,
+          "USSR": 5
+        }
+      },
+      "allocations": [],
+      "targets": [
+        "country.poland",
+        "country.romania",
+        "country.hungary"
+      ],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "poland": {
+          "US": 0,
+          "USSR": 0
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 0
+        },
+        "hungary": {
+          "US": 0,
+          "USSR": 0
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E35",
+      "description": "未知回合不能默认早期",
+      "validation_layer": "effect-reference",
+      "card_id": "card.east_european_unrest",
+      "turn_number": 11,
+      "active_effect_ids": [],
+      "state": {
+        "poland": {
+          "US": 0,
+          "USSR": 4
+        },
+        "east_germany": {
+          "US": 1,
+          "USSR": 3
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 2
+        }
+      },
+      "allocations": [],
+      "targets": [
+        "country.poland",
+        "country.east_germany",
+        "country.romania"
+      ],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E36",
+      "description": "拒绝把东欧动荡当成自由额度分配",
+      "validation_layer": "effect-reference",
+      "card_id": "card.east_european_unrest",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "poland": {
+          "US": 0,
+          "USSR": 4
+        },
+        "east_germany": {
+          "US": 1,
+          "USSR": 3
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 2
+        }
+      },
+      "allocations": [
+        {
+          "country_id": "country.poland",
+          "amount": 3
+        }
+      ],
+      "targets": [
+        "country.poland",
+        "country.east_germany",
+        "country.romania"
+      ],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E37",
+      "description": "拒绝把额度牌当作只选国家而无分配",
+      "validation_layer": "effect-reference",
+      "card_id": "card.socialist_governments",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "france": {
+          "US": 4,
+          "USSR": 0
+        },
+        "italy": {
+          "US": 3,
+          "USSR": 0
+        }
+      },
+      "allocations": [],
+      "targets": [
+        "country.france",
+        "country.italy"
+      ],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E38",
+      "description": "国家控制权不禁止直接事件移除",
+      "validation_layer": "effect-reference",
+      "card_id": "card.socialist_governments",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "france": {
+          "US": 3,
+          "USSR": 0
+        },
+        "italy": {
+          "US": 2,
+          "USSR": 0
+        }
+      },
+      "allocations": [
+        {
+          "country_id": "country.france",
+          "amount": 2
+        },
+        {
+          "country_id": "country.italy",
+          "amount": 1
+        }
+      ],
+      "targets": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "france": {
+          "US": 1,
+          "USSR": 0
+        },
+        "italy": {
+          "US": 1,
+          "USSR": 0
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E39",
+      "description": "布尔值不能作为数量1",
+      "validation_layer": "effect-reference",
+      "card_id": "card.socialist_governments",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "france": {
+          "US": 1,
+          "USSR": 0
+        }
+      },
+      "allocations": [
+        {
+          "country_id": "country.france",
+          "amount": true
+        }
+      ],
+      "targets": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E40",
+      "description": "分配顺序不改变结果",
+      "validation_layer": "effect-reference",
+      "card_id": "card.socialist_governments",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "france": {
+          "US": 4,
+          "USSR": 2
+        },
+        "italy": {
+          "US": 3,
+          "USSR": 0
+        }
+      },
+      "allocations": [
+        {
+          "country_id": "country.italy",
+          "amount": 1
+        },
+        {
+          "country_id": "country.france",
+          "amount": 2
+        }
+      ],
+      "targets": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "france": {
+          "US": 2,
+          "USSR": 2
+        },
+        "italy": {
+          "US": 2,
+          "USSR": 0
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E41",
+      "description": "拒绝未知国家",
+      "validation_layer": "effect-reference",
+      "card_id": "card.east_european_unrest",
+      "turn_number": 1,
+      "active_effect_ids": [],
+      "state": {
+        "poland": {
+          "US": 0,
+          "USSR": 4
+        },
+        "east_germany": {
+          "US": 1,
+          "USSR": 3
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 2
+        }
+      },
+      "allocations": [],
+      "targets": [
+        "country.poland",
+        "country.east_germany",
+        "country.unknown"
+      ],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI2-E42",
+      "description": "铁娘子不误伤东欧动荡",
+      "validation_layer": "effect-reference",
+      "card_id": "card.east_european_unrest",
+      "turn_number": 1,
+      "active_effect_ids": [
+        "effect.the_iron_lady"
+      ],
+      "state": {
+        "poland": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "allocations": [],
+      "targets": [
+        "country.poland"
+      ],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "poland": {
+          "US": 0,
+          "USSR": 0
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI2-R01",
+      "description": "对手打出卡牌，事件受益方响应；出牌者或旁观者响应拒绝",
+      "validation_layer": "runtime",
+      "expected": "US打出苏伊士危机时仅USSR可分配；USSR打出东欧动荡时仅US可选国。",
+      "status": "planned"
+    },
+    {
+      "id": "EI2-R02",
+      "description": "重复CommandId返回原结果",
+      "validation_layer": "runtime",
+      "expected": "影响力、完成标记、卡牌去向和事件序号不重复推进。",
+      "status": "planned"
+    },
+    {
+      "id": "EI2-R03",
+      "description": "过期StateVersion或DecisionRevision拒绝",
+      "validation_layer": "runtime",
+      "expected": "拒绝前后完整状态及随机状态完全相同。",
+      "status": "planned"
+    },
+    {
+      "id": "EI2-R04",
+      "description": "中途存档恢复",
+      "validation_layer": "runtime",
+      "expected": "相同参数摘要恢复同一待决策；不依赖Unity弹窗或闭包。",
+      "status": "planned"
+    },
+    {
+      "id": "EI2-R05",
+      "description": "事务失败回滚",
+      "validation_layer": "runtime",
+      "expected": "注入写入失败时影响力、决定、去重记录和牌区均不部分提交。",
+      "status": "planned"
+    },
+    {
+      "id": "EI2-R06",
+      "description": "铁娘子禁止与无变化区别",
+      "validation_layer": "runtime",
+      "expected": "直接主动事件命令拒绝；OPS触发被禁止事件为Suppressed，OPS仍可完成。",
+      "status": "planned"
+    },
+    {
+      "id": "EI2-R07",
+      "description": "苏伊士零容量仍移出",
+      "validation_layer": "runtime",
+      "expected": "ResolvedNoChange读取唯一星号；普通太空用途不触发事件且只弃牌。",
+      "status": "planned"
+    },
+    {
+      "id": "EI2-R08",
+      "description": "上下文缺失不得默认允许",
+      "validation_layer": "runtime",
+      "expected": "活动效果状态未知、参数摘要变化或缺失时代服务阻止执行。",
+      "status": "planned"
+    },
+    {
+      "id": "EI2-R09",
+      "description": "公开事件不泄露隐藏信息",
+      "validation_layer": "runtime",
+      "expected": "事件和错误只含公开国家及已触发卡牌，不含手牌、牌库或父帧私有数据。",
+      "status": "planned"
+    },
+    {
+      "id": "EI2-R10",
+      "description": "直接移除与普通行动边界",
+      "validation_layer": "runtime",
+      "expected": "不耗OPS、不调DEFCON/军事、不调用RNG；不自动触发地区计分胜利。",
+      "status": "planned"
+    },
+    {
+      "id": "EI2-R11",
+      "description": "OPS先后影响实际输入状态",
+      "validation_layer": "runtime",
+      "expected": "事件开始时读取当前地图，旧的出牌时预览不能作为最终合法集合。",
+      "status": "planned"
+    },
+    {
+      "id": "EI2-R12",
+      "description": "不复用短缺策略到第一批",
+      "validation_layer": "runtime",
+      "expected": "杜鲁门零影响力合法目标保持原规则；去殖民化未知干预仍RequiresRuling。",
+      "status": "planned"
+    }
+  ]
+}
