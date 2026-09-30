@@ -29,7 +29,7 @@
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "edition": "GMT-hosted compilation, English Deluxe card images",
-      "description": "两批共8牌的英文卡图基础效果：p2 #7/#8、p3 #12/#15、p4 #19、p5 #28/#29/#30；另核对p13 #83的禁止关系。"
+      "description": "两批共8牌的英文卡图基础效果：p2 #7/#8、p3 #12/#15、p4 #19、p5 #28/#29/#30；另核对p13 #83的禁止关系。 第三批追加p3 #14、p4 #22。"
     },
     {
       "id": "R2015",
@@ -42,6 +42,12 @@
       "url": null,
       "edition": "Project ruling EI2-RULING-01, 2026-09-30",
       "description": "用户明确确认：额度牌必须移除可完成额度；东欧动荡选至多3个有苏联影响力国家，每国不足则移除现有量，缺额不转移。详见Docs/Wiki/early-influence-batch2.md。"
+    },
+    {
+      "id": "PROJECT-EI3",
+      "url": null,
+      "edition": "Design interpretations, 2026-09-30",
+      "description": "独立红色政权零增量目标按Add语义及卡面未限制控制权推导，非官方专门FAQ；经互会短缺采用状态见Wiki EI3-RULING-01。"
     }
   ],
   "tests": [
@@ -52,13 +58,17 @@
     {
       "path": "Docs/Design/early-influence-batch2.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/early-influence-batch3.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
-  "documentation": "Docs/Wiki/early-influence-batch2.md",
+  "documentation": "Docs/Wiki/early-influence-batch3.md",
   "id": "module.influence-events",
   "kind": "module",
   "status": "planned",
-  "description": "影响力事件原语、国家选择、额度分配与可恢复结算；两批覆盖8牌参数，含按当前时代移除及已核对禁止关系，C#待实现。",
+  "description": "影响力事件的增减、追平、控制筛选、额度分配与可恢复选择；三批覆盖10牌参数，C#待实现。",
   "entrypoints": [],
   "planned_entrypoints": [
     {
@@ -83,14 +93,16 @@
     "map.deluxe2015.world",
     "cards.deluxe2015.definitions",
     "effects.deluxe2015.early_influence_batch2",
-    "rules.deluxe2015.turn-flow"
+    "rules.deluxe2015.turn-flow",
+    "effects.deluxe2015.early_influence_batch3"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:early-influence-parameters:1",
-    "urn:coldwarheat:contract:early-influence-batch2:1"
+    "urn:coldwarheat:contract:early-influence-batch2:1",
+    "urn:coldwarheat:contract:early-influence-batch3:1"
   ],
   "verification": {
     "implementation_tested": false,
-    "report": "Docs/Design/early-influence-batch2.validation.json"
+    "report": "Docs/Design/early-influence-batch3.validation.json"
   }
 }

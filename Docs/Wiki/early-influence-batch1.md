@@ -94,7 +94,7 @@ InfluenceEventPolicy拟返回Allowed / Forbidden / RequiresRuling。对未知或
 
 [案例文件](../Design/early-influence-batch1.cases.json)区分参数/引用检查、离线效果参考模型及planned运行案例。参考模型验证算式与选择约束，不证明事务、视角隔离和持久化代码存在。当前没有C#服务测试。
 
-[第二批](early-influence-batch2.md)已展开Socialist Governments、Suez Crisis、East European Unrest。后续处理Independent Reds、COMECON，再设计持续效果和跨卡拦截。第一批额外活动效果交互一并排入该阶段，资料不明确时登记待核实。
+[第二批](early-influence-batch2.md)已展开Socialist Governments、Suez Crisis、East European Unrest。[第三批](early-influence-batch3.md)已展开Independent Reds、COMECON；后续设计持续效果和跨卡拦截。第一批额外活动效果交互一并排入该阶段，资料不明确时登记待核实。
 
 [开局设计](setup.md) · [普通行动](operations.md) · [返回索引](index.md)
 

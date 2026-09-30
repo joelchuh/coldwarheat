@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.3.0",
+  "content_version": "0.4.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础编号1–103按时代整理；印刷事实已核对。两批8牌参数已绑定，其余94个非中国牌绑定Unresolved；全部102个处理器仍planned。可选104–110不启用。",
+  "description": "基础编号1–103按时代整理；印刷事实已核对。三批10牌参数已绑定，其余92个非中国牌绑定Unresolved；全部102个处理器仍planned。可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -35,6 +35,12 @@
       "url": null,
       "edition": "Project ruling EI2-RULING-01, 2026-09-30",
       "description": "用户明确确认：额度牌必须移除可完成额度；东欧动荡选至多3个有苏联影响力国家，每国不足则移除现有量，缺额不转移。详见Docs/Wiki/early-influence-batch2.md。"
+    },
+    {
+      "id": "PROJECT-EI3",
+      "url": null,
+      "edition": "Design interpretations, 2026-09-30",
+      "description": "独立红色政权零增量目标按Add语义及卡面未限制控制权推导，非官方专门FAQ；经互会短缺采用状态见Wiki EI3-RULING-01。"
     }
   ],
   "cards": [
@@ -393,8 +399,13 @@
       "effect_binding": {
         "effect_id": "effect.comecon",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.early_influence_batch3",
+            "json_pointer": "/parameters/comecon"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -619,8 +630,13 @@
       "effect_binding": {
         "effect_id": "effect.independent_reds",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.early_influence_batch3",
+            "json_pointer": "/parameters/independent_reds"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -3090,15 +3106,27 @@
     {
       "effect_id": "effect.comecon",
       "contract_version": "0.1.0",
-      "description": "COMECON：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.comecon",
+      "description": "comecon：第三批影响力设计，参数绑定但C#待实现；见 Docs/Wiki/early-influence-batch3.md",
+      "handler_key": "influence.AddToDistinctNonOpponentControlledCountries",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:early-influence-batch3:1#/$defs/AddToDistinctNonOpponentControlledCountries"
+      ],
       "source_refs": [
         {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p3 English card #14",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2; §2.1.7; §5.2; §6.1.1",
+          "verification": "Verified"
+        },
+        {
           "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "locator": "Docs/Wiki/early-influence-batch3.md: typed handlers and transaction boundaries",
+          "verification": "Verified"
         }
       ]
     },
@@ -3234,15 +3262,32 @@
     {
       "effect_id": "effect.independent_reds",
       "contract_version": "0.1.0",
-      "description": "Independent Reds：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.independent_reds",
+      "description": "independent_reds：第三批影响力设计，参数绑定但C#待实现；见 Docs/Wiki/early-influence-batch3.md",
+      "handler_key": "influence.MatchOpponentByAdding",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:early-influence-batch3:1#/$defs/MatchOpponentByAdding"
+      ],
       "source_refs": [
         {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p4 English card #22",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2; §2.1.7; §5.2; §6.1.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-EI3",
+          "locator": "Wiki: matching adds max(0,opponent-own); zero-change targets are a stated interpretation",
+          "verification": "Verified"
+        },
+        {
           "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "locator": "Docs/Wiki/early-influence-batch3.md: typed handlers and transaction boundaries",
+          "verification": "Verified"
         }
       ]
     },

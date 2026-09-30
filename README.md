@@ -40,3 +40,5 @@
 [早期影响力事件第一批](Docs/Wiki/early-influence-batch1.md)已为5张牌建立参数绑定、4类具名模板与可复用选择流程。Bound仅指参数就绪；所有事件处理器仍待实现，不能据此运行完整对局。
 
 2026-09-30：新增[第二批影响力事件设计](Docs/Wiki/early-influence-batch2.md)，两批共8牌参数已绑定；仍无C#运行实现。
+
+第三批：[独立红色政权与经互会](Docs/Wiki/early-influence-batch3.md)，三批共10牌参数已绑定；仍处于设计阶段。

@@ -1,0 +1,988 @@
+{
+  "schema_version": 1,
+  "description": "第三批参数与离线效果参考案例；选择权限/事务/持久化属于尚未实现的运行验收。",
+  "dataset": "Data/Cards/deluxe-2015/early-influence-batch3.parameters.json",
+  "schema": "Docs/Contracts/early-influence-batch3.schema.json",
+  "cases": [
+    {
+      "id": "EI3-D01",
+      "description": "两张牌参数与来源/绑定有效",
+      "validation_layer": "data",
+      "edits": [],
+      "expected_valid": true,
+      "status": "specified"
+    },
+    {
+      "id": "EI3-D02",
+      "description": "名单不能扩展至真实但未列出的奥地利",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "independent_reds",
+            "target_country_ids"
+          ],
+          "value": [
+            "country.austria",
+            "country.romania",
+            "country.bulgaria",
+            "country.hungary",
+            "country.czechoslovakia"
+          ]
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI3-D03",
+      "description": "拒绝重复名单",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "independent_reds",
+            "target_country_ids"
+          ],
+          "value": [
+            "country.romania",
+            "country.romania",
+            "country.romania",
+            "country.romania",
+            "country.romania"
+          ]
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI3-D04",
+      "description": "拒绝未知国家",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "independent_reds",
+            "target_country_ids"
+          ],
+          "value": [
+            "country.unknown"
+          ]
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI3-D05",
+      "description": "拒绝把追平目标数量改成2",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "independent_reds",
+            "target_count"
+          ],
+          "value": 2
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI3-D06",
+      "description": "拒绝颠倒受益方",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "independent_reds",
+            "beneficiary"
+          ],
+          "value": "USSR"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI3-D07",
+      "description": "拒绝把经互会放到西欧",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "comecon",
+            "target_region_id"
+          ],
+          "value": "region.western_europe"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI3-D08",
+      "description": "非美国控制不能误写成双方未控制",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "comecon",
+            "target_control"
+          ],
+          "value": "NeitherSide"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI3-D09",
+      "description": "拒绝改变经互会每国量",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "comecon",
+            "amount_per_country"
+          ],
+          "value": 2
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI3-D10",
+      "description": "拒绝改变经互会国家数",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "comecon",
+            "target_count"
+          ],
+          "value": 3
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI3-D11",
+      "description": "拒绝追平模板加入稳定度常量",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "independent_reds",
+            "stability"
+          ],
+          "value": 3
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI3-D12",
+      "description": "拒绝任意执行字段",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "comecon",
+            "script"
+          ],
+          "value": "eval(x)"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI3-D13",
+      "description": "拒绝错误CardId配对",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "comecon",
+            "card_id"
+          ],
+          "value": "card.decolonization"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI3-D14",
+      "description": "拒绝未知来源",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "independent_reds",
+            "source_refs"
+          ],
+          "value": [
+            {
+              "source_id": "unknown",
+              "locator": "x",
+              "verification": "Verified"
+            }
+          ]
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI3-D15",
+      "description": "拒绝未核实的替代短缺政策",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "comecon",
+            "shortage_policy"
+          ],
+          "value": "SpreadRemainder"
+        }
+      ],
+      "expected_valid": false,
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E01",
+      "description": "追平只补差额且苏联影响力不变",
+      "validation_layer": "effect-reference",
+      "card_id": "card.independent_reds",
+      "state": {
+        "yugoslavia": {
+          "US": 1,
+          "USSR": 4
+        }
+      },
+      "targets": [
+        "country.yugoslavia"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "yugoslavia": {
+          "US": 4,
+          "USSR": 4
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E02",
+      "description": "美国已有领先值不得被削减",
+      "validation_layer": "effect-reference",
+      "card_id": "card.independent_reds",
+      "state": {
+        "romania": {
+          "US": 6,
+          "USSR": 2
+        }
+      },
+      "targets": [
+        "country.romania"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedNoChange",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E03",
+      "description": "相等时零变化",
+      "validation_layer": "effect-reference",
+      "card_id": "card.independent_reds",
+      "state": {
+        "bulgaria": {
+          "US": 2,
+          "USSR": 2
+        }
+      },
+      "targets": [
+        "country.bulgaria"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedNoChange",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E04",
+      "description": "零影响力目标合法",
+      "validation_layer": "effect-reference",
+      "card_id": "card.independent_reds",
+      "state": {},
+      "targets": [
+        "country.hungary"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedNoChange",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E05",
+      "description": "仍可选零增量目标而不被自动替换到获利目标",
+      "validation_layer": "effect-reference",
+      "card_id": "card.independent_reds",
+      "state": {
+        "yugoslavia": {
+          "US": 0,
+          "USSR": 5
+        }
+      },
+      "targets": [
+        "country.czechoslovakia"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedNoChange",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E06",
+      "description": "可以选择苏联控制国",
+      "validation_layer": "effect-reference",
+      "card_id": "card.independent_reds",
+      "state": {
+        "romania": {
+          "US": 0,
+          "USSR": 5
+        }
+      },
+      "targets": [
+        "country.romania"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "romania": {
+          "US": 5,
+          "USSR": 5
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E07",
+      "description": "名单外波兰拒绝",
+      "validation_layer": "effect-reference",
+      "card_id": "card.independent_reds",
+      "state": {
+        "poland": {
+          "US": 0,
+          "USSR": 5
+        }
+      },
+      "targets": [
+        "country.poland"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E08",
+      "description": "名单外奥地利拒绝",
+      "validation_layer": "effect-reference",
+      "card_id": "card.independent_reds",
+      "state": {
+        "austria": {
+          "US": 0,
+          "USSR": 5
+        }
+      },
+      "targets": [
+        "country.austria"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E09",
+      "description": "拒绝多选",
+      "validation_layer": "effect-reference",
+      "card_id": "card.independent_reds",
+      "state": {},
+      "targets": [
+        "country.romania",
+        "country.hungary"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E10",
+      "description": "拒绝不选",
+      "validation_layer": "effect-reference",
+      "card_id": "card.independent_reds",
+      "state": {},
+      "targets": [],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E11",
+      "description": "拒绝重复选择",
+      "validation_layer": "effect-reference",
+      "card_id": "card.independent_reds",
+      "state": {},
+      "targets": [
+        "country.romania",
+        "country.romania"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E12",
+      "description": "未知活动事件阻止追平",
+      "validation_layer": "effect-reference",
+      "card_id": "card.independent_reds",
+      "state": {
+        "romania": {
+          "US": 0,
+          "USSR": 5
+        }
+      },
+      "targets": [],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [
+        "effect.chernobyl"
+      ],
+      "expected_valid": true,
+      "expected_outcome": "RequiresRuling",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E13",
+      "description": "无本地或相邻影响力也可直接放置",
+      "validation_layer": "effect-reference",
+      "card_id": "card.comecon",
+      "state": {},
+      "targets": [
+        "country.poland",
+        "country.east_germany",
+        "country.romania",
+        "country.hungary"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "poland": {
+          "US": 0,
+          "USSR": 1
+        },
+        "east_germany": {
+          "US": 0,
+          "USSR": 1
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 1
+        },
+        "hungary": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E14",
+      "description": "苏联控制国家可以选择",
+      "validation_layer": "effect-reference",
+      "card_id": "card.comecon",
+      "state": {
+        "poland": {
+          "US": 0,
+          "USSR": 5
+        }
+      },
+      "targets": [
+        "country.poland",
+        "country.east_germany",
+        "country.romania",
+        "country.hungary"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "poland": {
+          "US": 0,
+          "USSR": 6
+        },
+        "east_germany": {
+          "US": 0,
+          "USSR": 1
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 1
+        },
+        "hungary": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E15",
+      "description": "美国影响力存在但差额不足控制仍可选",
+      "validation_layer": "effect-reference",
+      "card_id": "card.comecon",
+      "state": {
+        "poland": {
+          "US": 4,
+          "USSR": 2
+        }
+      },
+      "targets": [
+        "country.poland",
+        "country.east_germany",
+        "country.romania",
+        "country.hungary"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "poland": {
+          "US": 4,
+          "USSR": 3
+        },
+        "east_germany": {
+          "US": 0,
+          "USSR": 1
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 1
+        },
+        "hungary": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E16",
+      "description": "差额刚好等于稳定度的美国控制国拒绝",
+      "validation_layer": "effect-reference",
+      "card_id": "card.comecon",
+      "state": {
+        "poland": {
+          "US": 5,
+          "USSR": 2
+        }
+      },
+      "targets": [
+        "country.poland",
+        "country.east_germany",
+        "country.romania",
+        "country.hungary"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E17",
+      "description": "不能先加一点破控制再作为合法目标",
+      "validation_layer": "effect-reference",
+      "card_id": "card.comecon",
+      "state": {
+        "poland": {
+          "US": 3,
+          "USSR": 0
+        }
+      },
+      "targets": [
+        "country.poland",
+        "country.east_germany",
+        "country.romania",
+        "country.hungary"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E18",
+      "description": "奥地利芬兰可作为东欧目标",
+      "validation_layer": "effect-reference",
+      "card_id": "card.comecon",
+      "state": {},
+      "targets": [
+        "country.austria",
+        "country.finland",
+        "country.poland",
+        "country.romania"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "austria": {
+          "US": 0,
+          "USSR": 1
+        },
+        "finland": {
+          "US": 0,
+          "USSR": 1
+        },
+        "poland": {
+          "US": 0,
+          "USSR": 1
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E19",
+      "description": "西德不是东欧目标",
+      "validation_layer": "effect-reference",
+      "card_id": "card.comecon",
+      "state": {},
+      "targets": [
+        "country.west_germany",
+        "country.poland",
+        "country.romania",
+        "country.hungary"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E20",
+      "description": "重复国家拒绝",
+      "validation_layer": "effect-reference",
+      "card_id": "card.comecon",
+      "state": {},
+      "targets": [
+        "country.poland",
+        "country.poland",
+        "country.romania",
+        "country.hungary"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E21",
+      "description": "充足候选不能少选",
+      "validation_layer": "effect-reference",
+      "card_id": "card.comecon",
+      "state": {},
+      "targets": [
+        "country.poland",
+        "country.romania",
+        "country.hungary"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E22",
+      "description": "充足候选不能多选",
+      "validation_layer": "effect-reference",
+      "card_id": "card.comecon",
+      "state": {},
+      "targets": [
+        "country.poland",
+        "country.east_germany",
+        "country.romania",
+        "country.hungary",
+        "country.bulgaria"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E23",
+      "description": "国家列表顺序不改变计划结果",
+      "validation_layer": "effect-reference",
+      "card_id": "card.comecon",
+      "state": {},
+      "targets": [
+        "country.hungary",
+        "country.romania",
+        "country.east_germany",
+        "country.poland"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "poland": {
+          "US": 0,
+          "USSR": 1
+        },
+        "east_germany": {
+          "US": 0,
+          "USSR": 1
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 1
+        },
+        "hungary": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E24",
+      "description": "候选不足3国的政策边界",
+      "validation_layer": "effect-reference",
+      "card_id": "card.comecon",
+      "state": {
+        "poland": {
+          "US": 0,
+          "USSR": 0
+        },
+        "romania": {
+          "US": 0,
+          "USSR": 0
+        },
+        "hungary": {
+          "US": 0,
+          "USSR": 0
+        }
+      },
+      "targets": [],
+      "all_eastern_europe_us_controlled": true,
+      "active_effect_ids": [],
+      "expected_valid": true,
+      "expected_outcome": "RequiresRuling",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E25",
+      "description": "无候选政策边界",
+      "validation_layer": "effect-reference",
+      "card_id": "card.comecon",
+      "state": {},
+      "targets": [],
+      "all_eastern_europe_us_controlled": true,
+      "active_effect_ids": [],
+      "expected_valid": true,
+      "expected_outcome": "RequiresRuling",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E26",
+      "description": "未知活动事件不能通过减少候选数量绕过",
+      "validation_layer": "effect-reference",
+      "card_id": "card.comecon",
+      "state": {},
+      "targets": [],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [
+        "effect.chernobyl"
+      ],
+      "expected_valid": true,
+      "expected_outcome": "RequiresRuling",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E27",
+      "description": "未知国家拒绝",
+      "validation_layer": "effect-reference",
+      "card_id": "card.comecon",
+      "state": {},
+      "targets": [
+        "country.unknown",
+        "country.poland",
+        "country.romania",
+        "country.hungary"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": false,
+      "expected_outcome": "Rejected",
+      "expected_state": {},
+      "status": "specified"
+    },
+    {
+      "id": "EI3-E28",
+      "description": "所有名单国家逐一核对：捷克斯洛伐克可追平",
+      "validation_layer": "effect-reference",
+      "card_id": "card.independent_reds",
+      "state": {
+        "czechoslovakia": {
+          "US": 2,
+          "USSR": 8
+        }
+      },
+      "targets": [
+        "country.czechoslovakia"
+      ],
+      "all_eastern_europe_us_controlled": false,
+      "active_effect_ids": [],
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "czechoslovakia": {
+          "US": 8,
+          "USSR": 8
+        }
+      },
+      "status": "specified"
+    },
+    {
+      "id": "EI3-R01",
+      "description": "事件受益方响应",
+      "validation_layer": "runtime",
+      "expected": "对手出牌不改变选择拥有者，PhasingPlayer保持原值；错误会话身份拒绝。",
+      "status": "planned"
+    },
+    {
+      "id": "EI3-R02",
+      "description": "命令与决策版本",
+      "validation_layer": "runtime",
+      "expected": "过期StateVersion/DecisionRevision、伪造金额/控制权、已完成DecisionId均拒绝且无状态变化。",
+      "status": "planned"
+    },
+    {
+      "id": "EI3-R03",
+      "description": "幂等与原子提交",
+      "validation_layer": "runtime",
+      "expected": "重复CommandId返回原结果；影响力、完成标记、去重记录、事件及卡牌去向同一事务。",
+      "status": "planned"
+    },
+    {
+      "id": "EI3-R04",
+      "description": "保存恢复与参数摘要",
+      "validation_layer": "runtime",
+      "expected": "恢复同一待选择；参数版本不匹配时阻止继续，不依赖UI对象。",
+      "status": "planned"
+    },
+    {
+      "id": "EI3-R05",
+      "description": "事件零变化与星号",
+      "validation_layer": "runtime",
+      "expected": "两牌正常发生后依CardDefinition移出；RequiresRuling不移动卡牌或推进父帧。",
+      "status": "planned"
+    },
+    {
+      "id": "EI3-R06",
+      "description": "时序与候选",
+      "validation_layer": "runtime",
+      "expected": "事件开始前的OPS改变控制权会影响候选；验证时不能使用旧UI预览。",
+      "status": "planned"
+    },
+    {
+      "id": "EI3-R07",
+      "description": "公开信息与画面隔离",
+      "validation_layer": "runtime",
+      "expected": "事件不含隐藏手牌/牌库，换主题或跳过动画不改变选择和计划。",
+      "status": "planned"
+    },
+    {
+      "id": "EI3-R08",
+      "description": "直接事件边界",
+      "validation_layer": "runtime",
+      "expected": "不调用RNG、不耗OPS、不改DEFCON/军事行动，不自动触发地区计分。",
+      "status": "planned"
+    }
+  ]
+}

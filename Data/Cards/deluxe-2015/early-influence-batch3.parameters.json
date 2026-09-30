@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.early_influence_batch3",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "早期影响力第三批：独立红色政权只增加至追平对方、经互会排除敌控国家后的不同国家放置；数据与规则设计，C#待实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "GMT-hosted compilation, English Deluxe card images",
+      "description": "采用英文卡图p3 #14 COMECON与p4 #22 Independent Reds的目标和效果；不采用旁列译文作为勘误。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1.1–2子区、§2.1.7控制、§5.2事件选择权/无变化结果、§6.1.1事件放置豁免普通可达性。"
+    },
+    {
+      "id": "PROJECT-EI3",
+      "url": null,
+      "edition": "Design interpretations, 2026-09-30",
+      "description": "独立红色政权零增量目标按Add语义及卡面未限制控制权推导，非官方专门FAQ；经互会短缺采用状态见Wiki EI3-RULING-01。"
+    }
+  ],
+  "parameters": {
+    "independent_reds": {
+      "card_id": "card.independent_reds",
+      "effect_id": "effect.independent_reds",
+      "template": "MatchOpponentByAdding",
+      "beneficiary": "US",
+      "target_country_ids": [
+        "country.yugoslavia",
+        "country.romania",
+        "country.bulgaria",
+        "country.hungary",
+        "country.czechoslovakia"
+      ],
+      "target_count": 1,
+      "selection_policy": "AnyListedCountry",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p4 English card #22",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2; §2.1.7; §5.2; §6.1.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-EI3",
+          "locator": "Wiki: matching adds max(0,opponent-own); zero-change targets are a stated interpretation",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "comecon": {
+      "card_id": "card.comecon",
+      "effect_id": "effect.comecon",
+      "template": "AddToDistinctNonOpponentControlledCountries",
+      "beneficiary": "USSR",
+      "target_region_id": "region.eastern_europe",
+      "target_control": "NotControlledByOpponent",
+      "target_count": 4,
+      "amount_per_country": 1,
+      "shortage_policy": "RequiresRuling",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p3 English card #14",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2; §2.1.7; §5.2; §6.1.1",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

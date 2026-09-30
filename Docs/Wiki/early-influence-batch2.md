@@ -1,7 +1,7 @@
 # 早期影响力事件：第二批
 
 > description: 查询社会主义政府、苏伊士危机的额度移除，东欧动荡的逐国移除，以及选择权限、当前时代、铁娘子禁止与短缺处理。
-> 状态：2026-09-30，3牌参数与基础效果设计已建立；短缺策略获用户确认。两批共8牌Bound、94个非中国牌Unresolved，102个处理器均planned；没有C#运行实现。
+> 状态：2026-09-30，3牌参数与基础效果设计已建立；短缺策略获用户确认。本批完成时累计8牌Bound；后续绑定进度见[正式数据状态](map-card-data.md)。102个处理器均planned，没有C#运行实现。
 > 入口：[参数描述](../../Data/Descriptors/early-influence-batch2.data.json)、[参数](../../Data/Cards/deluxe-2015/early-influence-batch2.parameters.json)、[Schema](../Contracts/early-influence-batch2.schema.json)、[模块描述](../Descriptors/influence-events.module.json)、[案例](../Design/early-influence-batch2.cases.json)、[验证报告](../Design/early-influence-batch2.validation.json)。
 
 ## 范围、资料与复用选择
@@ -93,4 +93,4 @@ US打出社会主义政府或苏伊士危机触发对方事件时，由USSR选�
 
 完整拟定路径与依赖见模块JSON；entrypoints仍为空，planned_entrypoints不可调用。案例区分参数验证、一次性离线参考模型和未来C#运行验收。离线通过不能证明事务、存档、权限、事件编排或联网实现已存在。
 
-下一批可设计Independent Reds与COMECON，继续扩充补齐影响力和排除敌方控制目标的选择机制；持续效果的统一存续/取消随后单独展开。[返回索引](index.md)
+[第三批Independent Reds与COMECON](early-influence-batch3.md)已展开补齐影响力和排除敌方控制目标的选择机制；持续效果的统一存续/取消随后单独展开。[返回索引](index.md)

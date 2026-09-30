@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "inputs": [
+    "稳定CardId/EffectId；版本匹配的已核对参数与权威事件上下文"
+  ],
+  "outputs": [
+    "只读参数或拟定的影响力增量计划/待选择"
+  ],
+  "dependencies": [],
+  "preconditions": [
+    "ready只表示数据可读，planned不是运行实现",
+    "通过稳定国家ID与权威影响力查询，不依据现实地理或画面标签裁决",
+    "经互会短缺策略仅作用于卡面控制条件；活动事件另行验证"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知模板、来源、ID或参数版本；未实现处理器禁止放行",
+    "未经核实的活动效果组合RequiresRuling",
+    "重复/越界国家、错误拥有者或过期决策"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "GMT-hosted compilation, English Deluxe card images",
+      "description": "采用英文卡图p3 #14 COMECON与p4 #22 Independent Reds的目标和效果；不采用旁列译文作为勘误。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1.1–2子区、§2.1.7控制、§5.2事件选择权/无变化结果、§6.1.1事件放置豁免普通可达性。"
+    },
+    {
+      "id": "PROJECT-EI3",
+      "url": null,
+      "edition": "Design interpretations, 2026-09-30",
+      "description": "独立红色政权零增量目标按Add语义及卡面未限制控制权推导，非官方专门FAQ；经互会短缺采用状态见Wiki EI3-RULING-01。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/early-influence-batch3.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "documentation": "Docs/Wiki/early-influence-batch3.md",
+  "id": "data.early-influence-batch3",
+  "kind": "data",
+  "status": "ready",
+  "description": "早期影响力第三批：独立红色政权只增加至追平对方、经互会排除敌控国家后的不同国家放置；数据与规则设计，C#待实现。",
+  "dataset_id": "effects.deluxe2015.early_influence_batch3",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/early-influence-batch3.schema.json",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/early-influence-batch3.parameters.json",
+      "symbol": null
+    }
+  ],
+  "data_dependencies": [
+    "map.deluxe2015.world"
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/early-influence-batch3.validation.json"
+  },
+  "retrieval_hints": [
+    "parameters按card ID后缀查询；卡牌定义通过JSON Pointer引用唯一参数",
+    "先读模板description，再按Wiki拟定入口定位实现；当前entrypoints无C#"
+  ]
+}

@@ -1,0 +1,260 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:early-influence-batch3:1",
+  "title": "early-influence-batch3",
+  "description": "影响力第三批参数v1：名单内仅增加至追平，以及排除敌控的不同国家放置；封闭字段，不支持任意指令。",
+  "$defs": {
+    "MatchOpponentByAdding": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "pattern": "^card\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+        },
+        "effect_id": {
+          "type": "string",
+          "pattern": "^effect\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+        },
+        "beneficiary": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "enum": [
+                  "Verified",
+                  "Pending",
+                  "Fixture"
+                ]
+              }
+            },
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ]
+          },
+          "minItems": 1,
+          "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+        },
+        "template": {
+          "const": "MatchOpponentByAdding"
+        },
+        "target_country_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^country\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+          }
+        },
+        "target_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "selection_policy": {
+          "const": "AnyListedCountry"
+        }
+      },
+      "required": [
+        "card_id",
+        "effect_id",
+        "beneficiary",
+        "source_refs",
+        "template",
+        "target_country_ids",
+        "target_count",
+        "selection_policy"
+      ]
+    },
+    "AddToDistinctNonOpponentControlledCountries": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "pattern": "^card\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+        },
+        "effect_id": {
+          "type": "string",
+          "pattern": "^effect\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+        },
+        "beneficiary": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "enum": [
+                  "Verified",
+                  "Pending",
+                  "Fixture"
+                ]
+              }
+            },
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ]
+          },
+          "minItems": 1,
+          "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+        },
+        "template": {
+          "const": "AddToDistinctNonOpponentControlledCountries"
+        },
+        "target_region_id": {
+          "type": "string",
+          "pattern": "^region\\.[a-z][a-z0-9_]*$"
+        },
+        "target_control": {
+          "const": "NotControlledByOpponent"
+        },
+        "target_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "amount_per_country": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "shortage_policy": {
+          "const": "RequiresRuling"
+        }
+      },
+      "required": [
+        "card_id",
+        "effect_id",
+        "beneficiary",
+        "source_refs",
+        "template",
+        "target_region_id",
+        "target_control",
+        "target_count",
+        "amount_per_country",
+        "shortage_policy"
+      ]
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.early_influence_batch3"
+    },
+    "content_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "ruleset_id": {
+      "type": "string",
+      "pattern": "^ruleset\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+    },
+    "scope": {
+      "enum": [
+        "fixture",
+        "release-candidate"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "edition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "edition",
+          "description"
+        ]
+      },
+      "minItems": 1
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "independent_reds": {
+          "$ref": "#/$defs/MatchOpponentByAdding"
+        },
+        "comecon": {
+          "$ref": "#/$defs/AddToDistinctNonOpponentControlledCountries"
+        }
+      },
+      "required": [
+        "independent_reds",
+        "comecon"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "parameters"
+  ]
+}
