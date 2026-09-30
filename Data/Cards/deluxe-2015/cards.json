@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.4.0",
+  "content_version": "0.5.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础编号1–103按时代整理；印刷事实已核对。三批10牌参数已绑定，其余92个非中国牌绑定Unresolved；全部102个处理器仍planned。可选104–110不启用。",
+  "description": "基础编号1–103按时代整理；印刷事实已核对。影响力三批及持续效果首批共13牌参数已绑定，其余89个非中国牌绑定Unresolved；全部102个处理器仍planned。可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -259,8 +259,13 @@
       "effect_binding": {
         "effect_id": "effect.vietnam_revolts",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.persistent_batch1",
+            "json_pointer": "/parameters/vietnam_revolts"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -716,8 +721,13 @@
       "effect_binding": {
         "effect_id": "effect.containment",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.persistent_batch1",
+            "json_pointer": "/parameters/containment"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -893,8 +903,13 @@
       "effect_binding": {
         "effect_id": "effect.red_scare_purge",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.persistent_batch1",
+            "json_pointer": "/parameters/red_scare_purge"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -3019,15 +3034,22 @@
     {
       "effect_id": "effect.vietnam_revolts",
       "contract_version": "0.1.0",
-      "description": "Vietnam Revolts：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.vietnam_revolts",
+      "description": "越南增加苏联影响力，并为本回合全用于东南亚的行动提供条件奖励。 参数已绑定，C#待实现。",
+      "handler_key": "persistent.ActivateTurnOpsModifier",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:persistent-effects-batch1:1#/$defs/ActivateTurnOpsModifier"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "English #9",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§7.4–7.4.3",
+          "verification": "Verified"
         }
       ]
     },
@@ -3324,15 +3346,22 @@
     {
       "effect_id": "effect.containment",
       "contract_version": "0.1.0",
-      "description": "Containment：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.containment",
+      "description": "美国后续OPS在本回合增加，普通OPS上限从共享策略读取。 参数已绑定，C#待实现。",
+      "handler_key": "persistent.ActivateTurnOpsModifier",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:persistent-effects-batch1:1#/$defs/ActivateTurnOpsModifier"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "English #25",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§7.4–7.4.3",
+          "verification": "Verified"
         }
       ]
     },
@@ -3465,15 +3494,22 @@
     {
       "effect_id": "effect.red_scare_purge",
       "contract_version": "0.1.0",
-      "description": "Red Scare/Purge：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.red_scare_purge",
+      "description": "事件控制者的对手本回合OPS减少，下限从共享策略读取。 参数已绑定，C#待实现。",
+      "handler_key": "persistent.ActivateTurnOpsModifier",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:persistent-effects-batch1:1#/$defs/ActivateTurnOpsModifier"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "English #31",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§7.4–7.4.3",
+          "verification": "Verified"
         }
       ]
     },

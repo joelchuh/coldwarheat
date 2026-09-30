@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.persistent_batch1",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "持续效果首批：越南起义、遏制政策、红色恐怖／清洗的激活、回合末到期与OPS合并修正；另含中国牌地区奖励引用，运行处理器待实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "英文卡图p3 #9、p5 #25/#31；仅参数与效果事实，不收录卡图。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§7.4–7.4.3合并修正、归属行动者、适用于事件OPS；§8.2军事信用；§9.6–9.7中国牌。"
+    }
+  ],
+  "ops_policy": {
+    "description": "本批普通OPS上限与合并后下限；地区奖励可突破普通上限。小值组合按§7.4推导，见PE-INTERPRETATION-01。",
+    "minimum": 1,
+    "ordinary_maximum": 4,
+    "aggregation": "FloorAfterRegionalBonus",
+    "regional_purposes": [
+      "Influence",
+      "Coup",
+      "Realignment"
+    ],
+    "flat_purposes": [
+      "Influence",
+      "Coup",
+      "Realignment",
+      "Space",
+      "OpsThreshold"
+    ],
+    "source_refs": [
+      {
+        "source_id": "C-DELUXE-EN",
+        "locator": "English card #25 max4; #31 min1",
+        "verification": "Verified"
+      },
+      {
+        "source_id": "R2015",
+        "locator": "§7.4–7.4.3",
+        "verification": "Verified"
+      }
+    ]
+  },
+  "source_bonuses": {
+    "china": {
+      "description": "中国牌本身的地区条件奖励，不是本回合激活的持续效果，不表示中国牌特殊处理器已实现。",
+      "card_id": "card.china",
+      "region_id": "region.asia",
+      "delta": 1,
+      "source_refs": [
+        {
+          "source_id": "R2015",
+          "locator": "§9.6–9.7; §7.4 example",
+          "verification": "Verified"
+        }
+      ]
+    }
+  },
+  "parameters": {
+    "vietnam_revolts": {
+      "card_id": "card.vietnam_revolts",
+      "effect_id": "effect.vietnam_revolts",
+      "description": "越南增加苏联影响力，并为本回合全用于东南亚的行动提供条件奖励。",
+      "template": "ActivateTurnOpsModifier",
+      "affected_side": "USSR",
+      "duration": "RemainderOfActivationTurn",
+      "expiry_boundary": "ExpireAndReset",
+      "modifier": {
+        "kind": "AllTargetsInRegion",
+        "delta": 1,
+        "region_id": "region.southeast_asia"
+      },
+      "immediate_influence": {
+        "country_id": "country.vietnam",
+        "side": "USSR",
+        "amount": 2
+      },
+      "duplicate_activation": "IdempotentByResolutionId",
+      "repeat_effect_same_side": "RequiresRuling",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "English #9",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§7.4–7.4.3",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "containment": {
+      "card_id": "card.containment",
+      "effect_id": "effect.containment",
+      "description": "美国后续OPS在本回合增加，普通OPS上限从共享策略读取。",
+      "template": "ActivateTurnOpsModifier",
+      "affected_side": "US",
+      "duration": "RemainderOfActivationTurn",
+      "expiry_boundary": "ExpireAndReset",
+      "modifier": {
+        "kind": "Flat",
+        "delta": 1,
+        "region_id": null
+      },
+      "immediate_influence": null,
+      "duplicate_activation": "IdempotentByResolutionId",
+      "repeat_effect_same_side": "RequiresRuling",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "English #25",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§7.4–7.4.3",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "red_scare_purge": {
+      "card_id": "card.red_scare_purge",
+      "effect_id": "effect.red_scare_purge",
+      "description": "事件控制者的对手本回合OPS减少，下限从共享策略读取。",
+      "template": "ActivateTurnOpsModifier",
+      "affected_side": "OpponentOfEventController",
+      "duration": "RemainderOfActivationTurn",
+      "expiry_boundary": "ExpireAndReset",
+      "modifier": {
+        "kind": "Flat",
+        "delta": -1,
+        "region_id": null
+      },
+      "immediate_influence": null,
+      "duplicate_activation": "IdempotentByResolutionId",
+      "repeat_effect_same_side": "RequiresRuling",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "English #31",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§7.4–7.4.3",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

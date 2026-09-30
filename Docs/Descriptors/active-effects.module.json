@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "inputs": [
+    "版本匹配的参数、权威事件/行动上下文、静态地图和卡牌定义"
+  ],
+  "outputs": [
+    "拟定ActiveEffectInstance或OpsQuote；RequiresRuling不产生部分结果"
+  ],
+  "dependencies": [],
+  "preconditions": [
+    "planned不是运行实现",
+    "权威事件控制者与实际OPS行动者已确定；静态定义只读"
+  ],
+  "side_effects": [
+    "未来实现由结算事务统一提交GameState变化；UI只展示只读投影"
+  ],
+  "stop_conditions": [
+    "未知效果、版本、行动者、跨卡交互或重复激活冲突",
+    "未核实的同效果同方本回合重复触发；不得静默叠加/刷新"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "英文卡图p3 #9、p5 #25/#31；仅参数与效果事实，不收录卡图。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§7.4–7.4.3合并修正、归属行动者、适用于事件OPS；§8.2军事信用；§9.6–9.7中国牌。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/persistent-effects-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "documentation": "Docs/Wiki/persistent-effects.md",
+  "id": "module.active-effects",
+  "kind": "module",
+  "status": "planned",
+  "description": "定位持续效果激活/到期/取消、行动者归属、OPS合并修正和地区花费历史；纯Core设计，与画面无关。",
+  "entrypoints": [],
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/ActiveEffectService.cs",
+      "symbol": "Activate"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/ActiveEffectService.cs",
+      "symbol": "ExpireAtBoundary"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/ActiveEffectService.cs",
+      "symbol": "Cancel"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Operations/OpsModifierService.cs",
+      "symbol": "Quote"
+    }
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.persistent_batch1",
+    "map.deluxe2015.world",
+    "cards.deluxe2015.definitions",
+    "rules.deluxe2015.turn-flow"
+  ],
+  "contract_dependencies": [
+    "urn:coldwarheat:contract:persistent-effects-batch1:1"
+  ],
+  "verification": {
+    "implementation_tested": false,
+    "report": "Docs/Design/persistent-effects-batch1.validation.json"
+  }
+}

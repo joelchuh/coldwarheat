@@ -1,0 +1,1472 @@
+{
+  "schema_version": 1,
+  "description": "首批持续效果参数、离线报价/生命周期参考案例及待实现运行验收；参考模型不是游戏代码。",
+  "dataset": "Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json",
+  "schema": "Docs/Contracts/persistent-effects-batch1.schema.json",
+  "cases": [
+    {
+      "id": "PE1-D01",
+      "description": "正式参数结构、印刷事实与引用匹配",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "PE1-D02",
+      "description": "未知模板",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "containment",
+            "template"
+          ],
+          "value": "EvalScript"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "PE1-D03",
+      "description": "遏制不能改为苏联",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "containment",
+            "affected_side"
+          ],
+          "value": "USSR"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "PE1-D04",
+      "description": "越南立即影响力不能改数",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "vietnam_revolts",
+            "immediate_influence",
+            "amount"
+          ],
+          "value": 3
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "PE1-D05",
+      "description": "未知国家",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "vietnam_revolts",
+            "immediate_influence",
+            "country_id"
+          ],
+          "value": "country.unknown"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "PE1-D06",
+      "description": "清洗受影响方必须取对手",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "red_scare_purge",
+            "affected_side"
+          ],
+          "value": "US"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "PE1-D07",
+      "description": "清洗负修正不能改成正",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "red_scare_purge",
+            "modifier",
+            "delta"
+          ],
+          "value": 1
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "PE1-D08",
+      "description": "Flat不能携带地区",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "containment",
+            "modifier",
+            "region_id"
+          ],
+          "value": "region.asia"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "PE1-D09",
+      "description": "越南限东南亚",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "vietnam_revolts",
+            "modifier",
+            "region_id"
+          ],
+          "value": "region.asia"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "PE1-D10",
+      "description": "回合期限不能改永久",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "containment",
+            "duration"
+          ],
+          "value": "Permanent"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "PE1-D11",
+      "description": "重复效果不能猜叠加",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "red_scare_purge",
+            "repeat_effect_same_side"
+          ],
+          "value": "Stack"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "PE1-D12",
+      "description": "普通上限不能改",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "ops_policy",
+            "ordinary_maximum"
+          ],
+          "value": 5
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "PE1-D13",
+      "description": "下限不能改",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "ops_policy",
+            "minimum"
+          ],
+          "value": 0
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "PE1-D14",
+      "description": "不能添加任意脚本字段",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "containment",
+            "script"
+          ],
+          "value": "run()"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "PE1-D15",
+      "description": "未知来源",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "containment",
+            "source_refs",
+            0,
+            "source_id"
+          ],
+          "value": "UNKNOWN"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "PE1-D16",
+      "description": "不能重复来源ID",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "source_catalog",
+            1,
+            "id"
+          ],
+          "value": "C-DELUXE-EN"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "PE1-D17",
+      "description": "中国牌地区不能改成东南亚",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "source_bonuses",
+            "china",
+            "region_id"
+          ],
+          "value": "region.southeast_asia"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "PE1-D18",
+      "description": "太空不能启用地区奖励",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "ops_policy",
+            "regional_purposes"
+          ],
+          "value": [
+            "Influence",
+            "Coup",
+            "Realignment",
+            "Space"
+          ]
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "PE1-D19",
+      "description": "中国牌地区奖励不可改为2",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "source_bonuses",
+            "china",
+            "delta"
+          ],
+          "value": 2
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "PE1-D20",
+      "description": "红色清洗不能携带影响力变化",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "red_scare_purge",
+            "immediate_influence"
+          ],
+          "value": {
+            "country_id": "country.vietnam",
+            "side": "USSR",
+            "amount": 2
+          }
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "PE1-O01",
+      "description": "普通3OPS",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.containment",
+        "as_if_ops": null,
+        "actor": "US",
+        "effects": [],
+        "targets": [],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 3
+    },
+    {
+      "id": "PE1-O02",
+      "description": "遏制3变4",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.containment",
+        "as_if_ops": null,
+        "actor": "US",
+        "effects": [
+          {
+            "key": "containment",
+            "side": "US"
+          }
+        ],
+        "targets": [],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 4
+    },
+    {
+      "id": "PE1-O03",
+      "description": "遏制4仍4",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.red_scare_purge",
+        "as_if_ops": null,
+        "actor": "US",
+        "effects": [
+          {
+            "key": "containment",
+            "side": "US"
+          }
+        ],
+        "targets": [],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 4
+    },
+    {
+      "id": "PE1-O04",
+      "description": "清洗3变2",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.containment",
+        "as_if_ops": null,
+        "actor": "US",
+        "effects": [
+          {
+            "key": "red_scare_purge",
+            "side": "US"
+          }
+        ],
+        "targets": [],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 2
+    },
+    {
+      "id": "PE1-O05",
+      "description": "清洗1保底1",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.blockade",
+        "as_if_ops": null,
+        "actor": "US",
+        "effects": [
+          {
+            "key": "red_scare_purge",
+            "side": "US"
+          }
+        ],
+        "targets": [],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 1
+    },
+    {
+      "id": "PE1-O06",
+      "description": "4OPS正负相抵",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.red_scare_purge",
+        "as_if_ops": null,
+        "actor": "US",
+        "effects": [
+          {
+            "key": "containment",
+            "side": "US"
+          },
+          {
+            "key": "red_scare_purge",
+            "side": "US"
+          }
+        ],
+        "targets": [],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 4
+    },
+    {
+      "id": "PE1-O07",
+      "description": "相抵不依赖注册顺序",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.red_scare_purge",
+        "as_if_ops": null,
+        "actor": "US",
+        "effects": [
+          {
+            "key": "red_scare_purge",
+            "side": "US"
+          },
+          {
+            "key": "containment",
+            "side": "US"
+          }
+        ],
+        "targets": [],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 4
+    },
+    {
+      "id": "PE1-O08",
+      "description": "美国修正不跟卡转给苏联",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.containment",
+        "as_if_ops": null,
+        "actor": "USSR",
+        "effects": [
+          {
+            "key": "containment",
+            "side": "US"
+          }
+        ],
+        "targets": [],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 3
+    },
+    {
+      "id": "PE1-O09",
+      "description": "越南给全东南亚2OPS加1",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.fidel",
+        "as_if_ops": null,
+        "actor": "USSR",
+        "effects": [
+          {
+            "key": "vietnam_revolts",
+            "side": "USSR"
+          }
+        ],
+        "targets": [
+          "country.vietnam",
+          "country.thailand"
+        ],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 3
+    },
+    {
+      "id": "PE1-O10",
+      "description": "越南不加给美国",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.fidel",
+        "as_if_ops": null,
+        "actor": "US",
+        "effects": [
+          {
+            "key": "vietnam_revolts",
+            "side": "USSR"
+          }
+        ],
+        "targets": [
+          "country.vietnam"
+        ],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 2
+    },
+    {
+      "id": "PE1-O11",
+      "description": "日本不在东南亚",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.fidel",
+        "as_if_ops": null,
+        "actor": "USSR",
+        "effects": [
+          {
+            "key": "vietnam_revolts",
+            "side": "USSR"
+          }
+        ],
+        "targets": [
+          "country.japan"
+        ],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 2
+    },
+    {
+      "id": "PE1-O12",
+      "description": "混合地区无越南奖励",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.fidel",
+        "as_if_ops": null,
+        "actor": "USSR",
+        "effects": [
+          {
+            "key": "vietnam_revolts",
+            "side": "USSR"
+          }
+        ],
+        "targets": [
+          "country.vietnam",
+          "country.japan"
+        ],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 2
+    },
+    {
+      "id": "PE1-O13",
+      "description": "空历史无已获得的奖励",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.fidel",
+        "as_if_ops": null,
+        "actor": "USSR",
+        "effects": [
+          {
+            "key": "vietnam_revolts",
+            "side": "USSR"
+          }
+        ],
+        "targets": [],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 2
+    },
+    {
+      "id": "PE1-O14",
+      "description": "中国牌亚洲5",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.china",
+        "as_if_ops": null,
+        "actor": "USSR",
+        "effects": [],
+        "targets": [
+          "country.japan"
+        ],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 5
+    },
+    {
+      "id": "PE1-O15",
+      "description": "中国牌非亚洲4",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.china",
+        "as_if_ops": null,
+        "actor": "USSR",
+        "effects": [],
+        "targets": [
+          "country.france"
+        ],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 4
+    },
+    {
+      "id": "PE1-O16",
+      "description": "中国牌越南东南亚6",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.china",
+        "as_if_ops": null,
+        "actor": "USSR",
+        "effects": [
+          {
+            "key": "vietnam_revolts",
+            "side": "USSR"
+          }
+        ],
+        "targets": [
+          "country.vietnam"
+        ],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 6
+    },
+    {
+      "id": "PE1-O17",
+      "description": "官方7.4中国越南清洗例为5",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.china",
+        "as_if_ops": null,
+        "actor": "USSR",
+        "effects": [
+          {
+            "key": "vietnam_revolts",
+            "side": "USSR"
+          },
+          {
+            "key": "red_scare_purge",
+            "side": "USSR"
+          }
+        ],
+        "targets": [
+          "country.vietnam"
+        ],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 5
+    },
+    {
+      "id": "PE1-O18",
+      "description": "中国跨至日本保留亚洲不保留越南",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.china",
+        "as_if_ops": null,
+        "actor": "USSR",
+        "effects": [
+          {
+            "key": "vietnam_revolts",
+            "side": "USSR"
+          }
+        ],
+        "targets": [
+          "country.vietnam",
+          "country.japan"
+        ],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 5
+    },
+    {
+      "id": "PE1-O19",
+      "description": "小值组合推导不能先保底再奖励",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.blockade",
+        "as_if_ops": null,
+        "actor": "USSR",
+        "effects": [
+          {
+            "key": "red_scare_purge",
+            "side": "USSR"
+          },
+          {
+            "key": "vietnam_revolts",
+            "side": "USSR"
+          }
+        ],
+        "targets": [
+          "country.vietnam"
+        ],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 1
+    },
+    {
+      "id": "PE1-O20",
+      "description": "太空使用Flat",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.containment",
+        "as_if_ops": null,
+        "actor": "US",
+        "effects": [
+          {
+            "key": "red_scare_purge",
+            "side": "US"
+          }
+        ],
+        "targets": [],
+        "purpose": "Space"
+      },
+      "expected_valid": true,
+      "expected_ops": 2
+    },
+    {
+      "id": "PE1-O21",
+      "description": "太空不用越南奖励",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.fidel",
+        "as_if_ops": null,
+        "actor": "USSR",
+        "effects": [
+          {
+            "key": "vietnam_revolts",
+            "side": "USSR"
+          }
+        ],
+        "targets": [],
+        "purpose": "Space"
+      },
+      "expected_valid": true,
+      "expected_ops": 2
+    },
+    {
+      "id": "PE1-O22",
+      "description": "门槛使用Flat",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.containment",
+        "as_if_ops": null,
+        "actor": "US",
+        "effects": [
+          {
+            "key": "containment",
+            "side": "US"
+          }
+        ],
+        "targets": [],
+        "purpose": "OpsThreshold"
+      },
+      "expected_valid": true,
+      "expected_ops": 4
+    },
+    {
+      "id": "PE1-O23",
+      "description": "门槛不使用越南奖励",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.fidel",
+        "as_if_ops": null,
+        "actor": "USSR",
+        "effects": [
+          {
+            "key": "vietnam_revolts",
+            "side": "USSR"
+          }
+        ],
+        "targets": [],
+        "purpose": "OpsThreshold"
+      },
+      "expected_valid": true,
+      "expected_ops": 2
+    },
+    {
+      "id": "PE1-O24",
+      "description": "视同1OPS事件也受遏制",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "AsIfCard",
+        "card_id": null,
+        "as_if_ops": 1,
+        "actor": "US",
+        "effects": [
+          {
+            "key": "containment",
+            "side": "US"
+          }
+        ],
+        "targets": [],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 2
+    },
+    {
+      "id": "PE1-O25",
+      "description": "视同4OPS不是中国牌不能自动亚洲加成",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "AsIfCard",
+        "card_id": null,
+        "as_if_ops": 4,
+        "actor": "USSR",
+        "effects": [],
+        "targets": [
+          "country.vietnam"
+        ],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 4
+    },
+    {
+      "id": "PE1-O26",
+      "description": "视同2OPS也受清洗",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "AsIfCard",
+        "card_id": null,
+        "as_if_ops": 2,
+        "actor": "US",
+        "effects": [
+          {
+            "key": "red_scare_purge",
+            "side": "US"
+          }
+        ],
+        "targets": [],
+        "purpose": "Influence"
+      },
+      "expected_valid": true,
+      "expected_ops": 1
+    },
+    {
+      "id": "PE1-O27",
+      "description": "政变使用越南修正",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.fidel",
+        "as_if_ops": null,
+        "actor": "USSR",
+        "effects": [
+          {
+            "key": "vietnam_revolts",
+            "side": "USSR"
+          }
+        ],
+        "targets": [
+          "country.vietnam"
+        ],
+        "purpose": "Coup"
+      },
+      "expected_valid": true,
+      "expected_ops": 3
+    },
+    {
+      "id": "PE1-O28",
+      "description": "调整使用越南修正",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.fidel",
+        "as_if_ops": null,
+        "actor": "USSR",
+        "effects": [
+          {
+            "key": "vietnam_revolts",
+            "side": "USSR"
+          }
+        ],
+        "targets": [
+          "country.vietnam"
+        ],
+        "purpose": "Realignment"
+      },
+      "expected_valid": true,
+      "expected_ops": 3
+    },
+    {
+      "id": "PE1-O29",
+      "description": "未知用途拒绝",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.containment",
+        "as_if_ops": null,
+        "actor": "US",
+        "effects": [],
+        "targets": [],
+        "purpose": "DirectInfluenceEvent"
+      },
+      "expected_valid": false,
+      "expected_ops": null
+    },
+    {
+      "id": "PE1-O30",
+      "description": "未知国家拒绝",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.containment",
+        "as_if_ops": null,
+        "actor": "US",
+        "effects": [],
+        "targets": [
+          "country.unknown"
+        ],
+        "purpose": "Influence"
+      },
+      "expected_valid": false,
+      "expected_ops": null
+    },
+    {
+      "id": "PE1-O31",
+      "description": "未知效果拒绝",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.containment",
+        "as_if_ops": null,
+        "actor": "US",
+        "effects": [
+          {
+            "key": "unknown",
+            "side": "US"
+          }
+        ],
+        "targets": [],
+        "purpose": "Influence"
+      },
+      "expected_valid": false,
+      "expected_ops": null
+    },
+    {
+      "id": "PE1-O32",
+      "description": "重复清洗不能静默叠加",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.containment",
+        "as_if_ops": null,
+        "actor": "US",
+        "effects": [
+          {
+            "key": "red_scare_purge",
+            "side": "US"
+          },
+          {
+            "key": "red_scare_purge",
+            "side": "US"
+          }
+        ],
+        "targets": [],
+        "purpose": "Influence"
+      },
+      "expected_valid": false,
+      "expected_ops": null
+    },
+    {
+      "id": "PE1-O33",
+      "description": "头条先后比较印刷值不受Flat影响",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.containment",
+        "as_if_ops": null,
+        "actor": "US",
+        "effects": [
+          {
+            "key": "containment",
+            "side": "US"
+          }
+        ],
+        "targets": [],
+        "purpose": "HeadlineOrder"
+      },
+      "expected_valid": true,
+      "expected_ops": 3
+    },
+    {
+      "id": "PE1-O34",
+      "description": "无OPS计分卡拒绝",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.asia_scoring",
+        "as_if_ops": null,
+        "actor": "US",
+        "effects": [],
+        "targets": [],
+        "purpose": "Influence"
+      },
+      "expected_valid": false,
+      "expected_ops": null
+    },
+    {
+      "id": "PE1-O35",
+      "description": "错误行动方拒绝",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.containment",
+        "as_if_ops": null,
+        "actor": "Neutral",
+        "effects": [],
+        "targets": [],
+        "purpose": "Influence"
+      },
+      "expected_valid": false,
+      "expected_ops": null
+    },
+    {
+      "id": "PE1-O36",
+      "description": "越南实例不能伪造成美国受益",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.containment",
+        "as_if_ops": null,
+        "actor": "US",
+        "effects": [
+          {
+            "key": "vietnam_revolts",
+            "side": "US"
+          }
+        ],
+        "targets": [],
+        "purpose": "Influence"
+      },
+      "expected_valid": false,
+      "expected_ops": null
+    },
+    {
+      "id": "PE1-L01",
+      "description": "首次越南激活：加2并建1实例",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "activate_vietnam",
+      "expected": {
+        "outcome": "Activated",
+        "influence": 2,
+        "active": 1
+      }
+    },
+    {
+      "id": "PE1-L02",
+      "description": "同结算重试不再加2",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "retry_vietnam",
+      "expected": {
+        "outcome": "AlreadyApplied",
+        "influence": 2,
+        "active": 1
+      }
+    },
+    {
+      "id": "PE1-L03",
+      "description": "同结算ID不同请求冲突",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "conflicting_retry",
+      "expected": {
+        "outcome": "Conflict",
+        "influence": 2,
+        "active": 1
+      }
+    },
+    {
+      "id": "PE1-L04",
+      "description": "不同结算ID同方重复效果待裁定且不加2",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "repeat_vietnam",
+      "expected": {
+        "outcome": "RequiresRuling",
+        "influence": 2,
+        "active": 1
+      }
+    },
+    {
+      "id": "PE1-L05",
+      "description": "清洗目标为事件控制者的对手",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "purge_controller",
+      "expected": {
+        "outcome": "Activated",
+        "affected": "USSR"
+      }
+    },
+    {
+      "id": "PE1-L06",
+      "description": "到回合末选择仍有效",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "before_expiry",
+      "expected": {
+        "outcome": "NoChange",
+        "active": 1
+      }
+    },
+    {
+      "id": "PE1-L07",
+      "description": "到指定回合末边界到期",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "expire",
+      "expected": {
+        "outcome": "Expired",
+        "active": 0
+      }
+    },
+    {
+      "id": "PE1-L08",
+      "description": "重复到期幂等",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "retry_expire",
+      "expected": {
+        "outcome": "NoChange",
+        "active": 0
+      }
+    },
+    {
+      "id": "PE1-L09",
+      "description": "未来回合未清理Active视为状态错误",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "stale_restore",
+      "expected": {
+        "outcome": "StateConflict",
+        "active": 1
+      }
+    },
+    {
+      "id": "PE1-L10",
+      "description": "UI取消请求不被授权",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "ui_cancel",
+      "expected": {
+        "outcome": "Rejected",
+        "active": 1
+      }
+    },
+    {
+      "id": "PE1-L11",
+      "description": "合成已验证取消原因可以结束指定实例",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "fixture_cancel",
+      "expected": {
+        "outcome": "Cancelled",
+        "active": 0
+      }
+    },
+    {
+      "id": "PE1-L12",
+      "description": "激活计划提交前失败不保留越南部分加点",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "failed_activation",
+      "expected": {
+        "outcome": "Rejected",
+        "influence": 0,
+        "active": 0
+      }
+    },
+    {
+      "id": "PE1-S01",
+      "description": "地区内可以使用第3点",
+      "validation_layer": "spend-reference",
+      "status": "specified",
+      "steps": [
+        [
+          "country.vietnam",
+          2
+        ],
+        [
+          "country.thailand",
+          1
+        ]
+      ],
+      "expected_accepted": [
+        true,
+        true
+      ],
+      "expected_spent": 3
+    },
+    {
+      "id": "PE1-S02",
+      "description": "用满奖励后跨区拒绝且不回滚历史",
+      "validation_layer": "spend-reference",
+      "status": "specified",
+      "steps": [
+        [
+          "country.vietnam",
+          3
+        ],
+        [
+          "country.japan",
+          1
+        ]
+      ],
+      "expected_accepted": [
+        true,
+        false
+      ],
+      "expected_spent": 3
+    },
+    {
+      "id": "PE1-S03",
+      "description": "低支出可跨区，此后不能恢复SEA奖励",
+      "validation_layer": "spend-reference",
+      "status": "specified",
+      "steps": [
+        [
+          "country.vietnam",
+          1
+        ],
+        [
+          "country.japan",
+          1
+        ],
+        [
+          "country.thailand",
+          1
+        ]
+      ],
+      "expected_accepted": [
+        true,
+        true,
+        false
+      ],
+      "expected_spent": 2
+    },
+    {
+      "id": "PE1-S04",
+      "description": "敌控放置按2OPS成本计而非标记",
+      "validation_layer": "spend-reference",
+      "status": "specified",
+      "steps": [
+        [
+          "country.vietnam",
+          2
+        ],
+        [
+          "country.thailand",
+          2
+        ]
+      ],
+      "expected_accepted": [
+        true,
+        false
+      ],
+      "expected_spent": 2
+    },
+    {
+      "id": "PE1-R01",
+      "description": "事务提交故障和回滚；重复网络消息不重复影响力",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "PE1-R02",
+      "description": "完整回合末流水线到期与最终回合退出",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "PE1-R03",
+      "description": "保存/载入实例、OPS地区历史与修改后的摘要冲突",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "PE1-R04",
+      "description": "敌方出牌触发事件时事件控制者与OPS actor区分",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "PE1-R05",
+      "description": "普通政变军事信用、免费政变零信用、战争固定信用接入",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "PE1-R06",
+      "description": "子事件OPS上下文与未知中断恢复门禁",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "PE1-R07",
+      "description": "UI不能直接取消或伪造效果状态；视图不泄漏手牌",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "PE1-R08",
+      "description": "原子报价提交的状态版本竞争与过期命令拒绝",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "PE1-O37",
+      "description": "中国牌太空忽略地区奖励",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.china",
+        "as_if_ops": null,
+        "actor": "USSR",
+        "effects": [],
+        "targets": [
+          "country.japan"
+        ],
+        "purpose": "Space"
+      },
+      "expected_valid": true,
+      "expected_ops": 4
+    },
+    {
+      "id": "PE1-O38",
+      "description": "中国牌太空忽略地区奖励并受清洗",
+      "validation_layer": "ops-reference",
+      "status": "specified",
+      "input": {
+        "source_kind": "Card",
+        "card_id": "card.china",
+        "as_if_ops": null,
+        "actor": "USSR",
+        "effects": [
+          {
+            "key": "red_scare_purge",
+            "side": "USSR"
+          }
+        ],
+        "targets": [
+          "country.japan"
+        ],
+        "purpose": "Space"
+      },
+      "expected_valid": true,
+      "expected_ops": 3
+    }
+  ]
+}

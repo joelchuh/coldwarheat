@@ -1,0 +1,441 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:persistent-effects-batch1:1",
+  "title": "persistent-effects-batch1",
+  "description": "首批持续效果参数契约；固定模板、明确期限、修正类型及封闭字段；不支持任意脚本。",
+  "$defs": {
+    "ActivateTurnOpsModifier": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "pattern": "^card\\.[a-z_]+$"
+        },
+        "effect_id": {
+          "type": "string",
+          "pattern": "^effect\\.[a-z_]+$"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "ActivateTurnOpsModifier"
+        },
+        "affected_side": {
+          "enum": [
+            "US",
+            "USSR",
+            "OpponentOfEventController"
+          ]
+        },
+        "duration": {
+          "const": "RemainderOfActivationTurn"
+        },
+        "expiry_boundary": {
+          "const": "ExpireAndReset"
+        },
+        "modifier": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "Flat",
+                "AllTargetsInRegion"
+              ]
+            },
+            "delta": {
+              "type": "integer",
+              "enum": [
+                -1,
+                1
+              ]
+            },
+            "region_id": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^region\\.[a-z_]+$"
+            }
+          },
+          "required": [
+            "kind",
+            "delta",
+            "region_id"
+          ]
+        },
+        "immediate_influence": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "country_id": {
+                  "type": "string",
+                  "pattern": "^country\\.[a-z_]+$"
+                },
+                "side": {
+                  "enum": [
+                    "US",
+                    "USSR"
+                  ]
+                },
+                "amount": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              },
+              "required": [
+                "country_id",
+                "side",
+                "amount"
+              ]
+            }
+          ]
+        },
+        "duplicate_activation": {
+          "const": "IdempotentByResolutionId"
+        },
+        "repeat_effect_same_side": {
+          "const": "RequiresRuling"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "enum": [
+                  "Verified",
+                  "Pending",
+                  "Fixture"
+                ]
+              }
+            },
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ]
+          },
+          "minItems": 1,
+          "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+        }
+      },
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "affected_side",
+        "duration",
+        "expiry_boundary",
+        "modifier",
+        "immediate_influence",
+        "duplicate_activation",
+        "repeat_effect_same_side",
+        "source_refs"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "modifier": {
+                "properties": {
+                  "kind": {
+                    "const": "Flat"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "modifier": {
+                "properties": {
+                  "region_id": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "modifier": {
+                "properties": {
+                  "region_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.persistent_batch1"
+    },
+    "content_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "ruleset_id": {
+      "type": "string",
+      "pattern": "^ruleset\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+    },
+    "scope": {
+      "enum": [
+        "fixture",
+        "release-candidate"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "edition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "edition",
+          "description"
+        ]
+      },
+      "minItems": 1
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "vietnam_revolts": {
+          "$ref": "#/$defs/ActivateTurnOpsModifier"
+        },
+        "containment": {
+          "$ref": "#/$defs/ActivateTurnOpsModifier"
+        },
+        "red_scare_purge": {
+          "$ref": "#/$defs/ActivateTurnOpsModifier"
+        }
+      },
+      "required": [
+        "vietnam_revolts",
+        "containment",
+        "red_scare_purge"
+      ]
+    },
+    "ops_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "minimum": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "ordinary_maximum": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "aggregation": {
+          "const": "FloorAfterRegionalBonus"
+        },
+        "regional_purposes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "Influence",
+              "Coup",
+              "Realignment"
+            ]
+          },
+          "minItems": 1
+        },
+        "flat_purposes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "Influence",
+              "Coup",
+              "Realignment",
+              "Space",
+              "OpsThreshold"
+            ]
+          },
+          "minItems": 1
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "enum": [
+                  "Verified",
+                  "Pending",
+                  "Fixture"
+                ]
+              }
+            },
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ]
+          },
+          "minItems": 1,
+          "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+        }
+      },
+      "required": [
+        "description",
+        "minimum",
+        "ordinary_maximum",
+        "aggregation",
+        "regional_purposes",
+        "flat_purposes",
+        "source_refs"
+      ]
+    },
+    "source_bonuses": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "china": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "description": {
+              "type": "string",
+              "minLength": 1
+            },
+            "card_id": {
+              "const": "card.china"
+            },
+            "region_id": {
+              "type": "string"
+            },
+            "delta": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "source_refs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "source_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "locator": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "verification": {
+                    "enum": [
+                      "Verified",
+                      "Pending",
+                      "Fixture"
+                    ]
+                  }
+                },
+                "required": [
+                  "source_id",
+                  "locator",
+                  "verification"
+                ]
+              },
+              "minItems": 1,
+              "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+            }
+          },
+          "required": [
+            "description",
+            "card_id",
+            "region_id",
+            "delta",
+            "source_refs"
+          ]
+        }
+      },
+      "required": [
+        "china"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "parameters",
+    "ops_policy",
+    "source_bonuses"
+  ]
+}

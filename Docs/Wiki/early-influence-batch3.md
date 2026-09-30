@@ -1,7 +1,7 @@
 # 早期影响力事件：第三批
 
 > description: 查询独立红色政权的名单与追平算法、经互会的敌控过滤与不同国家放置，以及零变化、选择归属和跨卡边界。
-> 状态：2026-09-30，2牌基础设计；参数绑定不等于C#实现。三批共10牌Bound、92个非中国牌Unresolved，102个处理器均planned。
+> 状态：2026-09-30，2牌基础设计；参数绑定不等于C#实现。截至本批三批共10牌Bound、92个非中国牌Unresolved；最新数量见[数据索引](map-card-data.md)，102个处理器均planned。
 > 入口：[参数描述](../../Data/Descriptors/early-influence-batch3.data.json)、[参数](../../Data/Cards/deluxe-2015/early-influence-batch3.parameters.json)、[Schema](../Contracts/early-influence-batch3.schema.json)、[模块](../Descriptors/influence-events.module.json)、[案例](../Design/early-influence-batch3.cases.json)、[验证](../Design/early-influence-batch3.validation.json)。
 
 ## 范围与复用
@@ -74,3 +74,5 @@ flowchart LR
 下一阶段建议先设计持续效果的生效/到期/取消/作用范围，再以越南起义、遏制政策和红色恐怖/清洗检验OPS修正，随后处理北约相关的前置与地区例外。仍按小批核对，不提前把所有持续卡牌写成一个万能流程。
 
 [第一批](early-influence-batch1.md) · [第二批](early-influence-batch2.md) · [返回索引](index.md)
+
+后续已建立[持续效果首批设计](persistent-effects.md)，三张新增参数已绑定；经互会短缺仍待用户明确确认。
