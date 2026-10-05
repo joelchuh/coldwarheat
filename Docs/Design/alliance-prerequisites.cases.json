@@ -1,0 +1,1898 @@
+{
+  "schema_version": 1,
+  "description": "北约前置事件数据、离线效果和分支案例；运行流程未实现。",
+  "dataset": "Data/Cards/deluxe-2015/alliance-prerequisites.parameters.json",
+  "schema": "Docs/Contracts/alliance-prerequisites.schema.json",
+  "cases": [
+    {
+      "id": "AP1-D01",
+      "description": "两牌正式参数和成功事实引用有效",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "AP1-D02",
+      "description": "马歇尔七国不可改六国",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "marshall_plan",
+            "target_count"
+          ],
+          "value": 6
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "AP1-D03",
+      "description": "马歇尔每国1不可改2",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "marshall_plan",
+            "amount_per_country"
+          ],
+          "value": 2
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "AP1-D04",
+      "description": "马歇尔选择方美国",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "marshall_plan",
+            "beneficiary"
+          ],
+          "value": "USSR"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "AP1-D05",
+      "description": "马歇尔限定西欧",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "marshall_plan",
+            "target_region_id"
+          ],
+          "value": "region.eastern_europe"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "AP1-D06",
+      "description": "确认短缺不能回退未知或任意跳过",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "marshall_plan",
+            "shortage_policy"
+          ],
+          "value": "RequiresRuling"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "AP1-D07",
+      "description": "零候选已确认成功无变化",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "marshall_plan",
+            "zero_candidates_outcome"
+          ],
+          "value": "BlockedPrerequisite"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "AP1-D08",
+      "description": "华沙选择方苏联",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "warsaw_pact_formed",
+            "beneficiary"
+          ],
+          "value": "US"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "AP1-D09",
+      "description": "华沙仅东欧",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "warsaw_pact_formed",
+            "target_region_id"
+          ],
+          "value": "region.western_europe"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "AP1-D10",
+      "description": "未知分支模板",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "warsaw_pact_formed",
+            "template"
+          ],
+          "value": "CombineBoth"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "AP1-D11",
+      "description": "移除分支四国",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "warsaw_pact_formed",
+            "branches",
+            "remove_us",
+            "target_count"
+          ],
+          "value": 3
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "AP1-D12",
+      "description": "移除的是美国影响力",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "warsaw_pact_formed",
+            "branches",
+            "remove_us",
+            "affected_side"
+          ],
+          "value": "USSR"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "AP1-D13",
+      "description": "移除不得只筛阳性目标",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "warsaw_pact_formed",
+            "branches",
+            "remove_us",
+            "selection_policy"
+          ],
+          "value": "PositiveInfluenceOnly"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "AP1-D14",
+      "description": "放置总额5",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "warsaw_pact_formed",
+            "branches",
+            "add_ussr",
+            "total_amount"
+          ],
+          "value": 4
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "AP1-D15",
+      "description": "每国不能放3",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "warsaw_pact_formed",
+            "branches",
+            "add_ussr",
+            "max_per_country"
+          ],
+          "value": 3
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "AP1-D16",
+      "description": "放置目标不能禁止美国控制",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "warsaw_pact_formed",
+            "branches",
+            "add_ussr",
+            "target_control"
+          ],
+          "value": "NotControlledByOpponent"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "AP1-D17",
+      "description": "不得复制前置名单作第二真相",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "completion_policy",
+            "unlocks_card_id"
+          ],
+          "value": "card.nato"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "AP1-D18",
+      "description": "成功事实依赖不得丢失",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "completion_policy",
+            "fact_policy_ref",
+            "dataset_id"
+          ],
+          "value": "unknown"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "AP1-D19",
+      "description": "成功事实指针必须正确",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "completion_policy",
+            "fact_policy_ref",
+            "json_pointer"
+          ],
+          "value": "/parameters/nato"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "AP1-D20",
+      "description": "未知来源",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "marshall_plan",
+            "source_refs",
+            0,
+            "source_id"
+          ],
+          "value": "UNKNOWN"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "AP1-E01",
+      "description": "马歇尔正常7国各加1",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.marshall_plan",
+        "branch_id": null,
+        "targets": [
+          "country.uk",
+          "country.france",
+          "country.italy",
+          "country.spain_portugal",
+          "country.west_germany",
+          "country.canada",
+          "country.turkey"
+        ],
+        "allocations": [],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "country.uk": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.france": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.italy": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.spain_portugal": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.west_germany": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.canada": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.turkey": {
+          "US": 1,
+          "USSR": 0
+        }
+      }
+    },
+    {
+      "id": "AP1-E02",
+      "description": "马歇尔重复国家拒绝",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.marshall_plan",
+        "branch_id": null,
+        "targets": [
+          "country.uk",
+          "country.france",
+          "country.italy",
+          "country.spain_portugal",
+          "country.west_germany",
+          "country.canada",
+          "country.uk"
+        ],
+        "allocations": [],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E03",
+      "description": "马歇尔少选6国拒绝",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.marshall_plan",
+        "branch_id": null,
+        "targets": [
+          "country.uk",
+          "country.france",
+          "country.italy",
+          "country.spain_portugal",
+          "country.west_germany",
+          "country.canada"
+        ],
+        "allocations": [],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E04",
+      "description": "东欧波兰不能充当西欧",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.marshall_plan",
+        "branch_id": null,
+        "targets": [
+          "country.uk",
+          "country.france",
+          "country.italy",
+          "country.spain_portugal",
+          "country.west_germany",
+          "country.canada",
+          "country.poland"
+        ],
+        "allocations": [],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E05",
+      "description": "未知国家拒绝",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.marshall_plan",
+        "branch_id": null,
+        "targets": [
+          "country.uk",
+          "country.france",
+          "country.italy",
+          "country.spain_portugal",
+          "country.west_germany",
+          "country.canada",
+          "country.unknown"
+        ],
+        "allocations": [],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E06",
+      "description": "苏联控制法国排除",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.marshall_plan",
+        "branch_id": null,
+        "targets": [
+          "country.uk",
+          "country.france",
+          "country.italy",
+          "country.spain_portugal",
+          "country.west_germany",
+          "country.canada",
+          "country.turkey"
+        ],
+        "allocations": [],
+        "state": {
+          "country.france": {
+            "US": 1,
+            "USSR": 4
+          }
+        },
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E07",
+      "description": "有苏联影响力但未控制仍合法",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.marshall_plan",
+        "branch_id": null,
+        "targets": [
+          "country.uk",
+          "country.france",
+          "country.italy",
+          "country.spain_portugal",
+          "country.west_germany",
+          "country.canada",
+          "country.turkey"
+        ],
+        "allocations": [],
+        "state": {
+          "country.france": {
+            "US": 1,
+            "USSR": 3
+          }
+        },
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "country.uk": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.france": {
+          "US": 2,
+          "USSR": 3
+        },
+        "country.italy": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.spain_portugal": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.west_germany": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.canada": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.turkey": {
+          "US": 1,
+          "USSR": 0
+        }
+      }
+    },
+    {
+      "id": "AP1-E08",
+      "description": "奥地利芬兰按西欧子区允许",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.marshall_plan",
+        "branch_id": null,
+        "targets": [
+          "country.austria",
+          "country.finland",
+          "country.uk",
+          "country.france",
+          "country.italy",
+          "country.spain_portugal",
+          "country.west_germany"
+        ],
+        "allocations": [],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "country.austria": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.finland": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.uk": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.france": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.italy": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.spain_portugal": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.west_germany": {
+          "US": 1,
+          "USSR": 0
+        }
+      }
+    },
+    {
+      "id": "AP1-E09",
+      "description": "用户确认不足3国必须选全部",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.marshall_plan",
+        "branch_id": null,
+        "targets": [
+          "country.uk",
+          "country.france",
+          "country.italy"
+        ],
+        "allocations": [],
+        "state": {},
+        "restrict_western_to": [
+          "country.uk",
+          "country.france",
+          "country.italy"
+        ],
+        "active_effect_ids": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "country.uk": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.france": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.italy": {
+          "US": 1,
+          "USSR": 0
+        }
+      }
+    },
+    {
+      "id": "AP1-E10",
+      "description": "不足3国不能仅选2",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.marshall_plan",
+        "branch_id": null,
+        "targets": [
+          "country.uk",
+          "country.france"
+        ],
+        "allocations": [],
+        "state": {},
+        "restrict_western_to": [
+          "country.uk",
+          "country.france",
+          "country.italy"
+        ],
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E11",
+      "description": "零候选用户确认成功NoChange",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.marshall_plan",
+        "branch_id": null,
+        "targets": [],
+        "allocations": [],
+        "state": {},
+        "restrict_western_to": [],
+        "active_effect_ids": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedNoChange",
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E12",
+      "description": "零候选不能提交伪造国家",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.marshall_plan",
+        "branch_id": null,
+        "targets": [
+          "country.france"
+        ],
+        "allocations": [],
+        "state": {},
+        "restrict_western_to": [],
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E13",
+      "description": "马歇尔不接受额度分配混入",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.marshall_plan",
+        "branch_id": null,
+        "targets": [
+          "country.uk",
+          "country.france",
+          "country.italy",
+          "country.spain_portugal",
+          "country.west_germany",
+          "country.canada",
+          "country.turkey"
+        ],
+        "allocations": [
+          {
+            "country_id": "country.france",
+            "amount": 1
+          }
+        ],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E14",
+      "description": "已知条约和OPS加成不改变直接加点",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.marshall_plan",
+        "branch_id": null,
+        "targets": [
+          "country.uk",
+          "country.france",
+          "country.italy",
+          "country.spain_portugal",
+          "country.west_germany",
+          "country.canada",
+          "country.turkey"
+        ],
+        "allocations": [],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": [
+          "effect.nato",
+          "effect.containment"
+        ]
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "country.uk": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.france": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.italy": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.spain_portugal": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.west_germany": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.canada": {
+          "US": 1,
+          "USSR": 0
+        },
+        "country.turkey": {
+          "US": 1,
+          "USSR": 0
+        }
+      }
+    },
+    {
+      "id": "AP1-E15",
+      "description": "未知干预不得缩候选后套短缺",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.marshall_plan",
+        "branch_id": null,
+        "targets": [],
+        "allocations": [],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": [
+          "effect.unknown"
+        ]
+      },
+      "expected_valid": true,
+      "expected_outcome": "RequiresRuling",
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E16",
+      "description": "华沙4国移除全部US、保留USSR",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "remove_us",
+        "targets": [
+          "country.poland",
+          "country.east_germany",
+          "country.romania",
+          "country.bulgaria"
+        ],
+        "allocations": [],
+        "state": {
+          "country.poland": {
+            "US": 1,
+            "USSR": 2
+          },
+          "country.east_germany": {
+            "US": 2,
+            "USSR": 2
+          },
+          "country.romania": {
+            "US": 3,
+            "USSR": 2
+          },
+          "country.bulgaria": {
+            "US": 4,
+            "USSR": 2
+          }
+        },
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "country.poland": {
+          "US": 0,
+          "USSR": 2
+        },
+        "country.east_germany": {
+          "US": 0,
+          "USSR": 2
+        },
+        "country.romania": {
+          "US": 0,
+          "USSR": 2
+        },
+        "country.bulgaria": {
+          "US": 0,
+          "USSR": 2
+        }
+      }
+    },
+    {
+      "id": "AP1-E17",
+      "description": "华沙选零US目标成功无变化",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "remove_us",
+        "targets": [
+          "country.poland",
+          "country.east_germany",
+          "country.romania",
+          "country.bulgaria"
+        ],
+        "allocations": [],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedNoChange",
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E18",
+      "description": "可以不选其他有US影响力东欧国",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "remove_us",
+        "targets": [
+          "country.poland",
+          "country.east_germany",
+          "country.romania",
+          "country.bulgaria"
+        ],
+        "allocations": [],
+        "state": {
+          "country.hungary": {
+            "US": 5,
+            "USSR": 0
+          }
+        },
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedNoChange",
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E19",
+      "description": "移除3国不满足数量",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "remove_us",
+        "targets": [
+          "country.poland",
+          "country.east_germany",
+          "country.romania"
+        ],
+        "allocations": [],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E20",
+      "description": "移除重复国家拒绝",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "remove_us",
+        "targets": [
+          "country.poland",
+          "country.east_germany",
+          "country.romania",
+          "country.poland"
+        ],
+        "allocations": [],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E21",
+      "description": "西德不是东欧目标",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "remove_us",
+        "targets": [
+          "country.poland",
+          "country.east_germany",
+          "country.romania",
+          "country.west_germany"
+        ],
+        "allocations": [],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E22",
+      "description": "东欧双子区可以移除",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "remove_us",
+        "targets": [
+          "country.austria",
+          "country.finland",
+          "country.poland",
+          "country.romania"
+        ],
+        "allocations": [],
+        "state": {
+          "country.austria": {
+            "US": 5,
+            "USSR": 1
+          },
+          "country.finland": {
+            "US": 1,
+            "USSR": 1
+          }
+        },
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "country.austria": {
+          "US": 0,
+          "USSR": 1
+        },
+        "country.finland": {
+          "US": 0,
+          "USSR": 1
+        }
+      }
+    },
+    {
+      "id": "AP1-E23",
+      "description": "US控制目标同样可移除",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "remove_us",
+        "targets": [
+          "country.poland",
+          "country.east_germany",
+          "country.romania",
+          "country.bulgaria"
+        ],
+        "allocations": [],
+        "state": {
+          "country.poland": {
+            "US": 5,
+            "USSR": 1
+          }
+        },
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "country.poland": {
+          "US": 0,
+          "USSR": 1
+        }
+      }
+    },
+    {
+      "id": "AP1-E24",
+      "description": "移除分支不接受额度混入",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "remove_us",
+        "targets": [
+          "country.poland",
+          "country.east_germany",
+          "country.romania",
+          "country.bulgaria"
+        ],
+        "allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 1
+          }
+        ],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E25",
+      "description": "华沙放置正常2+2+1",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "add_ussr",
+        "targets": [],
+        "allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 2
+          },
+          {
+            "country_id": "country.romania",
+            "amount": 2
+          },
+          {
+            "country_id": "country.bulgaria",
+            "amount": 1
+          }
+        ],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "country.poland": {
+          "US": 0,
+          "USSR": 2
+        },
+        "country.romania": {
+          "US": 0,
+          "USSR": 2
+        },
+        "country.bulgaria": {
+          "US": 0,
+          "USSR": 1
+        }
+      }
+    },
+    {
+      "id": "AP1-E26",
+      "description": "华沙放置正常2+1+1+1",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "add_ussr",
+        "targets": [],
+        "allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 2
+          },
+          {
+            "country_id": "country.romania",
+            "amount": 1
+          },
+          {
+            "country_id": "country.bulgaria",
+            "amount": 1
+          },
+          {
+            "country_id": "country.hungary",
+            "amount": 1
+          }
+        ],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "country.poland": {
+          "US": 0,
+          "USSR": 2
+        },
+        "country.romania": {
+          "US": 0,
+          "USSR": 1
+        },
+        "country.bulgaria": {
+          "US": 0,
+          "USSR": 1
+        },
+        "country.hungary": {
+          "US": 0,
+          "USSR": 1
+        }
+      }
+    },
+    {
+      "id": "AP1-E27",
+      "description": "华沙放置正常五国各1",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "add_ussr",
+        "targets": [],
+        "allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 1
+          },
+          {
+            "country_id": "country.east_germany",
+            "amount": 1
+          },
+          {
+            "country_id": "country.romania",
+            "amount": 1
+          },
+          {
+            "country_id": "country.bulgaria",
+            "amount": 1
+          },
+          {
+            "country_id": "country.hungary",
+            "amount": 1
+          }
+        ],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "country.poland": {
+          "US": 0,
+          "USSR": 1
+        },
+        "country.east_germany": {
+          "US": 0,
+          "USSR": 1
+        },
+        "country.romania": {
+          "US": 0,
+          "USSR": 1
+        },
+        "country.bulgaria": {
+          "US": 0,
+          "USSR": 1
+        },
+        "country.hungary": {
+          "US": 0,
+          "USSR": 1
+        }
+      }
+    },
+    {
+      "id": "AP1-E28",
+      "description": "华沙放置双子区增加",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "add_ussr",
+        "targets": [],
+        "allocations": [
+          {
+            "country_id": "country.austria",
+            "amount": 2
+          },
+          {
+            "country_id": "country.finland",
+            "amount": 2
+          },
+          {
+            "country_id": "country.poland",
+            "amount": 1
+          }
+        ],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "country.austria": {
+          "US": 0,
+          "USSR": 2
+        },
+        "country.finland": {
+          "US": 0,
+          "USSR": 2
+        },
+        "country.poland": {
+          "US": 0,
+          "USSR": 1
+        }
+      }
+    },
+    {
+      "id": "AP1-E29",
+      "description": "US控制东欧也允许放置",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "add_ussr",
+        "targets": [],
+        "allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 2
+          },
+          {
+            "country_id": "country.romania",
+            "amount": 2
+          },
+          {
+            "country_id": "country.bulgaria",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "country.poland": {
+            "US": 5,
+            "USSR": 0
+          }
+        },
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_state": {
+        "country.poland": {
+          "US": 5,
+          "USSR": 2
+        },
+        "country.romania": {
+          "US": 0,
+          "USSR": 2
+        },
+        "country.bulgaria": {
+          "US": 0,
+          "USSR": 1
+        }
+      }
+    },
+    {
+      "id": "AP1-E30",
+      "description": "拒绝总额不足4",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "add_ussr",
+        "targets": [],
+        "allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 2
+          },
+          {
+            "country_id": "country.romania",
+            "amount": 2
+          }
+        ],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E31",
+      "description": "拒绝总额超6",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "add_ussr",
+        "targets": [],
+        "allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 2
+          },
+          {
+            "country_id": "country.romania",
+            "amount": 2
+          },
+          {
+            "country_id": "country.bulgaria",
+            "amount": 2
+          }
+        ],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E32",
+      "description": "拒绝单国超过2",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "add_ussr",
+        "targets": [],
+        "allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 3
+          },
+          {
+            "country_id": "country.romania",
+            "amount": 2
+          }
+        ],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E33",
+      "description": "拒绝重复国家",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "add_ussr",
+        "targets": [],
+        "allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 2
+          },
+          {
+            "country_id": "country.poland",
+            "amount": 2
+          },
+          {
+            "country_id": "country.romania",
+            "amount": 1
+          }
+        ],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E34",
+      "description": "拒绝西德不在东欧",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "add_ussr",
+        "targets": [],
+        "allocations": [
+          {
+            "country_id": "country.west_germany",
+            "amount": 2
+          },
+          {
+            "country_id": "country.romania",
+            "amount": 2
+          },
+          {
+            "country_id": "country.bulgaria",
+            "amount": 1
+          }
+        ],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E35",
+      "description": "拒绝零额度",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "add_ussr",
+        "targets": [],
+        "allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 2
+          },
+          {
+            "country_id": "country.romania",
+            "amount": 2
+          },
+          {
+            "country_id": "country.bulgaria",
+            "amount": 1
+          },
+          {
+            "country_id": "country.hungary",
+            "amount": 0
+          }
+        ],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E36",
+      "description": "拒绝负额度",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "add_ussr",
+        "targets": [],
+        "allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 2
+          },
+          {
+            "country_id": "country.romania",
+            "amount": 2
+          },
+          {
+            "country_id": "country.bulgaria",
+            "amount": 2
+          },
+          {
+            "country_id": "country.hungary",
+            "amount": -1
+          }
+        ],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E37",
+      "description": "拒绝非整数",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "add_ussr",
+        "targets": [],
+        "allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 2
+          },
+          {
+            "country_id": "country.romania",
+            "amount": 1.5
+          },
+          {
+            "country_id": "country.bulgaria",
+            "amount": 1.5
+          }
+        ],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E38",
+      "description": "放置分支不得混入移除目标",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "add_ussr",
+        "targets": [
+          "country.poland",
+          "country.east_germany",
+          "country.romania",
+          "country.bulgaria"
+        ],
+        "allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 2
+          },
+          {
+            "country_id": "country.romania",
+            "amount": 2
+          },
+          {
+            "country_id": "country.bulgaria",
+            "amount": 1
+          }
+        ],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E39",
+      "description": "未知分支拒绝",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "both",
+        "targets": [],
+        "allocations": [],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E40",
+      "description": "未选择分支不得直接目标提交",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": null,
+        "targets": [
+          "country.poland",
+          "country.east_germany",
+          "country.romania",
+          "country.bulgaria"
+        ],
+        "allocations": [],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-E41",
+      "description": "华沙未知干预不部分放置",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.warsaw_pact_formed",
+        "branch_id": "add_ussr",
+        "targets": [],
+        "allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 2
+          },
+          {
+            "country_id": "country.romania",
+            "amount": 2
+          },
+          {
+            "country_id": "country.bulgaria",
+            "amount": 1
+          }
+        ],
+        "state": {},
+        "restrict_western_to": null,
+        "active_effect_ids": [
+          "effect.unknown"
+        ]
+      },
+      "expected_valid": true,
+      "expected_outcome": "RequiresRuling",
+      "expected_state": {}
+    },
+    {
+      "id": "AP1-B01",
+      "description": "锁定add分支再等待分配",
+      "validation_layer": "branch-reference",
+      "status": "specified",
+      "commands": [
+        {
+          "actor": "USSR",
+          "branch": "add_ussr"
+        }
+      ],
+      "expected_branch": "add_ussr"
+    },
+    {
+      "id": "AP1-B02",
+      "description": "锁定remove分支",
+      "validation_layer": "branch-reference",
+      "status": "specified",
+      "commands": [
+        {
+          "actor": "USSR",
+          "branch": "remove_us"
+        }
+      ],
+      "expected_branch": "remove_us"
+    },
+    {
+      "id": "AP1-B03",
+      "description": "美国不是华沙选择方",
+      "validation_layer": "branch-reference",
+      "status": "specified",
+      "commands": [
+        {
+          "actor": "US",
+          "branch": "add_ussr"
+        }
+      ],
+      "expected_branch": null
+    },
+    {
+      "id": "AP1-B04",
+      "description": "未知分支不锁定",
+      "validation_layer": "branch-reference",
+      "status": "specified",
+      "commands": [
+        {
+          "actor": "USSR",
+          "branch": "both"
+        }
+      ],
+      "expected_branch": null
+    },
+    {
+      "id": "AP1-B05",
+      "description": "已锁定后不能切换",
+      "validation_layer": "branch-reference",
+      "status": "specified",
+      "commands": [
+        {
+          "actor": "USSR",
+          "branch": "add_ussr"
+        },
+        {
+          "actor": "USSR",
+          "branch": "remove_us"
+        }
+      ],
+      "expected_branch": "add_ussr"
+    },
+    {
+      "id": "AP1-B06",
+      "description": "重复同一请求不改变分支",
+      "validation_layer": "branch-reference",
+      "status": "specified",
+      "commands": [
+        {
+          "actor": "USSR",
+          "branch": "remove_us"
+        },
+        {
+          "actor": "USSR",
+          "branch": "remove_us"
+        }
+      ],
+      "expected_branch": "remove_us"
+    },
+    {
+      "id": "AP1-R01",
+      "description": "身份/DecisionRevision/状态版本错误拒绝无部分变化",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "AP1-R02",
+      "description": "有效分支提交后保存恢复；不能重新询问或任意切换",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "AP1-R03",
+      "description": "最终影响力、成功事实与去重收据的原子性",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "AP1-R04",
+      "description": "马歇尔零候选自动完成无玩家空决策",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "AP1-R05",
+      "description": "同结算网络重试不重复增加或写前置事实",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "AP1-R06",
+      "description": "敌方OPS触发时正确事件拥有者与先后顺序",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "AP1-R07",
+      "description": "华沙选择NoChange仍星号移出并解锁NATO",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "AP1-R08",
+      "description": "Fault/等待选择/未知干预不提前解锁NATO",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "AP1-R09",
+      "description": "UI只发送稳定ID和分配量，不自报控制权",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "AP1-R10",
+      "description": "跨主题一致性及正式包未实现处理器门禁",
+      "validation_layer": "runtime",
+      "status": "planned"
+    }
+  ]
+}

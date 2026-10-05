@@ -29,13 +29,13 @@
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "edition": "GMT-hosted compilation, English Deluxe card images",
-      "description": "两批共8牌的英文卡图基础效果：p2 #7/#8、p3 #12/#15、p4 #19、p5 #28/#29/#30；另核对p13 #83的禁止关系。 第三批追加p3 #14、p4 #22。"
+      "description": "四批共12张影响力事件英文卡图：p2 #7/#8、p3 #12/#14/#15/#16、p4 #19/#22/#23、p5 #28/#29/#30；另核对p13 #83禁止关系。"
     },
     {
       "id": "R2015",
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
       "edition": "Deluxe rules 2015",
-      "description": "Deluxe 2015：地区/控制权、游戏时代、事件选择权与结果、直接事件与OPS边界。短缺解释来源另列PROJECT-EI2。"
+      "description": "Deluxe 2015：地区/控制权、游戏时代、事件选择权与结果、直接事件与OPS边界；项目短缺解释另列PROJECT-EI2及PROJECT-AP1。"
     },
     {
       "id": "PROJECT-EI2",
@@ -48,6 +48,12 @@
       "url": null,
       "edition": "Design interpretations, 2026-09-30",
       "description": "独立红色政权零增量目标按Add语义及卡面未限制控制权推导，非官方专门FAQ；经互会短缺采用状态见Wiki EI3-RULING-01。"
+    },
+    {
+      "id": "PROJECT-AP1",
+      "url": null,
+      "edition": "AP1-RULING-01 user confirmed; AP1-INTERPRETATION-01 derived, 2026-10-05",
+      "description": "用户明确确认马歇尔不足7国选全部、零候选仍成功并解锁北约；华沙允许选零美国影响力国家是卡文推导，非用户专门确认/FAQ。"
     }
   ],
   "tests": [
@@ -62,13 +68,17 @@
     {
       "path": "Docs/Design/early-influence-batch3.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/alliance-prerequisites.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
-  "documentation": "Docs/Wiki/early-influence-batch3.md",
+  "documentation": "Docs/Wiki/alliance-prerequisites.md",
   "id": "module.influence-events",
   "kind": "module",
   "status": "planned",
-  "description": "影响力事件的增减、追平、控制筛选、额度分配与可恢复选择；三批覆盖10牌参数，C#待实现。",
+  "description": "影响力事件的增减、追平、控制筛选、额度分配、互斥分支与可恢复选择；四批覆盖12牌参数，C#待实现。",
   "entrypoints": [],
   "planned_entrypoints": [
     {
@@ -86,6 +96,10 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Influence/RemovalAllocationRules.cs",
       "symbol": "ValidateAndBuildPlan"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Influence/InfluenceBranchRules.cs",
+      "symbol": "ValidateBranchAndBuildDecision"
     }
   ],
   "data_dependencies": [
@@ -94,15 +108,18 @@
     "cards.deluxe2015.definitions",
     "effects.deluxe2015.early_influence_batch2",
     "rules.deluxe2015.turn-flow",
-    "effects.deluxe2015.early_influence_batch3"
+    "effects.deluxe2015.early_influence_batch3",
+    "effects.deluxe2015.alliance_prerequisites",
+    "effects.deluxe2015.treaty_protection"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:early-influence-parameters:1",
     "urn:coldwarheat:contract:early-influence-batch2:1",
-    "urn:coldwarheat:contract:early-influence-batch3:1"
+    "urn:coldwarheat:contract:early-influence-batch3:1",
+    "urn:coldwarheat:contract:alliance-prerequisites:1"
   ],
   "verification": {
     "implementation_tested": false,
-    "report": "Docs/Design/early-influence-batch3.validation.json"
+    "report": "Docs/Design/alliance-prerequisites.validation.json"
   }
 }

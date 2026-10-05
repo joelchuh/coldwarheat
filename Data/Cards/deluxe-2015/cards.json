@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.6.0",
+  "content_version": "0.7.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础编号1–103按时代整理；印刷事实已核对。影响力三批、持续效果首批及条约两牌共15牌参数已绑定，其余87个非中国牌绑定Unresolved；全部102个处理器仍planned。可选104–110不启用。",
+  "description": "基础编号1–103按时代整理；印刷事实已核对。影响力四批、持续效果首批及条约两牌共17牌参数已绑定，其余85个非中国牌绑定Unresolved；全部102个处理器仍planned。可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -41,6 +41,12 @@
       "url": null,
       "edition": "Design interpretations, 2026-09-30",
       "description": "独立红色政权零增量目标按Add语义及卡面未限制控制权推导，非官方专门FAQ；经互会短缺采用状态见Wiki EI3-RULING-01。"
+    },
+    {
+      "id": "PROJECT-AP1",
+      "url": null,
+      "edition": "AP1-RULING-01 user confirmed; AP1-INTERPRETATION-01 derived, 2026-10-05",
+      "description": "用户明确确认马歇尔不足7国选全部、零候选仍成功并解锁北约；华沙允许选零美国影响力国家是卡文推导，非用户专门确认/FAQ。"
     }
   ],
   "cards": [
@@ -468,8 +474,13 @@
       "effect_binding": {
         "effect_id": "effect.warsaw_pact_formed",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.alliance_prerequisites",
+            "json_pointer": "/parameters/warsaw_pact_formed"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -672,8 +683,13 @@
       "effect_binding": {
         "effect_id": "effect.marshall_plan",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.alliance_prerequisites",
+            "json_pointer": "/parameters/marshall_plan"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -3187,15 +3203,27 @@
     {
       "effect_id": "effect.warsaw_pact_formed",
       "contract_version": "0.1.0",
-      "description": "Warsaw Pact Formed：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.warsaw_pact_formed",
+      "description": "由苏联选择东欧4国移除全部美国影响力，或在东欧分配5苏联影响力、每国最多2；两分支不可合并。 参数已绑定，C#待实现。",
+      "handler_key": "influence.ChooseOneInfluenceBranch",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:alliance-prerequisites:1#/$defs/ChooseOneInfluenceBranch"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p3 English #16",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2; §2.1.7; §5.2; §6.1.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-AP1",
+          "locator": "Wiki AP1-INTERPRETATION-01: zero-influence targets permitted by card text; not a dedicated FAQ",
+          "verification": "Verified"
         }
       ]
     },
@@ -3333,15 +3361,27 @@
     {
       "effect_id": "effect.marshall_plan",
       "contract_version": "0.1.0",
-      "description": "Marshall Plan：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.marshall_plan",
+      "description": "选择7个不同的非苏联控制西欧国家，各加1美国影响力；短缺按用户确认选全部可选国。 参数已绑定，C#待实现。",
+      "handler_key": "influence.AddToDistinctNonOpponentControlledCountries",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:alliance-prerequisites:1#/$defs/AddToDistinctNonOpponentControlledCountries"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p4 English #23",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2; §2.1.7; §5.2; §6.1.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-AP1",
+          "locator": "Wiki AP1-RULING-01, explicit user reply 2026-10-05",
+          "verification": "Verified"
         }
       ]
     },

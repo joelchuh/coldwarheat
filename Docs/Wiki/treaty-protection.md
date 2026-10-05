@@ -15,7 +15,7 @@ description：查询条约的前置事件成功记录、跨回合保护、当前
 | 时限 | 永久，直到获授权取消或游戏结束 | 永久，直到获授权取消或游戏结束 |
 | 局部例外 | 戴高乐使法国失去北约保护；勃兰特使西德失去保护 | 本批未发现卡面取消关系 |
 
-来源：[GMT英文卡图](https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf) p4 #21，p5 #27；[2015规则](https://www.gmtgames.com/nnts/TS_Rules-2015.pdf) §2.1.1–2、§2.1.7、§5.2、§7.3、§8.1；[FAQ v5](https://www.gmtgames.com/nnts/FAQv5.pdf) p3/p5 #21确认Brush War保护是第二版起的条款。卡图p4 #17/#23、p3 #16、p9 #55、p14 #96仅用来核对接缝。没有将这五张来源牌的完整处理器绑定或实现。
+来源：[GMT英文卡图](https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf) p4 #21，p5 #27；[2015规则](https://www.gmtgames.com/nnts/TS_Rules-2015.pdf) §2.1.1–2、§2.1.7、§5.2、§7.3、§8.1；[FAQ v5](https://www.gmtgames.com/nnts/FAQv5.pdf) p3/p5 #21确认Brush War保护是第二版起的条款。卡图p4 #17/#23、p3 #16、p9 #55、p14 #96仅用来核对接缝。条约首批只登记这些来源牌的接缝；目前马歇尔与华沙已有参数设计，其他三张来源牌与Brush War仍未绑定，所有C#处理器待实现。详见[前置影响力事件](alliance-prerequisites.md)。
 
 ## 前置事件成功事实
 
@@ -73,4 +73,8 @@ DEFCON地区豁免仅跳过该检查，不绕过北约／美日安保、敌方�
 
 [验收案例](../Design/treaty-protection.cases.json)覆盖前置历史、美国控制变化、日本增加量、国家例外、跨回合与DEFCON组合；[执行证据](../Design/treaty-protection.validation.json)区分离线模型和运行验收。C#事务、状态竞争、存档恢复、隐藏信息及完整来源牌处理器仍未实现。
 
-共享数据通过稳定ID查询；模块描述只列必要输入、依赖和计划符号，不复制完整规则进脚本。表现层可自由更换图标、材质、布局与动效。下一步设计马歇尔计划和华沙条约的影响力效果与选择分支，补齐北约两条前置的完整流程；候选不足的未核实边界单独记录，不套用经互会或第二批移除牌的裁定。
+共享数据通过稳定ID查询；模块描述只列必要输入、依赖和计划符号，不复制完整规则进脚本。表现层可自由更换图标、材质、布局与动效。马歇尔计划和华沙条约的影响力效果与选择分支现已在[前置事件设计](alliance-prerequisites.md)补齐；下一步设计戴高乐／勃兰特的具体效果和北约局部例外。马歇尔短缺按本次用户确认处理，经互会短缺仍待裁定。
+
+## 前置影响力补充（2026-10-05）
+
+[马歇尔计划与华沙条约](alliance-prerequisites.md)已绑定完整基础参数和选择流程；成功提交后沿用本页EventFactLedger。戴高乐、勃兰特、拆墙和Brush War仍待完整设计。

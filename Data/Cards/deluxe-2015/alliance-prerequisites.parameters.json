@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.alliance_prerequisites",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "马歇尔计划与华沙条约：西欧非苏控不同国家放置、东欧移除/额度二选一、受益方选择与成功事件记录；参数设计，C#待实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "英文p4 #23马歇尔计划、p3 #16华沙条约；不采用旁列译文为勘误。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1.1–2子区、§2.1.7控制、§5.2选择方/成功无变化/北约前置、§6.1.1直接事件与OPS区别。"
+    },
+    {
+      "id": "PROJECT-AP1",
+      "url": null,
+      "edition": "AP1-RULING-01 user confirmed; AP1-INTERPRETATION-01 derived, 2026-10-05",
+      "description": "用户明确确认马歇尔不足7国选全部、零候选仍成功并解锁北约；华沙允许选零美国影响力国家是卡文推导，非用户专门确认/FAQ。"
+    }
+  ],
+  "completion_policy": {
+    "description": "在影响力计划成功提交后，同一事务写事件成功事实；不在选择分支或预览时提前解锁北约。",
+    "template": "RecordCommittedEventFact",
+    "fact_policy_ref": {
+      "dataset_id": "effects.deluxe2015.treaty_protection",
+      "json_pointer": "/event_fact_policy"
+    }
+  },
+  "parameters": {
+    "marshall_plan": {
+      "card_id": "card.marshall_plan",
+      "effect_id": "effect.marshall_plan",
+      "description": "选择7个不同的非苏联控制西欧国家，各加1美国影响力；短缺按用户确认选全部可选国。",
+      "template": "AddToDistinctNonOpponentControlledCountries",
+      "beneficiary": "US",
+      "target_region_id": "region.western_europe",
+      "target_control": "NotControlledByOpponent",
+      "target_count": 7,
+      "amount_per_country": 1,
+      "shortage_policy": "SelectAllAvailable",
+      "zero_candidates_outcome": "ResolvedNoChange",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p4 English #23",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2; §2.1.7; §5.2; §6.1.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-AP1",
+          "locator": "Wiki AP1-RULING-01, explicit user reply 2026-10-05",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "warsaw_pact_formed": {
+      "card_id": "card.warsaw_pact_formed",
+      "effect_id": "effect.warsaw_pact_formed",
+      "description": "由苏联选择东欧4国移除全部美国影响力，或在东欧分配5苏联影响力、每国最多2；两分支不可合并。",
+      "template": "ChooseOneInfluenceBranch",
+      "beneficiary": "USSR",
+      "target_region_id": "region.eastern_europe",
+      "branches": {
+        "remove_us": {
+          "description": "选择4个不同东欧国家，移除全部美国影响力；不限定控制或必须已有美国影响力。",
+          "template": "RemoveAllFromDistinctCountries",
+          "target_count": 4,
+          "affected_side": "US",
+          "selection_policy": "AnyRegionCountry"
+        },
+        "add_ussr": {
+          "description": "东欧分配总计5苏联影响力，每国最多2；允许美国控制国。",
+          "template": "AllocateInfluenceBudget",
+          "total_amount": 5,
+          "max_per_country": 2,
+          "target_control": "Any",
+          "affected_side": "USSR"
+        }
+      },
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p3 English #16",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2; §2.1.7; §5.2; §6.1.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-AP1",
+          "locator": "Wiki AP1-INTERPRETATION-01: zero-influence targets permitted by card text; not a dedicated FAQ",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

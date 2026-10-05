@@ -45,4 +45,6 @@
 
 截至2026-10-01：[持续效果与OPS修正](Docs/Wiki/persistent-effects.md)，增加越南起义、遏制政策、红色恐怖／清洗，共13牌参数已绑定、89牌待绑定。全部处理器仍待实现；本次验证是数据与离线参考检查，不代表游戏可以运行。
 
-最新：[北约与美日安保条约](Docs/Wiki/treaty-protection.md)已完成参数和保护机制设计；累计15牌Bound、87牌Unresolved，全部处理器仍待实现。
+条约首批：[北约与美日安保条约](Docs/Wiki/treaty-protection.md)已完成参数和保护机制设计；累计15牌Bound、87牌Unresolved，全部处理器仍待实现。
+
+最新：[马歇尔计划与华沙条约](Docs/Wiki/alliance-prerequisites.md)的影响力与玩家选择已设计；累计17牌Bound、85牌Unresolved，处理器仍planned。

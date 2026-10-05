@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "inputs": [
+    "稳定CardId/EffectId；版本匹配的已核对参数与权威事件上下文"
+  ],
+  "outputs": [
+    "只读参数或拟定的影响力增量计划/待选择"
+  ],
+  "dependencies": [],
+  "preconditions": [
+    "ready只表示参数可读；planned不是运行实现",
+    "国家/控制权与全部合法候选从权威事件开始状态计算",
+    "马歇尔短缺授权仅适用于本牌基础过滤，不自动外推其他卡牌"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知模板/版本/国家/来源或额外活动干预",
+    "错误选择拥有者、重复国家、越界额度或过期决策",
+    "华沙正式地图不足4国或分配容量不足视为资料/未知限制错误，不套马歇尔短缺"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "英文p4 #23马歇尔计划、p3 #16华沙条约；不采用旁列译文为勘误。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1.1–2子区、§2.1.7控制、§5.2选择方/成功无变化/北约前置、§6.1.1直接事件与OPS区别。"
+    },
+    {
+      "id": "PROJECT-AP1",
+      "url": null,
+      "edition": "AP1-RULING-01 user confirmed; AP1-INTERPRETATION-01 derived, 2026-10-05",
+      "description": "用户明确确认马歇尔不足7国选全部、零候选仍成功并解锁北约；华沙允许选零美国影响力国家是卡文推导，非用户专门确认/FAQ。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/alliance-prerequisites.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "documentation": "Docs/Wiki/alliance-prerequisites.md",
+  "id": "data.alliance-prerequisites",
+  "kind": "data",
+  "status": "ready",
+  "description": "马歇尔计划与华沙条约：西欧非苏控不同国家放置、东欧移除/额度二选一、受益方选择与成功事件记录；参数设计，C#待实现。",
+  "dataset_id": "effects.deluxe2015.alliance_prerequisites",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/alliance-prerequisites.schema.json",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/alliance-prerequisites.parameters.json",
+      "symbol": null
+    }
+  ],
+  "data_dependencies": [
+    "map.deluxe2015.world",
+    "effects.deluxe2015.treaty_protection"
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/alliance-prerequisites.validation.json"
+  },
+  "retrieval_hints": [
+    "按parameters.card ID后缀读；先branch ID再读对应字段",
+    "前置成功判据引用条约数据，不复制北约OR关系或成功outcome常量"
+  ]
+}
