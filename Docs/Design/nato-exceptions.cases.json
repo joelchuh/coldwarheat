@@ -1,0 +1,2024 @@
+{
+  "schema_version": 1,
+  "description": "北约局部例外两牌参数、离线固定步骤/取消/生命周期投影；真实运行事务与拆墙完整事件未实现。",
+  "dataset": "Data/Cards/deluxe-2015/nato-exceptions.parameters.json",
+  "schema": "Docs/Contracts/nato-exceptions.schema.json",
+  "cases": [
+    {
+      "id": "NE1-D01",
+      "description": "正式两牌参数与外部引用有效",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "NE1-D02",
+      "description": "受益方不可变美国",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "willy_brandt",
+            "beneficiary"
+          ],
+          "value": "US"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-D03",
+      "description": "固定法国不可引用西德例外",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "de_gaulle_leads_france",
+            "nato_exception_ref",
+            "json_pointer"
+          ],
+          "value": "/parameters/nato/country_exceptions/1"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-D04",
+      "description": "断指针拒绝",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "willy_brandt",
+            "nato_exception_ref",
+            "json_pointer"
+          ],
+          "value": "/missing"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-D05",
+      "description": "共享引用必须声明已存在数据集",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "willy_brandt",
+            "nato_exception_ref",
+            "dataset_id"
+          ],
+          "value": "unknown"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-D06",
+      "description": "移除2不可变3",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "de_gaulle_leads_france",
+            "ordered_steps",
+            0,
+            "amount"
+          ],
+          "value": 3
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-D07",
+      "description": "增加1不可变2",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "de_gaulle_leads_france",
+            "ordered_steps",
+            1,
+            "amount"
+          ],
+          "value": 2
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-D08",
+      "description": "苏联VP不能加给美国",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "willy_brandt",
+            "ordered_steps",
+            0,
+            "side"
+          ],
+          "value": "US"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-D09",
+      "description": "唯一VP不可变2",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "willy_brandt",
+            "ordered_steps",
+            0,
+            "amount"
+          ],
+          "value": 2
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-D10",
+      "description": "不能按军事检查推迟VP胜利",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "willy_brandt",
+            "ordered_steps",
+            0,
+            "checkpoint"
+          ],
+          "value": "MilitaryAssessed"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-D11",
+      "description": "不能在首步改为先增加",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "willy_brandt",
+            "ordered_steps",
+            0,
+            "kind"
+          ],
+          "value": "AddInfluence"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-D12",
+      "description": "固定步原语不允许任意代码",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "de_gaulle_leads_france",
+            "ordered_steps",
+            0,
+            "kind"
+          ],
+          "value": "Eval"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-D13",
+      "description": "不能复制目标国家形成第二真相",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "de_gaulle_leads_france",
+            "country_id"
+          ],
+          "value": "country.france"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-D14",
+      "description": "永久例外不能回合末到期",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "willy_brandt",
+            "expiry_boundary"
+          ],
+          "value": "ExpireAndReset"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-D15",
+      "description": "期限不可改本回合",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "de_gaulle_leads_france",
+            "duration"
+          ],
+          "value": "EndOfActivationTurn"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-D16",
+      "description": "戴高乐没有本批授权取消来源",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "de_gaulle_leads_france",
+            "prevention_gate"
+          ],
+          "value": {
+            "kind": "Any"
+          }
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-D17",
+      "description": "勃兰特必须保留取消前置",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "willy_brandt",
+            "prevention_gate"
+          ],
+          "value": null
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-D18",
+      "description": "取消来源引用必须指向对应关系",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "willy_brandt",
+            "prevention_gate",
+            "source_card_ref",
+            "json_pointer"
+          ],
+          "value": "/parameters/nato"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-D19",
+      "description": "取消不得逆转历史即时收益",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "willy_brandt",
+            "prevention_gate",
+            "revert_immediate_changes"
+          ],
+          "value": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-D20",
+      "description": "不得终结整个北约",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "willy_brandt",
+            "prevention_gate",
+            "cancel_scope"
+          ],
+          "value": "WholeNato"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-D21",
+      "description": "不能只取消而不阻止未来",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "willy_brandt",
+            "prevention_gate",
+            "cancellation_kind"
+          ],
+          "value": "CancelOnly"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-D22",
+      "description": "成功事实判据不得复制/指错",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "willy_brandt",
+            "prevention_gate",
+            "history_policy_ref",
+            "json_pointer"
+          ],
+          "value": "/parameters/nato"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-D23",
+      "description": "未知资料来源拒绝",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "willy_brandt",
+            "source_refs",
+            0,
+            "source_id"
+          ],
+          "value": "UNKNOWN"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "NE1-E01",
+      "description": "法国正常移除与增加",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.de_gaulle_leads_france",
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": 5,
+              "USSR": 1
+            }
+          },
+          "signed_vp": 0,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_influence": {
+        "country.france": {
+          "US": 3,
+          "USSR": 2
+        }
+      },
+      "expected_vp": 0,
+      "expected_active": [
+        "effect.de_gaulle_leads_france"
+      ],
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E02",
+      "description": "法国零US仍执行余项",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.de_gaulle_leads_france",
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_influence": {
+        "country.france": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "expected_vp": null,
+      "expected_active": [
+        "effect.de_gaulle_leads_france"
+      ],
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E03",
+      "description": "法国不足2仅移现有1",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.de_gaulle_leads_france",
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": 1,
+              "USSR": 4
+            }
+          },
+          "signed_vp": 0,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_influence": {
+        "country.france": {
+          "US": 0,
+          "USSR": 5
+        }
+      },
+      "expected_vp": null,
+      "expected_active": [
+        "effect.de_gaulle_leads_france"
+      ],
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E04",
+      "description": "没有北约也登记永久例外",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.de_gaulle_leads_france",
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_influence": {
+        "country.france": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "expected_vp": null,
+      "expected_active": [
+        "effect.de_gaulle_leads_france"
+      ],
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E05",
+      "description": "法国仍US控制但失去北约保护",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.de_gaulle_leads_france",
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": 8,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "active_effect_ids": [
+            "effect.nato"
+          ],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_influence": {
+        "country.france": {
+          "US": 6,
+          "USSR": 1
+        }
+      },
+      "expected_vp": null,
+      "expected_active": [
+        "effect.nato",
+        "effect.de_gaulle_leads_france"
+      ],
+      "expected_protection": {
+        "country_id": "country.france",
+        "expected": "NoTreatyBlock"
+      },
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E06",
+      "description": "法国例外不解除西德保护",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.de_gaulle_leads_france",
+        "state": {
+          "influence": {
+            "country.west_germany": {
+              "US": 5,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "active_effect_ids": [
+            "effect.nato"
+          ],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_influence": {
+        "country.france": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "expected_vp": null,
+      "expected_active": [
+        "effect.nato",
+        "effect.de_gaulle_leads_france"
+      ],
+      "expected_protection": {
+        "country_id": "country.west_germany",
+        "expected": "BlockedByTreaty"
+      },
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E07",
+      "description": "已知OPS修正不放大法国点数",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.de_gaulle_leads_france",
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [
+            "effect.containment",
+            "effect.red_scare_purge"
+          ],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_influence": {
+        "country.france": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "expected_vp": null,
+      "expected_active": [
+        "effect.containment",
+        "effect.red_scare_purge",
+        "effect.de_gaulle_leads_france"
+      ],
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E08",
+      "description": "勃兰特基础苏联奖分",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.willy_brandt",
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_influence": {
+        "country.west_germany": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "expected_vp": -1,
+      "expected_active": [
+        "effect.willy_brandt"
+      ],
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E09",
+      "description": "美国领先时向苏联移动1",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.willy_brandt",
+        "state": {
+          "influence": {},
+          "signed_vp": 10,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_influence": {
+        "country.west_germany": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "expected_vp": 9,
+      "expected_active": [
+        "effect.willy_brandt"
+      ],
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E10",
+      "description": "苏联19VP之前仍继续",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.willy_brandt",
+        "state": {
+          "influence": {},
+          "signed_vp": -18,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_influence": {
+        "country.west_germany": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "expected_vp": -19,
+      "expected_active": [
+        "effect.willy_brandt"
+      ],
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E11",
+      "description": "首步达到苏联20VP立即终局",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.willy_brandt",
+        "state": {
+          "influence": {
+            "country.west_germany": {
+              "US": 5,
+              "USSR": 2
+            }
+          },
+          "signed_vp": -19,
+          "active_effect_ids": [
+            "effect.nato"
+          ],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "Finished",
+      "expected_influence": {},
+      "expected_vp": -20,
+      "expected_active": [
+        "effect.nato"
+      ],
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E12",
+      "description": "西德仍US控制时例外生效",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.willy_brandt",
+        "state": {
+          "influence": {
+            "country.west_germany": {
+              "US": 7,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "active_effect_ids": [
+            "effect.nato"
+          ],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_influence": {
+        "country.west_germany": {
+          "US": 7,
+          "USSR": 1
+        }
+      },
+      "expected_vp": -1,
+      "expected_active": [
+        "effect.nato",
+        "effect.willy_brandt"
+      ],
+      "expected_protection": {
+        "country_id": "country.west_germany",
+        "expected": "NoTreatyBlock"
+      },
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E13",
+      "description": "西德例外不解除法国保护",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.willy_brandt",
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": 4,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "active_effect_ids": [
+            "effect.nato"
+          ],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_influence": {
+        "country.west_germany": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "expected_vp": -1,
+      "expected_active": [
+        "effect.nato",
+        "effect.willy_brandt"
+      ],
+      "expected_protection": {
+        "country_id": "country.france",
+        "expected": "BlockedByTreaty"
+      },
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E14",
+      "description": "法国已例外不妨碍西德收益",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.willy_brandt",
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [
+            "effect.de_gaulle_leads_france"
+          ],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_influence": {
+        "country.west_germany": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "expected_vp": -1,
+      "expected_active": [
+        "effect.de_gaulle_leads_france",
+        "effect.willy_brandt"
+      ],
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E15",
+      "description": "未知相关活动效果不部分执行",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.willy_brandt",
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [
+            "effect.unknown"
+          ],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "RequiresRuling",
+      "expected_influence": {},
+      "expected_vp": null,
+      "expected_active": null,
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E16",
+      "description": "活动状态不完整不假定未生效",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.de_gaulle_leads_france",
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": false,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "RequiresRuling",
+      "expected_influence": {},
+      "expected_vp": null,
+      "expected_active": null,
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E17",
+      "description": "勃兰特历史缺失不假定允许",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.willy_brandt",
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": false,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "RequiresRuling",
+      "expected_influence": {},
+      "expected_vp": null,
+      "expected_active": null,
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E18",
+      "description": "戴高乐不依赖拆墙历史",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.de_gaulle_leads_france",
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": false,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_influence": {
+        "country.france": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "expected_vp": null,
+      "expected_active": [
+        "effect.de_gaulle_leads_france"
+      ],
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E19",
+      "description": "拆墙成功事实阻止勃兰特",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.willy_brandt",
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [
+            {
+              "card_id": "card.tear_down_this_wall",
+              "outcome": "ResolvedChanged"
+            }
+          ],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "Suppressed",
+      "expected_influence": {},
+      "expected_vp": null,
+      "expected_active": null,
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E20",
+      "description": "主动选择被禁止事件拒绝",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.willy_brandt",
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [
+            {
+              "card_id": "card.tear_down_this_wall",
+              "outcome": "ResolvedChanged"
+            }
+          ],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "DirectEvent",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "RejectedUnplayableEvent",
+      "expected_influence": {},
+      "expected_vp": null,
+      "expected_active": null,
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E21",
+      "description": "对手OPS被阻止无收益",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.willy_brandt",
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [
+            "card.tear_down_this_wall"
+          ],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "OpponentOps",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "Suppressed",
+      "expected_influence": {},
+      "expected_vp": null,
+      "expected_active": null,
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E22",
+      "description": "可信阻止记录早于来源最终完成",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.willy_brandt",
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [
+            "card.tear_down_this_wall"
+          ],
+          "event_facts": [],
+          "history_complete": false,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "Suppressed",
+      "expected_influence": {},
+      "expected_vp": null,
+      "expected_active": null,
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E23",
+      "description": "成功NoChange也算已发生来源",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.willy_brandt",
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [
+            {
+              "card_id": "card.tear_down_this_wall",
+              "outcome": "ResolvedNoChange"
+            }
+          ],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "Suppressed",
+      "expected_influence": {},
+      "expected_vp": null,
+      "expected_active": null,
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E24",
+      "description": "来源NotTriggered不是成功阻止证明",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.willy_brandt",
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [
+            {
+              "card_id": "card.tear_down_this_wall",
+              "outcome": "NotTriggered"
+            }
+          ],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_influence": {
+        "country.west_germany": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "expected_vp": -1,
+      "expected_active": [
+        "effect.willy_brandt"
+      ],
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E25",
+      "description": "来源BlockedPrerequisite不是成功阻止证明",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.willy_brandt",
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [
+            {
+              "card_id": "card.tear_down_this_wall",
+              "outcome": "BlockedPrerequisite"
+            }
+          ],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_influence": {
+        "country.west_germany": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "expected_vp": -1,
+      "expected_active": [
+        "effect.willy_brandt"
+      ],
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E26",
+      "description": "来源Suppressed不是成功阻止证明",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.willy_brandt",
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [
+            {
+              "card_id": "card.tear_down_this_wall",
+              "outcome": "Suppressed"
+            }
+          ],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_influence": {
+        "country.west_germany": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "expected_vp": -1,
+      "expected_active": [
+        "effect.willy_brandt"
+      ],
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E27",
+      "description": "来源Cancelled不是成功阻止证明",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.willy_brandt",
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [
+            {
+              "card_id": "card.tear_down_this_wall",
+              "outcome": "Cancelled"
+            }
+          ],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_influence": {
+        "country.west_germany": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "expected_vp": -1,
+      "expected_active": [
+        "effect.willy_brandt"
+      ],
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E28",
+      "description": "牌在移出区也不能推断发生过",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.willy_brandt",
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": "Removed"
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "ResolvedChanged",
+      "expected_influence": {
+        "country.west_germany": {
+          "US": 0,
+          "USSR": 1
+        }
+      },
+      "expected_vp": -1,
+      "expected_active": [
+        "effect.willy_brandt"
+      ],
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E29",
+      "description": "同效果不同结算再次激活待裁定",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.de_gaulle_leads_france",
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [
+            "effect.de_gaulle_leads_france"
+          ],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "RequiresRuling",
+      "expected_influence": {},
+      "expected_vp": null,
+      "expected_active": null,
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E30",
+      "description": "已有终局不执行任何新步骤",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.willy_brandt",
+        "state": {
+          "influence": {},
+          "signed_vp": -20,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": true,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": true,
+      "expected_outcome": "AlreadyFinished",
+      "expected_influence": {},
+      "expected_vp": null,
+      "expected_active": null,
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-E31",
+      "description": "固定目标事件不接受自选国家",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.de_gaulle_leads_france",
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": [
+          "country.uk"
+        ]
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_influence": {},
+      "expected_vp": null,
+      "expected_active": null,
+      "expected_protection": null,
+      "expected_state_unchanged": true
+    },
+    {
+      "id": "NE1-E32",
+      "description": "损坏负影响力拒绝",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.de_gaulle_leads_france",
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": -1,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_influence": {},
+      "expected_vp": null,
+      "expected_active": null,
+      "expected_protection": null,
+      "expected_state_unchanged": true
+    },
+    {
+      "id": "NE1-E33",
+      "description": "VP不能用小数",
+      "validation_layer": "effect-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.willy_brandt",
+        "state": {
+          "influence": {},
+          "signed_vp": 1.5,
+          "active_effect_ids": [],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "attempt_mode": "EventAttempt",
+        "targets": []
+      },
+      "expected_valid": false,
+      "expected_outcome": null,
+      "expected_influence": {},
+      "expected_vp": null,
+      "expected_active": null,
+      "expected_protection": null,
+      "expected_state_unchanged": true
+    },
+    {
+      "id": "NE1-C01",
+      "description": "取消不撤销VP/影响力并恢复受控西德保护",
+      "validation_layer": "cancel-reference",
+      "status": "specified",
+      "input": {
+        "state": {
+          "influence": {
+            "country.west_germany": {
+              "US": 6,
+              "USSR": 1
+            },
+            "country.france": {
+              "US": 6,
+              "USSR": 1
+            }
+          },
+          "signed_vp": -7,
+          "active_effect_ids": [
+            "effect.nato",
+            "effect.willy_brandt"
+          ],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_intent": true,
+        "repeat": 1
+      },
+      "expected_valid": true,
+      "expected_active": [
+        "effect.nato"
+      ],
+      "expected_prevented": [
+        "card.tear_down_this_wall"
+      ],
+      "expected_protection": {
+        "country_id": "country.west_germany",
+        "expected": "BlockedByTreaty"
+      },
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-C02",
+      "description": "没有勃兰特仍永久阻止未来",
+      "validation_layer": "cancel-reference",
+      "status": "specified",
+      "input": {
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [
+            "effect.nato"
+          ],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_intent": true,
+        "repeat": 1
+      },
+      "expected_valid": true,
+      "expected_active": [
+        "effect.nato"
+      ],
+      "expected_prevented": [
+        "card.tear_down_this_wall"
+      ],
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-C03",
+      "description": "取消不影响戴高乐或北约实例",
+      "validation_layer": "cancel-reference",
+      "status": "specified",
+      "input": {
+        "state": {
+          "influence": {
+            "country.west_germany": {
+              "US": 6,
+              "USSR": 1
+            },
+            "country.france": {
+              "US": 6,
+              "USSR": 1
+            }
+          },
+          "signed_vp": 0,
+          "active_effect_ids": [
+            "effect.nato",
+            "effect.willy_brandt",
+            "effect.de_gaulle_leads_france"
+          ],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_intent": true,
+        "repeat": 1
+      },
+      "expected_valid": true,
+      "expected_active": [
+        "effect.nato",
+        "effect.de_gaulle_leads_france"
+      ],
+      "expected_prevented": [
+        "card.tear_down_this_wall"
+      ],
+      "expected_protection": {
+        "country_id": "country.france",
+        "expected": "NoTreatyBlock"
+      },
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-C04",
+      "description": "西德不受US控制就不恢复保护",
+      "validation_layer": "cancel-reference",
+      "status": "specified",
+      "input": {
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [
+            "effect.nato",
+            "effect.willy_brandt"
+          ],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_intent": true,
+        "repeat": 1
+      },
+      "expected_valid": true,
+      "expected_active": [
+        "effect.nato"
+      ],
+      "expected_prevented": [
+        "card.tear_down_this_wall"
+      ],
+      "expected_protection": {
+        "country_id": "country.west_germany",
+        "expected": "NoTreatyBlock"
+      },
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-C05",
+      "description": "没有北约不能自动激活北约",
+      "validation_layer": "cancel-reference",
+      "status": "specified",
+      "input": {
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [
+            "effect.willy_brandt"
+          ],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_intent": true,
+        "repeat": 1
+      },
+      "expected_valid": true,
+      "expected_active": [],
+      "expected_prevented": [
+        "card.tear_down_this_wall"
+      ],
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-C06",
+      "description": "重复取消投影不重复创建阻止记录",
+      "validation_layer": "cancel-reference",
+      "status": "specified",
+      "input": {
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [
+            "effect.nato",
+            "effect.willy_brandt"
+          ],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_intent": true,
+        "repeat": 2
+      },
+      "expected_valid": true,
+      "expected_active": [
+        "effect.nato"
+      ],
+      "expected_prevented": [
+        "card.tear_down_this_wall"
+      ],
+      "expected_protection": null,
+      "expected_state_unchanged": false
+    },
+    {
+      "id": "NE1-C07",
+      "description": "错误来源不能取消目标",
+      "validation_layer": "cancel-reference",
+      "status": "specified",
+      "input": {
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [
+            "effect.nato",
+            "effect.willy_brandt"
+          ],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "source_card_id": "card.containment",
+        "verified_internal_intent": true,
+        "repeat": 1
+      },
+      "expected_valid": false,
+      "expected_active": [
+        "effect.nato",
+        "effect.willy_brandt"
+      ],
+      "expected_prevented": [],
+      "expected_protection": null,
+      "expected_state_unchanged": true
+    },
+    {
+      "id": "NE1-C08",
+      "description": "客户端自报取消不是权威意图",
+      "validation_layer": "cancel-reference",
+      "status": "specified",
+      "input": {
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "active_effect_ids": [
+            "effect.nato",
+            "effect.willy_brandt"
+          ],
+          "prevented_by_card_ids": [],
+          "event_facts": [],
+          "history_complete": true,
+          "effects_complete": true,
+          "finished": false,
+          "canceller_card_zone": null
+        },
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_intent": false,
+        "repeat": 1
+      },
+      "expected_valid": false,
+      "expected_active": [
+        "effect.nato",
+        "effect.willy_brandt"
+      ],
+      "expected_prevented": [],
+      "expected_protection": null,
+      "expected_state_unchanged": true
+    },
+    {
+      "id": "NE1-L01",
+      "description": "戴高乐跨回合不失效",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "de_gaulle_turn_end"
+    },
+    {
+      "id": "NE1-L02",
+      "description": "勃兰特跨回合不失效",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "willy_turn_end"
+    },
+    {
+      "id": "NE1-L03",
+      "description": "取消后不在回合末复活",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "cancelled_turn_end"
+    },
+    {
+      "id": "NE1-L04",
+      "description": "阻止未来不随来源牌离开清除",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "prevention_next_turn"
+    },
+    {
+      "id": "NE1-R01",
+      "description": "固定步骤整体提交、资料错误无部分变化",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "NE1-R02",
+      "description": "唯一VP终局收据与帧清理、不执行后续OPS",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "NE1-R03",
+      "description": "同结算ID重试与不同载荷冲突",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "NE1-R04",
+      "description": "来源取消步骤提交后读档、不等最终事件结束",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "NE1-R05",
+      "description": "活动实例/阻止记录/VP批次的存档一致性",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "NE1-R06",
+      "description": "错误身份/ExpectedStateVersion命令拒绝",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "NE1-R07",
+      "description": "拆墙高OPS头条先取消勃兰特低OPS头条",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "NE1-R08",
+      "description": "对手OPS触发被禁止事件后原OPS仍继续",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "NE1-R09",
+      "description": "星号去向区分成功/终局/未发生",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "NE1-R10",
+      "description": "正式包不把取消接缝冒充完整拆墙",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "NE1-R11",
+      "description": "所有双方VP提供者先汇总；未知修正停止",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "NE1-R12",
+      "description": "表现层只接收只读目标ID及事件输出",
+      "validation_layer": "runtime",
+      "status": "planned"
+    }
+  ]
+}

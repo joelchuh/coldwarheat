@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.nato_exceptions",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "戴高乐与勃兰特：法国/西德固定影响力、苏联VP、永久北约局部例外及取消/阻止接缝；参数设计，C#待实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "英文p4 #17、p9 #55；p14 #96只核对取消/阻止关系，不冻结拆墙完整效果。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§5.2事件发生与去向、§6.1.1直接放置、§7.3/7.5持续与禁用事件、§10.2–10.3 VP净奖分与立即胜利。"
+    },
+    {
+      "id": "PROJECT-NE",
+      "url": null,
+      "edition": "NE-INTERPRETATION-01/02 derived design, 2026-10-05",
+      "description": "法国不足2US移除现有量仍执行余项；勃兰特唯一VP批次按卡文顺序先关闭，终局不执行后续步骤。推导/编排约定，非专门FAQ或用户专门裁定。"
+    }
+  ],
+  "parameters": {
+    "de_gaulle_leads_france": {
+      "template": "FixedCountryCompositeEvent",
+      "beneficiary": "USSR",
+      "duration": "UntilCancelledOrGameEnd",
+      "expiry_boundary": null,
+      "card_id": "card.de_gaulle_leads_france",
+      "effect_id": "effect.de_gaulle_leads_france",
+      "description": "法国移除最多2美国影响力再加1苏联影响力，登记法国北约局部例外；不足2不阻止后续。",
+      "nato_exception_ref": {
+        "dataset_id": "effects.deluxe2015.treaty_protection",
+        "json_pointer": "/parameters/nato/country_exceptions/0"
+      },
+      "prevention_gate": null,
+      "ordered_steps": [
+        {
+          "kind": "RemoveUpToInfluence",
+          "side": "US",
+          "amount": 2
+        },
+        {
+          "kind": "AddInfluence",
+          "side": "USSR",
+          "amount": 1
+        },
+        {
+          "kind": "ActivateNatoCountryException"
+        }
+      ],
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p4 English #17",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2; §6.1.1; §7.3; §7.5; §10.2.2–3; §10.3.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-NE",
+          "locator": "Wiki NE-INTERPRETATION-01: saturating removal, not dedicated FAQ",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "willy_brandt": {
+      "template": "FixedCountryCompositeEvent",
+      "beneficiary": "USSR",
+      "duration": "UntilCancelledOrGameEnd",
+      "expiry_boundary": null,
+      "card_id": "card.willy_brandt",
+      "effect_id": "effect.willy_brandt",
+      "description": "苏联1VP、西德加1苏联影响力、登记西德北约例外；拆墙可取消持续部分并阻止未来事件。",
+      "nato_exception_ref": {
+        "dataset_id": "effects.deluxe2015.treaty_protection",
+        "json_pointer": "/parameters/nato/country_exceptions/1"
+      },
+      "prevention_gate": {
+        "kind": "NotPreventedByReferencedEvent",
+        "source_card_ref": {
+          "dataset_id": "effects.deluxe2015.treaty_protection",
+          "json_pointer": "/interaction_boundaries/willy_brandt_cancelled_by"
+        },
+        "cancellation_kind": "CancelExistingAndPreventFuture",
+        "cancel_scope": "PersistentExceptionOnly",
+        "revert_immediate_changes": false,
+        "history_policy_ref": {
+          "dataset_id": "effects.deluxe2015.treaty_protection",
+          "json_pointer": "/event_fact_policy"
+        }
+      },
+      "ordered_steps": [
+        {
+          "kind": "AwardVictoryPoints",
+          "side": "USSR",
+          "amount": 1,
+          "checkpoint": "VpBatchClosed"
+        },
+        {
+          "kind": "AddInfluence",
+          "side": "USSR",
+          "amount": 1
+        },
+        {
+          "kind": "ActivateNatoCountryException"
+        }
+      ],
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p9 English #55; p14 English #96 cancellation clause",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2; §6.1.1; §7.3; §7.5; §10.2.2–3; §10.3.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-NE",
+          "locator": "Wiki NE-INTERPRETATION-02: ordered VP checkpoint; TP-INTERPRETATION-01 protection projection",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

@@ -12,6 +12,7 @@
 | 早期影响力事件第三批 | 查独立红色政权追平、经互会敌控筛选与候选不足边界 | 2牌参数已绑定；C#待实现 | [early-influence-batch3.md](early-influence-batch3.md) |
 | 持续效果与OPS修正 | 查激活/到期/取消、行动者归属、地区奖励与三牌参数 | 设计与参数；C#待实现 | [persistent-effects.md](persistent-effects.md) |
 | 条约保护与前置事件 | 查北约/美日安保、动态控制、法国西德例外、DEFCON接缝与事件成功记录 | 2牌参数绑定；C#待实现 | [treaty-protection.md](treaty-protection.md) |
+| 北约局部例外与组合事件 | 查戴高乐/勃兰特的固定步骤、VP终局、取消阻止与局部保护恢复 | 2牌参数绑定；C#待实现 | [nato-exceptions.md](nato-exceptions.md) |
 | 北约前置影响力事件 | 查马歇尔西欧筛选/确认短缺、华沙互斥分支、额度和成功记录 | 2牌参数绑定；C#待实现 | [alliance-prerequisites.md](alliance-prerequisites.md) |
 | 初始布置与开局 | 查固定影响力、自由部署、私有初始手牌、轨道引用、幂等与首回合衔接 | 数据和流程设计已建立；服务待实现 | [setup.md](setup.md) |
 | 回合与出牌状态机 | 查找阶段转换、头条保密、事件/OPS 顺序、卡牌去向和读档继续位置 | v0.2 编排设计；待实现 | [turn-flow.md](turn-flow.md) |
@@ -21,9 +22,9 @@
 | 地图与卡牌数据契约 | 查找正式数据字段、邻接、三类卡牌、效果注册、Schema及加载门禁 | 契约与正式印刷定义已建立；服务待实现 | [map-card-contracts.md](map-card-contracts.md) |
 | 正式地图与卡牌数据 | 按地区查84国与邻接，按时代查103张基础牌及效果待实现边界 | 静态定义已录入；不是可运行规则包 | [map-card-data.md](map-card-data.md) |
 | 地图布局与未定画风 | 区分规则图、位置拾取和主题资源，了解2D/3D接入边界 | 设计稿；未选定美术 | [map-presentation.md](map-presentation.md) |
-| 数据结构契约目录 | 按description定位十三份JSON Schema（含事件参数、setup及卡牌v1/v2）与合成样例 | 结构契约；不是完整规则包 | [catalog.json](../Contracts/catalog.json) |
-| 模块描述目录 | 先按 description 定位模块，再读完整契约与相关代码 | 十二个模块描述均 planned | [catalog.json](../Descriptors/catalog.json) |
-| 共享规则数据目录 | 查找数据集描述、来源与独立参数文件 | 十三个参数子集＋地图/卡牌/开局定义＋名称字典；运行服务待实现 | [catalog.json](../../Data/catalog.json) |
+| 数据结构契约目录 | 按description定位十四份JSON Schema（含事件参数、setup及卡牌v1/v2）与合成样例 | 结构契约；不是完整规则包 | [catalog.json](../Contracts/catalog.json) |
+| 模块描述目录 | 先按 description 定位模块，再读完整契约与相关代码 | 十三个模块描述均 planned | [catalog.json](../Descriptors/catalog.json) |
+| 共享规则数据目录 | 查找数据集描述、来源与独立参数文件 | 十四个参数子集＋地图/卡牌/开局定义＋名称字典；运行服务待实现 | [catalog.json](../../Data/catalog.json) |
 | 行动规则 | 查找影响力、政变、调整、预算、对象契约与验收案例 | v0.2 设计稿；未实现 | [operations.md](operations.md) |
 | 规则资料 | 查找版本来源、FAQ 适用边界和资料冻结缺口 | 已登记；未完整冻结 | [rules-sources.md](rules-sources.md) |
 | 工程边界 | 查找纯 C# 核心、命令、事件、玩家视角、确定性和程序集约束 | 设计约定；待实现 | [AGENTS.md](../../AGENTS.md) |

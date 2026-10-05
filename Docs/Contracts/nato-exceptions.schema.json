@@ -1,0 +1,353 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:nato-exceptions:1",
+  "title": "nato-exceptions",
+  "description": "两牌固定国家组合事件、封闭步骤原语、持久局部例外与取消/阻止引用；禁止任意脚本或自报取消来源。",
+  "$defs": {
+    "FixedCountryCompositeEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "pattern": "^card\\.[a-z][a-z0-9_]*$"
+        },
+        "effect_id": {
+          "type": "string",
+          "pattern": "^effect\\.[a-z][a-z0-9_]*$"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "FixedCountryCompositeEvent"
+        },
+        "beneficiary": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "nato_exception_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.treaty_protection"
+            },
+            "json_pointer": {
+              "type": "string",
+              "pattern": "^/"
+            }
+          },
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ]
+        },
+        "duration": {
+          "const": "UntilCancelledOrGameEnd"
+        },
+        "expiry_boundary": {
+          "type": "null"
+        },
+        "prevention_gate": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "const": "NotPreventedByReferencedEvent"
+                },
+                "source_card_ref": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "dataset_id": {
+                      "const": "effects.deluxe2015.treaty_protection"
+                    },
+                    "json_pointer": {
+                      "type": "string",
+                      "pattern": "^/"
+                    }
+                  },
+                  "required": [
+                    "dataset_id",
+                    "json_pointer"
+                  ]
+                },
+                "cancellation_kind": {
+                  "const": "CancelExistingAndPreventFuture"
+                },
+                "cancel_scope": {
+                  "const": "PersistentExceptionOnly"
+                },
+                "revert_immediate_changes": {
+                  "const": false
+                },
+                "history_policy_ref": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "dataset_id": {
+                      "const": "effects.deluxe2015.treaty_protection"
+                    },
+                    "json_pointer": {
+                      "type": "string",
+                      "pattern": "^/"
+                    }
+                  },
+                  "required": [
+                    "dataset_id",
+                    "json_pointer"
+                  ]
+                }
+              },
+              "required": [
+                "kind",
+                "source_card_ref",
+                "cancellation_kind",
+                "cancel_scope",
+                "revert_immediate_changes",
+                "history_policy_ref"
+              ]
+            }
+          ]
+        },
+        "ordered_steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "kind": {
+                    "const": "RemoveUpToInfluence"
+                  },
+                  "side": {
+                    "enum": [
+                      "US",
+                      "USSR"
+                    ]
+                  },
+                  "amount": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "kind",
+                  "side",
+                  "amount"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "kind": {
+                    "const": "AddInfluence"
+                  },
+                  "side": {
+                    "enum": [
+                      "US",
+                      "USSR"
+                    ]
+                  },
+                  "amount": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "kind",
+                  "side",
+                  "amount"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "kind": {
+                    "const": "AwardVictoryPoints"
+                  },
+                  "side": {
+                    "enum": [
+                      "US",
+                      "USSR"
+                    ]
+                  },
+                  "amount": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "checkpoint": {
+                    "const": "VpBatchClosed"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "side",
+                  "amount",
+                  "checkpoint"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "kind": {
+                    "const": "ActivateNatoCountryException"
+                  }
+                },
+                "required": [
+                  "kind"
+                ]
+              }
+            ]
+          }
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "enum": [
+                  "Verified",
+                  "Pending",
+                  "Fixture"
+                ]
+              }
+            },
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ]
+          },
+          "minItems": 1,
+          "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+        }
+      },
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "nato_exception_ref",
+        "duration",
+        "expiry_boundary",
+        "prevention_gate",
+        "ordered_steps",
+        "source_refs"
+      ]
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.nato_exceptions"
+    },
+    "content_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "ruleset_id": {
+      "type": "string",
+      "pattern": "^ruleset\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+    },
+    "scope": {
+      "enum": [
+        "fixture",
+        "release-candidate"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "edition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "edition",
+          "description"
+        ]
+      },
+      "minItems": 1
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "de_gaulle_leads_france": {
+          "$ref": "#/$defs/FixedCountryCompositeEvent"
+        },
+        "willy_brandt": {
+          "$ref": "#/$defs/FixedCountryCompositeEvent"
+        }
+      },
+      "required": [
+        "de_gaulle_leads_france",
+        "willy_brandt"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "parameters"
+  ]
+}

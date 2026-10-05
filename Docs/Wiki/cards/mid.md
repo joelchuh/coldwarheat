@@ -1,7 +1,7 @@
 # 冷战中期：印刷卡牌定义
 
 > description: 冷战中期卡牌编号、稳定ID、标题、OPS、阵营及印刷标记的派生浏览表。
-> 唯一来源：[cards.json](../../../Data/Cards/deluxe-2015/cards.json)，content_version=0.7.0；英文卡图按PDF页码核对。表中星号表示事件正常结算后移出；下划线仅作显示提醒，不定义效果持续时间。
+> 唯一来源：[cards.json](../../../Data/Cards/deluxe-2015/cards.json)，content_version=0.8.0；英文卡图按PDF页码核对。表中星号表示事件正常结算后移出；下划线仅作显示提醒，不定义效果持续时间。
 > 所有效果尚未实现；中国牌不进入普通时代牌库。
 
 | 编号 | CardId（card.省略） | 标题 | OPS | 阵营 | 移出星号 | 下划线 | PDF页 |
@@ -54,3 +54,5 @@
 | 81 | south_america_scoring | South America Scoring | — | None | 否 | 否 | 12 |
 
 [返回数据索引](../map-card-data.md)
+
+[戴高乐与勃兰特](../nato-exceptions.md)：固定影响力／VP、北约局部例外与取消关系。

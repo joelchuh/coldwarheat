@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "inputs": [
+    "权威出牌帧/结算ID/步骤游标、类型化步骤、静态引用和活动/阻止状态"
+  ],
+  "outputs": [
+    "拟定影响力/VP/局部例外计划、胜负结果与继续位置；不接受任意代码"
+  ],
+  "dependencies": [
+    {
+      "id": "module.influence-events",
+      "path": "Docs/Descriptors/influence-events.module.json",
+      "status": "planned"
+    },
+    {
+      "id": "module.active-effects",
+      "path": "Docs/Descriptors/active-effects.module.json",
+      "status": "planned"
+    },
+    {
+      "id": "module.victory",
+      "path": "Docs/Descriptors/victory.module.json",
+      "status": "planned"
+    }
+  ],
+  "preconditions": [
+    "planned不是实现；所有相关状态和参数已验证",
+    "复用影响力/活动状态/胜负模块，由编排层收集不可变结果，避免可变服务互调"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知原语/参数/相关活动效果或历史；不部分提交已失败计划",
+    "重复结算冲突、已有终局、来源处理器未实现"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "英文p4 #17、p9 #55；p14 #96只核对取消/阻止关系，不冻结拆墙完整效果。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§5.2事件发生与去向、§6.1.1直接放置、§7.3/7.5持续与禁用事件、§10.2–10.3 VP净奖分与立即胜利。"
+    },
+    {
+      "id": "PROJECT-NE",
+      "url": null,
+      "edition": "NE-INTERPRETATION-01/02 derived design, 2026-10-05",
+      "description": "法国不足2US移除现有量仍执行余项；勃兰特唯一VP批次按卡文顺序先关闭，终局不执行后续步骤。推导/编排约定，非专门FAQ或用户专门裁定。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/nato-exceptions.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "documentation": "Docs/Wiki/nato-exceptions.md",
+  "id": "module.composite-events",
+  "kind": "module",
+  "status": "planned",
+  "description": "组合固定影响力、VP及持续状态的有序事件步骤，关闭VP批次并停止终局后的继续；两张北约例外牌，纯Core计划。",
+  "entrypoints": [],
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Composite/CompositeEventResolver.cs",
+      "symbol": "ResolveOrderedSteps"
+    }
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.nato_exceptions",
+    "effects.deluxe2015.treaty_protection",
+    "map.deluxe2015.world",
+    "cards.deluxe2015.definitions",
+    "rules.deluxe2015.victory",
+    "rules.deluxe2015.turn-flow"
+  ],
+  "contract_dependencies": [
+    "urn:coldwarheat:contract:nato-exceptions:1"
+  ],
+  "verification": {
+    "implementation_tested": false,
+    "report": "Docs/Design/nato-exceptions.validation.json"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "inputs": [
+    "稳定CardId/EffectId；版本匹配的已核对参数与权威事件上下文"
+  ],
+  "outputs": [
+    "只读两牌固定步骤、例外引用与阻止门禁参数"
+  ],
+  "dependencies": [],
+  "preconditions": [
+    "ready只表示可读参数；C#未实现",
+    "局部例外引用必须与本牌EffectId匹配；断指针或换序不能静默指向别国",
+    "取消证明及成功事件事实只来自权威记录，不能从牌区推断"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知模板/原语、损坏引用、未知相关干预或事件历史",
+    "不完整计划、重复激活冲突；不能猜重复牌收益或刷新规则",
+    "已有终局不继续组合事件后续步骤；拆墙未实现时不得放行完整拆墙事件"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "英文p4 #17、p9 #55；p14 #96只核对取消/阻止关系，不冻结拆墙完整效果。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§5.2事件发生与去向、§6.1.1直接放置、§7.3/7.5持续与禁用事件、§10.2–10.3 VP净奖分与立即胜利。"
+    },
+    {
+      "id": "PROJECT-NE",
+      "url": null,
+      "edition": "NE-INTERPRETATION-01/02 derived design, 2026-10-05",
+      "description": "法国不足2US移除现有量仍执行余项；勃兰特唯一VP批次按卡文顺序先关闭，终局不执行后续步骤。推导/编排约定，非专门FAQ或用户专门裁定。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/nato-exceptions.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "documentation": "Docs/Wiki/nato-exceptions.md",
+  "id": "data.nato-exceptions",
+  "kind": "data",
+  "status": "ready",
+  "description": "戴高乐与勃兰特：法国/西德固定影响力、苏联VP、永久北约局部例外及取消/阻止接缝；参数设计，C#待实现。",
+  "dataset_id": "effects.deluxe2015.nato_exceptions",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/nato-exceptions.schema.json",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/nato-exceptions.parameters.json",
+      "symbol": null
+    }
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.treaty_protection",
+    "map.deluxe2015.world",
+    "cards.deluxe2015.definitions",
+    "rules.deluxe2015.victory"
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/nato-exceptions.validation.json"
+  },
+  "retrieval_hints": [
+    "国家和局部例外从nato_exception_ref解引用，不另存country/effect映射",
+    "只读ordered_steps和prevention_gate；拆墙完整处理器未绑定"
+  ]
+}

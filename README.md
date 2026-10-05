@@ -47,4 +47,6 @@
 
 条约首批：[北约与美日安保条约](Docs/Wiki/treaty-protection.md)已完成参数和保护机制设计；累计15牌Bound、87牌Unresolved，全部处理器仍待实现。
 
-最新：[马歇尔计划与华沙条约](Docs/Wiki/alliance-prerequisites.md)的影响力与玩家选择已设计；累计17牌Bound、85牌Unresolved，处理器仍planned。
+前置事件批：[马歇尔计划与华沙条约](Docs/Wiki/alliance-prerequisites.md)的影响力与玩家选择已设计；累计17牌Bound、85牌Unresolved，处理器仍planned。
+
+最新：[戴高乐与勃兰特](Docs/Wiki/nato-exceptions.md)已设计固定组合效果和局部北约例外；累计19牌Bound、83牌Unresolved，C#仍未实现。

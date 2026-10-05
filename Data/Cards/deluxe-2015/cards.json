@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.7.0",
+  "content_version": "0.8.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础编号1–103按时代整理；印刷事实已核对。影响力四批、持续效果首批及条约两牌共17牌参数已绑定，其余85个非中国牌绑定Unresolved；全部102个处理器仍planned。可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计19牌效果参数已绑定，其余83个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -47,6 +47,12 @@
       "url": null,
       "edition": "AP1-RULING-01 user confirmed; AP1-INTERPRETATION-01 derived, 2026-10-05",
       "description": "用户明确确认马歇尔不足7国选全部、零候选仍成功并解锁北约；华沙允许选零美国影响力国家是卡文推导，非用户专门确认/FAQ。"
+    },
+    {
+      "id": "PROJECT-NE",
+      "url": null,
+      "edition": "NE-INTERPRETATION-01/02 derived design, 2026-10-05",
+      "description": "法国不足2US移除现有量仍执行余项；勃兰特唯一VP批次按卡文顺序先关闭，终局不执行后续步骤。推导/编排约定，非专门FAQ或用户专门裁定。"
     }
   ],
   "cards": [
@@ -506,8 +512,13 @@
       "effect_binding": {
         "effect_id": "effect.de_gaulle_leads_france",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.nato_exceptions",
+            "json_pointer": "/parameters/de_gaulle_leads_france"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -1609,8 +1620,13 @@
       "effect_binding": {
         "effect_id": "effect.willy_brandt",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.nato_exceptions",
+            "json_pointer": "/parameters/willy_brandt"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -3230,15 +3246,27 @@
     {
       "effect_id": "effect.de_gaulle_leads_france",
       "contract_version": "0.1.0",
-      "description": "De Gaulle Leads France：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.de_gaulle_leads_france",
+      "description": "法国移除最多2美国影响力再加1苏联影响力，登记法国北约局部例外；不足2不阻止后续。 参数已绑定，C#待实现。",
+      "handler_key": "composite.FixedCountryCompositeEvent",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:nato-exceptions:1#/$defs/FixedCountryCompositeEvent"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p4 English #17",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2; §6.1.1; §7.3; §7.5; §10.2.2–3; §10.3.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-NE",
+          "locator": "Wiki NE-INTERPRETATION-01: saturating removal, not dedicated FAQ",
+          "verification": "Verified"
         }
       ]
     },
@@ -3940,15 +3968,27 @@
     {
       "effect_id": "effect.willy_brandt",
       "contract_version": "0.1.0",
-      "description": "Willy Brandt：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.willy_brandt",
+      "description": "苏联1VP、西德加1苏联影响力、登记西德北约例外；拆墙可取消持续部分并阻止未来事件。 参数已绑定，C#待实现。",
+      "handler_key": "composite.FixedCountryCompositeEvent",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:nato-exceptions:1#/$defs/FixedCountryCompositeEvent"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p9 English #55; p14 English #96 cancellation clause",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2; §6.1.1; §7.3; §7.5; §10.2.2–3; §10.3.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-NE",
+          "locator": "Wiki NE-INTERPRETATION-02: ordered VP checkpoint; TP-INTERPRETATION-01 protection projection",
+          "verification": "Verified"
         }
       ]
     },
