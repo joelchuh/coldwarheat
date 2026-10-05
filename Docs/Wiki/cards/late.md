@@ -33,3 +33,5 @@
 拆墙完整参数已绑定，见[事件行动授权](../event-operations.md)。取消/固定收益与可选欧洲行动分开，处理器仍planned。
 
 [战争第二批](../war-events-batch2.md)已绑定本时代对应战争参数；处理器仍planned。
+
+[战争牌持续与取消](../war-card-hooks.md)补齐本时代相关三牌参数，运行实现仍planned。

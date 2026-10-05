@@ -2,10 +2,10 @@
   "schema_version": 1,
   "id": "data.card-definitions",
   "kind": "data",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计25牌效果参数已绑定，其余77个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计28牌效果参数已绑定，其余74个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "status": "ready",
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.11.0",
+  "content_version": "0.12.0",
   "schema_path": "Docs/Contracts/cards-v2.schema.json",
   "entrypoints": [
     {
@@ -31,7 +31,8 @@
     "effects.deluxe2015.nato_exceptions",
     "effects.deluxe2015.event_operations_batch1",
     "effects.deluxe2015.war_events_batch1",
-    "effects.deluxe2015.war_events_batch2"
+    "effects.deluxe2015.war_events_batch2",
+    "effects.deluxe2015.war_card_hooks"
   ],
   "preconditions": [
     "先校验结构、唯一ID、引用、来源与版本",
@@ -75,13 +76,18 @@
     {
       "path": "Docs/Design/war-events-batch2.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/war-card-hooks.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "documentation": "Docs/Wiki/map-card-data.md",
   "verification": {
     "checked_on": "2026-09-28",
     "runtime_consumers_tested": false,
-    "report": "Docs/Worklogs/2026-09-28-map-card-data.md"
+    "report": "Docs/Worklogs/2026-09-28-map-card-data.md",
+    "latest_design_report": "Docs/Design/war-card-hooks.validation.json"
   },
   "retrieval_hints": [
     "cards[id]",

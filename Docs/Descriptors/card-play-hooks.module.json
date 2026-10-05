@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "id": "module.card-play-hooks",
+  "kind": "module",
+  "status": "planned",
+  "description": "实际CardUse资格与持续处罚：区分CardPlayer/根行动者/事件控制者；不响应抽牌或显示，未裁定时序与来源停止。",
+  "documentation": "Docs/Wiki/war-card-hooks.md",
+  "entrypoints": [],
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/CardPlayHookService.cs",
+      "symbol": "ClassifyActualUse"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/CardPlayHookService.cs",
+      "symbol": "BuildPenaltyPlan"
+    }
+  ],
+  "inputs": [
+    "服务验证的CardUseId/CardId/CardPlayer/UseKind/OriginKind/ParentFrameId",
+    "实际使用前权威活动状态、永久事件事实与抑制原因；客户端不填角色或出处"
+  ],
+  "outputs": [
+    "ChargeQualified/NoCharge/RequiresRuling资格、来源可追溯PenaltyPlan及去重键；不直接改变GameState"
+  ],
+  "dependencies": [
+    {
+      "id": "module.active-effects",
+      "path": "Docs/Descriptors/active-effects.module.json",
+      "status": "planned"
+    },
+    {
+      "id": "module.victory",
+      "path": "Docs/Descriptors/victory.module.json",
+      "status": "planned"
+    }
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.war_card_hooks",
+    "cards.deluxe2015.definitions",
+    "effects.deluxe2015.treaty_protection",
+    "effects.deluxe2015.war_events_batch1"
+  ],
+  "contract_dependencies": [
+    "urn:coldwarheat:contract:war-card-hooks:1"
+  ],
+  "preconditions": [
+    "所有角色、合法性和实际Use已由编排层验证；Headlines仅在分别执行时生成Use",
+    "来源未设计的授权子出牌、UN边界与处罚时机不可猜默认"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "终局、重复处理冲突、身份/来源缺损、未核实交互/时序"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "目视英文p9 #59、p10 #65、p14 #97；Evil明确Cancels/Prevents，非只取消当前实例。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§4.5头条分别执行、§5.2对手事件及Camp后Arab的OPS、§6.1.1事件影响力、§6.4.5太空不触发、§7.3/7.5持续与禁用、§10.2/3独立VP批次。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p13 #59 OPS/事件均处罚，后续卡使战争不可用则例外，太空例外；p7 #32只界定联合国压制，不是Flower交互专门裁定。"
+    },
+    {
+      "id": "PROJECT-WH1",
+      "url": null,
+      "edition": "WH1 engineering / pending rulings, 2026-10-06",
+      "description": "固定组合事件按英文卡文顺序推进，未知hook结算时机、UN交互与未设计子出牌来源停止为RequiresRuling；不冒称官方裁定。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/war-card-hooks.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "implementation_tested": false,
+    "report": "Docs/Design/war-card-hooks.validation.json"
+  }
+}

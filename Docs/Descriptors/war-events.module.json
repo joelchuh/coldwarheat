@@ -66,7 +66,8 @@
     "rules.deluxe2015.military-operations",
     "rules.deluxe2015.victory",
     "rules.deluxe2015.turn-flow",
-    "effects.deluxe2015.war_events_batch2"
+    "effects.deluxe2015.war_events_batch2",
+    "effects.deluxe2015.war_card_hooks"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:war-events-batch1:1",
@@ -74,7 +75,7 @@
   ],
   "preconditions": [
     "五张战争参数Bound且运行处理器实际注册；零目标影响力合法",
-    "未结算Flower Power等相关卡牌出牌钩子或未知战争修正必须停止，不能默认无效果",
+    "CardUse钩子已明确结算；未知Flower时机/UN交互或未设计使用来源必须停止，不默认免罚。",
     "固定苏联事件收益归USSR；中立牌归EventController，不用PhasingPlayer替代"
   ],
   "side_effects": [
@@ -117,11 +118,15 @@
     {
       "path": "Docs/Design/war-events-batch2.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/war-card-hooks.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
     "report": "Docs/Design/war-events-batch1.validation.json",
-    "latest_design_report": "Docs/Design/war-events-batch2.validation.json"
+    "latest_design_report": "Docs/Design/war-card-hooks.validation.json"
   }
 }

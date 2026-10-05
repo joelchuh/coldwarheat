@@ -220,3 +220,5 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 [战争事件](war-events.md)由内部帧确定EffectController，印巴先选被攻击国再抽骰。戴维营仅阻止阿以事件，父OPS继续规则沿用§5.2；未结算Flower Power等相关CardPlayed钩子须停止。战争返回父帧，不多消耗卡牌/行动名额。
 
 [战争第二批](war-events-batch2.md)两牌都先由EffectController选被攻击国，再单骰结算；Brush先过滤北约候选，拒绝选择不消耗随机状态。相关CardPlayed钩子仍待后批。
+
+最新交互见[战争牌持续与取消](war-card-hooks.md)：实际CardPlayer决定处罚资格；Flower精确时机/UN边界待裁定，戴维营与邪恶帝国完整步骤已绑定，处理器仍planned。

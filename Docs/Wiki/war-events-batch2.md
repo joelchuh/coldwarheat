@@ -2,7 +2,7 @@
 
 description：Brush War的稳定度/北约目标过滤、直接超级大国邻接修正，以及两伊战争对已有战争政策的明确引用。
 
-状态：2026-10-05，新增2牌参数Bound，五张基础战争参数均已设计；全项目25 Bound / 77 Unresolved，102处理器仍planned。入口：[数据描述](../../Data/Descriptors/war-events-batch2.data.json) → [参数](../../Data/Cards/deluxe-2015/war-events-batch2.parameters.json)；[模块](../Descriptors/war-events.module.json)、[Schema](../Contracts/war-events-batch2.schema.json)、[案例](../Design/war-events-batch2.cases.json)、[验证](../Design/war-events-batch2.validation.json)。
+状态：2026-10-05，新增2牌参数Bound，五张基础战争参数均已设计；全项目28 Bound / 74 Unresolved，102处理器仍planned。入口：[数据描述](../../Data/Descriptors/war-events-batch2.data.json) → [参数](../../Data/Cards/deluxe-2015/war-events-batch2.parameters.json)；[模块](../Descriptors/war-events.module.json)、[Schema](../Contracts/war-events-batch2.schema.json)、[案例](../Design/war-events-batch2.cases.json)、[验证](../Design/war-events-batch2.validation.json)。
 
 | 卡牌 | 被攻击国 | 胜利阈值 | 每次合法结算军事 | 胜利VP |
 |---|---|---|---|---|
@@ -32,3 +32,5 @@ PrepareAttempt核实内部帧/数据摘要/完整相关效果集合 → 确定�
 来源：英文卡图PDF p7 #36、p15 #102；2015规则§2.1.5/7、§7.6、§8.2.3/4、§10.2/3；FAQv5 PDF p8 #36及p3/p5 #21，使用其Deluxe反转后的超级大国裁定。类型化变体及完整结果提交为工程约定，非专门额外规则裁定。
 
 案例区分封闭参数负例、固定骰/候选投影和planned运行验收。内部身份/活动效果/卡牌钩子可信性是假设，离线模型不证明真实鉴权、随机保存、命令幂等、存读档或Unity。后续持续计划见[批次JSON](../Design/rules-design-roadmap.json)，下一批补齐Flower Power、Camp David Accords与An Evil Empire。
+
+最新交互见[战争牌持续与取消](war-card-hooks.md)：实际CardPlayer决定处罚资格；Flower精确时机/UN边界待裁定，戴维营与邪恶帝国完整步骤已绑定，处理器仍planned。

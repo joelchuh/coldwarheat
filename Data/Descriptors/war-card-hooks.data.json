@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "id": "data.war-card-hooks",
+  "kind": "data",
+  "status": "ready",
+  "description": "Flower Power、戴维营与邪恶帝国：战争牌使用资格、固定收益、永久禁止与取消；已知参数绑定，处罚时机/UN交互待裁定，处理器planned。",
+  "dataset_id": "effects.deluxe2015.war_card_hooks",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/war-card-hooks.schema.json",
+  "documentation": "Docs/Wiki/war-card-hooks.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/war-card-hooks.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "稳定CardId或战争实际使用上下文"
+  ],
+  "outputs": [
+    "具名步骤、战争集合、出处/角色/取消引用及显式待裁定状态"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world",
+    "effects.deluxe2015.war_events_batch1",
+    "effects.deluxe2015.war_events_batch2",
+    "effects.deluxe2015.treaty_protection",
+    "rules.deluxe2015.victory"
+  ],
+  "preconditions": [
+    "ready仅表示参数数据就绪，非可运行规则包",
+    "Bound不消除已登记待裁定边界；必须先验证使用来源和成功事实"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知处罚时机、UN压制交互或尚未设计的子出牌来源",
+    "缺损事件历史、未知活动效果、同效果另次激活冲突"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "目视英文p9 #59、p10 #65、p14 #97；Evil明确Cancels/Prevents，非只取消当前实例。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§4.5头条分别执行、§5.2对手事件及Camp后Arab的OPS、§6.1.1事件影响力、§6.4.5太空不触发、§7.3/7.5持续与禁用、§10.2/3独立VP批次。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p13 #59 OPS/事件均处罚，后续卡使战争不可用则例外，太空例外；p7 #32只界定联合国压制，不是Flower交互专门裁定。"
+    },
+    {
+      "id": "PROJECT-WH1",
+      "url": null,
+      "edition": "WH1 engineering / pending rulings, 2026-10-06",
+      "description": "固定组合事件按英文卡文顺序推进，未知hook结算时机、UN交互与未设计子出牌来源停止为RequiresRuling；不冒称官方裁定。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/war-card-hooks.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/war-card-hooks.validation.json"
+  },
+  "retrieval_hints": [
+    "卡牌先读取/parameters对应项；Flower后读取/hook_policy",
+    "成功历史复用treaty_protection/event_fact_policy，Arab门禁复用WAR1，不从卡牌位置猜事件成功"
+  ]
+}

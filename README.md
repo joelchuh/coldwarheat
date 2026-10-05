@@ -55,4 +55,6 @@
 
 此前：[首批战争事件](Docs/Wiki/war-events.md)绑定朝鲜、阿以、印巴战争，累计23牌Bound、79牌Unresolved；102处理器仍planned。三牌复用单骰与转移模板，画风接口独立。
 
-最新：[战争第二批](Docs/Wiki/war-events-batch2.md)补齐Brush War与两伊战争，五张战争参数均已绑定；累计25 Bound / 77 Unresolved，处理器仍planned。后续持续设计见[批次规划](Docs/Design/rules-design-roadmap.json)。
+此前：[战争第二批](Docs/Wiki/war-events-batch2.md)补齐Brush War与两伊战争，五张战争参数均已绑定；累计25 Bound / 77 Unresolved，处理器仍planned。后续持续设计见[批次规划](Docs/Design/rules-design-roadmap.json)。
+
+最新：[战争牌持续与取消](Docs/Wiki/war-card-hooks.md)新增Flower、戴维营与邪恶帝国；累计28 Bound / 74 Unresolved，102处理器仍planned；Flower两项边界待裁定。

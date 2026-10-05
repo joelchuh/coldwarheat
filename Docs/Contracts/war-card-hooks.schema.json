@@ -1,0 +1,699 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:war-card-hooks:1",
+  "title": "战争牌使用与固定取消事件参数",
+  "description": "具名封闭步骤、已核实五牌集合及显式待裁定边界；禁止任意表达式、默认时序与控制者伪装。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "hook_policy",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.war_card_hooks"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "release-candidate"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "url",
+          "edition",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "edition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "hook_policy": {
+      "$ref": "#/$defs/HookPolicy"
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "flower_power",
+        "camp_david_accords",
+        "an_evil_empire"
+      ],
+      "properties": {
+        "flower_power": {
+          "$ref": "#/$defs/flower_power"
+        },
+        "camp_david_accords": {
+          "$ref": "#/$defs/camp_david_accords"
+        },
+        "an_evil_empire": {
+          "$ref": "#/$defs/an_evil_empire"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "flower_power": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "duration",
+        "hook_policy_ref",
+        "prevention_gate",
+        "ordered_steps",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.flower_power"
+        },
+        "effect_id": {
+          "const": "effect.flower_power"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "ActivateCardUsePenalty"
+        },
+        "beneficiary": {
+          "const": "USSR"
+        },
+        "duration": {
+          "const": "UntilCancelledOrGameEnd"
+        },
+        "hook_policy_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.war_card_hooks"
+            },
+            "json_pointer": {
+              "const": "/hook_policy"
+            }
+          }
+        },
+        "prevention_gate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source_card_id",
+            "event_fact_policy_ref",
+            "on_qualifying_fact"
+          ],
+          "properties": {
+            "source_card_id": {
+              "const": "card.an_evil_empire"
+            },
+            "event_fact_policy_ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "dataset_id",
+                "json_pointer"
+              ],
+              "properties": {
+                "dataset_id": {
+                  "const": "effects.deluxe2015.treaty_protection"
+                },
+                "json_pointer": {
+                  "const": "/event_fact_policy"
+                }
+              }
+            },
+            "on_qualifying_fact": {
+              "const": "BlockedPrerequisite"
+            }
+          }
+        },
+        "ordered_steps": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "ActivateCardUsePenalty"
+                }
+              }
+            }
+          ],
+          "items": false
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    },
+    "camp_david_accords": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "duration",
+        "target_war_gate_ref",
+        "ordered_steps",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.camp_david_accords"
+        },
+        "effect_id": {
+          "const": "effect.camp_david_accords"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "FixedInfluenceAndEventBan"
+        },
+        "beneficiary": {
+          "const": "US"
+        },
+        "duration": {
+          "const": "UntilGameEnd"
+        },
+        "target_war_gate_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.war_events_batch1"
+            },
+            "json_pointer": {
+              "const": "/parameters/arab_israeli_war/prevention_gate"
+            }
+          }
+        },
+        "ordered_steps": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind",
+                "side",
+                "amount",
+                "checkpoint"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "AwardVictoryPoints"
+                },
+                "side": {
+                  "const": "US"
+                },
+                "amount": {
+                  "const": 1
+                },
+                "checkpoint": {
+                  "const": "VpBatchClosed"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind",
+                "side",
+                "amount_per_country",
+                "country_ids"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "AddFixedInfluenceBatch"
+                },
+                "side": {
+                  "const": "US"
+                },
+                "amount_per_country": {
+                  "const": 1
+                },
+                "country_ids": {
+                  "type": "array",
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "prefixItems": [
+                    {
+                      "const": "country.israel"
+                    },
+                    {
+                      "const": "country.jordan"
+                    },
+                    {
+                      "const": "country.egypt"
+                    }
+                  ],
+                  "items": false
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind",
+                "event_fact_policy_ref"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "RecordSuccessfulEventFact"
+                },
+                "event_fact_policy_ref": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "dataset_id",
+                    "json_pointer"
+                  ],
+                  "properties": {
+                    "dataset_id": {
+                      "const": "effects.deluxe2015.treaty_protection"
+                    },
+                    "json_pointer": {
+                      "const": "/event_fact_policy"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "items": false
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    },
+    "an_evil_empire": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "duration",
+        "cancel_target_ref",
+        "cancellation_kind",
+        "cancel_scope",
+        "revert_immediate_changes",
+        "event_fact_policy_ref",
+        "ordered_steps",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.an_evil_empire"
+        },
+        "effect_id": {
+          "const": "effect.an_evil_empire"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "CancelPreventAndAwardVp"
+        },
+        "beneficiary": {
+          "const": "US"
+        },
+        "duration": {
+          "const": "UntilGameEnd"
+        },
+        "cancel_target_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.war_card_hooks"
+            },
+            "json_pointer": {
+              "const": "/parameters/flower_power"
+            }
+          }
+        },
+        "cancellation_kind": {
+          "const": "CancelExistingAndPreventFuture"
+        },
+        "cancel_scope": {
+          "const": "PersistentCardUsePenaltyOnly"
+        },
+        "revert_immediate_changes": {
+          "const": false
+        },
+        "event_fact_policy_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.treaty_protection"
+            },
+            "json_pointer": {
+              "const": "/event_fact_policy"
+            }
+          }
+        },
+        "ordered_steps": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "CancelAndPreventReferencedEvent"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind",
+                "side",
+                "amount",
+                "checkpoint"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "AwardVictoryPoints"
+                },
+                "side": {
+                  "const": "US"
+                },
+                "amount": {
+                  "const": 1
+                },
+                "checkpoint": {
+                  "const": "VpBatchClosed"
+                }
+              }
+            }
+          ],
+          "items": false
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    },
+    "HookPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "description",
+        "war_card_ids",
+        "card_player",
+        "reward_side",
+        "reward_vp",
+        "qualifying_uses",
+        "excluded_uses",
+        "ordinary_origins",
+        "subplay_origin_policy",
+        "banned_war_event_policy",
+        "un_intervention_policy",
+        "settlement_timing",
+        "timing_ruling_status",
+        "snapshot_boundary",
+        "dedup_key",
+        "unknown_context_policy"
+      ],
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "war_card_ids": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "prefixItems": [
+            {
+              "const": "card.arab_israeli_war"
+            },
+            {
+              "const": "card.korean_war"
+            },
+            {
+              "const": "card.brush_war"
+            },
+            {
+              "const": "card.indo_pakistani_war"
+            },
+            {
+              "const": "card.iran_iraq_war"
+            }
+          ],
+          "items": false
+        },
+        "card_player": {
+          "const": "US"
+        },
+        "reward_side": {
+          "const": "USSR"
+        },
+        "reward_vp": {
+          "const": 2
+        },
+        "qualifying_uses": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "const": "Event"
+            },
+            {
+              "const": "Operations"
+            }
+          ],
+          "items": false
+        },
+        "excluded_uses": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "const": "SpaceRace"
+            },
+            {
+              "const": "Discard"
+            },
+            {
+              "const": "RevealOnly"
+            }
+          ],
+          "items": false
+        },
+        "ordinary_origins": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "const": "NormalAction"
+            },
+            {
+              "const": "HeadlineExecution"
+            }
+          ],
+          "items": false
+        },
+        "subplay_origin_policy": {
+          "const": "RequiresVerifiedSourceContract"
+        },
+        "banned_war_event_policy": {
+          "const": "NoCharge"
+        },
+        "un_intervention_policy": {
+          "const": "RequiresRuling"
+        },
+        "settlement_timing": {
+          "const": "RequiresRuling"
+        },
+        "timing_ruling_status": {
+          "const": "PendingUserOrOfficialRuling"
+        },
+        "snapshot_boundary": {
+          "const": "VerifiedActualUseBeforeEventOrOperations"
+        },
+        "dedup_key": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "const": "CardUseId"
+            },
+            {
+              "const": "EffectInstanceId"
+            }
+          ],
+          "items": false
+        },
+        "unknown_context_policy": {
+          "const": "RequiresRuling"
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 # 战争事件：第一批
 
 > description: 查询朝鲜战争、阿以战争、印巴战争的目标政策、单骰修正、固定奖励、影响力转移、阻止接口和事务流程。
-> 状态：2026-10-05，3牌参数Bound；全项目25 Bound / 77 Unresolved，102个处理器均planned，C#/Unity尚未实现。
+> 状态：2026-10-05，3牌参数Bound；全项目28 Bound / 74 Unresolved，102个处理器均planned，C#/Unity尚未实现。
 > 入口：[参数描述](../../Data/Descriptors/war-events-batch1.data.json)、[参数](../../Data/Cards/deluxe-2015/war-events-batch1.parameters.json)、[模块描述](../Descriptors/war-events.module.json)、[Schema](../Contracts/war-events-batch1.schema.json)、[案例](../Design/war-events-batch1.cases.json)、[验证](../Design/war-events-batch1.validation.json)。
 
 ## 本批三张牌
@@ -64,3 +64,5 @@ flowchart TD
 战争补充：[Brush War与两伊战争](war-events-batch2.md)已完成目标/参数设计，五张战争参数Bound；北约过滤不分攻击方，直接超级大国邻接按Deluxe计算。完整战争CardPlayed钩子仍待后批。
 
 首批验证报告保存当时23牌绑定的快照；最新第二批报告及库存见上文补充入口。
+
+最新交互见[战争牌持续与取消](war-card-hooks.md)：实际CardPlayer决定处罚资格；Flower精确时机/UN边界待裁定，戴维营与邪恶帝国完整步骤已绑定，处理器仍planned。

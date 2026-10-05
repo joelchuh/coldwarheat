@@ -42,7 +42,7 @@
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "edition": "English Deluxe card images",
-      "description": "英文p4 #17、p9 #55；p14 #96本批重新核对完整取消、固定影响力与可选欧洲行动。"
+      "description": "英文p4 #17、p9 #55；p14 #96本批重新核对完整取消、固定影响力与可选欧洲行动。 本批p9 #59/p10 #65/p14 #97。"
     },
     {
       "id": "R2015",
@@ -67,6 +67,12 @@
       "url": null,
       "edition": "EO1-INTERPRETATION-01 derived; engineering contracts, 2026-10-05",
       "description": "可选调整可在已结算掷骰之间结束并放弃余量；由may与逐次目标语义推导，非专门FAQ/用户裁定。冻结授权预算、步进事务及来源证明为工程约定。"
+    },
+    {
+      "id": "PROJECT-WH1",
+      "url": null,
+      "edition": "WH1 engineering / pending rulings, 2026-10-06",
+      "description": "固定组合事件按英文卡文顺序推进，未知hook结算时机、UN交互与未设计子出牌来源停止为RequiresRuling；不冒称官方裁定。"
     }
   ],
   "tests": [
@@ -77,13 +83,17 @@
     {
       "path": "Docs/Design/event-operations-batch1.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/war-card-hooks.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "documentation": "Docs/Wiki/nato-exceptions.md",
   "id": "module.composite-events",
   "kind": "module",
   "status": "planned",
-  "description": "固定组合事件与可选区域行动：影响力、VP、持续状态、取消阻止和授权子帧；封闭步骤，终局截断，纯Core计划。",
+  "description": "固定组合事件与可选区域行动：影响力、VP、成功事实、永久取消阻止和授权子帧；封闭步骤，终局截断。",
   "entrypoints": [],
   "planned_entrypoints": [
     {
@@ -98,15 +108,17 @@
     "cards.deluxe2015.definitions",
     "rules.deluxe2015.victory",
     "rules.deluxe2015.turn-flow",
-    "effects.deluxe2015.event_operations_batch1"
+    "effects.deluxe2015.event_operations_batch1",
+    "effects.deluxe2015.war_card_hooks"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:nato-exceptions:1",
-    "urn:coldwarheat:contract:event-operations-batch1:1"
+    "urn:coldwarheat:contract:event-operations-batch1:1",
+    "urn:coldwarheat:contract:war-card-hooks:1"
   ],
   "verification": {
     "implementation_tested": false,
     "report": "Docs/Design/nato-exceptions.validation.json",
-    "latest_design_report": "Docs/Design/event-operations-batch1.validation.json"
+    "latest_design_report": "Docs/Design/war-card-hooks.validation.json"
   }
 }

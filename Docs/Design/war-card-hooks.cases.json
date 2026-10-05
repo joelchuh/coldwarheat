@@ -1,0 +1,1951 @@
+{
+  "schema_version": 1,
+  "description": "战争牌持续/取消的数据负例、固定参考投影与未执行运行验收；处罚时机与UN边界仍显式待裁定。",
+  "dataset": "Data/Cards/deluxe-2015/war-card-hooks.parameters.json",
+  "schema": "Docs/Contracts/war-card-hooks.schema.json",
+  "cases": [
+    {
+      "id": "WH-D-baseline",
+      "validation_layer": "data",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "WH-D-reward",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "hook_policy",
+              "reward_vp"
+            ],
+            "value": 3
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-reward-side",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "hook_policy",
+              "reward_side"
+            ],
+            "value": "US"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-actor",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "hook_policy",
+              "card_player"
+            ],
+            "value": "EventController"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-space-charge",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "hook_policy",
+              "qualifying_uses"
+            ],
+            "value": [
+              "Event",
+              "Operations",
+              "SpaceRace"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-war-set",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "hook_policy",
+              "war_card_ids"
+            ],
+            "value": [
+              "card.cold_war"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-missing-war",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "hook_policy",
+              "war_card_ids"
+            ],
+            "value": [
+              "card.korean_war"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-subplay-default",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "hook_policy",
+              "subplay_origin_policy"
+            ],
+            "value": "AnySource"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-timing-default",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "hook_policy",
+              "settlement_timing"
+            ],
+            "value": "BeforeEvent"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-un-default",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "hook_policy",
+              "un_intervention_policy"
+            ],
+            "value": "NoCharge"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-camp-amount",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "camp_david_accords",
+              "ordered_steps",
+              1,
+              "amount_per_country"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-camp-country",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "camp_david_accords",
+              "ordered_steps",
+              1,
+              "country_ids"
+            ],
+            "value": [
+              "country.israel",
+              "country.iraq",
+              "country.egypt"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-camp-side",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "camp_david_accords",
+              "beneficiary"
+            ],
+            "value": "EventController"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-evil-only-cancel",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "an_evil_empire",
+              "cancellation_kind"
+            ],
+            "value": "CancelExisting"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-evil-retroactive",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "an_evil_empire",
+              "revert_immediate_changes"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-evil-vp",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "an_evil_empire",
+              "ordered_steps",
+              1,
+              "amount"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-flower-duration",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "flower_power",
+              "duration"
+            ],
+            "value": "TurnEnd"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-flower-controller",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "flower_power",
+              "beneficiary"
+            ],
+            "value": "EventController"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-evil-gate",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "flower_power",
+              "prevention_gate",
+              "source_card_id"
+            ],
+            "value": "card.nato"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-country-ref",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "camp_david_accords",
+              "target_war_gate_ref",
+              "json_pointer"
+            ],
+            "value": "/unknown"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-unknown-field",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "hook_policy",
+              "arbitrary_code"
+            ],
+            "value": "run()"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-duplicate-source",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "source_catalog",
+              1,
+              "id"
+            ],
+            "value": "C-DELUXE-EN"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-missing-source-ref",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "flower_power",
+              "source_refs",
+              0,
+              "source_id"
+            ],
+            "value": "UNKNOWN"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-D-evil-step-order",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "an_evil_empire",
+              "ordered_steps"
+            ],
+            "value": [
+              {
+                "kind": "AwardVictoryPoints",
+                "side": "US",
+                "amount": 1,
+                "checkpoint": "VpBatchClosed"
+              },
+              {
+                "kind": "CancelAndPreventReferencedEvent"
+              }
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WH-R-flower-activate",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.flower_power",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {}
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "active_flower": true,
+          "completed": true,
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WH-R-flower-fixed-beneficiary",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.flower_power",
+        "event_controller": "US",
+        "card_player": "USSR",
+        "root_phasing_player": "USSR",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {}
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "active_flower": true,
+          "completed": true,
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WH-R-flower-repeat-different-resolution",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.flower_power",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-flower-prevented",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.flower_power",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "evil_fact": "ResolvedChanged",
+          "prevent_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "BlockedPrerequisite",
+        "state_patch": {
+          "event_outcome": "BlockedPrerequisite",
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "WH-R-flower-prevented-no-change-fact",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.flower_power",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "evil_fact": "ResolvedNoChange",
+          "prevent_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "BlockedPrerequisite",
+        "state_patch": {
+          "event_outcome": "BlockedPrerequisite",
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "WH-R-flower-non-success-NotTriggered",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.flower_power",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "evil_fact": "NotTriggered"
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "active_flower": true,
+          "completed": true,
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WH-R-flower-non-success-BlockedPrerequisite",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.flower_power",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "evil_fact": "BlockedPrerequisite"
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "active_flower": true,
+          "completed": true,
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WH-R-flower-non-success-Suppressed",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.flower_power",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "evil_fact": "Suppressed"
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "active_flower": true,
+          "completed": true,
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WH-R-flower-non-success-Cancelled",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.flower_power",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "evil_fact": "Cancelled"
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "active_flower": true,
+          "completed": true,
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WH-R-camp-baseline",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.camp_david_accords",
+        "event_controller": "US",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {}
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "signed_vp": 1,
+          "influence": {
+            "country.israel": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.jordan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.egypt": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "camp_fact": "ResolvedChanged",
+          "completed": true,
+          "event_outcome": "ResolvedChanged",
+          "step": 3
+        }
+      }
+    },
+    {
+      "id": "WH-R-camp-opponent-played",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.camp_david_accords",
+        "event_controller": "USSR",
+        "card_player": "USSR",
+        "root_phasing_player": "USSR",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {}
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "signed_vp": 1,
+          "influence": {
+            "country.israel": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.jordan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.egypt": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "camp_fact": "ResolvedChanged",
+          "completed": true,
+          "event_outcome": "ResolvedChanged",
+          "step": 3
+        }
+      }
+    },
+    {
+      "id": "WH-R-camp-ignores-ops-geography",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.camp_david_accords",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "influence": {
+            "country.israel": {
+              "US": 0,
+              "USSR": 8
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "signed_vp": 1,
+          "influence": {
+            "country.israel": {
+              "US": 1,
+              "USSR": 8
+            },
+            "country.jordan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.egypt": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "camp_fact": "ResolvedChanged",
+          "completed": true,
+          "event_outcome": "ResolvedChanged",
+          "step": 3
+        }
+      }
+    },
+    {
+      "id": "WH-R-camp-us-terminal",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.camp_david_accords",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "signed_vp": 19
+        }
+      },
+      "expected": {
+        "outcome": "GameEnded",
+        "state_patch": {
+          "signed_vp": 20,
+          "finished": true,
+          "winner": "US",
+          "step": 1,
+          "completed": true,
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WH-R-camp-away-from-soviet-terminal",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.camp_david_accords",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "signed_vp": -19
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "signed_vp": -18,
+          "influence": {
+            "country.israel": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.jordan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.egypt": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "camp_fact": "ResolvedChanged",
+          "completed": true,
+          "event_outcome": "ResolvedChanged",
+          "step": 3
+        }
+      }
+    },
+    {
+      "id": "WH-R-evil-no-existing-flower",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.an_evil_empire",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {}
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "signed_vp": 1,
+          "active_flower": false,
+          "prevent_flower": true,
+          "evil_fact": "ResolvedChanged",
+          "completed": true,
+          "event_outcome": "ResolvedChanged",
+          "step": 2
+        }
+      }
+    },
+    {
+      "id": "WH-R-evil-cancels-active",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.an_evil_empire",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "signed_vp": 1,
+          "active_flower": false,
+          "prevent_flower": true,
+          "evil_fact": "ResolvedChanged",
+          "completed": true,
+          "event_outcome": "ResolvedChanged",
+          "step": 2
+        }
+      }
+    },
+    {
+      "id": "WH-R-evil-no-retroactive-vp",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.an_evil_empire",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true,
+          "signed_vp": -4
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "signed_vp": -3,
+          "active_flower": false,
+          "prevent_flower": true,
+          "evil_fact": "ResolvedChanged",
+          "completed": true,
+          "event_outcome": "ResolvedChanged",
+          "step": 2
+        }
+      }
+    },
+    {
+      "id": "WH-R-evil-fixed-us-beneficiary",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.an_evil_empire",
+        "event_controller": "USSR",
+        "card_player": "USSR",
+        "root_phasing_player": "USSR",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {}
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "signed_vp": 1,
+          "active_flower": false,
+          "prevent_flower": true,
+          "evil_fact": "ResolvedChanged",
+          "completed": true,
+          "event_outcome": "ResolvedChanged",
+          "step": 2
+        }
+      }
+    },
+    {
+      "id": "WH-R-evil-terminal-after-cancel",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.an_evil_empire",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true,
+          "signed_vp": 19
+        }
+      },
+      "expected": {
+        "outcome": "GameEnded",
+        "state_patch": {
+          "signed_vp": 20,
+          "active_flower": false,
+          "prevent_flower": true,
+          "evil_fact": "ResolvedChanged",
+          "completed": true,
+          "event_outcome": "ResolvedChanged",
+          "step": 2,
+          "finished": true,
+          "winner": "US"
+        }
+      }
+    },
+    {
+      "id": "WH-R-arab_israeli_war-Event",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "ChargeQualified",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-arab_israeli_war-Operations",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Operations",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "ChargeQualified",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-korean_war-Event",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "ChargeQualified",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-korean_war-Operations",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Operations",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "ChargeQualified",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-brush_war-Event",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "ChargeQualified",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-brush_war-Operations",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Operations",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "ChargeQualified",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-indo_pakistani_war-Event",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.indo_pakistani_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "ChargeQualified",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-indo_pakistani_war-Operations",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.indo_pakistani_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Operations",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "ChargeQualified",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-iran_iraq_war-Event",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.iran_iraq_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "ChargeQualified",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-iran_iraq_war-Operations",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.iran_iraq_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Operations",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "ChargeQualified",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-charge-plan-pending",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BuildPenalty",
+        "verified_internal_frame": true,
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-excluded-SpaceRace",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "SpaceRace",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "NoCharge",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-excluded-Discard",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Discard",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "NoCharge",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-excluded-RevealOnly",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "RevealOnly",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "NoCharge",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-soviet-use-us-event-controller",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.brush_war",
+        "event_controller": "US",
+        "card_player": "USSR",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "NoCharge",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-us-use-soviet-war-beneficiary",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "ChargeQualified",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-non-war-card",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.nato",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "NoCharge",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-no-active-flower",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {}
+      },
+      "expected": {
+        "outcome": "NoCharge",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-camp-arab-ops-exempt",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BuildPenalty",
+        "verified_internal_frame": true,
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Operations",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true,
+          "camp_fact": "ResolvedChanged"
+        }
+      },
+      "expected": {
+        "outcome": "NoCharge",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-camp-nochange-fact-exempt",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Operations",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true,
+          "camp_fact": "ResolvedNoChange"
+        }
+      },
+      "expected": {
+        "outcome": "NoCharge",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-camp-ops-not-event-success",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Operations",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true,
+          "camp_fact": "NotTriggered"
+        }
+      },
+      "expected": {
+        "outcome": "ChargeQualified",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-camp-does-not-exempt-korean",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true,
+          "camp_fact": "ResolvedChanged"
+        }
+      },
+      "expected": {
+        "outcome": "ChargeQualified",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-headline-execution",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "HeadlineExecution",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "ChargeQualified",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-un-suppression-pending",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BuildPenalty",
+        "verified_internal_frame": true,
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Operations",
+        "origin": "NormalAction",
+        "suppression": "UNIntervention",
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-un-camp-already-banned",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BuildPenalty",
+        "verified_internal_frame": true,
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Operations",
+        "origin": "NormalAction",
+        "suppression": "UNIntervention",
+        "state": {
+          "active_flower": true,
+          "camp_fact": "ResolvedChanged"
+        }
+      },
+      "expected": {
+        "outcome": "NoCharge",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-authorized-subplay-not-designed",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "AuthorizedSubplay",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-unknown-suppression",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": "Mystery",
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-illegal-use",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BuildPenalty",
+        "verified_internal_frame": true,
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": false,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidUse",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-forged-role",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": false,
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-unknown-card",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.fake",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {}
+      },
+      "expected": {
+        "outcome": "UnsupportedCard",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-unknown-history",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.flower_power",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "histories_complete": false
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-unknown-effects",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Classify",
+        "verified_internal_frame": true,
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "effects_complete": false,
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-evil-fact-missing-prevention",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.flower_power",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "evil_fact": "ResolvedChanged"
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-evil-fact-active-flower-conflict",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.flower_power",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "evil_fact": "ResolvedChanged",
+          "prevent_flower": true,
+          "active_flower": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-prevention-without-success",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.flower_power",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "prevent_flower": true,
+          "evil_fact": "Cancelled"
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-replayed-event",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.flower_power",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "completed": true
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-R-already-finished",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "verified_internal_frame": true,
+        "card_id": "card.flower_power",
+        "event_controller": "USSR",
+        "card_player": "US",
+        "root_phasing_player": "US",
+        "legally_committed": true,
+        "use_kind": "Event",
+        "origin": "NormalAction",
+        "suppression": null,
+        "state": {
+          "finished": true,
+          "winner": "US"
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WH-I-physical-use-proof",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "真实ActualUseId/角色/出处只由编排层构造，伪造请求无规则变化"
+    },
+    {
+      "id": "WH-I-headline-order",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "分别执行头条时生成use；预约/揭示不扣分"
+    },
+    {
+      "id": "WH-I-opponent-ops-order",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "前后事件/OPS的使用快照与唯一HookId保持一致"
+    },
+    {
+      "id": "WH-I-save-hook",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "存读档保留已结算hook，不重扣VP"
+    },
+    {
+      "id": "WH-I-duplicate-use",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "同CardUseId+EffectInstanceId最多一次；冲突停止"
+    },
+    {
+      "id": "WH-I-cancel-no-refund",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "取消已激活效果不撤销旧VP"
+    },
+    {
+      "id": "WH-I-unknown-origin",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "Grain Sales/Star Wars等来源处理器设计完成前不能偷用通用源证明"
+    },
+    {
+      "id": "WH-I-camp-terminal",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "Camp VP终局停止其后影响力和事实步骤"
+    },
+    {
+      "id": "WH-I-evil-terminal",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "Evil先取消/禁止，再VP终局"
+    },
+    {
+      "id": "WH-I-fault-rollback",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "参数/计划/溢出错误无部分提交，无随机推进"
+    },
+    {
+      "id": "WH-I-un-ruling",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "未确认UN交互时停止；不得用第三方互相矛盾评论默认"
+    },
+    {
+      "id": "WH-I-timing-ruling",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "未确认Flower VP时机时资格可判断，计划不能执行"
+    }
+  ]
+}

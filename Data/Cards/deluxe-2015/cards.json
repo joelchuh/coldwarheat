@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.11.0",
+  "content_version": "0.12.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计25牌效果参数已绑定，其余77个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计28牌效果参数已绑定，其余74个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -71,6 +71,12 @@
       "url": null,
       "edition": "WAR2-ENGINEERING-01, 2026-10-05",
       "description": "延用首批单次战争完整结果末关闭VP批次；不存在合法目标时停止为RequiresRuling，不发明默认战争奖励。"
+    },
+    {
+      "id": "PROJECT-WH1",
+      "url": null,
+      "edition": "WH1 engineering / pending rulings, 2026-10-06",
+      "description": "固定组合事件按英文卡文顺序推进，未知hook结算时机、UN交互与未设计子出牌来源停止为RequiresRuling；不冒称官方裁定。"
     }
   ],
   "cards": [
@@ -1771,8 +1777,13 @@
       "effect_binding": {
         "effect_id": "effect.flower_power",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.war_card_hooks",
+            "json_pointer": "/parameters/flower_power"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -1933,8 +1944,13 @@
       "effect_binding": {
         "effect_id": "effect.camp_david_accords",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.war_card_hooks",
+            "json_pointer": "/parameters/camp_david_accords"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -2802,8 +2818,13 @@
       "effect_binding": {
         "effect_id": "effect.an_evil_empire",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.war_card_hooks",
+            "json_pointer": "/parameters/an_evil_empire"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -4156,15 +4177,32 @@
     {
       "effect_id": "effect.flower_power",
       "contract_version": "0.1.0",
-      "description": "Flower Power：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.flower_power",
+      "description": "永久苏联战争牌处罚；美国实际OPS/事件使用指定五牌时苏联2VP，太空与已禁用战争例外，精确时机/UN边界仍待裁定。",
+      "handler_key": "hooks.ActivateCardUsePenalty",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:war-card-hooks:1#/$defs/flower_power"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p9 #59、p10 #65、p14 #97；Evil明确Cancels/Prevents，非只取消当前实例。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§4.5头条分别执行、§5.2对手事件及Camp后Arab的OPS、§6.1.1事件影响力、§6.4.5太空不触发、§7.3/7.5持续与禁用、§10.2/3独立VP批次。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p13 #59 OPS/事件均处罚，后续卡使战争不可用则例外，太空例外；p7 #32只界定联合国压制，不是Flower交互专门裁定。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-WH1",
+          "locator": "固定组合事件按英文卡文顺序推进，未知hook结算时机、UN交互与未设计子出牌来源停止为RequiresRuling；不冒称官方裁定。",
+          "verification": "Verified"
         }
       ]
     },
@@ -4246,15 +4284,32 @@
     {
       "effect_id": "effect.camp_david_accords",
       "contract_version": "0.1.0",
-      "description": "Camp David Accords：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.camp_david_accords",
+      "description": "按卡文先美国1VP，再以色列/约旦/埃及各1美国影响力，永久禁用阿以事件；复用首批战争已有成功事实门禁。",
+      "handler_key": "composite.FixedTypedSteps",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:war-card-hooks:1#/$defs/camp_david_accords"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p9 #59、p10 #65、p14 #97；Evil明确Cancels/Prevents，非只取消当前实例。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§4.5头条分别执行、§5.2对手事件及Camp后Arab的OPS、§6.1.1事件影响力、§6.4.5太空不触发、§7.3/7.5持续与禁用、§10.2/3独立VP批次。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p13 #59 OPS/事件均处罚，后续卡使战争不可用则例外，太空例外；p7 #32只界定联合国压制，不是Flower交互专门裁定。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-WH1",
+          "locator": "固定组合事件按英文卡文顺序推进，未知hook结算时机、UN交互与未设计子出牌来源停止为RequiresRuling；不冒称官方裁定。",
+          "verification": "Verified"
         }
       ]
     },
@@ -4743,15 +4798,32 @@
     {
       "effect_id": "effect.an_evil_empire",
       "contract_version": "0.1.0",
-      "description": "An Evil Empire：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.an_evil_empire",
+      "description": "先取消Flower当前持续处罚并永久阻止未来事件，再美国1VP；不回退既有分数与影响力。",
+      "handler_key": "composite.FixedTypedSteps",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:war-card-hooks:1#/$defs/an_evil_empire"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p9 #59、p10 #65、p14 #97；Evil明确Cancels/Prevents，非只取消当前实例。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§4.5头条分别执行、§5.2对手事件及Camp后Arab的OPS、§6.1.1事件影响力、§6.4.5太空不触发、§7.3/7.5持续与禁用、§10.2/3独立VP批次。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p13 #59 OPS/事件均处罚，后续卡使战争不可用则例外，太空例外；p7 #32只界定联合国压制，不是Flower交互专门裁定。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-WH1",
+          "locator": "固定组合事件按英文卡文顺序推进，未知hook结算时机、UN交互与未设计子出牌来源停止为RequiresRuling；不冒称官方裁定。",
+          "verification": "Verified"
         }
       ]
     },
