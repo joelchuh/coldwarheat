@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "data.war-events-batch1",
+  "kind": "data",
+  "status": "ready",
+  "description": "首批三张战争事件：目标、单骰修正、固定军事/VP、一比一影响力转移及戴维营阻止；运行处理器待实现。",
+  "dataset_id": "effects.deluxe2015.war_events_batch1",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/war-events-batch1.schema.json",
+  "documentation": "Docs/Wiki/war-events.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/war-events-batch1.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "按三张战争CardId查询只读参数"
+  ],
+  "outputs": [
+    "目标政策、战争共用参数引用及事件阻止条件"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world",
+    "effects.deluxe2015.treaty_protection",
+    "rules.deluxe2015.military-operations",
+    "rules.deluxe2015.victory",
+    "rules.deluxe2015.turn-flow"
+  ],
+  "preconditions": [
+    "ready仅指参数可读；C#注册及来源版本验证待实现"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知战争/模板、损坏参数引用或来源不完整"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "英文卡图p3 #11/#13、p4 #24、p10 #65；不复制完整原文。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1.5/7邻接与控制；§5.2对手事件/戴维营例；§7.6战争零影响力也可打；§8.2.3/4军事归属；§10.2/3 VP完整批次。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p3–4 #11无DEFCON降级/#13以色列自身控制修正，p5 #24零影响力仍有军事与胜利VP；p13 #59 Flower Power接缝尚未绑定。"
+    },
+    {
+      "id": "PROJECT-WAR1",
+      "url": null,
+      "edition": "WAR1-ENGINEERING-01, 2026-10-05",
+      "description": "把单次战争的军事、胜利影响力转移和VP组成原子结果，在同一语义批次末判终局；工程提交顺序，不冒称额外专门FAQ。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/war-events-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/war-events-batch1.validation.json"
+  },
+  "retrieval_hints": [
+    "先description，再/parameters/<card_key>，共用数值取/war_policy",
+    "OPS、阵营及星号只读cards.json；邻接/稳定度只读world.json；不从美术坐标推导邻接"
+  ]
+}

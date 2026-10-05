@@ -97,7 +97,7 @@ SubmitInitialDeploymentCommand沿用CommandId、GameId、ExpectedStateVersion；
 
 ## 验证边界与下一步
 
-结构/数据验证可以读取当前候选包，但不创建游戏。当前102个非中国牌处理器仍planned；20牌参数已Bound，82牌仍Unresolved，因此完整规则包的运行门禁仍拒绝开局；不能用空事件绕过。测试未来SetupFlow时可注入明确fixture注册表，但不得将fixture启动当作正式包可运行。
+结构/数据验证可以读取当前候选包，但不创建游戏。当前102个非中国牌处理器仍planned；23牌参数已Bound，79牌仍Unresolved，因此完整规则包的运行门禁仍拒绝开局；不能用空事件绕过。测试未来SetupFlow时可注入明确fixture注册表，但不得将fixture启动当作正式包可运行。
 
 验收将分别覆盖官方固定表、引用、子区、错误部署、私有手牌、随机恢复、内部步骤重复、首回合不多发牌和跨主题一致性。静态数据检查结果见[工作记录](../Worklogs/2026-09-28-setup-design.md)，C#运行案例仍为planned。下一步按小批设计早期卡牌事件参数、选择与持续效果，再结合既有行动/计分/太空服务逐步实现核心。
 

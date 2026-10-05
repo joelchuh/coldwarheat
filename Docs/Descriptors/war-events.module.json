@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "id": "module.war-events",
+  "kind": "module",
+  "status": "planned",
+  "description": "独立战争事件服务：核实阻止/相关钩子、选择被攻击国、冻结修正、单骰、一比一转移、固定军事与VP完整结算；不借用政变算法。",
+  "documentation": "Docs/Wiki/war-events.md",
+  "entrypoints": [],
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Events/WarEventService.cs",
+      "symbol": "PrepareAttempt"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Events/WarEventService.cs",
+      "symbol": "BuildTargetDecision"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Events/WarEventService.cs",
+      "symbol": "ResolveSingleRoll"
+    }
+  ],
+  "inputs": [
+    "服务内部验证的CardId/EffectId/InstanceId/PhasingPlayer/EffectController（EventController同义）、父帧、数据摘要及当前局面",
+    "玩家响应仅DecisionId/Revision/CountryId；骰点来自权威IRandomProvider"
+  ],
+  "outputs": [
+    "WarContext、PendingDecision、WarResolutionPlan、EventOutcome和VpBatchClosed"
+  ],
+  "dependencies": [
+    {
+      "id": "module.influence-events",
+      "path": "Docs/Descriptors/influence-events.module.json",
+      "status": "planned"
+    },
+    {
+      "id": "module.active-effects",
+      "path": "Docs/Descriptors/active-effects.module.json",
+      "status": "planned"
+    },
+    {
+      "id": "module.military-operations",
+      "path": "Docs/Descriptors/military-operations.module.json",
+      "status": "planned"
+    },
+    {
+      "id": "module.victory",
+      "path": "Docs/Descriptors/victory.module.json",
+      "status": "planned"
+    }
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.war_events_batch1",
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world",
+    "effects.deluxe2015.treaty_protection",
+    "rules.deluxe2015.military-operations",
+    "rules.deluxe2015.victory",
+    "rules.deluxe2015.turn-flow"
+  ],
+  "contract_dependencies": [
+    "urn:coldwarheat:contract:war-events-batch1:1"
+  ],
+  "preconditions": [
+    "三张战争参数Bound且运行处理器实际注册；零目标影响力合法",
+    "未结算Flower Power等相关卡牌出牌钩子或未知战争修正必须停止，不能默认无效果",
+    "固定苏联事件收益归USSR；中立牌归EventController，不用PhasingPlayer替代"
+  ],
+  "side_effects": [
+    "未来由RuleEngine原子提交单次战争结果、随机游标与实例完成标记；无Unity依赖"
+  ],
+  "stop_conditions": [
+    "终局、未知效果/不完整事件历史、旧响应、非法目标、溢出或版本失配"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "英文卡图p3 #11/#13、p4 #24、p10 #65；不复制完整原文。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1.5/7邻接与控制；§5.2对手事件/戴维营例；§7.6战争零影响力也可打；§8.2.3/4军事归属；§10.2/3 VP完整批次。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p3–4 #11无DEFCON降级/#13以色列自身控制修正，p5 #24零影响力仍有军事与胜利VP；p13 #59 Flower Power接缝尚未绑定。"
+    },
+    {
+      "id": "PROJECT-WAR1",
+      "url": null,
+      "edition": "WAR1-ENGINEERING-01, 2026-10-05",
+      "description": "把单次战争的军事、胜利影响力转移和VP组成原子结果，在同一语义批次末判终局；工程提交顺序，不冒称额外专门FAQ。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/war-events-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "implementation_tested": false,
+    "report": "Docs/Design/war-events-batch1.validation.json"
+  }
+}

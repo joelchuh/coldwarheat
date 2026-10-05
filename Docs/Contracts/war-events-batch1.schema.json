@@ -1,0 +1,536 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:war-events-batch1:1",
+  "title": "首批单骰影响力转移战争参数",
+  "description": "封闭模板参数，仅三张已核实战争；无任意表达式。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "war_policy",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.war_events_batch1"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "release-candidate"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "url",
+          "edition",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "edition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "war_policy": {
+      "$ref": "#/$defs/WarPolicy"
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "korean_war",
+        "arab_israeli_war",
+        "indo_pakistani_war"
+      ],
+      "properties": {
+        "korean_war": {
+          "$ref": "#/$defs/korean_war"
+        },
+        "arab_israeli_war": {
+          "$ref": "#/$defs/arab_israeli_war"
+        },
+        "indo_pakistani_war": {
+          "$ref": "#/$defs/indo_pakistani_war"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "WarPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "description",
+        "die_sides",
+        "minimum_winning_result",
+        "opponent_controlled_neighbor_penalty",
+        "include_direct_superpower_neighbors",
+        "military_credit",
+        "victory_vp",
+        "capture",
+        "defcon_policy",
+        "ops_modifiers_apply",
+        "result_checkpoint"
+      ],
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "die_sides": {
+          "const": 6
+        },
+        "minimum_winning_result": {
+          "const": 4
+        },
+        "opponent_controlled_neighbor_penalty": {
+          "const": 1
+        },
+        "include_direct_superpower_neighbors": {
+          "const": true
+        },
+        "military_credit": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "amount",
+            "on"
+          ],
+          "properties": {
+            "kind": {
+              "const": "WarEvent"
+            },
+            "amount": {
+              "const": 2
+            },
+            "on": {
+              "const": "EveryAllowedResolvedAttempt"
+            }
+          }
+        },
+        "victory_vp": {
+          "const": 2
+        },
+        "capture": {
+          "const": "AllOpponentInfluenceToBeneficiaryPreserveExisting"
+        },
+        "defcon_policy": {
+          "const": "NoChangeNoGeographicGate"
+        },
+        "ops_modifiers_apply": {
+          "const": false
+        },
+        "result_checkpoint": {
+          "const": "VpBatchClosedAfterWholeWarResult"
+        }
+      }
+    },
+    "korean_war": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "target_policy",
+        "extra_target_control_penalty",
+        "war_policy_ref",
+        "prevention_gate",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.korean_war"
+        },
+        "effect_id": {
+          "const": "effect.korean_war"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "SingleRollInfluenceCaptureWar"
+        },
+        "beneficiary": {
+          "const": "USSR"
+        },
+        "target_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode",
+            "country_ids",
+            "requires_opponent_influence"
+          ],
+          "properties": {
+            "mode": {
+              "const": "Fixed"
+            },
+            "country_ids": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "const": "country.south_korea"
+                }
+              ],
+              "items": false
+            },
+            "requires_opponent_influence": {
+              "const": false
+            }
+          }
+        },
+        "extra_target_control_penalty": {
+          "const": false
+        },
+        "war_policy_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.war_events_batch1"
+            },
+            "json_pointer": {
+              "const": "/war_policy"
+            }
+          }
+        },
+        "prevention_gate": {
+          "const": null
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    },
+    "arab_israeli_war": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "target_policy",
+        "extra_target_control_penalty",
+        "war_policy_ref",
+        "prevention_gate",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.arab_israeli_war"
+        },
+        "effect_id": {
+          "const": "effect.arab_israeli_war"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "SingleRollInfluenceCaptureWar"
+        },
+        "beneficiary": {
+          "const": "USSR"
+        },
+        "target_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode",
+            "country_ids",
+            "requires_opponent_influence"
+          ],
+          "properties": {
+            "mode": {
+              "const": "Fixed"
+            },
+            "country_ids": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "const": "country.israel"
+                }
+              ],
+              "items": false
+            },
+            "requires_opponent_influence": {
+              "const": false
+            }
+          }
+        },
+        "extra_target_control_penalty": {
+          "const": true
+        },
+        "war_policy_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.war_events_batch1"
+            },
+            "json_pointer": {
+              "const": "/war_policy"
+            }
+          }
+        },
+        "prevention_gate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source_card_id",
+            "event_fact_policy_ref",
+            "on_qualifying_fact",
+            "scope"
+          ],
+          "properties": {
+            "source_card_id": {
+              "const": "card.camp_david_accords"
+            },
+            "event_fact_policy_ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "dataset_id",
+                "json_pointer"
+              ],
+              "properties": {
+                "dataset_id": {
+                  "const": "effects.deluxe2015.treaty_protection"
+                },
+                "json_pointer": {
+                  "const": "/event_fact_policy"
+                }
+              }
+            },
+            "on_qualifying_fact": {
+              "const": "BlockedPrerequisite"
+            },
+            "scope": {
+              "const": "EventOnly"
+            }
+          }
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    },
+    "indo_pakistani_war": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "target_policy",
+        "extra_target_control_penalty",
+        "war_policy_ref",
+        "prevention_gate",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.indo_pakistani_war"
+        },
+        "effect_id": {
+          "const": "effect.indo_pakistani_war"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "SingleRollInfluenceCaptureWar"
+        },
+        "beneficiary": {
+          "const": "EventController"
+        },
+        "target_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode",
+            "country_ids",
+            "requires_opponent_influence"
+          ],
+          "properties": {
+            "mode": {
+              "const": "ChooseOne"
+            },
+            "country_ids": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "prefixItems": [
+                {
+                  "const": "country.india"
+                },
+                {
+                  "const": "country.pakistan"
+                }
+              ],
+              "items": false
+            },
+            "requires_opponent_influence": {
+              "const": false
+            }
+          }
+        },
+        "extra_target_control_penalty": {
+          "const": false
+        },
+        "war_policy_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.war_events_batch1"
+            },
+            "json_pointer": {
+              "const": "/war_policy"
+            }
+          }
+        },
+        "prevention_gate": {
+          "const": null
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.war_events_batch1",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "首批三张战争事件：目标、单骰修正、固定军事/VP、一比一影响力转移及戴维营阻止；运行处理器待实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "英文卡图p3 #11/#13、p4 #24、p10 #65；不复制完整原文。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1.5/7邻接与控制；§5.2对手事件/戴维营例；§7.6战争零影响力也可打；§8.2.3/4军事归属；§10.2/3 VP完整批次。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p3–4 #11无DEFCON降级/#13以色列自身控制修正，p5 #24零影响力仍有军事与胜利VP；p13 #59 Flower Power接缝尚未绑定。"
+    },
+    {
+      "id": "PROJECT-WAR1",
+      "url": null,
+      "edition": "WAR1-ENGINEERING-01, 2026-10-05",
+      "description": "把单次战争的军事、胜利影响力转移和VP组成原子结果，在同一语义批次末判终局；工程提交顺序，不冒称额外专门FAQ。"
+    }
+  ],
+  "war_policy": {
+    "description": "三张牌共享已核实的单骰、成功阈值、固定奖励与一比一转移；不作为未来所有战争的默认值。",
+    "die_sides": 6,
+    "minimum_winning_result": 4,
+    "opponent_controlled_neighbor_penalty": 1,
+    "include_direct_superpower_neighbors": true,
+    "military_credit": {
+      "kind": "WarEvent",
+      "amount": 2,
+      "on": "EveryAllowedResolvedAttempt"
+    },
+    "victory_vp": 2,
+    "capture": "AllOpponentInfluenceToBeneficiaryPreserveExisting",
+    "defcon_policy": "NoChangeNoGeographicGate",
+    "ops_modifiers_apply": false,
+    "result_checkpoint": "VpBatchClosedAfterWholeWarResult"
+  },
+  "parameters": {
+    "korean_war": {
+      "card_id": "card.korean_war",
+      "effect_id": "effect.korean_war",
+      "description": "苏联攻击韩国；只扣美国控制的邻国，不扣韩国自身。",
+      "template": "SingleRollInfluenceCaptureWar",
+      "beneficiary": "USSR",
+      "target_policy": {
+        "mode": "Fixed",
+        "country_ids": [
+          "country.south_korea"
+        ],
+        "requires_opponent_influence": false
+      },
+      "extra_target_control_penalty": false,
+      "war_policy_ref": {
+        "dataset_id": "effects.deluxe2015.war_events_batch1",
+        "json_pointer": "/war_policy"
+      },
+      "prevention_gate": null,
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "英文卡图p3 #11/#13、p4 #24、p10 #65；不复制完整原文。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.5/7邻接与控制；§5.2对手事件/戴维营例；§7.6战争零影响力也可打；§8.2.3/4军事归属；§10.2/3 VP完整批次。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p3–4 #11无DEFCON降级/#13以色列自身控制修正，p5 #24零影响力仍有军事与胜利VP；p13 #59 Flower Power接缝尚未绑定。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-WAR1",
+          "locator": "把单次战争的军事、胜利影响力转移和VP组成原子结果，在同一语义批次末判终局；工程提交顺序，不冒称额外专门FAQ。",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "arab_israeli_war": {
+      "card_id": "card.arab_israeli_war",
+      "effect_id": "effect.arab_israeli_war",
+      "description": "苏联攻击以色列；扣美国控制的邻国及以色列自身；戴维营已发生则阻止。",
+      "template": "SingleRollInfluenceCaptureWar",
+      "beneficiary": "USSR",
+      "target_policy": {
+        "mode": "Fixed",
+        "country_ids": [
+          "country.israel"
+        ],
+        "requires_opponent_influence": false
+      },
+      "extra_target_control_penalty": true,
+      "war_policy_ref": {
+        "dataset_id": "effects.deluxe2015.war_events_batch1",
+        "json_pointer": "/war_policy"
+      },
+      "prevention_gate": {
+        "source_card_id": "card.camp_david_accords",
+        "event_fact_policy_ref": {
+          "dataset_id": "effects.deluxe2015.treaty_protection",
+          "json_pointer": "/event_fact_policy"
+        },
+        "on_qualifying_fact": "BlockedPrerequisite",
+        "scope": "EventOnly"
+      },
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "英文卡图p3 #11/#13、p4 #24、p10 #65；不复制完整原文。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.5/7邻接与控制；§5.2对手事件/戴维营例；§7.6战争零影响力也可打；§8.2.3/4军事归属；§10.2/3 VP完整批次。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p3–4 #11无DEFCON降级/#13以色列自身控制修正，p5 #24零影响力仍有军事与胜利VP；p13 #59 Flower Power接缝尚未绑定。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-WAR1",
+          "locator": "把单次战争的军事、胜利影响力转移和VP组成原子结果，在同一语义批次末判终局；工程提交顺序，不冒称额外专门FAQ。",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "indo_pakistani_war": {
+      "card_id": "card.indo_pakistani_war",
+      "effect_id": "effect.indo_pakistani_war",
+      "description": "事件控制方先选择印度或巴基斯坦作为被攻击国；只扣对手控制的目标邻国。",
+      "template": "SingleRollInfluenceCaptureWar",
+      "beneficiary": "EventController",
+      "target_policy": {
+        "mode": "ChooseOne",
+        "country_ids": [
+          "country.india",
+          "country.pakistan"
+        ],
+        "requires_opponent_influence": false
+      },
+      "extra_target_control_penalty": false,
+      "war_policy_ref": {
+        "dataset_id": "effects.deluxe2015.war_events_batch1",
+        "json_pointer": "/war_policy"
+      },
+      "prevention_gate": null,
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "英文卡图p3 #11/#13、p4 #24、p10 #65；不复制完整原文。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.5/7邻接与控制；§5.2对手事件/戴维营例；§7.6战争零影响力也可打；§8.2.3/4军事归属；§10.2/3 VP完整批次。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p3–4 #11无DEFCON降级/#13以色列自身控制修正，p5 #24零影响力仍有军事与胜利VP；p13 #59 Flower Power接缝尚未绑定。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-WAR1",
+          "locator": "把单次战争的军事、胜利影响力转移和VP组成原子结果，在同一语义批次末判终局；工程提交顺序，不冒称额外专门FAQ。",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

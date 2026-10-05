@@ -1,0 +1,3926 @@
+{
+  "schema_version": 1,
+  "description": "三张战争事件的封闭参数负例与固定骰规则投影；运行验收单列。",
+  "dataset": "Data/Cards/deluxe-2015/war-events-batch1.parameters.json",
+  "schema": "Docs/Contracts/war-events-batch1.schema.json",
+  "reference_model_scope": "稀疏夹具扩展84国；已验证内部帧/事件成功事实作为假设，固定随机夹具与玩家意图分离；无C#真实鉴权/事务/回放保证。",
+  "input_conventions": {
+    "event_controller": "假定内部帧已经绑定的事件控制者，不是客户端可信字段",
+    "fixed_random_fixture": "测试用权威随机源输入，不是玩家提供骰子",
+    "event_facts.verified": "离线来源可信假设；真实实现需实例/版本/提交证明，不能依靠客户端布尔值"
+  },
+  "cases": [
+    {
+      "id": "WAR1-D01",
+      "description": "完整参数",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "WAR1-D02",
+      "description": "禁止eval",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "korean_war",
+              "eval"
+            ],
+            "value": "..."
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D03",
+      "description": "未知模板",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "korean_war",
+              "template"
+            ],
+            "value": "GenericScript"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D04",
+      "description": "朝鲜目标错误",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "korean_war",
+              "target_policy",
+              "country_ids"
+            ],
+            "value": [
+              "country.north_korea"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D05",
+      "description": "朝鲜收益错误",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "korean_war",
+              "beneficiary"
+            ],
+            "value": "EventController"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D06",
+      "description": "朝鲜自身不能扣减",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "korean_war",
+              "extra_target_control_penalty"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D07",
+      "description": "阿以自身必须扣减",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "arab_israeli_war",
+              "extra_target_control_penalty"
+            ],
+            "value": false
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D08",
+      "description": "印巴不是固定苏联收益",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "indo_pakistani_war",
+              "beneficiary"
+            ],
+            "value": "USSR"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D09",
+      "description": "印巴必须选择被攻击国",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "indo_pakistani_war",
+              "target_policy",
+              "mode"
+            ],
+            "value": "Fixed"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D10",
+      "description": "不能要求敌方影响力",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "indo_pakistani_war",
+              "target_policy",
+              "requires_opponent_influence"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D11",
+      "description": "错误政策引用",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "korean_war",
+              "war_policy_ref",
+              "json_pointer"
+            ],
+            "value": "/parameters"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D12",
+      "description": "错误军事信用",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "war_policy",
+              "military_credit",
+              "kind"
+            ],
+            "value": "OperationsCoup"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D13",
+      "description": "失败也得军事",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "war_policy",
+              "military_credit",
+              "on"
+            ],
+            "value": "VictoryOnly"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D14",
+      "description": "固定军事不是OPS",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "war_policy",
+              "military_credit",
+              "amount"
+            ],
+            "value": 3
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D15",
+      "description": "VP固定2",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "war_policy",
+              "victory_vp"
+            ],
+            "value": 3
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D16",
+      "description": "成功阈值4",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "war_policy",
+              "minimum_winning_result"
+            ],
+            "value": 5
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D17",
+      "description": "邻国扣1",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "war_policy",
+              "opponent_controlled_neighbor_penalty"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D18",
+      "description": "直接超级大国应计算",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "war_policy",
+              "include_direct_superpower_neighbors"
+            ],
+            "value": false
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D19",
+      "description": "不降DEFCON",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "war_policy",
+              "defcon_policy"
+            ],
+            "value": "BattlegroundDegrade"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D20",
+      "description": "不套OPS修正",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "war_policy",
+              "ops_modifiers_apply"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D21",
+      "description": "必须保留己方已有影响力",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "war_policy",
+              "capture"
+            ],
+            "value": "OverwriteOwnWithOpponent"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D22",
+      "description": "六面骰",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "war_policy",
+              "die_sides"
+            ],
+            "value": 8
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D23",
+      "description": "阻止来源必须戴维营",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "arab_israeli_war",
+              "prevention_gate",
+              "source_card_id"
+            ],
+            "value": "card.nato"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D24",
+      "description": "成功事实政策不得交换",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "arab_israeli_war",
+              "prevention_gate",
+              "event_fact_policy_ref",
+              "json_pointer"
+            ],
+            "value": "/parameters/nato"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D25",
+      "description": "阻止事件不阻止父OPS",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "arab_israeli_war",
+              "prevention_gate",
+              "scope"
+            ],
+            "value": "WholeCardPlay"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D26",
+      "description": "未知来源",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "korean_war",
+              "source_refs",
+              0,
+              "source_id"
+            ],
+            "value": "Imaginary"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-D27",
+      "description": "重复来源ID",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "source_catalog",
+              1,
+              "id"
+            ],
+            "value": "C-DELUXE-EN"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR1-W01",
+      "description": "韩国零影响力仍获胜VP及军事",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.south_korea",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W02",
+      "description": "失败也给苏联军事",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.south_korea",
+          "modified_die": 3,
+          "war_won": false,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": 0,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W03",
+      "description": "美国触发苏联事件收益仍归苏联",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {
+            "country.south_korea": {
+              "US": 3,
+              "USSR": 2
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.south_korea",
+          "modified_die": 6,
+          "war_won": true,
+          "captured": 3,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged",
+          "influence": {
+            "country.south_korea": {
+              "US": 0,
+              "USSR": 5
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "WAR1-W04",
+      "description": "韩国自身美国控制不扣骰",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {
+            "country.south_korea": {
+              "US": 5,
+              "USSR": 2
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.south_korea",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 5,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged",
+          "influence": {
+            "country.south_korea": {
+              "US": 0,
+              "USSR": 7
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "WAR1-W05",
+      "description": "日本美国影响力不足控制不扣骰",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {
+            "country.japan": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.south_korea",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W06",
+      "description": "日本美国控制扣一次不递归算美国",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          5
+        ],
+        "state": {
+          "influence": {
+            "country.japan": {
+              "US": 4,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.south_korea",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W07",
+      "description": "三邻国都控制最大骰也失败",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {
+            "country.japan": {
+              "US": 4,
+              "USSR": 0
+            },
+            "country.north_korea": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.taiwan": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.south_korea",
+          "modified_die": 3,
+          "war_won": false,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": 0,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W08",
+      "description": "修正骰可为负不截断",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          1
+        ],
+        "state": {
+          "influence": {
+            "country.japan": {
+              "US": 4,
+              "USSR": 0
+            },
+            "country.north_korea": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.taiwan": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.south_korea",
+          "modified_die": -2,
+          "war_won": false,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": 0,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W09",
+      "description": "DEFCON2战争不受地理门禁不降级",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 2,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.south_korea",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W10",
+      "description": "军事累计不截断轨道上限",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 1,
+            "USSR": 5
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.south_korea",
+          "modified_die": 3,
+          "war_won": false,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 1,
+            "USSR": 7
+          },
+          "signed_vp": 0,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W11",
+      "description": "遏制不加战争收益",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.containment"
+          ],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.south_korea",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W12",
+      "description": "清洗不减战争骰或奖励",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.red_scare_purge"
+          ],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.south_korea",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W13",
+      "description": "越南奖励不改战争军事",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.vietnam_revolts"
+          ],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.south_korea",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W14",
+      "description": "条约不是三张战争的全局免疫",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.nato",
+            "effect.us_japan_mutual_defense_pact"
+          ],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.south_korea",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W15",
+      "description": "阿以美国控制目标多扣一次",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {
+            "country.israel": {
+              "US": 4,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.israel",
+          "modified_die": 3,
+          "war_won": false,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": 0,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W16",
+      "description": "阿以自身控制与邻国分别扣减",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {
+            "country.israel": {
+              "US": 4,
+              "USSR": 0
+            },
+            "country.egypt": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.israel",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 4,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged",
+          "influence": {
+            "country.israel": {
+              "US": 0,
+              "USSR": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "WAR1-W17",
+      "description": "以色列已有苏联保留并加俘获量",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {
+            "country.israel": {
+              "US": 4,
+              "USSR": 2
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.israel",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 4,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged",
+          "influence": {
+            "country.israel": {
+              "US": 0,
+              "USSR": 6
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "WAR1-W18",
+      "description": "以色列四邻国及自身皆美控扣5",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {
+            "country.israel": {
+              "US": 4,
+              "USSR": 0
+            },
+            "country.egypt": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.jordan": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.lebanon": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.syria": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.israel",
+          "modified_die": 1,
+          "war_won": false,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": 0,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W19",
+      "description": "戴维营成功事实阻止:ResolvedChanged",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [
+            {
+              "source_card_id": "card.camp_david_accords",
+              "outcome": "ResolvedChanged",
+              "verified": true,
+              "instance_id": "fixture.camp_david",
+              "committed_state_version": 1
+            }
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "BlockedPrerequisite",
+        "state_patch": {
+          "status": "Completed",
+          "event_outcome": "BlockedPrerequisite"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W20",
+      "description": "戴维营成功事实阻止:ResolvedNoChange",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [
+            {
+              "source_card_id": "card.camp_david_accords",
+              "outcome": "ResolvedNoChange",
+              "verified": true,
+              "instance_id": "fixture.camp_david",
+              "committed_state_version": 1
+            }
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "BlockedPrerequisite",
+        "state_patch": {
+          "status": "Completed",
+          "event_outcome": "BlockedPrerequisite"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W21",
+      "description": "戴维营活动提醒与已提交成功事实一致",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.camp_david_accords"
+          ],
+          "facts_complete": true,
+          "event_facts": [
+            {
+              "source_card_id": "card.camp_david_accords",
+              "outcome": "ResolvedChanged",
+              "verified": true,
+              "instance_id": "fixture.camp_david",
+              "committed_state_version": 1
+            }
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "BlockedPrerequisite",
+        "state_patch": {
+          "status": "Completed",
+          "event_outcome": "BlockedPrerequisite"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W22",
+      "description": "仅有戴维营提醒缺少成功事实不猜允许",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.camp_david_accords"
+          ],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W23",
+      "description": "被阻止保留已有军事VP和目标影响力",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {
+            "country.israel": {
+              "US": 5,
+              "USSR": 2
+            }
+          },
+          "signed_vp": 7,
+          "defcon": 5,
+          "military": {
+            "US": 3,
+            "USSR": 4
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [
+            {
+              "source_card_id": "card.camp_david_accords",
+              "outcome": "ResolvedChanged",
+              "verified": true,
+              "instance_id": "fixture.camp_david",
+              "committed_state_version": 1
+            }
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "BlockedPrerequisite",
+        "state_patch": {
+          "status": "Completed",
+          "event_outcome": "BlockedPrerequisite"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W24",
+      "description": "非成功记录不能阻止:NotTriggered",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [
+            {
+              "source_card_id": "card.camp_david_accords",
+              "outcome": "NotTriggered",
+              "verified": true,
+              "instance_id": "fixture.camp_david",
+              "committed_state_version": 1
+            }
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.israel",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W25",
+      "description": "非成功记录不能阻止:BlockedPrerequisite",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [
+            {
+              "source_card_id": "card.camp_david_accords",
+              "outcome": "BlockedPrerequisite",
+              "verified": true,
+              "instance_id": "fixture.camp_david",
+              "committed_state_version": 1
+            }
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.israel",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W26",
+      "description": "非成功记录不能阻止:Suppressed",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [
+            {
+              "source_card_id": "card.camp_david_accords",
+              "outcome": "Suppressed",
+              "verified": true,
+              "instance_id": "fixture.camp_david",
+              "committed_state_version": 1
+            }
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.israel",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W27",
+      "description": "非成功记录不能阻止:Cancelled",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [
+            {
+              "source_card_id": "card.camp_david_accords",
+              "outcome": "Cancelled",
+              "verified": true,
+              "instance_id": "fixture.camp_david",
+              "committed_state_version": 1
+            }
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.israel",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W28",
+      "description": "戴维营不阻止韩国战争",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [
+            {
+              "source_card_id": "card.camp_david_accords",
+              "outcome": "ResolvedChanged",
+              "verified": true,
+              "instance_id": "fixture.camp_david",
+              "committed_state_version": 1
+            }
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.south_korea",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W29",
+      "description": "阿以历史不完整停止不消费骰",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": false,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W30",
+      "description": "未验证戴维营事实停止",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [
+            {
+              "source_card_id": "card.camp_david_accords",
+              "outcome": "ResolvedChanged",
+              "verified": false,
+              "instance_id": "fixture.camp_david",
+              "committed_state_version": 1
+            }
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W31",
+      "description": "未知事实结果不能猜允许",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.arab_israeli_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [
+            {
+              "source_card_id": "card.camp_david_accords",
+              "outcome": "UnknownOutcome",
+              "verified": true,
+              "instance_id": "fixture.camp_david",
+              "committed_state_version": 1
+            }
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W32",
+      "description": "印巴先等待选择零随机零奖励",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.indo_pakistani_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state_patch": {
+          "status": "AwaitingTarget"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W33",
+      "description": "印巴选择前不能提供骰",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.indo_pakistani_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidRandomFixture",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W34",
+      "description": "美国攻击巴基斯坦捕获苏联影响力",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.indo_pakistani_war",
+        "event_controller": "US",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.pakistan",
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {
+            "country.pakistan": {
+              "US": 1,
+              "USSR": 3
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.pakistan",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 3,
+          "rng_cursor": 1,
+          "military": {
+            "US": 2,
+            "USSR": 0
+          },
+          "signed_vp": 2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged",
+          "influence": {
+            "country.pakistan": {
+              "US": 4,
+              "USSR": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "WAR1-W35",
+      "description": "苏联攻击印度捕获美国影响力",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.indo_pakistani_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.india",
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {
+            "country.india": {
+              "US": 2,
+              "USSR": 1
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.india",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 2,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged",
+          "influence": {
+            "country.india": {
+              "US": 0,
+              "USSR": 3
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "WAR1-W36",
+      "description": "印度美国控制自身不扣骰",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.indo_pakistani_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.india",
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {
+            "country.india": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.india",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 3,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged",
+          "influence": {
+            "country.india": {
+              "US": 0,
+              "USSR": 3
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "WAR1-W37",
+      "description": "印度两邻国对手控制扣2",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.indo_pakistani_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.india",
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {
+            "country.burma": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.pakistan": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.india",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W38",
+      "description": "巴基斯坦三邻国对手控制扣3",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.indo_pakistani_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.pakistan",
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {
+            "country.afghanistan": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.india": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.iran": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.pakistan",
+          "modified_die": 3,
+          "war_won": false,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": 0,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W39",
+      "description": "美国攻击时按苏联邻国控制扣减",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.indo_pakistani_war",
+        "event_controller": "US",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.pakistan",
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {
+            "country.afghanistan": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.india": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.iran": {
+              "US": 0,
+              "USSR": 2
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.pakistan",
+          "modified_die": 3,
+          "war_won": false,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 2,
+            "USSR": 0
+          },
+          "signed_vp": 0,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W40",
+      "description": "苏联战争-19到-21终局仍完整转移与军事",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {
+            "country.south_korea": {
+              "US": 2,
+              "USSR": 1
+            }
+          },
+          "signed_vp": -19,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "GameEnded",
+        "state_patch": {
+          "target": "country.south_korea",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 2,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -21,
+          "status": "Finished",
+          "event_outcome": "ResolvedChanged",
+          "influence": {
+            "country.south_korea": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": true,
+          "winner": "USSR"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W41",
+      "description": "美国战争+18到+20同一结果后终局",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.indo_pakistani_war",
+        "event_controller": "US",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.india",
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {
+            "country.india": {
+              "US": 2,
+              "USSR": 3
+            }
+          },
+          "signed_vp": 18,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "GameEnded",
+        "state_patch": {
+          "target": "country.india",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 3,
+          "rng_cursor": 1,
+          "military": {
+            "US": 2,
+            "USSR": 0
+          },
+          "signed_vp": 20,
+          "status": "Finished",
+          "event_outcome": "ResolvedChanged",
+          "influence": {
+            "country.india": {
+              "US": 5,
+              "USSR": 0
+            }
+          },
+          "finished": true,
+          "winner": "US"
+        }
+      }
+    },
+    {
+      "id": "WAR1-W42",
+      "description": "终局吸收不再抽骰转移",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": true,
+          "winner": "US",
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W43",
+      "description": "已完成实例不能再次投影",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "Completed",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W44",
+      "description": "未知相关战争修正",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.flower_power"
+          ],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W45",
+      "description": "未知效果不能跳过",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.future_war_bonus"
+          ],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W46",
+      "description": "活动效果集合不完整",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": false,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W47",
+      "description": "出牌钩子未结算",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": false
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W48",
+      "description": "固定苏联事件错用美国控制者",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "US",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W49",
+      "description": "缺少原行动身份",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": null,
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W50",
+      "description": "内部来源未验证",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": false,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W51",
+      "description": "未知卡牌",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "UnsupportedCard",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W52",
+      "description": "固定目标不能换国家",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.israel",
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W53",
+      "description": "骰0",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          0
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidRandomFixture",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W54",
+      "description": "骰7",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          7
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidRandomFixture",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W55",
+      "description": "骰布尔值",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          true
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidRandomFixture",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W56",
+      "description": "两骰",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4,
+          6
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidRandomFixture",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W57",
+      "description": "无骰",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidRandomFixture",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W58",
+      "description": "印巴非法目标不抽骰",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.indo_pakistani_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.iran",
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-W59",
+      "description": "重复相关效果身份停止",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.korean_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.containment",
+            "effect.containment"
+          ],
+          "facts_complete": true,
+          "event_facts": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR1-R01",
+      "description": "真实事件控制者由会话/内部帧绑定，不能玩家自报",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#服务、权威随机、会话与事务层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR1-R02",
+      "description": "合法选择后一次原子提交随机状态与实例完成，崩溃回滚",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#服务、权威随机、会话与事务层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR1-R03",
+      "description": "同CommandId成功重试返回原结果且不再给军事/VP",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#服务、权威随机、会话与事务层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR1-R04",
+      "description": "同实例另一命令不能再次执行战争",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#服务、权威随机、会话与事务层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR1-R05",
+      "description": "等待选择存读档保留目标/版本/继续位置，旧响应拒绝",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#服务、权威随机、会话与事务层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR1-R06",
+      "description": "参数摘要或StateVersion变化拒绝旧选择，禁止静默重选",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#服务、权威随机、会话与事务层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR1-R07",
+      "description": "朝鲜星号正常发生移出，失败仍成功发生；其他战争弃牌",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#服务、权威随机、会话与事务层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR1-R08",
+      "description": "戴维营阻止阿以后原行动OPS仍继续、无战争奖励",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#服务、权威随机、会话与事务层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR1-R09",
+      "description": "头条与对手OPS先后在实际开始战争时重算控制修正",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#服务、权威随机、会话与事务层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR1-R10",
+      "description": "Flower Power等独立CardPlayed钩子/同批VP完整性由父帧验证",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#服务、权威随机、会话与事务层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR1-R11",
+      "description": "战争结束终局不再消费父OPS或后续卡牌事件",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#服务、权威随机、会话与事务层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR1-R12",
+      "description": "客户端不能提供骰点/军事数/VP数/修正/任意授权",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#服务、权威随机、会话与事务层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR1-R13",
+      "description": "公开战争日志不泄露未打出手牌或牌库",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#服务、权威随机、会话与事务层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR1-R14",
+      "description": "超大影响力转移checked溢出报技术错误且整事务回滚",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#服务、权威随机、会话与事务层"
+      },
+      "expected_status": "NotRun"
+    }
+  ]
+}
