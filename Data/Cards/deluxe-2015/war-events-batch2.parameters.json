@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.war_events_batch2",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "Brush War与两伊战争的目标、战争参数引用、北约门禁与直接超级大国邻接；完成五张基础战争参数，C#待实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "英文p7 #36 Brush War；p15 #102 Iran-Iraq War。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1.5/7直接邻接超级大国及控制；§7.6零影响力战争；§8.2.3/4信用；§10.2/3 VP完整批次。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p8 #36：Deluxe必须计算直接相邻超级大国，每个敌控邻国均扣1；p3/p5 #21北约保护不分攻击方。"
+    },
+    {
+      "id": "PROJECT-WAR2",
+      "url": null,
+      "edition": "WAR2-ENGINEERING-01, 2026-10-05",
+      "description": "延用首批单次战争完整结果末关闭VP批次；不存在合法目标时停止为RequiresRuling，不发明默认战争奖励。"
+    }
+  ],
+  "brush_war_policy": {
+    "description": "只允许本卡已核实的三个具名差异；其余行为显式引用已核实基准政策，不做任意deep merge。",
+    "base_policy_ref": {
+      "dataset_id": "effects.deluxe2015.war_events_batch1",
+      "json_pointer": "/war_policy"
+    },
+    "minimum_winning_result": 3,
+    "military_amount": 3,
+    "victory_vp": 1
+  },
+  "parameters": {
+    "brush_war": {
+      "card_id": "card.brush_war",
+      "effect_id": "effect.brush_war",
+      "description": "任一稳定度1/2国家，先过滤北约保护，再按全部对手控制邻接（含直接超级大国）单骰；军事3，胜利VP1及全部影响力转移。",
+      "template": "SingleRollInfluenceCaptureWar",
+      "beneficiary": "EventController",
+      "target_policy": {
+        "mode": "ChooseFromMapQuery",
+        "query": "CountryWithAllowedStability",
+        "allowed_stabilities": [
+          1,
+          2
+        ],
+        "requires_opponent_influence": false,
+        "empty_candidates": "RequiresRuling"
+      },
+      "extra_target_control_penalty": false,
+      "war_policy_ref": {
+        "dataset_id": "effects.deluxe2015.war_events_batch2",
+        "json_pointer": "/brush_war_policy"
+      },
+      "treaty_gate_ref": {
+        "dataset_id": "effects.deluxe2015.treaty_protection",
+        "json_pointer": "/parameters/nato"
+      },
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "英文p7 #36 Brush War；p15 #102 Iran-Iraq War。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.5/7直接邻接超级大国及控制；§7.6零影响力战争；§8.2.3/4信用；§10.2/3 VP完整批次。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p8 #36：Deluxe必须计算直接相邻超级大国，每个敌控邻国均扣1；p3/p5 #21北约保护不分攻击方。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-WAR2",
+          "locator": "延用首批单次战争完整结果末关闭VP批次；不存在合法目标时停止为RequiresRuling，不发明默认战争奖励。",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "iran_iraq_war": {
+      "card_id": "card.iran_iraq_war",
+      "effect_id": "effect.iran_iraq_war",
+      "description": "事件控制者先选择被攻击国伊朗或伊拉克；明确核对后引用首批4阈值/2军事/2VP与完整转移政策。",
+      "template": "SingleRollInfluenceCaptureWar",
+      "beneficiary": "EventController",
+      "target_policy": {
+        "mode": "ChooseOne",
+        "country_ids": [
+          "country.iran",
+          "country.iraq"
+        ],
+        "requires_opponent_influence": false
+      },
+      "extra_target_control_penalty": false,
+      "war_policy_ref": {
+        "dataset_id": "effects.deluxe2015.war_events_batch1",
+        "json_pointer": "/war_policy"
+      },
+      "treaty_gate_ref": null,
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "英文p7 #36 Brush War；p15 #102 Iran-Iraq War。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.5/7直接邻接超级大国及控制；§7.6零影响力战争；§8.2.3/4信用；§10.2/3 VP完整批次。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p8 #36：Deluxe必须计算直接相邻超级大国，每个敌控邻国均扣1；p3/p5 #21北约保护不分攻击方。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-WAR2",
+          "locator": "延用首批单次战争完整结果末关闭VP批次；不存在合法目标时停止为RequiresRuling，不发明默认战争奖励。",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

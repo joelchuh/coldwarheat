@@ -1,0 +1,384 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:war-events-batch2:1",
+  "title": "战争事件第二批参数",
+  "description": "封闭的战争目标/北约引用及Brush三项政策差异；无任意表达式。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "brush_war_policy",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.war_events_batch2"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "release-candidate"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "url",
+          "edition",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "edition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "brush_war_policy": {
+      "$ref": "#/$defs/BrushPolicyVariant"
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "brush_war",
+        "iran_iraq_war"
+      ],
+      "properties": {
+        "brush_war": {
+          "$ref": "#/$defs/brush_war"
+        },
+        "iran_iraq_war": {
+          "$ref": "#/$defs/iran_iraq_war"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "BrushPolicyVariant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "description",
+        "base_policy_ref",
+        "minimum_winning_result",
+        "military_amount",
+        "victory_vp"
+      ],
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "base_policy_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.war_events_batch1"
+            },
+            "json_pointer": {
+              "const": "/war_policy"
+            }
+          }
+        },
+        "minimum_winning_result": {
+          "const": 3
+        },
+        "military_amount": {
+          "const": 3
+        },
+        "victory_vp": {
+          "const": 1
+        }
+      }
+    },
+    "brush_war": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "target_policy",
+        "extra_target_control_penalty",
+        "war_policy_ref",
+        "treaty_gate_ref",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.brush_war"
+        },
+        "effect_id": {
+          "const": "effect.brush_war"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "SingleRollInfluenceCaptureWar"
+        },
+        "beneficiary": {
+          "const": "EventController"
+        },
+        "target_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode",
+            "query",
+            "allowed_stabilities",
+            "requires_opponent_influence",
+            "empty_candidates"
+          ],
+          "properties": {
+            "mode": {
+              "const": "ChooseFromMapQuery"
+            },
+            "query": {
+              "const": "CountryWithAllowedStability"
+            },
+            "allowed_stabilities": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "prefixItems": [
+                {
+                  "const": 1
+                },
+                {
+                  "const": 2
+                }
+              ],
+              "items": false
+            },
+            "requires_opponent_influence": {
+              "const": false
+            },
+            "empty_candidates": {
+              "const": "RequiresRuling"
+            }
+          }
+        },
+        "extra_target_control_penalty": {
+          "const": false
+        },
+        "war_policy_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.war_events_batch2"
+            },
+            "json_pointer": {
+              "const": "/brush_war_policy"
+            }
+          }
+        },
+        "treaty_gate_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.treaty_protection"
+            },
+            "json_pointer": {
+              "const": "/parameters/nato"
+            }
+          }
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    },
+    "iran_iraq_war": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "target_policy",
+        "extra_target_control_penalty",
+        "war_policy_ref",
+        "treaty_gate_ref",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.iran_iraq_war"
+        },
+        "effect_id": {
+          "const": "effect.iran_iraq_war"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "SingleRollInfluenceCaptureWar"
+        },
+        "beneficiary": {
+          "const": "EventController"
+        },
+        "target_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode",
+            "country_ids",
+            "requires_opponent_influence"
+          ],
+          "properties": {
+            "mode": {
+              "const": "ChooseOne"
+            },
+            "country_ids": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "prefixItems": [
+                {
+                  "const": "country.iran"
+                },
+                {
+                  "const": "country.iraq"
+                }
+              ],
+              "items": false
+            },
+            "requires_opponent_influence": {
+              "const": false
+            }
+          }
+        },
+        "extra_target_control_penalty": {
+          "const": false
+        },
+        "war_policy_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.war_events_batch1"
+            },
+            "json_pointer": {
+              "const": "/war_policy"
+            }
+          }
+        },
+        "treaty_gate_ref": {
+          "const": null
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

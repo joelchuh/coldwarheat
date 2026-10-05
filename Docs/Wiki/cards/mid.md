@@ -56,3 +56,5 @@
 [返回数据索引](../map-card-data.md)
 
 [戴高乐与勃兰特](../nato-exceptions.md)：固定影响力／VP、北约局部例外与取消关系。
+
+[战争第二批](../war-events-batch2.md)已绑定本时代对应战争参数；处理器仍planned。

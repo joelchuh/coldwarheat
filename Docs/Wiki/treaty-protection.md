@@ -15,7 +15,7 @@ description：查询条约的前置事件成功记录、跨回合保护、当前
 | 时限 | 永久，直到获授权取消或游戏结束 | 永久，直到获授权取消或游戏结束 |
 | 局部例外 | 戴高乐使法国失去北约保护；勃兰特使西德失去保护 | 本批未发现卡面取消关系 |
 
-来源：[GMT英文卡图](https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf) p4 #21，p5 #27；[2015规则](https://www.gmtgames.com/nnts/TS_Rules-2015.pdf) §2.1.1–2、§2.1.7、§5.2、§7.3、§8.1；[FAQ v5](https://www.gmtgames.com/nnts/FAQv5.pdf) p3/p5 #21确认Brush War保护是第二版起的条款。卡图p4 #17/#23、p3 #16、p9 #55、p14 #96仅用来核对接缝。条约首批只登记这些来源牌的接缝；目前马歇尔与华沙已有参数设计，拆墙完整参数已在[事件行动授权](event-operations.md)绑定，Brush War仍未绑定，戴高乐/勃兰特参数见[局部例外](nato-exceptions.md)，所有C#处理器待实现。详见[前置影响力事件](alliance-prerequisites.md)。
+来源：[GMT英文卡图](https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf) p4 #21，p5 #27；[2015规则](https://www.gmtgames.com/nnts/TS_Rules-2015.pdf) §2.1.1–2、§2.1.7、§5.2、§7.3、§8.1；[FAQ v5](https://www.gmtgames.com/nnts/FAQv5.pdf) p3/p5 #21确认Brush War保护是第二版起的条款。卡图p4 #17/#23、p3 #16、p9 #55、p14 #96仅用来核对接缝。条约首批只登记这些来源牌的接缝；目前马歇尔与华沙已有参数设计，拆墙完整参数已在[事件行动授权](event-operations.md)绑定，Brush War参数已在第二批绑定，处理器待实现，戴高乐/勃兰特参数见[局部例外](nato-exceptions.md)，所有C#处理器待实现。详见[前置影响力事件](alliance-prerequisites.md)。
 
 ## 前置事件成功事实
 
@@ -48,7 +48,7 @@ description：查询条约的前置事件成功记录、跨回合保护、当前
 - 卡图#55/#96的取消关系已核对：拆墙取消／禁止勃兰特。**TP-INTERPRETATION-01**：勃兰特活动状态被合法取消后，不再提供西德例外，北约若仍活动且美国控制西德，其保护自然恢复。这是按持续状态与取消卡文推导的接缝解释，未声称有专门FAQ。不回滚勃兰特已结算的VP或影响力。拆墙完整行动与时序见[事件行动授权](event-operations.md)；未知相关干预仍暂停。
 - 相关例外状态未知时返回RequiresRuling，不能当作没发生；已验证的权威“未激活”状态可用。未来未知取消或豁免不使用静默默认值。
 
-Brush War分支使用 `EventAttack + sourceCardId=card.brush_war`，不把北约扩大为“所有战争免疫”。美日安保也没有本批战争免疫条款。此服务返回的 `NoTreatyBlock`只说明条约未阻止；战争卡自己的国家稳定度、地区、目标、骰子与VP资格仍由对应处理器验证，当前Brush War完整处理器仍Unresolved。
+Brush War分支使用 `EventAttack + sourceCardId=card.brush_war`，不把北约扩大为“所有战争免疫”。美日安保也没有本批战争免疫条款。此服务返回的 `NoTreatyBlock`只说明条约未阻止；战争卡自己的国家稳定度、地区、目标、骰子与VP资格仍由对应处理器验证，当前Brush War参数已Bound，处理器仍planned。
 
 ## 行动限制组合与事务边界
 
@@ -77,7 +77,7 @@ DEFCON地区豁免仅跳过该检查，不绕过北约／美日安保、敌方�
 
 ## 前置影响力补充（2026-10-05）
 
-[马歇尔计划与华沙条约](alliance-prerequisites.md)已绑定完整基础参数和选择流程；成功提交后沿用本页EventFactLedger。戴高乐/勃兰特已在[局部例外批](nato-exceptions.md)绑定；拆墙完整参数见[事件行动授权](event-operations.md)，Brush War仍待完整设计。
+[马歇尔计划与华沙条约](alliance-prerequisites.md)已绑定完整基础参数和选择流程；成功提交后沿用本页EventFactLedger。戴高乐/勃兰特已在[局部例外批](nato-exceptions.md)绑定；拆墙完整参数见[事件行动授权](event-operations.md)，Brush War参数与选择设计已在第二批补齐。
 
 ## 北约局部例外批（2026-10-05，待实现）
 
@@ -90,3 +90,5 @@ DEFCON地区豁免仅跳过该检查，不绕过北约／美日安保、敌方�
 ## 首批战争事件接入（2026-10-05，待实现）
 
 [首批战争](war-events.md)复用成功事件事实契约来判断戴维营对阿以战争的阻止。北约与美日条约不提供这三张战争的全局免疫；Brush War另按其专门保护关系设计。
+
+[战争第二批](war-events-batch2.md)已把Brush War的EventAttack接入北约查询，任意Actor均按当前美国控制过滤；国家例外仍不能绕过战争自身稳定度限制。

@@ -1,0 +1,3771 @@
+{
+  "schema_version": 1,
+  "description": "Brush与两伊战争参数负例、目标过滤/邻接修正/固定骰投影及运行验收分层。",
+  "dataset": "Data/Cards/deluxe-2015/war-events-batch2.parameters.json",
+  "schema": "Docs/Contracts/war-events-batch2.schema.json",
+  "reference_model_scope": "84国稀疏状态扩展，内部身份/有效活动实例假定已验证；固定随机与玩家意图区分；非真实鉴权/事务。",
+  "input_conventions": {
+    "event_controller": "既有EffectController的内部身份测试输入，非客户端可信字段",
+    "fixed_random_fixture": "假定权威FixedRandomProvider，不是玩家提供骰子",
+    "active_effects": "假定注册表已核实有效实例；不证明真实来源验证"
+  },
+  "independent_candidate_fixtures": {
+    "BasicBrush52": [
+      "country.afghanistan",
+      "country.algeria",
+      "country.angola",
+      "country.argentina",
+      "country.bolivia",
+      "country.botswana",
+      "country.brazil",
+      "country.burma",
+      "country.cameroon",
+      "country.colombia",
+      "country.dominican_republic",
+      "country.ecuador",
+      "country.egypt",
+      "country.el_salvador",
+      "country.ethiopia",
+      "country.greece",
+      "country.guatemala",
+      "country.haiti",
+      "country.honduras",
+      "country.indonesia",
+      "country.iran",
+      "country.italy",
+      "country.ivory_coast",
+      "country.jordan",
+      "country.kenya",
+      "country.laos_cambodia",
+      "country.lebanon",
+      "country.libya",
+      "country.malaysia",
+      "country.mexico",
+      "country.nicaragua",
+      "country.nigeria",
+      "country.pakistan",
+      "country.panama",
+      "country.paraguay",
+      "country.peru",
+      "country.philippines",
+      "country.saharan_states",
+      "country.somalia",
+      "country.southeast_african_states",
+      "country.spain_portugal",
+      "country.sudan",
+      "country.syria",
+      "country.thailand",
+      "country.tunisia",
+      "country.turkey",
+      "country.uruguay",
+      "country.venezuela",
+      "country.vietnam",
+      "country.west_african_states",
+      "country.zaire",
+      "country.zimbabwe"
+    ],
+    "BasicBrush52MinusFourEurope": [
+      "country.afghanistan",
+      "country.algeria",
+      "country.angola",
+      "country.argentina",
+      "country.bolivia",
+      "country.botswana",
+      "country.brazil",
+      "country.burma",
+      "country.cameroon",
+      "country.colombia",
+      "country.dominican_republic",
+      "country.ecuador",
+      "country.egypt",
+      "country.el_salvador",
+      "country.ethiopia",
+      "country.guatemala",
+      "country.haiti",
+      "country.honduras",
+      "country.indonesia",
+      "country.iran",
+      "country.ivory_coast",
+      "country.jordan",
+      "country.kenya",
+      "country.laos_cambodia",
+      "country.lebanon",
+      "country.libya",
+      "country.malaysia",
+      "country.mexico",
+      "country.nicaragua",
+      "country.nigeria",
+      "country.pakistan",
+      "country.panama",
+      "country.paraguay",
+      "country.peru",
+      "country.philippines",
+      "country.saharan_states",
+      "country.somalia",
+      "country.southeast_african_states",
+      "country.sudan",
+      "country.syria",
+      "country.thailand",
+      "country.tunisia",
+      "country.uruguay",
+      "country.venezuela",
+      "country.vietnam",
+      "country.west_african_states",
+      "country.zaire",
+      "country.zimbabwe"
+    ],
+    "IranIraqTwo": [
+      "country.iran",
+      "country.iraq"
+    ]
+  },
+  "cases": [
+    {
+      "id": "WAR2-D01",
+      "description": "完整契约",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "WAR2-D02",
+      "description": "未知脚本",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "brush_war",
+              "eval"
+            ],
+            "value": "..."
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR2-D03",
+      "description": "只支持已核实模板",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "brush_war",
+              "template"
+            ],
+            "value": "AnyWar"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR2-D04",
+      "description": "不能攻击稳定度3",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "brush_war",
+              "target_policy",
+              "allowed_stabilities"
+            ],
+            "value": [
+              1,
+              2,
+              3
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR2-D05",
+      "description": "不得要求敌影响力",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "brush_war",
+              "target_policy",
+              "requires_opponent_influence"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR2-D06",
+      "description": "不能按现实地理筛选",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "brush_war",
+              "target_policy",
+              "query"
+            ],
+            "value": "RealWorldBorder"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR2-D07",
+      "description": "空候选不给免费军事",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "brush_war",
+              "target_policy",
+              "empty_candidates"
+            ],
+            "value": "GiveMilitaryThenFinish"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR2-D08",
+      "description": "Brush阈值3",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "brush_war_policy",
+              "minimum_winning_result"
+            ],
+            "value": 4
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR2-D09",
+      "description": "Brush军事3",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "brush_war_policy",
+              "military_amount"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR2-D10",
+      "description": "Brush胜利VP1",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "brush_war_policy",
+              "victory_vp"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR2-D11",
+      "description": "错误基准路径",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "brush_war_policy",
+              "base_policy_ref",
+              "json_pointer"
+            ],
+            "value": "/parameters/korean_war"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR2-D12",
+      "description": "不允许额外覆盖DEFCON",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "brush_war_policy",
+              "defcon_policy"
+            ],
+            "value": "BattlegroundDegrade"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR2-D13",
+      "description": "不可取消超级大国修正",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "brush_war_policy",
+              "include_direct_superpower_neighbors"
+            ],
+            "value": false
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR2-D14",
+      "description": "北约门禁错误来源",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "brush_war",
+              "treaty_gate_ref",
+              "json_pointer"
+            ],
+            "value": "/parameters/us_japan_mutual_defense_pact"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR2-D15",
+      "description": "错误攻击控制者",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "brush_war",
+              "beneficiary"
+            ],
+            "value": "USSR"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR2-D16",
+      "description": "目标自身不扣骰",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "brush_war",
+              "extra_target_control_penalty"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR2-D17",
+      "description": "两伊目标错误",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "iran_iraq_war",
+              "target_policy",
+              "country_ids"
+            ],
+            "value": [
+              "country.iran",
+              "country.afghanistan"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR2-D18",
+      "description": "两伊必须先选",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "iran_iraq_war",
+              "target_policy",
+              "mode"
+            ],
+            "value": "Fixed"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR2-D19",
+      "description": "两伊不套Brush北约门禁",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "iran_iraq_war",
+              "treaty_gate_ref"
+            ],
+            "value": {
+              "dataset_id": "effects.deluxe2015.treaty_protection",
+              "json_pointer": "/parameters/nato"
+            }
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR2-D20",
+      "description": "两伊明确引用已核实基准",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "iran_iraq_war",
+              "war_policy_ref",
+              "dataset_id"
+            ],
+            "value": "effects.deluxe2015.war_events_batch2"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR2-D21",
+      "description": "未知来源",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "brush_war",
+              "source_refs",
+              0,
+              "source_id"
+            ],
+            "value": "Imaginary"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR2-D22",
+      "description": "重复来源ID",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "source_catalog",
+              1,
+              "id"
+            ],
+            "value": "C-DELUXE-EN"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WAR2-W01",
+      "description": "基础地图52候选零影响力也合法",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state_patch": {
+          "status": "AwaitingTarget"
+        },
+        "candidate_fixture": "BasicBrush52"
+      }
+    },
+    {
+      "id": "WAR2-W02",
+      "description": "北约仅过滤当前美控欧洲候选",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [],
+        "state": {
+          "influence": {
+            "country.italy": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.greece": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.spain_portugal": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.turkey": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.nato"
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state_patch": {
+          "status": "AwaitingTarget"
+        },
+        "candidate_fixture": "BasicBrush52MinusFourEurope"
+      }
+    },
+    {
+      "id": "WAR2-W03",
+      "description": "选择之前不能掷骰",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidRandomFixture",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W04",
+      "description": "稳定度1无敌影响力可战争且阈值3",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.lebanon",
+          "modified_die": 3,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 3
+          },
+          "signed_vp": -1,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W05",
+      "description": "修正骰2失败仍给军事3",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [
+          2
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.lebanon",
+          "modified_die": 2,
+          "war_won": false,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 3
+          },
+          "signed_vp": 0,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W06",
+      "description": "目标本身敌控不另扣骰",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {
+            "country.lebanon": {
+              "US": 3,
+              "USSR": 1
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.lebanon",
+          "modified_die": 3,
+          "war_won": true,
+          "captured": 3,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 3
+          },
+          "signed_vp": -1,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged",
+          "influence": {
+            "country.lebanon": {
+              "US": 0,
+              "USSR": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "WAR2-W07",
+      "description": "美国成功转移苏联全部量保留自己",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "US",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.panama",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 4
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.panama",
+          "modified_die": 3,
+          "war_won": true,
+          "captured": 4,
+          "rng_cursor": 1,
+          "military": {
+            "US": 3,
+            "USSR": 0
+          },
+          "signed_vp": 1,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged",
+          "influence": {
+            "country.panama": {
+              "US": 6,
+              "USSR": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "WAR2-W08",
+      "description": "苏联攻击墨西哥直接相邻美国扣1",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.mexico",
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.mexico",
+          "modified_die": 3,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 3
+          },
+          "signed_vp": -1,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W09",
+      "description": "美国攻击墨西哥己方相邻美国不扣",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "US",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.mexico",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.mexico",
+          "modified_die": 3,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 3,
+            "USSR": 0
+          },
+          "signed_vp": 1,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W10",
+      "description": "美国攻击阿富汗直接相邻苏联扣1",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "US",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.afghanistan",
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.afghanistan",
+          "modified_die": 3,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 3,
+            "USSR": 0
+          },
+          "signed_vp": 1,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W11",
+      "description": "苏联攻击阿富汗己方超级大国不扣",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.afghanistan",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.afghanistan",
+          "modified_die": 3,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 3
+          },
+          "signed_vp": -1,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W12",
+      "description": "墨西哥超级大国与美控危地马拉共扣2",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.mexico",
+        "fixed_random_fixture": [
+          5
+        ],
+        "state": {
+          "influence": {
+            "country.guatemala": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.mexico",
+          "modified_die": 3,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 3
+          },
+          "signed_vp": -1,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W13",
+      "description": "危地马拉三美控邻国扣3不限制单个修正",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.guatemala",
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {
+            "country.mexico": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.el_salvador": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.honduras": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.guatemala",
+          "modified_die": 3,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 3
+          },
+          "signed_vp": -1,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W14",
+      "description": "修正骰可以小于1不截断",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.guatemala",
+        "fixed_random_fixture": [
+          1
+        ],
+        "state": {
+          "influence": {
+            "country.mexico": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.el_salvador": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.honduras": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.guatemala",
+          "modified_die": -2,
+          "war_won": false,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 3
+          },
+          "signed_vp": 0,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W15",
+      "description": "邻国有美国影响力但未控制不扣",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.guatemala",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {
+            "country.mexico": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.guatemala",
+          "modified_die": 3,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 3
+          },
+          "signed_vp": -1,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W16",
+      "description": "北约禁止US攻击美控土耳其",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "US",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.turkey",
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {
+            "country.turkey": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.nato"
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "BlockedByTreaty",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W17",
+      "description": "北约禁止USSR攻击美控土耳其",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.turkey",
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {
+            "country.turkey": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.nato"
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "BlockedByTreaty",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W18",
+      "description": "北约未生效美控目标可攻击",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.turkey",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {
+            "country.turkey": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.turkey",
+          "modified_die": 3,
+          "war_won": true,
+          "captured": 2,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 3
+          },
+          "signed_vp": -1,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged",
+          "influence": {
+            "country.turkey": {
+              "US": 0,
+              "USSR": 2
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "WAR2-W19",
+      "description": "北约生效但土耳其双方未控制允许",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.turkey",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {
+            "country.turkey": {
+              "US": 2,
+              "USSR": 1
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.nato"
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.turkey",
+          "modified_die": 3,
+          "war_won": true,
+          "captured": 2,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 3
+          },
+          "signed_vp": -1,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged",
+          "influence": {
+            "country.turkey": {
+              "US": 0,
+              "USSR": 3
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "WAR2-W20",
+      "description": "北约不保护美控非欧洲巴拿马",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.panama",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.nato"
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.panama",
+          "modified_die": 3,
+          "war_won": true,
+          "captured": 2,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 3
+          },
+          "signed_vp": -1,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged",
+          "influence": {
+            "country.panama": {
+              "US": 0,
+              "USSR": 2
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "WAR2-W21",
+      "description": "伊拉克稳定度3不能Brush",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.iraq",
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.nato",
+            "effect.de_gaulle_leads_france",
+            "effect.willy_brandt",
+            "effect.us_japan_mutual_defense_pact"
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W22",
+      "description": "古巴稳定度3不能Brush",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.cuba",
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.nato",
+            "effect.de_gaulle_leads_france",
+            "effect.willy_brandt",
+            "effect.us_japan_mutual_defense_pact"
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W23",
+      "description": "法国即使戴高乐例外也稳定度3排除",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.france",
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.nato",
+            "effect.de_gaulle_leads_france",
+            "effect.willy_brandt",
+            "effect.us_japan_mutual_defense_pact"
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W24",
+      "description": "西德即使勃兰特例外也稳定度4排除",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.west_germany",
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.nato",
+            "effect.de_gaulle_leads_france",
+            "effect.willy_brandt",
+            "effect.us_japan_mutual_defense_pact"
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W25",
+      "description": "日本稳定度4排除不凭美日安保决定",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.japan",
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.nato",
+            "effect.de_gaulle_leads_france",
+            "effect.willy_brandt",
+            "effect.us_japan_mutual_defense_pact"
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W26",
+      "description": "遏制不把军事/VP/战争骰加1",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.containment"
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.lebanon",
+          "modified_die": 3,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 3
+          },
+          "signed_vp": -1,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W27",
+      "description": "清洗不把军事3变2",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.red_scare_purge"
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.lebanon",
+          "modified_die": 3,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 3
+          },
+          "signed_vp": -1,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W28",
+      "description": "美日安保不扩大为全地图战争免疫",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.us_japan_mutual_defense_pact"
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.lebanon",
+          "modified_die": 3,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 3
+          },
+          "signed_vp": -1,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W29",
+      "description": "DEFCON2战场巴拿马战争不降级",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.panama",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 2,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.panama",
+          "modified_die": 3,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 3
+          },
+          "signed_vp": -1,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W30",
+      "description": "军事累计5再加3为8不截断",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [
+          2
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 1,
+            "USSR": 5
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.lebanon",
+          "modified_die": 2,
+          "war_won": false,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 1,
+            "USSR": 8
+          },
+          "signed_vp": 0,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W31",
+      "description": "苏联VP-19到-20完整转移后胜利",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {
+            "country.lebanon": {
+              "US": 2,
+              "USSR": 1
+            }
+          },
+          "signed_vp": -19,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "GameEnded",
+        "state_patch": {
+          "target": "country.lebanon",
+          "modified_die": 3,
+          "war_won": true,
+          "captured": 2,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 3
+          },
+          "signed_vp": -20,
+          "status": "Finished",
+          "event_outcome": "ResolvedChanged",
+          "influence": {
+            "country.lebanon": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": true,
+          "winner": "USSR"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W32",
+      "description": "美国VP19到20完整奖励后胜利",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "US",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.panama",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 3
+            }
+          },
+          "signed_vp": 19,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "GameEnded",
+        "state_patch": {
+          "target": "country.panama",
+          "modified_die": 3,
+          "war_won": true,
+          "captured": 3,
+          "rng_cursor": 1,
+          "military": {
+            "US": 3,
+            "USSR": 0
+          },
+          "signed_vp": 20,
+          "status": "Finished",
+          "event_outcome": "ResolvedChanged",
+          "influence": {
+            "country.panama": {
+              "US": 5,
+              "USSR": 0
+            }
+          },
+          "finished": true,
+          "winner": "US"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W33",
+      "description": "两伊等待二选一不抽骰",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.iran_iraq_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state_patch": {
+          "status": "AwaitingTarget"
+        },
+        "candidate_fixture": "IranIraqTwo"
+      }
+    },
+    {
+      "id": "WAR2-W34",
+      "description": "两伊选择前不能提前抽骰",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.iran_iraq_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": null,
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidRandomFixture",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W35",
+      "description": "伊朗零影响力成功仍VP2军事2",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.iran_iraq_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.iran",
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.iran",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W36",
+      "description": "伊拉克稳定度3不影响两伊固定目标合法性",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.iran_iraq_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.iraq",
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {
+            "country.iraq": {
+              "US": 4,
+              "USSR": 1
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.iraq",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 4,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged",
+          "influence": {
+            "country.iraq": {
+              "US": 0,
+              "USSR": 5
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "WAR2-W37",
+      "description": "伊朗自身美国控制不扣",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.iran_iraq_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.iran",
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.iran",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 3,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged",
+          "influence": {
+            "country.iran": {
+              "US": 0,
+              "USSR": 3
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "WAR2-W38",
+      "description": "伊朗三个美控邻国扣3失败",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.iran_iraq_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.iran",
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {
+            "country.afghanistan": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.iraq": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.pakistan": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.iran",
+          "modified_die": 3,
+          "war_won": false,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": 0,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W39",
+      "description": "伊拉克四美控邻国扣4",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.iran_iraq_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.iraq",
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {
+            "country.gulf_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.iran": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.jordan": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.saudi_arabia": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.iraq",
+          "modified_die": 2,
+          "war_won": false,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": 0,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W40",
+      "description": "美国攻击伊拉克按苏联邻国控制扣减",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.iran_iraq_war",
+        "event_controller": "US",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.iraq",
+        "fixed_random_fixture": [
+          5
+        ],
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 0,
+              "USSR": 2
+            }
+          },
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.iraq",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 2,
+            "USSR": 0
+          },
+          "signed_vp": 2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W41",
+      "description": "两伊不递归伊朗邻国阿富汗至苏联边",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.iran_iraq_war",
+        "event_controller": "US",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.iran",
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.iran",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 2,
+            "USSR": 0
+          },
+          "signed_vp": 2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W42",
+      "description": "两伊不受Brush北约门禁影响",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.iran_iraq_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.iraq",
+        "fixed_random_fixture": [
+          4
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.nato"
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "target": "country.iraq",
+          "modified_die": 4,
+          "war_won": true,
+          "captured": 0,
+          "rng_cursor": 1,
+          "military": {
+            "US": 0,
+            "USSR": 2
+          },
+          "signed_vp": -2,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "WAR2-W43",
+      "description": "两伊非法目标拒绝不抽骰",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.iran_iraq_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.pakistan",
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W44",
+      "description": "已终局吸收无战争副作用",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.panama",
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": true,
+          "winner": "US",
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W45",
+      "description": "已完成实例不重复算",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.panama",
+        "fixed_random_fixture": [
+          6
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "Completed",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W46",
+      "description": "未知Flower Power暂不支持",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.flower_power"
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W47",
+      "description": "未知相关修正停止",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.future_war_modifier"
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W48",
+      "description": "完整效果集合缺失",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": false,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W49",
+      "description": "CardPlayed相关钩子未结算",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": false
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W50",
+      "description": "重复效果身份",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [
+            "effect.nato",
+            "effect.nato"
+          ],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W51",
+      "description": "错误事件控制者",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": null,
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W52",
+      "description": "缺少原行动者",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": null,
+        "verified_internal_frame": true,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W53",
+      "description": "来源帧未核实",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": false,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W54",
+      "description": "未知卡",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.other",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "UnsupportedCard",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W55",
+      "description": "未知国家",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.other",
+        "fixed_random_fixture": [
+          3
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W56",
+      "description": "骰0",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [
+          0
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidRandomFixture",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W57",
+      "description": "骰7",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [
+          7
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidRandomFixture",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W58",
+      "description": "骰布尔值",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [
+          true
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidRandomFixture",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W59",
+      "description": "骰两个",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [
+          3,
+          6
+        ],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidRandomFixture",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-W60",
+      "description": "无骰",
+      "validation_layer": "war-reference",
+      "status": "reference-specification",
+      "input": {
+        "card_id": "card.brush_war",
+        "event_controller": "USSR",
+        "phasing_player": "US",
+        "verified_internal_frame": true,
+        "selected_target": "country.lebanon",
+        "fixed_random_fixture": [],
+        "state": {
+          "influence": {},
+          "signed_vp": 0,
+          "defcon": 5,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "rng_cursor": 0,
+          "event_outcome": null,
+          "status": "NotStarted",
+          "target": null,
+          "modified_die": null,
+          "captured": null,
+          "war_won": null,
+          "effects_complete": true,
+          "active_effects": [],
+          "card_play_hooks_settled": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidRandomFixture",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "WAR2-R01",
+      "description": "真实EffectController会话认证，不接受客户端替换身份",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#会话/随机/事务与编排层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR2-R02",
+      "description": "同成功CommandId重试不再次给军事/VP/转移",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#会话/随机/事务与编排层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR2-R03",
+      "description": "等待期间局面版本变化拒绝旧目标，重新查询北约",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#会话/随机/事务与编排层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR2-R04",
+      "description": "目标锁定后不允许掷骰换国/重掷",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#会话/随机/事务与编排层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR2-R05",
+      "description": "随机消费和战争结果/收据提交在同一事务崩溃回滚",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#会话/随机/事务与编排层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR2-R06",
+      "description": "各卡星号去向与事件失败的正常发生状态由父帧处理",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#会话/随机/事务与编排层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR2-R07",
+      "description": "无合法Brush候选的合成查询结果RequiresRuling不抽骰不给军事",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#会话/随机/事务与编排层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR2-R08",
+      "description": "整次战争终局后不继续父OPS/下一个事件",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#会话/随机/事务与编排层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR2-R09",
+      "description": "不同契约参数版本、循环引用或损坏摘要拒绝载入",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#会话/随机/事务与编排层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR2-R10",
+      "description": "Flower Power真实出牌钩子先结算且其终局截断战争",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#会话/随机/事务与编排层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR2-R11",
+      "description": "公开战争日志与决策不泄露牌库/私有手牌",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#会话/随机/事务与编排层"
+      },
+      "expected_status": "NotRun"
+    },
+    {
+      "id": "WAR2-R12",
+      "description": "checked影响力和军事累计溢出技术失败整事务回滚",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "requires": "真实C#会话/随机/事务与编排层"
+      },
+      "expected_status": "NotRun"
+    }
+  ]
+}

@@ -53,4 +53,6 @@
 
 此前：[拆墙与事件行动授权](Docs/Wiki/event-operations.md)补齐固定收益、可选欧洲行动、OPS预算和核战责任；当时累计20牌Bound、82牌Unresolved，102处理器均planned。
 
-最新：[首批战争事件](Docs/Wiki/war-events.md)绑定朝鲜、阿以、印巴战争，累计23牌Bound、79牌Unresolved；102处理器仍planned。三牌复用单骰与转移模板，画风接口独立。
+此前：[首批战争事件](Docs/Wiki/war-events.md)绑定朝鲜、阿以、印巴战争，累计23牌Bound、79牌Unresolved；102处理器仍planned。三牌复用单骰与转移模板，画风接口独立。
+
+最新：[战争第二批](Docs/Wiki/war-events-batch2.md)补齐Brush War与两伊战争，五张战争参数均已绑定；累计25 Bound / 77 Unresolved，处理器仍planned。后续持续设计见[批次规划](Docs/Design/rules-design-roadmap.json)。

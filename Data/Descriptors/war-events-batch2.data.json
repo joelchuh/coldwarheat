@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "id": "data.war-events-batch2",
+  "kind": "data",
+  "status": "ready",
+  "description": "Brush War与两伊战争的目标、战争参数引用、北约门禁与直接超级大国邻接；完成五张基础战争参数，C#待实现。",
+  "dataset_id": "effects.deluxe2015.war_events_batch2",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/war-events-batch2.schema.json",
+  "documentation": "Docs/Wiki/war-events-batch2.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/war-events-batch2.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "按Brush War或Iran-Iraq War稳定CardId检索"
+  ],
+  "outputs": [
+    "目标政策、只读战争参数引用及北约门禁引用"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "effects.deluxe2015.war_events_batch1",
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world",
+    "effects.deluxe2015.treaty_protection",
+    "effects.deluxe2015.nato_exceptions",
+    "rules.deluxe2015.military-operations",
+    "rules.deluxe2015.victory"
+  ],
+  "preconditions": [
+    "ready仅表示数据就绪；运行处理器仍planned",
+    "基准政策要明确逐卡核实后引用，非未来战争默认值"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "损坏/循环政策引用、未知变体字段/目标查询或相关钩子",
+    "空合法目标RequiresRuling，不自动给军事"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "英文p7 #36 Brush War；p15 #102 Iran-Iraq War。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1.5/7直接邻接超级大国及控制；§7.6零影响力战争；§8.2.3/4信用；§10.2/3 VP完整批次。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p8 #36：Deluxe必须计算直接相邻超级大国，每个敌控邻国均扣1；p3/p5 #21北约保护不分攻击方。"
+    },
+    {
+      "id": "PROJECT-WAR2",
+      "url": null,
+      "edition": "WAR2-ENGINEERING-01, 2026-10-05",
+      "description": "延用首批单次战争完整结果末关闭VP批次；不存在合法目标时停止为RequiresRuling，不发明默认战争奖励。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/war-events-batch2.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/war-events-batch2.validation.json"
+  },
+  "retrieval_hints": [
+    "Brush读/parameters/brush_war和/brush_war_policy，再读取所需基准字段",
+    "Iran-Iraq明确引用首批/war_policy；不在两处复制同一数值"
+  ]
+}

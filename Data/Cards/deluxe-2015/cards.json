@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.10.0",
+  "content_version": "0.11.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计23牌效果参数已绑定，其余79个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计25牌效果参数已绑定，其余77个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -65,6 +65,12 @@
       "url": null,
       "edition": "WAR1-ENGINEERING-01, 2026-10-05",
       "description": "把单次战争的军事、胜利影响力转移和VP组成原子结果，在同一语义批次末判终局；工程提交顺序，不冒称额外专门FAQ。"
+    },
+    {
+      "id": "PROJECT-WAR2",
+      "url": null,
+      "edition": "WAR2-ENGINEERING-01, 2026-10-05",
+      "description": "延用首批单次战争完整结果末关闭VP批次；不存在合法目标时停止为RequiresRuling，不发明默认战争奖励。"
     }
   ],
   "cards": [
@@ -1134,8 +1140,13 @@
       "effect_binding": {
         "effect_id": "effect.brush_war",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.war_events_batch2",
+            "json_pointer": "/parameters/brush_war"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -2926,8 +2937,13 @@
       "effect_binding": {
         "effect_id": "effect.iran_iraq_war",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.war_events_batch2",
+            "json_pointer": "/parameters/iran_iraq_war"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -3766,15 +3782,32 @@
     {
       "effect_id": "effect.brush_war",
       "contract_version": "0.1.0",
-      "description": "Brush War：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.brush_war",
+      "description": "任一稳定度1/2国家，先过滤北约保护，再按全部对手控制邻接（含直接超级大国）单骰；军事3，胜利VP1及全部影响力转移。",
+      "handler_key": "war.SingleRollInfluenceCaptureWar",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:war-events-batch2:1#/$defs/brush_war"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "英文p7 #36 Brush War；p15 #102 Iran-Iraq War。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.5/7直接邻接超级大国及控制；§7.6零影响力战争；§8.2.3/4信用；§10.2/3 VP完整批次。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p8 #36：Deluxe必须计算直接相邻超级大国，每个敌控邻国均扣1；p3/p5 #21北约保护不分攻击方。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-WAR2",
+          "locator": "延用首批单次战争完整结果末关闭VP批次；不存在合法目标时停止为RequiresRuling，不发明默认战争奖励。",
+          "verification": "Verified"
         }
       ]
     },
@@ -4785,15 +4818,32 @@
     {
       "effect_id": "effect.iran_iraq_war",
       "contract_version": "0.1.0",
-      "description": "Iran-Iraq War：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.iran_iraq_war",
+      "description": "事件控制者先选择被攻击国伊朗或伊拉克；明确核对后引用首批4阈值/2军事/2VP与完整转移政策。",
+      "handler_key": "war.SingleRollInfluenceCaptureWar",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:war-events-batch2:1#/$defs/iran_iraq_war"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "英文p7 #36 Brush War；p15 #102 Iran-Iraq War。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.5/7直接邻接超级大国及控制；§7.6零影响力战争；§8.2.3/4信用；§10.2/3 VP完整批次。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p8 #36：Deluxe必须计算直接相邻超级大国，每个敌控邻国均扣1；p3/p5 #21北约保护不分攻击方。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-WAR2",
+          "locator": "延用首批单次战争完整结果末关闭VP批次；不存在合法目标时停止为RequiresRuling，不发明默认战争奖励。",
+          "verification": "Verified"
         }
       ]
     }

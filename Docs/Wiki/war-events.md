@@ -1,7 +1,7 @@
 # 战争事件：第一批
 
 > description: 查询朝鲜战争、阿以战争、印巴战争的目标政策、单骰修正、固定奖励、影响力转移、阻止接口和事务流程。
-> 状态：2026-10-05，3牌参数Bound；全项目23 Bound / 79 Unresolved，102个处理器均planned，C#/Unity尚未实现。
+> 状态：2026-10-05，3牌参数Bound；全项目25 Bound / 77 Unresolved，102个处理器均planned，C#/Unity尚未实现。
 > 入口：[参数描述](../../Data/Descriptors/war-events-batch1.data.json)、[参数](../../Data/Cards/deluxe-2015/war-events-batch1.parameters.json)、[模块描述](../Descriptors/war-events.module.json)、[Schema](../Contracts/war-events-batch1.schema.json)、[案例](../Design/war-events-batch1.cases.json)、[验证](../Design/war-events-batch1.validation.json)。
 
 ## 本批三张牌
@@ -59,4 +59,8 @@ flowchart TD
 
 案例把数据负例、固定骰参考投影与planned运行验收分开。参考模型假设内部身份/事件事实经过验证，仅检查规则算术与停止行为；不证明真实鉴权、随机持久化、命令幂等、存读档或C#/Unity。旧案例只适配全局绑定数及来源状态，保留业务夹具。经互会短缺和重复激活等旧待裁定边界保持原状。
 
-下一批设计Brush War与Iran-Iraq War，核对目标稳定度限制、北约保护及更多直接超级大国邻接情形。
+第二批已补齐Brush War与Iran-Iraq War，详见下方入口；下一步设计战争CardPlayed钩子及其持续/取消效果。
+
+战争补充：[Brush War与两伊战争](war-events-batch2.md)已完成目标/参数设计，五张战争参数Bound；北约过滤不分攻击方，直接超级大国邻接按Deluxe计算。完整战争CardPlayed钩子仍待后批。
+
+首批验证报告保存当时23牌绑定的快照；最新第二批报告及库存见上文补充入口。

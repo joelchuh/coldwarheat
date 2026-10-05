@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "id": "plan.rules-design-roadmap",
+  "kind": "design-plan",
+  "status": "active",
+  "description": "持续规则设计的恢复入口：按有官方依据的小批补齐参数、模块接缝和案例；每批审阅验证、Wiki与Git同步，尚未进入C#/Unity实现。",
+  "entrypoints": [
+    {
+      "path": "Docs/Wiki/index.md",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "当前Git基线、Wiki与参数绑定目录、官方Deluxe资料及用户裁定"
+  ],
+  "outputs": [
+    "可审阅的分批规则设计、类型化共享数据、离线验证及工作记录"
+  ],
+  "dependencies": [],
+  "preconditions": [
+    "遵守AGENTS §§22–23，保留已有修改",
+    "不为填满额度编造规则；遇到缺口先完成不依赖的设计并记录待核实"
+  ],
+  "side_effects": [
+    "授权的设计文档/数据及普通Git提交推送"
+  ],
+  "stop_conditions": [
+    "实际账户额度限制、用户停止、无法安全恢复的外部阻塞",
+    "不自动使用额度重置、不进入C#/Unity实现"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf"
+    }
+  ],
+  "tests": [],
+  "queue": [
+    {
+      "id": "war-batch2",
+      "status": "designed",
+      "cards": [
+        "card.brush_war",
+        "card.iran_iraq_war"
+      ],
+      "description": "稳定度、北约、超级大国邻接及共享战争政策",
+      "wiki": "Docs/Wiki/war-events-batch2.md"
+    },
+    {
+      "id": "war-card-hooks",
+      "status": "in-progress",
+      "cards": [
+        "card.flower_power",
+        "card.camp_david_accords",
+        "card.an_evil_empire"
+      ],
+      "description": "战争牌使用时机、持续处罚、取消/阻止与永久事件事实"
+    },
+    {
+      "id": "defcon-coup-effects",
+      "status": "planned",
+      "cards": [
+        "card.cuban_missile_crisis",
+        "card.nuclear_subs",
+        "card.salt_negotiations",
+        "card.abm_treaty"
+      ],
+      "description": "事件DEFCON变化、政变干预、解除选择与事件行动授权"
+    },
+    {
+      "id": "early-choice-events",
+      "status": "planned",
+      "cards": [
+        "card.de_stalinization",
+        "card.blockade",
+        "card.five_year_plan"
+      ],
+      "description": "影响力迁移、手牌选择/随机弃牌与隐藏信息"
+    },
+    {
+      "id": "scoring-state-effects",
+      "status": "planned",
+      "cards": [
+        "card.formosan_resolution",
+        "card.shuttle_diplomacy"
+      ],
+      "description": "动态战场身份及计分一次性修正"
+    },
+    {
+      "id": "remaining-verified-batches",
+      "status": "planned",
+      "description": "按依赖把其余Unresolved牌分批，优先共享原语可覆盖的事件"
+    },
+    {
+      "id": "rule-package-audit",
+      "status": "planned",
+      "description": "全牌覆盖、已确认/待裁定分离、服务输入输出和跨模块验收；达成后再请用户决定实施阶段"
+    }
+  ]
+}
