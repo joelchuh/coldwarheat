@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "inputs": [
+    "权威候选行动、Actor、CountryId、sourceCardId、stateRevision和活动实例/事件事实"
+  ],
+  "outputs": [
+    "NoTreatyBlock/BlockedByTreaty/RequiresRuling；这只是条约过滤结果",
+    "聚合门禁的Allowed/Denied/InvalidContext/RequiresRuling及原因"
+  ],
+  "dependencies": [],
+  "preconditions": [
+    "planned不是运行实现",
+    "权威事件控制者与实际OPS行动者已确定；静态定义只读"
+  ],
+  "side_effects": [
+    "查询纯计算；激活计划由权威事务提交，包含日本增加量和状态登记"
+  ],
+  "stop_conditions": [
+    "未知来源/ID/状态版本；相关例外状态未知；未实现处理器",
+    "前置历史不完整且无已知成功前置；不得猜测未发生"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "p4 #21北约、p5 #27美日安保；接缝p3 #16、p4 #17/#23、p9 #55、p14 #96；仅英文卡图。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1.1–2地区、§2.1.7控制、§5.2前置与去向、§7.3永久效果及取消、§8.1 DEFCON。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 (2010), compatible Deluxe clarifications only",
+      "description": "p3/p5 #21明确北约的Brush War保护；不采用第一版设置或旧卡值。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/treaty-protection.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "documentation": "Docs/Wiki/treaty-protection.md",
+  "id": "module.action-restrictions",
+  "kind": "module",
+  "status": "planned",
+  "description": "查询条约保护与前置条件，组合DEFCON和基础目标合法性；动态重查控制权并返回具名阻止原因，尚无C#实现。",
+  "entrypoints": [],
+  "data_dependencies": [
+    "effects.deluxe2015.treaty_protection",
+    "map.deluxe2015.world",
+    "cards.deluxe2015.definitions",
+    "rules.deluxe2015.defcon"
+  ],
+  "verification": {
+    "implementation_tested": false,
+    "report": "Docs/Design/treaty-protection.validation.json"
+  },
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/EventFactLedger.cs",
+      "symbol": "HasSuccessfulEvent"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Operations/ActionRestrictionService.cs",
+      "symbol": "Evaluate"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Treaties/TreatyEventResolver.cs",
+      "symbol": "BuildActivationPlan"
+    }
+  ],
+  "contract_dependencies": [
+    "urn:coldwarheat:contract:treaty-protection:1"
+  ]
+}

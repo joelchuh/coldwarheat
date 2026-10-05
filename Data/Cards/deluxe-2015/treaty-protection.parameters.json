@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.treaty_protection",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "北约与美日安保：前置事件成功记录、跨回合保护、动态控制权、法国/西德例外与日本加至控制；仅参数/接缝设计，处理器待实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "p4 #21北约、p5 #27美日安保；接缝p3 #16、p4 #17/#23、p9 #55、p14 #96；仅英文卡图。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1.1–2地区、§2.1.7控制、§5.2前置与去向、§7.3永久效果及取消、§8.1 DEFCON。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 (2010), compatible Deluxe clarifications only",
+      "description": "p3/p5 #21明确北约的Brush War保护；不采用第一版设置或旧卡值。"
+    }
+  ],
+  "event_fact_policy": {
+    "description": "只把已提交且成功发生的事件写为前置成功事实；卡牌位置和OPS出牌不能替代该记录。",
+    "qualifying_outcomes": [
+      "ResolvedChanged",
+      "ResolvedNoChange"
+    ],
+    "nonqualifying_outcomes": [
+      "NotTriggered",
+      "BlockedPrerequisite",
+      "Suppressed",
+      "Cancelled"
+    ],
+    "unknown_history": "RequiresRuling",
+    "source_refs": [
+      {
+        "source_id": "R2015",
+        "locator": "§5.2 and NATO example",
+        "verification": "Verified"
+      }
+    ]
+  },
+  "interaction_boundaries": {
+    "description": "仅核对关系，未绑定/实现这些来源牌完整效果。",
+    "scope": "IntegrationOnly",
+    "willy_brandt_cancelled_by": "card.tear_down_this_wall",
+    "source_refs": [
+      {
+        "source_id": "C-DELUXE-EN",
+        "locator": "PDF p9 #55; p14 #96",
+        "verification": "Verified"
+      },
+      {
+        "source_id": "R2015",
+        "locator": "§2.1.1–2; §2.1.7; §5.2; §7.3",
+        "verification": "Verified"
+      }
+    ]
+  },
+  "parameters": {
+    "nato": {
+      "card_id": "card.nato",
+      "effect_id": "effect.nato",
+      "description": "满足马歇尔计划或华沙条约事件成功前置后，动态保护美国控制的欧洲国家；特定国家例外不删除北约实例。",
+      "template": "ActivateTreatyProtection",
+      "duration": "UntilCancelledOrGameEnd",
+      "expiry_boundary": null,
+      "activation_gate": {
+        "kind": "AnySuccessfulEvent",
+        "card_ids": [
+          "card.marshall_plan",
+          "card.warsaw_pact_formed"
+        ]
+      },
+      "immediate_influence": null,
+      "target_scope": {
+        "kind": "RegionControlledBy",
+        "region_id": "region.europe",
+        "controller": "US"
+      },
+      "prohibitions": [
+        {
+          "action": "Coup",
+          "actor": "USSR",
+          "source_card_id": null
+        },
+        {
+          "action": "Realignment",
+          "actor": "USSR",
+          "source_card_id": null
+        },
+        {
+          "action": "EventAttack",
+          "actor": "Any",
+          "source_card_id": "card.brush_war"
+        }
+      ],
+      "country_exceptions": [
+        {
+          "country_id": "country.france",
+          "while_effect_active": "effect.de_gaulle_leads_france"
+        },
+        {
+          "country_id": "country.west_germany",
+          "while_effect_active": "effect.willy_brandt"
+        }
+      ],
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p4 English #21; #17; p9 #55",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2; §2.1.7; §5.2; §7.3",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "us_japan_mutual_defense_pact": {
+      "card_id": "card.us_japan_mutual_defense_pact",
+      "effect_id": "effect.us_japan_mutual_defense_pact",
+      "description": "立即只增加美国影响力至日本控制，永久禁止苏联对日本政变与调整；保护不依赖此后控制权。",
+      "template": "ActivateTreatyProtection",
+      "duration": "UntilCancelledOrGameEnd",
+      "expiry_boundary": null,
+      "activation_gate": {
+        "kind": "None",
+        "card_ids": []
+      },
+      "immediate_influence": {
+        "template": "AddToControl",
+        "country_id": "country.japan",
+        "side": "US"
+      },
+      "target_scope": {
+        "kind": "SpecificCountry",
+        "country_id": "country.japan"
+      },
+      "prohibitions": [
+        {
+          "action": "Coup",
+          "actor": "USSR",
+          "source_card_id": null
+        },
+        {
+          "action": "Realignment",
+          "actor": "USSR",
+          "source_card_id": null
+        }
+      ],
+      "country_exceptions": [],
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p5 English #27",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.1–2; §2.1.7; §5.2; §7.3",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

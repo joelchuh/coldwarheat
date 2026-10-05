@@ -76,4 +76,8 @@ description：按效果参数查本回合持续状态的生效、到期、取消
 
 [验收案例](../Design/persistent-effects-batch1.cases.json) 区分参数、离线参考模型和运行层；[实际验证记录](../Design/persistent-effects-batch1.validation.json) 明确未运行项目。离线模型检查预算公式和状态契约，不能证明 C#事务、恢复、出牌顺序或 Unity 可用。
 
-下一步设计北约、美日安保条约的行动限制与条件解锁，把持续状态用于“某个操作是否合法”，复用本批生命周期；重复清洗的叠加方式、经互会候选不足以及更复杂的 OPS 中断恢复仍单独待核实。
+后续已建立[北约、美日安保条约设计](treaty-protection.md)，涵盖行动限制与条件解锁，把持续状态用于“某个操作是否合法”，复用本批生命周期；重复清洗的叠加方式、经互会候选不足以及更复杂的 OPS 中断恢复仍单独待核实。
+
+## 永久条约扩展（2026-10-05，待实现）
+
+[北约与美日安保](treaty-protection.md)使用独立 `ActivateTreatyProtection` 模板，duration为`UntilCancelledOrGameEnd`，expiresAt为空；本回合OPS模板的到期规则不外推到永久效果。法国／西德是由相关活动效果驱动的局部例外，不终结北约实例。OPS报价只接收注册表已识别的OPS修正；已知条约类型交给行动限制服务，未知类型仍报错。

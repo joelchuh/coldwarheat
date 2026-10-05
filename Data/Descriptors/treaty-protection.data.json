@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "inputs": [
+    "版本匹配的参数、权威当前控制状态、成功事件历史与活动实例"
+  ],
+  "outputs": [
+    "只读条约参数或拟定保护/影响力变化计划"
+  ],
+  "dependencies": [],
+  "preconditions": [
+    "planned不是运行实现",
+    "权威事件控制者与实际OPS行动者已确定；静态定义只读"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知来源/ID/状态版本；相关例外状态未知；未实现处理器",
+    "前置历史不完整且无已知成功前置；不得猜测未发生"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "p4 #21北约、p5 #27美日安保；接缝p3 #16、p4 #17/#23、p9 #55、p14 #96；仅英文卡图。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1.1–2地区、§2.1.7控制、§5.2前置与去向、§7.3永久效果及取消、§8.1 DEFCON。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 (2010), compatible Deluxe clarifications only",
+      "description": "p3/p5 #21明确北约的Brush War保护；不采用第一版设置或旧卡值。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/treaty-protection.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "documentation": "Docs/Wiki/treaty-protection.md",
+  "id": "data.treaty-protection",
+  "kind": "data",
+  "status": "ready",
+  "description": "北约与美日安保：前置事件成功记录、跨回合保护、动态控制权、法国/西德例外与日本加至控制；仅参数/接缝设计，处理器待实现。",
+  "dataset_id": "effects.deluxe2015.treaty_protection",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/treaty-protection.schema.json",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/treaty-protection.parameters.json",
+      "symbol": null
+    }
+  ],
+  "data_dependencies": [
+    "map.deluxe2015.world",
+    "cards.deluxe2015.definitions"
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/treaty-protection.validation.json"
+  },
+  "retrieval_hints": [
+    "parameters按card ID后缀读取；日本稳定度查询world.json，不重复常量4",
+    "interaction_boundaries只有关系，不可据此调用未实现来源牌处理器"
+  ]
+}

@@ -1,0 +1,495 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:treaty-protection:1",
+  "title": "treaty-protection",
+  "description": "条约保护参数契约：显式前置成功事件、永久期限、动态控制/指定国家、具名操作和例外；封闭字段。",
+  "$defs": {
+    "ActivateTreatyProtection": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "pattern": "^card\\.[a-z][a-z0-9_]*$"
+        },
+        "effect_id": {
+          "type": "string",
+          "pattern": "^effect\\.[a-z][a-z0-9_]*$"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "ActivateTreatyProtection"
+        },
+        "duration": {
+          "const": "UntilCancelledOrGameEnd"
+        },
+        "expiry_boundary": {
+          "type": "null"
+        },
+        "activation_gate": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "None",
+                "AnySuccessfulEvent"
+              ]
+            },
+            "card_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^card\\.[a-z][a-z0-9_]*$"
+              }
+            }
+          },
+          "required": [
+            "kind",
+            "card_ids"
+          ]
+        },
+        "immediate_influence": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "template": {
+                  "const": "AddToControl"
+                },
+                "country_id": {
+                  "type": "string",
+                  "pattern": "^country\\.[a-z][a-z0-9_]*$"
+                },
+                "side": {
+                  "enum": [
+                    "US",
+                    "USSR"
+                  ]
+                }
+              },
+              "required": [
+                "template",
+                "country_id",
+                "side"
+              ]
+            }
+          ]
+        },
+        "target_scope": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "const": "RegionControlledBy"
+                },
+                "region_id": {
+                  "type": "string",
+                  "pattern": "^region\\.[a-z][a-z0-9_]*$"
+                },
+                "controller": {
+                  "enum": [
+                    "US",
+                    "USSR"
+                  ]
+                }
+              },
+              "required": [
+                "kind",
+                "region_id",
+                "controller"
+              ]
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "const": "SpecificCountry"
+                },
+                "country_id": {
+                  "type": "string",
+                  "pattern": "^country\\.[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "kind",
+                "country_id"
+              ]
+            }
+          ]
+        },
+        "prohibitions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "action": {
+                "enum": [
+                  "Coup",
+                  "Realignment",
+                  "EventAttack"
+                ]
+              },
+              "actor": {
+                "enum": [
+                  "US",
+                  "USSR",
+                  "Any"
+                ]
+              },
+              "source_card_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^card\\.[a-z_]+$"
+              }
+            },
+            "required": [
+              "action",
+              "actor",
+              "source_card_id"
+            ]
+          }
+        },
+        "country_exceptions": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "country_id": {
+                "type": "string",
+                "pattern": "^country\\.[a-z][a-z0-9_]*$"
+              },
+              "while_effect_active": {
+                "type": "string",
+                "pattern": "^effect\\.[a-z][a-z0-9_]*$"
+              }
+            },
+            "required": [
+              "country_id",
+              "while_effect_active"
+            ]
+          }
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "enum": [
+                  "Verified",
+                  "Pending",
+                  "Fixture"
+                ]
+              }
+            },
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ]
+          },
+          "minItems": 1,
+          "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+        }
+      },
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "duration",
+        "expiry_boundary",
+        "activation_gate",
+        "immediate_influence",
+        "target_scope",
+        "prohibitions",
+        "country_exceptions",
+        "source_refs"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "activation_gate": {
+                "properties": {
+                  "kind": {
+                    "const": "None"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "activation_gate": {
+                "properties": {
+                  "card_ids": {
+                    "maxItems": 0
+                  }
+                }
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "activation_gate": {
+                "properties": {
+                  "card_ids": {
+                    "minItems": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.treaty_protection"
+    },
+    "content_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "ruleset_id": {
+      "type": "string",
+      "pattern": "^ruleset\\.[a-z][a-z0-9_]*(\\.[a-z0-9_]+)*$"
+    },
+    "scope": {
+      "enum": [
+        "fixture",
+        "release-candidate"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "edition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "edition",
+          "description"
+        ]
+      },
+      "minItems": 1
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nato": {
+          "$ref": "#/$defs/ActivateTreatyProtection"
+        },
+        "us_japan_mutual_defense_pact": {
+          "$ref": "#/$defs/ActivateTreatyProtection"
+        }
+      },
+      "required": [
+        "nato",
+        "us_japan_mutual_defense_pact"
+      ]
+    },
+    "event_fact_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "qualifying_outcomes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "ResolvedChanged",
+              "ResolvedNoChange"
+            ]
+          }
+        },
+        "nonqualifying_outcomes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "NotTriggered",
+              "BlockedPrerequisite",
+              "Suppressed",
+              "Cancelled"
+            ]
+          }
+        },
+        "unknown_history": {
+          "const": "RequiresRuling"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "enum": [
+                  "Verified",
+                  "Pending",
+                  "Fixture"
+                ]
+              }
+            },
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ]
+          },
+          "minItems": 1,
+          "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+        }
+      },
+      "required": [
+        "description",
+        "qualifying_outcomes",
+        "nonqualifying_outcomes",
+        "unknown_history",
+        "source_refs"
+      ]
+    },
+    "interaction_boundaries": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope": {
+          "const": "IntegrationOnly"
+        },
+        "willy_brandt_cancelled_by": {
+          "type": "string",
+          "pattern": "^card\\.[a-z][a-z0-9_]*$"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "enum": [
+                  "Verified",
+                  "Pending",
+                  "Fixture"
+                ]
+              }
+            },
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ]
+          },
+          "minItems": 1,
+          "description": "逐项资料定位；Fixture不可作为正式规则证据。"
+        }
+      },
+      "required": [
+        "description",
+        "scope",
+        "willy_brandt_cancelled_by",
+        "source_refs"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "parameters",
+    "event_fact_policy",
+    "interaction_boundaries"
+  ]
+}

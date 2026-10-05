@@ -1,0 +1,1676 @@
+{
+  "schema_version": 1,
+  "description": "条约数据与离线参考案例；运行事务/头条/存档接入仍planned。",
+  "dataset": "Data/Cards/deluxe-2015/treaty-protection.parameters.json",
+  "schema": "Docs/Contracts/treaty-protection.schema.json",
+  "cases": [
+    {
+      "id": "TP1-D01",
+      "description": "正式两牌参数与边界引用一致",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "TP1-D02",
+      "description": "未知模板",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "nato",
+            "template"
+          ],
+          "value": "EvalScript"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "TP1-D03",
+      "description": "北约期限不是回合末",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "nato",
+            "duration"
+          ],
+          "value": "RemainderOfActivationTurn"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "TP1-D04",
+      "description": "永久期限不能混入回合到期边界",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "nato",
+            "expiry_boundary"
+          ],
+          "value": "ExpireAndReset"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "TP1-D05",
+      "description": "前置不能换成遏制",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "nato",
+            "activation_gate",
+            "card_ids"
+          ],
+          "value": [
+            "card.containment"
+          ]
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "TP1-D06",
+      "description": "前置ID不得重复",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "nato",
+            "activation_gate",
+            "card_ids"
+          ],
+          "value": [
+            "card.marshall_plan",
+            "card.marshall_plan"
+          ]
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "TP1-D07",
+      "description": "北约限定欧洲",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "nato",
+            "target_scope",
+            "region_id"
+          ],
+          "value": "region.asia"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "TP1-D08",
+      "description": "北约不能保护苏联控制国",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "nato",
+            "target_scope",
+            "controller"
+          ],
+          "value": "USSR"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "TP1-D09",
+      "description": "北约政变禁止方不能变美国",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "nato",
+            "prohibitions",
+            0,
+            "actor"
+          ],
+          "value": "US"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "TP1-D10",
+      "description": "Brush War禁止不扩成全部战争",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "nato",
+            "prohibitions",
+            2,
+            "source_card_id"
+          ],
+          "value": null
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "TP1-D11",
+      "description": "法国例外目标不能改日本",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "nato",
+            "country_exceptions",
+            0,
+            "country_id"
+          ],
+          "value": "country.japan"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "TP1-D12",
+      "description": "未知例外来源",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "nato",
+            "country_exceptions",
+            0,
+            "while_effect_active"
+          ],
+          "value": "effect.unknown"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "TP1-D13",
+      "description": "日本直接增加不得改为移除",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "us_japan_mutual_defense_pact",
+            "immediate_influence",
+            "template"
+          ],
+          "value": "RemoveAll"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "TP1-D14",
+      "description": "日本目标不得改南韩",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "us_japan_mutual_defense_pact",
+            "target_scope",
+            "country_id"
+          ],
+          "value": "country.south_korea"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "TP1-D15",
+      "description": "日本保护不加控制条件",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "us_japan_mutual_defense_pact",
+            "target_scope"
+          ],
+          "value": {
+            "kind": "RegionControlledBy",
+            "region_id": "region.asia",
+            "controller": "US"
+          }
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "TP1-D16",
+      "description": "取消不算前置成功",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "event_fact_policy",
+            "qualifying_outcomes"
+          ],
+          "value": [
+            "ResolvedChanged",
+            "Cancelled"
+          ]
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "TP1-D17",
+      "description": "前置关系不是运行实现",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "interaction_boundaries",
+            "scope"
+          ],
+          "value": "Implemented"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "TP1-D18",
+      "description": "不得添加任意脚本字段",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "nato",
+            "script"
+          ],
+          "value": "execute"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "TP1-D19",
+      "description": "未知规则来源",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "nato",
+            "source_refs",
+            0,
+            "source_id"
+          ],
+          "value": "UNKNOWN"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "TP1-D20",
+      "description": "卡图来源ID不得重复",
+      "validation_layer": "data",
+      "status": "specified",
+      "edits": [
+        {
+          "path": [
+            "source_catalog",
+            1,
+            "id"
+          ],
+          "value": "C-DELUXE-EN"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "TP1-G01",
+      "description": "无前置阻止事件",
+      "validation_layer": "gate-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.nato",
+        "facts": [],
+        "history_complete": true,
+        "attempt_sequence": 3
+      },
+      "expected_valid": true,
+      "expected_result": "BlockedPrerequisite"
+    },
+    {
+      "id": "TP1-G02",
+      "description": "马歇尔成功即可",
+      "validation_layer": "gate-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.nato",
+        "facts": [
+          {
+            "card_id": "card.marshall_plan",
+            "outcome": "ResolvedChanged",
+            "commit_sequence": 2
+          }
+        ],
+        "history_complete": true,
+        "attempt_sequence": 3
+      },
+      "expected_valid": true,
+      "expected_result": "Ready"
+    },
+    {
+      "id": "TP1-G03",
+      "description": "华沙成功即可",
+      "validation_layer": "gate-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.nato",
+        "facts": [
+          {
+            "card_id": "card.warsaw_pact_formed",
+            "outcome": "ResolvedChanged",
+            "commit_sequence": 2
+          }
+        ],
+        "history_complete": true,
+        "attempt_sequence": 3
+      },
+      "expected_valid": true,
+      "expected_result": "Ready"
+    },
+    {
+      "id": "TP1-G04",
+      "description": "已发生无数值变化仍算成功",
+      "validation_layer": "gate-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.nato",
+        "facts": [
+          {
+            "card_id": "card.marshall_plan",
+            "outcome": "ResolvedNoChange",
+            "commit_sequence": 2
+          }
+        ],
+        "history_complete": true,
+        "attempt_sequence": 3
+      },
+      "expected_valid": true,
+      "expected_result": "Ready"
+    },
+    {
+      "id": "TP1-G05",
+      "description": "前置结果NotTriggered不解锁",
+      "validation_layer": "gate-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.nato",
+        "facts": [
+          {
+            "card_id": "card.marshall_plan",
+            "outcome": "NotTriggered",
+            "commit_sequence": 2
+          }
+        ],
+        "history_complete": true,
+        "attempt_sequence": 3
+      },
+      "expected_valid": true,
+      "expected_result": "BlockedPrerequisite"
+    },
+    {
+      "id": "TP1-G06",
+      "description": "前置结果BlockedPrerequisite不解锁",
+      "validation_layer": "gate-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.nato",
+        "facts": [
+          {
+            "card_id": "card.marshall_plan",
+            "outcome": "BlockedPrerequisite",
+            "commit_sequence": 2
+          }
+        ],
+        "history_complete": true,
+        "attempt_sequence": 3
+      },
+      "expected_valid": true,
+      "expected_result": "BlockedPrerequisite"
+    },
+    {
+      "id": "TP1-G07",
+      "description": "前置结果Suppressed不解锁",
+      "validation_layer": "gate-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.nato",
+        "facts": [
+          {
+            "card_id": "card.marshall_plan",
+            "outcome": "Suppressed",
+            "commit_sequence": 2
+          }
+        ],
+        "history_complete": true,
+        "attempt_sequence": 3
+      },
+      "expected_valid": true,
+      "expected_result": "BlockedPrerequisite"
+    },
+    {
+      "id": "TP1-G08",
+      "description": "前置结果Cancelled不解锁",
+      "validation_layer": "gate-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.nato",
+        "facts": [
+          {
+            "card_id": "card.marshall_plan",
+            "outcome": "Cancelled",
+            "commit_sequence": 2
+          }
+        ],
+        "history_complete": true,
+        "attempt_sequence": 3
+      },
+      "expected_valid": true,
+      "expected_result": "BlockedPrerequisite"
+    },
+    {
+      "id": "TP1-G09",
+      "description": "无关成功事件不解锁",
+      "validation_layer": "gate-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.nato",
+        "facts": [
+          {
+            "card_id": "card.containment",
+            "outcome": "ResolvedChanged",
+            "commit_sequence": 2
+          }
+        ],
+        "history_complete": true,
+        "attempt_sequence": 3
+      },
+      "expected_valid": true,
+      "expected_result": "BlockedPrerequisite"
+    },
+    {
+      "id": "TP1-G10",
+      "description": "不完整历史不得猜前置未发生",
+      "validation_layer": "gate-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.nato",
+        "facts": [],
+        "history_complete": false,
+        "attempt_sequence": 3
+      },
+      "expected_valid": true,
+      "expected_result": "RequiresRuling"
+    },
+    {
+      "id": "TP1-G11",
+      "description": "不完整历史已有核验成功足以满足OR",
+      "validation_layer": "gate-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.nato",
+        "facts": [
+          {
+            "card_id": "card.warsaw_pact_formed",
+            "outcome": "ResolvedChanged",
+            "commit_sequence": 2
+          }
+        ],
+        "history_complete": false,
+        "attempt_sequence": 3
+      },
+      "expected_valid": true,
+      "expected_result": "Ready"
+    },
+    {
+      "id": "TP1-G12",
+      "description": "日本无需前置",
+      "validation_layer": "gate-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.us_japan_mutual_defense_pact",
+        "facts": [],
+        "history_complete": false,
+        "attempt_sequence": 3
+      },
+      "expected_valid": true,
+      "expected_result": "Ready"
+    },
+    {
+      "id": "TP1-G13",
+      "description": "未来记录不属于当前权威快照",
+      "validation_layer": "gate-reference",
+      "status": "specified",
+      "input": {
+        "card_id": "card.nato",
+        "facts": [
+          {
+            "card_id": "card.marshall_plan",
+            "outcome": "ResolvedChanged",
+            "commit_sequence": 4
+          }
+        ],
+        "history_complete": true,
+        "attempt_sequence": 3
+      },
+      "expected_valid": false,
+      "expected_result": null
+    },
+    {
+      "id": "TP1-A01",
+      "description": "北约阻止美国控制意大利政变",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.italy",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "expected_result": "BlockedByTreaty"
+    },
+    {
+      "id": "TP1-A02",
+      "description": "北约阻止苏联调整",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.italy",
+        "actor": "USSR",
+        "action": "Realignment",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "expected_result": "BlockedByTreaty"
+    },
+    {
+      "id": "TP1-A03",
+      "description": "美国行动不受苏联禁令",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.italy",
+        "actor": "US",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "expected_result": "NoTreatyBlock"
+    },
+    {
+      "id": "TP1-A04",
+      "description": "未控制意大利不受北约保护",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.italy",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 2,
+          "USSR": 1
+        }
+      },
+      "expected_result": "NoTreatyBlock"
+    },
+    {
+      "id": "TP1-A05",
+      "description": "失去控制后保护消失",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.italy",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 2
+        }
+      },
+      "expected_result": "NoTreatyBlock"
+    },
+    {
+      "id": "TP1-A06",
+      "description": "恢复控制后保护返回",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.italy",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 4,
+          "USSR": 2
+        }
+      },
+      "expected_result": "BlockedByTreaty"
+    },
+    {
+      "id": "TP1-A07",
+      "description": "美国控制加拿大也在规则欧洲",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.canada",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 5,
+          "USSR": 1
+        }
+      },
+      "expected_result": "BlockedByTreaty"
+    },
+    {
+      "id": "TP1-A08",
+      "description": "美国控制土耳其也在规则欧洲",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.turkey",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "expected_result": "BlockedByTreaty"
+    },
+    {
+      "id": "TP1-A09",
+      "description": "北约不保护亚洲日本",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.japan",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 5,
+          "USSR": 1
+        }
+      },
+      "expected_result": "NoTreatyBlock"
+    },
+    {
+      "id": "TP1-A10",
+      "description": "北约不阻止影响力投放",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.italy",
+        "actor": "USSR",
+        "action": "Influence",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "expected_result": "NoTreatyBlock"
+    },
+    {
+      "id": "TP1-A11",
+      "description": "北约针对BrushWar攻击",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.italy",
+        "actor": "USSR",
+        "action": "EventAttack",
+        "source_card_id": "card.brush_war",
+        "active_effect_ids": [
+          "effect.nato"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "expected_result": "BlockedByTreaty"
+    },
+    {
+      "id": "TP1-A12",
+      "description": "BrushWar条款无攻击方额外条件",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.italy",
+        "actor": "US",
+        "action": "EventAttack",
+        "source_card_id": "card.brush_war",
+        "active_effect_ids": [
+          "effect.nato"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "expected_result": "BlockedByTreaty"
+    },
+    {
+      "id": "TP1-A13",
+      "description": "不得扩大为其他战争免疫",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.italy",
+        "actor": "USSR",
+        "action": "EventAttack",
+        "source_card_id": "card.korean_war",
+        "active_effect_ids": [
+          "effect.nato"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "expected_result": "NoTreatyBlock"
+    },
+    {
+      "id": "TP1-A14",
+      "description": "法国无例外时保护",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.france",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 4,
+          "USSR": 1
+        }
+      },
+      "expected_result": "BlockedByTreaty"
+    },
+    {
+      "id": "TP1-A15",
+      "description": "戴高乐只去掉法国保护",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.france",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato",
+          "effect.de_gaulle_leads_france"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 4,
+          "USSR": 1
+        }
+      },
+      "expected_result": "NoTreatyBlock"
+    },
+    {
+      "id": "TP1-A16",
+      "description": "戴高乐不去掉意大利保护",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.italy",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato",
+          "effect.de_gaulle_leads_france"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "expected_result": "BlockedByTreaty"
+    },
+    {
+      "id": "TP1-A17",
+      "description": "法国例外也去掉BrushWar保护",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.france",
+        "actor": "USSR",
+        "action": "EventAttack",
+        "source_card_id": "card.brush_war",
+        "active_effect_ids": [
+          "effect.nato",
+          "effect.de_gaulle_leads_france"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 4,
+          "USSR": 1
+        }
+      },
+      "expected_result": "NoTreatyBlock"
+    },
+    {
+      "id": "TP1-A18",
+      "description": "西德无勃兰特例外时保护",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.west_germany",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 5,
+          "USSR": 1
+        }
+      },
+      "expected_result": "BlockedByTreaty"
+    },
+    {
+      "id": "TP1-A19",
+      "description": "勃兰特活动时西德例外",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.west_germany",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato",
+          "effect.willy_brandt"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 5,
+          "USSR": 1
+        }
+      },
+      "expected_result": "NoTreatyBlock"
+    },
+    {
+      "id": "TP1-A20",
+      "description": "勃兰特取消后由当前投影恢复保护",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.west_germany",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 5,
+          "USSR": 1
+        }
+      },
+      "expected_result": "BlockedByTreaty"
+    },
+    {
+      "id": "TP1-A21",
+      "description": "日本条约禁止苏联政变",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.japan",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.us_japan_mutual_defense_pact"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 5,
+          "USSR": 1
+        }
+      },
+      "expected_result": "BlockedByTreaty"
+    },
+    {
+      "id": "TP1-A22",
+      "description": "日本条约失去美国控制仍禁止调整",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.japan",
+        "actor": "USSR",
+        "action": "Realignment",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.us_japan_mutual_defense_pact"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 1,
+          "USSR": 3
+        }
+      },
+      "expected_result": "BlockedByTreaty"
+    },
+    {
+      "id": "TP1-A23",
+      "description": "日本条约不禁止美国调整",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.japan",
+        "actor": "US",
+        "action": "Realignment",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.us_japan_mutual_defense_pact"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "expected_result": "NoTreatyBlock"
+    },
+    {
+      "id": "TP1-A24",
+      "description": "日本条约不阻止影响力投放",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.japan",
+        "actor": "USSR",
+        "action": "Influence",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.us_japan_mutual_defense_pact"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "expected_result": "NoTreatyBlock"
+    },
+    {
+      "id": "TP1-A25",
+      "description": "日本条约不保护南韩",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.south_korea",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.us_japan_mutual_defense_pact"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "expected_result": "NoTreatyBlock"
+    },
+    {
+      "id": "TP1-A26",
+      "description": "日本条约不追加战争免疫",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.japan",
+        "actor": "USSR",
+        "action": "EventAttack",
+        "source_card_id": "card.brush_war",
+        "active_effect_ids": [
+          "effect.us_japan_mutual_defense_pact"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "expected_result": "NoTreatyBlock"
+    },
+    {
+      "id": "TP1-A27",
+      "description": "无条约活动时无条约阻止",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.italy",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "expected_result": "NoTreatyBlock"
+    },
+    {
+      "id": "TP1-A28",
+      "description": "活动记录不完整则待核实",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.italy",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato"
+        ],
+        "effects_complete": false,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "expected_result": "RequiresRuling"
+    },
+    {
+      "id": "TP1-A29",
+      "description": "未知活动效果不能静默忽略",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.italy",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.unknown"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "expected_result": "RequiresRuling"
+    },
+    {
+      "id": "TP1-A30",
+      "description": "两个条约并存分别作用",
+      "validation_layer": "restriction-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.japan",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato",
+          "effect.us_japan_mutual_defense_pact"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "expected_result": "BlockedByTreaty"
+    },
+    {
+      "id": "TP1-I01",
+      "description": "初始日本1US补至4",
+      "validation_layer": "control-reference",
+      "status": "specified",
+      "influence": {
+        "US": 1,
+        "USSR": 0
+      },
+      "expected_delta": 3,
+      "expected_us": 4
+    },
+    {
+      "id": "TP1-I02",
+      "description": "有苏联3补至7US",
+      "validation_layer": "control-reference",
+      "status": "specified",
+      "influence": {
+        "US": 1,
+        "USSR": 3
+      },
+      "expected_delta": 6,
+      "expected_us": 7
+    },
+    {
+      "id": "TP1-I03",
+      "description": "已控制不再增加",
+      "validation_layer": "control-reference",
+      "status": "specified",
+      "influence": {
+        "US": 7,
+        "USSR": 3
+      },
+      "expected_delta": 0,
+      "expected_us": 7
+    },
+    {
+      "id": "TP1-I04",
+      "description": "已过量不降低",
+      "validation_layer": "control-reference",
+      "status": "specified",
+      "influence": {
+        "US": 9,
+        "USSR": 3
+      },
+      "expected_delta": 0,
+      "expected_us": 9
+    },
+    {
+      "id": "TP1-I05",
+      "description": "双方0补至地图稳定度",
+      "validation_layer": "control-reference",
+      "status": "specified",
+      "influence": {
+        "US": 0,
+        "USSR": 0
+      },
+      "expected_delta": 4,
+      "expected_us": 4
+    },
+    {
+      "id": "TP1-I06",
+      "description": "差值刚少1则只加1",
+      "validation_layer": "control-reference",
+      "status": "specified",
+      "influence": {
+        "US": 6,
+        "USSR": 3
+      },
+      "expected_delta": 1,
+      "expected_us": 7
+    },
+    {
+      "id": "TP1-C01",
+      "description": "DEFCON5仍不能绕过北约",
+      "validation_layer": "composition-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.italy",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "defcon": 5,
+      "ignore_defcon_regions": false,
+      "base_eligible": true,
+      "expected_result": "Denied"
+    },
+    {
+      "id": "TP1-C02",
+      "description": "有DEFCON豁免仍不能绕过北约",
+      "validation_layer": "composition-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.italy",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "defcon": 4,
+      "ignore_defcon_regions": true,
+      "base_eligible": true,
+      "expected_result": "Denied"
+    },
+    {
+      "id": "TP1-C03",
+      "description": "法国例外仍受DEFCON4限制",
+      "validation_layer": "composition-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.france",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato",
+          "effect.de_gaulle_leads_france"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 4,
+          "USSR": 1
+        }
+      },
+      "defcon": 4,
+      "ignore_defcon_regions": false,
+      "base_eligible": true,
+      "expected_result": "Denied"
+    },
+    {
+      "id": "TP1-C04",
+      "description": "法国例外与具名DEFCON豁免一起满足门禁",
+      "validation_layer": "composition-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.france",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.nato",
+          "effect.de_gaulle_leads_france"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 4,
+          "USSR": 1
+        }
+      },
+      "defcon": 4,
+      "ignore_defcon_regions": true,
+      "base_eligible": true,
+      "expected_result": "Allowed"
+    },
+    {
+      "id": "TP1-C05",
+      "description": "基础目标不合法优先拒绝",
+      "validation_layer": "composition-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.italy",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "defcon": 5,
+      "ignore_defcon_regions": false,
+      "base_eligible": false,
+      "expected_result": "Denied"
+    },
+    {
+      "id": "TP1-C06",
+      "description": "未被条约阻止但仍因DEFCON拒绝",
+      "validation_layer": "composition-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.italy",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "defcon": 4,
+      "ignore_defcon_regions": false,
+      "base_eligible": true,
+      "expected_result": "Denied"
+    },
+    {
+      "id": "TP1-C07",
+      "description": "门禁全部通过允许",
+      "validation_layer": "composition-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.italy",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [],
+        "effects_complete": true,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "defcon": 5,
+      "ignore_defcon_regions": false,
+      "base_eligible": true,
+      "expected_result": "Allowed"
+    },
+    {
+      "id": "TP1-C08",
+      "description": "缺少活动状态且没有明确拒绝则待核实",
+      "validation_layer": "composition-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.italy",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [],
+        "effects_complete": false,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "defcon": 5,
+      "ignore_defcon_regions": false,
+      "base_eligible": true,
+      "expected_result": "RequiresRuling"
+    },
+    {
+      "id": "TP1-C09",
+      "description": "缺少活动状态但有明确DEFCON拒绝可Denied",
+      "validation_layer": "composition-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.italy",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [],
+        "effects_complete": false,
+        "influence": {
+          "US": 3,
+          "USSR": 1
+        }
+      },
+      "defcon": 4,
+      "ignore_defcon_regions": false,
+      "base_eligible": true,
+      "expected_result": "Denied"
+    },
+    {
+      "id": "TP1-C10",
+      "description": "日本DEFCON豁免不解除条约",
+      "validation_layer": "composition-reference",
+      "status": "specified",
+      "input": {
+        "country_id": "country.japan",
+        "actor": "USSR",
+        "action": "Coup",
+        "source_card_id": null,
+        "active_effect_ids": [
+          "effect.us_japan_mutual_defense_pact"
+        ],
+        "effects_complete": true,
+        "influence": {
+          "US": 5,
+          "USSR": 1
+        }
+      },
+      "defcon": 3,
+      "ignore_defcon_regions": true,
+      "base_eligible": true,
+      "expected_result": "Denied"
+    },
+    {
+      "id": "TP1-L01",
+      "description": "日本加点与条约共同激活",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "activate_japan",
+      "expected": {
+        "outcome": "Activated",
+        "us": 7,
+        "active": true
+      }
+    },
+    {
+      "id": "TP1-L02",
+      "description": "同结算重复不再次加点",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "retry_japan",
+      "expected": {
+        "outcome": "AlreadyApplied",
+        "us": 7,
+        "active": true
+      }
+    },
+    {
+      "id": "TP1-L03",
+      "description": "提交前故障不留下部分变化",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "failed_japan",
+      "expected": {
+        "outcome": "Rejected",
+        "us": 1,
+        "active": false
+      }
+    },
+    {
+      "id": "TP1-L04",
+      "description": "回合末永久条约仍活动",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "end_turn",
+      "expected": {
+        "outcome": "NoChange",
+        "us": 7,
+        "active": true
+      }
+    },
+    {
+      "id": "TP1-L05",
+      "description": "下一回合不被视为过期",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "next_turn",
+      "expected": {
+        "outcome": "NoChange",
+        "us": 7,
+        "active": true
+      }
+    },
+    {
+      "id": "TP1-L06",
+      "description": "局部例外不取消北约实例",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "country_exception",
+      "expected": {
+        "outcome": "NoChange",
+        "nato_active": true,
+        "restriction": "NoTreatyBlock"
+      }
+    },
+    {
+      "id": "TP1-L07",
+      "description": "取消保护不回滚已经发生的影响力",
+      "validation_layer": "lifecycle-reference",
+      "status": "specified",
+      "scenario": "fixture_cancel",
+      "expected": {
+        "outcome": "Cancelled",
+        "us": 7,
+        "active": false
+      }
+    },
+    {
+      "id": "TP1-R01",
+      "description": "完整敌方北约OPS路径：BlockedPrerequisite仍OPS、弃牌不移出",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "TP1-R02",
+      "description": "头条先后与前置成功事实可见序列",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "TP1-R03",
+      "description": "日本加点/注册/成功事实和物理卡移出事务失败恢复",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "TP1-R04",
+      "description": "同次调整控制变化后重查；过期stateRevision拒绝不消费随机数",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "TP1-R05",
+      "description": "永久状态、前置历史与国家例外的存档恢复",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "TP1-R06",
+      "description": "合法拆墙取消勃兰特、保留历史数值和其他条约",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "TP1-R07",
+      "description": "DEFCON豁免授权验证；UI不得自造忽略条约权限",
+      "validation_layer": "runtime",
+      "status": "planned"
+    },
+    {
+      "id": "TP1-R08",
+      "description": "未实现前置/例外/战争处理器时正式包不得开局",
+      "validation_layer": "runtime",
+      "status": "planned"
+    }
+  ]
+}
