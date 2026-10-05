@@ -1,0 +1,930 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:defcon-events-batch1:1",
+  "title": "DEFCON事件与政变干预参数",
+  "description": "四牌封闭参数：按原因/Actor免除降级，危机先终局，解除支付和公共牌区/授权范围明确。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "intervention_policy",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.defcon_events_batch1"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "release-candidate"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "url",
+          "edition",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "edition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "intervention_policy": {
+      "$ref": "#/$defs/InterventionPolicy"
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cuban_missile_crisis",
+        "nuclear_subs",
+        "salt_negotiations",
+        "abm_treaty"
+      ],
+      "properties": {
+        "cuban_missile_crisis": {
+          "$ref": "#/$defs/cuban_missile_crisis"
+        },
+        "nuclear_subs": {
+          "$ref": "#/$defs/nuclear_subs"
+        },
+        "salt_negotiations": {
+          "$ref": "#/$defs/salt_negotiations"
+        },
+        "abm_treaty": {
+          "$ref": "#/$defs/abm_treaty"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "cuban_missile_crisis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "affected_side",
+        "duration",
+        "expiry_boundary",
+        "set_defcon",
+        "fatal_trigger",
+        "loser_identity",
+        "priority",
+        "applies_to_battleground_only",
+        "includes_event_granted_coups",
+        "nuclear_subs_exempts",
+        "relief",
+        "ordered_steps",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.cuban_missile_crisis"
+        },
+        "effect_id": {
+          "const": "effect.cuban_missile_crisis"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "SetDefconAndFatalCoupEffect"
+        },
+        "affected_side": {
+          "const": "OpponentOfEffectController"
+        },
+        "duration": {
+          "const": "RemainderOfTurn"
+        },
+        "expiry_boundary": {
+          "const": "ExpireAndReset"
+        },
+        "set_defcon": {
+          "const": 2
+        },
+        "fatal_trigger": {
+          "const": "AcceptedCoupAttempt"
+        },
+        "loser_identity": {
+          "const": "CoupActor"
+        },
+        "priority": {
+          "const": "BeforeRandomMilitaryInfluenceAndDefcon"
+        },
+        "applies_to_battleground_only": {
+          "const": false
+        },
+        "includes_event_granted_coups": {
+          "const": true
+        },
+        "nuclear_subs_exempts": {
+          "const": false
+        },
+        "relief": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "owner",
+            "amount",
+            "single_country_required",
+            "countries_by_side",
+            "remove_side",
+            "minimum_available",
+            "timing",
+            "defcon_change",
+            "consumes_root_action",
+            "cancel_scope"
+          ],
+          "properties": {
+            "owner": {
+              "const": "AffectedSide"
+            },
+            "amount": {
+              "const": 2
+            },
+            "single_country_required": {
+              "const": true
+            },
+            "countries_by_side": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "US",
+                "USSR"
+              ],
+              "properties": {
+                "US": {
+                  "type": "array",
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "prefixItems": [
+                    {
+                      "const": "country.west_germany"
+                    },
+                    {
+                      "const": "country.turkey"
+                    }
+                  ],
+                  "items": false
+                },
+                "USSR": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 1,
+                  "prefixItems": [
+                    {
+                      "const": "country.cuba"
+                    }
+                  ],
+                  "items": false
+                }
+              }
+            },
+            "remove_side": {
+              "const": "AffectedSide"
+            },
+            "minimum_available": {
+              "const": "ExactAmount"
+            },
+            "timing": {
+              "const": "AnyStableCommandBoundaryBeforeCoupAccepted"
+            },
+            "defcon_change": {
+              "const": "None"
+            },
+            "consumes_root_action": {
+              "const": false
+            },
+            "cancel_scope": {
+              "const": "ThisCrisisInstance"
+            }
+          }
+        },
+        "ordered_steps": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "SetDefcon"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "ActivateFatalCoupEffect"
+                }
+              }
+            }
+          ],
+          "items": false
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    },
+    "nuclear_subs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "duration",
+        "expiry_boundary",
+        "cause",
+        "actor",
+        "includes_event_granted_coups",
+        "replacement_delta",
+        "geographic_exemption",
+        "treaty_exemption",
+        "fatal_crisis_exemption",
+        "event_defcon_exemption",
+        "military_credit_change",
+        "ordered_steps",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.nuclear_subs"
+        },
+        "effect_id": {
+          "const": "effect.nuclear_subs"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "ActivateCoupDefconException"
+        },
+        "beneficiary": {
+          "const": "US"
+        },
+        "duration": {
+          "const": "RemainderOfTurn"
+        },
+        "expiry_boundary": {
+          "const": "ExpireAndReset"
+        },
+        "cause": {
+          "const": "BattlegroundCoup"
+        },
+        "actor": {
+          "const": "US"
+        },
+        "includes_event_granted_coups": {
+          "const": true
+        },
+        "replacement_delta": {
+          "const": 0
+        },
+        "geographic_exemption": {
+          "const": false
+        },
+        "treaty_exemption": {
+          "const": false
+        },
+        "fatal_crisis_exemption": {
+          "const": false
+        },
+        "event_defcon_exemption": {
+          "const": false
+        },
+        "military_credit_change": {
+          "const": "None"
+        },
+        "ordered_steps": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "ActivateCoupDefconException"
+                }
+              }
+            }
+          ],
+          "items": false
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    },
+    "salt_negotiations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "duration",
+        "expiry_boundary",
+        "defcon_improvement",
+        "coup_modifier",
+        "reclaim",
+        "ordered_steps",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.salt_negotiations"
+        },
+        "effect_id": {
+          "const": "effect.salt_negotiations"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "ImproveDefconCoupModifierAndReclaim"
+        },
+        "beneficiary": {
+          "const": "EventController"
+        },
+        "duration": {
+          "const": "RemainderOfTurn"
+        },
+        "expiry_boundary": {
+          "const": "ExpireAndReset"
+        },
+        "defcon_improvement": {
+          "const": 2
+        },
+        "coup_modifier": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "affected_sides",
+            "die_delta",
+            "ops_delta",
+            "military_delta",
+            "includes_event_granted_coups"
+          ],
+          "properties": {
+            "affected_sides": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "prefixItems": [
+                {
+                  "const": "US"
+                },
+                {
+                  "const": "USSR"
+                }
+              ],
+              "items": false
+            },
+            "die_delta": {
+              "const": -1
+            },
+            "ops_delta": {
+              "const": 0
+            },
+            "military_delta": {
+              "const": 0
+            },
+            "includes_event_granted_coups": {
+              "const": true
+            }
+          }
+        },
+        "reclaim": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "owner",
+            "source_zone",
+            "target_zone",
+            "allowed_kind",
+            "maximum_cards",
+            "decline_allowed",
+            "empty_candidates",
+            "reveal_to",
+            "triggers_reclaimed_event",
+            "include_in_resolution",
+            "include_removed",
+            "include_china"
+          ],
+          "properties": {
+            "owner": {
+              "const": "EventController"
+            },
+            "source_zone": {
+              "const": "DiscardPile"
+            },
+            "target_zone": {
+              "const": "OwnerHand"
+            },
+            "allowed_kind": {
+              "const": "Event"
+            },
+            "maximum_cards": {
+              "const": 1
+            },
+            "decline_allowed": {
+              "const": true
+            },
+            "empty_candidates": {
+              "const": "CompleteWithoutReclaim"
+            },
+            "reveal_to": {
+              "const": "BothPlayers"
+            },
+            "triggers_reclaimed_event": {
+              "const": false
+            },
+            "include_in_resolution": {
+              "const": false
+            },
+            "include_removed": {
+              "const": false
+            },
+            "include_china": {
+              "const": false
+            }
+          }
+        },
+        "ordered_steps": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "ImproveDefcon"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "ActivateCoupDieModifier"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "OfferOptionalDiscardReclaim"
+                }
+              }
+            }
+          ],
+          "items": false
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    },
+    "abm_treaty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "defcon_improvement",
+        "operations_grant",
+        "ordered_steps",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.abm_treaty"
+        },
+        "effect_id": {
+          "const": "effect.abm_treaty"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "ImproveDefconOptionalAsIfCardOps"
+        },
+        "beneficiary": {
+          "const": "EventController"
+        },
+        "defcon_improvement": {
+          "const": 1
+        },
+        "operations_grant": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "actor",
+            "base_ops",
+            "budget_source",
+            "ops_policy_ref",
+            "allowed_modes",
+            "decline_allowed",
+            "mode_lock",
+            "geographic_exemption",
+            "treaty_exemption",
+            "coup_credit_kind",
+            "military_policy_ref",
+            "space_allowed",
+            "consumes_additional_card",
+            "consumes_additional_root_action",
+            "modifier_policy"
+          ],
+          "properties": {
+            "actor": {
+              "const": "EventController"
+            },
+            "base_ops": {
+              "const": 4
+            },
+            "budget_source": {
+              "const": "VerifiedEventLiteral"
+            },
+            "ops_policy_ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "dataset_id",
+                "json_pointer"
+              ],
+              "properties": {
+                "dataset_id": {
+                  "const": "effects.deluxe2015.persistent_batch1"
+                },
+                "json_pointer": {
+                  "const": "/ops_policy"
+                }
+              }
+            },
+            "allowed_modes": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3,
+              "prefixItems": [
+                {
+                  "const": "Influence"
+                },
+                {
+                  "const": "Coup"
+                },
+                {
+                  "const": "Realignment"
+                }
+              ],
+              "items": false
+            },
+            "decline_allowed": {
+              "const": true
+            },
+            "mode_lock": {
+              "const": "FirstAcceptedOperation"
+            },
+            "geographic_exemption": {
+              "const": false
+            },
+            "treaty_exemption": {
+              "const": false
+            },
+            "coup_credit_kind": {
+              "const": "OperationsCoup"
+            },
+            "military_policy_ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "dataset_id",
+                "json_pointer"
+              ],
+              "properties": {
+                "dataset_id": {
+                  "const": "rules.deluxe2015.military-operations"
+                },
+                "json_pointer": {
+                  "const": "/credit_sources/OperationsCoup"
+                }
+              }
+            },
+            "space_allowed": {
+              "const": false
+            },
+            "consumes_additional_card": {
+              "const": false
+            },
+            "consumes_additional_root_action": {
+              "const": false
+            },
+            "modifier_policy": {
+              "const": "CurrentActorAndVerifiedRegionalHistory"
+            }
+          }
+        },
+        "ordered_steps": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "ImproveDefcon"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "GrantOptionalAsIfCardOperations"
+                }
+              }
+            }
+          ],
+          "items": false
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    },
+    "InterventionPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "description",
+        "defcon_rules_ref",
+        "activation_collision",
+        "coup_gate_order",
+        "unknown_related_state",
+        "relief_atomicity",
+        "relief_command_binding",
+        "expiry"
+      ],
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "defcon_rules_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.defcon"
+            },
+            "json_pointer": {
+              "const": ""
+            }
+          }
+        },
+        "activation_collision": {
+          "const": "SameResolutionReplayElseRequiresRuling"
+        },
+        "coup_gate_order": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "prefixItems": [
+            {
+              "const": "ValidateIdentityAndBudget"
+            },
+            {
+              "const": "BasicTargetGeographyTreatyLegality"
+            },
+            {
+              "const": "AcceptedAttemptFatalCrisis"
+            },
+            {
+              "const": "CoupDieModifier"
+            },
+            {
+              "const": "OrdinaryCoupResolution"
+            }
+          ],
+          "items": false
+        },
+        "unknown_related_state": {
+          "const": "RequiresRuling"
+        },
+        "relief_atomicity": {
+          "const": "RemoveExactOwnInfluenceAndCancelSameInstance"
+        },
+        "relief_command_binding": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "const": "EffectInstanceId"
+            },
+            {
+              "const": "StateRevision"
+            },
+            {
+              "const": "CountryId"
+            }
+          ],
+          "items": false
+        },
+        "expiry": {
+          "const": "ActivationTurnExpireAndReset"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "id": "data.defcon-events-batch1",
+  "kind": "data",
+  "status": "ready",
+  "description": "古巴危机、核潜艇、SALT与ABM：事件DEFCON、政变拦截/修正、任意边界解除、公共弃牌取回与视同OPS授权；纯规则设计，运行未实现。",
+  "dataset_id": "effects.deluxe2015.defcon_events_batch1",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/defcon-events-batch1.schema.json",
+  "documentation": "Docs/Wiki/defcon-events-batch1.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/defcon-events-batch1.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "稳定CardId、行动原因或危机实例ID查询"
+  ],
+  "outputs": [
+    "四牌具名步骤、解除候选、授权与修正只读参数"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world",
+    "rules.deluxe2015.defcon",
+    "rules.deluxe2015.military-operations",
+    "effects.deluxe2015.persistent_batch1"
+  ],
+  "preconditions": [
+    "ready是数据状态；四处理器仍planned",
+    "出处/Actor/步骤/牌区必须权威验证，外部指令不能伪造豁免"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知相关活动实例/引用/取消证明、过期实例、重复激活冲突",
+    "旧响应、支付不足、非法取回牌区或行动模式"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "英文p7 #40/#41/#43，p9 #57；核对现代明确卡文，不使用旁列译文。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§5.4/5.5卡文与弃牌、§6.3政变、§6.4.1/5太空、§7.4.3视同OPS、§8.1 DEFCON、§8.2.3/5普通/免费政变军事。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p8–9 #40任意时点、单国2点、实际Actor即刻输；p9 #41只免OPS政变降级，不免事件；p12 #57头条可行动；p14 #67明确ABM不能太空。"
+    },
+    {
+      "id": "PROJECT-DC1",
+      "url": null,
+      "edition": "DC1 engineering contracts / derived boundaries, 2026-10-06",
+      "description": "任意时点通过稳定命令边界表达，不抢占已原子提交步骤；基本合法性先核实，再接受致命政变。类型化原因/授权、SALT候选空自动结束与ABM可放弃采用具名封闭策略；重复激活沿用RequiresRuling。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/defcon-events-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/defcon-events-batch1.validation.json"
+  },
+  "retrieval_hints": [
+    "先按parameters卡名读取；政变接缝再查intervention_policy",
+    "轨道上限与普通军事实值不重复放在本文件；引用基础数据"
+  ]
+}

@@ -37,7 +37,8 @@
     "rules.deluxe2015.defcon",
     "map.deluxe2015.world",
     "effects.deluxe2015.treaty_protection",
-    "effects.deluxe2015.event_operations_batch1"
+    "effects.deluxe2015.event_operations_batch1",
+    "effects.deluxe2015.defcon_events_batch1"
   ],
   "preconditions": [
     "权威事务及身份验证",
@@ -59,6 +60,12 @@
       "id": "R2015",
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
       "checked_on": "2026-09-21"
+    },
+    {
+      "id": "PROJECT-DC1",
+      "url": null,
+      "edition": "DC1 engineering contracts / derived boundaries, 2026-10-06",
+      "description": "任意时点通过稳定命令边界表达，不抢占已原子提交步骤；基本合法性先核实，再接受致命政变。类型化原因/授权、SALT候选空自动结束与ABM可放弃采用具名封闭策略；重复激活沿用RequiresRuling。"
     }
   ],
   "tests": [
@@ -74,13 +81,20 @@
     {
       "path": "Docs/Design/event-operations-batch1.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/defcon-events-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
-    "latest_design_report": "Docs/Design/event-operations-batch1.validation.json"
+    "latest_design_report": "Docs/Design/defcon-events-batch1.validation.json"
   },
   "open_items": [
     "正式国家/卡牌目录与逐卡策略"
+  ],
+  "contract_dependencies": [
+    "urn:coldwarheat:contract:defcon-events-batch1:1"
   ]
 }

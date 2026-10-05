@@ -1,0 +1,302 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.defcon_events_batch1",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "古巴危机、核潜艇、SALT与ABM：事件DEFCON、政变拦截/修正、任意边界解除、公共弃牌取回与视同OPS授权；纯规则设计，运行未实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "英文p7 #40/#41/#43，p9 #57；核对现代明确卡文，不使用旁列译文。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§5.4/5.5卡文与弃牌、§6.3政变、§6.4.1/5太空、§7.4.3视同OPS、§8.1 DEFCON、§8.2.3/5普通/免费政变军事。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p8–9 #40任意时点、单国2点、实际Actor即刻输；p9 #41只免OPS政变降级，不免事件；p12 #57头条可行动；p14 #67明确ABM不能太空。"
+    },
+    {
+      "id": "PROJECT-DC1",
+      "url": null,
+      "edition": "DC1 engineering contracts / derived boundaries, 2026-10-06",
+      "description": "任意时点通过稳定命令边界表达，不抢占已原子提交步骤；基本合法性先核实，再接受致命政变。类型化原因/授权、SALT候选空自动结束与ABM可放弃采用具名封闭策略；重复激活沿用RequiresRuling。"
+    }
+  ],
+  "intervention_policy": {
+    "description": "直接事件DEFCON与政变原因独立；基础数值只从现有数据读取。",
+    "defcon_rules_ref": {
+      "dataset_id": "rules.deluxe2015.defcon",
+      "json_pointer": ""
+    },
+    "activation_collision": "SameResolutionReplayElseRequiresRuling",
+    "coup_gate_order": [
+      "ValidateIdentityAndBudget",
+      "BasicTargetGeographyTreatyLegality",
+      "AcceptedAttemptFatalCrisis",
+      "CoupDieModifier",
+      "OrdinaryCoupResolution"
+    ],
+    "unknown_related_state": "RequiresRuling",
+    "relief_atomicity": "RemoveExactOwnInfluenceAndCancelSameInstance",
+    "relief_command_binding": [
+      "EffectInstanceId",
+      "StateRevision",
+      "CountryId"
+    ],
+    "expiry": "ActivationTurnExpireAndReset"
+  },
+  "parameters": {
+    "cuban_missile_crisis": {
+      "card_id": "card.cuban_missile_crisis",
+      "effect_id": "effect.cuban_missile_crisis",
+      "description": "设置DEFCON2，对事件控制者对手本回合政变施加即刻输；其可任意稳定边界从指定单国移除自己的2点解除，不恢复DEFCON。",
+      "template": "SetDefconAndFatalCoupEffect",
+      "affected_side": "OpponentOfEffectController",
+      "duration": "RemainderOfTurn",
+      "expiry_boundary": "ExpireAndReset",
+      "set_defcon": 2,
+      "fatal_trigger": "AcceptedCoupAttempt",
+      "loser_identity": "CoupActor",
+      "priority": "BeforeRandomMilitaryInfluenceAndDefcon",
+      "applies_to_battleground_only": false,
+      "includes_event_granted_coups": true,
+      "nuclear_subs_exempts": false,
+      "relief": {
+        "owner": "AffectedSide",
+        "amount": 2,
+        "single_country_required": true,
+        "countries_by_side": {
+          "US": [
+            "country.west_germany",
+            "country.turkey"
+          ],
+          "USSR": [
+            "country.cuba"
+          ]
+        },
+        "remove_side": "AffectedSide",
+        "minimum_available": "ExactAmount",
+        "timing": "AnyStableCommandBoundaryBeforeCoupAccepted",
+        "defcon_change": "None",
+        "consumes_root_action": false,
+        "cancel_scope": "ThisCrisisInstance"
+      },
+      "ordered_steps": [
+        {
+          "kind": "SetDefcon"
+        },
+        {
+          "kind": "ActivateFatalCoupEffect"
+        }
+      ],
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "英文p7 #40/#41/#43，p9 #57；核对现代明确卡文，不使用旁列译文。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.4/5.5卡文与弃牌、§6.3政变、§6.4.1/5太空、§7.4.3视同OPS、§8.1 DEFCON、§8.2.3/5普通/免费政变军事。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p8–9 #40任意时点、单国2点、实际Actor即刻输；p9 #41只免OPS政变降级，不免事件；p12 #57头条可行动；p14 #67明确ABM不能太空。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-DC1",
+          "locator": "任意时点通过稳定命令边界表达，不抢占已原子提交步骤；基本合法性先核实，再接受致命政变。类型化原因/授权、SALT候选空自动结束与ABM可放弃采用具名封闭策略；重复激活沿用RequiresRuling。",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "nuclear_subs": {
+      "card_id": "card.nuclear_subs",
+      "effect_id": "effect.nuclear_subs",
+      "description": "本回合美国战场政变不降低DEFCON；不豁免地理/条约，不影响事件直接改变DEFCON，也不解除古巴危机。",
+      "template": "ActivateCoupDefconException",
+      "beneficiary": "US",
+      "duration": "RemainderOfTurn",
+      "expiry_boundary": "ExpireAndReset",
+      "cause": "BattlegroundCoup",
+      "actor": "US",
+      "includes_event_granted_coups": true,
+      "replacement_delta": 0,
+      "geographic_exemption": false,
+      "treaty_exemption": false,
+      "fatal_crisis_exemption": false,
+      "event_defcon_exemption": false,
+      "military_credit_change": "None",
+      "ordered_steps": [
+        {
+          "kind": "ActivateCoupDefconException"
+        }
+      ],
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "英文p7 #40/#41/#43，p9 #57；核对现代明确卡文，不使用旁列译文。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.4/5.5卡文与弃牌、§6.3政变、§6.4.1/5太空、§7.4.3视同OPS、§8.1 DEFCON、§8.2.3/5普通/免费政变军事。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p8–9 #40任意时点、单国2点、实际Actor即刻输；p9 #41只免OPS政变降级，不免事件；p12 #57头条可行动；p14 #67明确ABM不能太空。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-DC1",
+          "locator": "任意时点通过稳定命令边界表达，不抢占已原子提交步骤；基本合法性先核实，再接受致命政变。类型化原因/授权、SALT候选空自动结束与ABM可放弃采用具名封闭策略；重复激活沿用RequiresRuling。",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "salt_negotiations": {
+      "card_id": "card.salt_negotiations",
+      "effect_id": "effect.salt_negotiations",
+      "description": "先DEFCON改善2（上限引用基础轨道），本回合双方政变骰-1，然后可从公共弃牌堆取回一张非计分牌并公开。",
+      "template": "ImproveDefconCoupModifierAndReclaim",
+      "beneficiary": "EventController",
+      "duration": "RemainderOfTurn",
+      "expiry_boundary": "ExpireAndReset",
+      "defcon_improvement": 2,
+      "coup_modifier": {
+        "affected_sides": [
+          "US",
+          "USSR"
+        ],
+        "die_delta": -1,
+        "ops_delta": 0,
+        "military_delta": 0,
+        "includes_event_granted_coups": true
+      },
+      "reclaim": {
+        "owner": "EventController",
+        "source_zone": "DiscardPile",
+        "target_zone": "OwnerHand",
+        "allowed_kind": "Event",
+        "maximum_cards": 1,
+        "decline_allowed": true,
+        "empty_candidates": "CompleteWithoutReclaim",
+        "reveal_to": "BothPlayers",
+        "triggers_reclaimed_event": false,
+        "include_in_resolution": false,
+        "include_removed": false,
+        "include_china": false
+      },
+      "ordered_steps": [
+        {
+          "kind": "ImproveDefcon"
+        },
+        {
+          "kind": "ActivateCoupDieModifier"
+        },
+        {
+          "kind": "OfferOptionalDiscardReclaim"
+        }
+      ],
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "英文p7 #40/#41/#43，p9 #57；核对现代明确卡文，不使用旁列译文。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.4/5.5卡文与弃牌、§6.3政变、§6.4.1/5太空、§7.4.3视同OPS、§8.1 DEFCON、§8.2.3/5普通/免费政变军事。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p8–9 #40任意时点、单国2点、实际Actor即刻输；p9 #41只免OPS政变降级，不免事件；p12 #57头条可行动；p14 #67明确ABM不能太空。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-DC1",
+          "locator": "任意时点通过稳定命令边界表达，不抢占已原子提交步骤；基本合法性先核实，再接受致命政变。类型化原因/授权、SALT候选空自动结束与ABM可放弃采用具名封闭策略；重复激活沿用RequiresRuling。",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "abm_treaty": {
+      "card_id": "card.abm_treaty",
+      "effect_id": "effect.abm_treaty",
+      "description": "先DEFCON改善1，再由事件控制者可选执行视同4OPS的普通行动；仍受地区/条约/危机，非免费政变，不能太空。",
+      "template": "ImproveDefconOptionalAsIfCardOps",
+      "beneficiary": "EventController",
+      "defcon_improvement": 1,
+      "operations_grant": {
+        "actor": "EventController",
+        "base_ops": 4,
+        "budget_source": "VerifiedEventLiteral",
+        "ops_policy_ref": {
+          "dataset_id": "effects.deluxe2015.persistent_batch1",
+          "json_pointer": "/ops_policy"
+        },
+        "allowed_modes": [
+          "Influence",
+          "Coup",
+          "Realignment"
+        ],
+        "decline_allowed": true,
+        "mode_lock": "FirstAcceptedOperation",
+        "geographic_exemption": false,
+        "treaty_exemption": false,
+        "coup_credit_kind": "OperationsCoup",
+        "military_policy_ref": {
+          "dataset_id": "rules.deluxe2015.military-operations",
+          "json_pointer": "/credit_sources/OperationsCoup"
+        },
+        "space_allowed": false,
+        "consumes_additional_card": false,
+        "consumes_additional_root_action": false,
+        "modifier_policy": "CurrentActorAndVerifiedRegionalHistory"
+      },
+      "ordered_steps": [
+        {
+          "kind": "ImproveDefcon"
+        },
+        {
+          "kind": "GrantOptionalAsIfCardOperations"
+        }
+      ],
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "英文p7 #40/#41/#43，p9 #57；核对现代明确卡文，不使用旁列译文。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.4/5.5卡文与弃牌、§6.3政变、§6.4.1/5太空、§7.4.3视同OPS、§8.1 DEFCON、§8.2.3/5普通/免费政变军事。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p8–9 #40任意时点、单国2点、实际Actor即刻输；p9 #41只免OPS政变降级，不免事件；p12 #57头条可行动；p14 #67明确ABM不能太空。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-DC1",
+          "locator": "任意时点通过稳定命令边界表达，不抢占已原子提交步骤；基本合法性先核实，再接受致命政变。类型化原因/授权、SALT候选空自动结束与ABM可放弃采用具名封闭策略；重复激活沿用RequiresRuling。",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

@@ -31,7 +31,7 @@ RuleEngine 生成 CreditId、BatchId、CheckpointId，使用命令/步骤序号�
 
 ## 3. DEFCON 服务
 
-限制数据是按等级、行动类型、规则地区 ID 查询的只读表。国家可以有多个标签；东南亚通过国家/地区定义归入亚洲限制范围，不能依赖美术地图分区或中文名称判断。尚未建立正式国家目录，因此本次地区 ID 为待正式目录绑定的稳定引用，完整开局校验仍阻塞。
+限制数据是按等级、行动类型、规则地区 ID 查询的只读表。国家可以有多个标签；东南亚通过国家/地区定义归入亚洲限制范围，不能依赖美术地图分区或中文名称判断。正式国家/邻接定义已绑定，见map-card-data；完整开局运行仍由全部planned处理器和未绑定参数阻塞。
 
 授权对象 ExceptionGrant 必须由已注册的卡牌策略生成，包含 SourceEffectId、ActionKind、RegionScope、IgnoreGeographicRestriction；不接受玩家载荷中的 ignoreDefcon=true。地理限制豁免、战场降级豁免和军事奖励类型是独立能力，不用一个 IsFree 全部覆盖。
 
@@ -149,3 +149,5 @@ TurnFlow 调用结果服务，不解析原文或根据文件顺序挑规则。�
 [三张战争](war-events.md)无论胜败都给事件受益方固定2军事，胜利给2VP；信用不读取修正OPS。军事、胜利转移和VP完成后关闭战争VP批次，按共享符号/阈值判终局。
 
 [战争第二批](war-events-batch2.md)明确Brush War的固定奖励与首批不同；两伊逐卡核实后引用首批政策。军事信用仍归EffectController，完整结果末关闭VP批次。
+
+[DEFCON事件与政变干预](defcon-events-batch1.md)补齐危机实际Actor责任、任意边界解除、核潜艇/SALT政策与ABM视同OPS；全部仍planned。

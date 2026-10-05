@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "id": "module.coup-interventions",
+  "kind": "module",
+  "status": "planned",
+  "description": "政变前干预与危机解除：以实际Actor判致命危机、核潜艇按原因豁免、SALT骰修正；纯计划不改状态。",
+  "documentation": "Docs/Wiki/defcon-events-batch1.md",
+  "entrypoints": [],
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/CoupInterventionService.cs",
+      "symbol": "BeforeAcceptedCoup"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/CoupInterventionService.cs",
+      "symbol": "BuildReliefDecision"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/CoupInterventionService.cs",
+      "symbol": "PlanRelief"
+    }
+  ],
+  "inputs": [
+    "权威合法政变、Actor/PhasingPlayer/原因/实例和当前修订",
+    "解除请求仅EffectInstanceId/Revision/CountryId，支付方由会话身份确定"
+  ],
+  "outputs": [
+    "ImmediateLossPlan/CoupModifierPlan/DefconException、ReliefDecision与原子解除计划"
+  ],
+  "dependencies": [
+    {
+      "id": "module.active-effects",
+      "path": "Docs/Descriptors/active-effects.module.json",
+      "status": "planned"
+    },
+    {
+      "id": "module.influence-events",
+      "path": "Docs/Descriptors/influence-events.module.json",
+      "status": "planned"
+    }
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.defcon_events_batch1",
+    "map.deluxe2015.world",
+    "rules.deluxe2015.defcon"
+  ],
+  "contract_dependencies": [
+    "urn:coldwarheat:contract:defcon-events-batch1:1"
+  ],
+  "preconditions": [
+    "基本合法性和预算/地理/条约已验证；接受政变前可单独提交解除",
+    "真正接受危机下致命政变立即终局，无随机/军事/影响力/降级后续"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "终局、未知/过期效果、支付不足/混国、身份或版本不符、原子步骤中抢占"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "英文p7 #40/#41/#43，p9 #57；核对现代明确卡文，不使用旁列译文。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§5.4/5.5卡文与弃牌、§6.3政变、§6.4.1/5太空、§7.4.3视同OPS、§8.1 DEFCON、§8.2.3/5普通/免费政变军事。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p8–9 #40任意时点、单国2点、实际Actor即刻输；p9 #41只免OPS政变降级，不免事件；p12 #57头条可行动；p14 #67明确ABM不能太空。"
+    },
+    {
+      "id": "PROJECT-DC1",
+      "url": null,
+      "edition": "DC1 engineering contracts / derived boundaries, 2026-10-06",
+      "description": "任意时点通过稳定命令边界表达，不抢占已原子提交步骤；基本合法性先核实，再接受致命政变。类型化原因/授权、SALT候选空自动结束与ABM可放弃采用具名封闭策略；重复激活沿用RequiresRuling。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/defcon-events-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "implementation_tested": false,
+    "report": "Docs/Design/defcon-events-batch1.validation.json"
+  }
+}

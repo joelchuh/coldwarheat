@@ -3,7 +3,7 @@
   "id": "module.event-operations",
   "kind": "module",
   "status": "planned",
-  "description": "事件授予的OPS子上下文：限定行动/地区、美国预算修正、逐次选择、DEFCON责任和免费政变信用；不多消耗卡牌或行动名额。",
+  "description": "事件OPS子上下文：固定美国地区免费行动或中立视同OPS普通行动；来源独立验证、按Actor修正、单根名额与原核战责任。",
   "documentation": "Docs/Wiki/event-operations.md",
   "entrypoints": [],
   "planned_entrypoints": [
@@ -18,11 +18,16 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Operations/EventOperationsService.cs",
       "symbol": "ResolveOne"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Operations/EventOperationsService.cs",
+      "symbol": "GrantAsIfCardOperations"
     }
   ],
   "inputs": [
     "已注册事件步骤的内部授权、RootAction/Frame/PhasingPlayer、Actor、数据摘要与效果快照",
-    "玩家只提交DecisionId、选择类型及CountryId；不能提交能力、预算或骰点"
+    "玩家只提交DecisionId、选择类型及CountryId；不能提交能力、预算或骰点",
+    "DC1 ABM中立事件控制者、VerifiedEventLiteral及已验证地区花费历史；不套用拆墙US/Europe/FreeCoup默认"
   ],
   "outputs": [
     "EventOperationsGrant、OpsContext、PendingDecision及不可变行动计划；Completed/AwaitingDecision/GameEnded"
@@ -64,14 +69,16 @@
     "rules.deluxe2015.military-operations",
     "rules.deluxe2015.victory",
     "rules.deluxe2015.turn-flow",
-    "effects.deluxe2015.event_operations_batch1"
+    "effects.deluxe2015.event_operations_batch1",
+    "effects.deluxe2015.defcon_events_batch1"
   ],
   "contract_dependencies": [
-    "urn:coldwarheat:contract:event-operations-batch1:1"
+    "urn:coldwarheat:contract:event-operations-batch1:1",
+    "urn:coldwarheat:contract:defcon-events-batch1:1"
   ],
   "preconditions": [
     "只有权威注册步骤可创建授权；参数绑定不代替运行注册门禁",
-    "使用标准政变/调整算法；预算读取源牌并按授权创建时Actor有效实例报价",
+    "使用标准政变/调整算法；预算读取具名授权来源（SourceCardPrintedOps或VerifiedEventLiteral）并按授权创建时Actor有效实例报价",
     "所有相关限制/掷骰修正已识别，缺失责任或未知效果先停止"
   ],
   "side_effects": [
@@ -86,7 +93,7 @@
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "edition": "English Deluxe card images",
-      "description": "重新目视PDF p14英文#96完整事件；不采用旁列译文。"
+      "description": "重新目视PDF p14英文#96完整事件；不采用旁列译文。 DC1英文p7 #40/#41/#43、p9 #57，普通视同OPS与free coup分开。"
     },
     {
       "id": "R2015",
@@ -98,23 +105,34 @@
       "id": "F2010",
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
       "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
-      "description": "PDF p16 #96明确欧洲政变/调整DEFCON地理豁免，战场仍降级且免费政变不记军事；p20–21普通行动与修正澄清。"
+      "description": "PDF p16 #96明确欧洲政变/调整DEFCON地理豁免，战场仍降级且免费政变不记军事；p20–21普通行动与修正澄清。 DC1 FAQ PDF p12 #57头条可行动、p14 #67 ABM不可太空。"
     },
     {
       "id": "PROJECT-EO1",
       "url": null,
       "edition": "EO1-INTERPRETATION-01 derived; engineering contracts, 2026-10-05",
       "description": "可选调整可在已结算掷骰之间结束并放弃余量；由may与逐次目标语义推导，非专门FAQ/用户裁定。冻结授权预算、步进事务及来源证明为工程约定。"
+    },
+    {
+      "id": "PROJECT-DC1",
+      "url": null,
+      "edition": "DC1 engineering contracts / derived boundaries, 2026-10-06",
+      "description": "任意时点通过稳定命令边界表达，不抢占已原子提交步骤；基本合法性先核实，再接受致命政变。类型化原因/授权、SALT候选空自动结束与ABM可放弃采用具名封闭策略；重复激活沿用RequiresRuling。"
     }
   ],
   "tests": [
     {
       "path": "Docs/Design/event-operations-batch1.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/defcon-events-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
-    "report": "Docs/Design/event-operations-batch1.validation.json"
+    "report": "Docs/Design/event-operations-batch1.validation.json",
+    "latest_design_report": "Docs/Design/defcon-events-batch1.validation.json"
   }
 }

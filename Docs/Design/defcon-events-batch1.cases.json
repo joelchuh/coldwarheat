@@ -1,0 +1,2372 @@
+{
+  "schema_version": 1,
+  "description": "四牌封闭数据负例、固定控制/牌区/预算参考投影及未执行运行验收；非完整政变/存档证明。",
+  "dataset": "Data/Cards/deluxe-2015/defcon-events-batch1.parameters.json",
+  "schema": "Docs/Contracts/defcon-events-batch1.schema.json",
+  "cases": [
+    {
+      "id": "DC-D-baseline",
+      "validation_layer": "data",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "DC-D-set-level",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "cuban_missile_crisis",
+              "set_defcon"
+            ],
+            "value": 3
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-wrong-loser",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "cuban_missile_crisis",
+              "loser_identity"
+            ],
+            "value": "PhasingPlayer"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-only-bg",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "cuban_missile_crisis",
+              "applies_to_battleground_only"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-ns-bypasses-crisis",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "cuban_missile_crisis",
+              "nuclear_subs_exempts"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-pay-up-to",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "cuban_missile_crisis",
+              "relief",
+              "minimum_available"
+            ],
+            "value": "UpTo"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-split-payment",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "cuban_missile_crisis",
+              "relief",
+              "single_country_required"
+            ],
+            "value": false
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-pay-amount",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "cuban_missile_crisis",
+              "relief",
+              "amount"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-east-germany",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "cuban_missile_crisis",
+              "relief",
+              "countries_by_side",
+              "US"
+            ],
+            "value": [
+              "country.east_germany",
+              "country.turkey"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-relief-defcon",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "cuban_missile_crisis",
+              "relief",
+              "defcon_change"
+            ],
+            "value": "ImproveOne"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-other-pays",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "cuban_missile_crisis",
+              "relief",
+              "owner"
+            ],
+            "value": "EventController"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-ns-actor",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "nuclear_subs",
+              "actor"
+            ],
+            "value": "PhasingPlayer"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-ns-events",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "nuclear_subs",
+              "event_defcon_exemption"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-ns-geography",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "nuclear_subs",
+              "geographic_exemption"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-ns-military",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "nuclear_subs",
+              "military_credit_change"
+            ],
+            "value": "NoCredit"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-salt-delta",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "salt_negotiations",
+              "coup_modifier",
+              "die_delta"
+            ],
+            "value": -2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-salt-ops",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "salt_negotiations",
+              "coup_modifier",
+              "ops_delta"
+            ],
+            "value": -1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-salt-scoring",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "salt_negotiations",
+              "reclaim",
+              "allowed_kind"
+            ],
+            "value": "Scoring"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-salt-removed",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "salt_negotiations",
+              "reclaim",
+              "include_removed"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-salt-trigger",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "salt_negotiations",
+              "reclaim",
+              "triggers_reclaimed_event"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-salt-improve",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "salt_negotiations",
+              "defcon_improvement"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-abm-base",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "abm_treaty",
+              "operations_grant",
+              "base_ops"
+            ],
+            "value": 3
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-abm-space",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "abm_treaty",
+              "operations_grant",
+              "space_allowed"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-abm-free",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "abm_treaty",
+              "operations_grant",
+              "coup_credit_kind"
+            ],
+            "value": "FreeCoup"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-abm-extra-root",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "abm_treaty",
+              "operations_grant",
+              "consumes_additional_root_action"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-abm-geography",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "abm_treaty",
+              "operations_grant",
+              "geographic_exemption"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-bad-ref",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "intervention_policy",
+              "defcon_rules_ref",
+              "dataset_id"
+            ],
+            "value": "rules.fake"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-D-arbitrary",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "intervention_policy",
+              "script"
+            ],
+            "value": "eval()"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DC-R-crisis-from-2",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "defcon": 2
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "defcon": 2,
+          "crisis_affected": "US",
+          "completed": true,
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "DC-R-crisis-from-3",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "defcon": 3
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "defcon": 2,
+          "crisis_affected": "US",
+          "completed": true,
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "DC-R-crisis-from-4",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "defcon": 4
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "defcon": 2,
+          "crisis_affected": "US",
+          "completed": true,
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "DC-R-crisis-from-5",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "defcon": 5
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "defcon": 2,
+          "crisis_affected": "US",
+          "completed": true,
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "DC-R-crisis-us-controller",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {}
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "defcon": 2,
+          "crisis_affected": "USSR",
+          "completed": true,
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "DC-R-subs-fixed-us",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "card_id": "card.nuclear_subs",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {}
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "subs_active": true,
+          "completed": true,
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "DC-R-crisis-repeat",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "crisis_affected": "US"
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DC-R-subs-repeat",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "card_id": "card.nuclear_subs",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "subs_active": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DC-R-relief-US-turkey",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Relief",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.turkey",
+        "selected_card": null,
+        "state": {
+          "crisis_affected": "US",
+          "influence": {
+            "country.turkey": {
+              "US": 3,
+              "USSR": 7
+            }
+          },
+          "defcon": 4
+        }
+      },
+      "expected": {
+        "outcome": "Relieved",
+        "state_patch": {
+          "crisis_affected": null,
+          "influence": {
+            "country.turkey": {
+              "US": 1,
+              "USSR": 7
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "DC-R-relief-US-west_germany",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Relief",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.west_germany",
+        "selected_card": null,
+        "state": {
+          "crisis_affected": "US",
+          "influence": {
+            "country.west_germany": {
+              "US": 3,
+              "USSR": 7
+            }
+          },
+          "defcon": 4
+        }
+      },
+      "expected": {
+        "outcome": "Relieved",
+        "state_patch": {
+          "crisis_affected": null,
+          "influence": {
+            "country.west_germany": {
+              "US": 1,
+              "USSR": 7
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "DC-R-relief-USSR-cuba",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Relief",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "USSR",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.cuba",
+        "selected_card": null,
+        "state": {
+          "crisis_affected": "USSR",
+          "influence": {
+            "country.cuba": {
+              "US": 7,
+              "USSR": 3
+            }
+          },
+          "defcon": 4
+        }
+      },
+      "expected": {
+        "outcome": "Relieved",
+        "state_patch": {
+          "crisis_affected": null,
+          "influence": {
+            "country.cuba": {
+              "US": 7,
+              "USSR": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "DC-R-relief-candidates-us",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ReliefCandidates",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "crisis_affected": "US",
+          "influence": {
+            "country.turkey": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.west_germany": {
+              "US": 1,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Candidates",
+        "state_patch": {},
+        "candidates": [
+          "country.turkey"
+        ]
+      }
+    },
+    {
+      "id": "DC-R-relief-zero-candidates",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ReliefCandidates",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "crisis_affected": "US"
+        }
+      },
+      "expected": {
+        "outcome": "Candidates",
+        "state_patch": {},
+        "candidates": []
+      }
+    },
+    {
+      "id": "DC-R-relief-insufficient",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Relief",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.turkey",
+        "selected_card": null,
+        "state": {
+          "crisis_affected": "US",
+          "influence": {
+            "country.turkey": {
+              "US": 1,
+              "USSR": 5
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "InsufficientPayment",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DC-R-relief-split-not-country",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Relief",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": [
+          "country.turkey",
+          "country.west_germany"
+        ],
+        "selected_card": null,
+        "state": {
+          "crisis_affected": "US",
+          "influence": {
+            "country.turkey": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.west_germany": {
+              "US": 1,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "IllegalReliefCountry",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DC-R-relief-east-germany",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Relief",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.east_germany",
+        "selected_card": null,
+        "state": {
+          "crisis_affected": "US",
+          "influence": {
+            "country.east_germany": {
+              "US": 4,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "IllegalReliefCountry",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DC-R-relief-wrong-owner",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Relief",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "USSR",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.cuba",
+        "selected_card": null,
+        "state": {
+          "crisis_affected": "US"
+        }
+      },
+      "expected": {
+        "outcome": "UnauthorizedRelief",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DC-R-relief-in-opponent-wait",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Relief",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.turkey",
+        "selected_card": null,
+        "state": {
+          "crisis_affected": "US",
+          "pending_owner": "USSR",
+          "influence": {
+            "country.turkey": {
+              "US": 2,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Relieved",
+        "state_patch": {
+          "crisis_affected": null,
+          "influence": {
+            "country.turkey": {
+              "US": 0,
+              "USSR": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "DC-R-relief-stale",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Relief",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": false,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "crisis_affected": "US"
+        }
+      },
+      "expected": {
+        "outcome": "StaleResponse",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DC-R-relief-no-instance",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Relief",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {}
+      },
+      "expected": {
+        "outcome": "NoActiveCrisis",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DC-R-fatal-US-USSR-panama",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BeforeCoup",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.panama",
+        "selected_card": null,
+        "state": {
+          "crisis_affected": "US",
+          "subs_active": true,
+          "salt_active": true,
+          "defcon": 5
+        }
+      },
+      "expected": {
+        "outcome": "GameEnded",
+        "state_patch": {
+          "finished": true,
+          "winner": "USSR",
+          "reason": "CubanMissileCrisis"
+        }
+      }
+    },
+    {
+      "id": "DC-R-fatal-USSR-US-angola",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BeforeCoup",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "USSR",
+        "event_controller": "USSR",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.angola",
+        "selected_card": null,
+        "state": {
+          "crisis_affected": "USSR",
+          "subs_active": true,
+          "salt_active": true,
+          "defcon": 5
+        }
+      },
+      "expected": {
+        "outcome": "GameEnded",
+        "state_patch": {
+          "finished": true,
+          "winner": "US",
+          "reason": "CubanMissileCrisis"
+        }
+      }
+    },
+    {
+      "id": "DC-R-fatal-US-US-cameroon",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BeforeCoup",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.cameroon",
+        "selected_card": null,
+        "state": {
+          "crisis_affected": "US",
+          "subs_active": true,
+          "salt_active": true,
+          "defcon": 5
+        }
+      },
+      "expected": {
+        "outcome": "GameEnded",
+        "state_patch": {
+          "finished": true,
+          "winner": "USSR",
+          "reason": "CubanMissileCrisis"
+        }
+      }
+    },
+    {
+      "id": "DC-R-fatal-free-grant",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BeforeCoup",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.east_germany",
+        "selected_card": null,
+        "state": {
+          "crisis_affected": "US"
+        }
+      },
+      "expected": {
+        "outcome": "GameEnded",
+        "state_patch": {
+          "finished": true,
+          "winner": "USSR",
+          "reason": "CubanMissileCrisis"
+        }
+      }
+    },
+    {
+      "id": "DC-R-crisis-not-actor",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BeforeCoup",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.panama",
+        "selected_card": null,
+        "state": {
+          "crisis_affected": "USSR"
+        }
+      },
+      "expected": {
+        "outcome": "Allowed",
+        "state_patch": {},
+        "die_modifier": 0
+      }
+    },
+    {
+      "id": "DC-R-illegal-not-attempt",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BeforeCoup",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": false,
+        "revision_matches": true,
+        "country_id": "country.panama",
+        "selected_card": null,
+        "state": {
+          "crisis_affected": "US"
+        }
+      },
+      "expected": {
+        "outcome": "Denied",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DC-R-salt-both-sides-us",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BeforeCoup",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.panama",
+        "selected_card": null,
+        "state": {
+          "salt_active": true
+        }
+      },
+      "expected": {
+        "outcome": "Allowed",
+        "state_patch": {},
+        "die_modifier": -1
+      }
+    },
+    {
+      "id": "DC-R-salt-both-sides-ussr",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BeforeCoup",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "USSR",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.panama",
+        "selected_card": null,
+        "state": {
+          "salt_active": true
+        }
+      },
+      "expected": {
+        "outcome": "Allowed",
+        "state_patch": {},
+        "die_modifier": -1
+      }
+    },
+    {
+      "id": "DC-R-subs-us-bg",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "CoupDefcon",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.panama",
+        "selected_card": null,
+        "state": {
+          "subs_active": true,
+          "defcon": 2
+        }
+      },
+      "expected": {
+        "outcome": "NoChange",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DC-R-subs-us-under-ussr-root",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "CoupDefcon",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.panama",
+        "selected_card": null,
+        "state": {
+          "subs_active": true,
+          "defcon": 4
+        }
+      },
+      "expected": {
+        "outcome": "NoChange",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DC-R-subs-not-soviet",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "CoupDefcon",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "USSR",
+        "event_controller": "USSR",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.panama",
+        "selected_card": null,
+        "state": {
+          "subs_active": true,
+          "defcon": 3
+        }
+      },
+      "expected": {
+        "outcome": "Changed",
+        "state_patch": {
+          "defcon": 2
+        }
+      }
+    },
+    {
+      "id": "DC-R-subs-non-bg",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "CoupDefcon",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.cameroon",
+        "selected_card": null,
+        "state": {
+          "subs_active": true,
+          "defcon": 3
+        }
+      },
+      "expected": {
+        "outcome": "NoChange",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DC-R-ordinary-bg",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "CoupDefcon",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.panama",
+        "selected_card": null,
+        "state": {
+          "defcon": 4
+        }
+      },
+      "expected": {
+        "outcome": "Changed",
+        "state_patch": {
+          "defcon": 3
+        }
+      }
+    },
+    {
+      "id": "DC-R-ordinary-nuclear-root",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "CoupDefcon",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.panama",
+        "selected_card": null,
+        "state": {
+          "defcon": 2
+        }
+      },
+      "expected": {
+        "outcome": "GameEnded",
+        "state_patch": {
+          "defcon": 1,
+          "finished": true,
+          "winner": "US",
+          "reason": "NuclearWarReached"
+        }
+      }
+    },
+    {
+      "id": "DC-R-crisis-before-subs-defcon",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "CoupDefcon",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.panama",
+        "selected_card": null,
+        "state": {
+          "crisis_affected": "US",
+          "subs_active": true
+        }
+      },
+      "expected": {
+        "outcome": "GameEnded",
+        "state_patch": {
+          "finished": true,
+          "winner": "USSR",
+          "reason": "CubanMissileCrisis"
+        }
+      }
+    },
+    {
+      "id": "DC-R-salt-level-2",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "card_id": "card.salt_negotiations",
+        "actor": "US",
+        "event_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "defcon": 2
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "defcon": 4,
+          "salt_active": true,
+          "completed": true,
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "DC-R-salt-level-3",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "card_id": "card.salt_negotiations",
+        "actor": "US",
+        "event_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "defcon": 3
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "defcon": 5,
+          "salt_active": true,
+          "completed": true,
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "DC-R-salt-level-4",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "card_id": "card.salt_negotiations",
+        "actor": "US",
+        "event_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "defcon": 4
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "defcon": 5,
+          "salt_active": true,
+          "completed": true,
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "DC-R-salt-level-5",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "card_id": "card.salt_negotiations",
+        "actor": "US",
+        "event_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "defcon": 5
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "defcon": 5,
+          "salt_active": true,
+          "completed": true,
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "DC-R-salt-scoring-only-empty",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "card_id": "card.salt_negotiations",
+        "actor": "US",
+        "event_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "defcon": 2,
+          "zones": {
+            "card.asia_scoring": "DiscardPile",
+            "card.china": "ChinaState"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "defcon": 4,
+          "salt_active": true,
+          "completed": true,
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "DC-R-salt-await-public-event",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "card_id": "card.salt_negotiations",
+        "actor": "US",
+        "event_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "defcon": 2,
+          "zones": {
+            "card.fidel": "DiscardPile",
+            "card.asia_scoring": "DiscardPile",
+            "card.nato": "Removed",
+            "card.salt_negotiations": "InResolution"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingReclaim",
+        "state_patch": {
+          "defcon": 4,
+          "salt_active": true,
+          "status": "AwaitingReclaim",
+          "reclaim_owner": "US"
+        },
+        "candidates": [
+          "card.fidel"
+        ]
+      }
+    },
+    {
+      "id": "DC-R-salt-take-no-event",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Reclaim",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": "card.fidel",
+        "state": {
+          "status": "AwaitingReclaim",
+          "reclaim_owner": "US",
+          "salt_active": true,
+          "defcon": 4,
+          "zones": {
+            "card.fidel": "DiscardPile"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "zones": {
+            "card.fidel": "Hand.US"
+          },
+          "completed": true,
+          "event_outcome": "ResolvedChanged",
+          "status": "Completed"
+        }
+      }
+    },
+    {
+      "id": "DC-R-salt-decline",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Reclaim",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": "Decline",
+        "state": {
+          "status": "AwaitingReclaim",
+          "reclaim_owner": "US",
+          "salt_active": true,
+          "zones": {
+            "card.fidel": "DiscardPile"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "completed": true,
+          "event_outcome": "ResolvedChanged",
+          "status": "Completed"
+        }
+      }
+    },
+    {
+      "id": "DC-R-salt-take-scoring-rejected",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Reclaim",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": "card.asia_scoring",
+        "state": {
+          "status": "AwaitingReclaim",
+          "reclaim_owner": "US",
+          "salt_active": true,
+          "zones": {
+            "card.asia_scoring": "DiscardPile"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "IllegalReclaim",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DC-R-salt-removed-rejected",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Reclaim",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": "card.fidel",
+        "state": {
+          "status": "AwaitingReclaim",
+          "reclaim_owner": "US",
+          "salt_active": true,
+          "zones": {
+            "card.fidel": "Removed"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "IllegalReclaim",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DC-R-salt-wrong-owner",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Reclaim",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "USSR",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": "card.fidel",
+        "state": {
+          "status": "AwaitingReclaim",
+          "reclaim_owner": "US",
+          "salt_active": true,
+          "zones": {
+            "card.fidel": "DiscardPile"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "UnauthorizedReclaim",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DC-R-salt-stale-reply",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Reclaim",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": false,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "status": "AwaitingReclaim",
+          "reclaim_owner": "US",
+          "salt_active": true
+        }
+      },
+      "expected": {
+        "outcome": "StaleResponse",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DC-R-abm-level-2",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "card_id": "card.abm_treaty",
+        "actor": "US",
+        "event_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "defcon": 2
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingOperations",
+        "state_patch": {
+          "defcon": 3,
+          "status": "AwaitingOperations",
+          "grant_actor": "US",
+          "grant_base_ops": 4
+        }
+      }
+    },
+    {
+      "id": "DC-R-abm-level-4",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "card_id": "card.abm_treaty",
+        "actor": "US",
+        "event_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "defcon": 4
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingOperations",
+        "state_patch": {
+          "defcon": 5,
+          "status": "AwaitingOperations",
+          "grant_actor": "US",
+          "grant_base_ops": 4
+        }
+      }
+    },
+    {
+      "id": "DC-R-abm-level-5",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "card_id": "card.abm_treaty",
+        "actor": "US",
+        "event_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "defcon": 5
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingOperations",
+        "state_patch": {
+          "defcon": 5,
+          "status": "AwaitingOperations",
+          "grant_actor": "US",
+          "grant_base_ops": 4
+        }
+      }
+    },
+    {
+      "id": "DC-R-abm-ussr-actor",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "card_id": "card.abm_treaty",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {}
+      },
+      "expected": {
+        "outcome": "AwaitingOperations",
+        "state_patch": {
+          "status": "AwaitingOperations",
+          "grant_actor": "USSR",
+          "grant_base_ops": 4
+        }
+      }
+    },
+    {
+      "id": "DC-R-abm-decline",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "GrantChoice",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": "Decline",
+        "state": {
+          "status": "AwaitingOperations",
+          "grant_actor": "US",
+          "grant_base_ops": 4,
+          "defcon": 3
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "status": "Completed",
+          "completed": true,
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "DC-R-abm-space-rejected",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "GrantChoice",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": "SpaceRace",
+        "state": {
+          "status": "AwaitingOperations",
+          "grant_actor": "US",
+          "grant_base_ops": 4
+        }
+      },
+      "expected": {
+        "outcome": "IllegalGrantMode",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DC-R-abm-coup-kind",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "GrantChoice",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": "Coup",
+        "state": {
+          "status": "AwaitingOperations",
+          "grant_actor": "US",
+          "grant_base_ops": 4
+        }
+      },
+      "expected": {
+        "outcome": "VerifiedGrantMode",
+        "state_patch": {},
+        "credit_kind": "OperationsCoup"
+      }
+    },
+    {
+      "id": "DC-R-abm-flat-purge",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "QuoteAbm",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "purged_side": "US"
+        }
+      },
+      "expected": {
+        "outcome": "Quoted",
+        "state_patch": {},
+        "effective_ops": 3
+      }
+    },
+    {
+      "id": "DC-R-abm-flat-containment-cap",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "QuoteAbm",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "containment_active": true
+        }
+      },
+      "expected": {
+        "outcome": "Quoted",
+        "state_patch": {},
+        "effective_ops": 4
+      }
+    },
+    {
+      "id": "DC-R-abm-purge-plus-containment",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "QuoteAbm",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "purged_side": "US",
+          "containment_active": true
+        }
+      },
+      "expected": {
+        "outcome": "Quoted",
+        "state_patch": {},
+        "effective_ops": 4
+      }
+    },
+    {
+      "id": "DC-R-abm-no-transfer-purge",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "QuoteAbm",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "USSR",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "purged_side": "US"
+        }
+      },
+      "expected": {
+        "outcome": "Quoted",
+        "state_patch": {},
+        "effective_ops": 4
+      }
+    },
+    {
+      "id": "DC-R-abm-vietnam-sea",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "QuoteAbm",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "USSR",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "vietnam_active": true
+        },
+        "regional_history_fixture": "AllSoutheastAsia"
+      },
+      "expected": {
+        "outcome": "Quoted",
+        "state_patch": {},
+        "effective_ops": 5
+      }
+    },
+    {
+      "id": "DC-R-abm-vietnam-other",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "QuoteAbm",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "USSR",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "vietnam_active": true
+        },
+        "regional_history_fixture": "MixedRegions"
+      },
+      "expected": {
+        "outcome": "Quoted",
+        "state_patch": {},
+        "effective_ops": 4
+      }
+    },
+    {
+      "id": "DC-R-expire-all-turn-effects",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Expire",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "crisis_affected": "US",
+          "salt_active": true,
+          "subs_active": true
+        }
+      },
+      "expected": {
+        "outcome": "Expired",
+        "state_patch": {
+          "crisis_affected": null,
+          "salt_active": false,
+          "subs_active": false
+        }
+      }
+    },
+    {
+      "id": "DC-R-unknown-state",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BeforeCoup",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": "country.panama",
+        "selected_card": null,
+        "state": {
+          "effects_complete": false
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DC-R-forged-context",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": false,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {}
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DC-R-already-finished",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Relief",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "finished": true,
+          "winner": "USSR"
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DC-R-replayed-event",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "Event",
+        "card_id": "card.cuban_missile_crisis",
+        "actor": "US",
+        "event_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "basic_legality": true,
+        "revision_matches": true,
+        "country_id": null,
+        "selected_card": null,
+        "state": {
+          "completed": true
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DC-I-relief-interrupt",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "对方等待时可解除自有危机，不能回答/泄露对方选择"
+    },
+    {
+      "id": "DC-I-relief-revision",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "支付与取消同事务，实例/修订/身份不符零变化"
+    },
+    {
+      "id": "DC-I-fatal-before-rng",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "真正接受受影响Actor政变即终局，无骰/军事/降级"
+    },
+    {
+      "id": "DC-I-source-grants",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "免费与视同普通OPS的来源证明不能互换"
+    },
+    {
+      "id": "DC-I-subs-cause",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "按ActualActor+BattlegroundCoup原因免除，不使用根出牌者"
+    },
+    {
+      "id": "DC-I-salt-deck-zone",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "仅公共Discard非计分，排除Removed/InResolution/China"
+    },
+    {
+      "id": "DC-I-salt-public-reveal",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "取回公开且不立即触发，其他手牌保持私有"
+    },
+    {
+      "id": "DC-I-salt-save-choice",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "选择前已提交改善/修正，读档不重复"
+    },
+    {
+      "id": "DC-I-salt-stale",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "非法/旧响应不回滚已提交前项，本次零变化"
+    },
+    {
+      "id": "DC-I-abm-quote-history",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "按Actor/地区历史共享报价，不能借中国牌奖励"
+    },
+    {
+      "id": "DC-I-abm-root-frame",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "头条可行动但不多消费卡牌/根名额，核战原根责任"
+    },
+    {
+      "id": "DC-I-abm-no-space",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "事件OPS不能discard当前源牌跑太空"
+    },
+    {
+      "id": "DC-I-abm-modes",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "mode锁、逐次目标重验，剩余不能转根预算"
+    },
+    {
+      "id": "DC-I-expiry",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "激活回合ExpireAndReset幂等到期；过期Active拒绝"
+    },
+    {
+      "id": "DC-I-collision",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "另次相同效果激活RequiresRuling，无静默叠加刷新"
+    }
+  ]
+}

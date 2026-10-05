@@ -222,3 +222,5 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 [战争第二批](war-events-batch2.md)两牌都先由EffectController选被攻击国，再单骰结算；Brush先过滤北约候选，拒绝选择不消耗随机状态。相关CardPlayed钩子仍待后批。
 
 最新交互见[战争牌持续与取消](war-card-hooks.md)：实际CardPlayer决定处罚资格；Flower精确时机/UN边界待裁定，戴维营与邪恶帝国完整步骤已绑定，处理器仍planned。
+
+[DEFCON事件与政变干预](defcon-events-batch1.md)补齐危机实际Actor责任、任意边界解除、核潜艇/SALT政策与ABM视同OPS；全部仍planned。

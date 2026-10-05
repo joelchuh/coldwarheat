@@ -37,6 +37,12 @@
       "url": null,
       "edition": "WH1 engineering / pending rulings, 2026-10-06",
       "description": "固定组合事件按英文卡文顺序推进，未知hook结算时机、UN交互与未设计子出牌来源停止为RequiresRuling；不冒称官方裁定。"
+    },
+    {
+      "id": "PROJECT-DC1",
+      "url": null,
+      "edition": "DC1 engineering contracts / derived boundaries, 2026-10-06",
+      "description": "任意时点通过稳定命令边界表达，不抢占已原子提交步骤；基本合法性先核实，再接受致命政变。类型化原因/授权、SALT候选空自动结束与ABM可放弃采用具名封闭策略；重复激活沿用RequiresRuling。"
     }
   ],
   "tests": [
@@ -58,6 +64,10 @@
     },
     {
       "path": "Docs/Design/war-card-hooks.cases.json",
+      "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/defcon-events-batch1.cases.json",
       "status": "mixed-reference-and-planned"
     }
   ],
@@ -101,17 +111,19 @@
     "effects.deluxe2015.treaty_protection",
     "effects.deluxe2015.nato_exceptions",
     "effects.deluxe2015.event_operations_batch1",
-    "effects.deluxe2015.war_card_hooks"
+    "effects.deluxe2015.war_card_hooks",
+    "effects.deluxe2015.defcon_events_batch1"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:persistent-effects-batch1:1",
     "urn:coldwarheat:contract:treaty-protection:1",
     "urn:coldwarheat:contract:nato-exceptions:1",
-    "urn:coldwarheat:contract:war-card-hooks:1"
+    "urn:coldwarheat:contract:war-card-hooks:1",
+    "urn:coldwarheat:contract:defcon-events-batch1:1"
   ],
   "verification": {
     "implementation_tested": false,
     "report": "Docs/Design/persistent-effects-batch1.validation.json",
-    "latest_design_report": "Docs/Design/war-card-hooks.validation.json"
+    "latest_design_report": "Docs/Design/defcon-events-batch1.validation.json"
   }
 }

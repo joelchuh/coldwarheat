@@ -1,0 +1,431 @@
+{
+  "description": "四牌参数、危机支付/拦截、原因豁免、公共取回和ABM预算投影；非完整政变/C#/Unity验证。",
+  "checked_on": "2026-10-06",
+  "new_cases_passed": 93,
+  "previous_cases_passed": 856,
+  "total_cases_passed": 949,
+  "cases_by_layer": {
+    "data": 28,
+    "fixed-reference": 65,
+    "runtime": 15
+  },
+  "runtime_cases_not_run": 15,
+  "runtime_game_tests_run": 0,
+  "bound_cards": 32,
+  "unresolved_bindings": 70,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 19,
+    "json_files_parsed": 124,
+    "data_descriptors": 23,
+    "module_descriptors": 17,
+    "relative_links_checked": 186
+  },
+  "validated_sha256": {
+    "Data/Cards/deluxe-2015/defcon-events-batch1.parameters.json": "4534f09101f496753ca30fbb80de9857957ba41bd7273aaeb95d1cafa65b394c",
+    "Docs/Contracts/defcon-events-batch1.schema.json": "939fdb46136331b552ea06fd5bf8b5ee58b9ecfd55b4692601e64a107d6968ef",
+    "Docs/Design/defcon-events-batch1.cases.json": "88f5428eb0a36193bc4631755dcb1fbb6f591bfb916057204ef32f2d5e8efc7b",
+    "Data/Cards/deluxe-2015/cards.json": "ceb16ae28c2d7678a5337ad7f3a7cac6e0d39cbf6d1c022a2744a711bb1855ad",
+    "Data/Maps/deluxe-2015/world.json": "6d4e20c674bd74d44cdb0f1ca66e8e960f125b3e45076d05307125a3c36ea45b",
+    "Data/Rulesets/deluxe-2015/defcon.json": "e9a842358cc3f772cfcba0e7f307fb6d8fe26b812aa5e303ea046bf618565eba",
+    "Data/Rulesets/deluxe-2015/military-operations.json": "b1c6a7e9062a41cb0dd3828e7a8ce50cdb3dd473908db7c3e5fbc619def66818",
+    "Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json": "e229d5494deba9031c3348f7d726dd09fc2d8ce28eb2db618142712c79d538d4",
+    "Docs/Descriptors/coup-interventions.module.json": "80e75fef11639a5640e465e441d7bb4b24d6f8f23da44f8e66da2e98b0eced35",
+    "Docs/Descriptors/defcon.module.json": "e9512f581aae5aa612d009683212b75d0ccfbf7124737a5beeea39d4ef87b110",
+    "Docs/Descriptors/event-operations.module.json": "1366733568ca9083761f8b3dc4238ca19f7ef11e4d8937e31f939c6f3215508e",
+    "Docs/Descriptors/turn-flow.module.json": "504a1f9a70bfe171aa35babeec0ce4161ca6793daecccc953bc869c40735fb5b"
+  },
+  "results": [
+    {
+      "id": "DC-D-baseline",
+      "passed": true
+    },
+    {
+      "id": "DC-D-set-level",
+      "passed": true
+    },
+    {
+      "id": "DC-D-wrong-loser",
+      "passed": true
+    },
+    {
+      "id": "DC-D-only-bg",
+      "passed": true
+    },
+    {
+      "id": "DC-D-ns-bypasses-crisis",
+      "passed": true
+    },
+    {
+      "id": "DC-D-pay-up-to",
+      "passed": true
+    },
+    {
+      "id": "DC-D-split-payment",
+      "passed": true
+    },
+    {
+      "id": "DC-D-pay-amount",
+      "passed": true
+    },
+    {
+      "id": "DC-D-east-germany",
+      "passed": true
+    },
+    {
+      "id": "DC-D-relief-defcon",
+      "passed": true
+    },
+    {
+      "id": "DC-D-other-pays",
+      "passed": true
+    },
+    {
+      "id": "DC-D-ns-actor",
+      "passed": true
+    },
+    {
+      "id": "DC-D-ns-events",
+      "passed": true
+    },
+    {
+      "id": "DC-D-ns-geography",
+      "passed": true
+    },
+    {
+      "id": "DC-D-ns-military",
+      "passed": true
+    },
+    {
+      "id": "DC-D-salt-delta",
+      "passed": true
+    },
+    {
+      "id": "DC-D-salt-ops",
+      "passed": true
+    },
+    {
+      "id": "DC-D-salt-scoring",
+      "passed": true
+    },
+    {
+      "id": "DC-D-salt-removed",
+      "passed": true
+    },
+    {
+      "id": "DC-D-salt-trigger",
+      "passed": true
+    },
+    {
+      "id": "DC-D-salt-improve",
+      "passed": true
+    },
+    {
+      "id": "DC-D-abm-base",
+      "passed": true
+    },
+    {
+      "id": "DC-D-abm-space",
+      "passed": true
+    },
+    {
+      "id": "DC-D-abm-free",
+      "passed": true
+    },
+    {
+      "id": "DC-D-abm-extra-root",
+      "passed": true
+    },
+    {
+      "id": "DC-D-abm-geography",
+      "passed": true
+    },
+    {
+      "id": "DC-D-bad-ref",
+      "passed": true
+    },
+    {
+      "id": "DC-D-arbitrary",
+      "passed": true
+    },
+    {
+      "id": "DC-R-crisis-from-2",
+      "passed": true
+    },
+    {
+      "id": "DC-R-crisis-from-3",
+      "passed": true
+    },
+    {
+      "id": "DC-R-crisis-from-4",
+      "passed": true
+    },
+    {
+      "id": "DC-R-crisis-from-5",
+      "passed": true
+    },
+    {
+      "id": "DC-R-crisis-us-controller",
+      "passed": true
+    },
+    {
+      "id": "DC-R-subs-fixed-us",
+      "passed": true
+    },
+    {
+      "id": "DC-R-crisis-repeat",
+      "passed": true
+    },
+    {
+      "id": "DC-R-subs-repeat",
+      "passed": true
+    },
+    {
+      "id": "DC-R-relief-US-turkey",
+      "passed": true
+    },
+    {
+      "id": "DC-R-relief-US-west_germany",
+      "passed": true
+    },
+    {
+      "id": "DC-R-relief-USSR-cuba",
+      "passed": true
+    },
+    {
+      "id": "DC-R-relief-candidates-us",
+      "passed": true
+    },
+    {
+      "id": "DC-R-relief-zero-candidates",
+      "passed": true
+    },
+    {
+      "id": "DC-R-relief-insufficient",
+      "passed": true
+    },
+    {
+      "id": "DC-R-relief-split-not-country",
+      "passed": true
+    },
+    {
+      "id": "DC-R-relief-east-germany",
+      "passed": true
+    },
+    {
+      "id": "DC-R-relief-wrong-owner",
+      "passed": true
+    },
+    {
+      "id": "DC-R-relief-in-opponent-wait",
+      "passed": true
+    },
+    {
+      "id": "DC-R-relief-stale",
+      "passed": true
+    },
+    {
+      "id": "DC-R-relief-no-instance",
+      "passed": true
+    },
+    {
+      "id": "DC-R-fatal-US-USSR-panama",
+      "passed": true
+    },
+    {
+      "id": "DC-R-fatal-USSR-US-angola",
+      "passed": true
+    },
+    {
+      "id": "DC-R-fatal-US-US-cameroon",
+      "passed": true
+    },
+    {
+      "id": "DC-R-fatal-free-grant",
+      "passed": true
+    },
+    {
+      "id": "DC-R-crisis-not-actor",
+      "passed": true
+    },
+    {
+      "id": "DC-R-illegal-not-attempt",
+      "passed": true
+    },
+    {
+      "id": "DC-R-salt-both-sides-us",
+      "passed": true
+    },
+    {
+      "id": "DC-R-salt-both-sides-ussr",
+      "passed": true
+    },
+    {
+      "id": "DC-R-subs-us-bg",
+      "passed": true
+    },
+    {
+      "id": "DC-R-subs-us-under-ussr-root",
+      "passed": true
+    },
+    {
+      "id": "DC-R-subs-not-soviet",
+      "passed": true
+    },
+    {
+      "id": "DC-R-subs-non-bg",
+      "passed": true
+    },
+    {
+      "id": "DC-R-ordinary-bg",
+      "passed": true
+    },
+    {
+      "id": "DC-R-ordinary-nuclear-root",
+      "passed": true
+    },
+    {
+      "id": "DC-R-crisis-before-subs-defcon",
+      "passed": true
+    },
+    {
+      "id": "DC-R-salt-level-2",
+      "passed": true
+    },
+    {
+      "id": "DC-R-salt-level-3",
+      "passed": true
+    },
+    {
+      "id": "DC-R-salt-level-4",
+      "passed": true
+    },
+    {
+      "id": "DC-R-salt-level-5",
+      "passed": true
+    },
+    {
+      "id": "DC-R-salt-scoring-only-empty",
+      "passed": true
+    },
+    {
+      "id": "DC-R-salt-await-public-event",
+      "passed": true
+    },
+    {
+      "id": "DC-R-salt-take-no-event",
+      "passed": true
+    },
+    {
+      "id": "DC-R-salt-decline",
+      "passed": true
+    },
+    {
+      "id": "DC-R-salt-take-scoring-rejected",
+      "passed": true
+    },
+    {
+      "id": "DC-R-salt-removed-rejected",
+      "passed": true
+    },
+    {
+      "id": "DC-R-salt-wrong-owner",
+      "passed": true
+    },
+    {
+      "id": "DC-R-salt-stale-reply",
+      "passed": true
+    },
+    {
+      "id": "DC-R-abm-level-2",
+      "passed": true
+    },
+    {
+      "id": "DC-R-abm-level-4",
+      "passed": true
+    },
+    {
+      "id": "DC-R-abm-level-5",
+      "passed": true
+    },
+    {
+      "id": "DC-R-abm-ussr-actor",
+      "passed": true
+    },
+    {
+      "id": "DC-R-abm-decline",
+      "passed": true
+    },
+    {
+      "id": "DC-R-abm-space-rejected",
+      "passed": true
+    },
+    {
+      "id": "DC-R-abm-coup-kind",
+      "passed": true
+    },
+    {
+      "id": "DC-R-abm-flat-purge",
+      "passed": true
+    },
+    {
+      "id": "DC-R-abm-flat-containment-cap",
+      "passed": true
+    },
+    {
+      "id": "DC-R-abm-purge-plus-containment",
+      "passed": true
+    },
+    {
+      "id": "DC-R-abm-no-transfer-purge",
+      "passed": true
+    },
+    {
+      "id": "DC-R-abm-vietnam-sea",
+      "passed": true
+    },
+    {
+      "id": "DC-R-abm-vietnam-other",
+      "passed": true
+    },
+    {
+      "id": "DC-R-expire-all-turn-effects",
+      "passed": true
+    },
+    {
+      "id": "DC-R-unknown-state",
+      "passed": true
+    },
+    {
+      "id": "DC-R-forged-context",
+      "passed": true
+    },
+    {
+      "id": "DC-R-already-finished",
+      "passed": true
+    },
+    {
+      "id": "DC-R-replayed-event",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "15项runtime验收未执行，C#/Unity测试0",
+    "已验证基本合法性/身份/出处/稳定输入边界/活动状态完整由fixture假定，不证明真实鉴权/事务/抢占安全",
+    "CoupDefcon/BeforeCoup是规则投影，不消费随机或执行完整政变影响力与军事，不能冒称实际政变测试",
+    "SALT牌区与取回投影不证明生产DeckState唯一位置或隐藏信息网络过滤",
+    "ABM报价只覆盖已设计清洗/遏制/越南；未绑定OPS修正/来源停止",
+    "Flower待裁定与重复激活RequiresRuling保持；旧业务案例仅适配库存/来源状态",
+    "临时模型未固化正式复用脚本"
+  ],
+  "independent_review": {
+    "status": "no-important-findings",
+    "source_budget_wording": "applied",
+    "independently_checked": [
+      "JSON uniqueness/catalogs/63 pointers/acyclic modules",
+      "12 hashes and case/binding inventories",
+      "official card and rule scope"
+    ],
+    "full_reference_rerun": "not-run: known reviewer jsonschema import permission restriction; no retry/escalation"
+  }
+}

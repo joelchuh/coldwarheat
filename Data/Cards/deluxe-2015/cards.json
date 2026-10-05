@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.12.0",
+  "content_version": "0.13.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计28牌效果参数已绑定，其余74个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计32牌效果参数已绑定，其余70个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -77,6 +77,12 @@
       "url": null,
       "edition": "WH1 engineering / pending rulings, 2026-10-06",
       "description": "固定组合事件按英文卡文顺序推进，未知hook结算时机、UN交互与未设计子出牌来源停止为RequiresRuling；不冒称官方裁定。"
+    },
+    {
+      "id": "PROJECT-DC1",
+      "url": null,
+      "edition": "DC1 engineering contracts / derived boundaries, 2026-10-06",
+      "description": "任意时点通过稳定命令边界表达，不抢占已原子提交步骤；基本合法性先核实，再接受致命政变。类型化原因/授权、SALT候选空自动结束与ABM可放弃采用具名封闭策略；重复激活沿用RequiresRuling。"
     }
   ],
   "cards": [
@@ -1259,8 +1265,13 @@
       "effect_binding": {
         "effect_id": "effect.cuban_missile_crisis",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.defcon_events_batch1",
+            "json_pointer": "/parameters/cuban_missile_crisis"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -1286,8 +1297,13 @@
       "effect_binding": {
         "effect_id": "effect.nuclear_subs",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.defcon_events_batch1",
+            "json_pointer": "/parameters/nuclear_subs"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -1340,8 +1356,13 @@
       "effect_binding": {
         "effect_id": "effect.salt_negotiations",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.defcon_events_batch1",
+            "json_pointer": "/parameters/salt_negotiations"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -1723,8 +1744,13 @@
       "effect_binding": {
         "effect_id": "effect.abm_treaty",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.defcon_events_batch1",
+            "json_pointer": "/parameters/abm_treaty"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -3880,30 +3906,64 @@
     {
       "effect_id": "effect.cuban_missile_crisis",
       "contract_version": "0.1.0",
-      "description": "Cuban Missile Crisis：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.cuban_missile_crisis",
+      "description": "设置DEFCON2，对事件控制者对手本回合政变施加即刻输；其可任意稳定边界从指定单国移除自己的2点解除，不恢复DEFCON。",
+      "handler_key": "composite.DefconTypedEvent",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:defcon-events-batch1:1#/$defs/cuban_missile_crisis"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "英文p7 #40/#41/#43，p9 #57；核对现代明确卡文，不使用旁列译文。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.4/5.5卡文与弃牌、§6.3政变、§6.4.1/5太空、§7.4.3视同OPS、§8.1 DEFCON、§8.2.3/5普通/免费政变军事。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p8–9 #40任意时点、单国2点、实际Actor即刻输；p9 #41只免OPS政变降级，不免事件；p12 #57头条可行动；p14 #67明确ABM不能太空。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-DC1",
+          "locator": "任意时点通过稳定命令边界表达，不抢占已原子提交步骤；基本合法性先核实，再接受致命政变。类型化原因/授权、SALT候选空自动结束与ABM可放弃采用具名封闭策略；重复激活沿用RequiresRuling。",
+          "verification": "Verified"
         }
       ]
     },
     {
       "effect_id": "effect.nuclear_subs",
       "contract_version": "0.1.0",
-      "description": "Nuclear Subs：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.nuclear_subs",
+      "description": "本回合美国战场政变不降低DEFCON；不豁免地理/条约，不影响事件直接改变DEFCON，也不解除古巴危机。",
+      "handler_key": "composite.DefconTypedEvent",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:defcon-events-batch1:1#/$defs/nuclear_subs"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "英文p7 #40/#41/#43，p9 #57；核对现代明确卡文，不使用旁列译文。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.4/5.5卡文与弃牌、§6.3政变、§6.4.1/5太空、§7.4.3视同OPS、§8.1 DEFCON、§8.2.3/5普通/免费政变军事。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p8–9 #40任意时点、单国2点、实际Actor即刻输；p9 #41只免OPS政变降级，不免事件；p12 #57头条可行动；p14 #67明确ABM不能太空。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-DC1",
+          "locator": "任意时点通过稳定命令边界表达，不抢占已原子提交步骤；基本合法性先核实，再接受致命政变。类型化原因/授权、SALT候选空自动结束与ABM可放弃采用具名封闭策略；重复激活沿用RequiresRuling。",
+          "verification": "Verified"
         }
       ]
     },
@@ -3925,15 +3985,32 @@
     {
       "effect_id": "effect.salt_negotiations",
       "contract_version": "0.1.0",
-      "description": "SALT Negotiations：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.salt_negotiations",
+      "description": "先DEFCON改善2（上限引用基础轨道），本回合双方政变骰-1，然后可从公共弃牌堆取回一张非计分牌并公开。",
+      "handler_key": "composite.DefconTypedEvent",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:defcon-events-batch1:1#/$defs/salt_negotiations"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "英文p7 #40/#41/#43，p9 #57；核对现代明确卡文，不使用旁列译文。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.4/5.5卡文与弃牌、§6.3政变、§6.4.1/5太空、§7.4.3视同OPS、§8.1 DEFCON、§8.2.3/5普通/免费政变军事。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p8–9 #40任意时点、单国2点、实际Actor即刻输；p9 #41只免OPS政变降级，不免事件；p12 #57头条可行动；p14 #67明确ABM不能太空。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-DC1",
+          "locator": "任意时点通过稳定命令边界表达，不抢占已原子提交步骤；基本合法性先核实，再接受致命政变。类型化原因/授权、SALT候选空自动结束与ABM可放弃采用具名封闭策略；重复激活沿用RequiresRuling。",
+          "verification": "Verified"
         }
       ]
     },
@@ -4147,15 +4224,32 @@
     {
       "effect_id": "effect.abm_treaty",
       "contract_version": "0.1.0",
-      "description": "ABM Treaty：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.abm_treaty",
+      "description": "先DEFCON改善1，再由事件控制者可选执行视同4OPS的普通行动；仍受地区/条约/危机，非免费政变，不能太空。",
+      "handler_key": "composite.DefconTypedEvent",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:defcon-events-batch1:1#/$defs/abm_treaty"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "英文p7 #40/#41/#43，p9 #57；核对现代明确卡文，不使用旁列译文。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.4/5.5卡文与弃牌、§6.3政变、§6.4.1/5太空、§7.4.3视同OPS、§8.1 DEFCON、§8.2.3/5普通/免费政变军事。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p8–9 #40任意时点、单国2点、实际Actor即刻输；p9 #41只免OPS政变降级，不免事件；p12 #57头条可行动；p14 #67明确ABM不能太空。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-DC1",
+          "locator": "任意时点通过稳定命令边界表达，不抢占已原子提交步骤；基本合法性先核实，再接受致命政变。类型化原因/授权、SALT候选空自动结束与ABM可放弃采用具名封闭策略；重复激活沿用RequiresRuling。",
+          "verification": "Verified"
         }
       ]
     },
