@@ -29,3 +29,5 @@
 | 102 | iran_iraq_war | Iran-Iraq War | 2 | Neutral | 是 | 否 | 15 |
 
 [返回数据索引](../map-card-data.md)
+
+拆墙完整参数已绑定，见[事件行动授权](../event-operations.md)。取消/固定收益与可选欧洲行动分开，处理器仍planned。

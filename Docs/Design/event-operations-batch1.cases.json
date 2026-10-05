@@ -1,0 +1,4594 @@
+{
+  "schema_version": 1,
+  "description": "拆墙参数、固定前缀、欧洲政变与逐次调整的离线规格；运行层单列。",
+  "dataset": "Data/Cards/deluxe-2015/event-operations-batch1.parameters.json",
+  "schema": "Docs/Contracts/event-operations-batch1.schema.json",
+  "reference_model_scope": "稀疏夹具扩展84国，固定输入骰；内部授权真实性仅假定，非鉴权/随机/幂等/C#验证。",
+  "input_conventions": {
+    "commands.intent": "语义意图；actor是假定已完成会话绑定的夹具，不证明真实身份验证。运行客户端不提交可信Actor。",
+    "commands.fixed_random_fixture": "权威FixedRandomProvider的测试输入，与玩家意图分离；不是客户端骰子字段。",
+    "prefix_input.verified_internal_step": "仅表示离线夹具假定来源已验证；运行授权需真实注册处理器、来源/版本/步骤验证。"
+  },
+  "cases": [
+    {
+      "id": "EO1-D01",
+      "description": "完整参数",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "EO1-D02",
+      "description": "禁止可执行字段",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "tear_down_this_wall",
+              "eval"
+            ],
+            "value": "..."
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "EO1-D03",
+      "description": "错误收益阵营",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "tear_down_this_wall",
+              "beneficiary"
+            ],
+            "value": "USSR"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "EO1-D04",
+      "description": "顺序调换",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "tear_down_this_wall",
+              "ordered_steps",
+              0
+            ],
+            "value": {
+              "kind": "GrantOptionalRegionalOperations"
+            }
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "EO1-D05",
+      "description": "错误固定国家",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "tear_down_this_wall",
+              "ordered_steps",
+              1,
+              "country_id"
+            ],
+            "value": "country.west_germany"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "EO1-D06",
+      "description": "分数影响力",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "tear_down_this_wall",
+              "ordered_steps",
+              1,
+              "amount"
+            ],
+            "value": 1.5
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "EO1-D07",
+      "description": "把OPS基值写死",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "tear_down_this_wall",
+              "operations_grant",
+              "budget_source"
+            ],
+            "value": "FixedThree"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "EO1-D08",
+      "description": "额外投放能力",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "tear_down_this_wall",
+              "operations_grant",
+              "allowed_modes"
+            ],
+            "value": [
+              "Coup",
+              "Realignment",
+              "Influence"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "EO1-D09",
+      "description": "错误地区",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "tear_down_this_wall",
+              "operations_grant",
+              "region_id"
+            ],
+            "value": "region.asia"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "EO1-D10",
+      "description": "同时免战场降级",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "tear_down_this_wall",
+              "operations_grant",
+              "defcon_exception"
+            ],
+            "value": "AllDefcon"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "EO1-D11",
+      "description": "免费政变误记军事",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "tear_down_this_wall",
+              "operations_grant",
+              "coup_credit_kind"
+            ],
+            "value": "OperationsCoup"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "EO1-D12",
+      "description": "交换取消引用",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "tear_down_this_wall",
+              "cancel_target_ref",
+              "json_pointer"
+            ],
+            "value": "/parameters/de_gaulle_leads_france"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "EO1-D13",
+      "description": "错误取消数据集",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "tear_down_this_wall",
+              "cancel_target_ref",
+              "dataset_id"
+            ],
+            "value": "cards.deluxe2015.definitions"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "EO1-D14",
+      "description": "不允许放弃",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "tear_down_this_wall",
+              "operations_grant",
+              "decline_allowed"
+            ],
+            "value": false
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "EO1-D15",
+      "description": "不允许部分调整后结束",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "tear_down_this_wall",
+              "operations_grant",
+              "realignment_finish_allowed"
+            ],
+            "value": false
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "EO1-D16",
+      "description": "开放多次政变",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "tear_down_this_wall",
+              "operations_grant",
+              "coup_use"
+            ],
+            "value": "SplitBudget"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "EO1-D17",
+      "description": "错误修正归属",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "tear_down_this_wall",
+              "operations_grant",
+              "modifier_policy"
+            ],
+            "value": "PhasingPlayer"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "EO1-D18",
+      "description": "错预算引用",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "tear_down_this_wall",
+              "operations_grant",
+              "budget_policy_ref",
+              "json_pointer"
+            ],
+            "value": "/source_bonuses/china"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "EO1-D19",
+      "description": "未知来源",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "tear_down_this_wall",
+              "source_refs",
+              0,
+              "source_id"
+            ],
+            "value": "ImaginedFAQ"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "EO1-D20",
+      "description": "来源ID重复",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "source_catalog",
+              1,
+              "id"
+            ],
+            "value": "C-DELUXE-EN"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "EO1-D21",
+      "description": "未知模板",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "tear_down_this_wall",
+              "template"
+            ],
+            "value": "ArbitraryEvent"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "EO1-D22",
+      "description": "非美国行动者",
+      "validation_layer": "data",
+      "status": "reference-specification",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "tear_down_this_wall",
+              "operations_grant",
+              "actor"
+            ],
+            "value": "USSR"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "EO1-P01",
+      "description": "苏联触发事件收益仍属美国",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_step": true,
+        "state": {
+          "influence": {
+            "country.italy": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "active_instances": [],
+          "effects_complete": true,
+          "defcon": 5,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": false,
+          "winner": null,
+          "prevention_sources": [],
+          "phasing_player": "USSR",
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state_patch": {
+          "influence": {
+            "country.east_germany": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "prevention_sources": [
+            "card.tear_down_this_wall"
+          ],
+          "budget": 3,
+          "status": "AwaitingAction"
+        }
+      }
+    },
+    {
+      "id": "EO1-P02",
+      "description": "美国打出，保留美国责任",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_step": true,
+        "state": {
+          "influence": {
+            "country.italy": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "active_instances": [],
+          "effects_complete": true,
+          "defcon": 5,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": false,
+          "winner": null,
+          "prevention_sources": [],
+          "phasing_player": "US",
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state_patch": {
+          "influence": {
+            "country.east_germany": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "prevention_sources": [
+            "card.tear_down_this_wall"
+          ],
+          "budget": 3,
+          "status": "AwaitingAction"
+        }
+      }
+    },
+    {
+      "id": "EO1-P03",
+      "description": "东德敌控也直接加3",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_step": true,
+        "state": {
+          "influence": {
+            "country.east_germany": {
+              "US": 0,
+              "USSR": 6
+            }
+          },
+          "active_instances": [],
+          "effects_complete": true,
+          "defcon": 5,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": false,
+          "winner": null,
+          "prevention_sources": [],
+          "phasing_player": "USSR",
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state_patch": {
+          "influence": {
+            "country.east_germany": {
+              "US": 3,
+              "USSR": 6
+            }
+          },
+          "prevention_sources": [
+            "card.tear_down_this_wall"
+          ],
+          "budget": 3,
+          "status": "AwaitingAction"
+        }
+      }
+    },
+    {
+      "id": "EO1-P04",
+      "description": "取消西德例外，不撤销历史VP/苏联影响力",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_step": true,
+        "state": {
+          "influence": {
+            "country.italy": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.west_germany": {
+              "US": 5,
+              "USSR": 2
+            }
+          },
+          "active_instances": [
+            {
+              "effect_id": "effect.willy_brandt",
+              "affected_side": "USSR"
+            },
+            {
+              "effect_id": "effect.de_gaulle_leads_france",
+              "affected_side": "USSR"
+            },
+            {
+              "effect_id": "effect.nato",
+              "affected_side": "US"
+            }
+          ],
+          "effects_complete": true,
+          "defcon": 5,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": false,
+          "winner": null,
+          "prevention_sources": [],
+          "phasing_player": "USSR",
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state_patch": {
+          "influence": {
+            "country.east_germany": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "prevention_sources": [
+            "card.tear_down_this_wall"
+          ],
+          "budget": 3,
+          "status": "AwaitingAction",
+          "active_instances": [
+            {
+              "effect_id": "effect.de_gaulle_leads_france",
+              "affected_side": "USSR"
+            },
+            {
+              "effect_id": "effect.nato",
+              "affected_side": "US"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "EO1-P05",
+      "description": "勃兰特未发生也登记未来阻止",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_step": true,
+        "state": {
+          "influence": {
+            "country.italy": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "active_instances": [],
+          "effects_complete": true,
+          "defcon": 5,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": false,
+          "winner": null,
+          "prevention_sources": [],
+          "phasing_player": "USSR",
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state_patch": {
+          "influence": {
+            "country.east_germany": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "prevention_sources": [
+            "card.tear_down_this_wall"
+          ],
+          "budget": 3,
+          "status": "AwaitingAction"
+        }
+      }
+    },
+    {
+      "id": "EO1-P06",
+      "description": "已存在阻止记录不重复新增",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_step": true,
+        "state": {
+          "influence": {
+            "country.italy": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "active_instances": [],
+          "effects_complete": true,
+          "defcon": 5,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": false,
+          "winner": null,
+          "prevention_sources": [
+            "card.tear_down_this_wall"
+          ],
+          "phasing_player": "USSR",
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state_patch": {
+          "influence": {
+            "country.east_germany": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "prevention_sources": [
+            "card.tear_down_this_wall"
+          ],
+          "budget": 3,
+          "status": "AwaitingAction"
+        }
+      }
+    },
+    {
+      "id": "EO1-P07",
+      "description": "遏制修正预算不修正固定3影响力",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_step": true,
+        "state": {
+          "influence": {
+            "country.italy": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "active_instances": [
+            {
+              "effect_id": "effect.containment",
+              "affected_side": "US"
+            }
+          ],
+          "effects_complete": true,
+          "defcon": 5,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": false,
+          "winner": null,
+          "prevention_sources": [],
+          "phasing_player": "USSR",
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state_patch": {
+          "influence": {
+            "country.east_germany": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "prevention_sources": [
+            "card.tear_down_this_wall"
+          ],
+          "budget": 4,
+          "status": "AwaitingAction"
+        }
+      }
+    },
+    {
+      "id": "EO1-P08",
+      "description": "美国受清洗，预算2",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_step": true,
+        "state": {
+          "influence": {
+            "country.italy": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "active_instances": [
+            {
+              "effect_id": "effect.red_scare_purge",
+              "affected_side": "US"
+            }
+          ],
+          "effects_complete": true,
+          "defcon": 5,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": false,
+          "winner": null,
+          "prevention_sources": [],
+          "phasing_player": "USSR",
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state_patch": {
+          "influence": {
+            "country.east_germany": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "prevention_sources": [
+            "card.tear_down_this_wall"
+          ],
+          "budget": 2,
+          "status": "AwaitingAction"
+        }
+      }
+    },
+    {
+      "id": "EO1-P09",
+      "description": "苏联受清洗不影响美国预算",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_step": true,
+        "state": {
+          "influence": {
+            "country.italy": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "active_instances": [
+            {
+              "effect_id": "effect.red_scare_purge",
+              "affected_side": "USSR"
+            }
+          ],
+          "effects_complete": true,
+          "defcon": 5,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": false,
+          "winner": null,
+          "prevention_sources": [],
+          "phasing_player": "USSR",
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state_patch": {
+          "influence": {
+            "country.east_germany": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "prevention_sources": [
+            "card.tear_down_this_wall"
+          ],
+          "budget": 3,
+          "status": "AwaitingAction"
+        }
+      }
+    },
+    {
+      "id": "EO1-P10",
+      "description": "美国遏制与清洗合并抵消",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_step": true,
+        "state": {
+          "influence": {
+            "country.italy": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "active_instances": [
+            {
+              "effect_id": "effect.containment",
+              "affected_side": "US"
+            },
+            {
+              "effect_id": "effect.red_scare_purge",
+              "affected_side": "US"
+            }
+          ],
+          "effects_complete": true,
+          "defcon": 5,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": false,
+          "winner": null,
+          "prevention_sources": [],
+          "phasing_player": "USSR",
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state_patch": {
+          "influence": {
+            "country.east_germany": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "prevention_sources": [
+            "card.tear_down_this_wall"
+          ],
+          "budget": 3,
+          "status": "AwaitingAction"
+        }
+      }
+    },
+    {
+      "id": "EO1-P11",
+      "description": "越南苏联奖励不能转给美国欧洲行动",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_step": true,
+        "state": {
+          "influence": {
+            "country.italy": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "active_instances": [
+            {
+              "effect_id": "effect.vietnam_revolts",
+              "affected_side": "USSR"
+            }
+          ],
+          "effects_complete": true,
+          "defcon": 5,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": false,
+          "winner": null,
+          "prevention_sources": [],
+          "phasing_player": "USSR",
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state_patch": {
+          "influence": {
+            "country.east_germany": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "prevention_sources": [
+            "card.tear_down_this_wall"
+          ],
+          "budget": 3,
+          "status": "AwaitingAction"
+        }
+      }
+    },
+    {
+      "id": "EO1-P12",
+      "description": "DEFCON2不会阻止固定收益或欧洲授权",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_step": true,
+        "state": {
+          "influence": {
+            "country.italy": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "active_instances": [],
+          "effects_complete": true,
+          "defcon": 2,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": false,
+          "winner": null,
+          "prevention_sources": [],
+          "phasing_player": "USSR",
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state_patch": {
+          "influence": {
+            "country.east_germany": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "prevention_sources": [
+            "card.tear_down_this_wall"
+          ],
+          "budget": 3,
+          "status": "AwaitingAction"
+        }
+      }
+    },
+    {
+      "id": "EO1-P13",
+      "description": "欧洲无苏联影响力时完成固定收益并自动结束",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_step": true,
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 0,
+              "USSR": 2
+            }
+          },
+          "active_instances": [],
+          "effects_complete": true,
+          "defcon": 5,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": false,
+          "winner": null,
+          "prevention_sources": [],
+          "phasing_player": "USSR",
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "influence": {
+            "country.east_germany": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "prevention_sources": [
+            "card.tear_down_this_wall"
+          ],
+          "budget": 3,
+          "status": "Completed",
+          "event_outcome": "ResolvedChanged"
+        }
+      }
+    },
+    {
+      "id": "EO1-P14",
+      "description": "东德固定增加可改变控制但不计欧洲胜利",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_step": true,
+        "state": {
+          "influence": {
+            "country.east_germany": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "active_instances": [],
+          "effects_complete": true,
+          "defcon": 5,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": false,
+          "winner": null,
+          "prevention_sources": [],
+          "phasing_player": "USSR",
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state_patch": {
+          "influence": {
+            "country.east_germany": {
+              "US": 3,
+              "USSR": 1
+            }
+          },
+          "prevention_sources": [
+            "card.tear_down_this_wall"
+          ],
+          "budget": 3,
+          "status": "AwaitingAction"
+        }
+      }
+    },
+    {
+      "id": "EO1-P15",
+      "description": "已有终局不再取消/增加/建授权",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_step": true,
+        "state": {
+          "influence": {
+            "country.italy": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "active_instances": [],
+          "effects_complete": true,
+          "defcon": 5,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": true,
+          "winner": "US",
+          "prevention_sources": [],
+          "phasing_player": "USSR",
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "EO1-P16",
+      "description": "缺少责任身份拒绝全部前缀",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_step": true,
+        "state": {
+          "influence": {
+            "country.italy": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "active_instances": [],
+          "effects_complete": true,
+          "defcon": 5,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": false,
+          "winner": null,
+          "prevention_sources": [],
+          "phasing_player": null,
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "EO1-P17",
+      "description": "未识别效果拒绝整个启动事务",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_step": true,
+        "state": {
+          "influence": {
+            "country.italy": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "active_instances": [
+            {
+              "effect_id": "effect.cuban_missile_crisis",
+              "affected_side": "US"
+            }
+          ],
+          "effects_complete": true,
+          "defcon": 5,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": false,
+          "winner": null,
+          "prevention_sources": [],
+          "phasing_player": "USSR",
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "EO1-P18",
+      "description": "效果集合不完整不能猜预算",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_step": true,
+        "state": {
+          "influence": {
+            "country.italy": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "active_instances": [],
+          "effects_complete": false,
+          "defcon": 5,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": false,
+          "winner": null,
+          "prevention_sources": [],
+          "phasing_player": "USSR",
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "EO1-P19",
+      "description": "相同效果两实例冲突不叠加",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_step": true,
+        "state": {
+          "influence": {
+            "country.italy": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "active_instances": [
+            {
+              "effect_id": "effect.containment",
+              "affected_side": "US"
+            },
+            {
+              "effect_id": "effect.containment",
+              "affected_side": "US"
+            }
+          ],
+          "effects_complete": true,
+          "defcon": 5,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": false,
+          "winner": null,
+          "prevention_sources": [],
+          "phasing_player": "USSR",
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "EO1-P20",
+      "description": "内部来源未验证不能伪造授权",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_step": false,
+        "state": {
+          "influence": {
+            "country.italy": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "active_instances": [],
+          "effects_complete": true,
+          "defcon": 5,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": false,
+          "winner": null,
+          "prevention_sources": [],
+          "phasing_player": "USSR",
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "EO1-P21",
+      "description": "其他来源牌不能使用拆墙授权",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.nato",
+        "verified_internal_step": true,
+        "state": {
+          "influence": {
+            "country.italy": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "active_instances": [],
+          "effects_complete": true,
+          "defcon": 5,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": false,
+          "winner": null,
+          "prevention_sources": [],
+          "phasing_player": "USSR",
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "EO1-P22",
+      "description": "未知未来数据值不能静默忽略",
+      "validation_layer": "prefix-reference",
+      "status": "reference-specification",
+      "input": {
+        "source_card_id": "card.tear_down_this_wall",
+        "verified_internal_step": true,
+        "state": {
+          "influence": {
+            "country.italy": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "active_instances": [
+            {
+              "effect_id": "effect.iran_contra_scandal",
+              "affected_side": "US"
+            }
+          ],
+          "effects_complete": true,
+          "defcon": 5,
+          "military": {
+            "US": 2,
+            "USSR": 3
+          },
+          "signed_vp": 7,
+          "finished": false,
+          "winner": null,
+          "prevention_sources": [],
+          "phasing_player": "USSR",
+          "mode": null,
+          "budget": null,
+          "spent": 0,
+          "status": "NotStarted",
+          "rng_cursor": 0,
+          "event_outcome": null
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "EO1-C01",
+      "description": "意大利成功，先移除后增加且不记军事",
+      "validation_layer": "coup-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 2
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              4
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "Completed",
+          "state_patch": {
+            "influence": {
+              "country.italy": {
+                "US": 1,
+                "USSR": 0
+              }
+            },
+            "spent": 3,
+            "mode": "Coup",
+            "rng_cursor": 1,
+            "defcon": 4,
+            "status": "Completed",
+            "event_outcome": "ResolvedChanged"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-C02",
+      "description": "失败战场政变仍降级",
+      "validation_layer": "coup-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 1,
+                "USSR": 4
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 3,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              1
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "Completed",
+          "state_patch": {
+            "spent": 3,
+            "mode": "Coup",
+            "rng_cursor": 1,
+            "defcon": 2,
+            "status": "Completed",
+            "event_outcome": "ResolvedChanged"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-C03",
+      "description": "DEFCON2失败政变仍核战，责任US",
+      "validation_layer": "coup-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 2,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "US",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              1
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "GameEnded",
+          "state_patch": {
+            "spent": 3,
+            "mode": "Coup",
+            "rng_cursor": 1,
+            "defcon": 1,
+            "finished": true,
+            "winner": "USSR",
+            "status": "Finished",
+            "event_outcome": "ResolvedChanged"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-C04",
+      "description": "DEFCON2失败政变仍核战，责任USSR",
+      "validation_layer": "coup-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 2,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              1
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "GameEnded",
+          "state_patch": {
+            "spent": 3,
+            "mode": "Coup",
+            "rng_cursor": 1,
+            "defcon": 1,
+            "finished": true,
+            "winner": "US",
+            "status": "Finished",
+            "event_outcome": "ResolvedChanged"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-C05",
+      "description": "芬兰非战场，DEFCON2可政变且无降级",
+      "validation_layer": "coup-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.finland": {
+                "US": 0,
+                "USSR": 2
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 2,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.finland"
+            },
+            "fixed_random_fixture": [
+              6
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "Completed",
+          "state_patch": {
+            "influence": {
+              "country.finland": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "spent": 3,
+            "mode": "Coup",
+            "rng_cursor": 1,
+            "status": "Completed",
+            "event_outcome": "ResolvedChanged"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-C06",
+      "description": "加拿大属于欧洲且不需要己方影响力",
+      "validation_layer": "coup-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.canada": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 4,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.canada"
+            },
+            "fixed_random_fixture": [
+              6
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "Completed",
+          "state_patch": {
+            "influence": {
+              "country.canada": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            "spent": 3,
+            "mode": "Coup",
+            "rng_cursor": 1,
+            "status": "Completed",
+            "event_outcome": "ResolvedChanged"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-C07",
+      "description": "东德先固定+3，再政变",
+      "validation_layer": "coup-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.east_germany": {
+                "US": 0,
+                "USSR": 3
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 4,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.east_germany"
+            },
+            "fixed_random_fixture": [
+              6
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "Completed",
+          "state_patch": {
+            "influence": {
+              "country.east_germany": {
+                "US": 3,
+                "USSR": 0
+              }
+            },
+            "spent": 3,
+            "mode": "Coup",
+            "rng_cursor": 1,
+            "defcon": 3,
+            "status": "Completed",
+            "event_outcome": "ResolvedChanged"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-C08",
+      "description": "遏制使强度4，但军事仍不加",
+      "validation_layer": "coup-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 2
+              }
+            },
+            "active_instances": [
+              {
+                "effect_id": "effect.containment",
+                "affected_side": "US"
+              }
+            ],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              4
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "Completed",
+          "state_patch": {
+            "influence": {
+              "country.italy": {
+                "US": 2,
+                "USSR": 0
+              }
+            },
+            "spent": 4,
+            "mode": "Coup",
+            "rng_cursor": 1,
+            "defcon": 4,
+            "status": "Completed",
+            "event_outcome": "ResolvedChanged"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-C09",
+      "description": "美国清洗使强度2",
+      "validation_layer": "coup-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 2
+              }
+            },
+            "active_instances": [
+              {
+                "effect_id": "effect.red_scare_purge",
+                "affected_side": "US"
+              }
+            ],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              4
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "Completed",
+          "state_patch": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            "spent": 2,
+            "mode": "Coup",
+            "rng_cursor": 1,
+            "defcon": 4,
+            "status": "Completed",
+            "event_outcome": "ResolvedChanged"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-C10",
+      "description": "北约保护不阻止美国事件政变",
+      "validation_layer": "coup-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 3,
+                "USSR": 1
+              }
+            },
+            "active_instances": [
+              {
+                "effect_id": "effect.nato",
+                "affected_side": "US"
+              }
+            ],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              4
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "Completed",
+          "state_patch": {
+            "influence": {
+              "country.italy": {
+                "US": 5,
+                "USSR": 0
+              }
+            },
+            "spent": 3,
+            "mode": "Coup",
+            "rng_cursor": 1,
+            "defcon": 4,
+            "status": "Completed",
+            "event_outcome": "ResolvedChanged"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-C11",
+      "description": "非欧洲目标拒绝",
+      "validation_layer": "coup-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.iran"
+            },
+            "fixed_random_fixture": [
+              6
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "IllegalTarget",
+          "state_patch": {}
+        }
+      ]
+    },
+    {
+      "id": "EO1-C12",
+      "description": "未知国家拒绝",
+      "validation_layer": "coup-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.imaginary"
+            },
+            "fixed_random_fixture": [
+              6
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "IllegalTarget",
+          "state_patch": {}
+        }
+      ]
+    },
+    {
+      "id": "EO1-C13",
+      "description": "无苏联影响力目标拒绝",
+      "validation_layer": "coup-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.france"
+            },
+            "fixed_random_fixture": [
+              6
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "IllegalTarget",
+          "state_patch": {}
+        }
+      ]
+    },
+    {
+      "id": "EO1-C14",
+      "description": "错误行动者不能消费美国预算",
+      "validation_layer": "coup-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "USSR",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              6
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "InvalidContext",
+          "state_patch": {}
+        }
+      ]
+    },
+    {
+      "id": "EO1-C15",
+      "description": "不能注入骰子加成或授权字段",
+      "validation_layer": "coup-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.italy",
+              "ignore_defcon": true
+            },
+            "fixed_random_fixture": [
+              6
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "RejectedPayload",
+          "state_patch": {}
+        }
+      ]
+    },
+    {
+      "id": "EO1-C16",
+      "description": "非法参考骰不视为已掷",
+      "validation_layer": "coup-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              0
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "InvalidRandomFixture",
+          "state_patch": {}
+        }
+      ]
+    },
+    {
+      "id": "EO1-C17",
+      "description": "一次政变只取一骰",
+      "validation_layer": "coup-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              4,
+              5
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "InvalidRandomFixture",
+          "state_patch": {}
+        }
+      ]
+    },
+    {
+      "id": "EO1-C18",
+      "description": "额外OPS字段不能覆盖预算",
+      "validation_layer": "coup-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.italy",
+              "budget": 99
+            },
+            "fixed_random_fixture": [
+              4
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "RejectedPayload",
+          "state_patch": {}
+        }
+      ]
+    },
+    {
+      "id": "EO1-C19",
+      "description": "政变完成后不能再政变",
+      "validation_layer": "coup-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 3
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              4
+            ]
+          },
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              6
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "Completed",
+          "state_patch": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            "spent": 3,
+            "mode": "Coup",
+            "rng_cursor": 1,
+            "defcon": 4,
+            "status": "Completed",
+            "event_outcome": "ResolvedChanged"
+          }
+        },
+        {
+          "outcome": "AlreadyCompleted",
+          "state_patch": {}
+        }
+      ]
+    },
+    {
+      "id": "EO1-C20",
+      "description": "核战后任何新选择均截断",
+      "validation_layer": "coup-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 2,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              1
+            ]
+          },
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              6,
+              1
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "GameEnded",
+          "state_patch": {
+            "spent": 3,
+            "mode": "Coup",
+            "rng_cursor": 1,
+            "defcon": 1,
+            "finished": true,
+            "winner": "US",
+            "status": "Finished",
+            "event_outcome": "ResolvedChanged"
+          }
+        },
+        {
+          "outcome": "AlreadyFinished",
+          "state_patch": {}
+        }
+      ]
+    },
+    {
+      "id": "EO1-A01",
+      "description": "可完全放弃，固定收益仍已发生",
+      "validation_layer": "realignment-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Decline",
+              "actor": "US"
+            },
+            "fixed_random_fixture": []
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "Completed",
+          "state_patch": {
+            "status": "Completed",
+            "event_outcome": "ResolvedChanged"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-A02",
+      "description": "平局仍花1OPS且不降DEFCON",
+      "validation_layer": "realignment-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 2
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 2,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              2,
+              1
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "AwaitingDecision",
+          "state_patch": {
+            "mode": "Realignment",
+            "spent": 1,
+            "rng_cursor": 2,
+            "status": "AwaitingRealignment"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-A03",
+      "description": "美国胜只移除苏联，不增加美国",
+      "validation_layer": "realignment-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 2
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              6,
+              1
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "Completed",
+          "state_patch": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            "mode": "Realignment",
+            "spent": 1,
+            "rng_cursor": 2,
+            "status": "Completed",
+            "event_outcome": "ResolvedChanged"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-A04",
+      "description": "美国败移除美国，苏联数值不增加",
+      "validation_layer": "realignment-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 2,
+                "USSR": 1
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              1,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "AwaitingDecision",
+          "state_patch": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "mode": "Realignment",
+            "spent": 1,
+            "rng_cursor": 2,
+            "status": "AwaitingRealignment"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-A05",
+      "description": "加拿大超级大国邻接加成",
+      "validation_layer": "realignment-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.canada": {
+                "US": 0,
+                "USSR": 3
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.canada"
+            },
+            "fixed_random_fixture": [
+              4,
+              2
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "AwaitingDecision",
+          "state_patch": {
+            "influence": {
+              "country.canada": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "mode": "Realignment",
+            "spent": 1,
+            "rng_cursor": 2,
+            "status": "AwaitingRealignment"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-A06",
+      "description": "芬兰苏联邻接加成导致平局",
+      "validation_layer": "realignment-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.finland": {
+                "US": 0,
+                "USSR": 3
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.finland"
+            },
+            "fixed_random_fixture": [
+              4,
+              2
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "AwaitingDecision",
+          "state_patch": {
+            "mode": "Realignment",
+            "spent": 1,
+            "rng_cursor": 2,
+            "status": "AwaitingRealignment"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-A07",
+      "description": "两个邻接控制国分别提供加成",
+      "validation_layer": "realignment-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 1
+              },
+              "country.france": {
+                "US": 3,
+                "USSR": 0
+              },
+              "country.austria": {
+                "US": 4,
+                "USSR": 0
+              },
+              "country.finland": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              2,
+              2
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "AwaitingDecision",
+          "state_patch": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            "mode": "Realignment",
+            "spent": 1,
+            "rng_cursor": 2,
+            "status": "AwaitingRealignment"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-A08",
+      "description": "邻接只有影响力但不控制不加成",
+      "validation_layer": "realignment-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 2
+              },
+              "country.france": {
+                "US": 2,
+                "USSR": 0
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              2,
+              1
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "AwaitingDecision",
+          "state_patch": {
+            "mode": "Realignment",
+            "spent": 1,
+            "rng_cursor": 2,
+            "status": "AwaitingRealignment"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-A09",
+      "description": "部分调整后允许结束，余量不转移",
+      "validation_layer": "realignment-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 2
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              2,
+              1
+            ]
+          },
+          {
+            "intent": {
+              "kind": "Finish",
+              "actor": "US"
+            },
+            "fixed_random_fixture": []
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "AwaitingDecision",
+          "state_patch": {
+            "mode": "Realignment",
+            "spent": 1,
+            "rng_cursor": 2,
+            "status": "AwaitingRealignment"
+          }
+        },
+        {
+          "outcome": "Completed",
+          "state_patch": {
+            "status": "Completed",
+            "event_outcome": "ResolvedChanged"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-A10",
+      "description": "一次平局后不能换成政变",
+      "validation_layer": "realignment-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 2
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              2,
+              1
+            ]
+          },
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              6
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "AwaitingDecision",
+          "state_patch": {
+            "mode": "Realignment",
+            "spent": 1,
+            "rng_cursor": 2,
+            "status": "AwaitingRealignment"
+          }
+        },
+        {
+          "outcome": "ModeMismatch",
+          "state_patch": {}
+        }
+      ]
+    },
+    {
+      "id": "EO1-A11",
+      "description": "同目标三次平局耗尽预算",
+      "validation_layer": "realignment-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 2
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              2,
+              1
+            ]
+          },
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              2,
+              1
+            ]
+          },
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              2,
+              1
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "AwaitingDecision",
+          "state_patch": {
+            "mode": "Realignment",
+            "spent": 1,
+            "rng_cursor": 2,
+            "status": "AwaitingRealignment"
+          }
+        },
+        {
+          "outcome": "AwaitingDecision",
+          "state_patch": {
+            "spent": 2,
+            "rng_cursor": 4
+          }
+        },
+        {
+          "outcome": "Completed",
+          "state_patch": {
+            "spent": 3,
+            "rng_cursor": 6,
+            "status": "Completed",
+            "event_outcome": "ResolvedChanged"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-A12",
+      "description": "清洗预算只能两次",
+      "validation_layer": "realignment-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 2
+              }
+            },
+            "active_instances": [
+              {
+                "effect_id": "effect.red_scare_purge",
+                "affected_side": "US"
+              }
+            ],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              2,
+              1
+            ]
+          },
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              2,
+              1
+            ]
+          },
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              2,
+              1
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "AwaitingDecision",
+          "state_patch": {
+            "mode": "Realignment",
+            "spent": 1,
+            "rng_cursor": 2,
+            "status": "AwaitingRealignment"
+          }
+        },
+        {
+          "outcome": "Completed",
+          "state_patch": {
+            "spent": 2,
+            "rng_cursor": 4,
+            "status": "Completed",
+            "event_outcome": "ResolvedChanged"
+          }
+        },
+        {
+          "outcome": "AlreadyCompleted",
+          "state_patch": {}
+        }
+      ]
+    },
+    {
+      "id": "EO1-A13",
+      "description": "遏制允许四次",
+      "validation_layer": "realignment-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 2
+              }
+            },
+            "active_instances": [
+              {
+                "effect_id": "effect.containment",
+                "affected_side": "US"
+              }
+            ],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              2,
+              1
+            ]
+          },
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              2,
+              1
+            ]
+          },
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              2,
+              1
+            ]
+          },
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              2,
+              1
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "AwaitingDecision",
+          "state_patch": {
+            "mode": "Realignment",
+            "spent": 1,
+            "rng_cursor": 2,
+            "status": "AwaitingRealignment"
+          }
+        },
+        {
+          "outcome": "AwaitingDecision",
+          "state_patch": {
+            "spent": 2,
+            "rng_cursor": 4
+          }
+        },
+        {
+          "outcome": "AwaitingDecision",
+          "state_patch": {
+            "spent": 3,
+            "rng_cursor": 6
+          }
+        },
+        {
+          "outcome": "Completed",
+          "state_patch": {
+            "spent": 4,
+            "rng_cursor": 8,
+            "status": "Completed",
+            "event_outcome": "ResolvedChanged"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-A14",
+      "description": "法国失控后意大利下次报价不沿用邻国加成",
+      "validation_layer": "realignment-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.france": {
+                "US": 4,
+                "USSR": 1
+              },
+              "country.italy": {
+                "US": 0,
+                "USSR": 2
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.france"
+            },
+            "fixed_random_fixture": [
+              1,
+              5
+            ]
+          },
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              3,
+              2
+            ]
+          },
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              6,
+              1
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "AwaitingDecision",
+          "state_patch": {
+            "influence": {
+              "country.france": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "mode": "Realignment",
+            "spent": 1,
+            "rng_cursor": 2,
+            "status": "AwaitingRealignment"
+          }
+        },
+        {
+          "outcome": "AwaitingDecision",
+          "state_patch": {
+            "spent": 2,
+            "rng_cursor": 4
+          }
+        },
+        {
+          "outcome": "Completed",
+          "state_patch": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            "spent": 3,
+            "rng_cursor": 6,
+            "status": "Completed",
+            "event_outcome": "ResolvedChanged"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-A15",
+      "description": "先非法目标不锁定模式，随后合法政变可执行",
+      "validation_layer": "realignment-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 2
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.iran"
+            },
+            "fixed_random_fixture": [
+              6,
+              1
+            ]
+          },
+          {
+            "intent": {
+              "kind": "Coup",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              4
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "IllegalTarget",
+          "state_patch": {}
+        },
+        {
+          "outcome": "Completed",
+          "state_patch": {
+            "influence": {
+              "country.italy": {
+                "US": 1,
+                "USSR": 0
+              }
+            },
+            "spent": 3,
+            "mode": "Coup",
+            "rng_cursor": 1,
+            "defcon": 4,
+            "status": "Completed",
+            "event_outcome": "ResolvedChanged"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EO1-A16",
+      "description": "不存在苏联影响力不能调整",
+      "validation_layer": "realignment-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.france"
+            },
+            "fixed_random_fixture": [
+              6,
+              1
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "IllegalTarget",
+          "state_patch": {}
+        }
+      ]
+    },
+    {
+      "id": "EO1-A17",
+      "description": "调整不能成为影响力投放",
+      "validation_layer": "realignment-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Influence",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              6,
+              1
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "RejectedPayload",
+          "state_patch": {}
+        }
+      ]
+    },
+    {
+      "id": "EO1-A18",
+      "description": "不能转太空",
+      "validation_layer": "realignment-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Space",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              6,
+              1
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "RejectedPayload",
+          "state_patch": {}
+        }
+      ]
+    },
+    {
+      "id": "EO1-A19",
+      "description": "修改决策owner无效",
+      "validation_layer": "realignment-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "USSR",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              6,
+              1
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "InvalidContext",
+          "state_patch": {}
+        }
+      ]
+    },
+    {
+      "id": "EO1-A20",
+      "description": "调整参考骰须为两个合法骰",
+      "validation_layer": "realignment-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Realignment",
+              "actor": "US",
+              "country_id": "country.italy"
+            },
+            "fixed_random_fixture": [
+              6
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "InvalidRandomFixture",
+          "state_patch": {}
+        }
+      ]
+    },
+    {
+      "id": "EO1-A21",
+      "description": "Finish只在已经进入调整模式后可用",
+      "validation_layer": "realignment-reference",
+      "status": "reference-specification",
+      "input": {
+        "prefix_input": {
+          "source_card_id": "card.tear_down_this_wall",
+          "verified_internal_step": true,
+          "state": {
+            "influence": {
+              "country.italy": {
+                "US": 0,
+                "USSR": 1
+              }
+            },
+            "active_instances": [],
+            "effects_complete": true,
+            "defcon": 5,
+            "military": {
+              "US": 2,
+              "USSR": 3
+            },
+            "signed_vp": 7,
+            "finished": false,
+            "winner": null,
+            "prevention_sources": [],
+            "phasing_player": "USSR",
+            "mode": null,
+            "budget": null,
+            "spent": 0,
+            "status": "NotStarted",
+            "rng_cursor": 0,
+            "event_outcome": null
+          }
+        },
+        "commands": [
+          {
+            "intent": {
+              "kind": "Finish",
+              "actor": "US"
+            },
+            "fixed_random_fixture": []
+          }
+        ]
+      },
+      "expected": [
+        {
+          "outcome": "ModeMismatch",
+          "state_patch": {}
+        }
+      ]
+    },
+    {
+      "id": "EO1-R01",
+      "description": "客户端伪造Grant/Actor/OPS/ignoreDefcon被身份与信封门禁拒绝",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "test_scope": "planned engine integration"
+      },
+      "expected_behavior": "客户端伪造Grant/Actor/OPS/ignoreDefcon被身份与信封门禁拒绝"
+    },
+    {
+      "id": "EO1-R02",
+      "description": "同命令完整重试返回原收据，不再增加东德或取消",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "test_scope": "planned engine integration"
+      },
+      "expected_behavior": "同命令完整重试返回原收据，不再增加东德或取消"
+    },
+    {
+      "id": "EO1-R03",
+      "description": "同ID不同载荷返回冲突，所有状态不变",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "test_scope": "planned engine integration"
+      },
+      "expected_behavior": "同ID不同载荷返回冲突，所有状态不变"
+    },
+    {
+      "id": "EO1-R04",
+      "description": "每次掷骰随机状态、影响力、预算和事件序号原子提交",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "test_scope": "planned engine integration"
+      },
+      "expected_behavior": "每次掷骰随机状态、影响力、预算和事件序号原子提交"
+    },
+    {
+      "id": "EO1-R05",
+      "description": "等待第二次调整时存档恢复，不重掷第一对骰子",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "test_scope": "planned engine integration"
+      },
+      "expected_behavior": "等待第二次调整时存档恢复，不重掷第一对骰子"
+    },
+    {
+      "id": "EO1-R06",
+      "description": "旧DecisionRevision拒绝，不影响当前授权",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "test_scope": "planned engine integration"
+      },
+      "expected_behavior": "旧DecisionRevision拒绝，不影响当前授权"
+    },
+    {
+      "id": "EO1-R07",
+      "description": "合法查询/预览不消耗随机，不泄露对方手牌",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "test_scope": "planned engine integration"
+      },
+      "expected_behavior": "合法查询/预览不消耗随机，不泄露对方手牌"
+    },
+    {
+      "id": "EO1-R08",
+      "description": "前缀失败回滚全部固定收益，后续选择失败保留前缀",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "test_scope": "planned engine integration"
+      },
+      "expected_behavior": "前缀失败回滚全部固定收益，后续选择失败保留前缀"
+    },
+    {
+      "id": "EO1-R09",
+      "description": "头条美国与苏联出牌的PhasingPlayer分别保留",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "test_scope": "planned engine integration"
+      },
+      "expected_behavior": "头条美国与苏联出牌的PhasingPlayer分别保留"
+    },
+    {
+      "id": "EO1-R10",
+      "description": "苏联EventBeforeOps等待美国行动完成再执行根OPS",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "test_scope": "planned engine integration"
+      },
+      "expected_behavior": "苏联EventBeforeOps等待美国行动完成再执行根OPS"
+    },
+    {
+      "id": "EO1-R11",
+      "description": "苏联OpsBeforeEvent根OPS不被子预算追溯重写",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "test_scope": "planned engine integration"
+      },
+      "expected_behavior": "苏联OpsBeforeEvent根OPS不被子预算追溯重写"
+    },
+    {
+      "id": "EO1-R12",
+      "description": "额外行动不耗第二张手牌，不增加普通行动名额",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "test_scope": "planned engine integration"
+      },
+      "expected_behavior": "额外行动不耗第二张手牌，不增加普通行动名额"
+    },
+    {
+      "id": "EO1-R13",
+      "description": "核战关闭授权和决策，不执行父OPS或下一头条",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "test_scope": "planned engine integration"
+      },
+      "expected_behavior": "核战关闭授权和决策，不执行父OPS或下一头条"
+    },
+    {
+      "id": "EO1-R14",
+      "description": "事件完成后星号移出，本牌不能同时处于两区",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "test_scope": "planned engine integration"
+      },
+      "expected_behavior": "事件完成后星号移出，本牌不能同时处于两区"
+    },
+    {
+      "id": "EO1-R15",
+      "description": "永久阻止记录在等待选择时可读，不能伪造成整个事件已成功",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "test_scope": "planned engine integration"
+      },
+      "expected_behavior": "永久阻止记录在等待选择时可读，不能伪造成整个事件已成功"
+    },
+    {
+      "id": "EO1-R16",
+      "description": "未知尝试拦截/掷骰修正RequiresRuling而非忽略",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "test_scope": "planned engine integration"
+      },
+      "expected_behavior": "未知尝试拦截/掷骰修正RequiresRuling而非忽略"
+    },
+    {
+      "id": "EO1-R17",
+      "description": "不同画风播放相同领域事件不改变权威摘要",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "input": {
+        "test_scope": "planned engine integration"
+      },
+      "expected_behavior": "不同画风播放相同领域事件不改变权威摘要"
+    }
+  ]
+}

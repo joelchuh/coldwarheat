@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.event_operations_batch1",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "推倒这堵墙：先取消/阻止勃兰特、东德固定加美国影响力，再可选欧洲免费政变或连续调整；预算读取源牌并按美国修正，C#待实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "重新目视PDF p14英文#96完整事件；不采用旁列译文。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§4.5C/5.2角色与出牌顺序；§6.2–6.3行动；§7.4事件OPS修正；§8.1核战责任；§8.2.5免费政变信用。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p16 #96明确欧洲政变/调整DEFCON地理豁免，战场仍降级且免费政变不记军事；p20–21普通行动与修正澄清。"
+    },
+    {
+      "id": "PROJECT-EO1",
+      "url": null,
+      "edition": "EO1-INTERPRETATION-01 derived; engineering contracts, 2026-10-05",
+      "description": "可选调整可在已结算掷骰之间结束并放弃余量；由may与逐次目标语义推导，非专门FAQ/用户裁定。冻结授权预算、步进事务及来源证明为工程约定。"
+    }
+  ],
+  "parameters": {
+    "tear_down_this_wall": {
+      "card_id": "card.tear_down_this_wall",
+      "effect_id": "effect.tear_down_this_wall",
+      "description": "推倒这堵墙：先取消/阻止勃兰特、东德固定加美国影响力，再可选欧洲免费政变或连续调整；预算读取源牌并按美国修正，C#待实现。",
+      "template": "CancelInfluenceOptionalRegionalOps",
+      "beneficiary": "US",
+      "cancel_target_ref": {
+        "dataset_id": "effects.deluxe2015.nato_exceptions",
+        "json_pointer": "/parameters/willy_brandt"
+      },
+      "ordered_steps": [
+        {
+          "kind": "CancelAndPreventReferencedEvent"
+        },
+        {
+          "kind": "AddFixedInfluence",
+          "country_id": "country.east_germany",
+          "side": "US",
+          "amount": 3
+        },
+        {
+          "kind": "GrantOptionalRegionalOperations"
+        }
+      ],
+      "operations_grant": {
+        "actor": "US",
+        "region_id": "region.europe",
+        "allowed_modes": [
+          "Coup",
+          "Realignment"
+        ],
+        "budget_source": "SourceCardPrintedOps",
+        "budget_policy_ref": {
+          "dataset_id": "effects.deluxe2015.persistent_batch1",
+          "json_pointer": "/ops_policy"
+        },
+        "modifier_policy": "ActorAtGrantCreation",
+        "defcon_exception": "GeographicOnly",
+        "coup_credit_kind": "FreeCoup",
+        "decline_allowed": true,
+        "realignment_finish_allowed": true,
+        "mode_lock": "FirstAcceptedAttempt",
+        "coup_use": "OneAttemptConsumesWholeBudget",
+        "realignment_cost": "StandardOneOpsPerAttempt"
+      },
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "重新目视PDF p14英文#96完整事件；不采用旁列译文。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§4.5C/5.2角色与出牌顺序；§6.2–6.3行动；§7.4事件OPS修正；§8.1核战责任；§8.2.5免费政变信用。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p16 #96明确欧洲政变/调整DEFCON地理豁免，战场仍降级且免费政变不记军事；p20–21普通行动与修正澄清。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-EO1",
+          "locator": "可选调整可在已结算掷骰之间结束并放弃余量；由may与逐次目标语义推导，非专门FAQ/用户裁定。冻结授权预算、步进事务及来源证明为工程约定。",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

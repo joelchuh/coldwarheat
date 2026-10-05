@@ -49,4 +49,6 @@
 
 前置事件批：[马歇尔计划与华沙条约](Docs/Wiki/alliance-prerequisites.md)的影响力与玩家选择已设计；累计17牌Bound、85牌Unresolved，处理器仍planned。
 
-最新：[戴高乐与勃兰特](Docs/Wiki/nato-exceptions.md)已设计固定组合效果和局部北约例外；累计19牌Bound、83牌Unresolved，C#仍未实现。
+北约局部例外批：[戴高乐与勃兰特](Docs/Wiki/nato-exceptions.md)已设计固定组合效果和局部北约例外。
+
+最新：[拆墙与事件行动授权](Docs/Wiki/event-operations.md)补齐固定收益、可选欧洲行动、OPS预算和核战责任；累计20牌Bound、82牌Unresolved，102处理器均planned。

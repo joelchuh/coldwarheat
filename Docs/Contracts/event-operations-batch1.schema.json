@@ -1,0 +1,297 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:event-operations-batch1:1",
+  "title": "首批事件行动授权与拆墙参数",
+  "description": "封闭类型化契约，参数只声明已核实能力；不包含可执行表达式或玩家自报授权。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.event_operations_batch1"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "release-candidate"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "url",
+          "edition",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "edition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tear_down_this_wall"
+      ],
+      "properties": {
+        "tear_down_this_wall": {
+          "$ref": "#/$defs/CancelInfluenceOptionalRegionalOps"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "CancelInfluenceOptionalRegionalOps": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "cancel_target_ref",
+        "ordered_steps",
+        "operations_grant",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.tear_down_this_wall"
+        },
+        "effect_id": {
+          "const": "effect.tear_down_this_wall"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "CancelInfluenceOptionalRegionalOps"
+        },
+        "beneficiary": {
+          "const": "US"
+        },
+        "cancel_target_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.nato_exceptions"
+            },
+            "json_pointer": {
+              "const": "/parameters/willy_brandt"
+            }
+          }
+        },
+        "ordered_steps": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "CancelAndPreventReferencedEvent"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind",
+                "country_id",
+                "side",
+                "amount"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "AddFixedInfluence"
+                },
+                "country_id": {
+                  "const": "country.east_germany"
+                },
+                "side": {
+                  "const": "US"
+                },
+                "amount": {
+                  "const": 3
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "GrantOptionalRegionalOperations"
+                }
+              }
+            }
+          ],
+          "items": false
+        },
+        "operations_grant": {
+          "$ref": "#/$defs/RegionalOperationsGrant"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    },
+    "RegionalOperationsGrant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "actor",
+        "region_id",
+        "allowed_modes",
+        "budget_source",
+        "budget_policy_ref",
+        "modifier_policy",
+        "defcon_exception",
+        "coup_credit_kind",
+        "decline_allowed",
+        "realignment_finish_allowed",
+        "mode_lock",
+        "coup_use",
+        "realignment_cost"
+      ],
+      "properties": {
+        "actor": {
+          "const": "US"
+        },
+        "region_id": {
+          "const": "region.europe"
+        },
+        "allowed_modes": {
+          "const": [
+            "Coup",
+            "Realignment"
+          ]
+        },
+        "budget_source": {
+          "const": "SourceCardPrintedOps"
+        },
+        "budget_policy_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.persistent_batch1"
+            },
+            "json_pointer": {
+              "const": "/ops_policy"
+            }
+          }
+        },
+        "modifier_policy": {
+          "const": "ActorAtGrantCreation"
+        },
+        "defcon_exception": {
+          "const": "GeographicOnly"
+        },
+        "coup_credit_kind": {
+          "const": "FreeCoup"
+        },
+        "decline_allowed": {
+          "const": true
+        },
+        "realignment_finish_allowed": {
+          "const": true
+        },
+        "mode_lock": {
+          "const": "FirstAcceptedAttempt"
+        },
+        "coup_use": {
+          "const": "OneAttemptConsumesWholeBudget"
+        },
+        "realignment_cost": {
+          "const": "StandardOneOpsPerAttempt"
+        }
+      }
+    }
+  }
+}

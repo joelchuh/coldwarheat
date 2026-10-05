@@ -30,7 +30,7 @@ description：查法国／西德固定影响力、勃兰特VP、组合步骤、�
 | EventPreventionService.CancelAndPrevent | 按已核实来源取消目标持续部分并登记未来阻止 |
 | 胜负服务的VpBatchClosed检查点 | 读取唯一VP批次，按共享符号方向和阈值判断终局 |
 
-这些是计划接口，模块entrypoints为空。固定步骤只允许RemoveUpToInfluence、AddInfluence、AwardVictoryPoints和ActivateNatoCountryException；不支持eval、函数名字符串或任意反射调用。编排层使用各服务的不可变计划统一提交，服务不相互持有可变GameState。
+这些是计划接口，模块entrypoints为空。本页两牌固定步骤只允许RemoveUpToInfluence、AddInfluence、AwardVictoryPoints和ActivateNatoCountryException；不支持eval、函数名字符串或任意反射调用。编排层使用各服务的不可变计划统一提交，服务不相互持有可变GameState。
 
 ## 固定步骤与立即终局
 
@@ -44,7 +44,7 @@ description：查法国／西德固定影响力、勃兰特VP、组合步骤、�
 
 ## 取消、阻止与历史收益
 
-勃兰特的取消来源ID只通过条约interaction_boundaries引用。来源牌完整处理器当前Unresolved；本批只设计其可生成的、已验证的内部取消意图。正式包不得仅有本接缝就把拆墙当作已实现。客户端不能提交“某事件已经发生”或“取消目标是这张牌”。
+勃兰特的取消来源ID只通过条约interaction_boundaries引用。来源牌完整参数已在[事件行动授权](event-operations.md)绑定，运行处理器仍planned；本批只设计其可生成的、已验证的内部取消意图。正式包不得仅有本接缝就把拆墙当作已实现。客户端不能提交“某事件已经发生”或“取消目标是这张牌”。
 
 取消意图保存sourceCardId/sourceEffectId、sourceResolutionId、sourceStepId、targetCardId/EffectId、权威序列、规则／数据版本。CancelAndPrevent要求来源与引用关系匹配且调用者来自注册的权威结算步骤：结束当前勃兰特活动实例，生成永久PreventionRecord；没有活动实例仍登记未来阻止。相同命令／步骤重试返回原收据，同ID不同载荷为冲突。不要由UI返回按钮或客户端自报卡牌区域生成此意图。
 
@@ -81,4 +81,8 @@ flowchart TD
 
 [案例](../Design/nato-exceptions.cases.json)与[执行证据](../Design/nato-exceptions.validation.json)区分参数、离线参考投影和运行验收。C#/Unity事务、完整头条／OPS、存档、身份和真实取消来源处理器仍未运行；两张牌参数绑定不解除这些门禁。经互会短缺及旧重复激活边界保持原状态。
 
-下一步设计《拆毁这堵墙》的完整事件及欧洲额外行动，冻结其影响力、可选行动、OPS修正、DEFCON／条约限制和军事信用；随后逐批补战争和其他复杂事件。
+后续[拆墙完整设计](event-operations.md)已建立影响力、可选行动、OPS修正、DEFCON／条约限制和军事信用；接下来逐批补战争和其他复杂事件。
+
+## 拆墙与事件行动授权（2026-10-05，待实现）
+
+见[事件行动授权](event-operations.md)：强制取消/固定收益先提交至可选行动等待点；额外行动采用单独预算，US为Actor，原PhasingPlayer承担普通核战责任。欧洲政变/调整豁免只覆盖DEFCON地理门禁；战场降级、其他事件拦截与终局仍生效。免费政变不计军事；每次调整后重查局面，余量不可转成投放、太空、政变或根OPS。

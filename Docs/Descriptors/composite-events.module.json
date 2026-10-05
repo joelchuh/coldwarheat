@@ -4,7 +4,7 @@
     "权威出牌帧/结算ID/步骤游标、类型化步骤、静态引用和活动/阻止状态"
   ],
   "outputs": [
-    "拟定影响力/VP/局部例外计划、胜负结果与继续位置；不接受任意代码"
+    "拟定影响力/VP/持续例外/取消阻止计划、区域行动授权与继续位置；Completed/AwaitingDecision/GameEnded，不接受任意代码"
   ],
   "dependencies": [
     {
@@ -20,6 +20,11 @@
     {
       "id": "module.victory",
       "path": "Docs/Descriptors/victory.module.json",
+      "status": "planned"
+    },
+    {
+      "id": "module.event-operations",
+      "path": "Docs/Descriptors/event-operations.module.json",
       "status": "planned"
     }
   ],
@@ -37,24 +42,40 @@
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "edition": "English Deluxe card images",
-      "description": "英文p4 #17、p9 #55；p14 #96只核对取消/阻止关系，不冻结拆墙完整效果。"
+      "description": "英文p4 #17、p9 #55；p14 #96本批重新核对完整取消、固定影响力与可选欧洲行动。"
     },
     {
       "id": "R2015",
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
       "edition": "Deluxe rules 2015",
-      "description": "§5.2事件发生与去向、§6.1.1直接放置、§7.3/7.5持续与禁用事件、§10.2–10.3 VP净奖分与立即胜利。"
+      "description": "§5.2事件发生与去向、§6.1.1直接放置、§7.3/7.5持续与禁用事件、§10.2–10.3 VP净奖分与立即胜利。 本批补§6.2–6.3、§7.4、§8.1与§8.2.5。"
     },
     {
       "id": "PROJECT-NE",
       "url": null,
       "edition": "NE-INTERPRETATION-01/02 derived design, 2026-10-05",
       "description": "法国不足2US移除现有量仍执行余项；勃兰特唯一VP批次按卡文顺序先关闭，终局不执行后续步骤。推导/编排约定，非专门FAQ或用户专门裁定。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p16 #96明确欧洲政变/调整DEFCON地理豁免，战场仍降级且免费政变不记军事；p20–21普通行动与修正澄清。"
+    },
+    {
+      "id": "PROJECT-EO1",
+      "url": null,
+      "edition": "EO1-INTERPRETATION-01 derived; engineering contracts, 2026-10-05",
+      "description": "可选调整可在已结算掷骰之间结束并放弃余量；由may与逐次目标语义推导，非专门FAQ/用户裁定。冻结授权预算、步进事务及来源证明为工程约定。"
     }
   ],
   "tests": [
     {
       "path": "Docs/Design/nato-exceptions.cases.json",
+      "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/event-operations-batch1.cases.json",
       "status": "mixed-reference-and-planned"
     }
   ],
@@ -62,7 +83,7 @@
   "id": "module.composite-events",
   "kind": "module",
   "status": "planned",
-  "description": "组合固定影响力、VP及持续状态的有序事件步骤，关闭VP批次并停止终局后的继续；两张北约例外牌，纯Core计划。",
+  "description": "固定组合事件与可选区域行动：影响力、VP、持续状态、取消阻止和授权子帧；封闭步骤，终局截断，纯Core计划。",
   "entrypoints": [],
   "planned_entrypoints": [
     {
@@ -76,13 +97,16 @@
     "map.deluxe2015.world",
     "cards.deluxe2015.definitions",
     "rules.deluxe2015.victory",
-    "rules.deluxe2015.turn-flow"
+    "rules.deluxe2015.turn-flow",
+    "effects.deluxe2015.event_operations_batch1"
   ],
   "contract_dependencies": [
-    "urn:coldwarheat:contract:nato-exceptions:1"
+    "urn:coldwarheat:contract:nato-exceptions:1",
+    "urn:coldwarheat:contract:event-operations-batch1:1"
   ],
   "verification": {
     "implementation_tested": false,
-    "report": "Docs/Design/nato-exceptions.validation.json"
+    "report": "Docs/Design/nato-exceptions.validation.json",
+    "latest_design_report": "Docs/Design/event-operations-batch1.validation.json"
   }
 }

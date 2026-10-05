@@ -43,11 +43,11 @@
 
 新[卡牌Schema v2](../Contracts/cards-v2.schema.json)保留v1合成样例，新增parameter_binding_status：
 
-- Unresolved：尚未设计参数，parameter_refs必须为空；禁止进入可执行规则包。当前83个非中国牌绑定为此状态；三批影响力10牌及首批持续效果3牌及条约2牌，及北约前置2牌，另有戴高乐/勃兰特2牌，共19牌已完成参数绑定。
+- Unresolved：尚未设计参数，parameter_refs必须为空；禁止进入可执行规则包。当前82个非中国牌绑定为此状态；三批影响力10牌、首批持续效果3牌、条约2牌、北约前置2牌、戴高乐/勃兰特2牌，加拆墙1牌，共20牌已完成参数绑定。
 - NoParameters：已逐卡核实确实无需外部参数，引用必须为空。不能靠默认值采用。
 - Bound：至少一个引用；加载器仍要校验dataset_id、JSON Pointer和该效果的参数类型。
 
-所有effect_contracts仍标planned；[第一批5牌](early-influence-batch1.md)、[第二批3牌](early-influence-batch2.md)和[第三批2牌](early-influence-batch3.md)以及[持续效果首批3牌](persistent-effects.md)及[条约保护2牌](treaty-protection.md)及[北约前置2牌](alliance-prerequisites.md)及[北约局部例外2牌](nato-exceptions.md)已绑定参数，其余83个仍保留Pending项目设计。handler_key只预留显式注册键，不能反射、eval或下载执行。结构验证接受这些设计记录，不代表运行门禁放行；C#加载器实现后必须拒绝Unresolved、Pending证据、未注册处理器和缺少setup。影响力四批12牌已有执行/选择设计，并补充戴高乐/勃兰特组合事件，第二批短缺策略已获用户确认，首批持续效果已设计，其他持续效果、额外交互与其他卡牌仍待设计。计分服务已有通用设计，也不据此假称计分卡处理器已实现。
+所有effect_contracts仍标planned；[第一批5牌](early-influence-batch1.md)、[第二批3牌](early-influence-batch2.md)和[第三批2牌](early-influence-batch3.md)以及[持续效果首批3牌](persistent-effects.md)及[条约保护2牌](treaty-protection.md)及[北约前置2牌](alliance-prerequisites.md)及[北约局部例外2牌](nato-exceptions.md)和[拆墙1牌](event-operations.md)已绑定参数，其余82个仍保留Pending项目设计。handler_key只预留显式注册键，不能反射、eval或下载执行。结构验证接受这些设计记录，不代表运行门禁放行；C#加载器实现后必须拒绝Unresolved、Pending证据、未注册处理器和缺少setup。影响力四批12牌已有执行/选择设计，并补充戴高乐/勃兰特组合事件与拆墙可选欧洲行动，第二批短缺策略已获用户确认，首批持续效果已设计，其他持续效果、额外交互与其他卡牌仍待设计。计分服务已有通用设计，也不据此假称计分卡处理器已实现。
 
 scoring-card-parameters已升级schema_version=2、content_version=0.2.0：仅保留中国牌final_holder_vp。东南亚remove_after_resolved_event唯一来源为cards.json的card.southeast_asia_scoring；旧消费者必须迁移，不回退读取已删除的参数。地区权重仍只来自region-scoring，太空阈值仍只来自space-race。
 
