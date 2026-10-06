@@ -1,0 +1,1474 @@
+{
+  "schema_version": 1,
+  "description": "组合轨道事件结构/顺序与固定参考，真实身份/事务未运行。",
+  "status": "mixed-reference-and-planned",
+  "dataset": "Data/Cards/deluxe-2015/defcon-vp-events.parameters.json",
+  "schema": "Docs/Contracts/defcon-vp-events.schema.json",
+  "cases": [
+    {
+      "id": "DV-D-baseline",
+      "validation_layer": "data",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "DV-D-duck-us-owner",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "duck_and_cover",
+              "vp_owner"
+            ],
+            "value": "EffectController"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DV-D-duck-formula",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "duck_and_cover",
+              "vp_formula"
+            ],
+            "value": "PrintedOpsMinusDefcon"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DV-D-duck-constant",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "duck_and_cover",
+              "vp_constant"
+            ],
+            "value": 4
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DV-D-duck-order",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "duck_and_cover",
+              "steps"
+            ],
+            "value": [
+              "AwardVpFromResultingDefcon",
+              "DegradeDefcon"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DV-D-duck-degrade",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "duck_and_cover",
+              "defcon_change"
+            ],
+            "value": -2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DV-D-test-before-defcon",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "nuclear_test_ban",
+              "steps"
+            ],
+            "value": [
+              "ImproveDefcon",
+              "AwardVpFromCurrentDefcon"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DV-D-test-owner",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "nuclear_test_ban",
+              "vp_owner"
+            ],
+            "value": "US"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DV-D-test-constant",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "nuclear_test_ban",
+              "vp_constant"
+            ],
+            "value": 3
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DV-D-test-change",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "nuclear_test_ban",
+              "defcon_change"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DV-D-safe-only",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "how_i_learned_to_stop_worrying",
+              "level_policy"
+            ],
+            "value": "ExcludeNuclear"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DV-D-mil-root-owner",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "how_i_learned_to_stop_worrying",
+              "military_owner"
+            ],
+            "value": "RootPhasingPlayer"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DV-D-mil-ops",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "how_i_learned_to_stop_worrying",
+              "military_credit_amount"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DV-D-mil-coup",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "how_i_learned_to_stop_worrying",
+              "military_credit_kind"
+            ],
+            "value": "OperationsCoup"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DV-D-mil-war",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "how_i_learned_to_stop_worrying",
+              "military_credit_kind"
+            ],
+            "value": "WarEvent"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DV-D-mil-policy",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "how_i_learned_to_stop_worrying",
+              "military_parameter_policy"
+            ],
+            "value": "PrintedOps"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DV-D-mil-before-nuclear",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "how_i_learned_to_stop_worrying",
+              "steps"
+            ],
+            "value": [
+              "ChooseTrackLevel",
+              "AwardFixedMilitaryCredit",
+              "SetDefcon"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DV-D-wrong-track",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "duck_and_cover",
+              "defcon_ref",
+              "json_pointer"
+            ],
+            "value": "/unknown"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DV-D-script",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "duck_and_cover",
+              "script"
+            ],
+            "value": "eval()"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DV-R-duck-five-to-four",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.duck_and_cover",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": null,
+        "state": {
+          "defcon": 5,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "defcon": 4,
+          "vp": 1,
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "DV-R-duck-three-to-two",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.duck_and_cover",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": null,
+        "state": {
+          "defcon": 3,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "defcon": 2,
+          "vp": 3,
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "DV-R-duck-us-reward-on-ussr-root",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.duck_and_cover",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": null,
+        "state": {
+          "defcon": 4,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "defcon": 3,
+          "vp": 2,
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "DV-R-duck-nuclear-us-root-no-vp",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.duck_and_cover",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": null,
+        "state": {
+          "defcon": 2,
+          "vp": 19,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "GameEnded",
+        "state_patch": {
+          "defcon": 1,
+          "finished": true,
+          "winner": "USSR",
+          "reason": "NuclearWarReached"
+        }
+      }
+    },
+    {
+      "id": "DV-R-duck-nuclear-ussr-root",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.duck_and_cover",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": null,
+        "state": {
+          "defcon": 2,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "GameEnded",
+        "state_patch": {
+          "defcon": 1,
+          "finished": true,
+          "winner": "US",
+          "reason": "NuclearWarReached"
+        }
+      }
+    },
+    {
+      "id": "DV-R-duck-vp-win",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.duck_and_cover",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": null,
+        "state": {
+          "defcon": 3,
+          "vp": 17,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "GameEnded",
+        "state_patch": {
+          "defcon": 2,
+          "vp": 20,
+          "finished": true,
+          "winner": "US",
+          "reason": "AutomaticVp"
+        }
+      }
+    },
+    {
+      "id": "DV-R-subs-does-not-block-event",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.duck_and_cover",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": null,
+        "state": {
+          "defcon": 5,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": true,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "defcon": 4,
+          "vp": 1,
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "DV-R-crisis-is-not-coup",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.duck_and_cover",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": null,
+        "state": {
+          "defcon": 5,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": "US"
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "defcon": 4,
+          "vp": 1,
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "DV-R-test-us-before-improve",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.nuclear_test_ban",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": null,
+        "state": {
+          "defcon": 4,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "defcon": 5,
+          "vp": 2,
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "DV-R-test-ussr-owner",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.nuclear_test_ban",
+        "effect_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "actor": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": null,
+        "state": {
+          "defcon": 5,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "defcon": 5,
+          "vp": -3,
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "DV-R-test-defcon-two-zero-vp",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.nuclear_test_ban",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": null,
+        "state": {
+          "defcon": 2,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "defcon": 4,
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "DV-R-test-vp-win-no-improve",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.nuclear_test_ban",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": null,
+        "state": {
+          "defcon": 4,
+          "vp": 18,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "GameEnded",
+        "state_patch": {
+          "vp": 20,
+          "finished": true,
+          "winner": "US",
+          "reason": "AutomaticVp"
+        }
+      }
+    },
+    {
+      "id": "DV-R-test-negative-owner-win",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.nuclear_test_ban",
+        "effect_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "actor": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": null,
+        "state": {
+          "defcon": 4,
+          "vp": -18,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "GameEnded",
+        "state_patch": {
+          "vp": -20,
+          "finished": true,
+          "winner": "USSR",
+          "reason": "AutomaticVp"
+        }
+      }
+    },
+    {
+      "id": "DV-R-hil-await-owner",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.how_i_learned_to_stop_worrying",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": null,
+        "state": {
+          "defcon": 5,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state_patch": {},
+        "owner": "US",
+        "levels": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "id": "DV-R-hil-selected-improvement",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.how_i_learned_to_stop_worrying",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": 5,
+        "state": {
+          "defcon": 5,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "military": {
+            "US": 5,
+            "USSR": 0
+          },
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "DV-R-hil-selected-degradation",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.how_i_learned_to_stop_worrying",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": 2,
+        "state": {
+          "defcon": 5,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "defcon": 2,
+          "military": {
+            "US": 5,
+            "USSR": 0
+          },
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "DV-R-hil-credit-preserves-old-total",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.how_i_learned_to_stop_worrying",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": 3,
+        "state": {
+          "defcon": 5,
+          "vp": 0,
+          "military": {
+            "US": 3,
+            "USSR": 4
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "defcon": 3,
+          "military": {
+            "US": 8,
+            "USSR": 4
+          },
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "DV-R-hil-ussr-owner-root-us",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.how_i_learned_to_stop_worrying",
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "actor": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": 4,
+        "state": {
+          "defcon": 5,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "defcon": 4,
+          "military": {
+            "US": 0,
+            "USSR": 5
+          },
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "DV-R-hil-nuclear-original-root",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.how_i_learned_to_stop_worrying",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": 1,
+        "state": {
+          "defcon": 5,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "GameEnded",
+        "state_patch": {
+          "defcon": 1,
+          "finished": true,
+          "winner": "US",
+          "reason": "NuclearWarReached"
+        }
+      }
+    },
+    {
+      "id": "DV-R-hil-nuclear-root-us",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.how_i_learned_to_stop_worrying",
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "actor": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": 1,
+        "state": {
+          "defcon": 5,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "GameEnded",
+        "state_patch": {
+          "defcon": 1,
+          "finished": true,
+          "winner": "USSR",
+          "reason": "NuclearWarReached"
+        }
+      }
+    },
+    {
+      "id": "DV-R-hil-invalid-zero",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.how_i_learned_to_stop_worrying",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": 0,
+        "state": {
+          "defcon": 5,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "IllegalLevel",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DV-R-hil-invalid-six",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.how_i_learned_to_stop_worrying",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": 6,
+        "state": {
+          "defcon": 5,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "IllegalLevel",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DV-R-hil-invalid-boolean",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.how_i_learned_to_stop_worrying",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": true,
+        "state": {
+          "defcon": 5,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "IllegalLevel",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DV-R-hil-invalid-float",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.how_i_learned_to_stop_worrying",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": 2.0,
+        "state": {
+          "defcon": 5,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "IllegalLevel",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DV-R-hil-wrong-owner",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.how_i_learned_to_stop_worrying",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": 3,
+        "state": {
+          "defcon": 5,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "Unauthorized",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DV-R-hil-stale",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.how_i_learned_to_stop_worrying",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": false,
+        "selected_level": 3,
+        "state": {
+          "defcon": 5,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "StaleResponse",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DV-R-finished-no-mutation",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.duck_and_cover",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": null,
+        "state": {
+          "defcon": 5,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": true,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DV-R-retry-no-double-award",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.duck_and_cover",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": null,
+        "state": {
+          "defcon": 5,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": true,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DV-R-bad-frame",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.duck_and_cover",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": false,
+        "revision_matches": true,
+        "selected_level": null,
+        "state": {
+          "defcon": 5,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DV-R-unknown-related-effects",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.duck_and_cover",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "actor": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_level": null,
+        "state": {
+          "defcon": 5,
+          "vp": 0,
+          "military": {
+            "US": 0,
+            "USSR": 0
+          },
+          "finished": false,
+          "winner": null,
+          "reason": null,
+          "completed": false,
+          "effects_complete": false,
+          "rng_cursor": 6,
+          "subs_active": false,
+          "crisis_affected": null
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "DV-T-1",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "真实事件上下文/控制者与根核战责任认证"
+    },
+    {
+      "id": "DV-T-2",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "三卡有序步骤与VP/DEFCON立即终局接缝及星号去向"
+    },
+    {
+      "id": "DV-T-3",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "How I Learned Owner/Revision/完整合法等级响应，非法零变更"
+    },
+    {
+      "id": "DV-T-4",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "DirectEventFixedCredit真实军事服务，不变OPS修正/无新cap"
+    },
+    {
+      "id": "DV-T-5",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "相同命令与读档不重复奖分/设置/信用，吸收态不能继续"
+    },
+    {
+      "id": "DV-T-6",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "核潜艇/危机真实活动仍保留，直接事件理由不当Coup"
+    },
+    {
+      "id": "DV-T-7",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "缺相关处理器/参数/活动状态拒绝完整包与事件"
+    },
+    {
+      "id": "DV-T-8",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "本事件单VP批次与其他已设计外部hook组合，不拼未核实裁定"
+    }
+  ]
+}

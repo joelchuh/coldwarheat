@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.defcon_vp_events",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "三张DEFCON/VP/固定军事组合事件的类型化步骤；控制者/根核战责任分开，终局停止，运行未实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "目视英文p2 #4先DEFCON降1再US得5减结果等级VP；p6 #34控制者先得当前等级减2VP再改善2；p8 #46选择等级1–5，事件计5军事行动。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§5.2事件归属、§7.4/8.2固定卡文信用与OPS分开、§8.1核战根PhasingPlayer责任/最高级、§10.2.3/10.3.1完整同事件VP后判胜。"
+    },
+    {
+      "id": "PROJECT-DV1",
+      "url": null,
+      "edition": "Engineering contracts, 2026-10-06",
+      "description": "按卡文步骤每次DEFCON或本事件完整VP批次即时判胜，吸收态停止余步；合法选择前不改轨道，不凭印刷OPS计算VP/军事。军事沿既有非负累计总量存储，不凭图形轨道 invent cap。"
+    }
+  ],
+  "parameters": {
+    "duck_and_cover": {
+      "card_id": "card.duck_and_cover",
+      "effect_id": "effect.duck_and_cover",
+      "description": "先降低DEFCON1，未终局才固定美国获得5减变化后等级VP。",
+      "template": "OrderedDefconVpEvent",
+      "steps": [
+        "DegradeDefcon",
+        "AwardVpFromResultingDefcon"
+      ],
+      "defcon_change": -1,
+      "vp_owner": "US",
+      "vp_formula": "FixedConstantMinusCurrentDefcon",
+      "vp_constant": 5,
+      "defcon_ref": {
+        "dataset_id": "rules.deluxe2015.defcon",
+        "json_pointer": ""
+      },
+      "vp_checkpoint": "VpBatchClosed",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p2 #4先DEFCON降1再US得5减结果等级VP；p6 #34控制者先得当前等级减2VP再改善2；p8 #46选择等级1–5，事件计5军事行动。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2事件归属、§7.4/8.2固定卡文信用与OPS分开、§8.1核战根PhasingPlayer责任/最高级、§10.2.3/10.3.1完整同事件VP后判胜。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-DV1",
+          "locator": "按卡文步骤每次DEFCON或本事件完整VP批次即时判胜，吸收态停止余步；合法选择前不改轨道，不凭印刷OPS计算VP/军事。军事沿既有非负累计总量存储，不凭图形轨道 invent cap。",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "nuclear_test_ban": {
+      "card_id": "card.nuclear_test_ban",
+      "effect_id": "effect.nuclear_test_ban",
+      "description": "事件控制者先按当前DEFCON减2获得VP，未终局才改善DEFCON2并取共享最高级。",
+      "template": "OrderedDefconVpEvent",
+      "steps": [
+        "AwardVpFromCurrentDefcon",
+        "ImproveDefcon"
+      ],
+      "vp_owner": "EffectController",
+      "vp_formula": "CurrentDefconMinusFixedConstant",
+      "vp_constant": 2,
+      "defcon_change": 2,
+      "defcon_ref": {
+        "dataset_id": "rules.deluxe2015.defcon",
+        "json_pointer": ""
+      },
+      "vp_checkpoint": "VpBatchClosed",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p2 #4先DEFCON降1再US得5减结果等级VP；p6 #34控制者先得当前等级减2VP再改善2；p8 #46选择等级1–5，事件计5军事行动。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2事件归属、§7.4/8.2固定卡文信用与OPS分开、§8.1核战根PhasingPlayer责任/最高级、§10.2.3/10.3.1完整同事件VP后判胜。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-DV1",
+          "locator": "按卡文步骤每次DEFCON或本事件完整VP批次即时判胜，吸收态停止余步；合法选择前不改轨道，不凭印刷OPS计算VP/军事。军事沿既有非负累计总量存储，不凭图形轨道 invent cap。",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "how_i_learned_to_stop_worrying": {
+      "card_id": "card.how_i_learned_to_stop_worrying",
+      "effect_id": "effect.how_i_learned_to_stop_worrying",
+      "description": "事件控制者选共享DEFCON合法等级（含1），设置并核战审核，未终局再固定计5军事行动。",
+      "template": "ChooseDefconThenMilitaryCredit",
+      "steps": [
+        "ChooseTrackLevel",
+        "SetDefcon",
+        "AwardFixedMilitaryCredit"
+      ],
+      "decision_owner": "EffectController",
+      "level_policy": "AnyDefconTrackLevelIncludingNuclear",
+      "defcon_ref": {
+        "dataset_id": "rules.deluxe2015.defcon",
+        "json_pointer": ""
+      },
+      "military_owner": "EffectController",
+      "military_credit_kind": "DirectEventFixedCredit",
+      "military_credit_amount": 5,
+      "military_parameter_policy": "VerifiedCardParameterNotPrintedOps",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p2 #4先DEFCON降1再US得5减结果等级VP；p6 #34控制者先得当前等级减2VP再改善2；p8 #46选择等级1–5，事件计5军事行动。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2事件归属、§7.4/8.2固定卡文信用与OPS分开、§8.1核战根PhasingPlayer责任/最高级、§10.2.3/10.3.1完整同事件VP后判胜。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-DV1",
+          "locator": "按卡文步骤每次DEFCON或本事件完整VP批次即时判胜，吸收态停止余步；合法选择前不改轨道，不凭印刷OPS计算VP/军事。军事沿既有非负累计总量存储，不凭图形轨道 invent cap。",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

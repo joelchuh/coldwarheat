@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "id": "data.defcon-vp-events",
+  "kind": "data",
+  "status": "ready",
+  "description": "三张DEFCON/VP/固定军事组合事件的类型化步骤；控制者/根核战责任分开，终局停止，运行未实现。",
+  "dataset_id": "effects.deluxe2015.defcon_vp_events",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/defcon-vp-events.schema.json",
+  "documentation": "Docs/Wiki/defcon-vp-events.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/defcon-vp-events.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "三个CardId与已验证内部上下文"
+  ],
+  "outputs": [
+    "顺序、固定算分类型、轨道引用及军事信用类型"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "rules.deluxe2015.defcon",
+    "rules.deluxe2015.victory",
+    "rules.deluxe2015.military-operations"
+  ],
+  "preconditions": [
+    "Bound不是运行处理器",
+    "完整相关活动状态；固定奖分/军事不读取OPS或错误Actor"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "已终局、非法等级/旧回应、身份与内部源失配、未知相关干预"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "目视英文p2 #4先DEFCON降1再US得5减结果等级VP；p6 #34控制者先得当前等级减2VP再改善2；p8 #46选择等级1–5，事件计5军事行动。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§5.2事件归属、§7.4/8.2固定卡文信用与OPS分开、§8.1核战根PhasingPlayer责任/最高级、§10.2.3/10.3.1完整同事件VP后判胜。"
+    },
+    {
+      "id": "PROJECT-DV1",
+      "url": null,
+      "edition": "Engineering contracts, 2026-10-06",
+      "description": "按卡文步骤每次DEFCON或本事件完整VP批次即时判胜，吸收态停止余步；合法选择前不改轨道，不凭印刷OPS计算VP/军事。军事沿既有非负累计总量存储，不凭图形轨道 invent cap。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/defcon-vp-events.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/defcon-vp-events.validation.json"
+  }
+}

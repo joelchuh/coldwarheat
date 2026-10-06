@@ -1,10 +1,12 @@
 {
   "schema_version": 1,
   "inputs": [
-    "权威出牌帧/结算ID/步骤游标、类型化步骤、静态引用和活动/阻止状态"
+    "权威出牌帧/结算ID/步骤游标、类型化步骤、静态引用和活动/阻止状态",
+    "DV1有序DEFCON/动态VP上下文与How I Learned固定5直接军事；EffectController与根PhasingPlayer分开"
   ],
   "outputs": [
-    "拟定影响力/VP/持续例外/取消阻止计划、区域行动授权与继续位置；Completed/AwaitingDecision/GameEnded，不接受任意代码"
+    "拟定影响力/VP/持续例外/取消阻止计划、区域行动授权与继续位置；Completed/AwaitingDecision/GameEnded，不接受任意代码",
+    "DV1具名轨道/VP/直接军事步骤或Owner等级决定计划，终局截断；调用方统一提交"
   ],
   "dependencies": [
     {
@@ -79,6 +81,12 @@
       "url": null,
       "edition": "DC1 engineering contracts / derived boundaries, 2026-10-06",
       "description": "任意时点通过稳定命令边界表达，不抢占已原子提交步骤；基本合法性先核实，再接受致命政变。类型化原因/授权、SALT候选空自动结束与ABM可放弃采用具名封闭策略；重复激活沿用RequiresRuling。"
+    },
+    {
+      "id": "PROJECT-DV1",
+      "url": null,
+      "edition": "Engineering contracts, 2026-10-06",
+      "description": "按卡文步骤每次DEFCON或本事件完整VP批次即时判胜，吸收态停止余步；合法选择前不改轨道，不凭印刷OPS计算VP/军事。军事沿既有非负累计总量存储，不凭图形轨道 invent cap。"
     }
   ],
   "tests": [
@@ -97,6 +105,10 @@
     {
       "path": "Docs/Design/defcon-events-batch1.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/defcon-vp-events.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "documentation": "Docs/Wiki/nato-exceptions.md",
@@ -109,6 +121,10 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Composite/CompositeEventResolver.cs",
       "symbol": "ResolveOrderedSteps"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Composite/DefconVpEventService.cs",
+      "symbol": "BuildPlan"
     }
   ],
   "data_dependencies": [
@@ -120,17 +136,19 @@
     "rules.deluxe2015.turn-flow",
     "effects.deluxe2015.event_operations_batch1",
     "effects.deluxe2015.war_card_hooks",
-    "effects.deluxe2015.defcon_events_batch1"
+    "effects.deluxe2015.defcon_events_batch1",
+    "effects.deluxe2015.defcon_vp_events"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:nato-exceptions:1",
     "urn:coldwarheat:contract:event-operations-batch1:1",
     "urn:coldwarheat:contract:war-card-hooks:1",
-    "urn:coldwarheat:contract:defcon-events-batch1:1"
+    "urn:coldwarheat:contract:defcon-events-batch1:1",
+    "urn:coldwarheat:contract:defcon-vp-events:1"
   ],
   "verification": {
     "implementation_tested": false,
     "report": "Docs/Design/nato-exceptions.validation.json",
-    "latest_design_report": "Docs/Design/defcon-events-batch1.validation.json"
+    "latest_design_report": "Docs/Design/defcon-vp-events.validation.json"
   }
 }

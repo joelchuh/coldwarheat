@@ -1,0 +1,414 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:defcon-vp-events:1",
+  "title": "DEFCON与VP事件参数",
+  "description": "封闭三牌顺序、动态算分与任意合法DEFCON选择/5固定军事，拒绝可执行表达式与OPS代值。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.defcon_vp_events"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "release-candidate"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "url",
+          "edition",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "edition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "duck_and_cover",
+        "nuclear_test_ban",
+        "how_i_learned_to_stop_worrying"
+      ],
+      "properties": {
+        "duck_and_cover": {
+          "$ref": "#/$defs/duck_and_cover"
+        },
+        "nuclear_test_ban": {
+          "$ref": "#/$defs/nuclear_test_ban"
+        },
+        "how_i_learned_to_stop_worrying": {
+          "$ref": "#/$defs/how_i_learned_to_stop_worrying"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "duck_and_cover": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "steps",
+        "defcon_change",
+        "vp_owner",
+        "vp_formula",
+        "vp_constant",
+        "defcon_ref",
+        "vp_checkpoint",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.duck_and_cover"
+        },
+        "effect_id": {
+          "const": "effect.duck_and_cover"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "OrderedDefconVpEvent"
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "const": "DegradeDefcon"
+            },
+            {
+              "const": "AwardVpFromResultingDefcon"
+            }
+          ],
+          "items": false
+        },
+        "defcon_change": {
+          "const": -1
+        },
+        "vp_owner": {
+          "const": "US"
+        },
+        "vp_formula": {
+          "const": "FixedConstantMinusCurrentDefcon"
+        },
+        "vp_constant": {
+          "const": 5
+        },
+        "defcon_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.defcon"
+            },
+            "json_pointer": {
+              "const": ""
+            }
+          }
+        },
+        "vp_checkpoint": {
+          "const": "VpBatchClosed"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    },
+    "nuclear_test_ban": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "steps",
+        "vp_owner",
+        "vp_formula",
+        "vp_constant",
+        "defcon_change",
+        "defcon_ref",
+        "vp_checkpoint",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.nuclear_test_ban"
+        },
+        "effect_id": {
+          "const": "effect.nuclear_test_ban"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "OrderedDefconVpEvent"
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "const": "AwardVpFromCurrentDefcon"
+            },
+            {
+              "const": "ImproveDefcon"
+            }
+          ],
+          "items": false
+        },
+        "vp_owner": {
+          "const": "EffectController"
+        },
+        "vp_formula": {
+          "const": "CurrentDefconMinusFixedConstant"
+        },
+        "vp_constant": {
+          "const": 2
+        },
+        "defcon_change": {
+          "const": 2
+        },
+        "defcon_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.defcon"
+            },
+            "json_pointer": {
+              "const": ""
+            }
+          }
+        },
+        "vp_checkpoint": {
+          "const": "VpBatchClosed"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    },
+    "how_i_learned_to_stop_worrying": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "steps",
+        "decision_owner",
+        "level_policy",
+        "defcon_ref",
+        "military_owner",
+        "military_credit_kind",
+        "military_credit_amount",
+        "military_parameter_policy",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.how_i_learned_to_stop_worrying"
+        },
+        "effect_id": {
+          "const": "effect.how_i_learned_to_stop_worrying"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "ChooseDefconThenMilitaryCredit"
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "const": "ChooseTrackLevel"
+            },
+            {
+              "const": "SetDefcon"
+            },
+            {
+              "const": "AwardFixedMilitaryCredit"
+            }
+          ],
+          "items": false
+        },
+        "decision_owner": {
+          "const": "EffectController"
+        },
+        "level_policy": {
+          "const": "AnyDefconTrackLevelIncludingNuclear"
+        },
+        "defcon_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.defcon"
+            },
+            "json_pointer": {
+              "const": ""
+            }
+          }
+        },
+        "military_owner": {
+          "const": "EffectController"
+        },
+        "military_credit_kind": {
+          "const": "DirectEventFixedCredit"
+        },
+        "military_credit_amount": {
+          "const": 5
+        },
+        "military_parameter_policy": {
+          "const": "VerifiedCardParameterNotPrintedOps"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

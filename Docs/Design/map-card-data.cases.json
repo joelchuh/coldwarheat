@@ -418,10 +418,20 @@
     },
     {
       "id": "DATA-C10",
-      "description": "Unresolved禁止非空引用",
+      "description": "Unresolved显式前置禁止非空引用；不依赖当前card4是否已绑定",
       "dataset": "cards",
       "validation_layer": "schema",
       "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            3,
+            "effect_binding",
+            "parameter_binding_status"
+          ],
+          "value": "Unresolved"
+        },
         {
           "op": "replace",
           "path": [
@@ -443,10 +453,20 @@
     },
     {
       "id": "DATA-C11",
-      "description": "Bound不允许空引用",
+      "description": "Bound不允许空引用；显式空引用前置，不依赖当前正式绑定",
       "dataset": "cards",
       "validation_layer": "schema",
       "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            3,
+            "effect_binding",
+            "parameter_refs"
+          ],
+          "value": []
+        },
         {
           "op": "replace",
           "path": [
@@ -463,10 +483,20 @@
     },
     {
       "id": "DATA-C12",
-      "description": "NoParameters结构允许空引用但仍需逐卡证据",
+      "description": "NoParameters结构允许空引用但仍需逐卡证据；显式空引用前置，不依赖当前正式绑定",
       "dataset": "cards",
       "validation_layer": "schema",
       "edits": [
+        {
+          "op": "replace",
+          "path": [
+            "cards",
+            3,
+            "effect_binding",
+            "parameter_refs"
+          ],
+          "value": []
+        },
         {
           "op": "replace",
           "path": [

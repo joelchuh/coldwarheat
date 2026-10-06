@@ -1,0 +1,258 @@
+{
+  "description": "三组合轨道卡的结构/先后/终局截断与固定军事投影；非生产C#/Unity验证。",
+  "checked_on": "2026-10-06",
+  "new_cases_passed": 49,
+  "previous_cases_passed": 1173,
+  "total_cases_passed": 1222,
+  "cases_by_layer": {
+    "data": 19,
+    "fixed-reference": 30,
+    "runtime": 8
+  },
+  "runtime_cases_not_run": 8,
+  "runtime_game_tests_run": 0,
+  "bound_cards": 47,
+  "unresolved_bindings": 55,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 24,
+    "json_files_parsed": 154,
+    "data_descriptors": 27,
+    "module_descriptors": 19,
+    "relative_links_checked": 116,
+    "parameter_pointers_resolved": 82
+  },
+  "validated_sha256": {
+    "Data/Cards/deluxe-2015/defcon-vp-events.parameters.json": "34513fee769c23a7961a86678cba480a8b294367914e65d418d8b79b7df50233",
+    "Docs/Contracts/defcon-vp-events.schema.json": "6a958885d717d7d0f6a76b478fc35106624a22fadef6f4940c3082ce21a5ea6a",
+    "Docs/Design/defcon-vp-events.cases.json": "57082bfb7943a103371941e00aca72205829588cb4ee24837105034c75d323a0",
+    "Data/Cards/deluxe-2015/cards.json": "4d92d0e22f4d3323a080342e46a77c94af038e0139efa6d63a0473299ed7c5af",
+    "Data/Maps/deluxe-2015/world.json": "6d4e20c674bd74d44cdb0f1ca66e8e960f125b3e45076d05307125a3c36ea45b",
+    "Docs/Descriptors/composite-events.module.json": "2b515278d92040b68d6f4ab03138dd29aeeb80d9709414e5cd6deda287a106f8",
+    "Docs/Descriptors/military-operations.module.json": "f3adcb425e03b068e0f3e60f30c242d98e58d7be9dc7727f00fa163df7af7bcd",
+    "Data/Rulesets/deluxe-2015/defcon.json": "e9a842358cc3f772cfcba0e7f307fb6d8fe26b812aa5e303ea046bf618565eba",
+    "Data/Rulesets/deluxe-2015/victory.json": "f8566187874ff89c181b7c0c6cb46048788f7558fa5d9326273e64306d4a8624",
+    "Data/Rulesets/deluxe-2015/military-operations.json": "0b00fa575def470d5e96032b00ce0ad614d29ea837cf1dd2196cab0017d08c37",
+    "Docs/Descriptors/turn-flow.module.json": "c38a0c0eba724bd70f30402f51e883a7e64bbe103d33919eac26a3130238ad85",
+    "Data/Rulesets/deluxe-2015/region-scoring.json": "30bb116709fb52ff64664c36b8036b17da3b618e77c0a978259c870f551c8c26"
+  },
+  "results": [
+    {
+      "id": "DV-D-baseline",
+      "passed": true
+    },
+    {
+      "id": "DV-D-duck-us-owner",
+      "passed": true
+    },
+    {
+      "id": "DV-D-duck-formula",
+      "passed": true
+    },
+    {
+      "id": "DV-D-duck-constant",
+      "passed": true
+    },
+    {
+      "id": "DV-D-duck-order",
+      "passed": true
+    },
+    {
+      "id": "DV-D-duck-degrade",
+      "passed": true
+    },
+    {
+      "id": "DV-D-test-before-defcon",
+      "passed": true
+    },
+    {
+      "id": "DV-D-test-owner",
+      "passed": true
+    },
+    {
+      "id": "DV-D-test-constant",
+      "passed": true
+    },
+    {
+      "id": "DV-D-test-change",
+      "passed": true
+    },
+    {
+      "id": "DV-D-safe-only",
+      "passed": true
+    },
+    {
+      "id": "DV-D-mil-root-owner",
+      "passed": true
+    },
+    {
+      "id": "DV-D-mil-ops",
+      "passed": true
+    },
+    {
+      "id": "DV-D-mil-coup",
+      "passed": true
+    },
+    {
+      "id": "DV-D-mil-war",
+      "passed": true
+    },
+    {
+      "id": "DV-D-mil-policy",
+      "passed": true
+    },
+    {
+      "id": "DV-D-mil-before-nuclear",
+      "passed": true
+    },
+    {
+      "id": "DV-D-wrong-track",
+      "passed": true
+    },
+    {
+      "id": "DV-D-script",
+      "passed": true
+    },
+    {
+      "id": "DV-R-duck-five-to-four",
+      "passed": true
+    },
+    {
+      "id": "DV-R-duck-three-to-two",
+      "passed": true
+    },
+    {
+      "id": "DV-R-duck-us-reward-on-ussr-root",
+      "passed": true
+    },
+    {
+      "id": "DV-R-duck-nuclear-us-root-no-vp",
+      "passed": true
+    },
+    {
+      "id": "DV-R-duck-nuclear-ussr-root",
+      "passed": true
+    },
+    {
+      "id": "DV-R-duck-vp-win",
+      "passed": true
+    },
+    {
+      "id": "DV-R-subs-does-not-block-event",
+      "passed": true
+    },
+    {
+      "id": "DV-R-crisis-is-not-coup",
+      "passed": true
+    },
+    {
+      "id": "DV-R-test-us-before-improve",
+      "passed": true
+    },
+    {
+      "id": "DV-R-test-ussr-owner",
+      "passed": true
+    },
+    {
+      "id": "DV-R-test-defcon-two-zero-vp",
+      "passed": true
+    },
+    {
+      "id": "DV-R-test-vp-win-no-improve",
+      "passed": true
+    },
+    {
+      "id": "DV-R-test-negative-owner-win",
+      "passed": true
+    },
+    {
+      "id": "DV-R-hil-await-owner",
+      "passed": true
+    },
+    {
+      "id": "DV-R-hil-selected-improvement",
+      "passed": true
+    },
+    {
+      "id": "DV-R-hil-selected-degradation",
+      "passed": true
+    },
+    {
+      "id": "DV-R-hil-credit-preserves-old-total",
+      "passed": true
+    },
+    {
+      "id": "DV-R-hil-ussr-owner-root-us",
+      "passed": true
+    },
+    {
+      "id": "DV-R-hil-nuclear-original-root",
+      "passed": true
+    },
+    {
+      "id": "DV-R-hil-nuclear-root-us",
+      "passed": true
+    },
+    {
+      "id": "DV-R-hil-invalid-zero",
+      "passed": true
+    },
+    {
+      "id": "DV-R-hil-invalid-six",
+      "passed": true
+    },
+    {
+      "id": "DV-R-hil-invalid-boolean",
+      "passed": true
+    },
+    {
+      "id": "DV-R-hil-invalid-float",
+      "passed": true
+    },
+    {
+      "id": "DV-R-hil-wrong-owner",
+      "passed": true
+    },
+    {
+      "id": "DV-R-hil-stale",
+      "passed": true
+    },
+    {
+      "id": "DV-R-finished-no-mutation",
+      "passed": true
+    },
+    {
+      "id": "DV-R-retry-no-double-award",
+      "passed": true
+    },
+    {
+      "id": "DV-R-bad-frame",
+      "passed": true
+    },
+    {
+      "id": "DV-R-unknown-related-effects",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "8runtime未执行，真实鉴权/帧/事务/存档/完整外部hook未验证",
+    "参考只含轨道、VP终局和累计军事计划，无生产规则服务或完整卡牌去向",
+    "VP单批次/DEFCON变更立即终局截断是DV1工程边界，与卡文顺序分别登记",
+    "1173旧业务预期不变；DATA-C10/11/12新增显式Unresolved/空引用前置，绑定变化不能使负例失去条件；适配库存/增加直接固定信用类型；38工具检查独立",
+    "新信用固定5不取印刷OPS，不覆盖旧量/发明存储cap；原类型政策保持"
+  ],
+  "independent_review": {
+    "status": "no-important-findings-after-minor-fixes",
+    "fixed_findings": [
+      "154JSON worklog count",
+      "new Schema URN and track/military module summary"
+    ],
+    "independently_checked": [
+      "English #4/#34/#46 and frozenR2015 p8/9/10",
+      "30 fixed-reference cases recomputed; 12 hashes refreshed",
+      "bindings /47Bound55Unresolved102planned; cases/results and precondition fixture change",
+      "7 helper hashes and LF bytes unchanged"
+    ],
+    "full_reference_rerun": "not-run: no jsonschema/1173old/38tools/8runtime independently; primary1222 recorded"
+  }
+}
