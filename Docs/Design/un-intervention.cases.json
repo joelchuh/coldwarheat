@@ -1,0 +1,4118 @@
+{
+  "schema_version": 1,
+  "description": "UN双牌资格/引用预算/双Use/去向/同根有限状态参考；不执行真实OPS或鉴权。",
+  "status": "mixed-reference-and-planned",
+  "dataset": "Data/Cards/deluxe-2015/un-intervention.parameters.json",
+  "schema": "Docs/Contracts/un-intervention.schema.json",
+  "cases": [
+    {
+      "id": "UN-D-baseline",
+      "validation_layer": "data",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "UN-D-actor",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "un_intervention",
+              "actor"
+            ],
+            "value": "RootPhasingPlayer"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "UN-D-comp-affiliation",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "un_intervention",
+              "companion",
+              "affiliation"
+            ],
+            "value": "Any"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "UN-D-comp-kind",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "un_intervention",
+              "companion",
+              "kind"
+            ],
+            "value": "Any"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "UN-D-comp-event-needed",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "un_intervention",
+              "companion",
+              "requires_event_can_occur"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "UN-D-comp-zone",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "un_intervention",
+              "companion",
+              "zone"
+            ],
+            "value": "AnyHand"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "UN-D-budget-kind",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "un_intervention",
+              "budget",
+              "kind"
+            ],
+            "value": "UNPrintedOps"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "UN-D-budget-add-un",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "un_intervention",
+              "budget",
+              "adds_un_printed_ops"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "UN-D-space-default",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "un_intervention",
+              "budget",
+              "pair_space_policy"
+            ],
+            "value": "Allow"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "UN-D-headline",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "un_intervention",
+              "headline_event"
+            ],
+            "value": "Allow"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "UN-D-reaction",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "un_intervention",
+              "reactive_opponent_round_use"
+            ],
+            "value": "Allow"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "UN-D-permanent",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "un_intervention",
+              "suppression",
+              "permanent_prevention"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "UN-D-comp-success",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "un_intervention",
+              "suppression",
+              "companion_success_fact"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "UN-D-event-order",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "un_intervention",
+              "suppression",
+              "event_order_decision"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "UN-D-root-slots",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "un_intervention",
+              "card_use_records",
+              "root_slots"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "UN-D-uses-per-ops",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "un_intervention",
+              "card_use_records",
+              "repeat_uses_per_operation"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "UN-D-comp-star",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "un_intervention",
+              "disposition",
+              "companion"
+            ],
+            "value": "RemoveIfStar"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "UN-D-unknown-hook",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "un_intervention",
+              "unresolved_hook"
+            ],
+            "value": "NoCharge"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "UN-R-own-pair",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "AuthorizedPair",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [
+            "card.un_intervention",
+            "card.fidel"
+          ],
+          "discard": [],
+          "pair_authorized": true,
+          "pair_actor": "US",
+          "pair_companion": "card.fidel",
+          "pair_budget": 2,
+          "pair_finalized": false,
+          "card_uses": [
+            {
+              "use_id": "pair.fixture1.un",
+              "card_id": "card.un_intervention",
+              "kind": "Event",
+              "suppression_reason": null
+            },
+            {
+              "use_id": "pair.fixture1.companion",
+              "card_id": "card.fidel",
+              "kind": "Operations",
+              "suppression_reason": "UNIntervention"
+            }
+          ],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {
+          "base_ops": 2,
+          "effective_ops": 2,
+          "event_order_decision": false
+        }
+      }
+    },
+    {
+      "id": "UN-R-cannot-trigger-event-still-pair",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": false,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "AuthorizedPair",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [
+            "card.un_intervention",
+            "card.fidel"
+          ],
+          "discard": [],
+          "pair_authorized": true,
+          "pair_actor": "US",
+          "pair_companion": "card.fidel",
+          "pair_budget": 2,
+          "pair_finalized": false,
+          "card_uses": [
+            {
+              "use_id": "pair.fixture1.un",
+              "card_id": "card.un_intervention",
+              "kind": "Event",
+              "suppression_reason": null
+            },
+            {
+              "use_id": "pair.fixture1.companion",
+              "card_id": "card.fidel",
+              "kind": "Operations",
+              "suppression_reason": "UNIntervention"
+            }
+          ],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {
+          "base_ops": 2,
+          "effective_ops": 2,
+          "event_order_decision": false
+        }
+      }
+    },
+    {
+      "id": "UN-R-us-flat-not-un-printed-added",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 1,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "AuthorizedPair",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [
+            "card.un_intervention",
+            "card.fidel"
+          ],
+          "discard": [],
+          "pair_authorized": true,
+          "pair_actor": "US",
+          "pair_companion": "card.fidel",
+          "pair_budget": 3,
+          "pair_finalized": false,
+          "card_uses": [
+            {
+              "use_id": "pair.fixture1.un",
+              "card_id": "card.un_intervention",
+              "kind": "Event",
+              "suppression_reason": null
+            },
+            {
+              "use_id": "pair.fixture1.companion",
+              "card_id": "card.fidel",
+              "kind": "Operations",
+              "suppression_reason": "UNIntervention"
+            }
+          ],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {
+          "base_ops": 2,
+          "effective_ops": 3,
+          "event_order_decision": false
+        }
+      }
+    },
+    {
+      "id": "UN-R-ussr-pair-us-star",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "USSR",
+        "root_phasing_player": "USSR",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.nato",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 1,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.un_intervention",
+              "card.nato",
+              "card.fidel"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "AuthorizedPair",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.fidel"
+            ]
+          },
+          "in_resolution": [
+            "card.un_intervention",
+            "card.nato"
+          ],
+          "discard": [],
+          "pair_authorized": true,
+          "pair_actor": "USSR",
+          "pair_companion": "card.nato",
+          "pair_budget": 4,
+          "pair_finalized": false,
+          "card_uses": [
+            {
+              "use_id": "pair.fixture1.un",
+              "card_id": "card.un_intervention",
+              "kind": "Event",
+              "suppression_reason": null
+            },
+            {
+              "use_id": "pair.fixture1.companion",
+              "card_id": "card.nato",
+              "kind": "Operations",
+              "suppression_reason": "UNIntervention"
+            }
+          ],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {
+          "base_ops": 4,
+          "effective_ops": 4,
+          "event_order_decision": false
+        }
+      }
+    },
+    {
+      "id": "UN-R-await-private-pair",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": null,
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "AwaitingPairDecision",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {
+          "owner": "US",
+          "candidate_ids": [
+            "card.fidel"
+          ]
+        }
+      }
+    },
+    {
+      "id": "UN-R-no-opponent-candidate",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": null,
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.fidel"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "NoLegalPair",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.fidel"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-own-affiliation",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.containment",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "InvalidCompanion",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-neutral-pair",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.nuclear_test_ban",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.nuclear_test_ban"
+            ],
+            "USSR": [
+              "card.fidel"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "InvalidCompanion",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.nuclear_test_ban"
+            ],
+            "USSR": [
+              "card.fidel"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-scoring-pair",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.asia_scoring",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.asia_scoring"
+            ],
+            "USSR": [
+              "card.fidel"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "InvalidCompanionKind",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.asia_scoring"
+            ],
+            "USSR": [
+              "card.fidel"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-china-pair",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.china",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "InvalidCompanionKind",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-un-with-itself",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.un_intervention",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "InvalidCompanion",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-comp-in-opponent-hand",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.blockade",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "NotOwnerHand",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-comp-in-discard",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [
+            "card.fidel"
+          ],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "NotOwnerHand",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [
+            "card.fidel"
+          ],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-un-not-owner-hand",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.un_intervention"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "NotOwnerHand",
+        "state": {
+          "hands": {
+            "US": [
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.un_intervention"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-unknown-comp-card",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.missing",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "UnknownCard",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-bad-un-id",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.containment",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-ordinary-un-ops-independent",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Operations",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": null,
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "NotApplicable",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-un-event-headline",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "Headline",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "HeadlineProhibited",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-un-headline-known-received-source",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "Headline",
+        "origin": "GrainSalesReceivedPlay",
+        "source_contract_verified": true,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "HeadlineProhibited",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-opponent-round-reaction",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "phase": "ActionRound",
+        "origin": "OpponentRoundReactive",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "IllegalReaction",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-wrong-ordinary-root-owner",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-unknown-sub-source",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "UnimplementedReceivedPlay",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-trusted-registered-source-assumption",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "phase": "ActionRound",
+        "origin": "RegisteredSourcePairFromOwnerHand",
+        "source_contract_verified": true,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "AuthorizedPair",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [
+            "card.un_intervention",
+            "card.fidel"
+          ],
+          "discard": [],
+          "pair_authorized": true,
+          "pair_actor": "US",
+          "pair_companion": "card.fidel",
+          "pair_budget": 2,
+          "pair_finalized": false,
+          "card_uses": [
+            {
+              "use_id": "pair.fixture1.un",
+              "card_id": "card.un_intervention",
+              "kind": "Event",
+              "suppression_reason": null
+            },
+            {
+              "use_id": "pair.fixture1.companion",
+              "card_id": "card.fidel",
+              "kind": "Operations",
+              "suppression_reason": "UNIntervention"
+            }
+          ],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {
+          "base_ops": 2,
+          "effective_ops": 2,
+          "event_order_decision": false
+        }
+      }
+    },
+    {
+      "id": "UN-R-pair-space-unresolved",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Space",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-unknown-use-purpose",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Other",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-unresolved-use-hook",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "RequiresRuling",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-hook-not-verified",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "Unknown",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-old-response",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": false,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "StaleContext",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-unauthorized-frame",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": false,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-wrong-actor",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "Other",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-conflicting-id",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": false,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "ConflictingRequest",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-zone-duplicate",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [
+            "card.fidel"
+          ],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [
+            "card.fidel"
+          ],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-terminal-new-pair",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": true,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": true,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-authorized-retry-no-extra-use",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [
+            "card.un_intervention",
+            "card.fidel"
+          ],
+          "discard": [],
+          "pair_authorized": true,
+          "pair_actor": "US",
+          "pair_companion": "card.fidel",
+          "pair_budget": 2,
+          "pair_finalized": false,
+          "card_uses": [
+            {
+              "use_id": "pair.fixture1.un",
+              "card_id": "card.un_intervention",
+              "kind": "Event",
+              "suppression_reason": null
+            },
+            {
+              "use_id": "pair.fixture1.companion",
+              "card_id": "card.fidel",
+              "kind": "Operations",
+              "suppression_reason": "UNIntervention"
+            }
+          ],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "AlreadyAuthorized",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [
+            "card.un_intervention",
+            "card.fidel"
+          ],
+          "discard": [],
+          "pair_authorized": true,
+          "pair_actor": "US",
+          "pair_companion": "card.fidel",
+          "pair_budget": 2,
+          "pair_finalized": false,
+          "card_uses": [
+            {
+              "use_id": "pair.fixture1.un",
+              "card_id": "card.un_intervention",
+              "kind": "Event",
+              "suppression_reason": null
+            },
+            {
+              "use_id": "pair.fixture1.companion",
+              "card_id": "card.fidel",
+              "kind": "Operations",
+              "suppression_reason": "UNIntervention"
+            }
+          ],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {
+          "effective_ops": 2
+        }
+      }
+    },
+    {
+      "id": "UN-R-authorized-retry-not-reprice",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Authorize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 2,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [
+            "card.un_intervention",
+            "card.fidel"
+          ],
+          "discard": [],
+          "pair_authorized": true,
+          "pair_actor": "US",
+          "pair_companion": "card.fidel",
+          "pair_budget": 2,
+          "pair_finalized": false,
+          "card_uses": [
+            {
+              "use_id": "pair.fixture1.un",
+              "card_id": "card.un_intervention",
+              "kind": "Event",
+              "suppression_reason": null
+            },
+            {
+              "use_id": "pair.fixture1.companion",
+              "card_id": "card.fidel",
+              "kind": "Operations",
+              "suppression_reason": "UNIntervention"
+            }
+          ],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "AlreadyAuthorized",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [
+            "card.un_intervention",
+            "card.fidel"
+          ],
+          "discard": [],
+          "pair_authorized": true,
+          "pair_actor": "US",
+          "pair_companion": "card.fidel",
+          "pair_budget": 2,
+          "pair_finalized": false,
+          "card_uses": [
+            {
+              "use_id": "pair.fixture1.un",
+              "card_id": "card.un_intervention",
+              "kind": "Event",
+              "suppression_reason": null
+            },
+            {
+              "use_id": "pair.fixture1.companion",
+              "card_id": "card.fidel",
+              "kind": "Operations",
+              "suppression_reason": "UNIntervention"
+            }
+          ],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {
+          "effective_ops": 2
+        }
+      }
+    },
+    {
+      "id": "UN-R-finalize-both-star-comp-discard",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Finalize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [
+            "card.un_intervention",
+            "card.fidel"
+          ],
+          "discard": [],
+          "pair_authorized": true,
+          "pair_actor": "US",
+          "pair_companion": "card.fidel",
+          "pair_budget": 2,
+          "pair_finalized": false,
+          "card_uses": [
+            {
+              "use_id": "pair.fixture1.un",
+              "card_id": "card.un_intervention",
+              "kind": "Event",
+              "suppression_reason": null
+            },
+            {
+              "use_id": "pair.fixture1.companion",
+              "card_id": "card.fidel",
+              "kind": "Operations",
+              "suppression_reason": "UNIntervention"
+            }
+          ],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "FinalizedPair",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [
+            "card.un_intervention",
+            "card.fidel"
+          ],
+          "pair_authorized": true,
+          "pair_actor": "US",
+          "pair_companion": "card.fidel",
+          "pair_budget": 2,
+          "pair_finalized": true,
+          "card_uses": [
+            {
+              "use_id": "pair.fixture1.un",
+              "card_id": "card.un_intervention",
+              "kind": "Event",
+              "suppression_reason": null
+            },
+            {
+              "use_id": "pair.fixture1.companion",
+              "card_id": "card.fidel",
+              "kind": "Operations",
+              "suppression_reason": "UNIntervention"
+            }
+          ],
+          "event_facts": [
+            {
+              "card_id": "card.un_intervention",
+              "resolution_id": "pair.fixture1"
+            }
+          ],
+          "root_slots_completed": 1,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-finalize-wait-no-new-use",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Finalize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": false,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [
+            "card.un_intervention",
+            "card.fidel"
+          ],
+          "discard": [],
+          "pair_authorized": true,
+          "pair_actor": "US",
+          "pair_companion": "card.fidel",
+          "pair_budget": 2,
+          "pair_finalized": false,
+          "card_uses": [
+            {
+              "use_id": "pair.fixture1.un",
+              "card_id": "card.un_intervention",
+              "kind": "Event",
+              "suppression_reason": null
+            },
+            {
+              "use_id": "pair.fixture1.companion",
+              "card_id": "card.fidel",
+              "kind": "Operations",
+              "suppression_reason": "UNIntervention"
+            }
+          ],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "AwaitingOperations",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [
+            "card.un_intervention",
+            "card.fidel"
+          ],
+          "discard": [],
+          "pair_authorized": true,
+          "pair_actor": "US",
+          "pair_companion": "card.fidel",
+          "pair_budget": 2,
+          "pair_finalized": false,
+          "card_uses": [
+            {
+              "use_id": "pair.fixture1.un",
+              "card_id": "card.un_intervention",
+              "kind": "Event",
+              "suppression_reason": null
+            },
+            {
+              "use_id": "pair.fixture1.companion",
+              "card_id": "card.fidel",
+              "kind": "Operations",
+              "suppression_reason": "UNIntervention"
+            }
+          ],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-finalize-no-authorization",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Finalize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "hands": {
+            "US": [
+              "card.un_intervention",
+              "card.fidel",
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [],
+          "pair_authorized": false,
+          "pair_actor": null,
+          "pair_companion": null,
+          "pair_budget": null,
+          "pair_finalized": false,
+          "card_uses": [],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-finalize-terminal-draft-before-finished-commit",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Finalize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": false,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [
+            "card.un_intervention",
+            "card.fidel"
+          ],
+          "discard": [],
+          "pair_authorized": true,
+          "pair_actor": "US",
+          "pair_companion": "card.fidel",
+          "pair_budget": 2,
+          "pair_finalized": false,
+          "card_uses": [
+            {
+              "use_id": "pair.fixture1.un",
+              "card_id": "card.un_intervention",
+              "kind": "Event",
+              "suppression_reason": null
+            },
+            {
+              "use_id": "pair.fixture1.companion",
+              "card_id": "card.fidel",
+              "kind": "Operations",
+              "suppression_reason": "UNIntervention"
+            }
+          ],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": true
+      },
+      "expected": {
+        "outcome": "FinalizedPair",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [
+            "card.un_intervention",
+            "card.fidel"
+          ],
+          "pair_authorized": true,
+          "pair_actor": "US",
+          "pair_companion": "card.fidel",
+          "pair_budget": 2,
+          "pair_finalized": true,
+          "card_uses": [
+            {
+              "use_id": "pair.fixture1.un",
+              "card_id": "card.un_intervention",
+              "kind": "Event",
+              "suppression_reason": null
+            },
+            {
+              "use_id": "pair.fixture1.companion",
+              "card_id": "card.fidel",
+              "kind": "Operations",
+              "suppression_reason": "UNIntervention"
+            }
+          ],
+          "event_facts": [
+            {
+              "card_id": "card.un_intervention",
+              "resolution_id": "pair.fixture1"
+            }
+          ],
+          "root_slots_completed": 1,
+          "extra_slots_created": 0,
+          "finished": true,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-committed-finished-reject-late-cleanup",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Finalize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": false,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [
+            "card.un_intervention",
+            "card.fidel"
+          ],
+          "discard": [],
+          "pair_authorized": true,
+          "pair_actor": "US",
+          "pair_companion": "card.fidel",
+          "pair_budget": 2,
+          "pair_finalized": false,
+          "card_uses": [
+            {
+              "use_id": "pair.fixture1.un",
+              "card_id": "card.un_intervention",
+              "kind": "Event",
+              "suppression_reason": null
+            },
+            {
+              "use_id": "pair.fixture1.companion",
+              "card_id": "card.fidel",
+              "kind": "Operations",
+              "suppression_reason": "UNIntervention"
+            }
+          ],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": true,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [
+            "card.un_intervention",
+            "card.fidel"
+          ],
+          "discard": [],
+          "pair_authorized": true,
+          "pair_actor": "US",
+          "pair_companion": "card.fidel",
+          "pair_budget": 2,
+          "pair_finalized": false,
+          "card_uses": [
+            {
+              "use_id": "pair.fixture1.un",
+              "card_id": "card.un_intervention",
+              "kind": "Event",
+              "suppression_reason": null
+            },
+            {
+              "use_id": "pair.fixture1.companion",
+              "card_id": "card.fidel",
+              "kind": "Operations",
+              "suppression_reason": "UNIntervention"
+            }
+          ],
+          "event_facts": [],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": true,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-finalize-retry-once",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Finalize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.fidel",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [
+            "card.un_intervention",
+            "card.fidel"
+          ],
+          "pair_authorized": true,
+          "pair_actor": "US",
+          "pair_companion": "card.fidel",
+          "pair_budget": 2,
+          "pair_finalized": true,
+          "card_uses": [
+            {
+              "use_id": "pair.fixture1.un",
+              "card_id": "card.un_intervention",
+              "kind": "Event",
+              "suppression_reason": null
+            },
+            {
+              "use_id": "pair.fixture1.companion",
+              "card_id": "card.fidel",
+              "kind": "Operations",
+              "suppression_reason": "UNIntervention"
+            }
+          ],
+          "event_facts": [
+            {
+              "card_id": "card.un_intervention",
+              "resolution_id": "pair.fixture1"
+            }
+          ],
+          "root_slots_completed": 1,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "AlreadyFinalized",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato",
+              "card.blockade"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [
+            "card.un_intervention",
+            "card.fidel"
+          ],
+          "pair_authorized": true,
+          "pair_actor": "US",
+          "pair_companion": "card.fidel",
+          "pair_budget": 2,
+          "pair_finalized": true,
+          "card_uses": [
+            {
+              "use_id": "pair.fixture1.un",
+              "card_id": "card.un_intervention",
+              "kind": "Event",
+              "suppression_reason": null
+            },
+            {
+              "use_id": "pair.fixture1.companion",
+              "card_id": "card.fidel",
+              "kind": "Operations",
+              "suppression_reason": "UNIntervention"
+            }
+          ],
+          "event_facts": [
+            {
+              "card_id": "card.un_intervention",
+              "resolution_id": "pair.fixture1"
+            }
+          ],
+          "root_slots_completed": 1,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-R-suppression-does-not-delete-old-fact",
+      "validation_layer": "reference",
+      "input": {
+        "step": "Finalize",
+        "use_mode": "Event",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "phase": "ActionRound",
+        "origin": "NormalActionOwnerHand",
+        "source_contract_verified": false,
+        "verified_internal_frame": true,
+        "version_matches": true,
+        "request_matches_receipt": true,
+        "un_card_id": "card.un_intervention",
+        "companion_id": "card.korean_war",
+        "purpose": "Influence",
+        "hook_result": "NoApplicableHooks",
+        "flat_delta": 0,
+        "companion_event_playable": true,
+        "ops_complete": true,
+        "pair_id": "pair.fixture1",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato"
+            ]
+          },
+          "in_resolution": [
+            "card.un_intervention",
+            "card.korean_war"
+          ],
+          "discard": [],
+          "pair_authorized": true,
+          "pair_actor": "US",
+          "pair_companion": "card.korean_war",
+          "pair_budget": 2,
+          "pair_finalized": false,
+          "card_uses": [
+            {
+              "use_id": "pair.fixture1.un",
+              "card_id": "card.un_intervention",
+              "kind": "Event",
+              "suppression_reason": null
+            },
+            {
+              "use_id": "pair.fixture1.companion",
+              "card_id": "card.korean_war",
+              "kind": "Operations",
+              "suppression_reason": "UNIntervention"
+            }
+          ],
+          "event_facts": [
+            {
+              "card_id": "card.korean_war",
+              "resolution_id": "prior-war"
+            }
+          ],
+          "root_slots_completed": 0,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "terminal_candidate": false
+      },
+      "expected": {
+        "outcome": "FinalizedPair",
+        "state": {
+          "hands": {
+            "US": [
+              "card.containment"
+            ],
+            "USSR": [
+              "card.nato"
+            ]
+          },
+          "in_resolution": [],
+          "discard": [
+            "card.un_intervention",
+            "card.korean_war"
+          ],
+          "pair_authorized": true,
+          "pair_actor": "US",
+          "pair_companion": "card.korean_war",
+          "pair_budget": 2,
+          "pair_finalized": true,
+          "card_uses": [
+            {
+              "use_id": "pair.fixture1.un",
+              "card_id": "card.un_intervention",
+              "kind": "Event",
+              "suppression_reason": null
+            },
+            {
+              "use_id": "pair.fixture1.companion",
+              "card_id": "card.korean_war",
+              "kind": "Operations",
+              "suppression_reason": "UNIntervention"
+            }
+          ],
+          "event_facts": [
+            {
+              "card_id": "card.korean_war",
+              "resolution_id": "prior-war"
+            },
+            {
+              "card_id": "card.un_intervention",
+              "resolution_id": "pair.fixture1"
+            }
+          ],
+          "root_slots_completed": 1,
+          "extra_slots_created": 0,
+          "finished": false,
+          "rng_cursor": 18
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "UN-I-private-candidates-authoritative-owner-and-source",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "private-candidates-authoritative-owner-and-source",
+      "implementation_tested": false
+    },
+    {
+      "id": "UN-I-paired-carduses-once-hooks-before-ops",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "paired-carduses-once-hooks-before-ops",
+      "implementation_tested": false
+    },
+    {
+      "id": "UN-I-current-companion-quote-and-ordinary-ground-ops",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "current-companion-quote-and-ordinary-ground-ops",
+      "implementation_tested": false
+    },
+    {
+      "id": "UN-I-dual-zone-suppression-facts-root-slot-atomic",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "dual-zone-suppression-facts-root-slot-atomic",
+      "implementation_tested": false
+    },
+    {
+      "id": "UN-I-terminal-accepted-pair-cleanup-no-new-action",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "terminal candidate bookkeeping in one winning transaction before Finished commit; later cleanup rejected",
+      "implementation_tested": false
+    },
+    {
+      "id": "UN-I-save-receipts-budget-continuation-replay",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "save-receipts-budget-continuation-replay",
+      "implementation_tested": false
+    },
+    {
+      "id": "UN-I-unknown-hooks-space-and-sub-source-stops",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "unknown-hooks-space-and-sub-source-stops",
+      "implementation_tested": false
+    },
+    {
+      "id": "UN-I-view-theme-independent-no-opponent-hand-leak",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "view-theme-independent-no-opponent-hand-leak",
+      "implementation_tested": false
+    }
+  ]
+}

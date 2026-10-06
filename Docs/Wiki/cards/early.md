@@ -69,3 +69,5 @@
 本时代计分牌已按[七张计分牌绑定](../scoring-cards.md)直接引用地区定义；正式处理器仍planned。
 
 本批参数与边界见[space-events-batch1](../space-events-batch1.md)；C#待实现。
+
+[UN双牌使用](../un-intervention.md)绑定#32；普通OPS和配对事件分开，未知来源停止。

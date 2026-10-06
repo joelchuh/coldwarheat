@@ -1,0 +1,521 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:un-intervention:1",
+  "title": "UN配对事件参数",
+  "description": "UN双牌事件契约：实际本人配牌预算/压制/两使用一根slot；独立普通OPS，未核实分支停止，C#待实现。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.un_intervention"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "release-candidate"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "C-DELUXE-EN"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf"
+            },
+            "edition": {
+              "const": "English Deluxe card images"
+            },
+            "description": {
+              "const": "p5 #32两牌同时，借对方关联牌OPS不触发事件，UN事件不得Headline；UN非星号。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "R2015"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf"
+            },
+            "edition": {
+              "const": "Deluxe rules 2015"
+            },
+            "description": {
+              "const": "§2.2卡阵营/去向、§5.2/5.5对手事件/优先、§7.4.1–3实际Actor与OPS修正、§7.5禁用事件仍可OPS。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "F2010"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/FAQv5.pdf"
+            },
+            "edition": {
+              "const": "FAQ v5 2010, compatible Deluxe clarification only"
+            },
+            "description": {
+              "const": "PDFp7 #32即使对方事件不能发生也可配，必须自己手中对方牌、不能临时响应对方；Headline GS抽UN须返回。PDFp14#67一般事件OPS/Space区别；没有UN专门太空裁定。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "PROJECT-UN1"
+            },
+            "url": {
+              "const": null
+            },
+            "edition": {
+              "const": "Engineering contracts / explicit unresolved branches, 2026-10-06"
+            },
+            "description": {
+              "const": "双实体唯一区域/两ActualUse共RootSlot、专用来源/合法UN事件证据、预算引用和原子收据。Flower/未知子来源/UN配牌Space仍停止；#50只接口证据不实现。"
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "un_intervention"
+      ],
+      "properties": {
+        "un_intervention": {
+          "$ref": "#/$defs/un_intervention"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "un_intervention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "actor",
+        "normal_source",
+        "other_sources",
+        "reactive_opponent_round_use",
+        "headline_event",
+        "companion",
+        "budget",
+        "suppression",
+        "card_use_records",
+        "disposition",
+        "hook_policy_ref",
+        "unresolved_hook",
+        "integration_boundaries",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.un_intervention"
+        },
+        "effect_id": {
+          "const": "effect.un_intervention"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "AuthorizePairedOpponentEventOperations"
+        },
+        "actor": {
+          "const": "TrustedCardPlayer"
+        },
+        "normal_source": {
+          "const": "NormalActionOwnerHand"
+        },
+        "other_sources": {
+          "const": "RequiresVerifiedSourceContract"
+        },
+        "reactive_opponent_round_use": {
+          "const": "Prohibited"
+        },
+        "headline_event": {
+          "const": "Prohibited"
+        },
+        "companion": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "zone",
+            "kind",
+            "affiliation",
+            "distinct_from_un",
+            "requires_event_can_occur"
+          ],
+          "properties": {
+            "zone": {
+              "const": "OwnerOrdinaryHand"
+            },
+            "kind": {
+              "const": "Event"
+            },
+            "affiliation": {
+              "const": "OpponentOnly"
+            },
+            "distinct_from_un": {
+              "const": true
+            },
+            "requires_event_can_occur": {
+              "const": false
+            }
+          }
+        },
+        "budget": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "source_card_id",
+            "ops_policy_ref",
+            "adds_un_printed_ops",
+            "allowed_ground_operations",
+            "pair_space_policy",
+            "optional_end_policy",
+            "quote_boundary"
+          ],
+          "properties": {
+            "kind": {
+              "const": "CompanionCardPrintedOps"
+            },
+            "source_card_id": {
+              "const": "SelectedCompanionCardId"
+            },
+            "ops_policy_ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "dataset_id",
+                "json_pointer"
+              ],
+              "properties": {
+                "dataset_id": {
+                  "const": "effects.deluxe2015.persistent_batch1"
+                },
+                "json_pointer": {
+                  "const": "/ops_policy"
+                }
+              }
+            },
+            "adds_un_printed_ops": {
+              "const": false
+            },
+            "allowed_ground_operations": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3,
+              "prefixItems": [
+                {
+                  "const": "Influence"
+                },
+                {
+                  "const": "Coup"
+                },
+                {
+                  "const": "Realignment"
+                }
+              ],
+              "items": false
+            },
+            "pair_space_policy": {
+              "const": "RequiresRuling"
+            },
+            "optional_end_policy": {
+              "const": "UNSpecificMayConductOperations"
+            },
+            "quote_boundary": {
+              "const": "OperationsStartAfterVerifiedActualUseHooks"
+            }
+          }
+        },
+        "suppression": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "scope",
+            "outcome",
+            "permanent_prevention",
+            "companion_success_fact",
+            "event_order_decision"
+          ],
+          "properties": {
+            "scope": {
+              "const": "ThisCompanionEventOnly"
+            },
+            "outcome": {
+              "const": "Suppressed"
+            },
+            "permanent_prevention": {
+              "const": false
+            },
+            "companion_success_fact": {
+              "const": false
+            },
+            "event_order_decision": {
+              "const": false
+            }
+          }
+        },
+        "card_use_records": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "un_use",
+            "companion_use",
+            "origin",
+            "suppression_reason",
+            "physical_entities",
+            "root_slots",
+            "repeat_uses_per_operation"
+          ],
+          "properties": {
+            "un_use": {
+              "const": "Event"
+            },
+            "companion_use": {
+              "const": "Operations"
+            },
+            "origin": {
+              "const": "VerifiedPairWithParentOrigin"
+            },
+            "suppression_reason": {
+              "const": "UNIntervention"
+            },
+            "physical_entities": {
+              "const": 2
+            },
+            "root_slots": {
+              "const": 1
+            },
+            "repeat_uses_per_operation": {
+              "const": false
+            }
+          }
+        },
+        "disposition": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "un",
+            "companion",
+            "finalization"
+          ],
+          "properties": {
+            "un": {
+              "const": "NormalEventDisposition"
+            },
+            "companion": {
+              "const": "DiscardRegardlessOfStar"
+            },
+            "finalization": {
+              "const": "CloseAcceptedPairInTerminalDraftBeforeFinishedCommit"
+            }
+          }
+        },
+        "hook_policy_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.war_card_hooks"
+            },
+            "json_pointer": {
+              "const": "/hook_policy"
+            }
+          }
+        },
+        "unresolved_hook": {
+          "const": "RequiresRuling"
+        },
+        "integration_boundaries": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "flower_un",
+            "we_will_bury_you",
+            "grain_sales_headline_un",
+            "unknown_authorized_subplay"
+          ],
+          "properties": {
+            "flower_un": {
+              "const": "RequiresRuling"
+            },
+            "we_will_bury_you": {
+              "const": "EmitLegalUNEventUseEvidenceOnly;SourceHandlerUnresolved"
+            },
+            "grain_sales_headline_un": {
+              "const": "ReturnReceivedCard;SourceHandlerUnresolved"
+            },
+            "unknown_authorized_subplay": {
+              "const": "RequiresVerifiedSourceContract"
+            }
+          }
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "p5 #32两牌同时，借对方关联牌OPS不触发事件，UN事件不得Headline；UN非星号。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "§2.2卡阵营/去向、§5.2/5.5对手事件/优先、§7.4.1–3实际Actor与OPS修正、§7.5禁用事件仍可OPS。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "F2010"
+                },
+                "locator": {
+                  "const": "PDFp7 #32即使对方事件不能发生也可配，必须自己手中对方牌、不能临时响应对方；Headline GS抽UN须返回。PDFp14#67一般事件OPS/Space区别；没有UN专门太空裁定。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-UN1"
+                },
+                "locator": {
+                  "const": "双实体唯一区域/两ActualUse共RootSlot、专用来源/合法UN事件证据、预算引用和原子收据。Flower/未知子来源/UN配牌Space仍停止；#50只接口证据不实现。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    }
+  }
+}

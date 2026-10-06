@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "id": "module.paired-card-play",
+  "kind": "module",
+  "status": "planned",
+  "description": "UN配对用牌：私有候选、双实体/两实际Use、配牌OPS/一次压制与同根收据；只生成计划，不推进回合。",
+  "documentation": "Docs/Wiki/un-intervention.md",
+  "entrypoints": [],
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Paired/UNPairService.cs",
+      "symbol": "BuildPairDecision"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Paired/UNPairService.cs",
+      "symbol": "BuildPairPlan"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Paired/UNPairService.cs",
+      "symbol": "FinalizePair"
+    }
+  ],
+  "inputs": [
+    "绑定Actor/ParentFrame/RootSlot与版本、UN/配牌CardId、普通Hand和授权证明",
+    "已核实CardUseHook结果、共享OPS策略及已完成OPS或内部TerminalCandidateDraft；未提交Finished"
+  ],
+  "outputs": [
+    "Owner私有候选、PairPlan/两ActualUse与LegalUNEventUseEvidence、预算引用、最终去向/同根完成计划"
+  ],
+  "dependencies": [
+    {
+      "id": "module.card-data",
+      "path": "Docs/Descriptors/card-data.module.json",
+      "status": "planned"
+    },
+    {
+      "id": "module.active-effects",
+      "path": "Docs/Descriptors/active-effects.module.json",
+      "status": "planned"
+    },
+    {
+      "id": "module.card-play-hooks",
+      "path": "Docs/Descriptors/card-play-hooks.module.json",
+      "status": "planned"
+    }
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.un_intervention",
+    "cards.deluxe2015.definitions",
+    "effects.deluxe2015.persistent_batch1",
+    "effects.deluxe2015.war_card_hooks"
+  ],
+  "contract_dependencies": [
+    "urn:coldwarheat:contract:un-intervention:1"
+  ],
+  "preconditions": [
+    "当前仅设计；Session/TurnFlow验证实际Actor、根行动资格和来源",
+    "两实体完整验证后一次进入InResolution；候选仅Owner可见",
+    "TerminalCandidateDraft只由内部Victory计划提供，不是客户端可提交的终局后清理命令"
+  ],
+  "side_effects": [
+    "RuleEngine应用拟定计划；方法本身不改状态/网络/动画"
+  ],
+  "stop_conditions": [
+    "未设计来源/未核实钩子/Space与非法或过期配对",
+    "同PairId冲突、区域不唯一或已提交Finished；同获胜事务草稿可收尾既有授权pair后再提交Finished"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "p5 #32两牌同时，借对方关联牌OPS不触发事件，UN事件不得Headline；UN非星号。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.2卡阵营/去向、§5.2/5.5对手事件/优先、§7.4.1–3实际Actor与OPS修正、§7.5禁用事件仍可OPS。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarification only",
+      "description": "PDFp7 #32即使对方事件不能发生也可配，必须自己手中对方牌、不能临时响应对方；Headline GS抽UN须返回。PDFp14#67一般事件OPS/Space区别；没有UN专门太空裁定。"
+    },
+    {
+      "id": "PROJECT-UN1",
+      "url": null,
+      "edition": "Engineering contracts / explicit unresolved branches, 2026-10-06",
+      "description": "双实体唯一区域/两ActualUse共RootSlot、专用来源/合法UN事件证据、预算引用和原子收据。Flower/未知子来源/UN配牌Space仍停止；#50只接口证据不实现。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/un-intervention.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "implementation_tested": false,
+    "latest_design_report": "Docs/Design/un-intervention.validation.json"
+  }
+}

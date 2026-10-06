@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.un_intervention",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "UN双牌事件契约：实际本人配牌预算/压制/两使用一根slot；独立普通OPS，未核实分支停止，C#待实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "p5 #32两牌同时，借对方关联牌OPS不触发事件，UN事件不得Headline；UN非星号。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.2卡阵营/去向、§5.2/5.5对手事件/优先、§7.4.1–3实际Actor与OPS修正、§7.5禁用事件仍可OPS。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarification only",
+      "description": "PDFp7 #32即使对方事件不能发生也可配，必须自己手中对方牌、不能临时响应对方；Headline GS抽UN须返回。PDFp14#67一般事件OPS/Space区别；没有UN专门太空裁定。"
+    },
+    {
+      "id": "PROJECT-UN1",
+      "url": null,
+      "edition": "Engineering contracts / explicit unresolved branches, 2026-10-06",
+      "description": "双实体唯一区域/两ActualUse共RootSlot、专用来源/合法UN事件证据、预算引用和原子收据。Flower/未知子来源/UN配牌Space仍停止；#50只接口证据不实现。"
+    }
+  ],
+  "parameters": {
+    "un_intervention": {
+      "card_id": "card.un_intervention",
+      "effect_id": "effect.un_intervention",
+      "description": "本人根行动将UN与仅对方阵营事件牌配用，借配牌OPS且事件Suppressed；两实体/一根slot，未知钩子/Space/子来源停止。",
+      "template": "AuthorizePairedOpponentEventOperations",
+      "actor": "TrustedCardPlayer",
+      "normal_source": "NormalActionOwnerHand",
+      "other_sources": "RequiresVerifiedSourceContract",
+      "reactive_opponent_round_use": "Prohibited",
+      "headline_event": "Prohibited",
+      "companion": {
+        "zone": "OwnerOrdinaryHand",
+        "kind": "Event",
+        "affiliation": "OpponentOnly",
+        "distinct_from_un": true,
+        "requires_event_can_occur": false
+      },
+      "budget": {
+        "kind": "CompanionCardPrintedOps",
+        "source_card_id": "SelectedCompanionCardId",
+        "ops_policy_ref": {
+          "dataset_id": "effects.deluxe2015.persistent_batch1",
+          "json_pointer": "/ops_policy"
+        },
+        "adds_un_printed_ops": false,
+        "allowed_ground_operations": [
+          "Influence",
+          "Coup",
+          "Realignment"
+        ],
+        "pair_space_policy": "RequiresRuling",
+        "optional_end_policy": "UNSpecificMayConductOperations",
+        "quote_boundary": "OperationsStartAfterVerifiedActualUseHooks"
+      },
+      "suppression": {
+        "scope": "ThisCompanionEventOnly",
+        "outcome": "Suppressed",
+        "permanent_prevention": false,
+        "companion_success_fact": false,
+        "event_order_decision": false
+      },
+      "card_use_records": {
+        "un_use": "Event",
+        "companion_use": "Operations",
+        "origin": "VerifiedPairWithParentOrigin",
+        "suppression_reason": "UNIntervention",
+        "physical_entities": 2,
+        "root_slots": 1,
+        "repeat_uses_per_operation": false
+      },
+      "disposition": {
+        "un": "NormalEventDisposition",
+        "companion": "DiscardRegardlessOfStar",
+        "finalization": "CloseAcceptedPairInTerminalDraftBeforeFinishedCommit"
+      },
+      "hook_policy_ref": {
+        "dataset_id": "effects.deluxe2015.war_card_hooks",
+        "json_pointer": "/hook_policy"
+      },
+      "unresolved_hook": "RequiresRuling",
+      "integration_boundaries": {
+        "flower_un": "RequiresRuling",
+        "we_will_bury_you": "EmitLegalUNEventUseEvidenceOnly;SourceHandlerUnresolved",
+        "grain_sales_headline_un": "ReturnReceivedCard;SourceHandlerUnresolved",
+        "unknown_authorized_subplay": "RequiresVerifiedSourceContract"
+      },
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "p5 #32两牌同时，借对方关联牌OPS不触发事件，UN事件不得Headline；UN非星号。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.2卡阵营/去向、§5.2/5.5对手事件/优先、§7.4.1–3实际Actor与OPS修正、§7.5禁用事件仍可OPS。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFp7 #32即使对方事件不能发生也可配，必须自己手中对方牌、不能临时响应对方；Headline GS抽UN须返回。PDFp14#67一般事件OPS/Space区别；没有UN专门太空裁定。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-UN1",
+          "locator": "双实体唯一区域/两ActualUse共RootSlot、专用来源/合法UN事件证据、预算引用和原子收据。Flower/未知子来源/UN配牌Space仍停止；#50只接口证据不实现。",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

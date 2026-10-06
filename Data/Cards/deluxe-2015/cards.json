@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.23.0",
+  "content_version": "0.24.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计62牌效果参数已绑定，其余40个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计63牌效果参数已绑定，其余39个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -143,6 +143,12 @@
       "url": null,
       "edition": "Engineering contracts and pending repeat ruling, 2026-10-06",
       "description": "配对原子替换仅是待用户确认候选，反方及同方新ID重复均RequiresRuling。引用共享OPS限制，骰channel不夹修正结果，实际运行/完整集成未验证，参考模型仅有限投影。"
+    },
+    {
+      "id": "PROJECT-UN1",
+      "url": null,
+      "edition": "Engineering contracts / explicit unresolved branches, 2026-10-06",
+      "description": "双实体唯一区域/两ActualUse共RootSlot、专用来源/合法UN事件证据、预算引用和原子收据。Flower/未知子来源/UN配牌Space仍停止；#50只接口证据不实现。"
     }
   ],
   "cards": [
@@ -1112,8 +1118,13 @@
       "effect_binding": {
         "effect_id": "effect.un_intervention",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.un_intervention",
+            "json_pointer": "/parameters/un_intervention"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -4063,15 +4074,32 @@
     {
       "effect_id": "effect.un_intervention",
       "contract_version": "0.1.0",
-      "description": "UN Intervention：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.un_intervention",
+      "description": "本人根行动将UN与仅对方阵营事件牌配用，借配牌OPS且事件Suppressed；两实体/一根slot，未知钩子/Space/子来源停止。",
+      "handler_key": "paired.AuthorizePairedOpponentEventOperations",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:un-intervention:1#/$defs/un_intervention"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "p5 #32两牌同时，借对方关联牌OPS不触发事件，UN事件不得Headline；UN非星号。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.2卡阵营/去向、§5.2/5.5对手事件/优先、§7.4.1–3实际Actor与OPS修正、§7.5禁用事件仍可OPS。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFp7 #32即使对方事件不能发生也可配，必须自己手中对方牌、不能临时响应对方；Headline GS抽UN须返回。PDFp14#67一般事件OPS/Space区别；没有UN专门太空裁定。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-UN1",
+          "locator": "双实体唯一区域/两ActualUse共RootSlot、专用来源/合法UN事件证据、预算引用和原子收据。Flower/未知子来源/UN配牌Space仍停止；#50只接口证据不实现。",
+          "verification": "Verified"
         }
       ]
     },

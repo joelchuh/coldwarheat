@@ -230,3 +230,7 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 [动态计分](scoring-effects-batch1.md)引入穿梭专用公开ActiveEventHolding：成功事件Finalize进入该位置而非Discard，至下一匹配真实计分一次性移动并消费；普通持续实例与实体引用仍分离、不能双份。China真实US使用后取消台湾规则，不由事件转交或UI揭示触发。
 
 [计分牌绑定](scoring-cards.md)不提供OPS/太空，头条0值仍可选择；只在真实合法事件结算时计算/决定SEA星号去向，强制弃牌不计分。最终汇总不逐张消耗实体牌或根名额。
+
+## 双牌终局事务接入（待实现）
+
+[UN双牌](un-intervention.md)的TerminalCandidateDraft是获胜步骤内部的未提交草稿，并非已保存Finished状态。编排在该同一事务收尾已接受pair的两牌去向/当前根slot与收据，随后原子提交胜利效果和Finished。候选出现即不再执行余下OPS或调度下一行动；只有既有已接受步骤记账，无新玩家意图。已提交Finished仍只允许查询/保存/原收据幂等返回，不允许后来调用Finalize改变规则状态，也不能恢复未收尾终局存档后自动修复。实际事务与载入校验未实现。

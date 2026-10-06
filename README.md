@@ -79,4 +79,6 @@
 
 此前：[中期影响力第二批](Docs/Wiki/mid-influence-batch2.md)，当时累计60 Bound / 42 Unresolved，102处理器planned。
 
-最新：[持续修正第二批](Docs/Wiki/persistent-effects-batch2.md)，累计62 Bound /40 Unresolved，102处理器planned，LADS重复仍待裁定。
+此前：[持续修正第二批](Docs/Wiki/persistent-effects-batch2.md)，当时累计62 Bound /40 Unresolved，102处理器planned，LADS重复仍待裁定。
+
+最新：[UN双牌使用](Docs/Wiki/un-intervention.md)，累计63 Bound /39 Unresolved，102处理器planned。
