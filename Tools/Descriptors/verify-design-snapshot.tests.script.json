@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "id": "script.test-design-snapshot",
+  "kind": "script",
+  "status": "ready",
+  "description": "运行设计快照核验器的真实文件系统正负例：必须用新临时目录，拒绝已存在根/未知测试名/父目录链接，保留测试产物；不运行游戏。",
+  "entrypoints": [
+    {
+      "path": "Tools/Tests/verify-design-snapshot.tests.ps1",
+      "symbol": null
+    }
+  ],
+  "documentation": "Docs/Wiki/design-snapshot-verifier.md",
+  "inputs": [
+    "FixtureRoot可选：必须不存在、无重解析点父路径；默认系统临时目录内GUID新子目录",
+    "TestCases可选：固定名单的唯一ID子集；省略运行完整固定名单"
+  ],
+  "outputs": [
+    "JSON逐项通过/失败、输入字节不变证据和退出码",
+    "测试产物位置用于检查；不会自动清除"
+  ],
+  "dependencies": [
+    {
+      "id": "script.verify-design-snapshot",
+      "descriptor": "Tools/Descriptors/verify-design-snapshot.script.json"
+    }
+  ],
+  "preconditions": [
+    "同一Windows PowerShell 7.x主机；pwsh.exe在PSHOME",
+    "只传自有的新临时目录，不传用户已有目录",
+    "仅本地常规盘符路径；UNC/扩展设备路径不支持，不通过连接目录读取其他范围",
+    "调用者先确认所有输入均在物理本地盘；不使用SMB映射盘/同步服务远程占位文件，无法确认即不调用。盘符正则不是网络隔离器。"
+  ],
+  "side_effects": [
+    "仅在新FixtureRoot创建小型测试文件与目录链接；无删除/提交/推送/网络"
+  ],
+  "stop_conditions": [
+    "已有FixtureRoot、链接父路径、未知/重复测试ID，任何测试失败"
+  ],
+  "rule_sources": [
+    {
+      "id": "PROJECT-WORKFLOW",
+      "path": "Docs/Workflow/workflow-policy.json",
+      "description": "正式核验工具需有可复跑的边界验收；测试文件属于工具工作流，不是游戏规则实现。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Tools/Tests/verify-design-snapshot.tests.ps1",
+      "status": "passed-script-runtime",
+      "count": 38
+    }
+  ],
+  "verification": {
+    "report": "Docs/Design/design-snapshot-verifier.validation.json",
+    "script_runtime_tested": true,
+    "game_runtime_tests_run": 0
+  }
+}

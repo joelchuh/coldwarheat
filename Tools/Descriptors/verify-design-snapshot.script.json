@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "id": "script.verify-design-snapshot",
+  "kind": "script",
+  "status": "ready",
+  "description": "只读核对候选发布清单、现代验证报告结构/SHA256及可选发布后内容一致；不运行规则模型、不读写Git、不执行网络命令、不修改任何输入。",
+  "entrypoints": [
+    {
+      "path": "Tools/Scripts/verify-design-snapshot.ps1",
+      "symbol": null
+    }
+  ],
+  "documentation": "Docs/Wiki/design-snapshot-verifier.md",
+  "inputs": [
+    "ProjectRoot、CandidateRoot：实际本地目录，非盘根；工作期间无并发写入",
+    "ManifestPath：显式输入的JSON相对路径数组文件，可在候选目录外",
+    "ReportRelativePath：候选目录内现代报告路径，报告含validated_sha256及new/previous/total/results",
+    "CheckPublished：可选；核对清单中每个候选文件与项目落盘内容，两个根必须不同"
+  ],
+  "outputs": [
+    "退出0与verified/清单数/摘要数/published_checked/reported_cases/scope JSON",
+    "退出1与稳定error_code JSON；不回显输入内容或执行描述"
+  ],
+  "dependencies": [],
+  "data_dependencies": [],
+  "preconditions": [
+    "Windows PowerShell 7.x；本机7.6.5实测，其他7.x未实测；System.Text.Json可用",
+    "调用者已读描述并确认本次工作范围；JSON元数据不授予执行权限",
+    "候选目录是专用覆盖目录；清单精确覆盖所有候选文件；不支持重解析点/目录链接",
+    "报告必须来自已完成的主校验和审阅；本工具只校验报告结构及其对应字节，不证明规则正确或审阅已进行",
+    "仅本地常规盘符路径；UNC/扩展设备路径不支持，不通过连接目录读取其他范围",
+    "调用者先确认所有输入均在物理本地盘；不使用SMB映射盘/同步服务远程占位文件，无法确认即不调用。盘符正则不是网络隔离器。"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "越界/绝对/无效相对路径，盘根、重解析点、清单重复或未列文件",
+    "JSON非法/重复键，报告结构/摘要格式/计数不一致或结果不通过",
+    "摘要过期、所需文件缺失、发布副本不一致；一律非零结束，不修复/复制/提交/推送"
+  ],
+  "rule_sources": [
+    {
+      "id": "PROJECT-WORKFLOW",
+      "path": "Docs/Workflow/workflow-policy.json",
+      "description": "用户已确认>=3次实际稳定工作流且未来复用时固化；描述先行、限定副作用、未知停止、Git由独立流程执行。"
+    },
+    {
+      "id": "MS-JSON",
+      "url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertfrom-json",
+      "description": "ConvertFrom-Json可能只保留同名最后键；先JsonDocument遍历并拒绝重复键，后转换。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Tools/Tests/verify-design-snapshot.tests.ps1",
+      "status": "passed-script-runtime",
+      "count": 38
+    }
+  ],
+  "verification": {
+    "report": "Docs/Design/design-snapshot-verifier.validation.json",
+    "script_runtime_tested": true,
+    "game_runtime_tests_run": 0,
+    "rules_regression_report": "Docs/Design/scoring-effects-batch1.validation.json"
+  },
+  "scriptification_evidence": {
+    "condition": "repeated_workflow",
+    "observed_occurrences": 4,
+    "expected_future_reuse": true,
+    "stable_inputs_outputs_and_steps": true,
+    "contexts": [
+      "Docs/Worklogs/2026-10-06-defcon-events-batch1-design.md",
+      "Docs/Worklogs/2026-10-06-influence-relocation-design.md",
+      "Docs/Worklogs/2026-10-06-hand-events-batch1-design.md",
+      "Docs/Worklogs/2026-10-06-scoring-effects-batch1-design.md"
+    ],
+    "scope_note": "只固化共同的路径/字节/报告核验；临时逐卡算术模型和库存适配仍非正式工具，不自动固化。"
+  }
+}

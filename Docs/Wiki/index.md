@@ -4,7 +4,8 @@
 
 | 知识点 | description | 状态 | 入口 |
 |---|---|---|---|
-| 开发工作流与共享数据 | 查找模块/脚本 JSON 描述、脚本化条件、共享数据与执行边界 | 已采用；自动化工具未实现 | [workflow-and-data.md](workflow-and-data.md) |
+| 开发工作流与共享数据 | 查找模块/脚本 JSON 描述、脚本化条件、共享数据与执行边界 | 已采用；只读核验工具就绪，其他自动化待实现 | [workflow-and-data.md](workflow-and-data.md) |
+| 正式脚本目录 | 按description找只读设计快照核验与安全临时目录测试 | 2正式脚本可用；不执行游戏/Git | [catalog.json](../../Tools/Descriptors/catalog.json) |
 | 工作流策略 JSON | 快速定位结构化开发约定和描述契约 | 已采用 | [workflow-policy.json](../Workflow/workflow-policy.json) |
 | 游戏模块设计 | 查找大模块、规则子模块、命令流程、换画风边界与验收顺序 | v0.1 设计草案；待实现 | [architecture.md](architecture.md) |
 | 早期影响力事件第一批 | 查5牌参数、复用原语、受益方选择和事务继续机制 | 参数已绑定，C#与跨卡干预待实现/核实 | [early-influence-batch1.md](early-influence-batch1.md) |

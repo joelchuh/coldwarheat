@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "description": "先按description挑正式工作脚本，再读完整契约；ready不是本次执行授权。",
+  "entries": [
+    {
+      "id": "script.verify-design-snapshot",
+      "description": "只读核对候选发布清单、现代验证报告结构/SHA256及可选发布后内容一致；不运行规则模型、不读写Git、不执行网络命令、不修改任何输入。",
+      "status": "ready",
+      "descriptor": "Tools/Descriptors/verify-design-snapshot.script.json"
+    },
+    {
+      "id": "script.test-design-snapshot",
+      "description": "运行设计快照核验器的真实文件系统正负例：必须用新临时目录，拒绝已存在根/未知测试名/父目录链接，保留测试产物；不运行游戏。",
+      "status": "ready",
+      "descriptor": "Tools/Descriptors/verify-design-snapshot.tests.script.json"
+    }
+  ]
+}

@@ -75,3 +75,7 @@ git ls-remote origin refs/heads/main
 4. push返回成功后，核对本地HEAD、远端main和工作区；必要时通过GitHub插件独立复核。
 
 这是一次已观察到的环境恢复记录，不保证所有网络问题都由代理导致。当前未新增永久脚本；以后达到工作流策略的复用条件，再将输入校验、超时和错误分类固化，并配套JSON描述。来源是本次实际命令结果，非游戏规则。
+
+## 只读候选核验工具
+
+四个设计批次已重复使用稳定的字节/清单核验流程，现提供[正式描述](../../Tools/Descriptors/verify-design-snapshot.script.json)与[用法](design-snapshot-verifier.md)。它不运行Git、不自动复制/提交/推送；暂存与远端核对仍由当前Git流程完成。
