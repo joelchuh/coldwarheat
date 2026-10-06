@@ -71,4 +71,6 @@
 
 此前：[DEFCON与VP顺序事件](Docs/Wiki/defcon-vp-events.md)绑定3牌；累计47 Bound / 55 Unresolved，102处理器planned。
 
-最新：[中期影响力四牌](Docs/Wiki/mid-influence-batch1.md)共用既有影响力原语；累计51 Bound / 51 Unresolved，102处理器planned。
+此前：[中期影响力四牌](Docs/Wiki/mid-influence-batch1.md)共用既有影响力原语；当时当时累计51 Bound / 51 Unresolved，102处理器planned。
+
+最新：[事件太空](Docs/Wiki/space-events-batch1.md)与[教皇链](Docs/Wiki/solidarity-chain.md)，累计54 Bound / 48 Unresolved，102处理器planned；终点/移除不足裁定尚未采纳。

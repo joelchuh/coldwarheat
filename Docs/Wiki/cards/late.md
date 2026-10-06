@@ -35,3 +35,5 @@
 [战争第二批](../war-events-batch2.md)已绑定本时代对应战争参数；处理器仍planned。
 
 [战争牌持续与取消](../war-card-hooks.md)补齐本时代相关三牌参数，运行实现仍planned。
+
+本批参数与边界见[solidarity-chain](../solidarity-chain.md)；C#待实现。

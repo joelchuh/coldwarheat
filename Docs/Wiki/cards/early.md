@@ -67,3 +67,5 @@
 台湾决议#35见[动态计分](../scoring-effects-batch1.md)，只改计分事实不改基础地图。
 
 本时代计分牌已按[七张计分牌绑定](../scoring-cards.md)直接引用地区定义；正式处理器仍planned。
+
+本批参数与边界见[space-events-batch1](../space-events-batch1.md)；C#待实现。

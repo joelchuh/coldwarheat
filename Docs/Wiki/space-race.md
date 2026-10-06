@@ -111,3 +111,5 @@ flowchart TD
 ## 持续效果接入（2026-10-01，待实现）
 
 参见[持续效果与OPS修正](persistent-effects.md)：实际行动者决定修正归属，合并修正后报价；太空不使用地区奖励；普通政变信用接有效OPS，战争固定信用和免费政变保持独立。回合末在现有 `ExpireAndReset` 边界到期，读档保留激活序列与行动快照。
+
+[Scientist一格事件策略](space-events-batch1.md)已绑定；终点仍待裁定，普通轨道数值不改。

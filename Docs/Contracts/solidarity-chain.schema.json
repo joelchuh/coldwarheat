@@ -1,0 +1,462 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:solidarity-chain:1",
+  "title": "教皇／团结工会链：固定Poland影响力、成功来源关联的永久许可与实际事件门禁。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "parameters",
+    "event_fact_policy_ref"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.solidarity_chain"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "release-candidate"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "C-DELUXE-EN"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf"
+            },
+            "edition": {
+              "const": "English Deluxe card images"
+            },
+            "description": {
+              "const": "p4 #18一格推进；p11 #68 Poland移除2USSR再加1US并允许Solidarity；p15 #101 Pope生效才可事件加3US。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "R2015"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf"
+            },
+            "edition": {
+              "const": "Deluxe rules 2015"
+            },
+            "description": {
+              "const": "§2.2.4–5星号/永久标记；§5.2/5.3实际事件与牌区；§6.1.1直接影响力；§6.4太空奖励/能力与事件推进；§7.3永久效果。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "PROJECT-SS1"
+            },
+            "url": {
+              "const": null
+            },
+            "edition": {
+              "const": "Engineering contracts and unresolved edges, 2026-10-06"
+            },
+            "description": {
+              "const": "事件授权帧/来源/去重及原子计划；Pope许可使用成功事实关联的ActiveEffectInstance，不以牌区推断。Pope移除不足2及Scientist已在终点尚待用户裁定，均RequiresRuling，建议不是采纳规则。"
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "john_paul_ii_elected_pope",
+        "solidarity"
+      ],
+      "properties": {
+        "john_paul_ii_elected_pope": {
+          "$ref": "#/$defs/john_paul_ii_elected_pope"
+        },
+        "solidarity": {
+          "$ref": "#/$defs/solidarity"
+        }
+      }
+    },
+    "event_fact_policy_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dataset_id",
+        "json_pointer"
+      ],
+      "properties": {
+        "dataset_id": {
+          "const": "effects.deluxe2015.treaty_protection"
+        },
+        "json_pointer": {
+          "const": "/event_fact_policy"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "john_paul_ii_elected_pope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "country_id",
+        "remove_side",
+        "remove_amount",
+        "add_amount",
+        "step_order",
+        "insufficient_removal_policy",
+        "permission",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.john_paul_ii_elected_pope"
+        },
+        "effect_id": {
+          "const": "effect.john_paul_ii_elected_pope"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "InfluenceThenActivatePermission"
+        },
+        "beneficiary": {
+          "const": "US"
+        },
+        "country_id": {
+          "const": "country.poland"
+        },
+        "remove_side": {
+          "const": "USSR"
+        },
+        "remove_amount": {
+          "const": 2
+        },
+        "add_amount": {
+          "const": 1
+        },
+        "step_order": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "const": "RemoveInfluence"
+            },
+            {
+              "const": "AddInfluence"
+            },
+            {
+              "const": "ActivatePermission"
+            }
+          ],
+          "items": false
+        },
+        "insufficient_removal_policy": {
+          "const": "RequiresRuling"
+        },
+        "permission": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "effect_id",
+            "allowed_event_card_id",
+            "duration",
+            "expiry_boundary",
+            "source_fact_required"
+          ],
+          "properties": {
+            "effect_id": {
+              "const": "effect.john_paul_ii_elected_pope"
+            },
+            "allowed_event_card_id": {
+              "const": "card.solidarity"
+            },
+            "duration": {
+              "const": "UntilCancelledOrGameEnd"
+            },
+            "expiry_boundary": {
+              "const": null
+            },
+            "source_fact_required": {
+              "const": true
+            }
+          }
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "Englishp11 #68; R2015 §2.2.4–5, §5.2, §6.1.1, §7.3"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "Englishp11 #68; R2015 §2.2.4–5, §5.2, §6.1.1, §7.3"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-SS1"
+                },
+                "locator": {
+                  "const": "SS1 engineering boundaries; unresolved edges are not adopted"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "solidarity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "country_id",
+        "add_amount",
+        "activation_gate",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.solidarity"
+        },
+        "effect_id": {
+          "const": "effect.solidarity"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "AddFixedIfPermissionActive"
+        },
+        "beneficiary": {
+          "const": "US"
+        },
+        "country_id": {
+          "const": "country.poland"
+        },
+        "add_amount": {
+          "const": 3
+        },
+        "activation_gate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "effect_id",
+            "source_card_id",
+            "check_boundary",
+            "complete_history_absent",
+            "unknown_history_or_permission",
+            "conflicting_fact_and_permission"
+          ],
+          "properties": {
+            "kind": {
+              "const": "ActivePermissionWithSuccessfulSourceFact"
+            },
+            "effect_id": {
+              "const": "effect.john_paul_ii_elected_pope"
+            },
+            "source_card_id": {
+              "const": "card.john_paul_ii_elected_pope"
+            },
+            "check_boundary": {
+              "const": "EventAttempt"
+            },
+            "complete_history_absent": {
+              "const": "BlockedPrerequisite"
+            },
+            "unknown_history_or_permission": {
+              "const": "RequiresRuling"
+            },
+            "conflicting_fact_and_permission": {
+              "const": "InvalidState"
+            }
+          }
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "Englishp15 #101; R2015 §5.2, §7.1, §7.3"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "Englishp15 #101; R2015 §5.2, §7.1, §7.3"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-SS1"
+                },
+                "locator": {
+                  "const": "SS1 engineering boundaries; unresolved edges are not adopted"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    }
+  },
+  "description": "教皇／团结工会链：固定Poland影响力、成功来源关联的永久许可与实际事件门禁。"
+}

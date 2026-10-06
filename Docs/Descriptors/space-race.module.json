@@ -30,7 +30,8 @@
   ],
   "inputs": [
     "权威出牌/事件授权、双方轨道位置、回合计数与有效OPS",
-    "不可变轨道定义与可保存随机源；回合末选择上下文"
+    "不可变轨道定义与可保存随机源；回合末选择上下文",
+    "可信ResolutionFrame.EffectController；共享轨道、AdvanceId与到达收据"
   ],
   "outputs": [
     "尝试资格、骰子和推进奖励计划、能力集合或可保存弃牌决策"
@@ -53,7 +54,8 @@
     "rules.deluxe2015.space-race",
     "rules.deluxe2015.turn-flow",
     "cards.deluxe2015.definitions",
-    "effects.deluxe2015.persistent_batch1"
+    "effects.deluxe2015.persistent_batch1",
+    "effects.deluxe2015.space_events_batch1"
   ],
   "preconditions": [
     "当前为设计；尚无可调用实现",
@@ -72,12 +74,14 @@
     {
       "id": "R2015",
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
-      "checked_on": "2026-09-22"
+      "checked_on": "2026-09-22",
+      "description": " SS1: §2.2.4–5星号/永久标记；§5.2/5.3实际事件与牌区；§6.1.1直接影响力；§6.4太空奖励/能力与事件推进；§7.3永久效果。"
     },
     {
       "id": "F2010",
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
-      "checked_on": "2026-09-22"
+      "checked_on": "2026-09-22",
+      "description": " SS1: PDFp4 #18事件推进不算普通尝试；p5旧二格后续问答不覆盖Deluxe一格卡值。"
     },
     {
       "id": "M-DELUXE",
@@ -85,6 +89,12 @@
       "listed_by": "https://www.gmtgames.com/p-927-twilight-struggle-deluxe-edition-8th-printing.aspx",
       "scope": "GMT产品页地图，仅采用已逐项读取的地区分值、东南亚权重与基础太空轨道；与R2015可见图示交叉核对",
       "checked_on": "2026-09-22"
+    },
+    {
+      "id": "PROJECT-SS1",
+      "url": null,
+      "edition": "Engineering contracts and unresolved edges, 2026-10-06",
+      "description": "事件授权帧/来源/去重及原子计划；Pope许可使用成功事实关联的ActiveEffectInstance，不以牌区推断。Pope移除不足2及Scientist已在终点尚待用户裁定，均RequiresRuling，建议不是采纳规则。"
     }
   ],
   "tests": [
@@ -96,12 +106,20 @@
     {
       "path": "Docs/Design/persistent-effects-batch1.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/space-solidarity-events.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
-    "implementation_tested": false
+    "implementation_tested": false,
+    "latest_design_report": "Docs/Design/space-solidarity-events.validation.json"
   },
   "open_items": [
-    "正式卡牌目录及逐卡太空推进/限制策略"
+    "其他太空事件策略及Scientist终点裁定"
+  ],
+  "contract_dependencies": [
+    "urn:coldwarheat:contract:space-events-batch1:1"
   ]
 }

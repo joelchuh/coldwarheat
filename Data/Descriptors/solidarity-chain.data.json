@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "id": "data.solidarity-chain",
+  "kind": "data",
+  "status": "ready",
+  "description": "教皇／团结工会链：固定Poland影响力、成功来源关联的永久许可与实际事件门禁。",
+  "dataset_id": "effects.deluxe2015.solidarity_chain",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/solidarity-chain.schema.json",
+  "documentation": "Docs/Wiki/solidarity-chain.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/solidarity-chain.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "稳定CardId与匹配版本的可信事件上下文"
+  ],
+  "outputs": [
+    "只读显式策略；无可执行表达式/代码"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "map.deluxe2015.world",
+    "cards.deluxe2015.definitions",
+    "effects.deluxe2015.treaty_protection"
+  ],
+  "preconditions": [
+    "参数Bound不是C#实现或完整规则包",
+    "未知相关效果与待裁定路径停止"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "不可信/过期帧、冲突来源、非法位置/影响力/到达记录",
+    "终点或移除不足路径保持RequiresRuling，尚无用户答复"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "p4 #18一格推进；p11 #68 Poland移除2USSR再加1US并允许Solidarity；p15 #101 Pope生效才可事件加3US。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.2.4–5星号/永久标记；§5.2/5.3实际事件与牌区；§6.1.1直接影响力；§6.4太空奖励/能力与事件推进；§7.3永久效果。"
+    },
+    {
+      "id": "PROJECT-SS1",
+      "url": null,
+      "edition": "Engineering contracts and unresolved edges, 2026-10-06",
+      "description": "事件授权帧/来源/去重及原子计划；Pope许可使用成功事实关联的ActiveEffectInstance，不以牌区推断。Pope移除不足2及Scientist已在终点尚待用户裁定，均RequiresRuling，建议不是采纳规则。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/space-solidarity-events.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/space-solidarity-events.validation.json"
+  }
+}

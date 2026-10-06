@@ -92,3 +92,5 @@ DEFCON地区豁免仅跳过该检查，不绕过北约／美日安保、敌方�
 [首批战争](war-events.md)复用成功事件事实契约来判断戴维营对阿以战争的阻止。北约与美日条约不提供这三张战争的全局免疫；Brush War另按其专门保护关系设计。
 
 [战争第二批](war-events-batch2.md)已把Brush War的EventAttack接入北约查询，任意Actor均按当前美国控制过滤；国家例外仍不能绕过战争自身稳定度限制。
+
+[团结工会](solidarity-chain.md)另查仍生效许可，不能将本页AnySuccessfulEvent当作所有前置条件。

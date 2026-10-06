@@ -1,0 +1,2580 @@
+{
+  "schema_version": 1,
+  "description": "两个参数族结构与太空/教皇许可链状态投影；未确认边界必须停止，真实事务/牌区/用途/存档未实现。",
+  "status": "mixed-reference-and-planned",
+  "families": {
+    "space": {
+      "dataset": "Data/Cards/deluxe-2015/space-events-batch1.parameters.json",
+      "schema": "Docs/Contracts/space-events-batch1.schema.json"
+    },
+    "chain": {
+      "dataset": "Data/Cards/deluxe-2015/solidarity-chain.parameters.json",
+      "schema": "Docs/Contracts/solidarity-chain.schema.json"
+    }
+  },
+  "cases": [
+    {
+      "id": "SS-D-space-baseline",
+      "validation_layer": "data",
+      "input": {
+        "family": "space",
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "SS-D-chain-baseline",
+      "validation_layer": "data",
+      "input": {
+        "family": "chain",
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "SS-D-steps",
+      "validation_layer": "data",
+      "input": {
+        "family": "space",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "captured_nazi_scientist",
+              "advance_steps"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SS-D-consume",
+      "validation_layer": "data",
+      "input": {
+        "family": "space",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "captured_nazi_scientist",
+              "ordinary_attempt_consumption"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SS-D-ops",
+      "validation_layer": "data",
+      "input": {
+        "family": "space",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "captured_nazi_scientist",
+              "requires_ordinary_ops_qualification"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SS-D-rng",
+      "validation_layer": "data",
+      "input": {
+        "family": "space",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "captured_nazi_scientist",
+              "random_roll"
+            ],
+            "value": "D6"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SS-D-terminal",
+      "validation_layer": "data",
+      "input": {
+        "family": "space",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "captured_nazi_scientist",
+              "terminal_policy"
+            ],
+            "value": "ResolvedNoChange"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SS-D-controller",
+      "validation_layer": "data",
+      "input": {
+        "family": "space",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "captured_nazi_scientist",
+              "beneficiary"
+            ],
+            "value": "RootPhasingPlayer"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SS-D-reward",
+      "validation_layer": "data",
+      "input": {
+        "family": "space",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "captured_nazi_scientist",
+              "reward_policy"
+            ],
+            "value": "AllEnteredSpaces"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SS-D-track",
+      "validation_layer": "data",
+      "input": {
+        "family": "space",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "captured_nazi_scientist",
+              "track_dataset_id"
+            ],
+            "value": "rules.optional.space"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SS-D-pope-country",
+      "validation_layer": "data",
+      "input": {
+        "family": "chain",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "john_paul_ii_elected_pope",
+              "country_id"
+            ],
+            "value": "country.france"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SS-D-pope-removal",
+      "validation_layer": "data",
+      "input": {
+        "family": "chain",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "john_paul_ii_elected_pope",
+              "remove_amount"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SS-D-pope-add",
+      "validation_layer": "data",
+      "input": {
+        "family": "chain",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "john_paul_ii_elected_pope",
+              "add_amount"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SS-D-pope-shortage",
+      "validation_layer": "data",
+      "input": {
+        "family": "chain",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "john_paul_ii_elected_pope",
+              "insufficient_removal_policy"
+            ],
+            "value": "RemoveAvailable"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SS-D-pope-order",
+      "validation_layer": "data",
+      "input": {
+        "family": "chain",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "john_paul_ii_elected_pope",
+              "step_order"
+            ],
+            "value": [
+              "AddInfluence",
+              "RemoveInfluence",
+              "ActivatePermission"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SS-D-pope-expiry",
+      "validation_layer": "data",
+      "input": {
+        "family": "chain",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "john_paul_ii_elected_pope",
+              "permission",
+              "expiry_boundary"
+            ],
+            "value": "TurnEnd"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SS-D-pope-fact",
+      "validation_layer": "data",
+      "input": {
+        "family": "chain",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "john_paul_ii_elected_pope",
+              "permission",
+              "source_fact_required"
+            ],
+            "value": false
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SS-D-solidarity-add",
+      "validation_layer": "data",
+      "input": {
+        "family": "chain",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "solidarity",
+              "add_amount"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SS-D-solidarity-history-only",
+      "validation_layer": "data",
+      "input": {
+        "family": "chain",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "solidarity",
+              "activation_gate",
+              "kind"
+            ],
+            "value": "AnySuccessfulEvent"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SS-D-solidarity-boundary",
+      "validation_layer": "data",
+      "input": {
+        "family": "chain",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "solidarity",
+              "activation_gate",
+              "check_boundary"
+            ],
+            "value": "CardQuote"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SS-D-solidarity-source",
+      "validation_layer": "data",
+      "input": {
+        "family": "chain",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "solidarity",
+              "activation_gate",
+              "source_card_id"
+            ],
+            "value": "card.marshall_plan"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SS-D-fact-pointer",
+      "validation_layer": "data",
+      "input": {
+        "family": "chain",
+        "edits": [
+          {
+            "path": [
+              "event_fact_policy_ref",
+              "json_pointer"
+            ],
+            "value": "/parameters/nato"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SS-R-space-1-first",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "positions": {
+            "US": 1,
+            "USSR": 0
+          },
+          "vp": 2,
+          "completed": true
+        },
+        "beneficiary_abilities": []
+      }
+    },
+    {
+      "id": "SS-R-space-1-second",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 1
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "positions": {
+            "US": 1,
+            "USSR": 1
+          },
+          "vp": 1,
+          "completed": true
+        },
+        "beneficiary_abilities": []
+      }
+    },
+    {
+      "id": "SS-R-space-2-first",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 1,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "positions": {
+            "US": 2,
+            "USSR": 0
+          },
+          "vp": 0,
+          "completed": true
+        },
+        "beneficiary_abilities": [
+          "ability.space.two_attempts"
+        ]
+      }
+    },
+    {
+      "id": "SS-R-space-2-second",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 1,
+            "USSR": 2
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "positions": {
+            "US": 2,
+            "USSR": 2
+          },
+          "vp": 0,
+          "completed": true
+        },
+        "beneficiary_abilities": []
+      }
+    },
+    {
+      "id": "SS-R-space-3-first",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 2,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "positions": {
+            "US": 3,
+            "USSR": 0
+          },
+          "vp": 2,
+          "completed": true
+        },
+        "beneficiary_abilities": [
+          "ability.space.two_attempts"
+        ]
+      }
+    },
+    {
+      "id": "SS-R-space-3-second",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 2,
+            "USSR": 3
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "positions": {
+            "US": 3,
+            "USSR": 3
+          },
+          "vp": 0,
+          "completed": true
+        },
+        "beneficiary_abilities": []
+      }
+    },
+    {
+      "id": "SS-R-space-4-first",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 3,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "positions": {
+            "US": 4,
+            "USSR": 0
+          },
+          "vp": 0,
+          "completed": true
+        },
+        "beneficiary_abilities": [
+          "ability.space.two_attempts",
+          "ability.space.headline_after_opponent"
+        ]
+      }
+    },
+    {
+      "id": "SS-R-space-4-second",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 3,
+            "USSR": 4
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "positions": {
+            "US": 4,
+            "USSR": 4
+          },
+          "vp": 0,
+          "completed": true
+        },
+        "beneficiary_abilities": []
+      }
+    },
+    {
+      "id": "SS-R-space-5-first",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 4,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "positions": {
+            "US": 5,
+            "USSR": 0
+          },
+          "vp": 3,
+          "completed": true
+        },
+        "beneficiary_abilities": [
+          "ability.space.two_attempts",
+          "ability.space.headline_after_opponent"
+        ]
+      }
+    },
+    {
+      "id": "SS-R-space-5-second",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 4,
+            "USSR": 5
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "positions": {
+            "US": 5,
+            "USSR": 5
+          },
+          "vp": 1,
+          "completed": true
+        },
+        "beneficiary_abilities": []
+      }
+    },
+    {
+      "id": "SS-R-space-6-first",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 5,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "positions": {
+            "US": 6,
+            "USSR": 0
+          },
+          "vp": 0,
+          "completed": true
+        },
+        "beneficiary_abilities": [
+          "ability.space.two_attempts",
+          "ability.space.headline_after_opponent",
+          "ability.space.discard_held_card"
+        ]
+      }
+    },
+    {
+      "id": "SS-R-space-6-second",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 5,
+            "USSR": 6
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "positions": {
+            "US": 6,
+            "USSR": 6
+          },
+          "vp": 0,
+          "completed": true
+        },
+        "beneficiary_abilities": []
+      }
+    },
+    {
+      "id": "SS-R-space-7-first",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 6,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "positions": {
+            "US": 7,
+            "USSR": 0
+          },
+          "vp": 4,
+          "completed": true
+        },
+        "beneficiary_abilities": [
+          "ability.space.two_attempts",
+          "ability.space.headline_after_opponent",
+          "ability.space.discard_held_card"
+        ]
+      }
+    },
+    {
+      "id": "SS-R-space-7-second",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 6,
+            "USSR": 7
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "positions": {
+            "US": 7,
+            "USSR": 7
+          },
+          "vp": 2,
+          "completed": true
+        },
+        "beneficiary_abilities": []
+      }
+    },
+    {
+      "id": "SS-R-space-8-first",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 7,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "positions": {
+            "US": 8,
+            "USSR": 0
+          },
+          "vp": 2,
+          "completed": true
+        },
+        "beneficiary_abilities": [
+          "ability.space.two_attempts",
+          "ability.space.headline_after_opponent",
+          "ability.space.discard_held_card",
+          "ability.space.eight_action_rounds"
+        ]
+      }
+    },
+    {
+      "id": "SS-R-space-8-second",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 7,
+            "USSR": 8
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "positions": {
+            "US": 8,
+            "USSR": 8
+          },
+          "vp": 0,
+          "completed": true
+        },
+        "beneficiary_abilities": []
+      }
+    },
+    {
+      "id": "SS-R-space-ussr-beneficiary",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 4
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "positions": {
+            "US": 0,
+            "USSR": 5
+          },
+          "vp": -3,
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "SS-R-space-quota-exhausted",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 2,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "positions": {
+            "US": 1,
+            "USSR": 0
+          },
+          "vp": 2,
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "SS-R-space-vp-victory",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 18,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "positions": {
+            "US": 1,
+            "USSR": 0
+          },
+          "vp": 20,
+          "completed": true,
+          "finished": true
+        }
+      }
+    },
+    {
+      "id": "SS-R-space-terminal",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 8,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-space-invalid-position",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 9,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-space-negative-attempts",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": -1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-space-arrival-corrupt",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": false,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-pope-removal-2",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.john_paul_ii_elected_pope",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 3,
+            "USSR": 2
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "influence": {
+            "US": 4,
+            "USSR": 0
+          },
+          "permission": "Active",
+          "pope_fact": true,
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "SS-R-pope-removal-5",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.john_paul_ii_elected_pope",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 3,
+            "USSR": 5
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "influence": {
+            "US": 4,
+            "USSR": 3
+          },
+          "permission": "Active",
+          "pope_fact": true,
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "SS-R-pope-shortage-0",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.john_paul_ii_elected_pope",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 3,
+            "USSR": 0
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-pope-shortage-1",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.john_paul_ii_elected_pope",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 3,
+            "USSR": 1
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-pope-negative-influence",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.john_paul_ii_elected_pope",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": -1
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-pope-new-duplicate",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.john_paul_ii_elected_pope",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Active",
+          "pope_fact": true,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-solidarity-active",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.solidarity",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 2,
+            "USSR": 4
+          },
+          "permission": "Active",
+          "pope_fact": true,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "influence": {
+            "US": 5,
+            "USSR": 4
+          },
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "SS-R-solidarity-active-known-source-incomplete-unrelated",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.solidarity",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Active",
+          "pope_fact": true,
+          "history_complete": false,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state_patch": {
+          "influence": {
+            "US": 3,
+            "USSR": 4
+          },
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "SS-R-solidarity-not-yet",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.solidarity",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "BlockedPrerequisite",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-solidarity-history-unknown",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.solidarity",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": false,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-solidarity-permission-unknown",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.solidarity",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Unknown",
+          "pope_fact": true,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-solidarity-instance-without-fact",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.solidarity",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Active",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-solidarity-fact-without-instance",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.solidarity",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": true,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-captured_nazi_scientist-ops-space-discard-no-event",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": false,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "NotTriggered",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-captured_nazi_scientist-repeat",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": true,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-john_paul_ii_elected_pope-ops-space-discard-no-event",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.john_paul_ii_elected_pope",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": false,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "NotTriggered",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-john_paul_ii_elected_pope-repeat",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.john_paul_ii_elected_pope",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": true,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-solidarity-ops-space-discard-no-event",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.solidarity",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": false,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "NotTriggered",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-solidarity-repeat",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.solidarity",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": true,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-unauthorized-frame",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": false,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-wrong-source-card",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": false,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-conflicting-retry",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": false,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": true,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "ConflictingRequest",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-finished",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": true,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-unknown-interference",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": false
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-R-bad-controller",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.captured_nazi_scientist",
+        "effect_controller": "Other",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "state": {
+          "positions": {
+            "US": 0,
+            "USSR": 0
+          },
+          "attempts": {
+            "US": 1,
+            "USSR": 1
+          },
+          "arrival_records_complete": true,
+          "influence": {
+            "US": 0,
+            "USSR": 4
+          },
+          "permission": "Absent",
+          "pope_fact": false,
+          "history_complete": true,
+          "rng_cursor": 17,
+          "vp": 0,
+          "completed": false,
+          "finished": false,
+          "effects_complete": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SS-I-trusted-authorization-and-current-use-validation",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "trusted-authorization-and-current-use-validation",
+      "implementation_tested": false
+    },
+    {
+      "id": "SS-I-space-arrival-receipts-replay-save-idempotence",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "space-arrival-receipts-replay-save-idempotence",
+      "implementation_tested": false
+    },
+    {
+      "id": "SS-I-shared-space-ability-two-attempts-without-reset",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "shared-space-ability-two-attempts-without-reset",
+      "implementation_tested": false
+    },
+    {
+      "id": "SS-I-headline-policy-and-eight-slot-no-immediate-extra-action",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "headline-policy-and-eight-slot-no-immediate-extra-action",
+      "implementation_tested": false
+    },
+    {
+      "id": "SS-I-vp-victory-and-star-disposition-atomic",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "vp-victory-and-star-disposition-atomic",
+      "implementation_tested": false
+    },
+    {
+      "id": "SS-I-pope-influence-fact-permission-atomic-rollback",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "pope-influence-fact-permission-atomic-rollback",
+      "implementation_tested": false
+    },
+    {
+      "id": "SS-I-solidarity-ops-before-after-current-eventattempt-gate",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "solidarity-ops-before-after-current-eventattempt-gate",
+      "implementation_tested": false
+    },
+    {
+      "id": "SS-I-render-independent-and-private-save-view",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "render-independent-and-private-save-view",
+      "implementation_tested": false
+    }
+  ]
+}

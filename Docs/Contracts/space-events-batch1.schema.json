@@ -1,0 +1,307 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:space-events-batch1:1",
+  "title": "事件太空推进首批：一格、普通尝试隔离、共享轨道奖励及终点待裁定。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.space_events_batch1"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "release-candidate"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "C-DELUXE-EN"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf"
+            },
+            "edition": {
+              "const": "English Deluxe card images"
+            },
+            "description": {
+              "const": "p4 #18一格推进；p11 #68 Poland移除2USSR再加1US并允许Solidarity；p15 #101 Pope生效才可事件加3US。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "R2015"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf"
+            },
+            "edition": {
+              "const": "Deluxe rules 2015"
+            },
+            "description": {
+              "const": "§2.2.4–5星号/永久标记；§5.2/5.3实际事件与牌区；§6.1.1直接影响力；§6.4太空奖励/能力与事件推进；§7.3永久效果。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "F2010"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/FAQv5.pdf"
+            },
+            "edition": {
+              "const": "FAQ v5 2010, compatible Deluxe clarification only"
+            },
+            "description": {
+              "const": "PDFp4 #18事件推进不算普通尝试；p5旧二格后续问答不覆盖Deluxe一格卡值。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "PROJECT-SS1"
+            },
+            "url": {
+              "const": null
+            },
+            "edition": {
+              "const": "Engineering contracts and unresolved edges, 2026-10-06"
+            },
+            "description": {
+              "const": "事件授权帧/来源/去重及原子计划；Pope许可使用成功事实关联的ActiveEffectInstance，不以牌区推断。Pope移除不足2及Scientist已在终点尚待用户裁定，均RequiresRuling，建议不是采纳规则。"
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "captured_nazi_scientist"
+      ],
+      "properties": {
+        "captured_nazi_scientist": {
+          "$ref": "#/$defs/captured_nazi_scientist"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "captured_nazi_scientist": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "advance_steps",
+        "ordinary_attempt_consumption",
+        "requires_ordinary_ops_qualification",
+        "random_roll",
+        "track_dataset_id",
+        "reward_policy",
+        "ability_policy",
+        "terminal_policy",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.captured_nazi_scientist"
+        },
+        "effect_id": {
+          "const": "effect.captured_nazi_scientist"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "EventSpaceAdvance"
+        },
+        "beneficiary": {
+          "const": "EffectController"
+        },
+        "advance_steps": {
+          "const": 1
+        },
+        "ordinary_attempt_consumption": {
+          "const": 0
+        },
+        "requires_ordinary_ops_qualification": {
+          "const": false
+        },
+        "random_roll": {
+          "const": "None"
+        },
+        "track_dataset_id": {
+          "const": "rules.deluxe2015.space-race"
+        },
+        "reward_policy": {
+          "const": "NormalReachedSpaceFirstOrSecond"
+        },
+        "ability_policy": {
+          "const": "QueryAuthoritativeTrackPositions"
+        },
+        "terminal_policy": {
+          "const": "RequiresRuling"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "Englishp4 #18; R2015 §6.4.1–6; FAQ PDFp4 #18"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "Englishp4 #18; R2015 §6.4.1–6; FAQ PDFp4 #18"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "F2010"
+                },
+                "locator": {
+                  "const": "Englishp4 #18; R2015 §6.4.1–6; FAQ PDFp4 #18"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-SS1"
+                },
+                "locator": {
+                  "const": "SS1 engineering boundaries; unresolved edges are not adopted"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    }
+  },
+  "description": "事件太空推进首批：一格、普通尝试隔离、共享轨道奖励及终点待裁定。"
+}

@@ -93,3 +93,5 @@ description：按效果参数查本回合持续状态的生效、到期、取消
 最新交互见[战争牌持续与取消](war-card-hooks.md)：实际CardPlayer决定处罚资格；Flower精确时机/UN边界待裁定，戴维营与邪恶帝国完整步骤已绑定，处理器仍planned。
 
 [DEFCON事件与政变干预](defcon-events-batch1.md)补齐危机实际Actor责任、任意边界解除、核潜艇/SALT政策与ABM视同OPS；全部仍planned。
+
+[教皇许可](solidarity-chain.md)复用活动实例且关联成功来源，保持当前状态与历史事实分开。

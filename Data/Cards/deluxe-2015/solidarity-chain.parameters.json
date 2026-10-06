@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.solidarity_chain",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "教皇／团结工会链：固定Poland影响力、成功来源关联的永久许可与实际事件门禁。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "p4 #18一格推进；p11 #68 Poland移除2USSR再加1US并允许Solidarity；p15 #101 Pope生效才可事件加3US。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.2.4–5星号/永久标记；§5.2/5.3实际事件与牌区；§6.1.1直接影响力；§6.4太空奖励/能力与事件推进；§7.3永久效果。"
+    },
+    {
+      "id": "PROJECT-SS1",
+      "url": null,
+      "edition": "Engineering contracts and unresolved edges, 2026-10-06",
+      "description": "事件授权帧/来源/去重及原子计划；Pope许可使用成功事实关联的ActiveEffectInstance，不以牌区推断。Pope移除不足2及Scientist已在终点尚待用户裁定，均RequiresRuling，建议不是采纳规则。"
+    }
+  ],
+  "parameters": {
+    "john_paul_ii_elected_pope": {
+      "card_id": "card.john_paul_ii_elected_pope",
+      "effect_id": "effect.john_paul_ii_elected_pope",
+      "description": "固定Poland移除2USSR再加1US，成功提交激活永久Solidarity许可；USSR不足2暂RequiresRuling。",
+      "template": "InfluenceThenActivatePermission",
+      "beneficiary": "US",
+      "country_id": "country.poland",
+      "remove_side": "USSR",
+      "remove_amount": 2,
+      "add_amount": 1,
+      "step_order": [
+        "RemoveInfluence",
+        "AddInfluence",
+        "ActivatePermission"
+      ],
+      "insufficient_removal_policy": "RequiresRuling",
+      "permission": {
+        "effect_id": "effect.john_paul_ii_elected_pope",
+        "allowed_event_card_id": "card.solidarity",
+        "duration": "UntilCancelledOrGameEnd",
+        "expiry_boundary": null,
+        "source_fact_required": true
+      },
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "Englishp11 #68; R2015 §2.2.4–5, §5.2, §6.1.1, §7.3",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Englishp11 #68; R2015 §2.2.4–5, §5.2, §6.1.1, §7.3",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-SS1",
+          "locator": "SS1 engineering boundaries; unresolved edges are not adopted",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "solidarity": {
+      "card_id": "card.solidarity",
+      "effect_id": "effect.solidarity",
+      "description": "教皇成功来源关联的活动许可生效时固定Poland加3US；历史事实单独不足以证明仍生效。",
+      "template": "AddFixedIfPermissionActive",
+      "beneficiary": "US",
+      "country_id": "country.poland",
+      "add_amount": 3,
+      "activation_gate": {
+        "kind": "ActivePermissionWithSuccessfulSourceFact",
+        "effect_id": "effect.john_paul_ii_elected_pope",
+        "source_card_id": "card.john_paul_ii_elected_pope",
+        "check_boundary": "EventAttempt",
+        "complete_history_absent": "BlockedPrerequisite",
+        "unknown_history_or_permission": "RequiresRuling",
+        "conflicting_fact_and_permission": "InvalidState"
+      },
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "Englishp15 #101; R2015 §5.2, §7.1, §7.3",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Englishp15 #101; R2015 §5.2, §7.1, §7.3",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-SS1",
+          "locator": "SS1 engineering boundaries; unresolved edges are not adopted",
+          "verification": "Verified"
+        }
+      ]
+    }
+  },
+  "event_fact_policy_ref": {
+    "dataset_id": "effects.deluxe2015.treaty_protection",
+    "json_pointer": "/event_fact_policy"
+  }
+}
