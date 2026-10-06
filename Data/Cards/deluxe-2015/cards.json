@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.20.0",
+  "content_version": "0.21.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计54牌效果参数已绑定，其余48个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计57牌效果参数已绑定，其余45个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -125,6 +125,12 @@
       "url": null,
       "edition": "Engineering contracts and unresolved edges, 2026-10-06",
       "description": "事件授权帧/来源/去重及原子计划；Pope许可使用成功事实关联的ActiveEffectInstance，不以牌区推断。Pope移除不足2及Scientist已在终点尚待用户裁定，均RequiresRuling，建议不是采纳规则。"
+    },
+    {
+      "id": "PROJECT-CMV1",
+      "url": null,
+      "edition": "Engineering boundaries and integer derivation, 2026-10-06",
+      "description": "从实际权威国家快照查询具名指标，计分投影不污染基础战场；every2按完整整数对向下取整，非专门FAQ。零量无条件事件仍成功、一个VP批次、请求去重/版本是工程契约。"
     }
   ],
   "cards": [
@@ -1603,8 +1609,13 @@
       "effect_binding": {
         "effect_id": "effect.kitchen_debates",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.country_metric_vp_events",
+            "json_pointer": "/parameters/kitchen_debates"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -2463,8 +2474,13 @@
       "effect_binding": {
         "effect_id": "effect.alliance_for_progress",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.country_metric_vp_events",
+            "json_pointer": "/parameters/alliance_for_progress"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -2635,8 +2651,13 @@
       "effect_binding": {
         "effect_id": "effect.reagan_bombs_libya",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.country_metric_vp_events",
+            "json_pointer": "/parameters/reagan_bombs_libya"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -4410,15 +4431,32 @@
     {
       "effect_id": "effect.kitchen_debates",
       "contract_version": "0.1.0",
-      "description": "Kitchen Debates：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.kitchen_debates",
+      "description": "US真实控制的基础战场总数严格大于USSR才US获2VP；相等/少于条件不满足，不移出。",
+      "handler_key": "metrics.VpIfMoreControlledBattlegrounds",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:country-metric-vp-events:1#/$defs/kitchen_debates"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "Englishp8 #48; R2015 §2.1.7/5.2; FAQp15 #73",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Englishp8 #48; R2015 §2.1.7/5.2; FAQp15 #73",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "Englishp8 #48; R2015 §2.1.7/5.2; FAQp15 #73",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-CMV1",
+          "locator": "CMV1 finite metric plans / integer pair derivation",
+          "verification": "Verified"
         }
       ]
     },
@@ -5005,15 +5043,27 @@
     {
       "effect_id": "effect.alliance_for_progress",
       "contract_version": "0.1.0",
-      "description": "Alliance for Progress：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.alliance_for_progress",
+      "description": "US控制的中美/南美基础战场每国1VP，零仍成功无变化并星号移出。",
+      "handler_key": "metrics.VpPerControlledBattleground",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:country-metric-vp-events:1#/$defs/alliance_for_progress"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "Englishp12 #78; R2015 §2.1.7/5.2 Example3",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Englishp12 #78; R2015 §2.1.7/5.2 Example3",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-CMV1",
+          "locator": "CMV1 finite metric plans / integer pair derivation",
+          "verification": "Verified"
         }
       ]
     },
@@ -5119,15 +5169,27 @@
     {
       "effect_id": "effect.reagan_bombs_libya",
       "contract_version": "0.1.0",
-      "description": "Reagan Bombs Libya：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.reagan_bombs_libya",
+      "description": "Libya每完整2USSR影响力US得1VP；不要求任何控制，不移除/转换影响。0或1仍成功无变化。",
+      "handler_key": "metrics.VpPerInfluenceGroup",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:country-metric-vp-events:1#/$defs/reagan_bombs_libya"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "Englishp13 #84; R2015 §5.2/10.2–10.3.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Englishp13 #84; R2015 §5.2/10.2–10.3.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-CMV1",
+          "locator": "CMV1 finite metric plans / integer pair derivation",
+          "verification": "Verified"
         }
       ]
     },

@@ -2,11 +2,13 @@
   "schema_version": 1,
   "inputs": [
     "权威出牌帧/结算ID/步骤游标、类型化步骤、静态引用和活动/阻止状态",
-    "DV1有序DEFCON/动态VP上下文与How I Learned固定5直接军事；EffectController与根PhasingPlayer分开"
+    "DV1有序DEFCON/动态VP上下文与How I Learned固定5直接军事；EffectController与根PhasingPlayer分开",
+    "当前完整权威国家影响力与基础地图、版本；不接受客户端指标"
   ],
   "outputs": [
     "拟定影响力/VP/持续例外/取消阻止计划、区域行动授权与继续位置；Completed/AwaitingDecision/GameEnded，不接受任意代码",
-    "DV1具名轨道/VP/直接军事步骤或Owner等级决定计划，终局截断；调用方统一提交"
+    "DV1具名轨道/VP/直接军事步骤或Owner等级决定计划，终局截断；调用方统一提交",
+    "具名指标证据、完整单事件VP批次或BlockedPrerequisite/ResolvedNoChange"
   ],
   "dependencies": [
     {
@@ -44,13 +46,13 @@
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "edition": "English Deluxe card images",
-      "description": "英文p4 #17、p9 #55；p14 #96本批重新核对完整取消、固定影响力与可选欧洲行动。 本批p9 #59/p10 #65/p14 #97。"
+      "description": "英文p4 #17、p9 #55；p14 #96本批重新核对完整取消、固定影响力与可选欧洲行动。 本批p9 #59/p10 #65/p14 #97。 CMV1: p8 #48 US实际控制战场多于USSR才US2VP；p12 #78 US控制中/南美每战场1VP；p13 #84 Libya每2USSR影响US1VP。"
     },
     {
       "id": "R2015",
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
       "edition": "Deluxe rules 2015",
-      "description": "§5.2事件发生与去向、§6.1.1直接放置、§7.3/7.5持续与禁用事件、§10.2–10.3 VP净奖分与立即胜利。 本批补§6.2–6.3、§7.4、§8.1与§8.2.5。"
+      "description": "§5.2事件发生与去向、§6.1.1直接放置、§7.3/7.5持续与禁用事件、§10.2–10.3 VP净奖分与立即胜利。 本批补§6.2–6.3、§7.4、§8.1与§8.2.5。 CMV1: §2.1.7控制；§5.2条件不满足与无效果成功不同，Example3进步联盟零战场仍发生移出；§10.2轨道与阈值；§10.3.1完整奖分后即时胜利。"
     },
     {
       "id": "PROJECT-NE",
@@ -62,7 +64,7 @@
       "id": "F2010",
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
       "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
-      "description": "PDF p16 #96明确欧洲政变/调整DEFCON地理豁免，战场仍降级且免费政变不记军事；p20–21普通行动与修正澄清。"
+      "description": "PDF p16 #96明确欧洲政变/调整DEFCON地理豁免，战场仍降级且免费政变不记军事；p20–21普通行动与修正澄清。 CMV1: PDFp15 #73明确Shuttle不影响Kitchen Debates。"
     },
     {
       "id": "PROJECT-EO1",
@@ -87,6 +89,12 @@
       "url": null,
       "edition": "Engineering contracts, 2026-10-06",
       "description": "按卡文步骤每次DEFCON或本事件完整VP批次即时判胜，吸收态停止余步；合法选择前不改轨道，不凭印刷OPS计算VP/军事。军事沿既有非负累计总量存储，不凭图形轨道 invent cap。"
+    },
+    {
+      "id": "PROJECT-CMV1",
+      "url": null,
+      "edition": "Engineering boundaries and integer derivation, 2026-10-06",
+      "description": "从实际权威国家快照查询具名指标，计分投影不污染基础战场；every2按完整整数对向下取整，非专门FAQ。零量无条件事件仍成功、一个VP批次、请求去重/版本是工程契约。"
     }
   ],
   "tests": [
@@ -109,13 +117,17 @@
     {
       "path": "Docs/Design/defcon-vp-events.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/country-metric-vp-events.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "documentation": "Docs/Wiki/nato-exceptions.md",
   "id": "module.composite-events",
   "kind": "module",
   "status": "planned",
-  "description": "固定组合事件与可选区域行动：影响力、VP、成功事实、永久取消阻止和授权子帧；封闭步骤，终局截断。",
+  "description": "固定组合事件与可选区域行动：影响力、VP、成功事实、永久取消阻止和授权子帧；封闭步骤，终局截断。 国家指标直接VP以封闭具名查询生成。",
   "entrypoints": [],
   "planned_entrypoints": [
     {
@@ -124,6 +136,10 @@
     },
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Composite/DefconVpEventService.cs",
+      "symbol": "BuildPlan"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Metrics/CountryMetricVpEventService.cs",
       "symbol": "BuildPlan"
     }
   ],
@@ -137,18 +153,20 @@
     "effects.deluxe2015.event_operations_batch1",
     "effects.deluxe2015.war_card_hooks",
     "effects.deluxe2015.defcon_events_batch1",
-    "effects.deluxe2015.defcon_vp_events"
+    "effects.deluxe2015.defcon_vp_events",
+    "effects.deluxe2015.country_metric_vp_events"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:nato-exceptions:1",
     "urn:coldwarheat:contract:event-operations-batch1:1",
     "urn:coldwarheat:contract:war-card-hooks:1",
     "urn:coldwarheat:contract:defcon-events-batch1:1",
-    "urn:coldwarheat:contract:defcon-vp-events:1"
+    "urn:coldwarheat:contract:defcon-vp-events:1",
+    "urn:coldwarheat:contract:country-metric-vp-events:1"
   ],
   "verification": {
     "implementation_tested": false,
     "report": "Docs/Design/nato-exceptions.validation.json",
-    "latest_design_report": "Docs/Design/defcon-vp-events.validation.json"
+    "latest_design_report": "Docs/Design/country-metric-vp-events.validation.json"
   }
 }

@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "id": "data.country-metric-vp-events",
+  "kind": "data",
+  "status": "ready",
+  "description": "国家局面指标VP三牌：实际战场控制比较/区域计数与完整影响力对；只读指标、一个VP批次，C#待实现。",
+  "dataset_id": "effects.deluxe2015.country_metric_vp_events",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/country-metric-vp-events.schema.json",
+  "documentation": "Docs/Wiki/country-metric-vp-events.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/country-metric-vp-events.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "CardId、当前权威国家快照和共享地图/控制规则"
+  ],
+  "outputs": [
+    "只读指标范围/比较/完整组、VP量与明确零量/条件结果"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "map.deluxe2015.world",
+    "cards.deluxe2015.definitions",
+    "rules.deluxe2015.victory"
+  ],
+  "preconditions": [
+    "参数Bound不是处理器实现",
+    "不从客户端传来的控制数/VP或计分临时投影读取指标"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知相关指标/交互/版本、非法影响力或不完整国家快照",
+    "不可信/过期来源、重复请求内容冲突"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "p8 #48 US实际控制战场多于USSR才US2VP；p12 #78 US控制中/南美每战场1VP；p13 #84 Libya每2USSR影响US1VP。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1.7控制；§5.2条件不满足与无效果成功不同，Example3进步联盟零战场仍发生移出；§10.2轨道与阈值；§10.3.1完整奖分后即时胜利。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarification only",
+      "description": "PDFp15 #73明确Shuttle不影响Kitchen Debates。"
+    },
+    {
+      "id": "PROJECT-CMV1",
+      "url": null,
+      "edition": "Engineering boundaries and integer derivation, 2026-10-06",
+      "description": "从实际权威国家快照查询具名指标，计分投影不污染基础战场；every2按完整整数对向下取整，非专门FAQ。零量无条件事件仍成功、一个VP批次、请求去重/版本是工程契约。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/country-metric-vp-events.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/country-metric-vp-events.validation.json"
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.country_metric_vp_events",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "国家局面指标VP三牌：实际战场控制比较/区域计数与完整影响力对；只读指标、一个VP批次，C#待实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "p8 #48 US实际控制战场多于USSR才US2VP；p12 #78 US控制中/南美每战场1VP；p13 #84 Libya每2USSR影响US1VP。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1.7控制；§5.2条件不满足与无效果成功不同，Example3进步联盟零战场仍发生移出；§10.2轨道与阈值；§10.3.1完整奖分后即时胜利。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarification only",
+      "description": "PDFp15 #73明确Shuttle不影响Kitchen Debates。"
+    },
+    {
+      "id": "PROJECT-CMV1",
+      "url": null,
+      "edition": "Engineering boundaries and integer derivation, 2026-10-06",
+      "description": "从实际权威国家快照查询具名指标，计分投影不污染基础战场；every2按完整整数对向下取整，非专门FAQ。零量无条件事件仍成功、一个VP批次、请求去重/版本是工程契约。"
+    }
+  ],
+  "parameters": {
+    "kitchen_debates": {
+      "card_id": "card.kitchen_debates",
+      "effect_id": "effect.kitchen_debates",
+      "description": "US真实控制的基础战场总数严格大于USSR才US获2VP；相等/少于条件不满足，不移出。",
+      "template": "VpIfMoreControlledBattlegrounds",
+      "beneficiary": "US",
+      "metric": {
+        "kind": "ActualControlledBaseBattlegroundCount",
+        "scope": "World",
+        "map_dataset_id": "map.deluxe2015.world",
+        "scoring_effects_policy": "ExcludeScoringOnlyProjections"
+      },
+      "comparison": "StrictlyGreaterThanOpponent",
+      "vp_amount": 2,
+      "condition_false": "BlockedPrerequisite",
+      "condition_false_reason": "NotMoreControlledBattlegrounds",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "Englishp8 #48; R2015 §2.1.7/5.2; FAQp15 #73",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Englishp8 #48; R2015 §2.1.7/5.2; FAQp15 #73",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "Englishp8 #48; R2015 §2.1.7/5.2; FAQp15 #73",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-CMV1",
+          "locator": "CMV1 finite metric plans / integer pair derivation",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "alliance_for_progress": {
+      "card_id": "card.alliance_for_progress",
+      "effect_id": "effect.alliance_for_progress",
+      "description": "US控制的中美/南美基础战场每国1VP，零仍成功无变化并星号移出。",
+      "template": "VpPerControlledBattleground",
+      "beneficiary": "US",
+      "metric": {
+        "kind": "ActualControlledBaseBattlegroundCount",
+        "region_ids": [
+          "region.central_america",
+          "region.south_america"
+        ],
+        "map_dataset_id": "map.deluxe2015.world",
+        "scoring_effects_policy": "ExcludeScoringOnlyProjections"
+      },
+      "vp_per_country": 1,
+      "zero_amount_outcome": "ResolvedNoChange",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "Englishp12 #78; R2015 §2.1.7/5.2 Example3",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Englishp12 #78; R2015 §2.1.7/5.2 Example3",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-CMV1",
+          "locator": "CMV1 finite metric plans / integer pair derivation",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "reagan_bombs_libya": {
+      "card_id": "card.reagan_bombs_libya",
+      "effect_id": "effect.reagan_bombs_libya",
+      "description": "Libya每完整2USSR影响力US得1VP；不要求任何控制，不移除/转换影响。0或1仍成功无变化。",
+      "template": "VpPerInfluenceGroup",
+      "beneficiary": "US",
+      "country_id": "country.libya",
+      "influence_side": "USSR",
+      "group_size": 2,
+      "vp_per_group": 1,
+      "rounding": "FloorCompleteGroups",
+      "zero_amount_outcome": "ResolvedNoChange",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "Englishp13 #84; R2015 §5.2/10.2–10.3.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Englishp13 #84; R2015 §5.2/10.2–10.3.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-CMV1",
+          "locator": "CMV1 finite metric plans / integer pair derivation",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

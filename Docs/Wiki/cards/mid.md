@@ -70,3 +70,5 @@
 [中期影响力第一批](../mid-influence-batch1.md)绑定#52/#54/#70/#72，固定值/目标与额度复用同一服务。
 
 本批参数与边界见[solidarity-chain](../solidarity-chain.md)；C#待实现。
+
+[国家指标VP](../country-metric-vp-events.md)按实际局面查询；不是地区计分投影。

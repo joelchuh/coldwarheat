@@ -1,0 +1,2556 @@
+{
+  "schema_version": 1,
+  "description": "国家指标/VP与条件/零量状态参考；控制基于真实世界图，真实事务/牌区未实现。",
+  "status": "mixed-reference-and-planned",
+  "dataset": "Data/Cards/deluxe-2015/country-metric-vp-events.parameters.json",
+  "schema": "Docs/Contracts/country-metric-vp-events.schema.json",
+  "cases": [
+    {
+      "id": "CMV-D-baseline",
+      "validation_layer": "data",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "CMV-D-kitchen-greater",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "kitchen_debates",
+              "comparison"
+            ],
+            "value": "GreaterOrEqual"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CMV-D-kitchen-value",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "kitchen_debates",
+              "vp_amount"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CMV-D-kitchen-scope",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "kitchen_debates",
+              "metric",
+              "scope"
+            ],
+            "value": "Asia"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CMV-D-kitchen-map",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "kitchen_debates",
+              "metric",
+              "map_dataset_id"
+            ],
+            "value": "map.optional"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CMV-D-kitchen-projection",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "kitchen_debates",
+              "metric",
+              "scoring_effects_policy"
+            ],
+            "value": "ApplyShuttle"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CMV-D-kitchen-false",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "kitchen_debates",
+              "condition_false"
+            ],
+            "value": "ResolvedNoChange"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CMV-D-alliance-country-value",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "alliance_for_progress",
+              "vp_per_country"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CMV-D-alliance-regions",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "alliance_for_progress",
+              "metric",
+              "region_ids"
+            ],
+            "value": [
+              "region.asia"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CMV-D-alliance-zero",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "alliance_for_progress",
+              "zero_amount_outcome"
+            ],
+            "value": "BlockedPrerequisite"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CMV-D-libya-country",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "reagan_bombs_libya",
+              "country_id"
+            ],
+            "value": "country.iran"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CMV-D-libya-side",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "reagan_bombs_libya",
+              "influence_side"
+            ],
+            "value": "US"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CMV-D-libya-group",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "reagan_bombs_libya",
+              "group_size"
+            ],
+            "value": 3
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CMV-D-libya-rounding",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "reagan_bombs_libya",
+              "rounding"
+            ],
+            "value": "Ceiling"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CMV-D-libya-zero",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "reagan_bombs_libya",
+              "zero_amount_outcome"
+            ],
+            "value": "BlockedPrerequisite"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CMV-D-libya-beneficiary",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "reagan_bombs_libya",
+              "beneficiary"
+            ],
+            "value": "EffectController"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CMV-R-kitchen-more",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.kitchen_debates",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.mexico": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.mexico": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "vp": 2,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 2
+      }
+    },
+    {
+      "id": "CMV-R-kitchen-equal",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.kitchen_debates",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.mexico": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "BlockedPrerequisite",
+        "state": {
+          "influence": {
+            "country.mexico": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0,
+        "reason": "NotMoreControlledBattlegrounds"
+      }
+    },
+    {
+      "id": "CMV-R-kitchen-less",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.kitchen_debates",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.mexico": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.brazil": {
+              "US": 0,
+              "USSR": 2
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "BlockedPrerequisite",
+        "state": {
+          "influence": {
+            "country.mexico": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.brazil": {
+              "US": 0,
+              "USSR": 2
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0,
+        "reason": "NotMoreControlledBattlegrounds"
+      }
+    },
+    {
+      "id": "CMV-R-kitchen-none",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.kitchen_debates",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "BlockedPrerequisite",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0,
+        "reason": "NotMoreControlledBattlegrounds"
+      }
+    },
+    {
+      "id": "CMV-R-kitchen-non-bg-only",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.kitchen_debates",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.guatemala": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.indonesia": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "BlockedPrerequisite",
+        "state": {
+          "influence": {
+            "country.guatemala": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.indonesia": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0,
+        "reason": "NotMoreControlledBattlegrounds"
+      }
+    },
+    {
+      "id": "CMV-R-kitchen-taiwan-projection-excluded",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.kitchen_debates",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.taiwan": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": true,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "BlockedPrerequisite",
+        "state": {
+          "influence": {
+            "country.taiwan": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": true,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0,
+        "reason": "NotMoreControlledBattlegrounds"
+      }
+    },
+    {
+      "id": "CMV-R-kitchen-shuttle-excluded",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.kitchen_debates",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.mexico": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.north_korea": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": true
+        }
+      },
+      "expected": {
+        "outcome": "BlockedPrerequisite",
+        "state": {
+          "influence": {
+            "country.mexico": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.north_korea": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": true
+        },
+        "us_vp_amount": 0,
+        "reason": "NotMoreControlledBattlegrounds"
+      }
+    },
+    {
+      "id": "CMV-R-kitchen-contested-not-controlled",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.kitchen_debates",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.japan": {
+              "US": 4,
+              "USSR": 1
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "BlockedPrerequisite",
+        "state": {
+          "influence": {
+            "country.japan": {
+              "US": 4,
+              "USSR": 1
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0,
+        "reason": "NotMoreControlledBattlegrounds"
+      }
+    },
+    {
+      "id": "CMV-R-kitchen-ussr-ops-us-benefits",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.kitchen_debates",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "vp": 2,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 2
+      }
+    },
+    {
+      "id": "CMV-R-kitchen-victory",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.kitchen_debates",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "vp": 18,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "vp": 20,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": true,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 2
+      }
+    },
+    {
+      "id": "CMV-R-alliance-zero",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.alliance_for_progress",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-alliance-non-bg",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.alliance_for_progress",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.guatemala": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.uruguay": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "state": {
+          "influence": {
+            "country.guatemala": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.uruguay": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-alliance-one",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.alliance_for_progress",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "vp": 1,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 1
+      }
+    },
+    {
+      "id": "CMV-R-alliance-central-three",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.alliance_for_progress",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.mexico": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.cuba": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.mexico": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.cuba": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "vp": 3,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 3
+      }
+    },
+    {
+      "id": "CMV-R-alliance-all-seven",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.alliance_for_progress",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.mexico": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.cuba": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.argentina": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.venezuela": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.mexico": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.cuba": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.argentina": {
+              "US": 2,
+              "USSR": 0
+            },
+            "country.venezuela": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "vp": 7,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 7
+      }
+    },
+    {
+      "id": "CMV-R-alliance-other-region-excluded",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.alliance_for_progress",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.japan": {
+              "US": 4,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "state": {
+          "influence": {
+            "country.japan": {
+              "US": 4,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-alliance-ussr-controls",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.alliance_for_progress",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.mexico": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.panama": {
+              "US": 0,
+              "USSR": 2
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "state": {
+          "influence": {
+            "country.mexico": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.panama": {
+              "US": 0,
+              "USSR": 2
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-alliance-contested",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.alliance_for_progress",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 1
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 1
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-alliance-victory",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.alliance_for_progress",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "vp": 19,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "vp": 20,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": true,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 1
+      }
+    },
+    {
+      "id": "CMV-R-libya-0",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.reagan_bombs_libya",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 0,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 0,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-libya-1",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.reagan_bombs_libya",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-libya-2",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.reagan_bombs_libya",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 0,
+              "USSR": 2
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 0,
+              "USSR": 2
+            }
+          },
+          "vp": 1,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 1
+      }
+    },
+    {
+      "id": "CMV-R-libya-3",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.reagan_bombs_libya",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "vp": 1,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 1
+      }
+    },
+    {
+      "id": "CMV-R-libya-4",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.reagan_bombs_libya",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 0,
+              "USSR": 4
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 0,
+              "USSR": 4
+            }
+          },
+          "vp": 2,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 2
+      }
+    },
+    {
+      "id": "CMV-R-libya-5",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.reagan_bombs_libya",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 0,
+              "USSR": 5
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 0,
+              "USSR": 5
+            }
+          },
+          "vp": 2,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 2
+      }
+    },
+    {
+      "id": "CMV-R-libya-8",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.reagan_bombs_libya",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 0,
+              "USSR": 8
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 0,
+              "USSR": 8
+            }
+          },
+          "vp": 4,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 4
+      }
+    },
+    {
+      "id": "CMV-R-libya-us-controls-still-count",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.reagan_bombs_libya",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 20,
+              "USSR": 5
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 20,
+              "USSR": 5
+            }
+          },
+          "vp": 2,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 2
+      }
+    },
+    {
+      "id": "CMV-R-libya-other-country-ignored",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.reagan_bombs_libya",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 0,
+              "USSR": 6
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 0,
+              "USSR": 6
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-libya-victory",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.reagan_bombs_libya",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 0,
+              "USSR": 4
+            }
+          },
+          "vp": 18,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 0,
+              "USSR": 4
+            }
+          },
+          "vp": 20,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": true,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 2
+      }
+    },
+    {
+      "id": "CMV-R-negative-influence",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.reagan_bombs_libya",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 0,
+              "USSR": -1
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 0,
+              "USSR": -1
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-fraction-influence",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.reagan_bombs_libya",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 0,
+              "USSR": 1.5
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state": {
+          "influence": {
+            "country.libya": {
+              "US": 0,
+              "USSR": 1.5
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-unknown-country",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.kitchen_debates",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.missing": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state": {
+          "influence": {
+            "country.missing": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-incomplete-state",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.kitchen_debates",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": false,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": false,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-unknown-related-effects",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.kitchen_debates",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": false,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": false,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-wrong-frame",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.kitchen_debates",
+        "verified_internal_frame": false,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-wrong-card-source",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.kitchen_debates",
+        "verified_internal_frame": true,
+        "authorization_card_matches": false,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-stale-version",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.kitchen_debates",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": false,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "StaleContext",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-conflicting-retry",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.kitchen_debates",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": false,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "ConflictingRequest",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-finished",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.kitchen_debates",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": true,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": true,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-kitchen_debates-no-event",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.kitchen_debates",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": false,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "NotTriggered",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-kitchen_debates-repeat-changed-world",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.kitchen_debates",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-alliance_for_progress-no-event",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.alliance_for_progress",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": false,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "NotTriggered",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-alliance_for_progress-repeat-changed-world",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.alliance_for_progress",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-reagan_bombs_libya-no-event",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.reagan_bombs_libya",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": false,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "NotTriggered",
+        "state": {
+          "influence": {},
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-R-reagan_bombs_libya-repeat-changed-world",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.reagan_bombs_libya",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "version_matches": true,
+        "event_attempt": true,
+        "root_phasing_player": "USSR",
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": 3,
+              "USSR": 0
+            }
+          },
+          "vp": 0,
+          "complete_state": true,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 9,
+          "formosan_active": false,
+          "shuttle_active": false
+        },
+        "us_vp_amount": 0
+      }
+    },
+    {
+      "id": "CMV-I-current-state-ops-before-after-query",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "current-state-ops-before-after-query",
+      "implementation_tested": false
+    },
+    {
+      "id": "CMV-I-vp-star-disposition-condition-vs-zero-atomic",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "vp-star-disposition-condition-vs-zero-atomic",
+      "implementation_tested": false
+    },
+    {
+      "id": "CMV-I-trusted-caller-no-client-metric",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "trusted-caller-no-client-metric",
+      "implementation_tested": false
+    },
+    {
+      "id": "CMV-I-save-replay-no-repeat-award",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "save-replay-no-repeat-award",
+      "implementation_tested": false
+    },
+    {
+      "id": "CMV-I-rollback-version-no-rng",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "rollback-version-no-rng",
+      "implementation_tested": false
+    },
+    {
+      "id": "CMV-I-map-theme-and-view-independent",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "map-theme-and-view-independent",
+      "implementation_tested": false
+    }
+  ]
+}

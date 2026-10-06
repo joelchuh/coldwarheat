@@ -1,0 +1,588 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:country-metric-vp-events:1",
+  "title": "国家指标与直接VP参数",
+  "description": "国家局面指标VP三牌：实际战场控制比较/区域计数与完整影响力对；只读指标、一个VP批次，C#待实现。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.country_metric_vp_events"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "release-candidate"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "C-DELUXE-EN"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf"
+            },
+            "edition": {
+              "const": "English Deluxe card images"
+            },
+            "description": {
+              "const": "p8 #48 US实际控制战场多于USSR才US2VP；p12 #78 US控制中/南美每战场1VP；p13 #84 Libya每2USSR影响US1VP。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "R2015"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf"
+            },
+            "edition": {
+              "const": "Deluxe rules 2015"
+            },
+            "description": {
+              "const": "§2.1.7控制；§5.2条件不满足与无效果成功不同，Example3进步联盟零战场仍发生移出；§10.2轨道与阈值；§10.3.1完整奖分后即时胜利。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "F2010"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/FAQv5.pdf"
+            },
+            "edition": {
+              "const": "FAQ v5 2010, compatible Deluxe clarification only"
+            },
+            "description": {
+              "const": "PDFp15 #73明确Shuttle不影响Kitchen Debates。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "PROJECT-CMV1"
+            },
+            "url": {
+              "const": null
+            },
+            "edition": {
+              "const": "Engineering boundaries and integer derivation, 2026-10-06"
+            },
+            "description": {
+              "const": "从实际权威国家快照查询具名指标，计分投影不污染基础战场；every2按完整整数对向下取整，非专门FAQ。零量无条件事件仍成功、一个VP批次、请求去重/版本是工程契约。"
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kitchen_debates",
+        "alliance_for_progress",
+        "reagan_bombs_libya"
+      ],
+      "properties": {
+        "kitchen_debates": {
+          "$ref": "#/$defs/kitchen_debates"
+        },
+        "alliance_for_progress": {
+          "$ref": "#/$defs/alliance_for_progress"
+        },
+        "reagan_bombs_libya": {
+          "$ref": "#/$defs/reagan_bombs_libya"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "kitchen_debates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "metric",
+        "comparison",
+        "vp_amount",
+        "condition_false",
+        "condition_false_reason",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.kitchen_debates"
+        },
+        "effect_id": {
+          "const": "effect.kitchen_debates"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "VpIfMoreControlledBattlegrounds"
+        },
+        "beneficiary": {
+          "const": "US"
+        },
+        "metric": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "scope",
+            "map_dataset_id",
+            "scoring_effects_policy"
+          ],
+          "properties": {
+            "kind": {
+              "const": "ActualControlledBaseBattlegroundCount"
+            },
+            "scope": {
+              "const": "World"
+            },
+            "map_dataset_id": {
+              "const": "map.deluxe2015.world"
+            },
+            "scoring_effects_policy": {
+              "const": "ExcludeScoringOnlyProjections"
+            }
+          }
+        },
+        "comparison": {
+          "const": "StrictlyGreaterThanOpponent"
+        },
+        "vp_amount": {
+          "const": 2
+        },
+        "condition_false": {
+          "const": "BlockedPrerequisite"
+        },
+        "condition_false_reason": {
+          "const": "NotMoreControlledBattlegrounds"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "Englishp8 #48; R2015 §2.1.7/5.2; FAQp15 #73"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "Englishp8 #48; R2015 §2.1.7/5.2; FAQp15 #73"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "F2010"
+                },
+                "locator": {
+                  "const": "Englishp8 #48; R2015 §2.1.7/5.2; FAQp15 #73"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-CMV1"
+                },
+                "locator": {
+                  "const": "CMV1 finite metric plans / integer pair derivation"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "alliance_for_progress": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "metric",
+        "vp_per_country",
+        "zero_amount_outcome",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.alliance_for_progress"
+        },
+        "effect_id": {
+          "const": "effect.alliance_for_progress"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "VpPerControlledBattleground"
+        },
+        "beneficiary": {
+          "const": "US"
+        },
+        "metric": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "region_ids",
+            "map_dataset_id",
+            "scoring_effects_policy"
+          ],
+          "properties": {
+            "kind": {
+              "const": "ActualControlledBaseBattlegroundCount"
+            },
+            "region_ids": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "prefixItems": [
+                {
+                  "const": "region.central_america"
+                },
+                {
+                  "const": "region.south_america"
+                }
+              ],
+              "items": false
+            },
+            "map_dataset_id": {
+              "const": "map.deluxe2015.world"
+            },
+            "scoring_effects_policy": {
+              "const": "ExcludeScoringOnlyProjections"
+            }
+          }
+        },
+        "vp_per_country": {
+          "const": 1
+        },
+        "zero_amount_outcome": {
+          "const": "ResolvedNoChange"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "Englishp12 #78; R2015 §2.1.7/5.2 Example3"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "Englishp12 #78; R2015 §2.1.7/5.2 Example3"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-CMV1"
+                },
+                "locator": {
+                  "const": "CMV1 finite metric plans / integer pair derivation"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "reagan_bombs_libya": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "country_id",
+        "influence_side",
+        "group_size",
+        "vp_per_group",
+        "rounding",
+        "zero_amount_outcome",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.reagan_bombs_libya"
+        },
+        "effect_id": {
+          "const": "effect.reagan_bombs_libya"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "VpPerInfluenceGroup"
+        },
+        "beneficiary": {
+          "const": "US"
+        },
+        "country_id": {
+          "const": "country.libya"
+        },
+        "influence_side": {
+          "const": "USSR"
+        },
+        "group_size": {
+          "const": 2
+        },
+        "vp_per_group": {
+          "const": 1
+        },
+        "rounding": {
+          "const": "FloorCompleteGroups"
+        },
+        "zero_amount_outcome": {
+          "const": "ResolvedNoChange"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "Englishp13 #84; R2015 §5.2/10.2–10.3.1"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "Englishp13 #84; R2015 §5.2/10.2–10.3.1"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-CMV1"
+                },
+                "locator": {
+                  "const": "CMV1 finite metric plans / integer pair derivation"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    }
+  }
+}

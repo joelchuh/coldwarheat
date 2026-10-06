@@ -37,3 +37,5 @@
 [战争牌持续与取消](../war-card-hooks.md)补齐本时代相关三牌参数，运行实现仍planned。
 
 本批参数与边界见[solidarity-chain](../solidarity-chain.md)；C#待实现。
+
+[国家指标VP](../country-metric-vp-events.md)按实际局面查询；不是地区计分投影。
