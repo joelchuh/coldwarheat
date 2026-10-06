@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "id": "design.turn-modifiers-next",
+  "kind": "design-note",
+  "status": "planned-unbound",
+  "description": "下一批勃列日涅夫OPS与拉美政变骰修正的角色、作用范围、实例替换和验收蓝图；两牌仍Unresolved，不能调用或当正式参数加载。",
+  "documentation": "Docs/Wiki/turn-modifiers-next.md",
+  "entrypoints": [],
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/ActiveEffectService.cs",
+      "symbol": "Activate"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Operations/OpsModifierService.cs",
+      "symbol": "Quote"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/CoupInterventionService.cs",
+      "symbol": "BeforeAcceptedCoup"
+    }
+  ],
+  "shared_data_refs": [
+    {
+      "dataset_id": "effects.deluxe2015.persistent_batch1",
+      "json_pointer": "/ops_policy"
+    },
+    {
+      "dataset_id": "effects.deluxe2015.defcon_events_batch1",
+      "json_pointer": "/parameters/salt_negotiations/coup_modifier"
+    }
+  ],
+  "inputs": [
+    "可信EffectController/实际OpsActor/CoupActor、根PhasingPlayer、来源帧与版本",
+    "共享OPS策略、正式地图、当前回合/活动实例/完整相关干预"
+  ],
+  "outputs": [
+    "未来FlatOps或RegionalCoupDie计划及实例替换/到期证据；当前仅文字设计"
+  ],
+  "preconditions": [
+    "本蓝图不授予运行权限；注册参数/Schema/处理器/运行验收未完成",
+    "基础合法性与危机致命判定先于政变骰修正；未知相关来源停止"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "两个来源牌当前Unresolved，正式运行门禁仍拒绝",
+    "same/opposite controller new ResolutionId repeat requires ruling until specific policy adopted; unknown interruption/lifecycle/version conflict stops"
+  ],
+  "card_intents": {
+    "card.brezhnev_doctrine": {
+      "beneficiary": "USSR",
+      "modifier_channel": "FlatOps",
+      "amount": 1,
+      "ops_limits": "shared ops_policy only; no duplicated cap/floor",
+      "qualifications": [
+        "actual OpsActor USSR, not physical card affiliation or root player",
+        "aggregate Flat R; ordinary upper cap first, then applicable regional B, then shared minimum floor",
+        "Space/OpsThreshold no regional bonus",
+        "as-if operations follow R2015 §7.4.3",
+        "headline ordering stays printed OPS"
+      ]
+    },
+    "card.latin_american_death_squads": {
+      "beneficiary": "TrustedEffectController",
+      "modifier_channel": "RegionalCoupDie",
+      "controller_delta": 1,
+      "opponent_delta": -1,
+      "region_ids": [
+        "region.central_america",
+        "region.south_america"
+      ],
+      "scope": [
+        "legal ordinary and event-granted Coup attempts",
+        "not War/Realignment/Space/OPS/military credit"
+      ],
+      "opposite_controller_repeat": "RequiresRuling; proposed CancelOldInstanceAndActivateNewPairInOnePlan pending user confirmation",
+      "same_controller_new_resolution": "RequiresRuling",
+      "aggregation": "sum with SALT die modifier; adjusted result not clamped to raw die faces"
+    }
+  },
+  "lifecycle": {
+    "duration": "RemainderOfActivationTurn",
+    "expiry_boundary": "ExpireAndReset",
+    "same_resolution_retry": "ReturnVerifiedOriginalReceipt",
+    "same_id_different_request": "Conflict",
+    "instance_replacement": "Proposed only if adopted: old Cancelled with explicit replacement reason, new Active, one active pair; not an English-card explicit reversal clause",
+    "physical_card_disposition": "cards.json only; separate from active effect lifetime"
+  },
+  "acceptance_plan": [
+    {
+      "id": "TN-OPS-ACTOR",
+      "status": "planned-runtime",
+      "description": "USSR+1 while US steals same card receives no USSR benefit; root/player roles differ"
+    },
+    {
+      "id": "TN-OPS-MERGE",
+      "status": "planned-runtime",
+      "description": "all Flat R, shared ordinary upper cap, applicable regional B, then shared minimum floor; Space/threshold exclude regions"
+    },
+    {
+      "id": "TN-COUP-SCOPE",
+      "status": "planned-runtime",
+      "description": "both sides deltas onlyCentral/SouthAmerica, ordinary and event grants; no other action effect"
+    },
+    {
+      "id": "TN-COUP-REVERSE",
+      "status": "planned-runtime",
+      "description": "opposite-controller new event stops RequiresRuling until adoption; candidate replaces pair atomically without old stacking"
+    },
+    {
+      "id": "TN-COUP-SALT",
+      "status": "planned-runtime",
+      "description": "SALT sums die terms; OPS/military remain separate; raw die and effective result distinct"
+    },
+    {
+      "id": "TN-LIFECYCLE",
+      "status": "planned-runtime",
+      "description": "expire exact turn boundary, save/replay receipts, unknown repeat stops; fatal crisis before dice modifiers"
+    }
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "locator": "Englishp8 #51 andp11 #69; frozen images checked"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "locator": "§7.4–7.4.3, actor ownership/grants/thresholds; existing §6.3 coup pipeline"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "locator": "PDFp14 #69 opponent -1 also onlyCentral/SouthAmerica"
+    },
+    {
+      "id": "PROJECT-TN",
+      "url": null,
+      "locator": "planning interfaces; opposite-controller replacement candidate pending user confirmation; no English explicit reversal clause; not formal parameter contract"
+    }
+  ],
+  "verification": {
+    "runtime_game_tests_run": 0,
+    "parameter_bindings_added": 0,
+    "report": "Docs/Design/turn-modifiers-next.note-validation.json",
+    "independent_review": "ready-note-only; source/order fixes reread, no new blocker"
+  },
+  "remaining": [
+    "separate typed persistent_batch2 parameter authority and closed Schema",
+    "new structural/reference cases plus unchanged old regressions",
+    "completed-contract review and regular Git sync",
+    "C#/Unity implementation requires later approved phase"
+  ]
+}

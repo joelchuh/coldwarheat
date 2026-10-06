@@ -15,6 +15,7 @@
 | 条约保护与前置事件 | 查北约/美日安保、动态控制、法国西德例外、DEFCON接缝与事件成功记录 | 2牌参数绑定；C#待实现 | [treaty-protection.md](treaty-protection.md) |
 | 战争牌持续与取消 | 查Flower使用资格/待裁定时机、戴维营固定收益、邪恶帝国取消与阻止 | 3牌参数Bound；C#待实现，钩子边界待裁定 | [war-card-hooks.md](war-card-hooks.md) |
 | DEFCON事件与政变干预 | 查古巴危机解除/责任、核潜艇原因豁免、SALT取回和ABM普通OPS授权 | 4牌参数Bound；C#待实现 | [defcon-events-batch1.md](defcon-events-batch1.md) |
+| 后续回合修正蓝图 | 查Brezhnev OPS/LADS地区骰与配对替换接口 | 未绑定；正式参数/案例待展开 | [turn-modifiers-next.md](turn-modifiers-next.md) |
 | 中期影响力第二批 | 查解放神学额度/穆斯林8国名单/南非分支邻国 | 3牌参数Bound；待实现 | [mid-influence-batch2.md](mid-influence-batch2.md) |
 | 国家指标VP事件 | 查Kitchen/进步联盟/里根对实际局面的计数与VP | 3牌参数Bound；待实现 | [country-metric-vp-events.md](country-metric-vp-events.md) |
 | 事件太空首批 | 查Scientist一格推进、奖励/能力和终点待裁定 | 1牌参数Bound；待实现 | [space-events-batch1.md](space-events-batch1.md) |
