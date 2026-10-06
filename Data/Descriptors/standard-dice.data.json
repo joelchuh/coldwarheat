@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "id": "data.standard-dice",
+  "kind": "data",
+  "status": "ready",
+  "description": "新消费者共享标准D6定义；旧Space/war骰声明暂保留并离线兼容核对，未声称旧调用方已迁移。",
+  "dataset_id": "rules.deluxe2015.standard-dice",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/standard-dice.schema.json",
+  "documentation": "Docs/Wiki/trap-events.md",
+  "entrypoints": [
+    {
+      "path": "Data/Rulesets/deluxe-2015/standard-dice.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "稳定规则/卡牌/骰ID与可信根slot/手牌/义务上下文"
+  ],
+  "outputs": [
+    "只读定义；无可执行表达式/客户端裁定"
+  ],
+  "dependencies": [],
+  "data_dependencies": [],
+  "preconditions": [
+    "ready/Bound不是游戏实现",
+    "所有私有候选/源义务/计分义务由权威层验证；未核实来源停止"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "缺失/冲突/不匹配定义、无效角色/私有手牌/额外slot来源或过期选择",
+    "重复激活未裁定；不能猜空候选、计分义务或可用随机结果"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.0标准六面骰，§4.2根行动者，§5.3/5.4弃牌、§7.4.1–2有效OPS阈值、§9.5中国牌、§10.1.5计分义务。"
+    },
+    {
+      "id": "PROJECT-TR1",
+      "url": null,
+      "edition": "Engineering scope/verified-source boundaries, 2026-10-06",
+      "description": "新受影响根slot gate排除激活根，私有选择/原子弃骰/根slot收据；计分义务由编排提供，不私算可放弃额外slot。未知外部/额外slot来源与新ID重复停止。标准D6新消费者共享，旧Space/war数值留兼容检查，未声称迁移旧消费者。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/trap-events.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/trap-events.validation.json"
+  }
+}

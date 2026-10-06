@@ -1,0 +1,4044 @@
+{
+  "schema_version": 1,
+  "description": "共享D6/双陷阱根资格、弃骰/计分委派/跳过有限参考；实际源slot/计分义务/私有手牌为可信输入假设。",
+  "status": "mixed-reference-and-planned",
+  "families": {
+    "trap": {
+      "dataset": "Data/Cards/deluxe-2015/trap-events.parameters.json",
+      "schema": "Docs/Contracts/trap-events.schema.json"
+    },
+    "dice": {
+      "dataset": "Data/Rulesets/deluxe-2015/standard-dice.json",
+      "schema": "Docs/Contracts/standard-dice.schema.json"
+    }
+  },
+  "cases": [
+    {
+      "id": "TR-D-trap-baseline",
+      "validation_layer": "data",
+      "input": {
+        "family": "trap",
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "TR-D-dice-baseline",
+      "validation_layer": "data",
+      "input": {
+        "family": "dice",
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "TR-D-quag-side",
+      "validation_layer": "data",
+      "input": {
+        "family": "trap",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "quagmire",
+              "affected_side"
+            ],
+            "value": "USSR"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "TR-D-bear-side",
+      "validation_layer": "data",
+      "input": {
+        "family": "trap",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "bear_trap",
+              "affected_side"
+            ],
+            "value": "US"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "TR-D-duration",
+      "validation_layer": "data",
+      "input": {
+        "family": "trap",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "quagmire",
+              "duration"
+            ],
+            "value": "RemainderOfTurn"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "TR-D-expire",
+      "validation_layer": "data",
+      "input": {
+        "family": "trap",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "quagmire",
+              "expiry_boundary"
+            ],
+            "value": "ExpireAndReset"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "TR-D-threshold",
+      "validation_layer": "data",
+      "input": {
+        "family": "trap",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "quagmire",
+              "discard",
+              "minimum_effective_ops"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "TR-D-quote",
+      "validation_layer": "data",
+      "input": {
+        "family": "trap",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "quagmire",
+              "discard",
+              "quote_purpose"
+            ],
+            "value": "Influence"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "TR-D-china",
+      "validation_layer": "data",
+      "input": {
+        "family": "trap",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "quagmire",
+              "discard",
+              "china_allowed"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "TR-D-event-trigger",
+      "validation_layer": "data",
+      "input": {
+        "family": "trap",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "quagmire",
+              "discard",
+              "event_triggers"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "TR-D-actual-use",
+      "validation_layer": "data",
+      "input": {
+        "family": "trap",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "quagmire",
+              "discard",
+              "actual_card_use_created"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "TR-D-military",
+      "validation_layer": "data",
+      "input": {
+        "family": "trap",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "quagmire",
+              "discard",
+              "military_granted"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "TR-D-die-count",
+      "validation_layer": "data",
+      "input": {
+        "family": "trap",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "quagmire",
+              "escape",
+              "roll_count"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "TR-D-win-roll",
+      "validation_layer": "data",
+      "input": {
+        "family": "trap",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "quagmire",
+              "escape",
+              "maximum_successful_raw_roll"
+            ],
+            "value": 5
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "TR-D-slot-count",
+      "validation_layer": "data",
+      "input": {
+        "family": "trap",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "quagmire",
+              "escape",
+              "root_slots_consumed"
+            ],
+            "value": 0
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "TR-D-headline",
+      "validation_layer": "data",
+      "input": {
+        "family": "trap",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "quagmire",
+              "headline_policy"
+            ],
+            "value": "Block"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "TR-D-score-priority",
+      "validation_layer": "data",
+      "input": {
+        "family": "trap",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "quagmire",
+              "scoring_policy",
+              "obligation_priority"
+            ],
+            "value": "AfterTrapDiscard"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "TR-D-repeat",
+      "validation_layer": "data",
+      "input": {
+        "family": "trap",
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "bear_trap",
+              "new_resolution_repeat"
+            ],
+            "value": "Stack"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "TR-D-dice-zero",
+      "validation_layer": "data",
+      "input": {
+        "family": "dice",
+        "edits": [
+          {
+            "path": [
+              "definitions",
+              "standard_d6",
+              "minimum"
+            ],
+            "value": 0
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "TR-D-dice-d8",
+      "validation_layer": "data",
+      "input": {
+        "family": "dice",
+        "edits": [
+          {
+            "path": [
+              "definitions",
+              "standard_d6",
+              "maximum"
+            ],
+            "value": 8
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "TR-R-quag-us-discard",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDiscard",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {
+          "owner": "US",
+          "candidate_ids": [
+            "card.nato"
+          ]
+        }
+      }
+    },
+    {
+      "id": "TR-R-bear-ussr-discard",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.bear_trap",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "USSR",
+        "root_phasing_player": "USSR",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.bear_trap",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.fidel"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDiscard",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.bear_trap",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.fidel"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {
+          "owner": "USSR",
+          "candidate_ids": [
+            "card.fidel"
+          ]
+        }
+      }
+    },
+    {
+      "id": "TR-R-headline-unaffected",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "Headline",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "NotApplicable",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-other-root-not-global-actor-ban",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "NotApplicable",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-same-activation-root-unaffected",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.prior",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "NotApplicable",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-already-open-root-unaffected",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": false,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "NotApplicable",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-no-active",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": false,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "NotApplicable",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": false,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-extra-slot-unknown",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "SpaceExtraRoot",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-verified-extra-slot-interface-assumption",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "RegisteredExtraRoot",
+        "slot_scope_verified": true,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDiscard",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {
+          "owner": "US",
+          "candidate_ids": [
+            "card.nato"
+          ]
+        }
+      }
+    },
+    {
+      "id": "TR-R-threshold-two",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nuclear_subs"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDiscard",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nuclear_subs"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {
+          "owner": "US",
+          "candidate_ids": [
+            "card.nuclear_subs"
+          ]
+        }
+      }
+    },
+    {
+      "id": "TR-R-threshold-three",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.quagmire"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDiscard",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.quagmire"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {
+          "owner": "US",
+          "candidate_ids": [
+            "card.quagmire"
+          ]
+        }
+      }
+    },
+    {
+      "id": "TR-R-purge-two-to-one-score",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": -1,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nuclear_subs",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingScoring",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nuclear_subs",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {
+          "owner": "US",
+          "candidate_ids": [
+            "card.asia_scoring"
+          ]
+        }
+      }
+    },
+    {
+      "id": "TR-R-brez-one-to-two",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.bear_trap",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "USSR",
+        "root_phasing_player": "USSR",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 1,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.bear_trap",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.allende"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDiscard",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.bear_trap",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.allende"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {
+          "owner": "USSR",
+          "candidate_ids": [
+            "card.allende"
+          ]
+        }
+      }
+    },
+    {
+      "id": "TR-R-flat-effects-cancel",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.allende"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "SkipPlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.allende"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-china-not-candidate",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingScoring",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {
+          "owner": "US",
+          "candidate_ids": [
+            "card.asia_scoring"
+          ]
+        }
+      }
+    },
+    {
+      "id": "TR-R-score-urgency-first-even-eligible",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "MustScore",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingScoring",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {
+          "owner": "US",
+          "candidate_ids": [
+            "card.asia_scoring"
+          ]
+        }
+      }
+    },
+    {
+      "id": "TR-R-score-obligation-unknown",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "Unknown",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-mandatory-score-missing-invalid",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "MustScore",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-no-eligible-no-score",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.allende"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "SkipPlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.allende"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-empty-hand-no-die",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "SkipPlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-me-with-source-priority",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": "card.missile_envy",
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.missile_envy"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDiscard",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.missile_envy"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {
+          "owner": "US",
+          "candidate_ids": [
+            "card.missile_envy"
+          ]
+        }
+      }
+    },
+    {
+      "id": "TR-R-me-no-source-no-priority",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.missile_envy"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDiscard",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.missile_envy"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {
+          "owner": "US",
+          "candidate_ids": [
+            "card.missile_envy",
+            "card.nato"
+          ]
+        }
+      }
+    },
+    {
+      "id": "TR-R-me-low-cannot-discard",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": -1,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": "card.missile_envy",
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.missile_envy"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDiscard",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.missile_envy"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {
+          "owner": "US",
+          "candidate_ids": [
+            "card.nato"
+          ]
+        }
+      }
+    },
+    {
+      "id": "TR-R-me-source-unknown",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": false,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-scoring-before-me-priority",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "MustScore",
+        "forced_source_complete": true,
+        "forced_card_id": "card.missile_envy",
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.missile_envy",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingScoring",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.missile_envy",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {
+          "owner": "US",
+          "candidate_ids": [
+            "card.asia_scoring"
+          ]
+        }
+      }
+    },
+    {
+      "id": "TR-R-discard-roll-1",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Discard",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": "card.nato",
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "DiscardAndEscapePlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": false,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.asia_scoring"
+          ],
+          "discard": [
+            "card.nato"
+          ],
+          "removed": [],
+          "rng_cursor": 11,
+          "root_slots_completed": 1,
+          "command_completed": true,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {
+          "raw_roll": 1,
+          "escaped": true,
+          "new_card_use_count": 0
+        }
+      }
+    },
+    {
+      "id": "TR-R-discard-roll-4",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Discard",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": "card.nato",
+        "provided_internal_roll": 4,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "DiscardAndEscapePlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": false,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.asia_scoring"
+          ],
+          "discard": [
+            "card.nato"
+          ],
+          "removed": [],
+          "rng_cursor": 11,
+          "root_slots_completed": 1,
+          "command_completed": true,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {
+          "raw_roll": 4,
+          "escaped": true,
+          "new_card_use_count": 0
+        }
+      }
+    },
+    {
+      "id": "TR-R-discard-roll-5",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Discard",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": "card.nato",
+        "provided_internal_roll": 5,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "DiscardAndEscapePlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.asia_scoring"
+          ],
+          "discard": [
+            "card.nato"
+          ],
+          "removed": [],
+          "rng_cursor": 11,
+          "root_slots_completed": 1,
+          "command_completed": true,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {
+          "raw_roll": 5,
+          "escaped": false,
+          "new_card_use_count": 0
+        }
+      }
+    },
+    {
+      "id": "TR-R-discard-roll-6",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Discard",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": "card.nato",
+        "provided_internal_roll": 6,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "DiscardAndEscapePlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.asia_scoring"
+          ],
+          "discard": [
+            "card.nato"
+          ],
+          "removed": [],
+          "rng_cursor": 11,
+          "root_slots_completed": 1,
+          "command_completed": true,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {
+          "raw_roll": 6,
+          "escaped": false,
+          "new_card_use_count": 0
+        }
+      }
+    },
+    {
+      "id": "TR-R-discard-opponent-star-no-event",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Discard",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": "card.fidel",
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.fidel"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "DiscardAndEscapePlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": false,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [],
+          "discard": [
+            "card.fidel"
+          ],
+          "removed": [],
+          "rng_cursor": 11,
+          "root_slots_completed": 1,
+          "command_completed": true,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {
+          "raw_roll": 1,
+          "escaped": true,
+          "new_card_use_count": 0
+        }
+      }
+    },
+    {
+      "id": "TR-R-discard-scoring-invalid",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Discard",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": "card.asia_scoring",
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "IllegalDiscard",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-discard-china-invalid",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Discard",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": "card.china",
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "IllegalDiscard",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-discard-wrong-owner",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Discard",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "USSR",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": "card.nato",
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "Unauthorized",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-discard-stale",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Discard",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": false,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": "card.nato",
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "StaleResponse",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-discard-wrong-me-priority",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Discard",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": "card.missile_envy",
+        "selected_card_id": "card.nato",
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.missile_envy"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "IllegalDiscard",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.missile_envy"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-discard-urgent-score-rejected",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Discard",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "MustScore",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": "card.nato",
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "ScoringRequired",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-bad-die-zero-no-discard",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Discard",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": "card.nato",
+        "provided_internal_roll": 0,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "InvalidRandomResult",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-bad-die-seven-no-discard",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Discard",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": "card.nato",
+        "provided_internal_roll": 7,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "InvalidRandomResult",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-discard-retry-no-rng",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Discard",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": "card.nato",
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": true,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": true,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-score-delegates-no-trap-cancel",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Score",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "MustScore",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": "card.asia_scoring",
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "DelegateScoringPlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {
+          "card_id": "card.asia_scoring",
+          "owner": "US",
+          "trap_retained": true
+        }
+      }
+    },
+    {
+      "id": "TR-R-score-no-discard-eligible",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Score",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": "card.asia_scoring",
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "DelegateScoringPlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {
+          "card_id": "card.asia_scoring",
+          "owner": "US",
+          "trap_retained": true
+        }
+      }
+    },
+    {
+      "id": "TR-R-score-while-discard-needed",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Score",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": "card.asia_scoring",
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "TrapDiscardRequired",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-skip-internal-only-empty",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Skip",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "SkippedRoot",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 1,
+          "command_completed": true,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-skip-when-cards-exist-reject",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Skip",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "CannotSkip",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-turn-end-keeps-trap",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Boundary",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "TrapRetained",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-trap-new-activation",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Activate",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": false,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "Activated",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.next",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": true,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-trap-repeat-new-id",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Activate",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-activation-retry",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Activate",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": true,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": true,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-optional-norad-invalid",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": true
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": true
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-unknown-effects",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": false,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": false,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-bad-internal-frame",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": false,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-conflicting-id",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": false,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "ConflictingRequest",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-R-finished",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Query",
+        "card_id": "card.quagmire",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "actor": "US",
+        "root_phasing_player": "US",
+        "root_id": "root.next",
+        "phase": "ActionRound",
+        "new_root": true,
+        "slot_source": "NormalScheduledActionRound",
+        "slot_scope_verified": false,
+        "flat_delta": 0,
+        "scoring_obligation": "NotRequired",
+        "forced_source_complete": true,
+        "forced_card_id": null,
+        "selected_card_id": null,
+        "provided_internal_roll": 1,
+        "boundary": "TurnEnd",
+        "state": {
+          "turn": 4,
+          "finished": true,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "state": {
+          "turn": 4,
+          "finished": true,
+          "effects_complete": true,
+          "active": true,
+          "trap_card": "card.quagmire",
+          "activation_root": "root.prior",
+          "hand": [
+            "card.nato",
+            "card.asia_scoring"
+          ],
+          "discard": [],
+          "removed": [],
+          "rng_cursor": 10,
+          "root_slots_completed": 0,
+          "command_completed": false,
+          "activation_completed": false,
+          "unknown_optional_instance": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "TR-I-actual-target-identity-private-candidates",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "actual-target-identity-private-candidates",
+      "implementation_tested": false
+    },
+    {
+      "id": "TR-I-scoring-obligation-and-source-slot-authority",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "scoring-obligation-and-source-slot-authority",
+      "implementation_tested": false
+    },
+    {
+      "id": "TR-I-atomic-discard-rng-instance-root-receipt",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "atomic-discard-rng-instance-root-receipt",
+      "implementation_tested": false
+    },
+    {
+      "id": "TR-I-source49-priority-proof-not-card-presence",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "source49-priority-proof-not-card-presence",
+      "implementation_tested": false
+    },
+    {
+      "id": "TR-I-cross-turn-headline-activation-root-scope",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "cross-turn-headline-activation-root-scope",
+      "implementation_tested": false
+    },
+    {
+      "id": "TR-I-scoring-actual-vp-sea-disposition-current-root",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "scoring-actual-vp-sea-disposition-current-root",
+      "implementation_tested": false
+    },
+    {
+      "id": "TR-I-save-replay-no-repeat-rng-or-extra-root",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "save-replay-no-repeat-rng-or-extra-root",
+      "implementation_tested": false
+    },
+    {
+      "id": "TR-I-baseline-optional-rejection-theme-independent",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "baseline-optional-rejection-theme-independent",
+      "implementation_tested": false
+    }
+  ]
+}

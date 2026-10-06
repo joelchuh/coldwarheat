@@ -42,14 +42,15 @@
     "cards.deluxe2015.definitions",
     "map.deluxe2015.world",
     "effects.deluxe2015.persistent_batch1",
-    "effects.deluxe2015.hand_events_batch1"
+    "effects.deluxe2015.hand_events_batch1",
+    "effects.deluxe2015.trap_events"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:hand-events-batch1:1"
   ],
   "preconditions": [
     "Runtime planned；由RuleEngine统一提交计划与RNG状态，事件栈由TurnFlow调度",
-    "阈值报价Actor固定US、Purpose OpsThreshold，无地区奖励；普通手牌按实际牌区读取"
+    "Blockade阈值报价Actor固定US；Trap由独立陷阱上下文指定AffectedSide、Purpose OpsThreshold，无地区奖励；普通手牌按实际牌区读取"
   ],
   "side_effects": [],
   "stop_conditions": [
@@ -86,10 +87,15 @@
     {
       "path": "Docs/Design/hand-events-batch1.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/trap-events.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
-    "report": "Docs/Design/hand-events-batch1.validation.json"
+    "report": "Docs/Design/hand-events-batch1.validation.json",
+    "latest_design_report": "Docs/Design/trap-events.validation.json"
   }
 }

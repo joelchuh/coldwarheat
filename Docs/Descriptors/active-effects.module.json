@@ -1,7 +1,8 @@
 {
   "schema_version": 1,
   "inputs": [
-    "版本匹配的参数、权威事件/行动上下文、静态地图和卡牌定义"
+    "版本匹配的参数、权威事件/行动上下文、静态地图和卡牌定义",
+    "Trap持续UntilEscapeOrGameEnd，不能ExpireAndReset一律过期；sourceRoot仅排除本次激活根"
   ],
   "outputs": [
     "拟定ActiveEffectInstance、PreventionRecord或取消计划；事件资格与OpsQuote；未知状态无部分结果"
@@ -100,6 +101,10 @@
     {
       "path": "Docs/Design/persistent-effects-batch2.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/trap-events.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "documentation": "Docs/Wiki/persistent-effects.md",
@@ -146,7 +151,8 @@
     "effects.deluxe2015.defcon_events_batch1",
     "effects.deluxe2015.scoring_effects_batch1",
     "effects.deluxe2015.solidarity_chain",
-    "effects.deluxe2015.persistent_batch2"
+    "effects.deluxe2015.persistent_batch2",
+    "effects.deluxe2015.trap_events"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:persistent-effects-batch1:1",
@@ -160,6 +166,6 @@
   "verification": {
     "implementation_tested": false,
     "report": "Docs/Design/persistent-effects-batch1.validation.json",
-    "latest_design_report": "Docs/Design/persistent-effects-batch2.validation.json"
+    "latest_design_report": "Docs/Design/trap-events.validation.json"
   }
 }

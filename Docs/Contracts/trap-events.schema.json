@@ -1,0 +1,870 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:trap-events:1",
+  "title": "陷阱根行动参数",
+  "description": "Quagmire/BearTrap共享根行动资格、阈值弃骰/计分/跳过、跨回合生命周期；仅参数/有限接缝，C#待实现。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "out_of_scope_verified_interaction",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.trap_events"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "release-candidate"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "C-DELUXE-EN"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf"
+            },
+            "edition": {
+              "const": "English Deluxe card images"
+            },
+            "description": {
+              "const": "p7 #42/p8 #44下一受影响行动弃2+OPS并单骰1–4逃脱；NORAD取消来自optional106 p16，不来自42。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "R2015"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf"
+            },
+            "edition": {
+              "const": "Deluxe rules 2015"
+            },
+            "description": {
+              "const": "§2.0标准六面骰，§4.2根行动者，§5.3/5.4弃牌、§7.4.1–2有效OPS阈值、§9.5中国牌、§10.1.5计分义务。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "F2010"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/FAQv5.pdf"
+            },
+            "edition": {
+              "const": "FAQ v5 2010, compatible Deluxe clarification only"
+            },
+            "description": {
+              "const": "PDFp9–10 #42/#44整行动只弃+骰、逃脱下一行动才正常、跨turn持续、Headline不受限；p4#6禁止China；p12#49优先有来源ME；p19–20计分义务先于强迫弃牌。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "PROJECT-TR1"
+            },
+            "url": {
+              "const": null
+            },
+            "edition": {
+              "const": "Engineering scope/verified-source boundaries, 2026-10-06"
+            },
+            "description": {
+              "const": "新受影响根slot gate排除激活根，私有选择/原子弃骰/根slot收据；计分义务由编排提供，不私算可放弃额外slot。未知外部/额外slot来源与新ID重复停止。标准D6新消费者共享，旧Space/war数值留兼容检查，未声称迁移旧消费者。"
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "out_of_scope_verified_interaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "relation",
+        "base_1_to_103_enabled",
+        "base_runtime_dependency",
+        "unknown_optional_instance"
+      ],
+      "properties": {
+        "source": {
+          "const": "OptionalNORAD106EnglishText"
+        },
+        "relation": {
+          "const": "CancelledByQuagmireEvent"
+        },
+        "base_1_to_103_enabled": {
+          "const": false
+        },
+        "base_runtime_dependency": {
+          "const": false
+        },
+        "unknown_optional_instance": {
+          "const": "RejectRulesetOrUnknownState"
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "quagmire",
+        "bear_trap"
+      ],
+      "properties": {
+        "quagmire": {
+          "$ref": "#/$defs/quagmire"
+        },
+        "bear_trap": {
+          "$ref": "#/$defs/bear_trap"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "quagmire": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "affected_side",
+        "duration",
+        "expiry_boundary",
+        "gate_scope",
+        "exclude_activation_root",
+        "headline_policy",
+        "ordinary_slot_source",
+        "other_slot_sources",
+        "external_ops",
+        "discard",
+        "escape",
+        "scoring_policy",
+        "forced_discard_source_policy",
+        "duplicate_activation",
+        "new_resolution_repeat",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.quagmire"
+        },
+        "effect_id": {
+          "const": "effect.quagmire"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "ActivateTrapRootEligibility"
+        },
+        "affected_side": {
+          "const": "US"
+        },
+        "duration": {
+          "const": "UntilEscapeOrGameEnd"
+        },
+        "expiry_boundary": {
+          "const": null
+        },
+        "gate_scope": {
+          "const": "NextNewAffectedRootActionRound"
+        },
+        "exclude_activation_root": {
+          "const": true
+        },
+        "headline_policy": {
+          "const": "NotApplicable"
+        },
+        "ordinary_slot_source": {
+          "const": "NormalScheduledActionRound"
+        },
+        "other_slot_sources": {
+          "const": "RequiresVerifiedTrapSlotPolicy"
+        },
+        "external_ops": {
+          "const": "RequiresVerifiedSourceScope;NeverGlobalActorOpsBan"
+        },
+        "discard": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "owner",
+            "zone",
+            "kind",
+            "minimum_effective_ops",
+            "quote_purpose",
+            "ops_policy_ref",
+            "china_allowed",
+            "event_triggers",
+            "actual_card_use_created",
+            "target_zone",
+            "ops_granted",
+            "military_granted"
+          ],
+          "properties": {
+            "owner": {
+              "const": "AffectedSide"
+            },
+            "zone": {
+              "const": "OwnerOrdinaryHand"
+            },
+            "kind": {
+              "const": "Event"
+            },
+            "minimum_effective_ops": {
+              "const": 2
+            },
+            "quote_purpose": {
+              "const": "OpsThreshold"
+            },
+            "ops_policy_ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "dataset_id",
+                "json_pointer"
+              ],
+              "properties": {
+                "dataset_id": {
+                  "const": "effects.deluxe2015.persistent_batch1"
+                },
+                "json_pointer": {
+                  "const": "/ops_policy"
+                }
+              }
+            },
+            "china_allowed": {
+              "const": false
+            },
+            "event_triggers": {
+              "const": false
+            },
+            "actual_card_use_created": {
+              "const": false
+            },
+            "target_zone": {
+              "const": "DiscardPile"
+            },
+            "ops_granted": {
+              "const": 0
+            },
+            "military_granted": {
+              "const": 0
+            }
+          }
+        },
+        "escape": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "die_definition_ref",
+            "roll_count",
+            "maximum_successful_raw_roll",
+            "modifier_policy",
+            "success",
+            "failure",
+            "root_slots_consumed"
+          ],
+          "properties": {
+            "die_definition_ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "dataset_id",
+                "json_pointer"
+              ],
+              "properties": {
+                "dataset_id": {
+                  "const": "rules.deluxe2015.standard-dice"
+                },
+                "json_pointer": {
+                  "const": "/definitions/standard_d6"
+                }
+              }
+            },
+            "roll_count": {
+              "const": 1
+            },
+            "maximum_successful_raw_roll": {
+              "const": 4
+            },
+            "modifier_policy": {
+              "const": "NoOpsCoupWarDiceModifiers"
+            },
+            "success": {
+              "const": "CancelThisInstance;NormalPlayNextAffectedRootOnly"
+            },
+            "failure": {
+              "const": "KeepThisInstance"
+            },
+            "root_slots_consumed": {
+              "const": 1
+            }
+          }
+        },
+        "scoring_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "obligation_priority",
+            "obligation_source",
+            "deadline_unknown",
+            "without_obligation",
+            "score_action",
+            "no_discard_no_scoring"
+          ],
+          "properties": {
+            "obligation_priority": {
+              "const": "BeforeTrapDiscard"
+            },
+            "obligation_source": {
+              "const": "VerifiedTurnFlowScoringObligation"
+            },
+            "deadline_unknown": {
+              "const": "RequiresRuling"
+            },
+            "without_obligation": {
+              "const": "OnlyWhenNoEligibleDiscard"
+            },
+            "score_action": {
+              "const": "DelegateExistingScoring;KeepTrap;NoDie"
+            },
+            "no_discard_no_scoring": {
+              "const": "InternalSkipOneRootSlotNoDieKeepTrap"
+            }
+          }
+        },
+        "forced_discard_source_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "missile_envy",
+            "eligible_priority",
+            "ineligible",
+            "source_unknown",
+            "discard_evidence"
+          ],
+          "properties": {
+            "missile_envy": {
+              "const": "VerifiedSourceObligationAndEligibleCardOnly"
+            },
+            "eligible_priority": {
+              "const": "NarrowCandidatesToObligedCard"
+            },
+            "ineligible": {
+              "const": "CannotDiscardIt;KeepSourceObligationUnmodified"
+            },
+            "source_unknown": {
+              "const": "RequiresRuling"
+            },
+            "discard_evidence": {
+              "const": "EmitToRegisteredSourceConsumer;NoFull49Implementation"
+            }
+          }
+        },
+        "duplicate_activation": {
+          "const": "IdempotentByResolutionId"
+        },
+        "new_resolution_repeat": {
+          "const": "RequiresRuling"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "p7 #42/p8 #44下一受影响行动弃2+OPS并单骰1–4逃脱；NORAD取消来自optional106 p16，不来自42。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "§2.0标准六面骰，§4.2根行动者，§5.3/5.4弃牌、§7.4.1–2有效OPS阈值、§9.5中国牌、§10.1.5计分义务。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "F2010"
+                },
+                "locator": {
+                  "const": "PDFp9–10 #42/#44整行动只弃+骰、逃脱下一行动才正常、跨turn持续、Headline不受限；p4#6禁止China；p12#49优先有来源ME；p19–20计分义务先于强迫弃牌。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-TR1"
+                },
+                "locator": {
+                  "const": "新受影响根slot gate排除激活根，私有选择/原子弃骰/根slot收据；计分义务由编排提供，不私算可放弃额外slot。未知外部/额外slot来源与新ID重复停止。标准D6新消费者共享，旧Space/war数值留兼容检查，未声称迁移旧消费者。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "bear_trap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "affected_side",
+        "duration",
+        "expiry_boundary",
+        "gate_scope",
+        "exclude_activation_root",
+        "headline_policy",
+        "ordinary_slot_source",
+        "other_slot_sources",
+        "external_ops",
+        "discard",
+        "escape",
+        "scoring_policy",
+        "forced_discard_source_policy",
+        "duplicate_activation",
+        "new_resolution_repeat",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.bear_trap"
+        },
+        "effect_id": {
+          "const": "effect.bear_trap"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "ActivateTrapRootEligibility"
+        },
+        "affected_side": {
+          "const": "USSR"
+        },
+        "duration": {
+          "const": "UntilEscapeOrGameEnd"
+        },
+        "expiry_boundary": {
+          "const": null
+        },
+        "gate_scope": {
+          "const": "NextNewAffectedRootActionRound"
+        },
+        "exclude_activation_root": {
+          "const": true
+        },
+        "headline_policy": {
+          "const": "NotApplicable"
+        },
+        "ordinary_slot_source": {
+          "const": "NormalScheduledActionRound"
+        },
+        "other_slot_sources": {
+          "const": "RequiresVerifiedTrapSlotPolicy"
+        },
+        "external_ops": {
+          "const": "RequiresVerifiedSourceScope;NeverGlobalActorOpsBan"
+        },
+        "discard": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "owner",
+            "zone",
+            "kind",
+            "minimum_effective_ops",
+            "quote_purpose",
+            "ops_policy_ref",
+            "china_allowed",
+            "event_triggers",
+            "actual_card_use_created",
+            "target_zone",
+            "ops_granted",
+            "military_granted"
+          ],
+          "properties": {
+            "owner": {
+              "const": "AffectedSide"
+            },
+            "zone": {
+              "const": "OwnerOrdinaryHand"
+            },
+            "kind": {
+              "const": "Event"
+            },
+            "minimum_effective_ops": {
+              "const": 2
+            },
+            "quote_purpose": {
+              "const": "OpsThreshold"
+            },
+            "ops_policy_ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "dataset_id",
+                "json_pointer"
+              ],
+              "properties": {
+                "dataset_id": {
+                  "const": "effects.deluxe2015.persistent_batch1"
+                },
+                "json_pointer": {
+                  "const": "/ops_policy"
+                }
+              }
+            },
+            "china_allowed": {
+              "const": false
+            },
+            "event_triggers": {
+              "const": false
+            },
+            "actual_card_use_created": {
+              "const": false
+            },
+            "target_zone": {
+              "const": "DiscardPile"
+            },
+            "ops_granted": {
+              "const": 0
+            },
+            "military_granted": {
+              "const": 0
+            }
+          }
+        },
+        "escape": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "die_definition_ref",
+            "roll_count",
+            "maximum_successful_raw_roll",
+            "modifier_policy",
+            "success",
+            "failure",
+            "root_slots_consumed"
+          ],
+          "properties": {
+            "die_definition_ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "dataset_id",
+                "json_pointer"
+              ],
+              "properties": {
+                "dataset_id": {
+                  "const": "rules.deluxe2015.standard-dice"
+                },
+                "json_pointer": {
+                  "const": "/definitions/standard_d6"
+                }
+              }
+            },
+            "roll_count": {
+              "const": 1
+            },
+            "maximum_successful_raw_roll": {
+              "const": 4
+            },
+            "modifier_policy": {
+              "const": "NoOpsCoupWarDiceModifiers"
+            },
+            "success": {
+              "const": "CancelThisInstance;NormalPlayNextAffectedRootOnly"
+            },
+            "failure": {
+              "const": "KeepThisInstance"
+            },
+            "root_slots_consumed": {
+              "const": 1
+            }
+          }
+        },
+        "scoring_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "obligation_priority",
+            "obligation_source",
+            "deadline_unknown",
+            "without_obligation",
+            "score_action",
+            "no_discard_no_scoring"
+          ],
+          "properties": {
+            "obligation_priority": {
+              "const": "BeforeTrapDiscard"
+            },
+            "obligation_source": {
+              "const": "VerifiedTurnFlowScoringObligation"
+            },
+            "deadline_unknown": {
+              "const": "RequiresRuling"
+            },
+            "without_obligation": {
+              "const": "OnlyWhenNoEligibleDiscard"
+            },
+            "score_action": {
+              "const": "DelegateExistingScoring;KeepTrap;NoDie"
+            },
+            "no_discard_no_scoring": {
+              "const": "InternalSkipOneRootSlotNoDieKeepTrap"
+            }
+          }
+        },
+        "forced_discard_source_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "missile_envy",
+            "eligible_priority",
+            "ineligible",
+            "source_unknown",
+            "discard_evidence"
+          ],
+          "properties": {
+            "missile_envy": {
+              "const": "VerifiedSourceObligationAndEligibleCardOnly"
+            },
+            "eligible_priority": {
+              "const": "NarrowCandidatesToObligedCard"
+            },
+            "ineligible": {
+              "const": "CannotDiscardIt;KeepSourceObligationUnmodified"
+            },
+            "source_unknown": {
+              "const": "RequiresRuling"
+            },
+            "discard_evidence": {
+              "const": "EmitToRegisteredSourceConsumer;NoFull49Implementation"
+            }
+          }
+        },
+        "duplicate_activation": {
+          "const": "IdempotentByResolutionId"
+        },
+        "new_resolution_repeat": {
+          "const": "RequiresRuling"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "p7 #42/p8 #44下一受影响行动弃2+OPS并单骰1–4逃脱；NORAD取消来自optional106 p16，不来自42。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "§2.0标准六面骰，§4.2根行动者，§5.3/5.4弃牌、§7.4.1–2有效OPS阈值、§9.5中国牌、§10.1.5计分义务。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "F2010"
+                },
+                "locator": {
+                  "const": "PDFp9–10 #42/#44整行动只弃+骰、逃脱下一行动才正常、跨turn持续、Headline不受限；p4#6禁止China；p12#49优先有来源ME；p19–20计分义务先于强迫弃牌。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-TR1"
+                },
+                "locator": {
+                  "const": "新受影响根slot gate排除激活根，私有选择/原子弃骰/根slot收据；计分义务由编排提供，不私算可放弃额外slot。未知外部/额外slot来源与新ID重复停止。标准D6新消费者共享，旧Space/war数值留兼容检查，未声称迁移旧消费者。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    }
+  }
+}

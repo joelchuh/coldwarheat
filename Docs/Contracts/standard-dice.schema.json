@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:standard-dice:1",
+  "title": "共享标准D6",
+  "description": "新消费者共享标准D6定义；旧Space/war骰声明暂保留并离线兼容核对，未声称旧调用方已迁移。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "definitions",
+    "legacy_validation_refs"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "rules.deluxe2015.standard-dice"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "verified-subset"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "R2015"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf"
+            },
+            "edition": {
+              "const": "Deluxe rules 2015"
+            },
+            "description": {
+              "const": "§2.0标准六面骰，§4.2根行动者，§5.3/5.4弃牌、§7.4.1–2有效OPS阈值、§9.5中国牌、§10.1.5计分义务。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "PROJECT-TR1"
+            },
+            "url": {
+              "const": null
+            },
+            "edition": {
+              "const": "Engineering scope/verified-source boundaries, 2026-10-06"
+            },
+            "description": {
+              "const": "新受影响根slot gate排除激活根，私有选择/原子弃骰/根slot收据；计分义务由编排提供，不私算可放弃额外slot。未知外部/额外slot来源与新ID重复停止。标准D6新消费者共享，旧Space/war数值留兼容检查，未声称迁移旧消费者。"
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "definitions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "standard_d6"
+      ],
+      "properties": {
+        "standard_d6": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "kind",
+            "minimum",
+            "maximum"
+          ],
+          "properties": {
+            "id": {
+              "const": "die.standard_d6"
+            },
+            "kind": {
+              "const": "UniformIntegerFaces"
+            },
+            "minimum": {
+              "const": 1
+            },
+            "maximum": {
+              "const": 6
+            }
+          }
+        }
+      }
+    },
+    "legacy_validation_refs": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.space-race"
+            },
+            "json_pointer": {
+              "const": "/die"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.war_events_batch1"
+            },
+            "json_pointer": {
+              "const": "/war_policy/die_sides"
+            }
+          }
+        }
+      ],
+      "items": false
+    }
+  }
+}

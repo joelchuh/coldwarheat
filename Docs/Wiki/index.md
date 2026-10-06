@@ -15,6 +15,7 @@
 | 条约保护与前置事件 | 查北约/美日安保、动态控制、法国西德例外、DEFCON接缝与事件成功记录 | 2牌参数绑定；C#待实现 | [treaty-protection.md](treaty-protection.md) |
 | 战争牌持续与取消 | 查Flower使用资格/待裁定时机、戴维营固定收益、邪恶帝国取消与阻止 | 3牌参数Bound；C#待实现，钩子边界待裁定 | [war-card-hooks.md](war-card-hooks.md) |
 | DEFCON事件与政变干预 | 查古巴危机解除/责任、核潜艇原因豁免、SALT取回和ABM普通OPS授权 | 4牌参数Bound；C#待实现 | [defcon-events-batch1.md](defcon-events-batch1.md) |
+| 陷阱根行动与标准骰 | 查Quagmire/BearTrap强迫弃牌/计分/逃脱/跨回合 | 2牌参数Bound；待实现 | [trap-events.md](trap-events.md) |
 | UN双牌使用 | 查双实体/配牌预算/压制/一根slot与未知分支 | 1牌参数Bound；待实现 | [un-intervention.md](un-intervention.md) |
 | 持续修正第二批 | 查Brezhnev实际OPS与LADS地区政变骰/重复停止 | 2牌参数Bound；待实现 | [persistent-effects-batch2.md](persistent-effects-batch2.md) |
 | 后续回合修正蓝图 | 查此前接口与重复停止的研究记录 | 历史蓝图，已由本批契约展开 | [历史蓝图](turn-modifiers-next.md) · [当前契约](persistent-effects-batch2.md) |
@@ -42,9 +43,9 @@
 | 地图与卡牌数据契约 | 查找正式数据字段、邻接、三类卡牌、效果注册、Schema及加载门禁 | 契约与正式印刷定义已建立；服务待实现 | [map-card-contracts.md](map-card-contracts.md) |
 | 正式地图与卡牌数据 | 按地区查84国与邻接，按时代查103张基础牌及效果待实现边界 | 静态定义已录入；不是可运行规则包 | [map-card-data.md](map-card-data.md) |
 | 地图布局与未定画风 | 区分规则图、位置拾取和主题资源，了解2D/3D接入边界 | 设计稿；未选定美术 | [map-presentation.md](map-presentation.md) |
-| 数据结构契约目录 | 按description定位三十一份JSON Schema（含事件参数、setup及卡牌v1/v2）与合成样例 | 结构契约；不是完整规则包 | [catalog.json](../Contracts/catalog.json) |
-| 模块描述目录 | 先按 description 定位模块，再读完整契约与相关代码 | 二十个模块描述均 planned | [catalog.json](../Descriptors/catalog.json) |
-| 共享规则数据目录 | 查找数据集描述、来源与独立参数文件 | 二十八个参数子集＋地图/卡牌/开局定义＋名称字典；运行服务待实现 | [catalog.json](../../Data/catalog.json) |
+| 数据结构契约目录 | 按description定位三十三份JSON Schema（含事件参数、setup及卡牌v1/v2）与合成样例 | 结构契约；不是完整规则包 | [catalog.json](../Contracts/catalog.json) |
+| 模块描述目录 | 先按 description 定位模块，再读完整契约与相关代码 | 二十一个模块描述均 planned | [catalog.json](../Descriptors/catalog.json) |
+| 共享规则数据目录 | 查找数据集描述、来源与独立参数文件 | 三十个参数子集＋地图/卡牌/开局定义＋名称字典；运行服务待实现 | [catalog.json](../../Data/catalog.json) |
 | 行动规则 | 查找影响力、政变、调整、预算、对象契约与验收案例 | v0.2 设计稿；未实现 | [operations.md](operations.md) |
 | 规则资料 | 查找版本来源、FAQ 适用边界和资料冻结缺口 | 已登记；未完整冻结 | [rules-sources.md](rules-sources.md) |
 | 工程边界 | 查找纯 C# 核心、命令、事件、玩家视角、确定性和程序集约束 | 设计约定；待实现 | [AGENTS.md](../../AGENTS.md) |

@@ -81,4 +81,6 @@
 
 此前：[持续修正第二批](Docs/Wiki/persistent-effects-batch2.md)，当时累计62 Bound /40 Unresolved，102处理器planned，LADS重复仍待裁定。
 
-最新：[UN双牌使用](Docs/Wiki/un-intervention.md)，累计63 Bound /39 Unresolved，102处理器planned。
+此前：[UN双牌使用](Docs/Wiki/un-intervention.md)，当时累计63 Bound /39 Unresolved，102处理器planned。
+
+最新：[陷阱根行动与共享标准骰](Docs/Wiki/trap-events.md)，累计65 Bound /37 Unresolved，102处理器planned。

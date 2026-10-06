@@ -76,3 +76,5 @@
 [中期影响力第二批](../mid-influence-batch2.md)绑定#53/#56/#75的分支/名单/额度，C#待实现。
 
 [持续修正第二批](../persistent-effects-batch2.md)绑定#51/#69，OPS与政变骰渠道分开；重复停止。
+
+[陷阱根行动](../trap-events.md)绑定#42/#44，跨回合保留、Headline不受限，计分义务优先。

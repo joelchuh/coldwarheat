@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.trap_events",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "Quagmire/BearTrap共享根行动资格、阈值弃骰/计分/跳过、跨回合生命周期；仅参数/有限接缝，C#待实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "p7 #42/p8 #44下一受影响行动弃2+OPS并单骰1–4逃脱；NORAD取消来自optional106 p16，不来自42。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.0标准六面骰，§4.2根行动者，§5.3/5.4弃牌、§7.4.1–2有效OPS阈值、§9.5中国牌、§10.1.5计分义务。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarification only",
+      "description": "PDFp9–10 #42/#44整行动只弃+骰、逃脱下一行动才正常、跨turn持续、Headline不受限；p4#6禁止China；p12#49优先有来源ME；p19–20计分义务先于强迫弃牌。"
+    },
+    {
+      "id": "PROJECT-TR1",
+      "url": null,
+      "edition": "Engineering scope/verified-source boundaries, 2026-10-06",
+      "description": "新受影响根slot gate排除激活根，私有选择/原子弃骰/根slot收据；计分义务由编排提供，不私算可放弃额外slot。未知外部/额外slot来源与新ID重复停止。标准D6新消费者共享，旧Space/war数值留兼容检查，未声称迁移旧消费者。"
+    }
+  ],
+  "out_of_scope_verified_interaction": {
+    "source": "OptionalNORAD106EnglishText",
+    "relation": "CancelledByQuagmireEvent",
+    "base_1_to_103_enabled": false,
+    "base_runtime_dependency": false,
+    "unknown_optional_instance": "RejectRulesetOrUnknownState"
+  },
+  "parameters": {
+    "quagmire": {
+      "card_id": "card.quagmire",
+      "effect_id": "effect.quagmire",
+      "description": "固定US从下一新根行动受陷阱：有效阈值弃牌/单骰逃脱、计分义务优先，跨回合保持。",
+      "template": "ActivateTrapRootEligibility",
+      "affected_side": "US",
+      "duration": "UntilEscapeOrGameEnd",
+      "expiry_boundary": null,
+      "gate_scope": "NextNewAffectedRootActionRound",
+      "exclude_activation_root": true,
+      "headline_policy": "NotApplicable",
+      "ordinary_slot_source": "NormalScheduledActionRound",
+      "other_slot_sources": "RequiresVerifiedTrapSlotPolicy",
+      "external_ops": "RequiresVerifiedSourceScope;NeverGlobalActorOpsBan",
+      "discard": {
+        "owner": "AffectedSide",
+        "zone": "OwnerOrdinaryHand",
+        "kind": "Event",
+        "minimum_effective_ops": 2,
+        "quote_purpose": "OpsThreshold",
+        "ops_policy_ref": {
+          "dataset_id": "effects.deluxe2015.persistent_batch1",
+          "json_pointer": "/ops_policy"
+        },
+        "china_allowed": false,
+        "event_triggers": false,
+        "actual_card_use_created": false,
+        "target_zone": "DiscardPile",
+        "ops_granted": 0,
+        "military_granted": 0
+      },
+      "escape": {
+        "die_definition_ref": {
+          "dataset_id": "rules.deluxe2015.standard-dice",
+          "json_pointer": "/definitions/standard_d6"
+        },
+        "roll_count": 1,
+        "maximum_successful_raw_roll": 4,
+        "modifier_policy": "NoOpsCoupWarDiceModifiers",
+        "success": "CancelThisInstance;NormalPlayNextAffectedRootOnly",
+        "failure": "KeepThisInstance",
+        "root_slots_consumed": 1
+      },
+      "scoring_policy": {
+        "obligation_priority": "BeforeTrapDiscard",
+        "obligation_source": "VerifiedTurnFlowScoringObligation",
+        "deadline_unknown": "RequiresRuling",
+        "without_obligation": "OnlyWhenNoEligibleDiscard",
+        "score_action": "DelegateExistingScoring;KeepTrap;NoDie",
+        "no_discard_no_scoring": "InternalSkipOneRootSlotNoDieKeepTrap"
+      },
+      "forced_discard_source_policy": {
+        "missile_envy": "VerifiedSourceObligationAndEligibleCardOnly",
+        "eligible_priority": "NarrowCandidatesToObligedCard",
+        "ineligible": "CannotDiscardIt;KeepSourceObligationUnmodified",
+        "source_unknown": "RequiresRuling",
+        "discard_evidence": "EmitToRegisteredSourceConsumer;NoFull49Implementation"
+      },
+      "duplicate_activation": "IdempotentByResolutionId",
+      "new_resolution_repeat": "RequiresRuling",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "p7 #42/p8 #44下一受影响行动弃2+OPS并单骰1–4逃脱；NORAD取消来自optional106 p16，不来自42。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.0标准六面骰，§4.2根行动者，§5.3/5.4弃牌、§7.4.1–2有效OPS阈值、§9.5中国牌、§10.1.5计分义务。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFp9–10 #42/#44整行动只弃+骰、逃脱下一行动才正常、跨turn持续、Headline不受限；p4#6禁止China；p12#49优先有来源ME；p19–20计分义务先于强迫弃牌。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-TR1",
+          "locator": "新受影响根slot gate排除激活根，私有选择/原子弃骰/根slot收据；计分义务由编排提供，不私算可放弃额外slot。未知外部/额外slot来源与新ID重复停止。标准D6新消费者共享，旧Space/war数值留兼容检查，未声称迁移旧消费者。",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "bear_trap": {
+      "card_id": "card.bear_trap",
+      "effect_id": "effect.bear_trap",
+      "description": "固定USSR从下一新根行动受陷阱：有效阈值弃牌/单骰逃脱、计分义务优先，跨回合保持。",
+      "template": "ActivateTrapRootEligibility",
+      "affected_side": "USSR",
+      "duration": "UntilEscapeOrGameEnd",
+      "expiry_boundary": null,
+      "gate_scope": "NextNewAffectedRootActionRound",
+      "exclude_activation_root": true,
+      "headline_policy": "NotApplicable",
+      "ordinary_slot_source": "NormalScheduledActionRound",
+      "other_slot_sources": "RequiresVerifiedTrapSlotPolicy",
+      "external_ops": "RequiresVerifiedSourceScope;NeverGlobalActorOpsBan",
+      "discard": {
+        "owner": "AffectedSide",
+        "zone": "OwnerOrdinaryHand",
+        "kind": "Event",
+        "minimum_effective_ops": 2,
+        "quote_purpose": "OpsThreshold",
+        "ops_policy_ref": {
+          "dataset_id": "effects.deluxe2015.persistent_batch1",
+          "json_pointer": "/ops_policy"
+        },
+        "china_allowed": false,
+        "event_triggers": false,
+        "actual_card_use_created": false,
+        "target_zone": "DiscardPile",
+        "ops_granted": 0,
+        "military_granted": 0
+      },
+      "escape": {
+        "die_definition_ref": {
+          "dataset_id": "rules.deluxe2015.standard-dice",
+          "json_pointer": "/definitions/standard_d6"
+        },
+        "roll_count": 1,
+        "maximum_successful_raw_roll": 4,
+        "modifier_policy": "NoOpsCoupWarDiceModifiers",
+        "success": "CancelThisInstance;NormalPlayNextAffectedRootOnly",
+        "failure": "KeepThisInstance",
+        "root_slots_consumed": 1
+      },
+      "scoring_policy": {
+        "obligation_priority": "BeforeTrapDiscard",
+        "obligation_source": "VerifiedTurnFlowScoringObligation",
+        "deadline_unknown": "RequiresRuling",
+        "without_obligation": "OnlyWhenNoEligibleDiscard",
+        "score_action": "DelegateExistingScoring;KeepTrap;NoDie",
+        "no_discard_no_scoring": "InternalSkipOneRootSlotNoDieKeepTrap"
+      },
+      "forced_discard_source_policy": {
+        "missile_envy": "VerifiedSourceObligationAndEligibleCardOnly",
+        "eligible_priority": "NarrowCandidatesToObligedCard",
+        "ineligible": "CannotDiscardIt;KeepSourceObligationUnmodified",
+        "source_unknown": "RequiresRuling",
+        "discard_evidence": "EmitToRegisteredSourceConsumer;NoFull49Implementation"
+      },
+      "duplicate_activation": "IdempotentByResolutionId",
+      "new_resolution_repeat": "RequiresRuling",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "p7 #42/p8 #44下一受影响行动弃2+OPS并单骰1–4逃脱；NORAD取消来自optional106 p16，不来自42。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.0标准六面骰，§4.2根行动者，§5.3/5.4弃牌、§7.4.1–2有效OPS阈值、§9.5中国牌、§10.1.5计分义务。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFp9–10 #42/#44整行动只弃+骰、逃脱下一行动才正常、跨turn持续、Headline不受限；p4#6禁止China；p12#49优先有来源ME；p19–20计分义务先于强迫弃牌。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-TR1",
+          "locator": "新受影响根slot gate排除激活根，私有选择/原子弃骰/根slot收据；计分义务由编排提供，不私算可放弃额外slot。未知外部/额外slot来源与新ID重复停止。标准D6新消费者共享，旧Space/war数值留兼容检查，未声称迁移旧消费者。",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

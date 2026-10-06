@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "id": "data.trap-events",
+  "kind": "data",
+  "status": "ready",
+  "description": "Quagmire/BearTrap共享根行动资格、阈值弃骰/计分/跳过、跨回合生命周期；仅参数/有限接缝，C#待实现。",
+  "dataset_id": "effects.deluxe2015.trap_events",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/trap-events.schema.json",
+  "documentation": "Docs/Wiki/trap-events.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/trap-events.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "稳定规则/卡牌/骰ID与可信根slot/手牌/义务上下文"
+  ],
+  "outputs": [
+    "只读定义；无可执行表达式/客户端裁定"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "effects.deluxe2015.persistent_batch1",
+    "rules.deluxe2015.standard-dice",
+    "rules.deluxe2015.turn-flow"
+  ],
+  "preconditions": [
+    "ready/Bound不是游戏实现",
+    "所有私有候选/源义务/计分义务由权威层验证；未核实来源停止"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "缺失/冲突/不匹配定义、无效角色/私有手牌/额外slot来源或过期选择",
+    "重复激活未裁定；不能猜空候选、计分义务或可用随机结果"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "p7 #42/p8 #44下一受影响行动弃2+OPS并单骰1–4逃脱；NORAD取消来自optional106 p16，不来自42。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.0标准六面骰，§4.2根行动者，§5.3/5.4弃牌、§7.4.1–2有效OPS阈值、§9.5中国牌、§10.1.5计分义务。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarification only",
+      "description": "PDFp9–10 #42/#44整行动只弃+骰、逃脱下一行动才正常、跨turn持续、Headline不受限；p4#6禁止China；p12#49优先有来源ME；p19–20计分义务先于强迫弃牌。"
+    },
+    {
+      "id": "PROJECT-TR1",
+      "url": null,
+      "edition": "Engineering scope/verified-source boundaries, 2026-10-06",
+      "description": "新受影响根slot gate排除激活根，私有选择/原子弃骰/根slot收据；计分义务由编排提供，不私算可放弃额外slot。未知外部/额外slot来源与新ID重复停止。标准D6新消费者共享，旧Space/war数值留兼容检查，未声称迁移旧消费者。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/trap-events.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/trap-events.validation.json"
+  }
+}

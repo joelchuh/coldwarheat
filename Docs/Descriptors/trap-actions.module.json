@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "id": "module.trap-actions",
+  "kind": "module",
+  "status": "planned",
+  "description": "陷阱根行动服务：私有有效OPS弃牌/计分优先/单骰逃脱与内部跳过计划，精确源slot和收据；不全局封锁OPS Actor。",
+  "documentation": "Docs/Wiki/trap-events.md",
+  "entrypoints": [],
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Traps/TrapActionService.cs",
+      "symbol": "BuildEligibilityPlan"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Traps/TrapActionService.cs",
+      "symbol": "PlanForcedDiscardAndEscape"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Traps/TrapActionService.cs",
+      "symbol": "PlanScoringOrSkip"
+    }
+  ],
+  "inputs": [
+    "可信新根slot/PhasingPlayer/ActivationRootId/阶段/版本、活动实例",
+    "本人普通Hand/OPS阈值报价、编排计分义务和已验证优先弃牌来源、注入随机状态"
+  ],
+  "outputs": [
+    "Owner私有PendingDecision或计分委派/规则跳过、弃牌/骰记录/逃脱/一次根slot计划"
+  ],
+  "dependencies": [
+    {
+      "id": "module.active-effects",
+      "path": "Docs/Descriptors/active-effects.module.json",
+      "status": "planned"
+    },
+    {
+      "id": "module.hand-events",
+      "path": "Docs/Descriptors/hand-events.module.json",
+      "status": "planned"
+    }
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.trap_events",
+    "rules.deluxe2015.standard-dice",
+    "cards.deluxe2015.definitions",
+    "effects.deluxe2015.persistent_batch1",
+    "effects.deluxe2015.persistent_batch2",
+    "rules.deluxe2015.turn-flow"
+  ],
+  "contract_dependencies": [
+    "urn:coldwarheat:contract:trap-events:1",
+    "urn:coldwarheat:contract:standard-dice:1"
+  ],
+  "preconditions": [
+    "设计不可调用；SourceSlot、身份/候选/计分义务齐备",
+    "直接弃牌没有ActualCardUse，合法选牌后才消耗一次RawD6；结果不受OPS/coup/war修正"
+  ],
+  "side_effects": [
+    "纯计划交编排事务提交；不自己推进回合/执行计分/等待UI"
+  ],
+  "stop_conditions": [
+    "额外/外部slot政策未知、计分义务未知、强制弃牌来源缺损",
+    "过期/非法回应或损坏实例/随机值，旧ID冲突，新ID重复激活未裁定",
+    "基础包未知optionalNORAD状态不得默许取消后继续"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "p7 #42/p8 #44下一受影响行动弃2+OPS并单骰1–4逃脱；NORAD取消来自optional106 p16，不来自42。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.0标准六面骰，§4.2根行动者，§5.3/5.4弃牌、§7.4.1–2有效OPS阈值、§9.5中国牌、§10.1.5计分义务。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarification only",
+      "description": "PDFp9–10 #42/#44整行动只弃+骰、逃脱下一行动才正常、跨turn持续、Headline不受限；p4#6禁止China；p12#49优先有来源ME；p19–20计分义务先于强迫弃牌。"
+    },
+    {
+      "id": "PROJECT-TR1",
+      "url": null,
+      "edition": "Engineering scope/verified-source boundaries, 2026-10-06",
+      "description": "新受影响根slot gate排除激活根，私有选择/原子弃骰/根slot收据；计分义务由编排提供，不私算可放弃额外slot。未知外部/额外slot来源与新ID重复停止。标准D6新消费者共享，旧Space/war数值留兼容检查，未声称迁移旧消费者。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/trap-events.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "implementation_tested": false,
+    "latest_design_report": "Docs/Design/trap-events.validation.json"
+  }
+}

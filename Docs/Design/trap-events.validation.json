@@ -1,0 +1,360 @@
+{
+  "description": "陷阱资格/阈值弃骰/计分委派/内部跳过与共享D6有限参考，非生产C#/Unity验证。",
+  "checked_on": "2026-10-06",
+  "new_cases_passed": 73,
+  "previous_cases_passed": 1599,
+  "total_cases_passed": 1672,
+  "cases_by_layer": {
+    "data": 20,
+    "reference": 53,
+    "runtime": 8
+  },
+  "runtime_cases_not_run": 8,
+  "runtime_game_tests_run": 0,
+  "bound_cards": 65,
+  "unresolved_bindings": 37,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 33,
+    "json_files_parsed": 199,
+    "data_descriptors": 36,
+    "module_descriptors": 21,
+    "relative_links_checked": 149,
+    "parameter_pointers_resolved": 110
+  },
+  "validated_sha256": {
+    "Data/Cards/deluxe-2015/trap-events.parameters.json": "b0181de82281eea5bcc1f2db084381e7d3be76892be5927a4f6dbd6b20ca5dfa",
+    "Docs/Contracts/trap-events.schema.json": "c4d599f31c74600a4741520253007126082759f0dcd6d852be3d7b8ae43d3e99",
+    "Data/Rulesets/deluxe-2015/standard-dice.json": "c84d14b827bd71d5575a22d6e2c52e18caaffcaeeb5f8e53f16352bdcec8f54a",
+    "Docs/Contracts/standard-dice.schema.json": "1e784c58d6ab8ed3d8bd2f8588e310f2502b61f62ace2bdb3161d87f42bffb26",
+    "Docs/Design/trap-events.cases.json": "5da45011a4950565b8af242c59217c628cf937042b240b279d47db1af9fd206a",
+    "Data/Cards/deluxe-2015/cards.json": "ae79900c7f4f65f75493c6589fb95f2d0d56109b4b92068b5db372c0b27c8fe4",
+    "Docs/Descriptors/trap-actions.module.json": "b864f4acf0b432662eeef70ea7f525c91efe0b50e9cf6e772a45dda815df95fe",
+    "Docs/Descriptors/turn-flow.module.json": "e880a8989536fc0e626cb16d8e64ebee9eddf8434711babe04c5bcbefd48bbf1",
+    "Docs/Descriptors/active-effects.module.json": "39dc82f04ec7054ac507cd9a1ebfdde5dd78ab6774b90ee5bd00f23a3e6f4df8",
+    "Docs/Descriptors/hand-events.module.json": "570535538f13bef705d1ae67fa7c5d4e4816359cf863ed433a18a054c8af2cac",
+    "Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json": "e229d5494deba9031c3348f7d726dd09fc2d8ce28eb2db618142712c79d538d4",
+    "Data/Rulesets/deluxe-2015/space-race.json": "09c91fcb420867e910ef809a7036b4607ce608f014b387021d3a6cfa38866bb1",
+    "Data/Cards/deluxe-2015/war-events-batch1.parameters.json": "8063aa87340fda08e7fbfc2c9c54eae3966a709997ff098774d660959ea2d00d"
+  },
+  "results": [
+    {
+      "id": "TR-D-trap-baseline",
+      "passed": true
+    },
+    {
+      "id": "TR-D-dice-baseline",
+      "passed": true
+    },
+    {
+      "id": "TR-D-quag-side",
+      "passed": true
+    },
+    {
+      "id": "TR-D-bear-side",
+      "passed": true
+    },
+    {
+      "id": "TR-D-duration",
+      "passed": true
+    },
+    {
+      "id": "TR-D-expire",
+      "passed": true
+    },
+    {
+      "id": "TR-D-threshold",
+      "passed": true
+    },
+    {
+      "id": "TR-D-quote",
+      "passed": true
+    },
+    {
+      "id": "TR-D-china",
+      "passed": true
+    },
+    {
+      "id": "TR-D-event-trigger",
+      "passed": true
+    },
+    {
+      "id": "TR-D-actual-use",
+      "passed": true
+    },
+    {
+      "id": "TR-D-military",
+      "passed": true
+    },
+    {
+      "id": "TR-D-die-count",
+      "passed": true
+    },
+    {
+      "id": "TR-D-win-roll",
+      "passed": true
+    },
+    {
+      "id": "TR-D-slot-count",
+      "passed": true
+    },
+    {
+      "id": "TR-D-headline",
+      "passed": true
+    },
+    {
+      "id": "TR-D-score-priority",
+      "passed": true
+    },
+    {
+      "id": "TR-D-repeat",
+      "passed": true
+    },
+    {
+      "id": "TR-D-dice-zero",
+      "passed": true
+    },
+    {
+      "id": "TR-D-dice-d8",
+      "passed": true
+    },
+    {
+      "id": "TR-R-quag-us-discard",
+      "passed": true
+    },
+    {
+      "id": "TR-R-bear-ussr-discard",
+      "passed": true
+    },
+    {
+      "id": "TR-R-headline-unaffected",
+      "passed": true
+    },
+    {
+      "id": "TR-R-other-root-not-global-actor-ban",
+      "passed": true
+    },
+    {
+      "id": "TR-R-same-activation-root-unaffected",
+      "passed": true
+    },
+    {
+      "id": "TR-R-already-open-root-unaffected",
+      "passed": true
+    },
+    {
+      "id": "TR-R-no-active",
+      "passed": true
+    },
+    {
+      "id": "TR-R-extra-slot-unknown",
+      "passed": true
+    },
+    {
+      "id": "TR-R-verified-extra-slot-interface-assumption",
+      "passed": true
+    },
+    {
+      "id": "TR-R-threshold-two",
+      "passed": true
+    },
+    {
+      "id": "TR-R-threshold-three",
+      "passed": true
+    },
+    {
+      "id": "TR-R-purge-two-to-one-score",
+      "passed": true
+    },
+    {
+      "id": "TR-R-brez-one-to-two",
+      "passed": true
+    },
+    {
+      "id": "TR-R-flat-effects-cancel",
+      "passed": true
+    },
+    {
+      "id": "TR-R-china-not-candidate",
+      "passed": true
+    },
+    {
+      "id": "TR-R-score-urgency-first-even-eligible",
+      "passed": true
+    },
+    {
+      "id": "TR-R-score-obligation-unknown",
+      "passed": true
+    },
+    {
+      "id": "TR-R-mandatory-score-missing-invalid",
+      "passed": true
+    },
+    {
+      "id": "TR-R-no-eligible-no-score",
+      "passed": true
+    },
+    {
+      "id": "TR-R-empty-hand-no-die",
+      "passed": true
+    },
+    {
+      "id": "TR-R-me-with-source-priority",
+      "passed": true
+    },
+    {
+      "id": "TR-R-me-no-source-no-priority",
+      "passed": true
+    },
+    {
+      "id": "TR-R-me-low-cannot-discard",
+      "passed": true
+    },
+    {
+      "id": "TR-R-me-source-unknown",
+      "passed": true
+    },
+    {
+      "id": "TR-R-scoring-before-me-priority",
+      "passed": true
+    },
+    {
+      "id": "TR-R-discard-roll-1",
+      "passed": true
+    },
+    {
+      "id": "TR-R-discard-roll-4",
+      "passed": true
+    },
+    {
+      "id": "TR-R-discard-roll-5",
+      "passed": true
+    },
+    {
+      "id": "TR-R-discard-roll-6",
+      "passed": true
+    },
+    {
+      "id": "TR-R-discard-opponent-star-no-event",
+      "passed": true
+    },
+    {
+      "id": "TR-R-discard-scoring-invalid",
+      "passed": true
+    },
+    {
+      "id": "TR-R-discard-china-invalid",
+      "passed": true
+    },
+    {
+      "id": "TR-R-discard-wrong-owner",
+      "passed": true
+    },
+    {
+      "id": "TR-R-discard-stale",
+      "passed": true
+    },
+    {
+      "id": "TR-R-discard-wrong-me-priority",
+      "passed": true
+    },
+    {
+      "id": "TR-R-discard-urgent-score-rejected",
+      "passed": true
+    },
+    {
+      "id": "TR-R-bad-die-zero-no-discard",
+      "passed": true
+    },
+    {
+      "id": "TR-R-bad-die-seven-no-discard",
+      "passed": true
+    },
+    {
+      "id": "TR-R-discard-retry-no-rng",
+      "passed": true
+    },
+    {
+      "id": "TR-R-score-delegates-no-trap-cancel",
+      "passed": true
+    },
+    {
+      "id": "TR-R-score-no-discard-eligible",
+      "passed": true
+    },
+    {
+      "id": "TR-R-score-while-discard-needed",
+      "passed": true
+    },
+    {
+      "id": "TR-R-skip-internal-only-empty",
+      "passed": true
+    },
+    {
+      "id": "TR-R-skip-when-cards-exist-reject",
+      "passed": true
+    },
+    {
+      "id": "TR-R-turn-end-keeps-trap",
+      "passed": true
+    },
+    {
+      "id": "TR-R-trap-new-activation",
+      "passed": true
+    },
+    {
+      "id": "TR-R-trap-repeat-new-id",
+      "passed": true
+    },
+    {
+      "id": "TR-R-activation-retry",
+      "passed": true
+    },
+    {
+      "id": "TR-R-optional-norad-invalid",
+      "passed": true
+    },
+    {
+      "id": "TR-R-unknown-effects",
+      "passed": true
+    },
+    {
+      "id": "TR-R-bad-internal-frame",
+      "passed": true
+    },
+    {
+      "id": "TR-R-conflicting-id",
+      "passed": true
+    },
+    {
+      "id": "TR-R-finished",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "8runtime未运行；真实身份/私有候选/源slot/计分义务/原子弃骰/实例/根收据/保存未验证",
+    "源slot/强制来源/计分义务为可信输入假设；Score仅委派未实际执行计分/去向",
+    "共享标准D6仅新消费者定义，旧Space/war声明保留并数值兼容检查；未迁移旧调用者",
+    "1599旧业务预期保持，只适配库存/完成出处/历史绑定基线；13note/38Tools另层",
+    "额外slot/未知来源/重复激活停止；NORAD范围外不作基础依赖",
+    "所有102handlers仍planned"
+  ],
+  "independent_review": {
+    "status": "ready-design-contract-minor-field-name-closed-by-primary",
+    "fixed_findings": [
+      "worklog legacy_validation_refs field name corrected"
+    ],
+    "independently_checked": [
+      "20structure53reference=73 rerun",
+      "33Schema meta/36descriptors29explicit-schema datasets/21planned modulesDAG",
+      "199JSON110pointers149candidateMDlinks/13reportSHA/284baselineSHA",
+      "only2target bindings/contracts changed; printed facts retained; English/R2015/FAQ"
+    ],
+    "not_independently_run": [
+      "1599 historical models/full1672",
+      "8runtime/real authority, source slot and scoring obligation",
+      "13note/38Tools"
+    ],
+    "fix_verification": "primary full rerun; no extra independent runtime claim"
+  }
+}

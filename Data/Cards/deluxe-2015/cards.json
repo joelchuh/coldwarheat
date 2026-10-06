@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.24.0",
+  "content_version": "0.25.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计63牌效果参数已绑定，其余39个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计65牌效果参数已绑定，其余37个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -149,6 +149,12 @@
       "url": null,
       "edition": "Engineering contracts / explicit unresolved branches, 2026-10-06",
       "description": "双实体唯一区域/两ActualUse共RootSlot、专用来源/合法UN事件证据、预算引用和原子收据。Flower/未知子来源/UN配牌Space仍停止；#50只接口证据不实现。"
+    },
+    {
+      "id": "PROJECT-TR1",
+      "url": null,
+      "edition": "Engineering scope/verified-source boundaries, 2026-10-06",
+      "description": "新受影响根slot gate排除激活根，私有选择/原子弃骰/根slot收据；计分义务由编排提供，不私算可放弃额外slot。未知外部/额外slot来源与新ID重复停止。标准D6新消费者共享，旧Space/war数值留兼容检查，未声称迁移旧消费者。"
     }
   ],
   "cards": [
@@ -1460,8 +1466,13 @@
       "effect_binding": {
         "effect_id": "effect.quagmire",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.trap_events",
+            "json_pointer": "/parameters/quagmire"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -1519,8 +1530,13 @@
       "effect_binding": {
         "effect_id": "effect.bear_trap",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.trap_events",
+            "json_pointer": "/parameters/bear_trap"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -4377,15 +4393,32 @@
     {
       "effect_id": "effect.quagmire",
       "contract_version": "0.1.0",
-      "description": "Quagmire：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.quagmire",
+      "description": "固定US从下一新根行动受陷阱：有效阈值弃牌/单骰逃脱、计分义务优先，跨回合保持。",
+      "handler_key": "trap.ActivateTrapRootEligibility",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:trap-events:1#/$defs/quagmire"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "p7 #42/p8 #44下一受影响行动弃2+OPS并单骰1–4逃脱；NORAD取消来自optional106 p16，不来自42。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.0标准六面骰，§4.2根行动者，§5.3/5.4弃牌、§7.4.1–2有效OPS阈值、§9.5中国牌、§10.1.5计分义务。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFp9–10 #42/#44整行动只弃+骰、逃脱下一行动才正常、跨turn持续、Headline不受限；p4#6禁止China；p12#49优先有来源ME；p19–20计分义务先于强迫弃牌。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-TR1",
+          "locator": "新受影响根slot gate排除激活根，私有选择/原子弃骰/根slot收据；计分义务由编排提供，不私算可放弃额外slot。未知外部/额外slot来源与新ID重复停止。标准D6新消费者共享，旧Space/war数值留兼容检查，未声称迁移旧消费者。",
+          "verification": "Verified"
         }
       ]
     },
@@ -4424,15 +4457,32 @@
     {
       "effect_id": "effect.bear_trap",
       "contract_version": "0.1.0",
-      "description": "Bear Trap：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.bear_trap",
+      "description": "固定USSR从下一新根行动受陷阱：有效阈值弃牌/单骰逃脱、计分义务优先，跨回合保持。",
+      "handler_key": "trap.ActivateTrapRootEligibility",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:trap-events:1#/$defs/bear_trap"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "p7 #42/p8 #44下一受影响行动弃2+OPS并单骰1–4逃脱；NORAD取消来自optional106 p16，不来自42。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.0标准六面骰，§4.2根行动者，§5.3/5.4弃牌、§7.4.1–2有效OPS阈值、§9.5中国牌、§10.1.5计分义务。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFp9–10 #42/#44整行动只弃+骰、逃脱下一行动才正常、跨turn持续、Headline不受限；p4#6禁止China；p12#49优先有来源ME；p19–20计分义务先于强迫弃牌。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-TR1",
+          "locator": "新受影响根slot gate排除激活根，私有选择/原子弃骰/根slot收据；计分义务由编排提供，不私算可放弃额外slot。未知外部/额外slot来源与新ID重复停止。标准D6新消费者共享，旧Space/war数值留兼容检查，未声称迁移旧消费者。",
+          "verification": "Verified"
         }
       ]
     },

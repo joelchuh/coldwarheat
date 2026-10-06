@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "dataset_id": "rules.deluxe2015.standard-dice",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "verified-subset",
+  "description": "新消费者共享标准D6定义；旧Space/war骰声明暂保留并离线兼容核对，未声称旧调用方已迁移。",
+  "source_catalog": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.0标准六面骰，§4.2根行动者，§5.3/5.4弃牌、§7.4.1–2有效OPS阈值、§9.5中国牌、§10.1.5计分义务。"
+    },
+    {
+      "id": "PROJECT-TR1",
+      "url": null,
+      "edition": "Engineering scope/verified-source boundaries, 2026-10-06",
+      "description": "新受影响根slot gate排除激活根，私有选择/原子弃骰/根slot收据；计分义务由编排提供，不私算可放弃额外slot。未知外部/额外slot来源与新ID重复停止。标准D6新消费者共享，旧Space/war数值留兼容检查，未声称迁移旧消费者。"
+    }
+  ],
+  "definitions": {
+    "standard_d6": {
+      "id": "die.standard_d6",
+      "kind": "UniformIntegerFaces",
+      "minimum": 1,
+      "maximum": 6
+    }
+  },
+  "legacy_validation_refs": [
+    {
+      "dataset_id": "rules.deluxe2015.space-race",
+      "json_pointer": "/die"
+    },
+    {
+      "dataset_id": "effects.deluxe2015.war_events_batch1",
+      "json_pointer": "/war_policy/die_sides"
+    }
+  ]
+}
