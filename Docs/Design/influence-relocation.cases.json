@@ -1,0 +1,1824 @@
+{
+  "schema_version": 1,
+  "description": "De-Stalinization结构负例与守恒/拒绝固定参考；真实事务、身份与恢复验收planned-runtime。",
+  "status": "mixed-reference-and-planned",
+  "dataset": "Data/Cards/deluxe-2015/influence-relocation.parameters.json",
+  "schema": "Docs/Contracts/influence-relocation.schema.json",
+  "cases": [
+    {
+      "id": "DS-D-baseline",
+      "validation_layer": "data",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "DS-D-invalid-1",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "de_stalinization",
+              "maximum_total"
+            ],
+            "value": 5
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DS-D-invalid-2",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "de_stalinization",
+              "minimum_total"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DS-D-invalid-3",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "de_stalinization",
+              "beneficiary"
+            ],
+            "value": "US"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DS-D-invalid-4",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "de_stalinization",
+              "selection_owner"
+            ],
+            "value": "EventController"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DS-D-invalid-5",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "de_stalinization",
+              "source_policy",
+              "side"
+            ],
+            "value": "US"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DS-D-invalid-6",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "de_stalinization",
+              "source_policy",
+              "allow_any_region"
+            ],
+            "value": false
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DS-D-invalid-7",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "de_stalinization",
+              "destination_policy",
+              "excluded_controller"
+            ],
+            "value": "USSR"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DS-D-invalid-8",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "de_stalinization",
+              "destination_policy",
+              "max_added_per_country"
+            ],
+            "value": 3
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DS-D-invalid-9",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "de_stalinization",
+              "destination_policy",
+              "uses_ops_adjacency"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DS-D-invalid-10",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "de_stalinization",
+              "destination_policy",
+              "uses_enemy_control_cost"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DS-D-invalid-11",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "de_stalinization",
+              "total_policy"
+            ],
+            "value": "DiscardRemainder"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DS-D-invalid-12",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "de_stalinization",
+              "overlap_policy"
+            ],
+            "value": "AllowNetting"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DS-D-invalid-13",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "de_stalinization",
+              "commit_policy"
+            ],
+            "value": "RemoveThenAwait"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DS-D-invalid-14",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "de_stalinization",
+              "free_script"
+            ],
+            "value": "exec()"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "DS-R-four-to-two-countries",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 2
+          },
+          {
+            "country_id": "country.egypt",
+            "amount": 2
+          }
+        ],
+        "destination_allocations": [
+          {
+            "country_id": "country.chile",
+            "amount": 2
+          },
+          {
+            "country_id": "country.angola",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "influence_patch": {
+          "country.poland": {
+            "US": 0,
+            "USSR": 1
+          },
+          "country.egypt": {
+            "US": 0,
+            "USSR": 0
+          },
+          "country.chile": {
+            "US": 0,
+            "USSR": 2
+          },
+          "country.angola": {
+            "US": 0,
+            "USSR": 2
+          }
+        }
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-zero",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [],
+        "destination_allocations": [],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-less-than-four",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 1
+          }
+        ],
+        "destination_allocations": [
+          {
+            "country_id": "country.chile",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "influence_patch": {
+          "country.poland": {
+            "US": 0,
+            "USSR": 2
+          },
+          "country.chile": {
+            "US": 0,
+            "USSR": 1
+          }
+        }
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-destination-equals-source-total",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 2
+          }
+        ],
+        "destination_allocations": [
+          {
+            "country_id": "country.chile",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-total-over-four",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 3
+          },
+          {
+            "country_id": "country.egypt",
+            "amount": 2
+          }
+        ],
+        "destination_allocations": [
+          {
+            "country_id": "country.chile",
+            "amount": 2
+          },
+          {
+            "country_id": "country.angola",
+            "amount": 2
+          },
+          {
+            "country_id": "country.brazil",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-source-insufficient",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 4
+          }
+        ],
+        "destination_allocations": [
+          {
+            "country_id": "country.chile",
+            "amount": 2
+          },
+          {
+            "country_id": "country.angola",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "InsufficientInfluence",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-destination-per-country-over-two",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 3
+          }
+        ],
+        "destination_allocations": [
+          {
+            "country_id": "country.chile",
+            "amount": 3
+          }
+        ],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-us-controlled-destination",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 1
+          }
+        ],
+        "destination_allocations": [
+          {
+            "country_id": "country.brazil",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "IllegalDestination",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-duplicate-source",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 1
+          },
+          {
+            "country_id": "country.poland",
+            "amount": 1
+          }
+        ],
+        "destination_allocations": [
+          {
+            "country_id": "country.chile",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-duplicate-destination",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 2
+          }
+        ],
+        "destination_allocations": [
+          {
+            "country_id": "country.chile",
+            "amount": 1
+          },
+          {
+            "country_id": "country.chile",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-negative",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": -1
+          }
+        ],
+        "destination_allocations": [
+          {
+            "country_id": "country.chile",
+            "amount": -1
+          }
+        ],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-boolean-amount",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": true
+          }
+        ],
+        "destination_allocations": [
+          {
+            "country_id": "country.chile",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-zero-row",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 0
+          }
+        ],
+        "destination_allocations": [
+          {
+            "country_id": "country.chile",
+            "amount": 0
+          }
+        ],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-source-unknown",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [
+          {
+            "country_id": "country.not_a_country",
+            "amount": 1
+          }
+        ],
+        "destination_allocations": [
+          {
+            "country_id": "country.chile",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "IllegalSource",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-destination-superpower",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 1
+          }
+        ],
+        "destination_allocations": [
+          {
+            "country_id": "superpower.ussr",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "IllegalDestination",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-overlap-pending",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 1
+          }
+        ],
+        "destination_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-overlap-no-netting",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 2
+          },
+          {
+            "country_id": "country.egypt",
+            "amount": 1
+          }
+        ],
+        "destination_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 2
+          },
+          {
+            "country_id": "country.chile",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-unauthorized",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [],
+        "destination_allocations": [],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-forged-source",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": false,
+        "revision_matches": true,
+        "source_allocations": [],
+        "destination_allocations": [],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-stale",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": false,
+        "source_allocations": [],
+        "destination_allocations": [],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "StaleResponse",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-unknown-effects",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [],
+        "destination_allocations": [],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": false,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-replay",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [],
+        "destination_allocations": [],
+        "state": {
+          "finished": false,
+          "completed": true,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-finished",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [],
+        "destination_allocations": [],
+        "state": {
+          "finished": true,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-R-zero-does-not-delete-source",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 1
+          }
+        ],
+        "destination_allocations": [],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "influence_patch": {}
+      },
+      "execution_status": "passed-fixed-reference"
+    },
+    {
+      "id": "DS-I-atomic-allocation",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "只提交完整来源/目的守恒分配，没有半移除等待状态"
+    },
+    {
+      "id": "DS-I-private-owner",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "Owner固定USSR，不跟根出牌者变化"
+    },
+    {
+      "id": "DS-I-control-requery",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "接受时重查目的当前US控制与来源现有量"
+    },
+    {
+      "id": "DS-I-no-ops-adjacency",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "不同国家目的无普通OPS邻接/敌控费用"
+    },
+    {
+      "id": "DS-I-keep-us-influence",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "双方数据原子变更只影响USSR，总USSR守恒"
+    },
+    {
+      "id": "DS-I-overlap-stop",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "同国移出移入停止，未裁定不净额抵消"
+    },
+    {
+      "id": "DS-I-zero-star",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "合法零迁移ResolvedNoChange，事件发生后星号去向"
+    },
+    {
+      "id": "DS-I-save-idempotent",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "requirement": "决策/批次来源持久化，重放不重复迁移"
+    },
+    {
+      "id": "DS-R-us-controlled-source",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 2
+          }
+        ],
+        "destination_allocations": [
+          {
+            "country_id": "country.chile",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 10,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "influence_patch": {
+          "country.poland": {
+            "US": 10,
+            "USSR": 1
+          },
+          "country.chile": {
+            "US": 0,
+            "USSR": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "DS-R-us-influence-not-control",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 2
+          }
+        ],
+        "destination_allocations": [
+          {
+            "country_id": "country.chile",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "influence_patch": {
+          "country.poland": {
+            "US": 0,
+            "USSR": 1
+          },
+          "country.chile": {
+            "US": 1,
+            "USSR": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "DS-R-own-controlled-destination",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 2
+          }
+        ],
+        "destination_allocations": [
+          {
+            "country_id": "country.chile",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 3
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "influence_patch": {
+          "country.poland": {
+            "US": 0,
+            "USSR": 1
+          },
+          "country.chile": {
+            "US": 0,
+            "USSR": 5
+          }
+        }
+      }
+    },
+    {
+      "id": "DS-R-single-source-four",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "authenticated_side": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_allocations": [
+          {
+            "country_id": "country.poland",
+            "amount": 4
+          }
+        ],
+        "destination_allocations": [
+          {
+            "country_id": "country.chile",
+            "amount": 2
+          },
+          {
+            "country_id": "country.angola",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "influence": {
+            "country.poland": {
+              "US": 0,
+              "USSR": 4
+            },
+            "country.egypt": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.chile": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 10,
+              "USSR": 0
+            }
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "influence_patch": {
+          "country.poland": {
+            "US": 0,
+            "USSR": 0
+          },
+          "country.chile": {
+            "US": 0,
+            "USSR": 2
+          },
+          "country.angola": {
+            "US": 0,
+            "USSR": 2
+          }
+        }
+      }
+    }
+  ]
+}

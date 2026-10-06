@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "id": "data.influence-relocation",
+  "kind": "data",
+  "status": "ready",
+  "description": "De-Stalinization单一影响力迁移参数：苏联、额度/目的上限、无OPS邻接及守恒；同国移出移入待裁定，运行未实现。",
+  "dataset_id": "effects.deluxe2015.influence_relocation",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/influence-relocation.schema.json",
+  "documentation": "Docs/Wiki/influence-relocation.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/influence-relocation.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "CardId或RelocateOwnInfluence参数查询"
+  ],
+  "outputs": [
+    "只读选择Owner/额度/候选查询/守恒与待裁定策略"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world"
+  ],
+  "preconditions": [
+    "ready/Bound仅已知参数就绪；C#planned",
+    "同国来源/目的重叠不能默认通过；地图控制按当前权威状态"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知相关影响力限制、同国移出移入裁定缺失、旧响应/身份失配",
+    "负数/重复条目/额度不足/目的敌控/总量不等"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "目视英文p6 #33，最多4苏联影响力迁移到非US控制国，每国新放最多2。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1.7控制、§6.1.1事件放置无需普通OPS邻接、§5.2事件归属与星号。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p7 #33迁移遵从事件自身限制，不用OPS邻接；不启用中国内战。"
+    },
+    {
+      "id": "PROJECT-DS1",
+      "url": null,
+      "edition": "DS1 engineering / unresolved overlap, 2026-10-06",
+      "description": "收集完整来源和目的分配后原子校验/提交；同国既移出又移入的细节与控制快照缺专门裁定，保留RequiresRuling，不编造禁止或允许。最多允许零迁移，按up to推导，无专门FAQ。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/influence-relocation.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/influence-relocation.validation.json"
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:influence-relocation:1",
+  "title": "影响力迁移参数",
+  "description": "固定苏联、最多总额与目的上限，封闭目标查询，守恒及重叠待裁定。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.influence_relocation"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "release-candidate"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "url",
+          "edition",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "edition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "de_stalinization"
+      ],
+      "properties": {
+        "de_stalinization": {
+          "$ref": "#/$defs/de_stalinization"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "de_stalinization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "selection_owner",
+        "source_policy",
+        "destination_policy",
+        "maximum_total",
+        "minimum_total",
+        "total_policy",
+        "overlap_policy",
+        "commit_policy",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.de_stalinization"
+        },
+        "effect_id": {
+          "const": "effect.de_stalinization"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "RelocateOwnInfluence"
+        },
+        "beneficiary": {
+          "const": "USSR"
+        },
+        "selection_owner": {
+          "const": "USSR"
+        },
+        "source_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "query",
+            "side",
+            "allow_any_region"
+          ],
+          "properties": {
+            "query": {
+              "const": "CountriesWithOwnInfluence"
+            },
+            "side": {
+              "const": "USSR"
+            },
+            "allow_any_region": {
+              "const": true
+            }
+          }
+        },
+        "destination_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "query",
+            "excluded_controller",
+            "max_added_per_country",
+            "uses_ops_adjacency",
+            "uses_enemy_control_cost"
+          ],
+          "properties": {
+            "query": {
+              "const": "CountriesNotControlledBySide"
+            },
+            "excluded_controller": {
+              "const": "US"
+            },
+            "max_added_per_country": {
+              "const": 2
+            },
+            "uses_ops_adjacency": {
+              "const": false
+            },
+            "uses_enemy_control_cost": {
+              "const": false
+            }
+          }
+        },
+        "maximum_total": {
+          "const": 4
+        },
+        "minimum_total": {
+          "const": 0
+        },
+        "total_policy": {
+          "const": "DestinationSumEqualsSourceSum"
+        },
+        "overlap_policy": {
+          "const": "RequiresRuling"
+        },
+        "commit_policy": {
+          "const": "AtomicCompleteAllocation"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

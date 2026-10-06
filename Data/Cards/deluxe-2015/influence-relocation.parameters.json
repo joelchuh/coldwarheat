@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.influence_relocation",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "De-Stalinization单一影响力迁移参数：苏联、额度/目的上限、无OPS邻接及守恒；同国移出移入待裁定，运行未实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "目视英文p6 #33，最多4苏联影响力迁移到非US控制国，每国新放最多2。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1.7控制、§6.1.1事件放置无需普通OPS邻接、§5.2事件归属与星号。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p7 #33迁移遵从事件自身限制，不用OPS邻接；不启用中国内战。"
+    },
+    {
+      "id": "PROJECT-DS1",
+      "url": null,
+      "edition": "DS1 engineering / unresolved overlap, 2026-10-06",
+      "description": "收集完整来源和目的分配后原子校验/提交；同国既移出又移入的细节与控制快照缺专门裁定，保留RequiresRuling，不编造禁止或允许。最多允许零迁移，按up to推导，无专门FAQ。"
+    }
+  ],
+  "parameters": {
+    "de_stalinization": {
+      "card_id": "card.de_stalinization",
+      "effect_id": "effect.de_stalinization",
+      "description": "苏联选择自己的最多4影响力迁移，目的国非US控制，每国新放≤2；总量守恒，来源/目的重叠待裁定。",
+      "template": "RelocateOwnInfluence",
+      "beneficiary": "USSR",
+      "selection_owner": "USSR",
+      "source_policy": {
+        "query": "CountriesWithOwnInfluence",
+        "side": "USSR",
+        "allow_any_region": true
+      },
+      "destination_policy": {
+        "query": "CountriesNotControlledBySide",
+        "excluded_controller": "US",
+        "max_added_per_country": 2,
+        "uses_ops_adjacency": false,
+        "uses_enemy_control_cost": false
+      },
+      "maximum_total": 4,
+      "minimum_total": 0,
+      "total_policy": "DestinationSumEqualsSourceSum",
+      "overlap_policy": "RequiresRuling",
+      "commit_policy": "AtomicCompleteAllocation",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p6 #33，最多4苏联影响力迁移到非US控制国，每国新放最多2。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.7控制、§6.1.1事件放置无需普通OPS邻接、§5.2事件归属与星号。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p7 #33迁移遵从事件自身限制，不用OPS邻接；不启用中国内战。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-DS1",
+          "locator": "收集完整来源和目的分配后原子校验/提交；同国既移出又移入的细节与控制快照缺专门裁定，保留RequiresRuling，不编造禁止或允许。最多允许零迁移，按up to推导，无专门FAQ。",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

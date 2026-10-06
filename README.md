@@ -59,4 +59,6 @@
 
 此前：[战争牌持续与取消](Docs/Wiki/war-card-hooks.md)新增Flower、戴维营与邪恶帝国；累计28 Bound / 74 Unresolved，102处理器仍planned；Flower两项边界待裁定。
 
-最新：[DEFCON事件与政变干预](Docs/Wiki/defcon-events-batch1.md)绑定4牌；累计32 Bound / 70 Unresolved，102处理器仍planned。
+此前：[DEFCON事件与政变干预](Docs/Wiki/defcon-events-batch1.md)绑定4牌；累计32 Bound / 70 Unresolved，102处理器仍planned。
+
+最新：[影响力迁移](Docs/Wiki/influence-relocation.md)绑定去斯大林化已知参数；累计33 Bound / 69 Unresolved，102处理器planned，重叠边界待裁定。

@@ -59,3 +59,5 @@
 [戴高乐与勃兰特](../nato-exceptions.md)：固定影响力／VP、北约局部例外与取消关系。
 
 朝鲜战争、阿以战争、印巴战争参数已绑定，见[战争事件](../war-events.md)。不代表运行处理器存在；戴维营/Flower Power完整事件仍待后批。
+
+[影响力迁移](../influence-relocation.md)已绑定#33已知参数；同国移出移入待裁定，处理器planned。
