@@ -46,13 +46,13 @@
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "edition": "English Deluxe card images",
-      "description": "英文p4 #17、p9 #55；p14 #96本批重新核对完整取消、固定影响力与可选欧洲行动。 本批p9 #59/p10 #65/p14 #97。 CMV1: p8 #48 US实际控制战场多于USSR才US2VP；p12 #78 US控制中/南美每战场1VP；p13 #84 Libya每2USSR影响US1VP。"
+      "description": "英文p4 #17、p9 #55；p14 #96本批重新核对完整取消、固定影响力与可选欧洲行动。 本批p9 #59/p10 #65/p14 #97。 CMV1: p8 #48 US实际控制战场多于USSR才US2VP；p12 #78 US控制中/南美每战场1VP；p13 #84 Libya每2USSR影响US1VP。 J1: p8 #47中南美一国加2，随后可免费政变/调整，用此牌OPS；Neutral2Mid非星号。"
     },
     {
       "id": "R2015",
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
       "edition": "Deluxe rules 2015",
-      "description": "§5.2事件发生与去向、§6.1.1直接放置、§7.3/7.5持续与禁用事件、§10.2–10.3 VP净奖分与立即胜利。 本批补§6.2–6.3、§7.4、§8.1与§8.2.5。 CMV1: §2.1.7控制；§5.2条件不满足与无效果成功不同，Example3进步联盟零战场仍发生移出；§10.2轨道与阈值；§10.3.1完整奖分后即时胜利。"
+      "description": "§5.2事件发生与去向、§6.1.1直接放置、§7.3/7.5持续与禁用事件、§10.2–10.3 VP净奖分与立即胜利。 本批补§6.2–6.3、§7.4、§8.1与§8.2.5。 CMV1: §2.1.7控制；§5.2条件不满足与无效果成功不同，Example3进步联盟零战场仍发生移出；§10.2轨道与阈值；§10.3.1完整奖分后即时胜利。 J1: §6.1.1事件加影响与OPS区别、§6.2/6.3常规行动、§7.4有效OPS、§8.1核战责任/§8.2.5免费政变0军事。"
     },
     {
       "id": "PROJECT-NE",
@@ -64,7 +64,7 @@
       "id": "F2010",
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
       "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
-      "description": "PDF p16 #96明确欧洲政变/调整DEFCON地理豁免，战场仍降级且免费政变不记军事；p20–21普通行动与修正澄清。 CMV1: PDFp15 #73明确Shuttle不影响Kitchen Debates。"
+      "description": "PDF p16 #96明确欧洲政变/调整DEFCON地理豁免，战场仍降级且免费政变不记军事；p20–21普通行动与修正澄清。 CMV1: PDFp15 #73明确Shuttle不影响Kitchen Debates。 J1: PDFp10 #47先影响后行动，免费不军事，调整次数可被OPS修正且只一个地区，可不同于影响地区；p9 CMC+Junta实际Actor输；p12事件Headline行动可执行。"
     },
     {
       "id": "PROJECT-EO1",
@@ -95,6 +95,12 @@
       "url": null,
       "edition": "Engineering boundaries and integer derivation, 2026-10-06",
       "description": "从实际权威国家快照查询具名指标，计分投影不污染基础战场；every2按完整整数对向下取整，非专门FAQ。零量无条件事件仍成功、一个VP批次、请求去重/版本是工程契约。"
+    },
+    {
+      "id": "PROJECT-J1",
+      "url": null,
+      "edition": "Typed grant/continuation contracts, 2026-10-06",
+      "description": "固定影响步骤先提交，另存可选授权与继续位置；首合法尝试锁模式和调整地区，拒绝不锁，预算一次引用源牌，未知来源/中断/合法性停止。"
     }
   ],
   "tests": [
@@ -120,6 +126,10 @@
     },
     {
       "path": "Docs/Design/country-metric-vp-events.cases.json",
+      "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/junta.cases.json",
       "status": "mixed-reference-and-planned"
     }
   ],
@@ -154,7 +164,8 @@
     "effects.deluxe2015.war_card_hooks",
     "effects.deluxe2015.defcon_events_batch1",
     "effects.deluxe2015.defcon_vp_events",
-    "effects.deluxe2015.country_metric_vp_events"
+    "effects.deluxe2015.country_metric_vp_events",
+    "effects.deluxe2015.junta"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:nato-exceptions:1",
@@ -162,11 +173,12 @@
     "urn:coldwarheat:contract:war-card-hooks:1",
     "urn:coldwarheat:contract:defcon-events-batch1:1",
     "urn:coldwarheat:contract:defcon-vp-events:1",
-    "urn:coldwarheat:contract:country-metric-vp-events:1"
+    "urn:coldwarheat:contract:country-metric-vp-events:1",
+    "urn:coldwarheat:contract:junta:1"
   ],
   "verification": {
     "implementation_tested": false,
     "report": "Docs/Design/nato-exceptions.validation.json",
-    "latest_design_report": "Docs/Design/country-metric-vp-events.validation.json"
+    "latest_design_report": "Docs/Design/junta.validation.json"
   }
 }

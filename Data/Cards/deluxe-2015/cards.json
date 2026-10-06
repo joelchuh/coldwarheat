@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.25.0",
+  "content_version": "0.26.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计65牌效果参数已绑定，其余37个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计66牌效果参数已绑定，其余36个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -155,6 +155,12 @@
       "url": null,
       "edition": "Engineering scope/verified-source boundaries, 2026-10-06",
       "description": "新受影响根slot gate排除激活根，私有选择/原子弃骰/根slot收据；计分义务由编排提供，不私算可放弃额外slot。未知外部/额外slot来源与新ID重复停止。标准D6新消费者共享，旧Space/war数值留兼容检查，未声称迁移旧消费者。"
+    },
+    {
+      "id": "PROJECT-J1",
+      "url": null,
+      "edition": "Typed grant/continuation contracts, 2026-10-06",
+      "description": "固定影响步骤先提交，另存可选授权与继续位置；首合法尝试锁模式和调整地区，拒绝不锁，预算一次引用源牌，未知来源/中断/合法性停止。"
     }
   ],
   "cards": [
@@ -1621,8 +1627,13 @@
       "effect_binding": {
         "effect_id": "effect.junta",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.junta",
+            "json_pointer": "/parameters/junta"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -4531,15 +4542,32 @@
     {
       "effect_id": "effect.junta",
       "contract_version": "0.1.0",
-      "description": "Junta：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.junta",
+      "description": "先选中南美一国EffectController加2，再可选同区并集免费行动；调整锁首合法地区，预算引用源牌，不造额外root。",
+      "handler_key": "composite.ChooseInfluenceThenOptionalRegionalOps",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:junta:1#/$defs/junta"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "p8 #47中南美一国加2，随后可免费政变/调整，用此牌OPS；Neutral2Mid非星号。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§6.1.1事件加影响与OPS区别、§6.2/6.3常规行动、§7.4有效OPS、§8.1核战责任/§8.2.5免费政变0军事。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFp10 #47先影响后行动，免费不军事，调整次数可被OPS修正且只一个地区，可不同于影响地区；p9 CMC+Junta实际Actor输；p12事件Headline行动可执行。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-J1",
+          "locator": "固定影响步骤先提交，另存可选授权与继续位置；首合法尝试锁模式和调整地区，拒绝不锁，预算一次引用源牌，未知来源/中断/合法性停止。",
+          "verification": "Verified"
         }
       ]
     },

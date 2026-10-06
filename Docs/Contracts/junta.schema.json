@@ -1,0 +1,440 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:junta:1",
+  "description": "Junta选国固定影响→可选区域免费政变/调整；源牌预算、模式及调整地区锁/继续位置，C#待实现。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.junta"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "release-candidate"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "C-DELUXE-EN"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf"
+            },
+            "edition": {
+              "const": "English Deluxe card images"
+            },
+            "description": {
+              "const": "p8 #47中南美一国加2，随后可免费政变/调整，用此牌OPS；Neutral2Mid非星号。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "R2015"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf"
+            },
+            "edition": {
+              "const": "Deluxe rules 2015"
+            },
+            "description": {
+              "const": "§6.1.1事件加影响与OPS区别、§6.2/6.3常规行动、§7.4有效OPS、§8.1核战责任/§8.2.5免费政变0军事。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "F2010"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/FAQv5.pdf"
+            },
+            "edition": {
+              "const": "FAQ v5 2010, compatible Deluxe clarification only"
+            },
+            "description": {
+              "const": "PDFp10 #47先影响后行动，免费不军事，调整次数可被OPS修正且只一个地区，可不同于影响地区；p9 CMC+Junta实际Actor输；p12事件Headline行动可执行。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "PROJECT-J1"
+            },
+            "url": {
+              "const": null
+            },
+            "edition": {
+              "const": "Typed grant/continuation contracts, 2026-10-06"
+            },
+            "description": {
+              "const": "固定影响步骤先提交，另存可选授权与继续位置；首合法尝试锁模式和调整地区，拒绝不锁，预算一次引用源牌，未知来源/中断/合法性停止。"
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "junta"
+      ],
+      "properties": {
+        "junta": {
+          "$ref": "#/$defs/junta"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "junta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "influence_choice",
+        "ordered_steps",
+        "operations_grant",
+        "continuation_policy",
+        "root_policy",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.junta"
+        },
+        "effect_id": {
+          "const": "effect.junta"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "ChooseInfluenceThenOptionalRegionalOps"
+        },
+        "beneficiary": {
+          "const": "EffectController"
+        },
+        "influence_choice": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "region_ids",
+            "country_count",
+            "amount",
+            "control",
+            "ops_cost"
+          ],
+          "properties": {
+            "region_ids": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "prefixItems": [
+                {
+                  "const": "region.central_america"
+                },
+                {
+                  "const": "region.south_america"
+                }
+              ],
+              "items": false
+            },
+            "country_count": {
+              "const": 1
+            },
+            "amount": {
+              "const": 2
+            },
+            "control": {
+              "const": "Any"
+            },
+            "ops_cost": {
+              "const": "None"
+            }
+          }
+        },
+        "ordered_steps": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "const": "ChooseInfluenceCountry"
+            },
+            {
+              "const": "AddFixedInfluence"
+            },
+            {
+              "const": "GrantOptionalRegionalOperations"
+            }
+          ],
+          "items": false
+        },
+        "operations_grant": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "actor",
+            "allowed_modes",
+            "budget_source",
+            "budget_policy_ref",
+            "modifier_policy",
+            "defcon_exception",
+            "coup_credit_kind",
+            "decline_allowed",
+            "realignment_finish_allowed",
+            "mode_lock",
+            "coup_use",
+            "realignment_cost",
+            "region_ids",
+            "realignment_region_lock"
+          ],
+          "properties": {
+            "actor": {
+              "const": "EffectController"
+            },
+            "allowed_modes": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "prefixItems": [
+                {
+                  "const": "Coup"
+                },
+                {
+                  "const": "Realignment"
+                }
+              ],
+              "items": false
+            },
+            "budget_source": {
+              "const": "SourceCardPrintedOps"
+            },
+            "budget_policy_ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "dataset_id",
+                "json_pointer"
+              ],
+              "properties": {
+                "dataset_id": {
+                  "const": "effects.deluxe2015.persistent_batch1"
+                },
+                "json_pointer": {
+                  "const": "/ops_policy"
+                }
+              }
+            },
+            "modifier_policy": {
+              "const": "ActorAtGrantCreation"
+            },
+            "defcon_exception": {
+              "const": "None"
+            },
+            "coup_credit_kind": {
+              "const": "FreeCoup"
+            },
+            "decline_allowed": {
+              "const": true
+            },
+            "realignment_finish_allowed": {
+              "const": true
+            },
+            "mode_lock": {
+              "const": "FirstAcceptedAttempt"
+            },
+            "coup_use": {
+              "const": "OneAttemptConsumesWholeBudget"
+            },
+            "realignment_cost": {
+              "const": "StandardOneOpsPerAttempt"
+            },
+            "region_ids": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "prefixItems": [
+                {
+                  "const": "region.central_america"
+                },
+                {
+                  "const": "region.south_america"
+                }
+              ],
+              "items": false
+            },
+            "realignment_region_lock": {
+              "const": "FirstAcceptedRealignmentRegionForThisGrant"
+            }
+          }
+        },
+        "continuation_policy": {
+          "const": "CommitInfluenceThenSaveAuthorizedOptionalGrant"
+        },
+        "root_policy": {
+          "const": "InheritedRootSlotAndPhasingPlayerOnly"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "p8 #47中南美一国加2，随后可免费政变/调整，用此牌OPS；Neutral2Mid非星号。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "§6.1.1事件加影响与OPS区别、§6.2/6.3常规行动、§7.4有效OPS、§8.1核战责任/§8.2.5免费政变0军事。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "F2010"
+                },
+                "locator": {
+                  "const": "PDFp10 #47先影响后行动，免费不军事，调整次数可被OPS修正且只一个地区，可不同于影响地区；p9 CMC+Junta实际Actor输；p12事件Headline行动可执行。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-J1"
+                },
+                "locator": {
+                  "const": "固定影响步骤先提交，另存可选授权与继续位置；首合法尝试锁模式和调整地区，拒绝不锁，预算一次引用源牌，未知来源/中断/合法性停止。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    }
+  }
+}

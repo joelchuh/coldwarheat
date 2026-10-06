@@ -1,0 +1,248 @@
+{
+  "description": "Junta分步固定影响/授权/模式和调整地区锁有限参考，非生产C#/Unity验证。",
+  "checked_on": "2026-10-06",
+  "new_cases_passed": 47,
+  "previous_cases_passed": 1672,
+  "total_cases_passed": 1719,
+  "cases_by_layer": {
+    "data": 13,
+    "reference": 34,
+    "runtime": 6
+  },
+  "runtime_cases_not_run": 6,
+  "runtime_game_tests_run": 0,
+  "bound_cards": 66,
+  "unresolved_bindings": 36,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 34,
+    "json_files_parsed": 204,
+    "data_descriptors": 37,
+    "module_descriptors": 21,
+    "relative_links_checked": 150,
+    "parameter_pointers_resolved": 112
+  },
+  "validated_sha256": {
+    "Data/Cards/deluxe-2015/junta.parameters.json": "806dbc3acbd0d0567659804cf176c01efdbb36b3c290810631f63e28ac895178",
+    "Docs/Contracts/junta.schema.json": "342ee56058c0294ef91aa6cffaacb3d0f7b77dabaf3d858cc403446007bfea0a",
+    "Docs/Design/junta.cases.json": "4babe21a87abb6f6c0b2f8cb4f28fdd1f20cbc5e801294c48bea25afaca140bf",
+    "Data/Cards/deluxe-2015/cards.json": "89c65ea32b6e7cad645c9e0b2217d562834e3ca3b973de07b069b5dbdf79aa66",
+    "Data/Maps/deluxe-2015/world.json": "6d4e20c674bd74d44cdb0f1ca66e8e960f125b3e45076d05307125a3c36ea45b",
+    "Docs/Descriptors/event-operations.module.json": "57652c8d9269d18ec81f4711834644cab410a94e9c4bd9746275e56b0aced30e",
+    "Docs/Descriptors/composite-events.module.json": "fc608ce45613640e5ffce142ff0ed99b2347445d302991866d980e4534deb931",
+    "Docs/Descriptors/influence-events.module.json": "0afa38bae60053f8b0cf1bd816ebbef11d82bd861b90caf7bb123e1a391b13cb",
+    "Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json": "e229d5494deba9031c3348f7d726dd09fc2d8ce28eb2db618142712c79d538d4"
+  },
+  "results": [
+    {
+      "id": "J1-D-baseline",
+      "passed": true
+    },
+    {
+      "id": "J1-D-owner",
+      "passed": true
+    },
+    {
+      "id": "J1-D-influence",
+      "passed": true
+    },
+    {
+      "id": "J1-D-single-country",
+      "passed": true
+    },
+    {
+      "id": "J1-D-region",
+      "passed": true
+    },
+    {
+      "id": "J1-D-order",
+      "passed": true
+    },
+    {
+      "id": "J1-D-budget",
+      "passed": true
+    },
+    {
+      "id": "J1-D-space",
+      "passed": true
+    },
+    {
+      "id": "J1-D-military",
+      "passed": true
+    },
+    {
+      "id": "J1-D-geo",
+      "passed": true
+    },
+    {
+      "id": "J1-D-mode-lock",
+      "passed": true
+    },
+    {
+      "id": "J1-D-region-lock",
+      "passed": true
+    },
+    {
+      "id": "J1-D-root",
+      "passed": true
+    },
+    {
+      "id": "J1-R-place-ca",
+      "passed": true
+    },
+    {
+      "id": "J1-R-place-sa-ussr",
+      "passed": true
+    },
+    {
+      "id": "J1-R-place-enemy-controlled-ignore-cost",
+      "passed": true
+    },
+    {
+      "id": "J1-R-place-await-choice",
+      "passed": true
+    },
+    {
+      "id": "J1-R-place-outside-regions",
+      "passed": true
+    },
+    {
+      "id": "J1-R-place-repeat-not-add",
+      "passed": true
+    },
+    {
+      "id": "J1-R-grant-after-placement",
+      "passed": true
+    },
+    {
+      "id": "J1-R-grant-plus-mod",
+      "passed": true
+    },
+    {
+      "id": "J1-R-grant-purge",
+      "passed": true
+    },
+    {
+      "id": "J1-R-grant-before-influence-invalid",
+      "passed": true
+    },
+    {
+      "id": "J1-R-grant-retry-not-reprice",
+      "passed": true
+    },
+    {
+      "id": "J1-R-decline-after-influence",
+      "passed": true
+    },
+    {
+      "id": "J1-R-first-realign-ca-lock",
+      "passed": true
+    },
+    {
+      "id": "J1-R-first-realign-different-influence-region",
+      "passed": true
+    },
+    {
+      "id": "J1-R-second-realign-same-region",
+      "passed": true
+    },
+    {
+      "id": "J1-R-second-realign-other-region-reject",
+      "passed": true
+    },
+    {
+      "id": "J1-R-realign-to-coup-reject",
+      "passed": true
+    },
+    {
+      "id": "J1-R-coup-whole-budget-free",
+      "passed": true
+    },
+    {
+      "id": "J1-R-illegal-attempt-no-lock",
+      "passed": true
+    },
+    {
+      "id": "J1-R-attempt-outside-region",
+      "passed": true
+    },
+    {
+      "id": "J1-R-attempt-no-influence-grant",
+      "passed": true
+    },
+    {
+      "id": "J1-R-attempt-no-grant",
+      "passed": true
+    },
+    {
+      "id": "J1-R-spent-budget-reject",
+      "passed": true
+    },
+    {
+      "id": "J1-R-space-not-granted",
+      "passed": true
+    },
+    {
+      "id": "J1-R-ops-influence-not-granted",
+      "passed": true
+    },
+    {
+      "id": "J1-R-coup-crisis-prior-to-budget-and-dice",
+      "passed": true
+    },
+    {
+      "id": "J1-R-finish-after-one-adjust",
+      "passed": true
+    },
+    {
+      "id": "J1-R-completed-retry",
+      "passed": true
+    },
+    {
+      "id": "J1-R-old-response-preserve-influence",
+      "passed": true
+    },
+    {
+      "id": "J1-R-controller-change-conflict",
+      "passed": true
+    },
+    {
+      "id": "J1-R-unknown-effects",
+      "passed": true
+    },
+    {
+      "id": "J1-R-bad-frame",
+      "passed": true
+    },
+    {
+      "id": "J1-R-conflicting-request",
+      "passed": true
+    },
+    {
+      "id": "J1-R-finished",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "6runtime未运行；真实身份/源帧、影响步骤/授权快照/预算锁/实际政变调整/RNG/根去向/存档未验证",
+    "模型只固定影响和授权接受/锁，不执行骰或整次行动结果/军事轨道；legal_attempt_verified是假设",
+    "1672旧预期保持，只适配库存/完成出处/历史绑定；13note38Tools另层",
+    "无源牌OPS复制、无地理豁免、free coup credit0；源干预仍由已有管线核实",
+    "所有102handlers仍planned"
+  ],
+  "independent_review": {
+    "status": "ready-no-critical-important-minor",
+    "independently_checked": [
+      "13data34reference=47 passed",
+      "295baselineSHA/9reportSHA",
+      "34Schema meta/37data21planned modules andDAG/112pointers",
+      "English47/R2015/FAQ; case IDs/layers/limitations"
+    ],
+    "not_independently_run": [
+      "1672 historical/full1719",
+      "204JSON150links full independent recount",
+      "6runtime/actual legality, dice, root/disposition/save",
+      "13note38Tools"
+    ]
+  }
+}

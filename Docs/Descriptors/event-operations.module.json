@@ -3,7 +3,7 @@
   "id": "module.event-operations",
   "kind": "module",
   "status": "planned",
-  "description": "事件OPS子上下文：固定美国地区免费行动或中立视同OPS普通行动；来源独立验证、按Actor修正、单根名额与原核战责任。",
+  "description": "事件OPS子上下文：固定美国地区免费行动或中立视同OPS普通行动；来源独立验证、按Actor修正、单根名额与原核战责任。 Junta中立双地区免费授权及调整地区锁。",
   "documentation": "Docs/Wiki/event-operations.md",
   "entrypoints": [],
   "planned_entrypoints": [
@@ -27,7 +27,8 @@
   "inputs": [
     "已注册事件步骤的内部授权、RootAction/Frame/PhasingPlayer、Actor、数据摘要与效果快照",
     "玩家只提交DecisionId、选择类型及CountryId；不能提交能力、预算或骰点",
-    "DC1 ABM中立事件控制者、VerifiedEventLiteral及已验证地区花费历史；不套用拆墙US/Europe/FreeCoup默认"
+    "DC1 ABM中立事件控制者、VerifiedEventLiteral及已验证地区花费历史；不套用拆墙US/Europe/FreeCoup默认",
+    "Junta EffectController的region_ids并集；模式和首合法调整region锁独立"
   ],
   "outputs": [
     "EventOperationsGrant、OpsContext、PendingDecision及不可变行动计划；Completed/AwaitingDecision/GameEnded"
@@ -70,11 +71,13 @@
     "rules.deluxe2015.victory",
     "rules.deluxe2015.turn-flow",
     "effects.deluxe2015.event_operations_batch1",
-    "effects.deluxe2015.defcon_events_batch1"
+    "effects.deluxe2015.defcon_events_batch1",
+    "effects.deluxe2015.junta"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:event-operations-batch1:1",
-    "urn:coldwarheat:contract:defcon-events-batch1:1"
+    "urn:coldwarheat:contract:defcon-events-batch1:1",
+    "urn:coldwarheat:contract:junta:1"
   ],
   "preconditions": [
     "只有权威注册步骤可创建授权；参数绑定不代替运行注册门禁",
@@ -93,19 +96,19 @@
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "edition": "English Deluxe card images",
-      "description": "重新目视PDF p14英文#96完整事件；不采用旁列译文。 DC1英文p7 #40/#41/#43、p9 #57，普通视同OPS与free coup分开。"
+      "description": "重新目视PDF p14英文#96完整事件；不采用旁列译文。 DC1英文p7 #40/#41/#43、p9 #57，普通视同OPS与free coup分开。 J1: p8 #47中南美一国加2，随后可免费政变/调整，用此牌OPS；Neutral2Mid非星号。"
     },
     {
       "id": "R2015",
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
       "edition": "Deluxe rules 2015",
-      "description": "§4.5C/5.2角色与出牌顺序；§6.2–6.3行动；§7.4事件OPS修正；§8.1核战责任；§8.2.5免费政变信用。"
+      "description": "§4.5C/5.2角色与出牌顺序；§6.2–6.3行动；§7.4事件OPS修正；§8.1核战责任；§8.2.5免费政变信用。 J1: §6.1.1事件加影响与OPS区别、§6.2/6.3常规行动、§7.4有效OPS、§8.1核战责任/§8.2.5免费政变0军事。"
     },
     {
       "id": "F2010",
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
       "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
-      "description": "PDF p16 #96明确欧洲政变/调整DEFCON地理豁免，战场仍降级且免费政变不记军事；p20–21普通行动与修正澄清。 DC1 FAQ PDF p12 #57头条可行动、p14 #67 ABM不可太空。"
+      "description": "PDF p16 #96明确欧洲政变/调整DEFCON地理豁免，战场仍降级且免费政变不记军事；p20–21普通行动与修正澄清。 DC1 FAQ PDF p12 #57头条可行动、p14 #67 ABM不可太空。 J1: PDFp10 #47先影响后行动，免费不军事，调整次数可被OPS修正且只一个地区，可不同于影响地区；p9 CMC+Junta实际Actor输；p12事件Headline行动可执行。"
     },
     {
       "id": "PROJECT-EO1",
@@ -118,6 +121,12 @@
       "url": null,
       "edition": "DC1 engineering contracts / derived boundaries, 2026-10-06",
       "description": "任意时点通过稳定命令边界表达，不抢占已原子提交步骤；基本合法性先核实，再接受致命政变。类型化原因/授权、SALT候选空自动结束与ABM可放弃采用具名封闭策略；重复激活沿用RequiresRuling。"
+    },
+    {
+      "id": "PROJECT-J1",
+      "url": null,
+      "edition": "Typed grant/continuation contracts, 2026-10-06",
+      "description": "固定影响步骤先提交，另存可选授权与继续位置；首合法尝试锁模式和调整地区，拒绝不锁，预算一次引用源牌，未知来源/中断/合法性停止。"
     }
   ],
   "tests": [
@@ -128,11 +137,15 @@
     {
       "path": "Docs/Design/defcon-events-batch1.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/junta.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
     "report": "Docs/Design/event-operations-batch1.validation.json",
-    "latest_design_report": "Docs/Design/defcon-events-batch1.validation.json"
+    "latest_design_report": "Docs/Design/junta.validation.json"
   }
 }

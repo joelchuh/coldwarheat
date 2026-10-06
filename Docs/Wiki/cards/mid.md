@@ -78,3 +78,5 @@
 [持续修正第二批](../persistent-effects-batch2.md)绑定#51/#69，OPS与政变骰渠道分开；重复停止。
 
 [陷阱根行动](../trap-events.md)绑定#42/#44，跨回合保留、Headline不受限，计分义务优先。
+
+[Junta](../junta.md)复用固定影响与可选免费授权，调整需地区锁。

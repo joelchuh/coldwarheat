@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.junta",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "Junta选国固定影响→可选区域免费政变/调整；源牌预算、模式及调整地区锁/继续位置，C#待实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "p8 #47中南美一国加2，随后可免费政变/调整，用此牌OPS；Neutral2Mid非星号。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§6.1.1事件加影响与OPS区别、§6.2/6.3常规行动、§7.4有效OPS、§8.1核战责任/§8.2.5免费政变0军事。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarification only",
+      "description": "PDFp10 #47先影响后行动，免费不军事，调整次数可被OPS修正且只一个地区，可不同于影响地区；p9 CMC+Junta实际Actor输；p12事件Headline行动可执行。"
+    },
+    {
+      "id": "PROJECT-J1",
+      "url": null,
+      "edition": "Typed grant/continuation contracts, 2026-10-06",
+      "description": "固定影响步骤先提交，另存可选授权与继续位置；首合法尝试锁模式和调整地区，拒绝不锁，预算一次引用源牌，未知来源/中断/合法性停止。"
+    }
+  ],
+  "parameters": {
+    "junta": {
+      "card_id": "card.junta",
+      "effect_id": "effect.junta",
+      "description": "先选中南美一国EffectController加2，再可选同区并集免费行动；调整锁首合法地区，预算引用源牌，不造额外root。",
+      "template": "ChooseInfluenceThenOptionalRegionalOps",
+      "beneficiary": "EffectController",
+      "influence_choice": {
+        "region_ids": [
+          "region.central_america",
+          "region.south_america"
+        ],
+        "country_count": 1,
+        "amount": 2,
+        "control": "Any",
+        "ops_cost": "None"
+      },
+      "ordered_steps": [
+        "ChooseInfluenceCountry",
+        "AddFixedInfluence",
+        "GrantOptionalRegionalOperations"
+      ],
+      "operations_grant": {
+        "actor": "EffectController",
+        "allowed_modes": [
+          "Coup",
+          "Realignment"
+        ],
+        "budget_source": "SourceCardPrintedOps",
+        "budget_policy_ref": {
+          "dataset_id": "effects.deluxe2015.persistent_batch1",
+          "json_pointer": "/ops_policy"
+        },
+        "modifier_policy": "ActorAtGrantCreation",
+        "defcon_exception": "None",
+        "coup_credit_kind": "FreeCoup",
+        "decline_allowed": true,
+        "realignment_finish_allowed": true,
+        "mode_lock": "FirstAcceptedAttempt",
+        "coup_use": "OneAttemptConsumesWholeBudget",
+        "realignment_cost": "StandardOneOpsPerAttempt",
+        "region_ids": [
+          "region.central_america",
+          "region.south_america"
+        ],
+        "realignment_region_lock": "FirstAcceptedRealignmentRegionForThisGrant"
+      },
+      "continuation_policy": "CommitInfluenceThenSaveAuthorizedOptionalGrant",
+      "root_policy": "InheritedRootSlotAndPhasingPlayerOnly",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "p8 #47中南美一国加2，随后可免费政变/调整，用此牌OPS；Neutral2Mid非星号。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§6.1.1事件加影响与OPS区别、§6.2/6.3常规行动、§7.4有效OPS、§8.1核战责任/§8.2.5免费政变0军事。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFp10 #47先影响后行动，免费不军事，调整次数可被OPS修正且只一个地区，可不同于影响地区；p9 CMC+Junta实际Actor输；p12事件Headline行动可执行。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-J1",
+          "locator": "固定影响步骤先提交，另存可选授权与继续位置；首合法尝试锁模式和调整地区，拒绝不锁，预算一次引用源牌，未知来源/中断/合法性停止。",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

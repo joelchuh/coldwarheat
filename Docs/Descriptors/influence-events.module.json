@@ -23,19 +23,19 @@
       "id": "F2010",
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
       "edition": "FAQ v5, 2010",
-      "description": "仅采用PDF p5 #19关于uncontrolled的明确释义，与R2015及英文卡图一致。 DS1另核对PDF p7 #33事件迁移无需OPS邻接。 MI1另核对PDFp14 #70可跨中/南美各1。 MI2: PDFp12 #53 Deluxe any countries允许Angola/Botswana各1。"
+      "description": "仅采用PDF p5 #19关于uncontrolled的明确释义，与R2015及英文卡图一致。 DS1另核对PDF p7 #33事件迁移无需OPS邻接。 MI1另核对PDFp14 #70可跨中/南美各1。 MI2: PDFp12 #53 Deluxe any countries允许Angola/Botswana各1。 J1: PDFp10 #47先影响后行动，免费不军事，调整次数可被OPS修正且只一个地区，可不同于影响地区；p9 CMC+Junta实际Actor输；p12事件Headline行动可执行。"
     },
     {
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "edition": "GMT-hosted compilation, English Deluxe card images",
-      "description": "四批共12张影响力事件英文卡图：p2 #7/#8、p3 #12/#14/#15/#16、p4 #19/#22/#23、p5 #28/#29/#30；另核对p13 #83禁止关系。 DS1另目视p6 #33。 SS1: p4 #18一格推进；p11 #68 Poland移除2USSR再加1US并允许Solidarity；p15 #101 Pope生效才可事件加3US。 MI2: p9 #53两分支SouthAfrica USSR2或USSR1＋邻国总2；#56从8具名国家选两国清US；p11 #75中美总3USSR每国最多2。均无星号。"
+      "description": "四批共12张影响力事件英文卡图：p2 #7/#8、p3 #12/#14/#15/#16、p4 #19/#22/#23、p5 #28/#29/#30；另核对p13 #83禁止关系。 DS1另目视p6 #33。 SS1: p4 #18一格推进；p11 #68 Poland移除2USSR再加1US并允许Solidarity；p15 #101 Pope生效才可事件加3US。 MI2: p9 #53两分支SouthAfrica USSR2或USSR1＋邻国总2；#56从8具名国家选两国清US；p11 #75中美总3USSR每国最多2。均无星号。 J1: p8 #47中南美一国加2，随后可免费政变/调整，用此牌OPS；Neutral2Mid非星号。"
     },
     {
       "id": "R2015",
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
       "edition": "Deluxe rules 2015",
-      "description": "Deluxe 2015：地区/控制权、游戏时代、事件选择权与结果、直接事件与OPS边界；项目短缺解释另列PROJECT-EI2及PROJECT-AP1。 SS1: §2.2.4–5星号/永久标记；§5.2/5.3实际事件与牌区；§6.1.1直接影响力；§6.4太空奖励/能力与事件推进；§7.3永久效果。 MI2: §5.2受益方/事件无变化仍成功；§6.1.1直接事件无OPS邻接/费用；地图正式邻接单一来源。"
+      "description": "Deluxe 2015：地区/控制权、游戏时代、事件选择权与结果、直接事件与OPS边界；项目短缺解释另列PROJECT-EI2及PROJECT-AP1。 SS1: §2.2.4–5星号/永久标记；§5.2/5.3实际事件与牌区；§6.1.1直接影响力；§6.4太空奖励/能力与事件推进；§7.3永久效果。 MI2: §5.2受益方/事件无变化仍成功；§6.1.1直接事件无OPS邻接/费用；地图正式邻接单一来源。 J1: §6.1.1事件加影响与OPS区别、§6.2/6.3常规行动、§7.4有效OPS、§8.1核战责任/§8.2.5免费政变0军事。"
     },
     {
       "id": "PROJECT-EI2",
@@ -78,6 +78,12 @@
       "url": null,
       "edition": "Engineering contracts / card-text derivation, 2026-10-06",
       "description": "两分支与完整额度/两国方案原子提交、稳定Owner/Revision/收据；Muslim未限定有US影响，可选零影响国，系具名卡文推导而非专门FAQ/用户短缺裁定。"
+    },
+    {
+      "id": "PROJECT-J1",
+      "url": null,
+      "edition": "Typed grant/continuation contracts, 2026-10-06",
+      "description": "固定影响步骤先提交，另存可选授权与继续位置；首合法尝试锁模式和调整地区，拒绝不锁，预算一次引用源牌，未知来源/中断/合法性停止。"
     }
   ],
   "tests": [
@@ -111,6 +117,10 @@
     },
     {
       "path": "Docs/Design/mid-influence-batch2.cases.json",
+      "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/junta.cases.json",
       "status": "mixed-reference-and-planned"
     }
   ],
@@ -158,7 +168,8 @@
     "effects.deluxe2015.influence_relocation",
     "effects.deluxe2015.mid_influence_batch1",
     "effects.deluxe2015.solidarity_chain",
-    "effects.deluxe2015.mid_influence_batch2"
+    "effects.deluxe2015.mid_influence_batch2",
+    "effects.deluxe2015.junta"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:early-influence-parameters:1",
@@ -168,11 +179,12 @@
     "urn:coldwarheat:contract:influence-relocation:1",
     "urn:coldwarheat:contract:mid-influence-batch1:1",
     "urn:coldwarheat:contract:solidarity-chain:1",
-    "urn:coldwarheat:contract:mid-influence-batch2:1"
+    "urn:coldwarheat:contract:mid-influence-batch2:1",
+    "urn:coldwarheat:contract:junta:1"
   ],
   "verification": {
     "implementation_tested": false,
     "report": "Docs/Design/alliance-prerequisites.validation.json",
-    "latest_design_report": "Docs/Design/mid-influence-batch2.validation.json"
+    "latest_design_report": "Docs/Design/junta.validation.json"
   }
 }

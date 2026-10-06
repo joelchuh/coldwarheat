@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "id": "data.junta",
+  "kind": "data",
+  "status": "ready",
+  "description": "Junta选国固定影响→可选区域免费政变/调整；源牌预算、模式及调整地区锁/继续位置，C#待实现。",
+  "dataset_id": "effects.deluxe2015.junta",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/junta.schema.json",
+  "documentation": "Docs/Wiki/junta.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/junta.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "可信EffectController/root帧、单国选择、授权操作/TargetID和Revision"
+  ],
+  "outputs": [
+    "只读固定影响与可选授权策略，不接受玩家预算或骰子"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world",
+    "effects.deluxe2015.persistent_batch1"
+  ],
+  "preconditions": [
+    "Bound不是实现；使用既有行动管线与相关限制",
+    "两个region/mode锁是本grant局部状态，不改变根身份"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "非法国/未注册来源/过期或越权选择/未知干预",
+    "锁模式后不能切换，调整区域锁后不能换区；无新通用跳过"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "p8 #47中南美一国加2，随后可免费政变/调整，用此牌OPS；Neutral2Mid非星号。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§6.1.1事件加影响与OPS区别、§6.2/6.3常规行动、§7.4有效OPS、§8.1核战责任/§8.2.5免费政变0军事。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarification only",
+      "description": "PDFp10 #47先影响后行动，免费不军事，调整次数可被OPS修正且只一个地区，可不同于影响地区；p9 CMC+Junta实际Actor输；p12事件Headline行动可执行。"
+    },
+    {
+      "id": "PROJECT-J1",
+      "url": null,
+      "edition": "Typed grant/continuation contracts, 2026-10-06",
+      "description": "固定影响步骤先提交，另存可选授权与继续位置；首合法尝试锁模式和调整地区，拒绝不锁，预算一次引用源牌，未知来源/中断/合法性停止。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/junta.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/junta.validation.json"
+  }
+}

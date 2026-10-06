@@ -1,0 +1,2339 @@
+{
+  "schema_version": 1,
+  "description": "Junta固定影响及授权/模式/地区锁有限参考；实际政变调整/随机/根完成未执行。",
+  "status": "mixed-reference-and-planned",
+  "dataset": "Data/Cards/deluxe-2015/junta.parameters.json",
+  "schema": "Docs/Contracts/junta.schema.json",
+  "cases": [
+    {
+      "id": "J1-D-baseline",
+      "validation_layer": "data",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "J1-D-owner",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "junta",
+              "beneficiary"
+            ],
+            "value": "US"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "J1-D-influence",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "junta",
+              "influence_choice",
+              "amount"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "J1-D-single-country",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "junta",
+              "influence_choice",
+              "country_count"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "J1-D-region",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "junta",
+              "influence_choice",
+              "region_ids"
+            ],
+            "value": [
+              "region.africa"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "J1-D-order",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "junta",
+              "ordered_steps"
+            ],
+            "value": [
+              "GrantOptionalRegionalOperations",
+              "AddFixedInfluence",
+              "ChooseInfluenceCountry"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "J1-D-budget",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "junta",
+              "operations_grant",
+              "budget_source"
+            ],
+            "value": "Literal2"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "J1-D-space",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "junta",
+              "operations_grant",
+              "allowed_modes"
+            ],
+            "value": [
+              "Coup",
+              "Realignment",
+              "Space"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "J1-D-military",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "junta",
+              "operations_grant",
+              "coup_credit_kind"
+            ],
+            "value": "OperationsCoup"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "J1-D-geo",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "junta",
+              "operations_grant",
+              "defcon_exception"
+            ],
+            "value": "All"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "J1-D-mode-lock",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "junta",
+              "operations_grant",
+              "mode_lock"
+            ],
+            "value": "None"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "J1-D-region-lock",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "junta",
+              "operations_grant",
+              "realignment_region_lock"
+            ],
+            "value": "None"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "J1-D-root",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "junta",
+              "root_policy"
+            ],
+            "value": "CreateExtraRoot"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "J1-R-place-ca",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Place",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {},
+          "influence_committed": false,
+          "placed_country": null,
+          "actor": null,
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "InfluenceCommitted",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-place-sa-ussr",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Place",
+        "effect_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.brazil",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {},
+          "influence_committed": false,
+          "placed_country": null,
+          "actor": null,
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "InfluenceCommitted",
+        "state": {
+          "influence": {
+            "country.brazil": {
+              "US": 0,
+              "USSR": 2
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.brazil",
+          "actor": "USSR",
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-place-enemy-controlled-ignore-cost",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Place",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 0,
+              "USSR": 7
+            }
+          },
+          "influence_committed": false,
+          "placed_country": null,
+          "actor": null,
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "InfluenceCommitted",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 7
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-place-await-choice",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Place",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": null,
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {},
+          "influence_committed": false,
+          "placed_country": null,
+          "actor": null,
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingCountry",
+        "state": {
+          "influence": {},
+          "influence_committed": false,
+          "placed_country": null,
+          "actor": null,
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {
+          "owner": "US",
+          "candidate_count": 20
+        }
+      }
+    },
+    {
+      "id": "J1-R-place-outside-regions",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Place",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.france",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {},
+          "influence_committed": false,
+          "placed_country": null,
+          "actor": null,
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "IllegalCountry",
+        "state": {
+          "influence": {},
+          "influence_committed": false,
+          "placed_country": null,
+          "actor": null,
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-place-repeat-not-add",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Place",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyInfluenceCommitted",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-grant-after-placement",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Grant",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "GrantCreated",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {
+          "actor": "US",
+          "base_ops": 2,
+          "effective_ops": 2,
+          "phasing": "USSR",
+          "military_credit_kind": "FreeCoup"
+        }
+      }
+    },
+    {
+      "id": "J1-R-grant-plus-mod",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Grant",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 1,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "GrantCreated",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 3,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {
+          "actor": "US",
+          "base_ops": 2,
+          "effective_ops": 3,
+          "phasing": "USSR",
+          "military_credit_kind": "FreeCoup"
+        }
+      }
+    },
+    {
+      "id": "J1-R-grant-purge",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Grant",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": -1,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "GrantCreated",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 1,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {
+          "actor": "US",
+          "base_ops": 2,
+          "effective_ops": 1,
+          "phasing": "USSR",
+          "military_credit_kind": "FreeCoup"
+        }
+      }
+    },
+    {
+      "id": "J1-R-grant-before-influence-invalid",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Grant",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {},
+          "influence_committed": false,
+          "placed_country": null,
+          "actor": null,
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "InfluenceRequired",
+        "state": {
+          "influence": {},
+          "influence_committed": false,
+          "placed_country": null,
+          "actor": null,
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-grant-retry-not-reprice",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Grant",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 1,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyGranted",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {
+          "effective_ops": 2
+        }
+      }
+    },
+    {
+      "id": "J1-R-decline-after-influence",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Finish",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": true,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-first-realign-ca-lock",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Attempt",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.cuba",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "AcceptedAttemptPlan",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 1,
+          "mode": "Realignment",
+          "region_lock": "region.central_america",
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {
+          "actor": "US",
+          "target": "country.cuba",
+          "military_credit": 0
+        }
+      }
+    },
+    {
+      "id": "J1-R-first-realign-different-influence-region",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Attempt",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.brazil",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "AcceptedAttemptPlan",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 1,
+          "mode": "Realignment",
+          "region_lock": "region.south_america",
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {
+          "actor": "US",
+          "target": "country.brazil",
+          "military_credit": 0
+        }
+      }
+    },
+    {
+      "id": "J1-R-second-realign-same-region",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Attempt",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.mexico",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 1,
+          "mode": "Realignment",
+          "region_lock": "region.central_america",
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "AcceptedAttemptPlan",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 2,
+          "mode": "Realignment",
+          "region_lock": "region.central_america",
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {
+          "actor": "US",
+          "target": "country.mexico",
+          "military_credit": 0
+        }
+      }
+    },
+    {
+      "id": "J1-R-second-realign-other-region-reject",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Attempt",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.brazil",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 1,
+          "mode": "Realignment",
+          "region_lock": "region.central_america",
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "RegionLocked",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 1,
+          "mode": "Realignment",
+          "region_lock": "region.central_america",
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-realign-to-coup-reject",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Attempt",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.cuba",
+        "flat_delta": 0,
+        "mode": "Coup",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 1,
+          "mode": "Realignment",
+          "region_lock": "region.central_america",
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "ModeLocked",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 1,
+          "mode": "Realignment",
+          "region_lock": "region.central_america",
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-coup-whole-budget-free",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Attempt",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.cuba",
+        "flat_delta": 0,
+        "mode": "Coup",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "AcceptedAttemptPlan",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 2,
+          "mode": "Coup",
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {
+          "actor": "US",
+          "target": "country.cuba",
+          "military_credit": 0
+        }
+      }
+    },
+    {
+      "id": "J1-R-illegal-attempt-no-lock",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Attempt",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": false,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "IllegalAttempt",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-attempt-outside-region",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Attempt",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.iran",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "IllegalCountry",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-attempt-no-influence-grant",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Attempt",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {},
+          "influence_committed": false,
+          "placed_country": null,
+          "actor": null,
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "InfluenceRequired",
+        "state": {
+          "influence": {},
+          "influence_committed": false,
+          "placed_country": null,
+          "actor": null,
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-attempt-no-grant",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Attempt",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "GrantRequired",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-spent-budget-reject",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Attempt",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 2,
+          "mode": "Realignment",
+          "region_lock": "region.central_america",
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "BudgetExhausted",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 2,
+          "mode": "Realignment",
+          "region_lock": "region.central_america",
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-space-not-granted",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Attempt",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 0,
+        "mode": "Space",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "InvalidMode",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-ops-influence-not-granted",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Attempt",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 0,
+        "mode": "Influence",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "InvalidMode",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-coup-crisis-prior-to-budget-and-dice",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Attempt",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 0,
+        "mode": "Coup",
+        "legal_attempt_verified": true,
+        "fatal_crisis": true,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "ImmediateLossPlan",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-finish-after-one-adjust",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Finish",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 1,
+          "mode": "Realignment",
+          "region_lock": "region.central_america",
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 1,
+          "mode": "Realignment",
+          "region_lock": "region.central_america",
+          "completed": true,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-completed-retry",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Finish",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 1,
+          "mode": "Realignment",
+          "region_lock": "region.central_america",
+          "completed": true,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 1,
+          "mode": "Realignment",
+          "region_lock": "region.central_america",
+          "completed": true,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-old-response-preserve-influence",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Attempt",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": false,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "StaleResponse",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": true,
+          "budget": 2,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-controller-change-conflict",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Grant",
+        "effect_controller": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "influence_committed": true,
+          "placed_country": "country.panama",
+          "actor": "US",
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-unknown-effects",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Place",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": false,
+        "country_id": "country.panama",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {},
+          "influence_committed": false,
+          "placed_country": null,
+          "actor": null,
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "influence": {},
+          "influence_committed": false,
+          "placed_country": null,
+          "actor": null,
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-bad-frame",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Place",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": false,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {},
+          "influence_committed": false,
+          "placed_country": null,
+          "actor": null,
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "influence": {},
+          "influence_committed": false,
+          "placed_country": null,
+          "actor": null,
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-conflicting-request",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Place",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": false,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {},
+          "influence_committed": false,
+          "placed_country": null,
+          "actor": null,
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        }
+      },
+      "expected": {
+        "outcome": "ConflictingRequest",
+        "state": {
+          "influence": {},
+          "influence_committed": false,
+          "placed_country": null,
+          "actor": null,
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": false
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-R-finished",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Place",
+        "effect_controller": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "request_matches_receipt": true,
+        "revision_matches": true,
+        "effects_complete": true,
+        "country_id": "country.panama",
+        "flat_delta": 0,
+        "mode": "Realignment",
+        "legal_attempt_verified": true,
+        "fatal_crisis": false,
+        "state": {
+          "influence": {},
+          "influence_committed": false,
+          "placed_country": null,
+          "actor": null,
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": true
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "state": {
+          "influence": {},
+          "influence_committed": false,
+          "placed_country": null,
+          "actor": null,
+          "grant_created": false,
+          "budget": null,
+          "spent": 0,
+          "mode": null,
+          "region_lock": null,
+          "completed": false,
+          "root_slots_completed": 0,
+          "rng_cursor": 8,
+          "finished": true
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "J1-I-trusted-controller-country-choice-influence-transaction",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "trusted-controller-country-choice-influence-transaction",
+      "implementation_tested": false
+    },
+    {
+      "id": "J1-I-grant-snapshot-source-printed-ops-actor-modifiers",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "grant-snapshot-source-printed-ops-actor-modifiers",
+      "implementation_tested": false
+    },
+    {
+      "id": "J1-I-actual-standard-coup-realignment-interceptors-and-rng",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "actual-standard-coup-realignment-interceptors-and-rng",
+      "implementation_tested": false
+    },
+    {
+      "id": "J1-I-mode-and-region-lock-on-accepted-even-failed-roll",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "mode-and-region-lock-on-accepted-even-failed-roll",
+      "implementation_tested": false
+    },
+    {
+      "id": "J1-I-step-rollback-save-receipt-root-slot-disposition",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "step-rollback-save-receipt-root-slot-disposition",
+      "implementation_tested": false
+    },
+    {
+      "id": "J1-I-headline-child-source-root-phasing-and-terminal-draft",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "headline-child-source-root-phasing-and-terminal-draft",
+      "implementation_tested": false
+    }
+  ]
+}

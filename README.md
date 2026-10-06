@@ -83,4 +83,6 @@
 
 此前：[UN双牌使用](Docs/Wiki/un-intervention.md)，当时累计63 Bound /39 Unresolved，102处理器planned。
 
-最新：[陷阱根行动与共享标准骰](Docs/Wiki/trap-events.md)，累计65 Bound /37 Unresolved，102处理器planned。
+此前：[陷阱根行动与共享标准骰](Docs/Wiki/trap-events.md)，当时累计65 Bound /37 Unresolved，102处理器planned。
+
+最新：[Junta分步事件](Docs/Wiki/junta.md)，累计66 Bound /36 Unresolved，102处理器planned。
