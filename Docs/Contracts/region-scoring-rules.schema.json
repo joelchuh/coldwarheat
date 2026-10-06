@@ -1,0 +1,254 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:region-scoring-rules:1",
+  "title": "共享地区计分规则",
+  "description": "单一地区数据的结构契约，Standard/Weighted参数可被计分牌直接绑定；分值不复制进七套参数。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "status",
+    "description",
+    "sources",
+    "bonus_vp",
+    "regions",
+    "southeast_asia",
+    "formal_country_catalog_status",
+    "content_version"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "id": {
+      "const": "rules.deluxe2015.region-scoring"
+    },
+    "status": {
+      "const": "verified-subset"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "url"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "bonus_vp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "controlled_battleground",
+        "controlled_country_adjacent_to_enemy_superpower"
+      ],
+      "properties": {
+        "controlled_battleground": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "controlled_country_adjacent_to_enemy_superpower": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "regions": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "$ref": "#/$defs/standard_region"
+      }
+    },
+    "southeast_asia": {
+      "$ref": "#/$defs/weighted_subregion"
+    },
+    "formal_country_catalog_status": {
+      "const": "verified-definitions-runtime-pending"
+    },
+    "content_version": {
+      "const": "0.3.0"
+    }
+  },
+  "$defs": {
+    "standard_region": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "scoring_kind",
+        "base_vp",
+        "control_outcome",
+        "include_in_final"
+      ],
+      "properties": {
+        "id": {
+          "enum": [
+            "region.europe",
+            "region.asia",
+            "region.middle_east",
+            "region.africa",
+            "region.central_america",
+            "region.south_america"
+          ]
+        },
+        "scoring_kind": {
+          "const": "StandardRegion"
+        },
+        "base_vp": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "none",
+            "presence",
+            "domination",
+            "control"
+          ],
+          "properties": {
+            "none": {
+              "const": 0
+            },
+            "presence": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "domination": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "control": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            }
+          }
+        },
+        "control_outcome": {
+          "enum": [
+            "AutomaticVictory",
+            "NumericVp"
+          ]
+        },
+        "include_in_final": {
+          "const": true
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "id": {
+                "const": "region.europe"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "base_vp": {
+                "properties": {
+                  "control": {
+                    "type": "null"
+                  }
+                }
+              },
+              "control_outcome": {
+                "const": "AutomaticVictory"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "base_vp": {
+                "properties": {
+                  "control": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                }
+              },
+              "control_outcome": {
+                "const": "NumericVp"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "weighted_subregion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "parent_region_id",
+        "scoring_kind",
+        "include_in_final",
+        "standard_region_bonuses",
+        "country_vp",
+        "source_card_id"
+      ],
+      "properties": {
+        "id": {
+          "const": "region.southeast_asia"
+        },
+        "parent_region_id": {
+          "const": "region.asia"
+        },
+        "scoring_kind": {
+          "const": "WeightedControlledCountries"
+        },
+        "include_in_final": {
+          "const": false
+        },
+        "standard_region_bonuses": {
+          "const": false
+        },
+        "country_vp": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "country_id",
+              "vp"
+            ],
+            "properties": {
+              "country_id": {
+                "type": "string",
+                "pattern": "^country\\.[a-z_]+$"
+              },
+              "vp": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        "source_card_id": {
+          "const": "card.southeast_asia_scoring"
+        }
+      }
+    }
+  }
+}

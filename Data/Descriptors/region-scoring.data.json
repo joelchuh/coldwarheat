@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "data.region-scoring",
   "kind": "data",
-  "description": "六大地区基础计分、东南亚专用权重与最终计分地区集合；国家目录和逐卡修正另行绑定。",
+  "description": "六标准地区/东南亚权重与最终集合的单一计分数据；七计分牌引用此处，动态效果另行绑定，运行待实现。",
   "status": "ready",
   "dataset_id": "rules.deluxe2015.region-scoring",
   "entrypoints": [
@@ -37,15 +37,16 @@
     {
       "id": "R2015",
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
-      "checked_on": "2026-09-22",
+      "checked_on": "2026-10-06",
       "sections": [
         "2.1.1–2",
         "2.1.7",
         "10.1–10.3"
       ],
       "pdf_pages": [
-        18,
-        19
+        2,
+        3,
+        10
       ]
     },
     {
@@ -59,14 +60,20 @@
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "scope": "GMT托管土耳其语汇编中的英文印刷卡图；只采纳指定卡图，不以译文或PDF元数据当作新版勘误",
-      "checked_on": "2026-09-22",
+      "checked_on": "2026-10-06",
       "pdf_pages": [
-        2
+        2,
+        7,
+        12
       ],
       "card_numbers": [
         1,
         2,
-        3
+        3,
+        37,
+        38,
+        79,
+        81
       ]
     }
   ],
@@ -74,11 +81,15 @@
     {
       "path": "Docs/Design/scoring-space.cases.json",
       "status": "planned"
+    },
+    {
+      "path": "Docs/Design/scoring-cards.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "documentation": "Docs/Wiki/region-scoring.md",
   "validation": {
-    "schema_status": "通用JSON Schema尚未建立；使用字段、领域与引用断言",
+    "schema_status": "Draft202012结构已建立；ID/国集合/冻结业务事实另作语义校验",
     "constraints": [
       "六个标准地区ID唯一",
       "欧洲控制为AutomaticVictory且数值为null",
@@ -87,7 +98,13 @@
     ]
   },
   "verification": {
-    "checked_on": "2026-09-28",
-    "runtime_consumers_tested": false
-  }
+    "checked_on": "2026-10-06",
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/scoring-cards.validation.json"
+  },
+  "content_version": "0.3.0",
+  "schema_path": "Docs/Contracts/region-scoring-rules.schema.json",
+  "contract_dependencies": [
+    "urn:coldwarheat:contract:region-scoring-rules:1"
+  ]
 }

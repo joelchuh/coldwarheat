@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.16.0",
+  "content_version": "0.17.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计37牌效果参数已绑定，其余65个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计44牌效果参数已绑定，其余58个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -101,6 +101,12 @@
       "url": null,
       "edition": "Engineering projection / card-text derivation, 2026-10-06",
       "description": "不可变计分事实、Holding实体暂存、一次提交净VP/消费收据为工程设计。目标仍不从Control分母删除（FAQ Control必须被阻止）；无USSR战场时零扣分仍在下一匹配实际计分消费是next scoring文本推导，非专门FAQ。预览只算不消费。"
+    },
+    {
+      "id": "PROJECT-SC1",
+      "url": null,
+      "edition": "Engineering contracts, 2026-10-06",
+      "description": "以CardDefinition.scoring_region_id校验引用的RegionDefinition/算法形状，真实出牌与最终/强制弃牌分开；一个净VP事务与牌去向由编排提交。缺数据/相关策略/运行处理器不默认放行。"
     }
   ],
   "cards": [
@@ -120,8 +126,13 @@
       "effect_binding": {
         "effect_id": "effect.asia_scoring",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "rules.deluxe2015.region-scoring",
+            "json_pointer": "/regions/1"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -147,8 +158,13 @@
       "effect_binding": {
         "effect_id": "effect.europe_scoring",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "rules.deluxe2015.region-scoring",
+            "json_pointer": "/regions/0"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -174,8 +190,13 @@
       "effect_binding": {
         "effect_id": "effect.middle_east_scoring",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "rules.deluxe2015.region-scoring",
+            "json_pointer": "/regions/2"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -1222,8 +1243,13 @@
       "effect_binding": {
         "effect_id": "effect.central_america_scoring",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "rules.deluxe2015.region-scoring",
+            "json_pointer": "/regions/4"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -1249,8 +1275,13 @@
       "effect_binding": {
         "effect_id": "effect.southeast_asia_scoring",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "rules.deluxe2015.region-scoring",
+            "json_pointer": "/southeast_asia"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -2396,8 +2427,13 @@
       "effect_binding": {
         "effect_id": "effect.africa_scoring",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "rules.deluxe2015.region-scoring",
+            "json_pointer": "/regions/3"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -2450,8 +2486,13 @@
       "effect_binding": {
         "effect_id": "effect.south_america_scoring",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "rules.deluxe2015.region-scoring",
+            "json_pointer": "/regions/5"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -3075,45 +3116,81 @@
     {
       "effect_id": "effect.asia_scoring",
       "contract_version": "0.1.0",
-      "description": "Asia Scoring：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.asia_scoring",
+      "description": "计分牌读取印刷RegionId绑定单一标准地区定义；双方净VP、去向与相关修正由已设计服务编排，C#待实现。",
+      "handler_key": "scoring.StandardRegion",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:region-scoring-rules:1#/$defs/standard_region"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p2 #1/#2/#3、p7 #37/#38、p12 #79/#81，与单一地区数据及SEA星号一致。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "PDF p3卡牌/控制、p4 §4.5C计分头条0、p5 §5.4强制弃计分不执行、p8 §7.2、p10 §10地区/净VP/终局/最终。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-SC1",
+          "locator": "以CardDefinition.scoring_region_id校验引用的RegionDefinition/算法形状，真实出牌与最终/强制弃牌分开；一个净VP事务与牌去向由编排提交。缺数据/相关策略/运行处理器不默认放行。",
+          "verification": "Verified"
         }
       ]
     },
     {
       "effect_id": "effect.europe_scoring",
       "contract_version": "0.1.0",
-      "description": "Europe Scoring：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.europe_scoring",
+      "description": "计分牌读取印刷RegionId绑定单一标准地区定义；双方净VP、去向与相关修正由已设计服务编排，C#待实现。",
+      "handler_key": "scoring.StandardRegion",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:region-scoring-rules:1#/$defs/standard_region"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p2 #1/#2/#3、p7 #37/#38、p12 #79/#81，与单一地区数据及SEA星号一致。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "PDF p3卡牌/控制、p4 §4.5C计分头条0、p5 §5.4强制弃计分不执行、p8 §7.2、p10 §10地区/净VP/终局/最终。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-SC1",
+          "locator": "以CardDefinition.scoring_region_id校验引用的RegionDefinition/算法形状，真实出牌与最终/强制弃牌分开；一个净VP事务与牌去向由编排提交。缺数据/相关策略/运行处理器不默认放行。",
+          "verification": "Verified"
         }
       ]
     },
     {
       "effect_id": "effect.middle_east_scoring",
       "contract_version": "0.1.0",
-      "description": "Middle East Scoring：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.middle_east_scoring",
+      "description": "计分牌读取印刷RegionId绑定单一标准地区定义；双方净VP、去向与相关修正由已设计服务编排，C#待实现。",
+      "handler_key": "scoring.StandardRegion",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:region-scoring-rules:1#/$defs/standard_region"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p2 #1/#2/#3、p7 #37/#38、p12 #79/#81，与单一地区数据及SEA星号一致。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "PDF p3卡牌/控制、p4 §4.5C计分头条0、p5 §5.4强制弃计分不执行、p8 §7.2、p10 §10地区/净VP/终局/最终。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-SC1",
+          "locator": "以CardDefinition.scoring_region_id校验引用的RegionDefinition/算法形状，真实出牌与最终/强制弃牌分开；一个净VP事务与牌去向由编排提交。缺数据/相关策略/运行处理器不默认放行。",
+          "verification": "Verified"
         }
       ]
     },
@@ -3972,30 +4049,54 @@
     {
       "effect_id": "effect.central_america_scoring",
       "contract_version": "0.1.0",
-      "description": "Central America Scoring：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.central_america_scoring",
+      "description": "计分牌读取印刷RegionId绑定单一标准地区定义；双方净VP、去向与相关修正由已设计服务编排，C#待实现。",
+      "handler_key": "scoring.StandardRegion",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:region-scoring-rules:1#/$defs/standard_region"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p2 #1/#2/#3、p7 #37/#38、p12 #79/#81，与单一地区数据及SEA星号一致。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "PDF p3卡牌/控制、p4 §4.5C计分头条0、p5 §5.4强制弃计分不执行、p8 §7.2、p10 §10地区/净VP/终局/最终。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-SC1",
+          "locator": "以CardDefinition.scoring_region_id校验引用的RegionDefinition/算法形状，真实出牌与最终/强制弃牌分开；一个净VP事务与牌去向由编排提交。缺数据/相关策略/运行处理器不默认放行。",
+          "verification": "Verified"
         }
       ]
     },
     {
       "effect_id": "effect.southeast_asia_scoring",
       "contract_version": "0.1.0",
-      "description": "Southeast Asia Scoring：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.southeast_asia_scoring",
+      "description": "计分牌读取印刷RegionId绑定单一权重子区定义；双方净VP、去向与相关修正由已设计服务编排，C#待实现。",
+      "handler_key": "scoring.WeightedSubregion",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:region-scoring-rules:1#/$defs/weighted_subregion"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p2 #1/#2/#3、p7 #37/#38、p12 #79/#81，与单一地区数据及SEA星号一致。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "PDF p3卡牌/控制、p4 §4.5C计分头条0、p5 §5.4强制弃计分不执行、p8 §7.2、p10 §10地区/净VP/终局/最终。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-SC1",
+          "locator": "以CardDefinition.scoring_region_id校验引用的RegionDefinition/算法形状，真实出牌与最终/强制弃牌分开；一个净VP事务与牌去向由编排提交。缺数据/相关策略/运行处理器不默认放行。",
+          "verification": "Verified"
         }
       ]
     },
@@ -4733,15 +4834,27 @@
     {
       "effect_id": "effect.africa_scoring",
       "contract_version": "0.1.0",
-      "description": "Africa Scoring：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.africa_scoring",
+      "description": "计分牌读取印刷RegionId绑定单一标准地区定义；双方净VP、去向与相关修正由已设计服务编排，C#待实现。",
+      "handler_key": "scoring.StandardRegion",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:region-scoring-rules:1#/$defs/standard_region"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p2 #1/#2/#3、p7 #37/#38、p12 #79/#81，与单一地区数据及SEA星号一致。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "PDF p3卡牌/控制、p4 §4.5C计分头条0、p5 §5.4强制弃计分不执行、p8 §7.2、p10 §10地区/净VP/终局/最终。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-SC1",
+          "locator": "以CardDefinition.scoring_region_id校验引用的RegionDefinition/算法形状，真实出牌与最终/强制弃牌分开；一个净VP事务与牌去向由编排提交。缺数据/相关策略/运行处理器不默认放行。",
+          "verification": "Verified"
         }
       ]
     },
@@ -4763,15 +4876,27 @@
     {
       "effect_id": "effect.south_america_scoring",
       "contract_version": "0.1.0",
-      "description": "South America Scoring：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.south_america_scoring",
+      "description": "计分牌读取印刷RegionId绑定单一标准地区定义；双方净VP、去向与相关修正由已设计服务编排，C#待实现。",
+      "handler_key": "scoring.StandardRegion",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:region-scoring-rules:1#/$defs/standard_region"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p2 #1/#2/#3、p7 #37/#38、p12 #79/#81，与单一地区数据及SEA星号一致。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "PDF p3卡牌/控制、p4 §4.5C计分头条0、p5 §5.4强制弃计分不执行、p8 §7.2、p10 §10地区/净VP/终局/最终。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-SC1",
+          "locator": "以CardDefinition.scoring_region_id校验引用的RegionDefinition/算法形状，真实出牌与最终/强制弃牌分开；一个净VP事务与牌去向由编排提交。缺数据/相关策略/运行处理器不默认放行。",
+          "verification": "Verified"
         }
       ]
     },

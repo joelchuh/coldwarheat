@@ -228,3 +228,5 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 [手牌事件](hand-events-batch1.md)仅弃牌不创建CardUse；五年计划US关联牌以RandomDiscardTriggeredEvent压入US控制事件帧，继承根PhasingPlayer，不自动给被弃牌印刷OPS/新根名额；子事件自身卡文授权仍执行，不在DiscardPile与InResolution保留双份。封锁决定Owner固定US，候选仅Owner可见。
 
 [动态计分](scoring-effects-batch1.md)引入穿梭专用公开ActiveEventHolding：成功事件Finalize进入该位置而非Discard，至下一匹配真实计分一次性移动并消费；普通持续实例与实体引用仍分离、不能双份。China真实US使用后取消台湾规则，不由事件转交或UI揭示触发。
+
+[计分牌绑定](scoring-cards.md)不提供OPS/太空，头条0值仍可选择；只在真实合法事件结算时计算/决定SEA星号去向，强制弃牌不计分。最终汇总不逐张消耗实体牌或根名额。

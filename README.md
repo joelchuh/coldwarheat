@@ -65,4 +65,6 @@
 
 此前：[封锁与五年计划](Docs/Wiki/hand-events-batch1.md)绑定两牌；累计35 Bound / 67 Unresolved，102处理器planned。
 
-最新：[动态计分效果](Docs/Wiki/scoring-effects-batch1.md)绑定台湾决议/穿梭；累计37 Bound / 65 Unresolved，102处理器planned。
+此前：[动态计分效果](Docs/Wiki/scoring-effects-batch1.md)绑定台湾决议/穿梭；累计37 Bound / 65 Unresolved，102处理器planned。
+
+最新：[七张计分牌绑定](Docs/Wiki/scoring-cards.md)共用现有地区/SEA定义；累计44 Bound / 58 Unresolved，102处理器planned。

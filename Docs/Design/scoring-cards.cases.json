@@ -1,0 +1,1231 @@
+{
+  "schema_version": 1,
+  "description": "七牌共享定义结构/域和真实计分路由固定参考；C#/Unity运行验收planned。",
+  "status": "mixed-reference-and-planned",
+  "dataset": "Data/Rulesets/deluxe-2015/region-scoring.json",
+  "schema": "Docs/Contracts/region-scoring-rules.schema.json",
+  "fixture_policy": "控制快照显式84国None基线+补丁；不给省略国家猜未知值。计分修正完整已核实由fixture假定，动态修正保留旧批案例。",
+  "cases": [
+    {
+      "id": "SCB-D-baseline",
+      "validation_layer": "data",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "SCB-D-wrong-id",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "id"
+            ],
+            "value": "rules.other"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SCB-D-negative-bonus",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "bonus_vp",
+              "controlled_battleground"
+            ],
+            "value": -1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SCB-D-unknown-region",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "regions",
+              0,
+              "id"
+            ],
+            "value": "region.missing"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SCB-D-duplicate-id",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "regions",
+              1,
+              "id"
+            ],
+            "value": "region.europe"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SCB-D-europe-numeric-win",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "regions",
+              0,
+              "base_vp",
+              "control"
+            ],
+            "value": 100
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SCB-D-europe-normal",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "regions",
+              0,
+              "control_outcome"
+            ],
+            "value": "NumericVp"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SCB-D-no-final",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "regions",
+              1,
+              "include_in_final"
+            ],
+            "value": false
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SCB-D-wrong-shape",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "regions",
+              1,
+              "scoring_kind"
+            ],
+            "value": "WeightedControlledCountries"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SCB-D-sea-final",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "southeast_asia",
+              "include_in_final"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SCB-D-sea-extra-bonus",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "southeast_asia",
+              "standard_region_bonuses"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SCB-D-sea-wrong-country",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "southeast_asia",
+              "country_vp",
+              0,
+              "country_id"
+            ],
+            "value": "country.missing"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SCB-D-sea-duplicate",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "southeast_asia",
+              "country_vp",
+              1,
+              "country_id"
+            ],
+            "value": "country.burma"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SCB-D-sea-zero-weight",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "southeast_asia",
+              "country_vp",
+              0,
+              "vp"
+            ],
+            "value": 0
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SCB-D-positive-score-drift",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "regions",
+              1,
+              "base_vp",
+              "presence"
+            ],
+            "value": 99
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SCB-D-weights-drift",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "southeast_asia",
+              "country_vp",
+              6,
+              "vp"
+            ],
+            "value": 3
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SCB-D-free-script",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "regions",
+              0,
+              "eval"
+            ],
+            "value": "()"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SCB-R-zero-asia_scoring",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.asia_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "zones": {
+            "card.asia_scoring": "DiscardPile"
+          },
+          "completed": true
+        },
+        "US_vp": 0,
+        "USSR_vp": 0,
+        "net_vp": 0,
+        "europe_control_winner": null
+      }
+    },
+    {
+      "id": "SCB-R-zero-europe_scoring",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.europe_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "zones": {
+            "card.europe_scoring": "DiscardPile"
+          },
+          "completed": true
+        },
+        "US_vp": 0,
+        "USSR_vp": 0,
+        "net_vp": 0,
+        "europe_control_winner": null
+      }
+    },
+    {
+      "id": "SCB-R-zero-middle_east_scoring",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.middle_east_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "zones": {
+            "card.middle_east_scoring": "DiscardPile"
+          },
+          "completed": true
+        },
+        "US_vp": 0,
+        "USSR_vp": 0,
+        "net_vp": 0,
+        "europe_control_winner": null
+      }
+    },
+    {
+      "id": "SCB-R-zero-central_america_scoring",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.central_america_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "zones": {
+            "card.central_america_scoring": "DiscardPile"
+          },
+          "completed": true
+        },
+        "US_vp": 0,
+        "USSR_vp": 0,
+        "net_vp": 0,
+        "europe_control_winner": null
+      }
+    },
+    {
+      "id": "SCB-R-zero-southeast_asia_scoring",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.southeast_asia_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "zones": {
+            "card.southeast_asia_scoring": "Removed"
+          },
+          "completed": true
+        },
+        "US_vp": 0,
+        "USSR_vp": 0,
+        "net_vp": 0,
+        "europe_control_winner": null
+      }
+    },
+    {
+      "id": "SCB-R-zero-africa_scoring",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.africa_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "zones": {
+            "card.africa_scoring": "DiscardPile"
+          },
+          "completed": true
+        },
+        "US_vp": 0,
+        "USSR_vp": 0,
+        "net_vp": 0,
+        "europe_control_winner": null
+      }
+    },
+    {
+      "id": "SCB-R-zero-south_america_scoring",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.south_america_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "zones": {
+            "card.south_america_scoring": "DiscardPile"
+          },
+          "completed": true
+        },
+        "US_vp": 0,
+        "USSR_vp": 0,
+        "net_vp": 0,
+        "europe_control_winner": null
+      }
+    },
+    {
+      "id": "SCB-R-scoring-headline-zero",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.asia_scoring",
+        "mode": "Headline",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "zones": {
+            "card.asia_scoring": "DiscardPile"
+          },
+          "completed": true
+        },
+        "US_vp": 0,
+        "USSR_vp": 0,
+        "net_vp": 0,
+        "europe_control_winner": null
+      }
+    },
+    {
+      "id": "SCB-R-ops-refused",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.asia_scoring",
+        "mode": "Operations",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "IllegalMode",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SCB-R-space-refused",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.asia_scoring",
+        "mode": "Space",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "IllegalMode",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SCB-R-non-scoring-refused",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.fidel",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "UnsupportedCard",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SCB-R-region-mismatch",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.asia_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": false,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SCB-R-bad-source-frame",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.asia_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": false,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SCB-R-incomplete-snapshot",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.asia_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": false,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "InvalidSnapshot",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SCB-R-unknown-modifier",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.asia_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": false,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SCB-R-stale-command",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.asia_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": false,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "StaleResponse",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SCB-R-completed-retry",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.asia_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": true,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SCB-R-terminal",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.asia_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": true,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SCB-R-sea-forced-discard-not-removed",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ForcedDiscard",
+        "card_id": "card.southeast_asia_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "DiscardedNoEvent",
+        "state_patch": {
+          "zones": {
+            "card.southeast_asia_scoring": "DiscardPile"
+          },
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "SCB-R-cancelled-sea-headline-not-scored",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "CancelledHeadline",
+        "card_id": "card.southeast_asia_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "CancelledNoScore",
+        "state_patch": {
+          "zones": {
+            "card.southeast_asia_scoring": "DiscardPile"
+          },
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "SCB-R-central-america-official-example",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.central_america_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {
+            "country.cuba": "USSR",
+            "country.haiti": "USSR",
+            "country.dominican_republic": "USSR",
+            "country.guatemala": "US"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "vp": -4,
+          "zones": {
+            "card.central_america_scoring": "DiscardPile"
+          },
+          "completed": true
+        },
+        "US_vp": 1,
+        "USSR_vp": 5,
+        "net_vp": -4,
+        "europe_control_winner": null
+      }
+    },
+    {
+      "id": "SCB-R-sea-weighted-both",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.southeast_asia_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {
+            "country.thailand": "US",
+            "country.vietnam": "US",
+            "country.burma": "USSR",
+            "country.philippines": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "vp": 1,
+          "zones": {
+            "card.southeast_asia_scoring": "Removed"
+          },
+          "completed": true
+        },
+        "US_vp": 3,
+        "USSR_vp": 2,
+        "net_vp": 1,
+        "europe_control_winner": null
+      }
+    },
+    {
+      "id": "SCB-R-asia-contains-sea-standard",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.asia_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {
+            "country.thailand": "US",
+            "country.vietnam": "US",
+            "country.indonesia": "US",
+            "country.burma": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "vp": 5,
+          "zones": {
+            "card.asia_scoring": "DiscardPile"
+          },
+          "completed": true
+        },
+        "US_vp": 8,
+        "USSR_vp": 3,
+        "net_vp": 5,
+        "europe_control_winner": null
+      }
+    },
+    {
+      "id": "SCB-R-europe-control-US",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.europe_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {
+            "country.france": "US",
+            "country.italy": "US",
+            "country.west_germany": "US",
+            "country.east_germany": "US",
+            "country.poland": "US"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "zones": {
+            "card.europe_scoring": "DiscardPile"
+          },
+          "completed": true
+        },
+        "US_vp": null,
+        "USSR_vp": null,
+        "net_vp": null,
+        "europe_control_winner": "US"
+      }
+    },
+    {
+      "id": "SCB-R-europe-control-USSR",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.europe_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {
+            "country.france": "USSR",
+            "country.italy": "USSR",
+            "country.west_germany": "USSR",
+            "country.east_germany": "USSR",
+            "country.poland": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "zones": {
+            "card.europe_scoring": "DiscardPile"
+          },
+          "completed": true
+        },
+        "US_vp": null,
+        "USSR_vp": null,
+        "net_vp": null,
+        "europe_control_winner": "USSR"
+      }
+    },
+    {
+      "id": "SCB-R-africa-domination",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.africa_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {
+            "country.nigeria": "US",
+            "country.cameroon": "US",
+            "country.algeria": "USSR",
+            "country.zaire": "US"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "vp": 4,
+          "zones": {
+            "card.africa_scoring": "DiscardPile"
+          },
+          "completed": true
+        },
+        "US_vp": 6,
+        "USSR_vp": 2,
+        "net_vp": 4,
+        "europe_control_winner": null
+      }
+    },
+    {
+      "id": "SCB-R-south-america-presence",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ScoreCard",
+        "card_id": "card.south_america_scoring",
+        "mode": "Scoring",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "source_region_matches": true,
+        "state": {
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "vp": 0,
+          "rng_cursor": 5,
+          "zones": {},
+          "controller_overrides": {
+            "country.chile": "US"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "vp": 3,
+          "zones": {
+            "card.south_america_scoring": "DiscardPile"
+          },
+          "completed": true
+        },
+        "US_vp": 3,
+        "USSR_vp": 0,
+        "net_vp": 3,
+        "europe_control_winner": null
+      }
+    },
+    {
+      "id": "SCB-T-1",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "真实SourceCardId/绑定RegionId/参数类型与注册处理器门禁"
+    },
+    {
+      "id": "SCB-T-2",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "所有七牌根行为：头条0合法/OPS与太空非法/正常名额仅一次"
+    },
+    {
+      "id": "SCB-T-3",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "台湾和穿梭真实决定/VP/去向同事务，不混淆选择拥有者"
+    },
+    {
+      "id": "SCB-T-4",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "SEA强制弃置和头条取消不执行、不误移出"
+    },
+    {
+      "id": "SCB-T-5",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "保存等候决定/完整快照/计分收据，重复与旧响应无二次VP"
+    },
+    {
+      "id": "SCB-T-6",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "欧洲控制与双方净VP±20胜负接口，终局吸收"
+    },
+    {
+      "id": "SCB-T-7",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "最终六地区/中国附加完整批次，不打出实体计分或消耗额外名额"
+    },
+    {
+      "id": "SCB-T-8",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "正式规则包仍102planned，Bound不足以允许真实开局"
+    },
+    {
+      "id": "SCB-T-9",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "新clone/checkout保持ps1LF字节与工具报告摘要一致"
+    }
+  ]
+}

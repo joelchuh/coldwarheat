@@ -19,7 +19,7 @@
 
 ## 2. 一次计分使用一个事实快照
 
-ScoringContext包含ScoringId、SourceCardId、Mode（Normal或Final）、RulesetVersion、DataDigest、StateVersion、已核实效果上下文。预览使用单独的只读查询，不生成可提交的计分命令。地区、国家与规则逻辑通过稳定ID关联，图形位置和显示名称不参与计算。
+ScoringContext包含ScoringId、SourceCardId、Mode（Normal或Final）、ScoringInvocationKind（PlayedScoringCard/FinalScoring/OtherEvent）、RulesetVersion、DataDigest、StateVersion、已核实效果上下文。预览使用单独的只读查询，不生成可提交的计分命令。地区、国家与规则逻辑通过稳定ID关联，图形位置和显示名称不参与计算。
 
 先完成来源事件要求的选择/影响力变动，再建立ScoringSnapshot。不能在选中计分牌时就冻结未来结果。快照同时覆盖双方；未受控制的国家也必须存在，不能把漏载国家误认为中立。普通国家控制依R2015 §2.1.7：自身影响力至少达到稳定度，且领先对手至少该稳定度。
 
@@ -102,3 +102,5 @@ flowchart LR
 [太空竞赛设计](space-race.md) · [返回索引](index.md)
 
 [动态计分效果](scoring-effects-batch1.md)先重分类台湾，再由US选穿梭排除国。排除只从USSR总国/战场/敌邻接事实扣除，Control用战场全集不删除该国；实体消费与整个VP批次同一提交。预览不消费，Final仅台湾规则适用。
+
+[七张计分牌](scoring-cards.md)已绑定本单一数据与结构契约；欧洲Control传独立胜者，不算大数，SEA权重不混入标准奖励。R2015来源页码复核为PDF p2/3/10，旧p18/19已修正，不改分值。

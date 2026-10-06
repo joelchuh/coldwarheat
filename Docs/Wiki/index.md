@@ -15,6 +15,7 @@
 | 条约保护与前置事件 | 查北约/美日安保、动态控制、法国西德例外、DEFCON接缝与事件成功记录 | 2牌参数绑定；C#待实现 | [treaty-protection.md](treaty-protection.md) |
 | 战争牌持续与取消 | 查Flower使用资格/待裁定时机、戴维营固定收益、邪恶帝国取消与阻止 | 3牌参数Bound；C#待实现，钩子边界待裁定 | [war-card-hooks.md](war-card-hooks.md) |
 | DEFCON事件与政变干预 | 查古巴危机解除/责任、核潜艇原因豁免、SALT取回和ABM普通OPS授权 | 4牌参数Bound；C#待实现 | [defcon-events-batch1.md](defcon-events-batch1.md) |
+| 七张计分牌绑定 | 查CardId/RegionId直接绑定、标准/SEA算法、头条/强制弃牌与去向 | 7牌参数Bound；C#待实现 | [scoring-cards.md](scoring-cards.md) |
 | 动态计分效果 | 查台湾战场/中国取消、穿梭选国/邻接/Control与一次消费 | 2牌参数Bound，C#待实现 | [scoring-effects-batch1.md](scoring-effects-batch1.md) |
 | 手牌事件与子事件 | 查封锁阈值弃牌、五年计划随机弃牌/US子帧、保密与回放边界 | 2牌参数Bound，C#待实现 | [hand-events-batch1.md](hand-events-batch1.md) |
 | 影响力迁移 | 查去斯大林化来源/目的分配、守恒、零迁移与重叠待裁定 | 1牌已知参数Bound，C#待实现 | [influence-relocation.md](influence-relocation.md) |
@@ -32,7 +33,7 @@
 | 地图与卡牌数据契约 | 查找正式数据字段、邻接、三类卡牌、效果注册、Schema及加载门禁 | 契约与正式印刷定义已建立；服务待实现 | [map-card-contracts.md](map-card-contracts.md) |
 | 正式地图与卡牌数据 | 按地区查84国与邻接，按时代查103张基础牌及效果待实现边界 | 静态定义已录入；不是可运行规则包 | [map-card-data.md](map-card-data.md) |
 | 地图布局与未定画风 | 区分规则图、位置拾取和主题资源，了解2D/3D接入边界 | 设计稿；未选定美术 | [map-presentation.md](map-presentation.md) |
-| 数据结构契约目录 | 按description定位二十二份JSON Schema（含事件参数、setup及卡牌v1/v2）与合成样例 | 结构契约；不是完整规则包 | [catalog.json](../Contracts/catalog.json) |
+| 数据结构契约目录 | 按description定位二十三份JSON Schema（含事件参数、setup及卡牌v1/v2）与合成样例 | 结构契约；不是完整规则包 | [catalog.json](../Contracts/catalog.json) |
 | 模块描述目录 | 先按 description 定位模块，再读完整契约与相关代码 | 十九个模块描述均 planned | [catalog.json](../Descriptors/catalog.json) |
 | 共享规则数据目录 | 查找数据集描述、来源与独立参数文件 | 二十二个参数子集＋地图/卡牌/开局定义＋名称字典；运行服务待实现 | [catalog.json](../../Data/catalog.json) |
 | 行动规则 | 查找影响力、政变、调整、预算、对象契约与验收案例 | v0.2 设计稿；未实现 | [operations.md](operations.md) |

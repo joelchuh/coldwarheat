@@ -64,3 +64,5 @@
 [DEFCON事件](../defcon-events-batch1.md)补齐#40/#41/#43/#57参数，仍无运行处理器。
 
 穿梭外交#73见[动态计分](../scoring-effects-batch1.md)，Held实体至下一实际计分，US选排除国。
+
+本时代计分牌已按[七张计分牌绑定](../scoring-cards.md)直接引用地区定义；正式处理器仍planned。

@@ -79,3 +79,5 @@ git ls-remote origin refs/heads/main
 ## 只读候选核验工具
 
 四个设计批次已重复使用稳定的字节/清单核验流程，现提供[正式描述](../../Tools/Descriptors/verify-design-snapshot.script.json)与[用法](design-snapshot-verifier.md)。它不运行Git、不自动复制/提交/推送；暂存与远端核对仍由当前Git流程完成。
+
+正式PowerShell7工具统一LF：避免Git未来checkout把ps1改成CRLF而使已验证SHA256字节报告过期；Windows PowerShell7实际运行支持LF。此调整不改变脚本逻辑，其他文件的换行策略保持各自规则。

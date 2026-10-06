@@ -18,11 +18,16 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/FinalScoringService.cs",
       "symbol": "Summarize"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Scoring/CardScoringService.cs",
+      "symbol": "ResolveFromCard"
     }
   ],
   "inputs": [
     "同一版本的权威计分快照、地区ID、Normal/Final模式及已核实修正",
-    "完整规则地图与不可变参数定义"
+    "完整规则地图与不可变参数定义",
+    "ScoringInvocationKind独立于Mode：真实牌Normal/PlayedScoringCard，最终Final/FinalScoring；预览单独只读标志"
   ],
   "outputs": [
     "双方分项、净VP、EuropeControlWinner与最终完整性证据"
@@ -100,14 +105,21 @@
     {
       "path": "Docs/Design/scoring-effects-batch1.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/scoring-cards.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
-    "latest_design_report": "Docs/Design/scoring-effects-batch1.validation.json"
+    "latest_design_report": "Docs/Design/scoring-cards.validation.json"
   },
   "open_items": [
     "已绑定台湾决议/穿梭外交的真实实现；其余未设计修正",
     "完整真实快照/事务/最终汇总与运行计分处理器"
+  ],
+  "contract_dependencies": [
+    "urn:coldwarheat:contract:region-scoring-rules:1"
   ]
 }
