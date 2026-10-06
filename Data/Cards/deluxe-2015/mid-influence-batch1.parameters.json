@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.mid_influence_batch1",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "中期四张影响力事件：固定两国/单国添加、清除后添加与中南美额度分配；数值共享、C#未实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "目视英文p9 #52/#54、p11 #70/#72；葡萄牙两固定地区各USSR2、阿连德Chile USSR2、萨达特清Egypt USSR再US1，OAS共2US在中/南美。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§5.2固定受益方与事件无变化结果、§6.1.1事件放置不要求OPS邻接/费用；不附加控制筛选。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p14 #70 Deluxe写明Central and/or South America，允许跨区各1。"
+    },
+    {
+      "id": "PROJECT-MI1",
+      "url": null,
+      "edition": "Engineering contracts, 2026-10-06",
+      "description": "使用既有固定Add/Clear/Allocate原语，原子计划验证完整分配；OAS默认不要求不同国家，因此总2可同国或各1，是卡文直接推导。全量方案/Owner/Revision拒绝与去重是工程边界。"
+    }
+  ],
+  "parameters": {
+    "portuguese_empire_crumbles": {
+      "card_id": "card.portuguese_empire_crumbles",
+      "effect_id": "effect.portuguese_empire_crumbles",
+      "description": "Angola和SE African States各加2USSR，固定两国，不把SEAfrica当地区内任选。",
+      "template": "AddToFixedCountries",
+      "beneficiary": "USSR",
+      "country_ids": [
+        "country.angola",
+        "country.southeast_african_states"
+      ],
+      "amount_per_country": 2,
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p9 #52/#54、p11 #70/#72；葡萄牙两固定地区各USSR2、阿连德Chile USSR2、萨达特清Egypt USSR再US1，OAS共2US在中/南美。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2固定受益方与事件无变化结果、§6.1.1事件放置不要求OPS邻接/费用；不附加控制筛选。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-MI1",
+          "locator": "使用既有固定Add/Clear/Allocate原语，原子计划验证完整分配；OAS默认不要求不同国家，因此总2可同国或各1，是卡文直接推导。全量方案/Owner/Revision拒绝与去重是工程边界。",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "allende": {
+      "card_id": "card.allende",
+      "effect_id": "effect.allende",
+      "description": "固定Chile增加2USSR，不追平或确保控制。",
+      "template": "AddToFixedCountries",
+      "beneficiary": "USSR",
+      "country_ids": [
+        "country.chile"
+      ],
+      "amount_per_country": 2,
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p9 #52/#54、p11 #70/#72；葡萄牙两固定地区各USSR2、阿连德Chile USSR2、萨达特清Egypt USSR再US1，OAS共2US在中/南美。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2固定受益方与事件无变化结果、§6.1.1事件放置不要求OPS邻接/费用；不附加控制筛选。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-MI1",
+          "locator": "使用既有固定Add/Clear/Allocate原语，原子计划验证完整分配；OAS默认不要求不同国家，因此总2可同国或各1，是卡文直接推导。全量方案/Owner/Revision拒绝与去重是工程边界。",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "sadat_expels_soviets": {
+      "card_id": "card.sadat_expels_soviets",
+      "effect_id": "effect.sadat_expels_soviets",
+      "description": "Egypt移除全部USSR再增加1US，即使无USSR也增加1。",
+      "template": "ClearOpponentThenAddFixed",
+      "beneficiary": "US",
+      "country_id": "country.egypt",
+      "steps": [
+        "ClearOpponent",
+        "AddFixed"
+      ],
+      "add_amount": 1,
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p9 #52/#54、p11 #70/#72；葡萄牙两固定地区各USSR2、阿连德Chile USSR2、萨达特清Egypt USSR再US1，OAS共2US在中/南美。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2固定受益方与事件无变化结果、§6.1.1事件放置不要求OPS邻接/费用；不附加控制筛选。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-MI1",
+          "locator": "使用既有固定Add/Clear/Allocate原语，原子计划验证完整分配；OAS默认不要求不同国家，因此总2可同国或各1，是卡文直接推导。全量方案/Owner/Revision拒绝与去重是工程边界。",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "oas_founded": {
+      "card_id": "card.oas_founded",
+      "effect_id": "effect.oas_founded",
+      "description": "美国在中美/南美分配总2，可同国2或不同国各1，无敌控/已有影响/邻接条件。",
+      "template": "AllocateInfluenceBudget",
+      "beneficiary": "US",
+      "decision_owner": "US",
+      "region_ids": [
+        "region.central_america",
+        "region.south_america"
+      ],
+      "total_amount": 2,
+      "max_per_country": 2,
+      "target_control": "Any",
+      "allocation_commit": "AtomicCompleteAllocation",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p9 #52/#54、p11 #70/#72；葡萄牙两固定地区各USSR2、阿连德Chile USSR2、萨达特清Egypt USSR再US1，OAS共2US在中/南美。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2固定受益方与事件无变化结果、§6.1.1事件放置不要求OPS邻接/费用；不附加控制筛选。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p14 #70 Deluxe写明Central and/or South America，允许跨区各1。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-MI1",
+          "locator": "使用既有固定Add/Clear/Allocate原语，原子计划验证完整分配；OAS默认不要求不同国家，因此总2可同国或各1，是卡文直接推导。全量方案/Owner/Revision拒绝与去重是工程边界。",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

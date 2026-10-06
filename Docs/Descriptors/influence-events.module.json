@@ -23,7 +23,7 @@
       "id": "F2010",
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
       "edition": "FAQ v5, 2010",
-      "description": "仅采用PDF p5 #19关于uncontrolled的明确释义，与R2015及英文卡图一致。 DS1另核对PDF p7 #33事件迁移无需OPS邻接。"
+      "description": "仅采用PDF p5 #19关于uncontrolled的明确释义，与R2015及英文卡图一致。 DS1另核对PDF p7 #33事件迁移无需OPS邻接。 MI1另核对PDFp14 #70可跨中/南美各1。"
     },
     {
       "id": "C-DELUXE-EN",
@@ -60,6 +60,12 @@
       "url": null,
       "edition": "Engineering interpretation, 2026-10-06",
       "description": "完整来源/目的分配原子提交；零迁移为up to文本推导；来源/目的同国重叠仍待裁定，不编造禁止或允许。"
+    },
+    {
+      "id": "PROJECT-MI1",
+      "url": null,
+      "edition": "Engineering contracts, 2026-10-06",
+      "description": "使用既有固定Add/Clear/Allocate原语，原子计划验证完整分配；OAS默认不要求不同国家，因此总2可同国或各1，是卡文直接推导。全量方案/Owner/Revision拒绝与去重是工程边界。"
     }
   ],
   "tests": [
@@ -82,13 +88,17 @@
     {
       "path": "Docs/Design/influence-relocation.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/mid-influence-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "documentation": "Docs/Wiki/influence-relocation.md",
   "id": "module.influence-events",
   "kind": "module",
   "status": "planned",
-  "description": "影响力增减/追平/控制筛选与迁移选择；额度、守恒及可恢复决策，13牌已知参数Bound，C#待实现。",
+  "description": "影响力增减/追平/控制筛选与迁移选择；额度、守恒及可恢复决策，17牌已知参数Bound，C#待实现。",
   "entrypoints": [],
   "planned_entrypoints": [
     {
@@ -125,18 +135,20 @@
     "effects.deluxe2015.early_influence_batch3",
     "effects.deluxe2015.alliance_prerequisites",
     "effects.deluxe2015.treaty_protection",
-    "effects.deluxe2015.influence_relocation"
+    "effects.deluxe2015.influence_relocation",
+    "effects.deluxe2015.mid_influence_batch1"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:early-influence-parameters:1",
     "urn:coldwarheat:contract:early-influence-batch2:1",
     "urn:coldwarheat:contract:early-influence-batch3:1",
     "urn:coldwarheat:contract:alliance-prerequisites:1",
-    "urn:coldwarheat:contract:influence-relocation:1"
+    "urn:coldwarheat:contract:influence-relocation:1",
+    "urn:coldwarheat:contract:mid-influence-batch1:1"
   ],
   "verification": {
     "implementation_tested": false,
     "report": "Docs/Design/alliance-prerequisites.validation.json",
-    "latest_design_report": "Docs/Design/influence-relocation.validation.json"
+    "latest_design_report": "Docs/Design/mid-influence-batch1.validation.json"
   }
 }

@@ -1,0 +1,1566 @@
+{
+  "schema_version": 1,
+  "description": "固定影响力与中南美完整额度结构/算术参考；真实事务与身份未实现。",
+  "status": "mixed-reference-and-planned",
+  "dataset": "Data/Cards/deluxe-2015/mid-influence-batch1.parameters.json",
+  "schema": "Docs/Contracts/mid-influence-batch1.schema.json",
+  "cases": [
+    {
+      "id": "MI-D-baseline",
+      "validation_layer": "data",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "MI-D-port-country",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "portuguese_empire_crumbles",
+              "country_ids"
+            ],
+            "value": [
+              "country.angola",
+              "country.south_africa"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI-D-port-amount",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "portuguese_empire_crumbles",
+              "amount_per_country"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI-D-port-beneficiary",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "portuguese_empire_crumbles",
+              "beneficiary"
+            ],
+            "value": "US"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI-D-allende-country",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "allende",
+              "country_ids"
+            ],
+            "value": [
+              "country.cuba"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI-D-allende-amount",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "allende",
+              "amount_per_country"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI-D-allende-template",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "allende",
+              "template"
+            ],
+            "value": "EnsureControl"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI-D-sadat-country",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "sadat_expels_soviets",
+              "country_id"
+            ],
+            "value": "country.israel"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI-D-sadat-owner",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "sadat_expels_soviets",
+              "beneficiary"
+            ],
+            "value": "USSR"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI-D-sadat-order",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "sadat_expels_soviets",
+              "steps"
+            ],
+            "value": [
+              "AddFixed",
+              "ClearOpponent"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI-D-sadat-add",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "sadat_expels_soviets",
+              "add_amount"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI-D-oas-total",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "oas_founded",
+              "total_amount"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI-D-oas-only-south",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "oas_founded",
+              "region_ids"
+            ],
+            "value": [
+              "region.south_america"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI-D-oas-per-one",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "oas_founded",
+              "max_per_country"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI-D-oas-control",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "oas_founded",
+              "target_control"
+            ],
+            "value": "NotControlledByOpponent"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI-D-oas-owner",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "oas_founded",
+              "decision_owner"
+            ],
+            "value": "RootPhasingPlayer"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI-D-oas-partial",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "oas_founded",
+              "allocation_commit"
+            ],
+            "value": "CommitEachCountry"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI-D-script",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "oas_founded",
+              "script"
+            ],
+            "value": "eval()"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI-R-port-fixed-two",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.portuguese_empire_crumbles",
+        "actor": "USSR",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "influence_patch": {
+          "country.angola": {
+            "US": 4,
+            "USSR": 3
+          },
+          "country.southeast_african_states": {
+            "US": 3,
+            "USSR": 2
+          }
+        },
+        "completed": true
+      }
+    },
+    {
+      "id": "MI-R-port-zero-own",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.portuguese_empire_crumbles",
+        "actor": "USSR",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "influence_patch": {
+          "country.angola": {
+            "US": 0,
+            "USSR": 2
+          },
+          "country.southeast_african_states": {
+            "US": 0,
+            "USSR": 2
+          }
+        },
+        "completed": true
+      }
+    },
+    {
+      "id": "MI-R-allende-add-not-control",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.allende",
+        "actor": "USSR",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "influence_patch": {
+          "country.chile": {
+            "US": 5,
+            "USSR": 3
+          }
+        },
+        "completed": true
+      }
+    },
+    {
+      "id": "MI-R-allende-empty",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.allende",
+        "actor": "USSR",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "influence_patch": {
+          "country.chile": {
+            "US": 0,
+            "USSR": 2
+          }
+        },
+        "completed": true
+      }
+    },
+    {
+      "id": "MI-R-sadat-clear-add",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.sadat_expels_soviets",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "influence_patch": {
+          "country.egypt": {
+            "US": 5,
+            "USSR": 0
+          }
+        },
+        "completed": true
+      }
+    },
+    {
+      "id": "MI-R-sadat-zero-ussr",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.sadat_expels_soviets",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 0
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "influence_patch": {
+          "country.egypt": {
+            "US": 5,
+            "USSR": 0
+          }
+        },
+        "completed": true
+      }
+    },
+    {
+      "id": "MI-R-sadat-root-ussr-owner-us",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.sadat_expels_soviets",
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "influence_patch": {
+          "country.egypt": {
+            "US": 5,
+            "USSR": 0
+          }
+        },
+        "completed": true
+      }
+    },
+    {
+      "id": "MI-R-oas-candidates",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.oas_founded",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "influence_patch": {},
+        "completed": false,
+        "owner": "US",
+        "candidate_count": 20
+      }
+    },
+    {
+      "id": "MI-R-oas-same-country-two",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.oas_founded",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": [
+          {
+            "country_id": "country.cuba",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "influence_patch": {
+          "country.cuba": {
+            "US": 2,
+            "USSR": 3
+          }
+        },
+        "completed": true
+      }
+    },
+    {
+      "id": "MI-R-oas-across-regions",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.oas_founded",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": [
+          {
+            "country_id": "country.cuba",
+            "amount": 1
+          },
+          {
+            "country_id": "country.chile",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "influence_patch": {
+          "country.cuba": {
+            "US": 1,
+            "USSR": 3
+          },
+          "country.chile": {
+            "US": 6,
+            "USSR": 1
+          }
+        },
+        "completed": true
+      }
+    },
+    {
+      "id": "MI-R-oas-new-country-no-adjacency",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.oas_founded",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": [
+          {
+            "country_id": "country.argentina",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "influence": {},
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "influence_patch": {
+          "country.argentina": {
+            "US": 2,
+            "USSR": 0
+          }
+        },
+        "completed": true
+      }
+    },
+    {
+      "id": "MI-R-oas-wrong-region",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.oas_founded",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": [
+          {
+            "country_id": "country.canada",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "influence_patch": {},
+        "completed": false
+      }
+    },
+    {
+      "id": "MI-R-oas-superpower",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.oas_founded",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": [
+          {
+            "country_id": "superpower.us",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "influence_patch": {},
+        "completed": false
+      }
+    },
+    {
+      "id": "MI-R-oas-one-only",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.oas_founded",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": [
+          {
+            "country_id": "country.cuba",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "influence_patch": {},
+        "completed": false
+      }
+    },
+    {
+      "id": "MI-R-oas-three",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.oas_founded",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": [
+          {
+            "country_id": "country.cuba",
+            "amount": 3
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "influence_patch": {},
+        "completed": false
+      }
+    },
+    {
+      "id": "MI-R-oas-zero",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.oas_founded",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": [],
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "influence_patch": {},
+        "completed": false
+      }
+    },
+    {
+      "id": "MI-R-oas-duplicate",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.oas_founded",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": [
+          {
+            "country_id": "country.cuba",
+            "amount": 1
+          },
+          {
+            "country_id": "country.cuba",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "influence_patch": {},
+        "completed": false
+      }
+    },
+    {
+      "id": "MI-R-oas-boolean",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.oas_founded",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": [
+          {
+            "country_id": "country.cuba",
+            "amount": true
+          },
+          {
+            "country_id": "country.chile",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "influence_patch": {},
+        "completed": false
+      }
+    },
+    {
+      "id": "MI-R-oas-negative",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.oas_founded",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": [
+          {
+            "country_id": "country.cuba",
+            "amount": -1
+          },
+          {
+            "country_id": "country.chile",
+            "amount": 3
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "influence_patch": {},
+        "completed": false
+      }
+    },
+    {
+      "id": "MI-R-oas-wrong-owner",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.oas_founded",
+        "actor": "USSR",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": [
+          {
+            "country_id": "country.cuba",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "Unauthorized",
+        "influence_patch": {},
+        "completed": false
+      }
+    },
+    {
+      "id": "MI-R-oas-stale",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.oas_founded",
+        "actor": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": false,
+        "allocation": [
+          {
+            "country_id": "country.cuba",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "StaleResponse",
+        "influence_patch": {},
+        "completed": false
+      }
+    },
+    {
+      "id": "MI-R-unknown-effects",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.allende",
+        "actor": "USSR",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": false,
+          "completed": false,
+          "effects_complete": false,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "influence_patch": {},
+        "completed": false
+      }
+    },
+    {
+      "id": "MI-R-forged-context",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.allende",
+        "actor": "USSR",
+        "root_phasing_player": "US",
+        "verified_internal_frame": false,
+        "revision_matches": true,
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": false,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "influence_patch": {},
+        "completed": false
+      }
+    },
+    {
+      "id": "MI-R-terminal",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.allende",
+        "actor": "USSR",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": true,
+          "completed": false,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "influence_patch": {},
+        "completed": false
+      }
+    },
+    {
+      "id": "MI-R-replay",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "card_id": "card.allende",
+        "actor": "USSR",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 4,
+              "USSR": 1
+            },
+            "country.southeast_african_states": {
+              "US": 3,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 5,
+              "USSR": 1
+            },
+            "country.egypt": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 3
+            }
+          },
+          "finished": false,
+          "completed": true,
+          "effects_complete": true,
+          "rng_cursor": 4
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "influence_patch": {},
+        "completed": true
+      }
+    },
+    {
+      "id": "MI-T-1",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "真实事件固定受益方/Owner与内部来源验证"
+    },
+    {
+      "id": "MI-T-2",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "四牌影响力批次、星号去向/完成收据一次提交"
+    },
+    {
+      "id": "MI-T-3",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "Sadat移除/增加无半完成等待且原子失败回滚"
+    },
+    {
+      "id": "MI-T-4",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "OAS完整额度/合法候选/旧Revision/越权/重复输入真实门禁"
+    },
+    {
+      "id": "MI-T-5",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "存档恢复决定与命令幂等，不重加固定国家值"
+    },
+    {
+      "id": "MI-T-6",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "未知相关影响力限制停止，不默认未生效"
+    },
+    {
+      "id": "MI-T-7",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "不消费随机/OPS/VP/军事/DEFCON；根名额不多开"
+    },
+    {
+      "id": "MI-T-8",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "同局面各主题/布局呈现一致，不从画面国家或名称裁规则"
+    }
+  ]
+}

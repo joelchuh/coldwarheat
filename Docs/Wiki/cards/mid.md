@@ -66,3 +66,5 @@
 穿梭外交#73见[动态计分](../scoring-effects-batch1.md)，Held实体至下一实际计分，US选排除国。
 
 本时代计分牌已按[七张计分牌绑定](../scoring-cards.md)直接引用地区定义；正式处理器仍planned。
+
+[中期影响力第一批](../mid-influence-batch1.md)绑定#52/#54/#70/#72，固定值/目标与额度复用同一服务。

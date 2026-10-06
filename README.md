@@ -69,4 +69,6 @@
 
 此前：[七张计分牌绑定](Docs/Wiki/scoring-cards.md)共用现有地区/SEA定义；累计44 Bound / 58 Unresolved，102处理器planned。
 
-最新：[DEFCON与VP顺序事件](Docs/Wiki/defcon-vp-events.md)绑定3牌；累计47 Bound / 55 Unresolved，102处理器planned。
+此前：[DEFCON与VP顺序事件](Docs/Wiki/defcon-vp-events.md)绑定3牌；累计47 Bound / 55 Unresolved，102处理器planned。
+
+最新：[中期影响力四牌](Docs/Wiki/mid-influence-batch1.md)共用既有影响力原语；累计51 Bound / 51 Unresolved，102处理器planned。

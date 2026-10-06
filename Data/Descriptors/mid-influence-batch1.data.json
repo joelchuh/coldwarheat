@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "id": "data.mid-influence-batch1",
+  "kind": "data",
+  "status": "ready",
+  "description": "中期四张影响力事件：固定两国/单国添加、清除后添加与中南美额度分配；数值共享、C#未实现。",
+  "dataset_id": "effects.deluxe2015.mid_influence_batch1",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/mid-influence-batch1.schema.json",
+  "documentation": "Docs/Wiki/mid-influence-batch1.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/mid-influence-batch1.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "四张CardId与共享影响力原语查询"
+  ],
+  "outputs": [
+    "固定目标/受益方/量/清除顺序及额度分配策略"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world"
+  ],
+  "preconditions": [
+    "Bound不是运行服务",
+    "权威上下文与完整相关影响力干预已核实；不以RootPhasingPlayer替代固定Owner"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知影响力干预、非法/越权/重复/不完整额度、过期决策",
+    "固定国家/地区引用缺失或类型失配"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "目视英文p9 #52/#54、p11 #70/#72；葡萄牙两固定地区各USSR2、阿连德Chile USSR2、萨达特清Egypt USSR再US1，OAS共2US在中/南美。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§5.2固定受益方与事件无变化结果、§6.1.1事件放置不要求OPS邻接/费用；不附加控制筛选。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p14 #70 Deluxe写明Central and/or South America，允许跨区各1。"
+    },
+    {
+      "id": "PROJECT-MI1",
+      "url": null,
+      "edition": "Engineering contracts, 2026-10-06",
+      "description": "使用既有固定Add/Clear/Allocate原语，原子计划验证完整分配；OAS默认不要求不同国家，因此总2可同国或各1，是卡文直接推导。全量方案/Owner/Revision拒绝与去重是工程边界。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/mid-influence-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/mid-influence-batch1.validation.json"
+  }
+}

@@ -2,10 +2,10 @@
   "schema_version": 1,
   "id": "data.card-definitions",
   "kind": "data",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计47牌效果参数已绑定，其余55个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计51牌效果参数已绑定，其余51个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "status": "ready",
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.18.0",
+  "content_version": "0.19.0",
   "schema_path": "Docs/Contracts/cards-v2.schema.json",
   "entrypoints": [
     {
@@ -38,7 +38,8 @@
     "effects.deluxe2015.hand_events_batch1",
     "effects.deluxe2015.scoring_effects_batch1",
     "rules.deluxe2015.region-scoring",
-    "effects.deluxe2015.defcon_vp_events"
+    "effects.deluxe2015.defcon_vp_events",
+    "effects.deluxe2015.mid_influence_batch1"
   ],
   "preconditions": [
     "先校验结构、唯一ID、引用、来源与版本",
@@ -116,6 +117,10 @@
     {
       "path": "Docs/Design/defcon-vp-events.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/mid-influence-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "documentation": "Docs/Wiki/map-card-data.md",
@@ -123,7 +128,7 @@
     "checked_on": "2026-09-28",
     "runtime_consumers_tested": false,
     "report": "Docs/Worklogs/2026-09-28-map-card-data.md",
-    "latest_design_report": "Docs/Design/defcon-vp-events.validation.json"
+    "latest_design_report": "Docs/Design/mid-influence-batch1.validation.json"
   },
   "retrieval_hints": [
     "cards[id]",

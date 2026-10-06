@@ -1,0 +1,416 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:mid-influence-batch1:1",
+  "title": "中期影响力参数第一批",
+  "description": "封闭四张直接影响力事件的国家/固定量/顺序/额度，禁止把事件变成OPS或可执行脚本。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.mid_influence_batch1"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "release-candidate"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "url",
+          "edition",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "edition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "portuguese_empire_crumbles",
+        "allende",
+        "sadat_expels_soviets",
+        "oas_founded"
+      ],
+      "properties": {
+        "portuguese_empire_crumbles": {
+          "$ref": "#/$defs/portuguese_empire_crumbles"
+        },
+        "allende": {
+          "$ref": "#/$defs/allende"
+        },
+        "sadat_expels_soviets": {
+          "$ref": "#/$defs/sadat_expels_soviets"
+        },
+        "oas_founded": {
+          "$ref": "#/$defs/oas_founded"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "portuguese_empire_crumbles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "country_ids",
+        "amount_per_country",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.portuguese_empire_crumbles"
+        },
+        "effect_id": {
+          "const": "effect.portuguese_empire_crumbles"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "AddToFixedCountries"
+        },
+        "beneficiary": {
+          "const": "USSR"
+        },
+        "country_ids": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "const": "country.angola"
+            },
+            {
+              "const": "country.southeast_african_states"
+            }
+          ],
+          "items": false
+        },
+        "amount_per_country": {
+          "const": 2
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    },
+    "allende": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "country_ids",
+        "amount_per_country",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.allende"
+        },
+        "effect_id": {
+          "const": "effect.allende"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "AddToFixedCountries"
+        },
+        "beneficiary": {
+          "const": "USSR"
+        },
+        "country_ids": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "prefixItems": [
+            {
+              "const": "country.chile"
+            }
+          ],
+          "items": false
+        },
+        "amount_per_country": {
+          "const": 2
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    },
+    "sadat_expels_soviets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "country_id",
+        "steps",
+        "add_amount",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.sadat_expels_soviets"
+        },
+        "effect_id": {
+          "const": "effect.sadat_expels_soviets"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "ClearOpponentThenAddFixed"
+        },
+        "beneficiary": {
+          "const": "US"
+        },
+        "country_id": {
+          "const": "country.egypt"
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "const": "ClearOpponent"
+            },
+            {
+              "const": "AddFixed"
+            }
+          ],
+          "items": false
+        },
+        "add_amount": {
+          "const": 1
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    },
+    "oas_founded": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "decision_owner",
+        "region_ids",
+        "total_amount",
+        "max_per_country",
+        "target_control",
+        "allocation_commit",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.oas_founded"
+        },
+        "effect_id": {
+          "const": "effect.oas_founded"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "AllocateInfluenceBudget"
+        },
+        "beneficiary": {
+          "const": "US"
+        },
+        "decision_owner": {
+          "const": "US"
+        },
+        "region_ids": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "const": "region.central_america"
+            },
+            {
+              "const": "region.south_america"
+            }
+          ],
+          "items": false
+        },
+        "total_amount": {
+          "const": 2
+        },
+        "max_per_country": {
+          "const": 2
+        },
+        "target_control": {
+          "const": "Any"
+        },
+        "allocation_commit": {
+          "const": "AtomicCompleteAllocation"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

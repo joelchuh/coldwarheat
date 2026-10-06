@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.18.0",
+  "content_version": "0.19.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计47牌效果参数已绑定，其余55个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计51牌效果参数已绑定，其余51个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -113,6 +113,12 @@
       "url": null,
       "edition": "Engineering contracts, 2026-10-06",
       "description": "按卡文步骤每次DEFCON或本事件完整VP批次即时判胜，吸收态停止余步；合法选择前不改轨道，不凭印刷OPS计算VP/军事。军事沿既有非负累计总量存储，不凭图形轨道 invent cap。"
+    },
+    {
+      "id": "PROJECT-MI1",
+      "url": null,
+      "edition": "Engineering contracts, 2026-10-06",
+      "description": "使用既有固定Add/Clear/Allocate原语，原子计划验证完整分配；OAS默认不要求不同国家，因此总2可同国或各1，是卡文直接推导。全量方案/Owner/Revision拒绝与去重是工程边界。"
     }
   ],
   "cards": [
@@ -1694,8 +1700,13 @@
       "effect_binding": {
         "effect_id": "effect.portuguese_empire_crumbles",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.mid_influence_batch1",
+            "json_pointer": "/parameters/portuguese_empire_crumbles"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -1748,8 +1759,13 @@
       "effect_binding": {
         "effect_id": "effect.allende",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.mid_influence_batch1",
+            "json_pointer": "/parameters/allende"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -2200,8 +2216,13 @@
       "effect_binding": {
         "effect_id": "effect.oas_founded",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.mid_influence_batch1",
+            "json_pointer": "/parameters/oas_founded"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -2254,8 +2275,13 @@
       "effect_binding": {
         "effect_id": "effect.sadat_expels_soviets",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.mid_influence_batch1",
+            "json_pointer": "/parameters/sadat_expels_soviets"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -4406,15 +4432,27 @@
     {
       "effect_id": "effect.portuguese_empire_crumbles",
       "contract_version": "0.1.0",
-      "description": "Portuguese Empire Crumbles：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.portuguese_empire_crumbles",
+      "description": "Angola和SE African States各加2USSR，固定两国，不把SEAfrica当地区内任选。",
+      "handler_key": "influence.AddToFixedCountries",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:mid-influence-batch1:1#/$defs/portuguese_empire_crumbles"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p9 #52/#54、p11 #70/#72；葡萄牙两固定地区各USSR2、阿连德Chile USSR2、萨达特清Egypt USSR再US1，OAS共2US在中/南美。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2固定受益方与事件无变化结果、§6.1.1事件放置不要求OPS邻接/费用；不附加控制筛选。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-MI1",
+          "locator": "使用既有固定Add/Clear/Allocate原语，原子计划验证完整分配；OAS默认不要求不同国家，因此总2可同国或各1，是卡文直接推导。全量方案/Owner/Revision拒绝与去重是工程边界。",
+          "verification": "Verified"
         }
       ]
     },
@@ -4436,15 +4474,27 @@
     {
       "effect_id": "effect.allende",
       "contract_version": "0.1.0",
-      "description": "Allende：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.allende",
+      "description": "固定Chile增加2USSR，不追平或确保控制。",
+      "handler_key": "influence.AddToFixedCountries",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:mid-influence-batch1:1#/$defs/allende"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p9 #52/#54、p11 #70/#72；葡萄牙两固定地区各USSR2、阿连德Chile USSR2、萨达特清Egypt USSR再US1，OAS共2US在中/南美。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2固定受益方与事件无变化结果、§6.1.1事件放置不要求OPS邻接/费用；不附加控制筛选。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-MI1",
+          "locator": "使用既有固定Add/Clear/Allocate原语，原子计划验证完整分配；OAS默认不要求不同国家，因此总2可同国或各1，是卡文直接推导。全量方案/Owner/Revision拒绝与去重是工程边界。",
+          "verification": "Verified"
         }
       ]
     },
@@ -4739,15 +4789,32 @@
     {
       "effect_id": "effect.oas_founded",
       "contract_version": "0.1.0",
-      "description": "OAS Founded：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.oas_founded",
+      "description": "美国在中美/南美分配总2，可同国2或不同国各1，无敌控/已有影响/邻接条件。",
+      "handler_key": "influence.AllocateInfluenceBudget",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:mid-influence-batch1:1#/$defs/oas_founded"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p9 #52/#54、p11 #70/#72；葡萄牙两固定地区各USSR2、阿连德Chile USSR2、萨达特清Egypt USSR再US1，OAS共2US在中/南美。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2固定受益方与事件无变化结果、§6.1.1事件放置不要求OPS邻接/费用；不附加控制筛选。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p14 #70 Deluxe写明Central and/or South America，允许跨区各1。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-MI1",
+          "locator": "使用既有固定Add/Clear/Allocate原语，原子计划验证完整分配；OAS默认不要求不同国家，因此总2可同国或各1，是卡文直接推导。全量方案/Owner/Revision拒绝与去重是工程边界。",
+          "verification": "Verified"
         }
       ]
     },
@@ -4769,15 +4836,27 @@
     {
       "effect_id": "effect.sadat_expels_soviets",
       "contract_version": "0.1.0",
-      "description": "Sadat Expels Soviets：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.sadat_expels_soviets",
+      "description": "Egypt移除全部USSR再增加1US，即使无USSR也增加1。",
+      "handler_key": "influence.ClearOpponentThenAddFixed",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:mid-influence-batch1:1#/$defs/sadat_expels_soviets"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p9 #52/#54、p11 #70/#72；葡萄牙两固定地区各USSR2、阿连德Chile USSR2、萨达特清Egypt USSR再US1，OAS共2US在中/南美。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2固定受益方与事件无变化结果、§6.1.1事件放置不要求OPS邻接/费用；不附加控制筛选。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-MI1",
+          "locator": "使用既有固定Add/Clear/Allocate原语，原子计划验证完整分配；OAS默认不要求不同国家，因此总2可同国或各1，是卡文直接推导。全量方案/Owner/Revision拒绝与去重是工程边界。",
+          "verification": "Verified"
         }
       ]
     },
