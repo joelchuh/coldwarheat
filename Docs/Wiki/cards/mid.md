@@ -72,3 +72,5 @@
 本批参数与边界见[solidarity-chain](../solidarity-chain.md)；C#待实现。
 
 [国家指标VP](../country-metric-vp-events.md)按实际局面查询；不是地区计分投影。
+
+[中期影响力第二批](../mid-influence-batch2.md)绑定#53/#56/#75的分支/名单/额度，C#待实现。

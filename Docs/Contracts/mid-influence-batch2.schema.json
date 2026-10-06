@@ -1,0 +1,668 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:mid-influence-batch2:1",
+  "title": "中期影响力第二批",
+  "description": "中期影响力第二批：中美额度、8国两国清除和南非二分支邻国分配，复用选择/原子计划，C#待实现。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.mid_influence_batch2"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "release-candidate"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "C-DELUXE-EN"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf"
+            },
+            "edition": {
+              "const": "English Deluxe card images"
+            },
+            "description": {
+              "const": "p9 #53两分支SouthAfrica USSR2或USSR1＋邻国总2；#56从8具名国家选两国清US；p11 #75中美总3USSR每国最多2。均无星号。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "R2015"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf"
+            },
+            "edition": {
+              "const": "Deluxe rules 2015"
+            },
+            "description": {
+              "const": "§5.2受益方/事件无变化仍成功；§6.1.1直接事件无OPS邻接/费用；地图正式邻接单一来源。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "F2010"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/FAQv5.pdf"
+            },
+            "edition": {
+              "const": "FAQ v5 2010, compatible Deluxe clarification only"
+            },
+            "description": {
+              "const": "PDFp12 #53 Deluxe any countries允许Angola/Botswana各1。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "PROJECT-MI2"
+            },
+            "url": {
+              "const": null
+            },
+            "edition": {
+              "const": "Engineering contracts / card-text derivation, 2026-10-06"
+            },
+            "description": {
+              "const": "两分支与完整额度/两国方案原子提交、稳定Owner/Revision/收据；Muslim未限定有US影响，可选零影响国，系具名卡文推导而非专门FAQ/用户短缺裁定。"
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "liberation_theology",
+        "muslim_revolution",
+        "south_african_unrest"
+      ],
+      "properties": {
+        "liberation_theology": {
+          "$ref": "#/$defs/liberation_theology"
+        },
+        "muslim_revolution": {
+          "$ref": "#/$defs/muslim_revolution"
+        },
+        "south_african_unrest": {
+          "$ref": "#/$defs/south_african_unrest"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "liberation_theology": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "decision_owner",
+        "region_ids",
+        "total_amount",
+        "max_per_country",
+        "target_control",
+        "allocation_commit",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.liberation_theology"
+        },
+        "effect_id": {
+          "const": "effect.liberation_theology"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "AllocateInfluenceBudget"
+        },
+        "beneficiary": {
+          "const": "USSR"
+        },
+        "decision_owner": {
+          "const": "USSR"
+        },
+        "region_ids": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "prefixItems": [
+            {
+              "const": "region.central_america"
+            }
+          ],
+          "items": false
+        },
+        "total_amount": {
+          "const": 3
+        },
+        "max_per_country": {
+          "const": 2
+        },
+        "target_control": {
+          "const": "Any"
+        },
+        "allocation_commit": {
+          "const": "AtomicCompleteAllocation"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "Englishp11 #75; R2015 §5.2/6.1.1"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "Englishp11 #75; R2015 §5.2/6.1.1"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-MI2"
+                },
+                "locator": {
+                  "const": "MI2 complete plans and zero-influence target derivation"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "muslim_revolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "decision_owner",
+        "remove_side",
+        "country_ids",
+        "target_count",
+        "target_control",
+        "requires_positive_removed_influence",
+        "selection_commit",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.muslim_revolution"
+        },
+        "effect_id": {
+          "const": "effect.muslim_revolution"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "ClearInfluenceInDistinctCountries"
+        },
+        "beneficiary": {
+          "const": "USSR"
+        },
+        "decision_owner": {
+          "const": "USSR"
+        },
+        "remove_side": {
+          "const": "US"
+        },
+        "country_ids": {
+          "type": "array",
+          "minItems": 8,
+          "maxItems": 8,
+          "prefixItems": [
+            {
+              "const": "country.sudan"
+            },
+            {
+              "const": "country.iran"
+            },
+            {
+              "const": "country.iraq"
+            },
+            {
+              "const": "country.egypt"
+            },
+            {
+              "const": "country.libya"
+            },
+            {
+              "const": "country.saudi_arabia"
+            },
+            {
+              "const": "country.syria"
+            },
+            {
+              "const": "country.jordan"
+            }
+          ],
+          "items": false
+        },
+        "target_count": {
+          "const": 2
+        },
+        "target_control": {
+          "const": "Any"
+        },
+        "requires_positive_removed_influence": {
+          "const": false
+        },
+        "selection_commit": {
+          "const": "AtomicCompleteSelection"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "Englishp9 #56; R2015 §5.2/6.1.1"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "Englishp9 #56; R2015 §5.2/6.1.1"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-MI2"
+                },
+                "locator": {
+                  "const": "MI2 complete plans and zero-influence target derivation"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "south_african_unrest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "decision_owner",
+        "branches",
+        "branch_commit",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.south_african_unrest"
+        },
+        "effect_id": {
+          "const": "effect.south_african_unrest"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "ChooseInfluenceBranch"
+        },
+        "beneficiary": {
+          "const": "USSR"
+        },
+        "decision_owner": {
+          "const": "USSR"
+        },
+        "branches": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "south_africa_only",
+            "south_africa_and_neighbors"
+          ],
+          "properties": {
+            "south_africa_only": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "template",
+                "country_ids",
+                "amount_per_country"
+              ],
+              "properties": {
+                "template": {
+                  "const": "AddToFixedCountries"
+                },
+                "country_ids": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 1,
+                  "prefixItems": [
+                    {
+                      "const": "country.south_africa"
+                    }
+                  ],
+                  "items": false
+                },
+                "amount_per_country": {
+                  "const": 2
+                }
+              }
+            },
+            "south_africa_and_neighbors": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "template",
+                "fixed_country_id",
+                "fixed_amount",
+                "neighbor_query",
+                "total_neighbor_amount",
+                "max_per_neighbor",
+                "target_control"
+              ],
+              "properties": {
+                "template": {
+                  "const": "FixedAdditionThenNeighborAllocation"
+                },
+                "fixed_country_id": {
+                  "const": "country.south_africa"
+                },
+                "fixed_amount": {
+                  "const": 1
+                },
+                "neighbor_query": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "kind",
+                    "country_id",
+                    "map_dataset_id"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "const": "AdjacentCountryIds"
+                    },
+                    "country_id": {
+                      "const": "country.south_africa"
+                    },
+                    "map_dataset_id": {
+                      "const": "map.deluxe2015.world"
+                    }
+                  }
+                },
+                "total_neighbor_amount": {
+                  "const": 2
+                },
+                "max_per_neighbor": {
+                  "const": 2
+                },
+                "target_control": {
+                  "const": "Any"
+                }
+              }
+            }
+          }
+        },
+        "branch_commit": {
+          "const": "AtomicCompleteBranchAndAllocation"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "Englishp9 #53; FAQp12 #53; R2015 §5.2/6.1.1"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "Englishp9 #53; FAQp12 #53; R2015 §5.2/6.1.1"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "F2010"
+                },
+                "locator": {
+                  "const": "Englishp9 #53; FAQp12 #53; R2015 §5.2/6.1.1"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-MI2"
+                },
+                "locator": {
+                  "const": "MI2 complete plans and zero-influence target derivation"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "id": "data.mid-influence-batch2",
+  "kind": "data",
+  "status": "ready",
+  "description": "中期影响力第二批：中美额度、8国两国清除和南非二分支邻国分配，复用选择/原子计划，C#待实现。",
+  "dataset_id": "effects.deluxe2015.mid_influence_batch2",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/mid-influence-batch2.schema.json",
+  "documentation": "Docs/Wiki/mid-influence-batch2.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/mid-influence-batch2.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "CardId、USSR拥有的分支/完整国家与额度选择、正式地图"
+  ],
+  "outputs": [
+    "封闭分支/预算/名单及只读影响力计划"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "map.deluxe2015.world",
+    "cards.deluxe2015.definitions"
+  ],
+  "preconditions": [
+    "Bound不是处理器实现；相关活动干预完整且已核实",
+    "分支与后续分配同一计划版本，无部分先放点"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "无效分支/重复国家/名单外或非法额度/错误Owner/Revision",
+    "数据缺失、未知活动限制、过期或重复冲突"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "p9 #53两分支SouthAfrica USSR2或USSR1＋邻国总2；#56从8具名国家选两国清US；p11 #75中美总3USSR每国最多2。均无星号。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§5.2受益方/事件无变化仍成功；§6.1.1直接事件无OPS邻接/费用；地图正式邻接单一来源。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarification only",
+      "description": "PDFp12 #53 Deluxe any countries允许Angola/Botswana各1。"
+    },
+    {
+      "id": "PROJECT-MI2",
+      "url": null,
+      "edition": "Engineering contracts / card-text derivation, 2026-10-06",
+      "description": "两分支与完整额度/两国方案原子提交、稳定Owner/Revision/收据；Muslim未限定有US影响，可选零影响国，系具名卡文推导而非专门FAQ/用户短缺裁定。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/mid-influence-batch2.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/mid-influence-batch2.validation.json"
+  }
+}

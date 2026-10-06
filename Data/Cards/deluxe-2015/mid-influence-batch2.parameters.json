@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.mid_influence_batch2",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "中期影响力第二批：中美额度、8国两国清除和南非二分支邻国分配，复用选择/原子计划，C#待实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "p9 #53两分支SouthAfrica USSR2或USSR1＋邻国总2；#56从8具名国家选两国清US；p11 #75中美总3USSR每国最多2。均无星号。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§5.2受益方/事件无变化仍成功；§6.1.1直接事件无OPS邻接/费用；地图正式邻接单一来源。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarification only",
+      "description": "PDFp12 #53 Deluxe any countries允许Angola/Botswana各1。"
+    },
+    {
+      "id": "PROJECT-MI2",
+      "url": null,
+      "edition": "Engineering contracts / card-text derivation, 2026-10-06",
+      "description": "两分支与完整额度/两国方案原子提交、稳定Owner/Revision/收据；Muslim未限定有US影响，可选零影响国，系具名卡文推导而非专门FAQ/用户短缺裁定。"
+    }
+  ],
+  "parameters": {
+    "liberation_theology": {
+      "card_id": "card.liberation_theology",
+      "effect_id": "effect.liberation_theology",
+      "description": "USSR在中美分配总3，每国最多2，无控制/已有己方影响/OPS邻接条件。",
+      "template": "AllocateInfluenceBudget",
+      "beneficiary": "USSR",
+      "decision_owner": "USSR",
+      "region_ids": [
+        "region.central_america"
+      ],
+      "total_amount": 3,
+      "max_per_country": 2,
+      "target_control": "Any",
+      "allocation_commit": "AtomicCompleteAllocation",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "Englishp11 #75; R2015 §5.2/6.1.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Englishp11 #75; R2015 §5.2/6.1.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-MI2",
+          "locator": "MI2 complete plans and zero-influence target derivation",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "muslim_revolution": {
+      "card_id": "card.muslim_revolution",
+      "effect_id": "effect.muslim_revolution",
+      "description": "USSR选卡面8国中的2个不同国家，清除其全部US；不以中东地区替代名单，允许零US国家。",
+      "template": "ClearInfluenceInDistinctCountries",
+      "beneficiary": "USSR",
+      "decision_owner": "USSR",
+      "remove_side": "US",
+      "country_ids": [
+        "country.sudan",
+        "country.iran",
+        "country.iraq",
+        "country.egypt",
+        "country.libya",
+        "country.saudi_arabia",
+        "country.syria",
+        "country.jordan"
+      ],
+      "target_count": 2,
+      "target_control": "Any",
+      "requires_positive_removed_influence": false,
+      "selection_commit": "AtomicCompleteSelection",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "Englishp9 #56; R2015 §5.2/6.1.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Englishp9 #56; R2015 §5.2/6.1.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-MI2",
+          "locator": "MI2 complete plans and zero-influence target derivation",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "south_african_unrest": {
+      "card_id": "card.south_african_unrest",
+      "effect_id": "effect.south_african_unrest",
+      "description": "USSR二选一：SouthAfrica加2；或SouthAfrica加1再在正式邻国分配总2，可同国2或各1。",
+      "template": "ChooseInfluenceBranch",
+      "beneficiary": "USSR",
+      "decision_owner": "USSR",
+      "branches": {
+        "south_africa_only": {
+          "template": "AddToFixedCountries",
+          "country_ids": [
+            "country.south_africa"
+          ],
+          "amount_per_country": 2
+        },
+        "south_africa_and_neighbors": {
+          "template": "FixedAdditionThenNeighborAllocation",
+          "fixed_country_id": "country.south_africa",
+          "fixed_amount": 1,
+          "neighbor_query": {
+            "kind": "AdjacentCountryIds",
+            "country_id": "country.south_africa",
+            "map_dataset_id": "map.deluxe2015.world"
+          },
+          "total_neighbor_amount": 2,
+          "max_per_neighbor": 2,
+          "target_control": "Any"
+        }
+      },
+      "branch_commit": "AtomicCompleteBranchAndAllocation",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "Englishp9 #53; FAQp12 #53; R2015 §5.2/6.1.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Englishp9 #53; FAQp12 #53; R2015 §5.2/6.1.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "Englishp9 #53; FAQp12 #53; R2015 §5.2/6.1.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-MI2",
+          "locator": "MI2 complete plans and zero-influence target derivation",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

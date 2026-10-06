@@ -1,0 +1,2585 @@
+{
+  "schema_version": 1,
+  "description": "中期额度/两国清除/南非分支结构与完整影响力参考投影；未实现鉴权/事务/保存。",
+  "status": "mixed-reference-and-planned",
+  "dataset": "Data/Cards/deluxe-2015/mid-influence-batch2.parameters.json",
+  "schema": "Docs/Contracts/mid-influence-batch2.schema.json",
+  "cases": [
+    {
+      "id": "MI2-D-baseline",
+      "validation_layer": "data",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "MI2-D-lib-budget",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "liberation_theology",
+              "total_amount"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI2-D-lib-cap",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "liberation_theology",
+              "max_per_country"
+            ],
+            "value": 3
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI2-D-lib-region",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "liberation_theology",
+              "region_ids"
+            ],
+            "value": [
+              "region.south_america"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI2-D-lib-owner",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "liberation_theology",
+              "decision_owner"
+            ],
+            "value": "US"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI2-D-lib-control",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "liberation_theology",
+              "target_control"
+            ],
+            "value": "NotUSControlled"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI2-D-muslim-count",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "muslim_revolution",
+              "target_count"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI2-D-muslim-side",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "muslim_revolution",
+              "remove_side"
+            ],
+            "value": "USSR"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI2-D-muslim-positive-filter",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "muslim_revolution",
+              "requires_positive_removed_influence"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI2-D-muslim-sudan-excluded",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "muslim_revolution",
+              "country_ids"
+            ],
+            "value": [
+              "country.iran",
+              "country.iraq",
+              "country.egypt",
+              "country.libya",
+              "country.saudi_arabia",
+              "country.syria",
+              "country.jordan"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI2-D-sa-only",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "south_african_unrest",
+              "branches",
+              "south_africa_only",
+              "amount_per_country"
+            ],
+            "value": 3
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI2-D-sa-fixed",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "south_african_unrest",
+              "branches",
+              "south_africa_and_neighbors",
+              "fixed_amount"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI2-D-sa-adj-origin",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "south_african_unrest",
+              "branches",
+              "south_africa_and_neighbors",
+              "neighbor_query",
+              "country_id"
+            ],
+            "value": "country.angola"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI2-D-sa-neighbor-budget",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "south_african_unrest",
+              "branches",
+              "south_africa_and_neighbors",
+              "total_neighbor_amount"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI2-D-sa-map",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "south_african_unrest",
+              "branches",
+              "south_africa_and_neighbors",
+              "neighbor_query",
+              "map_dataset_id"
+            ],
+            "value": "map.optional"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI2-D-sa-commit",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "south_african_unrest",
+              "branch_commit"
+            ],
+            "value": "ApplyFixedBeforeDecision"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI2-R-lib-await",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-lib-two-one",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.cuba",
+            "amount": 2
+          },
+          {
+            "country_id": "country.panama",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.cuba": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.panama": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-lib-three-single",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.mexico",
+            "amount": 1
+          },
+          {
+            "country_id": "country.cuba",
+            "amount": 1
+          },
+          {
+            "country_id": "country.panama",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.mexico": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.panama": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-lib-enemy-controlled-no-cost",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.mexico",
+            "amount": 2
+          },
+          {
+            "country_id": "country.cuba",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.mexico": {
+              "US": 8,
+              "USSR": 0
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.mexico": {
+              "US": 8,
+              "USSR": 2
+            },
+            "country.cuba": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-lib-over-country",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.cuba",
+            "amount": 3
+          }
+        ],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-lib-short",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.cuba",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-lib-empty",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": [],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-lib-duplicate",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.cuba",
+            "amount": 1
+          },
+          {
+            "country_id": "country.cuba",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-lib-negative",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.cuba",
+            "amount": -1
+          },
+          {
+            "country_id": "country.panama",
+            "amount": 4
+          }
+        ],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-lib-fraction",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.cuba",
+            "amount": 1.5
+          },
+          {
+            "country_id": "country.panama",
+            "amount": 1.5
+          }
+        ],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-lib-bool",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.cuba",
+            "amount": true
+          },
+          {
+            "country_id": "country.panama",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-lib-wrong-region",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.brazil",
+            "amount": 2
+          },
+          {
+            "country_id": "country.cuba",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-lib-extra-selection",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": [
+          "country.cuba"
+        ],
+        "allocation": [
+          {
+            "country_id": "country.cuba",
+            "amount": 2
+          },
+          {
+            "country_id": "country.panama",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "InvalidPayload",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-muslim-await",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.muslim_revolution",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-muslim-sudan-iran",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.muslim_revolution",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": [
+          "country.sudan",
+          "country.iran"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.sudan": {
+              "US": 4,
+              "USSR": 2
+            },
+            "country.iran": {
+              "US": 3,
+              "USSR": 1
+            },
+            "country.iraq": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.sudan": {
+              "US": 0,
+              "USSR": 2
+            },
+            "country.iran": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.iraq": {
+              "US": 2,
+              "USSR": 0
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-muslim-zero-us-pair",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.muslim_revolution",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": [
+          "country.sudan",
+          "country.iran"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-muslim-mixed-zero",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.muslim_revolution",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": [
+          "country.libya",
+          "country.jordan"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.jordan": {
+              "US": 3,
+              "USSR": 4
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.jordan": {
+              "US": 0,
+              "USSR": 4
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-muslim-us-controls",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.muslim_revolution",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": [
+          "country.egypt",
+          "country.iraq"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.egypt": {
+              "US": 9,
+              "USSR": 1
+            },
+            "country.iraq": {
+              "US": 6,
+              "USSR": 2
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.egypt": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.iraq": {
+              "US": 0,
+              "USSR": 2
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-muslim-one",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.muslim_revolution",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": [
+          "country.iran"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "InvalidSelection",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-muslim-three",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.muslim_revolution",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": [
+          "country.iran",
+          "country.iraq",
+          "country.libya"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "InvalidSelection",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-muslim-duplicate",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.muslim_revolution",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": [
+          "country.iran",
+          "country.iran"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "InvalidSelection",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-muslim-israel",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.muslim_revolution",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": [
+          "country.israel",
+          "country.iran"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-muslim-lebanon",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.muslim_revolution",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": [
+          "country.lebanon",
+          "country.iran"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-muslim-gulf",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.muslim_revolution",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": [
+          "country.gulf_states",
+          "country.iran"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-muslim-extra-allocation",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.muslim_revolution",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": [
+          "country.iran",
+          "country.iraq"
+        ],
+        "allocation": [],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "InvalidPayload",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-sa-await-branch",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.south_african_unrest",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-sa-only",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.south_african_unrest",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": "south_africa_only",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.south_africa": {
+              "US": 0,
+              "USSR": 2
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-sa-neighbor-await-atomic",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.south_african_unrest",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": "south_africa_and_neighbors",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-sa-neighbor-two",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.south_african_unrest",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": "south_africa_and_neighbors",
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.angola",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.south_africa": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 2
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-sa-neighbor-each",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.south_african_unrest",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": "south_africa_and_neighbors",
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.angola",
+            "amount": 1
+          },
+          {
+            "country_id": "country.botswana",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.south_africa": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.botswana": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-sa-neighbor-enemy-preserved",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.south_african_unrest",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": "south_africa_and_neighbors",
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.botswana",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.south_africa": {
+              "US": 4,
+              "USSR": 2
+            },
+            "country.botswana": {
+              "US": 6,
+              "USSR": 0
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.south_africa": {
+              "US": 4,
+              "USSR": 3
+            },
+            "country.botswana": {
+              "US": 6,
+              "USSR": 2
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-sa-unknown-branch",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.south_african_unrest",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": "other",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "InvalidBranch",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-sa-only-extra-allocation",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.south_african_unrest",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": "south_africa_only",
+        "country_ids": null,
+        "allocation": [],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "InvalidPayload",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-sa-neighbor-not-neighbor",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.south_african_unrest",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": "south_africa_and_neighbors",
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.zimbabwe",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-sa-neighbor-origin-not-target",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.south_african_unrest",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": "south_africa_and_neighbors",
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.south_africa",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-sa-neighbor-short",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.south_african_unrest",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": "south_africa_and_neighbors",
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.angola",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-sa-neighbor-duplicate",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.south_african_unrest",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": "south_africa_and_neighbors",
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.angola",
+            "amount": 1
+          },
+          {
+            "country_id": "country.angola",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-sa-allocation-before-branch",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.south_african_unrest",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.angola",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "InvalidPayload",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-unauthorized",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.cuba",
+            "amount": 2
+          },
+          {
+            "country_id": "country.panama",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "Unauthorized",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-stale",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": false,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.cuba",
+            "amount": 2
+          },
+          {
+            "country_id": "country.panama",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "StaleResponse",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-bad-frame",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": false,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-wrong-source",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": false,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-unknown-effects",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": false,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": false,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-negative-influence",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.cuba": {
+              "US": -1,
+              "USSR": 0
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state": {
+          "influence": {
+            "country.cuba": {
+              "US": -1,
+              "USSR": 0
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-incomplete-state",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": false,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state": {
+          "influence": {},
+          "complete_state": false,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-conflicting-retry",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": false,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "ConflictingRequest",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-finished",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": true,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": true,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-liberation_theology-no-event",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": false,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "NotTriggered",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-liberation_theology-repeat",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.liberation_theology",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-muslim_revolution-no-event",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.muslim_revolution",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": false,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "NotTriggered",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-muslim_revolution-repeat",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.muslim_revolution",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-south_african_unrest-no-event",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.south_african_unrest",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": false,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "NotTriggered",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-R-south_african_unrest-repeat",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.south_african_unrest",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "US",
+        "branch_id": null,
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 12
+        }
+      }
+    },
+    {
+      "id": "MI2-I-trusted-owner-decision-revision",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "trusted-owner-decision-revision",
+      "implementation_tested": false
+    },
+    {
+      "id": "MI2-I-pending-branch-and-allocation-save-resume",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "pending-branch-and-allocation-save-resume",
+      "implementation_tested": false
+    },
+    {
+      "id": "MI2-I-whole-branch-fixed-and-neighbor-atomic-rollback",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "whole-branch-fixed-and-neighbor-atomic-rollback",
+      "implementation_tested": false
+    },
+    {
+      "id": "MI2-I-muslim-zero-outcome-ledger-and-nonstar-discard",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "muslim-zero-outcome-ledger-and-nonstar-discard",
+      "implementation_tested": false
+    },
+    {
+      "id": "MI2-I-current-state-version-and-replay-receipt",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "current-state-version-and-replay-receipt",
+      "implementation_tested": false
+    },
+    {
+      "id": "MI2-I-presentation-visibility-theme-independent",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "presentation-visibility-theme-independent",
+      "implementation_tested": false
+    }
+  ]
+}

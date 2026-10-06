@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.21.0",
+  "content_version": "0.22.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计57牌效果参数已绑定，其余45个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计60牌效果参数已绑定，其余42个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -131,6 +131,12 @@
       "url": null,
       "edition": "Engineering boundaries and integer derivation, 2026-10-06",
       "description": "从实际权威国家快照查询具名指标，计分投影不污染基础战场；every2按完整整数对向下取整，非专门FAQ。零量无条件事件仍成功、一个VP批次、请求去重/版本是工程契约。"
+    },
+    {
+      "id": "PROJECT-MI2",
+      "url": null,
+      "edition": "Engineering contracts / card-text derivation, 2026-10-06",
+      "description": "两分支与完整额度/两国方案原子提交、稳定Owner/Revision/收据；Muslim未限定有US影响，可选零影响国，系具名卡文推导而非专门FAQ/用户短缺裁定。"
     }
   ],
   "cards": [
@@ -1754,8 +1760,13 @@
       "effect_binding": {
         "effect_id": "effect.south_african_unrest",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.mid_influence_batch2",
+            "json_pointer": "/parameters/south_african_unrest"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -1845,8 +1856,13 @@
       "effect_binding": {
         "effect_id": "effect.muslim_revolution",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.mid_influence_batch2",
+            "json_pointer": "/parameters/muslim_revolution"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -2393,8 +2409,13 @@
       "effect_binding": {
         "effect_id": "effect.liberation_theology",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.mid_influence_batch2",
+            "json_pointer": "/parameters/liberation_theology"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -4535,15 +4556,32 @@
     {
       "effect_id": "effect.south_african_unrest",
       "contract_version": "0.1.0",
-      "description": "South African Unrest：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.south_african_unrest",
+      "description": "USSR二选一：SouthAfrica加2；或SouthAfrica加1再在正式邻国分配总2，可同国2或各1。",
+      "handler_key": "influence.ChooseInfluenceBranch",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:mid-influence-batch2:1#/$defs/south_african_unrest"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "Englishp9 #53; FAQp12 #53; R2015 §5.2/6.1.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Englishp9 #53; FAQp12 #53; R2015 §5.2/6.1.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "Englishp9 #53; FAQp12 #53; R2015 §5.2/6.1.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-MI2",
+          "locator": "MI2 complete plans and zero-influence target derivation",
+          "verification": "Verified"
         }
       ]
     },
@@ -4604,15 +4642,27 @@
     {
       "effect_id": "effect.muslim_revolution",
       "contract_version": "0.1.0",
-      "description": "Muslim Revolution：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.muslim_revolution",
+      "description": "USSR选卡面8国中的2个不同国家，清除其全部US；不以中东地区替代名单，允许零US国家。",
+      "handler_key": "influence.ClearInfluenceInDistinctCountries",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:mid-influence-batch2:1#/$defs/muslim_revolution"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "Englishp9 #56; R2015 §5.2/6.1.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Englishp9 #56; R2015 §5.2/6.1.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-MI2",
+          "locator": "MI2 complete plans and zero-influence target derivation",
+          "verification": "Verified"
         }
       ]
     },
@@ -4998,15 +5048,27 @@
     {
       "effect_id": "effect.liberation_theology",
       "contract_version": "0.1.0",
-      "description": "Liberation Theology：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.liberation_theology",
+      "description": "USSR在中美分配总3，每国最多2，无控制/已有己方影响/OPS邻接条件。",
+      "handler_key": "influence.AllocateInfluenceBudget",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:mid-influence-batch2:1#/$defs/liberation_theology"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "Englishp11 #75; R2015 §5.2/6.1.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Englishp11 #75; R2015 §5.2/6.1.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-MI2",
+          "locator": "MI2 complete plans and zero-influence target derivation",
+          "verification": "Verified"
         }
       ]
     },
