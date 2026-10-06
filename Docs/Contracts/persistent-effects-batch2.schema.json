@@ -1,0 +1,565 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:persistent-effects-batch2:1",
+  "title": "持续修正第二批",
+  "description": "持续修正第二批：USSR后续Flat OPS与中南美政变骰双方配对，重复策略显式停止；C#待实现。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "ops_policy_ref",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.persistent_batch2"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "release-candidate"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "C-DELUXE-EN"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf"
+            },
+            "edition": {
+              "const": "English Deluxe card images"
+            },
+            "description": {
+              "const": "p8 #51 USSR后续OPS+1上限4；p11 #69中南美己方政变+1对方-1，本回合；英文没有专门再触发反转句。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "R2015"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf"
+            },
+            "edition": {
+              "const": "Deluxe rules 2015"
+            },
+            "description": {
+              "const": "§7.4.1作用于实际OPS actor不随偷牌转交，§7.4.2所有OPS用途/门槛，§7.4.3视同OPS，§6.3政变骰与OPS不同。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "F2010"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/FAQv5.pdf"
+            },
+            "edition": {
+              "const": "FAQ v5 2010, compatible Deluxe clarification only"
+            },
+            "description": {
+              "const": "PDFp14 #69对方-1亦仅中/南美。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "PROJECT-PE2"
+            },
+            "url": {
+              "const": null
+            },
+            "edition": {
+              "const": "Engineering contracts and pending repeat ruling, 2026-10-06"
+            },
+            "description": {
+              "const": "配对原子替换仅是待用户确认候选，反方及同方新ID重复均RequiresRuling。引用共享OPS限制，骰channel不夹修正结果，实际运行/完整集成未验证，参考模型仅有限投影。"
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "ops_policy_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dataset_id",
+        "json_pointer"
+      ],
+      "properties": {
+        "dataset_id": {
+          "const": "effects.deluxe2015.persistent_batch1"
+        },
+        "json_pointer": {
+          "const": "/ops_policy"
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "brezhnev_doctrine",
+        "latin_american_death_squads"
+      ],
+      "properties": {
+        "brezhnev_doctrine": {
+          "$ref": "#/$defs/brezhnev_doctrine"
+        },
+        "latin_american_death_squads": {
+          "$ref": "#/$defs/latin_american_death_squads"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "brezhnev_doctrine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "affected_side",
+        "duration",
+        "expiry_boundary",
+        "modifier",
+        "immediate_influence",
+        "duplicate_activation",
+        "repeat_effect_same_side",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.brezhnev_doctrine"
+        },
+        "effect_id": {
+          "const": "effect.brezhnev_doctrine"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "ActivateTurnOpsModifier"
+        },
+        "affected_side": {
+          "const": "USSR"
+        },
+        "duration": {
+          "const": "RemainderOfActivationTurn"
+        },
+        "expiry_boundary": {
+          "const": "ExpireAndReset"
+        },
+        "modifier": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "delta",
+            "region_id"
+          ],
+          "properties": {
+            "kind": {
+              "const": "Flat"
+            },
+            "delta": {
+              "const": 1
+            },
+            "region_id": {
+              "const": null
+            }
+          }
+        },
+        "immediate_influence": {
+          "const": null
+        },
+        "duplicate_activation": {
+          "const": "IdempotentByResolutionId"
+        },
+        "repeat_effect_same_side": {
+          "const": "RequiresRuling"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "Englishp8 #51; R2015 §7.4.1–3"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "Englishp8 #51; R2015 §7.4.1–3"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-PE2"
+                },
+                "locator": {
+                  "const": "PE2 lifecycle/stop contracts; opposite replacement candidate unadopted"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "latin_american_death_squads": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "controller",
+        "duration",
+        "expiry_boundary",
+        "coup_modifier",
+        "duplicate_activation",
+        "repeat_same_controller",
+        "repeat_opposite_controller",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.latin_american_death_squads"
+        },
+        "effect_id": {
+          "const": "effect.latin_american_death_squads"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "ActivateRegionalCoupSidePair"
+        },
+        "controller": {
+          "const": "EffectController"
+        },
+        "duration": {
+          "const": "RemainderOfActivationTurn"
+        },
+        "expiry_boundary": {
+          "const": "ExpireAndReset"
+        },
+        "coup_modifier": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "region_ids",
+            "controller_die_delta",
+            "opponent_die_delta",
+            "ops_delta",
+            "military_delta",
+            "includes_event_granted_coups",
+            "action_kinds",
+            "aggregation",
+            "adjusted_result_policy"
+          ],
+          "properties": {
+            "kind": {
+              "const": "RegionalSidePair"
+            },
+            "region_ids": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "prefixItems": [
+                {
+                  "const": "region.central_america"
+                },
+                {
+                  "const": "region.south_america"
+                }
+              ],
+              "items": false
+            },
+            "controller_die_delta": {
+              "const": 1
+            },
+            "opponent_die_delta": {
+              "const": -1
+            },
+            "ops_delta": {
+              "const": 0
+            },
+            "military_delta": {
+              "const": 0
+            },
+            "includes_event_granted_coups": {
+              "const": true
+            },
+            "action_kinds": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "prefixItems": [
+                {
+                  "const": "Coup"
+                }
+              ],
+              "items": false
+            },
+            "aggregation": {
+              "const": "SumVerifiedDieModifierTerms"
+            },
+            "adjusted_result_policy": {
+              "const": "NoRawFaceClamping"
+            }
+          }
+        },
+        "duplicate_activation": {
+          "const": "IdempotentByResolutionId"
+        },
+        "repeat_same_controller": {
+          "const": "RequiresRuling"
+        },
+        "repeat_opposite_controller": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "adoption_status",
+            "proposed_resolution"
+          ],
+          "properties": {
+            "kind": {
+              "const": "RequiresRuling"
+            },
+            "adoption_status": {
+              "const": "PendingUserConfirmation"
+            },
+            "proposed_resolution": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind",
+                "old_instance_status",
+                "old_end_reason",
+                "new_instance_status",
+                "maximum_active_pairs"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "ReplacePairAtomically"
+                },
+                "old_instance_status": {
+                  "const": "Cancelled"
+                },
+                "old_end_reason": {
+                  "const": "ReplacedByOppositeController"
+                },
+                "new_instance_status": {
+                  "const": "Active"
+                },
+                "maximum_active_pairs": {
+                  "const": 1
+                }
+              }
+            }
+          }
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "Englishp11 #69; FAQp14 #69; R2015 §6.3"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "Englishp11 #69; FAQp14 #69; R2015 §6.3"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "F2010"
+                },
+                "locator": {
+                  "const": "Englishp11 #69; FAQp14 #69; R2015 §6.3"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-PE2"
+                },
+                "locator": {
+                  "const": "PE2 lifecycle/stop contracts; opposite replacement candidate unadopted"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    }
+  }
+}

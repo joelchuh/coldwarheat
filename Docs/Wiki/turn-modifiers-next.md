@@ -2,7 +2,7 @@
 
 description：查勃列日涅夫主义的OPS归属，以及拉美死亡小队的地区政变骰/对方重触发替换与验收计划。
 
-状态2026-10-06：设计蓝图，尚无本批正式参数、Schema或运行处理器。#51/#69仍Unresolved，不增加60 Bound /42 Unresolved库存。[JSON摘要与契约意图](../Design/turn-modifiers-next.plan.json)→本页→既有[OPS与生命周期](persistent-effects.md)和[政变前干预](defcon-events-batch1.md)。[记录验证](../Design/turn-modifiers-next.note-validation.json)只验证设计笔记引用与状态，不重跑/增加1465游戏设计检查。
+历史状态（蓝图提交4e3610a）：当时尚无本批正式参数、Schema或运行处理器。后续#51/#69参数与验收已由[持续修正第二批](persistent-effects-batch2.md)展开，当前库存见[数据索引](map-card-data.md)；本页的60/42与未绑定标记描述当时快照。#51/#69仍Unresolved，不增加60 Bound /42 Unresolved库存。[JSON摘要与契约意图](../Design/turn-modifiers-next.plan.json)→本页→既有[OPS与生命周期](persistent-effects.md)和[政变前干预](defcon-events-batch1.md)。[记录验证](../Design/turn-modifiers-next.note-validation.json)只验证设计笔记引用与状态，不重跑/增加1465游戏设计检查。
 
 采用两类封闭修正提供者，共用ActiveEffectService生命周期，分别供OpsModifierService与CoupInterventionService查询。相比逐卡另写OPS/政变公式，提供者只返回具名delta与来源证据；相比一个通用数字加成通道，分开OPS和政变骰可避免把骰子加成算成军事信用、太空门槛或投放预算。全部入口尚待实现，文字蓝图不能调用。
 

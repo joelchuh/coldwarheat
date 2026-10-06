@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "id": "data.persistent-effects-batch2",
+  "kind": "data",
+  "status": "ready",
+  "description": "持续修正第二批：USSR后续Flat OPS与中南美政变骰双方配对，重复策略显式停止；C#待实现。",
+  "dataset_id": "effects.deluxe2015.persistent_batch2",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/persistent-effects-batch2.schema.json",
+  "documentation": "Docs/Wiki/persistent-effects-batch2.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/persistent-effects-batch2.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "可信事件/OPS/Coup实际Actor及根帧、回合与实例来源/版本",
+    "共享OPS策略、地区与已核实骰修正"
+  ],
+  "outputs": [
+    "只读Flat OPS/RegionalCoupDie修正及到期/重复停止策略"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "effects.deluxe2015.persistent_batch1",
+    "effects.deluxe2015.defcon_events_batch1",
+    "map.deluxe2015.world",
+    "cards.deluxe2015.definitions"
+  ],
+  "preconditions": [
+    "Bound不是实现；proposed_resolution不是可执行规则",
+    "对方再次触发覆盖候选未获用户确认，RequiresRuling；同方也不猜叠加"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "不可信/过期帧、未知渠道/范围/角色/来源或未核实重复",
+    "活动实例回合错位/损坏、冲突请求或未知相关干预"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "p8 #51 USSR后续OPS+1上限4；p11 #69中南美己方政变+1对方-1，本回合；英文没有专门再触发反转句。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§7.4.1作用于实际OPS actor不随偷牌转交，§7.4.2所有OPS用途/门槛，§7.4.3视同OPS，§6.3政变骰与OPS不同。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarification only",
+      "description": "PDFp14 #69对方-1亦仅中/南美。"
+    },
+    {
+      "id": "PROJECT-PE2",
+      "url": null,
+      "edition": "Engineering contracts and pending repeat ruling, 2026-10-06",
+      "description": "配对原子替换仅是待用户确认候选，反方及同方新ID重复均RequiresRuling。引用共享OPS限制，骰channel不夹修正结果，实际运行/完整集成未验证，参考模型仅有限投影。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/persistent-effects-batch2.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/persistent-effects-batch2.validation.json"
+  }
+}

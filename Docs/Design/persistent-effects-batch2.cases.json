@@ -1,0 +1,3624 @@
+{
+  "schema_version": 1,
+  "description": "两持续修正的激活/OPS报价/地区政变骰/到期有限参考；重复未答停止，真实事务未实现。",
+  "status": "mixed-reference-and-planned",
+  "dataset": "Data/Cards/deluxe-2015/persistent-effects-batch2.parameters.json",
+  "schema": "Docs/Contracts/persistent-effects-batch2.schema.json",
+  "cases": [
+    {
+      "id": "PE2-D-baseline",
+      "validation_layer": "data",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "PE2-D-brez-side",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "brezhnev_doctrine",
+              "affected_side"
+            ],
+            "value": "US"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "PE2-D-brez-delta",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "brezhnev_doctrine",
+              "modifier",
+              "delta"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "PE2-D-brez-region",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "brezhnev_doctrine",
+              "modifier",
+              "region_id"
+            ],
+            "value": "region.asia"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "PE2-D-brez-expiry",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "brezhnev_doctrine",
+              "expiry_boundary"
+            ],
+            "value": "TurnStart"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "PE2-D-brez-repeat",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "brezhnev_doctrine",
+              "repeat_effect_same_side"
+            ],
+            "value": "Stack"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "PE2-D-lads-controller",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "latin_american_death_squads",
+              "controller"
+            ],
+            "value": "RootPhasingPlayer"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "PE2-D-lads-regions",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "latin_american_death_squads",
+              "coup_modifier",
+              "region_ids"
+            ],
+            "value": [
+              "region.africa"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "PE2-D-lads-own",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "latin_american_death_squads",
+              "coup_modifier",
+              "controller_die_delta"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "PE2-D-lads-opponent",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "latin_american_death_squads",
+              "coup_modifier",
+              "opponent_die_delta"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "PE2-D-lads-ops",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "latin_american_death_squads",
+              "coup_modifier",
+              "ops_delta"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "PE2-D-lads-military",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "latin_american_death_squads",
+              "coup_modifier",
+              "military_delta"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "PE2-D-lads-event-coup",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "latin_american_death_squads",
+              "coup_modifier",
+              "includes_event_granted_coups"
+            ],
+            "value": false
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "PE2-D-lads-war",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "latin_american_death_squads",
+              "coup_modifier",
+              "action_kinds"
+            ],
+            "value": [
+              "Coup",
+              "War"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "PE2-D-lads-clamp",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "latin_american_death_squads",
+              "coup_modifier",
+              "adjusted_result_policy"
+            ],
+            "value": "ClampRawFaces"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "PE2-D-lads-opposite-adopted",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "latin_american_death_squads",
+              "repeat_opposite_controller",
+              "kind"
+            ],
+            "value": "ReplacePairAtomically"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "PE2-D-lads-same",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "latin_american_death_squads",
+              "repeat_same_controller"
+            ],
+            "value": "Stack"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "PE2-D-shared-policy-pointer",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "ops_policy_ref",
+              "json_pointer"
+            ],
+            "value": "/ops_policy/ordinary_maximum"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "PE2-R-brez-activate-root-us",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Activate",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": true,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-brez-wrong-controller",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Activate",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-brez-new-repeat",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Activate",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-lads-activate-us",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Activate",
+        "card_id": "card.latin_american_death_squads",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": true,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-lads-activate-ussr",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Activate",
+        "card_id": "card.latin_american_death_squads",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "USSR",
+          "lads_turn": 4,
+          "activation_completed": true,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-lads-repeat-US",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Activate",
+        "card_id": "card.latin_american_death_squads",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "US",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-lads-repeat-USSR",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Activate",
+        "card_id": "card.latin_american_death_squads",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-activation-retry",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Activate",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": true,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": true,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-activation-no-event",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Activate",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": false,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "NotTriggered",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-ops-one-to-two",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QuoteOps",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "Quoted",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "effective_ops": 2
+        }
+      }
+    },
+    {
+      "id": "PE2-R-ops-four-cap",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QuoteOps",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 4,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "Quoted",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "effective_ops": 4
+        }
+      }
+    },
+    {
+      "id": "PE2-R-ops-aggregate-before-cap",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QuoteOps",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 4,
+        "other_flat_delta": -1,
+        "regional_bonus": 0,
+        "purpose": "Coup",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "Quoted",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "effective_ops": 4
+        }
+      }
+    },
+    {
+      "id": "PE2-R-ops-one-purge",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QuoteOps",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": -1,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "Quoted",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "effective_ops": 1
+        }
+      }
+    },
+    {
+      "id": "PE2-R-ops-regional-above-cap",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QuoteOps",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 4,
+        "other_flat_delta": 0,
+        "regional_bonus": 2,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "Quoted",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "effective_ops": 6
+        }
+      }
+    },
+    {
+      "id": "PE2-R-ops-regional-after-upper-before-floor",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QuoteOps",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": -3,
+        "regional_bonus": 1,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "Quoted",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "effective_ops": 1
+        }
+      }
+    },
+    {
+      "id": "PE2-R-ops-space-ignores-region",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QuoteOps",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 2,
+        "purpose": "Space",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "Quoted",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "effective_ops": 2
+        }
+      }
+    },
+    {
+      "id": "PE2-R-ops-threshold-ignores-region",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QuoteOps",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 2,
+        "purpose": "OpsThreshold",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "Quoted",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "effective_ops": 2
+        }
+      }
+    },
+    {
+      "id": "PE2-R-ops-us-not-inherit",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QuoteOps",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "US",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "Quoted",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "effective_ops": 1
+        }
+      }
+    },
+    {
+      "id": "PE2-R-ops-realignment-ops",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QuoteOps",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 2,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Realignment",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "Quoted",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "effective_ops": 3
+        }
+      }
+    },
+    {
+      "id": "PE2-R-ops-before-activation",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QuoteOps",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "Quoted",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "effective_ops": 1
+        }
+      }
+    },
+    {
+      "id": "PE2-R-ops-war-not-ops",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QuoteOps",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "War",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-ops-invalid-base",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QuoteOps",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 0,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-ops-invalid-actor",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QuoteOps",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "Other",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-coup-ca-own",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "US",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "ModifierPlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "die_delta": 1
+        }
+      }
+    },
+    {
+      "id": "PE2-R-coup-ca-opponent",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "ModifierPlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "die_delta": -1
+        }
+      }
+    },
+    {
+      "id": "PE2-R-coup-sa-own",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "US",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.brazil",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "ModifierPlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "die_delta": 1
+        }
+      }
+    },
+    {
+      "id": "PE2-R-coup-sa-opponent",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.brazil",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "ModifierPlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "die_delta": -1
+        }
+      }
+    },
+    {
+      "id": "PE2-R-coup-other-region",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "US",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.iran",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "ModifierPlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "die_delta": 0
+        }
+      }
+    },
+    {
+      "id": "PE2-R-coup-other-europe",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.canada",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "ModifierPlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "die_delta": 0
+        }
+      }
+    },
+    {
+      "id": "PE2-R-coup-free-coup",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "US",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "FreeCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "ModifierPlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "die_delta": 1
+        }
+      }
+    },
+    {
+      "id": "PE2-R-coup-event-ops-coup",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.brazil",
+        "action_kind": "Coup",
+        "coup_source": "EventOperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "ModifierPlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "die_delta": -1
+        }
+      }
+    },
+    {
+      "id": "PE2-R-coup-salt-own-cancel",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "US",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": true,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "ModifierPlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "die_delta": 0
+        }
+      }
+    },
+    {
+      "id": "PE2-R-coup-salt-opponent-sum",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": true,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "ModifierPlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "die_delta": -2
+        }
+      }
+    },
+    {
+      "id": "PE2-R-coup-salt-other-region",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "US",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.iran",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": true,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "ModifierPlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "die_delta": -1
+        }
+      }
+    },
+    {
+      "id": "PE2-R-coup-ussr-controller",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "USSR",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "ModifierPlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "USSR",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "die_delta": 1
+        }
+      }
+    },
+    {
+      "id": "PE2-R-coup-no-active-lads",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "ModifierPlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "die_delta": 0
+        }
+      }
+    },
+    {
+      "id": "PE2-R-coup-not-clamp-high",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "US",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": 6,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "ModifierPlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "die_delta": 1,
+          "adjusted_roll": 7
+        }
+      }
+    },
+    {
+      "id": "PE2-R-coup-not-clamp-low",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": 1,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "ModifierPlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "die_delta": -1,
+          "adjusted_roll": 0
+        }
+      }
+    },
+    {
+      "id": "PE2-R-coup-channel-excludes-War",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "War",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "NotApplicable",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "die_delta": 0
+        }
+      }
+    },
+    {
+      "id": "PE2-R-coup-channel-excludes-Realignment",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Realignment",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "NotApplicable",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "die_delta": 0
+        }
+      }
+    },
+    {
+      "id": "PE2-R-coup-channel-excludes-Space",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Space",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "NotApplicable",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "die_delta": 0
+        }
+      }
+    },
+    {
+      "id": "PE2-R-coup-channel-excludes-Influence",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Influence",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "NotApplicable",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {
+          "die_delta": 0
+        }
+      }
+    },
+    {
+      "id": "PE2-R-coup-unknown-country",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.missing",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-coup-illegal-before-modifier",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": false,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "IllegalCoup",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-coup-fatal-before-modifier",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": true,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "ImmediateLossPlan",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-expire-both",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Expire",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 4,
+          "lads_controller": "US",
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "Expired",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": 4,
+          "lads_controller": null,
+          "lads_turn": 4,
+          "activation_completed": false,
+          "expiry_completed": true,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-expire-retry",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Expire",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": true,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": true,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-expire-empty",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Expire",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "Expired",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": true,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-expire-wrong-boundary",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Expire",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "TurnStart",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-active-past-turn",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QuoteOps",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 3,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": true,
+          "brezhnev_turn": 3,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-lads-past-turn",
+      "validation_layer": "reference",
+      "input": {
+        "action": "QueryCoupDie",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 3,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": "US",
+          "lads_turn": 3,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-unknown-effects",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Activate",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": false,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": false,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-invalid-frame",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Activate",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": false,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-wrong-definition",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Activate",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": false,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "DefinitionMismatch",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-conflicting-request",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Activate",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": false,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "ConflictingRequest",
+        "state": {
+          "turn": 4,
+          "finished": false,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-R-finished",
+      "validation_layer": "reference",
+      "input": {
+        "action": "Activate",
+        "card_id": "card.brezhnev_doctrine",
+        "verified_internal_frame": true,
+        "definitions_match": true,
+        "request_matches_receipt": true,
+        "effect_controller": "USSR",
+        "root_phasing_player": "US",
+        "event_attempt": true,
+        "actor": "USSR",
+        "base_ops": 1,
+        "other_flat_delta": 0,
+        "regional_bonus": 0,
+        "purpose": "Influence",
+        "country_id": "country.cuba",
+        "action_kind": "Coup",
+        "coup_source": "OperationsCoup",
+        "legal_coup_verified": true,
+        "fatal_crisis": false,
+        "salt_active": false,
+        "validated_raw_roll": null,
+        "boundary": "ExpireAndReset",
+        "state": {
+          "turn": 4,
+          "finished": true,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "state": {
+          "turn": 4,
+          "finished": true,
+          "effects_complete": true,
+          "brezhnev_active": false,
+          "brezhnev_turn": null,
+          "lads_controller": null,
+          "lads_turn": null,
+          "activation_completed": false,
+          "expiry_completed": false,
+          "rng_cursor": 21,
+          "attempts_used": 1
+        },
+        "extra": {}
+      }
+    },
+    {
+      "id": "PE2-I-trusted-roles-no-card-owner-inheritance",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "trusted-roles-no-card-owner-inheritance",
+      "implementation_tested": false
+    },
+    {
+      "id": "PE2-I-full-ops-quote-context-current-version",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "full-ops-quote-context-current-version",
+      "implementation_tested": false
+    },
+    {
+      "id": "PE2-I-accepted-coup-cmc-before-dice-and-military-separate",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "accepted-coup-cmc-before-dice-and-military-separate",
+      "implementation_tested": false
+    },
+    {
+      "id": "PE2-I-activation-expiry-receipts-save-replay",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "activation-expiry-receipts-save-replay",
+      "implementation_tested": false
+    },
+    {
+      "id": "PE2-I-repeated-events-stop-before-instance-change",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "repeated-events-stop-before-instance-change",
+      "implementation_tested": false
+    },
+    {
+      "id": "PE2-I-physical-star-vs-active-lifetime-independent",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "physical-star-vs-active-lifetime-independent",
+      "implementation_tested": false
+    },
+    {
+      "id": "PE2-I-theme-view-and-animation-independent",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "theme-view-and-animation-independent",
+      "implementation_tested": false
+    }
+  ]
+}

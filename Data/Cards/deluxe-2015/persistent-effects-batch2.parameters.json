@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.persistent_batch2",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "持续修正第二批：USSR后续Flat OPS与中南美政变骰双方配对，重复策略显式停止；C#待实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "p8 #51 USSR后续OPS+1上限4；p11 #69中南美己方政变+1对方-1，本回合；英文没有专门再触发反转句。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§7.4.1作用于实际OPS actor不随偷牌转交，§7.4.2所有OPS用途/门槛，§7.4.3视同OPS，§6.3政变骰与OPS不同。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarification only",
+      "description": "PDFp14 #69对方-1亦仅中/南美。"
+    },
+    {
+      "id": "PROJECT-PE2",
+      "url": null,
+      "edition": "Engineering contracts and pending repeat ruling, 2026-10-06",
+      "description": "配对原子替换仅是待用户确认候选，反方及同方新ID重复均RequiresRuling。引用共享OPS限制，骰channel不夹修正结果，实际运行/完整集成未验证，参考模型仅有限投影。"
+    }
+  ],
+  "ops_policy_ref": {
+    "dataset_id": "effects.deluxe2015.persistent_batch1",
+    "json_pointer": "/ops_policy"
+  },
+  "parameters": {
+    "brezhnev_doctrine": {
+      "card_id": "card.brezhnev_doctrine",
+      "effect_id": "effect.brezhnev_doctrine",
+      "description": "USSR后续OPS+1，固定方且按实际Actor报价；共享ops_policy，非骰子或军事固定加值。",
+      "template": "ActivateTurnOpsModifier",
+      "affected_side": "USSR",
+      "duration": "RemainderOfActivationTurn",
+      "expiry_boundary": "ExpireAndReset",
+      "modifier": {
+        "kind": "Flat",
+        "delta": 1,
+        "region_id": null
+      },
+      "immediate_influence": null,
+      "duplicate_activation": "IdempotentByResolutionId",
+      "repeat_effect_same_side": "RequiresRuling",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "Englishp8 #51; R2015 §7.4.1–3",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Englishp8 #51; R2015 §7.4.1–3",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-PE2",
+          "locator": "PE2 lifecycle/stop contracts; opposite replacement candidate unadopted",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "latin_american_death_squads": {
+      "card_id": "card.latin_american_death_squads",
+      "effect_id": "effect.latin_american_death_squads",
+      "description": "可信EffectController的中南美政变骰+1、对方同区-1；反方重触发政策待确认，当前停止。",
+      "template": "ActivateRegionalCoupSidePair",
+      "controller": "EffectController",
+      "duration": "RemainderOfActivationTurn",
+      "expiry_boundary": "ExpireAndReset",
+      "coup_modifier": {
+        "kind": "RegionalSidePair",
+        "region_ids": [
+          "region.central_america",
+          "region.south_america"
+        ],
+        "controller_die_delta": 1,
+        "opponent_die_delta": -1,
+        "ops_delta": 0,
+        "military_delta": 0,
+        "includes_event_granted_coups": true,
+        "action_kinds": [
+          "Coup"
+        ],
+        "aggregation": "SumVerifiedDieModifierTerms",
+        "adjusted_result_policy": "NoRawFaceClamping"
+      },
+      "duplicate_activation": "IdempotentByResolutionId",
+      "repeat_same_controller": "RequiresRuling",
+      "repeat_opposite_controller": {
+        "kind": "RequiresRuling",
+        "adoption_status": "PendingUserConfirmation",
+        "proposed_resolution": {
+          "kind": "ReplacePairAtomically",
+          "old_instance_status": "Cancelled",
+          "old_end_reason": "ReplacedByOppositeController",
+          "new_instance_status": "Active",
+          "maximum_active_pairs": 1
+        }
+      },
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "Englishp11 #69; FAQp14 #69; R2015 §6.3",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Englishp11 #69; FAQp14 #69; R2015 §6.3",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "Englishp11 #69; FAQp14 #69; R2015 §6.3",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-PE2",
+          "locator": "PE2 lifecycle/stop contracts; opposite replacement candidate unadopted",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

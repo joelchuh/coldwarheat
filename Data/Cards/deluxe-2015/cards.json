@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.22.0",
+  "content_version": "0.23.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计60牌效果参数已绑定，其余42个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计62牌效果参数已绑定，其余40个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -137,6 +137,12 @@
       "url": null,
       "edition": "Engineering contracts / card-text derivation, 2026-10-06",
       "description": "两分支与完整额度/两国方案原子提交、稳定Owner/Revision/收据；Muslim未限定有US影响，可选零影响国，系具名卡文推导而非专门FAQ/用户短缺裁定。"
+    },
+    {
+      "id": "PROJECT-PE2",
+      "url": null,
+      "edition": "Engineering contracts and pending repeat ruling, 2026-10-06",
+      "description": "配对原子替换仅是待用户确认候选，反方及同方新ID重复均RequiresRuling。引用共享OPS限制，骰channel不夹修正结果，实际运行/完整集成未验证，参考模型仅有限投影。"
     }
   ],
   "cards": [
@@ -1701,8 +1707,13 @@
       "effect_binding": {
         "effect_id": "effect.brezhnev_doctrine",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.persistent_batch2",
+            "json_pointer": "/parameters/brezhnev_doctrine"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -2232,8 +2243,13 @@
       "effect_binding": {
         "effect_id": "effect.latin_american_death_squads",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.persistent_batch2",
+            "json_pointer": "/parameters/latin_american_death_squads"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -4514,15 +4530,27 @@
     {
       "effect_id": "effect.brezhnev_doctrine",
       "contract_version": "0.1.0",
-      "description": "Brezhnev Doctrine：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.brezhnev_doctrine",
+      "description": "USSR后续OPS+1，固定方且按实际Actor报价；共享ops_policy，非骰子或军事固定加值。",
+      "handler_key": "persistent.ActivateTurnOpsModifier",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:persistent-effects-batch2:1#/$defs/brezhnev_doctrine"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "Englishp8 #51; R2015 §7.4.1–3",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Englishp8 #51; R2015 §7.4.1–3",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-PE2",
+          "locator": "PE2 lifecycle/stop contracts; opposite replacement candidate unadopted",
+          "verification": "Verified"
         }
       ]
     },
@@ -4912,15 +4940,32 @@
     {
       "effect_id": "effect.latin_american_death_squads",
       "contract_version": "0.1.0",
-      "description": "Latin American Death Squads：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.latin_american_death_squads",
+      "description": "可信EffectController的中南美政变骰+1、对方同区-1；反方重触发政策待确认，当前停止。",
+      "handler_key": "persistent.ActivateRegionalCoupSidePair",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:persistent-effects-batch2:1#/$defs/latin_american_death_squads"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "Englishp11 #69; FAQp14 #69; R2015 §6.3",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Englishp11 #69; FAQp14 #69; R2015 §6.3",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "Englishp11 #69; FAQp14 #69; R2015 §6.3",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-PE2",
+          "locator": "PE2 lifecycle/stop contracts; opposite replacement candidate unadopted",
+          "verification": "Verified"
         }
       ]
     },

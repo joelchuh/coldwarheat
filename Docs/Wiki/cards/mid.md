@@ -74,3 +74,5 @@
 [国家指标VP](../country-metric-vp-events.md)按实际局面查询；不是地区计分投影。
 
 [中期影响力第二批](../mid-influence-batch2.md)绑定#53/#56/#75的分支/名单/额度，C#待实现。
+
+[持续修正第二批](../persistent-effects-batch2.md)绑定#51/#69，OPS与政变骰渠道分开；重复停止。

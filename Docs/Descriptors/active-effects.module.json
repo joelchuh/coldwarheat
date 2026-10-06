@@ -17,20 +17,21 @@
   ],
   "stop_conditions": [
     "未知效果、版本、行动者、跨卡交互或重复激活冲突",
-    "未核实的同效果同方本回合重复触发；不得静默叠加/刷新"
+    "未核实的同效果同方本回合重复触发；不得静默叠加/刷新",
+    "仅新事件Activate路径：LADS同/反方新结算重复未核实，proposed_resolution不能放行"
   ],
   "rule_sources": [
     {
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "edition": "English Deluxe card images",
-      "description": "英文卡图p3 #9、p5 #25/#31；仅参数与效果事实，不收录卡图。 p4 #17/p9 #55/p14 #96只补充局部例外与取消/阻止关系。 本批p9 #59/p10 #65/p14 #97。 SS1: p4 #18一格推进；p11 #68 Poland移除2USSR再加1US并允许Solidarity；p15 #101 Pope生效才可事件加3US。"
+      "description": "英文卡图p3 #9、p5 #25/#31；仅参数与效果事实，不收录卡图。 p4 #17/p9 #55/p14 #96只补充局部例外与取消/阻止关系。 本批p9 #59/p10 #65/p14 #97。 SS1: p4 #18一格推进；p11 #68 Poland移除2USSR再加1US并允许Solidarity；p15 #101 Pope生效才可事件加3US。 PE2: p8 #51 USSR后续OPS+1上限4；p11 #69中南美己方政变+1对方-1，本回合；英文没有专门再触发反转句。"
     },
     {
       "id": "R2015",
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
       "edition": "Deluxe rules 2015",
-      "description": "§7.4–7.4.3合并修正、归属行动者、适用于事件OPS；§8.2军事信用；§9.6–9.7中国牌。 §7.3/7.5永久效果与禁用事件。 SS1: §2.2.4–5星号/永久标记；§5.2/5.3实际事件与牌区；§6.1.1直接影响力；§6.4太空奖励/能力与事件推进；§7.3永久效果。"
+      "description": "§7.4–7.4.3合并修正、归属行动者、适用于事件OPS；§8.2军事信用；§9.6–9.7中国牌。 §7.3/7.5永久效果与禁用事件。 SS1: §2.2.4–5星号/永久标记；§5.2/5.3实际事件与牌区；§6.1.1直接影响力；§6.4太空奖励/能力与事件推进；§7.3永久效果。 PE2: §7.4.1作用于实际OPS actor不随偷牌转交，§7.4.2所有OPS用途/门槛，§7.4.3视同OPS，§6.3政变骰与OPS不同。"
     },
     {
       "id": "PROJECT-WH1",
@@ -55,6 +56,12 @@
       "url": null,
       "edition": "Engineering contracts and unresolved edges, 2026-10-06",
       "description": "事件授权帧/来源/去重及原子计划；Pope许可使用成功事实关联的ActiveEffectInstance，不以牌区推断。Pope移除不足2及Scientist已在终点尚待用户裁定，均RequiresRuling，建议不是采纳规则。"
+    },
+    {
+      "id": "PROJECT-PE2",
+      "url": null,
+      "edition": "Engineering contracts and pending repeat ruling, 2026-10-06",
+      "description": "配对原子替换仅是待用户确认候选，反方及同方新ID重复均RequiresRuling。引用共享OPS限制，骰channel不夹修正结果，实际运行/完整集成未验证，参考模型仅有限投影。"
     }
   ],
   "tests": [
@@ -89,13 +96,17 @@
     {
       "path": "Docs/Design/space-solidarity-events.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/persistent-effects-batch2.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "documentation": "Docs/Wiki/persistent-effects.md",
   "id": "module.active-effects",
   "kind": "module",
   "status": "planned",
-  "description": "持续效果生命周期、OPS报价、永久禁止及CardUse处罚实例；计划结果只由编排事务提交。 教皇许可使用成功来源关联的活动实例。",
+  "description": "持续效果生命周期、OPS报价、永久禁止及CardUse处罚实例；计划结果只由编排事务提交。 教皇许可使用成功来源关联的活动实例。 Brezhnev Flat OPS与LADS地区骰渠道独立，重复未答停止。",
   "entrypoints": [],
   "planned_entrypoints": [
     {
@@ -134,7 +145,8 @@
     "effects.deluxe2015.war_card_hooks",
     "effects.deluxe2015.defcon_events_batch1",
     "effects.deluxe2015.scoring_effects_batch1",
-    "effects.deluxe2015.solidarity_chain"
+    "effects.deluxe2015.solidarity_chain",
+    "effects.deluxe2015.persistent_batch2"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:persistent-effects-batch1:1",
@@ -142,11 +154,12 @@
     "urn:coldwarheat:contract:nato-exceptions:1",
     "urn:coldwarheat:contract:war-card-hooks:1",
     "urn:coldwarheat:contract:defcon-events-batch1:1",
-    "urn:coldwarheat:contract:solidarity-chain:1"
+    "urn:coldwarheat:contract:solidarity-chain:1",
+    "urn:coldwarheat:contract:persistent-effects-batch2:1"
   ],
   "verification": {
     "implementation_tested": false,
     "report": "Docs/Design/persistent-effects-batch1.validation.json",
-    "latest_design_report": "Docs/Design/space-solidarity-events.validation.json"
+    "latest_design_report": "Docs/Design/persistent-effects-batch2.validation.json"
   }
 }

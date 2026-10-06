@@ -1,0 +1,363 @@
+{
+  "description": "持续OPS/地区政变骰激活报价与到期有限参考，非生产C#/Unity验证。",
+  "checked_on": "2026-10-06",
+  "new_cases_passed": 74,
+  "previous_cases_passed": 1465,
+  "total_cases_passed": 1539,
+  "cases_by_layer": {
+    "data": 18,
+    "reference": 56,
+    "runtime": 7
+  },
+  "runtime_cases_not_run": 7,
+  "runtime_game_tests_run": 0,
+  "bound_cards": 62,
+  "unresolved_bindings": 40,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 30,
+    "json_files_parsed": 184,
+    "data_descriptors": 33,
+    "module_descriptors": 19,
+    "relative_links_checked": 149,
+    "parameter_pointers_resolved": 99
+  },
+  "validated_sha256": {
+    "Data/Cards/deluxe-2015/persistent-effects-batch2.parameters.json": "3aa1fe23eb40efa7f26648bb59405fbb5cdf64ddbfbfacc001f40d5d96a3098d",
+    "Docs/Contracts/persistent-effects-batch2.schema.json": "05e7c8ddd14277c7acaf0ed998334174e6a47c37488fe62d49cf352a082fa93a",
+    "Docs/Design/persistent-effects-batch2.cases.json": "10dbce8b519baef703ec273f1f5dc2e9a7f992aed9958fc5b930ab27b8fa50a4",
+    "Data/Cards/deluxe-2015/cards.json": "e5c0ff60842de48025f47af5832e06fbc88323e7573e361d27f2269fec56e177",
+    "Data/Maps/deluxe-2015/world.json": "6d4e20c674bd74d44cdb0f1ca66e8e960f125b3e45076d05307125a3c36ea45b",
+    "Docs/Descriptors/active-effects.module.json": "5792d2ad350f084eecc3f6675800ed07629b09a47012bfe373462f4f863c046c",
+    "Docs/Descriptors/turn-flow.module.json": "c38a0c0eba724bd70f30402f51e883a7e64bbe103d33919eac26a3130238ad85",
+    "Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json": "e229d5494deba9031c3348f7d726dd09fc2d8ce28eb2db618142712c79d538d4",
+    "Data/Cards/deluxe-2015/defcon-events-batch1.parameters.json": "4534f09101f496753ca30fbb80de9857957ba41bd7273aaeb95d1cafa65b394c",
+    "Docs/Descriptors/coup-interventions.module.json": "1f7daa042d25ffdaa2c1578676728a78e7b37b4cf5757fa31800be6ea6fa2e5f"
+  },
+  "results": [
+    {
+      "id": "PE2-D-baseline",
+      "passed": true
+    },
+    {
+      "id": "PE2-D-brez-side",
+      "passed": true
+    },
+    {
+      "id": "PE2-D-brez-delta",
+      "passed": true
+    },
+    {
+      "id": "PE2-D-brez-region",
+      "passed": true
+    },
+    {
+      "id": "PE2-D-brez-expiry",
+      "passed": true
+    },
+    {
+      "id": "PE2-D-brez-repeat",
+      "passed": true
+    },
+    {
+      "id": "PE2-D-lads-controller",
+      "passed": true
+    },
+    {
+      "id": "PE2-D-lads-regions",
+      "passed": true
+    },
+    {
+      "id": "PE2-D-lads-own",
+      "passed": true
+    },
+    {
+      "id": "PE2-D-lads-opponent",
+      "passed": true
+    },
+    {
+      "id": "PE2-D-lads-ops",
+      "passed": true
+    },
+    {
+      "id": "PE2-D-lads-military",
+      "passed": true
+    },
+    {
+      "id": "PE2-D-lads-event-coup",
+      "passed": true
+    },
+    {
+      "id": "PE2-D-lads-war",
+      "passed": true
+    },
+    {
+      "id": "PE2-D-lads-clamp",
+      "passed": true
+    },
+    {
+      "id": "PE2-D-lads-opposite-adopted",
+      "passed": true
+    },
+    {
+      "id": "PE2-D-lads-same",
+      "passed": true
+    },
+    {
+      "id": "PE2-D-shared-policy-pointer",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-brez-activate-root-us",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-brez-wrong-controller",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-brez-new-repeat",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-lads-activate-us",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-lads-activate-ussr",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-lads-repeat-US",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-lads-repeat-USSR",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-activation-retry",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-activation-no-event",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-ops-one-to-two",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-ops-four-cap",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-ops-aggregate-before-cap",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-ops-one-purge",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-ops-regional-above-cap",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-ops-regional-after-upper-before-floor",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-ops-space-ignores-region",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-ops-threshold-ignores-region",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-ops-us-not-inherit",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-ops-realignment-ops",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-ops-before-activation",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-ops-war-not-ops",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-ops-invalid-base",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-ops-invalid-actor",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-ca-own",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-ca-opponent",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-sa-own",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-sa-opponent",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-other-region",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-other-europe",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-free-coup",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-event-ops-coup",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-salt-own-cancel",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-salt-opponent-sum",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-salt-other-region",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-ussr-controller",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-no-active-lads",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-not-clamp-high",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-not-clamp-low",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-channel-excludes-War",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-channel-excludes-Realignment",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-channel-excludes-Space",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-channel-excludes-Influence",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-unknown-country",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-illegal-before-modifier",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-coup-fatal-before-modifier",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-expire-both",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-expire-retry",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-expire-empty",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-expire-wrong-boundary",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-active-past-turn",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-lads-past-turn",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-unknown-effects",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-invalid-frame",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-wrong-definition",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-conflicting-request",
+      "passed": true
+    },
+    {
+      "id": "PE2-R-finished",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "7runtime未运行；真实鉴权/帧/Quote证据、实例/牌区/原子提交/存档未验证",
+    "模型是有限活动状态/报价/die delta投影，不执行完整政变、真实收据或随机",
+    "1465旧业务预期保持，只适配库存/已完成出处/历史绑定基线；13笔记检查另层",
+    "LADS同/反方重触发RequiresRuling，proposed_resolution未采纳也未执行",
+    "共享OPS规则读取旧政策，裁定/中断边界不被本批默许扩大",
+    "38Tools实际检查另层；102handlers仍planned"
+  ],
+  "independent_review": {
+    "status": "ready-design-contract-minor-scope-and-history-fixes-closed-by-primary",
+    "fixed_findings": [
+      "LADS activation repeat stop onlyin ActiveEffect Activate; removed unrelated Space/Coup query gate",
+      "historical note/index redirect current parameter contract"
+    ],
+    "independently_checked": [
+      "newSchema meta and18data56reference=74 actually rerun",
+      "269 baselineSHA/10 reportSHA/3 frozenPDFSHA",
+      "184JSON/30catalog contracts33 data19planned modules/99pointers/141candidateMDlinks andDAG",
+      "only2bindings/effect contracts changed; all printed facts retained"
+    ],
+    "not_independently_run": [
+      "all30Schema meta",
+      "1465 historical models/full1539",
+      "7runtime/C#/Unity",
+      "13note/38Tools"
+    ],
+    "fix_verification": "primary full suite; no independent full rerun claim after minor fixes"
+  }
+}

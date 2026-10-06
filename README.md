@@ -77,4 +77,6 @@
 
 此前：[国家指标VP三牌](Docs/Wiki/country-metric-vp-events.md)，当时累计57 Bound / 45 Unresolved，102处理器planned。
 
-最新：[中期影响力第二批](Docs/Wiki/mid-influence-batch2.md)，累计60 Bound / 42 Unresolved，102处理器planned。
+此前：[中期影响力第二批](Docs/Wiki/mid-influence-batch2.md)，当时累计60 Bound / 42 Unresolved，102处理器planned。
+
+最新：[持续修正第二批](Docs/Wiki/persistent-effects-batch2.md)，累计62 Bound /40 Unresolved，102处理器planned，LADS重复仍待裁定。

@@ -3,7 +3,7 @@
   "id": "module.coup-interventions",
   "kind": "module",
   "status": "planned",
-  "description": "政变前干预与危机解除：以实际Actor判致命危机、核潜艇按原因豁免、SALT骰修正；纯计划不改状态。",
+  "description": "政变前干预与危机解除：以实际Actor判致命危机、核潜艇按原因豁免、SALT与LADS地区骰修正；纯计划不改状态。",
   "documentation": "Docs/Wiki/defcon-events-batch1.md",
   "entrypoints": [],
   "planned_entrypoints": [
@@ -22,7 +22,8 @@
   ],
   "inputs": [
     "权威合法政变、Actor/PhasingPlayer/原因/实例和当前修订",
-    "解除请求仅EffectInstanceId/Revision/CountryId，支付方由会话身份确定"
+    "解除请求仅EffectInstanceId/Revision/CountryId，支付方由会话身份确定",
+    "LADS可信控制方/实际CoupActor与地区；仅骰渠道，不改OPS/军事"
   ],
   "outputs": [
     "ImmediateLossPlan/CoupModifierPlan/DefconException、ReliefDecision与原子解除计划"
@@ -42,10 +43,12 @@
   "data_dependencies": [
     "effects.deluxe2015.defcon_events_batch1",
     "map.deluxe2015.world",
-    "rules.deluxe2015.defcon"
+    "rules.deluxe2015.defcon",
+    "effects.deluxe2015.persistent_batch2"
   ],
   "contract_dependencies": [
-    "urn:coldwarheat:contract:defcon-events-batch1:1"
+    "urn:coldwarheat:contract:defcon-events-batch1:1",
+    "urn:coldwarheat:contract:persistent-effects-batch2:1"
   ],
   "preconditions": [
     "基本合法性和预算/地理/条约已验证；接受政变前可单独提交解除",
@@ -53,42 +56,54 @@
   ],
   "side_effects": [],
   "stop_conditions": [
-    "终局、未知/过期效果、支付不足/混国、身份或版本不符、原子步骤中抢占"
+    "终局、未知/过期效果、支付不足/混国、身份或版本不符、原子步骤中抢占",
+    "政变相关LADS实例角色/来源/当前回合损坏或相关骰政策未知；不在查询处重判事件激活重复"
   ],
   "rule_sources": [
     {
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "edition": "English Deluxe card images",
-      "description": "英文p7 #40/#41/#43，p9 #57；核对现代明确卡文，不使用旁列译文。"
+      "description": "英文p7 #40/#41/#43，p9 #57；核对现代明确卡文，不使用旁列译文。 PE2: p8 #51 USSR后续OPS+1上限4；p11 #69中南美己方政变+1对方-1，本回合；英文没有专门再触发反转句。"
     },
     {
       "id": "R2015",
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
       "edition": "Deluxe rules 2015",
-      "description": "§5.4/5.5卡文与弃牌、§6.3政变、§6.4.1/5太空、§7.4.3视同OPS、§8.1 DEFCON、§8.2.3/5普通/免费政变军事。"
+      "description": "§5.4/5.5卡文与弃牌、§6.3政变、§6.4.1/5太空、§7.4.3视同OPS、§8.1 DEFCON、§8.2.3/5普通/免费政变军事。 PE2: §7.4.1作用于实际OPS actor不随偷牌转交，§7.4.2所有OPS用途/门槛，§7.4.3视同OPS，§6.3政变骰与OPS不同。"
     },
     {
       "id": "F2010",
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
       "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
-      "description": "PDF p8–9 #40任意时点、单国2点、实际Actor即刻输；p9 #41只免OPS政变降级，不免事件；p12 #57头条可行动；p14 #67明确ABM不能太空。"
+      "description": "PDF p8–9 #40任意时点、单国2点、实际Actor即刻输；p9 #41只免OPS政变降级，不免事件；p12 #57头条可行动；p14 #67明确ABM不能太空。 PE2: PDFp14 #69对方-1亦仅中/南美。"
     },
     {
       "id": "PROJECT-DC1",
       "url": null,
       "edition": "DC1 engineering contracts / derived boundaries, 2026-10-06",
       "description": "任意时点通过稳定命令边界表达，不抢占已原子提交步骤；基本合法性先核实，再接受致命政变。类型化原因/授权、SALT候选空自动结束与ABM可放弃采用具名封闭策略；重复激活沿用RequiresRuling。"
+    },
+    {
+      "id": "PROJECT-PE2",
+      "url": null,
+      "edition": "Engineering contracts and pending repeat ruling, 2026-10-06",
+      "description": "配对原子替换仅是待用户确认候选，反方及同方新ID重复均RequiresRuling。引用共享OPS限制，骰channel不夹修正结果，实际运行/完整集成未验证，参考模型仅有限投影。"
     }
   ],
   "tests": [
     {
       "path": "Docs/Design/defcon-events-batch1.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/persistent-effects-batch2.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
-    "report": "Docs/Design/defcon-events-batch1.validation.json"
+    "report": "Docs/Design/defcon-events-batch1.validation.json",
+    "latest_design_report": "Docs/Design/persistent-effects-batch2.validation.json"
   }
 }

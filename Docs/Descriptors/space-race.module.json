@@ -55,7 +55,8 @@
     "rules.deluxe2015.turn-flow",
     "cards.deluxe2015.definitions",
     "effects.deluxe2015.persistent_batch1",
-    "effects.deluxe2015.space_events_batch1"
+    "effects.deluxe2015.space_events_batch1",
+    "effects.deluxe2015.persistent_batch2"
   ],
   "preconditions": [
     "当前为设计；尚无可调用实现",
@@ -74,14 +75,14 @@
     {
       "id": "R2015",
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
-      "checked_on": "2026-09-22",
-      "description": " SS1: §2.2.4–5星号/永久标记；§5.2/5.3实际事件与牌区；§6.1.1直接影响力；§6.4太空奖励/能力与事件推进；§7.3永久效果。"
+      "checked_on": "2026-10-06",
+      "description": " SS1: §2.2.4–5星号/永久标记；§5.2/5.3实际事件与牌区；§6.1.1直接影响力；§6.4太空奖励/能力与事件推进；§7.3永久效果。 PE2: §7.4.1作用于实际OPS actor不随偷牌转交，§7.4.2所有OPS用途/门槛，§7.4.3视同OPS，§6.3政变骰与OPS不同。"
     },
     {
       "id": "F2010",
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
-      "checked_on": "2026-09-22",
-      "description": " SS1: PDFp4 #18事件推进不算普通尝试；p5旧二格后续问答不覆盖Deluxe一格卡值。"
+      "checked_on": "2026-10-06",
+      "description": " SS1: PDFp4 #18事件推进不算普通尝试；p5旧二格后续问答不覆盖Deluxe一格卡值。 PE2: PDFp14 #69对方-1亦仅中/南美。"
     },
     {
       "id": "M-DELUXE",
@@ -95,6 +96,12 @@
       "url": null,
       "edition": "Engineering contracts and unresolved edges, 2026-10-06",
       "description": "事件授权帧/来源/去重及原子计划；Pope许可使用成功事实关联的ActiveEffectInstance，不以牌区推断。Pope移除不足2及Scientist已在终点尚待用户裁定，均RequiresRuling，建议不是采纳规则。"
+    },
+    {
+      "id": "PROJECT-PE2",
+      "url": null,
+      "edition": "Engineering contracts and pending repeat ruling, 2026-10-06",
+      "description": "配对原子替换仅是待用户确认候选，反方及同方新ID重复均RequiresRuling。引用共享OPS限制，骰channel不夹修正结果，实际运行/完整集成未验证，参考模型仅有限投影。"
     }
   ],
   "tests": [
@@ -110,16 +117,21 @@
     {
       "path": "Docs/Design/space-solidarity-events.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/persistent-effects-batch2.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
-    "latest_design_report": "Docs/Design/space-solidarity-events.validation.json"
+    "latest_design_report": "Docs/Design/persistent-effects-batch2.validation.json"
   },
   "open_items": [
     "其他太空事件策略及Scientist终点裁定"
   ],
   "contract_dependencies": [
-    "urn:coldwarheat:contract:space-events-batch1:1"
+    "urn:coldwarheat:contract:space-events-batch1:1",
+    "urn:coldwarheat:contract:persistent-effects-batch2:1"
   ]
 }
