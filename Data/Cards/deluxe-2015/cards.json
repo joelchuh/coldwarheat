@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.15.0",
+  "content_version": "0.16.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计35牌效果参数已绑定，其余67个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计37牌效果参数已绑定，其余65个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -95,6 +95,12 @@
       "url": null,
       "edition": "Engineering and card-text derivations, 2026-10-06",
       "description": "按稳定CardId排序后权威均匀抽样，空普通手牌完成无变化不抽随机，单候选抽一次逻辑随机；原子牌区/随机收据/子帧、私有候选和回放投影为工程约定。空手牌为无可弃对象推导，非专门FAQ。"
+    },
+    {
+      "id": "PROJECT-SE1",
+      "url": null,
+      "edition": "Engineering projection / card-text derivation, 2026-10-06",
+      "description": "不可变计分事实、Holding实体暂存、一次提交净VP/消费收据为工程设计。目标仍不从Control分母删除（FAQ Control必须被阻止）；无USSR战场时零扣分仍在下一匹配实际计分消费是next scoring文本推导，非专门FAQ。预览只算不消费。"
     }
   ],
   "cards": [
@@ -1125,8 +1131,13 @@
       "effect_binding": {
         "effect_id": "effect.formosan_resolution",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.scoring_effects_batch1",
+            "json_pointer": "/parameters/formosan_resolution"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -2218,8 +2229,13 @@
       "effect_binding": {
         "effect_id": "effect.shuttle_diplomacy",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.scoring_effects_batch1",
+            "json_pointer": "/parameters/shuttle_diplomacy"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -3877,15 +3893,32 @@
     {
       "effect_id": "effect.formosan_resolution",
       "contract_version": "0.1.0",
-      "description": "Formosan Resolution：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.formosan_resolution",
+      "description": "仅US控制台湾的亚洲真实计分/最终快照重分类；基础地图不变，US实际打中国（含太空）取消。",
+      "handler_key": "scoring.ActivateScoringBattlegroundOverride",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:scoring-effects-batch1:1#/$defs/formosan_resolution"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p6 #35：US控制台湾仅亚洲普通/最终计分为战场，US打中国取消；p11 #73：下一中东/亚洲计分USSR减一战场，随后弃牌，不用于最终。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.7控制、§7.3持续、§10.1地区档位/战场邻接与§10.3.2最终计分；卡文按§5.5覆盖通用去向。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p8 #35最终适用，p4 #6 US中国太空也取消；p15 #73 US选被扣国，北韩唯一时USSR无存在、Japan邻接分也去除、阻止全战场Control、不用于Summit/Kitchen/SoutheastAsia/Final。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-SE1",
+          "locator": "不可变计分事实、Holding实体暂存、一次提交净VP/消费收据为工程设计。目标仍不从Control分母删除（FAQ Control必须被阻止）；无USSR战场时零扣分仍在下一匹配实际计分消费是next scoring文本推导，非专门FAQ。预览只算不消费。",
+          "verification": "Verified"
         }
       ]
     },
@@ -4593,15 +4626,32 @@
     {
       "effect_id": "effect.shuttle_diplomacy",
       "contract_version": "0.1.0",
-      "description": "Shuttle Diplomacy：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.shuttle_diplomacy",
+      "description": "实体暂存至下一次实际亚洲/中东计分；US选择一个USSR控制战场从USSR总国/战场/邻接计分事实排除，随后一次弃置。",
+      "handler_key": "scoring.ActivateNextEligibleScoringExclusion",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:scoring-effects-batch1:1#/$defs/shuttle_diplomacy"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p6 #35：US控制台湾仅亚洲普通/最终计分为战场，US打中国取消；p11 #73：下一中东/亚洲计分USSR减一战场，随后弃牌，不用于最终。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.7控制、§7.3持续、§10.1地区档位/战场邻接与§10.3.2最终计分；卡文按§5.5覆盖通用去向。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p8 #35最终适用，p4 #6 US中国太空也取消；p15 #73 US选被扣国，北韩唯一时USSR无存在、Japan邻接分也去除、阻止全战场Control、不用于Summit/Kitchen/SoutheastAsia/Final。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-SE1",
+          "locator": "不可变计分事实、Holding实体暂存、一次提交净VP/消费收据为工程设计。目标仍不从Control分母删除（FAQ Control必须被阻止）；无USSR战场时零扣分仍在下一匹配实际计分消费是next scoring文本推导，非专门FAQ。预览只算不消费。",
+          "verification": "Verified"
         }
       ]
     },

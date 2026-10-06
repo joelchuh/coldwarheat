@@ -94,6 +94,11 @@
       "id": "module.hand-events",
       "path": "Docs/Descriptors/hand-events.module.json",
       "status": "planned"
+    },
+    {
+      "id": "module.scoring-effects",
+      "path": "Docs/Descriptors/scoring-effects.module.json",
+      "status": "planned"
     }
   ],
   "data_dependencies": [
@@ -111,7 +116,8 @@
     "effects.deluxe2015.war_events_batch2",
     "effects.deluxe2015.war_card_hooks",
     "effects.deluxe2015.defcon_events_batch1",
-    "effects.deluxe2015.hand_events_batch1"
+    "effects.deluxe2015.hand_events_batch1",
+    "effects.deluxe2015.scoring_effects_batch1"
   ],
   "preconditions": [
     "规则集及被触发的处理器必须齐备",
@@ -151,6 +157,12 @@
       "url": null,
       "edition": "Engineering and card-text derivations, 2026-10-06",
       "description": "按稳定CardId排序后权威均匀抽样，空普通手牌完成无变化不抽随机，单候选抽一次逻辑随机；原子牌区/随机收据/子帧、私有候选和回放投影为工程约定。空手牌为无可弃对象推导，非专门FAQ。"
+    },
+    {
+      "id": "PROJECT-SE1",
+      "url": null,
+      "edition": "Engineering projection / card-text derivation, 2026-10-06",
+      "description": "不可变计分事实、Holding实体暂存、一次提交净VP/消费收据为工程设计。目标仍不从Control分母删除（FAQ Control必须被阻止）；无USSR战场时零扣分仍在下一匹配实际计分消费是next scoring文本推导，非专门FAQ。预览只算不消费。"
     }
   ],
   "tests": [
@@ -198,12 +210,16 @@
     {
       "path": "Docs/Design/hand-events-batch1.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/scoring-effects-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
     "design_review": "检查源规则版本、转换边界、持久化、保密与异常路径；实际检查记录见工作记录",
-    "latest_design_report": "Docs/Design/hand-events-batch1.validation.json"
+    "latest_design_report": "Docs/Design/scoring-effects-batch1.validation.json"
   },
   "open_items": [
     "全部逐卡参数/处理器与跨卡优先级",

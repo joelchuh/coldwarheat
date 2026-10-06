@@ -62,3 +62,5 @@
 [战争牌持续与取消](../war-card-hooks.md)补齐本时代相关三牌参数，运行实现仍planned。
 
 [DEFCON事件](../defcon-events-batch1.md)补齐#40/#41/#43/#57参数，仍无运行处理器。
+
+穿梭外交#73见[动态计分](../scoring-effects-batch1.md)，Held实体至下一实际计分，US选排除国。

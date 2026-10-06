@@ -1,0 +1,2902 @@
+{
+  "schema_version": 1,
+  "description": "动态计分结构、控制权fixture投影/档位及一次消费、取消参考；runtime未实现。",
+  "status": "mixed-reference-and-planned",
+  "fixture_policy": "参考控制快照先显式初始化正式84国Controller=None，再应用controller_overrides；非真实影响力状态。",
+  "dataset": "Data/Cards/deluxe-2015/scoring-effects-batch1.parameters.json",
+  "schema": "Docs/Contracts/scoring-effects-batch1.schema.json",
+  "cases": [
+    {
+      "id": "SE-D-baseline",
+      "validation_layer": "data",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "SE-D-wrong-fr-controller",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "formosan_resolution",
+              "required_controller"
+            ],
+            "value": "USSR"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SE-D-wrong-taiwan",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "formosan_resolution",
+              "country_id"
+            ],
+            "value": "country.japan"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SE-D-no-final",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "formosan_resolution",
+              "allowed_invocations"
+            ],
+            "value": [
+              "PlayedScoringCard"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SE-D-world-bg",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "formosan_resolution",
+              "promotes_in_scoring_only"
+            ],
+            "value": false
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SE-D-china-usssr-cancel",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "formosan_resolution",
+              "cancel_on_card_use",
+              "card_player"
+            ],
+            "value": "USSR"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SE-D-transfer-cancel",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "formosan_resolution",
+              "cancel_on_card_use",
+              "transfer_without_use_cancels"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SE-D-ban-future",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "formosan_resolution",
+              "cancel_on_card_use",
+              "creates_prevention_record"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SE-D-omit-space",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "formosan_resolution",
+              "cancel_on_card_use",
+              "allowed_modes"
+            ],
+            "value": [
+              "Operations"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SE-D-wrong-sd-owner",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "shuttle_diplomacy",
+              "decision_owner"
+            ],
+            "value": "RootPhasingPlayer"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SE-D-wrong-sd-side",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "shuttle_diplomacy",
+              "affected_side"
+            ],
+            "value": "US"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SE-D-sd-final",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "shuttle_diplomacy",
+              "final_scoring_applies"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SE-D-sd-two",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "shuttle_diplomacy",
+              "excluded_country_count"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SE-D-keep-presence",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "shuttle_diplomacy",
+              "remove_from_ussr_total_countries"
+            ],
+            "value": false
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SE-D-keep-enemy-adj",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "shuttle_diplomacy",
+              "remove_from_ussr_enemy_adjacency_count"
+            ],
+            "value": false
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SE-D-delete-denominator",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "shuttle_diplomacy",
+              "preserve_region_battleground_universe"
+            ],
+            "value": false
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SE-D-remove-real",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "shuttle_diplomacy",
+              "remove_real_influence"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SE-D-sd-discard-now",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "shuttle_diplomacy",
+              "held_card_zone"
+            ],
+            "value": "DiscardPile"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SE-D-consume-preview",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "shuttle_diplomacy",
+              "preview_policy"
+            ],
+            "value": "Consume"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SE-D-keep-zero-candidate",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "shuttle_diplomacy",
+              "zero_candidate_policy"
+            ],
+            "value": "RetainForLater"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SE-D-repeat-stack",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "shuttle_diplomacy",
+              "duplicate_activation"
+            ],
+            "value": "Stack"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SE-D-exec-field",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "shuttle_diplomacy",
+              "script"
+            ],
+            "value": "eval()"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "SE-R-taiwan-promoted",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": true,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.taiwan": "US"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "vp": 4,
+          "completed_scoring": true
+        },
+        "bg_universe_count": 7,
+        "US": {
+          "total": 1,
+          "battlegrounds": 1,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "presence",
+          "vp": 4
+        },
+        "USSR": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "net_vp": 4,
+        "formosan_applied": true,
+        "shuttle_applied": false,
+        "consumed": false,
+        "candidates": []
+      }
+    },
+    {
+      "id": "SE-R-taiwan-inactive",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.taiwan": "US"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "vp": 3,
+          "completed_scoring": true
+        },
+        "bg_universe_count": 6,
+        "US": {
+          "total": 1,
+          "battlegrounds": 0,
+          "non_battlegrounds": 1,
+          "enemy_adjacent": 0,
+          "tier": "presence",
+          "vp": 3
+        },
+        "USSR": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "net_vp": 3,
+        "formosan_applied": false,
+        "shuttle_applied": false,
+        "consumed": false,
+        "candidates": []
+      }
+    },
+    {
+      "id": "SE-R-taiwan-ussr-not-promoted",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": true,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.taiwan": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "vp": -3,
+          "completed_scoring": true
+        },
+        "bg_universe_count": 6,
+        "US": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "USSR": {
+          "total": 1,
+          "battlegrounds": 0,
+          "non_battlegrounds": 1,
+          "enemy_adjacent": 0,
+          "tier": "presence",
+          "vp": 3
+        },
+        "net_vp": -3,
+        "formosan_applied": false,
+        "shuttle_applied": false,
+        "consumed": false,
+        "candidates": []
+      }
+    },
+    {
+      "id": "SE-R-taiwan-neutral",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": true,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "completed_scoring": true
+        },
+        "bg_universe_count": 6,
+        "US": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "USSR": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "net_vp": 0,
+        "formosan_applied": false,
+        "shuttle_applied": false,
+        "consumed": false,
+        "candidates": []
+      }
+    },
+    {
+      "id": "SE-R-taiwan-not-double-nonbg",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": true,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.taiwan": "US",
+            "country.japan": "US",
+            "country.thailand": "US",
+            "country.south_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "vp": 2,
+          "completed_scoring": true
+        },
+        "bg_universe_count": 7,
+        "US": {
+          "total": 3,
+          "battlegrounds": 3,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "presence",
+          "vp": 6
+        },
+        "USSR": {
+          "total": 1,
+          "battlegrounds": 1,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "presence",
+          "vp": 4
+        },
+        "net_vp": 2,
+        "formosan_applied": true,
+        "shuttle_applied": false,
+        "consumed": false,
+        "candidates": []
+      }
+    },
+    {
+      "id": "SE-R-taiwan-with-nonbg-domination",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": true,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.taiwan": "US",
+            "country.japan": "US",
+            "country.thailand": "US",
+            "country.south_korea": "USSR",
+            "country.burma": "US"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "vp": 6,
+          "completed_scoring": true
+        },
+        "bg_universe_count": 7,
+        "US": {
+          "total": 4,
+          "battlegrounds": 3,
+          "non_battlegrounds": 1,
+          "enemy_adjacent": 0,
+          "tier": "domination",
+          "vp": 10
+        },
+        "USSR": {
+          "total": 1,
+          "battlegrounds": 1,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "presence",
+          "vp": 4
+        },
+        "net_vp": 6,
+        "formosan_applied": true,
+        "shuttle_applied": false,
+        "consumed": false,
+        "candidates": []
+      }
+    },
+    {
+      "id": "SE-R-taiwan-final",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": null,
+        "invocation": "FinalScoring",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": true,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.taiwan": "US"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "vp": 4,
+          "completed_scoring": true
+        },
+        "bg_universe_count": 7,
+        "US": {
+          "total": 1,
+          "battlegrounds": 1,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "presence",
+          "vp": 4
+        },
+        "USSR": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "net_vp": 4,
+        "formosan_applied": true,
+        "shuttle_applied": false,
+        "consumed": false,
+        "candidates": []
+      }
+    },
+    {
+      "id": "SE-R-north-korea-only-no-presence",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": "country.north_korea",
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "completed_scoring": true
+        },
+        "bg_universe_count": 6,
+        "US": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "USSR": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "net_vp": 0,
+        "formosan_applied": false,
+        "shuttle_applied": true,
+        "consumed": true,
+        "candidates": [
+          "country.north_korea"
+        ]
+      }
+    },
+    {
+      "id": "SE-R-north-korea-us-candidate-filter",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "US"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "vp": 5,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "completed_scoring": true
+        },
+        "bg_universe_count": 6,
+        "US": {
+          "total": 1,
+          "battlegrounds": 1,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 1,
+          "tier": "presence",
+          "vp": 5
+        },
+        "USSR": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "net_vp": 5,
+        "formosan_applied": false,
+        "shuttle_applied": true,
+        "consumed": true,
+        "candidates": []
+      }
+    },
+    {
+      "id": "SE-R-japan-adjacency-removed",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": "country.japan",
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.japan": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "completed_scoring": true
+        },
+        "bg_universe_count": 6,
+        "US": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "USSR": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "net_vp": 0,
+        "formosan_applied": false,
+        "shuttle_applied": true,
+        "consumed": true,
+        "candidates": [
+          "country.japan"
+        ]
+      }
+    },
+    {
+      "id": "SE-R-all-bg-control-blocked",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": "country.japan",
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR",
+            "country.south_korea": "USSR",
+            "country.japan": "USSR",
+            "country.thailand": "USSR",
+            "country.india": "USSR",
+            "country.pakistan": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "vp": -8,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "completed_scoring": true
+        },
+        "bg_universe_count": 6,
+        "US": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "USSR": {
+          "total": 5,
+          "battlegrounds": 5,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "presence",
+          "vp": 8
+        },
+        "net_vp": -8,
+        "formosan_applied": false,
+        "shuttle_applied": true,
+        "consumed": true,
+        "candidates": [
+          "country.india",
+          "country.japan",
+          "country.north_korea",
+          "country.pakistan",
+          "country.south_korea",
+          "country.thailand"
+        ]
+      }
+    },
+    {
+      "id": "SE-R-all-bg-removal-with-nonbg-domination",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": "country.japan",
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR",
+            "country.south_korea": "USSR",
+            "country.japan": "USSR",
+            "country.thailand": "USSR",
+            "country.india": "USSR",
+            "country.pakistan": "USSR",
+            "country.burma": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "vp": -12,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "completed_scoring": true
+        },
+        "bg_universe_count": 6,
+        "US": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "USSR": {
+          "total": 6,
+          "battlegrounds": 5,
+          "non_battlegrounds": 1,
+          "enemy_adjacent": 0,
+          "tier": "domination",
+          "vp": 12
+        },
+        "net_vp": -12,
+        "formosan_applied": false,
+        "shuttle_applied": true,
+        "consumed": true,
+        "candidates": [
+          "country.india",
+          "country.japan",
+          "country.north_korea",
+          "country.pakistan",
+          "country.south_korea",
+          "country.thailand"
+        ]
+      }
+    },
+    {
+      "id": "SE-R-formosan-denominator-stops-control",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": true,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR",
+            "country.south_korea": "USSR",
+            "country.japan": "USSR",
+            "country.thailand": "USSR",
+            "country.india": "USSR",
+            "country.pakistan": "USSR",
+            "country.taiwan": "US"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "vp": -6,
+          "completed_scoring": true
+        },
+        "bg_universe_count": 7,
+        "US": {
+          "total": 1,
+          "battlegrounds": 1,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "presence",
+          "vp": 4
+        },
+        "USSR": {
+          "total": 6,
+          "battlegrounds": 6,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 1,
+          "tier": "presence",
+          "vp": 10
+        },
+        "net_vp": -6,
+        "formosan_applied": true,
+        "shuttle_applied": false,
+        "consumed": false,
+        "candidates": []
+      }
+    },
+    {
+      "id": "SE-R-combined-effects",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": "country.japan",
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": true,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR",
+            "country.south_korea": "USSR",
+            "country.japan": "USSR",
+            "country.thailand": "USSR",
+            "country.india": "USSR",
+            "country.pakistan": "USSR",
+            "country.taiwan": "US",
+            "country.burma": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "vp": -8,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "completed_scoring": true
+        },
+        "bg_universe_count": 7,
+        "US": {
+          "total": 1,
+          "battlegrounds": 1,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "presence",
+          "vp": 4
+        },
+        "USSR": {
+          "total": 6,
+          "battlegrounds": 5,
+          "non_battlegrounds": 1,
+          "enemy_adjacent": 0,
+          "tier": "domination",
+          "vp": 12
+        },
+        "net_vp": -8,
+        "formosan_applied": true,
+        "shuttle_applied": true,
+        "consumed": true,
+        "candidates": [
+          "country.india",
+          "country.japan",
+          "country.north_korea",
+          "country.pakistan",
+          "country.south_korea",
+          "country.thailand"
+        ]
+      }
+    },
+    {
+      "id": "SE-R-zero-bg-consumes",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "completed_scoring": true
+        },
+        "bg_universe_count": 6,
+        "US": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "USSR": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "net_vp": 0,
+        "formosan_applied": false,
+        "shuttle_applied": true,
+        "consumed": true,
+        "candidates": []
+      }
+    },
+    {
+      "id": "SE-R-middle-east-applies",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.middle_east",
+        "source_card_id": "card.middle_east_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": "country.iraq",
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.iraq": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "completed_scoring": true
+        },
+        "bg_universe_count": 6,
+        "US": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "USSR": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "net_vp": 0,
+        "formosan_applied": false,
+        "shuttle_applied": true,
+        "consumed": true,
+        "candidates": [
+          "country.iraq"
+        ]
+      }
+    },
+    {
+      "id": "SE-R-final-no-shuttle",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": null,
+        "invocation": "FinalScoring",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "vp": -4,
+          "completed_scoring": true
+        },
+        "bg_universe_count": 6,
+        "US": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "USSR": {
+          "total": 1,
+          "battlegrounds": 1,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "presence",
+          "vp": 4
+        },
+        "net_vp": -4,
+        "formosan_applied": false,
+        "shuttle_applied": false,
+        "consumed": false,
+        "candidates": []
+      }
+    },
+    {
+      "id": "SE-R-final-formosan-only",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": null,
+        "invocation": "FinalScoring",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": true,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.taiwan": "US"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Scored",
+        "state_patch": {
+          "vp": 4,
+          "completed_scoring": true
+        },
+        "bg_universe_count": 7,
+        "US": {
+          "total": 1,
+          "battlegrounds": 1,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "presence",
+          "vp": 4
+        },
+        "USSR": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "net_vp": 4,
+        "formosan_applied": true,
+        "shuttle_applied": false,
+        "consumed": false,
+        "candidates": []
+      }
+    },
+    {
+      "id": "SE-R-preview-no-consumption",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": true,
+        "selected_country": "country.north_korea",
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Projected",
+        "state_patch": {},
+        "bg_universe_count": 6,
+        "US": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "USSR": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "net_vp": 0,
+        "formosan_applied": false,
+        "shuttle_applied": true,
+        "consumed": false,
+        "candidates": [
+          "country.north_korea"
+        ]
+      }
+    },
+    {
+      "id": "SE-R-decision-us-before-score",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state_patch": {},
+        "owner": "US",
+        "candidates": [
+          "country.north_korea"
+        ]
+      }
+    },
+    {
+      "id": "SE-R-invalid-us-target",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": "country.taiwan",
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-wrong-decision-owner",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": "country.north_korea",
+        "actor": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Unauthorized",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-stale-decision",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": "country.north_korea",
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": false,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "StaleResponse",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-unknown-effects",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": "country.north_korea",
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": false,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-incomplete-snapshot",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": false,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "InvalidSnapshot",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-wrong-holding-zone",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "DiscardPile",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-double-scoring-id",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": true,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-terminal",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": true,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-southeast-not-applicable",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.southeast_asia",
+        "source_card_id": "card.southeast_asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "NotApplicable",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-summit-not-applicable",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.summit",
+        "invocation": "OtherEvent",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "NotApplicable",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-kitchen-not-applicable",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.kitchen_debates",
+        "invocation": "OtherEvent",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "NotApplicable",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-europe-not-applicable",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.europe",
+        "source_card_id": "card.europe_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "NotApplicable",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-forged-scoring-source",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.five_year_plan",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-bad-frame",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": false,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-china-us-operations-cancels",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ChinaUseCancellation",
+        "region_id": "region.asia",
+        "source_card_id": "card.china",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": true,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "Cancelled",
+        "state_patch": {
+          "formosan_active": false
+        }
+      }
+    },
+    {
+      "id": "SE-R-china-us-space-cancels",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ChinaUseCancellation",
+        "region_id": "region.asia",
+        "source_card_id": "card.china",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Space",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": true,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "Cancelled",
+        "state_patch": {
+          "formosan_active": false
+        }
+      }
+    },
+    {
+      "id": "SE-R-china-ussr-retains",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ChinaUseCancellation",
+        "region_id": "region.asia",
+        "source_card_id": "card.china",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "USSR",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": true,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "NoChange",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-china-event-transfer-retains",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ChinaUseCancellation",
+        "region_id": "region.asia",
+        "source_card_id": "card.china",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "EventTransfer",
+        "actual_accepted_use": false,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": true,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "NoChange",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-china-illegal-use-retains",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ChinaUseCancellation",
+        "region_id": "region.asia",
+        "source_card_id": "card.china",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": false,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": true,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "NoChange",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-china-inactive-no-change",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ChinaUseCancellation",
+        "region_id": "region.asia",
+        "source_card_id": "card.china",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "NoChange",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-china-unknown-use-mode",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ChinaUseCancellation",
+        "region_id": "region.asia",
+        "source_card_id": "card.china",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "UnknownVerifiedSubplay",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": true,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-activate-formosan",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ActivateFormosan",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "Activated",
+        "state_patch": {
+          "formosan_active": true
+        }
+      }
+    },
+    {
+      "id": "SE-R-activate-shuttle-holding",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ActivateShuttle",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": false,
+          "shuttle_zone": "InResolution",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "Activated",
+        "state_patch": {
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding"
+        }
+      }
+    },
+    {
+      "id": "SE-R-duplicate-activation-same-id",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ActivateFormosan",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": true,
+        "state": {
+          "formosan_active": true,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyActivated",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-repeat-activation-other-id",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ActivateFormosan",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": true,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-T-1",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "完整计分快照一致性与US选牌源身份/决定Revision"
+    },
+    {
+      "id": "SE-T-2",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "Scoring事务一次净VP/消费/牌区与获胜前提交"
+    },
+    {
+      "id": "SE-T-3",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "非法/过期/重复回复不消费且幂等状态Hash不变"
+    },
+    {
+      "id": "SE-T-4",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "等待穿梭决定读档恢复不重复选/扣国/移动实体"
+    },
+    {
+      "id": "SE-T-5",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "真实Chinese Card US OPS/Space接受后取消；事件转交不取消"
+    },
+    {
+      "id": "SE-T-6",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "Holding牌排除发牌/洗牌/SALT，消费后可重用"
+    },
+    {
+      "id": "SE-T-7",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "双效果与所有实际计分卡/FiveYear弃计分无触发接入"
+    },
+    {
+      "id": "SE-T-8",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "未知来源/活动/不同Resolution重复激活停止"
+    },
+    {
+      "id": "SE-T-9",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "预览按公开状态提供分支但无真实决定/消费"
+    },
+    {
+      "id": "SE-T-10",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "实际RNG不消耗；真实地图定义/影响力不改变"
+    },
+    {
+      "id": "SE-T-11",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "最终六地区及中国持有附加完整批次保留台湾、不使用穿梭"
+    },
+    {
+      "id": "SE-R-preview-options",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": true,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "ProjectionChoices",
+        "state_patch": {},
+        "candidates": [
+          "country.north_korea"
+        ]
+      }
+    },
+    {
+      "id": "SE-R-preview-opponent-can-query",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": true,
+        "selected_country": "country.north_korea",
+        "actor": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": true,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "Projected",
+        "state_patch": {},
+        "bg_universe_count": 6,
+        "US": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "USSR": {
+          "total": 0,
+          "battlegrounds": 0,
+          "non_battlegrounds": 0,
+          "enemy_adjacent": 0,
+          "tier": "none",
+          "vp": 0
+        },
+        "net_vp": 0,
+        "formosan_applied": false,
+        "shuttle_applied": true,
+        "consumed": false,
+        "candidates": [
+          "country.north_korea"
+        ]
+      }
+    },
+    {
+      "id": "SE-R-other-card-no-cancel",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ChinaUseCancellation",
+        "region_id": "region.asia",
+        "source_card_id": "card.nato",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": true,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "NoChange",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-inactive-holding-invalid",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ProjectScoring",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": false,
+          "shuttle_zone": "ActiveEventHolding",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {
+            "country.north_korea": "USSR"
+          }
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "SE-R-activate-shuttle-wrong-source-zone",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "ActivateShuttle",
+        "region_id": "region.asia",
+        "source_card_id": "card.asia_scoring",
+        "invocation": "PlayedScoringCard",
+        "preview": false,
+        "selected_country": null,
+        "actor": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "card_player": "US",
+        "use_mode": "Operations",
+        "actual_accepted_use": true,
+        "same_resolution": false,
+        "state": {
+          "formosan_active": false,
+          "shuttle_active": false,
+          "shuttle_zone": "DiscardPile",
+          "finished": false,
+          "completed_scoring": false,
+          "effects_complete": true,
+          "snapshot_complete": true,
+          "rng_cursor": 7,
+          "vp": 0,
+          "controller_overrides": {}
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state_patch": {}
+      }
+    }
+  ]
+}

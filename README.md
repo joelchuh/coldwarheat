@@ -63,4 +63,6 @@
 
 此前：[影响力迁移](Docs/Wiki/influence-relocation.md)绑定去斯大林化已知参数；累计33 Bound / 69 Unresolved，102处理器planned，重叠边界待裁定。
 
-最新：[封锁与五年计划](Docs/Wiki/hand-events-batch1.md)绑定两牌；累计35 Bound / 67 Unresolved，102处理器planned。
+此前：[封锁与五年计划](Docs/Wiki/hand-events-batch1.md)绑定两牌；累计35 Bound / 67 Unresolved，102处理器planned。
+
+最新：[动态计分效果](Docs/Wiki/scoring-effects-batch1.md)绑定台湾决议/穿梭；累计37 Bound / 65 Unresolved，102处理器planned。

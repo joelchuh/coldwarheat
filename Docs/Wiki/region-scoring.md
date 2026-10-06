@@ -1,7 +1,7 @@
 # 地区计分服务设计 v0.1
 
 > description: 查询国家控制、地区存在/支配/控制、战场与邻接奖励、东南亚特殊计分、最终六地区汇总和中国牌附加分的服务边界。
-> 状态：2026-09-22 设计稿；规则参数已核对，C#服务、完整国家目录和逐卡计分修正未实现。
+> 状态：2026-09-22 设计稿；规则参数已核对，国家目录与首批计分修正参数已建立，C#服务与完整逐卡修正未实现。
 > 入口：[模块描述](../Descriptors/region-scoring.module.json)、[地区参数](../../Data/Rulesets/deluxe-2015/region-scoring.json)、[卡牌计分参数](../../Data/Rulesets/deluxe-2015/scoring-card-parameters.json)、[验收案例](../Design/scoring-space.cases.json)。
 
 ## 1. 选择与接口
@@ -25,7 +25,7 @@ ScoringContext包含ScoringId、SourceCardId、Mode（Normal或Final）、Rulese
 
 BuildRegionFacts按地区成员集合去重，读取CountryControlRules结果，得到每方：总控制国数、计分用战场控制数、非战场控制数、邻接敌方超级大国的控制国数，以及本地区有效战场总数。东/西欧重叠标签中的同一国家只计一次。东南亚是亚洲子区，正常亚洲计分包含它；中国内战可选区域不进入基础国家集合。
 
-计分专用修正以显式策略改变ScoringFacts或某项奖励，必须带SourceEffectId与规则依据。不能修改CountryDefinition.IsBattleground或真实影响力。比如计分时增加战场身份与政变时是否降DEFCON是不同问题。台海决议、穿梭外交等逐卡策略仍须核对并实现；活动效果存在但对应策略缺失时阻止结算，不能默认忽略。
+计分专用修正以显式策略改变ScoringFacts或某项奖励，必须带SourceEffectId与规则依据。不能修改CountryDefinition.IsBattleground或真实影响力。比如计分时增加战场身份与政变时是否降DEFCON是不同问题。台湾决议、穿梭外交的首批策略已核对，见scoring-effects-batch1；真实服务与其他逐卡策略仍须实现；活动效果存在但对应策略缺失时阻止结算，不能默认忽略。
 
 ## 3. 地区档位与公式
 
@@ -100,3 +100,5 @@ flowchart LR
 对应案例SC-01起，见[验收设计](../Design/scoring-space.cases.json)。这些是待实现的业务案例，包含档位临界、总数平手、欧洲控制、双重奖励、东南亚、最终汇总、数据缺失和幂等。下一步初始布置、逐卡计分修正与运行服务完成后，再把它们转成运行测试。
 
 [太空竞赛设计](space-race.md) · [返回索引](index.md)
+
+[动态计分效果](scoring-effects-batch1.md)先重分类台湾，再由US选穿梭排除国。排除只从USSR总国/战场/敌邻接事实扣除，Control用战场全集不删除该国；实体消费与整个VP批次同一提交。预览不消费，Final仅台湾规则适用。

@@ -39,13 +39,19 @@
     {
       "path": "Docs/Wiki/risk-victory.md",
       "relation": "编排层将完整VP批次及证据交给胜负服务"
+    },
+    {
+      "id": "module.scoring-effects",
+      "path": "Docs/Descriptors/scoring-effects.module.json",
+      "status": "planned"
     }
   ],
   "data_dependencies": [
     "rules.deluxe2015.region-scoring",
     "cards.deluxe2015.scoring-parameters",
     "rules.deluxe2015.turn-flow",
-    "map.deluxe2015.world"
+    "map.deluxe2015.world",
+    "effects.deluxe2015.scoring_effects_batch1"
   ],
   "preconditions": [
     "当前为设计；尚无可调用实现",
@@ -57,7 +63,7 @@
   "stop_conditions": [
     "地区缺漏、重复或混合快照",
     "活动计分修正没有已核实处理器",
-    "缺失正式国家/卡牌目录或数据版本不匹配"
+    "缺失国家/卡牌定义或引用或数据版本不匹配"
   ],
   "rule_sources": [
     {
@@ -77,6 +83,12 @@
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "scope": "GMT托管土耳其语汇编中的英文印刷卡图；只采纳指定卡图，不以译文或PDF元数据当作新版勘误",
       "checked_on": "2026-09-22"
+    },
+    {
+      "id": "PROJECT-SE1",
+      "url": null,
+      "edition": "Engineering projection / card-text derivation, 2026-10-06",
+      "description": "不可变计分事实、Holding实体暂存、一次提交净VP/消费收据为工程设计。目标仍不从Control分母删除（FAQ Control必须被阻止）；无USSR战场时零扣分仍在下一匹配实际计分消费是next scoring文本推导，非专门FAQ。预览只算不消费。"
     }
   ],
   "tests": [
@@ -84,13 +96,18 @@
       "path": "Docs/Design/scoring-space.cases.json",
       "status": "planned",
       "coverage_prefix": "SC"
+    },
+    {
+      "path": "Docs/Design/scoring-effects-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
-    "implementation_tested": false
+    "implementation_tested": false,
+    "latest_design_report": "Docs/Design/scoring-effects-batch1.validation.json"
   },
   "open_items": [
-    "正式地图和卡牌目录",
-    "台海决议、穿梭外交等计分修正策略"
+    "已绑定台湾决议/穿梭外交的真实实现；其余未设计修正",
+    "完整真实快照/事务/最终汇总与运行计分处理器"
   ]
 }

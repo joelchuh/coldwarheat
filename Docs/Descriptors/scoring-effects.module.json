@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "id": "module.scoring-effects",
+  "kind": "module",
+  "status": "planned",
+  "description": "计分专用效果：台湾战场重分类、穿梭排除候选/一次消费及中国使用取消；纯计划，不修改基础地图或自行提交VP。",
+  "documentation": "Docs/Wiki/scoring-effects-batch1.md",
+  "entrypoints": [],
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ScoringEffectService.cs",
+      "symbol": "BuildProjection"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ScoringEffectService.cs",
+      "symbol": "BuildExclusionDecision"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ScoringEffectService.cs",
+      "symbol": "PlanConsumption"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ScoringEffectService.cs",
+      "symbol": "PlanChinaUseCancellation"
+    }
+  ],
+  "inputs": [
+    "完整计分/国家控制快照、已验证调用来源、活动效果与牌区",
+    "真实China CardUse上下文；预览标志和决定Owner/Revision"
+  ],
+  "outputs": [
+    "不可变ScoringFacts/候选及选择约束，Holding→Discard与活动消费计划，取消计划"
+  ],
+  "dependencies": [
+    {
+      "id": "module.active-effects",
+      "path": "Docs/Descriptors/active-effects.module.json",
+      "status": "planned"
+    }
+  ],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world",
+    "rules.deluxe2015.region-scoring",
+    "effects.deluxe2015.scoring_effects_batch1"
+  ],
+  "contract_dependencies": [
+    "urn:coldwarheat:contract:scoring-effects-batch1:1"
+  ],
+  "preconditions": [
+    "planned；调用方按同一快照计算双方并统一关闭VP批次",
+    "US选择前快照不得冻结为未来结果；预览不消费实体或效果"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知计分效果/来源、缺失地区控制快照或不一致实例/实体位置",
+    "US选择错误/过期/越权、未知China使用来源或重复激活"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "目视英文p6 #35：US控制台湾仅亚洲普通/最终计分为战场，US打中国取消；p11 #73：下一中东/亚洲计分USSR减一战场，随后弃牌，不用于最终。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1.7控制、§7.3持续、§10.1地区档位/战场邻接与§10.3.2最终计分；卡文按§5.5覆盖通用去向。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p8 #35最终适用，p4 #6 US中国太空也取消；p15 #73 US选被扣国，北韩唯一时USSR无存在、Japan邻接分也去除、阻止全战场Control、不用于Summit/Kitchen/SoutheastAsia/Final。"
+    },
+    {
+      "id": "PROJECT-SE1",
+      "url": null,
+      "edition": "Engineering projection / card-text derivation, 2026-10-06",
+      "description": "不可变计分事实、Holding实体暂存、一次提交净VP/消费收据为工程设计。目标仍不从Control分母删除（FAQ Control必须被阻止）；无USSR战场时零扣分仍在下一匹配实际计分消费是next scoring文本推导，非专门FAQ。预览只算不消费。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/scoring-effects-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "implementation_tested": false,
+    "report": "Docs/Design/scoring-effects-batch1.validation.json"
+  }
+}

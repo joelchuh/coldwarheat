@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.scoring_effects_batch1",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "台湾决议/穿梭外交计分参数：动态战场、US选排除国与邻接/存在/控制影响，实体暂存和一次消费；无C#实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "目视英文p6 #35：US控制台湾仅亚洲普通/最终计分为战场，US打中国取消；p11 #73：下一中东/亚洲计分USSR减一战场，随后弃牌，不用于最终。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1.7控制、§7.3持续、§10.1地区档位/战场邻接与§10.3.2最终计分；卡文按§5.5覆盖通用去向。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p8 #35最终适用，p4 #6 US中国太空也取消；p15 #73 US选被扣国，北韩唯一时USSR无存在、Japan邻接分也去除、阻止全战场Control、不用于Summit/Kitchen/SoutheastAsia/Final。"
+    },
+    {
+      "id": "PROJECT-SE1",
+      "url": null,
+      "edition": "Engineering projection / card-text derivation, 2026-10-06",
+      "description": "不可变计分事实、Holding实体暂存、一次提交净VP/消费收据为工程设计。目标仍不从Control分母删除（FAQ Control必须被阻止）；无USSR战场时零扣分仍在下一匹配实际计分消费是next scoring文本推导，非专门FAQ。预览只算不消费。"
+    }
+  ],
+  "parameters": {
+    "formosan_resolution": {
+      "card_id": "card.formosan_resolution",
+      "effect_id": "effect.formosan_resolution",
+      "description": "仅US控制台湾的亚洲真实计分/最终快照重分类；基础地图不变，US实际打中国（含太空）取消。",
+      "template": "ActivateScoringBattlegroundOverride",
+      "beneficiary": "US",
+      "duration": "UntilCancelled",
+      "country_id": "country.taiwan",
+      "required_controller": "US",
+      "region_id": "region.asia",
+      "allowed_invocations": [
+        "PlayedScoringCard",
+        "FinalScoring"
+      ],
+      "played_scoring_card_id": "card.asia_scoring",
+      "promotes_in_scoring_only": true,
+      "cancel_on_card_use": {
+        "card_id": "card.china",
+        "card_player": "US",
+        "allowed_modes": [
+          "Operations",
+          "Space"
+        ],
+        "requires_actual_accepted_use": true,
+        "cancel_after_use": true,
+        "transfer_without_use_cancels": false,
+        "creates_prevention_record": false
+      },
+      "duplicate_activation": "IdempotentByResolutionIdOtherwiseRequiresRuling",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p6 #35：US控制台湾仅亚洲普通/最终计分为战场，US打中国取消；p11 #73：下一中东/亚洲计分USSR减一战场，随后弃牌，不用于最终。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.7控制、§7.3持续、§10.1地区档位/战场邻接与§10.3.2最终计分；卡文按§5.5覆盖通用去向。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p8 #35最终适用，p4 #6 US中国太空也取消；p15 #73 US选被扣国，北韩唯一时USSR无存在、Japan邻接分也去除、阻止全战场Control、不用于Summit/Kitchen/SoutheastAsia/Final。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-SE1",
+          "locator": "不可变计分事实、Holding实体暂存、一次提交净VP/消费收据为工程设计。目标仍不从Control分母删除（FAQ Control必须被阻止）；无USSR战场时零扣分仍在下一匹配实际计分消费是next scoring文本推导，非专门FAQ。预览只算不消费。",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "shuttle_diplomacy": {
+      "card_id": "card.shuttle_diplomacy",
+      "effect_id": "effect.shuttle_diplomacy",
+      "description": "实体暂存至下一次实际亚洲/中东计分；US选择一个USSR控制战场从USSR总国/战场/邻接计分事实排除，随后一次弃置。",
+      "template": "ActivateNextEligibleScoringExclusion",
+      "beneficiary": "US",
+      "decision_owner": "US",
+      "affected_side": "USSR",
+      "region_ids": [
+        "region.asia",
+        "region.middle_east"
+      ],
+      "played_scoring_card_ids": [
+        "card.asia_scoring",
+        "card.middle_east_scoring"
+      ],
+      "allowed_invocation": "PlayedScoringCard",
+      "final_scoring_applies": false,
+      "duration": "UntilNextEligibleScoring",
+      "country_query": "UssrControlledScoringBattlegroundsInRegion",
+      "excluded_country_count": 1,
+      "remove_from_ussr_total_countries": true,
+      "remove_from_ussr_battleground_count": true,
+      "remove_from_ussr_enemy_adjacency_count": true,
+      "preserve_region_battleground_universe": true,
+      "remove_real_influence": false,
+      "held_card_zone": "ActiveEventHolding",
+      "after_consumption_zone": "DiscardPile",
+      "consumption_policy": "OnceWithSuccessfulScoringCommit",
+      "zero_candidate_policy": "ConsumeWithoutCountryExclusion",
+      "preview_policy": "PureProjectionNoConsumption",
+      "duplicate_activation": "IdempotentByResolutionIdOtherwiseRequiresRuling",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p6 #35：US控制台湾仅亚洲普通/最终计分为战场，US打中国取消；p11 #73：下一中东/亚洲计分USSR减一战场，随后弃牌，不用于最终。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.1.7控制、§7.3持续、§10.1地区档位/战场邻接与§10.3.2最终计分；卡文按§5.5覆盖通用去向。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p8 #35最终适用，p4 #6 US中国太空也取消；p15 #73 US选被扣国，北韩唯一时USSR无存在、Japan邻接分也去除、阻止全战场Control、不用于Summit/Kitchen/SoutheastAsia/Final。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-SE1",
+          "locator": "不可变计分事实、Holding实体暂存、一次提交净VP/消费收据为工程设计。目标仍不从Control分母删除（FAQ Control必须被阻止）；无USSR战场时零扣分仍在下一匹配实际计分消费是next scoring文本推导，非专门FAQ。预览只算不消费。",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "id": "data.scoring-effects-batch1",
+  "kind": "data",
+  "status": "ready",
+  "description": "台湾决议/穿梭外交计分参数：动态战场、US选排除国与邻接/存在/控制影响，实体暂存和一次消费；无C#实现。",
+  "dataset_id": "effects.deluxe2015.scoring_effects_batch1",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/scoring-effects-batch1.schema.json",
+  "documentation": "Docs/Wiki/scoring-effects-batch1.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/scoring-effects-batch1.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "两个EffectId及完整计分/实际China CardUse内部来源"
+  ],
+  "outputs": [
+    "只读计分重分类/候选/消费与取消策略"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world",
+    "rules.deluxe2015.region-scoring"
+  ],
+  "preconditions": [
+    "Bound参数就绪不是运行处理器",
+    "SourceCard/Invocation/Revision已校验；活动实例与Holding实体一致；基础地图不可变"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知计分效果/来源、缺失地区控制快照或不一致实例/实体位置",
+    "US选择错误/过期/越权、未知China使用来源或重复激活"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "目视英文p6 #35：US控制台湾仅亚洲普通/最终计分为战场，US打中国取消；p11 #73：下一中东/亚洲计分USSR减一战场，随后弃牌，不用于最终。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1.7控制、§7.3持续、§10.1地区档位/战场邻接与§10.3.2最终计分；卡文按§5.5覆盖通用去向。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p8 #35最终适用，p4 #6 US中国太空也取消；p15 #73 US选被扣国，北韩唯一时USSR无存在、Japan邻接分也去除、阻止全战场Control、不用于Summit/Kitchen/SoutheastAsia/Final。"
+    },
+    {
+      "id": "PROJECT-SE1",
+      "url": null,
+      "edition": "Engineering projection / card-text derivation, 2026-10-06",
+      "description": "不可变计分事实、Holding实体暂存、一次提交净VP/消费收据为工程设计。目标仍不从Control分母删除（FAQ Control必须被阻止）；无USSR战场时零扣分仍在下一匹配实际计分消费是next scoring文本推导，非专门FAQ。预览只算不消费。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/scoring-effects-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/scoring-effects-batch1.validation.json"
+  }
+}

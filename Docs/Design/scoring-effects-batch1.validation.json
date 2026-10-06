@@ -1,0 +1,346 @@
+{
+  "description": "动态计分结构、档位/邻接/Control事实与消费/取消投影；非生产运行测试。",
+  "checked_on": "2026-10-06",
+  "new_cases_passed": 72,
+  "previous_cases_passed": 1057,
+  "total_cases_passed": 1129,
+  "cases_by_layer": {
+    "data": 22,
+    "fixed-reference": 50,
+    "runtime": 11
+  },
+  "runtime_cases_not_run": 11,
+  "runtime_game_tests_run": 0,
+  "bound_cards": 37,
+  "unresolved_bindings": 65,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 22,
+    "json_files_parsed": 141,
+    "data_descriptors": 26,
+    "module_descriptors": 19,
+    "relative_links_checked": 161,
+    "parameter_pointers_resolved": 69
+  },
+  "validated_sha256": {
+    "Data/Cards/deluxe-2015/scoring-effects-batch1.parameters.json": "19a2ee9c29aaa0bf98863ff8e0a85c4fae8cbec997f97e876882392301086078",
+    "Docs/Contracts/scoring-effects-batch1.schema.json": "384d397649beb4b560516eebfbe3ecd6b0f2b22a31e4255e153edb7f64a0f6c3",
+    "Docs/Design/scoring-effects-batch1.cases.json": "2dee05f3013e20932c723c454cec1fa9f0a5db85dfbfd01044c5800ab4558103",
+    "Data/Cards/deluxe-2015/cards.json": "e274f1c886c3e1374e5e4e80036cb313c45b8ba8a0b68d63b1f6a5d684ae6567",
+    "Data/Maps/deluxe-2015/world.json": "6d4e20c674bd74d44cdb0f1ca66e8e960f125b3e45076d05307125a3c36ea45b",
+    "Docs/Descriptors/scoring-effects.module.json": "606f0e5d75576f252626d9b73cacb0f260dc554335b2510cfcd503ae0f4150b1",
+    "Docs/Descriptors/region-scoring.module.json": "b4ca01ce216f1e592a465cc69e66e8809f7aafcaeea4839e24c249bf96d4b039",
+    "Docs/Descriptors/active-effects.module.json": "73dcbf8bf782635872ea37265096f3bb7a89e734be3722d80a503df828d327d5",
+    "Docs/Descriptors/turn-flow.module.json": "e344dfb8d732729a232f67b4b884919a71f10598d846456a05d49a585a8ab050",
+    "Data/Rulesets/deluxe-2015/region-scoring.json": "6c2f7d4e01273ccf92944b40f83a63dcbc41406ada3218fa9b94ea97b5609d35"
+  },
+  "results": [
+    {
+      "id": "SE-D-baseline",
+      "passed": true
+    },
+    {
+      "id": "SE-D-wrong-fr-controller",
+      "passed": true
+    },
+    {
+      "id": "SE-D-wrong-taiwan",
+      "passed": true
+    },
+    {
+      "id": "SE-D-no-final",
+      "passed": true
+    },
+    {
+      "id": "SE-D-world-bg",
+      "passed": true
+    },
+    {
+      "id": "SE-D-china-usssr-cancel",
+      "passed": true
+    },
+    {
+      "id": "SE-D-transfer-cancel",
+      "passed": true
+    },
+    {
+      "id": "SE-D-ban-future",
+      "passed": true
+    },
+    {
+      "id": "SE-D-omit-space",
+      "passed": true
+    },
+    {
+      "id": "SE-D-wrong-sd-owner",
+      "passed": true
+    },
+    {
+      "id": "SE-D-wrong-sd-side",
+      "passed": true
+    },
+    {
+      "id": "SE-D-sd-final",
+      "passed": true
+    },
+    {
+      "id": "SE-D-sd-two",
+      "passed": true
+    },
+    {
+      "id": "SE-D-keep-presence",
+      "passed": true
+    },
+    {
+      "id": "SE-D-keep-enemy-adj",
+      "passed": true
+    },
+    {
+      "id": "SE-D-delete-denominator",
+      "passed": true
+    },
+    {
+      "id": "SE-D-remove-real",
+      "passed": true
+    },
+    {
+      "id": "SE-D-sd-discard-now",
+      "passed": true
+    },
+    {
+      "id": "SE-D-consume-preview",
+      "passed": true
+    },
+    {
+      "id": "SE-D-keep-zero-candidate",
+      "passed": true
+    },
+    {
+      "id": "SE-D-repeat-stack",
+      "passed": true
+    },
+    {
+      "id": "SE-D-exec-field",
+      "passed": true
+    },
+    {
+      "id": "SE-R-taiwan-promoted",
+      "passed": true
+    },
+    {
+      "id": "SE-R-taiwan-inactive",
+      "passed": true
+    },
+    {
+      "id": "SE-R-taiwan-ussr-not-promoted",
+      "passed": true
+    },
+    {
+      "id": "SE-R-taiwan-neutral",
+      "passed": true
+    },
+    {
+      "id": "SE-R-taiwan-not-double-nonbg",
+      "passed": true
+    },
+    {
+      "id": "SE-R-taiwan-with-nonbg-domination",
+      "passed": true
+    },
+    {
+      "id": "SE-R-taiwan-final",
+      "passed": true
+    },
+    {
+      "id": "SE-R-north-korea-only-no-presence",
+      "passed": true
+    },
+    {
+      "id": "SE-R-north-korea-us-candidate-filter",
+      "passed": true
+    },
+    {
+      "id": "SE-R-japan-adjacency-removed",
+      "passed": true
+    },
+    {
+      "id": "SE-R-all-bg-control-blocked",
+      "passed": true
+    },
+    {
+      "id": "SE-R-all-bg-removal-with-nonbg-domination",
+      "passed": true
+    },
+    {
+      "id": "SE-R-formosan-denominator-stops-control",
+      "passed": true
+    },
+    {
+      "id": "SE-R-combined-effects",
+      "passed": true
+    },
+    {
+      "id": "SE-R-zero-bg-consumes",
+      "passed": true
+    },
+    {
+      "id": "SE-R-middle-east-applies",
+      "passed": true
+    },
+    {
+      "id": "SE-R-final-no-shuttle",
+      "passed": true
+    },
+    {
+      "id": "SE-R-final-formosan-only",
+      "passed": true
+    },
+    {
+      "id": "SE-R-preview-no-consumption",
+      "passed": true
+    },
+    {
+      "id": "SE-R-decision-us-before-score",
+      "passed": true
+    },
+    {
+      "id": "SE-R-invalid-us-target",
+      "passed": true
+    },
+    {
+      "id": "SE-R-wrong-decision-owner",
+      "passed": true
+    },
+    {
+      "id": "SE-R-stale-decision",
+      "passed": true
+    },
+    {
+      "id": "SE-R-unknown-effects",
+      "passed": true
+    },
+    {
+      "id": "SE-R-incomplete-snapshot",
+      "passed": true
+    },
+    {
+      "id": "SE-R-wrong-holding-zone",
+      "passed": true
+    },
+    {
+      "id": "SE-R-double-scoring-id",
+      "passed": true
+    },
+    {
+      "id": "SE-R-terminal",
+      "passed": true
+    },
+    {
+      "id": "SE-R-southeast-not-applicable",
+      "passed": true
+    },
+    {
+      "id": "SE-R-summit-not-applicable",
+      "passed": true
+    },
+    {
+      "id": "SE-R-kitchen-not-applicable",
+      "passed": true
+    },
+    {
+      "id": "SE-R-europe-not-applicable",
+      "passed": true
+    },
+    {
+      "id": "SE-R-forged-scoring-source",
+      "passed": true
+    },
+    {
+      "id": "SE-R-bad-frame",
+      "passed": true
+    },
+    {
+      "id": "SE-R-china-us-operations-cancels",
+      "passed": true
+    },
+    {
+      "id": "SE-R-china-us-space-cancels",
+      "passed": true
+    },
+    {
+      "id": "SE-R-china-ussr-retains",
+      "passed": true
+    },
+    {
+      "id": "SE-R-china-event-transfer-retains",
+      "passed": true
+    },
+    {
+      "id": "SE-R-china-illegal-use-retains",
+      "passed": true
+    },
+    {
+      "id": "SE-R-china-inactive-no-change",
+      "passed": true
+    },
+    {
+      "id": "SE-R-china-unknown-use-mode",
+      "passed": true
+    },
+    {
+      "id": "SE-R-activate-formosan",
+      "passed": true
+    },
+    {
+      "id": "SE-R-activate-shuttle-holding",
+      "passed": true
+    },
+    {
+      "id": "SE-R-duplicate-activation-same-id",
+      "passed": true
+    },
+    {
+      "id": "SE-R-repeat-activation-other-id",
+      "passed": true
+    },
+    {
+      "id": "SE-R-preview-options",
+      "passed": true
+    },
+    {
+      "id": "SE-R-preview-opponent-can-query",
+      "passed": true
+    },
+    {
+      "id": "SE-R-other-card-no-cancel",
+      "passed": true
+    },
+    {
+      "id": "SE-R-inactive-holding-invalid",
+      "passed": true
+    },
+    {
+      "id": "SE-R-activate-shuttle-wrong-source-zone",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "11runtime未执行；真实计分事务/VS终局/China使用/牌区/恢复/网络未验证",
+    "参考从84国Controller=None基线应用明确fixture覆盖，不验证真实影响力控制算法",
+    "预览/消费/取消/激活仅显式状态投影；不执行真实卡牌注册、根名额或随机算法",
+    "零USSR战场仍消费按next scoring文本推导；所有工程约定与官方范围区分",
+    "1057旧业务夹具预期不变，仅适配库存/完成参数出处",
+    "Flower和迁移重叠仍待裁定；临时模型不作为正式复用脚本"
+  ],
+  "independent_review": {
+    "status": "no-important-findings",
+    "independently_checked": [
+      "141 JSON/catalogs/69 pointers/acyclic 19 modules/161 candidate links",
+      "10 hashes and printed attributes / 37 Bound65Unresolved102planned",
+      "50 fixed-reference cases independently executed; 20 scoring outputs independently recomputed",
+      "official Deluxe #35/#73/China/scoring sources; stale summary absent in final candidate"
+    ],
+    "full_reference_rerun": "not-run: independent review did not run 22 data/meta schemas or1057 history; no full1129 claimed",
+    "runtime_cases_run": 0
+  }
+}

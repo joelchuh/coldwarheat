@@ -110,7 +110,7 @@ ValidateIntent → CommitPlay → BuildPlan
 
 ## 6. 卡牌位置与结算结果
 
-DeckState 对普通牌只允许一个物理区域：DrawPile、Hand、HeadlineReserved、InResolution、DiscardPile 或 Removed。未来年代的牌在 EraReserve 中，进入本局牌堆后才改变区域。
+DeckState 对普通牌只允许一个物理区域：DrawPile、Hand、HeadlineReserved、InResolution、ActiveEventHolding、DiscardPile 或 Removed。未来年代的牌在 EraReserve 中，进入本局牌堆后才改变区域。
 
 CardPlayContext 中区分 NotTriggered、BlockedPrerequisite、Suppressed、ResolvedNoChange、ResolvedChanged。Cancelled 的去向须由具体取消策略规定，不能与“未满足条件”混为一谈。核心依据为 R2015 §2.2、§5.2、§5.4、§6.4.5、§7.3、§9。
 
@@ -226,3 +226,5 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 [DEFCON事件与政变干预](defcon-events-batch1.md)补齐危机实际Actor责任、任意边界解除、核潜艇/SALT政策与ABM视同OPS；全部仍planned。
 
 [手牌事件](hand-events-batch1.md)仅弃牌不创建CardUse；五年计划US关联牌以RandomDiscardTriggeredEvent压入US控制事件帧，继承根PhasingPlayer，不自动给被弃牌印刷OPS/新根名额；子事件自身卡文授权仍执行，不在DiscardPile与InResolution保留双份。封锁决定Owner固定US，候选仅Owner可见。
+
+[动态计分](scoring-effects-batch1.md)引入穿梭专用公开ActiveEventHolding：成功事件Finalize进入该位置而非Discard，至下一匹配真实计分一次性移动并消费；普通持续实例与实体引用仍分离、不能双份。China真实US使用后取消台湾规则，不由事件转交或UI揭示触发。

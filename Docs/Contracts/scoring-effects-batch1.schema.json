@@ -1,0 +1,396 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:scoring-effects-batch1:1",
+  "title": "计分效果第一批参数",
+  "description": "封闭台湾动态计分战场/中国实际使用取消与穿梭一次性选国排除、保留Control分母及Holding策略。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.scoring_effects_batch1"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "release-candidate"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "url",
+          "edition",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "edition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "formosan_resolution",
+        "shuttle_diplomacy"
+      ],
+      "properties": {
+        "formosan_resolution": {
+          "$ref": "#/$defs/formosan_resolution"
+        },
+        "shuttle_diplomacy": {
+          "$ref": "#/$defs/shuttle_diplomacy"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "formosan_resolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "duration",
+        "country_id",
+        "required_controller",
+        "region_id",
+        "allowed_invocations",
+        "played_scoring_card_id",
+        "promotes_in_scoring_only",
+        "cancel_on_card_use",
+        "duplicate_activation",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.formosan_resolution"
+        },
+        "effect_id": {
+          "const": "effect.formosan_resolution"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "ActivateScoringBattlegroundOverride"
+        },
+        "beneficiary": {
+          "const": "US"
+        },
+        "duration": {
+          "const": "UntilCancelled"
+        },
+        "country_id": {
+          "const": "country.taiwan"
+        },
+        "required_controller": {
+          "const": "US"
+        },
+        "region_id": {
+          "const": "region.asia"
+        },
+        "allowed_invocations": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "const": "PlayedScoringCard"
+            },
+            {
+              "const": "FinalScoring"
+            }
+          ],
+          "items": false
+        },
+        "played_scoring_card_id": {
+          "const": "card.asia_scoring"
+        },
+        "promotes_in_scoring_only": {
+          "const": true
+        },
+        "cancel_on_card_use": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "card_id",
+            "card_player",
+            "allowed_modes",
+            "requires_actual_accepted_use",
+            "cancel_after_use",
+            "transfer_without_use_cancels",
+            "creates_prevention_record"
+          ],
+          "properties": {
+            "card_id": {
+              "const": "card.china"
+            },
+            "card_player": {
+              "const": "US"
+            },
+            "allowed_modes": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "prefixItems": [
+                {
+                  "const": "Operations"
+                },
+                {
+                  "const": "Space"
+                }
+              ],
+              "items": false
+            },
+            "requires_actual_accepted_use": {
+              "const": true
+            },
+            "cancel_after_use": {
+              "const": true
+            },
+            "transfer_without_use_cancels": {
+              "const": false
+            },
+            "creates_prevention_record": {
+              "const": false
+            }
+          }
+        },
+        "duplicate_activation": {
+          "const": "IdempotentByResolutionIdOtherwiseRequiresRuling"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    },
+    "shuttle_diplomacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "decision_owner",
+        "affected_side",
+        "region_ids",
+        "played_scoring_card_ids",
+        "allowed_invocation",
+        "final_scoring_applies",
+        "duration",
+        "country_query",
+        "excluded_country_count",
+        "remove_from_ussr_total_countries",
+        "remove_from_ussr_battleground_count",
+        "remove_from_ussr_enemy_adjacency_count",
+        "preserve_region_battleground_universe",
+        "remove_real_influence",
+        "held_card_zone",
+        "after_consumption_zone",
+        "consumption_policy",
+        "zero_candidate_policy",
+        "preview_policy",
+        "duplicate_activation",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.shuttle_diplomacy"
+        },
+        "effect_id": {
+          "const": "effect.shuttle_diplomacy"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "ActivateNextEligibleScoringExclusion"
+        },
+        "beneficiary": {
+          "const": "US"
+        },
+        "decision_owner": {
+          "const": "US"
+        },
+        "affected_side": {
+          "const": "USSR"
+        },
+        "region_ids": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "const": "region.asia"
+            },
+            {
+              "const": "region.middle_east"
+            }
+          ],
+          "items": false
+        },
+        "played_scoring_card_ids": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "const": "card.asia_scoring"
+            },
+            {
+              "const": "card.middle_east_scoring"
+            }
+          ],
+          "items": false
+        },
+        "allowed_invocation": {
+          "const": "PlayedScoringCard"
+        },
+        "final_scoring_applies": {
+          "const": false
+        },
+        "duration": {
+          "const": "UntilNextEligibleScoring"
+        },
+        "country_query": {
+          "const": "UssrControlledScoringBattlegroundsInRegion"
+        },
+        "excluded_country_count": {
+          "const": 1
+        },
+        "remove_from_ussr_total_countries": {
+          "const": true
+        },
+        "remove_from_ussr_battleground_count": {
+          "const": true
+        },
+        "remove_from_ussr_enemy_adjacency_count": {
+          "const": true
+        },
+        "preserve_region_battleground_universe": {
+          "const": true
+        },
+        "remove_real_influence": {
+          "const": false
+        },
+        "held_card_zone": {
+          "const": "ActiveEventHolding"
+        },
+        "after_consumption_zone": {
+          "const": "DiscardPile"
+        },
+        "consumption_policy": {
+          "const": "OnceWithSuccessfulScoringCommit"
+        },
+        "zero_candidate_policy": {
+          "const": "ConsumeWithoutCountryExclusion"
+        },
+        "preview_policy": {
+          "const": "PureProjectionNoConsumption"
+        },
+        "duplicate_activation": {
+          "const": "IdempotentByResolutionIdOtherwiseRequiresRuling"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
