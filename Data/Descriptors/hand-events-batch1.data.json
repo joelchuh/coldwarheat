@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "id": "data.hand-events-batch1",
+  "kind": "data",
+  "status": "ready",
+  "description": "封锁/五年计划手牌参数：私有OPS阈值弃牌、权威随机弃牌及US事件子帧；共享OPS策略，C#未实现。",
+  "dataset_id": "effects.deluxe2015.hand_events_batch1",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/hand-events-batch1.schema.json",
+  "documentation": "Docs/Wiki/hand-events-batch1.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/hand-events-batch1.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "CardId/EffectId和已认证权威结算上下文"
+  ],
+  "outputs": [
+    "固定拥有者、牌区、阈值引用、随机/子事件路由策略"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world",
+    "effects.deluxe2015.persistent_batch1"
+  ],
+  "preconditions": [
+    "参数就绪不是游戏实现",
+    "普通牌唯一位置；完整已知活动状态；候选不含正在结算或头条保留牌"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知OPS修正、缺失定义/处理器/内部出处、非法牌区或过期/越权选择",
+    "不允许客户端提供随机索引或结果；不得泄露未选手牌"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "目视英文p2 #5随机弃苏联手牌：仅US关联事件立即发生；p3 #10 US立即弃3+OPS牌否则移除西德全部US影响力。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§5.2事件归属与成功星号；§5.4弃牌不触发及§5.5卡文优先；§7.4.1/7.4.2有效OPS归属/所有用途；§9.5/9.8中国牌不接受事件弃牌。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p3 #5可合法随机弃持有计分牌；p19 §5弃牌堆公开。"
+    },
+    {
+      "id": "PROJECT-HC1",
+      "url": null,
+      "edition": "Engineering and card-text derivations, 2026-10-06",
+      "description": "按稳定CardId排序后权威均匀抽样，空普通手牌完成无变化不抽随机，单候选抽一次逻辑随机；原子牌区/随机收据/子帧、私有候选和回放投影为工程约定。空手牌为无可弃对象推导，非专门FAQ。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/hand-events-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/hand-events-batch1.validation.json"
+  }
+}

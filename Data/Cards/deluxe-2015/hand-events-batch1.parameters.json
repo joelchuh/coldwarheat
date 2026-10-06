@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.hand_events_batch1",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "封锁/五年计划手牌参数：私有OPS阈值弃牌、权威随机弃牌及US事件子帧；共享OPS策略，C#未实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "目视英文p2 #5随机弃苏联手牌：仅US关联事件立即发生；p3 #10 US立即弃3+OPS牌否则移除西德全部US影响力。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§5.2事件归属与成功星号；§5.4弃牌不触发及§5.5卡文优先；§7.4.1/7.4.2有效OPS归属/所有用途；§9.5/9.8中国牌不接受事件弃牌。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p3 #5可合法随机弃持有计分牌；p19 §5弃牌堆公开。"
+    },
+    {
+      "id": "PROJECT-HC1",
+      "url": null,
+      "edition": "Engineering and card-text derivations, 2026-10-06",
+      "description": "按稳定CardId排序后权威均匀抽样，空普通手牌完成无变化不抽随机，单候选抽一次逻辑随机；原子牌区/随机收据/子帧、私有候选和回放投影为工程约定。空手牌为无可弃对象推导，非专门FAQ。"
+    }
+  ],
+  "parameters": {
+    "blockade": {
+      "card_id": "card.blockade",
+      "effect_id": "effect.blockade",
+      "description": "固定US可选单张有效OPS≥3的普通手牌作无事件弃置，否则移除西德全部US；不消耗US额外名额。",
+      "template": "DiscardOrRemoveAllInfluence",
+      "decision_owner": "US",
+      "hand_owner": "US",
+      "minimum_effective_ops": 3,
+      "ops_purpose": "OpsThreshold",
+      "ops_policy_ref": {
+        "dataset_id": "effects.deluxe2015.persistent_batch1",
+        "json_pointer": "/ops_policy"
+      },
+      "source_zone": "Hand",
+      "allowed_kind": "Event",
+      "allow_decline": true,
+      "discard_destination": "DiscardPile",
+      "discard_event_policy": "DoNotTrigger",
+      "fallback_influence": {
+        "country_id": "country.west_germany",
+        "side": "US",
+        "operation": "RemoveAll"
+      },
+      "candidate_visibility": "DecisionOwnerOnly",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p2 #5随机弃苏联手牌：仅US关联事件立即发生；p3 #10 US立即弃3+OPS牌否则移除西德全部US影响力。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2事件归属与成功星号；§5.4弃牌不触发及§5.5卡文优先；§7.4.1/7.4.2有效OPS归属/所有用途；§9.5/9.8中国牌不接受事件弃牌。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p3 #5可合法随机弃持有计分牌；p19 §5弃牌堆公开。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-HC1",
+          "locator": "按稳定CardId排序后权威均匀抽样，空普通手牌完成无变化不抽随机，单候选抽一次逻辑随机；原子牌区/随机收据/子帧、私有候选和回放投影为工程约定。空手牌为无可弃对象推导，非专门FAQ。",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "five_year_plan": {
+      "card_id": "card.five_year_plan",
+      "effect_id": "effect.five_year_plan",
+      "description": "权威随机弃USSR普通手牌一张；US关联事件压入US控制事件帧，USSR/Neutral/Scoring不触发；不是新出牌。",
+      "template": "RandomDiscardWithAffiliationEvent",
+      "hand_owner": "USSR",
+      "source_zone": "Hand",
+      "candidate_kind_policy": "AllOrdinaryCardsIncludingScoring",
+      "discard_count": 1,
+      "sampling_policy": "UniformBoundedDrawOnStableCardIdOrder",
+      "empty_hand_policy": "ResolvedNoChangeWithoutRandom",
+      "singleton_policy": "OneLogicalBoundedDraw",
+      "immediate_event_affiliation": "US",
+      "child_event_controller": "US",
+      "child_event_source": "RandomDiscardTriggeredEvent",
+      "creates_card_use": false,
+      "automatically_grants_discarded_card_ops": false,
+      "consumes_root_slot": false,
+      "child_phasing_policy": "InheritRootPhasingPlayer",
+      "ordinary_discard_destination": "DiscardPile",
+      "triggered_event_zone": "InResolution",
+      "triggered_event_disposition": "ExistingEventOutcomeAndPrintedRemovalPolicy",
+      "candidate_visibility": "AuthorityOnly",
+      "selected_card_visibility": "BothPlayersAfterAcceptedDiscard",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p2 #5随机弃苏联手牌：仅US关联事件立即发生；p3 #10 US立即弃3+OPS牌否则移除西德全部US影响力。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2事件归属与成功星号；§5.4弃牌不触发及§5.5卡文优先；§7.4.1/7.4.2有效OPS归属/所有用途；§9.5/9.8中国牌不接受事件弃牌。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p3 #5可合法随机弃持有计分牌；p19 §5弃牌堆公开。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-HC1",
+          "locator": "按稳定CardId排序后权威均匀抽样，空普通手牌完成无变化不抽随机，单候选抽一次逻辑随机；原子牌区/随机收据/子帧、私有候选和回放投影为工程约定。空手牌为无可弃对象推导，非专门FAQ。",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

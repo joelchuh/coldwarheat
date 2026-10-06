@@ -1,0 +1,2128 @@
+{
+  "schema_version": 1,
+  "description": "手牌事件结构负例和固定牌区/OPS/随机路由参考；子事件效果及真实鉴权/恢复未运行。",
+  "status": "mixed-reference-and-planned",
+  "dataset": "Data/Cards/deluxe-2015/hand-events-batch1.parameters.json",
+  "schema": "Docs/Contracts/hand-events-batch1.schema.json",
+  "cases": [
+    {
+      "id": "HC-D-baseline",
+      "validation_layer": "data",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "HC-D-wrong-owner",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "blockade",
+              "decision_owner"
+            ],
+            "value": "USSR"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-wrong-hand",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "blockade",
+              "hand_owner"
+            ],
+            "value": "EventController"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-wrong-threshold",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "blockade",
+              "minimum_effective_ops"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-printed-threshold",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "blockade",
+              "ops_purpose"
+            ],
+            "value": "PrintedOps"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-wrong-policy",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "blockade",
+              "ops_policy_ref",
+              "json_pointer"
+            ],
+            "value": "/missing"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-mandatory-discard",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "blockade",
+              "allow_decline"
+            ],
+            "value": false
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-china-kind",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "blockade",
+              "allowed_kind"
+            ],
+            "value": "China"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-event-discard",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "blockade",
+              "discard_event_policy"
+            ],
+            "value": "Trigger"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-removed-discard",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "blockade",
+              "discard_destination"
+            ],
+            "value": "Removed"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-east-germany",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "blockade",
+              "fallback_influence",
+              "country_id"
+            ],
+            "value": "country.east_germany"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-remove-ussr",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "blockade",
+              "fallback_influence",
+              "side"
+            ],
+            "value": "USSR"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-public-candidates",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "blockade",
+              "candidate_visibility"
+            ],
+            "value": "BothPlayers"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-us-hand",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "five_year_plan",
+              "hand_owner"
+            ],
+            "value": "US"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-skip-scoring",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "five_year_plan",
+              "candidate_kind_policy"
+            ],
+            "value": "EventOnly"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-two-discards",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "five_year_plan",
+              "discard_count"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-client-random",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "five_year_plan",
+              "sampling_policy"
+            ],
+            "value": "ClientIndex"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-empty-random",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "five_year_plan",
+              "empty_hand_policy"
+            ],
+            "value": "DrawAnyway"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-singleton-no-draw",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "five_year_plan",
+              "singleton_policy"
+            ],
+            "value": "ZeroDraws"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-neutral-event",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "five_year_plan",
+              "immediate_event_affiliation"
+            ],
+            "value": "Neutral"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-root-owner",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "five_year_plan",
+              "child_event_controller"
+            ],
+            "value": "RootPhasingPlayer"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-card-play",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "five_year_plan",
+              "creates_card_use"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-grant-ops",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "five_year_plan",
+              "automatically_grants_discarded_card_ops"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-extra-slot",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "five_year_plan",
+              "consumes_root_slot"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-new-phasing",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "five_year_plan",
+              "child_phasing_policy"
+            ],
+            "value": "US"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-random-candidates-public",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "five_year_plan",
+              "candidate_visibility"
+            ],
+            "value": "BothPlayers"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-two-zones",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "five_year_plan",
+              "triggered_event_zone"
+            ],
+            "value": "DiscardAndInResolution"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-D-free-script",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "blockade",
+              "script"
+            ],
+            "value": "eval()"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "HC-R-us-private-candidates",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeCandidates",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": null,
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "Candidates",
+        "state_patch": {},
+        "candidates": [
+          "card.de_stalinization",
+          "card.nato"
+        ]
+      }
+    },
+    {
+      "id": "HC-R-opponent-private-filter",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeCandidates",
+        "actor": "US",
+        "viewer": "USSR",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": null,
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "PrivateDecision",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "HC-R-discard-star-opponent-event",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeChoice",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": "card.fidel",
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": true,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "DiscardPile",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "HC-R-discard-three",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeChoice",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": "card.de_stalinization",
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "DiscardPile",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "HC-R-decline-eligible",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeChoice",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": "Decline",
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "west_germany": {
+            "US": 0,
+            "USSR": 1
+          },
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "HC-R-zero-fallback",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeChoice",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": "Decline",
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 0,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "state_patch": {
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "HC-R-printed-three-purged",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeChoice",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": "card.de_stalinization",
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": "US",
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "IllegalDiscard",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "HC-R-four-purged-valid",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeChoice",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": "card.nato",
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": "US",
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "DiscardPile",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "HC-R-combined-flat",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeChoice",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": "card.de_stalinization",
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": true,
+          "purged_side": "US",
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "DiscardPile",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "HC-R-other-side-purge",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeCandidates",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": null,
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": "USSR",
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "Candidates",
+        "state_patch": {},
+        "candidates": [
+          "card.de_stalinization",
+          "card.nato"
+        ]
+      }
+    },
+    {
+      "id": "HC-R-two-no-containment",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeChoice",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": "card.fidel",
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "IllegalDiscard",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "HC-R-china-forbidden",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeChoice",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": "card.china",
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "IllegalDiscard",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "HC-R-scoring-forbidden",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeChoice",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": "card.middle_east_scoring",
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "IllegalDiscard",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "HC-R-source-in-resolution",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeChoice",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": "card.blockade",
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": true,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "IllegalDiscard",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "HC-R-headline-excluded",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeChoice",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": "card.nato",
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "HeadlineReserved.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "IllegalDiscard",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "HC-R-other-hand-excluded",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeChoice",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": "card.nato",
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.USSR",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "IllegalDiscard",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "HC-R-no-candidates-fallback",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeStart",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": null,
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.fidel": "Hand.US",
+            "card.china": "China.US",
+            "card.blockade": "InResolution"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "Completed",
+        "state_patch": {
+          "west_germany": {
+            "US": 0,
+            "USSR": 1
+          },
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "HC-R-start-awaits-us",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeStart",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": null,
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state_patch": {},
+        "owner": "US",
+        "private_candidates": [
+          "card.de_stalinization",
+          "card.nato"
+        ]
+      }
+    },
+    {
+      "id": "HC-R-wrong-owner",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeChoice",
+        "actor": "USSR",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": "card.de_stalinization",
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "Unauthorized",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "HC-R-stale-response",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeChoice",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": false,
+        "selected_card": "Decline",
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "StaleResponse",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "HC-R-unknown-effects",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeChoice",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": "Decline",
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": false,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "HC-R-bad-frame",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeChoice",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": false,
+        "revision_matches": true,
+        "selected_card": "Decline",
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "HC-R-finished",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeChoice",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": "Decline",
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": true,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "HC-R-completed",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "BlockadeChoice",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": "Decline",
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.blockade": "InResolution",
+            "card.de_stalinization": "Hand.US",
+            "card.fidel": "Hand.US",
+            "card.nato": "Hand.US",
+            "card.middle_east_scoring": "Hand.US",
+            "card.china": "China.US",
+            "card.cuban_missile_crisis": "DiscardPile"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "HC-R-random-ussr-discard",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "FiveYearPlan",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": null,
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.five_year_plan": "InResolution",
+            "card.fidel": "Hand.USSR",
+            "card.marshall_plan": "Hand.USSR",
+            "card.middle_east_scoring": "Hand.USSR",
+            "card.china": "China.USSR"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "DiscardedNoEvent",
+        "state_patch": {
+          "zones": {
+            "card.five_year_plan": "InResolution",
+            "card.fidel": "DiscardPile",
+            "card.marshall_plan": "Hand.USSR",
+            "card.middle_east_scoring": "Hand.USSR",
+            "card.china": "China.USSR"
+          },
+          "rng_cursor": 12,
+          "completed": true
+        },
+        "selected_card": "card.fidel"
+      }
+    },
+    {
+      "id": "HC-R-random-us-child",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "FiveYearPlan",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": null,
+        "fixed_rng_index": 1,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.five_year_plan": "InResolution",
+            "card.fidel": "Hand.USSR",
+            "card.marshall_plan": "Hand.USSR",
+            "card.middle_east_scoring": "Hand.USSR",
+            "card.china": "China.USSR"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingChildEvent",
+        "state_patch": {
+          "zones": {
+            "card.five_year_plan": "InResolution",
+            "card.fidel": "Hand.USSR",
+            "card.marshall_plan": "InResolution",
+            "card.middle_east_scoring": "Hand.USSR",
+            "card.china": "China.USSR"
+          },
+          "rng_cursor": 12
+        },
+        "selected_card": "card.marshall_plan",
+        "child": {
+          "controller": "US",
+          "root_phasing_player": "USSR",
+          "card_use_created": false,
+          "automatic_printed_ops_granted": false,
+          "root_slot_consumed": false
+        }
+      }
+    },
+    {
+      "id": "HC-R-random-scoring-discard",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "FiveYearPlan",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": null,
+        "fixed_rng_index": 2,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.five_year_plan": "InResolution",
+            "card.fidel": "Hand.USSR",
+            "card.marshall_plan": "Hand.USSR",
+            "card.middle_east_scoring": "Hand.USSR",
+            "card.china": "China.USSR"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "DiscardedNoEvent",
+        "state_patch": {
+          "zones": {
+            "card.five_year_plan": "InResolution",
+            "card.fidel": "Hand.USSR",
+            "card.marshall_plan": "Hand.USSR",
+            "card.middle_east_scoring": "DiscardPile",
+            "card.china": "China.USSR"
+          },
+          "rng_cursor": 12,
+          "completed": true
+        },
+        "selected_card": "card.middle_east_scoring"
+      }
+    },
+    {
+      "id": "HC-R-neutral-no-war",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "FiveYearPlan",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": null,
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.five_year_plan": "InResolution",
+            "card.indo_pakistani_war": "Hand.USSR"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "DiscardedNoEvent",
+        "state_patch": {
+          "zones": {
+            "card.five_year_plan": "InResolution",
+            "card.indo_pakistani_war": "DiscardPile"
+          },
+          "rng_cursor": 12,
+          "completed": true
+        },
+        "selected_card": "card.indo_pakistani_war"
+      }
+    },
+    {
+      "id": "HC-R-us-root-inherited",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "FiveYearPlan",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "US",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": null,
+        "fixed_rng_index": 1,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.five_year_plan": "InResolution",
+            "card.fidel": "Hand.USSR",
+            "card.marshall_plan": "Hand.USSR",
+            "card.middle_east_scoring": "Hand.USSR",
+            "card.china": "China.USSR"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingChildEvent",
+        "state_patch": {
+          "zones": {
+            "card.five_year_plan": "InResolution",
+            "card.fidel": "Hand.USSR",
+            "card.marshall_plan": "InResolution",
+            "card.middle_east_scoring": "Hand.USSR",
+            "card.china": "China.USSR"
+          },
+          "rng_cursor": 12
+        },
+        "selected_card": "card.marshall_plan",
+        "child": {
+          "controller": "US",
+          "root_phasing_player": "US",
+          "card_use_created": false,
+          "automatic_printed_ops_granted": false,
+          "root_slot_consumed": false
+        }
+      }
+    },
+    {
+      "id": "HC-R-empty-excludes-china-headline",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "FiveYearPlan",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": null,
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.five_year_plan": "InResolution",
+            "card.china": "China.USSR",
+            "card.fidel": "HeadlineReserved.USSR"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "state_patch": {
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "HC-R-other-hand-not-random",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "FiveYearPlan",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": null,
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.five_year_plan": "InResolution",
+            "card.marshall_plan": "Hand.US"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "state_patch": {
+          "completed": true
+        }
+      }
+    },
+    {
+      "id": "HC-R-client-random-rejected",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "FiveYearPlan",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": null,
+        "fixed_rng_index": 0,
+        "client_random_supplied": true,
+        "state": {
+          "zones": {
+            "card.five_year_plan": "InResolution",
+            "card.fidel": "Hand.USSR",
+            "card.marshall_plan": "Hand.USSR",
+            "card.middle_east_scoring": "Hand.USSR",
+            "card.china": "China.USSR"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "HC-R-random-bad-frame",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "FiveYearPlan",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": false,
+        "revision_matches": true,
+        "selected_card": null,
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.five_year_plan": "InResolution",
+            "card.fidel": "Hand.USSR",
+            "card.marshall_plan": "Hand.USSR",
+            "card.middle_east_scoring": "Hand.USSR",
+            "card.china": "China.USSR"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "HC-R-random-unknown-effects",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "FiveYearPlan",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": null,
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.five_year_plan": "InResolution",
+            "card.fidel": "Hand.USSR",
+            "card.marshall_plan": "Hand.USSR",
+            "card.middle_east_scoring": "Hand.USSR",
+            "card.china": "China.USSR"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": false,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "HC-R-random-completed-idempotent",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "FiveYearPlan",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": null,
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.five_year_plan": "InResolution",
+            "card.fidel": "Hand.USSR",
+            "card.marshall_plan": "Hand.USSR",
+            "card.middle_east_scoring": "Hand.USSR",
+            "card.china": "China.USSR"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": true,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "HC-R-random-terminal",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "FiveYearPlan",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": null,
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.five_year_plan": "InResolution",
+            "card.fidel": "Hand.USSR",
+            "card.marshall_plan": "Hand.USSR",
+            "card.middle_east_scoring": "Hand.USSR",
+            "card.china": "China.USSR"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": true,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "HC-R-unknown-card-definition",
+      "validation_layer": "fixed-reference",
+      "input": {
+        "operation": "FiveYearPlan",
+        "actor": "US",
+        "viewer": "US",
+        "root_phasing_player": "USSR",
+        "verified_internal_frame": true,
+        "revision_matches": true,
+        "selected_card": null,
+        "fixed_rng_index": 0,
+        "client_random_supplied": false,
+        "state": {
+          "zones": {
+            "card.missing": "Hand.USSR"
+          },
+          "west_germany": {
+            "US": 5,
+            "USSR": 1
+          },
+          "containment": false,
+          "purged_side": null,
+          "effects_complete": true,
+          "finished": false,
+          "completed": false,
+          "rng_cursor": 11
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state_patch": {}
+      }
+    },
+    {
+      "id": "HC-T-1",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "真实会话认证Owner与公开快照不泄露完整候选"
+    },
+    {
+      "id": "HC-T-2",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "Blockade当前Step/DecisionId/Revision而非仅actor门禁"
+    },
+    {
+      "id": "HC-T-3",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "牌区唯一与错误不改状态/RNG"
+    },
+    {
+      "id": "HC-T-4",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "相同命令返回原收据，同ID异内容拒绝"
+    },
+    {
+      "id": "HC-T-5",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "选五年计划抽样与子帧序列化读档不重抽"
+    },
+    {
+      "id": "HC-T-6",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "提交前基于旧候选状态的未接受随机计划拒绝且不耗RNG；已接受CommandId收据永久保留，后续手牌变化/读档/重试不能重抽"
+    },
+    {
+      "id": "HC-T-7",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "选中US星号事件成功/Blocked去向与所有已绑定处理器接入"
+    },
+    {
+      "id": "HC-T-8",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "子事件终局停止父帧及根核战责任保持"
+    },
+    {
+      "id": "HC-T-9",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "不新增CardUse/被弃牌印刷OPS/根名额；CIA Created或Tear Down This Wall子事件自身卡文授权仍运行并遵守真实hook/终局门禁"
+    },
+    {
+      "id": "HC-T-10",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "US/USSR/neutral/scoring多方视角事件日志和回放过滤"
+    },
+    {
+      "id": "HC-T-11",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "随机算法拒绝偏差与游标可持久化，NextInt实际draw消耗按选定RNG实现"
+    },
+    {
+      "id": "HC-T-12",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "完整规则包门禁预检所有潜在子处理器，不重抽未知/未实现牌"
+    }
+  ]
+}

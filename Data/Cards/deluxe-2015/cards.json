@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.14.0",
+  "content_version": "0.15.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计33牌效果参数已绑定，其余69个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计35牌效果参数已绑定，其余67个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -89,6 +89,12 @@
       "url": null,
       "edition": "DS1 engineering / unresolved overlap, 2026-10-06",
       "description": "收集完整来源和目的分配后原子校验/提交；同国既移出又移入的细节与控制快照缺专门裁定，保留RequiresRuling，不编造禁止或允许。最多允许零迁移，按up to推导，无专门FAQ。"
+    },
+    {
+      "id": "PROJECT-HC1",
+      "url": null,
+      "edition": "Engineering and card-text derivations, 2026-10-06",
+      "description": "按稳定CardId排序后权威均匀抽样，空普通手牌完成无变化不抽随机，单候选抽一次逻辑随机；原子牌区/随机收据/子帧、私有候选和回放投影为工程约定。空手牌为无可弃对象推导，非专门FAQ。"
     }
   ],
   "cards": [
@@ -216,8 +222,13 @@
       "effect_binding": {
         "effect_id": "effect.five_year_plan",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.hand_events_batch1",
+            "json_pointer": "/parameters/five_year_plan"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -339,8 +350,13 @@
       "effect_binding": {
         "effect_id": "effect.blockade",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.hand_events_batch1",
+            "json_pointer": "/parameters/blockade"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -3103,15 +3119,32 @@
     {
       "effect_id": "effect.five_year_plan",
       "contract_version": "0.1.0",
-      "description": "Five Year Plan：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.five_year_plan",
+      "description": "权威随机弃USSR普通手牌一张；US关联事件压入US控制事件帧，USSR/Neutral/Scoring不触发；不是新出牌。",
+      "handler_key": "hand.RandomDiscardWithAffiliationEvent",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:hand-events-batch1:1#/$defs/five_year_plan"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p2 #5随机弃苏联手牌：仅US关联事件立即发生；p3 #10 US立即弃3+OPS牌否则移除西德全部US影响力。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2事件归属与成功星号；§5.4弃牌不触发及§5.5卡文优先；§7.4.1/7.4.2有效OPS归属/所有用途；§9.5/9.8中国牌不接受事件弃牌。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p3 #5可合法随机弃持有计分牌；p19 §5弃牌堆公开。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-HC1",
+          "locator": "按稳定CardId排序后权威均匀抽样，空普通手牌完成无变化不抽随机，单候选抽一次逻辑随机；原子牌区/随机收据/子帧、私有候选和回放投影为工程约定。空手牌为无可弃对象推导，非专门FAQ。",
+          "verification": "Verified"
         }
       ]
     },
@@ -3204,15 +3237,32 @@
     {
       "effect_id": "effect.blockade",
       "contract_version": "0.1.0",
-      "description": "Blockade：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.blockade",
+      "description": "固定US可选单张有效OPS≥3的普通手牌作无事件弃置，否则移除西德全部US；不消耗US额外名额。",
+      "handler_key": "hand.DiscardOrRemoveAllInfluence",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:hand-events-batch1:1#/$defs/blockade"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "目视英文p2 #5随机弃苏联手牌：仅US关联事件立即发生；p3 #10 US立即弃3+OPS牌否则移除西德全部US影响力。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2事件归属与成功星号；§5.4弃牌不触发及§5.5卡文优先；§7.4.1/7.4.2有效OPS归属/所有用途；§9.5/9.8中国牌不接受事件弃牌。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p3 #5可合法随机弃持有计分牌；p19 §5弃牌堆公开。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-HC1",
+          "locator": "按稳定CardId排序后权威均匀抽样，空普通手牌完成无变化不抽随机，单候选抽一次逻辑随机；原子牌区/随机收据/子帧、私有候选和回放投影为工程约定。空手牌为无可弃对象推导，非专门FAQ。",
+          "verification": "Verified"
         }
       ]
     },

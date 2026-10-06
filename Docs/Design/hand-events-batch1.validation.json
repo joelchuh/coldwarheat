@@ -1,0 +1,320 @@
+{
+  "description": "手牌结构、私有候选/阈值/随机牌区与子帧路由固定参考；非真实运行测试。",
+  "checked_on": "2026-10-06",
+  "new_cases_passed": 65,
+  "previous_cases_passed": 992,
+  "total_cases_passed": 1057,
+  "cases_by_layer": {
+    "data": 28,
+    "fixed-reference": 37,
+    "runtime": 12
+  },
+  "runtime_cases_not_run": 12,
+  "runtime_game_tests_run": 0,
+  "bound_cards": 35,
+  "unresolved_bindings": 67,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 21,
+    "json_files_parsed": 135,
+    "data_descriptors": 25,
+    "module_descriptors": 18,
+    "relative_links_checked": 142,
+    "parameter_pointers_resolved": 67
+  },
+  "validated_sha256": {
+    "Data/Cards/deluxe-2015/hand-events-batch1.parameters.json": "96c1fa808481197c3986a9fc838cfced27410e70b8c9a1001677390418f8d13f",
+    "Docs/Contracts/hand-events-batch1.schema.json": "a399338eda0aef552f8d75a425c61a82a764eedd9d26b8cd0df4f44a52dd2a6e",
+    "Docs/Design/hand-events-batch1.cases.json": "ac1d6d5a97e1ed188a94044511c622e3473232edeb58b6e0215d13f2a4218756",
+    "Data/Cards/deluxe-2015/cards.json": "b672f1b5418154282c79d823024535954f3ec976d5ecc8d68e94bb5deb4014a0",
+    "Data/Maps/deluxe-2015/world.json": "6d4e20c674bd74d44cdb0f1ca66e8e960f125b3e45076d05307125a3c36ea45b",
+    "Docs/Descriptors/hand-events.module.json": "9b83e30618daf9b9d7e621f9e44f34962fc1d560c06b49755f95bd43e11108d0",
+    "Docs/Descriptors/turn-flow.module.json": "1a254a2c1416bff7df6833d8a1c374256a13d132d25051ec571ba658cffa6467",
+    "Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json": "e229d5494deba9031c3348f7d726dd09fc2d8ce28eb2db618142712c79d538d4"
+  },
+  "results": [
+    {
+      "id": "HC-D-baseline",
+      "passed": true
+    },
+    {
+      "id": "HC-D-wrong-owner",
+      "passed": true
+    },
+    {
+      "id": "HC-D-wrong-hand",
+      "passed": true
+    },
+    {
+      "id": "HC-D-wrong-threshold",
+      "passed": true
+    },
+    {
+      "id": "HC-D-printed-threshold",
+      "passed": true
+    },
+    {
+      "id": "HC-D-wrong-policy",
+      "passed": true
+    },
+    {
+      "id": "HC-D-mandatory-discard",
+      "passed": true
+    },
+    {
+      "id": "HC-D-china-kind",
+      "passed": true
+    },
+    {
+      "id": "HC-D-event-discard",
+      "passed": true
+    },
+    {
+      "id": "HC-D-removed-discard",
+      "passed": true
+    },
+    {
+      "id": "HC-D-east-germany",
+      "passed": true
+    },
+    {
+      "id": "HC-D-remove-ussr",
+      "passed": true
+    },
+    {
+      "id": "HC-D-public-candidates",
+      "passed": true
+    },
+    {
+      "id": "HC-D-us-hand",
+      "passed": true
+    },
+    {
+      "id": "HC-D-skip-scoring",
+      "passed": true
+    },
+    {
+      "id": "HC-D-two-discards",
+      "passed": true
+    },
+    {
+      "id": "HC-D-client-random",
+      "passed": true
+    },
+    {
+      "id": "HC-D-empty-random",
+      "passed": true
+    },
+    {
+      "id": "HC-D-singleton-no-draw",
+      "passed": true
+    },
+    {
+      "id": "HC-D-neutral-event",
+      "passed": true
+    },
+    {
+      "id": "HC-D-root-owner",
+      "passed": true
+    },
+    {
+      "id": "HC-D-card-play",
+      "passed": true
+    },
+    {
+      "id": "HC-D-grant-ops",
+      "passed": true
+    },
+    {
+      "id": "HC-D-extra-slot",
+      "passed": true
+    },
+    {
+      "id": "HC-D-new-phasing",
+      "passed": true
+    },
+    {
+      "id": "HC-D-random-candidates-public",
+      "passed": true
+    },
+    {
+      "id": "HC-D-two-zones",
+      "passed": true
+    },
+    {
+      "id": "HC-D-free-script",
+      "passed": true
+    },
+    {
+      "id": "HC-R-us-private-candidates",
+      "passed": true
+    },
+    {
+      "id": "HC-R-opponent-private-filter",
+      "passed": true
+    },
+    {
+      "id": "HC-R-discard-star-opponent-event",
+      "passed": true
+    },
+    {
+      "id": "HC-R-discard-three",
+      "passed": true
+    },
+    {
+      "id": "HC-R-decline-eligible",
+      "passed": true
+    },
+    {
+      "id": "HC-R-zero-fallback",
+      "passed": true
+    },
+    {
+      "id": "HC-R-printed-three-purged",
+      "passed": true
+    },
+    {
+      "id": "HC-R-four-purged-valid",
+      "passed": true
+    },
+    {
+      "id": "HC-R-combined-flat",
+      "passed": true
+    },
+    {
+      "id": "HC-R-other-side-purge",
+      "passed": true
+    },
+    {
+      "id": "HC-R-two-no-containment",
+      "passed": true
+    },
+    {
+      "id": "HC-R-china-forbidden",
+      "passed": true
+    },
+    {
+      "id": "HC-R-scoring-forbidden",
+      "passed": true
+    },
+    {
+      "id": "HC-R-source-in-resolution",
+      "passed": true
+    },
+    {
+      "id": "HC-R-headline-excluded",
+      "passed": true
+    },
+    {
+      "id": "HC-R-other-hand-excluded",
+      "passed": true
+    },
+    {
+      "id": "HC-R-no-candidates-fallback",
+      "passed": true
+    },
+    {
+      "id": "HC-R-start-awaits-us",
+      "passed": true
+    },
+    {
+      "id": "HC-R-wrong-owner",
+      "passed": true
+    },
+    {
+      "id": "HC-R-stale-response",
+      "passed": true
+    },
+    {
+      "id": "HC-R-unknown-effects",
+      "passed": true
+    },
+    {
+      "id": "HC-R-bad-frame",
+      "passed": true
+    },
+    {
+      "id": "HC-R-finished",
+      "passed": true
+    },
+    {
+      "id": "HC-R-completed",
+      "passed": true
+    },
+    {
+      "id": "HC-R-random-ussr-discard",
+      "passed": true
+    },
+    {
+      "id": "HC-R-random-us-child",
+      "passed": true
+    },
+    {
+      "id": "HC-R-random-scoring-discard",
+      "passed": true
+    },
+    {
+      "id": "HC-R-neutral-no-war",
+      "passed": true
+    },
+    {
+      "id": "HC-R-us-root-inherited",
+      "passed": true
+    },
+    {
+      "id": "HC-R-empty-excludes-china-headline",
+      "passed": true
+    },
+    {
+      "id": "HC-R-other-hand-not-random",
+      "passed": true
+    },
+    {
+      "id": "HC-R-client-random-rejected",
+      "passed": true
+    },
+    {
+      "id": "HC-R-random-bad-frame",
+      "passed": true
+    },
+    {
+      "id": "HC-R-random-unknown-effects",
+      "passed": true
+    },
+    {
+      "id": "HC-R-random-completed-idempotent",
+      "passed": true
+    },
+    {
+      "id": "HC-R-random-terminal",
+      "passed": true
+    },
+    {
+      "id": "HC-R-unknown-card-definition",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "12runtime未执行，真实身份/牌区唯一/存档/回放/网络过滤未验证",
+    "参考仅处理单卡随机路由和OPS投影，不执行US子事件或根行动；RNG是固定provider逻辑游标，不是正式随机算法耗用字节",
+    "全规则包与潜在子处理器预检由夹具verified_internal_frame假定，所有处理器仍planned",
+    "空手牌无随机完成与单候选一次抽样是HC1约定/文本推导，不冒称官方专门裁定",
+    "992旧业务夹具预期不变，仅适配库存/完成参数出处",
+    "Flower未收到答复、迁移重叠待裁定保持；没有固化正式自动脚本"
+  ],
+  "independent_review": {
+    "status": "no-important-findings-after-fixes",
+    "fixed_findings": [
+      "FYP no automatic printed OPS, child event natural authorization retained",
+      "accepted random receipts permanent; stale unaccepted plans distinguished",
+      "worklog old OPS wording synchronized"
+    ],
+    "independently_checked": [
+      "135 JSON/catalogs/67 pointers/acyclic 18 modules/142 candidate links",
+      "8 hashes and printed attributes / 35 Bound67Unresolved102planned",
+      "official #5/#10 and OPS/China/discard rules"
+    ],
+    "full_reference_rerun": "not-run: independent jsonschema import PermissionError once; no retry/escalation; no full1057 claimed",
+    "runtime_cases_run": 0
+  }
+}

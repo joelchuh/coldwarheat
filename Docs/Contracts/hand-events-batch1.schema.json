@@ -1,0 +1,349 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:hand-events-batch1:1",
+  "title": "手牌事件参数第一批",
+  "description": "封闭的US阈值弃牌/西德移除与USSR随机弃牌/US子事件策略，禁止可执行脚本字段。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.hand_events_batch1"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "release-candidate"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "url",
+          "edition",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "edition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "blockade",
+        "five_year_plan"
+      ],
+      "properties": {
+        "blockade": {
+          "$ref": "#/$defs/blockade"
+        },
+        "five_year_plan": {
+          "$ref": "#/$defs/five_year_plan"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "blockade": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "decision_owner",
+        "hand_owner",
+        "minimum_effective_ops",
+        "ops_purpose",
+        "ops_policy_ref",
+        "source_zone",
+        "allowed_kind",
+        "allow_decline",
+        "discard_destination",
+        "discard_event_policy",
+        "fallback_influence",
+        "candidate_visibility",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.blockade"
+        },
+        "effect_id": {
+          "const": "effect.blockade"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "DiscardOrRemoveAllInfluence"
+        },
+        "decision_owner": {
+          "const": "US"
+        },
+        "hand_owner": {
+          "const": "US"
+        },
+        "minimum_effective_ops": {
+          "const": 3
+        },
+        "ops_purpose": {
+          "const": "OpsThreshold"
+        },
+        "ops_policy_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.persistent_batch1"
+            },
+            "json_pointer": {
+              "const": "/ops_policy"
+            }
+          }
+        },
+        "source_zone": {
+          "const": "Hand"
+        },
+        "allowed_kind": {
+          "const": "Event"
+        },
+        "allow_decline": {
+          "const": true
+        },
+        "discard_destination": {
+          "const": "DiscardPile"
+        },
+        "discard_event_policy": {
+          "const": "DoNotTrigger"
+        },
+        "fallback_influence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "country_id",
+            "side",
+            "operation"
+          ],
+          "properties": {
+            "country_id": {
+              "const": "country.west_germany"
+            },
+            "side": {
+              "const": "US"
+            },
+            "operation": {
+              "const": "RemoveAll"
+            }
+          }
+        },
+        "candidate_visibility": {
+          "const": "DecisionOwnerOnly"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    },
+    "five_year_plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "hand_owner",
+        "source_zone",
+        "candidate_kind_policy",
+        "discard_count",
+        "sampling_policy",
+        "empty_hand_policy",
+        "singleton_policy",
+        "immediate_event_affiliation",
+        "child_event_controller",
+        "child_event_source",
+        "creates_card_use",
+        "automatically_grants_discarded_card_ops",
+        "consumes_root_slot",
+        "child_phasing_policy",
+        "ordinary_discard_destination",
+        "triggered_event_zone",
+        "triggered_event_disposition",
+        "candidate_visibility",
+        "selected_card_visibility",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.five_year_plan"
+        },
+        "effect_id": {
+          "const": "effect.five_year_plan"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "RandomDiscardWithAffiliationEvent"
+        },
+        "hand_owner": {
+          "const": "USSR"
+        },
+        "source_zone": {
+          "const": "Hand"
+        },
+        "candidate_kind_policy": {
+          "const": "AllOrdinaryCardsIncludingScoring"
+        },
+        "discard_count": {
+          "const": 1
+        },
+        "sampling_policy": {
+          "const": "UniformBoundedDrawOnStableCardIdOrder"
+        },
+        "empty_hand_policy": {
+          "const": "ResolvedNoChangeWithoutRandom"
+        },
+        "singleton_policy": {
+          "const": "OneLogicalBoundedDraw"
+        },
+        "immediate_event_affiliation": {
+          "const": "US"
+        },
+        "child_event_controller": {
+          "const": "US"
+        },
+        "child_event_source": {
+          "const": "RandomDiscardTriggeredEvent"
+        },
+        "creates_card_use": {
+          "const": false
+        },
+        "automatically_grants_discarded_card_ops": {
+          "const": false
+        },
+        "consumes_root_slot": {
+          "const": false
+        },
+        "child_phasing_policy": {
+          "const": "InheritRootPhasingPlayer"
+        },
+        "ordinary_discard_destination": {
+          "const": "DiscardPile"
+        },
+        "triggered_event_zone": {
+          "const": "InResolution"
+        },
+        "triggered_event_disposition": {
+          "const": "ExistingEventOutcomeAndPrintedRemovalPolicy"
+        },
+        "candidate_visibility": {
+          "const": "AuthorityOnly"
+        },
+        "selected_card_visibility": {
+          "const": "BothPlayersAfterAcceptedDiscard"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_id",
+              "locator",
+              "verification"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification": {
+                "const": "Verified"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

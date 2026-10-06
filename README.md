@@ -61,4 +61,6 @@
 
 此前：[DEFCON事件与政变干预](Docs/Wiki/defcon-events-batch1.md)绑定4牌；累计32 Bound / 70 Unresolved，102处理器仍planned。
 
-最新：[影响力迁移](Docs/Wiki/influence-relocation.md)绑定去斯大林化已知参数；累计33 Bound / 69 Unresolved，102处理器planned，重叠边界待裁定。
+此前：[影响力迁移](Docs/Wiki/influence-relocation.md)绑定去斯大林化已知参数；累计33 Bound / 69 Unresolved，102处理器planned，重叠边界待裁定。
+
+最新：[封锁与五年计划](Docs/Wiki/hand-events-batch1.md)绑定两牌；累计35 Bound / 67 Unresolved，102处理器planned。

@@ -174,7 +174,7 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 
 拟定接口见模块 JSON 的 planned_entrypoints；entrypoints 为空，表示还不能调用。职责分别是 TurnFlow.AdvanceUntilYield、HeadlineRules.BuildDecisionGroup、ActionEligibility.GetNextSlot、CardPlayRules.BuildResolutionPlan、CardDispositionRules.Finalize 与 DecisionResolver.Resolve。
 
-参数数据只覆盖本模块已核对的基础时段、头条排序；回合初 DEFCON 参数已移到独立 defcon.json；不是完整可开局规则集。正式国家、卡牌与初始布置仍未生成；太空轨道和地区计分参数已建立独立数据子集，尚不足以初始化完整对局。本轮没有为了填满字典编造卡牌数值。
+参数数据只覆盖本模块已核对的基础时段、头条排序；回合初 DEFCON 参数已移到独立 defcon.json；不是完整可开局规则集。正式国家、卡牌与初始布置已录入；太空轨道和地区计分参数也已建立，全部运行服务仍待实现。本轮没有为了填满字典编造卡牌数值。
 
 验收案例存储在单独 JSON，通过 CaseId 与 coverage 标签检索；状态均为 planned，不能当成已通过的游戏测试。案例覆盖普通转移、终局例外、嵌套事件、牌区、秘密信息、重复命令与读档。开发前完成剩余裁定并建立 M0 测试工程，再把案例逐个转成自动化测试。
 
@@ -224,3 +224,5 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 最新交互见[战争牌持续与取消](war-card-hooks.md)：实际CardPlayer决定处罚资格；Flower精确时机/UN边界待裁定，戴维营与邪恶帝国完整步骤已绑定，处理器仍planned。
 
 [DEFCON事件与政变干预](defcon-events-batch1.md)补齐危机实际Actor责任、任意边界解除、核潜艇/SALT政策与ABM视同OPS；全部仍planned。
+
+[手牌事件](hand-events-batch1.md)仅弃牌不创建CardUse；五年计划US关联牌以RandomDiscardTriggeredEvent压入US控制事件帧，继承根PhasingPlayer，不自动给被弃牌印刷OPS/新根名额；子事件自身卡文授权仍执行，不在DiscardPile与InResolution保留双份。封锁决定Owner固定US，候选仅Owner可见。

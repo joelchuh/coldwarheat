@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "id": "module.hand-events",
+  "kind": "module",
+  "status": "planned",
+  "description": "手牌事件服务：私有阈值候选/弃牌、随机单牌收据与US事件子帧路由；不负责直接执行子牌事件或修改玩家快照。",
+  "documentation": "Docs/Wiki/hand-events-batch1.md",
+  "entrypoints": [],
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Hand/HandEventService.cs",
+      "symbol": "BuildDiscardCandidates"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Hand/HandEventService.cs",
+      "symbol": "PlanDiscardOrFallback"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Hand/HandEventService.cs",
+      "symbol": "PlanRandomDiscardAndContinuation"
+    }
+  ],
+  "inputs": [
+    "已验证内部帧/身份、完整牌区、当前OPS状态与可持久化随机源"
+  ],
+  "outputs": [
+    "不可变牌区/影响力计划、公开选牌收据、等待Owner决定或US子事件帧"
+  ],
+  "dependencies": [
+    {
+      "id": "module.active-effects",
+      "path": "Docs/Descriptors/active-effects.module.json",
+      "status": "planned"
+    },
+    {
+      "id": "module.influence-events",
+      "path": "Docs/Descriptors/influence-events.module.json",
+      "status": "planned"
+    }
+  ],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world",
+    "effects.deluxe2015.persistent_batch1",
+    "effects.deluxe2015.hand_events_batch1"
+  ],
+  "contract_dependencies": [
+    "urn:coldwarheat:contract:hand-events-batch1:1"
+  ],
+  "preconditions": [
+    "Runtime planned；由RuleEngine统一提交计划与RNG状态，事件栈由TurnFlow调度",
+    "阈值报价Actor固定US、Purpose OpsThreshold，无地区奖励；普通手牌按实际牌区读取"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知OPS修正、缺失定义/处理器/内部出处、非法牌区或过期/越权选择",
+    "不允许客户端提供随机索引或结果；不得泄露未选手牌"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "目视英文p2 #5随机弃苏联手牌：仅US关联事件立即发生；p3 #10 US立即弃3+OPS牌否则移除西德全部US影响力。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§5.2事件归属与成功星号；§5.4弃牌不触发及§5.5卡文优先；§7.4.1/7.4.2有效OPS归属/所有用途；§9.5/9.8中国牌不接受事件弃牌。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
+      "description": "PDF p3 #5可合法随机弃持有计分牌；p19 §5弃牌堆公开。"
+    },
+    {
+      "id": "PROJECT-HC1",
+      "url": null,
+      "edition": "Engineering and card-text derivations, 2026-10-06",
+      "description": "按稳定CardId排序后权威均匀抽样，空普通手牌完成无变化不抽随机，单候选抽一次逻辑随机；原子牌区/随机收据/子帧、私有候选和回放投影为工程约定。空手牌为无可弃对象推导，非专门FAQ。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/hand-events-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "implementation_tested": false,
+    "report": "Docs/Design/hand-events-batch1.validation.json"
+  }
+}
