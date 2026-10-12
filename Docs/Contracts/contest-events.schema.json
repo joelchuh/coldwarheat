@@ -1,0 +1,1868 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "shared_refs",
+    "context_policy",
+    "contest_outcome_policy",
+    "receipt_policy",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.contest_events"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "verified-subset"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "C-DELUXE-EN"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf"
+            },
+            "edition": {
+              "const": "English Deluxe card images"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "R2015"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf"
+            },
+            "edition": {
+              "const": "Deluxe rules 2015"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "F2010"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/FAQv5.pdf"
+            },
+            "edition": {
+              "const": "FAQ v5 2010, compatible Deluxe answers only"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "GMT-OLD-SNEAKPEEK"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/sneakpeek_xop.html"
+            },
+            "edition": {
+              "const": "Designer-attributed old sample, not adopted Deluxe cap ruling"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "PROJECT-CE1"
+            },
+            "url": {
+              "const": null
+            },
+            "edition": {
+              "const": "Bounded design and source gap, 2026-10-12"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "shared_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "military",
+        "defcon",
+        "victory",
+        "region_scoring",
+        "map",
+        "standard_die",
+        "cards"
+      ],
+      "properties": {
+        "military": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.military-operations"
+            },
+            "json_pointer": {
+              "const": ""
+            }
+          }
+        },
+        "defcon": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.defcon"
+            },
+            "json_pointer": {
+              "const": ""
+            }
+          }
+        },
+        "victory": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.victory"
+            },
+            "json_pointer": {
+              "const": ""
+            }
+          }
+        },
+        "region_scoring": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.region-scoring"
+            },
+            "json_pointer": {
+              "const": "/regions"
+            }
+          }
+        },
+        "map": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "map.deluxe2015.world"
+            },
+            "json_pointer": {
+              "const": ""
+            }
+          }
+        },
+        "standard_die": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.standard-dice"
+            },
+            "json_pointer": {
+              "const": "/definitions/standard_d6"
+            }
+          }
+        },
+        "cards": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "cards.deluxe2015.definitions"
+            },
+            "json_pointer": {
+              "const": "/cards"
+            }
+          }
+        }
+      }
+    },
+    "context_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "roles",
+        "source_authorization",
+        "complete_snapshot",
+        "preflight",
+        "unknown_relevant_interference",
+        "known_irrelevant_effects",
+        "invalid_running_state",
+        "integer_arithmetic"
+      ],
+      "properties": {
+        "roles": {
+          "const": "DistinctRootPhasingPlayerCardPlayerEffectControllerAndDecisionOwner"
+        },
+        "source_authorization": {
+          "const": "TrustedRegisteredSourceOnlyNoNewExternalCardAuthorization"
+        },
+        "complete_snapshot": {
+          "const": "ValidateExactCountryCoverageAndRuleVersionBeforeRoll"
+        },
+        "preflight": {
+          "const": "ValidateContextStateAllRelevantEffectsAndCompleteVpBatchBeforeRandom"
+        },
+        "unknown_relevant_interference": {
+          "const": "RequiresRulingBeforeRandomOrMutation"
+        },
+        "known_irrelevant_effects": {
+          "const": "ExcludeByVerifiedScopeWithoutConsuming"
+        },
+        "invalid_running_state": {
+          "const": "RejectDefconAtNuclearOrAlreadyWinningVpOrMalformedState"
+        },
+        "integer_arithmetic": {
+          "const": "CheckedNonnegativeInfluenceAndMilitaryIntegersNoSilentClamp"
+        }
+      }
+    },
+    "contest_outcome_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type_name",
+        "ownership",
+        "variants",
+        "evidence",
+        "vp_batch",
+        "victory_checkpoint",
+        "europe_control",
+        "final_disposition",
+        "root_slot"
+      ],
+      "properties": {
+        "type_name": {
+          "const": "ContestOutcome"
+        },
+        "ownership": {
+          "const": "AuthorityGeneratedImmutable"
+        },
+        "variants": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "const": "NoAward"
+            },
+            {
+              "const": "Winner"
+            },
+            {
+              "const": "Tie"
+            }
+          ],
+          "items": false
+        },
+        "evidence": {
+          "const": "VersionBoundMetricSnapshotAndSourceContext"
+        },
+        "vp_batch": {
+          "const": "OneCompleteSemanticEventBatch"
+        },
+        "victory_checkpoint": {
+          "const": "VpBatchClosedBeforeAnyOptionalDefconDecision"
+        },
+        "europe_control": {
+          "const": "SummitBonusOnlyNoScoringOrAutomaticEuropeVictory"
+        },
+        "final_disposition": {
+          "const": "SharedCardDispositionAfterFinalContinuationOrTerminal"
+        },
+        "root_slot": {
+          "const": "NoNewRootSlot"
+        }
+      }
+    },
+    "receipt_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type_name",
+        "draw_order",
+        "request_binding",
+        "snapshot_binding",
+        "commit_boundary",
+        "initial_failure",
+        "later_choice_failure",
+        "retry",
+        "conflicting_retry",
+        "continuation_binding",
+        "finished"
+      ],
+      "properties": {
+        "type_name": {
+          "const": "PairedDiceContestReceipt"
+        },
+        "draw_order": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "const": "US"
+            },
+            {
+              "const": "USSR"
+            }
+          ],
+          "items": false
+        },
+        "request_binding": {
+          "const": "CanonicalOriginalRequestDigestAndSourceFrame"
+        },
+        "snapshot_binding": {
+          "const": "OriginalStateVersionRulesetVersionAndDataDigest"
+        },
+        "commit_boundary": {
+          "const": "BothRawDiceDerivedOutcomeVpBatchRngPositionAndContinuationAtomic"
+        },
+        "initial_failure": {
+          "const": "RollbackAllUncommittedStateAndRng"
+        },
+        "later_choice_failure": {
+          "const": "PreserveCommittedContestReceiptAndVpNoReroll"
+        },
+        "retry": {
+          "const": "ReturnOriginalAcceptedReceiptBeforeRecomputingCurrentFacts"
+        },
+        "conflicting_retry": {
+          "const": "RejectSameResolutionIdWithDifferentOriginalRequestDigest"
+        },
+        "continuation_binding": {
+          "const": "WinnerDecisionIdRevisionAndCommittedReceiptDigest"
+        },
+        "finished": {
+          "const": "AbsorbingNoNewDecisionOrParentSteps"
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "arms_race",
+        "summit"
+      ],
+      "properties": {
+        "arms_race": {
+          "$ref": "#/$defs/arms_race"
+        },
+        "summit": {
+          "$ref": "#/$defs/summit"
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:contest-events:1",
+  "title": "军备竞赛与峰会：分离根责任/事件控制/胜者选择，实际地图双骰比较，耐久结果收据与可选DEFCON继续；军事>5待裁定，运行待实现。",
+  "description": "严格静态参数契约及未来权威输入/结果/收据/决定形状；关系不变量由同版本具名校验器完成，Schema不是运行实现。",
+  "$defs": {
+    "initial_input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "context",
+        "state",
+        "evidence"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "context": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "root_action_id",
+            "frame_id",
+            "resolution_id",
+            "source_card_id",
+            "source_effect_id",
+            "root_phasing_player",
+            "card_player",
+            "effect_controller",
+            "scope",
+            "source_authorization",
+            "ruleset_id",
+            "ruleset_version",
+            "data_digest",
+            "expected_state_version",
+            "original_request_digest"
+          ],
+          "properties": {
+            "root_action_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "frame_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "resolution_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "source_card_id": {
+              "enum": [
+                "card.arms_race",
+                "card.summit"
+              ]
+            },
+            "source_effect_id": {
+              "enum": [
+                "effect.arms_race",
+                "effect.summit"
+              ]
+            },
+            "root_phasing_player": {
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            "card_player": {
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            "effect_controller": {
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            "scope": {
+              "enum": [
+                "RootAction",
+                "Headline",
+                "VerifiedNested"
+              ]
+            },
+            "source_authorization": {
+              "enum": [
+                "VerifiedInternal",
+                "Unknown"
+              ]
+            },
+            "ruleset_id": {
+              "const": "ruleset.deluxe2015"
+            },
+            "ruleset_version": {
+              "const": "deluxe-2015"
+            },
+            "data_digest": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "expected_state_version": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "original_request_digest": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        },
+        "state": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "state_version",
+            "defcon",
+            "signed_vp",
+            "military_earned",
+            "countries",
+            "status",
+            "result_winner",
+            "rng_cursor",
+            "formosan_active",
+            "shuttle_active",
+            "nuclear_subs_active",
+            "card_zone"
+          ],
+          "properties": {
+            "state_version": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "defcon": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "signed_vp": {
+              "type": "integer"
+            },
+            "military_earned": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "US",
+                "USSR"
+              ],
+              "properties": {
+                "US": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "USSR": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            },
+            "countries": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "country_id",
+                  "influence"
+                ],
+                "properties": {
+                  "country_id": {
+                    "type": "string",
+                    "pattern": "^country\\.[a-z0-9_]+$"
+                  },
+                  "influence": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "US",
+                      "USSR"
+                    ],
+                    "properties": {
+                      "US": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "USSR": {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "status": {
+              "enum": [
+                "Running",
+                "Finished"
+              ]
+            },
+            "result_winner": {
+              "enum": [
+                "US",
+                "USSR",
+                null
+              ]
+            },
+            "rng_cursor": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "formosan_active": {
+              "type": "boolean"
+            },
+            "shuttle_active": {
+              "type": "boolean"
+            },
+            "nuclear_subs_active": {
+              "type": "boolean"
+            },
+            "card_zone": {
+              "const": "InResolution"
+            }
+          }
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "context_revision_matches",
+            "effects_complete",
+            "all_vp_providers_known",
+            "unknown_relevant_interference",
+            "same_data_binding"
+          ],
+          "properties": {
+            "context_revision_matches": {
+              "type": "boolean"
+            },
+            "effects_complete": {
+              "type": "boolean"
+            },
+            "all_vp_providers_known": {
+              "type": "boolean"
+            },
+            "unknown_relevant_interference": {
+              "type": "boolean"
+            },
+            "same_data_binding": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "contest_outcome": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/arms_outcome"
+        },
+        {
+          "$ref": "#/$defs/summit_outcome"
+        }
+      ]
+    },
+    "paired_receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "receipt_id",
+        "original_request_digest",
+        "source_frame_id",
+        "root_action_id",
+        "root_phasing_player",
+        "ruleset_id",
+        "ruleset_version",
+        "data_digest",
+        "source_state_version",
+        "committed_state_version",
+        "rng_cursor_before",
+        "rng_cursor_after",
+        "contest_outcome",
+        "vp_batch_id",
+        "signed_vp_before",
+        "signed_vp_after",
+        "defcon_at_commit",
+        "result_winner",
+        "next_step",
+        "decision",
+        "receipt_digest",
+        "source_card_id",
+        "source_effect_id",
+        "card_player",
+        "effect_controller",
+        "source_scope"
+      ],
+      "properties": {
+        "receipt_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "original_request_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "source_frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_phasing_player": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "ruleset_id": {
+          "const": "ruleset.deluxe2015"
+        },
+        "ruleset_version": {
+          "const": "deluxe-2015"
+        },
+        "data_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "source_state_version": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "committed_state_version": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rng_cursor_before": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rng_cursor_after": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "contest_outcome": {
+          "$ref": "#/$defs/summit_outcome"
+        },
+        "vp_batch_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "signed_vp_before": {
+          "type": "integer"
+        },
+        "signed_vp_after": {
+          "type": "integer"
+        },
+        "defcon_at_commit": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "result_winner": {
+          "enum": [
+            "US",
+            "USSR",
+            null
+          ]
+        },
+        "next_step": {
+          "enum": [
+            "Complete",
+            "AwaitDefcon",
+            "Finished"
+          ]
+        },
+        "decision": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "decision_id",
+                "revision",
+                "owner"
+              ],
+              "properties": {
+                "decision_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "revision": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "owner": {
+                  "enum": [
+                    "US",
+                    "USSR"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "receipt_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "source_card_id": {
+          "const": "card.summit"
+        },
+        "source_effect_id": {
+          "const": "effect.summit"
+        },
+        "card_player": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "effect_controller": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "source_scope": {
+          "enum": [
+            "RootAction",
+            "Headline",
+            "VerifiedNested"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "next_step": {
+                "const": "AwaitDefcon"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "decision": {
+                "not": {
+                  "type": "null"
+                }
+              },
+              "result_winner": {
+                "const": null
+              },
+              "contest_outcome": {
+                "properties": {
+                  "result": {
+                    "const": "Winner"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "next_step": {
+                "enum": [
+                  "Complete",
+                  "Finished"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "decision": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "next_step": {
+                "const": "Finished"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "result_winner": {
+                "enum": [
+                  "US",
+                  "USSR"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "defcon_response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "decision_id",
+        "decision_revision",
+        "expected_state_version",
+        "submitted_by",
+        "choice"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision_revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "expected_state_version": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "submitted_by": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "choice": {
+          "enum": [
+            "Pass",
+            "ImproveOne",
+            "DegradeOne"
+          ]
+        }
+      }
+    },
+    "arms_race": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "metric",
+        "comparison",
+        "verified_earned_upper_boundary",
+        "overflow_policy",
+        "requirement",
+        "vp_when_leading_below_requirement",
+        "vp_when_leading_and_requirement_met",
+        "larger_award",
+        "no_lead_outcome",
+        "military_delta",
+        "random_policy",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.arms_race"
+        },
+        "effect_id": {
+          "const": "effect.arms_race"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "MilitaryTrackLeadContest"
+        },
+        "beneficiary": {
+          "const": "RootPhasingPlayer"
+        },
+        "metric": {
+          "const": "MilitaryTrackComparisonVerifiedSubset"
+        },
+        "comparison": {
+          "const": "StrictlyGreaterThanOpponent"
+        },
+        "verified_earned_upper_boundary": {
+          "const": 5
+        },
+        "overflow_policy": {
+          "const": "EitherEarnedAboveVerifiedBoundaryRequiresRuling"
+        },
+        "requirement": {
+          "const": "CurrentDefconAtEventResolution"
+        },
+        "vp_when_leading_below_requirement": {
+          "const": 1
+        },
+        "vp_when_leading_and_requirement_met": {
+          "const": 3
+        },
+        "larger_award": {
+          "const": "ReplaceSmallerAward"
+        },
+        "no_lead_outcome": {
+          "const": "ResolvedNoChange"
+        },
+        "military_delta": {
+          "const": 0
+        },
+        "random_policy": {
+          "const": "None"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "PDFp7 English #39: PhasingPlayer strict military-track lead; 1 VP or replacement 3 VP; no military credit or dice."
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "§4.2 PhasingPlayer; §8.2.1 current military requirement; §10.3.1 complete VP batch and immediate victory."
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "GMT-OLD-SNEAKPEEK"
+                },
+                "locator": {
+                  "const": "Turn 1 USSR Five Year Plan coup paragraph calls chart 5 maximized; old example only, NOT adopted as a Deluxe track-cap ruling."
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-CE1"
+                },
+                "locator": {
+                  "const": "CE-OPEN-01 either earned total >5 pauses; uncapped storage retained. No-lead ResolvedNoChange is an engineering label, not a dedicated official ruling."
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "summit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "regions_policy",
+        "country_control_policy",
+        "battleground_policy",
+        "eligible_tiers",
+        "bonus_per_eligible_region",
+        "scoring_invocation",
+        "formosan_policy",
+        "shuttle_policy",
+        "dice_per_side",
+        "die_ref",
+        "modified_total_policy",
+        "winner_policy",
+        "tie_policy",
+        "winner_vp",
+        "defcon_choice_owner",
+        "defcon_choices",
+        "defcon_change_reason",
+        "nuclear_subs_policy",
+        "nuclear_loser",
+        "source_refs",
+        "draw_order_policy"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.summit"
+        },
+        "effect_id": {
+          "const": "effect.summit"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "PairedDiceRegionalStatusContest"
+        },
+        "regions_policy": {
+          "const": "AllStandardRegionsFromSharedRegionDefinitionExactlyOnce"
+        },
+        "country_control_policy": {
+          "const": "SharedStabilityAndInfluenceLeadPredicate"
+        },
+        "battleground_policy": {
+          "const": "ActualBaseBattlegroundOnly"
+        },
+        "eligible_tiers": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "const": "Domination"
+            },
+            {
+              "const": "Control"
+            }
+          ],
+          "items": false
+        },
+        "bonus_per_eligible_region": {
+          "const": 1
+        },
+        "scoring_invocation": {
+          "const": "None"
+        },
+        "formosan_policy": {
+          "const": "NoBattlegroundOverride"
+        },
+        "shuttle_policy": {
+          "const": "NoModificationNoChoiceNoConsumption"
+        },
+        "dice_per_side": {
+          "const": 1
+        },
+        "die_ref": {
+          "const": "standard_die"
+        },
+        "modified_total_policy": {
+          "const": "RawDiePlusEligibleRegionCountWithoutClamping"
+        },
+        "winner_policy": {
+          "const": "StrictlyGreaterModifiedTotal"
+        },
+        "tie_policy": {
+          "const": "ResolvedNoChangeNoVpNoChoiceNoReroll"
+        },
+        "winner_vp": {
+          "const": 2
+        },
+        "defcon_choice_owner": {
+          "const": "ContestWinner"
+        },
+        "defcon_choices": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "const": "Pass"
+            },
+            {
+              "const": "ImproveOne"
+            },
+            {
+              "const": "DegradeOne"
+            }
+          ],
+          "items": false
+        },
+        "defcon_change_reason": {
+          "const": "Event"
+        },
+        "nuclear_subs_policy": {
+          "const": "DoesNotBlockEventDefconChange"
+        },
+        "nuclear_loser": {
+          "const": "RootPhasingPlayer"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "PDFp8 English #45: paired die comparison and optional winner DEFCON; PDFp6 #35: Taiwan only reclassified for specified scoring."
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "§2.0 D6; §2.1.1–2/7 six regions and control; §4.2/4.5C and §8.1 root nuclear responsibility; §10.1.1 tiers; §10.3.1 VP terminal."
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "F2010"
+                },
+                "locator": {
+                  "const": "PDFp9 #41 event DEFCON is not blocked by Nuclear Subs; PDFp15 #73 Shuttle does not affect Summit."
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-CE1"
+                },
+                "locator": {
+                  "const": "Authority-only actual map query; receipt draw order; atomic roll/VP batch before optional winner decision; retry and rollback contracts are engineering."
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        },
+        "draw_order_policy": {
+          "const": "SharedReceiptPolicyDrawOrder"
+        }
+      }
+    },
+    "arms_outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "result",
+        "winner",
+        "vp_by_side",
+        "metric_snapshot"
+      ],
+      "properties": {
+        "kind": {
+          "const": "ArmsRace"
+        },
+        "result": {
+          "enum": [
+            "NoAward",
+            "Winner"
+          ]
+        },
+        "winner": {
+          "enum": [
+            "US",
+            "USSR",
+            null
+          ]
+        },
+        "vp_by_side": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "US",
+            "USSR"
+          ],
+          "properties": {
+            "US": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "USSR": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "metric_snapshot": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "military_earned",
+            "defcon",
+            "recipient"
+          ],
+          "properties": {
+            "military_earned": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "US",
+                "USSR"
+              ],
+              "properties": {
+                "US": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "USSR": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            },
+            "defcon": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "recipient": {
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            }
+          }
+        }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "result": {
+              "const": "NoAward"
+            },
+            "winner": {
+              "const": null
+            },
+            "vp_by_side": {
+              "const": {
+                "US": 0,
+                "USSR": 0
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "result": {
+              "const": "Winner"
+            },
+            "winner": {
+              "const": "US"
+            },
+            "vp_by_side": {
+              "properties": {
+                "US": {
+                  "enum": [
+                    1,
+                    3
+                  ]
+                },
+                "USSR": {
+                  "const": 0
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "result": {
+              "const": "Winner"
+            },
+            "winner": {
+              "const": "USSR"
+            },
+            "vp_by_side": {
+              "properties": {
+                "USSR": {
+                  "enum": [
+                    1,
+                    3
+                  ]
+                },
+                "US": {
+                  "const": 0
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "summit_outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "result",
+        "winner",
+        "vp_by_side",
+        "metric_snapshot"
+      ],
+      "properties": {
+        "kind": {
+          "const": "Summit"
+        },
+        "result": {
+          "enum": [
+            "Tie",
+            "Winner"
+          ]
+        },
+        "winner": {
+          "enum": [
+            "US",
+            "USSR",
+            null
+          ]
+        },
+        "vp_by_side": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "US",
+            "USSR"
+          ],
+          "properties": {
+            "US": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "USSR": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "metric_snapshot": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "raw_dice",
+            "bonuses",
+            "modified_totals",
+            "region_tiers"
+          ],
+          "properties": {
+            "raw_dice": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "US",
+                "USSR"
+              ],
+              "properties": {
+                "US": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 6
+                },
+                "USSR": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 6
+                }
+              }
+            },
+            "bonuses": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "US",
+                "USSR"
+              ],
+              "properties": {
+                "US": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "USSR": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            },
+            "modified_totals": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "US",
+                "USSR"
+              ],
+              "properties": {
+                "US": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "USSR": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            },
+            "region_tiers": {
+              "type": "array",
+              "minItems": 6,
+              "maxItems": 6,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "region_id",
+                  "US",
+                  "USSR"
+                ],
+                "properties": {
+                  "region_id": {
+                    "type": "string",
+                    "pattern": "^region\\.[a-z_]+$"
+                  },
+                  "US": {
+                    "enum": [
+                      "None",
+                      "Presence",
+                      "Domination",
+                      "Control"
+                    ]
+                  },
+                  "USSR": {
+                    "enum": [
+                      "None",
+                      "Presence",
+                      "Domination",
+                      "Control"
+                    ]
+                  }
+                },
+                "not": {
+                  "properties": {
+                    "US": {
+                      "enum": [
+                        "Domination",
+                        "Control"
+                      ]
+                    },
+                    "USSR": {
+                      "enum": [
+                        "Domination",
+                        "Control"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "result": {
+              "const": "Tie"
+            },
+            "winner": {
+              "const": null
+            },
+            "vp_by_side": {
+              "const": {
+                "US": 0,
+                "USSR": 0
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "result": {
+              "const": "Winner"
+            },
+            "winner": {
+              "const": "US"
+            },
+            "vp_by_side": {
+              "properties": {
+                "US": {
+                  "enum": [
+                    2
+                  ]
+                },
+                "USSR": {
+                  "const": 0
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "result": {
+              "const": "Winner"
+            },
+            "winner": {
+              "const": "USSR"
+            },
+            "vp_by_side": {
+              "properties": {
+                "USSR": {
+                  "enum": [
+                    2
+                  ]
+                },
+                "US": {
+                  "const": 0
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "continuation_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state_version",
+        "defcon",
+        "signed_vp",
+        "status",
+        "result_winner",
+        "rng_cursor",
+        "data_digest",
+        "source_frame_id",
+        "root_action_id"
+      ],
+      "properties": {
+        "state_version": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "defcon": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "signed_vp": {
+          "type": "integer"
+        },
+        "status": {
+          "enum": [
+            "Running",
+            "Finished"
+          ]
+        },
+        "result_winner": {
+          "enum": [
+            "US",
+            "USSR",
+            null
+          ]
+        },
+        "rng_cursor": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "data_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "source_frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_action_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "defcon_continuation_input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "receipt",
+        "state",
+        "response"
+      ],
+      "properties": {
+        "receipt": {
+          "$ref": "#/$defs/paired_receipt"
+        },
+        "state": {
+          "$ref": "#/$defs/continuation_state"
+        },
+        "response": {
+          "$ref": "#/$defs/defcon_response"
+        }
+      }
+    }
+  }
+}

@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.28.0",
+  "content_version": "0.29.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计71牌效果参数已绑定，其余31个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计73牌效果参数已绑定，其余29个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -173,6 +173,18 @@
       "url": null,
       "edition": "Scoped design, 2026-10-12",
       "description": "可信EffectController、完整位置/次数/到达记录预检、不可变计划、来源摘要去重、原子终局；7对8越界停止，不采用Scientist终点未确认建议。"
+    },
+    {
+      "id": "GMT-OLD-SNEAKPEEK",
+      "url": "https://www.gmtgames.com/nnts/sneakpeek_xop.html",
+      "edition": "Designer-attributed old sample, not adopted Deluxe cap ruling",
+      "description": "旧例将军事图表5称为最大；旧版细节且承认示例错误，只支持研究线索，不作为本版cap裁定。"
+    },
+    {
+      "id": "PROJECT-CE1",
+      "url": null,
+      "edition": "Bounded design and source gap, 2026-10-12",
+      "description": "双方任一累计>5即CE-OPEN-01 RequiresRuling，5是保守支持边界而非采用封顶；原累计不变。Arms零奖分标ResolvedNoChange、US后USSR抽样、完整骰/VP收据先提交再等DEFCON均为工程约定。"
     }
   ],
   "cards": [
@@ -1393,8 +1405,13 @@
       "effect_binding": {
         "effect_id": "effect.arms_race",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.contest_events",
+            "json_pointer": "/parameters/arms_race"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -1580,8 +1597,13 @@
       "effect_binding": {
         "effect_id": "effect.summit",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.contest_events",
+            "json_pointer": "/parameters/summit"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -4362,15 +4384,32 @@
     {
       "effect_id": "effect.arms_race",
       "contract_version": "0.1.0",
-      "description": "Arms Race：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.arms_race",
+      "description": "只向根PhasingPlayer奖分；双方军事累计0..5子集严格比较，任一>5先停，不改原军事累计。",
+      "handler_key": "contest.MilitaryTrackLeadContest",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:contest-events:1#/$defs/arms_race"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDFp7 English #39: PhasingPlayer strict military-track lead; 1 VP or replacement 3 VP; no military credit or dice.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§4.2 PhasingPlayer; §8.2.1 current military requirement; §10.3.1 complete VP batch and immediate victory.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "GMT-OLD-SNEAKPEEK",
+          "locator": "Turn 1 USSR Five Year Plan coup paragraph calls chart 5 maximized; old example only, NOT adopted as a Deluxe track-cap ruling.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-CE1",
+          "locator": "CE-OPEN-01 either earned total >5 pauses; uncapped storage retained. No-lead ResolvedNoChange is an engineering label, not a dedicated official ruling.",
+          "verification": "Verified"
         }
       ]
     },
@@ -4537,15 +4576,32 @@
     {
       "effect_id": "effect.summit",
       "contract_version": "0.1.0",
-      "description": "Summit：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.summit",
+      "description": "六主区实际控制状态各最多+1；双标准骰比较，胜者2VP，未终局才由胜者选不变/改善/降级。",
+      "handler_key": "contest.PairedDiceRegionalStatusContest",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:contest-events:1#/$defs/summit"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDFp8 English #45: paired die comparison and optional winner DEFCON; PDFp6 #35: Taiwan only reclassified for specified scoring.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.0 D6; §2.1.1–2/7 six regions and control; §4.2/4.5C and §8.1 root nuclear responsibility; §10.1.1 tiers; §10.3.1 VP terminal.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFp9 #41 event DEFCON is not blocked by Nuclear Subs; PDFp15 #73 Shuttle does not affect Summit.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-CE1",
+          "locator": "Authority-only actual map query; receipt draw order; atomic roll/VP batch before optional winner decision; retry and rollback contracts are engineering.",
+          "verification": "Verified"
         }
       ]
     },

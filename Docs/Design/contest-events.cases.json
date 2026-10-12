@@ -1,0 +1,4410 @@
+{
+  "schema_version": 1,
+  "description": "两张比较事件的严格参数/权威输入形状与手写期望有限算术；真实来源鉴权、随机事务、持久化收据和保存恢复另列planned。",
+  "status": "mixed-reference-and-planned",
+  "dataset": "Data/Cards/deluxe-2015/contest-events.parameters.json",
+  "schema": "Docs/Contracts/contest-events.schema.json",
+  "expected_values_policy": "Expectations were independently hand-derived from verified card/rules sources. Twelve map fixtures were independently derived by a read-only agent using the full 84-country map, without the reference resolver.",
+  "input_patch_semantics": "Merge only context/state/evidence containers one level. Nested maps/arrays replace entirely. country_fixture is a test-only expansion over the explicitly complete zero-map default, never a runtime sparse-map default.",
+  "fixture_boundary": "All authorization/evidence labels are synthetic internal prerequisites, not authentication tests. Digest placeholders are filled only by fixture construction before the frozen request enters the pure model. Fixed dice are test-provider inputs outside the request.",
+  "digest_policy": "Original request SHA256 uses sorted compact UTF-8 JSON of context/state/evidence, excluding context.original_request_digest and transport command_id. Receipt SHA256 uses every receipt field except receipt_digest. Digests bind contents, do not authenticate clients.",
+  "defaults": {
+    "command_id": "command.ce.1",
+    "context": {
+      "root_action_id": "action.ce.1",
+      "frame_id": "frame.ce.1",
+      "resolution_id": "resolution.ce.1",
+      "source_card_id": "card.arms_race",
+      "source_effect_id": "effect.arms_race",
+      "root_phasing_player": "US",
+      "card_player": "US",
+      "effect_controller": "US",
+      "scope": "RootAction",
+      "source_authorization": "VerifiedInternal",
+      "ruleset_id": "ruleset.deluxe2015",
+      "ruleset_version": "deluxe-2015",
+      "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "expected_state_version": 10,
+      "original_request_digest": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "state": {
+      "state_version": 10,
+      "defcon": 3,
+      "signed_vp": 0,
+      "military_earned": {
+        "US": 0,
+        "USSR": 0
+      },
+      "countries": [
+        {
+          "country_id": "country.canada",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.uk",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.norway",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.sweden",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.finland",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.denmark",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.benelux",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.france",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.spain_portugal",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.italy",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.greece",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.turkey",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.west_germany",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.east_germany",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.poland",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.czechoslovakia",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.austria",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.hungary",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.yugoslavia",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.romania",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.bulgaria",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.afghanistan",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.pakistan",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.india",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.burma",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.laos_cambodia",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.thailand",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.vietnam",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.malaysia",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.indonesia",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.philippines",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.australia",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.taiwan",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.japan",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.south_korea",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.north_korea",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.lebanon",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.syria",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.israel",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.iraq",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.iran",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.jordan",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.gulf_states",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.saudi_arabia",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.egypt",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.libya",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.morocco",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.algeria",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.tunisia",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.west_african_states",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.saharan_states",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.ivory_coast",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.nigeria",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.cameroon",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.zaire",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.angola",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.south_africa",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.botswana",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.zimbabwe",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.southeast_african_states",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.kenya",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.somalia",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.ethiopia",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.sudan",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.mexico",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.guatemala",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.el_salvador",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.honduras",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.nicaragua",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.costa_rica",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.panama",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.cuba",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.haiti",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.dominican_republic",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.colombia",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.venezuela",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.ecuador",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.peru",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.bolivia",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.brazil",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.paraguay",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.uruguay",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.argentina",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        },
+        {
+          "country_id": "country.chile",
+          "influence": {
+            "US": 0,
+            "USSR": 0
+          }
+        }
+      ],
+      "status": "Running",
+      "result_winner": null,
+      "rng_cursor": 7,
+      "formosan_active": false,
+      "shuttle_active": false,
+      "nuclear_subs_active": false,
+      "card_zone": "InResolution"
+    },
+    "evidence": {
+      "context_revision_matches": true,
+      "effects_complete": true,
+      "all_vp_providers_known": true,
+      "unknown_relevant_interference": false,
+      "same_data_binding": true
+    }
+  },
+  "receipt_fixture": {
+    "receipt_id": "receipt.ce.1",
+    "original_request_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "source_frame_id": "frame.ce.1",
+    "root_action_id": "action.ce.1",
+    "root_phasing_player": "US",
+    "ruleset_id": "ruleset.deluxe2015",
+    "ruleset_version": "deluxe-2015",
+    "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "source_state_version": 10,
+    "committed_state_version": 11,
+    "rng_cursor_before": 7,
+    "rng_cursor_after": 9,
+    "contest_outcome": {
+      "kind": "Summit",
+      "result": "Winner",
+      "winner": "US",
+      "vp_by_side": {
+        "US": 2,
+        "USSR": 0
+      },
+      "metric_snapshot": {
+        "raw_dice": {
+          "US": 5,
+          "USSR": 1
+        },
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "modified_totals": {
+          "US": 5,
+          "USSR": 1
+        },
+        "region_tiers": [
+          {
+            "region_id": "region.europe",
+            "US": "None",
+            "USSR": "None"
+          },
+          {
+            "region_id": "region.asia",
+            "US": "None",
+            "USSR": "None"
+          },
+          {
+            "region_id": "region.middle_east",
+            "US": "None",
+            "USSR": "None"
+          },
+          {
+            "region_id": "region.africa",
+            "US": "None",
+            "USSR": "None"
+          },
+          {
+            "region_id": "region.central_america",
+            "US": "None",
+            "USSR": "None"
+          },
+          {
+            "region_id": "region.south_america",
+            "US": "None",
+            "USSR": "None"
+          }
+        ]
+      }
+    },
+    "vp_batch_id": "vp.ce.1",
+    "signed_vp_before": 0,
+    "signed_vp_after": 2,
+    "defcon_at_commit": 3,
+    "result_winner": null,
+    "next_step": "AwaitDefcon",
+    "decision": {
+      "decision_id": "decision.ce.1",
+      "revision": 0,
+      "owner": "US"
+    },
+    "receipt_digest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "source_card_id": "card.summit",
+    "source_effect_id": "effect.summit",
+    "card_player": "US",
+    "effect_controller": "US",
+    "source_scope": "RootAction"
+  },
+  "response_fixture": {
+    "command_id": "command.ce.choice.1",
+    "decision_id": "decision.ce.1",
+    "decision_revision": 0,
+    "expected_state_version": 11,
+    "submitted_by": "US",
+    "choice": "Pass"
+  },
+  "cases": [
+    {
+      "id": "CE-D-baseline",
+      "validation_layer": "data",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "CE-D-beneficiary",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "arms_race",
+              "beneficiary"
+            ],
+            "value": "EffectController"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-comparison",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "arms_race",
+              "comparison"
+            ],
+            "value": "GreaterOrEqual"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-small-vp",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "arms_race",
+              "vp_when_leading_below_requirement"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-large-vp",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "arms_race",
+              "vp_when_leading_and_requirement_met"
+            ],
+            "value": 4
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-add-awards",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "arms_race",
+              "larger_award"
+            ],
+            "value": "Add"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-overflow",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "arms_race",
+              "overflow_policy"
+            ],
+            "value": "ClampToFive"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-boundary",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "arms_race",
+              "verified_earned_upper_boundary"
+            ],
+            "value": 6
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-military-credit",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "arms_race",
+              "military_delta"
+            ],
+            "value": 3
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-new-key",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "arms_race",
+              "invented_track_cap"
+            ],
+            "value": 5
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-die-ref",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "summit",
+              "die_ref"
+            ],
+            "value": "space-race"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-draw-order",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "receipt_policy",
+              "draw_order"
+            ],
+            "value": [
+              "USSR",
+              "US"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-dice-count",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "summit",
+              "dice_per_side"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-bonus",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "summit",
+              "bonus_per_eligible_region"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-tier-presence",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "summit",
+              "eligible_tiers"
+            ],
+            "value": [
+              "Presence",
+              "Domination",
+              "Control"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-scoring",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "summit",
+              "scoring_invocation"
+            ],
+            "value": "NormalScoring"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-taiwan",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "summit",
+              "formosan_policy"
+            ],
+            "value": "UseScoringBattleground"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-shuttle",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "summit",
+              "shuttle_policy"
+            ],
+            "value": "Consume"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-tie-reroll",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "summit",
+              "tie_policy"
+            ],
+            "value": "Reroll"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-winner-vp",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "summit",
+              "winner_vp"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-decision-owner",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "summit",
+              "defcon_choice_owner"
+            ],
+            "value": "EffectController"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-nuclear-loser",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "summit",
+              "nuclear_loser"
+            ],
+            "value": "ContestWinner"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-receipt-order",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "receipt_policy",
+              "commit_boundary"
+            ],
+            "value": "WaitForChoiceThenDraw"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-later-failure",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "receipt_policy",
+              "later_choice_failure"
+            ],
+            "value": "RewindContest"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-source",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "source_catalog",
+              4,
+              "id"
+            ],
+            "value": "R2015"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-military-ref",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "shared_refs",
+              "military",
+              "dataset_id"
+            ],
+            "value": "rules.made_up"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-D-missing-policy",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "contest_outcome_policy"
+            ],
+            "remove": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-I-initial-valid",
+      "validation_layer": "input-schema",
+      "schema_definition": "initial_input",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "CE-I-initial-extra",
+      "validation_layer": "input-schema",
+      "schema_definition": "initial_input",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "raw_dice"
+            ],
+            "value": [
+              6,
+              1
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-I-missing-context",
+      "validation_layer": "input-schema",
+      "schema_definition": "initial_input",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "context"
+            ],
+            "remove": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-I-wrong-side",
+      "validation_layer": "input-schema",
+      "schema_definition": "initial_input",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "context",
+              "root_phasing_player"
+            ],
+            "value": "Neutral"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-I-empty-frame",
+      "validation_layer": "input-schema",
+      "schema_definition": "initial_input",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "context",
+              "frame_id"
+            ],
+            "value": ""
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-I-digest-format",
+      "validation_layer": "input-schema",
+      "schema_definition": "initial_input",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "context",
+              "original_request_digest"
+            ],
+            "value": "guess"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-I-negative-earned",
+      "validation_layer": "input-schema",
+      "schema_definition": "initial_input",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "state",
+              "military_earned",
+              "US"
+            ],
+            "value": -1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-I-missing-side",
+      "validation_layer": "input-schema",
+      "schema_definition": "initial_input",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "state",
+              "military_earned"
+            ],
+            "value": {
+              "US": 2
+            }
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-I-bool-earned",
+      "validation_layer": "input-schema",
+      "schema_definition": "initial_input",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "state",
+              "military_earned",
+              "US"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-I-negative-influence",
+      "validation_layer": "input-schema",
+      "schema_definition": "initial_input",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "state",
+              "countries",
+              0,
+              "influence",
+              "US"
+            ],
+            "value": -1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-I-vp-string",
+      "validation_layer": "input-schema",
+      "schema_definition": "initial_input",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "state",
+              "signed_vp"
+            ],
+            "value": "2"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-I-negative-cursor",
+      "validation_layer": "input-schema",
+      "schema_definition": "initial_input",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "state",
+              "rng_cursor"
+            ],
+            "value": -1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-I-receipt-invalid-die",
+      "validation_layer": "input-schema",
+      "schema_definition": "paired_receipt",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "contest_outcome",
+              "metric_snapshot",
+              "raw_dice",
+              "US"
+            ],
+            "value": 7
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-I-receipt-missing-owner",
+      "validation_layer": "input-schema",
+      "schema_definition": "paired_receipt",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "decision",
+              "owner"
+            ],
+            "remove": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-I-response-extra",
+      "validation_layer": "input-schema",
+      "schema_definition": "defcon_response",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "receipt"
+            ],
+            "value": {}
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-I-response-side",
+      "validation_layer": "input-schema",
+      "schema_definition": "defcon_response",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "submitted_by"
+            ],
+            "value": "Both"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-I-response-choice",
+      "validation_layer": "input-schema",
+      "schema_definition": "defcon_response",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "choice"
+            ],
+            "value": "SetDefconOne"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-I-receipt-valid",
+      "validation_layer": "input-schema",
+      "schema_definition": "paired_receipt",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "CE-I-response-valid",
+      "validation_layer": "input-schema",
+      "schema_definition": "defcon_response",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "CE-R-AR-below",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "state": {
+          "military_earned": {
+            "US": 2,
+            "USSR": 1
+          },
+          "defcon": 3
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "vp_after": 1,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Complete"
+      }
+    },
+    {
+      "id": "CE-R-AR-met",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "state": {
+          "military_earned": {
+            "US": 3,
+            "USSR": 2
+          },
+          "defcon": 3
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "vp_after": 3,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Complete"
+      }
+    },
+    {
+      "id": "CE-R-AR-ussr-below",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "root_phasing_player": "USSR",
+          "effect_controller": "USSR",
+          "card_player": "USSR"
+        },
+        "state": {
+          "military_earned": {
+            "US": 1,
+            "USSR": 4
+          },
+          "defcon": 5
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "vp_after": -1,
+        "defcon_after": 5,
+        "winner": null,
+        "contest_winner": "USSR",
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Complete"
+      }
+    },
+    {
+      "id": "CE-R-AR-ussr-met",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "root_phasing_player": "USSR",
+          "effect_controller": "USSR",
+          "card_player": "USSR"
+        },
+        "state": {
+          "military_earned": {
+            "US": 4,
+            "USSR": 5
+          },
+          "defcon": 5
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "vp_after": -3,
+        "defcon_after": 5,
+        "winner": null,
+        "contest_winner": "USSR",
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Complete"
+      }
+    },
+    {
+      "id": "CE-R-AR-tie",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "state": {
+          "military_earned": {
+            "US": 4,
+            "USSR": 4
+          },
+          "defcon": 2
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "vp_after": 0,
+        "defcon_after": 2,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Complete"
+      }
+    },
+    {
+      "id": "CE-R-AR-opponent-leads",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "state": {
+          "military_earned": {
+            "US": 2,
+            "USSR": 4
+          },
+          "defcon": 2
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "vp_after": 0,
+        "defcon_after": 2,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Complete"
+      }
+    },
+    {
+      "id": "CE-R-AR-split-role",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "effect_controller": "USSR",
+          "card_player": "USSR",
+          "scope": "VerifiedNested"
+        },
+        "state": {
+          "military_earned": {
+            "US": 4,
+            "USSR": 2
+          },
+          "defcon": 3
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "vp_after": 3,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Complete"
+      },
+      "note": "Synthetic authorized-role fixture, not authorization for any named external source."
+    },
+    {
+      "id": "CE-R-AR-current-defcon",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "state": {
+          "military_earned": {
+            "US": 3,
+            "USSR": 2
+          },
+          "defcon": 4
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "vp_after": 1,
+        "defcon_after": 4,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Complete"
+      }
+    },
+    {
+      "id": "CE-R-AR-overflow-lead",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "state": {
+          "military_earned": {
+            "US": 7,
+            "USSR": 5
+          },
+          "defcon": 3
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "vp_after": 0,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Stopped"
+      }
+    },
+    {
+      "id": "CE-R-AR-overflow-opponent",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "state": {
+          "military_earned": {
+            "US": 5,
+            "USSR": 7
+          },
+          "defcon": 3
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "vp_after": 0,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Stopped"
+      }
+    },
+    {
+      "id": "CE-R-AR-overflow-invariant",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "state": {
+          "military_earned": {
+            "US": 7,
+            "USSR": 4
+          },
+          "defcon": 5
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "vp_after": 0,
+        "defcon_after": 5,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Stopped"
+      }
+    },
+    {
+      "id": "CE-R-AR-overflow-equal",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "state": {
+          "military_earned": {
+            "US": 6,
+            "USSR": 6
+          },
+          "defcon": 3
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "vp_after": 0,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Stopped"
+      }
+    },
+    {
+      "id": "CE-R-AR-victory",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "state": {
+          "military_earned": {
+            "US": 4,
+            "USSR": 2
+          },
+          "signed_vp": 18
+        }
+      },
+      "expected": {
+        "outcome": "Finished",
+        "vp_after": 21,
+        "defcon_after": 3,
+        "winner": "US",
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Finished"
+      }
+    },
+    {
+      "id": "CE-R-SU-us-winner",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        }
+      },
+      "expected": {
+        "outcome": "WaitingDecision",
+        "vp_after": 2,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 2,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 5,
+          "USSR": 1
+        },
+        "next_step": "AwaitDefcon"
+      },
+      "fixed_dice": [
+        5,
+        1
+      ]
+    },
+    {
+      "id": "CE-R-SU-ussr-winner",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        }
+      },
+      "expected": {
+        "outcome": "WaitingDecision",
+        "vp_after": -2,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": "USSR",
+        "rng_count": 2,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 1,
+          "USSR": 6
+        },
+        "next_step": "AwaitDefcon"
+      },
+      "fixed_dice": [
+        1,
+        6
+      ]
+    },
+    {
+      "id": "CE-R-SU-tie",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "vp_after": 0,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 2,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 4,
+          "USSR": 4
+        },
+        "next_step": "Complete"
+      },
+      "fixed_dice": [
+        4,
+        4
+      ]
+    },
+    {
+      "id": "CE-R-SU-vp-before-choice",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        },
+        "state": {
+          "signed_vp": 18,
+          "defcon": 2
+        }
+      },
+      "expected": {
+        "outcome": "Finished",
+        "vp_after": 20,
+        "defcon_after": 2,
+        "winner": "US",
+        "contest_winner": "US",
+        "rng_count": 2,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 6,
+          "USSR": 1
+        },
+        "next_step": "Finished"
+      },
+      "fixed_dice": [
+        6,
+        1
+      ]
+    },
+    {
+      "id": "CE-R-SU-unknown-source",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit",
+          "source_authorization": "Unknown"
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "vp_after": 0,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Stopped"
+      },
+      "fixed_dice": [
+        6,
+        1
+      ]
+    },
+    {
+      "id": "CE-R-SU-unknown-effects",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        },
+        "evidence": {
+          "unknown_relevant_interference": true
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "vp_after": 0,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Stopped"
+      },
+      "fixed_dice": [
+        6,
+        1
+      ]
+    },
+    {
+      "id": "CE-R-SU-incomplete-batch",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        },
+        "evidence": {
+          "all_vp_providers_known": false
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "vp_after": 0,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Stopped"
+      },
+      "fixed_dice": [
+        6,
+        1
+      ]
+    },
+    {
+      "id": "CE-R-SU-incomplete-map",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        },
+        "state": {
+          "countries": [
+            {
+              "country_id": "country.canada",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "outcome": "InvalidMap",
+        "vp_after": 0,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Stopped"
+      },
+      "fixed_dice": [
+        6,
+        1
+      ]
+    },
+    {
+      "id": "CE-R-SU-duplicate-country",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        },
+        "state": {
+          "countries": [
+            {
+              "country_id": "country.canada",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.uk",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.norway",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.sweden",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.finland",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.denmark",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.benelux",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.france",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.spain_portugal",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.italy",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.greece",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.turkey",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.west_germany",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.east_germany",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.poland",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.czechoslovakia",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.austria",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.hungary",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.yugoslavia",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.romania",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.bulgaria",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.afghanistan",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.pakistan",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.india",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.burma",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.laos_cambodia",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.thailand",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.vietnam",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.malaysia",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.indonesia",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.philippines",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.australia",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.taiwan",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.japan",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.south_korea",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.north_korea",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.lebanon",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.syria",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.israel",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.iraq",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.iran",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.jordan",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.gulf_states",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.saudi_arabia",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.egypt",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.libya",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.morocco",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.algeria",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.tunisia",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.west_african_states",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.saharan_states",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.ivory_coast",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.nigeria",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.cameroon",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.zaire",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.angola",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.south_africa",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.botswana",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.zimbabwe",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.southeast_african_states",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.kenya",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.somalia",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.ethiopia",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.sudan",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.mexico",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.guatemala",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.el_salvador",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.honduras",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.nicaragua",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.costa_rica",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.panama",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.cuba",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.haiti",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.dominican_republic",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.colombia",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.venezuela",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.ecuador",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.peru",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.bolivia",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.brazil",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.paraguay",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.uruguay",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.argentina",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.chile",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            },
+            {
+              "country_id": "country.canada",
+              "influence": {
+                "US": 0,
+                "USSR": 0
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "outcome": "InvalidMap",
+        "vp_after": 0,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Stopped"
+      },
+      "fixed_dice": [
+        6,
+        1
+      ]
+    },
+    {
+      "id": "CE-R-SU-running-nuclear",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        },
+        "state": {
+          "defcon": 1
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "vp_after": 0,
+        "defcon_after": 1,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Stopped"
+      },
+      "fixed_dice": [
+        6,
+        1
+      ]
+    },
+    {
+      "id": "CE-R-SU-running-winning-vp",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        },
+        "state": {
+          "signed_vp": 20
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "vp_after": 20,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Stopped"
+      },
+      "fixed_dice": [
+        6,
+        1
+      ]
+    },
+    {
+      "id": "CE-R-SU-stale-context",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit",
+          "expected_state_version": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "vp_after": 0,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Stopped"
+      },
+      "fixed_dice": [
+        6,
+        1
+      ]
+    },
+    {
+      "id": "CE-R-SU-card-effect-mismatch",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit"
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "vp_after": 0,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Stopped"
+      },
+      "fixed_dice": [
+        6,
+        1
+      ]
+    },
+    {
+      "id": "CE-R-SU-already-finished",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        },
+        "state": {
+          "status": "Finished",
+          "result_winner": "US",
+          "signed_vp": 20
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "vp_after": 20,
+        "defcon_after": 3,
+        "winner": "US",
+        "contest_winner": null,
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Finished"
+      },
+      "fixed_dice": [
+        6,
+        1
+      ]
+    },
+    {
+      "id": "CE-R-SU-forged-request-digest",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "vp_after": 0,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Stopped"
+      },
+      "fixed_dice": [
+        6,
+        1
+      ],
+      "tamper_request_digest": true
+    },
+    {
+      "id": "CE-R-MAP-presence",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "vp_after": 0,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 2,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 3,
+          "USSR": 3
+        },
+        "next_step": "Complete"
+      },
+      "country_fixture": {
+        "country.romania": [
+          3,
+          0
+        ],
+        "country.vietnam": [
+          0,
+          1
+        ]
+      },
+      "fixed_dice": [
+        3,
+        3
+      ],
+      "expected_regions": {
+        "region.europe": {
+          "US": {
+            "total": 1,
+            "battleground": 0,
+            "non_battleground": 1,
+            "tier": "Presence"
+          }
+        },
+        "region.asia": {
+          "USSR": {
+            "total": 1,
+            "battleground": 0,
+            "non_battleground": 1,
+            "tier": "Presence"
+          }
+        }
+      },
+      "map_expectations_author": "Independent read-only map fixture derivation; not generated by this resolver."
+    },
+    {
+      "id": "CE-R-MAP-two-main-regions",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        }
+      },
+      "expected": {
+        "outcome": "WaitingDecision",
+        "vp_after": 2,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 2,
+        "bonuses": {
+          "US": 2,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 5,
+          "USSR": 3
+        },
+        "next_step": "AwaitDefcon"
+      },
+      "country_fixture": {
+        "country.italy": [
+          2,
+          0
+        ],
+        "country.spain_portugal": [
+          2,
+          0
+        ],
+        "country.thailand": [
+          2,
+          0
+        ],
+        "country.laos_cambodia": [
+          1,
+          0
+        ]
+      },
+      "fixed_dice": [
+        3,
+        3
+      ],
+      "expected_regions": {
+        "region.europe": {
+          "US": {
+            "total": 2,
+            "battleground": 1,
+            "non_battleground": 1,
+            "tier": "Domination"
+          }
+        },
+        "region.asia": {
+          "US": {
+            "total": 2,
+            "battleground": 1,
+            "non_battleground": 1,
+            "tier": "Domination"
+          }
+        }
+      },
+      "map_expectations_author": "Independent read-only map fixture derivation; not generated by this resolver."
+    },
+    {
+      "id": "CE-R-MAP-europe-control",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        }
+      },
+      "expected": {
+        "outcome": "WaitingDecision",
+        "vp_after": 2,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 2,
+        "bonuses": {
+          "US": 1,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 4,
+          "USSR": 3
+        },
+        "next_step": "AwaitDefcon"
+      },
+      "country_fixture": {
+        "country.france": [
+          3,
+          0
+        ],
+        "country.italy": [
+          2,
+          0
+        ],
+        "country.west_germany": [
+          4,
+          0
+        ],
+        "country.east_germany": [
+          3,
+          0
+        ],
+        "country.poland": [
+          3,
+          0
+        ]
+      },
+      "fixed_dice": [
+        3,
+        3
+      ],
+      "expected_regions": {
+        "region.europe": {
+          "US": {
+            "total": 5,
+            "battleground": 5,
+            "non_battleground": 0,
+            "tier": "Control"
+          }
+        }
+      },
+      "map_expectations_author": "Independent read-only map fixture derivation; not generated by this resolver."
+    },
+    {
+      "id": "CE-R-MAP-total-tie",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "vp_after": 0,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 2,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 3,
+          "USSR": 3
+        },
+        "next_step": "Complete"
+      },
+      "country_fixture": {
+        "country.italy": [
+          2,
+          0
+        ],
+        "country.spain_portugal": [
+          2,
+          0
+        ],
+        "country.romania": [
+          0,
+          3
+        ],
+        "country.bulgaria": [
+          0,
+          3
+        ]
+      },
+      "fixed_dice": [
+        3,
+        3
+      ],
+      "expected_regions": {
+        "region.europe": {
+          "US": {
+            "total": 2,
+            "battleground": 1,
+            "non_battleground": 1,
+            "tier": "Presence"
+          },
+          "USSR": {
+            "total": 2,
+            "battleground": 0,
+            "non_battleground": 2,
+            "tier": "Presence"
+          }
+        }
+      },
+      "map_expectations_author": "Independent read-only map fixture derivation; not generated by this resolver."
+    },
+    {
+      "id": "CE-R-MAP-bg-tie",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "vp_after": 0,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 2,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 3,
+          "USSR": 3
+        },
+        "next_step": "Complete"
+      },
+      "country_fixture": {
+        "country.italy": [
+          2,
+          0
+        ],
+        "country.spain_portugal": [
+          2,
+          0
+        ],
+        "country.greece": [
+          2,
+          0
+        ],
+        "country.france": [
+          0,
+          3
+        ]
+      },
+      "fixed_dice": [
+        3,
+        3
+      ],
+      "expected_regions": {
+        "region.europe": {
+          "US": {
+            "total": 3,
+            "battleground": 1,
+            "non_battleground": 2,
+            "tier": "Presence"
+          },
+          "USSR": {
+            "total": 1,
+            "battleground": 1,
+            "non_battleground": 0,
+            "tier": "Presence"
+          }
+        }
+      },
+      "map_expectations_author": "Independent read-only map fixture derivation; not generated by this resolver."
+    },
+    {
+      "id": "CE-R-MAP-nonbg-required",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "vp_after": 0,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 2,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 3,
+          "USSR": 3
+        },
+        "next_step": "Complete"
+      },
+      "country_fixture": {
+        "country.pakistan": [
+          2,
+          0
+        ],
+        "country.thailand": [
+          2,
+          0
+        ],
+        "country.vietnam": [
+          0,
+          1
+        ]
+      },
+      "fixed_dice": [
+        3,
+        3
+      ],
+      "expected_regions": {
+        "region.asia": {
+          "US": {
+            "total": 2,
+            "battleground": 2,
+            "non_battleground": 0,
+            "tier": "Presence"
+          },
+          "USSR": {
+            "total": 1,
+            "battleground": 0,
+            "non_battleground": 1,
+            "tier": "Presence"
+          }
+        }
+      },
+      "map_expectations_author": "Independent read-only map fixture derivation; not generated by this resolver."
+    },
+    {
+      "id": "CE-R-MAP-split-regions",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "vp_after": 0,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 2,
+        "bonuses": {
+          "US": 1,
+          "USSR": 1
+        },
+        "totals": {
+          "US": 4,
+          "USSR": 4
+        },
+        "next_step": "Complete"
+      },
+      "country_fixture": {
+        "country.nigeria": [
+          1,
+          0
+        ],
+        "country.cameroon": [
+          1,
+          0
+        ],
+        "country.venezuela": [
+          0,
+          2
+        ],
+        "country.colombia": [
+          0,
+          1
+        ]
+      },
+      "fixed_dice": [
+        3,
+        3
+      ],
+      "expected_regions": {
+        "region.africa": {
+          "US": {
+            "total": 2,
+            "battleground": 1,
+            "non_battleground": 1,
+            "tier": "Domination"
+          }
+        },
+        "region.south_america": {
+          "USSR": {
+            "total": 2,
+            "battleground": 1,
+            "non_battleground": 1,
+            "tier": "Domination"
+          }
+        }
+      },
+      "map_expectations_author": "Independent read-only map fixture derivation; not generated by this resolver."
+    },
+    {
+      "id": "CE-R-MAP-taiwan",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        },
+        "state": {
+          "formosan_active": true
+        }
+      },
+      "expected": {
+        "outcome": "WaitingDecision",
+        "vp_after": 2,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 2,
+        "bonuses": {
+          "US": 1,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 4,
+          "USSR": 3
+        },
+        "next_step": "AwaitDefcon"
+      },
+      "country_fixture": {
+        "country.japan": [
+          4,
+          0
+        ],
+        "country.taiwan": [
+          3,
+          0
+        ]
+      },
+      "fixed_dice": [
+        3,
+        3
+      ],
+      "expected_regions": {
+        "region.asia": {
+          "US": {
+            "total": 2,
+            "battleground": 1,
+            "non_battleground": 1,
+            "tier": "Domination"
+          }
+        }
+      },
+      "map_expectations_author": "Independent read-only map fixture derivation; not generated by this resolver."
+    },
+    {
+      "id": "CE-R-MAP-shuttle",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        },
+        "state": {
+          "shuttle_active": true
+        }
+      },
+      "expected": {
+        "outcome": "WaitingDecision",
+        "vp_after": -2,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": "USSR",
+        "rng_count": 2,
+        "bonuses": {
+          "US": 0,
+          "USSR": 1
+        },
+        "totals": {
+          "US": 3,
+          "USSR": 4
+        },
+        "next_step": "AwaitDefcon"
+      },
+      "country_fixture": {
+        "country.north_korea": [
+          0,
+          3
+        ],
+        "country.vietnam": [
+          0,
+          1
+        ]
+      },
+      "fixed_dice": [
+        3,
+        3
+      ],
+      "expected_regions": {
+        "region.asia": {
+          "USSR": {
+            "total": 2,
+            "battleground": 1,
+            "non_battleground": 1,
+            "tier": "Domination"
+          }
+        }
+      },
+      "map_expectations_author": "Independent read-only map fixture derivation; not generated by this resolver."
+    },
+    {
+      "id": "CE-R-MAP-control-thresholds",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        }
+      },
+      "expected": {
+        "outcome": "WaitingDecision",
+        "vp_after": 2,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 2,
+        "bonuses": {
+          "US": 1,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 4,
+          "USSR": 3
+        },
+        "next_step": "AwaitDefcon"
+      },
+      "country_fixture": {
+        "country.italy": [
+          4,
+          2
+        ],
+        "country.spain_portugal": [
+          3,
+          1
+        ],
+        "country.romania": [
+          1,
+          4
+        ],
+        "country.france": [
+          5,
+          3
+        ],
+        "country.greece": [
+          2,
+          2
+        ],
+        "country.turkey": [
+          1,
+          0
+        ]
+      },
+      "fixed_dice": [
+        3,
+        3
+      ],
+      "expected_regions": {
+        "region.europe": {
+          "US": {
+            "total": 2,
+            "battleground": 1,
+            "non_battleground": 1,
+            "tier": "Domination"
+          },
+          "USSR": {
+            "total": 1,
+            "battleground": 0,
+            "non_battleground": 1,
+            "tier": "Presence"
+          }
+        }
+      },
+      "map_expectations_author": "Independent read-only map fixture derivation; not generated by this resolver."
+    },
+    {
+      "id": "CE-R-MAP-six-us",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        }
+      },
+      "expected": {
+        "outcome": "WaitingDecision",
+        "vp_after": 2,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 2,
+        "bonuses": {
+          "US": 6,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 12,
+          "USSR": 6
+        },
+        "next_step": "AwaitDefcon"
+      },
+      "country_fixture": {
+        "country.italy": [
+          2,
+          0
+        ],
+        "country.spain_portugal": [
+          2,
+          0
+        ],
+        "country.thailand": [
+          2,
+          0
+        ],
+        "country.laos_cambodia": [
+          1,
+          0
+        ],
+        "country.iran": [
+          2,
+          0
+        ],
+        "country.lebanon": [
+          1,
+          0
+        ],
+        "country.nigeria": [
+          1,
+          0
+        ],
+        "country.cameroon": [
+          1,
+          0
+        ],
+        "country.mexico": [
+          2,
+          0
+        ],
+        "country.guatemala": [
+          1,
+          0
+        ],
+        "country.venezuela": [
+          2,
+          0
+        ],
+        "country.colombia": [
+          1,
+          0
+        ]
+      },
+      "fixed_dice": [
+        6,
+        6
+      ],
+      "expected_regions": {
+        "region.europe": {
+          "US": {
+            "total": 2,
+            "battleground": 1,
+            "non_battleground": 1,
+            "tier": "Domination"
+          }
+        },
+        "region.asia": {
+          "US": {
+            "total": 2,
+            "battleground": 1,
+            "non_battleground": 1,
+            "tier": "Domination"
+          }
+        },
+        "region.middle_east": {
+          "US": {
+            "total": 2,
+            "battleground": 1,
+            "non_battleground": 1,
+            "tier": "Domination"
+          }
+        },
+        "region.africa": {
+          "US": {
+            "total": 2,
+            "battleground": 1,
+            "non_battleground": 1,
+            "tier": "Domination"
+          }
+        },
+        "region.central_america": {
+          "US": {
+            "total": 2,
+            "battleground": 1,
+            "non_battleground": 1,
+            "tier": "Domination"
+          }
+        },
+        "region.south_america": {
+          "US": {
+            "total": 2,
+            "battleground": 1,
+            "non_battleground": 1,
+            "tier": "Domination"
+          }
+        }
+      },
+      "map_expectations_author": "Independent read-only map fixture derivation; not generated by this resolver."
+    },
+    {
+      "id": "CE-R-MAP-six-ussr",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "source_card_id": "card.summit",
+          "source_effect_id": "effect.summit"
+        }
+      },
+      "expected": {
+        "outcome": "WaitingDecision",
+        "vp_after": -2,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": "USSR",
+        "rng_count": 2,
+        "bonuses": {
+          "US": 0,
+          "USSR": 6
+        },
+        "totals": {
+          "US": 6,
+          "USSR": 12
+        },
+        "next_step": "AwaitDefcon"
+      },
+      "country_fixture": {
+        "country.italy": [
+          0,
+          2
+        ],
+        "country.spain_portugal": [
+          0,
+          2
+        ],
+        "country.thailand": [
+          0,
+          2
+        ],
+        "country.laos_cambodia": [
+          0,
+          1
+        ],
+        "country.iran": [
+          0,
+          2
+        ],
+        "country.lebanon": [
+          0,
+          1
+        ],
+        "country.nigeria": [
+          0,
+          1
+        ],
+        "country.cameroon": [
+          0,
+          1
+        ],
+        "country.mexico": [
+          0,
+          2
+        ],
+        "country.guatemala": [
+          0,
+          1
+        ],
+        "country.venezuela": [
+          0,
+          2
+        ],
+        "country.colombia": [
+          0,
+          1
+        ]
+      },
+      "fixed_dice": [
+        6,
+        6
+      ],
+      "expected_regions": {
+        "region.europe": {
+          "USSR": {
+            "total": 2,
+            "battleground": 1,
+            "non_battleground": 1,
+            "tier": "Domination"
+          }
+        },
+        "region.asia": {
+          "USSR": {
+            "total": 2,
+            "battleground": 1,
+            "non_battleground": 1,
+            "tier": "Domination"
+          }
+        },
+        "region.middle_east": {
+          "USSR": {
+            "total": 2,
+            "battleground": 1,
+            "non_battleground": 1,
+            "tier": "Domination"
+          }
+        },
+        "region.africa": {
+          "USSR": {
+            "total": 2,
+            "battleground": 1,
+            "non_battleground": 1,
+            "tier": "Domination"
+          }
+        },
+        "region.central_america": {
+          "USSR": {
+            "total": 2,
+            "battleground": 1,
+            "non_battleground": 1,
+            "tier": "Domination"
+          }
+        },
+        "region.south_america": {
+          "USSR": {
+            "total": 2,
+            "battleground": 1,
+            "non_battleground": 1,
+            "tier": "Domination"
+          }
+        }
+      },
+      "map_expectations_author": "Independent read-only map fixture derivation; not generated by this resolver."
+    },
+    {
+      "id": "CE-R-CHOICE-pass",
+      "validation_layer": "reference",
+      "phase": "DefconChoice",
+      "response_patch": {},
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "vp_after": 2,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 5,
+          "USSR": 1
+        },
+        "next_step": "Complete"
+      }
+    },
+    {
+      "id": "CE-R-CHOICE-improve",
+      "validation_layer": "reference",
+      "phase": "DefconChoice",
+      "response_patch": {
+        "choice": "ImproveOne"
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "vp_after": 2,
+        "defcon_after": 4,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 5,
+          "USSR": 1
+        },
+        "next_step": "Complete"
+      }
+    },
+    {
+      "id": "CE-R-CHOICE-degrade",
+      "validation_layer": "reference",
+      "phase": "DefconChoice",
+      "response_patch": {
+        "choice": "DegradeOne"
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "vp_after": 2,
+        "defcon_after": 2,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 5,
+          "USSR": 1
+        },
+        "next_step": "Complete"
+      }
+    },
+    {
+      "id": "CE-R-CHOICE-upper",
+      "validation_layer": "reference",
+      "phase": "DefconChoice",
+      "response_patch": {
+        "choice": "ImproveOne"
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "vp_after": 2,
+        "defcon_after": 5,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 5,
+          "USSR": 1
+        },
+        "next_step": "Complete"
+      },
+      "receipt_patch": {
+        "defcon_at_commit": 5
+      },
+      "continuation_state_patch": {
+        "defcon": 5
+      }
+    },
+    {
+      "id": "CE-R-CHOICE-root-loses",
+      "validation_layer": "reference",
+      "phase": "DefconChoice",
+      "response_patch": {
+        "choice": "DegradeOne"
+      },
+      "expected": {
+        "outcome": "Finished",
+        "vp_after": 2,
+        "defcon_after": 1,
+        "winner": "USSR",
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 5,
+          "USSR": 1
+        },
+        "next_step": "Finished"
+      },
+      "receipt_patch": {
+        "defcon_at_commit": 2
+      },
+      "continuation_state_patch": {
+        "defcon": 2
+      }
+    },
+    {
+      "id": "CE-R-CHOICE-opponent-root-loses",
+      "validation_layer": "reference",
+      "phase": "DefconChoice",
+      "response_patch": {
+        "choice": "DegradeOne"
+      },
+      "expected": {
+        "outcome": "Finished",
+        "vp_after": 2,
+        "defcon_after": 1,
+        "winner": "US",
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 5,
+          "USSR": 1
+        },
+        "next_step": "Finished"
+      },
+      "receipt_patch": {
+        "defcon_at_commit": 2,
+        "root_phasing_player": "USSR"
+      },
+      "continuation_state_patch": {
+        "defcon": 2
+      }
+    },
+    {
+      "id": "CE-R-CHOICE-nuclear-subs",
+      "validation_layer": "reference",
+      "phase": "DefconChoice",
+      "response_patch": {
+        "choice": "DegradeOne"
+      },
+      "expected": {
+        "outcome": "Finished",
+        "vp_after": 2,
+        "defcon_after": 1,
+        "winner": "USSR",
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 5,
+          "USSR": 1
+        },
+        "next_step": "Finished"
+      },
+      "receipt_patch": {
+        "defcon_at_commit": 2
+      },
+      "nuclear_subs_active": true,
+      "continuation_state_patch": {
+        "defcon": 2
+      }
+    },
+    {
+      "id": "CE-R-CHOICE-wrong-owner",
+      "validation_layer": "reference",
+      "phase": "DefconChoice",
+      "response_patch": {
+        "submitted_by": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidDecision",
+        "vp_after": 2,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 5,
+          "USSR": 1
+        },
+        "next_step": "AwaitDefcon"
+      }
+    },
+    {
+      "id": "CE-R-CHOICE-stale",
+      "validation_layer": "reference",
+      "phase": "DefconChoice",
+      "response_patch": {
+        "decision_revision": 1
+      },
+      "expected": {
+        "outcome": "InvalidDecision",
+        "vp_after": 2,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 5,
+          "USSR": 1
+        },
+        "next_step": "AwaitDefcon"
+      }
+    },
+    {
+      "id": "CE-R-CHOICE-wrong-version",
+      "validation_layer": "reference",
+      "phase": "DefconChoice",
+      "response_patch": {
+        "expected_state_version": 10
+      },
+      "expected": {
+        "outcome": "InvalidDecision",
+        "vp_after": 2,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 5,
+          "USSR": 1
+        },
+        "next_step": "AwaitDefcon"
+      }
+    },
+    {
+      "id": "CE-R-CHOICE-tampered-receipt",
+      "validation_layer": "reference",
+      "phase": "DefconChoice",
+      "response_patch": {},
+      "expected": {
+        "outcome": "InvalidReceipt",
+        "vp_after": 2,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 5,
+          "USSR": 1
+        },
+        "next_step": "Stopped"
+      },
+      "tamper_receipt_digest": true
+    },
+    {
+      "id": "CE-R-CHOICE-impossible-receipt",
+      "validation_layer": "reference",
+      "phase": "DefconChoice",
+      "response_patch": {},
+      "expected": {
+        "outcome": "InvalidReceipt",
+        "vp_after": 2,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 5,
+          "USSR": 1
+        },
+        "next_step": "Stopped"
+      },
+      "receipt_patch": {
+        "rng_cursor_after": 8
+      }
+    },
+    {
+      "id": "CE-I-receipt-tie-winner-conflict",
+      "validation_layer": "input-schema",
+      "schema_definition": "paired_receipt",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "contest_outcome",
+              "result"
+            ],
+            "value": "Tie"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-R-CHOICE-tampered-vp-keeps-state",
+      "validation_layer": "reference",
+      "phase": "DefconChoice",
+      "response_patch": {},
+      "receipt_patch": {
+        "signed_vp_after": 3
+      },
+      "expected": {
+        "outcome": "InvalidReceipt",
+        "vp_after": 2,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 5,
+          "USSR": 1
+        },
+        "next_step": "Stopped"
+      }
+    },
+    {
+      "id": "CE-R-CHOICE-foreign-frame",
+      "validation_layer": "reference",
+      "phase": "DefconChoice",
+      "response_patch": {},
+      "continuation_state_patch": {
+        "source_frame_id": "frame.other"
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "vp_after": 2,
+        "defcon_after": 3,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 5,
+          "USSR": 1
+        },
+        "next_step": "Stopped"
+      }
+    },
+    {
+      "id": "CE-R-CHOICE-already-finished",
+      "validation_layer": "reference",
+      "phase": "DefconChoice",
+      "response_patch": {
+        "choice": "DegradeOne"
+      },
+      "continuation_state_patch": {
+        "status": "Finished",
+        "result_winner": "US",
+        "signed_vp": 20
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "vp_after": 20,
+        "defcon_after": 3,
+        "winner": "US",
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": {
+          "US": 0,
+          "USSR": 0
+        },
+        "totals": {
+          "US": 5,
+          "USSR": 1
+        },
+        "next_step": "Finished"
+      }
+    },
+    {
+      "id": "CE-I-receipt-winner-null",
+      "validation_layer": "input-schema",
+      "schema_definition": "paired_receipt",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "contest_outcome",
+              "winner"
+            ],
+            "value": null
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-I-receipt-pending-null",
+      "validation_layer": "input-schema",
+      "schema_definition": "paired_receipt",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "decision"
+            ],
+            "value": null
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-I-receipt-finished-pending",
+      "validation_layer": "input-schema",
+      "schema_definition": "paired_receipt",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "next_step"
+            ],
+            "value": "Finished"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-I-receipt-wrong-award",
+      "validation_layer": "input-schema",
+      "schema_definition": "paired_receipt",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "contest_outcome",
+              "vp_by_side",
+              "US"
+            ],
+            "value": 3
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "CE-I-receipt-both-regional-control",
+      "validation_layer": "input-schema",
+      "schema_definition": "paired_receipt",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "contest_outcome",
+              "metric_snapshot",
+              "region_tiers",
+              0
+            ],
+            "value": {
+              "region_id": "region.europe",
+              "US": "Control",
+              "USSR": "Domination"
+            }
+          }
+        ]
+      },
+      "expected_valid": false
+    }
+  ],
+  "runtime_cases": [
+    {
+      "id": "CE-T-AUTH",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "真实会话鉴权、来源授权、根/子帧生命周期，拒绝未注册外部来源。"
+    },
+    {
+      "id": "CE-T-ATOMIC",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "异常注入验证初始双骰/VP/RNG/收据/选择事务共同提交或共同回滚。"
+    },
+    {
+      "id": "CE-T-RETRY",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "同Resolution原请求只返既有收据，同ID不同摘要拒绝，不按后来地图重算。"
+    },
+    {
+      "id": "CE-T-LATER",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "非法或异常DEFCON回应保留已提交骰/VP，无第二次RNG或奖励。"
+    },
+    {
+      "id": "CE-T-SAVE",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "等待胜者选择时真实序列化恢复，保留两骰、角色、摘要、VP批次与Revision。"
+    },
+    {
+      "id": "CE-T-FINISHED",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "VP终局不创DEFCON选择，核战终局与Finished吸收停止父流程。"
+    },
+    {
+      "id": "CE-T-DISPOSITION",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "统一非星号去向、事件完成/父帧收据仅一次，不提前处理等待中的Summit。"
+    },
+    {
+      "id": "CE-T-PRIVACY",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "玩家视图不暴露未结算头条、手牌、随机源状态或内部授权凭据。"
+    },
+    {
+      "id": "CE-T-FULLMAP",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "真实完整84国快照、绑定版本和所有相关策略提供者，与生产控制查询一致。"
+    },
+    {
+      "id": "CE-T-INTERRUPT",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "已核实独立规则中断后恢复原竞赛收据，现行DEFCON和来源继续位置再校验。"
+    },
+    {
+      "id": "CE-T-CHECKED",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "C#整数上下界与checked溢出故障回滚，无静默钳制或部分提交。"
+    },
+    {
+      "id": "CE-T-NETWORK",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "断线重投与并发旧版本回应使用真实命令去重和版本锁，非布尔模拟。"
+    }
+  ],
+  "continuation_state_fixture": {
+    "state_version": 11,
+    "defcon": 3,
+    "signed_vp": 2,
+    "status": "Running",
+    "result_winner": null,
+    "rng_cursor": 9,
+    "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "source_frame_id": "frame.ce.1",
+    "root_action_id": "action.ce.1"
+  }
+}

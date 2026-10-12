@@ -104,3 +104,5 @@ flowchart LR
 [动态计分效果](scoring-effects-batch1.md)先重分类台湾，再由US选穿梭排除国。排除只从USSR总国/战场/敌邻接事实扣除，Control用战场全集不删除该国；实体消费与整个VP批次同一提交。预览不消费，Final仅台湾规则适用。
 
 [七张计分牌](scoring-cards.md)已绑定本单一数据与结构契约；欧洲Control传独立胜者，不算大数，SEA权重不混入标准奖励。R2015来源页码复核为PDF p2/3/10，旧p18/19已修正，不改分值。
+
+[峰会](contest-events.md)仅复用实际控制与档位谓词，不执行地区计分：Shuttle不消费、Formosan不重分类、欧洲Control不触发自动胜利。

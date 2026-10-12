@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.region-scoring",
   "kind": "module",
-  "description": "查询六地区档位、东南亚权重和完整最终汇总；纯规则服务设计，尚不可调用。",
+  "description": "查询六地区档位、东南亚权重和完整最终汇总；纯规则服务设计，尚不可调用。 峰会复用实际地图档位查询，不调用奖分/欧洲胜利或计分临时投影。",
   "status": "planned",
   "entrypoints": [],
   "documentation": "Docs/Wiki/region-scoring.md",
@@ -22,15 +22,21 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Scoring/CardScoringService.cs",
       "symbol": "ResolveFromCard"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/RegionScoringService.cs",
+      "symbol": "InspectActualRegionTiers"
     }
   ],
   "inputs": [
     "同一版本的权威计分快照、地区ID、Normal/Final模式及已核实修正",
     "完整规则地图与不可变参数定义",
-    "ScoringInvocationKind独立于Mode：真实牌Normal/PlayedScoringCard，最终Final/FinalScoring；预览单独只读标志"
+    "ScoringInvocationKind独立于Mode：真实牌Normal/PlayedScoringCard，最终Final/FinalScoring；预览单独只读标志",
+    "Summit查询具名ActualMap指标模式，六主地区只算一次，基础战场与完整双方影响力"
   ],
   "outputs": [
-    "双方分项、净VP、EuropeControlWinner与最终完整性证据"
+    "双方分项、净VP、EuropeControlWinner与最终完整性证据",
+    "实际地区档位与证据；不生成计分VP、欧洲胜利、不消费Shuttle、不改Formosan"
   ],
   "dependencies": [
     {
@@ -56,7 +62,8 @@
     "cards.deluxe2015.scoring-parameters",
     "rules.deluxe2015.turn-flow",
     "map.deluxe2015.world",
-    "effects.deluxe2015.scoring_effects_batch1"
+    "effects.deluxe2015.scoring_effects_batch1",
+    "effects.deluxe2015.contest_events"
   ],
   "preconditions": [
     "当前为设计；尚无可调用实现",
@@ -74,7 +81,8 @@
     {
       "id": "R2015",
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
-      "checked_on": "2026-09-22"
+      "checked_on": "2026-09-22",
+      "description": " CE1: §2.0标准骰；§2.1.1–2/7地区与控制；§4.2/4.5C根责任；§8.1/8.2 DEFCON与军事义务；§10.1.1档位；§10.3.1完整VP批次即时终局。§8.2未明确军事封顶。"
     },
     {
       "id": "M-DELUXE",
@@ -87,13 +95,26 @@
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "scope": "GMT托管土耳其语汇编中的英文印刷卡图；只采纳指定卡图，不以译文或PDF元数据当作新版勘误",
-      "checked_on": "2026-09-22"
+      "checked_on": "2026-09-22",
+      "description": " CE1: PDFp7 #39严格比较军事轨道，PhasingPlayer获1或改为3VP；PDFp8 #45双方一骰、地区加成、胜者2VP与可选DEFCON；PDFp6 #35限定台湾重分类范围。"
     },
     {
       "id": "PROJECT-SE1",
       "url": null,
       "edition": "Engineering projection / card-text derivation, 2026-10-06",
       "description": "不可变计分事实、Holding实体暂存、一次提交净VP/消费收据为工程设计。目标仍不从Control分母删除（FAQ Control必须被阻止）；无USSR战场时零扣分仍在下一匹配实际计分消费是next scoring文本推导，非专门FAQ。预览只算不消费。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe answers only",
+      "description": "PDFp9 #41 Nuclear Subs不阻止事件改变DEFCON；PDFp15 #73 Shuttle不影响Summit。"
+    },
+    {
+      "id": "PROJECT-CE1",
+      "url": null,
+      "edition": "Bounded design and source gap, 2026-10-12",
+      "description": "双方任一累计>5即CE-OPEN-01 RequiresRuling，5是保守支持边界而非采用封顶；原累计不变。Arms零奖分标ResolvedNoChange、US后USSR抽样、完整骰/VP收据先提交再等DEFCON均为工程约定。"
     }
   ],
   "tests": [
@@ -109,11 +130,15 @@
     {
       "path": "Docs/Design/scoring-cards.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/contest-events.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
-    "latest_design_report": "Docs/Design/scoring-cards.validation.json"
+    "latest_design_report": "Docs/Design/contest-events.validation.json"
   },
   "open_items": [
     "已绑定台湾决议/穿梭外交的真实实现；其余未设计修正",

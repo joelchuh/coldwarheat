@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "data.contest-events",
+  "kind": "data",
+  "status": "ready",
+  "description": "军备竞赛与峰会：分离根责任/事件控制/胜者选择，实际地图双骰比较，耐久结果收据与可选DEFCON继续；军事>5待裁定，运行待实现。",
+  "dataset_id": "effects.deluxe2015.contest_events",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/contest-events.schema.json",
+  "documentation": "Docs/Wiki/contest-events.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/contest-events.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "CardId、可信根/子帧、角色、绑定版本与完整权威快照",
+    "共享地图、军事/DEFCON/胜负/地区/D6定义；后续决定引用已提交ContestOutcome收据"
+  ],
+  "outputs": [
+    "两种具名比较政策；不可变结果/双骰收据/继续形状，不是C#实现"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "rules.deluxe2015.military-operations",
+    "rules.deluxe2015.defcon",
+    "rules.deluxe2015.victory",
+    "rules.deluxe2015.region-scoring",
+    "map.deluxe2015.world",
+    "rules.deluxe2015.standard-dice",
+    "cards.deluxe2015.definitions"
+  ],
+  "preconditions": [
+    "参数ready不代表运行处理器已实现",
+    "Arms双方累计只支持0..5子集；任何>5先RequiresRuling",
+    "运行必须验证完整当前状态与所有相关干预，客户端不得提交骰点/胜者/计数/VP"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "来源/角色/版本不匹配或损坏/不可能的运行状态",
+    "未知相关干预或不完整VP提供者：初始抽骰前停",
+    "同Resolution不同请求摘要冲突；非法后续回应不撤回既有骰/VP",
+    "已终局不创等待选择或继续父帧"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "PDFp7 #39严格比较军事轨道，PhasingPlayer获1或改为3VP；PDFp8 #45双方一骰、地区加成、胜者2VP与可选DEFCON；PDFp6 #35限定台湾重分类范围。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.0标准骰；§2.1.1–2/7地区与控制；§4.2/4.5C根责任；§8.1/8.2 DEFCON与军事义务；§10.1.1档位；§10.3.1完整VP批次即时终局。§8.2未明确军事封顶。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe answers only",
+      "description": "PDFp9 #41 Nuclear Subs不阻止事件改变DEFCON；PDFp15 #73 Shuttle不影响Summit。"
+    },
+    {
+      "id": "GMT-OLD-SNEAKPEEK",
+      "url": "https://www.gmtgames.com/nnts/sneakpeek_xop.html",
+      "edition": "Designer-attributed old sample, not adopted Deluxe cap ruling",
+      "description": "旧例将军事图表5称为最大；旧版细节且承认示例错误，只支持研究线索，不作为本版cap裁定。"
+    },
+    {
+      "id": "PROJECT-CE1",
+      "url": null,
+      "edition": "Bounded design and source gap, 2026-10-12",
+      "description": "双方任一累计>5即CE-OPEN-01 RequiresRuling，5是保守支持边界而非采用封顶；原累计不变。Arms零奖分标ResolvedNoChange、US后USSR抽样、完整骰/VP收据先提交再等DEFCON均为工程约定。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/contest-events.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/contest-events.validation.json"
+  }
+}

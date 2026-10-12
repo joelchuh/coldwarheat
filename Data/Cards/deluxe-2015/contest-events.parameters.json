@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.contest_events",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "verified-subset",
+  "description": "军备竞赛与峰会：分离根责任/事件控制/胜者选择，实际地图双骰比较，耐久结果收据与可选DEFCON继续；军事>5待裁定，运行待实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "PDFp7 #39严格比较军事轨道，PhasingPlayer获1或改为3VP；PDFp8 #45双方一骰、地区加成、胜者2VP与可选DEFCON；PDFp6 #35限定台湾重分类范围。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.0标准骰；§2.1.1–2/7地区与控制；§4.2/4.5C根责任；§8.1/8.2 DEFCON与军事义务；§10.1.1档位；§10.3.1完整VP批次即时终局。§8.2未明确军事封顶。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe answers only",
+      "description": "PDFp9 #41 Nuclear Subs不阻止事件改变DEFCON；PDFp15 #73 Shuttle不影响Summit。"
+    },
+    {
+      "id": "GMT-OLD-SNEAKPEEK",
+      "url": "https://www.gmtgames.com/nnts/sneakpeek_xop.html",
+      "edition": "Designer-attributed old sample, not adopted Deluxe cap ruling",
+      "description": "旧例将军事图表5称为最大；旧版细节且承认示例错误，只支持研究线索，不作为本版cap裁定。"
+    },
+    {
+      "id": "PROJECT-CE1",
+      "url": null,
+      "edition": "Bounded design and source gap, 2026-10-12",
+      "description": "双方任一累计>5即CE-OPEN-01 RequiresRuling，5是保守支持边界而非采用封顶；原累计不变。Arms零奖分标ResolvedNoChange、US后USSR抽样、完整骰/VP收据先提交再等DEFCON均为工程约定。"
+    }
+  ],
+  "shared_refs": {
+    "military": {
+      "dataset_id": "rules.deluxe2015.military-operations",
+      "json_pointer": ""
+    },
+    "defcon": {
+      "dataset_id": "rules.deluxe2015.defcon",
+      "json_pointer": ""
+    },
+    "victory": {
+      "dataset_id": "rules.deluxe2015.victory",
+      "json_pointer": ""
+    },
+    "region_scoring": {
+      "dataset_id": "rules.deluxe2015.region-scoring",
+      "json_pointer": "/regions"
+    },
+    "map": {
+      "dataset_id": "map.deluxe2015.world",
+      "json_pointer": ""
+    },
+    "standard_die": {
+      "dataset_id": "rules.deluxe2015.standard-dice",
+      "json_pointer": "/definitions/standard_d6"
+    },
+    "cards": {
+      "dataset_id": "cards.deluxe2015.definitions",
+      "json_pointer": "/cards"
+    }
+  },
+  "context_policy": {
+    "roles": "DistinctRootPhasingPlayerCardPlayerEffectControllerAndDecisionOwner",
+    "source_authorization": "TrustedRegisteredSourceOnlyNoNewExternalCardAuthorization",
+    "complete_snapshot": "ValidateExactCountryCoverageAndRuleVersionBeforeRoll",
+    "preflight": "ValidateContextStateAllRelevantEffectsAndCompleteVpBatchBeforeRandom",
+    "unknown_relevant_interference": "RequiresRulingBeforeRandomOrMutation",
+    "known_irrelevant_effects": "ExcludeByVerifiedScopeWithoutConsuming",
+    "invalid_running_state": "RejectDefconAtNuclearOrAlreadyWinningVpOrMalformedState",
+    "integer_arithmetic": "CheckedNonnegativeInfluenceAndMilitaryIntegersNoSilentClamp"
+  },
+  "contest_outcome_policy": {
+    "type_name": "ContestOutcome",
+    "ownership": "AuthorityGeneratedImmutable",
+    "variants": [
+      "NoAward",
+      "Winner",
+      "Tie"
+    ],
+    "evidence": "VersionBoundMetricSnapshotAndSourceContext",
+    "vp_batch": "OneCompleteSemanticEventBatch",
+    "victory_checkpoint": "VpBatchClosedBeforeAnyOptionalDefconDecision",
+    "europe_control": "SummitBonusOnlyNoScoringOrAutomaticEuropeVictory",
+    "final_disposition": "SharedCardDispositionAfterFinalContinuationOrTerminal",
+    "root_slot": "NoNewRootSlot"
+  },
+  "receipt_policy": {
+    "type_name": "PairedDiceContestReceipt",
+    "draw_order": [
+      "US",
+      "USSR"
+    ],
+    "request_binding": "CanonicalOriginalRequestDigestAndSourceFrame",
+    "snapshot_binding": "OriginalStateVersionRulesetVersionAndDataDigest",
+    "commit_boundary": "BothRawDiceDerivedOutcomeVpBatchRngPositionAndContinuationAtomic",
+    "initial_failure": "RollbackAllUncommittedStateAndRng",
+    "later_choice_failure": "PreserveCommittedContestReceiptAndVpNoReroll",
+    "retry": "ReturnOriginalAcceptedReceiptBeforeRecomputingCurrentFacts",
+    "conflicting_retry": "RejectSameResolutionIdWithDifferentOriginalRequestDigest",
+    "continuation_binding": "WinnerDecisionIdRevisionAndCommittedReceiptDigest",
+    "finished": "AbsorbingNoNewDecisionOrParentSteps"
+  },
+  "parameters": {
+    "arms_race": {
+      "card_id": "card.arms_race",
+      "effect_id": "effect.arms_race",
+      "description": "只向根PhasingPlayer奖分；双方军事累计0..5子集严格比较，任一>5先停，不改原军事累计。",
+      "template": "MilitaryTrackLeadContest",
+      "beneficiary": "RootPhasingPlayer",
+      "metric": "MilitaryTrackComparisonVerifiedSubset",
+      "comparison": "StrictlyGreaterThanOpponent",
+      "verified_earned_upper_boundary": 5,
+      "overflow_policy": "EitherEarnedAboveVerifiedBoundaryRequiresRuling",
+      "requirement": "CurrentDefconAtEventResolution",
+      "vp_when_leading_below_requirement": 1,
+      "vp_when_leading_and_requirement_met": 3,
+      "larger_award": "ReplaceSmallerAward",
+      "no_lead_outcome": "ResolvedNoChange",
+      "military_delta": 0,
+      "random_policy": "None",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDFp7 English #39: PhasingPlayer strict military-track lead; 1 VP or replacement 3 VP; no military credit or dice.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§4.2 PhasingPlayer; §8.2.1 current military requirement; §10.3.1 complete VP batch and immediate victory.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "GMT-OLD-SNEAKPEEK",
+          "locator": "Turn 1 USSR Five Year Plan coup paragraph calls chart 5 maximized; old example only, NOT adopted as a Deluxe track-cap ruling.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-CE1",
+          "locator": "CE-OPEN-01 either earned total >5 pauses; uncapped storage retained. No-lead ResolvedNoChange is an engineering label, not a dedicated official ruling.",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "summit": {
+      "card_id": "card.summit",
+      "effect_id": "effect.summit",
+      "description": "六主区实际控制状态各最多+1；双标准骰比较，胜者2VP，未终局才由胜者选不变/改善/降级。",
+      "template": "PairedDiceRegionalStatusContest",
+      "regions_policy": "AllStandardRegionsFromSharedRegionDefinitionExactlyOnce",
+      "country_control_policy": "SharedStabilityAndInfluenceLeadPredicate",
+      "battleground_policy": "ActualBaseBattlegroundOnly",
+      "eligible_tiers": [
+        "Domination",
+        "Control"
+      ],
+      "bonus_per_eligible_region": 1,
+      "scoring_invocation": "None",
+      "formosan_policy": "NoBattlegroundOverride",
+      "shuttle_policy": "NoModificationNoChoiceNoConsumption",
+      "dice_per_side": 1,
+      "die_ref": "standard_die",
+      "modified_total_policy": "RawDiePlusEligibleRegionCountWithoutClamping",
+      "winner_policy": "StrictlyGreaterModifiedTotal",
+      "tie_policy": "ResolvedNoChangeNoVpNoChoiceNoReroll",
+      "winner_vp": 2,
+      "defcon_choice_owner": "ContestWinner",
+      "defcon_choices": [
+        "Pass",
+        "ImproveOne",
+        "DegradeOne"
+      ],
+      "defcon_change_reason": "Event",
+      "nuclear_subs_policy": "DoesNotBlockEventDefconChange",
+      "nuclear_loser": "RootPhasingPlayer",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDFp8 English #45: paired die comparison and optional winner DEFCON; PDFp6 #35: Taiwan only reclassified for specified scoring.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.0 D6; §2.1.1–2/7 six regions and control; §4.2/4.5C and §8.1 root nuclear responsibility; §10.1.1 tiers; §10.3.1 VP terminal.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFp9 #41 event DEFCON is not blocked by Nuclear Subs; PDFp15 #73 Shuttle does not affect Summit.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-CE1",
+          "locator": "Authority-only actual map query; receipt draw order; atomic roll/VP batch before optional winner decision; retry and rollback contracts are engineering.",
+          "verification": "Verified"
+        }
+      ],
+      "draw_order_policy": "SharedReceiptPolicyDrawOrder"
+    }
+  }
+}

@@ -1,0 +1,598 @@
+{
+  "description": "军备竞赛与峰会数据、输入形状及有限结果投影；连同旧离线规则案例回归，非生产游戏执行。",
+  "checked_on": "2026-10-12",
+  "new_cases_passed": 107,
+  "previous_cases_passed": 1884,
+  "total_cases_passed": 1991,
+  "cases_by_layer": {
+    "data": 27,
+    "input-schema": 25,
+    "reference": 55,
+    "runtime": 12
+  },
+  "runtime_cases_not_run": 12,
+  "runtime_game_tests_run": 0,
+  "bound_cards": 73,
+  "unresolved_bindings": 29,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 37,
+    "json_files_parsed": 222,
+    "data_descriptors": 40,
+    "module_descriptors": 21,
+    "relative_links_checked": 195,
+    "parameter_pointers_resolved": 126
+  },
+  "validated_sha256": {
+    "Data/Cards/deluxe-2015/contest-events.parameters.json": "9e3552799fea270071b1f34e22515c8ddd7853afc790750df4514b56c77df40f",
+    "Docs/Contracts/contest-events.schema.json": "5f13abb8be565ba66fb29c6cdef592394608595a326dae2ab38edb95411dca70",
+    "Docs/Design/contest-events.cases.json": "e2c8fdb3194c5a6e81c88f809937734a3bbe41667677d08e18f4e6c21b29ce6e",
+    "Data/Descriptors/contest-events.data.json": "6a7865a2b92e23ab5737374fbf23fdfe75a34019bde5fe0e59583943843d5ca7",
+    "Docs/Wiki/contest-events.md": "435e9b6bceec79d6a740750b34f9fc8ff357a00a047caba0c4540a7173842ab8",
+    "Data/Rulesets/deluxe-2015/military-operations.json": "0b00fa575def470d5e96032b00ce0ad614d29ea837cf1dd2196cab0017d08c37",
+    "Data/Rulesets/deluxe-2015/defcon.json": "e9a842358cc3f772cfcba0e7f307fb6d8fe26b812aa5e303ea046bf618565eba",
+    "Data/Rulesets/deluxe-2015/victory.json": "f8566187874ff89c181b7c0c6cb46048788f7558fa5d9326273e64306d4a8624",
+    "Data/Rulesets/deluxe-2015/region-scoring.json": "30bb116709fb52ff64664c36b8036b17da3b618e77c0a978259c870f551c8c26",
+    "Data/Maps/deluxe-2015/world.json": "6d4e20c674bd74d44cdb0f1ca66e8e960f125b3e45076d05307125a3c36ea45b",
+    "Data/Rulesets/deluxe-2015/standard-dice.json": "c84d14b827bd71d5575a22d6e2c52e18caaffcaeeb5f8e53f16352bdcec8f54a",
+    "Data/Cards/deluxe-2015/cards.json": "13ce8d05d8fbc24868e73b450741417f53482694287c6b86e6f15fcc64311db9",
+    "Docs/Descriptors/composite-events.module.json": "2310f8c68d9158f2a5c121f8d790c7e42304d82ea144ffb9771c8a0572b288f7",
+    "Docs/Descriptors/region-scoring.module.json": "510a4dd51d78139a6db933e7b5685d16c1883f85623d4651ca9aebbf72ac907e"
+  },
+  "results": [
+    {
+      "id": "CE-D-baseline",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-beneficiary",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-comparison",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-small-vp",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-large-vp",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-add-awards",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-overflow",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-boundary",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-military-credit",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-new-key",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-die-ref",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-draw-order",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-dice-count",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-bonus",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-tier-presence",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-scoring",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-taiwan",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-shuttle",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-tie-reroll",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-winner-vp",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-decision-owner",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-nuclear-loser",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-receipt-order",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-later-failure",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-source",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-military-ref",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-D-missing-policy",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "CE-I-initial-valid",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-initial-extra",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-missing-context",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-wrong-side",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-empty-frame",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-digest-format",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-negative-earned",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-missing-side",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-bool-earned",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-negative-influence",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-vp-string",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-negative-cursor",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-receipt-invalid-die",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-receipt-missing-owner",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-response-extra",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-response-side",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-response-choice",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-receipt-valid",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-response-valid",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-R-AR-below",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-AR-met",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-AR-ussr-below",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-AR-ussr-met",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-AR-tie",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-AR-opponent-leads",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-AR-split-role",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-AR-current-defcon",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-AR-overflow-lead",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-AR-overflow-opponent",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-AR-overflow-invariant",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-AR-overflow-equal",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-AR-victory",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-SU-us-winner",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-SU-ussr-winner",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-SU-tie",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-SU-vp-before-choice",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-SU-unknown-source",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-SU-unknown-effects",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-SU-incomplete-batch",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-SU-incomplete-map",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-SU-duplicate-country",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-SU-running-nuclear",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-SU-running-winning-vp",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-SU-stale-context",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-SU-card-effect-mismatch",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-SU-already-finished",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-SU-forged-request-digest",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-MAP-presence",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-MAP-two-main-regions",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-MAP-europe-control",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-MAP-total-tie",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-MAP-bg-tie",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-MAP-nonbg-required",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-MAP-split-regions",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-MAP-taiwan",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-MAP-shuttle",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-MAP-control-thresholds",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-MAP-six-us",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-MAP-six-ussr",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-CHOICE-pass",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-CHOICE-improve",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-CHOICE-degrade",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-CHOICE-upper",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-CHOICE-root-loses",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-CHOICE-opponent-root-loses",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-CHOICE-nuclear-subs",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-CHOICE-wrong-owner",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-CHOICE-stale",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-CHOICE-wrong-version",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-CHOICE-tampered-receipt",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-CHOICE-impossible-receipt",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-I-receipt-tie-winner-conflict",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-R-CHOICE-tampered-vp-keeps-state",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-CHOICE-foreign-frame",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-R-CHOICE-already-finished",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "CE-I-receipt-winner-null",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-receipt-pending-null",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-receipt-finished-pending",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-receipt-wrong-award",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "CE-I-receipt-both-regional-control",
+      "validation_layer": "input-schema",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "Synthetic authority/evidence labels do not verify real frames, authentication or all-effect dispatch.",
+    "Pure paired receipt projections and SHA256 fixture checks do not prove durable storage, rollback, command deduplication or replay.",
+    "No C#/Unity/network execution. No modification of baseline, shared registries or military storage.",
+    "1884旧案例仅适配绑定库存和历史已完成来源；13note及72Tools不计入且本批未重跑。",
+    "军事双方任一累计>5 RequiresRuling；不改既有累计存储，也不假定封顶解释已获用户同意。",
+    "已绑定参数不等于可运行；102handlers均planned。"
+  ],
+  "independent_review": {
+    "status": "ready-no-findings",
+    "critical": 0,
+    "important": 0,
+    "minor": 0,
+    "new_cases_independently_passed": 107,
+    "old_cases_independently_rerun": 0,
+    "scope": "323 baseline SHA and14 report SHA;222JSON37Schema40datasets21moduleDAG126refs195links;103 printed records unchanged and only2bindings;12 actual map fixtures and primary rules/card images reviewed.12runtime unrun;game0.",
+    "findings": "No actionable findings; military>5 remains RequiresRuling"
+  },
+  "metadata_after_validation": "Wiki状态由候选改为Bound；工作记录追加真实主验，规则/Schema/模型无变化"
+}
