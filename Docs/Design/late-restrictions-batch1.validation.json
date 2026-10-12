@@ -1,0 +1,1600 @@
+{
+  "description": "LR1 US骰方调整修正与所选主地区USSR OPS投放限制；只返回本来源贡献，真实消费者仍planned。",
+  "checked_on": "2026-10-13",
+  "new_cases_passed": 275,
+  "previous_cases_passed": 4133,
+  "total_cases_passed": 4408,
+  "cases_by_layer": {
+    "data": 10,
+    "contract": 108,
+    "reference": 157,
+    "runtime": 10
+  },
+  "runtime_cases_not_run": 10,
+  "runtime_game_tests_run": 0,
+  "bound_cards": 97,
+  "unresolved_bindings": 5,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 48,
+    "json_files_parsed": 277,
+    "data_descriptors": 51,
+    "module_descriptors": 21,
+    "relative_links_checked": 236,
+    "parameter_pointers_resolved": 243
+  },
+  "validated_sha256": {
+    "Data/Cards/deluxe-2015/late-restrictions-batch1.parameters.json": "b5e2a337462f48080ba1dcb98eb82afa93f8835c20f9348728c15fa4ad99f0ca",
+    "Data/Descriptors/late-restrictions-batch1.data.json": "b3a452947d138d9e2d95014cc3540ebb431aa9f2d101d11605da05c9ac9fd350",
+    "Docs/Contracts/late-restrictions-batch1.schema.json": "56e7411358afdd6e01afbce552545ed630d97f3f6143e320812d88c6fbe8fc6f",
+    "Docs/Design/late-restrictions-batch1.cases.json": "feeee8009e2475f95c9a5cd1c634d0e30283544e2d076019b0dd6fc64c4af215",
+    "Docs/Wiki/late-restrictions-batch1.md": "af0b12e0804e02cc944762d2cd5502a84f71cbde352a6a9c55a841de36e9c83e",
+    "Data/Cards/deluxe-2015/cards.json": "47f48bea59313bf810d55a20438418efb59e09a1b219e796254cb60675048792",
+    "Docs/Descriptors/active-effects.module.json": "f686855078dd3bafb322e9b2bff5428b86d7f742bdc5c4673370be05d8464501",
+    "Docs/Descriptors/action-restrictions.module.json": "089e7b5cd278a899e2e8f07def3ac1fad86567ecf20f3d7ea2ee7200450efbc2",
+    "Docs/Descriptors/event-operations.module.json": "958dbf8e864545833735cd3075b0b3e9604ad279a5bbd55d82358eb008caaf2e",
+    "Docs/Descriptors/turn-flow.module.json": "8361281f6938f86b9b6f3320d6356cf7f20313bf10801ab984606738624610dc"
+  },
+  "results": [
+    {
+      "id": "LR1-C-source-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-source-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-source-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-source-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-card_entity-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-card_entity-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-card_entity-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-card_entity-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-frame-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-frame-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-frame-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-frame-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-success_fact-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-success_fact-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-success_fact-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-success_fact-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-root_slot-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-root_slot-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-root_slot-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-root_slot-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-influence-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-influence-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-influence-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-influence-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-dispatch-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-dispatch-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-dispatch-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-dispatch-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-request-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-request-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-request-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-request-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-active_restriction-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-active_restriction-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-active_restriction-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-active_restriction-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-expiry_fact-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-expiry_fact-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-expiry_fact-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-expiry_fact-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-pending_region-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-pending_region-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-pending_region-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-pending_region-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-snapshot-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-snapshot-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-snapshot-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-snapshot-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-start_input-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-start_input-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-start_input-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-start_input-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-choice_request-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-choice_request-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-choice_request-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-choice_request-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-choice_input-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-choice_input-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-choice_input-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-choice_input-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-boundary_evidence-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-boundary_evidence-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-boundary_evidence-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-boundary_evidence-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-expire_request-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-expire_request-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-expire_request-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-expire_request-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-expire_input-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-expire_input-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-expire_input-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-expire_input-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-query_request-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-query_request-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-query_request-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-query_request-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-query_evidence-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-query_evidence-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-query_evidence-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-query_evidence-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-query_input-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-query_input-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-query_input-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-query_input-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-result-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-result-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-result-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-result-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-receipt_body-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-receipt_body-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-receipt_body-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-receipt_body-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-receipt-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-receipt-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-receipt-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-receipt-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-anchor-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-anchor-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-anchor-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-anchor-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-D-valid",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LR1-D-wrong-die-side",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LR1-D-wrong-delta",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LR1-D-wrong-duration",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LR1-D-wrong-actor",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LR1-D-allow-direct-event-ban",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LR1-D-subregion-policy",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LR1-D-decline-blocked",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LR1-D-repeat-refresh",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LR1-D-extra",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LR1-R-iran-activate",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-chernobyl-waits",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-select-region.europe",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-select-region.asia",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-select-region.middle_east",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-select-region.africa",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-select-region.central_america",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-select-region.south_america",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-decline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-reject-region.southeast_asia",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-reject-region.western_europe",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-reject-region.eastern_europe",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-reject-region.fake",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-source-OpponentCardEvent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-source-HeadlineEvent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-source-VerifiedFypUsChild",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-fyp-iran-reject",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-fyp-chernobyl-complete",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-opponent-root-remaining-ops",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-defcon-one",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-defcon-six",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-vp-terminal",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-winner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-stale",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-actor",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-source-zone",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-dispatch",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-coverage",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-source-frame",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-wrong-fyp-controller",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-wrong-fyp-selection",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-completed-fyp-parent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-iran-side-US-US-1",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-iran-side-US-US-6",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-iran-side-US-USSR-1",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-iran-side-US-USSR-6",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-iran-side-USSR-US-1",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-iran-side-USSR-US-6",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-iran-side-USSR-USSR-1",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-iran-side-USSR-USSR-6",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-iran-unclamped-high",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-iran-unclamped-low",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-iran-no-Coup",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-iran-no-War",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-iran-no-Space",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-iran-no-OpsQuote",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-iran-no-DirectEventInfluence",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-invalid-raw-0",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-invalid-raw-7",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-chernobyl-US-OrdinaryOps-country.vietnam",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-chernobyl-US-OrdinaryOps-country.south_korea",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-chernobyl-US-OrdinaryOps-country.france",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-chernobyl-US-AsIfOps-country.vietnam",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-chernobyl-US-AsIfOps-country.south_korea",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-chernobyl-US-AsIfOps-country.france",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-chernobyl-USSR-OrdinaryOps-country.vietnam",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-chernobyl-USSR-OrdinaryOps-country.south_korea",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-chernobyl-USSR-OrdinaryOps-country.france",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-chernobyl-USSR-AsIfOps-country.vietnam",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-chernobyl-USSR-AsIfOps-country.south_korea",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-chernobyl-USSR-AsIfOps-country.france",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-membership-country.austria",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-membership-country.finland",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-membership-country.canada",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-membership-country.turkey",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-membership-country.libya",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-membership-country.egypt",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-chernobyl-allows-DirectEventInfluence",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-chernobyl-allows-Realignment",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-chernobyl-allows-Coup",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-chernobyl-allows-War",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-chernobyl-allows-Space",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-chernobyl-allows-OpsQuote",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-declined-no-restriction",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-expire-iran_contra_scandal",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-expired-iran_contra_scandal",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-stale-active-iran_contra_scandal",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-repeat-new-resolution-iran_contra_scandal",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-expire-chernobyl",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-expired-chernobyl",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-stale-active-chernobyl",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-repeat-new-resolution-chernobyl",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-retry-start-later",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-retry-start-finished",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-retry-start-conflict",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-retry-start-tamper",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-retry-start-replace",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-retry-choose-later",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-retry-choose-finished",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-retry-choose-conflict",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-retry-choose-tamper",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-retry-choose-replace",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-retry-expire-later",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-retry-expire-finished",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-retry-expire-conflict",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-retry-expire-tamper",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-retry-expire-replace",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-choice-wrong-actor",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-choice-stale-state",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-choice-wrong-selection",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-choice-decline-region",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-expiry-wrong-provider",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-expiry-wrong-boundary",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-expiry-wrong-digest",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-expiry-wrong-turn",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-expiry-active-root",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-expiry-unknown-coverage",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-wrong-request",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-wrong-state",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-unknown-provider",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-unknown-channel",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-unknown-placement",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-wrong-target",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-foreign-die-fields",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-fact-effect",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-fact-controller",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-active-region",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-missing-expiry",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-pending-selection",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-root-waiting",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-root-unknown-work",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-source-owner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-completed-boundary-active",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-fyp-parent-fact-missing",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-fyp-parent-entity-mismatch",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-both-us-die",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-both-asif-ops",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-query-both-after-expiry",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-C-query_result-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-query_result-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-query_result-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-query_result-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-R-fyp-parent-proof-token",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-iran-remaining-root-query",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-fyp-chernobyl-remaining-root-query",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-iran_contra_scandal-own-root-ops",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-iran_contra_scandal-foreign-CardEvent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-iran_contra_scandal-foreign-RootCard",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-iran_contra_scandal-missing-frame",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-chernobyl-own-root-ops",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-chernobyl-foreign-CardEvent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-chernobyl-foreign-RootCard",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-chernobyl-missing-frame",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-chernobyl-fyp-own-root-ops",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-chernobyl-fyp-foreign-CardEvent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-chernobyl-fyp-foreign-RootCard",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-chernobyl-fyp-foreign-FiveYearPlanEvent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-chernobyl-fyp-missing-frame",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-iran_contra_scandal-expiry-reentry-ActionRound",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-iran_contra_scandal-expiry-reentry-Headline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-chernobyl-expiry-reentry-ActionRound",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-chernobyl-expiry-reentry-Headline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-iran_contra_scandal-finish-opponent-root",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-chernobyl-finish-opponent-root",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-fyp-finish-opponent-root",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-C-active-source-source_kind-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-active-source-source_kind-unknown",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-active-source-source_phase-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-C-active-source-source_phase-unknown",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LR1-R-review-iran-ops-original-phase",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-chernobyl-ops-original-phase",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-fyp-ops-original-phase",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-normal-source-false-fyp",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-fyp-source-false-root",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LR1-R-review-live-other-card",
+      "passed": true,
+      "validation_layer": "reference"
+    }
+  ],
+  "limitations": [
+    "合成来源/活动实例/查询/到期/收据前提不是生产鉴权、行动服务或持久化。",
+    "NoRestrictionFromLR1不是整个行动合法；LEO1原Chernobyl未知provider边界保留。",
+    "旧案例只适配绑定库存与文件overlay，不改规则期望；13note/72Tools独立，本批未重跑。"
+  ],
+  "independent_review": {
+    "status": "ready-no-findings",
+    "checked_on": "2026-10-13",
+    "new_cases_independently_passed": 275,
+    "separate_probes": 137,
+    "old_cases_independently_rerun": 0,
+    "integration_review": {
+      "json": 277,
+      "schemas": 48,
+      "datasets": 51,
+      "planned_module_dag": 21,
+      "module_dependency_edges": 42,
+      "catalog_and_dependency_paths_checked": 822,
+      "module_dependency_paths": 58,
+      "dataset_parameter_pointers": 243,
+      "effect_contract_pointers": 97,
+      "stage_markdown_relative_links": 239
+    },
+    "baseline_sha256_verified": 400,
+    "report_sha256_verified": 10,
+    "execution_scope": "Independent fixed author275 and original137 probes already passed; integration structural/AST/hash only, no extra275 or137 rerun, no old4133/runtime. Main4408 by parent.",
+    "integration_evidence": {
+      "ready": "Yes",
+      "baseline_head": "a6ce9ff47b3f2663ea2f25a537c51f78972345f8",
+      "baseline_tracked_sha256_verified": 400,
+      "baseline_inventory_exact_plus_two_metadata": true,
+      "report_sha256_verified": 10,
+      "manifest_exact_files": 26,
+      "cards": {
+        "printed_unchanged": 103,
+        "only_changed_bindings": [
+          "card.iran_contra_scandal",
+          "card.chernobyl"
+        ],
+        "binding_counts": {
+          "Bound": 97,
+          "Unresolved": 5
+        },
+        "handlers_planned": 102
+      },
+      "author_lineage": {
+        "Data/Cards/deluxe-2015/late-restrictions-batch1.parameters.json": "Text identical after CRLF/LF normalization; raw hashes differ",
+        "Docs/Contracts/late-restrictions-batch1.schema.json": "Text identical after CRLF/LF normalization; raw hashes differ",
+        "Docs/Design/late-restrictions-batch1.cases.json": "Text identical after CRLF/LF normalization; raw hashes differ",
+        "Data/Descriptors/late-restrictions-batch1.data.json": "Only verification.report_status removed"
+      },
+      "executed_old_suites": 0,
+      "runtime_tests": 0,
+      "findings": [],
+      "Ready": "Yes",
+      "checked_on": "2026-10-13",
+      "reviewer": "/root/review_oil",
+      "review_scope": "Integrated structure, source identity, schema fields, hashes and AST only. Prior separate reviewer reran 275 canonical + 137 independent probes; this pass does not rerun those, old 4133 or runtime.",
+      "author_fixed_review": "work/late-restrictions-independent-fixed-final-review.json",
+      "author_candidate_sha256": {
+        "Data/Descriptors/late-restrictions-batch1.data.json": "84733016ef17aa740f7c6e66d1aef5c1785269b763b7d42c99a605b72c2975d4",
+        "Data/Cards/deluxe-2015/late-restrictions-batch1.parameters.json": "3e1ec7b8bd4a14f12f1827a5c5b819ffce5e702317d0fa484b8b29e7ad01cc63",
+        "Docs/Contracts/late-restrictions-batch1.schema.json": "5247057be0840ba8d0d3d8bdef99dde3f3ea82e619020e3c26aeeac911298048",
+        "Docs/Design/late-restrictions-batch1.cases.json": "dd776a1d09a5c0021bce5c7d9af00bbaad7a115c642c24845c64691d85eb3fe7",
+        "Docs/Wiki/late-restrictions-batch1.md": "75e9e04758e294c983db434abf94f168480a8e71c0f9d7a1dc16fe84f8f766a5"
+      },
+      "adapter_ast_equivalence": "Whole AST equal after exactly two stage inventory/hash lookup substitutions",
+      "checker_sha256": {
+        "author": "977fcdc1595981c4f1b0145ffc5bd4a9db3da4e8c1d1526e89c34db8793c509e",
+        "integrated_adapter": "34e5a6fe113cb53e80e543927333ed3ca76d7364fd3803b4c562ff5a75caf692"
+      },
+      "source_identity_checks": [
+        {
+          "path": "Data/Cards/deluxe-2015/cards.json",
+          "source_id": "C-DELUXE-EN",
+          "identity_preserved": true
+        },
+        {
+          "path": "Data/Cards/deluxe-2015/cards.json",
+          "source_id": "R2015",
+          "identity_preserved": true
+        },
+        {
+          "path": "Data/Cards/deluxe-2015/cards.json",
+          "source_id": "F2010",
+          "identity_preserved": true
+        },
+        {
+          "path": "Data/Cards/deluxe-2015/cards.json",
+          "source_id": "PROJECT-LR1",
+          "identity_preserved": true
+        },
+        {
+          "path": "Docs/Descriptors/active-effects.module.json",
+          "source_id": "C-DELUXE-EN",
+          "identity_preserved": true
+        },
+        {
+          "path": "Docs/Descriptors/active-effects.module.json",
+          "source_id": "R2015",
+          "identity_preserved": true
+        },
+        {
+          "path": "Docs/Descriptors/active-effects.module.json",
+          "source_id": "F2010",
+          "identity_preserved": true
+        },
+        {
+          "path": "Docs/Descriptors/active-effects.module.json",
+          "source_id": "PROJECT-LR1",
+          "identity_preserved": true
+        },
+        {
+          "path": "Docs/Descriptors/action-restrictions.module.json",
+          "source_id": "C-DELUXE-EN",
+          "identity_preserved": true
+        },
+        {
+          "path": "Docs/Descriptors/action-restrictions.module.json",
+          "source_id": "R2015",
+          "identity_preserved": true
+        },
+        {
+          "path": "Docs/Descriptors/action-restrictions.module.json",
+          "source_id": "F2010",
+          "identity_preserved": true
+        },
+        {
+          "path": "Docs/Descriptors/action-restrictions.module.json",
+          "source_id": "PROJECT-LR1",
+          "identity_preserved": true
+        },
+        {
+          "path": "Docs/Descriptors/event-operations.module.json",
+          "source_id": "C-DELUXE-EN",
+          "identity_preserved": true
+        },
+        {
+          "path": "Docs/Descriptors/event-operations.module.json",
+          "source_id": "R2015",
+          "identity_preserved": true
+        },
+        {
+          "path": "Docs/Descriptors/event-operations.module.json",
+          "source_id": "F2010",
+          "identity_preserved": true
+        },
+        {
+          "path": "Docs/Descriptors/event-operations.module.json",
+          "source_id": "PROJECT-LR1",
+          "identity_preserved": true
+        },
+        {
+          "path": "Docs/Descriptors/turn-flow.module.json",
+          "source_id": "C-DELUXE-EN",
+          "identity_preserved": true
+        },
+        {
+          "path": "Docs/Descriptors/turn-flow.module.json",
+          "source_id": "R2015",
+          "identity_preserved": true
+        },
+        {
+          "path": "Docs/Descriptors/turn-flow.module.json",
+          "source_id": "F2010",
+          "identity_preserved": true
+        },
+        {
+          "path": "Docs/Descriptors/turn-flow.module.json",
+          "source_id": "PROJECT-LR1",
+          "identity_preserved": true
+        }
+      ],
+      "leo_bridge_boundary": "Original LEO1 parameter bytes and unresolved Chernobyl provider gate preserved; module and Wiki explicitly require named runtime adapter.",
+      "current_source_context_contract": {
+        "source_kind_required": true,
+        "source_phase_required": true,
+        "closed_active_restriction": true,
+        "retained_reviewed_source_role_logic": true
+      },
+      "runtime_planned_not_run": 10
+    }
+  },
+  "post_validation_document_links_checked": 11,
+  "metadata_after_validation": "Only Wiki integration paragraph and Worklog updated; links checked and Wiki hash refreshed."
+}

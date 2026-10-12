@@ -1,0 +1,1558 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:late-restrictions-batch1:1",
+  "title": "LR1 turn restrictions and provider contracts",
+  "description": "Closed JSON shape plus mandatory source/lifetime/receipt semantic checks; not a runtime service.",
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "instance_id",
+        "frame_id",
+        "resolution_id",
+        "root_frame_id",
+        "root_action_id",
+        "root_phasing_player",
+        "controller",
+        "kind",
+        "phase",
+        "ruleset_id",
+        "data_digest"
+      ],
+      "properties": {
+        "card_id": {
+          "enum": [
+            "card.iran_contra_scandal",
+            "card.chernobyl"
+          ]
+        },
+        "effect_id": {
+          "enum": [
+            "effect.iran_contra_scandal",
+            "effect.chernobyl"
+          ]
+        },
+        "instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_phasing_player": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "controller": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "kind": {
+          "enum": [
+            "RootEvent",
+            "OpponentCardEvent",
+            "HeadlineEvent",
+            "VerifiedFypUsChild",
+            "Unknown"
+          ]
+        },
+        "phase": {
+          "enum": [
+            "ActionRound",
+            "Headline"
+          ]
+        },
+        "ruleset_id": {
+          "const": "ruleset.deluxe2015"
+        },
+        "data_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "card_entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "instance_id",
+        "card_id",
+        "owner",
+        "zone",
+        "frame_id"
+      ],
+      "properties": {
+        "instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "zone": {
+          "enum": [
+            "Hand",
+            "InResolution",
+            "RemovedFromGame",
+            "DiscardPile"
+          ]
+        },
+        "frame_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "frame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "frame_id",
+        "resolution_id",
+        "parent_frame_id",
+        "kind",
+        "root_action_id",
+        "controller",
+        "source_instance_id",
+        "card_id",
+        "status",
+        "remaining_work"
+      ],
+      "properties": {
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parent_frame_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "kind": {
+          "enum": [
+            "RootCard",
+            "CardEvent",
+            "FiveYearPlanEvent"
+          ]
+        },
+        "root_action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "controller": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "source_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "Active",
+            "WaitingChild",
+            "WaitingRegion",
+            "Completed"
+          ]
+        },
+        "remaining_work": {
+          "enum": [
+            "FinalizeAfterEvent",
+            "OperationsAfterEvent",
+            "Unknown"
+          ]
+        }
+      }
+    },
+    "success_fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resolution_id",
+        "frame_id",
+        "source_instance_id",
+        "card_id",
+        "effect_id",
+        "controller",
+        "turn",
+        "outcome",
+        "proof_id"
+      ],
+      "properties": {
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effect_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "controller": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "outcome": {
+          "const": "EventSucceeded"
+        },
+        "proof_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "root_slot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "root_action_id",
+        "turn",
+        "actor"
+      ],
+      "properties": {
+        "root_action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "actor": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        }
+      }
+    },
+    "influence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "country_id",
+        "US",
+        "USSR"
+      ],
+      "properties": {
+        "country_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "US": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "USSR": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "dispatch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider_id",
+        "accepted_source",
+        "root_remaining_work",
+        "parent_frame_id",
+        "parent_resolution_id",
+        "parent_source_instance_id",
+        "parent_card_id",
+        "parent_controller",
+        "fyp_selection_receipt_id",
+        "selected_instance_id",
+        "selected_card_id",
+        "selected_from_owner",
+        "accepted_revision",
+        "proof_id"
+      ],
+      "properties": {
+        "provider_id": {
+          "enum": [
+            "module.turn-flow",
+            "module.hand-events-batch1",
+            "Unknown"
+          ]
+        },
+        "accepted_source": {
+          "$ref": "#/$defs/source"
+        },
+        "root_remaining_work": {
+          "enum": [
+            "FinalizeAfterEvent",
+            "OperationsAfterEvent",
+            "Unknown"
+          ]
+        },
+        "parent_frame_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "parent_resolution_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "parent_source_instance_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "parent_card_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "parent_controller": {
+          "anyOf": [
+            {
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fyp_selection_receipt_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "selected_instance_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "selected_card_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "selected_from_owner": {
+          "anyOf": [
+            {
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "accepted_revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "proof_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "expected_revision",
+        "source_digest"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "active_restriction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "instance_id",
+        "card_id",
+        "effect_id",
+        "source_instance_id",
+        "source_frame_id",
+        "source_resolution_id",
+        "root_frame_id",
+        "controller",
+        "activated_turn",
+        "selected_region",
+        "status",
+        "expiry_boundary_id",
+        "source_kind",
+        "source_phase"
+      ],
+      "properties": {
+        "instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effect_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "controller": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "activated_turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "selected_region": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "status": {
+          "enum": [
+            "Active",
+            "Expired"
+          ]
+        },
+        "expiry_boundary_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_kind": {
+          "enum": [
+            "RootEvent",
+            "OpponentCardEvent",
+            "HeadlineEvent",
+            "VerifiedFypUsChild"
+          ]
+        },
+        "source_phase": {
+          "enum": [
+            "ActionRound",
+            "Headline"
+          ]
+        }
+      }
+    },
+    "expiry_fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "boundary_id",
+        "turn",
+        "phase",
+        "revision_before",
+        "provider_id",
+        "proof_id"
+      ],
+      "properties": {
+        "boundary_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "phase": {
+          "const": "ExpireAndReset"
+        },
+        "revision_before": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "provider_id": {
+          "const": "module.turn-flow"
+        },
+        "proof_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "pending_region": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "selection_id",
+        "source_digest",
+        "choosing_side",
+        "region_ids",
+        "phase"
+      ],
+      "properties": {
+        "selection_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "choosing_side": {
+          "const": "US"
+        },
+        "region_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "phase": {
+          "const": "AwaitingRegion"
+        }
+      }
+    },
+    "snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "revision",
+        "turn",
+        "phase",
+        "status",
+        "vp",
+        "defcon",
+        "winner",
+        "rng_cursor",
+        "military",
+        "influence",
+        "cards",
+        "frames",
+        "success_facts",
+        "completed_slots",
+        "active_restrictions",
+        "expiry_facts",
+        "coverage",
+        "pending"
+      ],
+      "properties": {
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "phase": {
+          "enum": [
+            "ActionRound",
+            "Headline",
+            "ExpireAndReset"
+          ]
+        },
+        "status": {
+          "enum": [
+            "Running",
+            "Finished"
+          ]
+        },
+        "vp": {
+          "type": "integer"
+        },
+        "defcon": {
+          "type": "integer"
+        },
+        "winner": {
+          "anyOf": [
+            {
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rng_cursor": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "military": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "US",
+            "USSR"
+          ],
+          "properties": {
+            "US": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "USSR": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "influence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/influence"
+          }
+        },
+        "cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/card_entity"
+          }
+        },
+        "frames": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/frame"
+          }
+        },
+        "success_facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/success_fact"
+          }
+        },
+        "completed_slots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/root_slot"
+          }
+        },
+        "active_restrictions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/active_restriction"
+          }
+        },
+        "expiry_facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/expiry_fact"
+          }
+        },
+        "coverage": {
+          "enum": [
+            "CompleteForLR1",
+            "Unknown"
+          ]
+        },
+        "pending": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/pending_region"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "start_input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "state",
+        "dispatch",
+        "request",
+        "authenticated_actor"
+      ],
+      "properties": {
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "state": {
+          "$ref": "#/$defs/snapshot"
+        },
+        "dispatch": {
+          "$ref": "#/$defs/dispatch"
+        },
+        "request": {
+          "$ref": "#/$defs/request"
+        },
+        "authenticated_actor": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        }
+      }
+    },
+    "choice_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "expected_revision",
+        "selection_id",
+        "choice",
+        "region_id"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "selection_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "choice": {
+          "enum": [
+            "SelectRegion",
+            "Decline"
+          ]
+        },
+        "region_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "choice_input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "prefix_receipt",
+        "prefix_anchor",
+        "request",
+        "authenticated_actor"
+      ],
+      "properties": {
+        "state": {
+          "$ref": "#/$defs/snapshot"
+        },
+        "prefix_receipt": {
+          "$ref": "#/$defs/receipt"
+        },
+        "prefix_anchor": {
+          "$ref": "#/$defs/anchor"
+        },
+        "request": {
+          "$ref": "#/$defs/choice_request"
+        },
+        "authenticated_actor": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        }
+      }
+    },
+    "boundary_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider_id",
+        "boundary_id",
+        "turn",
+        "phase",
+        "revision",
+        "state_digest",
+        "proof_id"
+      ],
+      "properties": {
+        "provider_id": {
+          "enum": [
+            "module.turn-flow",
+            "Unknown"
+          ]
+        },
+        "boundary_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "phase": {
+          "enum": [
+            "ExpireAndReset",
+            "Unknown"
+          ]
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "state_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "proof_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "expire_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "expected_revision",
+        "boundary_id"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "boundary_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "expire_input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "request",
+        "evidence",
+        "data_digest"
+      ],
+      "properties": {
+        "state": {
+          "$ref": "#/$defs/snapshot"
+        },
+        "request": {
+          "$ref": "#/$defs/expire_request"
+        },
+        "evidence": {
+          "$ref": "#/$defs/boundary_evidence"
+        },
+        "data_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "query_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "operation_id",
+        "actor",
+        "root_phasing_player",
+        "channel",
+        "placement_kind",
+        "target_id",
+        "die_side",
+        "raw_die",
+        "other_verified_die_delta"
+      ],
+      "properties": {
+        "operation_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actor": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "root_phasing_player": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "channel": {
+          "enum": [
+            "Realignment",
+            "InfluencePlacement",
+            "DirectEventInfluence",
+            "Coup",
+            "War",
+            "Space",
+            "OpsQuote",
+            "Unknown"
+          ]
+        },
+        "placement_kind": {
+          "enum": [
+            "OrdinaryOps",
+            "AsIfOps",
+            "NotApplicable",
+            "Unknown"
+          ]
+        },
+        "target_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "die_side": {
+          "anyOf": [
+            {
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw_die": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "other_verified_die_delta": {
+          "type": "integer"
+        }
+      }
+    },
+    "query_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider_id",
+        "accepted_request",
+        "revision",
+        "state_digest",
+        "coverage",
+        "proof_id"
+      ],
+      "properties": {
+        "provider_id": {
+          "enum": [
+            "module.operations",
+            "module.event-operations",
+            "Unknown"
+          ]
+        },
+        "accepted_request": {
+          "$ref": "#/$defs/query_request"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "state_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "coverage": {
+          "enum": [
+            "CompleteForLR1",
+            "Unknown"
+          ]
+        },
+        "proof_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "query_input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "request",
+        "evidence",
+        "data_digest"
+      ],
+      "properties": {
+        "state": {
+          "$ref": "#/$defs/snapshot"
+        },
+        "request": {
+          "$ref": "#/$defs/query_request"
+        },
+        "evidence": {
+          "$ref": "#/$defs/query_evidence"
+        },
+        "data_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcome",
+        "trace",
+        "after"
+      ],
+      "properties": {
+        "outcome": {
+          "enum": [
+            "Resolved",
+            "AwaitingRegion",
+            "Expired"
+          ]
+        },
+        "trace": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "after": {
+          "$ref": "#/$defs/snapshot"
+        }
+      }
+    },
+    "receipt_body": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "historical_input",
+        "result"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "Start",
+            "Choose",
+            "Expire"
+          ]
+        },
+        "historical_input": {
+          "type": "object"
+        },
+        "result": {
+          "$ref": "#/$defs/result"
+        }
+      }
+    },
+    "receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "body",
+        "digest"
+      ],
+      "properties": {
+        "body": {
+          "$ref": "#/$defs/receipt_body"
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "anchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "binding_id",
+        "input_digest",
+        "receipt_digest"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "binding_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "input_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "receipt_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "iran_contra_scandal": {
+      "const": {
+        "card_id": "card.iran_contra_scandal",
+        "effect_id": "effect.iran_contra_scandal",
+        "description": "Fixed US die-side realignment penalty in either initiating actor turn context; not OPS or coup modifier.",
+        "template": "ActivateTurnRealignmentDieSideModifier",
+        "controller": "USSR",
+        "duration": "RemainderOfActivationTurn",
+        "expiry_boundary": "ExpireAndReset",
+        "affected_die_side": "US",
+        "die_delta": -1,
+        "query_channel": "Realignment",
+        "modified_result_policy": "NoRawFaceClamping",
+        "repeat_new_resolution": "RequiresRuling",
+        "source_refs": [
+          {
+            "source_id": "C-DELUXE-EN",
+            "locator": "PDF p14 #93 USSR2 Late starred: US Realignment die -1 remainder turn. #94 US3 Late starred: US may designate one region; USSR OPS influence placement there prohibited remainder turn.",
+            "verification": "Verified"
+          },
+          {
+            "source_id": "R2015",
+            "locator": "Sections 2.0,2.1.1-2,5.2,6.1-2,7.4.3: standard die; six Regions distinct from sub-regions; Asia/Europe include sub-regions; event disposition; realignment has two die sides; as-if OPS ordinary restrictions.",
+            "verification": "Verified"
+          },
+          {
+            "source_id": "F2010",
+            "locator": "PDF p15 #90 Glasnost OPS placement subject to Chernobyl; p16 #94 permits realignment, coup including added influence and direct event influence. No dedicated Iran-Contra or optional no-designation/repeat answer found.",
+            "verification": "Verified"
+          },
+          {
+            "source_id": "PROJECT-LR1",
+            "locator": "LR1-D01: may designate permits explicit Decline; no region means no restriction instance, while the invoked optional event still completes and follows starred disposition (may + section5.2; not dedicated FAQ). LR1-D02: six primary map regions follow2.1.1; not selectable subregions. Queries return only this provider contribution, not total action legality. Repeated new event resolution remains RequiresRuling.",
+            "verification": "Pending"
+          }
+        ]
+      }
+    },
+    "chernobyl": {
+      "const": {
+        "card_id": "card.chernobyl",
+        "effect_id": "effect.chernobyl",
+        "description": "US chooses a primary region or explicitly declines; actual USSR OPS placement prohibited there for this turn.",
+        "template": "ChooseRegionTurnOpsInfluenceRestriction",
+        "controller": "US",
+        "duration": "RemainderOfActivationTurn",
+        "expiry_boundary": "ExpireAndReset",
+        "affected_actor": "USSR",
+        "selection_policy": "OnePrimaryRegionOrExplicitDecline",
+        "region_source": "SharedWorldRegionsParentNull",
+        "membership_policy": "CountryPrimaryRegionIncludesSubregions",
+        "blocked_placement_kinds": [
+          "OrdinaryOps",
+          "AsIfOps"
+        ],
+        "unaffected_channels": [
+          "DirectEventInfluence",
+          "Realignment",
+          "Coup",
+          "War",
+          "Space",
+          "OpsQuote"
+        ],
+        "decline_policy": "EventSucceededNoRestrictionInstance",
+        "repeat_new_resolution": "RequiresRuling",
+        "source_refs": [
+          {
+            "source_id": "C-DELUXE-EN",
+            "locator": "PDF p14 #93 USSR2 Late starred: US Realignment die -1 remainder turn. #94 US3 Late starred: US may designate one region; USSR OPS influence placement there prohibited remainder turn.",
+            "verification": "Verified"
+          },
+          {
+            "source_id": "R2015",
+            "locator": "Sections 2.0,2.1.1-2,5.2,6.1-2,7.4.3: standard die; six Regions distinct from sub-regions; Asia/Europe include sub-regions; event disposition; realignment has two die sides; as-if OPS ordinary restrictions.",
+            "verification": "Verified"
+          },
+          {
+            "source_id": "F2010",
+            "locator": "PDF p15 #90 Glasnost OPS placement subject to Chernobyl; p16 #94 permits realignment, coup including added influence and direct event influence. No dedicated Iran-Contra or optional no-designation/repeat answer found.",
+            "verification": "Verified"
+          },
+          {
+            "source_id": "PROJECT-LR1",
+            "locator": "LR1-D01: may designate permits explicit Decline; no region means no restriction instance, while the invoked optional event still completes and follows starred disposition (may + section5.2; not dedicated FAQ). LR1-D02: six primary map regions follow2.1.1; not selectable subregions. Queries return only this provider contribution, not total action legality. Repeated new event resolution remains RequiresRuling.",
+            "verification": "Pending"
+          }
+        ]
+      }
+    },
+    "query_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcome",
+        "operation_id",
+        "state_digest",
+        "die_delta",
+        "modified_die",
+        "restriction",
+        "source_instances"
+      ],
+      "properties": {
+        "outcome": {
+          "const": "Contribution"
+        },
+        "operation_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "state_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "die_delta": {
+          "type": "integer"
+        },
+        "modified_die": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "restriction": {
+          "enum": [
+            "NoRestrictionFromLR1",
+            "BlockedByChernobyl"
+          ]
+        },
+        "source_instances": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "shared_refs",
+    "source_policy",
+    "query_policy",
+    "receipt_policy",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.late_restrictions_batch1"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "verified-subset"
+    },
+    "description": {
+      "const": "Two turn restrictions: US realignment die-side delta and USSR OPS placement region gate, with accepted activation/selection/expiry/query evidence. Runtime consumers remain planned."
+    },
+    "source_catalog": {
+      "const": [
+        {
+          "id": "C-DELUXE-EN",
+          "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+          "edition": "English Deluxe images, inspected 2026-10-13",
+          "description": "PDF p14 #93 USSR2 Late starred: US Realignment die -1 remainder turn. #94 US3 Late starred: US may designate one region; USSR OPS influence placement there prohibited remainder turn."
+        },
+        {
+          "id": "R2015",
+          "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+          "edition": "Deluxe 2015, checked 2026-10-13",
+          "description": "Sections 2.0,2.1.1-2,5.2,6.1-2,7.4.3: standard die; six Regions distinct from sub-regions; Asia/Europe include sub-regions; event disposition; realignment has two die sides; as-if OPS ordinary restrictions."
+        },
+        {
+          "id": "F2010",
+          "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+          "edition": "FAQ v5, checked 2026-10-13",
+          "description": "PDF p15 #90 Glasnost OPS placement subject to Chernobyl; p16 #94 permits realignment, coup including added influence and direct event influence. No dedicated Iran-Contra or optional no-designation/repeat answer found."
+        },
+        {
+          "id": "PROJECT-LR1",
+          "url": null,
+          "edition": "Named textual derivation and engineering boundaries 2026-10-13",
+          "description": "LR1-D01: may designate permits explicit Decline; no region means no restriction instance, while the invoked optional event still completes and follows starred disposition (may + section5.2; not dedicated FAQ). LR1-D02: six primary map regions follow2.1.1; not selectable subregions. Queries return only this provider contribution, not total action legality. Repeated new event resolution remains RequiresRuling."
+        }
+      ]
+    },
+    "shared_refs": {
+      "const": {
+        "cards": {
+          "dataset_id": "cards.deluxe2015.definitions",
+          "json_pointer": ""
+        },
+        "world": {
+          "dataset_id": "map.deluxe2015.world",
+          "json_pointer": ""
+        },
+        "regions": {
+          "dataset_id": "map.deluxe2015.world",
+          "json_pointer": "/regions"
+        },
+        "die": {
+          "dataset_id": "rules.deluxe2015.standard-dice",
+          "json_pointer": "/definitions/standard_d6"
+        },
+        "defcon": {
+          "dataset_id": "rules.deluxe2015.defcon",
+          "json_pointer": ""
+        },
+        "victory": {
+          "dataset_id": "rules.deluxe2015.victory",
+          "json_pointer": ""
+        },
+        "turns": {
+          "dataset_id": "rules.deluxe2015.turn-flow",
+          "json_pointer": "/era_bands"
+        },
+        "fyp": {
+          "dataset_id": "effects.deluxe2015.hand_events_batch1",
+          "json_pointer": "/parameters/five_year_plan"
+        },
+        "channels": {
+          "dataset_id": "effects.deluxe2015.persistent_batch2",
+          "json_pointer": "/parameters/latin_american_death_squads/coup_modifier/adjusted_result_policy"
+        }
+      }
+    },
+    "source_policy": {
+      "const": {
+        "supported": [
+          "RootEvent",
+          "OpponentCardEvent",
+          "HeadlineEvent",
+          "VerifiedFypUsChild"
+        ],
+        "fyp_child": "OnlyUSAssociatedChernobyl",
+        "unknown": "RequiresRuling",
+        "repeat": "NewResolutionForAlreadySucceededSameCardRequiresRuling"
+      }
+    },
+    "query_policy": {
+      "const": {
+        "purpose": "OnlyLR1ContributionNotWholeActionLegality",
+        "evidence": "BoundCompleteCurrentSnapshotAndTypedOperationRequest",
+        "realignment": "DieSideNotInitiatingActor",
+        "unknown": "RequiresRuling",
+        "expired": "RequireMatchingAcceptedExpireAndResetFact",
+        "rng": "NoSamplingNoCursorChange"
+      }
+    },
+    "receipt_policy": {
+      "const": {
+        "accepted_index": "IndependentAnchorOfOriginalCompleteInputAndResult",
+        "retry": "ReturnOriginalResultPreserveLaterCurrent",
+        "synthetic_notice": "Hash/proof fixtures do not implement authentication or persistence"
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "iran_contra_scandal",
+        "chernobyl"
+      ],
+      "properties": {
+        "iran_contra_scandal": {
+          "$ref": "#/$defs/iran_contra_scandal"
+        },
+        "chernobyl": {
+          "$ref": "#/$defs/chernobyl"
+        }
+      }
+    }
+  }
+}

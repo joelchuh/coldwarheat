@@ -85,3 +85,5 @@ US为Actor/DecisionOwner，PhasingPlayer来自根行动；头条以打出本牌�
 [奥运会抵制后授权](olympic-games.md)：DEFCON降级与核战检查先于Sponsor可选4OPS；普通军事/条约/CMC门禁不豁免，不允许Space。
 
 [晚期受限授权](late-event-operations-batch1.md)：WaitingSharedOperation是绑定请求，不表示真实行动/随机已执行；前缀保留。
+
+[LR1 Chernobyl贡献](late-restrictions-batch1.md)已定义；LEO1参数内未知provider边界保持，连接该贡献与实际OPS合法性的具名适配仍待设计/实现。

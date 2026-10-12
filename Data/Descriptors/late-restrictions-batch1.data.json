@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "data.late-restrictions-batch1",
+  "kind": "data",
+  "status": "ready",
+  "description": "Two turn restrictions: US realignment die-side delta and USSR OPS placement region gate, with accepted activation/selection/expiry/query evidence. Runtime consumers remain planned.",
+  "dataset_id": "effects.deluxe2015.late_restrictions_batch1",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/late-restrictions-batch1.schema.json",
+  "documentation": "Docs/Wiki/late-restrictions-batch1.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/late-restrictions-batch1.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "Verified source tree and original activation kind/phase, complete current LR1 effect evidence, bound query/expiry provider requests"
+  ],
+  "outputs": [
+    "Read-only restrictions, typed activation/choice/query/expiry plans; no action execution"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world",
+    "rules.deluxe2015.standard-dice",
+    "rules.deluxe2015.defcon",
+    "rules.deluxe2015.victory",
+    "rules.deluxe2015.turn-flow",
+    "effects.deluxe2015.hand_events_batch1",
+    "effects.deluxe2015.persistent_batch2"
+  ],
+  "preconditions": [
+    "All C#/Unity consumers planned",
+    "New start/choice validates nonterminal current state; original receipt query uses historical accepted input"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "Unknown provider, effect, repeated new resolution, invalid source or expiry evidence",
+    "Modified or stale choice and mismatched original receipt anchor",
+    "Foreign InResolution physical frames, illegal retained root OPS roles, or same-turn action/headline reentry after accepted expiry"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe images, inspected 2026-10-13",
+      "description": "PDF p14 #93 USSR2 Late starred: US Realignment die -1 remainder turn. #94 US3 Late starred: US may designate one region; USSR OPS influence placement there prohibited remainder turn."
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe 2015, checked 2026-10-13",
+      "description": "Sections 2.0,2.1.1-2,5.2,6.1-2,7.4.3: standard die; six Regions distinct from sub-regions; Asia/Europe include sub-regions; event disposition; realignment has two die sides; as-if OPS ordinary restrictions."
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5, checked 2026-10-13",
+      "description": "PDF p15 #90 Glasnost OPS placement subject to Chernobyl; p16 #94 permits realignment, coup including added influence and direct event influence. No dedicated Iran-Contra or optional no-designation/repeat answer found."
+    },
+    {
+      "id": "PROJECT-LR1",
+      "url": null,
+      "edition": "Named textual derivation and engineering boundaries 2026-10-13",
+      "description": "LR1-D01: may designate permits explicit Decline; no region means no restriction instance, while the invoked optional event still completes and follows starred disposition (may + section5.2; not dedicated FAQ). LR1-D02: six primary map regions follow2.1.1; not selectable subregions. Queries return only this provider contribution, not total action legality. Repeated new event resolution remains RequiresRuling."
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/late-restrictions-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/late-restrictions-batch1.validation.json"
+  },
+  "retrieval_hints": [
+    "Iran-Contra parameters: die side US independent of Actor",
+    "Chernobyl parameters: six primary region choices, Ops placement gate, explicit decline",
+    "Active restriction contract: source_kind/source_phase retain activation context; Wiki query evidence states synthetic authority boundary"
+  ]
+}

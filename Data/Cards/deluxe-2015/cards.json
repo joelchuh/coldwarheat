@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.39.0",
+  "content_version": "0.40.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计95牌效果参数已绑定，其余7个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计97牌效果参数已绑定，其余5个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -245,6 +245,12 @@
       "url": null,
       "edition": "Engineering boundaries, 2026-10-13",
       "description": "2026-10-13 finite prefix/checkpoint/accepted-UN/receipt contract. No official U2 repeated-use or WWBY self-activation/Trap/cross-turn timing ruling adopted."
+    },
+    {
+      "id": "PROJECT-LR1",
+      "url": null,
+      "edition": "Named textual derivation and engineering boundaries 2026-10-13",
+      "description": "LR1-D01: may designate permits explicit Decline; no region means no restriction instance, while the invoked optional event still completes and follows starred disposition (may + section5.2; not dedicated FAQ). LR1-D02: six primary map regions follow2.1.1; not selectable subregions. Queries return only this provider contribution, not total action legality. Repeated new event resolution remains RequiresRuling."
     }
   ],
   "cards": [
@@ -3188,8 +3194,13 @@
       "effect_binding": {
         "effect_id": "effect.iran_contra_scandal",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.late_restrictions_batch1",
+            "json_pointer": "/parameters/iran_contra_scandal"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -3215,8 +3226,13 @@
       "effect_binding": {
         "effect_id": "effect.chernobyl",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.late_restrictions_batch1",
+            "json_pointer": "/parameters/chernobyl"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -6110,14 +6126,31 @@
     {
       "effect_id": "effect.iran_contra_scandal",
       "contract_version": "0.1.0",
-      "description": "Iran-Contra Scandal：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.iran_contra_scandal",
+      "description": "本回合所有US政局调整骰减一；按骰方而非发起者匹配，修正后不夹回原骰范围。",
+      "handler_key": "persistent.ActivateTurnRealignmentDieSideModifier",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:late-restrictions-batch1:1#/$defs/iran_contra_scandal"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p14 #93 USSR2 Late starred: US Realignment die -1 remainder turn. #94 US3 Late starred: US may designate one region; USSR OPS influence placement there prohibited remainder turn.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Sections 2.0,2.1.1-2,5.2,6.1-2,7.4.3: standard die; six Regions distinct from sub-regions; Asia/Europe include sub-regions; event disposition; realignment has two die sides; as-if OPS ordinary restrictions.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p15 #90 Glasnost OPS placement subject to Chernobyl; p16 #94 permits realignment, coup including added influence and direct event influence. No dedicated Iran-Contra or optional no-designation/repeat answer found.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-LR1",
+          "locator": "LR1-D01: may designate permits explicit Decline; no region means no restriction instance, while the invoked optional event still completes and follows starred disposition (may + section5.2; not dedicated FAQ). LR1-D02: six primary map regions follow2.1.1; not selectable subregions. Queries return only this provider contribution, not total action legality. Repeated new event resolution remains RequiresRuling.",
           "verification": "Pending"
         }
       ]
@@ -6125,14 +6158,31 @@
     {
       "effect_id": "effect.chernobyl",
       "contract_version": "0.1.0",
-      "description": "Chernobyl：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.chernobyl",
+      "description": "US可选择一个主地区或放弃；本回合实际USSR行动者在该地区的普通及事件OPS投放受限，其他渠道不由本来源阻止。",
+      "handler_key": "persistent.ChooseRegionTurnOpsInfluenceRestriction",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:late-restrictions-batch1:1#/$defs/chernobyl"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p14 #93 USSR2 Late starred: US Realignment die -1 remainder turn. #94 US3 Late starred: US may designate one region; USSR OPS influence placement there prohibited remainder turn.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Sections 2.0,2.1.1-2,5.2,6.1-2,7.4.3: standard die; six Regions distinct from sub-regions; Asia/Europe include sub-regions; event disposition; realignment has two die sides; as-if OPS ordinary restrictions.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p15 #90 Glasnost OPS placement subject to Chernobyl; p16 #94 permits realignment, coup including added influence and direct event influence. No dedicated Iran-Contra or optional no-designation/repeat answer found.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-LR1",
+          "locator": "LR1-D01: may designate permits explicit Decline; no region means no restriction instance, while the invoked optional event still completes and follows starred disposition (may + section5.2; not dedicated FAQ). LR1-D02: six primary map regions follow2.1.1; not selectable subregions. Queries return only this provider contribution, not total action legality. Repeated new event resolution remains RequiresRuling.",
           "verification": "Pending"
         }
       ]

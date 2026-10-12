@@ -180,3 +180,5 @@ INF-A/B、COUP-A/B、REAL-A 的基础期望依据本页规则摘要；其余是�
 [DEFCON事件与政变干预](defcon-events-batch1.md)补齐危机实际Actor责任、任意边界解除、核潜艇/SALT政策与ABM视同OPS；全部仍planned。
 
 [Reformer长期限制](late-influence-batch1.md)是独立事件政变门禁：实际苏联Actor不能在欧洲政变，免费不豁免；不扩展到调整、战争或美国政变。
+
+[LR1骰方修正与地区门禁](late-restrictions-batch1.md)只输出本来源贡献，普通/事件OPS继续组合预算、条约、DEFCON等完整合法性。

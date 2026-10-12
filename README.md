@@ -111,4 +111,6 @@
 
 此前：[晚期受限行动事件](Docs/Wiki/late-event-operations-batch1.md)，93 Bound /9 Unresolved，102处理器planned；三牌前缀顺序和共享OPS交接明确，尚未执行真实行动。
 
-最新：[延迟VP事件](Docs/Wiki/deferred-vp-events-batch1.md)，95 Bound /7 Unresolved，102处理器planned；即时前缀与后续检查点分开，未定来源不伪授权。
+此前：[延迟VP事件](Docs/Wiki/deferred-vp-events-batch1.md)，95 Bound /7 Unresolved，102处理器planned；即时前缀与后续检查点分开，未定来源不伪授权。
+
+最新：[伊朗门与切尔诺贝利](Docs/Wiki/late-restrictions-batch1.md)，97 Bound /5 Unresolved，102处理器planned。规则图与活动状态驱动，画风保持独立。

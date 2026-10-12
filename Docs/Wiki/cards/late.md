@@ -49,3 +49,5 @@
 [人质、恐怖主义与Ames Remix](../late-hand-batch1.md)：固定影响力、整批随机弃牌与本回合私有视图。
 
 [KAL／Glasnost／Ortega](../late-event-operations-batch1.md)：顺序前缀、条件与受限行动。
+
+[伊朗门与切尔诺贝利](../late-restrictions-batch1.md)：按骰方修正及按实际OPS行动者限制。

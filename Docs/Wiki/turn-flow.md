@@ -246,3 +246,5 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 [晚期事件共享行动交接](late-event-operations-batch1.md)：固定Actor、源父链与根清理义务保留至核实返回；等待不是完成。
 
 [延迟VP检查点](deferred-vp-events-batch1.md)：核实目标根与完整UN证据，未定后续检查点不撤销此前已接受前缀。
+
+[LR1回合到期](late-restrictions-batch1.md)消费匹配ExpireAndReset证据，选择等待与源父链必须完成。

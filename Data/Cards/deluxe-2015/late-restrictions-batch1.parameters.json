@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.late_restrictions_batch1",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "verified-subset",
+  "description": "Two turn restrictions: US realignment die-side delta and USSR OPS placement region gate, with accepted activation/selection/expiry/query evidence. Runtime consumers remain planned.",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe images, inspected 2026-10-13",
+      "description": "PDF p14 #93 USSR2 Late starred: US Realignment die -1 remainder turn. #94 US3 Late starred: US may designate one region; USSR OPS influence placement there prohibited remainder turn."
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe 2015, checked 2026-10-13",
+      "description": "Sections 2.0,2.1.1-2,5.2,6.1-2,7.4.3: standard die; six Regions distinct from sub-regions; Asia/Europe include sub-regions; event disposition; realignment has two die sides; as-if OPS ordinary restrictions."
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5, checked 2026-10-13",
+      "description": "PDF p15 #90 Glasnost OPS placement subject to Chernobyl; p16 #94 permits realignment, coup including added influence and direct event influence. No dedicated Iran-Contra or optional no-designation/repeat answer found."
+    },
+    {
+      "id": "PROJECT-LR1",
+      "url": null,
+      "edition": "Named textual derivation and engineering boundaries 2026-10-13",
+      "description": "LR1-D01: may designate permits explicit Decline; no region means no restriction instance, while the invoked optional event still completes and follows starred disposition (may + section5.2; not dedicated FAQ). LR1-D02: six primary map regions follow2.1.1; not selectable subregions. Queries return only this provider contribution, not total action legality. Repeated new event resolution remains RequiresRuling."
+    }
+  ],
+  "shared_refs": {
+    "cards": {
+      "dataset_id": "cards.deluxe2015.definitions",
+      "json_pointer": ""
+    },
+    "world": {
+      "dataset_id": "map.deluxe2015.world",
+      "json_pointer": ""
+    },
+    "regions": {
+      "dataset_id": "map.deluxe2015.world",
+      "json_pointer": "/regions"
+    },
+    "die": {
+      "dataset_id": "rules.deluxe2015.standard-dice",
+      "json_pointer": "/definitions/standard_d6"
+    },
+    "defcon": {
+      "dataset_id": "rules.deluxe2015.defcon",
+      "json_pointer": ""
+    },
+    "victory": {
+      "dataset_id": "rules.deluxe2015.victory",
+      "json_pointer": ""
+    },
+    "turns": {
+      "dataset_id": "rules.deluxe2015.turn-flow",
+      "json_pointer": "/era_bands"
+    },
+    "fyp": {
+      "dataset_id": "effects.deluxe2015.hand_events_batch1",
+      "json_pointer": "/parameters/five_year_plan"
+    },
+    "channels": {
+      "dataset_id": "effects.deluxe2015.persistent_batch2",
+      "json_pointer": "/parameters/latin_american_death_squads/coup_modifier/adjusted_result_policy"
+    }
+  },
+  "parameters": {
+    "iran_contra_scandal": {
+      "card_id": "card.iran_contra_scandal",
+      "effect_id": "effect.iran_contra_scandal",
+      "description": "Fixed US die-side realignment penalty in either initiating actor turn context; not OPS or coup modifier.",
+      "template": "ActivateTurnRealignmentDieSideModifier",
+      "controller": "USSR",
+      "duration": "RemainderOfActivationTurn",
+      "expiry_boundary": "ExpireAndReset",
+      "affected_die_side": "US",
+      "die_delta": -1,
+      "query_channel": "Realignment",
+      "modified_result_policy": "NoRawFaceClamping",
+      "repeat_new_resolution": "RequiresRuling",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p14 #93 USSR2 Late starred: US Realignment die -1 remainder turn. #94 US3 Late starred: US may designate one region; USSR OPS influence placement there prohibited remainder turn.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Sections 2.0,2.1.1-2,5.2,6.1-2,7.4.3: standard die; six Regions distinct from sub-regions; Asia/Europe include sub-regions; event disposition; realignment has two die sides; as-if OPS ordinary restrictions.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p15 #90 Glasnost OPS placement subject to Chernobyl; p16 #94 permits realignment, coup including added influence and direct event influence. No dedicated Iran-Contra or optional no-designation/repeat answer found.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-LR1",
+          "locator": "LR1-D01: may designate permits explicit Decline; no region means no restriction instance, while the invoked optional event still completes and follows starred disposition (may + section5.2; not dedicated FAQ). LR1-D02: six primary map regions follow2.1.1; not selectable subregions. Queries return only this provider contribution, not total action legality. Repeated new event resolution remains RequiresRuling.",
+          "verification": "Pending"
+        }
+      ]
+    },
+    "chernobyl": {
+      "card_id": "card.chernobyl",
+      "effect_id": "effect.chernobyl",
+      "description": "US chooses a primary region or explicitly declines; actual USSR OPS placement prohibited there for this turn.",
+      "template": "ChooseRegionTurnOpsInfluenceRestriction",
+      "controller": "US",
+      "duration": "RemainderOfActivationTurn",
+      "expiry_boundary": "ExpireAndReset",
+      "affected_actor": "USSR",
+      "selection_policy": "OnePrimaryRegionOrExplicitDecline",
+      "region_source": "SharedWorldRegionsParentNull",
+      "membership_policy": "CountryPrimaryRegionIncludesSubregions",
+      "blocked_placement_kinds": [
+        "OrdinaryOps",
+        "AsIfOps"
+      ],
+      "unaffected_channels": [
+        "DirectEventInfluence",
+        "Realignment",
+        "Coup",
+        "War",
+        "Space",
+        "OpsQuote"
+      ],
+      "decline_policy": "EventSucceededNoRestrictionInstance",
+      "repeat_new_resolution": "RequiresRuling",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p14 #93 USSR2 Late starred: US Realignment die -1 remainder turn. #94 US3 Late starred: US may designate one region; USSR OPS influence placement there prohibited remainder turn.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Sections 2.0,2.1.1-2,5.2,6.1-2,7.4.3: standard die; six Regions distinct from sub-regions; Asia/Europe include sub-regions; event disposition; realignment has two die sides; as-if OPS ordinary restrictions.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p15 #90 Glasnost OPS placement subject to Chernobyl; p16 #94 permits realignment, coup including added influence and direct event influence. No dedicated Iran-Contra or optional no-designation/repeat answer found.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-LR1",
+          "locator": "LR1-D01: may designate permits explicit Decline; no region means no restriction instance, while the invoked optional event still completes and follows starred disposition (may + section5.2; not dedicated FAQ). LR1-D02: six primary map regions follow2.1.1; not selectable subregions. Queries return only this provider contribution, not total action legality. Repeated new event resolution remains RequiresRuling.",
+          "verification": "Pending"
+        }
+      ]
+    }
+  },
+  "source_policy": {
+    "supported": [
+      "RootEvent",
+      "OpponentCardEvent",
+      "HeadlineEvent",
+      "VerifiedFypUsChild"
+    ],
+    "fyp_child": "OnlyUSAssociatedChernobyl",
+    "unknown": "RequiresRuling",
+    "repeat": "NewResolutionForAlreadySucceededSameCardRequiresRuling"
+  },
+  "query_policy": {
+    "purpose": "OnlyLR1ContributionNotWholeActionLegality",
+    "evidence": "BoundCompleteCurrentSnapshotAndTypedOperationRequest",
+    "realignment": "DieSideNotInitiatingActor",
+    "unknown": "RequiresRuling",
+    "expired": "RequireMatchingAcceptedExpireAndResetFact",
+    "rng": "NoSamplingNoCursorChange"
+  },
+  "receipt_policy": {
+    "accepted_index": "IndependentAnchorOfOriginalCompleteInputAndResult",
+    "retry": "ReturnOriginalResultPreserveLaterCurrent",
+    "synthetic_notice": "Hash/proof fixtures do not implement authentication or persistence"
+  }
+}
