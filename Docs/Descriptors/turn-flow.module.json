@@ -41,7 +41,8 @@
     "陷阱新根slot资格、可信计分义务优先与内部跳过证据，不强迫普通中国牌",
     "CT1已经验证的源牌/直系FYP父帧/根slot收尾计划；事件先于OPS时保留InResolution及RemoveAfterRemainingSteps",
     "Wargames已验证普通根/头条的源实体和根slot清理计划；未知父义务不放行",
-    "ON1永久OPEC阻止与独立当回合US allowance；正常/NSO/当前Space名额取max而非相加，UN两实体仍一个root slot"
+    "ON1永久OPEC阻止与独立当回合US allowance；正常/NSO/当前Space名额取max而非相加，UN两实体仍一个root slot",
+    "Defectors独立双方Headline根、活动源/目标实体与接受队列；USSelected策略优先于印刷OPS排序"
   ],
   "outputs": [
     "更新后的流程位置",
@@ -144,7 +145,8 @@
     "effects.deluxe2015.china_transfer_batch1",
     "effects.deluxe2015.wargames",
     "effects.deluxe2015.opec_north_sea_batch1",
-    "effects.deluxe2015.late_hand_batch1"
+    "effects.deluxe2015.late_hand_batch1",
+    "effects.deluxe2015.defectors"
   ],
   "preconditions": [
     "规则集及被触发的处理器必须齐备",
@@ -162,7 +164,8 @@
     "存档版本不兼容",
     "CT1终局草稿须同事务完成已接受源牌/已验证父牌及根必要收尾后写Finished；未知父链不推断",
     "Wargames终局草稿完成接受的源牌/当前根slot收尾后提交Finished；不追加FinalScoring或回合末审计",
-    "ExpireAndReset只过期NSO回合额度，永久OPEC阻止保留；未知来源/放弃后重新开放须具名政策"
+    "ExpireAndReset只过期NSO回合额度，永久OPEC阻止保留；未知来源/放弃后重新开放须具名政策",
+    "被取消的计分/星号目标均Discard且无成功事实；苏方自取消保留另一头条，普通事件留存未完成父OPS"
   ],
   "rule_sources": [
     {
@@ -176,13 +179,13 @@
         "9",
         "10.3"
       ],
-      "description": " CT1: §2.1.2亚洲含东南亚；§2.2.4/5.2事件与星号；§6.1.1直接事件投放；§8.1.3核战即时终局；§9中国持有/正常转交/事件例外/使用限制；§10.3 VP。 WG1: Sections 5.2, 10.2, 10.3.1: successful event disposition, signed VP and complete-event automatic victory. Section 10.3.2 zero draw literally follows final scoring; not a dedicated Wargames ruling. ON1: Sections 2.1.7,4.5C-D,5.2,6.4.4-5,7.3,7.5,10.3: actual control, root action rounds, source disposition, Space8 total allowance, permanent effect, blocked event and full VP batch. LH1: PDF p5 §§5.2/5.4/5.5事件归属、去向及强迫弃牌无事件；p8 §7.3永久效果；p9 §9中国独立牌区/不可强迫弃置。"
+      "description": " CT1: §2.1.2亚洲含东南亚；§2.2.4/5.2事件与星号；§6.1.1直接事件投放；§8.1.3核战即时终局；§9中国持有/正常转交/事件例外/使用限制；§10.3 VP。 WG1: Sections 5.2, 10.2, 10.3.1: successful event disposition, signed VP and complete-event automatic victory. Section 10.3.2 zero draw literally follows final scoring; not a dedicated Wargames ruling. ON1: Sections 2.1.7,4.5C-D,5.2,6.4.4-5,7.3,7.5,10.3: actual control, root action rounds, source disposition, Space8 total allowance, permanent effect, blocked event and full VP batch. LH1: PDF p5 §§5.2/5.4/5.5事件归属、去向及强迫弃牌无事件；p8 §7.3永久效果；p9 §9中国独立牌区/不可强迫弃置。 DF1: Sections 4.5C, 5.2, 6.4.5, 10.2-10.3: ordinary headline ordering, opponent-event controller and order, no event from Space, complete VP batch automatic victory."
     },
     {
       "id": "F2010",
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
       "scope": "采用未被新版覆盖的太空弃牌与双方扣留一般裁定；排除CF-001旧答案，CF-003按用户确认的新版优先解释",
-      "description": " CT1: PDF p4 #6实际US中国太空取消Formosan及不可事件弃置；p8 #35不弃手中未发生的Formosan；p19中国不计普通手牌。未发现三牌专门答案。 WG1: PDF p17-18 #100: no final scoring; only used at DEFCON 2; three choices give six and end, give six and continue, or neither. No dedicated zero-result answer in this block. ON1: No dedicated OPEC/North Sea Oil answer found in the 22-page PDF. No claim of explicit NSO/Space stacking or late-provider decline ruling. LH1: PDF p16 #92额外弃牌也随机；#98导言排除旧版排序问答；p19公开弃牌堆。未找到本批空手/不足弃牌专门裁定。"
+      "description": " CT1: PDF p4 #6实际US中国太空取消Formosan及不可事件弃置；p8 #35不弃手中未发生的Formosan；p19中国不计普通手牌。未发现三牌专门答案。 WG1: PDF p17-18 #100: no final scoring; only used at DEFCON 2; three choices give six and end, give six and continue, or neither. No dedicated zero-result answer in this block. ON1: No dedicated OPEC/North Sea Oil answer found in the 22-page PDF. No claim of explicit NSO/Space stacking or late-provider decline ruling. LH1: PDF p16 #92额外弃牌也随机；#98导言排除旧版排序问答；p19公开弃牌堆。未找到本批空手/不足弃牌专门裁定。 DF1: PDF p1 nonstar erratum; p18 #103 USSR selected headline self-cancels with zero VP, US selected Defectors overrides higher Soviet Ops, nested cannot undo an executed headline; p14 #67 Grain Sales actual order."
     },
     {
       "id": "PROJECT-HC1",
@@ -206,7 +209,7 @@
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "edition": "English Deluxe card images",
-      "description": "亲看英文PDF p2 #5、p9 #58、p11 #71、p12 #76；FYP为US关联及持有者条件、转交面向与奖励；不使用旁列译文。 WG1: Visually inspected PDF p15 English #100: Neutral, 4 Ops, Late, starred; DEFCON 2; give opponent 6 VP then may end without Final Scoring. ON1: PDF p10 #61 lists Egypt, Iran, Libya, Saudi Arabia, Iraq, Gulf States, Venezuela; USSR1VP each controlled; NSO blocks. PDF p13 #86 US3Late starred/underlined: OPEC prohibited, US may play eight cards this turn. LH1: 目视英文PDF p13 #82、p14 #92、p15 #98；不采用旁列译文。"
+      "description": "亲看英文PDF p2 #5、p9 #58、p11 #71、p12 #76；FYP为US关联及持有者条件、转交面向与奖励；不使用旁列译文。 WG1: Visually inspected PDF p15 English #100: Neutral, 4 Ops, Late, starred; DEFCON 2; give opponent 6 VP then may end without Final Scoring. ON1: PDF p10 #61 lists Egypt, Iran, Libya, Saudi Arabia, Iraq, Gulf States, Venezuela; USSR1VP each controlled; NSO blocks. PDF p13 #86 US3Late starred/underlined: OPEC prohibited, US may play eight cards this turn. LH1: 目视英文PDF p13 #82、p14 #92、p15 #98；不采用旁列译文。 DF1: Personally viewed PDF p6 #103: US2 Early nonstar; headline cancels USSR headline including Scoring, canceled card discarded; Soviet ActionRound use US1VP except Space."
     },
     {
       "id": "PROJECT-CT1",
@@ -231,6 +234,12 @@
       "url": null,
       "edition": "Engineering and explicit derivation, 2026-10-13",
       "description": "Ames期限作用于当前手牌集合，后来同回合入手牌可见是卡文直接派生，不是专门FAQ；有限事务/来源/随机和历史收据/授权当前视图均planned。短缺及新ID重复激活RequiresRuling。"
+    },
+    {
+      "id": "PROJECT-DF1",
+      "url": null,
+      "edition": "Named engineering boundary, 2026-10-13",
+      "description": "Typed priority plan, cancellation/success records, source/root cleanup and immutable historical receipts are design contracts. Unknown nested providers including Grain Sales require a separately verified contract; the FAQ timing fact alone is not authorization."
     }
   ],
   "tests": [
@@ -310,12 +319,16 @@
     {
       "path": "Docs/Design/late-hand-batch1.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/defectors.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
     "design_review": "检查源规则版本、转换边界、持久化、保密与异常路径；实际检查记录见工作记录",
-    "latest_design_report": "Docs/Design/late-hand-batch1.validation.json"
+    "latest_design_report": "Docs/Design/defectors.validation.json"
   },
   "open_items": [
     "全部逐卡参数/处理器与跨卡优先级",
@@ -325,6 +338,7 @@
     "urn:coldwarheat:contract:china-transfer-batch1:1",
     "urn:coldwarheat:contract:wargames:1",
     "urn:coldwarheat:contract:opec-north-sea-batch1:1",
-    "urn:coldwarheat:contract:late-hand-batch1:1"
+    "urn:coldwarheat:contract:late-hand-batch1:1",
+    "urn:coldwarheat:contract:defectors:1"
   ]
 }

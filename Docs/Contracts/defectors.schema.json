@@ -1,0 +1,967 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:defectors:1",
+  "description": "Closed Defectors parameters and planned selected-headline/CardUse/source/history types; cross-field source and receipt relations require semantic validation.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "dataset_id": {
+      "type": "string",
+      "const": "effects.deluxe2015.defectors"
+    },
+    "content_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "type": "string",
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "type": "string",
+      "const": "verified-subset"
+    },
+    "description": {
+      "type": "string",
+      "const": "Defectors #103: selected-headline cancellation and ordinary Soviet CardUse VP; bounded source, disposition and historical replay design, all runtime planned."
+    },
+    "source_catalog": {
+      "type": "array",
+      "const": [
+        {
+          "id": "C-DELUXE-EN",
+          "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+          "edition": "English Deluxe card images",
+          "description": "Personally viewed PDF p6 #103: US2 Early nonstar; headline cancels USSR headline including Scoring, canceled card discarded; Soviet ActionRound use US1VP except Space."
+        },
+        {
+          "id": "F2010",
+          "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+          "edition": "FAQ v5 2010, compatible Deluxe answers",
+          "description": "PDF p1 nonstar erratum; p18 #103 USSR selected headline self-cancels with zero VP, US selected Defectors overrides higher Soviet Ops, nested cannot undo an executed headline; p14 #67 Grain Sales actual order."
+        },
+        {
+          "id": "R2015",
+          "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+          "edition": "Deluxe rules 2015",
+          "description": "Sections 4.5C, 5.2, 6.4.5, 10.2-10.3: ordinary headline ordering, opponent-event controller and order, no event from Space, complete VP batch automatic victory."
+        },
+        {
+          "id": "PROJECT-DF1",
+          "url": null,
+          "edition": "Named engineering boundary, 2026-10-13",
+          "description": "Typed priority plan, cancellation/success records, source/root cleanup and immutable historical receipts are design contracts. Unknown nested providers including Grain Sales require a separately verified contract; the FAQ timing fact alone is not authorization."
+        }
+      ]
+    },
+    "shared_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cards": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "cards.deluxe2015.definitions"
+            },
+            "path": {
+              "type": "string",
+              "const": "Data/Cards/deluxe-2015/cards.json"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": "/cards"
+            }
+          },
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ]
+        },
+        "turn_flow": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "rules.deluxe2015.turn-flow"
+            },
+            "path": {
+              "type": "string",
+              "const": "Data/Rulesets/deluxe-2015/turn-flow.json"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": "/headline"
+            }
+          },
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ]
+        },
+        "victory": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "rules.deluxe2015.victory"
+            },
+            "path": {
+              "type": "string",
+              "const": "Data/Rulesets/deluxe-2015/victory.json"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": ""
+            }
+          },
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ]
+        },
+        "defcon": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "rules.deluxe2015.defcon"
+            },
+            "path": {
+              "type": "string",
+              "const": "Data/Rulesets/deluxe-2015/defcon.json"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": "/nuclear_level"
+            }
+          },
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ]
+        }
+      },
+      "required": [
+        "cards",
+        "turn_flow",
+        "victory",
+        "defcon"
+      ]
+    },
+    "source_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "module_contract": {
+          "type": "string",
+          "const": "module.turn-flow"
+        },
+        "providers": {
+          "type": "array",
+          "const": [
+            "SelectedHeadline",
+            "OwnEvent",
+            "OpponentCardEvent",
+            "OwnOperationsHook",
+            "SpaceHook"
+          ]
+        },
+        "unknown_nested": {
+          "type": "string",
+          "const": "RequiresVerifiedSourceContractAndRequiresRulingBeforeMutation"
+        },
+        "source_entity": {
+          "type": "string",
+          "const": "UniqueInstanceUniqueBaseCardIdExactlyOneEntityPerLiveFrame"
+        },
+        "headline_identity": {
+          "type": "string",
+          "const": "TwoDistinctSelectedRootsFramesAndResolutionIdsBoundToIndependentLedger"
+        },
+        "source_roles": {
+          "type": "string",
+          "const": "PrintedUSControllerDistinctFromActualCardUsePlayer"
+        },
+        "synthetic_premises": {
+          "type": "string",
+          "const": "AcceptedLedgerCallerAndStoredAnchorAreIndependentTrustedInputsNotProductionAuthentication"
+        }
+      },
+      "required": [
+        "module_contract",
+        "providers",
+        "unknown_nested",
+        "source_entity",
+        "headline_identity",
+        "source_roles",
+        "synthetic_premises"
+      ]
+    },
+    "receipt_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "canonical": {
+          "type": "string",
+          "const": "UTF8SortedCompactJSONNoNaN"
+        },
+        "history": {
+          "type": "string",
+          "const": "CompleteOriginalRequestBeforeStateResultAndDataDigestWithIndependentAcceptedAnchor"
+        },
+        "replay": {
+          "type": "string",
+          "const": "RecomputeHistoricalResultReturnOriginalReceiptPreserveLaterCurrent"
+        },
+        "fresh_after_complete": {
+          "type": "string",
+          "const": "RejectCompletedOrCancelledResolution"
+        },
+        "current_state_is_not_history": {
+          "type": "string",
+          "const": "NeverRequireLiveCurrentEqualHistoricalAfter"
+        }
+      },
+      "required": [
+        "canonical",
+        "history",
+        "replay",
+        "fresh_after_complete",
+        "current_state_is_not_history"
+      ]
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "defectors": {
+          "$ref": "#/$defs/defectors"
+        }
+      },
+      "required": [
+        "defectors"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "shared_refs",
+    "source_policy",
+    "receipt_policy",
+    "parameters"
+  ],
+  "$defs": {
+    "root": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "phase": {
+          "type": "string",
+          "enum": [
+            "ActionRound",
+            "Headline"
+          ]
+        },
+        "phasing_player": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "slot_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "closed": {
+          "type": "boolean"
+        },
+        "completed_slots": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "action_id",
+        "phase",
+        "phasing_player",
+        "frame_id",
+        "card_instance_id",
+        "slot_index",
+        "closed",
+        "completed_slots"
+      ]
+    },
+    "frame": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "controller": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "provider": {
+          "type": "string",
+          "enum": [
+            "SelectedHeadline",
+            "OwnEvent",
+            "OpponentCardEvent",
+            "OwnOperationsHook",
+            "SpaceHook",
+            "UnverifiedNested"
+          ]
+        },
+        "remaining_steps": {
+          "type": "string",
+          "enum": [
+            "None",
+            "Operations",
+            "Unknown"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Pending",
+            "Completed",
+            "Cancelled"
+          ]
+        },
+        "disposition": {
+          "type": "string",
+          "enum": [
+            "None",
+            "DiscardPile",
+            "DeferredDiscard"
+          ]
+        }
+      },
+      "required": [
+        "frame_id",
+        "resolution_id",
+        "source_instance_id",
+        "source_card_id",
+        "controller",
+        "provider",
+        "remaining_steps",
+        "status",
+        "disposition"
+      ]
+    },
+    "headline": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "player": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "root": {
+          "$ref": "#/$defs/root"
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "progress": {
+          "type": "string",
+          "enum": [
+            "Pending",
+            "Completed",
+            "Cancelled"
+          ]
+        },
+        "event_outcome": {
+          "type": "string",
+          "enum": [
+            "Unresolved",
+            "Resolved",
+            "NotTriggered",
+            "Cancelled"
+          ]
+        },
+        "disposition": {
+          "type": "string",
+          "enum": [
+            "None",
+            "DiscardPile",
+            "Removed"
+          ]
+        }
+      },
+      "required": [
+        "player",
+        "root",
+        "resolution_id",
+        "card_id",
+        "progress",
+        "event_outcome",
+        "disposition"
+      ]
+    },
+    "ordinary_card": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "zone": {
+          "type": "string",
+          "enum": [
+            "Hand",
+            "InResolution",
+            "DiscardPile",
+            "Removed"
+          ]
+        },
+        "frame_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        }
+      },
+      "required": [
+        "instance_id",
+        "card_id",
+        "owner",
+        "zone",
+        "frame_id"
+      ]
+    },
+    "successful_fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "controller": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "resolution_id",
+        "card_id",
+        "controller",
+        "turn"
+      ]
+    },
+    "cancelled_fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cancelled_by_resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "resolution_id",
+        "card_id",
+        "cancelled_by_resolution_id",
+        "turn"
+      ]
+    },
+    "ledger": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "dispatch_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root": {
+          "$ref": "#/$defs/root"
+        },
+        "frame": {
+          "$ref": "#/$defs/frame"
+        },
+        "actual_card_use_player": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "headlines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/headline"
+          }
+        }
+      },
+      "required": [
+        "dispatch_id",
+        "root",
+        "frame",
+        "actual_card_use_player",
+        "headlines"
+      ]
+    },
+    "state": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "state_version": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Active",
+            "Finished"
+          ]
+        },
+        "winner": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "US",
+            "USSR",
+            null
+          ]
+        },
+        "signed_vp": {
+          "type": "integer"
+        },
+        "defcon": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "root": {
+          "$ref": "#/$defs/root"
+        },
+        "frame": {
+          "$ref": "#/$defs/frame"
+        },
+        "headlines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/headline"
+          }
+        },
+        "ordinary_cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ordinary_card"
+          }
+        },
+        "successful_events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/successful_fact"
+          }
+        },
+        "cancelled_events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/cancelled_fact"
+          }
+        },
+        "ledger": {
+          "$ref": "#/$defs/ledger"
+        },
+        "relevant_provider_coverage": {
+          "type": "string",
+          "enum": [
+            "CompleteKnownDefectorsEffects",
+            "Unknown"
+          ]
+        },
+        "rng_cursor": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "military_us": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "military_ussr": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "state_version",
+        "turn",
+        "status",
+        "winner",
+        "signed_vp",
+        "defcon",
+        "root",
+        "frame",
+        "headlines",
+        "ordinary_cards",
+        "successful_events",
+        "cancelled_events",
+        "ledger",
+        "relevant_provider_coverage",
+        "rng_cursor",
+        "military_us",
+        "military_ussr"
+      ]
+    },
+    "command": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_state_version": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "dispatch_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_instance_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "command_id",
+        "expected_state_version",
+        "dispatch_id",
+        "frame_id",
+        "resolution_id",
+        "source_instance_id"
+      ]
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "Resolved",
+            "Cancelled",
+            "NotTriggered",
+            "Finished",
+            "InvalidInput",
+            "InvalidState",
+            "InvalidSource",
+            "InvalidCaller",
+            "StaleCommand",
+            "FinishedState",
+            "RequiresRuling"
+          ]
+        },
+        "vp_delta": {
+          "type": "integer"
+        },
+        "cancelled_resolution_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "state": {
+          "$ref": "#/$defs/state"
+        },
+        "trace": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "outcome",
+        "vp_delta",
+        "cancelled_resolution_ids",
+        "state",
+        "trace"
+      ]
+    },
+    "receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/command"
+        },
+        "before": {
+          "$ref": "#/$defs/state"
+        },
+        "result": {
+          "$ref": "#/$defs/result"
+        },
+        "data_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "request_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "before_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "result_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "after_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "receipt_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "command_id",
+        "request",
+        "before",
+        "result",
+        "data_digest",
+        "request_digest",
+        "before_digest",
+        "result_digest",
+        "after_digest",
+        "receipt_digest"
+      ]
+    },
+    "defectors": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "const": "card.defectors"
+        },
+        "effect_id": {
+          "type": "string",
+          "const": "effect.defectors"
+        },
+        "template": {
+          "type": "string",
+          "const": "SelectedHeadlineCancellationOrSovietCardUseVp"
+        },
+        "headline_strategy": {
+          "type": "string",
+          "const": "USSelectedDefectorsBeforeOrdinaryPrintedOpsOrder"
+        },
+        "us_selected_target": {
+          "type": "string",
+          "const": "PendingUSSRSelectedHeadlineIncludingScoring"
+        },
+        "ussr_selected": {
+          "type": "string",
+          "const": "CancelSelfAndNoVp"
+        },
+        "cancelled_disposition": {
+          "type": "string",
+          "const": "DiscardPileRegardlessOfPrintedStar"
+        },
+        "cancelled_success_fact": {
+          "type": "boolean",
+          "const": false
+        },
+        "soviet_action_round_vp": {
+          "type": "integer",
+          "const": 1
+        },
+        "vp_recipient": {
+          "type": "string",
+          "const": "US"
+        },
+        "space_vp": {
+          "type": "integer",
+          "const": 0
+        },
+        "us_action_round_vp": {
+          "type": "integer",
+          "const": 0
+        },
+        "nested_timing_fact": {
+          "type": "string",
+          "const": "OnlyActuallyUnexecutedUSSRHeadlineCanBeCancelledNeverUndoExecution"
+        },
+        "nested_implementation": {
+          "type": "string",
+          "const": "RequiresRulingUnregisteredSource"
+        },
+        "space_hook_scope": {
+          "type": "string",
+          "const": "NoEventNoVpPreserveStateSpaceRngRewardsAndRootCompletionOwnedBySharedSpaceFlow"
+        },
+        "terminal_policy": {
+          "type": "string",
+          "const": "CompleteAcceptedVpSourceDispositionAndCurrentRootSlotInDraftBeforeFinished"
+        },
+        "source_refs": {
+          "type": "array",
+          "const": [
+            {
+              "source_id": "C-DELUXE-EN",
+              "locator": "Personally viewed PDF p6 #103: US2 Early nonstar; headline cancels USSR headline including Scoring, canceled card discarded; Soviet ActionRound use US1VP except Space.",
+              "verification": "Verified"
+            },
+            {
+              "source_id": "F2010",
+              "locator": "PDF p1 nonstar erratum; p18 #103 USSR selected headline self-cancels with zero VP, US selected Defectors overrides higher Soviet Ops, nested cannot undo an executed headline; p14 #67 Grain Sales actual order.",
+              "verification": "Verified"
+            },
+            {
+              "source_id": "R2015",
+              "locator": "Sections 4.5C, 5.2, 6.4.5, 10.2-10.3: ordinary headline ordering, opponent-event controller and order, no event from Space, complete VP batch automatic victory.",
+              "verification": "Verified"
+            },
+            {
+              "source_id": "PROJECT-DF1",
+              "locator": "Typed priority plan, cancellation/success records, source/root cleanup and immutable historical receipts are design contracts. Unknown nested providers including Grain Sales require a separately verified contract; the FAQ timing fact alone is not authorization.",
+              "verification": "EngineeringBoundary"
+            }
+          ]
+        }
+      },
+      "required": [
+        "card_id",
+        "effect_id",
+        "template",
+        "headline_strategy",
+        "us_selected_target",
+        "ussr_selected",
+        "cancelled_disposition",
+        "cancelled_success_fact",
+        "soviet_action_round_vp",
+        "vp_recipient",
+        "space_vp",
+        "us_action_round_vp",
+        "nested_timing_fact",
+        "nested_implementation",
+        "space_hook_scope",
+        "terminal_policy",
+        "source_refs"
+      ]
+    }
+  }
+}

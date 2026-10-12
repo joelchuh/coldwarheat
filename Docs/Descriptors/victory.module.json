@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.victory",
   "kind": "module",
-  "description": "按检查点判定核战、批次VP、扣留计分牌和最终胜负；CF-003已采纳，模块仍未实现。 Wargames支持给6VP后的明确非零结束，恰零等待裁定。",
+  "description": "按检查点判定核战、批次VP、扣留计分牌和最终胜负；CF-003已采纳，模块仍未实现。 Wargames支持给6VP后的明确非零结束，恰零等待裁定。 Defectors苏方普通行动用牌US1VP按正常自动胜利检查。",
   "status": "planned",
   "entrypoints": [],
   "documentation": "Docs/Wiki/risk-victory.md",
@@ -15,7 +15,8 @@
   "inputs": [
     "已完成检查点、规则证据、VP批次与责任上下文",
     "不可变规则定义及版本绑定",
-    "Wargames完整VP批次/三选择以及共享自动胜利轨道；结束来源和root收尾证据"
+    "Wargames完整VP批次/三选择以及共享自动胜利轨道；结束来源和root收尾证据",
+    "Defectors普通苏方CardUse与事件来源的完整US1VP批次，Space hook为0且不伪执行共享太空动作"
   ],
   "outputs": [
     "Continue、Deferred、Finished或UnresolvedAdjudication"
@@ -37,7 +38,8 @@
     "effects.deluxe2015.war_events_batch1",
     "effects.deluxe2015.war_events_batch2",
     "effects.deluxe2015.defcon_events_batch1",
-    "effects.deluxe2015.wargames"
+    "effects.deluxe2015.wargames",
+    "effects.deluxe2015.defectors"
   ],
   "preconditions": [
     "权威事务及身份验证",
@@ -53,20 +55,21 @@
     "未解决裁定",
     "不匹配的规则/状态版本",
     "不合法检查点",
-    "Wargames结束不执行最终地区/中国牌/军备/扣留计分审计；恰零无用户裁定不能推定Draw"
+    "Wargames结束不执行最终地区/中国牌/军备/扣留计分审计；恰零无用户裁定不能推定Draw",
+    "Defectors自动胜利先在同草稿清理已接受源/当前根后Finished，不执行余下OPS"
   ],
   "rule_sources": [
     {
       "id": "R2015",
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
       "checked_on": "2026-09-21",
-      "description": " WG1: Sections 5.2, 10.2, 10.3.1: successful event disposition, signed VP and complete-event automatic victory. Section 10.3.2 zero draw literally follows final scoring; not a dedicated Wargames ruling."
+      "description": " WG1: Sections 5.2, 10.2, 10.3.1: successful event disposition, signed VP and complete-event automatic victory. Section 10.3.2 zero draw literally follows final scoring; not a dedicated Wargames ruling. DF1: Sections 4.5C, 5.2, 6.4.5, 10.2-10.3: ordinary headline ordering, opponent-event controller and order, no event from Space, complete VP batch automatic victory."
     },
     {
       "id": "F2010",
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
       "checked_on": "2026-09-21",
-      "description": " WG1: PDF p17-18 #100: no final scoring; only used at DEFCON 2; three choices give six and end, give six and continue, or neither. No dedicated zero-result answer in this block."
+      "description": " WG1: PDF p17-18 #100: no final scoring; only used at DEFCON 2; three choices give six and end, give six and continue, or neither. No dedicated zero-result answer in this block. DF1: PDF p1 nonstar erratum; p18 #103 USSR selected headline self-cancels with zero VP, US selected Defectors overrides higher Soviet Ops, nested cannot undo an executed headline; p14 #67 Grain Sales actual order."
     },
     {
       "id": "USER-CF003",
@@ -77,13 +80,19 @@
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "edition": "English Deluxe card images",
-      "description": "Visually inspected PDF p15 English #100: Neutral, 4 Ops, Late, starred; DEFCON 2; give opponent 6 VP then may end without Final Scoring."
+      "description": "Visually inspected PDF p15 English #100: Neutral, 4 Ops, Late, starred; DEFCON 2; give opponent 6 VP then may end without Final Scoring. DF1: Personally viewed PDF p6 #103: US2 Early nonstar; headline cancels USSR headline including Scoring, canceled card discarded; Soviet ActionRound use US1VP except Space."
     },
     {
       "id": "PROJECT-WG1",
       "url": null,
       "edition": "Named derivations and engineering boundary, 2026-10-12",
       "description": "WG1-DERIVED-01: DEFCON 2 DeclineBoth counts as used and removes by FAQ used condition plus section 5.2, not a dedicated disposal answer. Nonzero Wargames winner follows accepted signed-VP comparison. Zero GiveSixAndEnd remains RequiresRuling pending explicit project policy. Source/receipt/atomic cleanup are planned contracts."
+    },
+    {
+      "id": "PROJECT-DF1",
+      "url": null,
+      "edition": "Named engineering boundary, 2026-10-13",
+      "description": "Typed priority plan, cancellation/success records, source/root cleanup and immutable historical receipts are design contracts. Unknown nested providers including Grain Sales require a separately verified contract; the FAQ timing fact alone is not authorization."
     }
   ],
   "tests": [
@@ -115,16 +124,21 @@
     {
       "path": "Docs/Design/wargames.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/defectors.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
-    "latest_design_report": "Docs/Design/wargames.validation.json"
+    "latest_design_report": "Docs/Design/defectors.validation.json"
   },
   "open_items": [
     "正式国家/卡牌目录及逐卡终局、计分修正提供者；地区/太空基础设计已完成，仍未实现"
   ],
   "contract_dependencies": [
-    "urn:coldwarheat:contract:wargames:1"
+    "urn:coldwarheat:contract:wargames:1",
+    "urn:coldwarheat:contract:defectors:1"
   ]
 }

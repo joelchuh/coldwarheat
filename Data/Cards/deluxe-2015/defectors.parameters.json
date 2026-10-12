@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.defectors",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "verified-subset",
+  "description": "Defectors #103: selected-headline cancellation and ordinary Soviet CardUse VP; bounded source, disposition and historical replay design, all runtime planned.",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "Personally viewed PDF p6 #103: US2 Early nonstar; headline cancels USSR headline including Scoring, canceled card discarded; Soviet ActionRound use US1VP except Space."
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe answers",
+      "description": "PDF p1 nonstar erratum; p18 #103 USSR selected headline self-cancels with zero VP, US selected Defectors overrides higher Soviet Ops, nested cannot undo an executed headline; p14 #67 Grain Sales actual order."
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "Sections 4.5C, 5.2, 6.4.5, 10.2-10.3: ordinary headline ordering, opponent-event controller and order, no event from Space, complete VP batch automatic victory."
+    },
+    {
+      "id": "PROJECT-DF1",
+      "url": null,
+      "edition": "Named engineering boundary, 2026-10-13",
+      "description": "Typed priority plan, cancellation/success records, source/root cleanup and immutable historical receipts are design contracts. Unknown nested providers including Grain Sales require a separately verified contract; the FAQ timing fact alone is not authorization."
+    }
+  ],
+  "shared_refs": {
+    "cards": {
+      "dataset_id": "cards.deluxe2015.definitions",
+      "path": "Data/Cards/deluxe-2015/cards.json",
+      "json_pointer": "/cards"
+    },
+    "turn_flow": {
+      "dataset_id": "rules.deluxe2015.turn-flow",
+      "path": "Data/Rulesets/deluxe-2015/turn-flow.json",
+      "json_pointer": "/headline"
+    },
+    "victory": {
+      "dataset_id": "rules.deluxe2015.victory",
+      "path": "Data/Rulesets/deluxe-2015/victory.json",
+      "json_pointer": ""
+    },
+    "defcon": {
+      "dataset_id": "rules.deluxe2015.defcon",
+      "path": "Data/Rulesets/deluxe-2015/defcon.json",
+      "json_pointer": "/nuclear_level"
+    }
+  },
+  "source_policy": {
+    "module_contract": "module.turn-flow",
+    "providers": [
+      "SelectedHeadline",
+      "OwnEvent",
+      "OpponentCardEvent",
+      "OwnOperationsHook",
+      "SpaceHook"
+    ],
+    "unknown_nested": "RequiresVerifiedSourceContractAndRequiresRulingBeforeMutation",
+    "source_entity": "UniqueInstanceUniqueBaseCardIdExactlyOneEntityPerLiveFrame",
+    "headline_identity": "TwoDistinctSelectedRootsFramesAndResolutionIdsBoundToIndependentLedger",
+    "source_roles": "PrintedUSControllerDistinctFromActualCardUsePlayer",
+    "synthetic_premises": "AcceptedLedgerCallerAndStoredAnchorAreIndependentTrustedInputsNotProductionAuthentication"
+  },
+  "receipt_policy": {
+    "canonical": "UTF8SortedCompactJSONNoNaN",
+    "history": "CompleteOriginalRequestBeforeStateResultAndDataDigestWithIndependentAcceptedAnchor",
+    "replay": "RecomputeHistoricalResultReturnOriginalReceiptPreserveLaterCurrent",
+    "fresh_after_complete": "RejectCompletedOrCancelledResolution",
+    "current_state_is_not_history": "NeverRequireLiveCurrentEqualHistoricalAfter"
+  },
+  "parameters": {
+    "defectors": {
+      "card_id": "card.defectors",
+      "effect_id": "effect.defectors",
+      "template": "SelectedHeadlineCancellationOrSovietCardUseVp",
+      "headline_strategy": "USSelectedDefectorsBeforeOrdinaryPrintedOpsOrder",
+      "us_selected_target": "PendingUSSRSelectedHeadlineIncludingScoring",
+      "ussr_selected": "CancelSelfAndNoVp",
+      "cancelled_disposition": "DiscardPileRegardlessOfPrintedStar",
+      "cancelled_success_fact": false,
+      "soviet_action_round_vp": 1,
+      "vp_recipient": "US",
+      "space_vp": 0,
+      "us_action_round_vp": 0,
+      "nested_timing_fact": "OnlyActuallyUnexecutedUSSRHeadlineCanBeCancelledNeverUndoExecution",
+      "nested_implementation": "RequiresRulingUnregisteredSource",
+      "space_hook_scope": "NoEventNoVpPreserveStateSpaceRngRewardsAndRootCompletionOwnedBySharedSpaceFlow",
+      "terminal_policy": "CompleteAcceptedVpSourceDispositionAndCurrentRootSlotInDraftBeforeFinished",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "Personally viewed PDF p6 #103: US2 Early nonstar; headline cancels USSR headline including Scoring, canceled card discarded; Soviet ActionRound use US1VP except Space.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p1 nonstar erratum; p18 #103 USSR selected headline self-cancels with zero VP, US selected Defectors overrides higher Soviet Ops, nested cannot undo an executed headline; p14 #67 Grain Sales actual order.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Sections 4.5C, 5.2, 6.4.5, 10.2-10.3: ordinary headline ordering, opponent-event controller and order, no event from Space, complete VP batch automatic victory.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-DF1",
+          "locator": "Typed priority plan, cancellation/success records, source/root cleanup and immutable historical receipts are design contracts. Unknown nested providers including Grain Sales require a separately verified contract; the FAQ timing fact alone is not authorization.",
+          "verification": "EngineeringBoundary"
+        }
+      ]
+    }
+  }
+}

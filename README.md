@@ -105,4 +105,6 @@
 
 此前：[OPEC与北海石油](Docs/Wiki/opec-north-sea-batch1.md)，86 Bound /16 Unresolved，102处理器planned；永久阻止与回合额度分开，太空名额不叠加到9。
 
-最新：[晚期手牌事件](Docs/Wiki/late-hand-batch1.md)，89 Bound /13 Unresolved，102处理器planned；原子随机弃牌与持续当前视图分开，短缺待裁定。
+此前：[晚期手牌事件](Docs/Wiki/late-hand-batch1.md)，89 Bound /13 Unresolved，102处理器planned；原子随机弃牌与持续当前视图分开，短缺待裁定。
+
+最新：[叛逃者](Docs/Wiki/defectors.md)，90 Bound /12 Unresolved，102处理器planned；头条取消与普通苏方用牌VP已设计，未知嵌套来源停止。

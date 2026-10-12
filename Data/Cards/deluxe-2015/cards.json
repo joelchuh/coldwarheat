@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.36.0",
+  "content_version": "0.37.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计89牌效果参数已绑定，其余13个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计90牌效果参数已绑定，其余12个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -227,6 +227,12 @@
       "url": null,
       "edition": "Engineering and explicit derivation, 2026-10-13",
       "description": "Ames期限作用于当前手牌集合，后来同回合入手牌可见是卡文直接派生，不是专门FAQ；有限事务/来源/随机和历史收据/授权当前视图均planned。短缺及新ID重复激活RequiresRuling。"
+    },
+    {
+      "id": "PROJECT-DF1",
+      "url": null,
+      "edition": "Named engineering boundary, 2026-10-13",
+      "description": "Typed priority plan, cancellation/success records, source/root cleanup and immutable historical receipts are design contracts. Unknown nested providers including Grain Sales require a separately verified contract; the FAQ timing fact alone is not authorization."
     }
   ],
   "cards": [
@@ -1334,8 +1340,13 @@
       "effect_binding": {
         "effect_id": "effect.defectors",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.defectors",
+            "json_pointer": "/parameters/defectors"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -4439,14 +4450,31 @@
     {
       "effect_id": "effect.defectors",
       "contract_version": "0.1.0",
-      "description": "Defectors：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.defectors",
+      "description": "US选中头条优先取消苏方待执行头条；苏方选中则自取消；苏方普通行动使用给US1VP，Space不触发。",
+      "handler_key": "composite.SelectedHeadlineCancellationOrSovietCardUseVp",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:defectors:1#/$defs/defectors"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
+          "source_id": "C-DELUXE-EN",
+          "locator": "Personally viewed PDF p6 #103: US2 Early nonstar; headline cancels USSR headline including Scoring, canceled card discarded; Soviet ActionRound use US1VP except Space.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p1 nonstar erratum; p18 #103 USSR selected headline self-cancels with zero VP, US selected Defectors overrides higher Soviet Ops, nested cannot undo an executed headline; p14 #67 Grain Sales actual order.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Sections 4.5C, 5.2, 6.4.5, 10.2-10.3: ordinary headline ordering, opponent-event controller and order, no event from Space, complete VP batch automatic victory.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-DF1",
+          "locator": "Typed priority plan, cancellation/success records, source/root cleanup and immutable historical receipts are design contracts. Unknown nested providers including Grain Sales require a separately verified contract; the FAQ timing fact alone is not authorization.",
           "verification": "Pending"
         }
       ]

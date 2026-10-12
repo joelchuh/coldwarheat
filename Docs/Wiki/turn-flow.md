@@ -240,3 +240,5 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 [北海石油行动额度](opec-north-sea-batch1.md)：按CompletedRootActionRoundSlots计算总8额度，动态查询当前Space能力。已知NSO与Space8取max是具名推导；放弃按完整来源集合和版本绑定，未知后来来源停止。
 
 [Ames持续视图与等待选择](late-hand-batch1.md)：已接受揭示不会因陈旧选择撤销；源/根去向按剩余工作收尾。
+
+[叛逃者头条策略](defectors.md)：USSelectedDefectorsBeforeOrdinaryPrintedOpsOrder只覆盖选中头条；嵌套不能倒转已执行头条，源/取消目标各自独立收尾。

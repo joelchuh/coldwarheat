@@ -1,0 +1,2387 @@
+{
+  "description": "DF1 authored finite data/schema/reference fixtures; production runtime separately UNRUN. Synthetic accepted premises do not implement authentication.",
+  "scope": "new-only",
+  "defaults": {
+    "provider": "SelectedHeadline",
+    "actor": "US",
+    "target_card": "card.warsaw_pact_formed",
+    "other_progress": "Pending",
+    "remaining": "None",
+    "vp": 0
+  },
+  "cases": [
+    {
+      "id": "DF1-R-US-headline-card.asia_scoring",
+      "validation_layer": "reference",
+      "setup": {
+        "target_card": "card.asia_scoring"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": 0,
+        "target_disposition": "DiscardPile",
+        "target_success": false,
+        "cancelled_count": 1,
+        "source_success": true
+      }
+    },
+    {
+      "id": "DF1-R-US-headline-card.southeast_asia_scoring",
+      "validation_layer": "reference",
+      "setup": {
+        "target_card": "card.southeast_asia_scoring"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": 0,
+        "target_disposition": "DiscardPile",
+        "target_success": false,
+        "cancelled_count": 1,
+        "source_success": true
+      }
+    },
+    {
+      "id": "DF1-R-US-headline-card.warsaw_pact_formed",
+      "validation_layer": "reference",
+      "setup": {
+        "target_card": "card.warsaw_pact_formed"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": 0,
+        "target_disposition": "DiscardPile",
+        "target_success": false,
+        "cancelled_count": 1,
+        "source_success": true
+      }
+    },
+    {
+      "id": "DF1-R-US-headline-card.abm_treaty",
+      "validation_layer": "reference",
+      "setup": {
+        "target_card": "card.abm_treaty"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": 0,
+        "target_disposition": "DiscardPile",
+        "target_success": false,
+        "cancelled_count": 1,
+        "source_success": true
+      }
+    },
+    {
+      "id": "DF1-R-US-headline-card.containment",
+      "validation_layer": "reference",
+      "setup": {
+        "target_card": "card.containment"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": 0,
+        "target_disposition": "DiscardPile",
+        "target_success": false,
+        "cancelled_count": 1,
+        "source_success": true
+      }
+    },
+    {
+      "id": "DF1-R-US-headline-card.de_gaulle_leads_france",
+      "validation_layer": "reference",
+      "setup": {
+        "target_card": "card.de_gaulle_leads_france"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": 0,
+        "target_disposition": "DiscardPile",
+        "target_success": false,
+        "cancelled_count": 1,
+        "source_success": true
+      }
+    },
+    {
+      "id": "DF1-R-USSR-self-Pending",
+      "validation_layer": "reference",
+      "setup": {
+        "actor": "USSR",
+        "other_progress": "Pending"
+      },
+      "expected": {
+        "outcome": "Cancelled",
+        "vp_delta": 0,
+        "source_success": false,
+        "cancelled_count": 1,
+        "preserve_other_headline": true
+      }
+    },
+    {
+      "id": "DF1-R-USSR-self-Completed",
+      "validation_layer": "reference",
+      "setup": {
+        "actor": "USSR",
+        "other_progress": "Completed"
+      },
+      "expected": {
+        "outcome": "Cancelled",
+        "vp_delta": 0,
+        "source_success": false,
+        "cancelled_count": 1,
+        "preserve_other_headline": true
+      }
+    },
+    {
+      "id": "DF1-R-USSR-AR-None--19",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "None",
+        "vp": -19
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": 1,
+        "source_success": true,
+        "winner": null,
+        "source_disposition": "DiscardPile",
+        "closed": true
+      }
+    },
+    {
+      "id": "DF1-R-USSR-AR-None-0",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "None",
+        "vp": 0
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": 1,
+        "source_success": true,
+        "winner": null,
+        "source_disposition": "DiscardPile",
+        "closed": true
+      }
+    },
+    {
+      "id": "DF1-R-USSR-AR-None-18",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "None",
+        "vp": 18
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": 1,
+        "source_success": true,
+        "winner": null,
+        "source_disposition": "DiscardPile",
+        "closed": true
+      }
+    },
+    {
+      "id": "DF1-R-USSR-AR-None-19",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "None",
+        "vp": 19
+      },
+      "expected": {
+        "outcome": "Finished",
+        "vp_delta": 1,
+        "source_success": true,
+        "winner": "US",
+        "source_disposition": "DiscardPile",
+        "closed": true
+      }
+    },
+    {
+      "id": "DF1-R-USSR-AR-Operations--19",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations",
+        "vp": -19
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": 1,
+        "source_success": true,
+        "winner": null,
+        "source_disposition": "DeferredDiscard",
+        "closed": false
+      }
+    },
+    {
+      "id": "DF1-R-USSR-AR-Operations-0",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations",
+        "vp": 0
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": 1,
+        "source_success": true,
+        "winner": null,
+        "source_disposition": "DeferredDiscard",
+        "closed": false
+      }
+    },
+    {
+      "id": "DF1-R-USSR-AR-Operations-18",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations",
+        "vp": 18
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": 1,
+        "source_success": true,
+        "winner": null,
+        "source_disposition": "DeferredDiscard",
+        "closed": false
+      }
+    },
+    {
+      "id": "DF1-R-USSR-AR-Operations-19",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations",
+        "vp": 19
+      },
+      "expected": {
+        "outcome": "Finished",
+        "vp_delta": 1,
+        "source_success": true,
+        "winner": "US",
+        "source_disposition": "DiscardPile",
+        "closed": true
+      }
+    },
+    {
+      "id": "DF1-R-US-own-event",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OwnEvent"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": 0,
+        "source_success": true,
+        "closed": true
+      }
+    },
+    {
+      "id": "DF1-R-OwnOperationsHook-US",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OwnOperationsHook",
+        "actor": "US"
+      },
+      "expected": {
+        "outcome": "NotTriggered",
+        "vp_delta": 0,
+        "unchanged": true
+      }
+    },
+    {
+      "id": "DF1-R-SpaceHook-US",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "SpaceHook",
+        "actor": "US"
+      },
+      "expected": {
+        "outcome": "NotTriggered",
+        "vp_delta": 0,
+        "unchanged": true
+      }
+    },
+    {
+      "id": "DF1-R-SpaceHook-USSR",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "SpaceHook",
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "NotTriggered",
+        "vp_delta": 0,
+        "unchanged": true
+      }
+    },
+    {
+      "id": "DF1-R-Unknown-nested-US",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "UnverifiedNested",
+        "actor": "US"
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "DF1-R-Unknown-nested-USSR",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "UnverifiedNested",
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "DF1-R-nuclear",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidState",
+        "unchanged": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "defcon"
+          ],
+          "value": 1
+        }
+      ],
+      "mirror_ledger": true
+    },
+    {
+      "id": "DF1-R-already-vp",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidState",
+        "unchanged": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "signed_vp"
+          ],
+          "value": 20
+        }
+      ],
+      "mirror_ledger": true
+    },
+    {
+      "id": "DF1-R-winner",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidState",
+        "unchanged": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "winner"
+          ],
+          "value": "US"
+        }
+      ],
+      "mirror_ledger": true
+    },
+    {
+      "id": "DF1-R-finished",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "FinishedState",
+        "unchanged": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "status"
+          ],
+          "value": "Finished"
+        }
+      ],
+      "mirror_ledger": true
+    },
+    {
+      "id": "DF1-R-coverage",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "RequiresRuling",
+        "unchanged": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "relevant_provider_coverage"
+          ],
+          "value": "Unknown"
+        }
+      ],
+      "mirror_ledger": true
+    },
+    {
+      "id": "DF1-R-ledger-actor",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "ledger",
+            "actual_card_use_player"
+          ],
+          "value": "USSR"
+        }
+      ],
+      "mirror_ledger": true
+    },
+    {
+      "id": "DF1-R-wrong-controller",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "frame",
+            "controller"
+          ],
+          "value": "USSR"
+        }
+      ],
+      "mirror_ledger": true
+    },
+    {
+      "id": "DF1-R-wrong-card",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "frame",
+            "source_card_id"
+          ],
+          "value": "card.containment"
+        }
+      ],
+      "mirror_ledger": true
+    },
+    {
+      "id": "DF1-R-wrong-source-owner",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "ordinary_cards",
+            0,
+            "owner"
+          ],
+          "value": "USSR"
+        }
+      ],
+      "mirror_ledger": true
+    },
+    {
+      "id": "DF1-R-wrong-source-zone",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "ordinary_cards",
+            0,
+            "zone"
+          ],
+          "value": "Hand"
+        }
+      ],
+      "mirror_ledger": true
+    },
+    {
+      "id": "DF1-R-wrong-source-frame",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "ordinary_cards",
+            0,
+            "frame_id"
+          ],
+          "value": "frame.other"
+        }
+      ],
+      "mirror_ledger": true
+    },
+    {
+      "id": "DF1-R-root-closed",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "root",
+            "closed"
+          ],
+          "value": true
+        }
+      ],
+      "mirror_ledger": true
+    },
+    {
+      "id": "DF1-R-root-slot-completed",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "root",
+            "completed_slots"
+          ],
+          "value": 1
+        }
+      ],
+      "mirror_ledger": true
+    },
+    {
+      "id": "DF1-R-source-completed",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "frame",
+            "status"
+          ],
+          "value": "Completed"
+        }
+      ],
+      "mirror_ledger": true
+    },
+    {
+      "id": "DF1-R-source-disposed",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "frame",
+            "disposition"
+          ],
+          "value": "DiscardPile"
+        }
+      ],
+      "mirror_ledger": true
+    },
+    {
+      "id": "DF1-R-target-owner",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "ordinary_cards",
+            1,
+            "owner"
+          ],
+          "value": "US"
+        }
+      ],
+      "mirror_ledger": true
+    },
+    {
+      "id": "DF1-R-target-hand",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "ordinary_cards",
+            1,
+            "zone"
+          ],
+          "value": "Hand"
+        }
+      ],
+      "mirror_ledger": true
+    },
+    {
+      "id": "DF1-R-target-closed",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "headlines",
+            1,
+            "root",
+            "closed"
+          ],
+          "value": true
+        }
+      ],
+      "mirror_ledger": true
+    },
+    {
+      "id": "DF1-R-target-completed",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "headlines",
+            1,
+            "progress"
+          ],
+          "value": "Completed"
+        }
+      ],
+      "mirror_ledger": true
+    },
+    {
+      "id": "DF1-R-headline-phase",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "root",
+            "phase"
+          ],
+          "value": "ActionRound"
+        }
+      ],
+      "mirror_ledger": true
+    },
+    {
+      "id": "DF1-R-DuplicateInstance",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "mutation": "DuplicateInstance"
+    },
+    {
+      "id": "DF1-R-DuplicateBaseCard",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "mutation": "DuplicateBaseCard"
+    },
+    {
+      "id": "DF1-R-SecondSourceFrameEntity",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "mutation": "SecondSourceFrameEntity"
+    },
+    {
+      "id": "DF1-R-SecondTargetFrameEntity",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "mutation": "SecondTargetFrameEntity"
+    },
+    {
+      "id": "DF1-R-SameHeadlineAction",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "mutation": "SameHeadlineAction"
+    },
+    {
+      "id": "DF1-R-SameHeadlineFrame",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "mutation": "SameHeadlineFrame"
+    },
+    {
+      "id": "DF1-R-SameHeadlineResolution",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "mutation": "SameHeadlineResolution"
+    },
+    {
+      "id": "DF1-R-PriorSourceSuccess",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "mutation": "PriorSourceSuccess"
+    },
+    {
+      "id": "DF1-R-PriorTargetSuccess",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "mutation": "PriorTargetSuccess"
+    },
+    {
+      "id": "DF1-R-PriorSourceCancellation",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "mutation": "PriorSourceCancellation"
+    },
+    {
+      "id": "DF1-R-PriorTargetCancellation",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "mutation": "PriorTargetCancellation"
+    },
+    {
+      "id": "DF1-R-DuplicateSuccessFact",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "mutation": "DuplicateSuccessFact"
+    },
+    {
+      "id": "DF1-R-DuplicateCancellationFact",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "mutation": "DuplicateCancellationFact"
+    },
+    {
+      "id": "DF1-R-HandWithForeignFrame",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "mutation": "HandWithForeignFrame"
+    },
+    {
+      "id": "DF1-R-wrong-role-OwnEvent",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OwnEvent",
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "DF1-R-wrong-role-OpponentCardEvent",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "US"
+      },
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "DF1-R-wrong-role-OwnOperationsHook",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OwnOperationsHook",
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "DF1-R-unknown-remainder",
+      "validation_layer": "reference",
+      "setup": {
+        "remaining": "Unknown"
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "DF1-R-wrong-caller",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidCaller",
+        "unchanged": true
+      },
+      "caller": "PlayerClient"
+    },
+    {
+      "id": "DF1-R-stale-command",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "StaleCommand",
+        "unchanged": true
+      },
+      "command_edits": [
+        {
+          "path": [
+            "expected_state_version"
+          ],
+          "value": 999
+        }
+      ]
+    },
+    {
+      "id": "DF1-R-wrong-command-dispatch_id",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "command_edits": [
+        {
+          "path": [
+            "dispatch_id"
+          ],
+          "value": "foreign"
+        }
+      ]
+    },
+    {
+      "id": "DF1-R-wrong-command-frame_id",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "command_edits": [
+        {
+          "path": [
+            "frame_id"
+          ],
+          "value": "foreign"
+        }
+      ]
+    },
+    {
+      "id": "DF1-R-wrong-command-resolution_id",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "command_edits": [
+        {
+          "path": [
+            "resolution_id"
+          ],
+          "value": "foreign"
+        }
+      ]
+    },
+    {
+      "id": "DF1-R-wrong-command-source_instance_id",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "command_edits": [
+        {
+          "path": [
+            "source_instance_id"
+          ],
+          "value": "foreign"
+        }
+      ]
+    },
+    {
+      "id": "DF1-R-replay-headline-LaterActive",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "AlreadyCompleted"
+      },
+      "phase": "Replay",
+      "later": "LaterActive"
+    },
+    {
+      "id": "DF1-R-replay-headline-LaterFinished",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "AlreadyCompleted"
+      },
+      "phase": "Replay",
+      "later": "LaterFinished"
+    },
+    {
+      "id": "DF1-R-receipt-headline-request",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "request"
+    },
+    {
+      "id": "DF1-R-receipt-headline-before",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "before"
+    },
+    {
+      "id": "DF1-R-receipt-headline-result_vp",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "result_vp"
+    },
+    {
+      "id": "DF1-R-receipt-headline-result_trace",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "result_trace"
+    },
+    {
+      "id": "DF1-R-receipt-headline-result_source",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "result_source"
+    },
+    {
+      "id": "DF1-R-receipt-headline-after_digest",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "after_digest"
+    },
+    {
+      "id": "DF1-R-receipt-headline-data_digest",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "data_digest"
+    },
+    {
+      "id": "DF1-R-receipt-headline-command_conflict",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "command_conflict"
+    },
+    {
+      "id": "DF1-R-fresh-reuse-headline",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "phase": "FreshReuse"
+    },
+    {
+      "id": "DF1-R-replay-self-LaterActive",
+      "validation_layer": "reference",
+      "setup": {
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted"
+      },
+      "phase": "Replay",
+      "later": "LaterActive"
+    },
+    {
+      "id": "DF1-R-replay-self-LaterFinished",
+      "validation_layer": "reference",
+      "setup": {
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted"
+      },
+      "phase": "Replay",
+      "later": "LaterFinished"
+    },
+    {
+      "id": "DF1-R-receipt-self-request",
+      "validation_layer": "reference",
+      "setup": {
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "request"
+    },
+    {
+      "id": "DF1-R-receipt-self-before",
+      "validation_layer": "reference",
+      "setup": {
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "before"
+    },
+    {
+      "id": "DF1-R-receipt-self-result_vp",
+      "validation_layer": "reference",
+      "setup": {
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "result_vp"
+    },
+    {
+      "id": "DF1-R-receipt-self-result_trace",
+      "validation_layer": "reference",
+      "setup": {
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "result_trace"
+    },
+    {
+      "id": "DF1-R-receipt-self-result_source",
+      "validation_layer": "reference",
+      "setup": {
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "result_source"
+    },
+    {
+      "id": "DF1-R-receipt-self-after_digest",
+      "validation_layer": "reference",
+      "setup": {
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "after_digest"
+    },
+    {
+      "id": "DF1-R-receipt-self-data_digest",
+      "validation_layer": "reference",
+      "setup": {
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "data_digest"
+    },
+    {
+      "id": "DF1-R-receipt-self-command_conflict",
+      "validation_layer": "reference",
+      "setup": {
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "command_conflict"
+    },
+    {
+      "id": "DF1-R-fresh-reuse-self",
+      "validation_layer": "reference",
+      "setup": {
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "phase": "FreshReuse"
+    },
+    {
+      "id": "DF1-R-replay-deferred-LaterActive",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations"
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted"
+      },
+      "phase": "Replay",
+      "later": "LaterActive"
+    },
+    {
+      "id": "DF1-R-replay-deferred-LaterFinished",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations"
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted"
+      },
+      "phase": "Replay",
+      "later": "LaterFinished"
+    },
+    {
+      "id": "DF1-R-receipt-deferred-request",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "request"
+    },
+    {
+      "id": "DF1-R-receipt-deferred-before",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "before"
+    },
+    {
+      "id": "DF1-R-receipt-deferred-result_vp",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "result_vp"
+    },
+    {
+      "id": "DF1-R-receipt-deferred-result_trace",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "result_trace"
+    },
+    {
+      "id": "DF1-R-receipt-deferred-result_source",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "result_source"
+    },
+    {
+      "id": "DF1-R-receipt-deferred-after_digest",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "after_digest"
+    },
+    {
+      "id": "DF1-R-receipt-deferred-data_digest",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "data_digest"
+    },
+    {
+      "id": "DF1-R-receipt-deferred-command_conflict",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "command_conflict"
+    },
+    {
+      "id": "DF1-R-fresh-reuse-deferred",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations"
+      },
+      "expected": {
+        "outcome": "InvalidSource",
+        "unchanged": true
+      },
+      "phase": "FreshReuse"
+    },
+    {
+      "id": "DF1-R-replay-terminal-LaterActive",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations",
+        "vp": 19
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted"
+      },
+      "phase": "Replay",
+      "later": "LaterActive"
+    },
+    {
+      "id": "DF1-R-replay-terminal-LaterFinished",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations",
+        "vp": 19
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted"
+      },
+      "phase": "Replay",
+      "later": "LaterFinished"
+    },
+    {
+      "id": "DF1-R-receipt-terminal-request",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations",
+        "vp": 19
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "request"
+    },
+    {
+      "id": "DF1-R-receipt-terminal-before",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations",
+        "vp": 19
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "before"
+    },
+    {
+      "id": "DF1-R-receipt-terminal-result_vp",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations",
+        "vp": 19
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "result_vp"
+    },
+    {
+      "id": "DF1-R-receipt-terminal-result_trace",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations",
+        "vp": 19
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "result_trace"
+    },
+    {
+      "id": "DF1-R-receipt-terminal-result_source",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations",
+        "vp": 19
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "result_source"
+    },
+    {
+      "id": "DF1-R-receipt-terminal-after_digest",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations",
+        "vp": 19
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "after_digest"
+    },
+    {
+      "id": "DF1-R-receipt-terminal-data_digest",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations",
+        "vp": 19
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "data_digest"
+    },
+    {
+      "id": "DF1-R-receipt-terminal-command_conflict",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations",
+        "vp": 19
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "command_conflict"
+    },
+    {
+      "id": "DF1-R-fresh-reuse-terminal",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations",
+        "vp": 19
+      },
+      "expected": {
+        "outcome": "FinishedState",
+        "unchanged": true
+      },
+      "phase": "FreshReuse"
+    },
+    {
+      "id": "DF1-R-replay-space-LaterActive",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "SpaceHook",
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted"
+      },
+      "phase": "Replay",
+      "later": "LaterActive"
+    },
+    {
+      "id": "DF1-R-replay-space-LaterFinished",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "SpaceHook",
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted"
+      },
+      "phase": "Replay",
+      "later": "LaterFinished"
+    },
+    {
+      "id": "DF1-R-receipt-space-request",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "SpaceHook",
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "request"
+    },
+    {
+      "id": "DF1-R-receipt-space-before",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "SpaceHook",
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "before"
+    },
+    {
+      "id": "DF1-R-receipt-space-result_vp",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "SpaceHook",
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "result_vp"
+    },
+    {
+      "id": "DF1-R-receipt-space-result_trace",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "SpaceHook",
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "result_trace"
+    },
+    {
+      "id": "DF1-R-receipt-space-result_source",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "SpaceHook",
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "result_source"
+    },
+    {
+      "id": "DF1-R-receipt-space-after_digest",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "SpaceHook",
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "after_digest"
+    },
+    {
+      "id": "DF1-R-receipt-space-data_digest",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "SpaceHook",
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "data_digest"
+    },
+    {
+      "id": "DF1-R-receipt-space-command_conflict",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "SpaceHook",
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "corruption": "command_conflict"
+    },
+    {
+      "id": "DF1-R-history-domain-headline-historical_owner",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "HistoricalProof",
+      "corruption": "historical_owner"
+    },
+    {
+      "id": "DF1-R-history-domain-headline-historical_defcon",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "HistoricalProof",
+      "corruption": "historical_defcon"
+    },
+    {
+      "id": "DF1-R-history-domain-headline-historical_second_entity",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "HistoricalProof",
+      "corruption": "historical_second_entity"
+    },
+    {
+      "id": "DF1-R-history-domain-headline-result_disposition",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "HistoricalProof",
+      "corruption": "result_disposition"
+    },
+    {
+      "id": "DF1-R-history-domain-headline-result_root_slot",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "HistoricalProof",
+      "corruption": "result_root_slot"
+    },
+    {
+      "id": "DF1-R-history-domain-headline-result_success",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "HistoricalProof",
+      "corruption": "result_success"
+    },
+    {
+      "id": "DF1-R-history-domain-self-historical_owner",
+      "validation_layer": "reference",
+      "setup": {
+        "actor": "USSR",
+        "other_progress": "Completed"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "HistoricalProof",
+      "corruption": "historical_owner"
+    },
+    {
+      "id": "DF1-R-history-domain-self-historical_defcon",
+      "validation_layer": "reference",
+      "setup": {
+        "actor": "USSR",
+        "other_progress": "Completed"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "HistoricalProof",
+      "corruption": "historical_defcon"
+    },
+    {
+      "id": "DF1-R-history-domain-self-historical_second_entity",
+      "validation_layer": "reference",
+      "setup": {
+        "actor": "USSR",
+        "other_progress": "Completed"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "HistoricalProof",
+      "corruption": "historical_second_entity"
+    },
+    {
+      "id": "DF1-R-history-domain-self-result_disposition",
+      "validation_layer": "reference",
+      "setup": {
+        "actor": "USSR",
+        "other_progress": "Completed"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "HistoricalProof",
+      "corruption": "result_disposition"
+    },
+    {
+      "id": "DF1-R-history-domain-self-result_root_slot",
+      "validation_layer": "reference",
+      "setup": {
+        "actor": "USSR",
+        "other_progress": "Completed"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "HistoricalProof",
+      "corruption": "result_root_slot"
+    },
+    {
+      "id": "DF1-R-history-domain-self-result_success",
+      "validation_layer": "reference",
+      "setup": {
+        "actor": "USSR",
+        "other_progress": "Completed"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "HistoricalProof",
+      "corruption": "result_success"
+    },
+    {
+      "id": "DF1-R-history-domain-terminal-historical_owner",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations",
+        "vp": 19
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "HistoricalProof",
+      "corruption": "historical_owner"
+    },
+    {
+      "id": "DF1-R-history-domain-terminal-historical_defcon",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations",
+        "vp": 19
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "HistoricalProof",
+      "corruption": "historical_defcon"
+    },
+    {
+      "id": "DF1-R-history-domain-terminal-historical_second_entity",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations",
+        "vp": 19
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "HistoricalProof",
+      "corruption": "historical_second_entity"
+    },
+    {
+      "id": "DF1-R-history-domain-terminal-result_disposition",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations",
+        "vp": 19
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "HistoricalProof",
+      "corruption": "result_disposition"
+    },
+    {
+      "id": "DF1-R-history-domain-terminal-result_root_slot",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations",
+        "vp": 19
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "HistoricalProof",
+      "corruption": "result_root_slot"
+    },
+    {
+      "id": "DF1-R-history-domain-terminal-result_success",
+      "validation_layer": "reference",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "actor": "USSR",
+        "remaining": "Operations",
+        "vp": 19
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "HistoricalProof",
+      "corruption": "result_success"
+    },
+    {
+      "id": "DF1-R-replay-wrong-caller",
+      "validation_layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "phase": "Replay",
+      "replay_caller": "PlayerClient"
+    },
+    {
+      "id": "DF1-D-award",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "defectors",
+            "soviet_action_round_vp"
+          ],
+          "value": 2
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-D-space",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "defectors",
+            "space_vp"
+          ],
+          "value": 1
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-D-target-star",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "defectors",
+            "cancelled_disposition"
+          ],
+          "value": "Removed"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-D-cancel-success",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "defectors",
+            "cancelled_success_fact"
+          ],
+          "value": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-D-priority",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "defectors",
+            "headline_strategy"
+          ],
+          "value": "OrdinaryOps"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-D-self",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "defectors",
+            "ussr_selected"
+          ],
+          "value": "AwardVp"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-D-nested",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "defectors",
+            "nested_implementation"
+          ],
+          "value": "Allowed"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-D-scope",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "scope"
+          ],
+          "value": "runtime-complete"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-D-valid",
+      "validation_layer": "data",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "DF1-S-bool-vp",
+      "validation_layer": "schema",
+      "definition": "state",
+      "edits": [
+        {
+          "path": [
+            "signed_vp"
+          ],
+          "value": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-S-float-vp",
+      "validation_layer": "schema",
+      "definition": "state",
+      "edits": [
+        {
+          "path": [
+            "signed_vp"
+          ],
+          "value": 0.5
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-S-defcon0",
+      "validation_layer": "schema",
+      "definition": "state",
+      "edits": [
+        {
+          "path": [
+            "defcon"
+          ],
+          "value": 0
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-S-defcon6",
+      "validation_layer": "schema",
+      "definition": "state",
+      "edits": [
+        {
+          "path": [
+            "defcon"
+          ],
+          "value": 6
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-S-negative-version",
+      "validation_layer": "schema",
+      "definition": "command",
+      "edits": [
+        {
+          "path": [
+            "expected_state_version"
+          ],
+          "value": -1
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-S-unknown-command-field",
+      "validation_layer": "schema",
+      "definition": "command",
+      "edits": [
+        {
+          "path": [
+            "trusted"
+          ],
+          "value": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-S-null-id",
+      "validation_layer": "schema",
+      "definition": "command",
+      "edits": [
+        {
+          "path": [
+            "command_id"
+          ],
+          "value": null
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-S-empty-id",
+      "validation_layer": "schema",
+      "definition": "command",
+      "edits": [
+        {
+          "path": [
+            "command_id"
+          ],
+          "value": ""
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-S-unknown-provider",
+      "validation_layer": "schema",
+      "definition": "state",
+      "edits": [
+        {
+          "path": [
+            "frame",
+            "provider"
+          ],
+          "value": "GrainSales"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-S-wrong-status",
+      "validation_layer": "schema",
+      "definition": "state",
+      "edits": [
+        {
+          "path": [
+            "status"
+          ],
+          "value": "Running"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-S-unknown-zone",
+      "validation_layer": "schema",
+      "definition": "state",
+      "edits": [
+        {
+          "path": [
+            "ordinary_cards",
+            0,
+            "zone"
+          ],
+          "value": "China"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-S-negative-slot",
+      "validation_layer": "schema",
+      "definition": "state",
+      "edits": [
+        {
+          "path": [
+            "root",
+            "slot_index"
+          ],
+          "value": -1
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-S-missing-actor",
+      "validation_layer": "schema",
+      "definition": "ledger",
+      "edits": [
+        {
+          "path": [
+            "actual_card_use_player"
+          ],
+          "value": null
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-S-bool-version",
+      "validation_layer": "schema",
+      "definition": "state",
+      "edits": [
+        {
+          "path": [
+            "state_version"
+          ],
+          "value": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-S-float-turn",
+      "validation_layer": "schema",
+      "definition": "state",
+      "edits": [
+        {
+          "path": [
+            "turn"
+          ],
+          "value": 1.2
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-S-unknown-frame-field",
+      "validation_layer": "schema",
+      "definition": "frame",
+      "edits": [
+        {
+          "path": [
+            "authorization"
+          ],
+          "value": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "DF1-S-valid-state",
+      "validation_layer": "schema",
+      "definition": "state",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "DF1-S-valid-command",
+      "validation_layer": "schema",
+      "definition": "command",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "DF1-S-valid-ledger",
+      "validation_layer": "schema",
+      "definition": "ledger",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "DF1-S-valid-frame",
+      "validation_layer": "schema",
+      "definition": "frame",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "DF1-S-valid-receipt",
+      "validation_layer": "schema",
+      "definition": "receipt",
+      "edits": [],
+      "expected_valid": true
+    }
+  ],
+  "runtime_cases": [
+    {
+      "id": "DF1-RT-1",
+      "status": "planned",
+      "description": "Registered headline priority before printed Ops"
+    },
+    {
+      "id": "DF1-RT-2",
+      "status": "planned",
+      "description": "USSR self-cancel does not award VP"
+    },
+    {
+      "id": "DF1-RT-3",
+      "status": "planned",
+      "description": "Cancel scoring/star physical disposition"
+    },
+    {
+      "id": "DF1-RT-4",
+      "status": "planned",
+      "description": "Independent root/slot/source identity acceptance"
+    },
+    {
+      "id": "DF1-RT-5",
+      "status": "planned",
+      "description": "Ordinary opponent event before and after OPS"
+    },
+    {
+      "id": "DF1-RT-6",
+      "status": "planned",
+      "description": "Space no-event hook with actual attempt service"
+    },
+    {
+      "id": "DF1-RT-7",
+      "status": "planned",
+      "description": "VP terminal draft source/root cleanup"
+    },
+    {
+      "id": "DF1-RT-8",
+      "status": "planned",
+      "description": "Real persistent accepted-command receipt replay"
+    },
+    {
+      "id": "DF1-RT-9",
+      "status": "planned",
+      "description": "Concurrent cancellation and duplicate source prevention"
+    },
+    {
+      "id": "DF1-RT-10",
+      "status": "planned",
+      "description": "Named nested Grain Sales source and actual headline order"
+    }
+  ]
+}

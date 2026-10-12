@@ -1,0 +1,933 @@
+{
+  "description": "DF1选中头条取消、苏方自取消和普通苏方用牌VP；未知嵌套来源停止。",
+  "checked_on": "2026-10-13",
+  "new_cases_passed": 169,
+  "previous_cases_passed": 3619,
+  "total_cases_passed": 3788,
+  "cases_by_layer": {
+    "data": 9,
+    "contract": 21,
+    "reference": 139,
+    "runtime": 10
+  },
+  "runtime_cases_not_run": 10,
+  "runtime_game_tests_run": 0,
+  "bound_cards": 90,
+  "unresolved_bindings": 12,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 45,
+    "json_files_parsed": 262,
+    "data_descriptors": 48,
+    "module_descriptors": 21,
+    "relative_links_checked": 202,
+    "parameter_pointers_resolved": 205
+  },
+  "validated_sha256": {
+    "Data/Cards/deluxe-2015/defectors.parameters.json": "9554a1d6a268fa3dd9053c840b2dfec19a42f0c9b601377f5b73fdbabe00c5a8",
+    "Docs/Contracts/defectors.schema.json": "6dad34e432b9ee13e0c24250da1b3c3f182b1b3718f0caf8917f82a170ae03fa",
+    "Data/Descriptors/defectors.data.json": "de7be76b0f70046f9668356cd7179e361591871f2461bbce371d275fb9f6b2eb",
+    "Docs/Design/defectors.cases.json": "7d879e2aa4a264e5c1e61d8f59c70f8bdb5e56d5060a92c331565e3824844637",
+    "Docs/Wiki/defectors.md": "45b29a5295e1e1007f235bf84a5647751745b69508ac2d610cf568ed1fd91c63",
+    "Data/Cards/deluxe-2015/cards.json": "4a316b3cabae8f6ea794c45dfb4a23f6afd9fd826652560422132d9cb705dd59",
+    "Docs/Descriptors/composite-events.module.json": "7e5ebf08ebcd6dd1648c8f0b8cf79232fbaaba7bcfe9fccd7980e309095c9202",
+    "Docs/Descriptors/turn-flow.module.json": "7ca97dfdb27eb7bd31c138c451c53cd86a6137ef914efbae0180cc2a8020ebf1",
+    "Docs/Descriptors/victory.module.json": "194050296c6cc7ad13a3a68a124885cbf8d7d92e74086cfe0248b6aaab64a5bf"
+  },
+  "results": [
+    {
+      "id": "DF1-R-US-headline-card.asia_scoring",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-US-headline-card.southeast_asia_scoring",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-US-headline-card.warsaw_pact_formed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-US-headline-card.abm_treaty",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-US-headline-card.containment",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-US-headline-card.de_gaulle_leads_france",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-USSR-self-Pending",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-USSR-self-Completed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-USSR-AR-None--19",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-USSR-AR-None-0",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-USSR-AR-None-18",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-USSR-AR-None-19",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-USSR-AR-Operations--19",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-USSR-AR-Operations-0",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-USSR-AR-Operations-18",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-USSR-AR-Operations-19",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-US-own-event",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-OwnOperationsHook-US",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-SpaceHook-US",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-SpaceHook-USSR",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-Unknown-nested-US",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-Unknown-nested-USSR",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-nuclear",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-already-vp",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-winner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-finished",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-coverage",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-ledger-actor",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-wrong-controller",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-wrong-card",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-wrong-source-owner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-wrong-source-zone",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-wrong-source-frame",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-root-closed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-root-slot-completed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-source-completed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-source-disposed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-target-owner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-target-hand",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-target-closed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-target-completed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-headline-phase",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-DuplicateInstance",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-DuplicateBaseCard",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-SecondSourceFrameEntity",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-SecondTargetFrameEntity",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-SameHeadlineAction",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-SameHeadlineFrame",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-SameHeadlineResolution",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-PriorSourceSuccess",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-PriorTargetSuccess",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-PriorSourceCancellation",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-PriorTargetCancellation",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-DuplicateSuccessFact",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-DuplicateCancellationFact",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-HandWithForeignFrame",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-wrong-role-OwnEvent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-wrong-role-OpponentCardEvent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-wrong-role-OwnOperationsHook",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-unknown-remainder",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-wrong-caller",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-stale-command",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-wrong-command-dispatch_id",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-wrong-command-frame_id",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-wrong-command-resolution_id",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-wrong-command-source_instance_id",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-replay-headline-LaterActive",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-replay-headline-LaterFinished",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-headline-request",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-headline-before",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-headline-result_vp",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-headline-result_trace",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-headline-result_source",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-headline-after_digest",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-headline-data_digest",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-headline-command_conflict",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-fresh-reuse-headline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-replay-self-LaterActive",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-replay-self-LaterFinished",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-self-request",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-self-before",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-self-result_vp",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-self-result_trace",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-self-result_source",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-self-after_digest",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-self-data_digest",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-self-command_conflict",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-fresh-reuse-self",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-replay-deferred-LaterActive",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-replay-deferred-LaterFinished",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-deferred-request",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-deferred-before",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-deferred-result_vp",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-deferred-result_trace",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-deferred-result_source",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-deferred-after_digest",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-deferred-data_digest",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-deferred-command_conflict",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-fresh-reuse-deferred",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-replay-terminal-LaterActive",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-replay-terminal-LaterFinished",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-terminal-request",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-terminal-before",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-terminal-result_vp",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-terminal-result_trace",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-terminal-result_source",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-terminal-after_digest",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-terminal-data_digest",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-terminal-command_conflict",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-fresh-reuse-terminal",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-replay-space-LaterActive",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-replay-space-LaterFinished",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-space-request",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-space-before",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-space-result_vp",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-space-result_trace",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-space-result_source",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-space-after_digest",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-space-data_digest",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-receipt-space-command_conflict",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-history-domain-headline-historical_owner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-history-domain-headline-historical_defcon",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-history-domain-headline-historical_second_entity",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-history-domain-headline-result_disposition",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-history-domain-headline-result_root_slot",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-history-domain-headline-result_success",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-history-domain-self-historical_owner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-history-domain-self-historical_defcon",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-history-domain-self-historical_second_entity",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-history-domain-self-result_disposition",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-history-domain-self-result_root_slot",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-history-domain-self-result_success",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-history-domain-terminal-historical_owner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-history-domain-terminal-historical_defcon",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-history-domain-terminal-historical_second_entity",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-history-domain-terminal-result_disposition",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-history-domain-terminal-result_root_slot",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-history-domain-terminal-result_success",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-R-replay-wrong-caller",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DF1-D-award",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "DF1-D-space",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "DF1-D-target-star",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "DF1-D-cancel-success",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "DF1-D-priority",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "DF1-D-self",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "DF1-D-nested",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "DF1-D-scope",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "DF1-D-valid",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "DF1-S-bool-vp",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DF1-S-float-vp",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DF1-S-defcon0",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DF1-S-defcon6",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DF1-S-negative-version",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DF1-S-unknown-command-field",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DF1-S-null-id",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DF1-S-empty-id",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DF1-S-unknown-provider",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DF1-S-wrong-status",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DF1-S-unknown-zone",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DF1-S-negative-slot",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DF1-S-missing-actor",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DF1-S-bool-version",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DF1-S-float-turn",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DF1-S-unknown-frame-field",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DF1-S-valid-state",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DF1-S-valid-command",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DF1-S-valid-ledger",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DF1-S-valid-frame",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DF1-S-valid-receipt",
+      "passed": true,
+      "validation_layer": "schema"
+    }
+  ],
+  "limitations": [
+    "Finite trusted-ledger/caller/anchor premises, not real authentication, persistence or concurrency.",
+    "Unregistered nested providers including Grain Sales stop RequiresRuling despite known timing rules.",
+    "Space/own-OPS hooks only suppress this event; shared action processing not projected.",
+    "No runtime/game or historical tests.",
+    "旧案例只适配绑定库存与文件overlay，不改规则期望。",
+    "13note/72Tools独立，本批未重跑；129独立探针单列不重复累计。"
+  ],
+  "independent_review": {
+    "status": "ready-no-findings",
+    "checked_on": "2026-10-13",
+    "critical": 0,
+    "important": 0,
+    "minor": 0,
+    "new_cases_independently_passed": 169,
+    "separate_probes": 129,
+    "old_cases_independently_rerun": 0,
+    "integration_review": {
+      "json_parsed": 262,
+      "schemas_meta_validated": 45,
+      "datasets_schema_validated": 48,
+      "planned_modules": 21,
+      "dag_edges": 42,
+      "edges_unchanged": true,
+      "acyclic": true,
+      "parameter_pointers": 205,
+      "effect_schema_pointers": 90,
+      "catalog_and_dependency_paths": 509,
+      "modified_markdown_relative_link_occurrences": 205,
+      "printed_card_records_unchanged": 103,
+      "only_changed_binding": [
+        "card.defectors"
+      ],
+      "binding_counts": {
+        "Bound": 90,
+        "Unresolved": 12
+      },
+      "handlers_planned": 102,
+      "project_df1_source": "Global Pending; original EngineeringBoundary and locator preserved in parameters"
+    },
+    "baseline_sha256_verified": 379,
+    "report_sha256_verified": 9,
+    "printed_cards_unchanged": 103,
+    "only_one_new_binding": true,
+    "author_lineage": "Author parameters/schema/cases are byte-identical to integration; descriptor removes only temporary report_status, Wiki changes only formal-status/report/count/prior-review prose. All Model business methods have identical AST; integrated checker adds artifact fallback, overlay inventory and report-hash lookup. This reviewer ran integrated169 once against verified41f7682 baseline. Other reviewer169+129 and parent3619/3788 are distinct preserved evidence; prior3619 and129 probes were not rerun here.",
+    "execution_scope": "Independent author169+129probes and integrated169+structure; still169unique cases. Main3788 by parent; old3619/probes not repeated during integration review. Runtime0."
+  },
+  "post_validation_document_links_checked": 8,
+  "metadata_after_validation": "Only Wiki final status and Worklog updated; links checked and Wiki hash refreshed."
+}
