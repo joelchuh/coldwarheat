@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.late_hand_batch1",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "verified-subset",
+  "description": "Late hand events: fixed Iran and persistent Hostage modifier, atomic random Terrorism discards, Ames remainder-turn current view with immutable history; runtime planned.",
+  "checked_on": "2026-10-13",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "目视英文PDF p13 #82、p14 #92、p15 #98；不采用旁列译文。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe 2015",
+      "description": "PDF p5 §§5.2/5.4/5.5事件归属、去向及强迫弃牌无事件；p8 §7.3永久效果；p9 §9中国独立牌区/不可强迫弃置。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 compatible Deluxe answers only",
+      "description": "PDF p16 #92额外弃牌也随机；#98导言排除旧版排序问答；p19公开弃牌堆。未找到本批空手/不足弃牌专门裁定。"
+    },
+    {
+      "id": "PROJECT-LH1",
+      "url": null,
+      "edition": "Engineering and explicit derivation, 2026-10-13",
+      "description": "Ames期限作用于当前手牌集合，后来同回合入手牌可见是卡文直接派生，不是专门FAQ；有限事务/来源/随机和历史收据/授权当前视图均planned。短缺及新ID重复激活RequiresRuling。"
+    }
+  ],
+  "shared_refs": {
+    "cards": {
+      "dataset_id": "cards.deluxe2015.definitions",
+      "path": "Data/Cards/deluxe-2015/cards.json",
+      "json_pointer": "/cards"
+    },
+    "world": {
+      "dataset_id": "map.deluxe2015.world",
+      "path": "Data/Maps/deluxe-2015/world.json",
+      "json_pointer": "/countries"
+    },
+    "victory": {
+      "dataset_id": "rules.deluxe2015.victory",
+      "path": "Data/Rulesets/deluxe-2015/victory.json",
+      "json_pointer": ""
+    },
+    "defcon": {
+      "dataset_id": "rules.deluxe2015.defcon",
+      "path": "Data/Rulesets/deluxe-2015/defcon.json",
+      "json_pointer": ""
+    },
+    "turn_flow": {
+      "dataset_id": "rules.deluxe2015.turn-flow",
+      "path": "Data/Rulesets/deluxe-2015/turn-flow.json",
+      "json_pointer": ""
+    },
+    "china": {
+      "dataset_id": "setup.deluxe2015.standard",
+      "path": "Data/Rulesets/deluxe-2015/setup.json",
+      "json_pointer": "/china"
+    },
+    "hand": {
+      "dataset_id": "effects.deluxe2015.hand_events_batch1",
+      "path": "Data/Cards/deluxe-2015/hand-events-batch1.parameters.json",
+      "json_pointer": "/parameters/five_year_plan"
+    }
+  },
+  "interface_refs": [
+    {
+      "module_id": "module.hand-events",
+      "path": "Docs/Descriptors/hand-events.module.json",
+      "purpose": "Hand candidates, discard route, accepted random receipt pattern; do not inherit FYP empty-hand or US-child exception"
+    },
+    {
+      "module_id": "module.turn-flow",
+      "path": "Docs/Descriptors/turn-flow.module.json",
+      "purpose": "Independent source/root/physical entity, normal disposition and accepted root continuation"
+    },
+    {
+      "module_id": "module.active-effects",
+      "path": "Docs/Descriptors/active-effects.module.json",
+      "purpose": "Provenance-bearing activation and expiry; unknown/repeat provider stops"
+    },
+    {
+      "module_id": "module.hand-events",
+      "path": "Docs/Wiki/hand-events-batch1.md",
+      "purpose": "Authoritative Random.NextInt(0,count) pattern extended to full without-replacement batch; no separate implemented random service claimed"
+    }
+  ],
+  "policies": {
+    "source": "RootEvent_OpponentCardEvent_HeadlineEventOnly",
+    "five_year_plan": "RejectAllThreeNonUsAffiliatedChildren",
+    "unknown_provider": "RequiresRulingBeforeDependentMutationOrDisclosure",
+    "physical_entity": "UniqueInstanceAndCardId_ExactlyOwnEntityPerSourceFrame",
+    "hand_zone": "CurrentOrdinaryHandIncludingScoring_ExcludeChinaAndOtherZones",
+    "discard": "HandToDiscardPile_NoEventNoScoringNoOpsNoCardUse",
+    "random": "InternalUniformBoundedDrawOnStableCardIdOrderWithoutReplacement",
+    "singleton_random": "OneLogicalBoundedDraw_EngineeringConvention",
+    "atomic_random": "ValidateWholeDrawSequenceThenCommitAllOrNone",
+    "shortage": "RequiresRulingBeforeAnyDrawOrAmesDisclosure",
+    "active_provenance": "IndependentAcceptedSteps_ResolutionBindsOneCardEffectControllerTurn_MultipleStagesAllowed",
+    "receipt": "HistoricalInputAndResultWithIndependentAcceptedAnchor_NoLiveRecompute",
+    "private_output": "OnlyAfterCommit_RecipientFilteredProjection_NotAuthorityRecord",
+    "current_view": "SeparateAuthorityQuery_ValidActiveNonterminalState_ActivationTurnAndRecipientChecked",
+    "game_runtime": "PlannedFiniteSyntheticProjectionOnly"
+  },
+  "parameters": {
+    "iranian_hostage_crisis": {
+      "card_id": "card.iranian_hostage_crisis",
+      "effect_id": "effect.iranian_hostage_crisis",
+      "template": "FixedInfluenceThenPermanentTerrorismModifier",
+      "controller": "USSR",
+      "country_id": "country.iran",
+      "remove_side": "US",
+      "add_side": "USSR",
+      "add_amount": 2,
+      "duration": "Permanent",
+      "repeat_activation": "RequiresRuling",
+      "terrorism_modifier": {
+        "victim": "US",
+        "count_multiplier": 2
+      },
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p13 English #82"
+        }
+      ]
+    },
+    "terrorism": {
+      "card_id": "card.terrorism",
+      "effect_id": "effect.terrorism",
+      "template": "AtomicRandomOpponentHandDiscard",
+      "controller": "VerifiedSourceController",
+      "victim": "OpponentOfController",
+      "discard_count": 1,
+      "hostage_modifier_effect_id": "effect.iranian_hostage_crisis",
+      "discard_route": "DiscardWithoutEvent",
+      "shortage_policy": "RequiresRulingBeforeRandomOrDisclosure",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p14 English #92"
+        }
+      ]
+    },
+    "aldrich_ames_remix": {
+      "card_id": "card.aldrich_ames_remix",
+      "effect_id": "effect.aldrich_ames_remix",
+      "template": "RemainderTurnHandViewThenMandatoryChosenDiscard",
+      "controller": "USSR",
+      "hand_owner": "US",
+      "recipient": "USSR",
+      "decision_owner": "USSR",
+      "discard_count": 1,
+      "duration": "RemainderOfActivationTurn",
+      "new_hand_cards": "VisibleThroughSeparateCurrentViewQuery_DerivedFromDuration",
+      "history": "ImmutableNeverRefresh",
+      "empty_hand_policy": "RequiresRulingBeforeDisclosureOrActivation",
+      "repeat_activation": "RequiresRuling",
+      "discard_route": "DiscardWithoutEvent",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p15 English #98"
+        }
+      ]
+    }
+  }
+}

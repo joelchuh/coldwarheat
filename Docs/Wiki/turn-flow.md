@@ -238,3 +238,5 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 [中国牌事件转交](china-transfer-batch1.md)：独立ChinaState更新不插入新根行动；先事件后OPS保留源牌InResolution，终局草稿先完成必要收尾再提交Finished。
 
 [北海石油行动额度](opec-north-sea-batch1.md)：按CompletedRootActionRoundSlots计算总8额度，动态查询当前Space能力。已知NSO与Space8取max是具名推导；放弃按完整来源集合和版本绑定，未知后来来源停止。
+
+[Ames持续视图与等待选择](late-hand-batch1.md)：已接受揭示不会因陈旧选择撤销；源/根去向按剩余工作收尾。

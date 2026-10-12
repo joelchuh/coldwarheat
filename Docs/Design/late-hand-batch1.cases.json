@@ -1,0 +1,2548 @@
+{
+  "schema_version": 1,
+  "id": "cases.late-hand-batch1",
+  "description": "Rule counterexamples and independently expected finite projections, 2026-10-13; no game runtime.",
+  "defaults": {
+    "card": "iranian_hostage_crisis",
+    "root_side": "USSR",
+    "phase": "ActionRound",
+    "provider": "RootEvent",
+    "remaining": "None",
+    "iran": [
+      4,
+      3
+    ],
+    "hostage": false,
+    "ames": false,
+    "us_hand_count": 3,
+    "draws": [
+      0
+    ]
+  },
+  "cases": [
+    {
+      "id": "LH1-R-hostage-add-not-set",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "iran": [
+          4,
+          3
+        ]
+      },
+      "expect": {
+        "outcome": "Resolved",
+        "iran": [
+          0,
+          5
+        ],
+        "effects": [
+          "effect.iranian_hostage_crisis"
+        ]
+      }
+    },
+    {
+      "id": "LH1-R-hostage-zero-us",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "iran": [
+          0,
+          0
+        ]
+      },
+      "expect": {
+        "outcome": "Resolved",
+        "iran": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-RootEvent",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "iranian_hostage_crisis",
+        "provider": "RootEvent",
+        "root_side": "USSR",
+        "phase": "ActionRound",
+        "remaining": "None"
+      },
+      "expect": {
+        "outcome": "Resolved"
+      }
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-HeadlineEvent",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "iranian_hostage_crisis",
+        "provider": "HeadlineEvent",
+        "root_side": "USSR",
+        "phase": "Headline",
+        "remaining": "None"
+      },
+      "expect": {
+        "outcome": "Resolved"
+      }
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-OpponentCardEvent",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "iranian_hostage_crisis",
+        "provider": "OpponentCardEvent",
+        "root_side": "US",
+        "phase": "ActionRound",
+        "remaining": "Operations"
+      },
+      "expect": {
+        "outcome": "Resolved"
+      }
+    },
+    {
+      "id": "LH1-R-terrorism-RootEvent",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "provider": "RootEvent",
+        "root_side": "USSR",
+        "phase": "ActionRound",
+        "remaining": "None"
+      },
+      "expect": {
+        "outcome": "Resolved"
+      }
+    },
+    {
+      "id": "LH1-R-terrorism-HeadlineEvent",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "provider": "HeadlineEvent",
+        "root_side": "USSR",
+        "phase": "Headline",
+        "remaining": "None"
+      },
+      "expect": {
+        "outcome": "Resolved"
+      }
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-RootEvent",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "aldrich_ames_remix",
+        "provider": "RootEvent",
+        "root_side": "USSR",
+        "phase": "ActionRound",
+        "remaining": "None"
+      },
+      "expect": {
+        "outcome": "WaitingDecision"
+      }
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-HeadlineEvent",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "aldrich_ames_remix",
+        "provider": "HeadlineEvent",
+        "root_side": "USSR",
+        "phase": "Headline",
+        "remaining": "None"
+      },
+      "expect": {
+        "outcome": "WaitingDecision"
+      }
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-OpponentCardEvent",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "aldrich_ames_remix",
+        "provider": "OpponentCardEvent",
+        "root_side": "US",
+        "phase": "ActionRound",
+        "remaining": "Operations"
+      },
+      "expect": {
+        "outcome": "WaitingDecision"
+      }
+    },
+    {
+      "id": "LH1-R-terror-US-False",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "root_side": "US",
+        "hostage": false,
+        "draws": [
+          0
+        ]
+      },
+      "expect": {
+        "outcome": "Resolved",
+        "discarded": [
+          "card.containment"
+        ],
+        "rng_delta": 1
+      }
+    },
+    {
+      "id": "LH1-R-terror-US-True",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "root_side": "US",
+        "hostage": true,
+        "draws": [
+          1
+        ]
+      },
+      "expect": {
+        "outcome": "Resolved",
+        "discarded": [
+          "card.europe_scoring"
+        ],
+        "rng_delta": 1
+      }
+    },
+    {
+      "id": "LH1-R-terror-USSR-False",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "root_side": "USSR",
+        "hostage": false,
+        "draws": [
+          2
+        ]
+      },
+      "expect": {
+        "outcome": "Resolved",
+        "discarded": [
+          "card.fidel"
+        ],
+        "rng_delta": 1
+      }
+    },
+    {
+      "id": "LH1-R-terror-USSR-True",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "root_side": "USSR",
+        "hostage": true,
+        "draws": [
+          0,
+          1
+        ]
+      },
+      "expect": {
+        "outcome": "Resolved",
+        "discarded": [
+          "card.asia_scoring",
+          "card.fidel"
+        ],
+        "rng_delta": 2
+      }
+    },
+    {
+      "id": "LH1-R-terror-shortage-0",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "hostage": true,
+        "us_hand_count": 0,
+        "draws": [
+          0,
+          0
+        ]
+      },
+      "expect": {
+        "outcome": "RequiresRuling"
+      }
+    },
+    {
+      "id": "LH1-R-terror-shortage-1",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "hostage": true,
+        "us_hand_count": 1,
+        "draws": [
+          0,
+          0
+        ]
+      },
+      "expect": {
+        "outcome": "RequiresRuling"
+      }
+    },
+    {
+      "id": "LH1-R-terror-singleton",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "us_hand_count": 1,
+        "draws": [
+          0
+        ]
+      },
+      "expect": {
+        "outcome": "Resolved",
+        "discarded": [
+          "card.asia_scoring"
+        ],
+        "rng_delta": 1
+      }
+    },
+    {
+      "id": "LH1-R-terror-invalid-whole-batch-[0, 2]",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "hostage": true,
+        "draws": [
+          0,
+          2
+        ]
+      },
+      "expect": {
+        "outcome": "InvalidRandom"
+      }
+    },
+    {
+      "id": "LH1-R-terror-invalid-whole-batch-[0]",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "hostage": true,
+        "draws": [
+          0
+        ]
+      },
+      "expect": {
+        "outcome": "InvalidRandom"
+      }
+    },
+    {
+      "id": "LH1-R-terror-invalid-whole-batch-[0, 0, 0]",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "hostage": true,
+        "draws": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expect": {
+        "outcome": "InvalidRandom"
+      }
+    },
+    {
+      "id": "LH1-R-terror-visible-still-random",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "hostage": true,
+        "ames": true,
+        "draws": [
+          1,
+          0
+        ]
+      },
+      "expect": {
+        "outcome": "Resolved",
+        "discarded": [
+          "card.duck_and_cover",
+          "card.asia_scoring"
+        ],
+        "rng_delta": 2
+      }
+    },
+    {
+      "id": "LH1-R-ames-empty-before-disclosure",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "aldrich_ames_remix",
+        "us_hand_count": 0
+      },
+      "expect": {
+        "outcome": "RequiresRuling"
+      }
+    },
+    {
+      "id": "LH1-R-ames-select-hand.asia",
+      "layer": "reference",
+      "mode": "Choice",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "Resolved",
+        "discarded": [
+          "card.asia_scoring"
+        ],
+        "rng_delta": 0
+      },
+      "selected": "hand.asia"
+    },
+    {
+      "id": "LH1-R-ames-select-hand.duck",
+      "layer": "reference",
+      "mode": "Choice",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "Resolved",
+        "discarded": [
+          "card.duck_and_cover"
+        ],
+        "rng_delta": 0
+      },
+      "selected": "hand.duck"
+    },
+    {
+      "id": "LH1-R-ames-select-hand.fidel",
+      "layer": "reference",
+      "mode": "Choice",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "Resolved",
+        "discarded": [
+          "card.fidel"
+        ],
+        "rng_delta": 0
+      },
+      "selected": "hand.fidel"
+    },
+    {
+      "id": "LH1-R-ames-us-root-source-excluded",
+      "layer": "reference",
+      "mode": "Choice",
+      "setup": {
+        "card": "aldrich_ames_remix",
+        "root_side": "US",
+        "provider": "OpponentCardEvent",
+        "remaining": "Operations"
+      },
+      "expect": {
+        "outcome": "Resolved",
+        "source_zone": "InResolution",
+        "root_closed": false
+      },
+      "selected": "hand.asia"
+    },
+    {
+      "id": "LH1-R-ames-bad-selection-instance.china",
+      "layer": "reference",
+      "mode": "Choice",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "InvalidDecision"
+      },
+      "selected": "instance.china"
+    },
+    {
+      "id": "LH1-R-ames-bad-selection-instance.source",
+      "layer": "reference",
+      "mode": "Choice",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "InvalidDecision"
+      },
+      "selected": "instance.source"
+    },
+    {
+      "id": "LH1-R-ames-bad-selection-reserved.korean",
+      "layer": "reference",
+      "mode": "Choice",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "InvalidDecision"
+      },
+      "selected": "reserved.korean"
+    },
+    {
+      "id": "LH1-R-ames-bad-selection-hand.europe",
+      "layer": "reference",
+      "mode": "Choice",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "InvalidDecision"
+      },
+      "selected": "hand.europe"
+    },
+    {
+      "id": "LH1-R-ames-bad-selection-instance.unknown",
+      "layer": "reference",
+      "mode": "Choice",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "InvalidDecision"
+      },
+      "selected": "instance.unknown"
+    },
+    {
+      "id": "LH1-R-ames-choice-wrong-owner",
+      "layer": "reference",
+      "mode": "Choice",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "InvalidDecision"
+      },
+      "selected": "hand.asia",
+      "choice_actor": "US"
+    },
+    {
+      "id": "LH1-R-ames-choice-stale-version",
+      "layer": "reference",
+      "mode": "Choice",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "InvalidDecision"
+      },
+      "selected": "hand.asia",
+      "choice_edits": [
+        {
+          "path": [
+            "expected_version"
+          ],
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-ames-choice-stale-decision",
+      "layer": "reference",
+      "mode": "Choice",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "InvalidDecision"
+      },
+      "selected": "hand.asia",
+      "choice_edits": [
+        {
+          "path": [
+            "decision_revision"
+          ],
+          "value": 2
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-ames-choice-wrong-id",
+      "layer": "reference",
+      "mode": "Choice",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "InvalidDecision"
+      },
+      "selected": "hand.asia",
+      "choice_edits": [
+        {
+          "path": [
+            "decision_id"
+          ],
+          "value": "other"
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-ames-choice-decline",
+      "layer": "reference",
+      "mode": "Choice",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "InvalidDecision"
+      },
+      "selected": "hand.asia",
+      "choice_edits": [
+        {
+          "path": [
+            "decline"
+          ],
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-ames-choice-client-recipient",
+      "layer": "reference",
+      "mode": "Choice",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "InvalidDecision"
+      },
+      "selected": "hand.asia",
+      "choice_edits": [
+        {
+          "path": [
+            "recipient"
+          ],
+          "value": "US"
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-FYP",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "iranian_hostage_crisis",
+        "provider": "FiveYearPlan"
+      },
+      "expect": {
+        "outcome": "InvalidSource"
+      }
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-unknown-source",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "iranian_hostage_crisis",
+        "provider": "Unknown"
+      },
+      "expect": {
+        "outcome": "RequiresRuling"
+      }
+    },
+    {
+      "id": "LH1-R-terrorism-FYP",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "provider": "FiveYearPlan"
+      },
+      "expect": {
+        "outcome": "InvalidSource"
+      }
+    },
+    {
+      "id": "LH1-R-terrorism-unknown-source",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "provider": "Unknown"
+      },
+      "expect": {
+        "outcome": "RequiresRuling"
+      }
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-FYP",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "aldrich_ames_remix",
+        "provider": "FiveYearPlan"
+      },
+      "expect": {
+        "outcome": "InvalidSource"
+      }
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-unknown-source",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "aldrich_ames_remix",
+        "provider": "Unknown"
+      },
+      "expect": {
+        "outcome": "RequiresRuling"
+      }
+    },
+    {
+      "id": "LH1-R-source-Hand",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "cards",
+            0,
+            "zone"
+          ],
+          "value": "Hand"
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-source-wrong-frame",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "cards",
+            0,
+            "frame_id"
+          ],
+          "value": "frame.other"
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-source-owner",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "cards",
+            0,
+            "owner"
+          ],
+          "value": "US"
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-defcon-one",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "InvalidState"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "defcon"
+          ],
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-finished",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "FinishedState"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "status"
+          ],
+          "value": "Finished"
+        },
+        {
+          "path": [
+            "winner"
+          ],
+          "value": "US"
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-active-winner",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "InvalidState"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "winner"
+          ],
+          "value": "US"
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-winning-vp",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "InvalidState"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "signed_vp"
+          ],
+          "value": 20
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-root-closed",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "root",
+            "closed"
+          ],
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-source-complete",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "frame",
+            "completed"
+          ],
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-stale",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "StaleCommand"
+      },
+      "command_edits": [
+        {
+          "path": [
+            "expected_version"
+          ],
+          "value": 3
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-bad-source",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "InvalidSource"
+      },
+      "command_edits": [
+        {
+          "path": [
+            "source_digest"
+          ],
+          "value": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-client-index",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "InvalidInput"
+      },
+      "command_edits": [
+        {
+          "path": [
+            "random_index"
+          ],
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-client-actor",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "InvalidInput"
+      },
+      "command_edits": [
+        {
+          "path": [
+            "controller"
+          ],
+          "value": "US"
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-unknown-coverage",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "RequiresRuling"
+      },
+      "provider_edits": [
+        {
+          "path": [
+            "coverage"
+          ],
+          "value": "Unknown"
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-other-obligation",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "RequiresRuling"
+      },
+      "provider_edits": [
+        {
+          "path": [
+            "other_accepted_obligations"
+          ],
+          "value": [
+            "parent.other"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-provider-version",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "InvalidSource"
+      },
+      "provider_edits": [
+        {
+          "path": [
+            "version"
+          ],
+          "value": 9
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-provider-root",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "InvalidSource"
+      },
+      "provider_edits": [
+        {
+          "path": [
+            "root_action_id"
+          ],
+          "value": "root.other"
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-duplicate_instance",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "InvalidSource"
+      },
+      "corruption": "duplicate_instance"
+    },
+    {
+      "id": "LH1-R-duplicate_card",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "InvalidSource"
+      },
+      "corruption": "duplicate_card"
+    },
+    {
+      "id": "LH1-R-reused_frame",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "InvalidSource"
+      },
+      "corruption": "reused_frame"
+    },
+    {
+      "id": "LH1-R-china_in_hand",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "InvalidSource"
+      },
+      "corruption": "china_in_hand"
+    },
+    {
+      "id": "LH1-R-unknown_card",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {},
+      "expect": {
+        "outcome": "InvalidSource"
+      },
+      "corruption": "unknown_card"
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-new-id-repeat",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "iranian_hostage_crisis",
+        "hostage": true
+      },
+      "expect": {
+        "outcome": "RequiresRuling"
+      }
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-new-id-repeat",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "aldrich_ames_remix",
+        "ames": true
+      },
+      "expect": {
+        "outcome": "RequiresRuling"
+      }
+    },
+    {
+      "id": "LH1-R-activation-bad_effect_card",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "hostage": true,
+        "draws": [
+          0,
+          0
+        ]
+      },
+      "expect": {
+        "outcome": "InvalidState"
+      },
+      "corruption": "bad_effect_card"
+    },
+    {
+      "id": "LH1-R-activation-missing_activation",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "hostage": true,
+        "draws": [
+          0,
+          0
+        ]
+      },
+      "expect": {
+        "outcome": "InvalidState"
+      },
+      "corruption": "missing_activation"
+    },
+    {
+      "id": "LH1-R-activation-wrong_activation_controller",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "hostage": true,
+        "draws": [
+          0,
+          0
+        ]
+      },
+      "expect": {
+        "outcome": "InvalidState"
+      },
+      "corruption": "wrong_activation_controller"
+    },
+    {
+      "id": "LH1-R-activation-unknown_effect",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "hostage": true,
+        "draws": [
+          0,
+          0
+        ]
+      },
+      "expect": {
+        "outcome": "RequiresRuling"
+      },
+      "corruption": "unknown_effect"
+    },
+    {
+      "id": "LH1-R-activation-resolution-cross-card",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "hostage": true,
+        "ames": true,
+        "draws": [
+          0,
+          0
+        ]
+      },
+      "expect": {
+        "outcome": "InvalidState"
+      },
+      "corruption": "activation_resolution_collision"
+    },
+    {
+      "id": "LH1-R-activation-resolution-conflicting-card_id",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "ames": true
+      },
+      "expect": {
+        "outcome": "InvalidState"
+      },
+      "corruption": "activation_extra_card_id"
+    },
+    {
+      "id": "LH1-R-activation-resolution-conflicting-effect_id",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "ames": true
+      },
+      "expect": {
+        "outcome": "InvalidState"
+      },
+      "corruption": "activation_extra_effect_id"
+    },
+    {
+      "id": "LH1-R-activation-resolution-conflicting-controller",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "ames": true
+      },
+      "expect": {
+        "outcome": "InvalidState"
+      },
+      "corruption": "activation_extra_controller"
+    },
+    {
+      "id": "LH1-R-activation-resolution-conflicting-turn",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "ames": true
+      },
+      "expect": {
+        "outcome": "InvalidState"
+      },
+      "corruption": "activation_extra_turn"
+    },
+    {
+      "id": "LH1-R-activation-resolution-same-identity-multiple-stages",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "ames": true
+      },
+      "expect": {
+        "outcome": "Resolved",
+        "discarded": [
+          "card.asia_scoring"
+        ],
+        "rng_delta": 1
+      },
+      "corruption": "activation_extra_consistent"
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-same-command-later-live",
+      "layer": "reference",
+      "mode": "Replay",
+      "setup": {
+        "card": "iranian_hostage_crisis"
+      },
+      "expect": {
+        "outcome": "AlreadyCompleted"
+      }
+    },
+    {
+      "id": "LH1-R-terrorism-same-command-later-live",
+      "layer": "reference",
+      "mode": "Replay",
+      "setup": {
+        "card": "terrorism"
+      },
+      "expect": {
+        "outcome": "AlreadyCompleted"
+      }
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-same-command-later-live",
+      "layer": "reference",
+      "mode": "Replay",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "AlreadyCompleted"
+      }
+    },
+    {
+      "id": "LH1-R-replay-changed_command",
+      "layer": "reference",
+      "mode": "Replay",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "ConflictingReplay"
+      },
+      "corruption": "changed_command"
+    },
+    {
+      "id": "LH1-R-replay-changed_result",
+      "layer": "reference",
+      "mode": "Replay",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "ConflictingReplay"
+      },
+      "corruption": "changed_result"
+    },
+    {
+      "id": "LH1-R-replay-rehashed_result",
+      "layer": "reference",
+      "mode": "Replay",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "ConflictingReplay"
+      },
+      "corruption": "rehashed_result"
+    },
+    {
+      "id": "LH1-R-replay-changed_history",
+      "layer": "reference",
+      "mode": "Replay",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "ConflictingReplay"
+      },
+      "corruption": "changed_history"
+    },
+    {
+      "id": "LH1-R-replay-wrong_actor",
+      "layer": "reference",
+      "mode": "Replay",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "Unauthorized"
+      },
+      "corruption": "wrong_actor"
+    },
+    {
+      "id": "LH1-R-replay-wrong_anchor",
+      "layer": "reference",
+      "mode": "Replay",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "ConflictingReplay"
+      },
+      "corruption": "wrong_anchor"
+    },
+    {
+      "id": "LH1-R-ames-choice-replay-later-live",
+      "layer": "reference",
+      "mode": "ChoiceReplay",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "AlreadyCompleted"
+      },
+      "selected": "hand.fidel"
+    },
+    {
+      "id": "LH1-R-current-view-same-turn-gain",
+      "layer": "reference",
+      "mode": "View",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "Visible"
+      },
+      "view_variant": "same-turn-gain"
+    },
+    {
+      "id": "LH1-R-current-view-same-turn-leave",
+      "layer": "reference",
+      "mode": "View",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "Visible"
+      },
+      "view_variant": "same-turn-leave"
+    },
+    {
+      "id": "LH1-R-current-view-next-turn",
+      "layer": "reference",
+      "mode": "View",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "Unavailable"
+      },
+      "view_variant": "next-turn"
+    },
+    {
+      "id": "LH1-R-current-view-expired",
+      "layer": "reference",
+      "mode": "View",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "Unavailable"
+      },
+      "view_variant": "expired"
+    },
+    {
+      "id": "LH1-R-current-view-other-viewer",
+      "layer": "reference",
+      "mode": "View",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "Unauthorized"
+      },
+      "view_variant": "other-viewer"
+    },
+    {
+      "id": "LH1-R-current-view-stale-query",
+      "layer": "reference",
+      "mode": "View",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "StaleQuery"
+      },
+      "view_variant": "stale-query"
+    },
+    {
+      "id": "LH1-R-current-view-missing-provenance",
+      "layer": "reference",
+      "mode": "View",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "InvalidState"
+      },
+      "view_variant": "missing-provenance"
+    },
+    {
+      "id": "LH1-R-current-view-finished",
+      "layer": "reference",
+      "mode": "View",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "Unavailable"
+      },
+      "view_variant": "finished"
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-projection-US",
+      "layer": "reference",
+      "mode": "Projection",
+      "setup": {
+        "card": "iranian_hostage_crisis"
+      },
+      "expect": {
+        "private_visible": false
+      },
+      "viewer": "US"
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-projection-USSR",
+      "layer": "reference",
+      "mode": "Projection",
+      "setup": {
+        "card": "iranian_hostage_crisis"
+      },
+      "expect": {
+        "private_visible": false
+      },
+      "viewer": "USSR"
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-projection-Spectator",
+      "layer": "reference",
+      "mode": "Projection",
+      "setup": {
+        "card": "iranian_hostage_crisis"
+      },
+      "expect": {
+        "private_visible": false
+      },
+      "viewer": "Spectator"
+    },
+    {
+      "id": "LH1-R-terrorism-projection-US",
+      "layer": "reference",
+      "mode": "Projection",
+      "setup": {
+        "card": "terrorism"
+      },
+      "expect": {
+        "private_visible": false
+      },
+      "viewer": "US"
+    },
+    {
+      "id": "LH1-R-terrorism-projection-USSR",
+      "layer": "reference",
+      "mode": "Projection",
+      "setup": {
+        "card": "terrorism"
+      },
+      "expect": {
+        "private_visible": false
+      },
+      "viewer": "USSR"
+    },
+    {
+      "id": "LH1-R-terrorism-projection-Spectator",
+      "layer": "reference",
+      "mode": "Projection",
+      "setup": {
+        "card": "terrorism"
+      },
+      "expect": {
+        "private_visible": false
+      },
+      "viewer": "Spectator"
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-projection-US",
+      "layer": "reference",
+      "mode": "Projection",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "private_visible": false
+      },
+      "viewer": "US"
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-projection-USSR",
+      "layer": "reference",
+      "mode": "Projection",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "private_visible": true
+      },
+      "viewer": "USSR"
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-projection-Spectator",
+      "layer": "reference",
+      "mode": "Projection",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "private_visible": false
+      },
+      "viewer": "Spectator"
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-us-headline",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "iranian_hostage_crisis",
+        "root_side": "US",
+        "phase": "Headline",
+        "provider": "HeadlineEvent"
+      },
+      "expect": {
+        "outcome": "Resolved"
+      }
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-us-headline",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "aldrich_ames_remix",
+        "root_side": "US",
+        "phase": "Headline",
+        "provider": "HeadlineEvent"
+      },
+      "expect": {
+        "outcome": "WaitingDecision"
+      }
+    },
+    {
+      "id": "LH1-R-terror-us-headline",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "root_side": "US",
+        "phase": "Headline",
+        "provider": "HeadlineEvent",
+        "draws": [
+          2
+        ]
+      },
+      "expect": {
+        "outcome": "Resolved",
+        "discarded": [
+          "card.nato"
+        ],
+        "rng_delta": 1
+      }
+    },
+    {
+      "id": "LH1-R-root-in-headline",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "phase": "Headline"
+      },
+      "expect": {
+        "outcome": "InvalidSource"
+      }
+    },
+    {
+      "id": "LH1-R-headline-in-action",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "provider": "HeadlineEvent"
+      },
+      "expect": {
+        "outcome": "InvalidSource"
+      }
+    },
+    {
+      "id": "LH1-R-headline-ops",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "provider": "HeadlineEvent",
+        "phase": "Headline",
+        "remaining": "Operations"
+      },
+      "expect": {
+        "outcome": "InvalidSource"
+      }
+    },
+    {
+      "id": "LH1-R-neutral-opponent",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "provider": "OpponentCardEvent"
+      },
+      "expect": {
+        "outcome": "InvalidSource"
+      }
+    },
+    {
+      "id": "LH1-R-terror-wrong-cursor",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism"
+      },
+      "expect": {
+        "outcome": "InvalidRandom"
+      },
+      "provider_edits": [
+        {
+          "path": [
+            "rng_cursor"
+          ],
+          "value": 19
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-terror-wrong-resolution",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism"
+      },
+      "expect": {
+        "outcome": "InvalidRandom"
+      },
+      "provider_edits": [
+        {
+          "path": [
+            "rng_resolution_id"
+          ],
+          "value": "resolution.other"
+        }
+      ]
+    },
+    {
+      "id": "LH1-R-duplicate-hostage",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "hostage": true,
+        "draws": [
+          0,
+          0
+        ]
+      },
+      "expect": {
+        "outcome": "RequiresRuling"
+      },
+      "corruption": "duplicate_effect"
+    },
+    {
+      "id": "LH1-R-hostage-completion-missing",
+      "layer": "reference",
+      "mode": "Start",
+      "setup": {
+        "card": "terrorism",
+        "hostage": true,
+        "draws": [
+          0,
+          0
+        ]
+      },
+      "expect": {
+        "outcome": "InvalidState"
+      },
+      "corruption": "missing_success_fact"
+    },
+    {
+      "id": "LH1-R-view-domain-duplicate-card",
+      "layer": "reference",
+      "mode": "View",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "InvalidState"
+      },
+      "view_variant": "duplicate-card"
+    },
+    {
+      "id": "LH1-R-view-domain-china-in-hand",
+      "layer": "reference",
+      "mode": "View",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "InvalidState"
+      },
+      "view_variant": "china-in-hand"
+    },
+    {
+      "id": "LH1-R-view-domain-unknown-provider",
+      "layer": "reference",
+      "mode": "View",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "RequiresRuling"
+      },
+      "view_variant": "unknown-provider"
+    },
+    {
+      "id": "LH1-R-view-domain-active-defcon-one",
+      "layer": "reference",
+      "mode": "View",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "InvalidState"
+      },
+      "view_variant": "active-defcon-one"
+    },
+    {
+      "id": "LH1-R-view-domain-active-terminal-vp",
+      "layer": "reference",
+      "mode": "View",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "InvalidState"
+      },
+      "view_variant": "active-terminal-vp"
+    },
+    {
+      "id": "LH1-R-view-domain-active-winner",
+      "layer": "reference",
+      "mode": "View",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "InvalidState"
+      },
+      "view_variant": "active-winner"
+    },
+    {
+      "id": "LH1-R-view-domain-activation-resolution-collision",
+      "layer": "reference",
+      "mode": "View",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "InvalidState"
+      },
+      "view_variant": "activation-resolution-collision"
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-historical-domain-source_hand",
+      "layer": "reference",
+      "mode": "ReceiptDomain",
+      "setup": {
+        "card": "iranian_hostage_crisis"
+      },
+      "expect": {
+        "outcome": "ConflictingReplay"
+      },
+      "corruption": "source_hand"
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-historical-domain-reused_frame",
+      "layer": "reference",
+      "mode": "ReceiptDomain",
+      "setup": {
+        "card": "iranian_hostage_crisis"
+      },
+      "expect": {
+        "outcome": "ConflictingReplay"
+      },
+      "corruption": "reused_frame"
+    },
+    {
+      "id": "LH1-R-terrorism-historical-domain-source_hand",
+      "layer": "reference",
+      "mode": "ReceiptDomain",
+      "setup": {
+        "card": "terrorism"
+      },
+      "expect": {
+        "outcome": "ConflictingReplay"
+      },
+      "corruption": "source_hand"
+    },
+    {
+      "id": "LH1-R-terrorism-historical-domain-reused_frame",
+      "layer": "reference",
+      "mode": "ReceiptDomain",
+      "setup": {
+        "card": "terrorism"
+      },
+      "expect": {
+        "outcome": "ConflictingReplay"
+      },
+      "corruption": "reused_frame"
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-historical-domain-source_hand",
+      "layer": "reference",
+      "mode": "ReceiptDomain",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "ConflictingReplay"
+      },
+      "corruption": "source_hand"
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-historical-domain-reused_frame",
+      "layer": "reference",
+      "mode": "ReceiptDomain",
+      "setup": {
+        "card": "aldrich_ames_remix"
+      },
+      "expect": {
+        "outcome": "ConflictingReplay"
+      },
+      "corruption": "reused_frame"
+    },
+    {
+      "id": "LH1-S-start_command-valid",
+      "layer": "schema",
+      "definition": "start_command",
+      "edits": [],
+      "valid": true
+    },
+    {
+      "id": "LH1-S-start_command-extra",
+      "layer": "schema",
+      "definition": "start_command",
+      "edits": [
+        {
+          "path": [
+            "client_authorized"
+          ],
+          "value": true
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-choice_command-valid",
+      "layer": "schema",
+      "definition": "choice_command",
+      "edits": [],
+      "valid": true
+    },
+    {
+      "id": "LH1-S-choice_command-extra",
+      "layer": "schema",
+      "definition": "choice_command",
+      "edits": [
+        {
+          "path": [
+            "client_authorized"
+          ],
+          "value": true
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-source-valid",
+      "layer": "schema",
+      "definition": "source",
+      "edits": [],
+      "valid": true
+    },
+    {
+      "id": "LH1-S-source-extra",
+      "layer": "schema",
+      "definition": "source",
+      "edits": [
+        {
+          "path": [
+            "client_authorized"
+          ],
+          "value": true
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-state-valid",
+      "layer": "schema",
+      "definition": "state",
+      "edits": [],
+      "valid": true
+    },
+    {
+      "id": "LH1-S-state-extra",
+      "layer": "schema",
+      "definition": "state",
+      "edits": [
+        {
+          "path": [
+            "client_authorized"
+          ],
+          "value": true
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-providers-valid",
+      "layer": "schema",
+      "definition": "providers",
+      "edits": [],
+      "valid": true
+    },
+    {
+      "id": "LH1-S-providers-extra",
+      "layer": "schema",
+      "definition": "providers",
+      "edits": [
+        {
+          "path": [
+            "client_authorized"
+          ],
+          "value": true
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-receipt-valid",
+      "layer": "schema",
+      "definition": "receipt",
+      "edits": [],
+      "valid": true
+    },
+    {
+      "id": "LH1-S-receipt-extra",
+      "layer": "schema",
+      "definition": "receipt",
+      "edits": [
+        {
+          "path": [
+            "client_authorized"
+          ],
+          "value": true
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-view_query-valid",
+      "layer": "schema",
+      "definition": "view_query",
+      "edits": [],
+      "valid": true
+    },
+    {
+      "id": "LH1-S-view_query-extra",
+      "layer": "schema",
+      "definition": "view_query",
+      "edits": [
+        {
+          "path": [
+            "client_authorized"
+          ],
+          "value": true
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-type-142",
+      "layer": "schema",
+      "definition": "start_command",
+      "edits": [
+        {
+          "path": [
+            "expected_version"
+          ],
+          "value": true
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-type-143",
+      "layer": "schema",
+      "definition": "source",
+      "edits": [
+        {
+          "path": [
+            "provider"
+          ],
+          "value": "ArbitraryChild"
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-type-144",
+      "layer": "schema",
+      "definition": "state",
+      "edits": [
+        {
+          "path": [
+            "defcon"
+          ],
+          "value": true
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-type-145",
+      "layer": "schema",
+      "definition": "providers",
+      "edits": [
+        {
+          "path": [
+            "random_indices"
+          ],
+          "value": [
+            0.5
+          ]
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-type-146",
+      "layer": "schema",
+      "definition": "choice_command",
+      "edits": [
+        {
+          "path": [
+            "selected_instance_id"
+          ],
+          "value": null
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-type-147",
+      "layer": "schema",
+      "definition": "receipt",
+      "edits": [
+        {
+          "path": [
+            "receipt_digest"
+          ],
+          "value": "bad"
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-type-148",
+      "layer": "schema",
+      "definition": "view_query",
+      "edits": [
+        {
+          "path": [
+            "expected_version"
+          ],
+          "value": -1
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-type-149",
+      "layer": "schema",
+      "definition": "state",
+      "edits": [
+        {
+          "path": [
+            "china",
+            "zone"
+          ],
+          "value": "Hand"
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-extra-negative-150",
+      "layer": "schema",
+      "definition": "providers",
+      "edits": [
+        {
+          "path": [
+            "random_indices"
+          ],
+          "value": [
+            true
+          ]
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-extra-negative-151",
+      "layer": "schema",
+      "definition": "providers",
+      "edits": [
+        {
+          "path": [
+            "random_indices"
+          ],
+          "value": [
+            -1
+          ]
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-extra-negative-152",
+      "layer": "schema",
+      "definition": "source",
+      "edits": [
+        {
+          "path": [
+            "parent_frame_id"
+          ],
+          "value": false
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-extra-negative-153",
+      "layer": "schema",
+      "definition": "state",
+      "edits": [
+        {
+          "path": [
+            "winner"
+          ],
+          "value": "Draw"
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-extra-negative-154",
+      "layer": "schema",
+      "definition": "state",
+      "edits": [
+        {
+          "path": [
+            "version"
+          ],
+          "value": 7.0
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-extra-negative-155",
+      "layer": "schema",
+      "definition": "choice_command",
+      "edits": [
+        {
+          "path": [
+            "decision_revision"
+          ],
+          "value": 0
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-extra-negative-156",
+      "layer": "schema",
+      "definition": "source",
+      "edits": [
+        {
+          "path": [
+            "parameter_digest"
+          ],
+          "value": "bad"
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-extra-negative-157",
+      "layer": "schema",
+      "definition": "receipt",
+      "edits": [
+        {
+          "path": [
+            "waiting_receipt"
+          ],
+          "value": "serialized-json-is-not-typed"
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-extra-negative-158",
+      "layer": "schema",
+      "definition": "providers",
+      "edits": [
+        {
+          "path": [
+            "proof_id"
+          ],
+          "value": ""
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-extra-negative-159",
+      "layer": "schema",
+      "definition": "source",
+      "edits": [
+        {
+          "path": [
+            "provider_proof_id"
+          ],
+          "value": ""
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-S-extra-negative-160",
+      "layer": "schema",
+      "definition": "state",
+      "edits": [
+        {
+          "path": [
+            "cards",
+            1,
+            "owner"
+          ],
+          "value": "Spectator"
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-D-valid",
+      "layer": "data",
+      "edits": [],
+      "valid": true
+    },
+    {
+      "id": "LH1-D-scope",
+      "layer": "data",
+      "edits": [
+        {
+          "path": [
+            "scope"
+          ],
+          "value": "release-candidate"
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-D-hostage-set",
+      "layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "iranian_hostage_crisis",
+            "add_amount"
+          ],
+          "value": 3
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-D-terror-client",
+      "layer": "data",
+      "edits": [
+        {
+          "path": [
+            "policies",
+            "random"
+          ],
+          "value": "ClientSelected"
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-D-terror-no-shortage",
+      "layer": "data",
+      "edits": [
+        {
+          "path": [
+            "policies",
+            "shortage"
+          ],
+          "value": "DiscardAvailable"
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-D-ames-snapshot-only",
+      "layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "aldrich_ames_remix",
+            "duration"
+          ],
+          "value": "OneTime"
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-D-ames-empty",
+      "layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "aldrich_ames_remix",
+            "empty_hand_policy"
+          ],
+          "value": "ResolvedNoChange"
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-D-ames-order",
+      "layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "aldrich_ames_remix",
+            "force_play_order"
+          ],
+          "value": true
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-D-replay-live",
+      "layer": "data",
+      "edits": [
+        {
+          "path": [
+            "policies",
+            "receipt"
+          ],
+          "value": "RecomputeLiveHand"
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-D-fyp",
+      "layer": "data",
+      "edits": [
+        {
+          "path": [
+            "policies",
+            "five_year_plan"
+          ],
+          "value": "AllowedNeutral"
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-D-view-active-terminal",
+      "layer": "data",
+      "edits": [
+        {
+          "path": [
+            "policies",
+            "current_view"
+          ],
+          "value": "ActivationTurnAndRecipientOnly"
+        }
+      ],
+      "valid": false
+    },
+    {
+      "id": "LH1-D-activation-cross-resolution",
+      "layer": "data",
+      "edits": [
+        {
+          "path": [
+            "policies",
+            "active_provenance"
+          ],
+          "value": "IndividualFactMatchOnly"
+        }
+      ],
+      "valid": false
+    }
+  ],
+  "runtime_cases": [
+    {
+      "id": "LH1-I-real-source-auth",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "LH1-I-rng-uniform-and-durable",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "LH1-I-atomic-double-discard",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "LH1-I-precommit-no-private-output",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "LH1-I-ames-live-view-access",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "LH1-I-turn-expiry-and-reconnect",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "LH1-I-historical-private-projection",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "LH1-I-late-live-replay",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "LH1-I-pending-resume",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "LH1-I-root-ops-disposition",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "LH1-I-active-provenance-repeat",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "LH1-I-failure-rollback",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    }
+  ]
+}

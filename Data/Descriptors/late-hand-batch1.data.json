@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "id": "data.late-hand-batch1",
+  "kind": "data",
+  "status": "ready",
+  "description": "Late hand events: fixed Iran and persistent Hostage modifier, atomic random Terrorism discards, Ames remainder-turn current view with immutable history; runtime planned.",
+  "dataset_id": "effects.deluxe2015.late_hand_batch1",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/late-hand-batch1.schema.json",
+  "documentation": "Docs/Wiki/late-hand-batch1.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/late-hand-batch1.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "Stable CardId data lookup; planned independent authority source/physical Hand/activation and historical record"
+  ],
+  "outputs": [
+    "Verified-subset parameters and typed planned contracts; no runtime handler"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world",
+    "rules.deluxe2015.victory",
+    "rules.deluxe2015.defcon",
+    "rules.deluxe2015.turn-flow",
+    "setup.deluxe2015.standard",
+    "effects.deluxe2015.hand_events_batch1"
+  ],
+  "preconditions": [
+    "Runtime planned; trusted synthetic input is not actual authorization",
+    "Unknown relevant source, short hand or new activation conflict stops before disclosure"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "Invalid physical identity/frame, Finished/nuclear state, stale command or provider",
+    "Unknown parent/hand/view/activation coverage; unruled shortage or repeat activation"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "目视英文PDF p13 #82、p14 #92、p15 #98；不采用旁列译文。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe 2015",
+      "description": "PDF p5 §§5.2/5.4/5.5事件归属、去向及强迫弃牌无事件；p8 §7.3永久效果；p9 §9中国独立牌区/不可强迫弃置。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 compatible Deluxe answers only",
+      "description": "PDF p16 #92额外弃牌也随机；#98导言排除旧版排序问答；p19公开弃牌堆。未找到本批空手/不足弃牌专门裁定。"
+    },
+    {
+      "id": "PROJECT-LH1",
+      "url": null,
+      "edition": "Engineering and explicit derivation, 2026-10-13",
+      "description": "Ames期限作用于当前手牌集合，后来同回合入手牌可见是卡文直接派生，不是专门FAQ；有限事务/来源/随机和历史收据/授权当前视图均planned。短缺及新ID重复激活RequiresRuling。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/late-hand-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/late-hand-batch1.validation.json"
+  }
+}

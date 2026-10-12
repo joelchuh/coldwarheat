@@ -1,0 +1,958 @@
+{
+  "description": "LH1整批随机弃牌、永久Hostage与本回合Ames视图/历史分离；2项审阅问题修后验证。",
+  "checked_on": "2026-10-13",
+  "new_cases_passed": 173,
+  "previous_cases_passed": 3446,
+  "total_cases_passed": 3619,
+  "cases_by_layer": {
+    "data": 12,
+    "contract": 33,
+    "reference": 128,
+    "runtime": 12
+  },
+  "runtime_cases_not_run": 12,
+  "runtime_game_tests_run": 0,
+  "bound_cards": 89,
+  "unresolved_bindings": 13,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 44,
+    "json_files_parsed": 257,
+    "data_descriptors": 47,
+    "module_descriptors": 21,
+    "relative_links_checked": 198,
+    "parameter_pointers_resolved": 200
+  },
+  "validated_sha256": {
+    "Data/Cards/deluxe-2015/late-hand-batch1.parameters.json": "6895a46eb170c85213ef50a7345ead4b9f7e5729053be4d63eb99b721cb3faf0",
+    "Docs/Contracts/late-hand-batch1.schema.json": "2503b82b987ec284acd2dec26e974645096b44e6b9976ef4480f3542e276ca06",
+    "Data/Descriptors/late-hand-batch1.data.json": "9f64ee12851123b009a8e584b8c39e183896fbdf0d2c4c566fac31732a1e8e76",
+    "Docs/Design/late-hand-batch1.cases.json": "6b2b5c351d9b22a5587c2689170cc950bf0a6027744b40888fc417cd4338eb13",
+    "Docs/Wiki/late-hand-batch1.md": "66e3db439d51b6f251e5f2609223ec89a338b96995f2e1bb26ce85b0966d1de7",
+    "Data/Cards/deluxe-2015/cards.json": "90a03438ea1d009e584c34167893436af1ff588d466ce0c40354763601ac1cfb",
+    "Docs/Descriptors/hand-events.module.json": "a919a670ba39cb9eb39d1170954cd6a63a0f94a9f4d9ce1ea26943b952401297",
+    "Docs/Descriptors/active-effects.module.json": "f0ab7406364043b5fe6853f8f97ce44c47bbb32268291cdf43e0fdb985116bf2",
+    "Docs/Descriptors/composite-events.module.json": "d093b5e71d6e8f9b3e41e2258bad7147664e16b98ca4f9061bb552a8110aa984",
+    "Docs/Descriptors/turn-flow.module.json": "2900b7c5b1a8f654a79a2557b04dfe759a9ab5c9f29f699b99eec9f14234571e"
+  },
+  "results": [
+    {
+      "id": "LH1-R-hostage-add-not-set",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-hostage-zero-us",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-RootEvent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-HeadlineEvent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-OpponentCardEvent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terrorism-RootEvent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terrorism-HeadlineEvent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-RootEvent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-HeadlineEvent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-OpponentCardEvent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terror-US-False",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terror-US-True",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terror-USSR-False",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terror-USSR-True",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terror-shortage-0",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terror-shortage-1",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terror-singleton",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terror-invalid-whole-batch-[0, 2]",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terror-invalid-whole-batch-[0]",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terror-invalid-whole-batch-[0, 0, 0]",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terror-visible-still-random",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-ames-empty-before-disclosure",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-ames-select-hand.asia",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-ames-select-hand.duck",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-ames-select-hand.fidel",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-ames-us-root-source-excluded",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-ames-bad-selection-instance.china",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-ames-bad-selection-instance.source",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-ames-bad-selection-reserved.korean",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-ames-bad-selection-hand.europe",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-ames-bad-selection-instance.unknown",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-ames-choice-wrong-owner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-ames-choice-stale-version",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-ames-choice-stale-decision",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-ames-choice-wrong-id",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-ames-choice-decline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-ames-choice-client-recipient",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-FYP",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-unknown-source",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terrorism-FYP",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terrorism-unknown-source",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-FYP",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-unknown-source",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-source-Hand",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-source-wrong-frame",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-source-owner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-defcon-one",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-finished",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-active-winner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-winning-vp",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-root-closed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-source-complete",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-stale",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-bad-source",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-client-index",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-client-actor",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-unknown-coverage",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-other-obligation",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-provider-version",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-provider-root",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-duplicate_instance",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-duplicate_card",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-reused_frame",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-china_in_hand",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-unknown_card",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-new-id-repeat",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-new-id-repeat",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-activation-bad_effect_card",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-activation-missing_activation",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-activation-wrong_activation_controller",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-activation-unknown_effect",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-activation-resolution-cross-card",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-activation-resolution-conflicting-card_id",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-activation-resolution-conflicting-effect_id",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-activation-resolution-conflicting-controller",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-activation-resolution-conflicting-turn",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-activation-resolution-same-identity-multiple-stages",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-same-command-later-live",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terrorism-same-command-later-live",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-same-command-later-live",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-replay-changed_command",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-replay-changed_result",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-replay-rehashed_result",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-replay-changed_history",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-replay-wrong_actor",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-replay-wrong_anchor",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-ames-choice-replay-later-live",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-current-view-same-turn-gain",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-current-view-same-turn-leave",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-current-view-next-turn",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-current-view-expired",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-current-view-other-viewer",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-current-view-stale-query",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-current-view-missing-provenance",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-current-view-finished",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-projection-US",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-projection-USSR",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-projection-Spectator",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terrorism-projection-US",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terrorism-projection-USSR",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terrorism-projection-Spectator",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-projection-US",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-projection-USSR",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-projection-Spectator",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-us-headline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-us-headline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terror-us-headline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-root-in-headline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-headline-in-action",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-headline-ops",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-neutral-opponent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terror-wrong-cursor",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terror-wrong-resolution",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-duplicate-hostage",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-hostage-completion-missing",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-view-domain-duplicate-card",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-view-domain-china-in-hand",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-view-domain-unknown-provider",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-view-domain-active-defcon-one",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-view-domain-active-terminal-vp",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-view-domain-active-winner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-view-domain-activation-resolution-collision",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-historical-domain-source_hand",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-iranian_hostage_crisis-historical-domain-reused_frame",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terrorism-historical-domain-source_hand",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-terrorism-historical-domain-reused_frame",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-historical-domain-source_hand",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-R-aldrich_ames_remix-historical-domain-reused_frame",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LH1-S-start_command-valid",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-start_command-extra",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-choice_command-valid",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-choice_command-extra",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-source-valid",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-source-extra",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-state-valid",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-state-extra",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-providers-valid",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-providers-extra",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-receipt-valid",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-receipt-extra",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-view_query-valid",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-view_query-extra",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-type-142",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-type-143",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-type-144",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-type-145",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-type-146",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-type-147",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-type-148",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-type-149",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-extra-negative-150",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-extra-negative-151",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-extra-negative-152",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-extra-negative-153",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-extra-negative-154",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-extra-negative-155",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-extra-negative-156",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-extra-negative-157",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-extra-negative-158",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-extra-negative-159",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-S-extra-negative-160",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "LH1-D-valid",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LH1-D-scope",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LH1-D-hostage-set",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LH1-D-terror-client",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LH1-D-terror-no-shortage",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LH1-D-ames-snapshot-only",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LH1-D-ames-empty",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LH1-D-ames-order",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LH1-D-replay-live",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LH1-D-fyp",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LH1-D-view-active-terminal",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LH1-D-activation-cross-resolution",
+      "passed": true,
+      "validation_layer": "data"
+    }
+  ],
+  "limitations": [
+    "有限合成状态/收据/RNG索引不是生产鉴权、持久化或均匀随机实现。",
+    "Ames当前视图后入牌可见是期限文本推导；短缺/重复激活待核。",
+    "旧案例只适配绑定库存和相同文件overlay，不改规则期望。",
+    "13note/72Tools独立，本批未重跑；审阅探针另计。"
+  ],
+  "independent_review": {
+    "status": "ready-no-findings-after-two-fixes",
+    "checked_on": "2026-10-13",
+    "critical": 0,
+    "important": 0,
+    "minor": 0,
+    "new_cases_independently_passed": 173,
+    "separate_probes": 83,
+    "old_cases_independently_rerun": 0,
+    "closed_findings": [
+      "New CurrentView rejects inconsistent active terminal state without affecting historical replay.",
+      "ResolutionId binds one CardId/EffectId/controller/turn across activation facts and effects; valid same-identity multi-stage allowed."
+    ],
+    "integration_review": {
+      "json_parsed": 257,
+      "schemas_meta_validated": 44,
+      "datasets_schema_validated": 47,
+      "planned_modules": 21,
+      "module_dependency_edges": 42,
+      "module_edges_unchanged": true,
+      "dag_acyclic": true,
+      "dataset_parameter_pointers_resolved": 200,
+      "effect_contract_schema_pointers_resolved": 89,
+      "catalog_paths_checked": 499,
+      "modified_markdown_relative_links_checked": 201,
+      "cards_printed_unchanged": 103,
+      "only_changed_bindings": [
+        "card.iranian_hostage_crisis",
+        "card.terrorism",
+        "card.aldrich_ames_remix"
+      ],
+      "binding_counts": {
+        "Bound": 89,
+        "Unresolved": 13
+      },
+      "handlers_planned": 102,
+      "project_lh1_global_refs": "Pending; original detailed source preserved"
+    },
+    "baseline_sha256_verified": 372,
+    "report_sha256_verified": 10,
+    "printed_cards_unchanged": 103,
+    "only_three_new_bindings": true,
+    "author_lineage": "Fixed author173 and independent83 probes ran once against reveal-review-baseline; integrated parameters/schema/cases are identical after newline normalization. Descriptor only removes report_status; Wiki only changes formal status and validation report/count text. Model business AST is identical; checker changes are artifact fallback, inventory scope and report hash lookup. The newer a67a3de baseline preserves all103 consumed printed card facts and all six other consumed shared files. Thus no integrated173 or old3446 suite was rerun. Parent3619 is recorded evidence, not additional independent executions.",
+    "execution_scope": "Independent fixed author173 and83probes; integrated structural review and artifact-only checker AST equivalence, no repeated integrated173/old3446/runtime. Main3619 by parent."
+  },
+  "post_validation_document_links_checked": 7,
+  "metadata_after_validation": "Only Wiki final status and Worklog updated; links checked and Wiki hash refreshed."
+}

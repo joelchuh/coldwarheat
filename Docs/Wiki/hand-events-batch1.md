@@ -31,3 +31,5 @@ DiscardDecision保存Owner/FrameId/Revision和私有候选快照；回答只Sele
 HC1-RUNTIME恢复边界：提交前计划若基于旧候选状态则拒绝且不耗随机；已接受CommandId收据永久保存。子事件后续改手牌不能废弃该收据，也不能重试五年计划重抽。
 
 [CIA与Lone Gunman](reveal-ops-batch1.md)复用当前手牌私有快照与普通as-if授权。五年计划只可触发US关联CIA；头条/特殊嵌套来源的影响力起点必须另证，不默认授权创建时。
+
+[晚期手牌扩展](late-hand-batch1.md)：两张随机弃牌整批提交；Ames当前视图独立于旧历史收据；不套用五年计划空手规则。

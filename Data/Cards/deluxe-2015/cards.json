@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.35.0",
+  "content_version": "0.36.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计86牌效果参数已绑定，其余16个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计89牌效果参数已绑定，其余13个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -221,6 +221,12 @@
       "url": null,
       "edition": "Named derivations and finite contracts 2026-10-13",
       "description": "ON1-D01: known NSO8/Space8 combine by max, not addition, not a universal cap on future providers. ON1-D02: physical card entities and child events do not add root slots. Two durations and source-set-bound optional decline are engineering contracts; unknown later grants/repeats remain RequiresRuling."
+    },
+    {
+      "id": "PROJECT-LH1",
+      "url": null,
+      "edition": "Engineering and explicit derivation, 2026-10-13",
+      "description": "Ames期限作用于当前手牌集合，后来同回合入手牌可见是卡文直接派生，不是专门FAQ；有限事务/来源/随机和历史收据/授权当前视图均planned。短缺及新ID重复激活RequiresRuling。"
     }
   ],
   "cards": [
@@ -2802,8 +2808,13 @@
       "effect_binding": {
         "effect_id": "effect.iranian_hostage_crisis",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.late_hand_batch1",
+            "json_pointer": "/parameters/iranian_hostage_crisis"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -3097,8 +3108,13 @@
       "effect_binding": {
         "effect_id": "effect.terrorism",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.late_hand_batch1",
+            "json_pointer": "/parameters/terrorism"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -3269,8 +3285,13 @@
       "effect_binding": {
         "effect_id": "effect.aldrich_ames_remix",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.late_hand_batch1",
+            "json_pointer": "/parameters/aldrich_ames_remix"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -5675,14 +5696,31 @@
     {
       "effect_id": "effect.iranian_hostage_crisis",
       "contract_version": "0.1.0",
-      "description": "Iranian Hostage Crisis：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.iranian_hostage_crisis",
+      "description": "清伊朗US影响再苏联加2，并持久化仅对US恐怖主义加倍的合法成功来源；新ID重复停止。",
+      "handler_key": "composite.FixedInfluenceThenPermanentTerrorismModifier",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:late-hand-batch1:1#/$defs/iranian_hostage_crisis"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p13 English #82",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Sections5.2/5.4/5.5/7.3/9: affiliation, successful source disposition, forced discard without event, persistent facts and separate China.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFp16 Terrorism additional discard random; old98 ordering explicitly not applicable to Ames Remix.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-LH1",
+          "locator": "Ames later current hand visible is named duration derivation; current query legal-state and resolution identity guards are engineering. Shortage/repeat requires ruling.",
           "verification": "Pending"
         }
       ]
@@ -5890,14 +5928,31 @@
     {
       "effect_id": "effect.terrorism",
       "contract_version": "0.1.0",
-      "description": "Terrorism：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.terrorism",
+      "description": "从对手普通Hand原子随机无放回弃一张，已核实Hostage且US为受害方则两张；短缺停止。",
+      "handler_key": "hand.AtomicRandomOpponentHandDiscard",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:late-hand-batch1:1#/$defs/terrorism"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p14 English #92",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Sections5.2/5.4/5.5/7.3/9: affiliation, successful source disposition, forced discard without event, persistent facts and separate China.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFp16 Terrorism additional discard random; old98 ordering explicitly not applicable to Ames Remix.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-LH1",
+          "locator": "Ames later current hand visible is named duration derivation; current query legal-state and resolution identity guards are engineering. Shortage/repeat requires ruling.",
           "verification": "Pending"
         }
       ]
@@ -6014,14 +6069,31 @@
     {
       "effect_id": "effect.aldrich_ames_remix",
       "contract_version": "0.1.0",
-      "description": "Aldrich Ames Remix：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.aldrich_ames_remix",
+      "description": "本回合美国当前手牌向苏联可见，再强制选一弃牌；当前查询与不可变历史分离，不采用旧版排序。",
+      "handler_key": "hand.RemainderTurnHandViewThenMandatoryChosenDiscard",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:late-hand-batch1:1#/$defs/aldrich_ames_remix"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p15 English #98",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Sections5.2/5.4/5.5/7.3/9: affiliation, successful source disposition, forced discard without event, persistent facts and separate China.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFp16 Terrorism additional discard random; old98 ordering explicitly not applicable to Ames Remix.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-LH1",
+          "locator": "Ames later current hand visible is named duration derivation; current query legal-state and resolution identity guards are engineering. Shortage/repeat requires ruling.",
           "verification": "Pending"
         }
       ]
