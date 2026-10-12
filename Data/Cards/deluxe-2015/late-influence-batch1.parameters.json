@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "dataset_id": "effects.deluxe2015.late_influence_batch1",
-  "content_version": "0.1.0",
+  "content_version": "0.2.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "verified-subset",
   "description": "晚期影响力四牌：固定/完整分配、VP首批次及长期禁止；正式域契约候选，C#与生产消费者均待实现。",
@@ -28,7 +28,13 @@
       "id": "PROJECT-LI1",
       "url": null,
       "edition": "LI1-D01–D04 / LI1-E01, 2026-10-12",
-      "description": "4或6替代总量、Marine完整计划、Pershing零选择正影响规范化、首VP批次终局与来源/重放工程解释；不是新增官方FAQ。短缺和重复未答仍RequiresRuling。"
+      "description": "4或6替代总量、Marine完整计划、Pershing零选择正影响规范化、首VP批次终局与来源/重放工程解释；不是新增官方FAQ。未答重复与未知干预仍RequiresRuling。 Marine短缺部分现由PROJECT-LI1-USER-20261013取代；原重复/未知来源/取消与生产边界仍保留。"
+    },
+    {
+      "id": "PROJECT-LI1-USER-20261013",
+      "url": null,
+      "edition": "Human-confirmed project interpretation, 2026-10-13",
+      "description": "先清除黎巴嫩US影响；再移除min(2,中东剩余US影响总量)，不足全移，事件完成。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
     }
   ],
   "shared_refs": {
@@ -187,7 +193,7 @@
       "removed_side": "US",
       "additional_total": 2,
       "per_country_cap": null,
-      "shortage_policy": "RequiresRulingBeforeAnyMutation",
+      "shortage_policy": "RemoveMinimumOfAdditionalTotalAndPostClearCapacity",
       "plan_policy": "ValidateEntirePostClearAllocationBeforeCommit",
       "ordered_steps": [
         {
@@ -196,9 +202,10 @@
           "country_id": "country.lebanon"
         },
         {
-          "kind": "RemoveExactAdditionalInfluence",
+          "kind": "RemoveRequiredAdditionalInfluence",
           "side": "US",
-          "amount": 2
+          "amount": 2,
+          "amount_policy": "MinimumOfListedAmountAndPostClearCapacity"
         }
       ],
       "source_refs": [
@@ -215,6 +222,11 @@
         {
           "source_id": "PROJECT-LI1",
           "locator": "Wiki LI1-D01–D04 / LI1-E01: derived and engineering boundaries",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-LI1-USER-20261013",
+          "locator": "先清除黎巴嫩US影响；再移除min(2,中东剩余US影响总量)，不足全移，事件完成。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。",
           "verification": "Verified"
         }
       ]

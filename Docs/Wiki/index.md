@@ -4,6 +4,7 @@
 
 | 知识点 | description | 状态 | 入口 |
 |---|---|---|---|
+| 2026-10-13项目裁定 | 查5牌已获用户确认的短缺、军事比较与零分结束政策 | 已确认；运行待实现 | [confirmed-rulings-20261013.md](confirmed-rulings-20261013.md) |
 | 开发工作流与共享数据 | 查找模块/脚本 JSON 描述、脚本化条件、共享数据与执行边界 | 已采用；只读核验工具就绪，其他自动化待实现 | [workflow-and-data.md](workflow-and-data.md) |
 | 正式脚本目录 | 按description找快照核验、审阅基线导出及对应测试 | 4正式脚本；生产工具不写Git，测试只写新建合成Git | [catalog.json](../../Tools/Descriptors/catalog.json) |
 | 审阅基线导出 | 查干净HEAD、受跟踪工作字节、新目标、SHA清单与失败边界 | 工作流工具；游戏实现未开始 | [export-review-baseline.md](export-review-baseline.md) |
@@ -22,14 +23,14 @@
 | 叛逃者 | 查头条取消、苏方自取消与用牌VP | 1牌参数Bound；未知嵌套待核，待实现 | [defectors.md](defectors.md) |
 | 晚期手牌事件 | 查人质加倍、恐怖主义随机弃牌及Ames持续私有视图 | 3牌参数Bound；短缺待核，待实现 | [late-hand-batch1.md](late-hand-batch1.md) |
 | OPEC与北海石油 | 查七国控制VP、永久阻止、回合额度与太空名额合并 | 2牌参数Bound；未知重复/迟到来源待核，待实现 | [opec-north-sea-batch1.md](opec-north-sea-batch1.md) |
-| 战争游戏 | 查三选择、DEFCON前提、完整VP批次与立即结束 | 1牌参数Bound；恰零结束待裁定，待实现 | [wargames.md](wargames.md) |
+| 战争游戏 | 查三选择、DEFCON前提、完整VP批次与立即结束 | 1牌参数Bound；恰零结束判平局已确认，待实现 | [wargames.md](wargames.md) |
 | 中国牌事件转交 | 查持有者分支、面向、VP/亚洲奖励及独立牌区 | 3牌参数Bound；运行服务待实现 | [china-transfer-batch1.md](china-transfer-batch1.md) |
 | 奥运会 | 查对手分支、平局强制重掷、内部续跑与抵制后普通OPS | 1牌参数Bound；特殊来源影响力起点待核实，待实现 | [olympic-games.md](olympic-games.md) |
-| 晚期影响力第一批 | 查铁娘子/改革者/海军营房/潘兴II及长期禁止、VP先行 | 4牌参数Bound；Marine短缺待裁定，待实现 | [late-influence-batch1.md](late-influence-batch1.md) |
+| 晚期影响力第一批 | 查铁娘子/改革者/海军营房/潘兴II及长期禁止、VP先行 | 4牌参数Bound；Marine短缺解释已确认，待实现 | [late-influence-batch1.md](late-influence-batch1.md) |
 | 一次手牌揭示与行动 | 查CIA/Lone私有快照、收据重放、普通OPS及影响力起点边界 | 2牌参数Bound；头条影响力起点待核实，待实现 | [reveal-ops-batch1.md](reveal-ops-batch1.md) |
-| 军备竞赛与峰会 | 查军事比较/实际地图地区加成/双骰收据/胜者DEFCON选择 | 2牌参数Bound；军事溢出待裁定，待实现 | [contest-events.md](contest-events.md) |
+| 军备竞赛与峰会 | 查军事比较/实际地图地区加成/双骰收据/胜者DEFCON选择 | 2牌参数Bound；军事比较封顶已确认，待实现 | [contest-events.md](contest-events.md) |
 | 一小步太空事件 | 查落后门禁/两格/只发第二格VP/越终点停止 | 参数Bound；待实现 | [one-small-step.md](one-small-step.md) |
-| 中期影响力第三批 | 查跨区四国/运河固定三国/傀儡零影响筛选/VOA非欧洲移除 | 4牌参数Bound；短缺待裁定，待实现 | [mid-influence-batch3.md](mid-influence-batch3.md) |
+| 中期影响力第三批 | 查跨区四国/运河固定三国/傀儡零影响筛选/VOA非欧洲移除 | 4牌参数Bound；短缺解释已确认，待实现 | [mid-influence-batch3.md](mid-influence-batch3.md) |
 | 军政府分步事件 | 查先放影响/可选免费行动/源牌预算/调整地区锁 | 1牌参数Bound；待实现 | [junta.md](junta.md) |
 | 陷阱根行动与标准骰 | 查Quagmire/BearTrap强迫弃牌/计分/逃脱/跨回合 | 2牌参数Bound；待实现 | [trap-events.md](trap-events.md) |
 | UN双牌使用 | 查双实体/配牌预算/压制/一根slot与未知分支 | 1牌参数Bound；待实现 | [un-intervention.md](un-intervention.md) |

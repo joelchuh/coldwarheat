@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.card-data",
   "kind": "module",
-  "description": "查询三类卡牌静态定义、效果注册、共享参数引用与正式目录审核；不含卡牌美术或已实现的逐卡效果。",
+  "description": "查询三类卡牌静态定义、效果注册、共享参数引用与正式目录审核；不含卡牌美术或已实现的逐卡效果。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。",
   "status": "planned",
   "entrypoints": [],
   "planned_entrypoints": [
@@ -122,6 +122,54 @@
       "url": null,
       "edition": "Engineering contracts and unresolved edges, 2026-10-06",
       "description": "事件授权帧/来源/去重及原子计划；Pope许可使用成功事实关联的ActiveEffectInstance，不以牌区推断。Pope移除不足2及Scientist已在终点尚待用户裁定，均RequiresRuling，建议不是采纳规则。"
+    },
+    {
+      "id": "PROJECT-WG1",
+      "url": null,
+      "edition": "Named derivations and engineering boundary, 2026-10-12",
+      "description": "WG1-DERIVED-01: DEFCON 2 DeclineBoth counts as used and removes by FAQ used condition plus section 5.2, not a dedicated disposal answer. Nonzero Wargames winner follows accepted signed-VP comparison. Zero GiveSixAndEnd is now separately governed by PROJECT-WG1-USER-20261013; other source/cleanup boundaries remain. Source/receipt/atomic cleanup are planned contracts."
+    },
+    {
+      "id": "PROJECT-WG1-USER-20261013",
+      "url": null,
+      "edition": "Human-confirmed project interpretation, 2026-10-13",
+      "description": "GiveSixAndEnd向对手完整转移6VP并结束后，恰零判Draw；不是官方专门裁定。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
+    },
+    {
+      "id": "PROJECT-LI1",
+      "url": null,
+      "edition": "LI1-D01–D04 / LI1-E01, 2026-10-12",
+      "description": "4或6替代总量、Marine完整计划、Pershing零选择正影响规范化、首VP批次终局与来源/重放工程解释；不是新增官方FAQ。未答重复与未知干预仍RequiresRuling。 Marine短缺部分现由PROJECT-LI1-USER-20261013取代；原重复/未知来源/取消与生产边界仍保留。"
+    },
+    {
+      "id": "PROJECT-LI1-USER-20261013",
+      "url": null,
+      "edition": "Human-confirmed project interpretation, 2026-10-13",
+      "description": "先清除黎巴嫩US影响；再移除min(2,中东剩余US影响总量)，不足全移，事件完成。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
+    },
+    {
+      "id": "PROJECT-MI3",
+      "url": null,
+      "edition": "Engineering contracts and unresolved shortages, 2026-10-12",
+      "description": "完整选择/移除计划原子提交仍为工程边界；原Puppet/VOA短缺未决条款于2026-10-13被专属用户确认来源取代。其它牌政策未变。"
+    },
+    {
+      "id": "PROJECT-MI3-USER-20261013",
+      "url": null,
+      "edition": "Human-confirmed project interpretation, 2026-10-13",
+      "description": "Puppet可Decline；Accept时向min(3,合法空白国数)个各加1，零候选无变化完成。VOA必须移除min(4,逐国min(2,可移除USSR影响)之和)，不足全移。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
+    },
+    {
+      "id": "PROJECT-CE1",
+      "url": null,
+      "edition": "Bounded design and source gap, 2026-10-12",
+      "description": "原CE-OPEN-01保守军事>5停止条款已由2026-10-13用户确认的专属比较投影取代；零奖分标签、抽样顺序、完整骰/VP收据先提交再等DEFCON仍为工程约定。"
+    },
+    {
+      "id": "PROJECT-CE1-USER-20261013",
+      "url": null,
+      "edition": "Human-confirmed project interpretation, 2026-10-13",
+      "description": "保留累计MilOps原值；仅该牌比较双方轨道位置时min(5,累计)，7与5平手。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
     }
   ],
   "tests": [
@@ -273,7 +321,7 @@
   "verification": {
     "implementation_tested": false,
     "schema_validation_report": "Docs/Worklogs/2026-09-27-map-card-contracts.md",
-    "latest_design_report": "Docs/Design/late-restrictions-batch1.validation.json"
+    "latest_design_report": "Docs/Design/confirmed-rulings-20261013.validation.json"
   },
   "open_items": [
     "逐卡效果参数/交互核实；初始布置数据已建立",

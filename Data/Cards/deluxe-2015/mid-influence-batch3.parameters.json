@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "dataset_id": "effects.deluxe2015.mid_influence_batch3",
-  "content_version": "0.1.0",
+  "content_version": "0.2.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "中期影响力第三批：跨地区四国/三国固定加点、双方零影响可选布置、非欧洲限额移除；短缺边界停止，C#待实现。",
+  "description": "中期影响力第三批：跨地区/固定加点、双方零影响可选布置、非欧洲限额移除；Puppet/VOA短缺按2026-10-13用户确认政策，C#待实现。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -22,7 +22,13 @@
       "id": "PROJECT-MI3",
       "url": null,
       "edition": "Engineering contracts and unresolved shortages, 2026-10-12",
-      "description": "完整选择/移除计划原子提交；Puppet may允许拒绝全部但未授权任选少于3国；Puppet不足3合法国与VOA不足4可移除量RequiresRuling，未借用其他牌的用户短缺解释。"
+      "description": "完整选择/移除计划原子提交仍为工程边界；原Puppet/VOA短缺未决条款于2026-10-13被专属用户确认来源取代。其它牌政策未变。"
+    },
+    {
+      "id": "PROJECT-MI3-USER-20261013",
+      "url": null,
+      "edition": "Human-confirmed project interpretation, 2026-10-13",
+      "description": "Puppet可Decline；Accept时向min(3,合法空白国数)个各加1，零候选无变化完成。VOA必须移除min(4,逐国min(2,可移除USSR影响)之和)，不足全移。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
     }
   ],
   "parameters": {
@@ -55,7 +61,7 @@
         },
         {
           "source_id": "PROJECT-MI3",
-          "locator": "完整选择/移除计划原子提交；Puppet may允许拒绝全部但未授权任选少于3国；Puppet不足3合法国与VOA不足4可移除量RequiresRuling，未借用其他牌的用户短缺解释。",
+          "locator": "Atomic complete plan remains engineering; Puppet/VOA shortage is separately governed by PROJECT-MI3-USER-20261013.",
           "verification": "Verified"
         }
       ]
@@ -87,7 +93,7 @@
         },
         {
           "source_id": "PROJECT-MI3",
-          "locator": "完整选择/移除计划原子提交；Puppet may允许拒绝全部但未授权任选少于3国；Puppet不足3合法国与VOA不足4可移除量RequiresRuling，未借用其他牌的用户短缺解释。",
+          "locator": "Atomic complete plan remains engineering; Puppet/VOA shortage is separately governed by PROJECT-MI3-USER-20261013.",
           "verification": "Verified"
         }
       ]
@@ -95,7 +101,7 @@
     "puppet_governments": {
       "card_id": "card.puppet_governments",
       "effect_id": "effect.puppet_governments",
-      "description": "可拒绝整个加点，或选三个双方均零影响的不同国家各US1；不足三国的加点分支待裁定。",
+      "description": "可Decline；Accept必须选min(3,双方均零影响合法国数)个不同国家各US1；零候选完成。",
       "template": "OptionalAddToEmptyCountries",
       "beneficiary": "US",
       "decision_owner": "US",
@@ -104,8 +110,8 @@
       "target_filter": "BothSidesZeroInfluence",
       "selection_time": "EventResolutionSnapshot",
       "decline_allowed": true,
-      "partial_selection": "InvalidSelection",
-      "insufficient_candidates": "RequiresRuling",
+      "partial_selection": "BelowRequiredMinimumInvalidSelection",
+      "insufficient_candidates": "UseMinimumOfTargetCountAndLegalCandidates",
       "selection_commit": "AtomicCompleteSelection",
       "source_refs": [
         {
@@ -120,7 +126,12 @@
         },
         {
           "source_id": "PROJECT-MI3",
-          "locator": "完整选择/移除计划原子提交；Puppet may允许拒绝全部但未授权任选少于3国；Puppet不足3合法国与VOA不足4可移除量RequiresRuling，未借用其他牌的用户短缺解释。",
+          "locator": "Atomic complete plan remains engineering; Puppet/VOA shortage is separately governed by PROJECT-MI3-USER-20261013.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-MI3-USER-20261013",
+          "locator": "Puppet可Decline；Accept时向min(3,合法空白国数)个各加1，零候选无变化完成。VOA必须移除min(4,逐国min(2,可移除USSR影响)之和)，不足全移。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。",
           "verification": "Verified"
         }
       ]
@@ -128,7 +139,7 @@
     "the_voice_of_america": {
       "card_id": "card.the_voice_of_america",
       "effect_id": "effect.the_voice_of_america",
-      "description": "非欧洲国家移除USSR总4，每国最多2，实际不足4可移除量待裁定。",
+      "description": "非欧洲移除min(4,逐国min(2,现有USSR影响)之和)，每国最多2；不足移除全部可完成额度。",
       "template": "RemoveInfluenceBudgetOutsideRegion",
       "beneficiary": "US",
       "decision_owner": "US",
@@ -137,7 +148,7 @@
       "total_amount": 4,
       "max_per_country": 2,
       "requires_existing_influence": true,
-      "insufficient_removable_amount": "RequiresRuling",
+      "insufficient_removable_amount": "RemoveMinimumOfTotalAndCappedCapacity",
       "allocation_commit": "AtomicCompleteAllocation",
       "source_refs": [
         {
@@ -152,7 +163,12 @@
         },
         {
           "source_id": "PROJECT-MI3",
-          "locator": "完整选择/移除计划原子提交；Puppet may允许拒绝全部但未授权任选少于3国；Puppet不足3合法国与VOA不足4可移除量RequiresRuling，未借用其他牌的用户短缺解释。",
+          "locator": "Atomic complete plan remains engineering; Puppet/VOA shortage is separately governed by PROJECT-MI3-USER-20261013.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-MI3-USER-20261013",
+          "locator": "Puppet可Decline；Accept时向min(3,合法空白国数)个各加1，零候选无变化完成。VOA必须移除min(4,逐国min(2,可移除USSR影响)之和)，不足全移。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。",
           "verification": "Verified"
         }
       ]

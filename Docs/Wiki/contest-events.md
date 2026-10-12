@@ -1,6 +1,7 @@
 # 军备竞赛与峰会
 
-description：查询军事领先比较、六主区实际控制加成、不可变竞赛结果、双骰/VP耐久收据和胜者DEFCON继续；军事累计超过已核实子集时停止。
+本次用户裁定的当前整合验证入口：[2026-10-13报告](../Design/confirmed-rulings-20261013.validation.json)。原批次报告保留为当时版本的历史记录，不代表修订后的最新验证。
+description：查询军事领先比较、六主区实际控制加成、不可变竞赛结果、双骰/VP耐久收据和胜者DEFCON继续；Arms比较轨道位置时采用用户确认上限投影，保留原军事累计。
 
 状态2026-10-12：两牌参数契约已Bound，运行处理器均planned；没有C#/Unity实现。[数据描述](../../Data/Descriptors/contest-events.data.json) → [参数](../../Data/Cards/deluxe-2015/contest-events.parameters.json)、[Schema](../Contracts/contest-events.schema.json)、[案例](../Design/contest-events.cases.json)。
 
@@ -10,7 +11,9 @@ description：查询军事领先比较、六主区实际控制加成、不可变
 
 #39为中立3OPS中期非星号。当前军事轨道严格领先对手时，根PhasingPlayer获1VP；同时满足当前DEFCON对应军事义务则改为3VP，不能相加为4。相等或落后时双方均不获分；本批采用`ResolvedNoChange`表达完成比较后的零奖分，这是工程结果标签。军事、DEFCON和随机状态均不变；印刷OPS不能作军事信用或奖分。当前DEFCON取事件执行快照，不取未来回合末值。
 
-**CE-OPEN-01保留：任一方累计超过5时整个事件返回RequiresRuling。** 现有军事服务保存非负实际所得总量，不改变`StoreNonnegativeEarnedTotalWithoutInventedCap`。5只是本批保守支持边界，不是已采纳的军事封顶。旧GMT设计师示例曾把图表5称为最大，但包含旧版细节且承认示例错误；2015 §8.2未明确cap，本批没有找到直接Deluxe裁定。即使7对4或5对7在两种解释下奖励相同，也仍停止，不以假设投影扩大子集。用户尚未确认；以后若采纳封顶，应另加可追溯比较投影，不能改原累计账本。
+**CE-OPEN-01已由用户在2026-10-13明确确认关闭**，来源为 `PROJECT-CE1-USER-20261013`。仅Arms Race计算双方比较位置 `min(comparison_track_maximum, military_earned)`；当前用户确认的参数上限为5，因此7对5、9对8都平手，7对4仍领先。奖分仍只给根PhasingPlayer，满足当前DEFCON军事义务时仍以3替代1。
+
+共享军事服务继续 `StoreNonnegativeEarnedTotalWithoutInventedCap`，输入、累计账本、回合末军事考核和其它卡牌都不因此被截断。上限只存于Arms参数，脚本读取参数；现有军事数据没有同语义的共享轨道最大值，不拿DEFCON最大值或别牌军事奖励5凑作引用。未来真正新增多个同语义消费者时再提取共享定义。旧GMT示例仅保留研究依据，用户确认不是官方新版封顶条款。
 
 卡文明确受益方为PhasingPlayer，不照抄中立事件通用EffectController政策。角色分离夹具只验证内部映射，不授权Grain Sales、Missile Envy或其他尚未核实的来源。头条/子帧仍由既有编排提供可信角色及法律来源；缺少明确授权先停。
 
@@ -47,3 +50,5 @@ Schema含`$defs/arms_race`、`summit`参数，及`initial_input`、`contest_outc
 案例分静态参数负例、完整输入/收据形状负例、手写期望的有限算术，以及另列的planned runtime。地图案例包括实际全部欧洲战场且无非战场的Control、总国数/战场数平手、非战场条件、两方混合地区、双方影响力临界、台湾/穿梭，以及双方六区最大修正。子agent独立手算地图预期，没有调用参考resolver。临时离线模型检查初始/后续纯投影与摘要一致性；没有游戏随机源、运行事务、存档、客户端视图或C#/Unity测试。
 
 本批只增加两事件的数据与设计；军事存储、共有DEFCON/胜负阈值、正式地图和骰定义不重复修改。接缝见[风险与胜负](risk-victory.md)、[地区计分](region-scoring.md)、[动态计分](scoring-effects-batch1.md)及[陷阱标准骰](trap-events.md)。
+
+2026-10-13修订验证：117项＝原107＋新增10（30数据形状、25输入形状、62有限参考）；4个旧overflow期望调整，其余期望保留，12运行验收未运行。新例覆盖7/5平手、双方上限投影、原累计不变与3VP即时终局；Summit规则及既有收据行为不变。

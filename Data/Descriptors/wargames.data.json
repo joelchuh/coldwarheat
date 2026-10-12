@@ -3,9 +3,9 @@
   "id": "data.wargames",
   "kind": "data",
   "status": "ready",
-  "description": "Wargames #100 parameter and bounded transaction design; production handlers, persistence and authentication remain planned.",
+  "description": "Wargames三种选择、完整对手六VP转移与无最终计分终局；恰零结束按用户明确确认判Draw，运行未实现。",
   "dataset_id": "effects.deluxe2015.wargames",
-  "content_version": "0.1.0",
+  "content_version": "0.2.0",
   "schema_path": "Docs/Contracts/wargames.schema.json",
   "documentation": "Docs/Wiki/wargames.md",
   "entrypoints": [
@@ -28,13 +28,12 @@
   ],
   "preconditions": [
     "Data ready; game handler and source/VP/terminal providers planned",
-    "DEFCON 2 for event occurrence; zero-result ending requires a ruling; only the two normal providers are supported"
+    "DEFCON 2 for event occurrence; zero-result GiveSixAndEnd resolves Draw under the named human project policy; only the two normal providers are supported"
   ],
   "side_effects": [],
   "stop_conditions": [
     "Unknown relevant provider or accepted-root obligation",
-    "Stale, unauthorized, malformed or conflicting command; corrupt receipt",
-    "Unresolved zero-result GiveSixAndEnd before transfer"
+    "Stale, unauthorized, malformed or conflicting command; corrupt receipt"
   ],
   "rule_sources": [
     {
@@ -59,7 +58,13 @@
       "id": "PROJECT-WG1",
       "url": null,
       "edition": "Named derivations and engineering boundary, 2026-10-12",
-      "description": "WG1-DERIVED-01: DEFCON 2 DeclineBoth counts as used and removes by FAQ used condition plus section 5.2, not a dedicated disposal answer. Nonzero Wargames winner follows accepted signed-VP comparison. Zero GiveSixAndEnd remains RequiresRuling pending explicit project policy. Source/receipt/atomic cleanup are planned contracts."
+      "description": "WG1-DERIVED-01: DEFCON 2 DeclineBoth counts as used and removes by FAQ used condition plus section 5.2, not a dedicated disposal answer. Nonzero Wargames winner follows accepted signed-VP comparison. Zero GiveSixAndEnd is now separately governed by PROJECT-WG1-USER-20261013; other source/cleanup boundaries remain. Source/receipt/atomic cleanup are planned contracts."
+    },
+    {
+      "id": "PROJECT-WG1-USER-20261013",
+      "url": null,
+      "edition": "Human-confirmed project interpretation, 2026-10-13",
+      "description": "GiveSixAndEnd向对手完整转移6VP并结束后，恰零判Draw；不是官方专门裁定。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
     }
   ],
   "tests": [
@@ -70,10 +75,12 @@
   ],
   "verification": {
     "runtime_consumers_tested": false,
-    "report": "Docs/Design/wargames.validation.json"
+    "report": "Docs/Design/wargames.validation.json",
+    "latest_design_report": "Docs/Design/confirmed-rulings-20261013.validation.json"
   },
   "retrieval_hints": [
     "Read source_policy and preflight_policy before parameters/wargames; receipt_policy anchors historical replay",
-    "Source printed facts, VP direction/threshold and legal DEFCON range remain shared references"
+    "Source printed facts, VP direction/threshold and legal DEFCON range remain shared references",
+    "PROJECT-WG1-USER-20261013: only the named human-confirmed amendment; prior unconfirmed boundaries remain."
   ]
 }

@@ -5,7 +5,8 @@
     "MI3地区并集/排除查询、双方零影响筛选、完整选国/移除额度与可选拒绝"
   ],
   "outputs": [
-    "只读参数或拟定的影响力增量计划/待选择"
+    "只读参数或拟定的影响力增量计划/待选择",
+    "用户确认：Puppet Accept选全部可行数量直到目标数；VOA按逐国上限移除最大可完成额度；Marine在清黎巴嫩后按剩余容量移除"
   ],
   "dependencies": [],
   "preconditions": [
@@ -18,7 +19,7 @@
     "越界/重复目标、错误拥有者或过期决策",
     "未实现处理器不得按空效果放行",
     "其他跨卡干预仍须裁定；铁娘子活动状态未知时不可视为未生效",
-    "Puppet少于3合法国的加点分支、VOA可移除总量不足4：RequiresRuling"
+    "Puppet与VOA短缺按用户确认的最大可完成量处理；其他未知模板或干预继续停止"
   ],
   "rule_sources": [
     {
@@ -91,13 +92,25 @@
       "id": "PROJECT-MI3",
       "url": null,
       "edition": "Engineering contracts and unresolved shortages, 2026-10-12",
-      "description": "完整选择/移除计划原子提交；Puppet may允许拒绝全部但未授权任选少于3国；Puppet不足3合法国与VOA不足4可移除量RequiresRuling，未借用其他牌的用户短缺解释。"
+      "description": "完整选择/移除计划原子提交仍为工程边界；原Puppet/VOA短缺未决条款于2026-10-13被专属用户确认来源取代。其它牌政策未变。"
     },
     {
       "id": "PROJECT-LI1",
       "url": null,
       "edition": "LI1-D01–D04 / LI1-E01, 2026-10-12",
-      "description": "4或6替代总量、Marine完整计划、Pershing零选择正影响规范化、首VP批次终局与来源/重放工程解释；不是新增官方FAQ。短缺和重复未答仍RequiresRuling。"
+      "description": "4或6替代总量、Marine完整计划、Pershing零选择正影响规范化、首VP批次终局与来源/重放工程解释；不是新增官方FAQ。未答重复与未知干预仍RequiresRuling。 Marine短缺部分现由PROJECT-LI1-USER-20261013取代；原重复/未知来源/取消与生产边界仍保留。"
+    },
+    {
+      "id": "PROJECT-LI1-USER-20261013",
+      "url": null,
+      "edition": "Human-confirmed project interpretation, 2026-10-13",
+      "description": "先清除黎巴嫩US影响；再移除min(2,中东剩余US影响总量)，不足全移，事件完成。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
+    },
+    {
+      "id": "PROJECT-MI3-USER-20261013",
+      "url": null,
+      "edition": "Human-confirmed project interpretation, 2026-10-13",
+      "description": "Puppet可Decline；Accept时向min(3,合法空白国数)个各加1，零候选无变化完成。VOA必须移除min(4,逐国min(2,可移除USSR影响)之和)，不足全移。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
     }
   ],
   "tests": [
@@ -150,7 +163,7 @@
   "id": "module.influence-events",
   "kind": "module",
   "status": "planned",
-  "description": "影响力增减/追平/控制筛选与迁移、固定与可选多国选择；完整计划及短缺停止，卡牌参数逐批绑定，C#待实现。 LI1欧洲4或6完整分配、清空后额外精确移除与至多3国不同目标。",
+  "description": "影响力增减/追平/控制筛选与迁移、固定与可选多国选择；完整计划及短缺停止，卡牌参数逐批绑定，C#待实现。 LI1欧洲4或6完整分配、清空后额外精确移除与至多3国不同目标。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。",
   "entrypoints": [],
   "planned_entrypoints": [
     {
@@ -211,6 +224,6 @@
   "verification": {
     "implementation_tested": false,
     "report": "Docs/Design/alliance-prerequisites.validation.json",
-    "latest_design_report": "Docs/Design/late-influence-batch1.validation.json"
+    "latest_design_report": "Docs/Design/confirmed-rulings-20261013.validation.json"
   }
 }

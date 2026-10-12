@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "dataset_id": "effects.deluxe2015.contest_events",
-  "content_version": "0.1.0",
+  "content_version": "0.2.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "verified-subset",
-  "description": "军备竞赛与峰会：分离根责任/事件控制/胜者选择，实际地图双骰比较，耐久结果收据与可选DEFCON继续；军事>5待裁定，运行待实现。",
+  "description": "军备竞赛与峰会：Arms仅比较min(用户确认轨道上限,累计军事)，保存原累计；峰会双骰/VP收据及DEFCON继续不变，运行待实现。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -34,7 +34,13 @@
       "id": "PROJECT-CE1",
       "url": null,
       "edition": "Bounded design and source gap, 2026-10-12",
-      "description": "双方任一累计>5即CE-OPEN-01 RequiresRuling，5是保守支持边界而非采用封顶；原累计不变。Arms零奖分标ResolvedNoChange、US后USSR抽样、完整骰/VP收据先提交再等DEFCON均为工程约定。"
+      "description": "原CE-OPEN-01保守军事>5停止条款已由2026-10-13用户确认的专属比较投影取代；零奖分标签、抽样顺序、完整骰/VP收据先提交再等DEFCON仍为工程约定。"
+    },
+    {
+      "id": "PROJECT-CE1-USER-20261013",
+      "url": null,
+      "edition": "Human-confirmed project interpretation, 2026-10-13",
+      "description": "保留累计MilOps原值；仅该牌比较双方轨道位置时min(5,累计)，7与5平手。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
     }
   ],
   "shared_refs": {
@@ -112,13 +118,12 @@
     "arms_race": {
       "card_id": "card.arms_race",
       "effect_id": "effect.arms_race",
-      "description": "只向根PhasingPlayer奖分；双方军事累计0..5子集严格比较，任一>5先停，不改原军事累计。",
+      "description": "只向根PhasingPlayer奖分；按min(comparison_track_maximum,累计)比较轨道位置，7与5平手；原累计不改。",
       "template": "MilitaryTrackLeadContest",
       "beneficiary": "RootPhasingPlayer",
-      "metric": "MilitaryTrackComparisonVerifiedSubset",
+      "metric": "CappedTrackPositionFromUnchangedEarnedTotal",
       "comparison": "StrictlyGreaterThanOpponent",
-      "verified_earned_upper_boundary": 5,
-      "overflow_policy": "EitherEarnedAboveVerifiedBoundaryRequiresRuling",
+      "overflow_policy": "CompareProjectedTrackPositionPreserveEarnedTotal",
       "requirement": "CurrentDefconAtEventResolution",
       "vp_when_leading_below_requirement": 1,
       "vp_when_leading_and_requirement_met": 3,
@@ -144,10 +149,16 @@
         },
         {
           "source_id": "PROJECT-CE1",
-          "locator": "CE-OPEN-01 either earned total >5 pauses; uncapped storage retained. No-lead ResolvedNoChange is an engineering label, not a dedicated official ruling.",
+          "locator": "Unchanged raw military storage and no-award label remain engineering; capped comparison separately governed by PROJECT-CE1-USER-20261013.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-CE1-USER-20261013",
+          "locator": "保留累计MilOps原值；仅该牌比较双方轨道位置时min(5,累计)，7与5平手。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。",
           "verification": "Verified"
         }
-      ]
+      ],
+      "comparison_track_maximum": 5
     },
     "summit": {
       "card_id": "card.summit",

@@ -1,5 +1,6 @@
 # Wargames：送分与可选立即结束
 
+本次用户裁定的当前整合验证入口：[2026-10-13报告](../Design/confirmed-rulings-20261013.validation.json)。原批次报告保留为当时版本的历史记录，不代表修订后的最新验证。
 description：查 #100 的三个独立选项、DEFCON 条件、完整 VP 批次、来源与原请求收据，以及跳过最终计分的终局边界。
 
 状态 2026-10-13：单牌数据 verified-subset；C#/Unity 处理器、鉴权、持久化、事务和共享运行服务均 planned。整合后84 Bound/18 Unresolved，102处理器均planned；[本批报告](../Design/wargames.validation.json)实际记录182新＋3062旧＝3244离线检查。按[数据描述](../../Data/Descriptors/wargames.data.json)→[参数](../../Data/Cards/deluxe-2015/wargames.parameters.json)→[契约](../Contracts/wargames.schema.json)→[案例](../Design/wargames.cases.json)检索。
@@ -18,13 +19,17 @@ description：查 #100 的三个独立选项、DEFCON 条件、完整 VP 批次�
 
 DEFCON 2 的 DeclineBoth 是成功但零转移，按星号移出。这被命名为 WG1-DERIVED-01：从 FAQ 的 used 条件与 R2015 §5.2 推导；不是官方对这个精确去向的额外专门答复。
 
-## VP、终局和未定零分
+## VP、终局和用户确认的零分平局
 
 先验证完整事件 VP 提供者、所有相关奖分已知，以及终局清理提供者。当前已核实事件只有卡文六分；未知相关奖分不能跳过并按六分先提交。方向、自动胜利阈值和合法 DEFCON 区间读取共享 victory/defcon；不会在本牌参数再写一套共享常量。
 
 GiveSixAndContinue 仍在完整事件批次关闭后检查自动胜利，例如对手原有十四分，收到六分达到共享阈值仍立即结束。GiveSixAndEnd 同样先检查自动胜利，再按已接受的净 VP 决定胜者。非零正负映射是一般 VP 胜负语义的具名推导，不是假称专门 Wargames FAQ。
 
-结束后恰零目前预检 RequiresRuling，送分、移牌、根槽完成都不提交。官方英文卡与 FAQ 没有专门零分条款；R2015 §10.3.2 零分平局在最终计分后段，而本牌跳过该阶段。采用 Draw 需要显式项目政策，不能移植 Playdek/Wikipedia 或假称官方 FAQ。这个开放点仅影响 GiveSixAndEnd 恰零；给六分后 Continue 恰零仍继续，DeclineBoth 在零分也不主动结束。
+2026-10-13用户明确确认 `PROJECT-WG1-USER-20261013`：GiveSixAndEnd先向对手完整转移6VP，结束时净分恰等于共享 `final_tie_score` 就判Draw。例如US自己原6分送6后归零，或USSR自己原6分送6后归零，均平局。没有跳过转移、退回原VP或只送部分分数。
+
+本有限合同使用 `outcome/status=Finished`、`winner=Draw`、`finish_reason=Wargames`；snapshot、结果和完整历史收据接受这个明确值。Draw与US/USSR胜利一样是吸收态，牌区与已接受根槽清理完成，禁止继续行动；它不是Running+winner=null。GiveSixAndContinue恰零仍继续，DeclineBoth在零分也不主动结束。双方的头条/行动轮同样适用，根槽种类不被改写。
+
+这项Verified来源仅表示人类在本项目中明确接受，不是官方专门裁定。官方卡文/FAQ无专门零分条款、R2015最终计分平局条款的适用边界仍如来源描述，不改写为“官方已确认”。
 
 Wargames 结束只使用已经接受的事件 VP 结果，不调用 FinalScoring，不加中国牌最终一分，不按欧洲控制做地区计分，不做回合末军事扣分或扣留计分牌审核。案例带着这些不利旁证，验证它们不改变本事件结论且保持原值。
 
@@ -41,3 +46,5 @@ Wargames 结束只使用已经接受的事件 VP 结果，不调用 FinalScoring
 ## 验证范围
 
 临时 new-only 检查器只读取五文件与冻结基础参数，分别报告 data、contract、reference。Schema 形状测试和跨字段领域校验明确分开；不把 JSON Schema 当作全部领域证明。有限参考只演示纯值转换、完整历史校验与当前状态保持，不调用生产模块，不证明并发、存档、崩溃恢复或真正原子终局。十个运行时集成案例保留 planned-runtime；修后182独立检查及128额外探针通过，额外探针单列不计入3244。
+
+2026-10-13修订验证：196项＝原182＋新增14（21数据形状、75契约、100有限参考），两条旧zero-end-unresolved期望按明确授权改为Finished/Draw；旧ID保留追溯。新增双方头条/行动轮Draw、Draw收据返回原完整结果、后来Finished保持、改赢家重新哈希仍拒绝。10运行验收未运行；未知父来源、额外根清理义务与其他未答边界继续RequiresRuling。原报告中的3244及84绑定仅是0.1.0历史记录，不作为本次计数。

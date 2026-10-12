@@ -23,7 +23,7 @@
       "const": "effects.deluxe2015.contest_events"
     },
     "content_version": {
-      "const": "0.1.0"
+      "const": "0.2.0"
     },
     "ruleset_id": {
       "const": "ruleset.deluxe2015"
@@ -37,8 +37,8 @@
     },
     "source_catalog": {
       "type": "array",
-      "minItems": 5,
-      "maxItems": 5,
+      "minItems": 6,
+      "maxItems": 6,
       "prefixItems": [
         {
           "type": "object",
@@ -162,6 +162,34 @@
             "description": {
               "type": "string",
               "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "const": "PROJECT-CE1-USER-20261013"
+            },
+            "url": {
+              "type": "null",
+              "const": null
+            },
+            "edition": {
+              "type": "string",
+              "const": "Human-confirmed project interpretation, 2026-10-13"
+            },
+            "description": {
+              "type": "string",
+              "const": "保留累计MilOps原值；仅该牌比较双方轨道位置时min(5,累计)，7与5平手。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
             }
           }
         }
@@ -476,7 +504,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "urn:coldwarheat:contract:contest-events:1",
   "title": "军备竞赛与峰会：分离根责任/事件控制/胜者选择，实际地图双骰比较，耐久结果收据与可选DEFCON继续；军事>5待裁定，运行待实现。",
-  "description": "严格静态参数契约及未来权威输入/结果/收据/决定形状；关系不变量由同版本具名校验器完成，Schema不是运行实现。",
+  "description": "军备竞赛与峰会：Arms仅比较min(用户确认轨道上限,累计军事)，保存原累计；峰会双骰/VP收据及DEFCON继续不变，运行待实现。",
   "$defs": {
     "initial_input": {
       "type": "object",
@@ -1038,7 +1066,6 @@
         "beneficiary",
         "metric",
         "comparison",
-        "verified_earned_upper_boundary",
         "overflow_policy",
         "requirement",
         "vp_when_leading_below_requirement",
@@ -1047,7 +1074,8 @@
         "no_lead_outcome",
         "military_delta",
         "random_policy",
-        "source_refs"
+        "source_refs",
+        "comparison_track_maximum"
       ],
       "properties": {
         "card_id": {
@@ -1067,16 +1095,13 @@
           "const": "RootPhasingPlayer"
         },
         "metric": {
-          "const": "MilitaryTrackComparisonVerifiedSubset"
+          "const": "CappedTrackPositionFromUnchangedEarnedTotal"
         },
         "comparison": {
           "const": "StrictlyGreaterThanOpponent"
         },
-        "verified_earned_upper_boundary": {
-          "const": 5
-        },
         "overflow_policy": {
-          "const": "EitherEarnedAboveVerifiedBoundaryRequiresRuling"
+          "const": "CompareProjectedTrackPositionPreserveEarnedTotal"
         },
         "requirement": {
           "const": "CurrentDefconAtEventResolution"
@@ -1101,8 +1126,8 @@
         },
         "source_refs": {
           "type": "array",
-          "minItems": 4,
-          "maxItems": 4,
+          "minItems": 5,
+          "maxItems": 5,
           "prefixItems": [
             {
               "type": "object",
@@ -1177,15 +1202,42 @@
                   "const": "PROJECT-CE1"
                 },
                 "locator": {
-                  "const": "CE-OPEN-01 either earned total >5 pauses; uncapped storage retained. No-lead ResolvedNoChange is an engineering label, not a dedicated official ruling."
+                  "const": "Unchanged raw military storage and no-award label remain engineering; capped comparison separately governed by PROJECT-CE1-USER-20261013."
                 },
                 "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "PROJECT-CE1-USER-20261013"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "保留累计MilOps原值；仅该牌比较双方轨道位置时min(5,累计)，7与5平手。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
+                },
+                "verification": {
+                  "type": "string",
                   "const": "Verified"
                 }
               }
             }
           ],
           "items": false
+        },
+        "comparison_track_maximum": {
+          "type": "integer",
+          "const": 5
         }
       }
     },

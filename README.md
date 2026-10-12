@@ -91,17 +91,17 @@
 
 此前：[一小步事件太空推进](Docs/Wiki/one-small-step.md)，71 Bound /31 Unresolved，102处理器planned。
 
-此前：[军备竞赛与峰会](Docs/Wiki/contest-events.md)，73 Bound /29 Unresolved，102处理器planned；军事>5边界待裁定。
+此前：[军备竞赛与峰会](Docs/Wiki/contest-events.md)，73 Bound /29 Unresolved，102处理器planned；军事比较封顶已获用户确认。
 
 此前：[CIA与Lone Gunman一次手牌揭示](Docs/Wiki/reveal-ops-batch1.md)，75 Bound /27 Unresolved，102处理器planned；特殊来源影响力起点待核实。
 
-此前：[晚期影响力第一批](Docs/Wiki/late-influence-batch1.md)，79 Bound /23 Unresolved，102处理器planned；海军营房额外移除短缺待裁定。
+此前：[晚期影响力第一批](Docs/Wiki/late-influence-batch1.md)，79 Bound /23 Unresolved，102处理器planned；海军营房短缺按可完成量移除已确认。
 
 此前：[奥运会](Docs/Wiki/olympic-games.md)，80 Bound /22 Unresolved，102处理器planned；平局强制重掷与抵制核战检查具名。
 
 此前：[中国牌事件转交](Docs/Wiki/china-transfer-batch1.md)，83 Bound /19 Unresolved，102处理器planned；持有者条件、转交面向、奖励与源牌收尾具名。
 
-此前：[战争游戏](Docs/Wiki/wargames.md)，84 Bound /18 Unresolved，102处理器planned；三选择明确，给分后恰零结束仍待用户裁定。
+此前：[战争游戏](Docs/Wiki/wargames.md)，84 Bound /18 Unresolved，102处理器planned；三选择明确，给分后恰零结束按用户确认判平局。
 
 此前：[OPEC与北海石油](Docs/Wiki/opec-north-sea-batch1.md)，86 Bound /16 Unresolved，102处理器planned；永久阻止与回合额度分开，太空名额不叠加到9。
 
@@ -114,3 +114,5 @@
 此前：[延迟VP事件](Docs/Wiki/deferred-vp-events-batch1.md)，95 Bound /7 Unresolved，102处理器planned；即时前缀与后续检查点分开，未定来源不伪授权。
 
 最新：[伊朗门与切尔诺贝利](Docs/Wiki/late-restrictions-batch1.md)，97 Bound /5 Unresolved，102处理器planned。规则图与活动状态驱动，画风保持独立。
+
+本轮裁定更新：[五牌项目解释](Docs/Wiki/confirmed-rulings-20261013.md)已获用户确认；参数与案例同步，卡牌绑定总数不变。

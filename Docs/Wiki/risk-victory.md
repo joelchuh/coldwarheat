@@ -152,8 +152,8 @@ TurnFlow 调用结果服务，不解析原文或根据文件顺序挑规则。�
 
 [DEFCON事件与政变干预](defcon-events-batch1.md)补齐危机实际Actor责任、任意边界解除、核潜艇/SALT政策与ABM视同OPS；全部仍planned。
 
-[军备竞赛与峰会](contest-events.md)：军事原累计保留；本批只支持双方0..5比较，超过边界RequiresRuling。峰会先完整VP批次检查胜利，未终局才开放胜者DEFCON选择；核战责任仍属根PhasingPlayer。
+[军备竞赛与峰会](contest-events.md)：军事原累计保留；按2026-10-13用户确认解释，仅本牌比较时取min(5,原累计)，例如7与5视为平手。峰会先完整VP批次检查胜利，未终局才开放胜者DEFCON选择；核战责任仍属根PhasingPlayer。
 
-[战争游戏的结束候选](wargames.md)：使用给对手6VP后的完整结果，不执行最终计分与回合末审计；恰零结束在明确裁定前预检停止。
+[战争游戏的结束候选](wargames.md)：使用给对手6VP后的完整结果，不执行最终计分与回合末审计；GiveSixAndEnd恰零按2026-10-13用户确认解释判Draw；GiveSixAndContinue恰零仍继续。
 
 [WWBY与U2奖分批次](deferred-vp-events-batch1.md)：WWBY3VP先于美国事件VP，不净额合并；即时核战与延后奖分分开。

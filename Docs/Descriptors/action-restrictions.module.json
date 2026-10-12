@@ -46,13 +46,19 @@
       "id": "PROJECT-LI1",
       "url": null,
       "edition": "LI1-D01–D04 / LI1-E01, 2026-10-12",
-      "description": "4或6替代总量、Marine完整计划、Pershing零选择正影响规范化、首VP批次终局与来源/重放工程解释；不是新增官方FAQ。短缺和重复未答仍RequiresRuling。"
+      "description": "4或6替代总量、Marine完整计划、Pershing零选择正影响规范化、首VP批次终局与来源/重放工程解释；不是新增官方FAQ。未答重复与未知干预仍RequiresRuling。 Marine短缺部分现由PROJECT-LI1-USER-20261013取代；原重复/未知来源/取消与生产边界仍保留。"
     },
     {
       "id": "PROJECT-LR1",
       "url": null,
       "edition": "Named textual derivation and engineering boundaries 2026-10-13",
       "description": "LR1-D01: may designate permits explicit Decline; no region means no restriction instance, while the invoked optional event still completes and follows starred disposition (may + section5.2; not dedicated FAQ). LR1-D02: six primary map regions follow2.1.1; not selectable subregions. Queries return only this provider contribution, not total action legality. Repeated new event resolution remains RequiresRuling."
+    },
+    {
+      "id": "PROJECT-LI1-USER-20261013",
+      "url": null,
+      "edition": "Human-confirmed project interpretation, 2026-10-13",
+      "description": "先清除黎巴嫩US影响；再移除min(2,中东剩余US影响总量)，不足全移，事件完成。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
     }
   ],
   "tests": [
@@ -93,7 +99,7 @@
   "id": "module.action-restrictions",
   "kind": "module",
   "status": "planned",
-  "description": "查询条约保护与前置条件，组合DEFCON和基础目标合法性；动态重查控制权并返回具名阻止原因，尚无C#实现。 Reformer阻止实际USSR Actor在全部欧洲Coup，含免费政变；不阻止US/调整/战争。 Chernobyl按实际USSR Actor与国家主地区给单来源OPS投放门禁；NoRestrictionFromLR1不是整体合法。",
+  "description": "查询条约保护与前置条件，组合DEFCON和基础目标合法性；动态重查控制权并返回具名阻止原因，尚无C#实现。 Reformer阻止实际USSR Actor在全部欧洲Coup，含免费政变；不阻止US/调整/战争。 Chernobyl按实际USSR Actor与国家主地区给单来源OPS投放门禁；NoRestrictionFromLR1不是整体合法。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。",
   "entrypoints": [],
   "data_dependencies": [
     "effects.deluxe2015.treaty_protection",
@@ -111,7 +117,7 @@
   "verification": {
     "implementation_tested": false,
     "report": "Docs/Design/treaty-protection.validation.json",
-    "latest_design_report": "Docs/Design/late-restrictions-batch1.validation.json"
+    "latest_design_report": "Docs/Design/confirmed-rulings-20261013.validation.json"
   },
   "planned_entrypoints": [
     {

@@ -1724,7 +1724,7 @@
         }
       },
       "expected": {
-        "outcome": "RequiresRuling",
+        "outcome": "ResolvedNoChange",
         "vp_after": 0,
         "defcon_after": 3,
         "winner": null,
@@ -1732,7 +1732,7 @@
         "rng_count": 0,
         "bonuses": null,
         "totals": null,
-        "next_step": "Stopped"
+        "next_step": "Complete"
       }
     },
     {
@@ -1749,7 +1749,7 @@
         }
       },
       "expected": {
-        "outcome": "RequiresRuling",
+        "outcome": "ResolvedNoChange",
         "vp_after": 0,
         "defcon_after": 3,
         "winner": null,
@@ -1757,7 +1757,7 @@
         "rng_count": 0,
         "bonuses": null,
         "totals": null,
-        "next_step": "Stopped"
+        "next_step": "Complete"
       }
     },
     {
@@ -1774,15 +1774,15 @@
         }
       },
       "expected": {
-        "outcome": "RequiresRuling",
-        "vp_after": 0,
+        "outcome": "ResolvedChanged",
+        "vp_after": 3,
         "defcon_after": 5,
         "winner": null,
-        "contest_winner": null,
+        "contest_winner": "US",
         "rng_count": 0,
         "bonuses": null,
         "totals": null,
-        "next_step": "Stopped"
+        "next_step": "Complete"
       }
     },
     {
@@ -1799,7 +1799,7 @@
         }
       },
       "expected": {
-        "outcome": "RequiresRuling",
+        "outcome": "ResolvedNoChange",
         "vp_after": 0,
         "defcon_after": 3,
         "winner": null,
@@ -1807,7 +1807,7 @@
         "rng_count": 0,
         "bonuses": null,
         "totals": null,
-        "next_step": "Stopped"
+        "next_step": "Complete"
       }
     },
     {
@@ -4304,6 +4304,257 @@
               "US": "Control",
               "USSR": "Domination"
             }
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "USR-CE-track-US-7-5",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "root_phasing_player": "US"
+        },
+        "state": {
+          "military_earned": {
+            "US": 7,
+            "USSR": 5
+          },
+          "defcon": 5
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "vp_after": 0,
+        "defcon_after": 5,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Complete"
+      }
+    },
+    {
+      "id": "USR-CE-track-USSR-5-7",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "root_phasing_player": "USSR"
+        },
+        "state": {
+          "military_earned": {
+            "US": 5,
+            "USSR": 7
+          },
+          "defcon": 5
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "vp_after": 0,
+        "defcon_after": 5,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Complete"
+      }
+    },
+    {
+      "id": "USR-CE-track-US-7-4",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "root_phasing_player": "US"
+        },
+        "state": {
+          "military_earned": {
+            "US": 7,
+            "USSR": 4
+          },
+          "defcon": 5
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "vp_after": 3,
+        "defcon_after": 5,
+        "winner": null,
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Complete"
+      }
+    },
+    {
+      "id": "USR-CE-track-USSR-4-7",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "root_phasing_player": "USSR"
+        },
+        "state": {
+          "military_earned": {
+            "US": 4,
+            "USSR": 7
+          },
+          "defcon": 5
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "vp_after": -3,
+        "defcon_after": 5,
+        "winner": null,
+        "contest_winner": "USSR",
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Complete"
+      }
+    },
+    {
+      "id": "USR-CE-track-US-9-8",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "root_phasing_player": "US"
+        },
+        "state": {
+          "military_earned": {
+            "US": 9,
+            "USSR": 8
+          },
+          "defcon": 5
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "vp_after": 0,
+        "defcon_after": 5,
+        "winner": null,
+        "contest_winner": null,
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Complete"
+      }
+    },
+    {
+      "id": "USR-SOURCE-contest-events-url",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "source_catalog",
+              5,
+              "url"
+            ],
+            "value": "https://official.invalid/ruling"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "USR-SOURCE-contest-events-verification",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "arms_race",
+              "source_refs",
+              4,
+              "verification"
+            ],
+            "value": "OfficialRuling"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "USR-CE-overflow-vp-terminal-US",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "root_phasing_player": "US"
+        },
+        "state": {
+          "military_earned": {
+            "US": 7,
+            "USSR": 4
+          },
+          "defcon": 5,
+          "signed_vp": 18
+        }
+      },
+      "expected": {
+        "outcome": "Finished",
+        "vp_after": 21,
+        "defcon_after": 5,
+        "winner": "US",
+        "contest_winner": "US",
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Finished"
+      }
+    },
+    {
+      "id": "USR-CE-overflow-vp-terminal-USSR",
+      "validation_layer": "reference",
+      "phase": "Initial",
+      "input_patch": {
+        "context": {
+          "root_phasing_player": "USSR"
+        },
+        "state": {
+          "military_earned": {
+            "US": 4,
+            "USSR": 7
+          },
+          "defcon": 5,
+          "signed_vp": -18
+        }
+      },
+      "expected": {
+        "outcome": "Finished",
+        "vp_after": -21,
+        "defcon_after": 5,
+        "winner": "USSR",
+        "contest_winner": "USSR",
+        "rng_count": 0,
+        "bonuses": null,
+        "totals": null,
+        "next_step": "Finished"
+      }
+    },
+    {
+      "id": "USR-CE-cap-data-unchanged",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "arms_race",
+              "comparison_track_maximum"
+            ],
+            "value": 6
           }
         ]
       },

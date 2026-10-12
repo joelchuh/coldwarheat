@@ -8668,7 +8668,7 @@
       "evidence_patch": {},
       "request_edits": [],
       "expected": {
-        "outcome": "RequiresRuling",
+        "outcome": "InvalidSelection",
         "state_patch": {},
         "country_fixture": {},
         "trace": []
@@ -8706,7 +8706,7 @@
       "evidence_patch": {},
       "request_edits": [],
       "expected": {
-        "outcome": "RequiresRuling",
+        "outcome": "InvalidSelection",
         "state_patch": {},
         "country_fixture": {},
         "trace": []
@@ -12719,6 +12719,325 @@
         ]
       },
       "expected_valid": false
+    },
+    {
+      "id": "USR-LI1-marine-lebanon-5-capacity-0",
+      "validation_layer": "reference",
+      "phase": "Event",
+      "card_key": "marine_barracks_bombing",
+      "state_patch": {
+        "signed_vp": 0
+      },
+      "country_fixture": {
+        "country.lebanon": [
+          5,
+          4
+        ],
+        "country.syria": [
+          0,
+          2
+        ]
+      },
+      "selection": {
+        "selected_total": 0,
+        "allocation": [],
+        "country_ids": []
+      },
+      "context_patch": {},
+      "evidence_patch": {},
+      "request_edits": [],
+      "expected": {
+        "outcome": "Resolved",
+        "state_patch": {
+          "state_version": 5,
+          "card_disposition": "Removed",
+          "successful_event_facts": [
+            "li1:resolution"
+          ]
+        },
+        "country_fixture": {
+          "country.lebanon": [
+            0,
+            4
+          ],
+          "country.syria": [
+            0,
+            2
+          ]
+        },
+        "trace": [
+          "ClearLebanon",
+          "RemoveAdditional",
+          "SuccessfulFactAndStarDisposition"
+        ]
+      }
+    },
+    {
+      "id": "USR-LI1-marine-lebanon-5-capacity-1",
+      "validation_layer": "reference",
+      "phase": "Event",
+      "card_key": "marine_barracks_bombing",
+      "state_patch": {
+        "signed_vp": 0
+      },
+      "country_fixture": {
+        "country.lebanon": [
+          5,
+          4
+        ],
+        "country.syria": [
+          1,
+          2
+        ]
+      },
+      "selection": {
+        "selected_total": 1,
+        "allocation": [
+          {
+            "country_id": "country.syria",
+            "amount": 1
+          }
+        ],
+        "country_ids": []
+      },
+      "context_patch": {},
+      "evidence_patch": {},
+      "request_edits": [],
+      "expected": {
+        "outcome": "Resolved",
+        "state_patch": {
+          "state_version": 5,
+          "card_disposition": "Removed",
+          "successful_event_facts": [
+            "li1:resolution"
+          ]
+        },
+        "country_fixture": {
+          "country.lebanon": [
+            0,
+            4
+          ],
+          "country.syria": [
+            0,
+            2
+          ]
+        },
+        "trace": [
+          "ClearLebanon",
+          "RemoveAdditional",
+          "SuccessfulFactAndStarDisposition"
+        ]
+      }
+    },
+    {
+      "id": "USR-LI1-marine-lebanon-0-capacity-0",
+      "validation_layer": "reference",
+      "phase": "Event",
+      "card_key": "marine_barracks_bombing",
+      "state_patch": {
+        "signed_vp": 0
+      },
+      "country_fixture": {
+        "country.lebanon": [
+          0,
+          4
+        ],
+        "country.syria": [
+          0,
+          2
+        ]
+      },
+      "selection": {
+        "selected_total": 0,
+        "allocation": [],
+        "country_ids": []
+      },
+      "context_patch": {},
+      "evidence_patch": {},
+      "request_edits": [],
+      "expected": {
+        "outcome": "Resolved",
+        "state_patch": {
+          "state_version": 5,
+          "card_disposition": "Removed",
+          "successful_event_facts": [
+            "li1:resolution"
+          ]
+        },
+        "country_fixture": {
+          "country.lebanon": [
+            0,
+            4
+          ],
+          "country.syria": [
+            0,
+            2
+          ]
+        },
+        "trace": [
+          "ClearLebanon",
+          "RemoveAdditional",
+          "SuccessfulFactAndStarDisposition"
+        ]
+      }
+    },
+    {
+      "id": "USR-LI1-marine-lebanon-0-capacity-1",
+      "validation_layer": "reference",
+      "phase": "Event",
+      "card_key": "marine_barracks_bombing",
+      "state_patch": {
+        "signed_vp": 0
+      },
+      "country_fixture": {
+        "country.lebanon": [
+          0,
+          4
+        ],
+        "country.syria": [
+          1,
+          2
+        ]
+      },
+      "selection": {
+        "selected_total": 1,
+        "allocation": [
+          {
+            "country_id": "country.syria",
+            "amount": 1
+          }
+        ],
+        "country_ids": []
+      },
+      "context_patch": {},
+      "evidence_patch": {},
+      "request_edits": [],
+      "expected": {
+        "outcome": "Resolved",
+        "state_patch": {
+          "state_version": 5,
+          "card_disposition": "Removed",
+          "successful_event_facts": [
+            "li1:resolution"
+          ]
+        },
+        "country_fixture": {
+          "country.lebanon": [
+            0,
+            4
+          ],
+          "country.syria": [
+            0,
+            2
+          ]
+        },
+        "trace": [
+          "ClearLebanon",
+          "RemoveAdditional",
+          "SuccessfulFactAndStarDisposition"
+        ]
+      }
+    },
+    {
+      "id": "USR-SOURCE-late-influence-batch1-url",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "source_catalog",
+              4,
+              "url"
+            ],
+            "value": "https://official.invalid/ruling"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "USR-SOURCE-late-influence-batch1-verification",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "marine_barracks_bombing",
+              "source_refs",
+              3,
+              "verification"
+            ],
+            "value": "OfficialRuling"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "USR-LI1-marine-scarce-underfill",
+      "validation_layer": "reference",
+      "phase": "Event",
+      "card_key": "marine_barracks_bombing",
+      "state_patch": {
+        "signed_vp": 0
+      },
+      "country_fixture": {
+        "country.lebanon": [
+          5,
+          4
+        ],
+        "country.syria": [
+          1,
+          2
+        ]
+      },
+      "selection": {
+        "selected_total": 0,
+        "allocation": [],
+        "country_ids": []
+      },
+      "context_patch": {},
+      "evidence_patch": {},
+      "request_edits": [],
+      "expected": {
+        "outcome": "InvalidSelection",
+        "state_patch": {},
+        "country_fixture": {},
+        "trace": []
+      }
+    },
+    {
+      "id": "USR-LI1-shortage-LI1-R-replay-after-later-france-change",
+      "validation_layer": "reference",
+      "phase": "Replay",
+      "seed_case_id": "USR-LI1-marine-lebanon-5-capacity-1",
+      "request_patch": {},
+      "receipt_patch": {},
+      "current_state_patch": {
+        "state_version": 6,
+        "influence": {
+          "country.france": {
+            "US": 1
+          }
+        }
+      },
+      "expected_outcome": "AlreadyCompleted"
+    },
+    {
+      "validation_layer": "reference",
+      "phase": "Replay",
+      "seed_case_id": "USR-LI1-marine-lebanon-5-capacity-1",
+      "request_patch": {},
+      "receipt_patch": {},
+      "expected_outcome": "AlreadyCompleted",
+      "id": "USR-LI1-shortage-LI1-R-replay-later-finished-state",
+      "current_state_patch": {
+        "state_version": 7,
+        "signed_vp": 20,
+        "status": "Finished",
+        "winner": "US"
+      }
     }
   ],
   "runtime_cases": [

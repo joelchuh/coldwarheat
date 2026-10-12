@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.turn-flow",
   "kind": "module",
-  "description": "定位回合阶段、秘密头条、行动名额、出牌结算栈、回合末候选胜利与存档继续位置；当前是设计，不可作为已实现模块调用。 消费CT1转交/奖励计划，保留独立ChinaState并按剩余源步骤收尾。 ON1按已完成根行动槽合并已知NSO/Space总额度并绑定放弃来源集合。 LH1等待Ames选择保留已接受揭示，源/根完成与后续OPS分开。 LEO1已提交前缀保留；等待共享行动不得提前移牌或占根槽。 DV1 next-US根槽检查点与Headline分开，未定调度保持待办。 LR1在已核实ExpireAndReset边界到期，等待地区选择不提前完成根或推进普通动作。",
+  "description": "定位回合阶段、秘密头条、行动名额、出牌结算栈、回合末候选胜利与存档继续位置；当前是设计，不可作为已实现模块调用。 消费CT1转交/奖励计划，保留独立ChinaState并按剩余源步骤收尾。 ON1按已完成根行动槽合并已知NSO/Space总额度并绑定放弃来源集合。 LH1等待Ames选择保留已接受揭示，源/根完成与后续OPS分开。 LEO1已提交前缀保留；等待共享行动不得提前移牌或占根槽。 DV1 next-US根槽检查点与Headline分开，未定调度保持待办。 LR1在已核实ExpireAndReset边界到期，等待地区选择不提前完成根或推进普通动作。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。",
   "status": "planned",
   "entrypoints": [],
   "documentation": "Docs/Wiki/turn-flow.md",
@@ -227,7 +227,7 @@
       "id": "PROJECT-WG1",
       "url": null,
       "edition": "Named derivations and engineering boundary, 2026-10-12",
-      "description": "WG1-DERIVED-01: DEFCON 2 DeclineBoth counts as used and removes by FAQ used condition plus section 5.2, not a dedicated disposal answer. Nonzero Wargames winner follows accepted signed-VP comparison. Zero GiveSixAndEnd remains RequiresRuling pending explicit project policy. Source/receipt/atomic cleanup are planned contracts."
+      "description": "WG1-DERIVED-01: DEFCON 2 DeclineBoth counts as used and removes by FAQ used condition plus section 5.2, not a dedicated disposal answer. Nonzero Wargames winner follows accepted signed-VP comparison. Zero GiveSixAndEnd is now separately governed by PROJECT-WG1-USER-20261013; other source/cleanup boundaries remain. Source/receipt/atomic cleanup are planned contracts."
     },
     {
       "id": "PROJECT-ON1",
@@ -264,6 +264,12 @@
       "url": null,
       "edition": "Named textual derivation and engineering boundaries 2026-10-13",
       "description": "LR1-D01: may designate permits explicit Decline; no region means no restriction instance, while the invoked optional event still completes and follows starred disposition (may + section5.2; not dedicated FAQ). LR1-D02: six primary map regions follow2.1.1; not selectable subregions. Queries return only this provider contribution, not total action legality. Repeated new event resolution remains RequiresRuling."
+    },
+    {
+      "id": "PROJECT-WG1-USER-20261013",
+      "url": null,
+      "edition": "Human-confirmed project interpretation, 2026-10-13",
+      "description": "GiveSixAndEnd向对手完整转移6VP并结束后，恰零判Draw；不是官方专门裁定。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
     }
   ],
   "tests": [
@@ -364,7 +370,7 @@
   "verification": {
     "implementation_tested": false,
     "design_review": "检查源规则版本、转换边界、持久化、保密与异常路径；实际检查记录见工作记录",
-    "latest_design_report": "Docs/Design/late-restrictions-batch1.validation.json"
+    "latest_design_report": "Docs/Design/confirmed-rulings-20261013.validation.json"
   },
   "open_items": [
     "全部逐卡参数/处理器与跨卡优先级",

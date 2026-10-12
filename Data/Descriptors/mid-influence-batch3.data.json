@@ -3,9 +3,9 @@
   "id": "data.mid-influence-batch3",
   "kind": "data",
   "status": "ready",
-  "description": "中期影响力第三批：跨地区四国/三国固定加点、双方零影响可选布置、非欧洲限额移除；短缺边界停止，C#待实现。",
+  "description": "中期影响力第三批：跨地区/固定加点、双方零影响可选布置、非欧洲限额移除；Puppet/VOA短缺按2026-10-13用户确认政策，C#待实现。",
   "dataset_id": "effects.deluxe2015.mid_influence_batch3",
-  "content_version": "0.1.0",
+  "content_version": "0.2.0",
   "schema_path": "Docs/Contracts/mid-influence-batch3.schema.json",
   "documentation": "Docs/Wiki/mid-influence-batch3.md",
   "entrypoints": [
@@ -31,7 +31,6 @@
   ],
   "side_effects": [],
   "stop_conditions": [
-    "Puppet加点分支不足3国；VOA受每国上限约束的可移除量不足4",
     "无效目标/额度、错误Owner/Revision、未知数据或干预"
   ],
   "rule_sources": [
@@ -51,7 +50,13 @@
       "id": "PROJECT-MI3",
       "url": null,
       "edition": "Engineering contracts and unresolved shortages, 2026-10-12",
-      "description": "完整选择/移除计划原子提交；Puppet may允许拒绝全部但未授权任选少于3国；Puppet不足3合法国与VOA不足4可移除量RequiresRuling，未借用其他牌的用户短缺解释。"
+      "description": "完整选择/移除计划原子提交仍为工程边界；原Puppet/VOA短缺未决条款于2026-10-13被专属用户确认来源取代。其它牌政策未变。"
+    },
+    {
+      "id": "PROJECT-MI3-USER-20261013",
+      "url": null,
+      "edition": "Human-confirmed project interpretation, 2026-10-13",
+      "description": "Puppet可Decline；Accept时向min(3,合法空白国数)个各加1，零候选无变化完成。VOA必须移除min(4,逐国min(2,可移除USSR影响)之和)，不足全移。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
     }
   ],
   "tests": [
@@ -62,6 +67,10 @@
   ],
   "verification": {
     "runtime_consumers_tested": false,
-    "report": "Docs/Design/mid-influence-batch3.validation.json"
-  }
+    "report": "Docs/Design/mid-influence-batch3.validation.json",
+    "latest_design_report": "Docs/Design/confirmed-rulings-20261013.validation.json"
+  },
+  "retrieval_hints": [
+    "PROJECT-MI3-USER-20261013: only the named human-confirmed amendment; prior unconfirmed boundaries remain."
+  ]
 }

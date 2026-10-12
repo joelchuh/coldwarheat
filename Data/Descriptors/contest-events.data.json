@@ -3,9 +3,9 @@
   "id": "data.contest-events",
   "kind": "data",
   "status": "ready",
-  "description": "军备竞赛与峰会：分离根责任/事件控制/胜者选择，实际地图双骰比较，耐久结果收据与可选DEFCON继续；军事>5待裁定，运行待实现。",
+  "description": "军备竞赛与峰会：Arms仅比较min(用户确认轨道上限,累计军事)，保存原累计；峰会双骰/VP收据及DEFCON继续不变，运行待实现。",
   "dataset_id": "effects.deluxe2015.contest_events",
-  "content_version": "0.1.0",
+  "content_version": "0.2.0",
   "schema_path": "Docs/Contracts/contest-events.schema.json",
   "documentation": "Docs/Wiki/contest-events.md",
   "entrypoints": [
@@ -33,7 +33,7 @@
   ],
   "preconditions": [
     "参数ready不代表运行处理器已实现",
-    "Arms双方累计只支持0..5子集；任何>5先RequiresRuling",
+    "Arms仅把比较位置投影到参数上限；原累计军事不封顶且不变",
     "运行必须验证完整当前状态与所有相关干预，客户端不得提交骰点/胜者/计数/VP"
   ],
   "side_effects": [],
@@ -72,7 +72,13 @@
       "id": "PROJECT-CE1",
       "url": null,
       "edition": "Bounded design and source gap, 2026-10-12",
-      "description": "双方任一累计>5即CE-OPEN-01 RequiresRuling，5是保守支持边界而非采用封顶；原累计不变。Arms零奖分标ResolvedNoChange、US后USSR抽样、完整骰/VP收据先提交再等DEFCON均为工程约定。"
+      "description": "原CE-OPEN-01保守军事>5停止条款已由2026-10-13用户确认的专属比较投影取代；零奖分标签、抽样顺序、完整骰/VP收据先提交再等DEFCON仍为工程约定。"
+    },
+    {
+      "id": "PROJECT-CE1-USER-20261013",
+      "url": null,
+      "edition": "Human-confirmed project interpretation, 2026-10-13",
+      "description": "保留累计MilOps原值；仅该牌比较双方轨道位置时min(5,累计)，7与5平手。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
     }
   ],
   "tests": [
@@ -83,6 +89,10 @@
   ],
   "verification": {
     "runtime_consumers_tested": false,
-    "report": "Docs/Design/contest-events.validation.json"
-  }
+    "report": "Docs/Design/contest-events.validation.json",
+    "latest_design_report": "Docs/Design/confirmed-rulings-20261013.validation.json"
+  },
+  "retrieval_hints": [
+    "PROJECT-CE1-USER-20261013: only the named human-confirmed amendment; prior unconfirmed boundaries remain."
+  ]
 }

@@ -26,7 +26,7 @@
     },
     "content_version": {
       "type": "string",
-      "const": "0.1.0"
+      "const": "0.2.0"
     },
     "ruleset_id": {
       "type": "string",
@@ -42,8 +42,8 @@
     },
     "source_catalog": {
       "type": "array",
-      "minItems": 4,
-      "maxItems": 4,
+      "minItems": 5,
+      "maxItems": 5,
       "prefixItems": [
         {
           "type": "object",
@@ -152,7 +152,35 @@
             },
             "description": {
               "type": "string",
-              "const": "4或6替代总量、Marine完整计划、Pershing零选择正影响规范化、首VP批次终局与来源/重放工程解释；不是新增官方FAQ。短缺和重复未答仍RequiresRuling。"
+              "const": "4或6替代总量、Marine完整计划、Pershing零选择正影响规范化、首VP批次终局与来源/重放工程解释；不是新增官方FAQ。未答重复与未知干预仍RequiresRuling。 Marine短缺部分现由PROJECT-LI1-USER-20261013取代；原重复/未知来源/取消与生产边界仍保留。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "const": "PROJECT-LI1-USER-20261013"
+            },
+            "url": {
+              "type": "null",
+              "const": null
+            },
+            "edition": {
+              "type": "string",
+              "const": "Human-confirmed project interpretation, 2026-10-13"
+            },
+            "description": {
+              "type": "string",
+              "const": "先清除黎巴嫩US影响；再移除min(2,中东剩余US影响总量)，不足全移，事件完成。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
             }
           }
         }
@@ -919,7 +947,7 @@
         },
         "shortage_policy": {
           "type": "string",
-          "const": "RequiresRulingBeforeAnyMutation"
+          "const": "RemoveMinimumOfAdditionalTotalAndPostClearCapacity"
         },
         "plan_policy": {
           "type": "string",
@@ -959,12 +987,13 @@
               "required": [
                 "kind",
                 "side",
-                "amount"
+                "amount",
+                "amount_policy"
               ],
               "properties": {
                 "kind": {
                   "type": "string",
-                  "const": "RemoveExactAdditionalInfluence"
+                  "const": "RemoveRequiredAdditionalInfluence"
                 },
                 "side": {
                   "type": "string",
@@ -973,6 +1002,10 @@
                 "amount": {
                   "type": "integer",
                   "const": 2
+                },
+                "amount_policy": {
+                  "type": "string",
+                  "const": "MinimumOfListedAmountAndPostClearCapacity"
                 }
               }
             }
@@ -981,8 +1014,8 @@
         },
         "source_refs": {
           "type": "array",
-          "minItems": 3,
-          "maxItems": 3,
+          "minItems": 4,
+          "maxItems": 4,
           "prefixItems": [
             {
               "type": "object",
@@ -1046,6 +1079,29 @@
                 "locator": {
                   "type": "string",
                   "const": "Wiki LI1-D01–D04 / LI1-E01: derived and engineering boundaries"
+                },
+                "verification": {
+                  "type": "string",
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "PROJECT-LI1-USER-20261013"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "先清除黎巴嫩US影响；再移除min(2,中东剩余US影响总量)，不足全移，事件完成。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
                 },
                 "verification": {
                   "type": "string",

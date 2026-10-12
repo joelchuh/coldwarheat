@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "dataset_id": "effects.deluxe2015.wargames",
-  "content_version": "0.1.0",
+  "content_version": "0.2.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "verified-subset",
-  "description": "Wargames #100 parameter and bounded transaction design; production handlers, persistence and authentication remain planned.",
+  "description": "Wargames三种选择、完整对手六VP转移与无最终计分终局；恰零结束按用户明确确认判Draw，运行未实现。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -28,7 +28,13 @@
       "id": "PROJECT-WG1",
       "url": null,
       "edition": "Named derivations and engineering boundary, 2026-10-12",
-      "description": "WG1-DERIVED-01: DEFCON 2 DeclineBoth counts as used and removes by FAQ used condition plus section 5.2, not a dedicated disposal answer. Nonzero Wargames winner follows accepted signed-VP comparison. Zero GiveSixAndEnd remains RequiresRuling pending explicit project policy. Source/receipt/atomic cleanup are planned contracts."
+      "description": "WG1-DERIVED-01: DEFCON 2 DeclineBoth counts as used and removes by FAQ used condition plus section 5.2, not a dedicated disposal answer. Nonzero Wargames winner follows accepted signed-VP comparison. Zero GiveSixAndEnd is now separately governed by PROJECT-WG1-USER-20261013; other source/cleanup boundaries remain. Source/receipt/atomic cleanup are planned contracts."
+    },
+    {
+      "id": "PROJECT-WG1-USER-20261013",
+      "url": null,
+      "edition": "Human-confirmed project interpretation, 2026-10-13",
+      "description": "GiveSixAndEnd向对手完整转移6VP并结束后，恰零判Draw；不是官方专门裁定。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
     }
   ],
   "shared_refs": {
@@ -80,7 +86,7 @@
     "wargames": {
       "card_id": "card.wargames",
       "effect_id": "effect.wargames",
-      "description": "Three optional Wargames outcomes with one complete VP batch and no final scoring; exact-zero end is unresolved.",
+      "description": "Three options with a complete opponent VP transfer; zero GiveSixAndEnd resolves Draw by explicit human project policy, not official ruling.",
       "template": "OptionalOpponentVpThenOptionalImmediateEnd",
       "decision_owner": "EffectController",
       "choices": [
@@ -94,7 +100,7 @@
       "vp_batch": "CompleteEventBatchBeforeAutomaticVictory",
       "continue_threshold_policy": "SharedAutomaticVictoryStillApplies",
       "end_policy": "UseAcceptedPostTransferSignedVpOnly",
-      "zero_end_policy": "RequiresRulingBeforeAnyMutation",
+      "zero_end_policy": "DrawAfterCompleteTransferAndEnd",
       "decline_policy": "SuccessfulEventWithZeroTransfer",
       "decline_authority": "WG1-DERIVED-01",
       "blocked_policy": "EventDidNotOccur_Discard",
@@ -124,8 +130,13 @@
         },
         {
           "source_id": "PROJECT-WG1",
-          "locator": "WG1-DERIVED-01: DEFCON 2 DeclineBoth counts as used and removes by FAQ used condition plus section 5.2, not a dedicated disposal answer. Nonzero Wargames winner follows accepted signed-VP comparison. Zero GiveSixAndEnd remains RequiresRuling pending explicit project policy. Source/receipt/atomic cleanup are planned contracts.",
+          "locator": "WG1-DERIVED-01: DEFCON 2 DeclineBoth counts as used and removes by FAQ used condition plus section 5.2, not a dedicated disposal answer. Nonzero Wargames winner follows accepted signed-VP comparison. Zero GiveSixAndEnd now follows separately confirmed PROJECT-WG1-USER-20261013; other source/cleanup boundaries remain. Source/receipt/atomic cleanup are planned contracts.",
           "verification": "ProjectDerivationOrEngineeringBoundary"
+        },
+        {
+          "source_id": "PROJECT-WG1-USER-20261013",
+          "locator": "GiveSixAndEnd向对手完整转移6VP并结束后，恰零判Draw；不是官方专门裁定。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。",
+          "verification": "Verified"
         }
       ]
     }

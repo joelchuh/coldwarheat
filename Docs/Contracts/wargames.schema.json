@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "urn:coldwarheat:contract:wargames:1",
   "title": "Wargames parameters and planned transaction contracts",
-  "description": "Strict one-card data and internal evidence/request/receipt shapes. Cross-field identity, provenance, history and shared-rule invariants additionally require the specified domain checks.",
+  "description": "Wargames三种选择、完整对手六VP转移与无最终计分终局；恰零结束按用户明确确认判Draw，运行未实现。",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -31,7 +31,7 @@
     },
     "content_version": {
       "type": "string",
-      "const": "0.1.0"
+      "const": "0.2.0"
     },
     "ruleset_id": {
       "type": "string",
@@ -47,8 +47,8 @@
     },
     "source_catalog": {
       "type": "array",
-      "minItems": 4,
-      "maxItems": 4,
+      "minItems": 5,
+      "maxItems": 5,
       "prefixItems": [
         {
           "type": "object",
@@ -159,6 +159,34 @@
             "description": {
               "type": "string",
               "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "const": "PROJECT-WG1-USER-20261013"
+            },
+            "url": {
+              "type": "null",
+              "const": null
+            },
+            "edition": {
+              "type": "string",
+              "const": "Human-confirmed project interpretation, 2026-10-13"
+            },
+            "description": {
+              "type": "string",
+              "const": "GiveSixAndEnd向对手完整转移6VP并结束后，恰零判Draw；不是官方专门裁定。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
             }
           }
         }
@@ -479,7 +507,7 @@
         },
         "zero_end_policy": {
           "type": "string",
-          "const": "RequiresRulingBeforeAnyMutation"
+          "const": "DrawAfterCompleteTransferAndEnd"
         },
         "decline_policy": {
           "type": "string",
@@ -527,8 +555,8 @@
         },
         "source_refs": {
           "type": "array",
-          "minItems": 4,
-          "maxItems": 4,
+          "minItems": 5,
+          "maxItems": 5,
           "prefixItems": [
             {
               "type": "object",
@@ -614,11 +642,34 @@
                 },
                 "locator": {
                   "type": "string",
-                  "const": "WG1-DERIVED-01: DEFCON 2 DeclineBoth counts as used and removes by FAQ used condition plus section 5.2, not a dedicated disposal answer. Nonzero Wargames winner follows accepted signed-VP comparison. Zero GiveSixAndEnd remains RequiresRuling pending explicit project policy. Source/receipt/atomic cleanup are planned contracts."
+                  "const": "WG1-DERIVED-01: DEFCON 2 DeclineBoth counts as used and removes by FAQ used condition plus section 5.2, not a dedicated disposal answer. Nonzero Wargames winner follows accepted signed-VP comparison. Zero GiveSixAndEnd now follows separately confirmed PROJECT-WG1-USER-20261013; other source/cleanup boundaries remain. Source/receipt/atomic cleanup are planned contracts."
                 },
                 "verification": {
                   "type": "string",
                   "const": "ProjectDerivationOrEngineeringBoundary"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "PROJECT-WG1-USER-20261013"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "GiveSixAndEnd向对手完整转移6VP并结束后，恰零判Draw；不是官方专门裁定。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
+                },
+                "verification": {
+                  "type": "string",
+                  "const": "Verified"
                 }
               }
             }
@@ -930,7 +981,8 @@
           "enum": [
             null,
             "US",
-            "USSR"
+            "USSR",
+            "Draw"
           ]
         },
         "cards": {
@@ -1390,7 +1442,8 @@
           "enum": [
             null,
             "US",
-            "USSR"
+            "USSR",
+            "Draw"
           ]
         },
         "finish_reason": {

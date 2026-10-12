@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.victory",
   "kind": "module",
-  "description": "按检查点判定核战、批次VP、扣留计分牌和最终胜负；CF-003已采纳，模块仍未实现。 Wargames支持给6VP后的明确非零结束，恰零等待裁定。 Defectors苏方普通行动用牌US1VP按正常自动胜利检查。 DV1完整WWBY3VP先于美国事件VP；U2即时与延后奖分独立检查。",
+  "description": "按检查点判定核战、批次VP、扣留计分牌和最终胜负；CF-003已采纳，模块仍未实现。 Wargames完整给6VP后结束，恰零按用户确认的项目解释判Draw。 Defectors苏方普通行动用牌US1VP按正常自动胜利检查。 DV1完整WWBY3VP先于美国事件VP；U2即时与延后奖分独立检查。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。",
   "status": "planned",
   "entrypoints": [],
   "documentation": "Docs/Wiki/risk-victory.md",
@@ -19,7 +19,8 @@
     "Defectors普通苏方CardUse与事件来源的完整US1VP批次，Space hook为0且不伪执行共享太空动作"
   ],
   "outputs": [
-    "Continue、Deferred、Finished或UnresolvedAdjudication"
+    "Continue、Deferred、Finished或UnresolvedAdjudication",
+    "Wargames用户项目解释：完整向对手转移VP后恰零，完成源根清理并Finished/Draw；Continue恰零不终局"
   ],
   "dependencies": [
     {
@@ -56,7 +57,7 @@
     "未解决裁定",
     "不匹配的规则/状态版本",
     "不合法检查点",
-    "Wargames结束不执行最终地区/中国牌/军备/扣留计分审计；恰零无用户裁定不能推定Draw",
+    "Wargames结束不执行最终地区/中国牌/军备/扣留计分审计；GiveSixAndEnd恰零按已确认项目解释判Draw",
     "Defectors自动胜利先在同草稿清理已接受源/当前根后Finished，不执行余下OPS",
     "WWBY与DuckAndCover不得跨事件净额；核战优先于安装hook，终局在同草稿完成已接受单卡/双牌源根收尾后Finished"
   ],
@@ -88,7 +89,7 @@
       "id": "PROJECT-WG1",
       "url": null,
       "edition": "Named derivations and engineering boundary, 2026-10-12",
-      "description": "WG1-DERIVED-01: DEFCON 2 DeclineBoth counts as used and removes by FAQ used condition plus section 5.2, not a dedicated disposal answer. Nonzero Wargames winner follows accepted signed-VP comparison. Zero GiveSixAndEnd remains RequiresRuling pending explicit project policy. Source/receipt/atomic cleanup are planned contracts."
+      "description": "WG1-DERIVED-01: DEFCON 2 DeclineBoth counts as used and removes by FAQ used condition plus section 5.2, not a dedicated disposal answer. Nonzero Wargames winner follows accepted signed-VP comparison. Zero GiveSixAndEnd is now separately governed by PROJECT-WG1-USER-20261013; other source/cleanup boundaries remain. Source/receipt/atomic cleanup are planned contracts."
     },
     {
       "id": "PROJECT-DF1",
@@ -101,6 +102,12 @@
       "url": null,
       "edition": "Engineering boundaries, 2026-10-13",
       "description": "2026-10-13 finite prefix/checkpoint/accepted-UN/receipt contract. No official U2 repeated-use or WWBY self-activation/Trap/cross-turn timing ruling adopted."
+    },
+    {
+      "id": "PROJECT-WG1-USER-20261013",
+      "url": null,
+      "edition": "Human-confirmed project interpretation, 2026-10-13",
+      "description": "GiveSixAndEnd向对手完整转移6VP并结束后，恰零判Draw；不是官方专门裁定。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
     }
   ],
   "tests": [
@@ -144,7 +151,7 @@
   ],
   "verification": {
     "implementation_tested": false,
-    "latest_design_report": "Docs/Design/deferred-vp-events-batch1.validation.json"
+    "latest_design_report": "Docs/Design/confirmed-rulings-20261013.validation.json"
   },
   "open_items": [
     "正式国家/卡牌目录及逐卡终局、计分修正提供者；地区/太空基础设计已完成，仍未实现"
