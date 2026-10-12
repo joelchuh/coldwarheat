@@ -30,3 +30,5 @@ flowchart LR
 依据[英文卡图](https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf)p5 #32、[R2015](https://www.gmtgames.com/nnts/TS_Rules-2015.pdf)§2.2/5.2/7.4.1–3/7.5、[FAQv5](https://www.gmtgames.com/nnts/FAQv5.pdf)PDFp7 #32。共享政策及卡牌只读，角色/来源由Application和TurnFlow提供，显示主题不裁定配牌或预算。
 
 主18结构＋42有限参考＝60新项，1539旧回归，共1599通过；31Schema/34数据/20模块、102参数指针。8runtime未执行，13note/38Tools另层；模型Authorize把已核实钩子与OPS开始报价合成一个有限步骤，不证明真实阶段/鉴权。独立复审Ready Yes，18数据＋42参考=60实际复跑；终局候选同事务与Finished吸收一致，全部反馈关闭，8runtime未运行。
+
+[DV1合法UN证据消费者](deferred-vp-events-batch1.md)已定义；原参数SourceHandlerUnresolved保留为生产运行桥接未实现边界，不代表缺少静态两牌设计。特殊取牌来源仍未注册。

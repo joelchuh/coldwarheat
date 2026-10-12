@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "data.deferred-vp-events-batch1",
+  "kind": "data",
+  "status": "ready",
+  "description": "WWBY immediate DEFCON and next-US-action conditional VP; U2 immediate VP and later same-turn legal UN bonus; typed delayed checkpoints and immutable history, runtime planned.",
+  "dataset_id": "effects.deluxe2015.deferred_vp_events_batch1",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/deferred-vp-events-batch1.schema.json",
+  "documentation": "Docs/Wiki/deferred-vp-events-batch1.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/deferred-vp-events-batch1.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "Static parameters; future accepted source/root/slot and LegalUNEventUseEvidence"
+  ],
+  "outputs": [
+    "Immediate event prefix and delayed VP checkpoint plans; immutable accepted records"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "rules.deluxe2015.defcon",
+    "rules.deluxe2015.victory",
+    "rules.deluxe2015.turn-flow",
+    "effects.deluxe2015.un_intervention"
+  ],
+  "preconditions": [
+    "Design only; all source/hook/UN execution services planned",
+    "Independent accepted ledger/facts/receipt anchor are synthetic premises, not authentication",
+    "Earlier non-UN Awarded/Expired legality must already have been verified independently; no checkpoint-provenance reconstruction in this projection"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "Unknown timing, related provider, parent chain or U2 repeated new UN: RequiresRuling",
+    "Invalid source/card/frame/activation/receipt or terminal current state"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "locator": "English images PDF p8 #50 and p10 #60 personally inspected; adjacent translation excluded",
+      "sha256": "3fded13f03c63154de72af93faceaf8700db19f12c033ff477497232f2c2a0f0"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "locator": "PDF pp11-12 #49/#50: immediate nuclear loss; next US ActionRound; priority over Duck and Cover; no next ActionRound no VP; legal UN via ME/StarWars/GrainSales with Soviet companion",
+      "sha256": "9c8ac9ef5c2b25f558d81aa2e12205609661dc80d9ead52b64367659bac99374"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "locator": "PDF p4 4.5C-D ordinary alternating slots; p5 5.2/5.4/5.5; p7 6.4.1 Operations-valued Space eligibility; p8 8.1.3; p10 10.2.3/10.3.1",
+      "sha256": "d5c827cf78fc4800e0993c1e3313ec909d3c7da2c1b03b735ccf0042a0c4ac8e"
+    },
+    {
+      "id": "PROJECT-DEFERRED-VP1",
+      "url": null,
+      "locator": "2026-10-13 finite prefix/checkpoint/accepted-UN/receipt contract. No official U2 repeated-use or WWBY self-activation/Trap/cross-turn timing ruling adopted.",
+      "sha256": null
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/deferred-vp-events-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/deferred-vp-events-batch1.validation.json"
+  }
+}

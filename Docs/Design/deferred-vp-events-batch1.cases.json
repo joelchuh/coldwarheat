@@ -1,0 +1,1871 @@
+{
+  "schema_version": 1,
+  "id": "cases.deferred-vp-events-batch1",
+  "description": "Rule counterexamples first; finite synthetic reference projections only, 2026-10-13.",
+  "defaults": {
+    "kind": "ResolveEvent",
+    "card": "we_will_bury_you",
+    "side": "USSR",
+    "phase": "ActionRound",
+    "slot": 2,
+    "turn": 6,
+    "provider": "RootEvent",
+    "remaining": "None",
+    "vp": 0,
+    "defcon": 4,
+    "hooks": [
+      "we_will_bury_you"
+    ],
+    "activation_phase": "ActionRound"
+  },
+  "cases": [
+    {
+      "id": "DV1-R-wwby-immediate-only",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": 0,
+        "defcon": 3,
+        "hooks": 1
+      }
+    },
+    {
+      "id": "DV1-R-accepted-prefix-preserved-self-next-slot",
+      "layer": "reference",
+      "setup": {
+        "side": "US",
+        "provider": "OpponentCardEvent"
+      },
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "test_mode": "PrefixContinuation"
+    },
+    {
+      "id": "DV1-R-accepted-prefix-preserved-cross-turn",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "test_mode": "PrefixContinuation",
+      "continuation": "CrossTurn"
+    },
+    {
+      "id": "DV1-R-u2-immediate",
+      "layer": "reference",
+      "setup": {
+        "card": "u2_incident"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": -1,
+        "hooks": 1
+      }
+    },
+    {
+      "id": "DV1-R-we_will_bury_you-RootEvent-USSR",
+      "layer": "reference",
+      "setup": {
+        "card": "we_will_bury_you",
+        "provider": "RootEvent",
+        "side": "USSR",
+        "phase": "ActionRound",
+        "remaining": "None"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "source_zone": "Removed"
+      }
+    },
+    {
+      "id": "DV1-R-we_will_bury_you-OpponentCardEvent-US",
+      "layer": "reference",
+      "setup": {
+        "card": "we_will_bury_you",
+        "provider": "OpponentCardEvent",
+        "side": "US",
+        "phase": "ActionRound",
+        "remaining": "Operations"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "source_zone": "InResolution"
+      }
+    },
+    {
+      "id": "DV1-R-we_will_bury_you-HeadlineEvent-US",
+      "layer": "reference",
+      "setup": {
+        "card": "we_will_bury_you",
+        "provider": "HeadlineEvent",
+        "side": "US",
+        "phase": "Headline",
+        "remaining": "None"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "source_zone": "Removed"
+      }
+    },
+    {
+      "id": "DV1-R-we_will_bury_you-HeadlineEvent-USSR",
+      "layer": "reference",
+      "setup": {
+        "card": "we_will_bury_you",
+        "provider": "HeadlineEvent",
+        "side": "USSR",
+        "phase": "Headline",
+        "remaining": "None"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "source_zone": "Removed"
+      }
+    },
+    {
+      "id": "DV1-R-u2_incident-RootEvent-USSR",
+      "layer": "reference",
+      "setup": {
+        "card": "u2_incident",
+        "provider": "RootEvent",
+        "side": "USSR",
+        "phase": "ActionRound",
+        "remaining": "None"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "source_zone": "Removed"
+      }
+    },
+    {
+      "id": "DV1-R-u2_incident-OpponentCardEvent-US",
+      "layer": "reference",
+      "setup": {
+        "card": "u2_incident",
+        "provider": "OpponentCardEvent",
+        "side": "US",
+        "phase": "ActionRound",
+        "remaining": "Operations"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "source_zone": "InResolution"
+      }
+    },
+    {
+      "id": "DV1-R-u2_incident-HeadlineEvent-US",
+      "layer": "reference",
+      "setup": {
+        "card": "u2_incident",
+        "provider": "HeadlineEvent",
+        "side": "US",
+        "phase": "Headline",
+        "remaining": "None"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "source_zone": "Removed"
+      }
+    },
+    {
+      "id": "DV1-R-u2_incident-HeadlineEvent-USSR",
+      "layer": "reference",
+      "setup": {
+        "card": "u2_incident",
+        "provider": "HeadlineEvent",
+        "side": "USSR",
+        "phase": "Headline",
+        "remaining": "None"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "source_zone": "Removed"
+      }
+    },
+    {
+      "id": "DV1-R-wwby-nuclear-US",
+      "layer": "reference",
+      "setup": {
+        "side": "US",
+        "provider": "OpponentCardEvent",
+        "defcon": 2,
+        "remaining": "Operations"
+      },
+      "expected": {
+        "outcome": "Finished",
+        "winner": "USSR",
+        "vp_delta": 0,
+        "hooks": 0,
+        "source_zone": "Removed"
+      }
+    },
+    {
+      "id": "DV1-R-wwby-nuclear-USSR",
+      "layer": "reference",
+      "setup": {
+        "side": "USSR",
+        "provider": "RootEvent",
+        "defcon": 2,
+        "remaining": "None"
+      },
+      "expected": {
+        "outcome": "Finished",
+        "winner": "US",
+        "vp_delta": 0,
+        "hooks": 0,
+        "source_zone": "Removed"
+      }
+    },
+    {
+      "id": "DV1-R-u2-initial-terminal",
+      "layer": "reference",
+      "setup": {
+        "card": "u2_incident",
+        "vp": -19
+      },
+      "expected": {
+        "outcome": "Finished",
+        "winner": "USSR",
+        "hooks": 0,
+        "vp_delta": -1,
+        "source_zone": "Removed"
+      }
+    },
+    {
+      "id": "DV1-R-wwby-three-before-duck",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "vp": -17
+      },
+      "expected": {
+        "outcome": "Finished",
+        "winner": "USSR",
+        "vp_delta": -3,
+        "defcon": 4,
+        "source_zone": "DiscardPile",
+        "hook_status": [
+          "Awarded"
+        ]
+      }
+    },
+    {
+      "id": "DV1-R-wwby-three-nonterminal-before-duck",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "vp": -16
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": -3,
+        "source_zone": "InResolution",
+        "hook_status": [
+          "Awarded"
+        ]
+      }
+    },
+    {
+      "id": "DV1-R-wwby-no-un-SingleOperations",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "provider": "SingleOperations"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": -3
+      }
+    },
+    {
+      "id": "DV1-R-wwby-no-un-SingleSpace",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "provider": "SingleSpace"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": -3
+      }
+    },
+    {
+      "id": "DV1-R-reject-scoring-SingleOperations-asia_scoring-0",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "provider": "SingleOperations",
+        "vp": 0
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "source-purpose-asia_scoring"
+    },
+    {
+      "id": "DV1-R-reject-scoring-SingleOperations-asia_scoring--17",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "provider": "SingleOperations",
+        "vp": -17
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "source-purpose-asia_scoring"
+    },
+    {
+      "id": "DV1-R-reject-scoring-SingleOperations-europe_scoring-0",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "provider": "SingleOperations",
+        "vp": 0
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "source-purpose-europe_scoring"
+    },
+    {
+      "id": "DV1-R-reject-scoring-SingleOperations-europe_scoring--17",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "provider": "SingleOperations",
+        "vp": -17
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "source-purpose-europe_scoring"
+    },
+    {
+      "id": "DV1-R-reject-scoring-SingleSpace-asia_scoring-0",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "provider": "SingleSpace",
+        "vp": 0
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "source-purpose-asia_scoring"
+    },
+    {
+      "id": "DV1-R-reject-scoring-SingleSpace-asia_scoring--17",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "provider": "SingleSpace",
+        "vp": -17
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "source-purpose-asia_scoring"
+    },
+    {
+      "id": "DV1-R-reject-scoring-SingleSpace-europe_scoring-0",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "provider": "SingleSpace",
+        "vp": 0
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "source-purpose-europe_scoring"
+    },
+    {
+      "id": "DV1-R-reject-scoring-SingleSpace-europe_scoring--17",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "provider": "SingleSpace",
+        "vp": -17
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "source-purpose-europe_scoring"
+    },
+    {
+      "id": "DV1-R-history-scoring-SingleSpace-asia_scoring-0",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "provider": "SingleSpace",
+        "vp": 0
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "test_mode": "Replay",
+      "mutation": "historical-source-purpose-asia_scoring"
+    },
+    {
+      "id": "DV1-R-history-scoring-SingleSpace-asia_scoring--17",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "provider": "SingleSpace",
+        "vp": -17
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "test_mode": "Replay",
+      "mutation": "historical-source-purpose-asia_scoring"
+    },
+    {
+      "id": "DV1-R-history-scoring-SingleSpace-europe_scoring-0",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "provider": "SingleSpace",
+        "vp": 0
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "test_mode": "Replay",
+      "mutation": "historical-source-purpose-europe_scoring"
+    },
+    {
+      "id": "DV1-R-history-scoring-SingleSpace-europe_scoring--17",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "provider": "SingleSpace",
+        "vp": -17
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "test_mode": "Replay",
+      "mutation": "historical-source-purpose-europe_scoring"
+    },
+    {
+      "id": "DV1-R-legal-space-u2-no-trigger",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "hooks": [
+          "u2_incident"
+        ],
+        "provider": "SingleSpace"
+      },
+      "expected": {
+        "outcome": "NoEffect",
+        "vp_delta": 0
+      }
+    },
+    {
+      "id": "DV1-R-legal-space-terminal-replay",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "provider": "SingleSpace",
+        "vp": -17
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted"
+      },
+      "test_mode": "Replay"
+    },
+    {
+      "id": "DV1-R-wwby-headline-target-first-US",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "activation_phase": "Headline",
+        "slot": 1
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": -3
+      }
+    },
+    {
+      "id": "DV1-R-u2-later-un-US",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN",
+        "hooks": [
+          "u2_incident"
+        ],
+        "side": "US"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": -1,
+        "hook_status": [
+          "Awarded"
+        ]
+      }
+    },
+    {
+      "id": "DV1-R-u2-later-un-USSR",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN",
+        "hooks": [
+          "u2_incident"
+        ],
+        "side": "USSR"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": -1,
+        "hook_status": [
+          "Awarded"
+        ]
+      }
+    },
+    {
+      "id": "DV1-R-wwby-un-cancel",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": 0,
+        "hook_status": [
+          "Cancelled"
+        ]
+      }
+    },
+    {
+      "id": "DV1-R-both-hooks-un",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN",
+        "hooks": [
+          "we_will_bury_you",
+          "u2_incident"
+        ]
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": -1,
+        "hook_status": [
+          "Cancelled",
+          "Awarded"
+        ]
+      }
+    },
+    {
+      "id": "DV1-R-u2-un-terminal-pair-cleanup",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN",
+        "hooks": [
+          "u2_incident"
+        ],
+        "vp": -19
+      },
+      "expected": {
+        "outcome": "Finished",
+        "vp_delta": -1,
+        "winner": "USSR",
+        "source_zone": "DiscardPile"
+      }
+    },
+    {
+      "id": "DV1-R-wwby-timing-self-activation",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN"
+      },
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "mutation": "self-activation"
+    },
+    {
+      "id": "DV1-R-wwby-timing-cross-turn",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN"
+      },
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "mutation": "cross-turn"
+    },
+    {
+      "id": "DV1-R-wwby-timing-trap",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN"
+      },
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "mutation": "trap"
+    },
+    {
+      "id": "DV1-R-wwby-timing-extra",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN"
+      },
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "mutation": "extra"
+    },
+    {
+      "id": "DV1-R-wwby-timing-wrong-slot",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN"
+      },
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "mutation": "wrong-slot"
+    },
+    {
+      "id": "DV1-R-wwby-timing-unknown-provider",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN"
+      },
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "mutation": "unknown-provider"
+    },
+    {
+      "id": "DV1-R-wwby-headline-not-action",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "phase": "Headline"
+      },
+      "expected": {
+        "outcome": "NoEffect",
+        "vp_delta": 0
+      }
+    },
+    {
+      "id": "DV1-R-wwby-USSR-not-US-action",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "side": "USSR"
+      },
+      "expected": {
+        "outcome": "NoEffect",
+        "vp_delta": 0
+      }
+    },
+    {
+      "id": "DV1-R-u2-next-turn-not-awarded",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN",
+        "hooks": [
+          "u2_incident"
+        ],
+        "turn": 7
+      },
+      "expected": {
+        "outcome": "NoEffect",
+        "vp_delta": 0
+      }
+    },
+    {
+      "id": "DV1-R-u2-retro-not-awarded",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN",
+        "hooks": [
+          "u2_incident"
+        ]
+      },
+      "expected": {
+        "outcome": "NoEffect",
+        "vp_delta": 0
+      },
+      "mutation": "retro-un"
+    },
+    {
+      "id": "DV1-R-u2-repeated-new-un",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN",
+        "hooks": [
+          "u2_incident"
+        ]
+      },
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "mutation": "u2-prior-award"
+    },
+    {
+      "id": "DV1-R-u2-same-un-observed",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN",
+        "hooks": [
+          "u2_incident"
+        ]
+      },
+      "expected": {
+        "outcome": "AlreadyObserved",
+        "vp_delta": 0
+      },
+      "mutation": "u2-same-un"
+    },
+    {
+      "id": "DV1-R-wwby-already-awarded",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN"
+      },
+      "expected": {
+        "outcome": "NoEffect",
+        "vp_delta": 0
+      },
+      "mutation": "wwby-already-awarded"
+    },
+    {
+      "id": "DV1-R-final-no-next-us-no-vp",
+      "layer": "reference",
+      "setup": {
+        "kind": "FinalBoundary",
+        "turn": 10,
+        "activation_turn": 10,
+        "activation_side": "US",
+        "activation_slot": 7
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "vp_delta": 0,
+        "hook_status": [
+          "Expired"
+        ]
+      }
+    },
+    {
+      "id": "DV1-R-final-earlier-missed-target-not-erased",
+      "layer": "reference",
+      "setup": {
+        "kind": "FinalBoundary",
+        "turn": 10
+      },
+      "expected": {
+        "outcome": "RequiresRuling"
+      }
+    },
+    {
+      "id": "DV1-R-wwby-retro-un-cannot-cancel",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "retro-un"
+    },
+    {
+      "id": "DV1-R-u2-same-id-conflicting-proof",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN",
+        "hooks": [
+          "u2_incident"
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "u2-same-un-conflict"
+    },
+    {
+      "id": "DV1-R-hook-current-resolution-alias",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "current-resolution-alias"
+    },
+    {
+      "id": "DV1-R-hook-current-root-alias",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "current-root-alias"
+    },
+    {
+      "id": "DV1-R-prior-u2-hook-fact-amount",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN",
+        "hooks": [
+          "u2_incident"
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "mutation": "hook-fact-amount"
+    },
+    {
+      "id": "DV1-R-prior-u2-hook-fact-evidence",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN",
+        "hooks": [
+          "u2_incident"
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "mutation": "hook-fact-evidence"
+    },
+    {
+      "id": "DV1-R-prior-u2-hook-fact-without-proof",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN",
+        "hooks": [
+          "u2_incident"
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "mutation": "hook-fact-without-proof"
+    },
+    {
+      "id": "DV1-R-hook-current-source-hand",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "source-hand"
+    },
+    {
+      "id": "DV1-R-hook-current-extra-frame-entity",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "extra-frame-entity"
+    },
+    {
+      "id": "DV1-R-hook-current-bad-owner",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "bad-owner"
+    },
+    {
+      "id": "DV1-R-finished-absorbs-new-64",
+      "layer": "reference",
+      "setup": {
+        "defcon": 2
+      },
+      "expected": {
+        "outcome": "FinishedState"
+      },
+      "test_mode": "FreshAfterFinished"
+    },
+    {
+      "id": "DV1-R-finished-absorbs-new-65",
+      "layer": "reference",
+      "setup": {
+        "card": "u2_incident",
+        "vp": -19
+      },
+      "expected": {
+        "outcome": "FinishedState"
+      },
+      "test_mode": "FreshAfterFinished"
+    },
+    {
+      "id": "DV1-R-finished-absorbs-new-66",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN",
+        "hooks": [
+          "u2_incident"
+        ],
+        "vp": -19
+      },
+      "expected": {
+        "outcome": "FinishedState"
+      },
+      "test_mode": "FreshAfterFinished"
+    },
+    {
+      "id": "DV1-R-u2-only-no-un-ops",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "hooks": [
+          "u2_incident"
+        ],
+        "provider": "SingleOperations"
+      },
+      "expected": {
+        "outcome": "NoEffect",
+        "vp_delta": 0
+      }
+    },
+    {
+      "id": "DV1-R-special-un-MissileEnvy",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "mutation": "pair-source-MissileEnvy"
+    },
+    {
+      "id": "DV1-R-special-un-StarWars",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "mutation": "pair-source-StarWars"
+    },
+    {
+      "id": "DV1-R-special-un-GrainSales",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "mutation": "pair-source-GrainSales"
+    },
+    {
+      "id": "DV1-R-special-un-Unknown",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "mutation": "pair-source-Unknown"
+    },
+    {
+      "id": "DV1-R-un-unverified-slot-pair-trap-slot",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN",
+        "hooks": [
+          "u2_incident"
+        ]
+      },
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "mutation": "pair-trap-slot"
+    },
+    {
+      "id": "DV1-R-un-unverified-slot-pair-extra-slot",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN",
+        "hooks": [
+          "u2_incident"
+        ]
+      },
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "mutation": "pair-extra-slot"
+    },
+    {
+      "id": "DV1-R-source-source-hand",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "source-hand"
+    },
+    {
+      "id": "DV1-R-source-duplicate-instance",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "duplicate-instance"
+    },
+    {
+      "id": "DV1-R-source-duplicate-card",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "duplicate-card"
+    },
+    {
+      "id": "DV1-R-source-extra-frame-entity",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "extra-frame-entity"
+    },
+    {
+      "id": "DV1-R-source-completed-source",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "completed-source"
+    },
+    {
+      "id": "DV1-R-source-prior-source-fact",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "prior-source-fact"
+    },
+    {
+      "id": "DV1-R-source-bad-controller",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "bad-controller"
+    },
+    {
+      "id": "DV1-R-source-bad-owner",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "bad-owner"
+    },
+    {
+      "id": "DV1-R-source-source-unknown-parent",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "mutation": "source-unknown-parent"
+    },
+    {
+      "id": "DV1-R-source-fyp",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "fyp"
+    },
+    {
+      "id": "DV1-R-source-phase-provider",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "phase-provider"
+    },
+    {
+      "id": "DV1-R-source-unknown-coverage",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "mutation": "unknown-coverage"
+    },
+    {
+      "id": "DV1-R-source-active-winner",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "mutation": "active-winner"
+    },
+    {
+      "id": "DV1-R-source-defcon-one",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "mutation": "defcon-one"
+    },
+    {
+      "id": "DV1-R-source-vp-terminal",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "mutation": "vp-terminal"
+    },
+    {
+      "id": "DV1-R-source-finished",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "FinishedState"
+      },
+      "mutation": "finished"
+    },
+    {
+      "id": "DV1-R-source-stale",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "StaleCommand"
+      },
+      "mutation": "stale"
+    },
+    {
+      "id": "DV1-R-source-bad-dispatch",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "bad-dispatch"
+    },
+    {
+      "id": "DV1-R-source-player-caller",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidCaller"
+      },
+      "mutation": "player-caller"
+    },
+    {
+      "id": "DV1-R-un-evidence-companion-neutral",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "companion-neutral"
+    },
+    {
+      "id": "DV1-R-un-evidence-companion-own",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "companion-own"
+    },
+    {
+      "id": "DV1-R-un-evidence-companion-scoring",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "companion-scoring"
+    },
+    {
+      "id": "DV1-R-un-evidence-companion-china",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "companion-china"
+    },
+    {
+      "id": "DV1-R-un-evidence-pair-hand",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "pair-hand"
+    },
+    {
+      "id": "DV1-R-un-evidence-pair-extra-entity",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "pair-extra-entity"
+    },
+    {
+      "id": "DV1-R-un-evidence-pair-use-mode",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "pair-use-mode"
+    },
+    {
+      "id": "DV1-R-un-evidence-pair-owner",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "pair-owner"
+    },
+    {
+      "id": "DV1-R-un-evidence-pair-before-zone",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "pair-before-zone"
+    },
+    {
+      "id": "DV1-R-un-evidence-pair-fact",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "pair-fact"
+    },
+    {
+      "id": "DV1-R-un-evidence-pair-suppression",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "pair-suppression"
+    },
+    {
+      "id": "DV1-R-un-evidence-pair-no-use",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "pair-no-use"
+    },
+    {
+      "id": "DV1-R-un-evidence-pair-ledger",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "mutation": "pair-ledger"
+    },
+    {
+      "id": "DV1-R-activation-fact-card",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN"
+      },
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "mutation": "fact-card"
+    },
+    {
+      "id": "DV1-R-activation-fact-controller",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN"
+      },
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "mutation": "fact-controller"
+    },
+    {
+      "id": "DV1-R-activation-fact-turn",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN"
+      },
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "mutation": "fact-turn"
+    },
+    {
+      "id": "DV1-R-activation-fact-source-root",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN"
+      },
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "mutation": "fact-source-root"
+    },
+    {
+      "id": "DV1-R-activation-missing-fact",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN"
+      },
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "mutation": "missing-fact"
+    },
+    {
+      "id": "DV1-R-activation-duplicate-resolution",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN"
+      },
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "mutation": "duplicate-resolution"
+    },
+    {
+      "id": "DV1-R-activation-duplicate-hook",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN"
+      },
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "mutation": "duplicate-hook"
+    },
+    {
+      "id": "DV1-R-activation-unknown-hook",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN"
+      },
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "mutation": "unknown-hook"
+    },
+    {
+      "id": "DV1-R-replay-114",
+      "layer": "reference",
+      "setup": {},
+      "expected": {
+        "outcome": "AlreadyCompleted"
+      },
+      "test_mode": "Replay"
+    },
+    {
+      "id": "DV1-R-replay-115",
+      "layer": "reference",
+      "setup": {
+        "card": "u2_incident"
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted"
+      },
+      "test_mode": "Replay"
+    },
+    {
+      "id": "DV1-R-replay-116",
+      "layer": "reference",
+      "setup": {
+        "kind": "CheckNonUN",
+        "vp": -17
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted"
+      },
+      "test_mode": "Replay"
+    },
+    {
+      "id": "DV1-R-replay-117",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN",
+        "hooks": [
+          "u2_incident"
+        ],
+        "vp": -19
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted"
+      },
+      "test_mode": "Replay"
+    },
+    {
+      "id": "DV1-R-replay-118",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted"
+      },
+      "test_mode": "Replay"
+    },
+    {
+      "id": "DV1-R-history-result-vp",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "test_mode": "Replay",
+      "mutation": "result-vp"
+    },
+    {
+      "id": "DV1-R-history-result-hook",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "test_mode": "Replay",
+      "mutation": "result-hook"
+    },
+    {
+      "id": "DV1-R-history-result-entity",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "test_mode": "Replay",
+      "mutation": "result-entity"
+    },
+    {
+      "id": "DV1-R-history-historical-source-hand",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "test_mode": "Replay",
+      "mutation": "historical-source-hand"
+    },
+    {
+      "id": "DV1-R-history-historical-duplicate-card",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "test_mode": "Replay",
+      "mutation": "historical-duplicate-card"
+    },
+    {
+      "id": "DV1-R-history-historical-activation",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "test_mode": "Replay",
+      "mutation": "historical-activation"
+    },
+    {
+      "id": "DV1-R-history-bad-anchor",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "test_mode": "Replay",
+      "mutation": "bad-anchor"
+    },
+    {
+      "id": "DV1-R-history-changed-command",
+      "layer": "reference",
+      "setup": {
+        "kind": "ObserveUN"
+      },
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "test_mode": "Replay",
+      "mutation": "changed-command"
+    },
+    {
+      "id": "DV1-S-command-valid",
+      "layer": "schema",
+      "definition": "command",
+      "mutation": "valid",
+      "valid": true
+    },
+    {
+      "id": "DV1-S-command-extra",
+      "layer": "schema",
+      "definition": "command",
+      "mutation": "extra",
+      "valid": false
+    },
+    {
+      "id": "DV1-S-input-valid",
+      "layer": "schema",
+      "definition": "input",
+      "mutation": "valid",
+      "valid": true
+    },
+    {
+      "id": "DV1-S-input-extra",
+      "layer": "schema",
+      "definition": "input",
+      "mutation": "extra",
+      "valid": false
+    },
+    {
+      "id": "DV1-S-state-valid",
+      "layer": "schema",
+      "definition": "state",
+      "mutation": "valid",
+      "valid": true
+    },
+    {
+      "id": "DV1-S-state-extra",
+      "layer": "schema",
+      "definition": "state",
+      "mutation": "extra",
+      "valid": false
+    },
+    {
+      "id": "DV1-S-frame-valid",
+      "layer": "schema",
+      "definition": "frame",
+      "mutation": "valid",
+      "valid": true
+    },
+    {
+      "id": "DV1-S-frame-extra",
+      "layer": "schema",
+      "definition": "frame",
+      "mutation": "extra",
+      "valid": false
+    },
+    {
+      "id": "DV1-S-pair-valid",
+      "layer": "schema",
+      "definition": "pair",
+      "mutation": "valid",
+      "valid": true
+    },
+    {
+      "id": "DV1-S-pair-extra",
+      "layer": "schema",
+      "definition": "pair",
+      "mutation": "extra",
+      "valid": false
+    },
+    {
+      "id": "DV1-S-activation_fact-valid",
+      "layer": "schema",
+      "definition": "activation_fact",
+      "mutation": "valid",
+      "valid": true
+    },
+    {
+      "id": "DV1-S-activation_fact-extra",
+      "layer": "schema",
+      "definition": "activation_fact",
+      "mutation": "extra",
+      "valid": false
+    },
+    {
+      "id": "DV1-S-hook-valid",
+      "layer": "schema",
+      "definition": "hook",
+      "mutation": "valid",
+      "valid": true
+    },
+    {
+      "id": "DV1-S-hook-extra",
+      "layer": "schema",
+      "definition": "hook",
+      "mutation": "extra",
+      "valid": false
+    },
+    {
+      "id": "DV1-S-receipt-valid",
+      "layer": "schema",
+      "definition": "receipt",
+      "mutation": "valid",
+      "valid": true
+    },
+    {
+      "id": "DV1-S-receipt-extra",
+      "layer": "schema",
+      "definition": "receipt",
+      "mutation": "extra",
+      "valid": false
+    },
+    {
+      "id": "DV1-S-command-bool-version",
+      "layer": "schema",
+      "definition": "command",
+      "mutation": "bool-version",
+      "valid": false
+    },
+    {
+      "id": "DV1-S-state-float-version",
+      "layer": "schema",
+      "definition": "state",
+      "mutation": "float-version",
+      "valid": false
+    },
+    {
+      "id": "DV1-S-frame-arbitrary-provider",
+      "layer": "schema",
+      "definition": "frame",
+      "mutation": "arbitrary-provider",
+      "valid": false
+    },
+    {
+      "id": "DV1-S-pair-boolean-proof",
+      "layer": "schema",
+      "definition": "pair",
+      "mutation": "boolean-proof",
+      "valid": false
+    },
+    {
+      "id": "DV1-S-receipt-untyped-history",
+      "layer": "schema",
+      "definition": "receipt",
+      "mutation": "untyped-history",
+      "valid": false
+    },
+    {
+      "id": "DV1-S-activation_fact-wrong-kind",
+      "layer": "schema",
+      "definition": "activation_fact",
+      "mutation": "wrong-kind",
+      "valid": false
+    },
+    {
+      "id": "DV1-S-hook-untyped-observed",
+      "layer": "schema",
+      "definition": "hook",
+      "mutation": "untyped-observed",
+      "valid": false
+    },
+    {
+      "id": "DV1-S-command-empty-id",
+      "layer": "schema",
+      "definition": "command",
+      "mutation": "empty-id",
+      "valid": false
+    },
+    {
+      "id": "DV1-D-valid",
+      "layer": "data",
+      "mutation": "valid",
+      "valid": true
+    },
+    {
+      "id": "DV1-D-scope",
+      "layer": "data",
+      "mutation": "scope",
+      "valid": false
+    },
+    {
+      "id": "DV1-D-wwby-vp",
+      "layer": "data",
+      "mutation": "wwby-vp",
+      "valid": false
+    },
+    {
+      "id": "DV1-D-u2-initial",
+      "layer": "data",
+      "mutation": "u2-initial",
+      "valid": false
+    },
+    {
+      "id": "DV1-D-u2-repeat",
+      "layer": "data",
+      "mutation": "u2-repeat",
+      "valid": false
+    },
+    {
+      "id": "DV1-D-un-evidence",
+      "layer": "data",
+      "mutation": "un-evidence",
+      "valid": false
+    },
+    {
+      "id": "DV1-D-physical",
+      "layer": "data",
+      "mutation": "physical",
+      "valid": false
+    },
+    {
+      "id": "DV1-D-receipt",
+      "layer": "data",
+      "mutation": "receipt",
+      "valid": false
+    },
+    {
+      "id": "DV1-D-unknown-checkpoint",
+      "layer": "data",
+      "mutation": "unknown-checkpoint",
+      "valid": false
+    }
+  ],
+  "runtime_cases": [
+    {
+      "id": "DV1-I-real-source-auth",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "DV1-I-actual-use-hooks",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "DV1-I-live-un-pair",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "DV1-I-wwby-next-slot-scheduler",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "DV1-I-wwby-before-US-vp",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "DV1-I-u2-later-event-sequence",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "DV1-I-concurrent-hooks",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "DV1-I-terminal-pair-finalizer",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "DV1-I-atomic-prefix-and-checkpoint",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "DV1-I-immutable-save-replay",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "DV1-I-unknown-provider-stop",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    },
+    {
+      "id": "DV1-I-turn-expiry",
+      "layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false
+    }
+  ]
+}

@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.38.0",
+  "content_version": "0.39.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计93牌效果参数已绑定，其余9个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计95牌效果参数已绑定，其余7个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -239,6 +239,12 @@
       "url": null,
       "edition": "Finite grant handoff contracts, 2026-10-13",
       "description": "Ordered accepted prefix then optional decision; source-bound receipts and explicit shared-service handoff. Ortega named adjacency geographic waiver is a scoped derivation of the FAQ regional-action policy, not a dedicated Ortega ruling. No production operation resolution."
+    },
+    {
+      "id": "PROJECT-DEFERRED-VP1",
+      "url": null,
+      "edition": "Engineering boundaries, 2026-10-13",
+      "description": "2026-10-13 finite prefix/checkpoint/accepted-UN/receipt contract. No official U2 repeated-use or WWBY self-activation/Trap/cross-turn timing ruling adopted."
     }
   ],
   "cards": [
@@ -1821,8 +1827,13 @@
       "effect_binding": {
         "effect_id": "effect.we_will_bury_you",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.deferred_vp_events_batch1",
+            "json_pointer": "/parameters/we_will_bury_you"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -2136,8 +2147,13 @@
       "effect_binding": {
         "effect_id": "effect.u2_incident",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.deferred_vp_events_batch1",
+            "json_pointer": "/parameters/u2_incident"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -4919,14 +4935,31 @@
     {
       "effect_id": "effect.we_will_bury_you",
       "contract_version": "0.1.0",
-      "description": "We Will Bury You：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.we_will_bury_you",
+      "description": "即时DEFCON核战检查与下一美国行动合法UN豁免分开；完整3VP先于美国VP，未定时点保留已接受前缀。",
+      "handler_key": "composite.ImmediateDefconThenNextUsActionConditionalVp",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:deferred-vp-events-batch1:1#/$defs/we_will_bury_you"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
+          "source_id": "C-DELUXE-EN",
+          "locator": "English PDFp8#50/p10#60: immediate change and later conditional VP.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Sections4.5C-D/5.2/5.4/5.5/8.1.3/10.2.3/10.3.1: phases, source outcome, nuclear root responsibility and complete VP batches.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFpp11-12#49/#50: immediate nuclear check before deferred VP, next US ActionRound distinct from Headline, full WWBY award before US VP, no next ActionRound before final scoring means no award, special legal UN sources.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-DEFERRED-VP1",
+          "locator": "Bounded accepted-prefix/checkpoint and typed normal UN evidence are engineering contracts. Unregistered special sources, unresolved next-slot policies and second distinct U2-triggering UN remain RequiresRuling.",
           "verification": "Pending"
         }
       ]
@@ -5182,14 +5215,31 @@
     {
       "effect_id": "effect.u2_incident",
       "contract_version": "0.1.0",
-      "description": "U2 Incident：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.u2_incident",
+      "description": "即时苏联1VP与本回合稍后合法UN的首次额外1VP分开；同事件通知不重复奖分，第二新UN次数待裁定。",
+      "handler_key": "composite.ImmediateVpThenSameTurnLaterLegalUNBonus",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:deferred-vp-events-batch1:1#/$defs/u2_incident"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
+          "source_id": "C-DELUXE-EN",
+          "locator": "English PDFp8#50/p10#60: immediate change and later conditional VP.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Sections4.5C-D/5.2/5.4/5.5/8.1.3/10.2.3/10.3.1: phases, source outcome, nuclear root responsibility and complete VP batches.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFpp11-12#49/#50: immediate nuclear check before deferred VP, next US ActionRound distinct from Headline, full WWBY award before US VP, no next ActionRound before final scoring means no award, special legal UN sources.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-DEFERRED-VP1",
+          "locator": "Bounded accepted-prefix/checkpoint and typed normal UN evidence are engineering contracts. Unregistered special sources, unresolved next-slot policies and second distinct U2-triggering UN remain RequiresRuling.",
           "verification": "Pending"
         }
       ]

@@ -244,3 +244,5 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 [叛逃者头条策略](defectors.md)：USSelectedDefectorsBeforeOrdinaryPrintedOpsOrder只覆盖选中头条；嵌套不能倒转已执行头条，源/取消目标各自独立收尾。
 
 [晚期事件共享行动交接](late-event-operations-batch1.md)：固定Actor、源父链与根清理义务保留至核实返回；等待不是完成。
+
+[延迟VP检查点](deferred-vp-events-batch1.md)：核实目标根与完整UN证据，未定后续检查点不撤销此前已接受前缀。

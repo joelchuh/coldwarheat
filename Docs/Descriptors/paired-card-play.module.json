@@ -3,7 +3,7 @@
   "id": "module.paired-card-play",
   "kind": "module",
   "status": "planned",
-  "description": "UN配对用牌：私有候选、双实体/两实际Use、配牌OPS/一次压制与同根收据；只生成计划，不推进回合。",
+  "description": "UN配对用牌：私有候选、双实体/两实际Use、配牌OPS/一次压制与同根收据；只生成计划，不推进回合。 DV1合法UN双实体/两ActualUse证据消费者契约已设计，真实提供者仍planned。",
   "documentation": "Docs/Wiki/un-intervention.md",
   "entrypoints": [],
   "planned_entrypoints": [
@@ -25,7 +25,8 @@
     "已核实CardUseHook结果、共享OPS策略及已完成OPS或内部TerminalCandidateDraft；未提交Finished"
   ],
   "outputs": [
-    "Owner私有候选、PairPlan/两ActualUse与LegalUNEventUseEvidence、预算引用、最终去向/同根完成计划"
+    "Owner私有候选、PairPlan/两ActualUse与LegalUNEventUseEvidence、预算引用、最终去向/同根完成计划",
+    "DV1消费NormalUNPair完整原接受事实、两个实体、两ActualUse与原根；不由卡名/布尔值授权；原SourceHandlerUnresolved仍表示生产运行桥接尚未实现"
   ],
   "dependencies": [
     {
@@ -48,10 +49,12 @@
     "effects.deluxe2015.un_intervention",
     "cards.deluxe2015.definitions",
     "effects.deluxe2015.persistent_batch1",
-    "effects.deluxe2015.war_card_hooks"
+    "effects.deluxe2015.war_card_hooks",
+    "effects.deluxe2015.deferred_vp_events_batch1"
   ],
   "contract_dependencies": [
-    "urn:coldwarheat:contract:un-intervention:1"
+    "urn:coldwarheat:contract:un-intervention:1",
+    "urn:coldwarheat:contract:deferred-vp-events-batch1:1"
   ],
   "preconditions": [
     "当前仅设计；Session/TurnFlow验证实际Actor、根行动资格和来源",
@@ -70,35 +73,45 @@
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "edition": "English Deluxe card images",
-      "description": "p5 #32两牌同时，借对方关联牌OPS不触发事件，UN事件不得Headline；UN非星号。"
+      "description": "p5 #32两牌同时，借对方关联牌OPS不触发事件，UN事件不得Headline；UN非星号。 DV1: English images PDF p8 #50 and p10 #60 personally inspected; adjacent translation excluded SHA256: 3fded13f03c63154de72af93faceaf8700db19f12c033ff477497232f2c2a0f0"
     },
     {
       "id": "R2015",
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
       "edition": "Deluxe rules 2015",
-      "description": "§2.2卡阵营/去向、§5.2/5.5对手事件/优先、§7.4.1–3实际Actor与OPS修正、§7.5禁用事件仍可OPS。"
+      "description": "§2.2卡阵营/去向、§5.2/5.5对手事件/优先、§7.4.1–3实际Actor与OPS修正、§7.5禁用事件仍可OPS。 DV1: PDF p4 4.5C-D ordinary alternating slots; p5 5.2/5.4/5.5; p7 6.4.1 Operations-valued Space eligibility; p8 8.1.3; p10 10.2.3/10.3.1 SHA256: d5c827cf78fc4800e0993c1e3313ec909d3c7da2c1b03b735ccf0042a0c4ac8e"
     },
     {
       "id": "F2010",
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
       "edition": "FAQ v5 2010, compatible Deluxe clarification only",
-      "description": "PDFp7 #32即使对方事件不能发生也可配，必须自己手中对方牌、不能临时响应对方；Headline GS抽UN须返回。PDFp14#67一般事件OPS/Space区别；没有UN专门太空裁定。"
+      "description": "PDFp7 #32即使对方事件不能发生也可配，必须自己手中对方牌、不能临时响应对方；Headline GS抽UN须返回。PDFp14#67一般事件OPS/Space区别；没有UN专门太空裁定。 DV1: PDF pp11-12 #49/#50: immediate nuclear loss; next US ActionRound; priority over Duck and Cover; no next ActionRound no VP; legal UN via ME/StarWars/GrainSales with Soviet companion SHA256: 9c8ac9ef5c2b25f558d81aa2e12205609661dc80d9ead52b64367659bac99374"
     },
     {
       "id": "PROJECT-UN1",
       "url": null,
       "edition": "Engineering contracts / explicit unresolved branches, 2026-10-06",
       "description": "双实体唯一区域/两ActualUse共RootSlot、专用来源/合法UN事件证据、预算引用和原子收据。Flower/未知子来源/UN配牌Space仍停止；#50只接口证据不实现。"
+    },
+    {
+      "id": "PROJECT-DEFERRED-VP1",
+      "url": null,
+      "edition": "Engineering boundaries, 2026-10-13",
+      "description": "2026-10-13 finite prefix/checkpoint/accepted-UN/receipt contract. No official U2 repeated-use or WWBY self-activation/Trap/cross-turn timing ruling adopted."
     }
   ],
   "tests": [
     {
       "path": "Docs/Design/un-intervention.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/deferred-vp-events-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
-    "latest_design_report": "Docs/Design/un-intervention.validation.json"
+    "latest_design_report": "Docs/Design/deferred-vp-events-batch1.validation.json"
   }
 }

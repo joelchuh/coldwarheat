@@ -1,0 +1,896 @@
+{
+  "description": "DV1即时前缀和延后VP检查点、完整合法UN证据；未知调度/来源和U2重复次数保留待核。",
+  "checked_on": "2026-10-13",
+  "new_cases_passed": 160,
+  "previous_cases_passed": 3973,
+  "total_cases_passed": 4133,
+  "cases_by_layer": {
+    "data": 9,
+    "contract": 24,
+    "reference": 127,
+    "runtime": 12
+  },
+  "runtime_cases_not_run": 12,
+  "runtime_game_tests_run": 0,
+  "bound_cards": 95,
+  "unresolved_bindings": 7,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 47,
+    "json_files_parsed": 272,
+    "data_descriptors": 50,
+    "module_descriptors": 21,
+    "relative_links_checked": 241,
+    "parameter_pointers_resolved": 232
+  },
+  "validated_sha256": {
+    "Data/Cards/deluxe-2015/deferred-vp-events-batch1.parameters.json": "33f535e92292d1b30f1165d98786b6a768c0c3a375f9e8e50e89d1444cc5b14a",
+    "Docs/Contracts/deferred-vp-events-batch1.schema.json": "7cc77e592e8d20f2ec9fea24a2f9864dfb12401770cc6b7b1692388d1db5d008",
+    "Data/Descriptors/deferred-vp-events-batch1.data.json": "8dc2b0ef67980484943ee5e789cee6e1ffb9e72b00f14b15c744ab15c4fb82a4",
+    "Docs/Design/deferred-vp-events-batch1.cases.json": "e94d0c7efcf0c78b34df7a80fccef244fabf1ba74a6344b6d71bf5e74b30fa49",
+    "Docs/Wiki/deferred-vp-events-batch1.md": "cb0ee1341055fbe03a8257d01d7ada928b88c437e13978b1dc05ce5d24d26875",
+    "Data/Cards/deluxe-2015/cards.json": "ddfe1fa773b3efc651684c32bf2901c4149e8d9e5c64acf5b645c27baf8174ae",
+    "Docs/Descriptors/composite-events.module.json": "30304fb2ef2abd3d31bb38980ac4abc1814587ce5e8bce816416cc8e9411265c",
+    "Docs/Descriptors/active-effects.module.json": "1ad580567e04203897a78789f41c51903b6490315a7b6980693f10514a611214",
+    "Docs/Descriptors/paired-card-play.module.json": "a18cc45c542c288479031a7ea0c627106c776512d652a12c84754ee51c331eaf",
+    "Docs/Descriptors/turn-flow.module.json": "e5d42e9d42c51a480465124477b538496db16d78dc1a373e1b6066a1022993a1",
+    "Docs/Descriptors/victory.module.json": "d928984fb88ba0fc82dfe9eaa36f9e2c5a2a3b3c19955ae1cac247e6833192dc"
+  },
+  "results": [
+    {
+      "id": "DV1-R-wwby-immediate-only",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-accepted-prefix-preserved-self-next-slot",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-accepted-prefix-preserved-cross-turn",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-u2-immediate",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-we_will_bury_you-RootEvent-USSR",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-we_will_bury_you-OpponentCardEvent-US",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-we_will_bury_you-HeadlineEvent-US",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-we_will_bury_you-HeadlineEvent-USSR",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-u2_incident-RootEvent-USSR",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-u2_incident-OpponentCardEvent-US",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-u2_incident-HeadlineEvent-US",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-u2_incident-HeadlineEvent-USSR",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-wwby-nuclear-US",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-wwby-nuclear-USSR",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-u2-initial-terminal",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-wwby-three-before-duck",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-wwby-three-nonterminal-before-duck",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-wwby-no-un-SingleOperations",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-wwby-no-un-SingleSpace",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-reject-scoring-SingleOperations-asia_scoring-0",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-reject-scoring-SingleOperations-asia_scoring--17",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-reject-scoring-SingleOperations-europe_scoring-0",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-reject-scoring-SingleOperations-europe_scoring--17",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-reject-scoring-SingleSpace-asia_scoring-0",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-reject-scoring-SingleSpace-asia_scoring--17",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-reject-scoring-SingleSpace-europe_scoring-0",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-reject-scoring-SingleSpace-europe_scoring--17",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-history-scoring-SingleSpace-asia_scoring-0",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-history-scoring-SingleSpace-asia_scoring--17",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-history-scoring-SingleSpace-europe_scoring-0",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-history-scoring-SingleSpace-europe_scoring--17",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-legal-space-u2-no-trigger",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-legal-space-terminal-replay",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-wwby-headline-target-first-US",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-u2-later-un-US",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-u2-later-un-USSR",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-wwby-un-cancel",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-both-hooks-un",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-u2-un-terminal-pair-cleanup",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-wwby-timing-self-activation",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-wwby-timing-cross-turn",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-wwby-timing-trap",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-wwby-timing-extra",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-wwby-timing-wrong-slot",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-wwby-timing-unknown-provider",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-wwby-headline-not-action",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-wwby-USSR-not-US-action",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-u2-next-turn-not-awarded",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-u2-retro-not-awarded",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-u2-repeated-new-un",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-u2-same-un-observed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-wwby-already-awarded",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-final-no-next-us-no-vp",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-final-earlier-missed-target-not-erased",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-wwby-retro-un-cannot-cancel",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-u2-same-id-conflicting-proof",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-hook-current-resolution-alias",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-hook-current-root-alias",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-prior-u2-hook-fact-amount",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-prior-u2-hook-fact-evidence",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-prior-u2-hook-fact-without-proof",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-hook-current-source-hand",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-hook-current-extra-frame-entity",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-hook-current-bad-owner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-finished-absorbs-new-64",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-finished-absorbs-new-65",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-finished-absorbs-new-66",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-u2-only-no-un-ops",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-special-un-MissileEnvy",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-special-un-StarWars",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-special-un-GrainSales",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-special-un-Unknown",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-un-unverified-slot-pair-trap-slot",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-un-unverified-slot-pair-extra-slot",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-source-source-hand",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-source-duplicate-instance",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-source-duplicate-card",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-source-extra-frame-entity",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-source-completed-source",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-source-prior-source-fact",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-source-bad-controller",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-source-bad-owner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-source-source-unknown-parent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-source-fyp",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-source-phase-provider",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-source-unknown-coverage",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-source-active-winner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-source-defcon-one",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-source-vp-terminal",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-source-finished",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-source-stale",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-source-bad-dispatch",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-source-player-caller",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-un-evidence-companion-neutral",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-un-evidence-companion-own",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-un-evidence-companion-scoring",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-un-evidence-companion-china",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-un-evidence-pair-hand",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-un-evidence-pair-extra-entity",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-un-evidence-pair-use-mode",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-un-evidence-pair-owner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-un-evidence-pair-before-zone",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-un-evidence-pair-fact",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-un-evidence-pair-suppression",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-un-evidence-pair-no-use",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-un-evidence-pair-ledger",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-activation-fact-card",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-activation-fact-controller",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-activation-fact-turn",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-activation-fact-source-root",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-activation-missing-fact",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-activation-duplicate-resolution",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-activation-duplicate-hook",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-activation-unknown-hook",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-replay-114",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-replay-115",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-replay-116",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-replay-117",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-replay-118",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-history-result-vp",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-history-result-hook",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-history-result-entity",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-history-historical-source-hand",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-history-historical-duplicate-card",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-history-historical-activation",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-history-bad-anchor",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-R-history-changed-command",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "DV1-S-command-valid",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-command-extra",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-input-valid",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-input-extra",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-state-valid",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-state-extra",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-frame-valid",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-frame-extra",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-pair-valid",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-pair-extra",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-activation_fact-valid",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-activation_fact-extra",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-hook-valid",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-hook-extra",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-receipt-valid",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-receipt-extra",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-command-bool-version",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-state-float-version",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-frame-arbitrary-provider",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-pair-boolean-proof",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-receipt-untyped-history",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-activation_fact-wrong-kind",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-hook-untyped-observed",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-S-command-empty-id",
+      "passed": true,
+      "validation_layer": "schema"
+    },
+    {
+      "id": "DV1-D-valid",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "DV1-D-scope",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "DV1-D-wwby-vp",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "DV1-D-u2-initial",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "DV1-D-u2-repeat",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "DV1-D-un-evidence",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "DV1-D-physical",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "DV1-D-receipt",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "DV1-D-unknown-checkpoint",
+      "passed": true,
+      "validation_layer": "data"
+    }
+  ],
+  "limitations": [
+    "合成UN双牌/根/活动事实与独立收据锚点不是生产鉴权、调度、持久化或真实合法动作服务。",
+    "当前checkpoint RequiresRuling保留此前已接受前缀；特殊UN/WWBY调度和第二新U2 UN待核。",
+    "旧案例仅适配绑定库存与文件overlay，不改规则期望；13note/72Tools独立，本批未重跑。"
+  ],
+  "independent_review": {
+    "status": "ready-no-findings",
+    "checked_on": "2026-10-13",
+    "new_cases_independently_passed": 160,
+    "separate_probes": 42,
+    "old_cases_independently_rerun": 0,
+    "integration_review": {
+      "json": 272,
+      "schemas": 47,
+      "datasets": 50,
+      "planned_module_dag": 21,
+      "module_dependency_edges": 42,
+      "catalog_and_dependency_paths_checked": 807,
+      "module_dependency_paths": 58,
+      "dataset_parameter_pointers": 232,
+      "effect_contract_pointers": 95,
+      "stage_markdown_relative_links": 244
+    },
+    "baseline_sha256_verified": 393,
+    "report_sha256_verified": 11,
+    "cards": {
+      "printed_unchanged": 103,
+      "only_changed_bindings": [
+        "card.we_will_bury_you",
+        "card.u2_incident"
+      ],
+      "binding_counts": {
+        "Bound": 95,
+        "Unresolved": 7
+      },
+      "handlers_planned": 102
+    },
+    "source_rename_lineage": {
+      "only_changed_token": "PROJECT-DV1 -> PROJECT-DEFERRED-VP1",
+      "files": [
+        "Data/Cards/deluxe-2015/deferred-vp-events-batch1.parameters.json",
+        "Data/Descriptors/deferred-vp-events-batch1.data.json",
+        "Docs/Contracts/deferred-vp-events-batch1.schema.json"
+      ],
+      "reversing_source_token_matches_all_five_original_raw_hashes": true,
+      "old_global_and_module_engineering_sources_preserved": true,
+      "new_engineering_source_refs_pending": 2,
+      "prior_collision_evidence": "work/deferred-vp-integrated-source-collision-finding.json",
+      "finding_status": "Closed"
+    },
+    "adapter_ast_equivalence": "Whole AST equal after exactly three artifact lookup substitutions",
+    "execution_scope": "Independent fixed author160 plus original34 and8 history probes. Integration structural/AST/hash only; no extra160 rerun or old3973/runtime. Main4133 by parent."
+  },
+  "post_validation_document_links_checked": 8,
+  "metadata_after_validation": "Only Wiki integration paragraph and Worklog updated; links checked and Wiki hash refreshed."
+}

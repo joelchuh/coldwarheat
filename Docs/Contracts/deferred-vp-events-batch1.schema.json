@@ -1,0 +1,1508 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:deferred-vp-events-batch1:1",
+  "description": "Closed DV1 source, accepted UN evidence, activation, deferred checkpoint and history shapes; domain invariants checked by finite reference model, runtime planned.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "checked_on",
+    "source_catalog",
+    "shared_refs",
+    "interface_refs",
+    "policies",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "dataset_id": {
+      "type": "string",
+      "const": "effects.deluxe2015.deferred_vp_events_batch1"
+    },
+    "content_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "type": "string",
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "type": "string",
+      "const": "verified-subset"
+    },
+    "description": {
+      "type": "string",
+      "const": "WWBY immediate DEFCON and next-US-action conditional VP; U2 immediate VP and later same-turn legal UN bonus; typed delayed checkpoints and immutable history, runtime planned."
+    },
+    "checked_on": {
+      "type": "string",
+      "const": "2026-10-13"
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "locator",
+            "sha256"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "const": "C-DELUXE-EN"
+            },
+            "url": {
+              "type": "string",
+              "const": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf"
+            },
+            "locator": {
+              "type": "string",
+              "const": "English images PDF p8 #50 and p10 #60 personally inspected; adjacent translation excluded"
+            },
+            "sha256": {
+              "type": "string",
+              "const": "3fded13f03c63154de72af93faceaf8700db19f12c033ff477497232f2c2a0f0"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "locator",
+            "sha256"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "const": "F2010"
+            },
+            "url": {
+              "type": "string",
+              "const": "https://www.gmtgames.com/nnts/FAQv5.pdf"
+            },
+            "locator": {
+              "type": "string",
+              "const": "PDF pp11-12 #49/#50: immediate nuclear loss; next US ActionRound; priority over Duck and Cover; no next ActionRound no VP; legal UN via ME/StarWars/GrainSales with Soviet companion"
+            },
+            "sha256": {
+              "type": "string",
+              "const": "9c8ac9ef5c2b25f558d81aa2e12205609661dc80d9ead52b64367659bac99374"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "locator",
+            "sha256"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "const": "R2015"
+            },
+            "url": {
+              "type": "string",
+              "const": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf"
+            },
+            "locator": {
+              "type": "string",
+              "const": "PDF p4 4.5C-D ordinary alternating slots; p5 5.2/5.4/5.5; p7 6.4.1 Operations-valued Space eligibility; p8 8.1.3; p10 10.2.3/10.3.1"
+            },
+            "sha256": {
+              "type": "string",
+              "const": "d5c827cf78fc4800e0993c1e3313ec909d3c7da2c1b03b735ccf0042a0c4ac8e"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "locator",
+            "sha256"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "const": "PROJECT-DEFERRED-VP1"
+            },
+            "url": {
+              "type": "null",
+              "const": null
+            },
+            "locator": {
+              "type": "string",
+              "const": "2026-10-13 finite prefix/checkpoint/accepted-UN/receipt contract. No official U2 repeated-use or WWBY self-activation/Trap/cross-turn timing ruling adopted."
+            },
+            "sha256": {
+              "type": "null",
+              "const": null
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "shared_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cards",
+        "defcon",
+        "victory",
+        "turn_flow",
+        "un"
+      ],
+      "properties": {
+        "cards": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "cards.deluxe2015.definitions"
+            },
+            "path": {
+              "type": "string",
+              "const": "Data/Cards/deluxe-2015/cards.json"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": "/cards"
+            }
+          }
+        },
+        "defcon": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "rules.deluxe2015.defcon"
+            },
+            "path": {
+              "type": "string",
+              "const": "Data/Rulesets/deluxe-2015/defcon.json"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": ""
+            }
+          }
+        },
+        "victory": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "rules.deluxe2015.victory"
+            },
+            "path": {
+              "type": "string",
+              "const": "Data/Rulesets/deluxe-2015/victory.json"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": ""
+            }
+          }
+        },
+        "turn_flow": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "rules.deluxe2015.turn-flow"
+            },
+            "path": {
+              "type": "string",
+              "const": "Data/Rulesets/deluxe-2015/turn-flow.json"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": ""
+            }
+          }
+        },
+        "un": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "effects.deluxe2015.un_intervention"
+            },
+            "path": {
+              "type": "string",
+              "const": "Data/Cards/deluxe-2015/un-intervention.parameters.json"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": "/parameters/un_intervention"
+            }
+          }
+        }
+      }
+    },
+    "interface_refs": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path",
+            "id",
+            "purpose"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "const": "Docs/Descriptors/paired-card-play.module.json"
+            },
+            "id": {
+              "type": "string",
+              "const": "module.paired-card-play"
+            },
+            "purpose": {
+              "type": "string",
+              "const": "Existing LegalUNEventUseEvidence and accepted pair/terminal finalization; full UN execution remains planned"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path",
+            "id",
+            "purpose"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "const": "Docs/Descriptors/turn-flow.module.json"
+            },
+            "id": {
+              "type": "string",
+              "const": "module.turn-flow"
+            },
+            "purpose": {
+              "type": "string",
+              "const": "Independent accepted source/root/slot and checkpoint scheduling; no new root from hook"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path",
+            "id",
+            "purpose"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "const": "Docs/Contracts/un-intervention.schema.json"
+            },
+            "id": {
+              "type": "null",
+              "const": null
+            },
+            "purpose": {
+              "type": "string",
+              "const": "Existing UN parameter authority; DV1 types finite evidence consumer without replacing PairService"
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "policies": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "physical",
+        "activation",
+        "known_prefix",
+        "unknown_checkpoint",
+        "un_evidence",
+        "special_un_sources",
+        "non_un_subset",
+        "accepted_history_premise",
+        "vp",
+        "terminal",
+        "receipt",
+        "runtime"
+      ],
+      "properties": {
+        "source": {
+          "type": "string",
+          "const": "OrdinaryRootOpponentEventOrHeadline_NoUnregisteredParent"
+        },
+        "physical": {
+          "type": "string",
+          "const": "UniqueInstanceAndCardId_OnePerSingleFrame_ExactlyUNAndCompanionPerPairFrame"
+        },
+        "activation": {
+          "type": "string",
+          "const": "AcceptedEventFactBindsResolutionCardEffectControllerTurnSequenceAndSourceRoot"
+        },
+        "known_prefix": {
+          "type": "string",
+          "const": "CommitKnownImmediateEventThenIndependentDeferredCheckpoints"
+        },
+        "unknown_checkpoint": {
+          "type": "string",
+          "const": "NoCurrentMutationOrVp_PreservePreviouslyAcceptedPrefix"
+        },
+        "un_evidence": {
+          "type": "string",
+          "const": "TypedNormalActionOwnerHandPair_TwoActualUses_IndependentLedgerAndPhysicalEntities"
+        },
+        "special_un_sources": {
+          "type": "string",
+          "const": "OfficialTimingKnownButUnregisteredSourceRequiresRuling"
+        },
+        "non_un_subset": {
+          "type": "string",
+          "const": "DirectDuckAndCoverBeforeEvent_SingleOwnNeutralOperations_SingleSpaceAcceptedUse_EventCardsOnlyFromSharedKind"
+        },
+        "accepted_history_premise": {
+          "type": "string",
+          "const": "NonUNHookAwardOrExpiryRequiresIndependentLegallyValidatedProvider_NotReconstructedFromJournalShape"
+        },
+        "vp": {
+          "type": "string",
+          "const": "SeparateEventBatches_SharedThresholdAndNuclearResponsibility"
+        },
+        "terminal": {
+          "type": "string",
+          "const": "FinalizeOnlyAcceptedSingleOrPairRootInDraftThenFinished"
+        },
+        "receipt": {
+          "type": "string",
+          "const": "FullOriginalInputAndResult_IndependentAcceptedAnchor_RevalidateHistory_PreserveLaterCurrent"
+        },
+        "runtime": {
+          "type": "string",
+          "const": "FiniteSyntheticPremisesOnly_NoAuthenticationPersistenceOrUNExecution"
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "we_will_bury_you",
+        "u2_incident"
+      ],
+      "properties": {
+        "we_will_bury_you": {
+          "$ref": "#/$defs/we_will_bury_you"
+        },
+        "u2_incident": {
+          "$ref": "#/$defs/u2_incident"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "we_will_bury_you": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "template",
+        "controller",
+        "defcon_degrade",
+        "deferred_vp",
+        "recipient",
+        "immediate_checkpoint",
+        "known_timing",
+        "un_exemption",
+        "priority",
+        "unverified_timing",
+        "no_next_action"
+      ],
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "const": "card.we_will_bury_you"
+        },
+        "effect_id": {
+          "type": "string",
+          "const": "effect.we_will_bury_you"
+        },
+        "template": {
+          "type": "string",
+          "const": "ImmediateDefconThenNextUsActionConditionalVp"
+        },
+        "controller": {
+          "type": "string",
+          "const": "USSR"
+        },
+        "defcon_degrade": {
+          "type": "integer",
+          "const": 1
+        },
+        "deferred_vp": {
+          "type": "integer",
+          "const": 3
+        },
+        "recipient": {
+          "type": "string",
+          "const": "USSR"
+        },
+        "immediate_checkpoint": {
+          "type": "string",
+          "const": "NuclearBeforeInstallingHook"
+        },
+        "known_timing": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "type": "string",
+              "const": "SameTurnOrdinaryUSSRSlotToSameIndexUSSlot"
+            },
+            {
+              "type": "string",
+              "const": "HeadlineToFirstOrdinaryUSSlot"
+            }
+          ],
+          "items": false
+        },
+        "un_exemption": {
+          "type": "string",
+          "const": "AcceptedLegalUNEventInTargetUSRoot"
+        },
+        "priority": {
+          "type": "string",
+          "const": "CompleteOwnVpBatchBeforeAnyUSVpAward"
+        },
+        "unverified_timing": {
+          "type": "string",
+          "const": "CheckpointRequiresRulingPreserveAcceptedImmediatePrefix"
+        },
+        "no_next_action": {
+          "type": "string",
+          "const": "NoAwardBeforeFinalScoring"
+        }
+      }
+    },
+    "u2_incident": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "template",
+        "controller",
+        "initial_vp",
+        "additional_vp",
+        "recipient",
+        "duration",
+        "trigger",
+        "repeat_new_legal_un_same_turn",
+        "same_accepted_un_again",
+        "retroactive"
+      ],
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "const": "card.u2_incident"
+        },
+        "effect_id": {
+          "type": "string",
+          "const": "effect.u2_incident"
+        },
+        "template": {
+          "type": "string",
+          "const": "ImmediateVpThenSameTurnLaterLegalUNBonus"
+        },
+        "controller": {
+          "type": "string",
+          "const": "USSR"
+        },
+        "initial_vp": {
+          "type": "integer",
+          "const": 1
+        },
+        "additional_vp": {
+          "type": "integer",
+          "const": 1
+        },
+        "recipient": {
+          "type": "string",
+          "const": "USSR"
+        },
+        "duration": {
+          "type": "string",
+          "const": "ActivationTurn"
+        },
+        "trigger": {
+          "type": "string",
+          "const": "LaterAcceptedLegalUNEventEitherPlayer"
+        },
+        "repeat_new_legal_un_same_turn": {
+          "type": "string",
+          "const": "RequiresRulingAfterFirstAward"
+        },
+        "same_accepted_un_again": {
+          "type": "string",
+          "const": "AlreadyObservedNoAward"
+        },
+        "retroactive": {
+          "type": "string",
+          "const": "NoAward"
+        }
+      }
+    },
+    "root": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "action_id",
+        "turn",
+        "phase",
+        "phasing_player",
+        "slot_kind",
+        "slot_index",
+        "closed",
+        "completed_slots"
+      ],
+      "properties": {
+        "action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "phase": {
+          "type": "string",
+          "enum": [
+            "ActionRound",
+            "Headline",
+            "FinalScoring"
+          ]
+        },
+        "phasing_player": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "slot_kind": {
+          "type": "string",
+          "enum": [
+            "Normal",
+            "Trap",
+            "Extra",
+            "Unknown"
+          ]
+        },
+        "slot_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "closed": {
+          "type": "boolean"
+        },
+        "completed_slots": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "frame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "frame_id",
+        "resolution_id",
+        "source_instance_id",
+        "card_id",
+        "controller",
+        "provider",
+        "remaining",
+        "status",
+        "disposition"
+      ],
+      "properties": {
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "controller": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "provider": {
+          "type": "string",
+          "enum": [
+            "RootEvent",
+            "OpponentCardEvent",
+            "HeadlineEvent",
+            "DirectDuckAndCover",
+            "SingleOperations",
+            "SingleSpace",
+            "NormalUNPair",
+            "UnverifiedNested",
+            "FiveYearPlan"
+          ]
+        },
+        "remaining": {
+          "type": "string",
+          "enum": [
+            "None",
+            "Operations",
+            "Unknown"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Pending",
+            "Completed",
+            "TerminalAborted"
+          ]
+        },
+        "disposition": {
+          "type": "string",
+          "enum": [
+            "None",
+            "Removed",
+            "DeferredRemove",
+            "DiscardPile"
+          ]
+        }
+      },
+      "description": "SingleOperations and SingleSpace require shared printed kind Event; Scoring and China cannot establish those purposes. Source/ledger agreement alone is insufficient. Complete OPS/Space eligibility (target, effective OPS, quotas and restrictions) remains an independently legally validated provider premise, not implemented here."
+    },
+    "physical": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "instance_id",
+        "card_id",
+        "owner",
+        "zone",
+        "frame_id"
+      ],
+      "properties": {
+        "instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "zone": {
+          "type": "string",
+          "enum": [
+            "Hand",
+            "HeadlineReserved",
+            "InResolution",
+            "DiscardPile",
+            "Removed"
+          ]
+        },
+        "frame_id": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "activation_fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resolution_id",
+        "card_id",
+        "effect_id",
+        "source_instance_id",
+        "controller",
+        "turn",
+        "sequence",
+        "provider",
+        "source_root",
+        "kind"
+      ],
+      "properties": {
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effect_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "controller": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "provider": {
+          "type": "string",
+          "enum": [
+            "RootEvent",
+            "OpponentCardEvent",
+            "HeadlineEvent"
+          ]
+        },
+        "source_root": {
+          "$ref": "#/$defs/root"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "EventCompleted"
+          ]
+        }
+      }
+    },
+    "hook": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "instance_id",
+        "resolution_id",
+        "effect_id",
+        "status",
+        "observed_un_ids"
+      ],
+      "properties": {
+        "instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effect_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Waiting",
+            "Awarded",
+            "Cancelled",
+            "Expired"
+          ]
+        },
+        "observed_un_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "hook_fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resolution_id",
+        "status",
+        "un_evidence_id",
+        "turn",
+        "sequence",
+        "vp_delta",
+        "un_evidence"
+      ],
+      "properties": {
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Awarded",
+            "Cancelled",
+            "Expired"
+          ]
+        },
+        "un_evidence_id": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "vp_delta": {
+          "type": "integer"
+        },
+        "un_evidence": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/pair"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "description": "Independent previously accepted hook-result journal premise, not client testimony. Status, amount and optional UN evidence must match the named hook and cannot invent a second U2 award. For non-UN Awarded/Expired records the independent provider is assumed to have legally validated the original target checkpoint or final boundary; this projection stores no target-checkpoint provenance and cannot reconstruct that legality from shape, time or amount. Production adapters must establish that premise independently; arbitrary imported journal facts are not authorized."
+    },
+    "actual_use": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "use_id",
+        "pair_id",
+        "root_action_id",
+        "instance_id",
+        "card_id",
+        "player",
+        "mode",
+        "suppression"
+      ],
+      "properties": {
+        "use_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pair_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "player": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "Event",
+            "Operations"
+          ]
+        },
+        "suppression": {
+          "type": "string",
+          "enum": [
+            "None",
+            "UNIntervention"
+          ]
+        }
+      }
+    },
+    "pair": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pair_id",
+        "evidence_id",
+        "source_provider",
+        "root_action_id",
+        "turn",
+        "player",
+        "sequence",
+        "frame_id",
+        "un_instance_id",
+        "companion_instance_id",
+        "before_cards",
+        "uses",
+        "companion_event_outcome",
+        "un_legal_event_fact",
+        "source_root"
+      ],
+      "properties": {
+        "pair_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_provider": {
+          "type": "string",
+          "enum": [
+            "NormalActionOwnerHand",
+            "MissileEnvy",
+            "StarWars",
+            "GrainSales",
+            "Unknown"
+          ]
+        },
+        "root_action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "player": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "un_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "companion_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "before_cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/physical"
+          }
+        },
+        "uses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/actual_use"
+          }
+        },
+        "companion_event_outcome": {
+          "type": "string",
+          "enum": [
+            "Suppressed"
+          ]
+        },
+        "un_legal_event_fact": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "evidence_id",
+            "pair_id",
+            "root_action_id",
+            "un_use_id",
+            "un_instance_id",
+            "card_id",
+            "player",
+            "turn",
+            "sequence",
+            "kind"
+          ],
+          "properties": {
+            "evidence_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "pair_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "root_action_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "un_use_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "un_instance_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "card_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "player": {
+              "type": "string",
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            "turn": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sequence": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "LegalUNEventUseAccepted"
+              ]
+            }
+          }
+        },
+        "source_root": {
+          "$ref": "#/$defs/root"
+        }
+      },
+      "description": "Finite projection of existing UN accepted evidence: validate independent ledger, both prior owner-Hand entities, current exact pair frame, opponent Event companion, Event/Operations actual uses and suppression. Not an implementation of pairing, actual-use hooks, operations or source authentication."
+    },
+    "ledger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dispatch_id",
+        "kind",
+        "root",
+        "frame",
+        "pair",
+        "coverage",
+        "sequence"
+      ],
+      "properties": {
+        "dispatch_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "ResolveEvent",
+            "ObserveUN",
+            "CheckNonUN",
+            "FinalBoundary"
+          ]
+        },
+        "root": {
+          "$ref": "#/$defs/root"
+        },
+        "frame": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/frame"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "pair": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/pair"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "coverage": {
+          "type": "string",
+          "enum": [
+            "CompleteKnown",
+            "Unknown"
+          ]
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version",
+        "turn",
+        "status",
+        "winner",
+        "signed_vp",
+        "defcon",
+        "sequence",
+        "root",
+        "frame",
+        "cards",
+        "activation_facts",
+        "hooks",
+        "pair",
+        "ledger",
+        "rng_cursor",
+        "military_us",
+        "military_ussr",
+        "hook_facts"
+      ],
+      "properties": {
+        "version": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Active",
+            "Finished"
+          ]
+        },
+        "winner": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "signed_vp": {
+          "type": "integer"
+        },
+        "defcon": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "root": {
+          "$ref": "#/$defs/root"
+        },
+        "frame": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/frame"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/physical"
+          }
+        },
+        "activation_facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/activation_fact"
+          }
+        },
+        "hooks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/hook"
+          }
+        },
+        "pair": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/pair"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ledger": {
+          "$ref": "#/$defs/ledger"
+        },
+        "rng_cursor": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "military_us": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "military_ussr": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hook_facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/hook_fact"
+          }
+        }
+      }
+    },
+    "command": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "expected_version",
+        "dispatch_id",
+        "kind"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "dispatch_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "ResolveEvent",
+            "ObserveUN",
+            "CheckNonUN",
+            "FinalBoundary"
+          ]
+        }
+      }
+    },
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command",
+        "state",
+        "caller"
+      ],
+      "properties": {
+        "command": {
+          "$ref": "#/$defs/command"
+        },
+        "state": {
+          "$ref": "#/$defs/state"
+        },
+        "caller": {
+          "type": "string",
+          "enum": [
+            "InternalResolution",
+            "Player"
+          ]
+        }
+      }
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcome",
+        "state",
+        "vp_delta",
+        "trace"
+      ],
+      "properties": {
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "Resolved",
+            "Finished",
+            "NoEffect",
+            "AlreadyObserved"
+          ]
+        },
+        "state": {
+          "$ref": "#/$defs/state"
+        },
+        "vp_delta": {
+          "type": "integer"
+        },
+        "trace": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input",
+        "result",
+        "data_digest",
+        "input_digest",
+        "result_digest",
+        "receipt_digest"
+      ],
+      "properties": {
+        "input": {
+          "$ref": "#/$defs/input"
+        },
+        "result": {
+          "$ref": "#/$defs/result"
+        },
+        "data_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "input_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "result_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "receipt_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "description": "Authority record anchored by independently stored accepted receipt digest. Recompute original transition under its explicitly trusted accepted-fact premises to validate whole stored result, including source-purpose eligibility, hook facts and pair cleanup. This does not authenticate or reconstruct the legality of earlier non-UN hook outcomes whose checkpoints are absent. Never inspect later live state to refresh or revoke original result."
+    }
+  }
+}

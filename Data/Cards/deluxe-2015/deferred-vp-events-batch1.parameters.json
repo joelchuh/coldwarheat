@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.deferred_vp_events_batch1",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "verified-subset",
+  "description": "WWBY immediate DEFCON and next-US-action conditional VP; U2 immediate VP and later same-turn legal UN bonus; typed delayed checkpoints and immutable history, runtime planned.",
+  "checked_on": "2026-10-13",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "locator": "English images PDF p8 #50 and p10 #60 personally inspected; adjacent translation excluded",
+      "sha256": "3fded13f03c63154de72af93faceaf8700db19f12c033ff477497232f2c2a0f0"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "locator": "PDF pp11-12 #49/#50: immediate nuclear loss; next US ActionRound; priority over Duck and Cover; no next ActionRound no VP; legal UN via ME/StarWars/GrainSales with Soviet companion",
+      "sha256": "9c8ac9ef5c2b25f558d81aa2e12205609661dc80d9ead52b64367659bac99374"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "locator": "PDF p4 4.5C-D ordinary alternating slots; p5 5.2/5.4/5.5; p7 6.4.1 Operations-valued Space eligibility; p8 8.1.3; p10 10.2.3/10.3.1",
+      "sha256": "d5c827cf78fc4800e0993c1e3313ec909d3c7da2c1b03b735ccf0042a0c4ac8e"
+    },
+    {
+      "id": "PROJECT-DEFERRED-VP1",
+      "url": null,
+      "locator": "2026-10-13 finite prefix/checkpoint/accepted-UN/receipt contract. No official U2 repeated-use or WWBY self-activation/Trap/cross-turn timing ruling adopted.",
+      "sha256": null
+    }
+  ],
+  "shared_refs": {
+    "cards": {
+      "dataset_id": "cards.deluxe2015.definitions",
+      "path": "Data/Cards/deluxe-2015/cards.json",
+      "json_pointer": "/cards"
+    },
+    "defcon": {
+      "dataset_id": "rules.deluxe2015.defcon",
+      "path": "Data/Rulesets/deluxe-2015/defcon.json",
+      "json_pointer": ""
+    },
+    "victory": {
+      "dataset_id": "rules.deluxe2015.victory",
+      "path": "Data/Rulesets/deluxe-2015/victory.json",
+      "json_pointer": ""
+    },
+    "turn_flow": {
+      "dataset_id": "rules.deluxe2015.turn-flow",
+      "path": "Data/Rulesets/deluxe-2015/turn-flow.json",
+      "json_pointer": ""
+    },
+    "un": {
+      "dataset_id": "effects.deluxe2015.un_intervention",
+      "path": "Data/Cards/deluxe-2015/un-intervention.parameters.json",
+      "json_pointer": "/parameters/un_intervention"
+    }
+  },
+  "interface_refs": [
+    {
+      "path": "Docs/Descriptors/paired-card-play.module.json",
+      "id": "module.paired-card-play",
+      "purpose": "Existing LegalUNEventUseEvidence and accepted pair/terminal finalization; full UN execution remains planned"
+    },
+    {
+      "path": "Docs/Descriptors/turn-flow.module.json",
+      "id": "module.turn-flow",
+      "purpose": "Independent accepted source/root/slot and checkpoint scheduling; no new root from hook"
+    },
+    {
+      "path": "Docs/Contracts/un-intervention.schema.json",
+      "id": null,
+      "purpose": "Existing UN parameter authority; DV1 types finite evidence consumer without replacing PairService"
+    }
+  ],
+  "policies": {
+    "source": "OrdinaryRootOpponentEventOrHeadline_NoUnregisteredParent",
+    "physical": "UniqueInstanceAndCardId_OnePerSingleFrame_ExactlyUNAndCompanionPerPairFrame",
+    "activation": "AcceptedEventFactBindsResolutionCardEffectControllerTurnSequenceAndSourceRoot",
+    "known_prefix": "CommitKnownImmediateEventThenIndependentDeferredCheckpoints",
+    "unknown_checkpoint": "NoCurrentMutationOrVp_PreservePreviouslyAcceptedPrefix",
+    "un_evidence": "TypedNormalActionOwnerHandPair_TwoActualUses_IndependentLedgerAndPhysicalEntities",
+    "special_un_sources": "OfficialTimingKnownButUnregisteredSourceRequiresRuling",
+    "non_un_subset": "DirectDuckAndCoverBeforeEvent_SingleOwnNeutralOperations_SingleSpaceAcceptedUse_EventCardsOnlyFromSharedKind",
+    "accepted_history_premise": "NonUNHookAwardOrExpiryRequiresIndependentLegallyValidatedProvider_NotReconstructedFromJournalShape",
+    "vp": "SeparateEventBatches_SharedThresholdAndNuclearResponsibility",
+    "terminal": "FinalizeOnlyAcceptedSingleOrPairRootInDraftThenFinished",
+    "receipt": "FullOriginalInputAndResult_IndependentAcceptedAnchor_RevalidateHistory_PreserveLaterCurrent",
+    "runtime": "FiniteSyntheticPremisesOnly_NoAuthenticationPersistenceOrUNExecution"
+  },
+  "parameters": {
+    "we_will_bury_you": {
+      "card_id": "card.we_will_bury_you",
+      "effect_id": "effect.we_will_bury_you",
+      "template": "ImmediateDefconThenNextUsActionConditionalVp",
+      "controller": "USSR",
+      "defcon_degrade": 1,
+      "deferred_vp": 3,
+      "recipient": "USSR",
+      "immediate_checkpoint": "NuclearBeforeInstallingHook",
+      "known_timing": [
+        "SameTurnOrdinaryUSSRSlotToSameIndexUSSlot",
+        "HeadlineToFirstOrdinaryUSSlot"
+      ],
+      "un_exemption": "AcceptedLegalUNEventInTargetUSRoot",
+      "priority": "CompleteOwnVpBatchBeforeAnyUSVpAward",
+      "unverified_timing": "CheckpointRequiresRulingPreserveAcceptedImmediatePrefix",
+      "no_next_action": "NoAwardBeforeFinalScoring"
+    },
+    "u2_incident": {
+      "card_id": "card.u2_incident",
+      "effect_id": "effect.u2_incident",
+      "template": "ImmediateVpThenSameTurnLaterLegalUNBonus",
+      "controller": "USSR",
+      "initial_vp": 1,
+      "additional_vp": 1,
+      "recipient": "USSR",
+      "duration": "ActivationTurn",
+      "trigger": "LaterAcceptedLegalUNEventEitherPlayer",
+      "repeat_new_legal_un_same_turn": "RequiresRulingAfterFirstAward",
+      "same_accepted_un_again": "AlreadyObservedNoAward",
+      "retroactive": "NoAward"
+    }
+  }
+}
