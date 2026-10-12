@@ -1,0 +1,6136 @@
+{
+  "schema_version": 1,
+  "description": "Olympic静态/严格结构及固定手算配对重掷/收据继续模型；真实随机、鉴权、存档、网络与游戏处理器均未执行。",
+  "status": "mixed-reference-and-planned",
+  "dataset": "Data/Cards/deluxe-2015/olympic-games.parameters.json",
+  "schema": "Docs/Contracts/olympic-games.schema.json",
+  "cases": [
+    {
+      "id": "OG1-D-baseline",
+      "validation_layer": "data",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "OG1-D-sponsor",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "olympic_games",
+              "sponsor"
+            ],
+            "value": "RootPhasingPlayer"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-choice-owner",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "olympic_games",
+              "branch_decision_owner"
+            ],
+            "value": "Sponsor"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-sponsor-bonus",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "olympic_games",
+              "participate",
+              "sponsor_die_modifier"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-vp",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "olympic_games",
+              "participate",
+              "winner_vp"
+            ],
+            "value": 3
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-tie-not-reroll",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "olympic_games",
+              "participate",
+              "tie_policy"
+            ],
+            "value": "ResolvedNoChange"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-tie-vp",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "olympic_games",
+              "participate",
+              "tie_vp"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-choice-after-tie",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "olympic_games",
+              "participate",
+              "branch_change_after_accepted_pair"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-die-duplicate",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "olympic_games",
+              "participate",
+              "draw_order"
+            ],
+            "value": [
+              "US",
+              "US"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-printed-ops",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "olympic_games",
+              "boycott",
+              "operations",
+              "base_ops"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-space",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "olympic_games",
+              "boycott",
+              "operations",
+              "space_allowed"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-free-coup",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "olympic_games",
+              "boycott",
+              "operations",
+              "coup_credit_kind"
+            ],
+            "value": "FreeCoup"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-defcon-bypass",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "olympic_games",
+              "boycott",
+              "operations",
+              "geographic_exemption"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-treaty-bypass",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "olympic_games",
+              "boycott",
+              "operations",
+              "treaty_exemption"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-grant-before-loss",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "olympic_games",
+              "boycott",
+              "ordered_steps"
+            ],
+            "value": [
+              "DegradeDefcon",
+              "IfContinueOfferOptionalAsIfCardOperations",
+              "NuclearWarReachedCheckpoint"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-choice-loser",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "olympic_games",
+              "boycott",
+              "nuclear_loser"
+            ],
+            "value": "BranchDecisionOwner"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-max-rerolls",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "scheduler_policy",
+              "game_reroll_limit"
+            ],
+            "value": 100
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-forced-winner",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "scheduler_policy",
+              "forced_winner"
+            ],
+            "value": "Sponsor"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-yield-player-choice",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "scheduler_policy",
+              "slice_exhausted"
+            ],
+            "value": "AwaitingBranch"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-reroll-old",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "receipt_policy",
+              "retry"
+            ],
+            "value": "ReadCurrentRng"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-implicit-baseline",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "olympic_games",
+              "boycott",
+              "operations",
+              "influence_baseline"
+            ],
+            "value": "GrantCreation"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-extra-root",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "olympic_games",
+              "boycott",
+              "operations",
+              "extra_root_action"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-unknown-provider",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "source_policy",
+              "unknown_provider"
+            ],
+            "value": "Continue"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-foreign-field",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "olympic_games",
+              "participate",
+              "client_dice"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-D-missing-source",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "olympic_games",
+              "source_refs"
+            ],
+            "delete": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-source_context",
+      "validation_layer": "contract",
+      "schema_def": "source_context",
+      "input": {
+        "fixture": {
+          "card_id": "card.olympic_games",
+          "source_instance_id": "instance.og",
+          "effect_id": "effect.olympic_games",
+          "resolution_id": "resolution.og",
+          "frame_id": "frame.og",
+          "parent_frame_id": "frame.root",
+          "root_action_id": "root.og",
+          "root_phasing_player": "US",
+          "sponsor": "US",
+          "opponent": "USSR",
+          "branch_owner": "USSR",
+          "source_kind": "RootEvent",
+          "phase": "ActionRound",
+          "provider_contract_id": "module.turn-flow",
+          "provider_proof_id": "proof.synthetic.root",
+          "source_zone": "InResolution",
+          "ruleset_id": "ruleset.deluxe2015",
+          "ruleset_version": "0.1.0",
+          "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "OG1-S-branch_request",
+      "validation_layer": "contract",
+      "schema_def": "branch_request",
+      "input": {
+        "fixture": {
+          "command_id": "command.choice",
+          "decision_id": "decision.branch",
+          "expected_revision": 5,
+          "choice": "Participate",
+          "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+        },
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "OG1-S-branch_decision",
+      "validation_layer": "contract",
+      "schema_def": "branch_decision",
+      "input": {
+        "fixture": {
+          "decision_id": "decision.branch",
+          "owner": "USSR",
+          "frame_id": "frame.og",
+          "revision": 5,
+          "choices": [
+            "Participate",
+            "Boycott"
+          ],
+          "status": "AwaitingBranch"
+        },
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "OG1-S-pair_receipt",
+      "validation_layer": "contract",
+      "schema_def": "pair_receipt",
+      "input": {
+        "fixture": {
+          "body": {
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "round_index": 1,
+            "previous_receipt_digest": null,
+            "raw_dice": {
+              "US": 1,
+              "USSR": 3
+            },
+            "modified_totals": {
+              "US": 3,
+              "USSR": 3
+            },
+            "sponsor": "US",
+            "outcome": "Tie",
+            "winner": null,
+            "vp_delta": 0,
+            "rng_before": 10,
+            "rng_after": 12,
+            "committed_revision": 6
+          },
+          "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+        },
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "OG1-S-roll_continuation",
+      "validation_layer": "contract",
+      "schema_def": "roll_continuation",
+      "input": {
+        "fixture": {
+          "kind": "InternalPairedRollContinuation",
+          "resolution_id": "resolution.og",
+          "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+          "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+          "next_round_index": 2,
+          "previous_receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+          "rng_cursor": 12,
+          "revision": 6,
+          "player_decision": null,
+          "branch_lock": "Participate"
+        },
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "OG1-S-boycott_receipt",
+      "validation_layer": "contract",
+      "schema_def": "boycott_receipt",
+      "input": {
+        "fixture": {
+          "resolution_id": "resolution.og",
+          "source_context": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+          "original_request_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "defcon_before": 3,
+          "defcon_after": 2,
+          "committed_revision": 6,
+          "nuclear_loser": null,
+          "grant_id": "grant.og",
+          "status": "AwaitingOperations"
+        },
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "OG1-S-ops_grant",
+      "validation_layer": "contract",
+      "schema_def": "ops_grant",
+      "input": {
+        "fixture": {
+          "grant_id": "grant.og",
+          "source_context": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+          "boycott_receipt_digest": "35cfeef4725f3ecc90eba6e5a7289fa78cd829dbeec395d82658b54ff57e31ad",
+          "actor": "US",
+          "root_phasing_player": "US",
+          "budget_source": "VerifiedEventLiteral",
+          "base_ops": 4,
+          "effective_ops": 4,
+          "effects_snapshot_id": "effects.synthetic",
+          "influence_baseline": {
+            "policy": "RootActionRoundStartActor",
+            "actor": "US",
+            "snapshot_id": "snapshot.root-start",
+            "proof_id": "proof.root-start"
+          },
+          "revision": 6,
+          "allowed_modes": [
+            "Influence",
+            "Coup",
+            "Realignment"
+          ],
+          "may_decline": true
+        },
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "OG1-S-ops_choice",
+      "validation_layer": "contract",
+      "schema_def": "ops_choice",
+      "input": {
+        "fixture": {
+          "command_id": "command.ops",
+          "decision_id": "decision.ops",
+          "grant_id": "grant.og",
+          "expected_revision": 6,
+          "boycott_receipt_digest": "35cfeef4725f3ecc90eba6e5a7289fa78cd829dbeec395d82658b54ff57e31ad",
+          "choice": "Coup",
+          "country_id": "country.panama"
+        },
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "OG1-S-source_bundle",
+      "validation_layer": "contract",
+      "schema_def": "source_bundle",
+      "input": {
+        "fixture": {
+          "context": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "authoritative_card_locations": [
+            {
+              "instance_id": "instance.og",
+              "card_id": "card.olympic_games",
+              "zone": "InResolution",
+              "frame_id": "frame.og"
+            }
+          ],
+          "authority_revision": 5
+        },
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "OG1-S-roll_state",
+      "validation_layer": "contract",
+      "schema_def": "roll_state",
+      "input": {
+        "fixture": {
+          "source": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "original_request": {
+            "command_id": "command.choice",
+            "decision_id": "decision.branch",
+            "expected_revision": 5,
+            "choice": "Participate",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+          },
+          "initial_revision": 5,
+          "initial_rng": 10,
+          "initial_vp": 0,
+          "phase": "InternalRoll",
+          "rng": 12,
+          "revision": 6,
+          "vp": 0,
+          "defcon": 3,
+          "receipts": [
+            {
+              "body": {
+                "resolution_id": "resolution.og",
+                "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+                "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+                "round_index": 1,
+                "previous_receipt_digest": null,
+                "raw_dice": {
+                  "US": 1,
+                  "USSR": 3
+                },
+                "modified_totals": {
+                  "US": 3,
+                  "USSR": 3
+                },
+                "sponsor": "US",
+                "outcome": "Tie",
+                "winner": null,
+                "vp_delta": 0,
+                "rng_before": 10,
+                "rng_after": 12,
+                "committed_revision": 6
+              },
+              "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+            }
+          ],
+          "continuation": {
+            "kind": "InternalPairedRollContinuation",
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "next_round_index": 2,
+            "previous_receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+            "rng_cursor": 12,
+            "revision": 6,
+            "player_decision": null,
+            "branch_lock": "Participate"
+          },
+          "game_winner": null,
+          "grant": false,
+          "branch_receipt": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+          "initial_defcon": 3
+        },
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "OG1-S-opponent-is-sponsor",
+      "validation_layer": "contract",
+      "schema_def": "source_context",
+      "input": {
+        "fixture": {
+          "card_id": "card.olympic_games",
+          "source_instance_id": "instance.og",
+          "effect_id": "effect.olympic_games",
+          "resolution_id": "resolution.og",
+          "frame_id": "frame.og",
+          "parent_frame_id": "frame.root",
+          "root_action_id": "root.og",
+          "root_phasing_player": "US",
+          "sponsor": "US",
+          "opponent": "USSR",
+          "branch_owner": "USSR",
+          "source_kind": "RootEvent",
+          "phase": "ActionRound",
+          "provider_contract_id": "module.turn-flow",
+          "provider_proof_id": "proof.synthetic.root",
+          "source_zone": "InResolution",
+          "ruleset_id": "ruleset.deluxe2015",
+          "ruleset_version": "0.1.0",
+          "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "edits": [
+          {
+            "path": [
+              "opponent"
+            ],
+            "value": "US"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-unknown-source-card",
+      "validation_layer": "contract",
+      "schema_def": "source_context",
+      "input": {
+        "fixture": {
+          "card_id": "card.olympic_games",
+          "source_instance_id": "instance.og",
+          "effect_id": "effect.olympic_games",
+          "resolution_id": "resolution.og",
+          "frame_id": "frame.og",
+          "parent_frame_id": "frame.root",
+          "root_action_id": "root.og",
+          "root_phasing_player": "US",
+          "sponsor": "US",
+          "opponent": "USSR",
+          "branch_owner": "USSR",
+          "source_kind": "RootEvent",
+          "phase": "ActionRound",
+          "provider_contract_id": "module.turn-flow",
+          "provider_proof_id": "proof.synthetic.root",
+          "source_zone": "InResolution",
+          "ruleset_id": "ruleset.deluxe2015",
+          "ruleset_version": "0.1.0",
+          "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "edits": [
+          {
+            "path": [
+              "card_id"
+            ],
+            "value": "card.summit"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-wrong-source-zone",
+      "validation_layer": "contract",
+      "schema_def": "source_context",
+      "input": {
+        "fixture": {
+          "card_id": "card.olympic_games",
+          "source_instance_id": "instance.og",
+          "effect_id": "effect.olympic_games",
+          "resolution_id": "resolution.og",
+          "frame_id": "frame.og",
+          "parent_frame_id": "frame.root",
+          "root_action_id": "root.og",
+          "root_phasing_player": "US",
+          "sponsor": "US",
+          "opponent": "USSR",
+          "branch_owner": "USSR",
+          "source_kind": "RootEvent",
+          "phase": "ActionRound",
+          "provider_contract_id": "module.turn-flow",
+          "provider_proof_id": "proof.synthetic.root",
+          "source_zone": "InResolution",
+          "ruleset_id": "ruleset.deluxe2015",
+          "ruleset_version": "0.1.0",
+          "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "edits": [
+          {
+            "path": [
+              "source_zone"
+            ],
+            "value": "Hand"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-phase-mismatch",
+      "validation_layer": "contract",
+      "schema_def": "source_context",
+      "input": {
+        "fixture": {
+          "card_id": "card.olympic_games",
+          "source_instance_id": "instance.og",
+          "effect_id": "effect.olympic_games",
+          "resolution_id": "resolution.og",
+          "frame_id": "frame.og",
+          "parent_frame_id": "frame.root",
+          "root_action_id": "root.og",
+          "root_phasing_player": "US",
+          "sponsor": "US",
+          "opponent": "USSR",
+          "branch_owner": "USSR",
+          "source_kind": "RootEvent",
+          "phase": "ActionRound",
+          "provider_contract_id": "module.turn-flow",
+          "provider_proof_id": "proof.synthetic.root",
+          "source_zone": "InResolution",
+          "ruleset_id": "ruleset.deluxe2015",
+          "ruleset_version": "0.1.0",
+          "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "edits": [
+          {
+            "path": [
+              "phase"
+            ],
+            "value": "Headline"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-provider-unknown",
+      "validation_layer": "contract",
+      "schema_def": "source_context",
+      "input": {
+        "fixture": {
+          "card_id": "card.olympic_games",
+          "source_instance_id": "instance.og",
+          "effect_id": "effect.olympic_games",
+          "resolution_id": "resolution.og",
+          "frame_id": "frame.og",
+          "parent_frame_id": "frame.root",
+          "root_action_id": "root.og",
+          "root_phasing_player": "US",
+          "sponsor": "US",
+          "opponent": "USSR",
+          "branch_owner": "USSR",
+          "source_kind": "RootEvent",
+          "phase": "ActionRound",
+          "provider_contract_id": "module.turn-flow",
+          "provider_proof_id": "proof.synthetic.root",
+          "source_zone": "InResolution",
+          "ruleset_id": "ruleset.deluxe2015",
+          "ruleset_version": "0.1.0",
+          "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "edits": [
+          {
+            "path": [
+              "provider_contract_id"
+            ],
+            "value": "module.grain-sales-unbound"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-choice-dice",
+      "validation_layer": "contract",
+      "schema_def": "branch_request",
+      "input": {
+        "fixture": {
+          "command_id": "command.choice",
+          "decision_id": "decision.branch",
+          "expected_revision": 5,
+          "choice": "Participate",
+          "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+        },
+        "edits": [
+          {
+            "path": [
+              "raw_dice"
+            ],
+            "value": [
+              1,
+              6
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-choice-budget",
+      "validation_layer": "contract",
+      "schema_def": "branch_request",
+      "input": {
+        "fixture": {
+          "command_id": "command.choice",
+          "decision_id": "decision.branch",
+          "expected_revision": 5,
+          "choice": "Participate",
+          "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+        },
+        "edits": [
+          {
+            "path": [
+              "budget"
+            ],
+            "value": 4
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-choice-third-option",
+      "validation_layer": "contract",
+      "schema_def": "branch_request",
+      "input": {
+        "fixture": {
+          "command_id": "command.choice",
+          "decision_id": "decision.branch",
+          "expected_revision": 5,
+          "choice": "Participate",
+          "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+        },
+        "edits": [
+          {
+            "path": [
+              "choice"
+            ],
+            "value": "Decline"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-choice-identity",
+      "validation_layer": "contract",
+      "schema_def": "branch_request",
+      "input": {
+        "fixture": {
+          "command_id": "command.choice",
+          "decision_id": "decision.branch",
+          "expected_revision": 5,
+          "choice": "Participate",
+          "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+        },
+        "edits": [
+          {
+            "path": [
+              "actor"
+            ],
+            "value": "USSR"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-stale-revision-type",
+      "validation_layer": "contract",
+      "schema_def": "branch_request",
+      "input": {
+        "fixture": {
+          "command_id": "command.choice",
+          "decision_id": "decision.branch",
+          "expected_revision": 5,
+          "choice": "Participate",
+          "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+        },
+        "edits": [
+          {
+            "path": [
+              "expected_revision"
+            ],
+            "value": "5"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-pair-invalid-us",
+      "validation_layer": "contract",
+      "schema_def": "pair_receipt",
+      "input": {
+        "fixture": {
+          "body": {
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "round_index": 1,
+            "previous_receipt_digest": null,
+            "raw_dice": {
+              "US": 1,
+              "USSR": 3
+            },
+            "modified_totals": {
+              "US": 3,
+              "USSR": 3
+            },
+            "sponsor": "US",
+            "outcome": "Tie",
+            "winner": null,
+            "vp_delta": 0,
+            "rng_before": 10,
+            "rng_after": 12,
+            "committed_revision": 6
+          },
+          "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+        },
+        "edits": [
+          {
+            "path": [
+              "body",
+              "raw_dice",
+              "US"
+            ],
+            "value": 0
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-pair-invalid-second",
+      "validation_layer": "contract",
+      "schema_def": "pair_receipt",
+      "input": {
+        "fixture": {
+          "body": {
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "round_index": 1,
+            "previous_receipt_digest": null,
+            "raw_dice": {
+              "US": 1,
+              "USSR": 3
+            },
+            "modified_totals": {
+              "US": 3,
+              "USSR": 3
+            },
+            "sponsor": "US",
+            "outcome": "Tie",
+            "winner": null,
+            "vp_delta": 0,
+            "rng_before": 10,
+            "rng_after": 12,
+            "committed_revision": 6
+          },
+          "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+        },
+        "edits": [
+          {
+            "path": [
+              "body",
+              "raw_dice",
+              "USSR"
+            ],
+            "value": 7
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-pair-float",
+      "validation_layer": "contract",
+      "schema_def": "pair_receipt",
+      "input": {
+        "fixture": {
+          "body": {
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "round_index": 1,
+            "previous_receipt_digest": null,
+            "raw_dice": {
+              "US": 1,
+              "USSR": 3
+            },
+            "modified_totals": {
+              "US": 3,
+              "USSR": 3
+            },
+            "sponsor": "US",
+            "outcome": "Tie",
+            "winner": null,
+            "vp_delta": 0,
+            "rng_before": 10,
+            "rng_after": 12,
+            "committed_revision": 6
+          },
+          "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+        },
+        "edits": [
+          {
+            "path": [
+              "body",
+              "raw_dice",
+              "US"
+            ],
+            "value": 1.5
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-pair-digest",
+      "validation_layer": "contract",
+      "schema_def": "pair_receipt",
+      "input": {
+        "fixture": {
+          "body": {
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "round_index": 1,
+            "previous_receipt_digest": null,
+            "raw_dice": {
+              "US": 1,
+              "USSR": 3
+            },
+            "modified_totals": {
+              "US": 3,
+              "USSR": 3
+            },
+            "sponsor": "US",
+            "outcome": "Tie",
+            "winner": null,
+            "vp_delta": 0,
+            "rng_before": 10,
+            "rng_after": 12,
+            "committed_revision": 6
+          },
+          "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+        },
+        "edits": [
+          {
+            "path": [
+              "receipt_digest"
+            ],
+            "value": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-pair-round-zero",
+      "validation_layer": "contract",
+      "schema_def": "pair_receipt",
+      "input": {
+        "fixture": {
+          "body": {
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "round_index": 1,
+            "previous_receipt_digest": null,
+            "raw_dice": {
+              "US": 1,
+              "USSR": 3
+            },
+            "modified_totals": {
+              "US": 3,
+              "USSR": 3
+            },
+            "sponsor": "US",
+            "outcome": "Tie",
+            "winner": null,
+            "vp_delta": 0,
+            "rng_before": 10,
+            "rng_after": 12,
+            "committed_revision": 6
+          },
+          "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+        },
+        "edits": [
+          {
+            "path": [
+              "body",
+              "round_index"
+            ],
+            "value": 0
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-pair-negative-rng",
+      "validation_layer": "contract",
+      "schema_def": "pair_receipt",
+      "input": {
+        "fixture": {
+          "body": {
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "round_index": 1,
+            "previous_receipt_digest": null,
+            "raw_dice": {
+              "US": 1,
+              "USSR": 3
+            },
+            "modified_totals": {
+              "US": 3,
+              "USSR": 3
+            },
+            "sponsor": "US",
+            "outcome": "Tie",
+            "winner": null,
+            "vp_delta": 0,
+            "rng_before": 10,
+            "rng_after": 12,
+            "committed_revision": 6
+          },
+          "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+        },
+        "edits": [
+          {
+            "path": [
+              "body",
+              "rng_after"
+            ],
+            "value": -1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-continuation-player-choice",
+      "validation_layer": "contract",
+      "schema_def": "roll_continuation",
+      "input": {
+        "fixture": {
+          "kind": "InternalPairedRollContinuation",
+          "resolution_id": "resolution.og",
+          "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+          "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+          "next_round_index": 2,
+          "previous_receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+          "rng_cursor": 12,
+          "revision": 6,
+          "player_decision": null,
+          "branch_lock": "Participate"
+        },
+        "edits": [
+          {
+            "path": [
+              "player_decision"
+            ],
+            "value": "Participate"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-continuation-forced-winner",
+      "validation_layer": "contract",
+      "schema_def": "roll_continuation",
+      "input": {
+        "fixture": {
+          "kind": "InternalPairedRollContinuation",
+          "resolution_id": "resolution.og",
+          "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+          "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+          "next_round_index": 2,
+          "previous_receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+          "rng_cursor": 12,
+          "revision": 6,
+          "player_decision": null,
+          "branch_lock": "Participate"
+        },
+        "edits": [
+          {
+            "path": [
+              "forced_winner"
+            ],
+            "value": "US"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-continuation-max-rounds",
+      "validation_layer": "contract",
+      "schema_def": "roll_continuation",
+      "input": {
+        "fixture": {
+          "kind": "InternalPairedRollContinuation",
+          "resolution_id": "resolution.og",
+          "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+          "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+          "next_round_index": 2,
+          "previous_receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+          "rng_cursor": 12,
+          "revision": 6,
+          "player_decision": null,
+          "branch_lock": "Participate"
+        },
+        "edits": [
+          {
+            "path": [
+              "max_rounds"
+            ],
+            "value": 100
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-boycott-finished-grant",
+      "validation_layer": "contract",
+      "schema_def": "boycott_receipt",
+      "input": {
+        "fixture": {
+          "resolution_id": "resolution.og",
+          "source_context": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+          "original_request_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "defcon_before": 3,
+          "defcon_after": 2,
+          "committed_revision": 6,
+          "nuclear_loser": null,
+          "grant_id": "grant.og",
+          "status": "AwaitingOperations"
+        },
+        "edits": [
+          {
+            "path": [
+              "status"
+            ],
+            "value": "Finished"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-boycott-bad-defcon",
+      "validation_layer": "contract",
+      "schema_def": "boycott_receipt",
+      "input": {
+        "fixture": {
+          "resolution_id": "resolution.og",
+          "source_context": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+          "original_request_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "defcon_before": 3,
+          "defcon_after": 2,
+          "committed_revision": 6,
+          "nuclear_loser": null,
+          "grant_id": "grant.og",
+          "status": "AwaitingOperations"
+        },
+        "edits": [
+          {
+            "path": [
+              "defcon_after"
+            ],
+            "value": 3
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-grant-printed2",
+      "validation_layer": "contract",
+      "schema_def": "ops_grant",
+      "input": {
+        "fixture": {
+          "grant_id": "grant.og",
+          "source_context": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+          "boycott_receipt_digest": "35cfeef4725f3ecc90eba6e5a7289fa78cd829dbeec395d82658b54ff57e31ad",
+          "actor": "US",
+          "root_phasing_player": "US",
+          "budget_source": "VerifiedEventLiteral",
+          "base_ops": 4,
+          "effective_ops": 4,
+          "effects_snapshot_id": "effects.synthetic",
+          "influence_baseline": {
+            "policy": "RootActionRoundStartActor",
+            "actor": "US",
+            "snapshot_id": "snapshot.root-start",
+            "proof_id": "proof.root-start"
+          },
+          "revision": 6,
+          "allowed_modes": [
+            "Influence",
+            "Coup",
+            "Realignment"
+          ],
+          "may_decline": true
+        },
+        "edits": [
+          {
+            "path": [
+              "base_ops"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-grant-wrong-baseline-actor",
+      "validation_layer": "contract",
+      "schema_def": "ops_grant",
+      "input": {
+        "fixture": {
+          "grant_id": "grant.og",
+          "source_context": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+          "boycott_receipt_digest": "35cfeef4725f3ecc90eba6e5a7289fa78cd829dbeec395d82658b54ff57e31ad",
+          "actor": "US",
+          "root_phasing_player": "US",
+          "budget_source": "VerifiedEventLiteral",
+          "base_ops": 4,
+          "effective_ops": 4,
+          "effects_snapshot_id": "effects.synthetic",
+          "influence_baseline": {
+            "policy": "RootActionRoundStartActor",
+            "actor": "US",
+            "snapshot_id": "snapshot.root-start",
+            "proof_id": "proof.root-start"
+          },
+          "revision": 6,
+          "allowed_modes": [
+            "Influence",
+            "Coup",
+            "Realignment"
+          ],
+          "may_decline": true
+        },
+        "edits": [
+          {
+            "path": [
+              "influence_baseline",
+              "actor"
+            ],
+            "value": "USSR"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-grant-current-baseline",
+      "validation_layer": "contract",
+      "schema_def": "ops_grant",
+      "input": {
+        "fixture": {
+          "grant_id": "grant.og",
+          "source_context": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+          "boycott_receipt_digest": "35cfeef4725f3ecc90eba6e5a7289fa78cd829dbeec395d82658b54ff57e31ad",
+          "actor": "US",
+          "root_phasing_player": "US",
+          "budget_source": "VerifiedEventLiteral",
+          "base_ops": 4,
+          "effective_ops": 4,
+          "effects_snapshot_id": "effects.synthetic",
+          "influence_baseline": {
+            "policy": "RootActionRoundStartActor",
+            "actor": "US",
+            "snapshot_id": "snapshot.root-start",
+            "proof_id": "proof.root-start"
+          },
+          "revision": 6,
+          "allowed_modes": [
+            "Influence",
+            "Coup",
+            "Realignment"
+          ],
+          "may_decline": true
+        },
+        "edits": [
+          {
+            "path": [
+              "influence_baseline",
+              "policy"
+            ],
+            "value": "GrantCreation"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-ops-space",
+      "validation_layer": "contract",
+      "schema_def": "ops_choice",
+      "input": {
+        "fixture": {
+          "command_id": "command.ops",
+          "decision_id": "decision.ops",
+          "grant_id": "grant.og",
+          "expected_revision": 6,
+          "boycott_receipt_digest": "35cfeef4725f3ecc90eba6e5a7289fa78cd829dbeec395d82658b54ff57e31ad",
+          "choice": "Coup",
+          "country_id": "country.panama"
+        },
+        "edits": [
+          {
+            "path": [
+              "choice"
+            ],
+            "value": "Space"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-ops-die",
+      "validation_layer": "contract",
+      "schema_def": "ops_choice",
+      "input": {
+        "fixture": {
+          "command_id": "command.ops",
+          "decision_id": "decision.ops",
+          "grant_id": "grant.og",
+          "expected_revision": 6,
+          "boycott_receipt_digest": "35cfeef4725f3ecc90eba6e5a7289fa78cd829dbeec395d82658b54ff57e31ad",
+          "choice": "Coup",
+          "country_id": "country.panama"
+        },
+        "edits": [
+          {
+            "path": [
+              "die"
+            ],
+            "value": 6
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-ops-client-role",
+      "validation_layer": "contract",
+      "schema_def": "ops_choice",
+      "input": {
+        "fixture": {
+          "command_id": "command.ops",
+          "decision_id": "decision.ops",
+          "grant_id": "grant.og",
+          "expected_revision": 6,
+          "boycott_receipt_digest": "35cfeef4725f3ecc90eba6e5a7289fa78cd829dbeec395d82658b54ff57e31ad",
+          "choice": "Coup",
+          "country_id": "country.panama"
+        },
+        "edits": [
+          {
+            "path": [
+              "actor"
+            ],
+            "value": "US"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-actual-card-hand",
+      "validation_layer": "contract",
+      "schema_def": "source_bundle",
+      "input": {
+        "fixture": {
+          "context": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "authoritative_card_locations": [
+            {
+              "instance_id": "instance.og",
+              "card_id": "card.olympic_games",
+              "zone": "InResolution",
+              "frame_id": "frame.og"
+            }
+          ],
+          "authority_revision": 5
+        },
+        "edits": [
+          {
+            "path": [
+              "authoritative_card_locations",
+              0,
+              "zone"
+            ],
+            "value": "Hand"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-actual-card-wrong-frame",
+      "validation_layer": "contract",
+      "schema_def": "source_bundle",
+      "input": {
+        "fixture": {
+          "context": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "authoritative_card_locations": [
+            {
+              "instance_id": "instance.og",
+              "card_id": "card.olympic_games",
+              "zone": "InResolution",
+              "frame_id": "frame.og"
+            }
+          ],
+          "authority_revision": 5
+        },
+        "edits": [
+          {
+            "path": [
+              "authoritative_card_locations",
+              0,
+              "frame_id"
+            ],
+            "value": "frame.foreign"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-wrong-instance",
+      "validation_layer": "contract",
+      "schema_def": "source_bundle",
+      "input": {
+        "fixture": {
+          "context": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "authoritative_card_locations": [
+            {
+              "instance_id": "instance.og",
+              "card_id": "card.olympic_games",
+              "zone": "InResolution",
+              "frame_id": "frame.og"
+            }
+          ],
+          "authority_revision": 5
+        },
+        "edits": [
+          {
+            "path": [
+              "context",
+              "source_instance_id"
+            ],
+            "value": "instance.foreign"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-wrong-actual-card",
+      "validation_layer": "contract",
+      "schema_def": "source_bundle",
+      "input": {
+        "fixture": {
+          "context": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "authoritative_card_locations": [
+            {
+              "instance_id": "instance.og",
+              "card_id": "card.olympic_games",
+              "zone": "InResolution",
+              "frame_id": "frame.og"
+            }
+          ],
+          "authority_revision": 5
+        },
+        "edits": [
+          {
+            "path": [
+              "authoritative_card_locations",
+              0,
+              "card_id"
+            ],
+            "value": "card.lone_gunman"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-duplicated-source-instance",
+      "validation_layer": "contract",
+      "schema_def": "source_bundle",
+      "input": {
+        "fixture": {
+          "context": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "authoritative_card_locations": [
+            {
+              "instance_id": "instance.og",
+              "card_id": "card.olympic_games",
+              "zone": "InResolution",
+              "frame_id": "frame.og"
+            }
+          ],
+          "authority_revision": 5
+        },
+        "edits": [
+          {
+            "path": [
+              "authoritative_card_locations"
+            ],
+            "value": [
+              {
+                "instance_id": "instance.og",
+                "card_id": "card.olympic_games",
+                "zone": "InResolution",
+                "frame_id": "frame.og"
+              },
+              {
+                "instance_id": "instance.og",
+                "card_id": "card.olympic_games",
+                "zone": "InResolution",
+                "frame_id": "frame.og"
+              }
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-headline-cannot-use-root-start",
+      "validation_layer": "contract",
+      "schema_def": "ops_grant",
+      "input": {
+        "fixture": {
+          "grant_id": "grant.og",
+          "source_context": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "HeadlineEvent",
+            "phase": "Headline",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "source_context_digest": "cb2fdd34be5624b5627a87ced60cdd0fc348e199f4d8ffa62b9289e1d9204077",
+          "boycott_receipt_digest": "35cfeef4725f3ecc90eba6e5a7289fa78cd829dbeec395d82658b54ff57e31ad",
+          "actor": "US",
+          "root_phasing_player": "US",
+          "budget_source": "VerifiedEventLiteral",
+          "base_ops": 4,
+          "effective_ops": 4,
+          "effects_snapshot_id": "effects.synthetic",
+          "influence_baseline": {
+            "policy": "RootActionRoundStartActor",
+            "actor": "US",
+            "snapshot_id": "snapshot.root-start",
+            "proof_id": "proof.root-start"
+          },
+          "revision": 6,
+          "allowed_modes": [
+            "Influence",
+            "Coup",
+            "Realignment"
+          ],
+          "may_decline": true
+        },
+        "edits": []
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-fyp-cannot-provide-neutral-event",
+      "validation_layer": "contract",
+      "schema_def": "source_context",
+      "input": {
+        "fixture": {
+          "card_id": "card.olympic_games",
+          "source_instance_id": "instance.og",
+          "effect_id": "effect.olympic_games",
+          "resolution_id": "resolution.og",
+          "frame_id": "frame.og",
+          "parent_frame_id": "frame.root",
+          "root_action_id": "root.og",
+          "root_phasing_player": "US",
+          "sponsor": "US",
+          "opponent": "USSR",
+          "branch_owner": "USSR",
+          "source_kind": "VerifiedNestedEvent",
+          "phase": "ActionRound",
+          "provider_contract_id": "urn:coldwarheat:contract:hand-events-batch1:1",
+          "provider_proof_id": "proof.synthetic.root",
+          "source_zone": "InResolution",
+          "ruleset_id": "ruleset.deluxe2015",
+          "ruleset_version": "0.1.0",
+          "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "edits": []
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-state-original-request-mismatch",
+      "validation_layer": "contract",
+      "schema_def": "roll_state",
+      "input": {
+        "fixture": {
+          "source": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "original_request": {
+            "command_id": "command.choice",
+            "decision_id": "decision.branch",
+            "expected_revision": 5,
+            "choice": "Participate",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+          },
+          "initial_revision": 5,
+          "initial_rng": 10,
+          "initial_vp": 0,
+          "phase": "InternalRoll",
+          "rng": 12,
+          "revision": 6,
+          "vp": 0,
+          "defcon": 3,
+          "receipts": [
+            {
+              "body": {
+                "resolution_id": "resolution.og",
+                "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+                "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+                "round_index": 1,
+                "previous_receipt_digest": null,
+                "raw_dice": {
+                  "US": 1,
+                  "USSR": 3
+                },
+                "modified_totals": {
+                  "US": 3,
+                  "USSR": 3
+                },
+                "sponsor": "US",
+                "outcome": "Tie",
+                "winner": null,
+                "vp_delta": 0,
+                "rng_before": 10,
+                "rng_after": 12,
+                "committed_revision": 6
+              },
+              "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+            }
+          ],
+          "continuation": {
+            "kind": "InternalPairedRollContinuation",
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "next_round_index": 2,
+            "previous_receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+            "rng_cursor": 12,
+            "revision": 6,
+            "player_decision": null,
+            "branch_lock": "Participate"
+          },
+          "game_winner": null,
+          "grant": false,
+          "branch_receipt": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+          "initial_defcon": 3
+        },
+        "edits": [
+          {
+            "path": [
+              "original_request",
+              "choice"
+            ],
+            "value": "Boycott"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-state-current-rng-mismatch",
+      "validation_layer": "contract",
+      "schema_def": "roll_state",
+      "input": {
+        "fixture": {
+          "source": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "original_request": {
+            "command_id": "command.choice",
+            "decision_id": "decision.branch",
+            "expected_revision": 5,
+            "choice": "Participate",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+          },
+          "initial_revision": 5,
+          "initial_rng": 10,
+          "initial_vp": 0,
+          "phase": "InternalRoll",
+          "rng": 12,
+          "revision": 6,
+          "vp": 0,
+          "defcon": 3,
+          "receipts": [
+            {
+              "body": {
+                "resolution_id": "resolution.og",
+                "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+                "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+                "round_index": 1,
+                "previous_receipt_digest": null,
+                "raw_dice": {
+                  "US": 1,
+                  "USSR": 3
+                },
+                "modified_totals": {
+                  "US": 3,
+                  "USSR": 3
+                },
+                "sponsor": "US",
+                "outcome": "Tie",
+                "winner": null,
+                "vp_delta": 0,
+                "rng_before": 10,
+                "rng_after": 12,
+                "committed_revision": 6
+              },
+              "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+            }
+          ],
+          "continuation": {
+            "kind": "InternalPairedRollContinuation",
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "next_round_index": 2,
+            "previous_receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+            "rng_cursor": 12,
+            "revision": 6,
+            "player_decision": null,
+            "branch_lock": "Participate"
+          },
+          "game_winner": null,
+          "grant": false,
+          "branch_receipt": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+          "initial_defcon": 3
+        },
+        "edits": [
+          {
+            "path": [
+              "rng"
+            ],
+            "value": 13
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-state-wrong-source-sponsor",
+      "validation_layer": "contract",
+      "schema_def": "roll_state",
+      "input": {
+        "fixture": {
+          "source": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "original_request": {
+            "command_id": "command.choice",
+            "decision_id": "decision.branch",
+            "expected_revision": 5,
+            "choice": "Participate",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+          },
+          "initial_revision": 5,
+          "initial_rng": 10,
+          "initial_vp": 0,
+          "phase": "InternalRoll",
+          "rng": 12,
+          "revision": 6,
+          "vp": 0,
+          "defcon": 3,
+          "receipts": [
+            {
+              "body": {
+                "resolution_id": "resolution.og",
+                "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+                "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+                "round_index": 1,
+                "previous_receipt_digest": null,
+                "raw_dice": {
+                  "US": 1,
+                  "USSR": 3
+                },
+                "modified_totals": {
+                  "US": 3,
+                  "USSR": 3
+                },
+                "sponsor": "US",
+                "outcome": "Tie",
+                "winner": null,
+                "vp_delta": 0,
+                "rng_before": 10,
+                "rng_after": 12,
+                "committed_revision": 6
+              },
+              "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+            }
+          ],
+          "continuation": {
+            "kind": "InternalPairedRollContinuation",
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "next_round_index": 2,
+            "previous_receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+            "rng_cursor": 12,
+            "revision": 6,
+            "player_decision": null,
+            "branch_lock": "Participate"
+          },
+          "game_winner": null,
+          "grant": false,
+          "branch_receipt": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+          "initial_defcon": 3
+        },
+        "edits": [
+          {
+            "path": [
+              "source",
+              "sponsor"
+            ],
+            "value": "USSR"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-state-branch-receipt-mismatch",
+      "validation_layer": "contract",
+      "schema_def": "roll_state",
+      "input": {
+        "fixture": {
+          "source": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "original_request": {
+            "command_id": "command.choice",
+            "decision_id": "decision.branch",
+            "expected_revision": 5,
+            "choice": "Participate",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+          },
+          "initial_revision": 5,
+          "initial_rng": 10,
+          "initial_vp": 0,
+          "phase": "InternalRoll",
+          "rng": 12,
+          "revision": 6,
+          "vp": 0,
+          "defcon": 3,
+          "receipts": [
+            {
+              "body": {
+                "resolution_id": "resolution.og",
+                "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+                "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+                "round_index": 1,
+                "previous_receipt_digest": null,
+                "raw_dice": {
+                  "US": 1,
+                  "USSR": 3
+                },
+                "modified_totals": {
+                  "US": 3,
+                  "USSR": 3
+                },
+                "sponsor": "US",
+                "outcome": "Tie",
+                "winner": null,
+                "vp_delta": 0,
+                "rng_before": 10,
+                "rng_after": 12,
+                "committed_revision": 6
+              },
+              "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+            }
+          ],
+          "continuation": {
+            "kind": "InternalPairedRollContinuation",
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "next_round_index": 2,
+            "previous_receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+            "rng_cursor": 12,
+            "revision": 6,
+            "player_decision": null,
+            "branch_lock": "Participate"
+          },
+          "game_winner": null,
+          "grant": false,
+          "branch_receipt": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+          "initial_defcon": 3
+        },
+        "edits": [
+          {
+            "path": [
+              "branch_receipt"
+            ],
+            "value": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-state-tie-forced-complete",
+      "validation_layer": "contract",
+      "schema_def": "roll_state",
+      "input": {
+        "fixture": {
+          "source": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "original_request": {
+            "command_id": "command.choice",
+            "decision_id": "decision.branch",
+            "expected_revision": 5,
+            "choice": "Participate",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+          },
+          "initial_revision": 5,
+          "initial_rng": 10,
+          "initial_vp": 0,
+          "phase": "InternalRoll",
+          "rng": 12,
+          "revision": 6,
+          "vp": 0,
+          "defcon": 3,
+          "receipts": [
+            {
+              "body": {
+                "resolution_id": "resolution.og",
+                "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+                "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+                "round_index": 1,
+                "previous_receipt_digest": null,
+                "raw_dice": {
+                  "US": 1,
+                  "USSR": 3
+                },
+                "modified_totals": {
+                  "US": 3,
+                  "USSR": 3
+                },
+                "sponsor": "US",
+                "outcome": "Tie",
+                "winner": null,
+                "vp_delta": 0,
+                "rng_before": 10,
+                "rng_after": 12,
+                "committed_revision": 6
+              },
+              "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+            }
+          ],
+          "continuation": {
+            "kind": "InternalPairedRollContinuation",
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "next_round_index": 2,
+            "previous_receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+            "rng_cursor": 12,
+            "revision": 6,
+            "player_decision": null,
+            "branch_lock": "Participate"
+          },
+          "game_winner": null,
+          "grant": false,
+          "branch_receipt": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+          "initial_defcon": 3
+        },
+        "edits": [
+          {
+            "path": [
+              "phase"
+            ],
+            "value": "Completed"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-state-vp-corrupt",
+      "validation_layer": "contract",
+      "schema_def": "roll_state",
+      "input": {
+        "fixture": {
+          "source": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "original_request": {
+            "command_id": "command.choice",
+            "decision_id": "decision.branch",
+            "expected_revision": 5,
+            "choice": "Participate",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+          },
+          "initial_revision": 5,
+          "initial_rng": 10,
+          "initial_vp": 0,
+          "phase": "InternalRoll",
+          "rng": 12,
+          "revision": 6,
+          "vp": 0,
+          "defcon": 3,
+          "receipts": [
+            {
+              "body": {
+                "resolution_id": "resolution.og",
+                "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+                "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+                "round_index": 1,
+                "previous_receipt_digest": null,
+                "raw_dice": {
+                  "US": 1,
+                  "USSR": 3
+                },
+                "modified_totals": {
+                  "US": 3,
+                  "USSR": 3
+                },
+                "sponsor": "US",
+                "outcome": "Tie",
+                "winner": null,
+                "vp_delta": 0,
+                "rng_before": 10,
+                "rng_after": 12,
+                "committed_revision": 6
+              },
+              "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+            }
+          ],
+          "continuation": {
+            "kind": "InternalPairedRollContinuation",
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "next_round_index": 2,
+            "previous_receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+            "rng_cursor": 12,
+            "revision": 6,
+            "player_decision": null,
+            "branch_lock": "Participate"
+          },
+          "game_winner": null,
+          "grant": false,
+          "branch_receipt": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+          "initial_defcon": 3
+        },
+        "edits": [
+          {
+            "path": [
+              "vp"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-state-revision-skipped",
+      "validation_layer": "contract",
+      "schema_def": "roll_state",
+      "input": {
+        "fixture": {
+          "source": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "original_request": {
+            "command_id": "command.choice",
+            "decision_id": "decision.branch",
+            "expected_revision": 5,
+            "choice": "Participate",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+          },
+          "initial_revision": 5,
+          "initial_rng": 10,
+          "initial_vp": 0,
+          "phase": "InternalRoll",
+          "rng": 12,
+          "revision": 6,
+          "vp": 0,
+          "defcon": 3,
+          "receipts": [
+            {
+              "body": {
+                "resolution_id": "resolution.og",
+                "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+                "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+                "round_index": 1,
+                "previous_receipt_digest": null,
+                "raw_dice": {
+                  "US": 1,
+                  "USSR": 3
+                },
+                "modified_totals": {
+                  "US": 3,
+                  "USSR": 3
+                },
+                "sponsor": "US",
+                "outcome": "Tie",
+                "winner": null,
+                "vp_delta": 0,
+                "rng_before": 10,
+                "rng_after": 12,
+                "committed_revision": 6
+              },
+              "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+            }
+          ],
+          "continuation": {
+            "kind": "InternalPairedRollContinuation",
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "next_round_index": 2,
+            "previous_receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+            "rng_cursor": 12,
+            "revision": 6,
+            "player_decision": null,
+            "branch_lock": "Participate"
+          },
+          "game_winner": null,
+          "grant": false,
+          "branch_receipt": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+          "initial_defcon": 3
+        },
+        "edits": [
+          {
+            "path": [
+              "revision"
+            ],
+            "value": 8
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "OG1-S-forged-winner",
+      "validation_layer": "contract",
+      "schema_def": "pair_receipt",
+      "input": {
+        "fixture": {
+          "body": {
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "round_index": 1,
+            "previous_receipt_digest": null,
+            "raw_dice": {
+              "US": 1,
+              "USSR": 3
+            },
+            "modified_totals": {
+              "US": 3,
+              "USSR": 3
+            },
+            "sponsor": "US",
+            "outcome": "Winner",
+            "winner": "US",
+            "vp_delta": 2,
+            "rng_before": 10,
+            "rng_after": 12,
+            "committed_revision": 6
+          },
+          "receipt_digest": "a74a3b8f9f9389cf0844fc6447a1ed84fc2b33dc2793391ab2c3d83a7c6618fe"
+        },
+        "edits": []
+      },
+      "expected_valid": false,
+      "note": "摘要重新计算仍不能代替语义和链校验。"
+    },
+    {
+      "id": "OG1-S-forged-total",
+      "validation_layer": "contract",
+      "schema_def": "pair_receipt",
+      "input": {
+        "fixture": {
+          "body": {
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "round_index": 1,
+            "previous_receipt_digest": null,
+            "raw_dice": {
+              "US": 1,
+              "USSR": 3
+            },
+            "modified_totals": {
+              "US": 4,
+              "USSR": 3
+            },
+            "sponsor": "US",
+            "outcome": "Tie",
+            "winner": null,
+            "vp_delta": 0,
+            "rng_before": 10,
+            "rng_after": 12,
+            "committed_revision": 6
+          },
+          "receipt_digest": "ef0edeece0111e0776ad85a11a208d8cafe1652a4f29d68803903d21c995f1b6"
+        },
+        "edits": []
+      },
+      "expected_valid": false,
+      "note": "摘要重新计算仍不能代替语义和链校验。"
+    },
+    {
+      "id": "OG1-S-forged-rng",
+      "validation_layer": "contract",
+      "schema_def": "pair_receipt",
+      "input": {
+        "fixture": {
+          "body": {
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "round_index": 1,
+            "previous_receipt_digest": null,
+            "raw_dice": {
+              "US": 1,
+              "USSR": 3
+            },
+            "modified_totals": {
+              "US": 3,
+              "USSR": 3
+            },
+            "sponsor": "US",
+            "outcome": "Tie",
+            "winner": null,
+            "vp_delta": 0,
+            "rng_before": 10,
+            "rng_after": 13,
+            "committed_revision": 6
+          },
+          "receipt_digest": "87c2cc35cbc42490c75c43eaada121f93b11cde1d18e7bc9b5b581e1bc850a42"
+        },
+        "edits": []
+      },
+      "expected_valid": false,
+      "note": "摘要重新计算仍不能代替语义和链校验。"
+    },
+    {
+      "id": "OG1-S-unresolved-influence",
+      "validation_layer": "contract",
+      "schema_def": "ops_grant",
+      "input": {
+        "fixture": {
+          "grant_id": "grant.og",
+          "source_context": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+          "boycott_receipt_digest": "35cfeef4725f3ecc90eba6e5a7289fa78cd829dbeec395d82658b54ff57e31ad",
+          "actor": "US",
+          "root_phasing_player": "US",
+          "budget_source": "VerifiedEventLiteral",
+          "base_ops": 4,
+          "effective_ops": 4,
+          "effects_snapshot_id": "effects.synthetic",
+          "influence_baseline": {
+            "policy": "RequiresRuling",
+            "actor": "US",
+            "snapshot_id": null,
+            "proof_id": null
+          },
+          "revision": 6,
+          "allowed_modes": [
+            "Influence",
+            "Coup",
+            "Realignment"
+          ],
+          "may_decline": true
+        },
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "OG1-R-us-sponsor-add2",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": 0,
+        "pairs": [
+          [
+            1,
+            2
+          ]
+        ],
+        "slice_budget": 10,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "USSR",
+        "expected_revision": 5,
+        "choice": "Participate",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "Completed",
+        "sponsor": "US",
+        "rounds_committed": 1,
+        "rng_cursor": 12,
+        "signed_vp": 2,
+        "game_winner": null,
+        "phase": "Completed",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 2,
+        "player_decision": false,
+        "totals": [
+          [
+            3,
+            2
+          ]
+        ],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "1+2=3>2，US获得2VP。"
+    },
+    {
+      "id": "OG1-R-ussr-sponsor-add2",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "USSR",
+        "root": "USSR",
+        "defcon": 3,
+        "signed_vp": 0,
+        "pairs": [
+          [
+            5,
+            4
+          ]
+        ],
+        "slice_budget": 10,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "US",
+        "expected_revision": 5,
+        "choice": "Participate",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "Completed",
+        "sponsor": "USSR",
+        "rounds_committed": 1,
+        "rng_cursor": 12,
+        "signed_vp": -2,
+        "game_winner": null,
+        "phase": "Completed",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 2,
+        "player_decision": false,
+        "totals": [
+          [
+            5,
+            6
+          ]
+        ],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "USSR骰4+2=6>US5，向USSR2VP。"
+    },
+    {
+      "id": "OG1-R-sponsor-can-lose",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": 0,
+        "pairs": [
+          [
+            1,
+            6
+          ]
+        ],
+        "slice_budget": 10,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "USSR",
+        "expected_revision": 5,
+        "choice": "Participate",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "Completed",
+        "sponsor": "US",
+        "rounds_committed": 1,
+        "rng_cursor": 12,
+        "signed_vp": -2,
+        "game_winner": null,
+        "phase": "Completed",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 2,
+        "player_decision": false,
+        "totals": [
+          [
+            3,
+            6
+          ]
+        ],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "US3<USSR6，主办并不保证赢。"
+    },
+    {
+      "id": "OG1-R-two-ties-then-winner",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": 0,
+        "pairs": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "slice_budget": 10,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "USSR",
+        "expected_revision": 5,
+        "choice": "Participate",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "Completed",
+        "sponsor": "US",
+        "rounds_committed": 3,
+        "rng_cursor": 16,
+        "signed_vp": 2,
+        "game_winner": null,
+        "phase": "Completed",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 4,
+        "player_decision": false,
+        "totals": [
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            6,
+            5
+          ]
+        ],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "两次平手不奖分，第三对US胜；严格六次逻辑取样。"
+    },
+    {
+      "id": "OG1-R-invalid-second-initial",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": 0,
+        "pairs": [
+          [
+            1,
+            7
+          ]
+        ],
+        "slice_budget": 10,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "USSR",
+        "expected_revision": 5,
+        "choice": "Participate",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "InvalidPair",
+        "sponsor": "US",
+        "rounds_committed": 0,
+        "rng_cursor": 10,
+        "signed_vp": 0,
+        "game_winner": null,
+        "phase": "AwaitingBranch",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 1,
+        "player_decision": true,
+        "totals": [],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "第二骰非法，首对/分支/RNG全不提交。"
+    },
+    {
+      "id": "OG1-R-invalid-first-initial",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": 0,
+        "pairs": [
+          [
+            0,
+            3
+          ]
+        ],
+        "slice_budget": 10,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "USSR",
+        "expected_revision": 5,
+        "choice": "Participate",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "InvalidPair",
+        "sponsor": "US",
+        "rounds_committed": 0,
+        "rng_cursor": 10,
+        "signed_vp": 0,
+        "game_winner": null,
+        "phase": "AwaitingBranch",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 1,
+        "player_decision": true,
+        "totals": [],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "第一骰非法，不接受选择或任何骰。"
+    },
+    {
+      "id": "OG1-R-invalid-next-preserves-tie",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": 0,
+        "pairs": [
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            7
+          ]
+        ],
+        "slice_budget": 10,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "USSR",
+        "expected_revision": 5,
+        "choice": "Participate",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "InvalidPair",
+        "sponsor": "US",
+        "rounds_committed": 1,
+        "rng_cursor": 12,
+        "signed_vp": 0,
+        "game_winner": null,
+        "phase": "InternalRoll",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 2,
+        "player_decision": false,
+        "totals": [
+          [
+            3,
+            3
+          ]
+        ],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "第一平手已提交；非法下一对不回滚先前RNG/收据。"
+    },
+    {
+      "id": "OG1-R-yield-after-one-tie",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": 0,
+        "pairs": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "slice_budget": 1,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "USSR",
+        "expected_revision": 5,
+        "choice": "Participate",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "YieldInternal",
+        "sponsor": "US",
+        "rounds_committed": 1,
+        "rng_cursor": 12,
+        "signed_vp": 0,
+        "game_winner": null,
+        "phase": "InternalRoll",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 2,
+        "player_decision": false,
+        "totals": [
+          [
+            3,
+            3
+          ]
+        ],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "有限资源片段只让出内部继续；不给玩家再次选择。"
+    },
+    {
+      "id": "OG1-R-yield-repeated-ties",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": 0,
+        "pairs": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            5
+          ]
+        ],
+        "slice_budget": 2,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "USSR",
+        "expected_revision": 5,
+        "choice": "Participate",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "YieldInternal",
+        "sponsor": "US",
+        "rounds_committed": 2,
+        "rng_cursor": 14,
+        "signed_vp": 0,
+        "game_winner": null,
+        "phase": "InternalRoll",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 3,
+        "player_decision": false,
+        "totals": [
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ]
+        ],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "没有强制胜者或最大游戏重掷次数。"
+    },
+    {
+      "id": "OG1-R-resume-same-result",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": 0,
+        "pairs": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "slice_budget": 1,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "USSR",
+        "expected_revision": 5,
+        "choice": "Participate",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent",
+        "resume_to_completion": true
+      },
+      "expected": {
+        "outcome": "Completed",
+        "sponsor": "US",
+        "rounds_committed": 3,
+        "rng_cursor": 16,
+        "signed_vp": 2,
+        "game_winner": null,
+        "phase": "Completed",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 4,
+        "player_decision": false,
+        "totals": [
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            6,
+            5
+          ]
+        ],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "每片一次并恢复三次，与一次片段同结果和RNG。"
+    },
+    {
+      "id": "OG1-R-vp-us-threshold",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": 18,
+        "pairs": [
+          [
+            1,
+            2
+          ]
+        ],
+        "slice_budget": 10,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "USSR",
+        "expected_revision": 5,
+        "choice": "Participate",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "Completed",
+        "sponsor": "US",
+        "rounds_committed": 1,
+        "rng_cursor": 12,
+        "signed_vp": 20,
+        "game_winner": "US",
+        "phase": "Finished",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 2,
+        "player_decision": false,
+        "totals": [
+          [
+            3,
+            2
+          ]
+        ],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "18+2=20，完整事件VP批次后US胜。"
+    },
+    {
+      "id": "OG1-R-vp-ussr-threshold",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": -18,
+        "pairs": [
+          [
+            1,
+            6
+          ]
+        ],
+        "slice_budget": 10,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "USSR",
+        "expected_revision": 5,
+        "choice": "Participate",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "Completed",
+        "sponsor": "US",
+        "rounds_committed": 1,
+        "rng_cursor": 12,
+        "signed_vp": -20,
+        "game_winner": "USSR",
+        "phase": "Finished",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 2,
+        "player_decision": false,
+        "totals": [
+          [
+            3,
+            6
+          ]
+        ],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "−18−2=−20，终局不再掷骰/建决策。"
+    },
+    {
+      "id": "OG1-R-bad-source",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": 0,
+        "pairs": [
+          [
+            1,
+            2
+          ]
+        ],
+        "slice_budget": 10,
+        "trusted_source": false,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "USSR",
+        "expected_revision": 5,
+        "choice": "Participate",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "sponsor": "US",
+        "rounds_committed": 0,
+        "rng_cursor": 10,
+        "signed_vp": 0,
+        "game_winner": null,
+        "phase": "AwaitingBranch",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 1,
+        "player_decision": true,
+        "totals": [],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "前置拒绝，不锁分支、不提交RNG/轨道。"
+    },
+    {
+      "id": "OG1-R-unknown-provider",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": 0,
+        "pairs": [
+          [
+            1,
+            2
+          ]
+        ],
+        "slice_budget": 10,
+        "trusted_source": true,
+        "known_provider": false,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "USSR",
+        "expected_revision": 5,
+        "choice": "Participate",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "sponsor": "US",
+        "rounds_committed": 0,
+        "rng_cursor": 10,
+        "signed_vp": 0,
+        "game_winner": null,
+        "phase": "AwaitingBranch",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 1,
+        "player_decision": true,
+        "totals": [],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "前置拒绝，不锁分支、不提交RNG/轨道。"
+    },
+    {
+      "id": "OG1-R-unknown-effect",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": 0,
+        "pairs": [
+          [
+            1,
+            2
+          ]
+        ],
+        "slice_budget": 10,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": false,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "USSR",
+        "expected_revision": 5,
+        "choice": "Participate",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "sponsor": "US",
+        "rounds_committed": 0,
+        "rng_cursor": 10,
+        "signed_vp": 0,
+        "game_winner": null,
+        "phase": "AwaitingBranch",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 1,
+        "player_decision": true,
+        "totals": [],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "前置拒绝，不锁分支、不提交RNG/轨道。"
+    },
+    {
+      "id": "OG1-R-wrong-opponent",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": 0,
+        "pairs": [
+          [
+            1,
+            2
+          ]
+        ],
+        "slice_budget": 10,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": false,
+        "revision_valid": true,
+        "trusted_session_side": "USSR",
+        "expected_revision": 5,
+        "choice": "Participate",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "WrongActor",
+        "sponsor": "US",
+        "rounds_committed": 0,
+        "rng_cursor": 10,
+        "signed_vp": 0,
+        "game_winner": null,
+        "phase": "AwaitingBranch",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 1,
+        "player_decision": true,
+        "totals": [],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "前置拒绝，不锁分支、不提交RNG/轨道。"
+    },
+    {
+      "id": "OG1-R-stale-choice",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": 0,
+        "pairs": [
+          [
+            1,
+            2
+          ]
+        ],
+        "slice_budget": 10,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": false,
+        "trusted_session_side": "USSR",
+        "expected_revision": 5,
+        "choice": "Participate",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "StaleResponse",
+        "sponsor": "US",
+        "rounds_committed": 0,
+        "rng_cursor": 10,
+        "signed_vp": 0,
+        "game_winner": null,
+        "phase": "AwaitingBranch",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 1,
+        "player_decision": true,
+        "totals": [],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "前置拒绝，不锁分支、不提交RNG/轨道。"
+    },
+    {
+      "id": "OG1-R-actual-source-still-hand",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": 0,
+        "pairs": [
+          [
+            1,
+            2
+          ]
+        ],
+        "slice_budget": 10,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "USSR",
+        "expected_revision": 5,
+        "choice": "Participate",
+        "actual_source_zone": "Hand",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "sponsor": "US",
+        "rounds_committed": 0,
+        "rng_cursor": 10,
+        "signed_vp": 0,
+        "game_winner": null,
+        "phase": "AwaitingBranch",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 1,
+        "player_decision": true,
+        "totals": [],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "前置拒绝，不锁分支、不提交RNG/轨道。"
+    },
+    {
+      "id": "OG1-R-actual-source-different-card",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": 0,
+        "pairs": [
+          [
+            1,
+            2
+          ]
+        ],
+        "slice_budget": 10,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "USSR",
+        "expected_revision": 5,
+        "choice": "Participate",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.summit",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "sponsor": "US",
+        "rounds_committed": 0,
+        "rng_cursor": 10,
+        "signed_vp": 0,
+        "game_winner": null,
+        "phase": "AwaitingBranch",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 1,
+        "player_decision": true,
+        "totals": [],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "前置拒绝，不锁分支、不提交RNG/轨道。"
+    },
+    {
+      "id": "OG1-R-phase-source-mismatch",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": 0,
+        "pairs": [
+          [
+            1,
+            2
+          ]
+        ],
+        "slice_budget": 10,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "USSR",
+        "expected_revision": 5,
+        "choice": "Participate",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "Headline",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "sponsor": "US",
+        "rounds_committed": 0,
+        "rng_cursor": 10,
+        "signed_vp": 0,
+        "game_winner": null,
+        "phase": "AwaitingBranch",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 1,
+        "player_decision": true,
+        "totals": [],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "前置拒绝，不锁分支、不提交RNG/轨道。"
+    },
+    {
+      "id": "OG1-R-actual-requester-sponsor",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": 0,
+        "pairs": [
+          [
+            1,
+            2
+          ]
+        ],
+        "slice_budget": 10,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "US",
+        "expected_revision": 5,
+        "choice": "Participate",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "WrongActor",
+        "sponsor": "US",
+        "rounds_committed": 0,
+        "rng_cursor": 10,
+        "signed_vp": 0,
+        "game_winner": null,
+        "phase": "AwaitingBranch",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 1,
+        "player_decision": true,
+        "totals": [],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "即使可信/版本布尔声称有效，实际阵营或revision不匹配仍拒绝。"
+    },
+    {
+      "id": "OG1-R-actual-old-revision",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": 0,
+        "pairs": [
+          [
+            1,
+            2
+          ]
+        ],
+        "slice_budget": 10,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "USSR",
+        "expected_revision": 4,
+        "choice": "Participate",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "StaleResponse",
+        "sponsor": "US",
+        "rounds_committed": 0,
+        "rng_cursor": 10,
+        "signed_vp": 0,
+        "game_winner": null,
+        "phase": "AwaitingBranch",
+        "defcon": 3,
+        "ops_grant": false,
+        "next_round_index": 1,
+        "player_decision": true,
+        "totals": [],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "即使可信/版本布尔声称有效，实际阵营或revision不匹配仍拒绝。"
+    },
+    {
+      "id": "OG1-R-boycott-nuclear-us",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 2,
+        "signed_vp": 0,
+        "pairs": [],
+        "slice_budget": 10,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "USSR",
+        "expected_revision": 5,
+        "choice": "Boycott",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "Finished",
+        "sponsor": "US",
+        "rounds_committed": 0,
+        "rng_cursor": 10,
+        "signed_vp": 0,
+        "game_winner": "USSR",
+        "phase": "Finished",
+        "defcon": 1,
+        "ops_grant": false,
+        "next_round_index": 1,
+        "player_decision": false,
+        "totals": [],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "R2015直接示例：US根主办、USSR抵制，US输；无OPS授权。"
+    },
+    {
+      "id": "OG1-R-boycott-nuclear-ussr",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "USSR",
+        "root": "USSR",
+        "defcon": 2,
+        "signed_vp": 0,
+        "pairs": [],
+        "slice_budget": 10,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "US",
+        "expected_revision": 5,
+        "choice": "Boycott",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "Finished",
+        "sponsor": "USSR",
+        "rounds_committed": 0,
+        "rng_cursor": 10,
+        "signed_vp": 0,
+        "game_winner": "US",
+        "phase": "Finished",
+        "defcon": 1,
+        "ops_grant": false,
+        "next_round_index": 1,
+        "player_decision": false,
+        "totals": [],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "反方镜像同样根Phasing输。"
+    },
+    {
+      "id": "OG1-R-boycott-ops",
+      "validation_layer": "reference",
+      "model": "run",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "defcon": 3,
+        "signed_vp": 0,
+        "pairs": [],
+        "slice_budget": 10,
+        "trusted_source": true,
+        "known_provider": true,
+        "known_effects": true,
+        "identity_valid": true,
+        "revision_valid": true,
+        "trusted_session_side": "USSR",
+        "expected_revision": 5,
+        "choice": "Boycott",
+        "actual_source_zone": "InResolution",
+        "actual_source_card": "card.olympic_games",
+        "phase": "ActionRound",
+        "source_kind": "RootEvent"
+      },
+      "expected": {
+        "outcome": "AwaitingOperations",
+        "sponsor": "US",
+        "rounds_committed": 0,
+        "rng_cursor": 10,
+        "signed_vp": 0,
+        "game_winner": null,
+        "phase": "AwaitingOperations",
+        "defcon": 2,
+        "ops_grant": true,
+        "next_round_index": 1,
+        "player_decision": true,
+        "totals": [],
+        "additional_root_actions": 0,
+        "additional_cards": 0
+      },
+      "independent_basis": "3→2后Sponsor可选OPS；零比赛随机/VP。"
+    },
+    {
+      "id": "OG1-R-literal4-not-printed2",
+      "validation_layer": "reference",
+      "model": "quote",
+      "input": {
+        "sponsor": "US",
+        "effects": [],
+        "region": null,
+        "history": []
+      },
+      "expected": {
+        "effective_ops": 4
+      },
+      "independent_basis": "独立算式由卡文4及Actor修正，普通上限/区域政策读取共享；不使用印刷2。"
+    },
+    {
+      "id": "OG1-R-purge3",
+      "validation_layer": "reference",
+      "model": "quote",
+      "input": {
+        "sponsor": "US",
+        "effects": [
+          [
+            "red_scare_purge",
+            "US"
+          ]
+        ],
+        "region": null,
+        "history": []
+      },
+      "expected": {
+        "effective_ops": 3
+      },
+      "independent_basis": "独立算式由卡文4及Actor修正，普通上限/区域政策读取共享；不使用印刷2。"
+    },
+    {
+      "id": "OG1-R-containment-capped4",
+      "validation_layer": "reference",
+      "model": "quote",
+      "input": {
+        "sponsor": "US",
+        "effects": [
+          [
+            "containment",
+            "US"
+          ]
+        ],
+        "region": null,
+        "history": []
+      },
+      "expected": {
+        "effective_ops": 4
+      },
+      "independent_basis": "独立算式由卡文4及Actor修正，普通上限/区域政策读取共享；不使用印刷2。"
+    },
+    {
+      "id": "OG1-R-both4",
+      "validation_layer": "reference",
+      "model": "quote",
+      "input": {
+        "sponsor": "US",
+        "effects": [
+          [
+            "containment",
+            "US"
+          ],
+          [
+            "red_scare_purge",
+            "US"
+          ]
+        ],
+        "region": null,
+        "history": []
+      },
+      "expected": {
+        "effective_ops": 4
+      },
+      "independent_basis": "独立算式由卡文4及Actor修正，普通上限/区域政策读取共享；不使用印刷2。"
+    },
+    {
+      "id": "OG1-R-brezhnev-capped4",
+      "validation_layer": "reference",
+      "model": "quote",
+      "input": {
+        "sponsor": "USSR",
+        "effects": [
+          [
+            "brezhnev_doctrine",
+            "USSR"
+          ]
+        ],
+        "region": null,
+        "history": []
+      },
+      "expected": {
+        "effective_ops": 4
+      },
+      "independent_basis": "独立算式由卡文4及Actor修正，普通上限/区域政策读取共享；不使用印刷2。"
+    },
+    {
+      "id": "OG1-R-opponent-modifier-ignored",
+      "validation_layer": "reference",
+      "model": "quote",
+      "input": {
+        "sponsor": "USSR",
+        "effects": [
+          [
+            "containment",
+            "US"
+          ]
+        ],
+        "region": null,
+        "history": []
+      },
+      "expected": {
+        "effective_ops": 4
+      },
+      "independent_basis": "独立算式由卡文4及Actor修正，普通上限/区域政策读取共享；不使用印刷2。"
+    },
+    {
+      "id": "OG1-R-vietnam5",
+      "validation_layer": "reference",
+      "model": "quote",
+      "input": {
+        "sponsor": "USSR",
+        "effects": [
+          [
+            "vietnam_revolts",
+            "USSR"
+          ]
+        ],
+        "region": "region.southeast_asia",
+        "history": []
+      },
+      "expected": {
+        "effective_ops": 5
+      },
+      "independent_basis": "独立算式由卡文4及Actor修正，普通上限/区域政策读取共享；不使用印刷2。"
+    },
+    {
+      "id": "OG1-R-mixed-region4",
+      "validation_layer": "reference",
+      "model": "quote",
+      "input": {
+        "sponsor": "USSR",
+        "effects": [
+          [
+            "vietnam_revolts",
+            "USSR"
+          ]
+        ],
+        "region": "region.southeast_asia",
+        "history": [
+          "region.africa"
+        ]
+      },
+      "expected": {
+        "effective_ops": 4
+      },
+      "independent_basis": "独立算式由卡文4及Actor修正，普通上限/区域政策读取共享；不使用印刷2。"
+    },
+    {
+      "id": "OG1-R-no-boycott-after-participate",
+      "validation_layer": "reference",
+      "model": "continuation_guard",
+      "input": {
+        "sponsor": "US",
+        "initial_branch": "Participate",
+        "first_pair": [
+          1,
+          3
+        ],
+        "action": "Boycott"
+      },
+      "expected": {
+        "outcome": "BranchLocked",
+        "previous_receipt_preserved": true,
+        "rng_cursor": 12,
+        "defcon": 3,
+        "new_pair_count": 0
+      },
+      "independent_basis": "已提交状态保持；改字段并重算hash也不能伪造轮次/RNG链。"
+    },
+    {
+      "id": "OG1-R-no-participate-after-boycott",
+      "validation_layer": "reference",
+      "model": "continuation_guard",
+      "input": {
+        "sponsor": "US",
+        "initial_branch": "Boycott",
+        "first_pair": [
+          1,
+          3
+        ],
+        "action": "Participate"
+      },
+      "expected": {
+        "outcome": "BranchLocked",
+        "previous_receipt_preserved": true,
+        "rng_cursor": 10,
+        "defcon": 2,
+        "new_pair_count": 0
+      },
+      "independent_basis": "已提交状态保持；改字段并重算hash也不能伪造轮次/RNG链。"
+    },
+    {
+      "id": "OG1-R-retry-original",
+      "validation_layer": "reference",
+      "model": "continuation_guard",
+      "input": {
+        "sponsor": "US",
+        "initial_branch": "Participate",
+        "first_pair": [
+          1,
+          3
+        ],
+        "action": "RetrySame"
+      },
+      "expected": {
+        "outcome": "OriginalReceipt",
+        "previous_receipt_preserved": true,
+        "rng_cursor": 12,
+        "defcon": 3,
+        "new_pair_count": 0
+      },
+      "independent_basis": "已提交状态保持；改字段并重算hash也不能伪造轮次/RNG链。"
+    },
+    {
+      "id": "OG1-R-conflicting-command-retry",
+      "validation_layer": "reference",
+      "model": "continuation_guard",
+      "input": {
+        "sponsor": "US",
+        "initial_branch": "Participate",
+        "first_pair": [
+          1,
+          3
+        ],
+        "action": "RetryDifferent"
+      },
+      "expected": {
+        "outcome": "ConflictingRequest",
+        "previous_receipt_preserved": true,
+        "rng_cursor": 12,
+        "defcon": 3,
+        "new_pair_count": 0
+      },
+      "independent_basis": "已提交状态保持；改字段并重算hash也不能伪造轮次/RNG链。"
+    },
+    {
+      "id": "OG1-R-stale-internal-pair",
+      "validation_layer": "reference",
+      "model": "continuation_guard",
+      "input": {
+        "sponsor": "US",
+        "initial_branch": "Participate",
+        "first_pair": [
+          1,
+          3
+        ],
+        "action": "StaleContinue"
+      },
+      "expected": {
+        "outcome": "StaleResponse",
+        "previous_receipt_preserved": true,
+        "rng_cursor": 12,
+        "defcon": 3,
+        "new_pair_count": 0
+      },
+      "independent_basis": "已提交状态保持；改字段并重算hash也不能伪造轮次/RNG链。"
+    },
+    {
+      "id": "OG1-R-wrong-current-receipt",
+      "validation_layer": "reference",
+      "model": "continuation_guard",
+      "input": {
+        "sponsor": "US",
+        "initial_branch": "Participate",
+        "first_pair": [
+          1,
+          3
+        ],
+        "action": "WrongReceipt"
+      },
+      "expected": {
+        "outcome": "ReceiptMismatch",
+        "previous_receipt_preserved": true,
+        "rng_cursor": 12,
+        "defcon": 3,
+        "new_pair_count": 0
+      },
+      "independent_basis": "已提交状态保持；改字段并重算hash也不能伪造轮次/RNG链。"
+    },
+    {
+      "id": "OG1-R-corrupted-round-index",
+      "validation_layer": "reference",
+      "model": "continuation_guard",
+      "input": {
+        "sponsor": "US",
+        "initial_branch": "Participate",
+        "first_pair": [
+          1,
+          3
+        ],
+        "action": "CorruptRound"
+      },
+      "expected": {
+        "outcome": "CorruptContinuation",
+        "previous_receipt_preserved": true,
+        "rng_cursor": 12,
+        "defcon": 3,
+        "new_pair_count": 0
+      },
+      "independent_basis": "已提交状态保持；改字段并重算hash也不能伪造轮次/RNG链。"
+    },
+    {
+      "id": "OG1-R-corrupted-prev-hash",
+      "validation_layer": "reference",
+      "model": "continuation_guard",
+      "input": {
+        "sponsor": "US",
+        "initial_branch": "Participate",
+        "first_pair": [
+          1,
+          3
+        ],
+        "action": "CorruptPrevious"
+      },
+      "expected": {
+        "outcome": "CorruptContinuation",
+        "previous_receipt_preserved": true,
+        "rng_cursor": 12,
+        "defcon": 3,
+        "new_pair_count": 0
+      },
+      "independent_basis": "已提交状态保持；改字段并重算hash也不能伪造轮次/RNG链。"
+    },
+    {
+      "id": "OG1-R-corrupted-round-chain",
+      "validation_layer": "reference",
+      "model": "continuation_guard",
+      "input": {
+        "sponsor": "US",
+        "initial_branch": "Participate",
+        "first_pair": [
+          1,
+          3
+        ],
+        "action": "CorruptChainRehash"
+      },
+      "expected": {
+        "outcome": "CorruptContinuation",
+        "previous_receipt_preserved": true,
+        "rng_cursor": 12,
+        "defcon": 3,
+        "new_pair_count": 0
+      },
+      "independent_basis": "已提交状态保持；改字段并重算hash也不能伪造轮次/RNG链。"
+    },
+    {
+      "id": "OG1-R-forced-winner-cap",
+      "validation_layer": "reference",
+      "model": "continuation_guard",
+      "input": {
+        "sponsor": "US",
+        "initial_branch": "Participate",
+        "first_pair": [
+          1,
+          3
+        ],
+        "action": "ForcedWinner"
+      },
+      "expected": {
+        "outcome": "InvalidContinuation",
+        "previous_receipt_preserved": true,
+        "rng_cursor": 12,
+        "defcon": 3,
+        "new_pair_count": 0
+      },
+      "independent_basis": "已提交状态保持；改字段并重算hash也不能伪造轮次/RNG链。"
+    },
+    {
+      "id": "OG1-R-ops-decline",
+      "validation_layer": "reference",
+      "model": "ops_choice",
+      "input": {
+        "choice": "Decline",
+        "baseline_verified": true,
+        "owner_valid": true,
+        "target_valid": true
+      },
+      "expected": {
+        "outcome": "Completed",
+        "defcon": 2,
+        "rng_cursor": 10,
+        "boycott_receipt_preserved": true
+      },
+      "independent_basis": "抵制降级已提交，后续操作/拒绝不能回退；仅影响力缺起点停止该分支。"
+    },
+    {
+      "id": "OG1-R-ops-bad-target",
+      "validation_layer": "reference",
+      "model": "ops_choice",
+      "input": {
+        "choice": "Coup",
+        "baseline_verified": true,
+        "owner_valid": true,
+        "target_valid": false
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "defcon": 2,
+        "rng_cursor": 10,
+        "boycott_receipt_preserved": true
+      },
+      "independent_basis": "抵制降级已提交，后续操作/拒绝不能回退；仅影响力缺起点停止该分支。"
+    },
+    {
+      "id": "OG1-R-ops-no-space",
+      "validation_layer": "reference",
+      "model": "ops_choice",
+      "input": {
+        "choice": "Space",
+        "baseline_verified": true,
+        "owner_valid": true,
+        "target_valid": true
+      },
+      "expected": {
+        "outcome": "InvalidMode",
+        "defcon": 2,
+        "rng_cursor": 10,
+        "boycott_receipt_preserved": true
+      },
+      "independent_basis": "抵制降级已提交，后续操作/拒绝不能回退；仅影响力缺起点停止该分支。"
+    },
+    {
+      "id": "OG1-R-ops-wrong-owner",
+      "validation_layer": "reference",
+      "model": "ops_choice",
+      "input": {
+        "choice": "Coup",
+        "baseline_verified": true,
+        "owner_valid": false,
+        "target_valid": true
+      },
+      "expected": {
+        "outcome": "WrongActor",
+        "defcon": 2,
+        "rng_cursor": 10,
+        "boycott_receipt_preserved": true
+      },
+      "independent_basis": "抵制降级已提交，后续操作/拒绝不能回退；仅影响力缺起点停止该分支。"
+    },
+    {
+      "id": "OG1-R-ops-unresolved-influence",
+      "validation_layer": "reference",
+      "model": "ops_choice",
+      "input": {
+        "choice": "Influence",
+        "baseline_verified": false,
+        "owner_valid": true,
+        "target_valid": true
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "defcon": 2,
+        "rng_cursor": 10,
+        "boycott_receipt_preserved": true
+      },
+      "independent_basis": "抵制降级已提交，后续操作/拒绝不能回退；仅影响力缺起点停止该分支。"
+    },
+    {
+      "id": "OG1-R-ops-unresolved-baseline-can-decline",
+      "validation_layer": "reference",
+      "model": "ops_choice",
+      "input": {
+        "choice": "Decline",
+        "baseline_verified": false,
+        "owner_valid": true,
+        "target_valid": true
+      },
+      "expected": {
+        "outcome": "Completed",
+        "defcon": 2,
+        "rng_cursor": 10,
+        "boycott_receipt_preserved": true
+      },
+      "independent_basis": "抵制降级已提交，后续操作/拒绝不能回退；仅影响力缺起点停止该分支。"
+    },
+    {
+      "id": "OG1-R-ops-unresolved-baseline-can-coup",
+      "validation_layer": "reference",
+      "model": "ops_choice",
+      "input": {
+        "choice": "Coup",
+        "baseline_verified": false,
+        "owner_valid": true,
+        "target_valid": true
+      },
+      "expected": {
+        "outcome": "AcceptedOperationPlan",
+        "defcon": 2,
+        "rng_cursor": 10,
+        "boycott_receipt_preserved": true
+      },
+      "independent_basis": "抵制降级已提交，后续操作/拒绝不能回退；仅影响力缺起点停止该分支。"
+    },
+    {
+      "id": "OG1-R-coup-ordinary-coup",
+      "validation_layer": "reference",
+      "model": "coup_plan",
+      "input": {
+        "actor": "US",
+        "root": "US",
+        "effective_ops": 4,
+        "defcon": 3,
+        "region": "region.central_america",
+        "battleground": true,
+        "fatal_crisis": false,
+        "treaty_blocked": false
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "military": 4,
+        "military_owner": "US",
+        "rng_used": 1,
+        "defcon": 2,
+        "loser": null
+      },
+      "independent_basis": "仅门禁/军事/DEFCON计划投影，普通政变非免费；实际影响力骰服务未实现。"
+    },
+    {
+      "id": "OG1-R-coup-nuclear-root",
+      "validation_layer": "reference",
+      "model": "coup_plan",
+      "input": {
+        "actor": "US",
+        "root": "US",
+        "effective_ops": 4,
+        "defcon": 2,
+        "region": "region.central_america",
+        "battleground": true,
+        "fatal_crisis": false,
+        "treaty_blocked": false
+      },
+      "expected": {
+        "outcome": "NuclearWar",
+        "military": 4,
+        "military_owner": "US",
+        "rng_used": 1,
+        "defcon": 1,
+        "loser": "US"
+      },
+      "independent_basis": "仅门禁/军事/DEFCON计划投影，普通政变非免费；实际影响力骰服务未实现。"
+    },
+    {
+      "id": "OG1-R-coup-cmc-before-rng",
+      "validation_layer": "reference",
+      "model": "coup_plan",
+      "input": {
+        "actor": "US",
+        "root": "US",
+        "effective_ops": 4,
+        "defcon": 2,
+        "region": "region.central_america",
+        "battleground": true,
+        "fatal_crisis": true,
+        "treaty_blocked": false
+      },
+      "expected": {
+        "outcome": "CrisisLoss",
+        "military": 0,
+        "military_owner": null,
+        "rng_used": 0,
+        "defcon": 2,
+        "loser": "US"
+      },
+      "independent_basis": "仅门禁/军事/DEFCON计划投影，普通政变非免费；实际影响力骰服务未实现。"
+    },
+    {
+      "id": "OG1-R-coup-geographic-block",
+      "validation_layer": "reference",
+      "model": "coup_plan",
+      "input": {
+        "actor": "US",
+        "root": "US",
+        "effective_ops": 4,
+        "defcon": 4,
+        "region": "region.europe",
+        "battleground": true,
+        "fatal_crisis": false,
+        "treaty_blocked": false
+      },
+      "expected": {
+        "outcome": "DefconBlocked",
+        "military": 0,
+        "military_owner": null,
+        "rng_used": 0,
+        "defcon": 4,
+        "loser": null
+      },
+      "independent_basis": "仅门禁/军事/DEFCON计划投影，普通政变非免费；实际影响力骰服务未实现。"
+    },
+    {
+      "id": "OG1-R-coup-treaty-block",
+      "validation_layer": "reference",
+      "model": "coup_plan",
+      "input": {
+        "actor": "US",
+        "root": "US",
+        "effective_ops": 4,
+        "defcon": 5,
+        "region": "region.europe",
+        "battleground": true,
+        "fatal_crisis": false,
+        "treaty_blocked": true
+      },
+      "expected": {
+        "outcome": "TreatyBlocked",
+        "military": 0,
+        "military_owner": null,
+        "rng_used": 0,
+        "defcon": 5,
+        "loser": null
+      },
+      "independent_basis": "仅门禁/军事/DEFCON计划投影，普通政变非免费；实际影响力骰服务未实现。"
+    },
+    {
+      "id": "OG1-I-trusted-source-opponent-choice-and-session-identity",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "trusted-source-opponent-choice-and-session-identity",
+      "implementation_tested": false
+    },
+    {
+      "id": "OG1-I-first-pair-atomic-rng-rollback",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "first-pair-atomic-rng-rollback",
+      "implementation_tested": false
+    },
+    {
+      "id": "OG1-I-unbounded-rule-rerolls-bounded-scheduler-resume",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "unbounded-rule-rerolls-bounded-scheduler-resume",
+      "implementation_tested": false
+    },
+    {
+      "id": "OG1-I-durable-pair-receipts-reconnect-and-command-deduplication",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "durable-pair-receipts-reconnect-and-command-deduplication",
+      "implementation_tested": false
+    },
+    {
+      "id": "OG1-I-canonical-chain-and-save-corruption-rejection",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "canonical-chain-and-save-corruption-rejection",
+      "implementation_tested": false
+    },
+    {
+      "id": "OG1-I-complete-vp-batch-terminal-disposition",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "complete-vp-batch-terminal-disposition",
+      "implementation_tested": false
+    },
+    {
+      "id": "OG1-I-boycott-defcon-before-ops-terminal-no-grant",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "boycott-defcon-before-ops-terminal-no-grant",
+      "implementation_tested": false
+    },
+    {
+      "id": "OG1-I-actual-ops-budget-geography-treaty-cmc-and-military",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "actual-ops-budget-geography-treaty-cmc-and-military",
+      "implementation_tested": false
+    },
+    {
+      "id": "OG1-I-influence-root-start-actor-and-unresolved-headline-baseline",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "influence-root-start-actor-and-unresolved-headline-baseline",
+      "implementation_tested": false
+    },
+    {
+      "id": "OG1-I-source-card-root-slot-and-parent-headline-continuations",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "source-card-root-slot-and-parent-headline-continuations",
+      "implementation_tested": false
+    },
+    {
+      "id": "OG1-REVIEW-01-nuclear-defcon",
+      "validation_layer": "contract",
+      "schema_def": "roll_state",
+      "input": {
+        "fixture": {
+          "source": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "original_request": {
+            "command_id": "command.choice",
+            "decision_id": "decision.branch",
+            "expected_revision": 5,
+            "choice": "Participate",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+          },
+          "initial_revision": 5,
+          "initial_rng": 10,
+          "initial_vp": 0,
+          "phase": "InternalRoll",
+          "rng": 12,
+          "revision": 6,
+          "vp": 0,
+          "defcon": 1,
+          "receipts": [
+            {
+              "body": {
+                "resolution_id": "resolution.og",
+                "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+                "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+                "round_index": 1,
+                "previous_receipt_digest": null,
+                "raw_dice": {
+                  "US": 1,
+                  "USSR": 3
+                },
+                "modified_totals": {
+                  "US": 3,
+                  "USSR": 3
+                },
+                "sponsor": "US",
+                "outcome": "Tie",
+                "winner": null,
+                "vp_delta": 0,
+                "rng_before": 10,
+                "rng_after": 12,
+                "committed_revision": 6
+              },
+              "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+            }
+          ],
+          "continuation": {
+            "kind": "InternalPairedRollContinuation",
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "next_round_index": 2,
+            "previous_receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+            "rng_cursor": 12,
+            "revision": 6,
+            "player_decision": null,
+            "branch_lock": "Participate"
+          },
+          "game_winner": null,
+          "grant": false,
+          "branch_receipt": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+          "initial_defcon": 3
+        },
+        "edits": []
+      },
+      "expected_valid": false,
+      "independent_basis": "原独立审阅复现；合法形状不能绕过续跑终局/来源起点不变量。"
+    },
+    {
+      "id": "OG1-REVIEW-01-out-of-range-defcon",
+      "validation_layer": "contract",
+      "schema_def": "roll_state",
+      "input": {
+        "fixture": {
+          "source": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "original_request": {
+            "command_id": "command.choice",
+            "decision_id": "decision.branch",
+            "expected_revision": 5,
+            "choice": "Participate",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+          },
+          "initial_revision": 5,
+          "initial_rng": 10,
+          "initial_vp": 0,
+          "phase": "InternalRoll",
+          "rng": 12,
+          "revision": 6,
+          "vp": 0,
+          "defcon": 6,
+          "receipts": [
+            {
+              "body": {
+                "resolution_id": "resolution.og",
+                "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+                "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+                "round_index": 1,
+                "previous_receipt_digest": null,
+                "raw_dice": {
+                  "US": 1,
+                  "USSR": 3
+                },
+                "modified_totals": {
+                  "US": 3,
+                  "USSR": 3
+                },
+                "sponsor": "US",
+                "outcome": "Tie",
+                "winner": null,
+                "vp_delta": 0,
+                "rng_before": 10,
+                "rng_after": 12,
+                "committed_revision": 6
+              },
+              "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+            }
+          ],
+          "continuation": {
+            "kind": "InternalPairedRollContinuation",
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "next_round_index": 2,
+            "previous_receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+            "rng_cursor": 12,
+            "revision": 6,
+            "player_decision": null,
+            "branch_lock": "Participate"
+          },
+          "game_winner": null,
+          "grant": false,
+          "branch_receipt": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+          "initial_defcon": 3
+        },
+        "edits": []
+      },
+      "expected_valid": false,
+      "independent_basis": "原独立审阅复现；合法形状不能绕过续跑终局/来源起点不变量。"
+    },
+    {
+      "id": "OG1-REVIEW-01-already-winning-initial-score",
+      "validation_layer": "contract",
+      "schema_def": "roll_state",
+      "input": {
+        "fixture": {
+          "source": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "original_request": {
+            "command_id": "command.choice",
+            "decision_id": "decision.branch",
+            "expected_revision": 5,
+            "choice": "Participate",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+          },
+          "initial_revision": 5,
+          "initial_rng": 10,
+          "initial_vp": 20,
+          "phase": "InternalRoll",
+          "rng": 12,
+          "revision": 6,
+          "vp": 20,
+          "defcon": 3,
+          "receipts": [
+            {
+              "body": {
+                "resolution_id": "resolution.og",
+                "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+                "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+                "round_index": 1,
+                "previous_receipt_digest": null,
+                "raw_dice": {
+                  "US": 1,
+                  "USSR": 3
+                },
+                "modified_totals": {
+                  "US": 3,
+                  "USSR": 3
+                },
+                "sponsor": "US",
+                "outcome": "Tie",
+                "winner": null,
+                "vp_delta": 0,
+                "rng_before": 10,
+                "rng_after": 12,
+                "committed_revision": 6
+              },
+              "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+            }
+          ],
+          "continuation": {
+            "kind": "InternalPairedRollContinuation",
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "next_round_index": 2,
+            "previous_receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+            "rng_cursor": 12,
+            "revision": 6,
+            "player_decision": null,
+            "branch_lock": "Participate"
+          },
+          "game_winner": null,
+          "grant": false,
+          "branch_receipt": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+          "initial_defcon": 3
+        },
+        "edits": []
+      },
+      "expected_valid": false,
+      "independent_basis": "原独立审阅复现；合法形状不能绕过续跑终局/来源起点不变量。"
+    },
+    {
+      "id": "OG1-REVIEW-01-internal-tie-with-game-winner",
+      "validation_layer": "contract",
+      "schema_def": "roll_state",
+      "input": {
+        "fixture": {
+          "source": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "original_request": {
+            "command_id": "command.choice",
+            "decision_id": "decision.branch",
+            "expected_revision": 5,
+            "choice": "Participate",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+          },
+          "initial_revision": 5,
+          "initial_rng": 10,
+          "initial_vp": 0,
+          "phase": "InternalRoll",
+          "rng": 12,
+          "revision": 6,
+          "vp": 0,
+          "defcon": 3,
+          "receipts": [
+            {
+              "body": {
+                "resolution_id": "resolution.og",
+                "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+                "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+                "round_index": 1,
+                "previous_receipt_digest": null,
+                "raw_dice": {
+                  "US": 1,
+                  "USSR": 3
+                },
+                "modified_totals": {
+                  "US": 3,
+                  "USSR": 3
+                },
+                "sponsor": "US",
+                "outcome": "Tie",
+                "winner": null,
+                "vp_delta": 0,
+                "rng_before": 10,
+                "rng_after": 12,
+                "committed_revision": 6
+              },
+              "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+            }
+          ],
+          "continuation": {
+            "kind": "InternalPairedRollContinuation",
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "next_round_index": 2,
+            "previous_receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+            "rng_cursor": 12,
+            "revision": 6,
+            "player_decision": null,
+            "branch_lock": "Participate"
+          },
+          "game_winner": "US",
+          "grant": false,
+          "branch_receipt": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+          "initial_defcon": 3
+        },
+        "edits": []
+      },
+      "expected_valid": false,
+      "independent_basis": "原独立审阅复现；合法形状不能绕过续跑终局/来源起点不变量。"
+    },
+    {
+      "id": "OG1-REVIEW-02",
+      "validation_layer": "contract",
+      "schema_def": "ops_grant",
+      "input": {
+        "fixture": {
+          "grant_id": "grant.og",
+          "source_context": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+          "boycott_receipt_digest": "35cfeef4725f3ecc90eba6e5a7289fa78cd829dbeec395d82658b54ff57e31ad",
+          "actor": "US",
+          "root_phasing_player": "US",
+          "budget_source": "VerifiedEventLiteral",
+          "base_ops": 4,
+          "effective_ops": 4,
+          "effects_snapshot_id": "effects.synthetic",
+          "influence_baseline": {
+            "policy": "SeparatelyVerifiedNamedPolicy",
+            "actor": "US",
+            "snapshot_id": "named.other.snapshot",
+            "proof_id": "named.other"
+          },
+          "revision": 6,
+          "allowed_modes": [
+            "Influence",
+            "Coup",
+            "Realignment"
+          ],
+          "may_decline": true
+        },
+        "edits": []
+      },
+      "expected_valid": false,
+      "independent_basis": "原独立审阅复现；合法形状不能绕过续跑终局/来源起点不变量。"
+    },
+    {
+      "id": "OG1-REVIEW-01-nuclear-defcon-resume",
+      "validation_layer": "reference",
+      "model": "resume_probe",
+      "input": {
+        "state": {
+          "source": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "original_request": {
+            "command_id": "command.choice",
+            "decision_id": "decision.branch",
+            "expected_revision": 5,
+            "choice": "Participate",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+          },
+          "initial_revision": 5,
+          "initial_rng": 10,
+          "initial_vp": 0,
+          "phase": "InternalRoll",
+          "rng": 12,
+          "revision": 6,
+          "vp": 0,
+          "defcon": 1,
+          "receipts": [
+            {
+              "body": {
+                "resolution_id": "resolution.og",
+                "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+                "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+                "round_index": 1,
+                "previous_receipt_digest": null,
+                "raw_dice": {
+                  "US": 1,
+                  "USSR": 3
+                },
+                "modified_totals": {
+                  "US": 3,
+                  "USSR": 3
+                },
+                "sponsor": "US",
+                "outcome": "Tie",
+                "winner": null,
+                "vp_delta": 0,
+                "rng_before": 10,
+                "rng_after": 12,
+                "committed_revision": 6
+              },
+              "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+            }
+          ],
+          "continuation": {
+            "kind": "InternalPairedRollContinuation",
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "next_round_index": 2,
+            "previous_receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+            "rng_cursor": 12,
+            "revision": 6,
+            "player_decision": null,
+            "branch_lock": "Participate"
+          },
+          "game_winner": null,
+          "grant": false,
+          "branch_receipt": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+          "initial_defcon": 3
+        },
+        "raw": [
+          1,
+          3
+        ]
+      },
+      "expected": {
+        "outcome": "CorruptContinuation",
+        "unchanged": true,
+        "rng_before": 12,
+        "rng_after": 12
+      },
+      "independent_basis": "损坏/终局续跑拒绝，不能推进新骰对或RNG；与契约反例分别验证执行入口。"
+    },
+    {
+      "id": "OG1-REVIEW-01-out-of-range-defcon-resume",
+      "validation_layer": "reference",
+      "model": "resume_probe",
+      "input": {
+        "state": {
+          "source": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "original_request": {
+            "command_id": "command.choice",
+            "decision_id": "decision.branch",
+            "expected_revision": 5,
+            "choice": "Participate",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+          },
+          "initial_revision": 5,
+          "initial_rng": 10,
+          "initial_vp": 0,
+          "phase": "InternalRoll",
+          "rng": 12,
+          "revision": 6,
+          "vp": 0,
+          "defcon": 6,
+          "receipts": [
+            {
+              "body": {
+                "resolution_id": "resolution.og",
+                "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+                "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+                "round_index": 1,
+                "previous_receipt_digest": null,
+                "raw_dice": {
+                  "US": 1,
+                  "USSR": 3
+                },
+                "modified_totals": {
+                  "US": 3,
+                  "USSR": 3
+                },
+                "sponsor": "US",
+                "outcome": "Tie",
+                "winner": null,
+                "vp_delta": 0,
+                "rng_before": 10,
+                "rng_after": 12,
+                "committed_revision": 6
+              },
+              "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+            }
+          ],
+          "continuation": {
+            "kind": "InternalPairedRollContinuation",
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "next_round_index": 2,
+            "previous_receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+            "rng_cursor": 12,
+            "revision": 6,
+            "player_decision": null,
+            "branch_lock": "Participate"
+          },
+          "game_winner": null,
+          "grant": false,
+          "branch_receipt": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+          "initial_defcon": 3
+        },
+        "raw": [
+          1,
+          3
+        ]
+      },
+      "expected": {
+        "outcome": "CorruptContinuation",
+        "unchanged": true,
+        "rng_before": 12,
+        "rng_after": 12
+      },
+      "independent_basis": "损坏/终局续跑拒绝，不能推进新骰对或RNG；与契约反例分别验证执行入口。"
+    },
+    {
+      "id": "OG1-REVIEW-01-already-winning-initial-score-resume",
+      "validation_layer": "reference",
+      "model": "resume_probe",
+      "input": {
+        "state": {
+          "source": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "original_request": {
+            "command_id": "command.choice",
+            "decision_id": "decision.branch",
+            "expected_revision": 5,
+            "choice": "Participate",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+          },
+          "initial_revision": 5,
+          "initial_rng": 10,
+          "initial_vp": 20,
+          "phase": "InternalRoll",
+          "rng": 12,
+          "revision": 6,
+          "vp": 20,
+          "defcon": 3,
+          "receipts": [
+            {
+              "body": {
+                "resolution_id": "resolution.og",
+                "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+                "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+                "round_index": 1,
+                "previous_receipt_digest": null,
+                "raw_dice": {
+                  "US": 1,
+                  "USSR": 3
+                },
+                "modified_totals": {
+                  "US": 3,
+                  "USSR": 3
+                },
+                "sponsor": "US",
+                "outcome": "Tie",
+                "winner": null,
+                "vp_delta": 0,
+                "rng_before": 10,
+                "rng_after": 12,
+                "committed_revision": 6
+              },
+              "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+            }
+          ],
+          "continuation": {
+            "kind": "InternalPairedRollContinuation",
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "next_round_index": 2,
+            "previous_receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+            "rng_cursor": 12,
+            "revision": 6,
+            "player_decision": null,
+            "branch_lock": "Participate"
+          },
+          "game_winner": null,
+          "grant": false,
+          "branch_receipt": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+          "initial_defcon": 3
+        },
+        "raw": [
+          1,
+          3
+        ]
+      },
+      "expected": {
+        "outcome": "CorruptContinuation",
+        "unchanged": true,
+        "rng_before": 12,
+        "rng_after": 12
+      },
+      "independent_basis": "损坏/终局续跑拒绝，不能推进新骰对或RNG；与契约反例分别验证执行入口。"
+    },
+    {
+      "id": "OG1-REVIEW-01-internal-tie-with-game-winner-resume",
+      "validation_layer": "reference",
+      "model": "resume_probe",
+      "input": {
+        "state": {
+          "source": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "original_request": {
+            "command_id": "command.choice",
+            "decision_id": "decision.branch",
+            "expected_revision": 5,
+            "choice": "Participate",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+          },
+          "initial_revision": 5,
+          "initial_rng": 10,
+          "initial_vp": 0,
+          "phase": "InternalRoll",
+          "rng": 12,
+          "revision": 6,
+          "vp": 0,
+          "defcon": 3,
+          "receipts": [
+            {
+              "body": {
+                "resolution_id": "resolution.og",
+                "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+                "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+                "round_index": 1,
+                "previous_receipt_digest": null,
+                "raw_dice": {
+                  "US": 1,
+                  "USSR": 3
+                },
+                "modified_totals": {
+                  "US": 3,
+                  "USSR": 3
+                },
+                "sponsor": "US",
+                "outcome": "Tie",
+                "winner": null,
+                "vp_delta": 0,
+                "rng_before": 10,
+                "rng_after": 12,
+                "committed_revision": 6
+              },
+              "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+            }
+          ],
+          "continuation": {
+            "kind": "InternalPairedRollContinuation",
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "next_round_index": 2,
+            "previous_receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+            "rng_cursor": 12,
+            "revision": 6,
+            "player_decision": null,
+            "branch_lock": "Participate"
+          },
+          "game_winner": "US",
+          "grant": false,
+          "branch_receipt": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+          "initial_defcon": 3
+        },
+        "raw": [
+          1,
+          3
+        ]
+      },
+      "expected": {
+        "outcome": "CorruptContinuation",
+        "unchanged": true,
+        "rng_before": 12,
+        "rng_after": 12
+      },
+      "independent_basis": "损坏/终局续跑拒绝，不能推进新骰对或RNG；与契约反例分别验证执行入口。"
+    },
+    {
+      "id": "OG1-S-chain-defcon-legal-but-changed",
+      "validation_layer": "contract",
+      "schema_def": "roll_state",
+      "input": {
+        "fixture": {
+          "source": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "original_request": {
+            "command_id": "command.choice",
+            "decision_id": "decision.branch",
+            "expected_revision": 5,
+            "choice": "Participate",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225"
+          },
+          "initial_revision": 5,
+          "initial_rng": 10,
+          "initial_vp": 0,
+          "phase": "InternalRoll",
+          "rng": 12,
+          "revision": 6,
+          "vp": 0,
+          "defcon": 4,
+          "receipts": [
+            {
+              "body": {
+                "resolution_id": "resolution.og",
+                "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+                "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+                "round_index": 1,
+                "previous_receipt_digest": null,
+                "raw_dice": {
+                  "US": 1,
+                  "USSR": 3
+                },
+                "modified_totals": {
+                  "US": 3,
+                  "USSR": 3
+                },
+                "sponsor": "US",
+                "outcome": "Tie",
+                "winner": null,
+                "vp_delta": 0,
+                "rng_before": 10,
+                "rng_after": 12,
+                "committed_revision": 6
+              },
+              "receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c"
+            }
+          ],
+          "continuation": {
+            "kind": "InternalPairedRollContinuation",
+            "resolution_id": "resolution.og",
+            "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+            "original_request_digest": "50f0191f542e59f36b593ff527547487ba06f6df10ece43a77875dd105bd32a4",
+            "next_round_index": 2,
+            "previous_receipt_digest": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+            "rng_cursor": 12,
+            "revision": 6,
+            "player_decision": null,
+            "branch_lock": "Participate"
+          },
+          "game_winner": null,
+          "grant": false,
+          "branch_receipt": "8186eaef7cbf633b9225cad3f62ce66484e9eef924b2f3d257fbc1ba4eee583c",
+          "initial_defcon": 3
+        },
+        "edits": []
+      },
+      "expected_valid": false,
+      "independent_basis": "参赛不改变DEFCON，3变4即使各自合法也不允许恢复。"
+    },
+    {
+      "id": "OG1-S-baseline-normal-root",
+      "validation_layer": "contract",
+      "schema_def": "ops_grant",
+      "input": {
+        "fixture": {
+          "grant_id": "grant.og",
+          "source_context": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+          "boycott_receipt_digest": "35cfeef4725f3ecc90eba6e5a7289fa78cd829dbeec395d82658b54ff57e31ad",
+          "actor": "US",
+          "root_phasing_player": "US",
+          "budget_source": "VerifiedEventLiteral",
+          "base_ops": 4,
+          "effective_ops": 4,
+          "effects_snapshot_id": "effects.synthetic",
+          "influence_baseline": {
+            "policy": "RootActionRoundStartActor",
+            "actor": "US",
+            "snapshot_id": "snapshot.root-start",
+            "proof_id": "proof.root-start"
+          },
+          "revision": 6,
+          "allowed_modes": [
+            "Influence",
+            "Coup",
+            "Realignment"
+          ],
+          "may_decline": true
+        },
+        "edits": []
+      },
+      "expected_valid": true,
+      "independent_basis": "正常根起点只用真实Actor根快照；头条具名证明或待裁定，授权其他模式不丢失。"
+    },
+    {
+      "id": "OG1-S-baseline-normal-ruling",
+      "validation_layer": "contract",
+      "schema_def": "ops_grant",
+      "input": {
+        "fixture": {
+          "grant_id": "grant.og",
+          "source_context": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "source_context_digest": "1dad71166338e4c69bf5ae93c04b8fefa4bde37e83c74fba7b8d310430807225",
+          "boycott_receipt_digest": "35cfeef4725f3ecc90eba6e5a7289fa78cd829dbeec395d82658b54ff57e31ad",
+          "actor": "US",
+          "root_phasing_player": "US",
+          "budget_source": "VerifiedEventLiteral",
+          "base_ops": 4,
+          "effective_ops": 4,
+          "effects_snapshot_id": "effects.synthetic",
+          "influence_baseline": {
+            "policy": "RequiresRuling",
+            "actor": "US",
+            "snapshot_id": null,
+            "proof_id": null
+          },
+          "revision": 6,
+          "allowed_modes": [
+            "Influence",
+            "Coup",
+            "Realignment"
+          ],
+          "may_decline": true
+        },
+        "edits": []
+      },
+      "expected_valid": true,
+      "independent_basis": "正常根起点只用真实Actor根快照；头条具名证明或待裁定，授权其他模式不丢失。"
+    },
+    {
+      "id": "OG1-S-baseline-headline-named",
+      "validation_layer": "contract",
+      "schema_def": "ops_grant",
+      "input": {
+        "fixture": {
+          "grant_id": "grant.og",
+          "source_context": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "HeadlineEvent",
+            "phase": "Headline",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "source_context_digest": "cb2fdd34be5624b5627a87ced60cdd0fc348e199f4d8ffa62b9289e1d9204077",
+          "boycott_receipt_digest": "35cfeef4725f3ecc90eba6e5a7289fa78cd829dbeec395d82658b54ff57e31ad",
+          "actor": "US",
+          "root_phasing_player": "US",
+          "budget_source": "VerifiedEventLiteral",
+          "base_ops": 4,
+          "effective_ops": 4,
+          "effects_snapshot_id": "effects.synthetic",
+          "influence_baseline": {
+            "policy": "SeparatelyVerifiedNamedPolicy",
+            "actor": "US",
+            "snapshot_id": "snapshot.root-start",
+            "proof_id": "proof.root-start"
+          },
+          "revision": 6,
+          "allowed_modes": [
+            "Influence",
+            "Coup",
+            "Realignment"
+          ],
+          "may_decline": true
+        },
+        "edits": []
+      },
+      "expected_valid": true,
+      "independent_basis": "正常根起点只用真实Actor根快照；头条具名证明或待裁定，授权其他模式不丢失。"
+    },
+    {
+      "id": "OG1-S-baseline-headline-ruling",
+      "validation_layer": "contract",
+      "schema_def": "ops_grant",
+      "input": {
+        "fixture": {
+          "grant_id": "grant.og",
+          "source_context": {
+            "card_id": "card.olympic_games",
+            "source_instance_id": "instance.og",
+            "effect_id": "effect.olympic_games",
+            "resolution_id": "resolution.og",
+            "frame_id": "frame.og",
+            "parent_frame_id": "frame.root",
+            "root_action_id": "root.og",
+            "root_phasing_player": "US",
+            "sponsor": "US",
+            "opponent": "USSR",
+            "branch_owner": "USSR",
+            "source_kind": "HeadlineEvent",
+            "phase": "Headline",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.synthetic.root",
+            "source_zone": "InResolution",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "source_context_digest": "cb2fdd34be5624b5627a87ced60cdd0fc348e199f4d8ffa62b9289e1d9204077",
+          "boycott_receipt_digest": "35cfeef4725f3ecc90eba6e5a7289fa78cd829dbeec395d82658b54ff57e31ad",
+          "actor": "US",
+          "root_phasing_player": "US",
+          "budget_source": "VerifiedEventLiteral",
+          "base_ops": 4,
+          "effective_ops": 4,
+          "effects_snapshot_id": "effects.synthetic",
+          "influence_baseline": {
+            "policy": "RequiresRuling",
+            "actor": "US",
+            "snapshot_id": null,
+            "proof_id": null
+          },
+          "revision": 6,
+          "allowed_modes": [
+            "Influence",
+            "Coup",
+            "Realignment"
+          ],
+          "may_decline": true
+        },
+        "edits": []
+      },
+      "expected_valid": true,
+      "independent_basis": "正常根起点只用真实Actor根快照；头条具名证明或待裁定，授权其他模式不丢失。"
+    },
+    {
+      "id": "OG1-R-valid-terminal-chain-US",
+      "validation_layer": "reference",
+      "model": "terminal_chain",
+      "input": {
+        "sponsor": "US",
+        "root": "US",
+        "choice": "Participate",
+        "signed_vp": 19,
+        "defcon": 3,
+        "raw": [
+          6,
+          1
+        ]
+      },
+      "expected": {
+        "schema_valid": true,
+        "phase": "Finished",
+        "winner": "US",
+        "vp": 21,
+        "next_step": "BranchLocked",
+        "rng_unchanged": true
+      },
+      "independent_basis": "19分方获2到21，合法最终收据可读但不能继续抽骰；双方对称。"
+    },
+    {
+      "id": "OG1-R-valid-terminal-chain-USSR",
+      "validation_layer": "reference",
+      "model": "terminal_chain",
+      "input": {
+        "sponsor": "USSR",
+        "root": "USSR",
+        "choice": "Participate",
+        "signed_vp": -19,
+        "defcon": 3,
+        "raw": [
+          1,
+          6
+        ]
+      },
+      "expected": {
+        "schema_valid": true,
+        "phase": "Finished",
+        "winner": "USSR",
+        "vp": -21,
+        "next_step": "BranchLocked",
+        "rng_unchanged": true
+      },
+      "independent_basis": "19分方获2到21，合法最终收据可读但不能继续抽骰；双方对称。"
+    }
+  ]
+}

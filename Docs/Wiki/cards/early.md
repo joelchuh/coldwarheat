@@ -73,3 +73,5 @@
 [UN双牌使用](../un-intervention.md)绑定#32；普通OPS和配对事件分开，未知来源停止。
 
 [CIA与Lone Gunman](../reveal-ops-batch1.md)：固定接收方的一次手牌快照，随后可选普通1OPS；不是持续公开对手手牌。
+
+[奥运会](../olympic-games.md)：对手决定比赛或抵制；平局强制重掷，与峰会平局处理不同。

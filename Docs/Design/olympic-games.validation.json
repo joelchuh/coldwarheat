@@ -1,0 +1,817 @@
+{
+  "description": "奥运会分支、连续平局双骰收据与抵制后普通OPS契约；离线参考并非生产执行。",
+  "checked_on": "2026-10-12",
+  "new_cases_passed": 151,
+  "previous_cases_passed": 2678,
+  "total_cases_passed": 2829,
+  "cases_by_layer": {
+    "data": 25,
+    "contract": 65,
+    "reference": 61,
+    "runtime": 10
+  },
+  "runtime_cases_not_run": 10,
+  "runtime_game_tests_run": 0,
+  "bound_cards": 80,
+  "unresolved_bindings": 22,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 40,
+    "json_files_parsed": 237,
+    "data_descriptors": 43,
+    "module_descriptors": 21,
+    "relative_links_checked": 178,
+    "parameter_pointers_resolved": 161
+  },
+  "validated_sha256": {
+    "Data/Cards/deluxe-2015/olympic-games.parameters.json": "380d6c8fdef851ae9c7e5ac2d01d780c60930417a47ec49021f2883ce7b54d9d",
+    "Docs/Contracts/olympic-games.schema.json": "6ae4166fe364d77fa0f2349c01cefd493740b5792a3f94037d9c4a2708d8bbb6",
+    "Data/Descriptors/olympic-games.data.json": "4ff7883b2383ff3fbbffb1214d4f90594df191ee4d275b61c2e384810b6e84cd",
+    "Docs/Design/olympic-games.cases.json": "67131bf99c71c486548653f1c83692ce576798c6115c4974aa2c34b07684d610",
+    "Docs/Wiki/olympic-games.md": "b9f8a71b72c2be24e4c9695f537f2fdb6dc8b89d450a4227acffc8404db508ca",
+    "Data/Cards/deluxe-2015/cards.json": "c7bd9016c5ce1d719b91832c509ed6eb374add0f508845abbafe0cc7f2cc71c2",
+    "Docs/Descriptors/composite-events.module.json": "36dc1a60b1a24fa0029e0bee8bd306d57c296018160d8c80e1db1162a167647c",
+    "Docs/Descriptors/event-operations.module.json": "2cb5b94112aeb93b35417daa7059541fae8587b0bd1b816e87d1f66103aed2ad"
+  },
+  "results": [
+    {
+      "id": "OG1-D-baseline",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-sponsor",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-choice-owner",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-sponsor-bonus",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-vp",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-tie-not-reroll",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-tie-vp",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-choice-after-tie",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-die-duplicate",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-printed-ops",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-space",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-free-coup",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-defcon-bypass",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-treaty-bypass",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-grant-before-loss",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-choice-loser",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-max-rerolls",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-forced-winner",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-yield-player-choice",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-reroll-old",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-implicit-baseline",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-extra-root",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-unknown-provider",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-foreign-field",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-D-missing-source",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "OG1-S-source_context",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-branch_request",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-branch_decision",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-pair_receipt",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-roll_continuation",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-boycott_receipt",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-ops_grant",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-ops_choice",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-source_bundle",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-roll_state",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-opponent-is-sponsor",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-unknown-source-card",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-wrong-source-zone",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-phase-mismatch",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-provider-unknown",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-choice-dice",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-choice-budget",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-choice-third-option",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-choice-identity",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-stale-revision-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-pair-invalid-us",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-pair-invalid-second",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-pair-float",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-pair-digest",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-pair-round-zero",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-pair-negative-rng",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-continuation-player-choice",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-continuation-forced-winner",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-continuation-max-rounds",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-boycott-finished-grant",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-boycott-bad-defcon",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-grant-printed2",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-grant-wrong-baseline-actor",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-grant-current-baseline",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-ops-space",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-ops-die",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-ops-client-role",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-actual-card-hand",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-actual-card-wrong-frame",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-wrong-instance",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-wrong-actual-card",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-duplicated-source-instance",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-headline-cannot-use-root-start",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-fyp-cannot-provide-neutral-event",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-state-original-request-mismatch",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-state-current-rng-mismatch",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-state-wrong-source-sponsor",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-state-branch-receipt-mismatch",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-state-tie-forced-complete",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-state-vp-corrupt",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-state-revision-skipped",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-forged-winner",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-forged-total",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-forged-rng",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-unresolved-influence",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-R-us-sponsor-add2",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-ussr-sponsor-add2",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-sponsor-can-lose",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-two-ties-then-winner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-invalid-second-initial",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-invalid-first-initial",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-invalid-next-preserves-tie",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-yield-after-one-tie",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-yield-repeated-ties",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-resume-same-result",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-vp-us-threshold",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-vp-ussr-threshold",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-bad-source",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-unknown-provider",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-unknown-effect",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-wrong-opponent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-stale-choice",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-actual-source-still-hand",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-actual-source-different-card",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-phase-source-mismatch",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-actual-requester-sponsor",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-actual-old-revision",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-boycott-nuclear-us",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-boycott-nuclear-ussr",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-boycott-ops",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-literal4-not-printed2",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-purge3",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-containment-capped4",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-both4",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-brezhnev-capped4",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-opponent-modifier-ignored",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-vietnam5",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-mixed-region4",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-no-boycott-after-participate",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-no-participate-after-boycott",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-retry-original",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-conflicting-command-retry",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-stale-internal-pair",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-wrong-current-receipt",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-corrupted-round-index",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-corrupted-prev-hash",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-corrupted-round-chain",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-forced-winner-cap",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-ops-decline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-ops-bad-target",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-ops-no-space",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-ops-wrong-owner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-ops-unresolved-influence",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-ops-unresolved-baseline-can-decline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-ops-unresolved-baseline-can-coup",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-coup-ordinary-coup",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-coup-nuclear-root",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-coup-cmc-before-rng",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-coup-geographic-block",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-coup-treaty-block",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-REVIEW-01-nuclear-defcon",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-REVIEW-01-out-of-range-defcon",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-REVIEW-01-already-winning-initial-score",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-REVIEW-01-internal-tie-with-game-winner",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-REVIEW-02",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-REVIEW-01-nuclear-defcon-resume",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-REVIEW-01-out-of-range-defcon-resume",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-REVIEW-01-already-winning-initial-score-resume",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-REVIEW-01-internal-tie-with-game-winner-resume",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-S-chain-defcon-legal-but-changed",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-baseline-normal-root",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-baseline-normal-ruling",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-baseline-headline-named",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-S-baseline-headline-ruling",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "OG1-R-valid-terminal-chain-US",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "OG1-R-valid-terminal-chain-USSR",
+      "passed": true,
+      "validation_layer": "reference"
+    }
+  ],
+  "limitations": [
+    "Source identity/provider flags are trusted synthetic premises, never real server authentication. Source card/phase and grant baseline are additionally checked as domain invariants.",
+    "Hash verification detects modeled inconsistency; SHA256 is not an authorization mechanism or evidence of tamper-proof persistence.",
+    "Paired rolls use provided fixture faces and in-memory commit/copy/serialization; no real RNG persistence, saving or network tested.",
+    "OPS checks are bounded plans; full shared influence/coup/realignment services remain planned.",
+    "Headline/unsupported nested Influence baseline requires independently verified policy; unknown nested providers remain stopped.",
+    "2678旧案例只适配绑定库存/已完成来源和相同文件overlay读取，不改规则期望。",
+    "13note及72Tools独立，不计入且本批未重跑。",
+    "151含原独立审阅5反例；另18独立复探未重复计入设计总数。"
+  ],
+  "independent_review": {
+    "status": "ready-no-findings-after-two-fixes",
+    "critical": 0,
+    "important": 0,
+    "minor": 0,
+    "new_cases_independently_passed": 151,
+    "separate_recheck_probes": 18,
+    "old_cases_independently_rerun": 0,
+    "remediation": "Initial/current running invariants checked on each continuation; normal root baseline cannot be substituted. Original5probes with valid initial_defcon evidence reject; valid final receipts readable without new dice.",
+    "integration_review": "344baselineSHA/8reportSHA/237JSON40Schema43datasets21module42dependencyDAG161refs181links;103printed unchanged,only1binding. Source parameters/schema/cases identical; descriptor report_status removed; Wiki metadata only.",
+    "historical_overlay": "LI1/RO1 ten baseline artifact bytes match reviewedSHA; reviewer did not independently rerun old2678 or prior18probes; runtime10unrun/game0."
+  },
+  "post_validation_document_links_checked": 11,
+  "metadata_after_validation": "Only Wiki final validation/binding status and Worklog updated; checked their links and refreshed Wiki hash."
+}

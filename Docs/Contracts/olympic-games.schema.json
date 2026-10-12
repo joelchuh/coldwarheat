@@ -1,0 +1,1819 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:olympic-games:1",
+  "description": "Olympic参数、可信来源、分支选择、双骰收据链、内部继续与抵制OPS类型；骰范围/摘要/链和跨字段须语义校验。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "shared_refs",
+    "source_policy",
+    "receipt_policy",
+    "scheduler_policy",
+    "completion_policy",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.olympic_games"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "verified-subset"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "C-DELUXE-EN"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf"
+            },
+            "edition": {
+              "const": "English Deluxe card images"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "R2015"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf"
+            },
+            "edition": {
+              "const": "Deluxe rules 2015"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "F2010"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/FAQv5.pdf"
+            },
+            "edition": {
+              "const": "FAQ v5 2010, compatible Deluxe answers only"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "PROJECT-OG1"
+            },
+            "url": {
+              "const": null
+            },
+            "edition": {
+              "const": "Atomic paired-roll chain and internal scheduling contracts, 2026-10-12"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "shared_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "standard_die",
+        "defcon",
+        "victory",
+        "ops",
+        "military",
+        "coup_intervention"
+      ],
+      "properties": {
+        "standard_die": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.standard-dice"
+            },
+            "json_pointer": {
+              "const": "/definitions/standard_d6"
+            }
+          }
+        },
+        "defcon": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.defcon"
+            },
+            "json_pointer": {
+              "const": ""
+            }
+          }
+        },
+        "victory": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.victory"
+            },
+            "json_pointer": {
+              "const": ""
+            }
+          }
+        },
+        "ops": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.persistent_batch1"
+            },
+            "json_pointer": {
+              "const": "/ops_policy"
+            }
+          }
+        },
+        "military": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.military-operations"
+            },
+            "json_pointer": {
+              "const": "/credit_sources/OperationsCoup"
+            }
+          }
+        },
+        "coup_intervention": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.defcon_events_batch1"
+            },
+            "json_pointer": {
+              "const": "/intervention_policy"
+            }
+          }
+        }
+      }
+    },
+    "source_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "roles",
+        "normal_sources",
+        "nested_sources",
+        "unknown_provider",
+        "unknown_relevant_effect",
+        "source_card_zone",
+        "source_validation",
+        "running_state"
+      ],
+      "properties": {
+        "roles": {
+          "const": "SeparateRootPhasingSponsorOpponentBranchOwnerAndOpsActor"
+        },
+        "normal_sources": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "const": "RootEvent"
+            },
+            {
+              "const": "HeadlineEvent"
+            }
+          ],
+          "items": false
+        },
+        "nested_sources": {
+          "const": "RequiresSeparatelyBoundProviderAndVerifiedRootInheritance"
+        },
+        "unknown_provider": {
+          "const": "RequiresRulingBeforeChoiceOrRandomOrMutation"
+        },
+        "unknown_relevant_effect": {
+          "const": "RequiresRulingBeforeAffectedStep"
+        },
+        "source_card_zone": {
+          "const": "InResolution"
+        },
+        "source_validation": {
+          "const": "ExactCardEffectPhaseFrameRevisionRulesAndDataBinding"
+        },
+        "running_state": {
+          "const": "RejectNuclearDefconOrAlreadyWinningVpOrCorruptState"
+        }
+      }
+    },
+    "receipt_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "initial_participation",
+        "pair_atomicity",
+        "pair_identity",
+        "pair_digest",
+        "canonical_format",
+        "request_digest",
+        "next_binding",
+        "retry",
+        "conflicting_retry",
+        "failed_initial_pair",
+        "failed_later_pair",
+        "boycott_atomicity",
+        "later_ops_failure"
+      ],
+      "properties": {
+        "initial_participation": {
+          "const": "BranchLockAndFirstCompletePairAtomic"
+        },
+        "pair_atomicity": {
+          "const": "BothRawDiceTotalsOutcomeVpRngAndContinuationTogether"
+        },
+        "pair_identity": {
+          "const": "ResolutionIdAndOneBasedRoundIndex"
+        },
+        "pair_digest": {
+          "const": "CanonicalSha256OfCompleteTypedReceiptBody"
+        },
+        "canonical_format": {
+          "const": "UTF8SortedKeysCompactJSONIntegersOnlyNoNaN"
+        },
+        "request_digest": {
+          "const": "CanonicalOriginalBranchRequestAndSourceFrameDigest"
+        },
+        "next_binding": {
+          "const": "NextRoundIndexPreviousReceiptDigestAndRngCursor"
+        },
+        "retry": {
+          "const": "AuthorizedOriginalReceiptReplayNoNewSampling"
+        },
+        "conflicting_retry": {
+          "const": "RejectDifferentSemanticRequestForAcceptedCommandOrResolution"
+        },
+        "failed_initial_pair": {
+          "const": "NoBranchLockNoRngCommitNoPartialReceipt"
+        },
+        "failed_later_pair": {
+          "const": "PreservePriorCommittedPairsAndRng"
+        },
+        "boycott_atomicity": {
+          "const": "BranchChoiceDefconTerminalOrOpsGrantTogether"
+        },
+        "later_ops_failure": {
+          "const": "PreserveCommittedBoycottDefcon"
+        }
+      }
+    },
+    "scheduler_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ties",
+        "execution_slice",
+        "slice_exhausted",
+        "game_reroll_limit",
+        "forced_winner",
+        "resume"
+      ],
+      "properties": {
+        "ties": {
+          "const": "InternalContinuationWithoutPlayerDecision"
+        },
+        "execution_slice": {
+          "const": "PositiveBoundedPairWorkBudgetExternalToGameRules"
+        },
+        "slice_exhausted": {
+          "const": "YieldInternalContinuation"
+        },
+        "game_reroll_limit": {
+          "const": "None"
+        },
+        "forced_winner": {
+          "const": "Forbidden"
+        },
+        "resume": {
+          "const": "ValidateFullReceiptChainThenContinueNextUncommittedPair"
+        }
+      }
+    },
+    "completion_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "winner_batch",
+        "terminal",
+        "source_card_disposition",
+        "root_slot",
+        "finished"
+      ],
+      "properties": {
+        "winner_batch": {
+          "const": "OneCompleteEventVpBatch"
+        },
+        "terminal": {
+          "const": "FinalizeAlreadyCommittedEventAndCardDispositionInSameTerminalTransaction"
+        },
+        "source_card_disposition": {
+          "const": "SharedPrintedRemovalPolicy"
+        },
+        "root_slot": {
+          "const": "NoAdditionalRootAction"
+        },
+        "finished": {
+          "const": "AbsorbingExceptAuthorizedOriginalReceiptReplay"
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "olympic_games"
+      ],
+      "properties": {
+        "olympic_games": {
+          "$ref": "#/$defs/olympic_games"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "olympic_games": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "sponsor",
+        "opponent",
+        "branch_decision_owner",
+        "branches",
+        "participate",
+        "boycott",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.olympic_games"
+        },
+        "effect_id": {
+          "const": "effect.olympic_games"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "OpponentChoiceOlympicContestOrBoycottOps"
+        },
+        "sponsor": {
+          "const": "EffectController"
+        },
+        "opponent": {
+          "const": "OpponentOfSponsor"
+        },
+        "branch_decision_owner": {
+          "const": "OpponentOfSponsor"
+        },
+        "branches": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "const": "Participate"
+            },
+            {
+              "const": "Boycott"
+            }
+          ],
+          "items": false
+        },
+        "participate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "die_ref",
+            "draw_order",
+            "sponsor_die_modifier",
+            "comparison",
+            "winner_vp",
+            "tie_policy",
+            "tie_vp",
+            "vp_checkpoint",
+            "military_credit",
+            "branch_change_after_accepted_pair",
+            "resume_state_policy"
+          ],
+          "properties": {
+            "die_ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "dataset_id",
+                "json_pointer"
+              ],
+              "properties": {
+                "dataset_id": {
+                  "const": "rules.deluxe2015.standard-dice"
+                },
+                "json_pointer": {
+                  "const": "/definitions/standard_d6"
+                }
+              }
+            },
+            "draw_order": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "prefixItems": [
+                {
+                  "const": "US"
+                },
+                {
+                  "const": "USSR"
+                }
+              ],
+              "items": false
+            },
+            "sponsor_die_modifier": {
+              "const": 2
+            },
+            "comparison": {
+              "const": "StrictlyHigherModifiedTotal"
+            },
+            "winner_vp": {
+              "const": 2
+            },
+            "tie_policy": {
+              "const": "MandatoryNewPairedRoll"
+            },
+            "tie_vp": {
+              "const": 0
+            },
+            "vp_checkpoint": {
+              "const": "VpBatchClosed"
+            },
+            "military_credit": {
+              "const": "None"
+            },
+            "branch_change_after_accepted_pair": {
+              "const": false
+            },
+            "resume_state_policy": {
+              "const": "ValidateInitialRunningState_UnchangedDefcon_PhaseSpecificTerminalBeforeEveryPair"
+            }
+          }
+        },
+        "boycott": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "defcon_delta",
+            "ordered_steps",
+            "defcon_ref",
+            "nuclear_loser",
+            "terminal_grant",
+            "operations"
+          ],
+          "properties": {
+            "defcon_delta": {
+              "const": -1
+            },
+            "ordered_steps": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3,
+              "prefixItems": [
+                {
+                  "const": "DegradeDefcon"
+                },
+                {
+                  "const": "NuclearWarReachedCheckpoint"
+                },
+                {
+                  "const": "IfContinueOfferOptionalAsIfCardOperations"
+                }
+              ],
+              "items": false
+            },
+            "defcon_ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "dataset_id",
+                "json_pointer"
+              ],
+              "properties": {
+                "dataset_id": {
+                  "const": "rules.deluxe2015.defcon"
+                },
+                "json_pointer": {
+                  "const": ""
+                }
+              }
+            },
+            "nuclear_loser": {
+              "const": "InheritedRootPhasingPlayer"
+            },
+            "terminal_grant": {
+              "const": "None"
+            },
+            "operations": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "actor",
+                "base_ops",
+                "budget_source",
+                "ops_policy_ref",
+                "allowed_modes",
+                "may_decline",
+                "mode_lock",
+                "finish_policy",
+                "coup_credit_kind",
+                "military_policy_ref",
+                "intervention_ref",
+                "geographic_exemption",
+                "treaty_exemption",
+                "space_allowed",
+                "extra_card",
+                "extra_root_action",
+                "modifier_policy",
+                "influence_baseline",
+                "missing_influence_baseline",
+                "ordinary_nuclear_loser",
+                "fatal_crisis_loser"
+              ],
+              "properties": {
+                "actor": {
+                  "const": "Sponsor"
+                },
+                "base_ops": {
+                  "const": 4
+                },
+                "budget_source": {
+                  "const": "VerifiedEventLiteral"
+                },
+                "ops_policy_ref": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "dataset_id",
+                    "json_pointer"
+                  ],
+                  "properties": {
+                    "dataset_id": {
+                      "const": "effects.deluxe2015.persistent_batch1"
+                    },
+                    "json_pointer": {
+                      "const": "/ops_policy"
+                    }
+                  }
+                },
+                "allowed_modes": {
+                  "type": "array",
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "prefixItems": [
+                    {
+                      "const": "Influence"
+                    },
+                    {
+                      "const": "Coup"
+                    },
+                    {
+                      "const": "Realignment"
+                    }
+                  ],
+                  "items": false
+                },
+                "may_decline": {
+                  "const": true
+                },
+                "mode_lock": {
+                  "const": "FirstAcceptedOperation"
+                },
+                "finish_policy": {
+                  "const": "BetweenAcceptedOperationsMayForfeitRemainder"
+                },
+                "coup_credit_kind": {
+                  "const": "OperationsCoup"
+                },
+                "military_policy_ref": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "dataset_id",
+                    "json_pointer"
+                  ],
+                  "properties": {
+                    "dataset_id": {
+                      "const": "rules.deluxe2015.military-operations"
+                    },
+                    "json_pointer": {
+                      "const": "/credit_sources/OperationsCoup"
+                    }
+                  }
+                },
+                "intervention_ref": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "dataset_id",
+                    "json_pointer"
+                  ],
+                  "properties": {
+                    "dataset_id": {
+                      "const": "effects.deluxe2015.defcon_events_batch1"
+                    },
+                    "json_pointer": {
+                      "const": "/intervention_policy"
+                    }
+                  }
+                },
+                "geographic_exemption": {
+                  "const": false
+                },
+                "treaty_exemption": {
+                  "const": false
+                },
+                "space_allowed": {
+                  "const": false
+                },
+                "extra_card": {
+                  "const": false
+                },
+                "extra_root_action": {
+                  "const": false
+                },
+                "modifier_policy": {
+                  "const": "ActorEffectsAndVerifiedRegionalHistory"
+                },
+                "influence_baseline": {
+                  "const": "RootActionRoundStartActorOrSeparatelyVerifiedNamedPolicy"
+                },
+                "missing_influence_baseline": {
+                  "const": "RequiresRulingOnlyInfluenceQueryOrChoice"
+                },
+                "ordinary_nuclear_loser": {
+                  "const": "InheritedRootPhasingPlayer"
+                },
+                "fatal_crisis_loser": {
+                  "const": "ActualCoupActor"
+                }
+              }
+            }
+          }
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "亲看PDF p4英文#20：控制者主办、对手参赛/抵制；参赛双方骰主办+2高者2VP平手重掷；抵制DEFCON降1再可选视同4OPS；Neutral2Early非星号。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "§2.0标准D6；§4.2/4.5C根身份；§6.0/6.1.1普通OPS与行动轮开始；§7.4.1–3修正；§8.1.3含Olympic抵制核战例；§10.3.1完整VP批次终局。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "F2010"
+                },
+                "locator": {
+                  "const": "PDF p13 #62再次引用Olympic抵制的Phasing责任并区分CMC实际Actor；p14 #67事件OPS没有可弃实体不能太空的说明。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-OG1"
+                },
+                "locator": {
+                  "const": "US后USSR取样、每对骰原子收据、平手内部继续链/有限执行片段、不设游戏重掷上限、拒绝保留既有收据；来源与真实持久化仍planned。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "source_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "source_instance_id",
+        "effect_id",
+        "resolution_id",
+        "frame_id",
+        "parent_frame_id",
+        "root_action_id",
+        "root_phasing_player",
+        "sponsor",
+        "opponent",
+        "branch_owner",
+        "source_kind",
+        "phase",
+        "provider_contract_id",
+        "provider_proof_id",
+        "source_zone",
+        "ruleset_id",
+        "ruleset_version",
+        "data_digest"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.olympic_games"
+        },
+        "source_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effect_id": {
+          "const": "effect.olympic_games"
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parent_frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_phasing_player": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "sponsor": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "opponent": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "branch_owner": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "source_kind": {
+          "enum": [
+            "RootEvent",
+            "HeadlineEvent",
+            "VerifiedNestedEvent"
+          ]
+        },
+        "phase": {
+          "enum": [
+            "ActionRound",
+            "Headline"
+          ]
+        },
+        "provider_contract_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provider_proof_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_zone": {
+          "const": "InResolution"
+        },
+        "ruleset_id": {
+          "const": "ruleset.deluxe2015"
+        },
+        "ruleset_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "data_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "sponsor": {
+                "const": "US"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "opponent": {
+                "const": "USSR"
+              },
+              "branch_owner": {
+                "const": "USSR"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "sponsor": {
+                "const": "USSR"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "opponent": {
+                "const": "US"
+              },
+              "branch_owner": {
+                "const": "US"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "source_bundle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "context",
+        "authoritative_card_locations",
+        "authority_revision"
+      ],
+      "properties": {
+        "context": {
+          "$ref": "#/$defs/source_context"
+        },
+        "authoritative_card_locations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "instance_id",
+              "card_id",
+              "zone",
+              "frame_id"
+            ],
+            "properties": {
+              "instance_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "card_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "zone": {
+                "enum": [
+                  "Hand",
+                  "InResolution",
+                  "HeadlineReserved",
+                  "DiscardPile",
+                  "RemovedFromGame"
+                ]
+              },
+              "frame_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "authority_revision": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "branch_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "decision_id",
+        "expected_revision",
+        "choice",
+        "source_context_digest"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "choice": {
+          "enum": [
+            "Participate",
+            "Boycott"
+          ]
+        },
+        "source_context_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "branch_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision_id",
+        "owner",
+        "frame_id",
+        "revision",
+        "choices",
+        "status"
+      ],
+      "properties": {
+        "decision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "choices": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "const": "Participate"
+            },
+            {
+              "const": "Boycott"
+            }
+          ],
+          "items": false
+        },
+        "status": {
+          "const": "AwaitingBranch"
+        }
+      }
+    },
+    "pair_body": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resolution_id",
+        "source_context_digest",
+        "original_request_digest",
+        "round_index",
+        "previous_receipt_digest",
+        "raw_dice",
+        "modified_totals",
+        "sponsor",
+        "outcome",
+        "winner",
+        "vp_delta",
+        "rng_before",
+        "rng_after",
+        "committed_revision"
+      ],
+      "properties": {
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_context_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "original_request_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "round_index": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "previous_receipt_digest": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw_dice": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "US",
+            "USSR"
+          ],
+          "properties": {
+            "US": {
+              "type": "integer"
+            },
+            "USSR": {
+              "type": "integer"
+            }
+          }
+        },
+        "modified_totals": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "US",
+            "USSR"
+          ],
+          "properties": {
+            "US": {
+              "type": "integer"
+            },
+            "USSR": {
+              "type": "integer"
+            }
+          }
+        },
+        "sponsor": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "outcome": {
+          "enum": [
+            "Tie",
+            "Winner"
+          ]
+        },
+        "winner": {
+          "enum": [
+            null,
+            "US",
+            "USSR"
+          ]
+        },
+        "vp_delta": {
+          "type": "integer"
+        },
+        "rng_before": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rng_after": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "committed_revision": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "pair_receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "body",
+        "receipt_digest"
+      ],
+      "properties": {
+        "body": {
+          "$ref": "#/$defs/pair_body"
+        },
+        "receipt_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "roll_continuation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "resolution_id",
+        "source_context_digest",
+        "original_request_digest",
+        "next_round_index",
+        "previous_receipt_digest",
+        "rng_cursor",
+        "revision",
+        "player_decision",
+        "branch_lock"
+      ],
+      "properties": {
+        "kind": {
+          "const": "InternalPairedRollContinuation"
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_context_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "original_request_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "next_round_index": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "previous_receipt_digest": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rng_cursor": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "player_decision": {
+          "const": null
+        },
+        "branch_lock": {
+          "const": "Participate"
+        }
+      }
+    },
+    "boycott_receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resolution_id",
+        "source_context",
+        "source_context_digest",
+        "original_request_digest",
+        "defcon_before",
+        "defcon_after",
+        "committed_revision",
+        "nuclear_loser",
+        "grant_id",
+        "status"
+      ],
+      "properties": {
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_context": {
+          "$ref": "#/$defs/source_context"
+        },
+        "source_context_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "original_request_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "defcon_before": {
+          "type": "integer"
+        },
+        "defcon_after": {
+          "type": "integer"
+        },
+        "committed_revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "nuclear_loser": {
+          "enum": [
+            null,
+            "US",
+            "USSR"
+          ]
+        },
+        "grant_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "AwaitingOperations",
+            "Finished"
+          ]
+        }
+      }
+    },
+    "influence_baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policy",
+        "actor",
+        "snapshot_id",
+        "proof_id"
+      ],
+      "properties": {
+        "policy": {
+          "enum": [
+            "RootActionRoundStartActor",
+            "SeparatelyVerifiedNamedPolicy",
+            "RequiresRuling"
+          ]
+        },
+        "actor": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "snapshot_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "proof_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "policy": {
+                "const": "RequiresRuling"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "snapshot_id": {
+                "const": null
+              },
+              "proof_id": {
+                "const": null
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "snapshot_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "proof_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ops_grant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "grant_id",
+        "source_context",
+        "source_context_digest",
+        "boycott_receipt_digest",
+        "actor",
+        "root_phasing_player",
+        "budget_source",
+        "base_ops",
+        "effective_ops",
+        "effects_snapshot_id",
+        "influence_baseline",
+        "revision",
+        "allowed_modes",
+        "may_decline"
+      ],
+      "properties": {
+        "grant_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_context": {
+          "$ref": "#/$defs/source_context"
+        },
+        "source_context_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "boycott_receipt_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "actor": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "root_phasing_player": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "budget_source": {
+          "const": "VerifiedEventLiteral"
+        },
+        "base_ops": {
+          "const": 4
+        },
+        "effective_ops": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "effects_snapshot_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "influence_baseline": {
+          "$ref": "#/$defs/influence_baseline"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "allowed_modes": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "const": "Influence"
+            },
+            {
+              "const": "Coup"
+            },
+            {
+              "const": "Realignment"
+            }
+          ],
+          "items": false
+        },
+        "may_decline": {
+          "const": true
+        }
+      }
+    },
+    "ops_choice": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "command_id",
+            "decision_id",
+            "grant_id",
+            "expected_revision",
+            "boycott_receipt_digest",
+            "choice"
+          ],
+          "properties": {
+            "command_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "decision_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "grant_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "expected_revision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "boycott_receipt_digest": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "choice": {
+              "enum": [
+                "Decline",
+                "Finish"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "command_id",
+            "decision_id",
+            "grant_id",
+            "expected_revision",
+            "boycott_receipt_digest",
+            "choice",
+            "country_id"
+          ],
+          "properties": {
+            "command_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "decision_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "grant_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "expected_revision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "boycott_receipt_digest": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "choice": {
+              "enum": [
+                "Coup",
+                "Realignment"
+              ]
+            },
+            "country_id": {
+              "type": "string",
+              "pattern": "^country\\.[a-z][a-z0-9_]*$"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "command_id",
+            "decision_id",
+            "grant_id",
+            "expected_revision",
+            "boycott_receipt_digest",
+            "choice",
+            "ordered_targets"
+          ],
+          "properties": {
+            "command_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "decision_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "grant_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "expected_revision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "boycott_receipt_digest": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "choice": {
+              "const": "Influence"
+            },
+            "ordered_targets": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "pattern": "^country\\.[a-z][a-z0-9_]*$"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "roll_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "original_request",
+        "initial_revision",
+        "initial_rng",
+        "initial_vp",
+        "phase",
+        "rng",
+        "revision",
+        "vp",
+        "defcon",
+        "receipts",
+        "continuation",
+        "game_winner",
+        "grant",
+        "branch_receipt",
+        "initial_defcon"
+      ],
+      "properties": {
+        "source": {
+          "$ref": "#/$defs/source_context"
+        },
+        "original_request": {
+          "$ref": "#/$defs/branch_request"
+        },
+        "initial_revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "initial_rng": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "initial_vp": {
+          "type": "integer"
+        },
+        "phase": {
+          "enum": [
+            "AwaitingBranch",
+            "InternalRoll",
+            "Completed",
+            "Finished"
+          ]
+        },
+        "rng": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "vp": {
+          "type": "integer"
+        },
+        "defcon": {
+          "type": "integer"
+        },
+        "receipts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/pair_receipt"
+          }
+        },
+        "continuation": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/roll_continuation"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "game_winner": {
+          "enum": [
+            null,
+            "US",
+            "USSR"
+          ]
+        },
+        "grant": {
+          "const": false
+        },
+        "branch_receipt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "initial_defcon": {
+          "type": "integer",
+          "description": "接受Participate前权威DEFCON；参赛链不改变该值，合法范围读取共享规则。"
+        }
+      },
+      "description": "类型形状之外，语义验证初始非终局、合法且未变DEFCON、每阶段VP/winner一致；Finished合法收据只读，不再掷骰。"
+    }
+  }
+}

@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.olympic_games",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "verified-subset",
+  "description": "Olympic Games单牌：对手分支决定、强制重掷双骰链与抵制DEFCON后普通OPS；纯设计，运行未实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "亲看PDF p4英文#20：控制者主办、对手参赛/抵制；参赛双方骰主办+2高者2VP平手重掷；抵制DEFCON降1再可选视同4OPS；Neutral2Early非星号。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.0标准D6；§4.2/4.5C根身份；§6.0/6.1.1普通OPS与行动轮开始；§7.4.1–3修正；§8.1.3含Olympic抵制核战例；§10.3.1完整VP批次终局。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe answers only",
+      "description": "PDF p13 #62再次引用Olympic抵制的Phasing责任并区分CMC实际Actor；p14 #67事件OPS没有可弃实体不能太空的说明。"
+    },
+    {
+      "id": "PROJECT-OG1",
+      "url": null,
+      "edition": "Atomic paired-roll chain and internal scheduling contracts, 2026-10-12",
+      "description": "US后USSR取样、每对骰原子收据、平手内部继续链/有限执行片段、不设游戏重掷上限、拒绝保留既有收据；来源与真实持久化仍planned。"
+    }
+  ],
+  "shared_refs": {
+    "standard_die": {
+      "dataset_id": "rules.deluxe2015.standard-dice",
+      "json_pointer": "/definitions/standard_d6"
+    },
+    "defcon": {
+      "dataset_id": "rules.deluxe2015.defcon",
+      "json_pointer": ""
+    },
+    "victory": {
+      "dataset_id": "rules.deluxe2015.victory",
+      "json_pointer": ""
+    },
+    "ops": {
+      "dataset_id": "effects.deluxe2015.persistent_batch1",
+      "json_pointer": "/ops_policy"
+    },
+    "military": {
+      "dataset_id": "rules.deluxe2015.military-operations",
+      "json_pointer": "/credit_sources/OperationsCoup"
+    },
+    "coup_intervention": {
+      "dataset_id": "effects.deluxe2015.defcon_events_batch1",
+      "json_pointer": "/intervention_policy"
+    }
+  },
+  "source_policy": {
+    "roles": "SeparateRootPhasingSponsorOpponentBranchOwnerAndOpsActor",
+    "normal_sources": [
+      "RootEvent",
+      "HeadlineEvent"
+    ],
+    "nested_sources": "RequiresSeparatelyBoundProviderAndVerifiedRootInheritance",
+    "unknown_provider": "RequiresRulingBeforeChoiceOrRandomOrMutation",
+    "unknown_relevant_effect": "RequiresRulingBeforeAffectedStep",
+    "source_card_zone": "InResolution",
+    "source_validation": "ExactCardEffectPhaseFrameRevisionRulesAndDataBinding",
+    "running_state": "RejectNuclearDefconOrAlreadyWinningVpOrCorruptState"
+  },
+  "receipt_policy": {
+    "initial_participation": "BranchLockAndFirstCompletePairAtomic",
+    "pair_atomicity": "BothRawDiceTotalsOutcomeVpRngAndContinuationTogether",
+    "pair_identity": "ResolutionIdAndOneBasedRoundIndex",
+    "pair_digest": "CanonicalSha256OfCompleteTypedReceiptBody",
+    "canonical_format": "UTF8SortedKeysCompactJSONIntegersOnlyNoNaN",
+    "request_digest": "CanonicalOriginalBranchRequestAndSourceFrameDigest",
+    "next_binding": "NextRoundIndexPreviousReceiptDigestAndRngCursor",
+    "retry": "AuthorizedOriginalReceiptReplayNoNewSampling",
+    "conflicting_retry": "RejectDifferentSemanticRequestForAcceptedCommandOrResolution",
+    "failed_initial_pair": "NoBranchLockNoRngCommitNoPartialReceipt",
+    "failed_later_pair": "PreservePriorCommittedPairsAndRng",
+    "boycott_atomicity": "BranchChoiceDefconTerminalOrOpsGrantTogether",
+    "later_ops_failure": "PreserveCommittedBoycottDefcon"
+  },
+  "scheduler_policy": {
+    "ties": "InternalContinuationWithoutPlayerDecision",
+    "execution_slice": "PositiveBoundedPairWorkBudgetExternalToGameRules",
+    "slice_exhausted": "YieldInternalContinuation",
+    "game_reroll_limit": "None",
+    "forced_winner": "Forbidden",
+    "resume": "ValidateFullReceiptChainThenContinueNextUncommittedPair"
+  },
+  "completion_policy": {
+    "winner_batch": "OneCompleteEventVpBatch",
+    "terminal": "FinalizeAlreadyCommittedEventAndCardDispositionInSameTerminalTransaction",
+    "source_card_disposition": "SharedPrintedRemovalPolicy",
+    "root_slot": "NoAdditionalRootAction",
+    "finished": "AbsorbingExceptAuthorizedOriginalReceiptReplay"
+  },
+  "parameters": {
+    "olympic_games": {
+      "card_id": "card.olympic_games",
+      "effect_id": "effect.olympic_games",
+      "description": "事件控制者主办，对手互斥选择参赛或抵制；参赛平手必须重掷，抵制先降DEFCON并立即检查终局。",
+      "template": "OpponentChoiceOlympicContestOrBoycottOps",
+      "sponsor": "EffectController",
+      "opponent": "OpponentOfSponsor",
+      "branch_decision_owner": "OpponentOfSponsor",
+      "branches": [
+        "Participate",
+        "Boycott"
+      ],
+      "participate": {
+        "die_ref": {
+          "dataset_id": "rules.deluxe2015.standard-dice",
+          "json_pointer": "/definitions/standard_d6"
+        },
+        "draw_order": [
+          "US",
+          "USSR"
+        ],
+        "sponsor_die_modifier": 2,
+        "comparison": "StrictlyHigherModifiedTotal",
+        "winner_vp": 2,
+        "tie_policy": "MandatoryNewPairedRoll",
+        "tie_vp": 0,
+        "vp_checkpoint": "VpBatchClosed",
+        "military_credit": "None",
+        "branch_change_after_accepted_pair": false,
+        "resume_state_policy": "ValidateInitialRunningState_UnchangedDefcon_PhaseSpecificTerminalBeforeEveryPair"
+      },
+      "boycott": {
+        "defcon_delta": -1,
+        "ordered_steps": [
+          "DegradeDefcon",
+          "NuclearWarReachedCheckpoint",
+          "IfContinueOfferOptionalAsIfCardOperations"
+        ],
+        "defcon_ref": {
+          "dataset_id": "rules.deluxe2015.defcon",
+          "json_pointer": ""
+        },
+        "nuclear_loser": "InheritedRootPhasingPlayer",
+        "terminal_grant": "None",
+        "operations": {
+          "actor": "Sponsor",
+          "base_ops": 4,
+          "budget_source": "VerifiedEventLiteral",
+          "ops_policy_ref": {
+            "dataset_id": "effects.deluxe2015.persistent_batch1",
+            "json_pointer": "/ops_policy"
+          },
+          "allowed_modes": [
+            "Influence",
+            "Coup",
+            "Realignment"
+          ],
+          "may_decline": true,
+          "mode_lock": "FirstAcceptedOperation",
+          "finish_policy": "BetweenAcceptedOperationsMayForfeitRemainder",
+          "coup_credit_kind": "OperationsCoup",
+          "military_policy_ref": {
+            "dataset_id": "rules.deluxe2015.military-operations",
+            "json_pointer": "/credit_sources/OperationsCoup"
+          },
+          "intervention_ref": {
+            "dataset_id": "effects.deluxe2015.defcon_events_batch1",
+            "json_pointer": "/intervention_policy"
+          },
+          "geographic_exemption": false,
+          "treaty_exemption": false,
+          "space_allowed": false,
+          "extra_card": false,
+          "extra_root_action": false,
+          "modifier_policy": "ActorEffectsAndVerifiedRegionalHistory",
+          "influence_baseline": "RootActionRoundStartActorOrSeparatelyVerifiedNamedPolicy",
+          "missing_influence_baseline": "RequiresRulingOnlyInfluenceQueryOrChoice",
+          "ordinary_nuclear_loser": "InheritedRootPhasingPlayer",
+          "fatal_crisis_loser": "ActualCoupActor"
+        }
+      },
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "亲看PDF p4英文#20：控制者主办、对手参赛/抵制；参赛双方骰主办+2高者2VP平手重掷；抵制DEFCON降1再可选视同4OPS；Neutral2Early非星号。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.0标准D6；§4.2/4.5C根身份；§6.0/6.1.1普通OPS与行动轮开始；§7.4.1–3修正；§8.1.3含Olympic抵制核战例；§10.3.1完整VP批次终局。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p13 #62再次引用Olympic抵制的Phasing责任并区分CMC实际Actor；p14 #67事件OPS没有可弃实体不能太空的说明。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-OG1",
+          "locator": "US后USSR取样、每对骰原子收据、平手内部继续链/有限执行片段、不设游戏重掷上限、拒绝保留既有收据；来源与真实持久化仍planned。",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

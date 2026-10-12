@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.31.0",
+  "content_version": "0.32.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计79牌效果参数已绑定，其余23个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计80牌效果参数已绑定，其余22个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -197,6 +197,12 @@
       "url": null,
       "edition": "LI1-D01–D04 / LI1-E01, 2026-10-12",
       "description": "4或6替代总量、Marine完整计划、Pershing零选择正影响规范化、首VP批次终局与来源/重放工程解释；不是新增官方FAQ。短缺和重复未答仍RequiresRuling。"
+    },
+    {
+      "id": "PROJECT-OG1",
+      "url": null,
+      "edition": "Atomic paired-roll chain and internal scheduling contracts, 2026-10-12",
+      "description": "US后USSR取样、每对骰原子收据、平手内部继续链/有限执行片段、不设游戏重掷上限、拒绝保留既有收据；来源与真实持久化仍planned。"
     }
   ],
   "cards": [
@@ -792,8 +798,13 @@
       "effect_binding": {
         "effect_id": "effect.olympic_games",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.olympic_games",
+            "json_pointer": "/parameters/olympic_games"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -3897,15 +3908,32 @@
     {
       "effect_id": "effect.olympic_games",
       "contract_version": "0.1.0",
-      "description": "Olympic Games：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.olympic_games",
+      "description": "对手选择参加或抵制；比赛平局保存进度强制重掷，抵制先DEFCON核战再可选普通4OPS。",
+      "handler_key": "composite.OpponentChoiceOlympicContestOrBoycottOps",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:olympic-games:1#/$defs/olympic_games"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "亲看PDF p4英文#20：控制者主办、对手参赛/抵制；参赛双方骰主办+2高者2VP平手重掷；抵制DEFCON降1再可选视同4OPS；Neutral2Early非星号。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.0标准D6；§4.2/4.5C根身份；§6.0/6.1.1普通OPS与行动轮开始；§7.4.1–3修正；§8.1.3含Olympic抵制核战例；§10.3.1完整VP批次终局。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p13 #62再次引用Olympic抵制的Phasing责任并区分CMC实际Actor；p14 #67事件OPS没有可弃实体不能太空的说明。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-OG1",
+          "locator": "US后USSR取样、每对骰原子收据、平手内部继续链/有限执行片段、不设游戏重掷上限、拒绝保留既有收据；来源与真实持久化仍planned。",
+          "verification": "Verified"
         }
       ]
     },

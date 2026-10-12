@@ -95,4 +95,6 @@
 
 此前：[CIA与Lone Gunman一次手牌揭示](Docs/Wiki/reveal-ops-batch1.md)，75 Bound /27 Unresolved，102处理器planned；特殊来源影响力起点待核实。
 
-最新：[晚期影响力第一批](Docs/Wiki/late-influence-batch1.md)，79 Bound /23 Unresolved，102处理器planned；海军营房额外移除短缺待裁定。
+此前：[晚期影响力第一批](Docs/Wiki/late-influence-batch1.md)，79 Bound /23 Unresolved，102处理器planned；海军营房额外移除短缺待裁定。
+
+最新：[奥运会](Docs/Wiki/olympic-games.md)，80 Bound /22 Unresolved，102处理器planned；平局强制重掷与抵制核战检查具名。
