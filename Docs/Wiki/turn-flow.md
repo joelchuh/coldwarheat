@@ -234,3 +234,5 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 ## 双牌终局事务接入（待实现）
 
 [UN双牌](un-intervention.md)的TerminalCandidateDraft是获胜步骤内部的未提交草稿，并非已保存Finished状态。编排在该同一事务收尾已接受pair的两牌去向/当前根slot与收据，随后原子提交胜利效果和Finished。候选出现即不再执行余下OPS或调度下一行动；只有既有已接受步骤记账，无新玩家意图。已提交Finished仍只允许查询/保存/原收据幂等返回，不允许后来调用Finalize改变规则状态，也不能恢复未收尾终局存档后自动修复。实际事务与载入校验未实现。
+
+[中国牌事件转交](china-transfer-batch1.md)：独立ChinaState更新不插入新根行动；先事件后OPS保留源牌InResolution，终局草稿先完成必要收尾再提交Finished。

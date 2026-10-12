@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.china_transfer_batch1",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "verified-subset",
+  "description": "中国牌转交三牌：持有者条件、独立China状态、固定VP/亚洲额度及原结果重试；设计参数，运行未实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "亲看英文PDF p2 #5、p9 #58、p11 #71、p12 #76；FYP为US关联及持有者条件、转交面向与奖励；不使用旁列译文。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1.2亚洲含东南亚；§2.2.4/5.2事件与星号；§6.1.1直接事件投放；§8.1.3核战即时终局；§9中国持有/正常转交/事件例外/使用限制；§10.3 VP。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible answers only",
+      "description": "PDF p4 #6实际US中国太空取消Formosan及不可事件弃置；p8 #35不弃手中未发生的Formosan；p19中国不计普通手牌。未发现三牌专门答案。"
+    },
+    {
+      "id": "PROJECT-CT1",
+      "url": null,
+      "edition": "Holder branch and typed transaction contracts, 2026-10-12",
+      "description": "自己持FaceDown走奖励且不翻面为卡文直接推导；独立来源/China状态、原子计划/收据、延迟源牌去向和终局草稿为工程设计；离线模型不是真实鉴权或存档。"
+    }
+  ],
+  "shared_refs": {
+    "cards": {
+      "dataset_id": "cards.deluxe2015.definitions",
+      "path": "Data/Cards/deluxe-2015/cards.json",
+      "json_pointer": "/cards"
+    },
+    "world": {
+      "dataset_id": "map.deluxe2015.world",
+      "path": "Data/Maps/deluxe-2015/world.json",
+      "json_pointer": "/countries"
+    },
+    "victory": {
+      "dataset_id": "rules.deluxe2015.victory",
+      "path": "Data/Rulesets/deluxe-2015/victory.json",
+      "json_pointer": ""
+    },
+    "setup": {
+      "dataset_id": "setup.deluxe2015.standard",
+      "path": "Data/Rulesets/deluxe-2015/setup.json",
+      "json_pointer": "/china"
+    },
+    "turn_flow": {
+      "dataset_id": "rules.deluxe2015.turn-flow",
+      "path": "Data/Rulesets/deluxe-2015/turn-flow.json",
+      "json_pointer": ""
+    },
+    "formosan": {
+      "dataset_id": "effects.deluxe2015.scoring_effects_batch1",
+      "path": "Data/Cards/deluxe-2015/scoring-effects-batch1.parameters.json",
+      "json_pointer": "/parameters/formosan_resolution/cancel_on_card_use"
+    },
+    "china_bonus": {
+      "dataset_id": "effects.deluxe2015.persistent_batch1",
+      "path": "Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json",
+      "json_pointer": "/source_bonuses/china"
+    },
+    "fyp": {
+      "dataset_id": "effects.deluxe2015.hand_events_batch1",
+      "path": "Data/Cards/deluxe-2015/hand-events-batch1.parameters.json",
+      "json_pointer": "/parameters/five_year_plan"
+    },
+    "defcon": {
+      "dataset_id": "rules.deluxe2015.defcon",
+      "path": "Data/Rulesets/deluxe-2015/defcon.json",
+      "json_pointer": "/nuclear_level"
+    }
+  },
+  "resolution_policy": {
+    "branch": "CurrentHolderAtEventStepNotFace",
+    "self_held_face": "Preserve",
+    "transfer_kind": "EventTransferWithoutCardUse",
+    "source": "IndependentFrameLedgerAndPhysicalZone",
+    "source_disposition": "FinalizeWhenSourceStepsCompleteOrAtomicTerminalDraft",
+    "unknown_relevant_provider": "RequiresRulingBeforeDependentCommit",
+    "allocation": "MandatoryExactTotalUniqueCountries",
+    "replay": "ReturnOriginalFullResultPreserveLaterCurrentState",
+    "integrity": "IndependentTrustedAcceptedReceiptAnchor",
+    "canonical_digest": "SHA256SortedUtf8CompactJsonNoNaN",
+    "runtime": "PlannedSyntheticEvidenceOnly",
+    "active_state": "RejectActiveNuclearLevelOrExistingTerminalOutcome",
+    "fyp_parent_controller": "PrintedFiveYearPlanAffiliationAndHandEventContract",
+    "fyp_parent_provider": "PhaseAndRootPhasingAgainstParentController",
+    "fyp_parent_remainder": "FinalizeAfterChildOrVerifiedOpponentOperationsAfterChild",
+    "resolution_identity": "DistinctParentChildFrameAndResolutionIdsAbsentFromAcceptedSuccessHistory",
+    "source_frame_entities": "OneAcceptedEntityPerKnownActiveFrame_ZeroAfterDisposition_InFreshChoiceAndHistoricalResult"
+  },
+  "parameters": {
+    "cultural_revolution": {
+      "card_id": "card.cultural_revolution",
+      "effect_id": "effect.cultural_revolution",
+      "template": "composite.ChinaHolderConditionalTransferOrReward",
+      "beneficiary": "USSR",
+      "opponent_holds": {
+        "kind": "TransferChina",
+        "recipient": "Beneficiary",
+        "face": "FaceUp"
+      },
+      "beneficiary_holds": {
+        "kind": "AwardVp",
+        "amount": 1
+      },
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p9 English #58"
+        }
+      ]
+    },
+    "nixon_plays_the_china_card": {
+      "card_id": "card.nixon_plays_the_china_card",
+      "effect_id": "effect.nixon_plays_the_china_card",
+      "template": "composite.ChinaHolderConditionalTransferOrReward",
+      "beneficiary": "US",
+      "opponent_holds": {
+        "kind": "TransferChina",
+        "recipient": "Beneficiary",
+        "face": "FaceDown"
+      },
+      "beneficiary_holds": {
+        "kind": "AwardVp",
+        "amount": 2
+      },
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p11 English #71"
+        }
+      ]
+    },
+    "ussuri_river_skirmish": {
+      "card_id": "card.ussuri_river_skirmish",
+      "effect_id": "effect.ussuri_river_skirmish",
+      "template": "composite.ChinaHolderConditionalTransferOrReward",
+      "beneficiary": "US",
+      "opponent_holds": {
+        "kind": "TransferChina",
+        "recipient": "Beneficiary",
+        "face": "FaceUp"
+      },
+      "beneficiary_holds": {
+        "kind": "AllocateInfluence",
+        "region_id": "region.asia",
+        "total": 4,
+        "per_country_maximum": 2
+      },
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p12 English #76"
+        }
+      ]
+    }
+  }
+}

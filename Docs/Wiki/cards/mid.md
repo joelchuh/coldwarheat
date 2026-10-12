@@ -88,3 +88,5 @@
 [军备竞赛与峰会](../contest-events.md)：军事严格比较和实际地图双骰，胜者后续DEFCON选择；与普通计分分开。
 
 [CIA与Lone Gunman](../reveal-ops-batch1.md)：固定接收方的一次手牌快照，随后可选普通1OPS；不是持续公开对手手牌。
+
+[中国牌事件转交三牌](../china-transfer-batch1.md)：文化大革命、尼克松与乌苏里江按持有者分支；事件转交不等于使用中国牌。

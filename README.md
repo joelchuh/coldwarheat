@@ -97,4 +97,6 @@
 
 此前：[晚期影响力第一批](Docs/Wiki/late-influence-batch1.md)，79 Bound /23 Unresolved，102处理器planned；海军营房额外移除短缺待裁定。
 
-最新：[奥运会](Docs/Wiki/olympic-games.md)，80 Bound /22 Unresolved，102处理器planned；平局强制重掷与抵制核战检查具名。
+此前：[奥运会](Docs/Wiki/olympic-games.md)，80 Bound /22 Unresolved，102处理器planned；平局强制重掷与抵制核战检查具名。
+
+最新：[中国牌事件转交](Docs/Wiki/china-transfer-batch1.md)，83 Bound /19 Unresolved，102处理器planned；持有者条件、转交面向、奖励与源牌收尾具名。

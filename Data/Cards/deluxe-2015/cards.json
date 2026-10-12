@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.32.0",
+  "content_version": "0.33.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计80牌效果参数已绑定，其余22个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计83牌效果参数已绑定，其余19个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -203,6 +203,12 @@
       "url": null,
       "edition": "Atomic paired-roll chain and internal scheduling contracts, 2026-10-12",
       "description": "US后USSR取样、每对骰原子收据、平手内部继续链/有限执行片段、不设游戏重掷上限、拒绝保留既有收据；来源与真实持久化仍planned。"
+    },
+    {
+      "id": "PROJECT-CT1",
+      "url": null,
+      "edition": "Holder branch and typed transaction contracts, 2026-10-12",
+      "description": "自己持FaceDown走奖励且不翻面为卡文直接推导；独立来源/China状态、原子计划/收据、延迟源牌去向和终局草稿为工程设计；离线模型不是真实鉴权或存档。"
     }
   ],
   "cards": [
@@ -2031,8 +2037,13 @@
       "effect_binding": {
         "effect_id": "effect.cultural_revolution",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.china_transfer_batch1",
+            "json_pointer": "/parameters/cultural_revolution"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -2427,8 +2438,13 @@
       "effect_binding": {
         "effect_id": "effect.nixon_plays_the_china_card",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.china_transfer_batch1",
+            "json_pointer": "/parameters/nixon_plays_the_china_card"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -2582,8 +2598,13 @@
       "effect_binding": {
         "effect_id": "effect.ussuri_river_skirmish",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.china_transfer_batch1",
+            "json_pointer": "/parameters/ussuri_river_skirmish"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -5015,15 +5036,17 @@
     {
       "effect_id": "effect.cultural_revolution",
       "contract_version": "0.1.0",
-      "description": "Cultural Revolution：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.cultural_revolution",
+      "description": "按中国牌当前持有者选择明文转交面向或固定奖励；复用独立牌区和原子完成计划。",
+      "handler_key": "composite.ChinaHolderConditionalTransferOrReward",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:china-transfer-batch1:1#/$defs/cultural_revolution"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p9 English #58",
+          "verification": "Verified"
         }
       ]
     },
@@ -5343,15 +5366,17 @@
     {
       "effect_id": "effect.nixon_plays_the_china_card",
       "contract_version": "0.1.0",
-      "description": "Nixon Plays the China Card：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.nixon_plays_the_china_card",
+      "description": "按中国牌当前持有者选择明文转交面向或固定奖励；复用独立牌区和原子完成计划。",
+      "handler_key": "composite.ChinaHolderConditionalTransferOrReward",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:china-transfer-batch1:1#/$defs/nixon_plays_the_china_card"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p11 English #71",
+          "verification": "Verified"
         }
       ]
     },
@@ -5471,15 +5496,17 @@
     {
       "effect_id": "effect.ussuri_river_skirmish",
       "contract_version": "0.1.0",
-      "description": "Ussuri River Skirmish：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.ussuri_river_skirmish",
+      "description": "按中国牌当前持有者选择明文转交面向或固定奖励；复用独立牌区和原子完成计划。",
+      "handler_key": "composite.ChinaHolderConditionalTransferOrReward",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:china-transfer-batch1:1#/$defs/ussuri_river_skirmish"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p12 English #76",
+          "verification": "Verified"
         }
       ]
     },

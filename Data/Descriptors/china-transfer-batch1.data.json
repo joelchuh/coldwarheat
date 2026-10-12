@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "data.china-transfer-batch1",
+  "kind": "data",
+  "status": "ready",
+  "description": "Cultural/Nixon/Ussuri：持有者分支、中国独立牌区和固定VP/亚洲影响；参数可检索，所有运行服务planned。",
+  "dataset_id": "effects.deluxe2015.china_transfer_batch1",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/china-transfer-batch1.schema.json",
+  "documentation": "Docs/Wiki/china-transfer-batch1.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/china-transfer-batch1.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "稳定CardId查只读参数；未来权威来源/China状态/完整分配及原收据"
+  ],
+  "outputs": [
+    "已核对的三牌参数与计划中的来源/决定/收据形状"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world",
+    "rules.deluxe2015.victory",
+    "setup.deluxe2015.standard",
+    "rules.deluxe2015.turn-flow",
+    "effects.deluxe2015.scoring_effects_batch1",
+    "effects.deluxe2015.persistent_batch1",
+    "effects.deluxe2015.hand_events_batch1",
+    "rules.deluxe2015.defcon"
+  ],
+  "preconditions": [
+    "verified-subset，不是完整可运行规则包",
+    "真实源牌实体/帧/阶段/父链、China唯一位置与活动来源须在权威侧验证；布尔值不证明授权"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知相关provider/未核实父收尾：RequiresRuling；无效状态/来源/命令拒绝",
+    "过期或损坏决定/收据不部分改变China/VP/影响；后来合法状态不使旧接受命令失效"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "亲看英文PDF p2 #5、p9 #58、p11 #71、p12 #76；FYP为US关联及持有者条件、转交面向与奖励；不使用旁列译文。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1.2亚洲含东南亚；§2.2.4/5.2事件与星号；§6.1.1直接事件投放；§8.1.3核战即时终局；§9中国持有/正常转交/事件例外/使用限制；§10.3 VP。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible answers only",
+      "description": "PDF p4 #6实际US中国太空取消Formosan及不可事件弃置；p8 #35不弃手中未发生的Formosan；p19中国不计普通手牌。未发现三牌专门答案。"
+    },
+    {
+      "id": "PROJECT-CT1",
+      "url": null,
+      "edition": "Holder branch and typed transaction contracts, 2026-10-12",
+      "description": "自己持FaceDown走奖励且不翻面为卡文直接推导；独立来源/China状态、原子计划/收据、延迟源牌去向和终局草稿为工程设计；离线模型不是真实鉴权或存档。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/china-transfer-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/china-transfer-batch1.validation.json"
+  },
+  "retrieval_hints": [
+    "parameters按CardId定位；shared_refs解析China/Formosan/地图/VP唯一事实",
+    "typed source_ledger与实际source card/frame逐项对照；不复制China到Hand",
+    "receipt保存原完整结果；同命令重试不要求current等于原after"
+  ]
+}

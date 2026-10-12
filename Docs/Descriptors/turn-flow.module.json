@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.turn-flow",
   "kind": "module",
-  "description": "定位回合阶段、秘密头条、行动名额、出牌结算栈、回合末候选胜利与存档继续位置；当前是设计，不可作为已实现模块调用。",
+  "description": "定位回合阶段、秘密头条、行动名额、出牌结算栈、回合末候选胜利与存档继续位置；当前是设计，不可作为已实现模块调用。 消费CT1转交/奖励计划，保留独立ChinaState并按剩余源步骤收尾。",
   "status": "planned",
   "entrypoints": [],
   "documentation": "Docs/Wiki/turn-flow.md",
@@ -38,7 +38,8 @@
     "可序列化随机状态",
     "UNPairPlan：双牌ActualUse/预算与共享根slot，保留合法UN事件证据",
     "内部终局候选事务：先完成已接受pair牌区/当前根slot收据，再原子写Finished",
-    "陷阱新根slot资格、可信计分义务优先与内部跳过证据，不强迫普通中国牌"
+    "陷阱新根slot资格、可信计分义务优先与内部跳过证据，不强迫普通中国牌",
+    "CT1已经验证的源牌/直系FYP父帧/根slot收尾计划；事件先于OPS时保留InResolution及RemoveAfterRemainingSteps"
   ],
   "outputs": [
     "更新后的流程位置",
@@ -137,7 +138,8 @@
     "effects.deluxe2015.scoring_effects_batch1",
     "effects.deluxe2015.defcon_vp_events",
     "effects.deluxe2015.un_intervention",
-    "effects.deluxe2015.trap_events"
+    "effects.deluxe2015.trap_events",
+    "effects.deluxe2015.china_transfer_batch1"
   ],
   "preconditions": [
     "规则集及被触发的处理器必须齐备",
@@ -152,7 +154,8 @@
     "数据或处理器缺失",
     "无效或过期决策",
     "已终局",
-    "存档版本不兼容"
+    "存档版本不兼容",
+    "CT1终局草稿须同事务完成已接受源牌/已验证父牌及根必要收尾后写Finished；未知父链不推断"
   ],
   "rule_sources": [
     {
@@ -165,12 +168,14 @@
         "6.4",
         "9",
         "10.3"
-      ]
+      ],
+      "description": " CT1: §2.1.2亚洲含东南亚；§2.2.4/5.2事件与星号；§6.1.1直接事件投放；§8.1.3核战即时终局；§9中国持有/正常转交/事件例外/使用限制；§10.3 VP。"
     },
     {
       "id": "F2010",
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
-      "scope": "采用未被新版覆盖的太空弃牌与双方扣留一般裁定；排除CF-001旧答案，CF-003按用户确认的新版优先解释"
+      "scope": "采用未被新版覆盖的太空弃牌与双方扣留一般裁定；排除CF-001旧答案，CF-003按用户确认的新版优先解释",
+      "description": " CT1: PDF p4 #6实际US中国太空取消Formosan及不可事件弃置；p8 #35不弃手中未发生的Formosan；p19中国不计普通手牌。未发现三牌专门答案。"
     },
     {
       "id": "PROJECT-HC1",
@@ -189,6 +194,18 @@
       "url": null,
       "edition": "Engineering contracts, 2026-10-06",
       "description": "按卡文步骤每次DEFCON或本事件完整VP批次即时判胜，吸收态停止余步；合法选择前不改轨道，不凭印刷OPS计算VP/军事。军事沿既有非负累计总量存储，不凭图形轨道 invent cap。"
+    },
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "亲看英文PDF p2 #5、p9 #58、p11 #71、p12 #76；FYP为US关联及持有者条件、转交面向与奖励；不使用旁列译文。"
+    },
+    {
+      "id": "PROJECT-CT1",
+      "url": null,
+      "edition": "Holder branch and typed transaction contracts, 2026-10-12",
+      "description": "自己持FaceDown走奖励且不翻面为卡文直接推导；独立来源/China状态、原子计划/收据、延迟源牌去向和终局草稿为工程设计；离线模型不是真实鉴权或存档。"
     }
   ],
   "tests": [
@@ -252,15 +269,22 @@
     {
       "path": "Docs/Design/trap-events.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/china-transfer-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
     "design_review": "检查源规则版本、转换边界、持久化、保密与异常路径；实际检查记录见工作记录",
-    "latest_design_report": "Docs/Design/trap-events.validation.json"
+    "latest_design_report": "Docs/Design/china-transfer-batch1.validation.json"
   },
   "open_items": [
     "全部逐卡参数/处理器与跨卡优先级",
     "真实开局、计分与太空服务实施（静态定义已经建立）"
+  ],
+  "contract_dependencies": [
+    "urn:coldwarheat:contract:china-transfer-batch1:1"
   ]
 }

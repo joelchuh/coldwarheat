@@ -16,6 +16,7 @@
 | 条约保护与前置事件 | 查北约/美日安保、动态控制、法国西德例外、DEFCON接缝与事件成功记录 | 2牌参数绑定；C#待实现 | [treaty-protection.md](treaty-protection.md) |
 | 战争牌持续与取消 | 查Flower使用资格/待裁定时机、戴维营固定收益、邪恶帝国取消与阻止 | 3牌参数Bound；C#待实现，钩子边界待裁定 | [war-card-hooks.md](war-card-hooks.md) |
 | DEFCON事件与政变干预 | 查古巴危机解除/责任、核潜艇原因豁免、SALT取回和ABM普通OPS授权 | 4牌参数Bound；C#待实现 | [defcon-events-batch1.md](defcon-events-batch1.md) |
+| 中国牌事件转交 | 查持有者分支、面向、VP/亚洲奖励及独立牌区 | 3牌参数Bound；运行服务待实现 | [china-transfer-batch1.md](china-transfer-batch1.md) |
 | 奥运会 | 查对手分支、平局强制重掷、内部续跑与抵制后普通OPS | 1牌参数Bound；特殊来源影响力起点待核实，待实现 | [olympic-games.md](olympic-games.md) |
 | 晚期影响力第一批 | 查铁娘子/改革者/海军营房/潘兴II及长期禁止、VP先行 | 4牌参数Bound；Marine短缺待裁定，待实现 | [late-influence-batch1.md](late-influence-batch1.md) |
 | 一次手牌揭示与行动 | 查CIA/Lone私有快照、收据重放、普通OPS及影响力起点边界 | 2牌参数Bound；头条影响力起点待核实，待实现 | [reveal-ops-batch1.md](reveal-ops-batch1.md) |
@@ -51,9 +52,9 @@
 | 地图与卡牌数据契约 | 查找正式数据字段、邻接、三类卡牌、效果注册、Schema及加载门禁 | 契约与正式印刷定义已建立；服务待实现 | [map-card-contracts.md](map-card-contracts.md) |
 | 正式地图与卡牌数据 | 按地区查84国与邻接，按时代查103张基础牌及效果待实现边界 | 静态定义已录入；不是可运行规则包 | [map-card-data.md](map-card-data.md) |
 | 地图布局与未定画风 | 区分规则图、位置拾取和主题资源，了解2D/3D接入边界 | 设计稿；未选定美术 | [map-presentation.md](map-presentation.md) |
-| 数据结构契约目录 | 按description定位四十份JSON Schema（含事件参数、setup及卡牌v1/v2）与合成样例 | 结构契约；不是完整规则包 | [catalog.json](../Contracts/catalog.json) |
+| 数据结构契约目录 | 按description定位四十一份JSON Schema（含事件参数、setup及卡牌v1/v2）与合成样例 | 结构契约；不是完整规则包 | [catalog.json](../Contracts/catalog.json) |
 | 模块描述目录 | 先按 description 定位模块，再读完整契约与相关代码 | 二十一个模块描述均 planned | [catalog.json](../Descriptors/catalog.json) |
-| 共享规则数据目录 | 查找数据集描述、来源与独立参数文件 | 三十七个参数子集＋地图/卡牌/开局定义＋名称字典；运行服务待实现 | [catalog.json](../../Data/catalog.json) |
+| 共享规则数据目录 | 查找数据集描述、来源与独立参数文件 | 三十八个参数子集＋地图/卡牌/开局定义＋名称字典；运行服务待实现 | [catalog.json](../../Data/catalog.json) |
 | 行动规则 | 查找影响力、政变、调整、预算、对象契约与验收案例 | v0.2 设计稿；未实现 | [operations.md](operations.md) |
 | 规则资料 | 查找版本来源、FAQ 适用边界和资料冻结缺口 | 已登记；未完整冻结 | [rules-sources.md](rules-sources.md) |
 | 工程边界 | 查找纯 C# 核心、命令、事件、玩家视角、确定性和程序集约束 | 设计约定；待实现 | [AGENTS.md](../../AGENTS.md) |

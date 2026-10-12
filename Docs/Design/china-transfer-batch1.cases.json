@@ -1,0 +1,5211 @@
+{
+  "schema_version": 1,
+  "id": "cases.china-transfer-batch1",
+  "description": "CT1有限离线案例；defaults由共享地图构造完整零影响快照，expected手工给出，不是运行测试。",
+  "defaults": {
+    "card": "cultural_revolution",
+    "holder": "US",
+    "face": "FaceUp",
+    "root_side": "USSR",
+    "provider": "NormalEvent",
+    "phase": "ActionRound",
+    "remaining": "None",
+    "signed_vp": 0,
+    "state_version": 5,
+    "turn": 5,
+    "source_instance_id": "instance.event",
+    "china_instance_id": "instance.china",
+    "china_revision": 2,
+    "frame_id": "frame.event",
+    "resolution_id": "resolution.event",
+    "action_id": "action.root",
+    "command_id": "command.start",
+    "dispatch_id": "dispatch.event",
+    "influence_fixture": {},
+    "active_effect_ids": []
+  },
+  "schema_fixtures": {
+    "china_state": "state.china",
+    "event_state": "state",
+    "source_ledger": "state.source_ledger",
+    "start_command": "command",
+    "choice_command": "choice",
+    "pending_decision": "pending",
+    "accepted_receipt": "receipt"
+  },
+  "cases": [
+    {
+      "id": "CT1-R-cultural_revolution-US-FaceUp",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "cultural_revolution",
+        "holder": "US",
+        "face": "FaceUp",
+        "root_side": "USSR"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "holder": "USSR",
+        "face": "FaceUp",
+        "signed_vp": 0,
+        "china_revision": 3
+      }
+    },
+    {
+      "id": "CT1-R-cultural_revolution-US-FaceDown",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "cultural_revolution",
+        "holder": "US",
+        "face": "FaceDown",
+        "root_side": "USSR"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "holder": "USSR",
+        "face": "FaceUp",
+        "signed_vp": 0,
+        "china_revision": 3
+      }
+    },
+    {
+      "id": "CT1-R-cultural_revolution-USSR-FaceUp",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "cultural_revolution",
+        "holder": "USSR",
+        "face": "FaceUp",
+        "root_side": "USSR"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "holder": "USSR",
+        "face": "FaceUp",
+        "signed_vp": -1,
+        "china_revision": 2
+      }
+    },
+    {
+      "id": "CT1-R-cultural_revolution-USSR-FaceDown",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "cultural_revolution",
+        "holder": "USSR",
+        "face": "FaceDown",
+        "root_side": "USSR"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "holder": "USSR",
+        "face": "FaceDown",
+        "signed_vp": -1,
+        "china_revision": 2
+      }
+    },
+    {
+      "id": "CT1-R-nixon_plays_the_china_card-US-FaceUp",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "holder": "US",
+        "face": "FaceUp",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "holder": "US",
+        "face": "FaceUp",
+        "signed_vp": 2,
+        "china_revision": 2
+      }
+    },
+    {
+      "id": "CT1-R-nixon_plays_the_china_card-US-FaceDown",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "holder": "US",
+        "face": "FaceDown",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "holder": "US",
+        "face": "FaceDown",
+        "signed_vp": 2,
+        "china_revision": 2
+      }
+    },
+    {
+      "id": "CT1-R-nixon_plays_the_china_card-USSR-FaceUp",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "holder": "USSR",
+        "face": "FaceUp",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "holder": "US",
+        "face": "FaceDown",
+        "signed_vp": 0,
+        "china_revision": 3
+      }
+    },
+    {
+      "id": "CT1-R-nixon_plays_the_china_card-USSR-FaceDown",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "holder": "USSR",
+        "face": "FaceDown",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "holder": "US",
+        "face": "FaceDown",
+        "signed_vp": 0,
+        "china_revision": 3
+      }
+    },
+    {
+      "id": "CT1-R-ussuri_river_skirmish-US-FaceUp",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "face": "FaceUp",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "WaitingDecision",
+        "holder": "US",
+        "face": "FaceUp",
+        "signed_vp": 0,
+        "china_revision": 2
+      }
+    },
+    {
+      "id": "CT1-R-ussuri_river_skirmish-US-FaceDown",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "face": "FaceDown",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "WaitingDecision",
+        "holder": "US",
+        "face": "FaceDown",
+        "signed_vp": 0,
+        "china_revision": 2
+      }
+    },
+    {
+      "id": "CT1-R-ussuri_river_skirmish-USSR-FaceUp",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "USSR",
+        "face": "FaceUp",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "holder": "US",
+        "face": "FaceUp",
+        "signed_vp": 0,
+        "china_revision": 3
+      }
+    },
+    {
+      "id": "CT1-R-ussuri_river_skirmish-USSR-FaceDown",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "USSR",
+        "face": "FaceDown",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "holder": "US",
+        "face": "FaceUp",
+        "signed_vp": 0,
+        "china_revision": 3
+      }
+    },
+    {
+      "id": "CT1-R-ussuri-2-plus-2",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US",
+        "influence_fixture": {
+          "country.taiwan": [
+            1,
+            0
+          ],
+          "country.thailand": [
+            0,
+            0
+          ]
+        }
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "influence": {
+          "country.taiwan": [
+            3,
+            0
+          ],
+          "country.thailand": [
+            2,
+            0
+          ]
+        },
+        "face": "FaceUp"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          2
+        ],
+        [
+          "country.thailand",
+          2
+        ]
+      ]
+    },
+    {
+      "id": "CT1-R-ussuri-four-single",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "face": "FaceDown",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "influence": {
+          "country.japan": [
+            1,
+            0
+          ],
+          "country.taiwan": [
+            1,
+            0
+          ],
+          "country.india": [
+            1,
+            0
+          ],
+          "country.thailand": [
+            1,
+            0
+          ]
+        },
+        "face": "FaceDown"
+      },
+      "allocation": [
+        [
+          "country.japan",
+          1
+        ],
+        [
+          "country.taiwan",
+          1
+        ],
+        [
+          "country.india",
+          1
+        ],
+        [
+          "country.thailand",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "CT1-R-ussuri-enemy-control-no-adjacency",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US",
+        "influence_fixture": {
+          "country.north_korea": [
+            0,
+            5
+          ]
+        }
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "influence": {
+          "country.north_korea": [
+            2,
+            5
+          ],
+          "country.australia": [
+            2,
+            0
+          ]
+        }
+      },
+      "allocation": [
+        [
+          "country.north_korea",
+          2
+        ],
+        [
+          "country.australia",
+          2
+        ]
+      ]
+    },
+    {
+      "id": "CT1-R-ussuri-southeast-asia",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "influence": {
+          "country.vietnam": [
+            2,
+            0
+          ],
+          "country.laos_cambodia": [
+            2,
+            0
+          ]
+        }
+      },
+      "allocation": [
+        [
+          "country.vietnam",
+          2
+        ],
+        [
+          "country.laos_cambodia",
+          2
+        ]
+      ]
+    },
+    {
+      "id": "CT1-R-allocation-outside",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidDecision"
+      },
+      "allocation": [
+        [
+          "country.iran",
+          2
+        ],
+        [
+          "country.thailand",
+          2
+        ]
+      ]
+    },
+    {
+      "id": "CT1-R-allocation-duplicate",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidDecision"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          2
+        ],
+        [
+          "country.taiwan",
+          2
+        ]
+      ]
+    },
+    {
+      "id": "CT1-R-allocation-cap",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidDecision"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          3
+        ],
+        [
+          "country.thailand",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "CT1-R-allocation-short",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidDecision"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          2
+        ],
+        [
+          "country.thailand",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "CT1-R-allocation-excess",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidDecision"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          2
+        ],
+        [
+          "country.thailand",
+          2
+        ],
+        [
+          "country.japan",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "CT1-R-allocation-empty",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidDecision"
+      },
+      "allocation": []
+    },
+    {
+      "id": "CT1-R-allocation-zero",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidDecision"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          0
+        ],
+        [
+          "country.thailand",
+          4
+        ]
+      ]
+    },
+    {
+      "id": "CT1-R-allocation-boolean",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidDecision"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          true
+        ],
+        [
+          "country.thailand",
+          2
+        ],
+        [
+          "country.japan",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "CT1-R-allocation-decimal",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidDecision"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          1.5
+        ],
+        [
+          "country.thailand",
+          2.5
+        ]
+      ]
+    },
+    {
+      "id": "CT1-R-allocation-unknown",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidDecision"
+      },
+      "allocation": [
+        [
+          "country.atlantis",
+          2
+        ],
+        [
+          "country.thailand",
+          2
+        ]
+      ]
+    },
+    {
+      "id": "CT1-R-choice-wrong-owner",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidDecision"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          2
+        ],
+        [
+          "country.thailand",
+          2
+        ]
+      ],
+      "caller": "USSR"
+    },
+    {
+      "id": "CT1-R-choice-stale-version",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidDecision"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          2
+        ],
+        [
+          "country.thailand",
+          2
+        ]
+      ],
+      "choice_edits": [
+        {
+          "path": [
+            "expected_state_version"
+          ],
+          "value": 4
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-choice-stale-revision",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidDecision"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          2
+        ],
+        [
+          "country.thailand",
+          2
+        ]
+      ],
+      "choice_edits": [
+        {
+          "path": [
+            "decision_revision"
+          ],
+          "value": 2
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-choice-wrong-decision",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidDecision"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          2
+        ],
+        [
+          "country.thailand",
+          2
+        ]
+      ],
+      "choice_edits": [
+        {
+          "path": [
+            "decision_id"
+          ],
+          "value": "decision.other"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-choice-unknown-field",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidDecision"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          2
+        ],
+        [
+          "country.thailand",
+          2
+        ]
+      ],
+      "choice_edits": [
+        {
+          "path": [
+            "decline"
+          ],
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-choice-pending-corrupt",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidDecision"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          2
+        ],
+        [
+          "country.thailand",
+          2
+        ]
+      ],
+      "current_edits": [
+        {
+          "path": [
+            "pending",
+            "owner"
+          ],
+          "value": "USSR"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-choice-waiting-receipt-corrupt",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidDecision"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          2
+        ],
+        [
+          "country.thailand",
+          2
+        ]
+      ],
+      "waiting_receipt_edits": [
+        {
+          "path": [
+            "result",
+            "state",
+            "china",
+            "face"
+          ],
+          "value": "FaceDown"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-choice-later-current",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidDecision"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          2
+        ],
+        [
+          "country.thailand",
+          2
+        ]
+      ],
+      "current_edits": [
+        {
+          "path": [
+            "state_version"
+          ],
+          "value": 7
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-choice-new-provider",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          2
+        ],
+        [
+          "country.thailand",
+          2
+        ]
+      ],
+      "current_unknown_provider": true
+    },
+    {
+      "id": "CT1-R-cultural_revolution-opponent-event-before-ops",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "cultural_revolution",
+        "holder": "US",
+        "root_side": "US",
+        "provider": "OpponentCardEvent",
+        "remaining": "Operations"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "source_zone": "InResolution",
+        "accepted_disposition": "RemoveAfterRemainingSteps",
+        "root_closed": false
+      }
+    },
+    {
+      "id": "CT1-R-cultural_revolution-headline",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "cultural_revolution",
+        "holder": "US",
+        "root_side": "US",
+        "provider": "HeadlineEvent",
+        "phase": "Headline"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "source_zone": "Removed",
+        "completed_slots": 0
+      }
+    },
+    {
+      "id": "CT1-R-nixon_plays_the_china_card-opponent-event-before-ops",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "holder": "USSR",
+        "root_side": "USSR",
+        "provider": "OpponentCardEvent",
+        "remaining": "Operations"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "source_zone": "InResolution",
+        "accepted_disposition": "RemoveAfterRemainingSteps",
+        "root_closed": false
+      }
+    },
+    {
+      "id": "CT1-R-nixon_plays_the_china_card-headline",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "holder": "USSR",
+        "root_side": "USSR",
+        "provider": "HeadlineEvent",
+        "phase": "Headline"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "source_zone": "Removed",
+        "completed_slots": 0
+      }
+    },
+    {
+      "id": "CT1-R-ussuri_river_skirmish-opponent-event-before-ops",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "USSR",
+        "root_side": "USSR",
+        "provider": "OpponentCardEvent",
+        "remaining": "Operations"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "source_zone": "InResolution",
+        "accepted_disposition": "RemoveAfterRemainingSteps",
+        "root_closed": false
+      }
+    },
+    {
+      "id": "CT1-R-ussuri_river_skirmish-headline",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "USSR",
+        "root_side": "USSR",
+        "provider": "HeadlineEvent",
+        "phase": "Headline"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "source_zone": "Removed",
+        "completed_slots": 0
+      }
+    },
+    {
+      "id": "CT1-R-nixon_plays_the_china_card-fyp-child",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "holder": "USSR",
+        "root_side": "USSR",
+        "provider": "FiveYearPlan"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "source_zone": "Removed",
+        "root_closed": false,
+        "parent_zone": "InResolution"
+      }
+    },
+    {
+      "id": "CT1-R-ussuri_river_skirmish-fyp-child",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "USSR",
+        "root_side": "USSR",
+        "provider": "FiveYearPlan"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "source_zone": "Removed",
+        "root_closed": false,
+        "parent_zone": "InResolution"
+      }
+    },
+    {
+      "id": "CT1-R-fyp-cultural-forbidden",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "cultural_revolution",
+        "provider": "FiveYearPlan",
+        "root_side": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      }
+    },
+    {
+      "id": "CT1-R-source-still-Hand",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "ordinary_cards",
+            0,
+            "zone"
+          ],
+          "value": "Hand"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-source-wrong-frame",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "ordinary_cards",
+            0,
+            "frame_id"
+          ],
+          "value": "frame.other"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-source-wrong-card",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "ordinary_cards",
+            0,
+            "card_id"
+          ],
+          "value": "card.nixon_plays_the_china_card"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-source-removed",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "ordinary_cards",
+            0,
+            "zone"
+          ],
+          "value": "Removed"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-ledger-owner-forgery",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "source_ledger",
+            "source_owner"
+          ],
+          "value": "US"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-root-mismatch",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "root",
+            "phasing_player"
+          ],
+          "value": "US"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-mismatch",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "frame",
+            "controller"
+          ],
+          "value": "US"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-unknown-provider",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "frame",
+            "provider"
+          ],
+          "value": "Unknown"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "frame",
+            "provider"
+          ],
+          "value": "Unknown"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-unknown-remainder",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "frame",
+            "remaining_source_steps"
+          ],
+          "value": "Unknown"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "frame",
+            "remaining_source_steps"
+          ],
+          "value": "Unknown"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-china-ordinary-zone",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidInput"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "china",
+            "zone"
+          ],
+          "value": "Hand"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-china-holder-null",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidInput"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "china",
+            "holder"
+          ],
+          "value": null
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-source-is-China",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "ordinary_cards",
+            0,
+            "card_id"
+          ],
+          "value": "card.china"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-incomplete-effects",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "effects_coverage"
+          ],
+          "value": "Unknown"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-finished-continues",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "FinishedState"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "status"
+          ],
+          "value": "Finished"
+        },
+        {
+          "path": [
+            "winner"
+          ],
+          "value": "US"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-already-completed-frame",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "frame",
+            "event_completed"
+          ],
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-invalid-phase-policy",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "root",
+            "phase"
+          ],
+          "value": "Headline"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "root",
+            "phase"
+          ],
+          "value": "Headline"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-headline-operations-forbidden",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "provider": "HeadlineEvent",
+        "phase": "Headline",
+        "remaining": "Operations"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      }
+    },
+    {
+      "id": "CT1-R-fyp-unknown-parent",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "source_ledger",
+            "parent_provider"
+          ],
+          "value": "Unknown"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-fyp-unknown-parent-remainder",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "source_ledger",
+            "parent_remaining_steps"
+          ],
+          "value": "Unknown"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-fyp-parent-Hand",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "ordinary_cards",
+            1,
+            "zone"
+          ],
+          "value": "Hand"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-fyp-parent-wrong-card",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "ordinary_cards",
+            1,
+            "card_id"
+          ],
+          "value": "card.cultural_revolution"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-fyp-selected-other",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "source_ledger",
+            "fyp_selected_instance_id"
+          ],
+          "value": "instance.other"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-fyp-forged-affiliation",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "source_ledger",
+            "fyp_selected_affiliation"
+          ],
+          "value": "USSR"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-cultural_revolution-transfer-preserves-formosan",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "cultural_revolution",
+        "holder": "US",
+        "root_side": "USSR",
+        "active_effect_ids": [
+          "effect.formosan_resolution"
+        ]
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "active_effect_ids": [
+          "effect.formosan_resolution"
+        ],
+        "china_use_count": 0
+      }
+    },
+    {
+      "id": "CT1-R-nixon_plays_the_china_card-transfer-preserves-formosan",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "holder": "USSR",
+        "root_side": "US",
+        "active_effect_ids": [
+          "effect.formosan_resolution"
+        ]
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "active_effect_ids": [
+          "effect.formosan_resolution"
+        ],
+        "china_use_count": 0
+      }
+    },
+    {
+      "id": "CT1-R-ussuri_river_skirmish-transfer-preserves-formosan",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "USSR",
+        "root_side": "US",
+        "active_effect_ids": [
+          "effect.formosan_resolution"
+        ]
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "active_effect_ids": [
+          "effect.formosan_resolution"
+        ],
+        "china_use_count": 0
+      }
+    },
+    {
+      "id": "CT1-R-ussuri-flat-modifiers-no-ops",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US",
+        "active_effect_ids": [
+          "effect.containment",
+          "effect.red_scare_purge"
+        ]
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "influence": {
+          "country.taiwan": [
+            2,
+            0
+          ],
+          "country.thailand": [
+            2,
+            0
+          ]
+        }
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          2
+        ],
+        [
+          "country.thailand",
+          2
+        ]
+      ]
+    },
+    {
+      "id": "CT1-R-active-provenance-missing",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "active_effect_ids": [
+          "effect.formosan_resolution"
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "successful_events"
+          ],
+          "value": []
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-active-provenance-wrong-card",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "active_effect_ids": [
+          "effect.formosan_resolution"
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "active_effects",
+            0,
+            "source_card_id"
+          ],
+          "value": "card.cultural_revolution"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-active-provenance-wrong-controller",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "active_effect_ids": [
+          "effect.formosan_resolution"
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "successful_events",
+            0,
+            "controller"
+          ],
+          "value": "USSR"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-unknown-active-effect",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "unknown_active": true
+    },
+    {
+      "id": "CT1-R-china-duplicate-ordinary",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "duplicate_china": true
+    },
+    {
+      "id": "CT1-R-source-duplicate-instance",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "duplicate_source": true
+    },
+    {
+      "id": "CT1-R-cultural-vp-terminal",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "holder": "USSR",
+        "signed_vp": -19
+      },
+      "expected": {
+        "outcome": "Finished",
+        "signed_vp": -20,
+        "winner": "USSR",
+        "root_closed": true,
+        "completed_slots": 1,
+        "source_zone": "Removed"
+      }
+    },
+    {
+      "id": "CT1-R-nixon-vp-terminal-with-ops-pending",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "holder": "US",
+        "root_side": "USSR",
+        "provider": "OpponentCardEvent",
+        "remaining": "Operations",
+        "signed_vp": 18
+      },
+      "expected": {
+        "outcome": "Finished",
+        "signed_vp": 20,
+        "winner": "US",
+        "source_zone": "Removed",
+        "root_closed": true,
+        "completed_slots": 1,
+        "accepted_disposition": "None"
+      }
+    },
+    {
+      "id": "CT1-R-nixon-vp-terminal-headline",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "holder": "US",
+        "root_side": "USSR",
+        "provider": "HeadlineEvent",
+        "phase": "Headline",
+        "signed_vp": 18
+      },
+      "expected": {
+        "outcome": "Finished",
+        "signed_vp": 20,
+        "winner": "US",
+        "source_zone": "Removed",
+        "root_closed": true,
+        "completed_slots": 0
+      }
+    },
+    {
+      "id": "CT1-R-nixon-vp-terminal-fyp",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "holder": "US",
+        "root_side": "USSR",
+        "provider": "FiveYearPlan",
+        "signed_vp": 18
+      },
+      "expected": {
+        "outcome": "Finished",
+        "signed_vp": 20,
+        "winner": "US",
+        "source_zone": "Removed",
+        "parent_zone": "DiscardPile",
+        "root_closed": true,
+        "completed_slots": 1
+      }
+    },
+    {
+      "id": "CT1-R-china-moved-after-preview",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "Resolved",
+        "branch": "AwardVp",
+        "holder": "USSR",
+        "face": "FaceDown",
+        "signed_vp": -1
+      },
+      "state_edits": [
+        {
+          "path": [
+            "china",
+            "holder"
+          ],
+          "value": "USSR"
+        },
+        {
+          "path": [
+            "china",
+            "face"
+          ],
+          "value": "FaceDown"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-retry-transfer-after-later-transfer",
+      "validation_layer": "reference",
+      "phase": "Replay",
+      "setup": {},
+      "expected": {
+        "outcome": "AlreadyCompleted"
+      },
+      "current_edits": [
+        {
+          "path": [
+            "state_version"
+          ],
+          "value": 40
+        },
+        {
+          "path": [
+            "china",
+            "holder"
+          ],
+          "value": "US"
+        },
+        {
+          "path": [
+            "china",
+            "face"
+          ],
+          "value": "FaceDown"
+        },
+        {
+          "path": [
+            "china",
+            "revision"
+          ],
+          "value": 8
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-retry-vp-after-later-finished",
+      "validation_layer": "reference",
+      "phase": "Replay",
+      "setup": {
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted"
+      },
+      "current_edits": [
+        {
+          "path": [
+            "state_version"
+          ],
+          "value": 40
+        },
+        {
+          "path": [
+            "status"
+          ],
+          "value": "Finished"
+        },
+        {
+          "path": [
+            "winner"
+          ],
+          "value": "US"
+        },
+        {
+          "path": [
+            "signed_vp"
+          ],
+          "value": 20
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-replay-changed-command",
+      "validation_layer": "reference",
+      "phase": "Replay",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "command_edits": [
+        {
+          "path": [
+            "command_id"
+          ],
+          "value": "command.other"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-replay-changed-source",
+      "validation_layer": "reference",
+      "phase": "Replay",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "command_edits": [
+        {
+          "path": [
+            "source_instance_id"
+          ],
+          "value": "instance.other"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-replay-corrupt-result",
+      "validation_layer": "reference",
+      "phase": "Replay",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "receipt_edits": [
+        {
+          "path": [
+            "result",
+            "state",
+            "china",
+            "face"
+          ],
+          "value": "FaceDown"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-replay-corrupt-trace",
+      "validation_layer": "reference",
+      "phase": "Replay",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "receipt_edits": [
+        {
+          "path": [
+            "result",
+            "trace"
+          ],
+          "value": [
+            "Forged"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-replay-corrupt-hash",
+      "validation_layer": "reference",
+      "phase": "Replay",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "receipt_edits": [
+        {
+          "path": [
+            "after_digest"
+          ],
+          "value": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-replay-rehashed-replacement",
+      "validation_layer": "reference",
+      "phase": "Replay",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "receipt_edits": [
+        {
+          "path": [
+            "result",
+            "state",
+            "china",
+            "face"
+          ],
+          "value": "FaceDown"
+        }
+      ],
+      "rehash_receipt": true
+    },
+    {
+      "id": "CT1-R-replay-unknown-field",
+      "validation_layer": "reference",
+      "phase": "Replay",
+      "setup": {},
+      "expected": {
+        "outcome": "ConflictingReplay"
+      },
+      "receipt_edits": [
+        {
+          "path": [
+            "trusted"
+          ],
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-replay-choice-after-later-influence",
+      "validation_layer": "reference",
+      "phase": "ReplayChoice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          2
+        ],
+        [
+          "country.thailand",
+          2
+        ]
+      ],
+      "current_edits": [
+        {
+          "path": [
+            "state_version"
+          ],
+          "value": 40
+        },
+        {
+          "path": [
+            "signed_vp"
+          ],
+          "value": 20
+        },
+        {
+          "path": [
+            "status"
+          ],
+          "value": "Finished"
+        },
+        {
+          "path": [
+            "winner"
+          ],
+          "value": "US"
+        }
+      ],
+      "current_influence": {
+        "country.taiwan": [
+          7,
+          0
+        ]
+      }
+    },
+    {
+      "id": "CT1-R-fyp-missing-receipt",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "fyp_dispatch_receipt"
+          ],
+          "value": null
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-fyp-wrong-receipt-id",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "fyp_dispatch_receipt",
+            "receipt_id"
+          ],
+          "value": "receipt.other"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-fyp-wrong-selected-instance",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "fyp_dispatch_receipt",
+            "selected_instance_id"
+          ],
+          "value": "instance.other"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-fyp-wrong-selected-card",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "fyp_dispatch_receipt",
+            "selected_card_id"
+          ],
+          "value": "card.cultural_revolution"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-fyp-wrong-child-frame",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "fyp_dispatch_receipt",
+            "child_frame_id"
+          ],
+          "value": "frame.other"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-fyp-wrong-parent-frame",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "fyp_dispatch_receipt",
+            "parent_frame_id"
+          ],
+          "value": "frame.other"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-fyp-future-receipt",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "fyp_dispatch_receipt",
+            "accepted_state_version"
+          ],
+          "value": 20
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-fyp-actual-parent-provider",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "provider"
+          ],
+          "value": "NormalEvent"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-fyp-actual-parent-remainder",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "remaining_source_steps"
+          ],
+          "value": "Operations"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-fyp-headline-valid",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "provider": "FiveYearPlan",
+        "phase": "Headline",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "parent_zone": "InResolution",
+        "completed_slots": 0
+      }
+    },
+    {
+      "id": "CT1-R-fyp-headline-terminal",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "phase": "Headline",
+        "holder": "US",
+        "signed_vp": 19
+      },
+      "expected": {
+        "outcome": "Finished",
+        "signed_vp": 21,
+        "parent_zone": "DiscardPile",
+        "completed_slots": 0,
+        "root_closed": true
+      }
+    },
+    {
+      "id": "CT1-R-nixon-over-threshold",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "holder": "US",
+        "root_side": "US",
+        "signed_vp": 19
+      },
+      "expected": {
+        "outcome": "Finished",
+        "signed_vp": 21,
+        "winner": "US",
+        "source_zone": "Removed"
+      }
+    },
+    {
+      "id": "CT1-R-nixon-transfer-no-vp-at-19",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "holder": "USSR",
+        "root_side": "US",
+        "signed_vp": 19
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "signed_vp": 19,
+        "holder": "US",
+        "face": "FaceDown"
+      }
+    },
+    {
+      "id": "CT1-R-cultural-us-root-preserves-formosan",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "root_side": "US",
+        "provider": "OpponentCardEvent",
+        "active_effect_ids": [
+          "effect.formosan_resolution"
+        ]
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "active_effect_ids": [
+          "effect.formosan_resolution"
+        ],
+        "holder": "USSR",
+        "face": "FaceUp"
+      }
+    },
+    {
+      "id": "CT1-R-start-stale-version",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "StaleCommand"
+      },
+      "initial_command_edits": [
+        {
+          "path": [
+            "expected_state_version"
+          ],
+          "value": 4
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-start-wrong-frame",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "initial_command_edits": [
+        {
+          "path": [
+            "frame_id"
+          ],
+          "value": "frame.other"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-start-wrong-resolution",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "initial_command_edits": [
+        {
+          "path": [
+            "resolution_id"
+          ],
+          "value": "resolution.other"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-start-wrong-dispatch",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "initial_command_edits": [
+        {
+          "path": [
+            "dispatch_id"
+          ],
+          "value": "dispatch.other"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-start-client-baseline",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidInput"
+      },
+      "initial_command_edits": [
+        {
+          "path": [
+            "influence_baseline"
+          ],
+          "value": "GrantCreation"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-china-bad-revision",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidInput"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "china",
+            "revision"
+          ],
+          "value": -1
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-normal-unplayed-formosan-hand-untouched",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "Resolved",
+        "extra_formosan_zone": "Hand"
+      },
+      "extra_formosan_hand": true
+    },
+    {
+      "id": "CT1-R-source-duplicate-card-id",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "duplicate_card": true
+    },
+    {
+      "id": "CT1-R-ussuri-second-command-after-complete",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "completed_without_receipt": true
+    },
+    {
+      "id": "CT1-R-unknown-actual-parent-provider",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "provider"
+          ],
+          "value": "Unknown"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-unknown-actual-parent-remainder",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "RequiresRuling"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "remaining_source_steps"
+          ],
+          "value": "Unknown"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-role-nixon_plays_the_china_card-US-ActionRound",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR",
+        "root_side": "US",
+        "phase": "ActionRound"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "parent_zone": "InResolution",
+        "parent_controller": "US"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "controller"
+          ],
+          "value": "US"
+        },
+        {
+          "path": [
+            "parent_frame",
+            "provider"
+          ],
+          "value": "NormalEvent"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_provider"
+          ],
+          "value": "NormalEvent"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-role-nixon_plays_the_china_card-USSR-ActionRound",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR",
+        "root_side": "USSR",
+        "phase": "ActionRound"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "parent_zone": "InResolution",
+        "parent_controller": "US"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "controller"
+          ],
+          "value": "US"
+        },
+        {
+          "path": [
+            "parent_frame",
+            "provider"
+          ],
+          "value": "OpponentCardEvent"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_provider"
+          ],
+          "value": "OpponentCardEvent"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-role-nixon_plays_the_china_card-US-Headline",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR",
+        "root_side": "US",
+        "phase": "Headline"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "parent_zone": "InResolution",
+        "parent_controller": "US"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "controller"
+          ],
+          "value": "US"
+        },
+        {
+          "path": [
+            "parent_frame",
+            "provider"
+          ],
+          "value": "HeadlineEvent"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_provider"
+          ],
+          "value": "HeadlineEvent"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-role-nixon_plays_the_china_card-USSR-Headline",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR",
+        "root_side": "USSR",
+        "phase": "Headline"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "parent_zone": "InResolution",
+        "parent_controller": "US"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "controller"
+          ],
+          "value": "US"
+        },
+        {
+          "path": [
+            "parent_frame",
+            "provider"
+          ],
+          "value": "HeadlineEvent"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_provider"
+          ],
+          "value": "HeadlineEvent"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-role-ussuri_river_skirmish-US-ActionRound",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "provider": "FiveYearPlan",
+        "holder": "USSR",
+        "root_side": "US",
+        "phase": "ActionRound"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "parent_zone": "InResolution",
+        "parent_controller": "US"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "controller"
+          ],
+          "value": "US"
+        },
+        {
+          "path": [
+            "parent_frame",
+            "provider"
+          ],
+          "value": "NormalEvent"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_provider"
+          ],
+          "value": "NormalEvent"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-role-ussuri_river_skirmish-USSR-ActionRound",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "provider": "FiveYearPlan",
+        "holder": "USSR",
+        "root_side": "USSR",
+        "phase": "ActionRound"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "parent_zone": "InResolution",
+        "parent_controller": "US"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "controller"
+          ],
+          "value": "US"
+        },
+        {
+          "path": [
+            "parent_frame",
+            "provider"
+          ],
+          "value": "OpponentCardEvent"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_provider"
+          ],
+          "value": "OpponentCardEvent"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-role-ussuri_river_skirmish-US-Headline",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "provider": "FiveYearPlan",
+        "holder": "USSR",
+        "root_side": "US",
+        "phase": "Headline"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "parent_zone": "InResolution",
+        "parent_controller": "US"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "controller"
+          ],
+          "value": "US"
+        },
+        {
+          "path": [
+            "parent_frame",
+            "provider"
+          ],
+          "value": "HeadlineEvent"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_provider"
+          ],
+          "value": "HeadlineEvent"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-role-ussuri_river_skirmish-USSR-Headline",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "provider": "FiveYearPlan",
+        "holder": "USSR",
+        "root_side": "USSR",
+        "phase": "Headline"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "parent_zone": "InResolution",
+        "parent_controller": "US"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "controller"
+          ],
+          "value": "US"
+        },
+        {
+          "path": [
+            "parent_frame",
+            "provider"
+          ],
+          "value": "HeadlineEvent"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_provider"
+          ],
+          "value": "HeadlineEvent"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-wrong-controller-ActionRound",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR",
+        "root_side": "USSR",
+        "phase": "ActionRound"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "controller"
+          ],
+          "value": "USSR"
+        },
+        {
+          "path": [
+            "parent_frame",
+            "provider"
+          ],
+          "value": "NormalEvent"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_provider"
+          ],
+          "value": "NormalEvent"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-wrong-controller-Headline",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR",
+        "root_side": "USSR",
+        "phase": "Headline"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "controller"
+          ],
+          "value": "USSR"
+        },
+        {
+          "path": [
+            "parent_frame",
+            "provider"
+          ],
+          "value": "HeadlineEvent"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_provider"
+          ],
+          "value": "HeadlineEvent"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-us-root-opponent-provider-invalid",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "provider"
+          ],
+          "value": "OpponentCardEvent"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_provider"
+          ],
+          "value": "OpponentCardEvent"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-ussr-root-normal-provider-invalid",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR",
+        "root_side": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "controller"
+          ],
+          "value": "US"
+        },
+        {
+          "path": [
+            "parent_frame",
+            "provider"
+          ],
+          "value": "NormalEvent"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_provider"
+          ],
+          "value": "NormalEvent"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-active-defcon-one-cultural_revolution",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "cultural_revolution",
+        "holder": "US",
+        "root_side": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "defcon"
+          ],
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-active-defcon-one-nixon_plays_the_china_card",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "defcon"
+          ],
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-active-defcon-one-ussuri_river_skirmish",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "holder": "US",
+        "root_side": "US"
+      },
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "defcon"
+          ],
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-parent-already-successful-transfer",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "root_side": "US",
+        "holder": "USSR",
+        "signed_vp": 0
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "successful_events"
+          ],
+          "value": [
+            {
+              "resolution_id": "resolution.fyp",
+              "card_id": "card.five_year_plan",
+              "effect_id": "effect.five_year_plan",
+              "controller": "US",
+              "turn": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-parent-already-successful-terminal",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "root_side": "US",
+        "holder": "US",
+        "signed_vp": 18
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "successful_events"
+          ],
+          "value": [
+            {
+              "resolution_id": "resolution.fyp",
+              "card_id": "card.five_year_plan",
+              "effect_id": "effect.five_year_plan",
+              "controller": "US",
+              "turn": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-parent-already-successful-allocate",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "provider": "FiveYearPlan",
+        "root_side": "US",
+        "holder": "US",
+        "signed_vp": 0
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "successful_events"
+          ],
+          "value": [
+            {
+              "resolution_id": "resolution.fyp",
+              "card_id": "card.five_year_plan",
+              "effect_id": "effect.five_year_plan",
+              "controller": "US",
+              "turn": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-same-resolution-False",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "root_side": "US",
+        "holder": "US",
+        "signed_vp": 0
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "resolution_id"
+          ],
+          "value": "resolution.event"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_resolution_id"
+          ],
+          "value": "resolution.event"
+        },
+        {
+          "path": [
+            "fyp_dispatch_receipt",
+            "parent_resolution_id"
+          ],
+          "value": "resolution.event"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-same-frame-False",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "root_side": "US",
+        "holder": "US",
+        "signed_vp": 0
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "frame_id"
+          ],
+          "value": "frame.event"
+        },
+        {
+          "path": [
+            "root",
+            "frame_id"
+          ],
+          "value": "frame.event"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "root",
+            "frame_id"
+          ],
+          "value": "frame.event"
+        },
+        {
+          "path": [
+            "frame",
+            "parent_frame_id"
+          ],
+          "value": "frame.event"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "frame",
+            "parent_frame_id"
+          ],
+          "value": "frame.event"
+        },
+        {
+          "path": [
+            "ordinary_cards",
+            1,
+            "frame_id"
+          ],
+          "value": "frame.event"
+        },
+        {
+          "path": [
+            "fyp_dispatch_receipt",
+            "parent_frame_id"
+          ],
+          "value": "frame.event"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-same-resolution-True",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "root_side": "US",
+        "holder": "US",
+        "signed_vp": 18
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "resolution_id"
+          ],
+          "value": "resolution.event"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_resolution_id"
+          ],
+          "value": "resolution.event"
+        },
+        {
+          "path": [
+            "fyp_dispatch_receipt",
+            "parent_resolution_id"
+          ],
+          "value": "resolution.event"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-same-frame-True",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "root_side": "US",
+        "holder": "US",
+        "signed_vp": 18
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "frame_id"
+          ],
+          "value": "frame.event"
+        },
+        {
+          "path": [
+            "root",
+            "frame_id"
+          ],
+          "value": "frame.event"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "root",
+            "frame_id"
+          ],
+          "value": "frame.event"
+        },
+        {
+          "path": [
+            "frame",
+            "parent_frame_id"
+          ],
+          "value": "frame.event"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "frame",
+            "parent_frame_id"
+          ],
+          "value": "frame.event"
+        },
+        {
+          "path": [
+            "ordinary_cards",
+            1,
+            "frame_id"
+          ],
+          "value": "frame.event"
+        },
+        {
+          "path": [
+            "fyp_dispatch_receipt",
+            "parent_frame_id"
+          ],
+          "value": "frame.event"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-parent-finalize-ActionRound-USSR-0",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "root_side": "USSR",
+        "phase": "ActionRound",
+        "holder": "US",
+        "signed_vp": 0
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "parent_zone": "InResolution",
+        "parent_controller": "US",
+        "parent_success_count": 0,
+        "root_closed": false
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "controller"
+          ],
+          "value": "US"
+        },
+        {
+          "path": [
+            "parent_frame",
+            "provider"
+          ],
+          "value": "OpponentCardEvent"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_provider"
+          ],
+          "value": "OpponentCardEvent"
+        },
+        {
+          "path": [
+            "parent_frame",
+            "remaining_source_steps"
+          ],
+          "value": "OperationsAfterChild"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_remaining_steps"
+          ],
+          "value": "OperationsAfterChild"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-parent-finalize-ActionRound-USSR-18",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "root_side": "USSR",
+        "phase": "ActionRound",
+        "holder": "US",
+        "signed_vp": 18
+      },
+      "expected": {
+        "outcome": "Finished",
+        "parent_zone": "DiscardPile",
+        "parent_controller": "US",
+        "parent_success_count": 1,
+        "root_closed": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "controller"
+          ],
+          "value": "US"
+        },
+        {
+          "path": [
+            "parent_frame",
+            "provider"
+          ],
+          "value": "OpponentCardEvent"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_provider"
+          ],
+          "value": "OpponentCardEvent"
+        },
+        {
+          "path": [
+            "parent_frame",
+            "remaining_source_steps"
+          ],
+          "value": "OperationsAfterChild"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_remaining_steps"
+          ],
+          "value": "OperationsAfterChild"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-parent-finalize-Headline-USSR-18",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "root_side": "USSR",
+        "phase": "Headline",
+        "holder": "US",
+        "signed_vp": 18
+      },
+      "expected": {
+        "outcome": "Finished",
+        "parent_zone": "DiscardPile",
+        "parent_controller": "US",
+        "parent_success_count": 1,
+        "root_closed": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "controller"
+          ],
+          "value": "US"
+        },
+        {
+          "path": [
+            "parent_frame",
+            "provider"
+          ],
+          "value": "HeadlineEvent"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_provider"
+          ],
+          "value": "HeadlineEvent"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-parent-finalize-Headline-US-18",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "root_side": "US",
+        "phase": "Headline",
+        "holder": "US",
+        "signed_vp": 18
+      },
+      "expected": {
+        "outcome": "Finished",
+        "parent_zone": "DiscardPile",
+        "parent_controller": "US",
+        "parent_success_count": 1,
+        "root_closed": true
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "controller"
+          ],
+          "value": "US"
+        },
+        {
+          "path": [
+            "parent_frame",
+            "provider"
+          ],
+          "value": "HeadlineEvent"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_provider"
+          ],
+          "value": "HeadlineEvent"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-impossible-ops-after-US-ActionRound",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "root_side": "US",
+        "phase": "ActionRound",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "controller"
+          ],
+          "value": "US"
+        },
+        {
+          "path": [
+            "parent_frame",
+            "remaining_source_steps"
+          ],
+          "value": "OperationsAfterChild"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_remaining_steps"
+          ],
+          "value": "OperationsAfterChild"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-impossible-ops-after-US-Headline",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "root_side": "US",
+        "phase": "Headline",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "controller"
+          ],
+          "value": "US"
+        },
+        {
+          "path": [
+            "parent_frame",
+            "remaining_source_steps"
+          ],
+          "value": "OperationsAfterChild"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_remaining_steps"
+          ],
+          "value": "OperationsAfterChild"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-review-fyp-impossible-ops-after-USSR-Headline",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "root_side": "USSR",
+        "phase": "Headline",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "state_edits": [
+        {
+          "path": [
+            "parent_frame",
+            "controller"
+          ],
+          "value": "US"
+        },
+        {
+          "path": [
+            "parent_frame",
+            "remaining_source_steps"
+          ],
+          "value": "OperationsAfterChild"
+        },
+        {
+          "path": [
+            "source_ledger",
+            "parent_remaining_steps"
+          ],
+          "value": "OperationsAfterChild"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-normal-transfer",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.containment",
+          "zone": "InResolution",
+          "owner": "US",
+          "frame_id": "frame.event"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-normal-vp",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.containment",
+          "zone": "InResolution",
+          "owner": "US",
+          "frame_id": "frame.event"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-normal-terminal",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "root_side": "US",
+        "holder": "US",
+        "signed_vp": 18
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.containment",
+          "zone": "InResolution",
+          "owner": "US",
+          "frame_id": "frame.event"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-normal-ussuri-wait",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "root_side": "US",
+        "holder": "US"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.containment",
+          "zone": "InResolution",
+          "owner": "US",
+          "frame_id": "frame.event"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-fyp-child-transfer",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.containment",
+          "zone": "InResolution",
+          "owner": "US",
+          "frame_id": "frame.event"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-fyp-parent-transfer",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.containment",
+          "zone": "InResolution",
+          "owner": "US",
+          "frame_id": "frame.fyp"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-fyp-child-terminal",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "US",
+        "signed_vp": 18
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.containment",
+          "zone": "InResolution",
+          "owner": "US",
+          "frame_id": "frame.event"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-fyp-parent-terminal",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "US",
+        "signed_vp": 18
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.containment",
+          "zone": "InResolution",
+          "owner": "US",
+          "frame_id": "frame.fyp"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-fyp-child-ussuri-wait",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "provider": "FiveYearPlan",
+        "holder": "US"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.containment",
+          "zone": "InResolution",
+          "owner": "US",
+          "frame_id": "frame.event"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-fyp-parent-ussuri-wait",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "provider": "FiveYearPlan",
+        "holder": "US"
+      },
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.containment",
+          "zone": "InResolution",
+          "owner": "US",
+          "frame_id": "frame.fyp"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-hand-card-claims-source-frame",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidSource"
+      },
+      "append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.containment",
+          "zone": "Hand",
+          "owner": "US",
+          "frame_id": "frame.event"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-unknown-entity",
+      "validation_layer": "reference",
+      "phase": "Start",
+      "setup": {},
+      "expected": {
+        "outcome": "InvalidState"
+      },
+      "append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.future_unknown",
+          "zone": "InResolution",
+          "owner": "US",
+          "frame_id": "frame.event"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-choice-normal",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "root_side": "US",
+        "holder": "US"
+      },
+      "expected": {
+        "outcome": "InvalidDecision"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          2
+        ],
+        [
+          "country.thailand",
+          2
+        ]
+      ],
+      "synthetic_waiting_append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.containment",
+          "zone": "InResolution",
+          "owner": "US",
+          "frame_id": "frame.event"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-choice-fyp-child",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "provider": "FiveYearPlan",
+        "holder": "US"
+      },
+      "expected": {
+        "outcome": "InvalidDecision"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          2
+        ],
+        [
+          "country.thailand",
+          2
+        ]
+      ],
+      "synthetic_waiting_append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.containment",
+          "zone": "InResolution",
+          "owner": "US",
+          "frame_id": "frame.event"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-choice-fyp-parent",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "provider": "FiveYearPlan",
+        "holder": "US"
+      },
+      "expected": {
+        "outcome": "InvalidDecision"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          2
+        ],
+        [
+          "country.thailand",
+          2
+        ]
+      ],
+      "synthetic_waiting_append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.containment",
+          "zone": "InResolution",
+          "owner": "US",
+          "frame_id": "frame.fyp"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-historical-receipt-resolved",
+      "validation_layer": "reference",
+      "phase": "HistoricalReceipt",
+      "setup": {},
+      "expected": {
+        "valid": false
+      },
+      "historical_append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.containment",
+          "zone": "InResolution",
+          "owner": "US",
+          "frame_id": "frame.event"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-historical-receipt-deferred",
+      "validation_layer": "reference",
+      "phase": "HistoricalReceipt",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "root_side": "US",
+        "remaining": "Operations"
+      },
+      "expected": {
+        "valid": false
+      },
+      "historical_append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.containment",
+          "zone": "InResolution",
+          "owner": "US",
+          "frame_id": "frame.event"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-historical-receipt-waiting",
+      "validation_layer": "reference",
+      "phase": "HistoricalReceipt",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "root_side": "US",
+        "holder": "US"
+      },
+      "expected": {
+        "valid": false
+      },
+      "historical_append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.containment",
+          "zone": "InResolution",
+          "owner": "US",
+          "frame_id": "frame.event"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-historical-receipt-terminal",
+      "validation_layer": "reference",
+      "phase": "HistoricalReceipt",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "root_side": "US",
+        "holder": "US",
+        "signed_vp": 18
+      },
+      "expected": {
+        "valid": false
+      },
+      "historical_append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.containment",
+          "zone": "InResolution",
+          "owner": "US",
+          "frame_id": "frame.event"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-historical-receipt-fyp-child",
+      "validation_layer": "reference",
+      "phase": "HistoricalReceipt",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR"
+      },
+      "expected": {
+        "valid": false
+      },
+      "historical_append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.containment",
+          "zone": "InResolution",
+          "owner": "US",
+          "frame_id": "frame.event"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-historical-receipt-fyp-parent",
+      "validation_layer": "reference",
+      "phase": "HistoricalReceipt",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "USSR"
+      },
+      "expected": {
+        "valid": false
+      },
+      "historical_append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.containment",
+          "zone": "InResolution",
+          "owner": "US",
+          "frame_id": "frame.fyp"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-historical-receipt-fyp-terminal-parent",
+      "validation_layer": "reference",
+      "phase": "HistoricalReceipt",
+      "setup": {
+        "card": "nixon_plays_the_china_card",
+        "provider": "FiveYearPlan",
+        "holder": "US",
+        "signed_vp": 18
+      },
+      "expected": {
+        "valid": false
+      },
+      "historical_append_cards": [
+        {
+          "instance_id": "instance.review.extra",
+          "card_id": "card.containment",
+          "zone": "InResolution",
+          "owner": "US",
+          "frame_id": "frame.fyp"
+        }
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-valid-fyp-ussuri-choice",
+      "validation_layer": "reference",
+      "phase": "Choice",
+      "setup": {
+        "card": "ussuri_river_skirmish",
+        "provider": "FiveYearPlan",
+        "holder": "US"
+      },
+      "expected": {
+        "outcome": "Resolved",
+        "parent_zone": "InResolution",
+        "source_zone": "Removed"
+      },
+      "allocation": [
+        [
+          "country.taiwan",
+          2
+        ],
+        [
+          "country.thailand",
+          2
+        ]
+      ]
+    },
+    {
+      "id": "CT1-R-frame-review-valid-deferred-replay",
+      "validation_layer": "reference",
+      "phase": "Replay",
+      "setup": {
+        "provider": "OpponentCardEvent",
+        "root_side": "US",
+        "remaining": "Operations"
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted"
+      },
+      "current_edits": [
+        {
+          "path": [
+            "state_version"
+          ],
+          "value": 60
+        },
+        {
+          "path": [
+            "china",
+            "holder"
+          ],
+          "value": "US"
+        }
+      ]
+    },
+    {
+      "id": "CT1-S-china_state-valid",
+      "validation_layer": "schema",
+      "definition": "china_state",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "CT1-S-event_state-valid",
+      "validation_layer": "schema",
+      "definition": "event_state",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "CT1-S-source_ledger-valid",
+      "validation_layer": "schema",
+      "definition": "source_ledger",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "CT1-S-start_command-valid",
+      "validation_layer": "schema",
+      "definition": "start_command",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "CT1-S-choice_command-valid",
+      "validation_layer": "schema",
+      "definition": "choice_command",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "CT1-S-pending_decision-valid",
+      "validation_layer": "schema",
+      "definition": "pending_decision",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "CT1-S-accepted_receipt-valid",
+      "validation_layer": "schema",
+      "definition": "accepted_receipt",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "CT1-S-fyp-parent-opponent-provider-shape",
+      "validation_layer": "schema",
+      "definition": "source_ledger",
+      "edits": [
+        {
+          "path": [
+            "parent_provider"
+          ],
+          "value": "OpponentCardEvent"
+        }
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "CT1-S-fyp-parent-operations-after-child-shape",
+      "validation_layer": "schema",
+      "definition": "source_ledger",
+      "edits": [
+        {
+          "path": [
+            "parent_remaining_steps"
+          ],
+          "value": "OperationsAfterChild"
+        }
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "CT1-S-unknown-parent-step-not-allowed",
+      "validation_layer": "schema",
+      "definition": "source_ledger",
+      "edits": [
+        {
+          "path": [
+            "parent_remaining_steps"
+          ],
+          "value": "ClientAuthorizedCleanup"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-negative-180",
+      "validation_layer": "schema",
+      "definition": "china_state",
+      "edits": [
+        {
+          "path": [
+            "holder"
+          ],
+          "value": null
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-negative-181",
+      "validation_layer": "schema",
+      "definition": "china_state",
+      "edits": [
+        {
+          "path": [
+            "face"
+          ],
+          "value": "Available"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-negative-182",
+      "validation_layer": "schema",
+      "definition": "china_state",
+      "edits": [
+        {
+          "path": [
+            "revision"
+          ],
+          "value": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-negative-183",
+      "validation_layer": "schema",
+      "definition": "china_state",
+      "edits": [
+        {
+          "path": [
+            "zone"
+          ],
+          "value": "Hand"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-negative-184",
+      "validation_layer": "schema",
+      "definition": "china_state",
+      "edits": [
+        {
+          "path": [
+            "extra"
+          ],
+          "value": 1
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-negative-185",
+      "validation_layer": "schema",
+      "definition": "start_command",
+      "edits": [
+        {
+          "path": [
+            "expected_state_version"
+          ],
+          "value": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-negative-186",
+      "validation_layer": "schema",
+      "definition": "start_command",
+      "edits": [
+        {
+          "path": [
+            "authorization"
+          ],
+          "value": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-negative-187",
+      "validation_layer": "schema",
+      "definition": "source_ledger",
+      "edits": [
+        {
+          "path": [
+            "parent_provider"
+          ],
+          "value": "ArbitraryTrustedProvider"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-negative-188",
+      "validation_layer": "schema",
+      "definition": "source_ledger",
+      "edits": [
+        {
+          "path": [
+            "fyp_selected_affiliation"
+          ],
+          "value": "Neutral"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-negative-189",
+      "validation_layer": "schema",
+      "definition": "choice_command",
+      "edits": [
+        {
+          "path": [
+            "allocation",
+            0,
+            "amount"
+          ],
+          "value": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-negative-190",
+      "validation_layer": "schema",
+      "definition": "choice_command",
+      "edits": [
+        {
+          "path": [
+            "allocation",
+            0,
+            "amount"
+          ],
+          "value": 0
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-negative-191",
+      "validation_layer": "schema",
+      "definition": "choice_command",
+      "edits": [
+        {
+          "path": [
+            "allocation",
+            0,
+            "amount"
+          ],
+          "value": 1.5
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-negative-192",
+      "validation_layer": "schema",
+      "definition": "choice_command",
+      "edits": [
+        {
+          "path": [
+            "decline"
+          ],
+          "value": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-negative-193",
+      "validation_layer": "schema",
+      "definition": "pending_decision",
+      "edits": [
+        {
+          "path": [
+            "owner"
+          ],
+          "value": "USSR"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-negative-194",
+      "validation_layer": "schema",
+      "definition": "pending_decision",
+      "edits": [
+        {
+          "path": [
+            "source_ledger_digest"
+          ],
+          "value": "broken"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-negative-195",
+      "validation_layer": "schema",
+      "definition": "accepted_receipt",
+      "edits": [
+        {
+          "path": [
+            "result",
+            "state",
+            "state_version"
+          ],
+          "value": -1
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-negative-196",
+      "validation_layer": "schema",
+      "definition": "accepted_receipt",
+      "edits": [
+        {
+          "path": [
+            "result_digest"
+          ],
+          "value": "broken"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-negative-197",
+      "validation_layer": "schema",
+      "definition": "accepted_receipt",
+      "edits": [
+        {
+          "path": [
+            "current_must_equal_after"
+          ],
+          "value": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-negative-198",
+      "validation_layer": "schema",
+      "definition": "event_state",
+      "edits": [
+        {
+          "path": [
+            "china",
+            "face"
+          ],
+          "value": false
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-negative-199",
+      "validation_layer": "schema",
+      "definition": "event_state",
+      "edits": [
+        {
+          "path": [
+            "frame",
+            "remaining_source_steps"
+          ],
+          "value": []
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-negative-200",
+      "validation_layer": "schema",
+      "definition": "event_state",
+      "edits": [
+        {
+          "path": [
+            "active_effects"
+          ],
+          "value": {}
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-missing-china_state",
+      "validation_layer": "schema",
+      "definition": "china_state",
+      "edits": [
+        {
+          "path": [
+            "holder"
+          ],
+          "remove": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-missing-source_ledger",
+      "validation_layer": "schema",
+      "definition": "source_ledger",
+      "edits": [
+        {
+          "path": [
+            "root"
+          ],
+          "remove": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-missing-accepted_receipt",
+      "validation_layer": "schema",
+      "definition": "accepted_receipt",
+      "edits": [
+        {
+          "path": [
+            "result"
+          ],
+          "remove": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-missing-pending_decision",
+      "validation_layer": "schema",
+      "definition": "pending_decision",
+      "edits": [
+        {
+          "path": [
+            "china_digest"
+          ],
+          "remove": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-missing-start_command",
+      "validation_layer": "schema",
+      "definition": "start_command",
+      "edits": [
+        {
+          "path": [
+            "frame_id"
+          ],
+          "remove": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-missing-choice_command",
+      "validation_layer": "schema",
+      "definition": "choice_command",
+      "edits": [
+        {
+          "path": [
+            "allocation"
+          ],
+          "remove": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-headline-root-baseline-not-a-ct-input",
+      "validation_layer": "schema",
+      "definition": "source_ledger",
+      "edits": [
+        {
+          "path": [
+            "root",
+            "influence_baseline"
+          ],
+          "value": "RootActionRoundStartActor"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-grant-creation-not-a-ct-input",
+      "validation_layer": "schema",
+      "definition": "source_ledger",
+      "edits": [
+        {
+          "path": [
+            "frame",
+            "baseline_policy"
+          ],
+          "value": "GrantCreation"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-S-fyp-receipt-owner-not-us",
+      "validation_layer": "schema",
+      "definition": "event_state",
+      "edits": [
+        {
+          "path": [
+            "fyp_dispatch_receipt"
+          ],
+          "value": {
+            "receipt_id": "a",
+            "parent_frame_id": "p",
+            "parent_resolution_id": "r",
+            "parent_instance_id": "i",
+            "parent_card_id": "card.five_year_plan",
+            "selected_instance_id": "s",
+            "selected_card_id": "card.nixon_plays_the_china_card",
+            "selected_from_owner": "US",
+            "selected_from_zone": "Hand",
+            "child_frame_id": "c",
+            "child_resolution_id": "cr",
+            "child_controller": "US",
+            "accepted_state_version": 4
+          }
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-valid",
+      "validation_layer": "data",
+      "edits": [],
+      "expected_valid": true
+    },
+    {
+      "id": "CT1-D-scope",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "scope"
+          ],
+          "value": "release-candidate"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-face-cultural",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "cultural_revolution",
+            "opponent_holds",
+            "face"
+          ],
+          "value": "FaceDown"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-face-nixon",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "nixon_plays_the_china_card",
+            "opponent_holds",
+            "face"
+          ],
+          "value": "FaceUp"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-vp-cultural",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "cultural_revolution",
+            "beneficiary_holds",
+            "amount"
+          ],
+          "value": 2
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-vp-nixon",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "nixon_plays_the_china_card",
+            "beneficiary_holds",
+            "amount"
+          ],
+          "value": 1
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-ussuri-total",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "ussuri_river_skirmish",
+            "beneficiary_holds",
+            "total"
+          ],
+          "value": 3
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-ussuri-cap",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "ussuri_river_skirmish",
+            "beneficiary_holds",
+            "per_country_maximum"
+          ],
+          "value": 4
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-ussuri-region",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "ussuri_river_skirmish",
+            "beneficiary_holds",
+            "region_id"
+          ],
+          "value": "region.southeast_asia"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-boolean-vp",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "parameters",
+            "cultural_revolution",
+            "beneficiary_holds",
+            "amount"
+          ],
+          "value": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-transfer-use",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "resolution_policy",
+            "transfer_kind"
+          ],
+          "value": "ActualChinaUse"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-live-state-replay",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "resolution_policy",
+            "replay"
+          ],
+          "value": "RequireCurrentAfterDigest"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-shared-ref",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "shared_refs",
+            "china_bonus",
+            "json_pointer"
+          ],
+          "value": "/ops_policy"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-unknown",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "fake_authorized"
+          ],
+          "value": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-missing-source_catalog",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "source_catalog"
+          ],
+          "remove": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-missing-shared_refs",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "shared_refs"
+          ],
+          "remove": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-missing-resolution_policy",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "resolution_policy"
+          ],
+          "remove": true
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-review-active_state",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "resolution_policy",
+            "active_state"
+          ],
+          "value": "ContinueAtNuclearLevel"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-review-fyp_parent_controller",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "resolution_policy",
+            "fyp_parent_controller"
+          ],
+          "value": "RootPhasingPlayer"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-review-fyp_parent_provider",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "resolution_policy",
+            "fyp_parent_provider"
+          ],
+          "value": "AlwaysNormalEvent"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-review-fyp_parent_remainder",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "resolution_policy",
+            "fyp_parent_remainder"
+          ],
+          "value": "ArbitraryTrustedParent"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-review-resolution_identity",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "resolution_policy",
+            "resolution_identity"
+          ],
+          "value": "AllowRepeatedParentResolution"
+        }
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "CT1-D-frame-review-ignore-extra-entity",
+      "validation_layer": "data",
+      "edits": [
+        {
+          "path": [
+            "resolution_policy",
+            "source_frame_entities"
+          ],
+          "value": "ValidateNamedSourceOnly"
+        }
+      ],
+      "expected_valid": false
+    }
+  ],
+  "runtime_cases": [
+    {
+      "id": "CT1-I-source-auth",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "真实身份/帧来源/父链验证与普通牌唯一位置"
+    },
+    {
+      "id": "CT1-I-china-zone",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "真实China独立实体/回合翻面/合法再使用"
+    },
+    {
+      "id": "CT1-I-influence-atomic",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "Ussuri完整分配及非法响应原子性"
+    },
+    {
+      "id": "CT1-I-terminal-finalize",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "VP终局草稿同事务源牌/具名父牌/根slot收尾"
+    },
+    {
+      "id": "CT1-I-deferred-disposition",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "对手牌先事件后OPS，后续正常源牌去向"
+    },
+    {
+      "id": "CT1-I-receipt-storage",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "真实不可变收据、永久去重与后来局面下重试"
+    },
+    {
+      "id": "CT1-I-pending-resume",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "存档恢复等待决定、版本和原来源"
+    },
+    {
+      "id": "CT1-I-formosan-hook",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "真实ChinaUse才取消活动Formosan；事件转交无钩子"
+    },
+    {
+      "id": "CT1-I-hidden-projection",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "China公开投影与普通手牌不混淆"
+    },
+    {
+      "id": "CT1-I-failure-rollback",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "事务失败不半转交/半加点/半终局"
+    }
+  ],
+  "limitations": [
+    "Proposed trusted ledger/identity are synthetic premises, not real authentication.",
+    "No true storage/transaction/network/Unity tests.",
+    "No unrelated baseline suite rerun; candidate only."
+  ]
+}

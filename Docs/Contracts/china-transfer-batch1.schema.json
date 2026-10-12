@@ -1,0 +1,1767 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:china-transfer-batch1:1",
+  "description": "封闭三牌数据、内部来源/独立China实体、决定和接受收据形状；跨字段来源与不可变收据还须领域验证，非鉴权实现。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "shared_refs",
+    "resolution_policy",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "dataset_id": {
+      "type": "string",
+      "const": "effects.deluxe2015.china_transfer_batch1"
+    },
+    "content_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "type": "string",
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "type": "string",
+      "const": "verified-subset"
+    },
+    "description": {
+      "type": "string",
+      "const": "中国牌转交三牌：持有者条件、独立China状态、固定VP/亚洲额度及原结果重试；设计参数，运行未实现。"
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "const": "C-DELUXE-EN"
+            },
+            "url": {
+              "type": "string",
+              "const": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf"
+            },
+            "edition": {
+              "type": "string",
+              "const": "English Deluxe card images"
+            },
+            "description": {
+              "type": "string",
+              "const": "亲看英文PDF p2 #5、p9 #58、p11 #71、p12 #76；FYP为US关联及持有者条件、转交面向与奖励；不使用旁列译文。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "const": "R2015"
+            },
+            "url": {
+              "type": "string",
+              "const": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf"
+            },
+            "edition": {
+              "type": "string",
+              "const": "Deluxe rules 2015"
+            },
+            "description": {
+              "type": "string",
+              "const": "§2.1.2亚洲含东南亚；§2.2.4/5.2事件与星号；§6.1.1直接事件投放；§8.1.3核战即时终局；§9中国持有/正常转交/事件例外/使用限制；§10.3 VP。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "const": "F2010"
+            },
+            "url": {
+              "type": "string",
+              "const": "https://www.gmtgames.com/nnts/FAQv5.pdf"
+            },
+            "edition": {
+              "type": "string",
+              "const": "FAQ v5 2010, compatible answers only"
+            },
+            "description": {
+              "type": "string",
+              "const": "PDF p4 #6实际US中国太空取消Formosan及不可事件弃置；p8 #35不弃手中未发生的Formosan；p19中国不计普通手牌。未发现三牌专门答案。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "const": "PROJECT-CT1"
+            },
+            "url": {
+              "type": "null",
+              "const": null
+            },
+            "edition": {
+              "type": "string",
+              "const": "Holder branch and typed transaction contracts, 2026-10-12"
+            },
+            "description": {
+              "type": "string",
+              "const": "自己持FaceDown走奖励且不翻面为卡文直接推导；独立来源/China状态、原子计划/收据、延迟源牌去向和终局草稿为工程设计；离线模型不是真实鉴权或存档。"
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "shared_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cards",
+        "world",
+        "victory",
+        "setup",
+        "turn_flow",
+        "formosan",
+        "china_bonus",
+        "fyp",
+        "defcon"
+      ],
+      "properties": {
+        "cards": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "cards.deluxe2015.definitions"
+            },
+            "path": {
+              "type": "string",
+              "const": "Data/Cards/deluxe-2015/cards.json"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": "/cards"
+            }
+          }
+        },
+        "world": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "map.deluxe2015.world"
+            },
+            "path": {
+              "type": "string",
+              "const": "Data/Maps/deluxe-2015/world.json"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": "/countries"
+            }
+          }
+        },
+        "victory": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "rules.deluxe2015.victory"
+            },
+            "path": {
+              "type": "string",
+              "const": "Data/Rulesets/deluxe-2015/victory.json"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": ""
+            }
+          }
+        },
+        "setup": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "setup.deluxe2015.standard"
+            },
+            "path": {
+              "type": "string",
+              "const": "Data/Rulesets/deluxe-2015/setup.json"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": "/china"
+            }
+          }
+        },
+        "turn_flow": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "rules.deluxe2015.turn-flow"
+            },
+            "path": {
+              "type": "string",
+              "const": "Data/Rulesets/deluxe-2015/turn-flow.json"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": ""
+            }
+          }
+        },
+        "formosan": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "effects.deluxe2015.scoring_effects_batch1"
+            },
+            "path": {
+              "type": "string",
+              "const": "Data/Cards/deluxe-2015/scoring-effects-batch1.parameters.json"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": "/parameters/formosan_resolution/cancel_on_card_use"
+            }
+          }
+        },
+        "china_bonus": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "effects.deluxe2015.persistent_batch1"
+            },
+            "path": {
+              "type": "string",
+              "const": "Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": "/source_bonuses/china"
+            }
+          }
+        },
+        "fyp": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "effects.deluxe2015.hand_events_batch1"
+            },
+            "path": {
+              "type": "string",
+              "const": "Data/Cards/deluxe-2015/hand-events-batch1.parameters.json"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": "/parameters/five_year_plan"
+            }
+          }
+        },
+        "defcon": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "rules.deluxe2015.defcon"
+            },
+            "path": {
+              "type": "string",
+              "const": "Data/Rulesets/deluxe-2015/defcon.json"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": "/nuclear_level"
+            }
+          }
+        }
+      }
+    },
+    "resolution_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "branch",
+        "self_held_face",
+        "transfer_kind",
+        "source",
+        "source_disposition",
+        "unknown_relevant_provider",
+        "allocation",
+        "replay",
+        "integrity",
+        "canonical_digest",
+        "runtime",
+        "active_state",
+        "fyp_parent_controller",
+        "fyp_parent_provider",
+        "fyp_parent_remainder",
+        "resolution_identity",
+        "source_frame_entities"
+      ],
+      "properties": {
+        "branch": {
+          "type": "string",
+          "const": "CurrentHolderAtEventStepNotFace"
+        },
+        "self_held_face": {
+          "type": "string",
+          "const": "Preserve"
+        },
+        "transfer_kind": {
+          "type": "string",
+          "const": "EventTransferWithoutCardUse"
+        },
+        "source": {
+          "type": "string",
+          "const": "IndependentFrameLedgerAndPhysicalZone"
+        },
+        "source_disposition": {
+          "type": "string",
+          "const": "FinalizeWhenSourceStepsCompleteOrAtomicTerminalDraft"
+        },
+        "unknown_relevant_provider": {
+          "type": "string",
+          "const": "RequiresRulingBeforeDependentCommit"
+        },
+        "allocation": {
+          "type": "string",
+          "const": "MandatoryExactTotalUniqueCountries"
+        },
+        "replay": {
+          "type": "string",
+          "const": "ReturnOriginalFullResultPreserveLaterCurrentState"
+        },
+        "integrity": {
+          "type": "string",
+          "const": "IndependentTrustedAcceptedReceiptAnchor"
+        },
+        "canonical_digest": {
+          "type": "string",
+          "const": "SHA256SortedUtf8CompactJsonNoNaN"
+        },
+        "runtime": {
+          "type": "string",
+          "const": "PlannedSyntheticEvidenceOnly"
+        },
+        "active_state": {
+          "type": "string",
+          "const": "RejectActiveNuclearLevelOrExistingTerminalOutcome"
+        },
+        "fyp_parent_controller": {
+          "type": "string",
+          "const": "PrintedFiveYearPlanAffiliationAndHandEventContract"
+        },
+        "fyp_parent_provider": {
+          "type": "string",
+          "const": "PhaseAndRootPhasingAgainstParentController"
+        },
+        "fyp_parent_remainder": {
+          "type": "string",
+          "const": "FinalizeAfterChildOrVerifiedOpponentOperationsAfterChild"
+        },
+        "resolution_identity": {
+          "type": "string",
+          "const": "DistinctParentChildFrameAndResolutionIdsAbsentFromAcceptedSuccessHistory"
+        },
+        "source_frame_entities": {
+          "type": "string",
+          "const": "OneAcceptedEntityPerKnownActiveFrame_ZeroAfterDisposition_InFreshChoiceAndHistoricalResult"
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cultural_revolution",
+        "nixon_plays_the_china_card",
+        "ussuri_river_skirmish"
+      ],
+      "properties": {
+        "cultural_revolution": {
+          "$ref": "#/$defs/cultural_revolution"
+        },
+        "nixon_plays_the_china_card": {
+          "$ref": "#/$defs/nixon_plays_the_china_card"
+        },
+        "ussuri_river_skirmish": {
+          "$ref": "#/$defs/ussuri_river_skirmish"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "cultural_revolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "template",
+        "beneficiary",
+        "opponent_holds",
+        "beneficiary_holds",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "const": "card.cultural_revolution"
+        },
+        "effect_id": {
+          "type": "string",
+          "const": "effect.cultural_revolution"
+        },
+        "template": {
+          "type": "string",
+          "const": "composite.ChinaHolderConditionalTransferOrReward"
+        },
+        "beneficiary": {
+          "type": "string",
+          "const": "USSR"
+        },
+        "opponent_holds": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "recipient",
+            "face"
+          ],
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "TransferChina"
+            },
+            "recipient": {
+              "type": "string",
+              "const": "Beneficiary"
+            },
+            "face": {
+              "type": "string",
+              "const": "FaceUp"
+            }
+          }
+        },
+        "beneficiary_holds": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "amount"
+          ],
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "AwardVp"
+            },
+            "amount": {
+              "type": "integer",
+              "const": 1
+            }
+          }
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "PDF p9 English #58"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "nixon_plays_the_china_card": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "template",
+        "beneficiary",
+        "opponent_holds",
+        "beneficiary_holds",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "const": "card.nixon_plays_the_china_card"
+        },
+        "effect_id": {
+          "type": "string",
+          "const": "effect.nixon_plays_the_china_card"
+        },
+        "template": {
+          "type": "string",
+          "const": "composite.ChinaHolderConditionalTransferOrReward"
+        },
+        "beneficiary": {
+          "type": "string",
+          "const": "US"
+        },
+        "opponent_holds": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "recipient",
+            "face"
+          ],
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "TransferChina"
+            },
+            "recipient": {
+              "type": "string",
+              "const": "Beneficiary"
+            },
+            "face": {
+              "type": "string",
+              "const": "FaceDown"
+            }
+          }
+        },
+        "beneficiary_holds": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "amount"
+          ],
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "AwardVp"
+            },
+            "amount": {
+              "type": "integer",
+              "const": 2
+            }
+          }
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "PDF p11 English #71"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "ussuri_river_skirmish": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "template",
+        "beneficiary",
+        "opponent_holds",
+        "beneficiary_holds",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "const": "card.ussuri_river_skirmish"
+        },
+        "effect_id": {
+          "type": "string",
+          "const": "effect.ussuri_river_skirmish"
+        },
+        "template": {
+          "type": "string",
+          "const": "composite.ChinaHolderConditionalTransferOrReward"
+        },
+        "beneficiary": {
+          "type": "string",
+          "const": "US"
+        },
+        "opponent_holds": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "recipient",
+            "face"
+          ],
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "TransferChina"
+            },
+            "recipient": {
+              "type": "string",
+              "const": "Beneficiary"
+            },
+            "face": {
+              "type": "string",
+              "const": "FaceUp"
+            }
+          }
+        },
+        "beneficiary_holds": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "region_id",
+            "total",
+            "per_country_maximum"
+          ],
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "AllocateInfluence"
+            },
+            "region_id": {
+              "type": "string",
+              "const": "region.asia"
+            },
+            "total": {
+              "type": "integer",
+              "const": 4
+            },
+            "per_country_maximum": {
+              "type": "integer",
+              "const": 2
+            }
+          }
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "PDF p12 English #76"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "china_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "instance_id",
+        "card_id",
+        "zone",
+        "holder",
+        "face",
+        "revision"
+      ],
+      "properties": {
+        "instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "const": "card.china"
+        },
+        "zone": {
+          "type": "string",
+          "const": "China"
+        },
+        "holder": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "face": {
+          "type": "string",
+          "enum": [
+            "FaceUp",
+            "FaceDown"
+          ]
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "ordinary_card": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "instance_id",
+        "card_id",
+        "zone",
+        "owner",
+        "frame_id"
+      ],
+      "properties": {
+        "instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "zone": {
+          "type": "string",
+          "enum": [
+            "Hand",
+            "InResolution",
+            "DiscardPile",
+            "Removed",
+            "HeadlineReserved"
+          ]
+        },
+        "owner": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "frame_id": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "root": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "action_id",
+        "phasing_player",
+        "phase",
+        "card_instance_id",
+        "frame_id",
+        "closed",
+        "completed_slots"
+      ],
+      "properties": {
+        "action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "phasing_player": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "phase": {
+          "type": "string",
+          "enum": [
+            "ActionRound",
+            "Headline"
+          ]
+        },
+        "card_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "closed": {
+          "type": "boolean"
+        },
+        "completed_slots": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "frame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "frame_id",
+        "resolution_id",
+        "source_instance_id",
+        "source_card_id",
+        "controller",
+        "parent_frame_id",
+        "provider",
+        "remaining_source_steps",
+        "event_completed",
+        "accepted_disposition"
+      ],
+      "properties": {
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "controller": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "parent_frame_id": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "provider": {
+          "type": "string",
+          "enum": [
+            "NormalEvent",
+            "OpponentCardEvent",
+            "HeadlineEvent",
+            "FiveYearPlan",
+            "Unknown"
+          ]
+        },
+        "remaining_source_steps": {
+          "type": "string",
+          "enum": [
+            "None",
+            "Operations",
+            "FinalizeAfterChild",
+            "OperationsAfterChild",
+            "Unknown"
+          ]
+        },
+        "event_completed": {
+          "type": "boolean"
+        },
+        "accepted_disposition": {
+          "type": "string",
+          "enum": [
+            "None",
+            "RemoveAfterRemainingSteps"
+          ]
+        }
+      }
+    },
+    "source_ledger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dispatch_id",
+        "root",
+        "frame",
+        "source_owner",
+        "parent_provider",
+        "parent_resolution_id",
+        "parent_card_id",
+        "parent_instance_id",
+        "parent_remaining_steps",
+        "fyp_random_receipt_id",
+        "fyp_selected_instance_id",
+        "fyp_selected_card_id",
+        "fyp_selected_affiliation"
+      ],
+      "properties": {
+        "dispatch_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root": {
+          "$ref": "#/$defs/root"
+        },
+        "frame": {
+          "$ref": "#/$defs/frame"
+        },
+        "source_owner": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "parent_provider": {
+          "type": "string",
+          "enum": [
+            "None",
+            "NormalEvent",
+            "OpponentCardEvent",
+            "HeadlineEvent",
+            "Unknown"
+          ]
+        },
+        "parent_resolution_id": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "parent_card_id": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "parent_instance_id": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "parent_remaining_steps": {
+          "type": "string",
+          "enum": [
+            "None",
+            "FinalizeAfterChild",
+            "OperationsAfterChild",
+            "Unknown"
+          ]
+        },
+        "fyp_random_receipt_id": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fyp_selected_instance_id": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fyp_selected_card_id": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fyp_selected_affiliation": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "fyp_dispatch_receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "receipt_id",
+        "parent_frame_id",
+        "parent_resolution_id",
+        "parent_instance_id",
+        "parent_card_id",
+        "selected_instance_id",
+        "selected_card_id",
+        "selected_from_owner",
+        "selected_from_zone",
+        "child_frame_id",
+        "child_resolution_id",
+        "child_controller",
+        "accepted_state_version"
+      ],
+      "properties": {
+        "receipt_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parent_frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parent_resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parent_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parent_card_id": {
+          "type": "string",
+          "const": "card.five_year_plan"
+        },
+        "selected_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selected_card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selected_from_owner": {
+          "type": "string",
+          "const": "USSR"
+        },
+        "selected_from_zone": {
+          "type": "string",
+          "const": "Hand"
+        },
+        "child_frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "child_resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "child_controller": {
+          "type": "string",
+          "const": "US"
+        },
+        "accepted_state_version": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "active_effect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "instance_id",
+        "effect_id",
+        "source_card_id",
+        "controller",
+        "activation_resolution_id",
+        "activated_turn",
+        "status"
+      ],
+      "properties": {
+        "instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effect_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "controller": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "activation_resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "activated_turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "type": "string",
+          "const": "Active"
+        }
+      }
+    },
+    "successful_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resolution_id",
+        "card_id",
+        "effect_id",
+        "controller",
+        "turn"
+      ],
+      "properties": {
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effect_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "controller": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "country_influence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "country_id",
+        "US",
+        "USSR"
+      ],
+      "properties": {
+        "country_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "US": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "USSR": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "allocation_line": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "country_id",
+        "amount"
+      ],
+      "properties": {
+        "country_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "amount": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "pending_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision_id",
+        "owner",
+        "revision",
+        "frame_id",
+        "resolution_id",
+        "source_instance_id",
+        "branch",
+        "source_ledger_digest",
+        "china_digest",
+        "candidate_ids",
+        "original_start_digest"
+      ],
+      "properties": {
+        "decision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "type": "string",
+          "const": "US"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "branch": {
+          "type": "string",
+          "const": "AllocateInfluence"
+        },
+        "source_ledger_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "china_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "candidate_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "original_start_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "event_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state_version",
+        "turn",
+        "status",
+        "winner",
+        "signed_vp",
+        "root",
+        "frame",
+        "parent_frame",
+        "source_ledger",
+        "china",
+        "ordinary_cards",
+        "influence",
+        "active_effects",
+        "successful_events",
+        "effects_coverage",
+        "pending",
+        "rng_cursor",
+        "military_us",
+        "military_ussr",
+        "defcon",
+        "actual_china_use_count",
+        "fyp_dispatch_receipt"
+      ],
+      "properties": {
+        "state_version": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Active",
+            "Finished"
+          ]
+        },
+        "winner": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "signed_vp": {
+          "type": "integer"
+        },
+        "root": {
+          "$ref": "#/$defs/root"
+        },
+        "frame": {
+          "$ref": "#/$defs/frame"
+        },
+        "parent_frame": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/frame"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_ledger": {
+          "$ref": "#/$defs/source_ledger"
+        },
+        "china": {
+          "$ref": "#/$defs/china_state"
+        },
+        "ordinary_cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ordinary_card"
+          },
+          "minItems": 1
+        },
+        "influence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/country_influence"
+          },
+          "minItems": 1
+        },
+        "active_effects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/active_effect"
+          },
+          "minItems": 0
+        },
+        "successful_events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/successful_event"
+          },
+          "minItems": 0
+        },
+        "effects_coverage": {
+          "type": "string",
+          "enum": [
+            "CompleteForChinaAndDirectInfluence",
+            "Unknown"
+          ]
+        },
+        "pending": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/pending_decision"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rng_cursor": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "military_us": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "military_ussr": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "defcon": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "actual_china_use_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fyp_dispatch_receipt": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/fyp_dispatch_receipt"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "description": "Domain validation requires unique ordinary InstanceId/CardId, known physical card definitions, and each known source/parent frame to reference exactly its own InResolution accepted source while active or deferred for Operations. After that frame disposition, no entity may reference it and its source must occupy the printed resolved-event destination. The same domain check applies to fresh/choice preflight and historical receipt result, without comparing later live state."
+    },
+    "start_command": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "expected_state_version",
+        "frame_id",
+        "resolution_id",
+        "source_instance_id",
+        "dispatch_id"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_state_version": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dispatch_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "choice_command": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "expected_state_version",
+        "decision_id",
+        "decision_revision",
+        "allocation"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_state_version": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "decision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "allocation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/allocation_line"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "event_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcome",
+        "branch",
+        "state",
+        "trace"
+      ],
+      "properties": {
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "Resolved",
+            "WaitingDecision",
+            "Finished"
+          ]
+        },
+        "branch": {
+          "type": "string",
+          "enum": [
+            "TransferChina",
+            "AwardVp",
+            "AllocateInfluence"
+          ]
+        },
+        "state": {
+          "$ref": "#/$defs/event_state"
+        },
+        "trace": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "accepted_receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "request_digest",
+        "result_digest",
+        "after_digest",
+        "result",
+        "receipt_digest"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "result_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "after_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "result": {
+          "$ref": "#/$defs/event_result"
+        },
+        "receipt_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "description": "Strict shape plus independently anchored original digests and historical result frame/entity topology; matching or rehashed digests do not excuse duplicate entities in a known source/parent frame. Synthetic anchors are test premises, not authentication."
+    },
+    "replay_command": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "original_command"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "original_command": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/start_command"
+            },
+            {
+              "$ref": "#/$defs/choice_command"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
