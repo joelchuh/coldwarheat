@@ -25,7 +25,7 @@
     "授权的设计文档/数据及普通Git提交推送"
   ],
   "stop_conditions": [
-    "实际账户额度限制、用户停止、无法安全恢复的外部阻塞",
+    "可见账户额度剩余达到15%或更低时保存进度并停止；实际账户限制、用户停止或无法安全恢复的外部阻塞",
     "不自动使用额度重置、不进入C#/Unity实现"
   ],
   "rule_sources": [
@@ -125,6 +125,28 @@
       "id": "rule-package-audit",
       "status": "planned",
       "description": "全牌覆盖、已确认/待裁定分离、服务输入输出和跨模块验收；达成后再请用户决定实施阶段"
+    },
+    {
+      "id": "mid-influence3",
+      "status": "designed-pending-rulings",
+      "cards": [
+        "card.colonial_rear_guards",
+        "card.panama_canal_returned",
+        "card.puppet_governments",
+        "card.the_voice_of_america"
+      ],
+      "description": "中期影响力第三批：跨地区四国/三国固定加点、双方零影响可选布置、非欧洲限额移除；短缺边界停止，C#待实现。",
+      "wiki": "Docs/Wiki/mid-influence-batch3.md",
+      "pending_rulings": [
+        "Puppet fewer than3 empty countries",
+        "VOA fewer than4 removable influence"
+      ]
     }
-  ]
+  ],
+  "usage_budget": {
+    "description": "用户2026-10-12把原耗尽额度要求更新为保留15%。按可见窗口剩余最低值判断；缺失窗口不视作100%。",
+    "minimum_remaining_percent": 15,
+    "check_boundary": "BeforeStartingAndAfterEachCompletedBatch",
+    "consume_reset_credits": false
+  }
 }

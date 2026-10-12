@@ -1,0 +1,5575 @@
+{
+  "schema_version": 1,
+  "description": "MI3固定/选择/空国与非欧洲移除有限投影；真实服务、账本、牌区及存档未运行。",
+  "status": "mixed-reference-and-planned",
+  "dataset": "Data/Cards/deluxe-2015/mid-influence-batch3.parameters.json",
+  "schema": "Docs/Contracts/mid-influence-batch3.schema.json",
+  "cases": [
+    {
+      "id": "MI3-D-baseline",
+      "validation_layer": "data",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "MI3-D-colonial-count",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "colonial_rear_guards",
+              "target_count"
+            ],
+            "value": 3
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI3-D-colonial-amount",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "colonial_rear_guards",
+              "amount_per_country"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI3-D-colonial-asia",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "colonial_rear_guards",
+              "region_ids"
+            ],
+            "value": [
+              "region.africa",
+              "region.asia"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI3-D-colonial-owner",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "colonial_rear_guards",
+              "decision_owner"
+            ],
+            "value": "USSR"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI3-D-panama-count",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "panama_canal_returned",
+              "country_ids"
+            ],
+            "value": [
+              "country.panama"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI3-D-panama-amount",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "panama_canal_returned",
+              "amount_per_country"
+            ],
+            "value": 3
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI3-D-puppet-uncontrolled",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "puppet_governments",
+              "target_filter"
+            ],
+            "value": "Uncontrolled"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI3-D-puppet-count",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "puppet_governments",
+              "target_count"
+            ],
+            "value": 2
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI3-D-puppet-mandatory",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "puppet_governments",
+              "decline_allowed"
+            ],
+            "value": false
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI3-D-puppet-shortage",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "puppet_governments",
+              "insufficient_candidates"
+            ],
+            "value": "UseAll"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI3-D-puppet-partial",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "puppet_governments",
+              "partial_selection"
+            ],
+            "value": "Allowed"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI3-D-voa-budget",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "the_voice_of_america",
+              "total_amount"
+            ],
+            "value": 3
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI3-D-voa-cap",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "the_voice_of_america",
+              "max_per_country"
+            ],
+            "value": 4
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI3-D-voa-side",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "the_voice_of_america",
+              "remove_side"
+            ],
+            "value": "US"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI3-D-voa-region",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "the_voice_of_america",
+              "excluded_region_id"
+            ],
+            "value": "region.asia"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI3-D-voa-shortage",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "the_voice_of_america",
+              "insufficient_removable_amount"
+            ],
+            "value": "UseAll"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MI3-R-colonial-await",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-colonial-mixed",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.angola",
+          "country.sudan",
+          "country.thailand",
+          "country.burma"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.sudan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.thailand": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.burma": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-colonial-enemy-control-no-cost",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.angola",
+          "country.sudan",
+          "country.thailand",
+          "country.burma"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 0,
+              "USSR": 8
+            },
+            "country.sudan": {
+              "US": 2,
+              "USSR": 1
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.angola": {
+              "US": 1,
+              "USSR": 8
+            },
+            "country.sudan": {
+              "US": 3,
+              "USSR": 1
+            },
+            "country.thailand": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.burma": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-colonial-short",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.angola",
+          "country.sudan",
+          "country.thailand"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidSelection",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-colonial-extra",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.angola",
+          "country.sudan",
+          "country.thailand",
+          "country.burma",
+          "country.vietnam"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidSelection",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-colonial-duplicate",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.angola",
+          "country.sudan",
+          "country.thailand",
+          "country.angola"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidSelection",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-colonial-japan",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.angola",
+          "country.sudan",
+          "country.thailand",
+          "country.japan"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-colonial-india",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.angola",
+          "country.sudan",
+          "country.thailand",
+          "country.india"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-colonial-unknown",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.angola",
+          "country.sudan",
+          "country.thailand",
+          "country.moon"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-colonial-bad-type",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.angola",
+          "country.sudan",
+          "country.thailand",
+          null
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidSelection",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-colonial-decline",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Decline",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAction",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-colonial-extra-allocation",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.angola",
+          "country.sudan",
+          "country.thailand",
+          "country.burma"
+        ],
+        "allocation": [],
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidPayload",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-panama-fixed",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.panama_canal_returned",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.costa_rica": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.venezuela": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-panama-preserves-opponent",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.panama_canal_returned",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 2,
+              "USSR": 8
+            },
+            "country.venezuela": {
+              "US": 0,
+              "USSR": 5
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.panama": {
+              "US": 3,
+              "USSR": 8
+            },
+            "country.venezuela": {
+              "US": 1,
+              "USSR": 5
+            },
+            "country.costa_rica": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-panama-choose",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.panama_canal_returned",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.panama"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidPayload",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-panama-decline",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.panama_canal_returned",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Decline",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAction",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-puppet-await",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.puppet_governments",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-puppet-world",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.puppet_governments",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.france",
+          "country.thailand",
+          "country.iran"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.thailand": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.iran": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-puppet-decline",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.puppet_governments",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Decline",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-puppet-decline-has-payload",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.puppet_governments",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Decline",
+        "country_ids": [],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidPayload",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-puppet-one",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.puppet_governments",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.france"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidSelection",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-puppet-two",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.puppet_governments",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.france",
+          "country.thailand"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidSelection",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-puppet-empty",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.puppet_governments",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidSelection",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-puppet-duplicate",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.puppet_governments",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.france",
+          "country.thailand",
+          "country.france"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidSelection",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-puppet-us-present",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.puppet_governments",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.france",
+          "country.thailand",
+          "country.iran"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-puppet-ussr-present",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.puppet_governments",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.france",
+          "country.thailand",
+          "country.iran"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": 0,
+              "USSR": 1
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-puppet-tied-uncontrolled-not-empty",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.puppet_governments",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.france",
+          "country.thailand",
+          "country.iran"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": 1,
+              "USSR": 1
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state": {
+          "influence": {
+            "country.france": {
+              "US": 1,
+              "USSR": 1
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-puppet-no-target-stop",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.puppet_governments",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.canada": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.uk": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.norway": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.sweden": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.finland": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.denmark": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.benelux": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.france": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.spain_portugal": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.italy": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.greece": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.turkey": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.west_germany": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.east_germany": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.poland": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.czechoslovakia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.austria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.hungary": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.yugoslavia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.romania": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.bulgaria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.afghanistan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.pakistan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.india": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.burma": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.laos_cambodia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.thailand": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.vietnam": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.malaysia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.indonesia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.philippines": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.australia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.taiwan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.japan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.south_korea": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.north_korea": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.lebanon": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.syria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.israel": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.iraq": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.iran": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.jordan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.gulf_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.saudi_arabia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.egypt": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.libya": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.morocco": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.algeria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.tunisia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.west_african_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.saharan_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.ivory_coast": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.nigeria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.cameroon": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.zaire": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.south_africa": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.botswana": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.zimbabwe": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.southeast_african_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.kenya": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.somalia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.ethiopia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.sudan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.mexico": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.guatemala": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.el_salvador": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.honduras": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.nicaragua": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.costa_rica": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.panama": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.haiti": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.dominican_republic": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.colombia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.venezuela": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.ecuador": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.peru": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.bolivia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.paraguay": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.uruguay": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.argentina": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "influence": {
+            "country.canada": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.uk": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.norway": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.sweden": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.finland": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.denmark": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.benelux": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.france": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.spain_portugal": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.italy": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.greece": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.turkey": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.west_germany": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.east_germany": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.poland": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.czechoslovakia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.austria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.hungary": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.yugoslavia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.romania": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.bulgaria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.afghanistan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.pakistan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.india": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.burma": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.laos_cambodia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.thailand": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.vietnam": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.malaysia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.indonesia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.philippines": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.australia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.taiwan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.japan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.south_korea": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.north_korea": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.lebanon": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.syria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.israel": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.iraq": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.iran": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.jordan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.gulf_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.saudi_arabia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.egypt": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.libya": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.morocco": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.algeria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.tunisia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.west_african_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.saharan_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.ivory_coast": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.nigeria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.cameroon": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.zaire": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.south_africa": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.botswana": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.zimbabwe": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.southeast_african_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.kenya": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.somalia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.ethiopia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.sudan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.mexico": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.guatemala": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.el_salvador": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.honduras": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.nicaragua": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.costa_rica": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.panama": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.haiti": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.dominican_republic": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.colombia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.venezuela": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.ecuador": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.peru": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.bolivia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.paraguay": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.uruguay": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.argentina": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-puppet-no-target-decline",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.puppet_governments",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Decline",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.canada": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.uk": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.norway": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.sweden": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.finland": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.denmark": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.benelux": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.france": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.spain_portugal": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.italy": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.greece": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.turkey": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.west_germany": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.east_germany": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.poland": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.czechoslovakia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.austria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.hungary": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.yugoslavia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.romania": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.bulgaria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.afghanistan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.pakistan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.india": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.burma": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.laos_cambodia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.thailand": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.vietnam": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.malaysia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.indonesia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.philippines": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.australia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.taiwan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.japan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.south_korea": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.north_korea": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.lebanon": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.syria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.israel": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.iraq": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.iran": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.jordan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.gulf_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.saudi_arabia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.egypt": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.libya": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.morocco": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.algeria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.tunisia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.west_african_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.saharan_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.ivory_coast": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.nigeria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.cameroon": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.zaire": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.south_africa": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.botswana": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.zimbabwe": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.southeast_african_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.kenya": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.somalia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.ethiopia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.sudan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.mexico": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.guatemala": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.el_salvador": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.honduras": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.nicaragua": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.costa_rica": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.panama": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.haiti": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.dominican_republic": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.colombia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.venezuela": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.ecuador": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.peru": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.bolivia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.paraguay": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.uruguay": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.argentina": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "state": {
+          "influence": {
+            "country.canada": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.uk": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.norway": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.sweden": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.finland": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.denmark": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.benelux": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.france": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.spain_portugal": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.italy": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.greece": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.turkey": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.west_germany": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.east_germany": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.poland": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.czechoslovakia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.austria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.hungary": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.yugoslavia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.romania": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.bulgaria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.afghanistan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.pakistan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.india": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.burma": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.laos_cambodia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.thailand": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.vietnam": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.malaysia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.indonesia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.philippines": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.australia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.taiwan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.japan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.south_korea": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.north_korea": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.lebanon": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.syria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.israel": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.iraq": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.iran": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.jordan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.gulf_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.saudi_arabia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.egypt": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.libya": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.morocco": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.algeria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.tunisia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.west_african_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.saharan_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.ivory_coast": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.nigeria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.cameroon": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.zaire": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.south_africa": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.botswana": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.zimbabwe": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.southeast_african_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.kenya": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.somalia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.ethiopia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.sudan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.mexico": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.guatemala": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.el_salvador": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.honduras": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.nicaragua": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.costa_rica": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.panama": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.haiti": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.dominican_republic": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.colombia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.venezuela": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.ecuador": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.peru": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.bolivia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.paraguay": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.uruguay": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.argentina": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-puppet-two-target-stop",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.puppet_governments",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.france",
+          "country.iran"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.canada": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.uk": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.norway": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.sweden": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.finland": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.denmark": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.benelux": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.france": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.spain_portugal": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.italy": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.greece": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.turkey": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.west_germany": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.east_germany": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.poland": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.czechoslovakia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.austria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.hungary": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.yugoslavia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.romania": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.bulgaria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.afghanistan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.pakistan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.india": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.burma": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.laos_cambodia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.thailand": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.vietnam": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.malaysia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.indonesia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.philippines": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.australia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.taiwan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.japan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.south_korea": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.north_korea": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.lebanon": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.syria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.israel": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.iraq": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.iran": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.jordan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.gulf_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.saudi_arabia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.egypt": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.libya": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.morocco": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.algeria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.tunisia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.west_african_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.saharan_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.ivory_coast": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.nigeria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.cameroon": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.zaire": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.south_africa": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.botswana": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.zimbabwe": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.southeast_african_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.kenya": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.somalia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.ethiopia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.sudan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.mexico": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.guatemala": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.el_salvador": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.honduras": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.nicaragua": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.costa_rica": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.panama": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.haiti": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.dominican_republic": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.colombia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.venezuela": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.ecuador": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.peru": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.bolivia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.paraguay": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.uruguay": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.argentina": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "influence": {
+            "country.canada": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.uk": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.norway": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.sweden": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.finland": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.denmark": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.benelux": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.france": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.spain_portugal": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.italy": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.greece": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.turkey": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.west_germany": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.east_germany": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.poland": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.czechoslovakia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.austria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.hungary": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.yugoslavia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.romania": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.bulgaria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.afghanistan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.pakistan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.india": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.burma": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.laos_cambodia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.thailand": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.vietnam": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.malaysia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.indonesia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.philippines": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.australia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.taiwan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.japan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.south_korea": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.north_korea": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.lebanon": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.syria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.israel": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.iraq": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.iran": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.jordan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.gulf_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.saudi_arabia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.egypt": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.libya": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.morocco": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.algeria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.tunisia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.west_african_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.saharan_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.ivory_coast": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.nigeria": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.cameroon": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.zaire": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.south_africa": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.botswana": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.zimbabwe": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.southeast_african_states": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.kenya": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.somalia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.ethiopia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.sudan": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.mexico": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.guatemala": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.el_salvador": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.honduras": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.nicaragua": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.costa_rica": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.panama": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.haiti": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.dominican_republic": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.colombia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.venezuela": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.ecuador": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.peru": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.bolivia": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.brazil": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.paraguay": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.uruguay": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.argentina": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.chile": {
+              "US": 1,
+              "USSR": 0
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-voa-await",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.the_voice_of_america",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-voa-two-two",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.the_voice_of_america",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.iran",
+            "amount": 2
+          },
+          {
+            "country_id": "country.cuba",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 1
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 0
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-voa-two-one-one",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.the_voice_of_america",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.iran",
+            "amount": 2
+          },
+          {
+            "country_id": "country.cuba",
+            "amount": 1
+          },
+          {
+            "country_id": "country.angola",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "ResolvedChanged",
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 1
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 1
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 0
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-voa-europe-turkey",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.the_voice_of_america",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.turkey",
+            "amount": 2
+          },
+          {
+            "country_id": "country.iran",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-voa-over-cap",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.the_voice_of_america",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.iran",
+            "amount": 3
+          },
+          {
+            "country_id": "country.angola",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-voa-insufficient-at-target",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.the_voice_of_america",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.iran",
+            "amount": 2
+          },
+          {
+            "country_id": "country.angola",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InsufficientInfluence",
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-voa-short",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.the_voice_of_america",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.iran",
+            "amount": 2
+          },
+          {
+            "country_id": "country.cuba",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-voa-empty",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.the_voice_of_america",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": [],
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-voa-duplicate",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.the_voice_of_america",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.iran",
+            "amount": 2
+          },
+          {
+            "country_id": "country.iran",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-voa-negative",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.the_voice_of_america",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.iran",
+            "amount": -1
+          },
+          {
+            "country_id": "country.cuba",
+            "amount": 5
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-voa-fraction",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.the_voice_of_america",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.iran",
+            "amount": 1.5
+          },
+          {
+            "country_id": "country.cuba",
+            "amount": 2.5
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-voa-boolean",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.the_voice_of_america",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.iran",
+            "amount": true
+          },
+          {
+            "country_id": "country.cuba",
+            "amount": 2
+          },
+          {
+            "country_id": "country.angola",
+            "amount": 1
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAllocation",
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-voa-unknown",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.the_voice_of_america",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": [
+          {
+            "country_id": "country.iran",
+            "amount": 2
+          },
+          {
+            "country_id": "country.moon",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "IllegalTarget",
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-voa-none-stop",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.the_voice_of_america",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-voa-cap-shortage",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.the_voice_of_america",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 0,
+              "USSR": 10
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 0,
+              "USSR": 10
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-voa-europe-does-not-fill-shortage",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.the_voice_of_america",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.turkey": {
+              "US": 0,
+              "USSR": 10
+            },
+            "country.iran": {
+              "US": 0,
+              "USSR": 2
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "influence": {
+            "country.turkey": {
+              "US": 0,
+              "USSR": 10
+            },
+            "country.iran": {
+              "US": 0,
+              "USSR": 2
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-voa-extra-selection",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.the_voice_of_america",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.iran"
+        ],
+        "allocation": [
+          {
+            "country_id": "country.iran",
+            "amount": 2
+          },
+          {
+            "country_id": "country.cuba",
+            "amount": 2
+          }
+        ],
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidPayload",
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-voa-no-decline",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.the_voice_of_america",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Decline",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidAction",
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": 2,
+              "USSR": 3
+            },
+            "country.cuba": {
+              "US": 1,
+              "USSR": 2
+            },
+            "country.angola": {
+              "US": 0,
+              "USSR": 1
+            },
+            "country.turkey": {
+              "US": 0,
+              "USSR": 9
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-owner",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "USSR",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.angola",
+          "country.sudan",
+          "country.thailand",
+          "country.burma"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "Unauthorized",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-stale",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": false,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": [
+          "country.angola",
+          "country.sudan",
+          "country.thailand",
+          "country.burma"
+        ],
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "StaleResponse",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-context",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": false,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-source",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": false,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidContext",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-effects",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": false,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": false,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-incomplete",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": false,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state": {
+          "influence": {},
+          "complete_state": false,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-negative",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": -1,
+              "USSR": 0
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "InvalidState",
+        "state": {
+          "influence": {
+            "country.iran": {
+              "US": -1,
+              "USSR": 0
+            }
+          },
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-conflict",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": false,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "ConflictingRequest",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-finished",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": true,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": true,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-colonial_rear_guards-no-event",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": false,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "NotTriggered",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-colonial_rear_guards-retry",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.colonial_rear_guards",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-panama_canal_returned-no-event",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.panama_canal_returned",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": false,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "NotTriggered",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-panama_canal_returned-retry",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.panama_canal_returned",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-puppet_governments-no-event",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.puppet_governments",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": false,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "NotTriggered",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-puppet_governments-retry",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.puppet_governments",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-the_voice_of_america-no-event",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.the_voice_of_america",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": false,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "NotTriggered",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": false,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-R-the_voice_of_america-retry",
+      "validation_layer": "reference",
+      "input": {
+        "card_id": "card.the_voice_of_america",
+        "verified_internal_frame": true,
+        "authorization_card_matches": true,
+        "request_matches_receipt": true,
+        "event_attempt": true,
+        "actor": "US",
+        "revision_matches": true,
+        "root_phasing_player": "USSR",
+        "action": "Apply",
+        "country_ids": null,
+        "allocation": null,
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      },
+      "expected": {
+        "outcome": "AlreadyCompleted",
+        "state": {
+          "influence": {},
+          "complete_state": true,
+          "effects_complete": true,
+          "completed": true,
+          "finished": false,
+          "rng_cursor": 9
+        }
+      }
+    },
+    {
+      "id": "MI3-I-authenticated-us-owner-not-root-player",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "authenticated-us-owner-not-root-player",
+      "implementation_tested": false
+    },
+    {
+      "id": "MI3-I-atomic-all-selected-countries",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "atomic-all-selected-countries",
+      "implementation_tested": false
+    },
+    {
+      "id": "MI3-I-puppet-current-candidate-revalidation",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "puppet-current-candidate-revalidation",
+      "implementation_tested": false
+    },
+    {
+      "id": "MI3-I-voa-allocation-save-resume",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "voa-allocation-save-resume",
+      "implementation_tested": false
+    },
+    {
+      "id": "MI3-I-decline-success-star-disposition",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "decline-success-star-disposition",
+      "implementation_tested": false
+    },
+    {
+      "id": "MI3-I-finished-and-duplicate-ledger",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "description": "finished-and-duplicate-ledger",
+      "implementation_tested": false
+    }
+  ]
+}

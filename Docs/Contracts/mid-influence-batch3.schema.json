@@ -1,0 +1,673 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:mid-influence-batch3:1",
+  "description": "中期影响力第三批：跨地区四国/三国固定加点、双方零影响可选布置、非欧洲限额移除；短缺边界停止，C#待实现。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.mid_influence_batch3"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "release-candidate"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "C-DELUXE-EN"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf"
+            },
+            "edition": {
+              "const": "English Deluxe card images"
+            },
+            "description": {
+              "const": "p10 #63非洲/东南亚四个不同国家各US1；#64 Panama/CostaRica/Venezuela各US1；#66可向三个双方均零影响国各US1；p11 #74非欧洲移除USSR总4每国最多2。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "R2015"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf"
+            },
+            "edition": {
+              "const": "Deluxe rules 2015"
+            },
+            "description": {
+              "const": "§2.1地区/子地区；§5.2事件方与无变化事件；§6.1.1直接事件不受普通OPS邻接/敌控费用。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "PROJECT-MI3"
+            },
+            "url": {
+              "const": null
+            },
+            "edition": {
+              "const": "Engineering contracts and unresolved shortages, 2026-10-12"
+            },
+            "description": {
+              "const": "完整选择/移除计划原子提交；Puppet may允许拒绝全部但未授权任选少于3国；Puppet不足3合法国与VOA不足4可移除量RequiresRuling，未借用其他牌的用户短缺解释。"
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "colonial_rear_guards",
+        "panama_canal_returned",
+        "puppet_governments",
+        "the_voice_of_america"
+      ],
+      "properties": {
+        "colonial_rear_guards": {
+          "$ref": "#/$defs/colonial_rear_guards"
+        },
+        "panama_canal_returned": {
+          "$ref": "#/$defs/panama_canal_returned"
+        },
+        "puppet_governments": {
+          "$ref": "#/$defs/puppet_governments"
+        },
+        "the_voice_of_america": {
+          "$ref": "#/$defs/the_voice_of_america"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "colonial_rear_guards": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "decision_owner",
+        "region_ids",
+        "region_membership",
+        "target_count",
+        "amount_per_country",
+        "target_control",
+        "selection_commit",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.colonial_rear_guards"
+        },
+        "effect_id": {
+          "const": "effect.colonial_rear_guards"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "AddToDistinctRegionalCountries"
+        },
+        "beneficiary": {
+          "const": "US"
+        },
+        "decision_owner": {
+          "const": "US"
+        },
+        "region_ids": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "const": "region.africa"
+            },
+            {
+              "const": "region.southeast_asia"
+            }
+          ],
+          "items": false
+        },
+        "region_membership": {
+          "const": "PrimaryOrSubregion"
+        },
+        "target_count": {
+          "const": 4
+        },
+        "amount_per_country": {
+          "const": 1
+        },
+        "target_control": {
+          "const": "Any"
+        },
+        "selection_commit": {
+          "const": "AtomicCompleteSelection"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "p10 #63非洲/东南亚四个不同国家各US1；#64 Panama/CostaRica/Venezuela各US1；#66可向三个双方均零影响国各US1；p11 #74非欧洲移除USSR总4每国最多2。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "§2.1地区/子地区；§5.2事件方与无变化事件；§6.1.1直接事件不受普通OPS邻接/敌控费用。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-MI3"
+                },
+                "locator": {
+                  "const": "完整选择/移除计划原子提交；Puppet may允许拒绝全部但未授权任选少于3国；Puppet不足3合法国与VOA不足4可移除量RequiresRuling，未借用其他牌的用户短缺解释。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "panama_canal_returned": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "decision_owner",
+        "country_ids",
+        "amount_per_country",
+        "commit_policy",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.panama_canal_returned"
+        },
+        "effect_id": {
+          "const": "effect.panama_canal_returned"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "AddToFixedCountries"
+        },
+        "beneficiary": {
+          "const": "US"
+        },
+        "decision_owner": {
+          "const": "US"
+        },
+        "country_ids": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "const": "country.panama"
+            },
+            {
+              "const": "country.costa_rica"
+            },
+            {
+              "const": "country.venezuela"
+            }
+          ],
+          "items": false
+        },
+        "amount_per_country": {
+          "const": 1
+        },
+        "commit_policy": {
+          "const": "AtomicAllFixedCountries"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "p10 #63非洲/东南亚四个不同国家各US1；#64 Panama/CostaRica/Venezuela各US1；#66可向三个双方均零影响国各US1；p11 #74非欧洲移除USSR总4每国最多2。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "§2.1地区/子地区；§5.2事件方与无变化事件；§6.1.1直接事件不受普通OPS邻接/敌控费用。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-MI3"
+                },
+                "locator": {
+                  "const": "完整选择/移除计划原子提交；Puppet may允许拒绝全部但未授权任选少于3国；Puppet不足3合法国与VOA不足4可移除量RequiresRuling，未借用其他牌的用户短缺解释。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "puppet_governments": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "decision_owner",
+        "target_count",
+        "amount_per_country",
+        "target_filter",
+        "selection_time",
+        "decline_allowed",
+        "partial_selection",
+        "insufficient_candidates",
+        "selection_commit",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.puppet_governments"
+        },
+        "effect_id": {
+          "const": "effect.puppet_governments"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "OptionalAddToEmptyCountries"
+        },
+        "beneficiary": {
+          "const": "US"
+        },
+        "decision_owner": {
+          "const": "US"
+        },
+        "target_count": {
+          "const": 3
+        },
+        "amount_per_country": {
+          "const": 1
+        },
+        "target_filter": {
+          "const": "BothSidesZeroInfluence"
+        },
+        "selection_time": {
+          "const": "EventResolutionSnapshot"
+        },
+        "decline_allowed": {
+          "const": true
+        },
+        "partial_selection": {
+          "const": "InvalidSelection"
+        },
+        "insufficient_candidates": {
+          "const": "RequiresRuling"
+        },
+        "selection_commit": {
+          "const": "AtomicCompleteSelection"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "p10 #63非洲/东南亚四个不同国家各US1；#64 Panama/CostaRica/Venezuela各US1；#66可向三个双方均零影响国各US1；p11 #74非欧洲移除USSR总4每国最多2。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "§2.1地区/子地区；§5.2事件方与无变化事件；§6.1.1直接事件不受普通OPS邻接/敌控费用。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-MI3"
+                },
+                "locator": {
+                  "const": "完整选择/移除计划原子提交；Puppet may允许拒绝全部但未授权任选少于3国；Puppet不足3合法国与VOA不足4可移除量RequiresRuling，未借用其他牌的用户短缺解释。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "the_voice_of_america": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "decision_owner",
+        "excluded_region_id",
+        "remove_side",
+        "total_amount",
+        "max_per_country",
+        "requires_existing_influence",
+        "insufficient_removable_amount",
+        "allocation_commit",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.the_voice_of_america"
+        },
+        "effect_id": {
+          "const": "effect.the_voice_of_america"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "RemoveInfluenceBudgetOutsideRegion"
+        },
+        "beneficiary": {
+          "const": "US"
+        },
+        "decision_owner": {
+          "const": "US"
+        },
+        "excluded_region_id": {
+          "const": "region.europe"
+        },
+        "remove_side": {
+          "const": "USSR"
+        },
+        "total_amount": {
+          "const": 4
+        },
+        "max_per_country": {
+          "const": 2
+        },
+        "requires_existing_influence": {
+          "const": true
+        },
+        "insufficient_removable_amount": {
+          "const": "RequiresRuling"
+        },
+        "allocation_commit": {
+          "const": "AtomicCompleteAllocation"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "p10 #63非洲/东南亚四个不同国家各US1；#64 Panama/CostaRica/Venezuela各US1；#66可向三个双方均零影响国各US1；p11 #74非欧洲移除USSR总4每国最多2。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "§2.1地区/子地区；§5.2事件方与无变化事件；§6.1.1直接事件不受普通OPS邻接/敌控费用。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-MI3"
+                },
+                "locator": {
+                  "const": "完整选择/移除计划原子提交；Puppet may允许拒绝全部但未授权任选少于3国；Puppet不足3合法国与VOA不足4可移除量RequiresRuling，未借用其他牌的用户短缺解释。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    }
+  }
+}

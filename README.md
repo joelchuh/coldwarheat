@@ -85,4 +85,6 @@
 
 此前：[陷阱根行动与共享标准骰](Docs/Wiki/trap-events.md)，当时累计65 Bound /37 Unresolved，102处理器planned。
 
-最新：[Junta分步事件](Docs/Wiki/junta.md)，累计66 Bound /36 Unresolved，102处理器planned。
+此前：[Junta分步事件](Docs/Wiki/junta.md)，累计66 Bound /36 Unresolved，102处理器planned。
+
+最新：[中期影响力第三批](Docs/Wiki/mid-influence-batch3.md)，70 Bound /32 Unresolved，102处理器仍planned，短缺待裁定不是默认放行。

@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "id": "data.mid-influence-batch3",
+  "kind": "data",
+  "status": "ready",
+  "description": "中期影响力第三批：跨地区四国/三国固定加点、双方零影响可选布置、非欧洲限额移除；短缺边界停止，C#待实现。",
+  "dataset_id": "effects.deluxe2015.mid_influence_batch3",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/mid-influence-batch3.schema.json",
+  "documentation": "Docs/Wiki/mid-influence-batch3.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/mid-influence-batch3.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "可信事件帧、当前完整影响力/地区定义、US国家选择或移除分配"
+  ],
+  "outputs": [
+    "只读四种封闭影响力策略、完整计划或明确待裁定"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "map.deluxe2015.world",
+    "cards.deluxe2015.definitions"
+  ],
+  "preconditions": [
+    "Bound只表示参数契约；102个处理器仍planned",
+    "待选方案使用同一状态版本，当前相关活动干预已核实"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "Puppet加点分支不足3国；VOA受每国上限约束的可移除量不足4",
+    "无效目标/额度、错误Owner/Revision、未知数据或干预"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "p10 #63非洲/东南亚四个不同国家各US1；#64 Panama/CostaRica/Venezuela各US1；#66可向三个双方均零影响国各US1；p11 #74非欧洲移除USSR总4每国最多2。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.1地区/子地区；§5.2事件方与无变化事件；§6.1.1直接事件不受普通OPS邻接/敌控费用。"
+    },
+    {
+      "id": "PROJECT-MI3",
+      "url": null,
+      "edition": "Engineering contracts and unresolved shortages, 2026-10-12",
+      "description": "完整选择/移除计划原子提交；Puppet may允许拒绝全部但未授权任选少于3国；Puppet不足3合法国与VOA不足4可移除量RequiresRuling，未借用其他牌的用户短缺解释。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/mid-influence-batch3.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/mid-influence-batch3.validation.json"
+  }
+}

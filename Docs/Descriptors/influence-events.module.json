@@ -1,7 +1,8 @@
 {
   "schema_version": 1,
   "inputs": [
-    "稳定CardId/EffectId；版本匹配的已核对参数与权威事件上下文"
+    "稳定CardId/EffectId；版本匹配的已核对参数与权威事件上下文",
+    "MI3地区并集/排除查询、双方零影响筛选、完整选国/移除额度与可选拒绝"
   ],
   "outputs": [
     "只读参数或拟定的影响力增量计划/待选择"
@@ -16,7 +17,8 @@
     "未知模板、缺失参数、来源冲突或重复ID",
     "越界/重复目标、错误拥有者或过期决策",
     "未实现处理器不得按空效果放行",
-    "其他跨卡干预仍须裁定；铁娘子活动状态未知时不可视为未生效"
+    "其他跨卡干预仍须裁定；铁娘子活动状态未知时不可视为未生效",
+    "Puppet少于3合法国的加点分支、VOA可移除总量不足4：RequiresRuling"
   ],
   "rule_sources": [
     {
@@ -29,13 +31,13 @@
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "edition": "GMT-hosted compilation, English Deluxe card images",
-      "description": "四批共12张影响力事件英文卡图：p2 #7/#8、p3 #12/#14/#15/#16、p4 #19/#22/#23、p5 #28/#29/#30；另核对p13 #83禁止关系。 DS1另目视p6 #33。 SS1: p4 #18一格推进；p11 #68 Poland移除2USSR再加1US并允许Solidarity；p15 #101 Pope生效才可事件加3US。 MI2: p9 #53两分支SouthAfrica USSR2或USSR1＋邻国总2；#56从8具名国家选两国清US；p11 #75中美总3USSR每国最多2。均无星号。 J1: p8 #47中南美一国加2，随后可免费政变/调整，用此牌OPS；Neutral2Mid非星号。"
+      "description": "四批共12张影响力事件英文卡图：p2 #7/#8、p3 #12/#14/#15/#16、p4 #19/#22/#23、p5 #28/#29/#30；另核对p13 #83禁止关系。 DS1另目视p6 #33。 SS1: p4 #18一格推进；p11 #68 Poland移除2USSR再加1US并允许Solidarity；p15 #101 Pope生效才可事件加3US。 MI2: p9 #53两分支SouthAfrica USSR2或USSR1＋邻国总2；#56从8具名国家选两国清US；p11 #75中美总3USSR每国最多2。均无星号。 J1: p8 #47中南美一国加2，随后可免费政变/调整，用此牌OPS；Neutral2Mid非星号。 MI3: p10 #63非洲/东南亚四个不同国家各US1；#64 Panama/CostaRica/Venezuela各US1；#66可向三个双方均零影响国各US1；p11 #74非欧洲移除USSR总4每国最多2。"
     },
     {
       "id": "R2015",
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
       "edition": "Deluxe rules 2015",
-      "description": "Deluxe 2015：地区/控制权、游戏时代、事件选择权与结果、直接事件与OPS边界；项目短缺解释另列PROJECT-EI2及PROJECT-AP1。 SS1: §2.2.4–5星号/永久标记；§5.2/5.3实际事件与牌区；§6.1.1直接影响力；§6.4太空奖励/能力与事件推进；§7.3永久效果。 MI2: §5.2受益方/事件无变化仍成功；§6.1.1直接事件无OPS邻接/费用；地图正式邻接单一来源。 J1: §6.1.1事件加影响与OPS区别、§6.2/6.3常规行动、§7.4有效OPS、§8.1核战责任/§8.2.5免费政变0军事。"
+      "description": "Deluxe 2015：地区/控制权、游戏时代、事件选择权与结果、直接事件与OPS边界；项目短缺解释另列PROJECT-EI2及PROJECT-AP1。 SS1: §2.2.4–5星号/永久标记；§5.2/5.3实际事件与牌区；§6.1.1直接影响力；§6.4太空奖励/能力与事件推进；§7.3永久效果。 MI2: §5.2受益方/事件无变化仍成功；§6.1.1直接事件无OPS邻接/费用；地图正式邻接单一来源。 J1: §6.1.1事件加影响与OPS区别、§6.2/6.3常规行动、§7.4有效OPS、§8.1核战责任/§8.2.5免费政变0军事。 MI3: §2.1地区/子地区；§5.2事件方与无变化事件；§6.1.1直接事件不受普通OPS邻接/敌控费用。"
     },
     {
       "id": "PROJECT-EI2",
@@ -84,6 +86,12 @@
       "url": null,
       "edition": "Typed grant/continuation contracts, 2026-10-06",
       "description": "固定影响步骤先提交，另存可选授权与继续位置；首合法尝试锁模式和调整地区，拒绝不锁，预算一次引用源牌，未知来源/中断/合法性停止。"
+    },
+    {
+      "id": "PROJECT-MI3",
+      "url": null,
+      "edition": "Engineering contracts and unresolved shortages, 2026-10-12",
+      "description": "完整选择/移除计划原子提交；Puppet may允许拒绝全部但未授权任选少于3国；Puppet不足3合法国与VOA不足4可移除量RequiresRuling，未借用其他牌的用户短缺解释。"
     }
   ],
   "tests": [
@@ -122,13 +130,17 @@
     {
       "path": "Docs/Design/junta.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/mid-influence-batch3.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "documentation": "Docs/Wiki/influence-relocation.md",
   "id": "module.influence-events",
   "kind": "module",
   "status": "planned",
-  "description": "影响力增减/追平/控制筛选与迁移选择；额度、守恒及可恢复决策，22牌已知参数Bound，C#待实现。",
+  "description": "影响力增减/追平/控制筛选与迁移、固定与可选多国选择；完整计划及短缺停止，卡牌参数逐批绑定，C#待实现。",
   "entrypoints": [],
   "planned_entrypoints": [
     {
@@ -169,7 +181,8 @@
     "effects.deluxe2015.mid_influence_batch1",
     "effects.deluxe2015.solidarity_chain",
     "effects.deluxe2015.mid_influence_batch2",
-    "effects.deluxe2015.junta"
+    "effects.deluxe2015.junta",
+    "effects.deluxe2015.mid_influence_batch3"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:early-influence-parameters:1",
@@ -180,11 +193,12 @@
     "urn:coldwarheat:contract:mid-influence-batch1:1",
     "urn:coldwarheat:contract:solidarity-chain:1",
     "urn:coldwarheat:contract:mid-influence-batch2:1",
-    "urn:coldwarheat:contract:junta:1"
+    "urn:coldwarheat:contract:junta:1",
+    "urn:coldwarheat:contract:mid-influence-batch3:1"
   ],
   "verification": {
     "implementation_tested": false,
     "report": "Docs/Design/alliance-prerequisites.validation.json",
-    "latest_design_report": "Docs/Design/junta.validation.json"
+    "latest_design_report": "Docs/Design/mid-influence-batch3.validation.json"
   }
 }
