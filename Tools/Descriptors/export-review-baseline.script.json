@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "id": "script.export-review-baseline",
+  "kind": "script",
+  "status": "ready",
+  "description": "将已核对HEAD的干净本地Git工作区中受跟踪文件的实际字节导出到全新目录，写SHA256基线清单；只读Git，不提交、检出、联网或清理失败产物。",
+  "entrypoints": [
+    {
+      "path": "Tools/Scripts/export-review-baseline.ps1",
+      "symbol": null
+    }
+  ],
+  "documentation": "Docs/Wiki/export-review-baseline.md",
+  "runtime": {
+    "powershell_minimum": "7.0",
+    "tested_platform": "Windows",
+    "tested_powershell": "7.6.5",
+    "other_platforms_tested": false
+  },
+  "inputs": [
+    "ProjectRoot：本地普通Git仓库根的绝对路径；必须有真实.git目录，不能为盘根或工作树链接。",
+    "Destination：父目录已存在的全新绝对目录路径；源/目标不能相同、包含或被包含；不覆盖已有文件或目录。",
+    "GitExecutable：调用者信任的本地Git可执行文件绝对路径；不从描述动态下载或执行命令文本。",
+    "ExpectedHead：调用者已核对的完整小写HEAD对象ID，不能用HEAD、分支名或缩写。"
+  ],
+  "outputs": [
+    "退出0和complete/head/copied_files/manifest/source_clean_before_after JSON。",
+    "Destination内只复制ls-files --stage列出的常规受跟踪工作文件字节；不复制.git、未跟踪或忽略文件。",
+    ".baseline-meta.json：schema_version、complete=true、head、copied_files、source_clean_before_after和相对路径到SHA256的sha256表。",
+    "保留.baseline-incomplete.json开始标记；仅完整成功清单及其全部SHA核对通过可将该目录视为有效基线。",
+    "失败退出1和error_code/destination_created/partial_output_retained；不生成有效成功清单，不删除失败目录。"
+  ],
+  "dependencies": [
+    {
+      "name": "Git",
+      "role": "仅rev-parse、ls-files、status子命令；每次调用超时30秒，无自动重试"
+    }
+  ],
+  "data_dependencies": [],
+  "preconditions": [
+    "先读完整描述并核对本次源/目标授权；描述本身不授予执行权限。",
+    "工作期间源目录、Git元数据、目标目录及祖先无并发修改；检查不是操作系统级原子快照或防御恶意并发写入的沙箱。",
+    "调用者确认所有输入在物理本地存储，不使用网络挂载、同步服务远程占位文件；Windows另外要求Fixed盘，盘类型不能证明存储绝无远程后端。",
+    "普通非空Git仓库；无目录链接/符号链接/重解析点、子模块、未合并条目、assume-unchanged或skip-worktree。",
+    "不支持.git文件工作树、bare仓库、.git/commondir共享元数据重定向、Git扩展配置、include/includeIf、filter配置、config.worktree或对象alternates；commondir在启动任何Git子进程前拒绝。",
+    "Git全局/系统配置和继承GIT_*环境不参与运行；系统attributes关闭，core.excludesFile/core.attributesFile指向空设备，fsmonitor、可选索引写入关闭。仓库内.gitignore/.gitattributes仍适用。依赖外部换行/忽略设置的仓库可能被拒绝为不干净；不自行改配置。",
+    "保留三个根文件名：.baseline-meta.json、.baseline-incomplete.json、.baseline-success.pending.json。保守拒绝Windows设备名/路径别名，大小写冲突和非UTF8路径。"
+  ],
+  "side_effects": [
+    "仅在全新Destination创建目录、复制文件和写元数据；完成时将本次pending清单重命名为正式清单，无覆盖。",
+    "不写源文件、Git索引/配置，不运行hooks、过滤器、checkout、commit、push、fetch或网络命令，不复制ACL/时间戳/Unix执行权限。"
+  ],
+  "stop_conditions": [
+    "输入/路径/父目录/可执行文件不合法，目标已存在或根重叠。",
+    "HEAD不匹配、工作区含未提交或非忽略未跟踪文件、索引/配置/受跟踪清单发生变化。",
+    "路径越界/别名/重解析点，缺失文件、特殊Git条目、不支持的本地配置。",
+    "源或目标SHA不一致、目标文件数或标记改变、Git失败/30秒超时、IO失败。停止后换新的目标再重跑，不在旧目录续写。"
+  ],
+  "rule_sources": [
+    {
+      "id": "PROJECT-WORKFLOW",
+      "path": "Docs/Workflow/workflow-policy.json",
+      "description": ">=3次不同实际使用且未来复用，描述/文档/真实验收同步；未知状态停止，Git发布仍由独立授权工作流完成。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Tools/Tests/export-review-baseline.tests.ps1",
+      "status": "passed-script-runtime",
+      "count": 34
+    }
+  ],
+  "verification": {
+    "report": "Docs/Design/export-review-baseline.validation.json",
+    "script_runtime_tested": true,
+    "independent_review": "ready-no-findings-after-commondir-fix",
+    "game_runtime_tests_run": 0
+  },
+  "scriptification_evidence": {
+    "condition": "repeated_workflow",
+    "observed_occurrences": 4,
+    "expected_future_reuse": true,
+    "stable_inputs_outputs_and_steps": true,
+    "contexts": [
+      {
+        "worklog": "Docs/Worklogs/2026-10-06-persistent-effects-batch2-design.md",
+        "head": "4e3610a484ea03852987f1e05b61abdb801eefec",
+        "observed_baseline_files": 269
+      },
+      {
+        "worklog": "Docs/Worklogs/2026-10-06-un-intervention-design.md",
+        "head": "fdbd66bf2846f255a031b7add1196a8d1c5f90a9",
+        "observed_baseline_files": 276
+      },
+      {
+        "worklog": "Docs/Worklogs/2026-10-06-trap-events-design.md",
+        "head": "a72493994dfe99aed37d5ae6c808f7b6686b7fbf",
+        "observed_baseline_files": 284
+      },
+      {
+        "worklog": "Docs/Worklogs/2026-10-06-junta-design.md",
+        "head": "06bae390f759713b31f593d847034d01f32dcce3",
+        "observed_baseline_files": 295
+      }
+    ],
+    "scope_note": "四份实际.baseline-meta.json及四个一次性复制入口证明四个独立使用场景；不是重试计数。只固化共同导出步骤，不固化逐卡临时校验，也不增加游戏规则检查数。"
+  }
+}

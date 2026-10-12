@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "id": "script.test-review-baseline-export",
+  "kind": "script",
+  "status": "ready",
+  "description": "在全新自有临时目录运行审阅基线导出器的真实PowerShell/Git正负例；测试内Git提交只用于合成仓库，保留所有测试产物。",
+  "entrypoints": [
+    {
+      "path": "Tools/Tests/export-review-baseline.tests.ps1",
+      "symbol": null
+    }
+  ],
+  "documentation": "Docs/Wiki/export-review-baseline.md",
+  "inputs": [
+    "GitExecutable：调用者信任的本地Git绝对路径。",
+    "FixtureRoot可选：必须不存在，且祖先无重解析点；默认系统临时目录中的GUID新目录。",
+    "TestCases可选：固定测试ID的唯一子集；不传则运行完整34项。"
+  ],
+  "outputs": [
+    "JSON passed/failed/results/runtime/fixture_root与进程退出码；任一项失败退出1。",
+    "真实临时Git仓库及成功/失败输出保留供检查，不自动删除。",
+    "commondir回归使用真实共享元数据及受控clean filter，核对启动Git前拒绝、filter sentinel未产生、源与common元数据不变。"
+  ],
+  "dependencies": [
+    {
+      "id": "script.export-review-baseline",
+      "descriptor": "Tools/Descriptors/export-review-baseline.script.json"
+    },
+    {
+      "name": "Git",
+      "role": "仅自有合成仓库创建/暂存/提交/配置；全局和系统配置隔离"
+    }
+  ],
+  "preconditions": [
+    "PowerShell 7.x；Windows 7.6.5实测，其他平台未执行。",
+    "被测导出器只支持普通.git目录，不支持.git/commondir共享元数据；此布局只在自有fixture中作为必须拒绝的反例构造。",
+    "只指定自有物理本地的新临时目录；调用者先确认不是网络/远程占位路径。",
+    "Windows测试需要创建目录junction的权限；权限不足记失败，不能当作通过。",
+    "完整测试为并发修改/失败场景创建大文件，可能保留约1GB产物；由调用者以后明确决定清理。",
+    "子进程上限60秒；测试目录互不重用；不传项目工作目录作FixtureRoot。"
+  ],
+  "side_effects": [
+    "新FixtureRoot内创建合成文件、目录链接、Git对象/配置/索引/提交以及导出文件；没有项目Git或全局Git写入，没有网络。"
+  ],
+  "stop_conditions": [
+    "已存在或链接FixtureRoot、未知/重复测试ID、Git不可用、任一验收失败。"
+  ],
+  "rule_sources": [
+    {
+      "id": "PROJECT-WORKFLOW",
+      "path": "Docs/Workflow/workflow-policy.json",
+      "description": "正式工具需要真实边界验收；测试脚本属于同一成熟导出工作流的验证入口，不是游戏实现。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Tools/Tests/export-review-baseline.tests.ps1",
+      "status": "passed-script-runtime",
+      "count": 34
+    }
+  ],
+  "verification": {
+    "report": "Docs/Design/export-review-baseline.validation.json",
+    "script_runtime_tested": true,
+    "independent_review": "ready-no-findings-after-commondir-fix",
+    "game_runtime_tests_run": 0
+  }
+}

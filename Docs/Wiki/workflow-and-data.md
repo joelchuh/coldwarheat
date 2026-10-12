@@ -75,3 +75,5 @@ planned 状态的描述只能用于规划；entrypoints 不得指向尚不存在
 [返回索引](index.md)
 
 已固化[只读设计快照核验](design-snapshot-verifier.md)，JSON描述先行，报告作为共享查找输入；四个独立批次的复用依据见scriptification_evidence。逐卡临时模型没有因此变成正式工具。
+
+已固化[审阅基线导出](export-review-baseline.md)，四次独立实际复用依据见导出描述；真实工具测试与独立完成稿审阅分别记录，不并入规则检查数。

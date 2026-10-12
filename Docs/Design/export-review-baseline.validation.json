@@ -1,0 +1,205 @@
+{
+  "passed": 34,
+  "results": [
+    {
+      "passed": true,
+      "id": "exact-working-bytes",
+      "expected_error": null
+    },
+    {
+      "passed": true,
+      "id": "wrong-head",
+      "expected_error": "HEAD_MISMATCH"
+    },
+    {
+      "passed": true,
+      "id": "dirty-tracked",
+      "expected_error": "SOURCE_NOT_CLEAN"
+    },
+    {
+      "passed": true,
+      "id": "staged-change",
+      "expected_error": "SOURCE_NOT_CLEAN"
+    },
+    {
+      "passed": true,
+      "id": "untracked-source",
+      "expected_error": "SOURCE_NOT_CLEAN"
+    },
+    {
+      "passed": true,
+      "id": "existing-destination",
+      "expected_error": "DESTINATION_EXISTS"
+    },
+    {
+      "passed": true,
+      "id": "nested-destination",
+      "expected_error": "OVERLAPPING_ROOTS"
+    },
+    {
+      "passed": true,
+      "id": "source-subdirectory",
+      "expected_error": "UNSUPPORTED_REPOSITORY"
+    },
+    {
+      "passed": true,
+      "id": "source-link",
+      "expected_error": "REPARSE_POINT_REJECTED"
+    },
+    {
+      "passed": true,
+      "id": "destination-parent-link",
+      "expected_error": "REPARSE_POINT_REJECTED"
+    },
+    {
+      "passed": true,
+      "id": "tracked-directory-link",
+      "expected_error": "REPARSE_POINT_REJECTED"
+    },
+    {
+      "passed": true,
+      "id": "tracked-symlink-mode",
+      "expected_error": "UNSUPPORTED_TRACKED_ENTRY"
+    },
+    {
+      "passed": true,
+      "id": "submodule-mode",
+      "expected_error": "UNSUPPORTED_TRACKED_ENTRY"
+    },
+    {
+      "passed": true,
+      "id": "metadata-collision",
+      "expected_error": "RESERVED_METADATA_PATH"
+    },
+    {
+      "passed": true,
+      "id": "invalid-head",
+      "expected_error": "INVALID_EXPECTED_HEAD"
+    },
+    {
+      "passed": true,
+      "id": "relative-destination",
+      "expected_error": "ABSOLUTE_LOCAL_PATH_REQUIRED"
+    },
+    {
+      "passed": true,
+      "id": "missing-git",
+      "expected_error": "INVALID_GIT_EXECUTABLE"
+    },
+    {
+      "passed": true,
+      "id": "config-include",
+      "expected_error": "UNSAFE_GIT_CONFIGURATION"
+    },
+    {
+      "passed": true,
+      "id": "config-bom-include",
+      "expected_error": "UNSAFE_GIT_CONFIGURATION"
+    },
+    {
+      "passed": true,
+      "id": "config-filter",
+      "expected_error": "UNSAFE_GIT_CONFIGURATION"
+    },
+    {
+      "passed": true,
+      "id": "commondir-filter-rejected",
+      "expected_error": "UNSUPPORTED_REPOSITORY"
+    },
+    {
+      "passed": true,
+      "id": "external-excludes",
+      "expected_error": "SOURCE_NOT_CLEAN"
+    },
+    {
+      "passed": true,
+      "id": "external-attributes",
+      "expected_error": "SOURCE_NOT_CLEAN"
+    },
+    {
+      "passed": true,
+      "id": "hooks-disabled",
+      "expected_error": null
+    },
+    {
+      "passed": true,
+      "id": "assume-unchanged",
+      "expected_error": "UNSUPPORTED_INDEX_FLAGS"
+    },
+    {
+      "passed": true,
+      "id": "skip-worktree",
+      "expected_error": "UNSUPPORTED_INDEX_FLAGS"
+    },
+    {
+      "passed": true,
+      "id": "partial-copy-failure",
+      "expected_error": "IO_FAILURE"
+    },
+    {
+      "passed": true,
+      "id": "concurrent-source-change",
+      "expected_error": "SOURCE_NOT_CLEAN"
+    },
+    {
+      "passed": true,
+      "id": "concurrent-head-change",
+      "expected_error": "HEAD_MISMATCH"
+    },
+    {
+      "passed": true,
+      "id": "ambient-git-environment",
+      "expected_error": null
+    },
+    {
+      "passed": true,
+      "id": "git-metadata-link",
+      "expected_error": "REPARSE_POINT_REJECTED"
+    },
+    {
+      "passed": true,
+      "id": "unsafe-tracked-path",
+      "expected_error": "UNSAFE_TRACKED_PATH"
+    },
+    {
+      "passed": true,
+      "id": "runner-existing-root"
+    },
+    {
+      "passed": true,
+      "id": "runner-unknown-case"
+    }
+  ],
+  "runtime": "7.6.5",
+  "failed": 0,
+  "schema_version": 1,
+  "description": "Real exporter PS/Git fixture tests; tool verification only, no rule/runtime-game count.",
+  "scope": "script-runtime",
+  "git_version": "git version 2.53.0.windows.3",
+  "game_runtime_tests_run": 0,
+  "independent_review": {
+    "status": "ready-no-findings",
+    "critical": 0,
+    "important": 0,
+    "minor": 0,
+    "initial_review": "P1 commondir bypass found; original33 independently passed",
+    "recheck": "Only2 production guard lines changed; independent new regression1pass plus original bypass probe rejected; no sentinel/output, source/common bytes unchanged",
+    "scope": "Both PS parse; hashes/descriptors/paths/report34unique pass checked. Full34not rerun in recheck; prior33already independently run. No game runtime tests."
+  },
+  "fixture_policy": "Fresh owned C workspace root; full output and fixtures retained in the session, machine path omitted from repository report.",
+  "validated_sha256": {
+    "Tools/Scripts/export-review-baseline.ps1": "c6271003fab91594c9ca98e8daf5383ed17b84c52637eea5407c65be0464d75b",
+    "Tools/Tests/export-review-baseline.tests.ps1": "2cfaabe14bc9c198b6129146914ee3f79276a55df6f4dee23800c8e9eddc6c6e"
+  },
+  "review_remediation": {
+    "finding": "P1 unchecked common/config through .git/commondir",
+    "red": "Controlled clean filter executed in real fixture before fix",
+    "fix": "Reject .git/commondir before any Git process",
+    "regression": "commondir-filter-rejected",
+    "recheck": "P1 closed by original independent reviewer; ReadyYes"
+  },
+  "new_cases_passed": 34,
+  "previous_cases_passed": 0,
+  "total_cases_passed": 34,
+  "count_scope": "34 actual workflow-script cases only; rule-design total remains 1884; no game runtime tests"
+}

@@ -13,6 +13,18 @@
       "description": "运行设计快照核验器的真实文件系统正负例：必须用新临时目录，拒绝已存在根/未知测试名/父目录链接，保留测试产物；不运行游戏。",
       "status": "ready",
       "descriptor": "Tools/Descriptors/verify-design-snapshot.tests.script.json"
+    },
+    {
+      "id": "script.export-review-baseline",
+      "description": "将已核对HEAD的干净本地Git工作区中受跟踪文件的实际字节导出到全新目录，写SHA256基线清单；只读Git，不提交、检出、联网或清理失败产物。",
+      "status": "ready",
+      "descriptor": "Tools/Descriptors/export-review-baseline.script.json"
+    },
+    {
+      "id": "script.test-review-baseline-export",
+      "description": "在全新自有临时目录运行审阅基线导出器的真实PowerShell/Git正负例；测试内Git提交只用于合成仓库，保留所有测试产物。",
+      "status": "ready",
+      "descriptor": "Tools/Descriptors/export-review-baseline.tests.script.json"
     }
   ]
 }
