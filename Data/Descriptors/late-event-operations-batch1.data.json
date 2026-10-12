@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "id": "data.late-event-operations-batch1",
+  "kind": "data",
+  "status": "ready",
+  "description": "KAL-007, Glasnost and Ortega ordered prefixes with typed restricted operation grants; all runtime handlers remain planned.",
+  "dataset_id": "effects.deluxe2015.late_event_operations_batch1",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/late-event-operations-batch1.schema.json",
+  "documentation": "Docs/Wiki/late-event-operations-batch1.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/late-event-operations-batch1.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "Source-root identity, accepted prefix receipt, exact current continuation and scoped restriction evidence"
+  ],
+  "outputs": [
+    "Read-only ordered prefixes, restricted grants and shared operation request contracts"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "effects.deluxe2015.defcon_events_batch1",
+    "effects.deluxe2015.event_operations_batch1",
+    "effects.deluxe2015.hand_events_batch1",
+    "effects.deluxe2015.late_influence_batch1",
+    "effects.deluxe2015.persistent_batch1",
+    "effects.deluxe2015.persistent_batch2",
+    "effects.deluxe2015.reveal_ops_batch1",
+    "map.deluxe2015.world",
+    "rules.deluxe2015.defcon",
+    "rules.deluxe2015.military-operations",
+    "rules.deluxe2015.turn-flow",
+    "rules.deluxe2015.victory"
+  ],
+  "preconditions": [
+    "verified-subset data, not implemented game handlers",
+    "Independent source/root/active-event evidence precedes mutation; proof IDs are synthetic in the finite model"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "Unknown source or parent work, stale or corrupt receipt",
+    "Unverified baseline stops only Influence; unbound Chernobyl gates OPS Influence",
+    "Unknown relevant operation provider: preserve accepted prefix and require ruling"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English card images; rechecked 2026-10-13",
+      "description": "English PDF p13 #89 and p14 #90/#91; no use of adjacent translation."
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe 2015",
+      "description": "Sections 5.2,6.0,7.4.1-3,8.1,8.2.5,10.3: source, actor OPS, nuclear and VP checkpoints, free-coup credit."
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 compatible clarifications; checked 2026-10-13",
+      "description": "PDF p15 #90: Glasnost obeys ordinary influence rules and Chernobyl. PDF p16 #94: direct event influence differs from OPS placement; #96: named regional action geographical waiver does not waive battleground DEFCON/free-coup credit."
+    },
+    {
+      "id": "PROJECT-LEO1",
+      "url": null,
+      "edition": "Finite grant handoff contracts, 2026-10-13",
+      "description": "Ordered accepted prefix then optional decision; source-bound receipts and explicit shared-service handoff. Ortega named adjacency geographic waiver is a scoped derivation of the FAQ regional-action policy, not a dedicated Ortega ruling. No production operation resolution."
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/late-event-operations-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/late-event-operations-batch1.validation.json"
+  },
+  "retrieval_hints": [
+    "parameters contains card-specific order and capabilities; shared_refs locates all common numerical policies",
+    "schema start_input/choice_input and receipt define finite gates; operation_request is a handoff, not an executed operation"
+  ]
+}

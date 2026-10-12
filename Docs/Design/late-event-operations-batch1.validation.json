@@ -1,0 +1,1015 @@
+{
+  "description": "LEO1顺序前缀和受限共享行动请求；WaitingSharedOperation不等于真实行动已执行。",
+  "checked_on": "2026-10-13",
+  "new_cases_passed": 185,
+  "previous_cases_passed": 3788,
+  "total_cases_passed": 3973,
+  "cases_by_layer": {
+    "data": 10,
+    "contract": 80,
+    "reference": 95,
+    "runtime": 12
+  },
+  "runtime_cases_not_run": 12,
+  "runtime_game_tests_run": 0,
+  "bound_cards": 93,
+  "unresolved_bindings": 9,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 46,
+    "json_files_parsed": 267,
+    "data_descriptors": 49,
+    "module_descriptors": 21,
+    "relative_links_checked": 213,
+    "parameter_pointers_resolved": 225
+  },
+  "validated_sha256": {
+    "Data/Cards/deluxe-2015/late-event-operations-batch1.parameters.json": "6fcf3a94aebaf9b9c276a6fcc47c745c65fa3c7ff41667e9a92c207216b6f1dc",
+    "Data/Descriptors/late-event-operations-batch1.data.json": "82ae905224e899da03deeadb2145ec5fa05ca6bd4ec10e3c04f1d5a3ddbbee40",
+    "Docs/Contracts/late-event-operations-batch1.schema.json": "afbf03b07ea4809763cd56f80c0ec81c189a0c27c265dabf4b93eba7d941705a",
+    "Docs/Design/late-event-operations-batch1.cases.json": "f5150a079d46b594cf84274b0e786207cb0aad612d263ac2a8853829bce971d6",
+    "Docs/Wiki/late-event-operations-batch1.md": "7a992d0958bd7bad3f5a2dc4cc62a562ffc7306d850dbaf925f7ac561a3c70ab",
+    "Data/Cards/deluxe-2015/cards.json": "ca0d0cfa6d4a9a6429bc999906b76c5476e32263db33fbe2667a1c8432ce37a6",
+    "Docs/Descriptors/composite-events.module.json": "bf191429ea079a4413a5ef94fc19e4ed334012c693f973dba8da0d1e0457c49b",
+    "Docs/Descriptors/event-operations.module.json": "a0c9f6fbdb0bfd9deddaa99e2dd72b333c8d7680a1e44756f48c3cef9bd164e5",
+    "Docs/Descriptors/turn-flow.module.json": "4d5eb05216019f496a838857463a16cf7eae51871f9a26f116e420e352541a47"
+  },
+  "results": [
+    {
+      "id": "LEO1-D-valid",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LEO1-D-scope",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LEO1-D-chernobyl",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LEO1-D-baseline",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LEO1-D-root",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LEO1-D-space",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LEO1-D-ortega-credit",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LEO1-D-ortega-fixed2",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LEO1-D-glasnost-order",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LEO1-D-kal-modes",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "LEO1-R-kal-normal",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-kal-nuclear-before-vp",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-kal-opponent-root-nuclear",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-kal-vp-terminal-before-grant",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-kal-no-south-korea-control",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-kal-exact-control",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-kal-opponent-root-actor",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-glasnost-basic",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-glasnost-terminal-first",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-glasnost-max-defcon",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-ortega-clear-prefix",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-ortega-zero-prefix-still-offer",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-quote-soviets_shoot_down_kal_007-red_scare_purge",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-quote-soviets_shoot_down_kal_007-containment",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-quote-glasnost-the_reformer-brezhnev_doctrine-red_scare_purge",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-quote-ortega_elected_in_nicaragua-brezhnev_doctrine",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-quote-ortega_elected_in_nicaragua-red_scare_purge",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-quote-ortega_elected_in_nicaragua-brezhnev_doctrine-red_scare_purge",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-soviets_shoot_down_kal_007-decline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-soviets_shoot_down_kal_007-space-rejected",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-soviets_shoot_down_kal_007-retry-later",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-soviets_shoot_down_kal_007-retry-replaced-history",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-glasnost-decline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-glasnost-space-rejected",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-glasnost-retry-later",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-glasnost-retry-replaced-history",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-ortega_elected_in_nicaragua-decline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-ortega_elected_in_nicaragua-space-rejected",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-ortega_elected_in_nicaragua-retry-later",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-ortega_elected_in_nicaragua-retry-replaced-history",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-soviets_shoot_down_kal_007-coup-rejected",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-soviets_shoot_down_kal_007-realign-delegated",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-soviets_shoot_down_kal_007-headline-influence-needs-baseline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-soviets_shoot_down_kal_007-headline-realign-allowed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-soviets_shoot_down_kal_007-influence-delegated",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-glasnost-coup-rejected",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-glasnost-realign-delegated",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-glasnost-headline-influence-needs-baseline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-glasnost-headline-realign-allowed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-glasnost-influence-delegated",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-glasnost-chernobyl-influence-gated",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-glasnost-chernobyl-realign-available",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-ortega-adjacent-coup",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-ortega-not-nicaragua-itself",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-ortega-not-mexico",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-ortega-cuba-is-adjacent-battleground",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-ortega-no-enemy",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-ortega-cmc-us-root-actor-loses",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-ortega-cmc-illegal-target-not-attempt",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-ortega-Influence-rejected",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-ortega-Realignment-rejected",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-kal-defcon-asia-realign-block",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-kal-fyp-us-child",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-fyp-reject-glasnost",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-fyp-reject-ortega_elected_in_nicaragua",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-defcon1",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-defcon6",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-vp20",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-winner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-source-hand",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-wrong-actor",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-stale",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-root-completed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-event-completed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-unknown-parent-work",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-unknown-provider",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-effects-unknown",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-wrong-source-ledger",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-duplicate-source-card",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-two-entities-one-frame",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-root-already-counted",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-source-success-already-recorded",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-fyp-parent-success-already-recorded",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-normal-baseline-cannot-be-named",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-headline-named-influence",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-choice-restrictions-unknown",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-choice-restrictions-blocked",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-choice-restrictions-stale",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-choice-restrictions-mismatch",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-choice-actor-mismatch",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-choice-current-modified",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-decline-retry-later",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-decline-retry-replaced",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-C-source-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-source-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-source-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-source-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-card_entity-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-card_entity-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-card_entity-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-card_entity-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-frame-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-frame-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-frame-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-frame-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-dispatch-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-dispatch-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-dispatch-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-dispatch-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-baseline-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-baseline-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-baseline-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-baseline-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-snapshot-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-snapshot-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-snapshot-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-snapshot-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-request-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-request-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-request-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-request-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-start_input-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-start_input-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-start_input-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-start_input-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-grant-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-grant-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-grant-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-grant-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-success_fact-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-success_fact-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-success_fact-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-success_fact-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-active_effect-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-active_effect-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-active_effect-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-active_effect-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-root_slot-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-root_slot-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-root_slot-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-root_slot-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-result-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-result-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-result-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-result-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-choice_request-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-choice_request-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-choice_request-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-choice_request-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-restriction_evidence-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-restriction_evidence-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-restriction_evidence-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-restriction_evidence-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-choice_input-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-choice_input-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-choice_input-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-choice_input-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-operation_request-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-operation_request-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-operation_request-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-operation_request-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-receipt_body-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-receipt_body-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-receipt_body-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-receipt_body-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-receipt-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-receipt-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-receipt-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-receipt-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-anchor-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-anchor-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-anchor-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-C-anchor-wrong-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "LEO1-R-parent-wrong-controller",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-parent-completed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-parent-card-owner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-parent-child-alias",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-fyp-selected-instance",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-active-effect-controller",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-active-effect-source-instance",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-active-effect-future-turn",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-active-effect-fact-card",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-source-root-resolution-alias",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-root-invalid-owner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "LEO1-R-pending-existing",
+      "passed": true,
+      "validation_layer": "reference"
+    }
+  ],
+  "limitations": [
+    "Finite ordered prefix, scoped grant, decline, CMC interception and shared-service request only.",
+    "WaitingSharedOperation is not a resolved operation: no ordinary coup, realignment or influence execution/RNG draw occurs in this model.",
+    "Proof/ledger/restriction/anchor data are synthetic authoritative premises, not authentication or durable storage.",
+    "Shared-service return/continuation, regional target-history OPS calculation and real parent scheduling remain planned.",
+    "旧案例只适配绑定库存与相同文件overlay，不改规则期望。",
+    "13note/72Tools独立，本批未重跑；114独立探针单列不重复累计。"
+  ],
+  "independent_review": {
+    "status": "ready-no-findings",
+    "checked_on": "2026-10-13",
+    "critical": 0,
+    "important": 0,
+    "minor": 0,
+    "new_cases_independently_passed": 185,
+    "separate_probes": 114,
+    "old_cases_independently_rerun": 0,
+    "integration_review": {
+      "json_parsed": 267,
+      "schemas_meta_validated": 46,
+      "datasets_schema_validated": 49,
+      "planned_modules": 21,
+      "dag_edges": 42,
+      "edges_unchanged": true,
+      "acyclic": true,
+      "parameter_pointers": 225,
+      "effect_schema_pointers": 93,
+      "catalog_and_dependency_paths": 519,
+      "modified_markdown_relative_link_occurrences": 216,
+      "printed_card_records_unchanged": 103,
+      "only_changed_bindings": [
+        "card.soviets_shoot_down_kal_007",
+        "card.glasnost",
+        "card.ortega_elected_in_nicaragua"
+      ],
+      "binding_counts": {
+        "Bound": 93,
+        "Unresolved": 9
+      },
+      "handlers_planned": 102,
+      "project_leo1_source": "Global Pending; detailed original source catalog and named-derivation/no-runtime limits preserved"
+    },
+    "baseline_sha256_verified": 386,
+    "report_sha256_verified": 9,
+    "printed_cards_unchanged": 103,
+    "only_three_new_bindings": true,
+    "author_lineage": "Author parameters/schema/cases differ only in newline encoding; descriptor removes only temporary verification.report_status; Wiki appends only the integration report/count/prior-review paragraph. Entire Checker class AST including initializer is identical; integrated main only adapts artifact inventory and hash lookup for an overlay. This reviewer independently ran integrated185 once against fully verified3d1f35c baseline. Prior reviewer185+114 and parent3788/3973 are distinct preserved evidence; old3788 and114 probes were not rerun here.",
+    "execution_scope": "Independent author185+114probes and integrated185+structure; still185unique cases. Main3973 by parent; old3788/probes not repeated during integration review. Runtime0."
+  },
+  "post_validation_document_links_checked": 11,
+  "metadata_after_validation": "Only Wiki validation paragraph and Worklog updated; links checked and Wiki hash refreshed."
+}

@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.late_event_operations_batch1",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "verified-subset",
+  "description": "KAL-007, Glasnost and Ortega ordered prefixes with typed restricted operation grants; all runtime handlers remain planned.",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English card images; rechecked 2026-10-13",
+      "description": "English PDF p13 #89 and p14 #90/#91; no use of adjacent translation."
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe 2015",
+      "description": "Sections 5.2,6.0,7.4.1-3,8.1,8.2.5,10.3: source, actor OPS, nuclear and VP checkpoints, free-coup credit."
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 compatible clarifications; checked 2026-10-13",
+      "description": "PDF p15 #90: Glasnost obeys ordinary influence rules and Chernobyl. PDF p16 #94: direct event influence differs from OPS placement; #96: named regional action geographical waiver does not waive battleground DEFCON/free-coup credit."
+    },
+    {
+      "id": "PROJECT-LEO1",
+      "url": null,
+      "edition": "Finite grant handoff contracts, 2026-10-13",
+      "description": "Ordered accepted prefix then optional decision; source-bound receipts and explicit shared-service handoff. Ortega named adjacency geographic waiver is a scoped derivation of the FAQ regional-action policy, not a dedicated Ortega ruling. No production operation resolution."
+    }
+  ],
+  "shared_refs": {
+    "cards": {
+      "dataset_id": "cards.deluxe2015.definitions",
+      "json_pointer": ""
+    },
+    "map": {
+      "dataset_id": "map.deluxe2015.world",
+      "json_pointer": ""
+    },
+    "vp": {
+      "dataset_id": "rules.deluxe2015.victory",
+      "json_pointer": ""
+    },
+    "defcon": {
+      "dataset_id": "rules.deluxe2015.defcon",
+      "json_pointer": ""
+    },
+    "free_coup_credit": {
+      "dataset_id": "rules.deluxe2015.military-operations",
+      "json_pointer": "/credit_sources/FreeCoup"
+    },
+    "turns": {
+      "dataset_id": "rules.deluxe2015.turn-flow",
+      "json_pointer": "/era_bands"
+    },
+    "ops": {
+      "dataset_id": "effects.deluxe2015.persistent_batch1",
+      "json_pointer": "/ops_policy"
+    },
+    "flat_effects": {
+      "dataset_id": "effects.deluxe2015.persistent_batch1",
+      "json_pointer": "/parameters"
+    },
+    "brezhnev": {
+      "dataset_id": "effects.deluxe2015.persistent_batch2",
+      "json_pointer": "/parameters/brezhnev_doctrine"
+    },
+    "reformer": {
+      "dataset_id": "effects.deluxe2015.late_influence_batch1",
+      "json_pointer": "/parameters/the_reformer"
+    },
+    "fyp": {
+      "dataset_id": "effects.deluxe2015.hand_events_batch1",
+      "json_pointer": "/parameters/five_year_plan"
+    },
+    "coup_intervention": {
+      "dataset_id": "effects.deluxe2015.defcon_events_batch1",
+      "json_pointer": "/intervention_policy"
+    },
+    "cmc": {
+      "dataset_id": "effects.deluxe2015.defcon_events_batch1",
+      "json_pointer": "/parameters/cuban_missile_crisis"
+    },
+    "ordinary_grant": {
+      "dataset_id": "effects.deluxe2015.reveal_ops_batch1",
+      "json_pointer": "/operations_policy"
+    },
+    "regional_grant": {
+      "dataset_id": "effects.deluxe2015.event_operations_batch1",
+      "json_pointer": "/parameters/tear_down_this_wall/operations_grant"
+    }
+  },
+  "source_policy": {
+    "providers": [
+      "RootEvent",
+      "OpponentCardEvent",
+      "HeadlineEvent",
+      "VerifiedFypUsChild"
+    ],
+    "fyp_policy": "OnlyVerifiedUsAssociatedChild",
+    "unknown_parent_or_source": "RequiresRulingBeforePrefix",
+    "source_entity_policy": "UniqueCardInstanceCardIdFrameAndResolutionWithIndependentDispatch"
+  },
+  "operations_policy": {
+    "actor_quote": "FreezeSharedActorEffectsAtGrantCreation",
+    "influence_baseline": "NormalRootActorStartOrSeparatelyVerifiedNamedBaseline",
+    "missing_headline_baseline": "StopInfluenceOnly",
+    "chernobyl": "OpsPlacementRequiresBoundChernobylConsumer_NotDirectEventPlacement",
+    "mode_lock": "FirstAcceptedOperation",
+    "decline": "PreserveAcceptedPrefix",
+    "shared_handoff": "WaitForBoundSharedOperationReceipt_NoInventedOutcome",
+    "coup_gate_order_ref": {
+      "dataset_id": "effects.deluxe2015.defcon_events_batch1",
+      "json_pointer": "/intervention_policy"
+    },
+    "space_allowed": false,
+    "extra_root_slot": false,
+    "extra_card_consumed": false,
+    "normal_nuclear_loser": "RootPhasingPlayer",
+    "cmc_loser": "ActualCoupActor",
+    "unknown_relevant_ops_provider": "RequiresRulingForAffectedMode"
+  },
+  "receipt_policy": {
+    "retry": "ReturnOriginalCompleteAcceptedResultPreserveCurrent",
+    "new_choice": "ValidateIndependentPrefixAnchorAndExactCurrentContinuation",
+    "terminal": "FinalizeAcceptedSourcesParentsRootBeforeFinished"
+  },
+  "parameters": {
+    "soviets_shoot_down_kal_007": {
+      "card_id": "card.soviets_shoot_down_kal_007",
+      "effect_id": "effect.soviets_shoot_down_kal_007",
+      "description": "DEFCON down before US VP, then optional restricted ordinary OPS if South Korea is US-controlled.",
+      "template": "OrderedPrefixThenRestrictedOperations",
+      "actor": "US",
+      "ordered_prefix": [
+        {
+          "kind": "ChangeDefcon",
+          "delta": -1,
+          "checkpoint": "ImmediateNuclear"
+        },
+        {
+          "kind": "AwardVp",
+          "side": "US",
+          "amount": 2,
+          "checkpoint": "CompleteVpBatch"
+        }
+      ],
+      "grant_condition": {
+        "kind": "ActualControl",
+        "country_id": "country.south_korea",
+        "side": "US"
+      },
+      "grant": {
+        "allowed_modes": [
+          "Influence",
+          "Realignment"
+        ],
+        "budget_source": "VerifiedEventLiteral",
+        "base_ops": 4,
+        "geographic_exemption": false,
+        "coup_credit_kind": null
+      }
+    },
+    "glasnost": {
+      "card_id": "card.glasnost",
+      "effect_id": "effect.glasnost",
+      "description": "USSR VP before DEFCON improvement, then restricted ordinary OPS only with a verified active Reformer.",
+      "template": "OrderedPrefixThenRestrictedOperations",
+      "actor": "USSR",
+      "ordered_prefix": [
+        {
+          "kind": "AwardVp",
+          "side": "USSR",
+          "amount": 2,
+          "checkpoint": "CompleteVpBatch"
+        },
+        {
+          "kind": "ChangeDefcon",
+          "delta": 1,
+          "checkpoint": "ImmediateNuclear"
+        }
+      ],
+      "grant_condition": {
+        "kind": "VerifiedActiveReferencedEffect",
+        "parameter_ref": {
+          "dataset_id": "effects.deluxe2015.late_influence_batch1",
+          "json_pointer": "/parameters/the_reformer"
+        }
+      },
+      "grant": {
+        "allowed_modes": [
+          "Influence",
+          "Realignment"
+        ],
+        "budget_source": "VerifiedEventLiteral",
+        "base_ops": 4,
+        "geographic_exemption": false,
+        "coup_credit_kind": null
+      }
+    },
+    "ortega_elected_in_nicaragua": {
+      "card_id": "card.ortega_elected_in_nicaragua",
+      "effect_id": "effect.ortega_elected_in_nicaragua",
+      "description": "Remove all US Nicaragua influence, then one optional free coup in a map-adjacent country.",
+      "template": "OrderedPrefixThenRestrictedOperations",
+      "actor": "USSR",
+      "ordered_prefix": [
+        {
+          "kind": "ClearInfluence",
+          "country_id": "country.nicaragua",
+          "side": "US"
+        }
+      ],
+      "grant_condition": {
+        "kind": "Always"
+      },
+      "grant": {
+        "allowed_modes": [
+          "Coup"
+        ],
+        "budget_source": "SourceCardPrintedOps",
+        "base_ops": null,
+        "target_selector": {
+          "kind": "AdjacentToCountry",
+          "country_id": "country.nicaragua"
+        },
+        "geographic_exemption": true,
+        "geographic_policy": "LEO1-D01_ScopedNamedTargetDerivation",
+        "coup_credit_kind": "FreeCoup",
+        "attempt_limit": 1
+      }
+    }
+  }
+}

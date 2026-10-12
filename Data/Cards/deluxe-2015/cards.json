@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.37.0",
+  "content_version": "0.38.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计90牌效果参数已绑定，其余12个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计93牌效果参数已绑定，其余9个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -233,6 +233,12 @@
       "url": null,
       "edition": "Named engineering boundary, 2026-10-13",
       "description": "Typed priority plan, cancellation/success records, source/root cleanup and immutable historical receipts are design contracts. Unknown nested providers including Grain Sales require a separately verified contract; the FAQ timing fact alone is not authorization."
+    },
+    {
+      "id": "PROJECT-LEO1",
+      "url": null,
+      "edition": "Finite grant handoff contracts, 2026-10-13",
+      "description": "Ordered accepted prefix then optional decision; source-bound receipts and explicit shared-service handoff. Ortega named adjacency geographic waiver is a scoped derivation of the FAQ regional-action policy, not a dedicated Ortega ruling. No production operation resolution."
     }
   ],
   "cards": [
@@ -3038,8 +3044,13 @@
       "effect_binding": {
         "effect_id": "effect.soviets_shoot_down_kal_007",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.late_event_operations_batch1",
+            "json_pointer": "/parameters/soviets_shoot_down_kal_007"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -3065,8 +3076,13 @@
       "effect_binding": {
         "effect_id": "effect.glasnost",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.late_event_operations_batch1",
+            "json_pointer": "/parameters/glasnost"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -3092,8 +3108,13 @@
       "effect_binding": {
         "effect_id": "effect.ortega_elected_in_nicaragua",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.late_event_operations_batch1",
+            "json_pointer": "/parameters/ortega_elected_in_nicaragua"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -5911,14 +5932,31 @@
     {
       "effect_id": "effect.soviets_shoot_down_kal_007",
       "contract_version": "0.1.0",
-      "description": "Soviets Shoot Down KAL-007：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.soviets_shoot_down_kal_007",
+      "description": "DEFCON down before US VP, then optional restricted ordinary OPS if South Korea is US-controlled.",
+      "handler_key": "composite.OrderedPrefixThenRestrictedOperations",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:late-event-operations-batch1:1#/$defs/soviets_shoot_down_kal_007"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
+          "source_id": "C-DELUXE-EN",
+          "locator": "English PDFp13#89/p14#90/#91: ordered prefix, condition and restricted modes.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Sections5.2/6/7.4.1-3/8.1/8.2.5/10.3: source cleanup, ordinary OPS, actor modifiers, nuclear root responsibility, free-coup credit and VP checks.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFp15#90 Glasnost follows ordinary Influence/Chernobyl; p16#94 direct event differs from OPS; #96 regional-event waiver and battleground/free-coup limits.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-LEO1",
+          "locator": "Ortega scoped adjacency geographical waiver is named derivation, not dedicated ruling; ordered accepted prefix and immutable shared-service request are engineering. Actual operation completion remains planned.",
           "verification": "Pending"
         }
       ]
@@ -5926,14 +5964,31 @@
     {
       "effect_id": "effect.glasnost",
       "contract_version": "0.1.0",
-      "description": "Glasnost：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.glasnost",
+      "description": "USSR VP before DEFCON improvement, then restricted ordinary OPS only with a verified active Reformer.",
+      "handler_key": "composite.OrderedPrefixThenRestrictedOperations",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:late-event-operations-batch1:1#/$defs/glasnost"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
+          "source_id": "C-DELUXE-EN",
+          "locator": "English PDFp13#89/p14#90/#91: ordered prefix, condition and restricted modes.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Sections5.2/6/7.4.1-3/8.1/8.2.5/10.3: source cleanup, ordinary OPS, actor modifiers, nuclear root responsibility, free-coup credit and VP checks.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFp15#90 Glasnost follows ordinary Influence/Chernobyl; p16#94 direct event differs from OPS; #96 regional-event waiver and battleground/free-coup limits.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-LEO1",
+          "locator": "Ortega scoped adjacency geographical waiver is named derivation, not dedicated ruling; ordered accepted prefix and immutable shared-service request are engineering. Actual operation completion remains planned.",
           "verification": "Pending"
         }
       ]
@@ -5941,14 +5996,31 @@
     {
       "effect_id": "effect.ortega_elected_in_nicaragua",
       "contract_version": "0.1.0",
-      "description": "Ortega Elected in Nicaragua：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.ortega_elected_in_nicaragua",
+      "description": "Remove all US Nicaragua influence, then one optional free coup in a map-adjacent country.",
+      "handler_key": "composite.OrderedPrefixThenRestrictedOperations",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:late-event-operations-batch1:1#/$defs/ortega_elected_in_nicaragua"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
+          "source_id": "C-DELUXE-EN",
+          "locator": "English PDFp13#89/p14#90/#91: ordered prefix, condition and restricted modes.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Sections5.2/6/7.4.1-3/8.1/8.2.5/10.3: source cleanup, ordinary OPS, actor modifiers, nuclear root responsibility, free-coup credit and VP checks.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFp15#90 Glasnost follows ordinary Influence/Chernobyl; p16#94 direct event differs from OPS; #96 regional-event waiver and battleground/free-coup limits.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-LEO1",
+          "locator": "Ortega scoped adjacency geographical waiver is named derivation, not dedicated ruling; ordered accepted prefix and immutable shared-service request are engineering. Actual operation completion remains planned.",
           "verification": "Pending"
         }
       ]

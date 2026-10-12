@@ -4,7 +4,7 @@
   "entries": [
     {
       "id": "module.turn-flow",
-      "description": "定位回合阶段、秘密头条、行动名额、出牌结算栈、回合末候选胜利与存档继续位置；当前是设计，不可作为已实现模块调用。 消费CT1转交/奖励计划，保留独立ChinaState并按剩余源步骤收尾。 ON1按已完成根行动槽合并已知NSO/Space总额度并绑定放弃来源集合。 LH1等待Ames选择保留已接受揭示，源/根完成与后续OPS分开。",
+      "description": "定位回合阶段、秘密头条、行动名额、出牌结算栈、回合末候选胜利与存档继续位置；当前是设计，不可作为已实现模块调用。 消费CT1转交/奖励计划，保留独立ChinaState并按剩余源步骤收尾。 ON1按已完成根行动槽合并已知NSO/Space总额度并绑定放弃来源集合。 LH1等待Ames选择保留已接受揭示，源/根完成与后续OPS分开。 LEO1已提交前缀保留；等待共享行动不得提前移牌或占根槽。",
       "status": "planned",
       "descriptor": "Docs/Descriptors/turn-flow.module.json"
     },
@@ -76,13 +76,13 @@
     },
     {
       "id": "module.composite-events",
-      "description": "固定组合事件与可选区域行动：影响力、VP、成功事实、永久取消阻止和授权子帧；封闭步骤，终局截断。 国家指标直接VP以封闭具名查询生成。 军备竞赛/峰会共享比较结果与耐久双骰收据，胜者可选DEFCON。 RO1先私有揭示，再建立可选普通OPS继续点。 LI1首VP批次终局截断；Pershing先持久VP再等待选择；同命令重放原结果且保留后来局面。 Olympic对手选参赛/抵制；参赛平局双骰继续链，抵制先核战检查。 CT1持有者条件转交或奖励，Ussuri完整亚洲分配。 Wargames三选择、给对手完整6VP批次及结束候选。 OPEC七国真实控制一次VP；NSO永久阻止与本回合US总行动额度分离。 LH1人质固定伊朗步骤与持久化加倍计划，不触发弃牌事件。 Defectors选中头条取消计划与苏方普通用牌US1VP，未知嵌套来源待核。",
+      "description": "固定组合事件与可选区域行动：影响力、VP、成功事实、永久取消阻止和授权子帧；封闭步骤，终局截断。 国家指标直接VP以封闭具名查询生成。 军备竞赛/峰会共享比较结果与耐久双骰收据，胜者可选DEFCON。 RO1先私有揭示，再建立可选普通OPS继续点。 LI1首VP批次终局截断；Pershing先持久VP再等待选择；同命令重放原结果且保留后来局面。 Olympic对手选参赛/抵制；参赛平局双骰继续链，抵制先核战检查。 CT1持有者条件转交或奖励，Ussuri完整亚洲分配。 Wargames三选择、给对手完整6VP批次及结束候选。 OPEC七国真实控制一次VP；NSO永久阻止与本回合US总行动额度分离。 LH1人质固定伊朗步骤与持久化加倍计划，不触发弃牌事件。 Defectors选中头条取消计划与苏方普通用牌US1VP，未知嵌套来源待核。 LEO1卡文顺序前缀与条件授权，终局截断后续步骤。",
       "status": "planned",
       "descriptor": "Docs/Descriptors/composite-events.module.json"
     },
     {
       "id": "module.event-operations",
-      "description": "事件OPS子上下文：固定美国地区免费行动或中立视同OPS普通行动；来源独立验证、按Actor修正、单根名额与原核战责任。 Junta中立双地区免费授权及调整地区锁。 RO1固定US/USSR视同1OPS，复用普通限制与军事；只在核实的起点下投影响力。 Olympic抵制后Sponsor普通视同4OPS授权。",
+      "description": "事件OPS子上下文：固定美国地区免费行动或中立视同OPS普通行动；来源独立验证、按Actor修正、单根名额与原核战责任。 Junta中立双地区免费授权及调整地区锁。 RO1固定US/USSR视同1OPS，复用普通限制与军事；只在核实的起点下投影响力。 Olympic抵制后Sponsor普通视同4OPS授权。 LEO1固定US/USSR受限模式与绑定共享服务请求，WaitingSharedOperation不等于已执行。",
       "status": "planned",
       "descriptor": "Docs/Descriptors/event-operations.module.json"
     },

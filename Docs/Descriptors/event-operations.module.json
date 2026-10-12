@@ -3,7 +3,7 @@
   "id": "module.event-operations",
   "kind": "module",
   "status": "planned",
-  "description": "事件OPS子上下文：固定美国地区免费行动或中立视同OPS普通行动；来源独立验证、按Actor修正、单根名额与原核战责任。 Junta中立双地区免费授权及调整地区锁。 RO1固定US/USSR视同1OPS，复用普通限制与军事；只在核实的起点下投影响力。 Olympic抵制后Sponsor普通视同4OPS授权。",
+  "description": "事件OPS子上下文：固定美国地区免费行动或中立视同OPS普通行动；来源独立验证、按Actor修正、单根名额与原核战责任。 Junta中立双地区免费授权及调整地区锁。 RO1固定US/USSR视同1OPS，复用普通限制与军事；只在核实的起点下投影响力。 Olympic抵制后Sponsor普通视同4OPS授权。 LEO1固定US/USSR受限模式与绑定共享服务请求，WaitingSharedOperation不等于已执行。",
   "documentation": "Docs/Wiki/event-operations.md",
   "entrypoints": [],
   "planned_entrypoints": [
@@ -22,6 +22,10 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Operations/EventOperationsService.cs",
       "symbol": "GrantAsIfCardOperations"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Operations/EventOperationsService.cs",
+      "symbol": "AcceptSharedOperationCompletion"
     }
   ],
   "inputs": [
@@ -30,10 +34,12 @@
     "DC1 ABM中立事件控制者、VerifiedEventLiteral及已验证地区花费历史；不套用拆墙US/Europe/FreeCoup默认",
     "Junta EffectController的region_ids并集；模式和首合法调整region锁独立",
     "RO1已提交揭示收据与固定Actor授权；普通根行动轮取实际Actor的RootActionRoundStart快照",
-    "Olympic抵制已提交且未核战的Sponsor grant；VerifiedEventLiteral4，根身份和已接受分支不可更换"
+    "Olympic抵制已提交且未核战的Sponsor grant；VerifiedEventLiteral4，根身份和已接受分支不可更换",
+    "LEO1已接受前缀/源父实体、固定Actor、允许模式、地图目标、OPS与限制报价；影响力用核实实际Actor根起点"
   ],
   "outputs": [
-    "EventOperationsGrant、OpsContext、PendingDecision及不可变行动计划；Completed/AwaitingDecision/GameEnded"
+    "EventOperationsGrant、OpsContext、PendingDecision及不可变行动计划；Completed/AwaitingDecision/GameEnded",
+    "WaitingSharedOperation只包含不可变来源绑定请求；实际行动与返回收据消费者仍planned"
   ],
   "dependencies": [
     {
@@ -76,14 +82,16 @@
     "effects.deluxe2015.defcon_events_batch1",
     "effects.deluxe2015.junta",
     "effects.deluxe2015.reveal_ops_batch1",
-    "effects.deluxe2015.olympic_games"
+    "effects.deluxe2015.olympic_games",
+    "effects.deluxe2015.late_event_operations_batch1"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:event-operations-batch1:1",
     "urn:coldwarheat:contract:defcon-events-batch1:1",
     "urn:coldwarheat:contract:junta:1",
     "urn:coldwarheat:contract:reveal-ops-batch1:1",
-    "urn:coldwarheat:contract:olympic-games:1"
+    "urn:coldwarheat:contract:olympic-games:1",
+    "urn:coldwarheat:contract:late-event-operations-batch1:1"
   ],
   "preconditions": [
     "只有权威注册步骤可创建授权；参数绑定不代替运行注册门禁",
@@ -97,26 +105,27 @@
     "终局、旧决策/版本、非法目标、未知拦截器或预算超额",
     "锁定调整模式后不可换政变；只处理当前掷骰，不缓存以后目标",
     "Headline/特殊子来源缺少独立具名影响力起点时仅Influence待裁定；保留揭示与其他合法模式或Decline",
-    "正常RootActionRound起点不可被其他Named替换；头条起点未核实仅停Influence；终局不生成抵制后授权"
+    "正常RootActionRound起点不可被其他Named替换；头条起点未核实仅停Influence；终局不生成抵制后授权",
+    "KAL/Glasnost无Coup/Space；Ortega只一次邻国FreeCoup，军事0且保留BG降级/CMC；未知Chernobyl提供者先停止受影响投放"
   ],
   "rule_sources": [
     {
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "edition": "English Deluxe card images",
-      "description": "重新目视PDF p14英文#96完整事件；不采用旁列译文。 DC1英文p7 #40/#41/#43、p9 #57，普通视同OPS与free coup分开。 J1: p8 #47中南美一国加2，随后可免费政变/调整，用此牌OPS；Neutral2Mid非星号。 RO1: 亲看英文PDF p5 #26、p10 #62：固定US/USSR先看对手当前手牌，再可选视同1OPS；均星号。 OG1: 亲看PDF p4英文#20：控制者主办、对手参赛/抵制；参赛双方骰主办+2高者2VP平手重掷；抵制DEFCON降1再可选视同4OPS；Neutral2Early非星号。"
+      "description": "重新目视PDF p14英文#96完整事件；不采用旁列译文。 DC1英文p7 #40/#41/#43、p9 #57，普通视同OPS与free coup分开。 J1: p8 #47中南美一国加2，随后可免费政变/调整，用此牌OPS；Neutral2Mid非星号。 RO1: 亲看英文PDF p5 #26、p10 #62：固定US/USSR先看对手当前手牌，再可选视同1OPS；均星号。 OG1: 亲看PDF p4英文#20：控制者主办、对手参赛/抵制；参赛双方骰主办+2高者2VP平手重掷；抵制DEFCON降1再可选视同4OPS；Neutral2Early非星号。 LEO1: English PDF p13 #89 and p14 #90/#91; no use of adjacent translation."
     },
     {
       "id": "R2015",
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
       "edition": "Deluxe rules 2015",
-      "description": "§4.5C/5.2角色与出牌顺序；§6.2–6.3行动；§7.4事件OPS修正；§8.1核战责任；§8.2.5免费政变信用。 J1: §6.1.1事件加影响与OPS区别、§6.2/6.3常规行动、§7.4有效OPS、§8.1核战责任/§8.2.5免费政变0军事。 RO1: §5.2成功星号，§6.0行动限制，§7.4.1按Actor修正，§7.4.2例3 CIA+遏制为2，§7.4.3视同OPS，§8.1.3核战根Phasing责任，§8.2.3普通政变军事。 OG1: §2.0标准D6；§4.2/4.5C根身份；§6.0/6.1.1普通OPS与行动轮开始；§7.4.1–3修正；§8.1.3含Olympic抵制核战例；§10.3.1完整VP批次终局。"
+      "description": "§4.5C/5.2角色与出牌顺序；§6.2–6.3行动；§7.4事件OPS修正；§8.1核战责任；§8.2.5免费政变信用。 J1: §6.1.1事件加影响与OPS区别、§6.2/6.3常规行动、§7.4有效OPS、§8.1核战责任/§8.2.5免费政变0军事。 RO1: §5.2成功星号，§6.0行动限制，§7.4.1按Actor修正，§7.4.2例3 CIA+遏制为2，§7.4.3视同OPS，§8.1.3核战根Phasing责任，§8.2.3普通政变军事。 OG1: §2.0标准D6；§4.2/4.5C根身份；§6.0/6.1.1普通OPS与行动轮开始；§7.4.1–3修正；§8.1.3含Olympic抵制核战例；§10.3.1完整VP批次终局。 LEO1: Sections 5.2,6.0,7.4.1-3,8.1,8.2.5,10.3: source, actor OPS, nuclear and VP checkpoints, free-coup credit."
     },
     {
       "id": "F2010",
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
       "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
-      "description": "PDF p16 #96明确欧洲政变/调整DEFCON地理豁免，战场仍降级且免费政变不记军事；p20–21普通行动与修正澄清。 DC1 FAQ PDF p12 #57头条可行动、p14 #67 ABM不可太空。 J1: PDFp10 #47先影响后行动，免费不军事，调整次数可被OPS修正且只一个地区，可不同于影响地区；p9 CMC+Junta实际Actor输；p12事件Headline行动可执行。 RO1: PDF p5–6 #26及p13 #62一次揭示，后得牌不公开；p13 #62普通核战Phasing输/CMC实际Actor先输；p14 #67事件OPS不能太空，取得实体牌可play的例外不适用本批。 OG1: PDF p13 #62再次引用Olympic抵制的Phasing责任并区分CMC实际Actor；p14 #67事件OPS没有可弃实体不能太空的说明。"
+      "description": "PDF p16 #96明确欧洲政变/调整DEFCON地理豁免，战场仍降级且免费政变不记军事；p20–21普通行动与修正澄清。 DC1 FAQ PDF p12 #57头条可行动、p14 #67 ABM不可太空。 J1: PDFp10 #47先影响后行动，免费不军事，调整次数可被OPS修正且只一个地区，可不同于影响地区；p9 CMC+Junta实际Actor输；p12事件Headline行动可执行。 RO1: PDF p5–6 #26及p13 #62一次揭示，后得牌不公开；p13 #62普通核战Phasing输/CMC实际Actor先输；p14 #67事件OPS不能太空，取得实体牌可play的例外不适用本批。 OG1: PDF p13 #62再次引用Olympic抵制的Phasing责任并区分CMC实际Actor；p14 #67事件OPS没有可弃实体不能太空的说明。 LEO1: PDF p15 #90: Glasnost obeys ordinary influence rules and Chernobyl. PDF p16 #94: direct event influence differs from OPS placement; #96: named regional action geographical waiver does not waive battleground DEFCON/free-coup credit."
     },
     {
       "id": "PROJECT-EO1",
@@ -147,6 +156,12 @@
       "url": null,
       "edition": "Atomic paired-roll chain and internal scheduling contracts, 2026-10-12",
       "description": "US后USSR取样、每对骰原子收据、平手内部继续链/有限执行片段、不设游戏重掷上限、拒绝保留既有收据；来源与真实持久化仍planned。"
+    },
+    {
+      "id": "PROJECT-LEO1",
+      "url": null,
+      "edition": "Finite grant handoff contracts, 2026-10-13",
+      "description": "Ordered accepted prefix then optional decision; source-bound receipts and explicit shared-service handoff. Ortega named adjacency geographic waiver is a scoped derivation of the FAQ regional-action policy, not a dedicated Ortega ruling. No production operation resolution."
     }
   ],
   "tests": [
@@ -169,11 +184,15 @@
     {
       "path": "Docs/Design/olympic-games.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/late-event-operations-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
     "report": "Docs/Design/event-operations-batch1.validation.json",
-    "latest_design_report": "Docs/Design/olympic-games.validation.json"
+    "latest_design_report": "Docs/Design/late-event-operations-batch1.validation.json"
   }
 }

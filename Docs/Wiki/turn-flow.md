@@ -242,3 +242,5 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 [Ames持续视图与等待选择](late-hand-batch1.md)：已接受揭示不会因陈旧选择撤销；源/根去向按剩余工作收尾。
 
 [叛逃者头条策略](defectors.md)：USSelectedDefectorsBeforeOrdinaryPrintedOpsOrder只覆盖选中头条；嵌套不能倒转已执行头条，源/取消目标各自独立收尾。
+
+[晚期事件共享行动交接](late-event-operations-batch1.md)：固定Actor、源父链与根清理义务保留至核实返回；等待不是完成。

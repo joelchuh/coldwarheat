@@ -47,3 +47,5 @@
 [北海石油的双期限](../opec-north-sea-batch1.md)：共享当前控制与根行动额度契约，运行服务仍待实现。
 
 [人质、恐怖主义与Ames Remix](../late-hand-batch1.md)：固定影响力、整批随机弃牌与本回合私有视图。
+
+[KAL／Glasnost／Ortega](../late-event-operations-batch1.md)：顺序前缀、条件与受限行动。

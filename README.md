@@ -107,4 +107,6 @@
 
 此前：[晚期手牌事件](Docs/Wiki/late-hand-batch1.md)，89 Bound /13 Unresolved，102处理器planned；原子随机弃牌与持续当前视图分开，短缺待裁定。
 
-最新：[叛逃者](Docs/Wiki/defectors.md)，90 Bound /12 Unresolved，102处理器planned；头条取消与普通苏方用牌VP已设计，未知嵌套来源停止。
+此前：[叛逃者](Docs/Wiki/defectors.md)，90 Bound /12 Unresolved，102处理器planned；头条取消与普通苏方用牌VP已设计，未知嵌套来源停止。
+
+最新：[晚期受限行动事件](Docs/Wiki/late-event-operations-batch1.md)，93 Bound /9 Unresolved，102处理器planned；三牌前缀顺序和共享OPS交接明确，尚未执行真实行动。

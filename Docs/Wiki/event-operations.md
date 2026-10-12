@@ -83,3 +83,5 @@ US为Actor/DecisionOwner，PhasingPlayer来自根行动；头条以打出本牌�
 [CIA与Lone Gunman](reveal-ops-batch1.md)复用当前手牌私有快照与普通as-if授权。五年计划只可触发US关联CIA；头条/特殊嵌套来源的影响力起点必须另证，不默认授权创建时。
 
 [奥运会抵制后授权](olympic-games.md)：DEFCON降级与核战检查先于Sponsor可选4OPS；普通军事/条约/CMC门禁不豁免，不允许Space。
+
+[晚期受限授权](late-event-operations-batch1.md)：WaitingSharedOperation是绑定请求，不表示真实行动/随机已执行；前缀保留。
