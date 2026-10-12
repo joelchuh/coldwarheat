@@ -1,0 +1,1513 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:wargames:1",
+  "title": "Wargames parameters and planned transaction contracts",
+  "description": "Strict one-card data and internal evidence/request/receipt shapes. Cross-field identity, provenance, history and shared-rule invariants additionally require the specified domain checks.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "shared_refs",
+    "source_policy",
+    "preflight_policy",
+    "receipt_policy",
+    "terminal_policy",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "dataset_id": {
+      "type": "string",
+      "const": "effects.deluxe2015.wargames"
+    },
+    "content_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "type": "string",
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "type": "string",
+      "const": "verified-subset"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "const": "C-DELUXE-EN"
+            },
+            "url": {
+              "type": "string",
+              "const": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf"
+            },
+            "edition": {
+              "type": "string",
+              "const": "English Deluxe card images"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "const": "F2010"
+            },
+            "url": {
+              "type": "string",
+              "const": "https://www.gmtgames.com/nnts/FAQv5.pdf"
+            },
+            "edition": {
+              "type": "string",
+              "const": "FAQ v5 2010, compatible Deluxe answers"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "const": "R2015"
+            },
+            "url": {
+              "type": "string",
+              "const": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf"
+            },
+            "edition": {
+              "type": "string",
+              "const": "Deluxe rules 2015"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "const": "PROJECT-WG1"
+            },
+            "url": {
+              "type": "null",
+              "const": null
+            },
+            "edition": {
+              "type": "string",
+              "const": "Named derivations and engineering boundary, 2026-10-12"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "shared_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "printed_card",
+        "victory",
+        "defcon"
+      ],
+      "properties": {
+        "printed_card": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "cards.deluxe2015.definitions"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": "/cards/99"
+            }
+          }
+        },
+        "victory": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "rules.deluxe2015.victory"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": ""
+            }
+          }
+        },
+        "defcon": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "rules.deluxe2015.defcon"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": ""
+            }
+          }
+        }
+      }
+    },
+    "source_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "supported_sources",
+        "provider_contract_id",
+        "neutral_five_year_plan_child",
+        "other_nested_sources",
+        "source_location",
+        "normal_source_roles"
+      ],
+      "properties": {
+        "supported_sources": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "type": "string",
+              "const": "RootEvent"
+            },
+            {
+              "type": "string",
+              "const": "HeadlineEvent"
+            }
+          ],
+          "items": false
+        },
+        "provider_contract_id": {
+          "type": "string",
+          "const": "module.turn-flow"
+        },
+        "neutral_five_year_plan_child": {
+          "type": "string",
+          "const": "NotPermitted"
+        },
+        "other_nested_sources": {
+          "type": "string",
+          "const": "RequiresSeparatelyBoundProviderBeforeAnyMutation"
+        },
+        "source_location": {
+          "type": "string",
+          "const": "UniqueInstanceAndBaseCardIdsAndSingleSourceFrameEntity"
+        },
+        "normal_source_roles": {
+          "type": "string",
+          "const": "EffectControllerEqualsSourceOwnerAndRootPhasingForTheseTwoProvidersOnly"
+        }
+      }
+    },
+    "preflight_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "vp_provider",
+        "root_cleanup_provider",
+        "unknown_other_root_obligations",
+        "running_state",
+        "blocked_prerequisite"
+      ],
+      "properties": {
+        "vp_provider": {
+          "type": "string",
+          "const": "CompleteKnownEventBatchOrRequiresRuling"
+        },
+        "root_cleanup_provider": {
+          "type": "string",
+          "const": "CompleteCurrentAcceptedSourceAndSlotOnlyOrRequiresRuling"
+        },
+        "unknown_other_root_obligations": {
+          "type": "string",
+          "const": "RequiresRulingBeforeVpTransfer"
+        },
+        "running_state": {
+          "type": "string",
+          "const": "RejectFinishedNuclearDefconAlreadyWinningVpOrInvalidTypes"
+        },
+        "blocked_prerequisite": {
+          "type": "string",
+          "const": "InternalResolutionWithoutPlayerChoice"
+        }
+      }
+    },
+    "receipt_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_format",
+        "anchors",
+        "verification",
+        "replay",
+        "conflicting_request",
+        "digest_is_authorization"
+      ],
+      "properties": {
+        "canonical_format": {
+          "type": "string",
+          "const": "UTF8SortedKeysCompactJSONIntegersOnlyNoNaN"
+        },
+        "anchors": {
+          "type": "string",
+          "const": "IndependentAcceptedCommandIndexAndHistoricalRequestSourceBeforeStateDigests"
+        },
+        "verification": {
+          "type": "string",
+          "const": "RecomputeHistoricalTransitionAndAllDigestsBeforeReplay"
+        },
+        "replay": {
+          "type": "string",
+          "const": "ReturnOriginalResultPreserveCurrentLiveState"
+        },
+        "conflicting_request": {
+          "type": "string",
+          "const": "RejectWithoutMutation"
+        },
+        "digest_is_authorization": {
+          "type": "boolean",
+          "const": false
+        }
+      }
+    },
+    "terminal_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "transaction",
+        "after_finished",
+        "random_draws"
+      ],
+      "properties": {
+        "transaction": {
+          "type": "string",
+          "const": "VpBatchEventOccurrenceSourceDispositionAndAcceptedRootSlotCompleteBeforeFinished"
+        },
+        "after_finished": {
+          "type": "string",
+          "const": "NoNewCommandExceptAuthorizedOriginalReceiptReplay"
+        },
+        "random_draws": {
+          "type": "string",
+          "const": "None"
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "wargames"
+      ],
+      "properties": {
+        "wargames": {
+          "$ref": "#/$defs/wargames"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "wargames": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "decision_owner",
+        "choices",
+        "required_defcon_level",
+        "opponent_vp",
+        "vp_recipient",
+        "vp_batch",
+        "continue_threshold_policy",
+        "end_policy",
+        "zero_end_policy",
+        "decline_policy",
+        "decline_authority",
+        "blocked_policy",
+        "source_disposition_policy",
+        "excluded_end_steps",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "const": "card.wargames"
+        },
+        "effect_id": {
+          "type": "string",
+          "const": "effect.wargames"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "type": "string",
+          "const": "OptionalOpponentVpThenOptionalImmediateEnd"
+        },
+        "decision_owner": {
+          "type": "string",
+          "const": "EffectController"
+        },
+        "choices": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "string",
+              "const": "GiveSixAndEnd"
+            },
+            {
+              "type": "string",
+              "const": "GiveSixAndContinue"
+            },
+            {
+              "type": "string",
+              "const": "DeclineBoth"
+            }
+          ],
+          "items": false
+        },
+        "required_defcon_level": {
+          "type": "integer",
+          "const": 2
+        },
+        "opponent_vp": {
+          "type": "integer",
+          "const": 6
+        },
+        "vp_recipient": {
+          "type": "string",
+          "const": "OpponentOfEffectController"
+        },
+        "vp_batch": {
+          "type": "string",
+          "const": "CompleteEventBatchBeforeAutomaticVictory"
+        },
+        "continue_threshold_policy": {
+          "type": "string",
+          "const": "SharedAutomaticVictoryStillApplies"
+        },
+        "end_policy": {
+          "type": "string",
+          "const": "UseAcceptedPostTransferSignedVpOnly"
+        },
+        "zero_end_policy": {
+          "type": "string",
+          "const": "RequiresRulingBeforeAnyMutation"
+        },
+        "decline_policy": {
+          "type": "string",
+          "const": "SuccessfulEventWithZeroTransfer"
+        },
+        "decline_authority": {
+          "type": "string",
+          "const": "WG1-DERIVED-01"
+        },
+        "blocked_policy": {
+          "type": "string",
+          "const": "EventDidNotOccur_Discard"
+        },
+        "source_disposition_policy": {
+          "type": "string",
+          "const": "SharedPrintedStarAfterSuccessfulEvent"
+        },
+        "excluded_end_steps": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "prefixItems": [
+            {
+              "type": "string",
+              "const": "FinalScoring"
+            },
+            {
+              "type": "string",
+              "const": "ChinaFinalVp"
+            },
+            {
+              "type": "string",
+              "const": "EuropeControlScoring"
+            },
+            {
+              "type": "string",
+              "const": "EndTurnMilitaryAudit"
+            },
+            {
+              "type": "string",
+              "const": "HeldScoringAudit"
+            }
+          ],
+          "items": false
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "Visually inspected PDF p15 English #100: Neutral, 4 Ops, Late, starred; DEFCON 2; give opponent 6 VP then may end without Final Scoring."
+                },
+                "verification": {
+                  "type": "string",
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "F2010"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "PDF p17-18 #100: no final scoring; only used at DEFCON 2; three choices give six and end, give six and continue, or neither. No dedicated zero-result answer in this block."
+                },
+                "verification": {
+                  "type": "string",
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "R2015"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "Sections 5.2, 10.2, 10.3.1: successful event disposition, signed VP and complete-event automatic victory. Section 10.3.2 zero draw literally follows final scoring; not a dedicated Wargames ruling."
+                },
+                "verification": {
+                  "type": "string",
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "PROJECT-WG1"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "WG1-DERIVED-01: DEFCON 2 DeclineBoth counts as used and removes by FAQ used condition plus section 5.2, not a dedicated disposal answer. Nonzero Wargames winner follows accepted signed-VP comparison. Zero GiveSixAndEnd remains RequiresRuling pending explicit project policy. Source/receipt/atomic cleanup are planned contracts."
+                },
+                "verification": {
+                  "type": "string",
+                  "const": "ProjectDerivationOrEngineeringBoundary"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "source_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "source_instance_id",
+        "resolution_id",
+        "frame_id",
+        "root_action_id",
+        "root_phasing_player",
+        "effect_controller",
+        "source_owner",
+        "source_kind",
+        "phase",
+        "provider_contract_id",
+        "provider_proof_id",
+        "ruleset_id",
+        "ruleset_version",
+        "data_digest"
+      ],
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "const": "card.wargames"
+        },
+        "effect_id": {
+          "type": "string",
+          "const": "effect.wargames"
+        },
+        "source_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_phasing_player": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "effect_controller": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "source_owner": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "source_kind": {
+          "enum": [
+            "RootEvent",
+            "HeadlineEvent"
+          ]
+        },
+        "phase": {
+          "enum": [
+            "ActionRound",
+            "Headline"
+          ]
+        },
+        "provider_contract_id": {
+          "type": "string",
+          "const": "module.turn-flow"
+        },
+        "provider_proof_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ruleset_id": {
+          "type": "string",
+          "const": "ruleset.deluxe2015"
+        },
+        "ruleset_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "data_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "source_kind": {
+                "const": "RootEvent"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "phase": {
+                "const": "ActionRound"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "source_kind": {
+                "const": "HeadlineEvent"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "phase": {
+                "const": "Headline"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "effect_controller": {
+                "const": "US"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_owner": {
+                "const": "US"
+              },
+              "root_phasing_player": {
+                "const": "US"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "effect_controller": {
+                "const": "USSR"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_owner": {
+                "const": "USSR"
+              },
+              "root_phasing_player": {
+                "const": "USSR"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "card_location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "instance_id",
+        "card_id",
+        "zone",
+        "frame_id"
+      ],
+      "properties": {
+        "instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "zone": {
+          "enum": [
+            "Hand",
+            "HeadlineReserved",
+            "InResolution",
+            "DiscardPile",
+            "RemovedFromGame"
+          ]
+        },
+        "frame_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        }
+      }
+    },
+    "source_bundle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "context",
+        "authoritative_card_locations",
+        "authority_revision"
+      ],
+      "properties": {
+        "context": {
+          "$ref": "#/$defs/source_context"
+        },
+        "authoritative_card_locations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/card_location"
+          }
+        },
+        "authority_revision": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "description": "Domain validation additionally requires unique instance_id and CardId in the authoritative ordinary-card locations, following the single-copy base deck. Exactly one entity may reference the source frame, and it must be this source instance in InResolution. These cross-field checks also apply to fresh historical_input and receipt history; JSON Schema shape alone does not prove them."
+    },
+    "root_slot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "root_action_id",
+        "kind",
+        "status",
+        "accepted_source_instance_id"
+      ],
+      "properties": {
+        "root_action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "ActionRound",
+            "Headline"
+          ]
+        },
+        "status": {
+          "enum": [
+            "Accepted",
+            "Completed"
+          ]
+        },
+        "accepted_source_instance_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "revision",
+        "status",
+        "signed_vp",
+        "defcon",
+        "rng_cursor",
+        "winner",
+        "cards",
+        "root_slot",
+        "final_scoring_only"
+      ],
+      "properties": {
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "status": {
+          "enum": [
+            "Running",
+            "Finished"
+          ]
+        },
+        "signed_vp": {
+          "type": "integer"
+        },
+        "defcon": {
+          "type": "integer"
+        },
+        "rng_cursor": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "winner": {
+          "enum": [
+            null,
+            "US",
+            "USSR"
+          ]
+        },
+        "cards": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/card_location"
+          }
+        },
+        "root_slot": {
+          "$ref": "#/$defs/root_slot"
+        },
+        "final_scoring_only": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "china_owner",
+            "europe_control",
+            "military_due",
+            "held_scoring"
+          ],
+          "properties": {
+            "china_owner": {
+              "enum": [
+                null,
+                "US",
+                "USSR"
+              ]
+            },
+            "europe_control": {
+              "enum": [
+                null,
+                "US",
+                "USSR"
+              ]
+            },
+            "military_due": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "US",
+                "USSR"
+              ],
+              "properties": {
+                "US": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "USSR": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            },
+            "held_scoring": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "US",
+                "USSR"
+              ],
+              "properties": {
+                "US": {
+                  "type": "boolean"
+                },
+                "USSR": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision_id",
+        "owner",
+        "frame_id",
+        "revision",
+        "source_context_digest",
+        "choices"
+      ],
+      "properties": {
+        "decision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_context_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "choices": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "string",
+              "const": "GiveSixAndEnd"
+            },
+            {
+              "type": "string",
+              "const": "GiveSixAndContinue"
+            },
+            {
+              "type": "string",
+              "const": "DeclineBoth"
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "command_kind",
+        "decision_id",
+        "expected_revision",
+        "choice",
+        "source_context_digest"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "command_kind": {
+          "enum": [
+            "ChooseBranch",
+            "ResolveBlockedPrerequisite"
+          ]
+        },
+        "decision_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "choice": {
+          "enum": [
+            "GiveSixAndEnd",
+            "GiveSixAndContinue",
+            "DeclineBoth",
+            null
+          ]
+        },
+        "source_context_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "command_kind": {
+                "const": "ChooseBranch"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "decision_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "choice": {
+                "enum": [
+                  "GiveSixAndEnd",
+                  "GiveSixAndContinue",
+                  "DeclineBoth"
+                ]
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "decision_id": {
+                "type": "null"
+              },
+              "choice": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "vp_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "provider_contract_id",
+        "proof_id",
+        "resolution_id",
+        "revision",
+        "unknown_relevant_awards"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "CompleteKnownBatch",
+            "RequiresRuling"
+          ]
+        },
+        "provider_contract_id": {
+          "type": "string",
+          "const": "module.victory"
+        },
+        "proof_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unknown_relevant_awards": {
+          "type": "boolean"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CompleteKnownBatch"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "proof_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "proof_id": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "cleanup_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "provider_contract_id",
+        "proof_id",
+        "root_action_id",
+        "revision",
+        "accepted_source_instance_id",
+        "slot_kind",
+        "other_accepted_root_obligations"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "CompleteCurrentSourceAndSlot",
+            "RequiresRuling"
+          ]
+        },
+        "provider_contract_id": {
+          "type": "string",
+          "const": "module.turn-flow"
+        },
+        "proof_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "root_action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "accepted_source_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "slot_kind": {
+          "enum": [
+            "ActionRound",
+            "Headline"
+          ]
+        },
+        "other_accepted_root_obligations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CompleteCurrentSourceAndSlot"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "proof_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "proof_id": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "historical_input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "source",
+        "decision",
+        "vp_evidence",
+        "cleanup_evidence",
+        "request",
+        "authenticated_actor",
+        "command_authority"
+      ],
+      "properties": {
+        "state": {
+          "$ref": "#/$defs/snapshot"
+        },
+        "source": {
+          "$ref": "#/$defs/source_context"
+        },
+        "decision": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/decision"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "vp_evidence": {
+          "$ref": "#/$defs/vp_evidence"
+        },
+        "cleanup_evidence": {
+          "$ref": "#/$defs/cleanup_evidence"
+        },
+        "request": {
+          "$ref": "#/$defs/request"
+        },
+        "authenticated_actor": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "command_authority": {
+          "enum": [
+            "AuthenticatedDecision",
+            "InternalResolver"
+          ]
+        }
+      }
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcome",
+        "event_occurred",
+        "vp_recipient",
+        "vp_delta",
+        "winner",
+        "finish_reason",
+        "source_disposition",
+        "trace",
+        "after"
+      ],
+      "properties": {
+        "outcome": {
+          "enum": [
+            "BlockedPrerequisite",
+            "ResolvedNoChange",
+            "Continue",
+            "Finished"
+          ]
+        },
+        "event_occurred": {
+          "type": "boolean"
+        },
+        "vp_recipient": {
+          "enum": [
+            null,
+            "US",
+            "USSR"
+          ]
+        },
+        "vp_delta": {
+          "type": "integer"
+        },
+        "winner": {
+          "enum": [
+            null,
+            "US",
+            "USSR"
+          ]
+        },
+        "finish_reason": {
+          "enum": [
+            null,
+            "AutomaticVp",
+            "Wargames"
+          ]
+        },
+        "source_disposition": {
+          "enum": [
+            "DiscardPile",
+            "RemovedFromGame"
+          ]
+        },
+        "trace": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "after": {
+          "$ref": "#/$defs/snapshot"
+        }
+      }
+    },
+    "receipt_body": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resolution_id",
+        "historical_input",
+        "source_context_digest",
+        "original_request_digest",
+        "before_state_digest",
+        "result"
+      ],
+      "properties": {
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "historical_input": {
+          "$ref": "#/$defs/historical_input"
+        },
+        "source_context_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "original_request_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "before_state_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "result": {
+          "$ref": "#/$defs/result"
+        }
+      }
+    },
+    "receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "body",
+        "receipt_digest"
+      ],
+      "properties": {
+        "body": {
+          "$ref": "#/$defs/receipt_body"
+        },
+        "receipt_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "accepted_anchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "resolution_id",
+        "source_context_digest",
+        "original_request_digest",
+        "before_state_digest",
+        "receipt_digest"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_context_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "original_request_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "before_state_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "receipt_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    }
+  }
+}

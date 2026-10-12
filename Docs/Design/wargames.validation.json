@@ -1,0 +1,992 @@
+{
+  "description": "战争游戏三选择、完整VP批次及已验证源/根终局收尾；恰零结束仍待裁定。",
+  "checked_on": "2026-10-13",
+  "new_cases_passed": 182,
+  "previous_cases_passed": 3062,
+  "total_cases_passed": 3244,
+  "cases_by_layer": {
+    "data": 19,
+    "contract": 73,
+    "reference": 90,
+    "runtime": 10
+  },
+  "runtime_cases_not_run": 10,
+  "runtime_game_tests_run": 0,
+  "bound_cards": 84,
+  "unresolved_bindings": 18,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 42,
+    "json_files_parsed": 247,
+    "data_descriptors": 45,
+    "module_descriptors": 21,
+    "relative_links_checked": 180,
+    "parameter_pointers_resolved": 177
+  },
+  "validated_sha256": {
+    "Data/Cards/deluxe-2015/wargames.parameters.json": "67f0d639a490e4140b127c122b5fd6a52f5a2af02c425d03b6b821908cc1b0c5",
+    "Docs/Contracts/wargames.schema.json": "5a28fbd6a7eace49d44d50f1d6bb6b75bb419cbad4c778a2b9953483dd4f2f65",
+    "Data/Descriptors/wargames.data.json": "e9d815c4943b23e12ecab0148a0f3824361b57f16ffa3775e068b26125aa3d2e",
+    "Docs/Design/wargames.cases.json": "0a1ec54eac705626bf0b68de856f1cce959d3f921eff3be0d0e59bd57eda96b8",
+    "Docs/Wiki/wargames.md": "bfb5d90a205807bee01a967c6fbc64eb8cbd5c40f99bae6a7614f5548f060ef8",
+    "Data/Cards/deluxe-2015/cards.json": "969811c0fed780bd0252d95f86a516c96209d8fe18fd02e7aa4e9847e808c338",
+    "Docs/Descriptors/composite-events.module.json": "7f3eefd0fcb368797ceab88bdb7c5412bed897b2c6320e8bdc3ac0a62e1b5d50",
+    "Docs/Descriptors/turn-flow.module.json": "2c59054b0135673e065e5d819d650469c5407bf0025d38bfce9d12be00b7b701",
+    "Docs/Descriptors/victory.module.json": "a1ec3d5fc1c12ff6075732339a7a9d35bf3df7cf9297ad700b3346fb4dc9bb50"
+  },
+  "results": [
+    {
+      "id": "WG1-D-valid",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "WG1-D-fourth-choice",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "WG1-D-omit-continue",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "WG1-D-wrong-gift",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "WG1-D-wrong-defcon",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "WG1-D-root-recipient",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "WG1-D-draw-assumed",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "WG1-D-skip-victory",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "WG1-D-decline-not-used",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "WG1-D-nested-fyp",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "WG1-D-partial-batch",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "WG1-D-finish-before-cleanup",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "WG1-D-live-recompute",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "WG1-D-hash-auth",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "WG1-D-extra-finalstep",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "WG1-D-unknown-root",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "WG1-D-parameter-unknown",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "WG1-D-ref-drift",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "WG1-D-gift-bool",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "WG1-C-source_context-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-source_context-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-source_context-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-source_context-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-source_bundle-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-source_bundle-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-source_bundle-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-source_bundle-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-card_location-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-card_location-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-card_location-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-card_location-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-root_slot-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-root_slot-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-root_slot-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-root_slot-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-snapshot-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-snapshot-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-snapshot-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-snapshot-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-decision-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-decision-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-decision-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-decision-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-request-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-request-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-request-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-request-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-vp_evidence-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-vp_evidence-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-vp_evidence-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-vp_evidence-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-cleanup_evidence-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-cleanup_evidence-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-cleanup_evidence-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-cleanup_evidence-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-historical_input-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-historical_input-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-historical_input-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-historical_input-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-result-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-result-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-result-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-result-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-receipt_body-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-receipt_body-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-receipt_body-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-receipt_body-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-receipt-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-receipt-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-receipt-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-receipt-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-accepted_anchor-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-accepted_anchor-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-accepted_anchor-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-accepted_anchor-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-review-duplicate-card-id",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-review-reused-source-frame",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-neutral-fyp",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-root-headline",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-wrong-provider",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-root-is-not-controller",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-client-gift",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-fourth-choice",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-blocked-has-choice",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-vp-bool",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-vp-fraction",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-negative-revision",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-proof-null-complete",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-empty-proof",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-source-hand",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-source-frame",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-C-source-card",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "WG1-R-us-leads-seven-end",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-us-leads-five-end",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-ussr-leads-seven-end",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-ussr-leads-five-end",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-headline-end",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-review-duplicate-card-id",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-review-reused-source-frame",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-unknown-nested-provider",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-US-continue-7",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-USSR-continue--7",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-US-continue-6",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-USSR-continue--6",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-US-continue--13",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-USSR-continue-13",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-US-GiveSixAndContinue-automatic--14",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-US-GiveSixAndEnd-automatic--14",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-USSR-GiveSixAndContinue-automatic-14",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-USSR-GiveSixAndEnd-automatic-14",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-US-GiveSixAndContinue-automatic--19",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-US-GiveSixAndEnd-automatic--19",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-USSR-GiveSixAndContinue-automatic-19",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-USSR-GiveSixAndEnd-automatic-19",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-US-decline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-USSR-decline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-blocked-3",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-blocked-4",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-blocked-5",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-headline-blocked",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-decline-unknown-vp-provider",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-blocked-unknown-cleanup",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-US-zero-end-unresolved",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-USSR-zero-end-unresolved",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-wrong-actor",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-stale-request",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-bad-choice",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-client-vp",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-source-hand",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-source-missing",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-source-duplicate",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-source-wrong-card",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-source-wrong-frame",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-fyp-neutral",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-unknown-provider",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-root-headline-mismatch",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-wrong-root",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-old-data",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-old-rules",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-request-source",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-decision-owner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-decision-frame",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-decision-stale",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-decision-id",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-decision-choice-list",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-vp-provider-unknown",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-vp-awards-unknown",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-vp-proof-stale",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-vp-resolution",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-cleanup-unknown",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-cleanup-other-obligations",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-cleanup-root",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-cleanup-source",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-cleanup-kind",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-slot-completed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-slot-source",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-finished",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-winner-already-present",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-defcon-nuclear",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-defcon-high",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-defcon-bool",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-vp-bool",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-vp-already-winning",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-not-internal-blocked-authority",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-blocked-client",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-blocked-choice-command",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-defcon-two-blocked-command",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-retry-same-command",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-retry-live-vp-defcon-cards-changed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-retry-finished-live",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-retry-choice-conflict",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-retry-revision-conflict",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-retry-wrong-actor",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-retry-new-command-same-resolution",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-retry-receipt-hash",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-retry-winner-rehashed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-retry-history-vp-rehashed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-retry-cleanup-undone-rehashed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-retry-source-not-removed-rehashed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-retry-finish-before-cleanup-rehashed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-retry-anchor-digest",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "WG1-R-retry-whole-valid-history-rewrite-unanchored",
+      "passed": true,
+      "validation_layer": "reference"
+    }
+  ],
+  "limitations": [
+    "Finite deterministic value model only; no production handler, authentication, durable storage or atomic database commit executed.",
+    "Provider proof and independent receipt anchor are trusted synthetic premises, not implemented security or completeness proofs.",
+    "Only ordinary RootEvent and HeadlineEvent source providers; other parent cleanup obligations require a separately verified provider.",
+    "Zero-result GiveSixAndEnd is still RequiresRuling; no implicit official draw or digital-edition policy.",
+    "旧案例只适配绑定库存/已完成来源和相同文件overlay读取，不改规则期望。",
+    "13note及72Tools独立，不计入且本批未重跑。",
+    "128独立额外探针另计，不重复计入设计总数。"
+  ],
+  "independent_review": {
+    "status": "ready-no-findings-after-source-identity-fix",
+    "checked_on": "2026-10-13",
+    "critical": 0,
+    "important": 0,
+    "minor": 0,
+    "new_cases_independently_passed": 182,
+    "separate_recheck_probes": 128,
+    "old_cases_independently_rerun": 0,
+    "closed_findings": [
+      "Distinct instance must not duplicate CardId; exactly one entity belongs to source frame in fresh and historical receipt validation."
+    ],
+    "integration_review": {
+      "json": 247,
+      "schemas": 42,
+      "datasets": 45,
+      "planned_module_dag": 21,
+      "module_dependency_edges": 42,
+      "catalog_and_dependency_paths_checked": 734,
+      "module_dependency_paths": 58,
+      "dataset_parameter_pointers": 177,
+      "effect_contract_pointers": 84,
+      "stage_markdown_relative_links": 183
+    },
+    "baseline_sha256_verified": 358,
+    "report_sha256_verified": 9,
+    "printed_cards_unchanged": 103,
+    "only_one_new_binding": true,
+    "author_lineage": "Parameters/schema/cases match author after CRLF/LF normalization; descriptor only removes verification.report_status; Wiki only formal status/count/report link and reviewed validation scope.",
+    "project_source_mapping": "Detailed PROJECT-WG1 classification preserved in parameters and locator; global cards-v2 uses Pending, not official Verified.",
+    "execution_scope": "Fixed author182 plus128 independent probes by one reviewer; integrated182 and structure by another. Still182unique cases; old3062/runtime/game0 independently in integration review. Main3244 belongs to parent validation."
+  },
+  "post_validation_document_links_checked": 7,
+  "metadata_after_validation": "Only Wiki final validation/binding status and Worklog updated; checked their links and refreshed Wiki hash."
+}

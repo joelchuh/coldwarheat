@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.wargames",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "verified-subset",
+  "description": "Wargames #100 parameter and bounded transaction design; production handlers, persistence and authentication remain planned.",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "Visually inspected PDF p15 English #100: Neutral, 4 Ops, Late, starred; DEFCON 2; give opponent 6 VP then may end without Final Scoring."
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe answers",
+      "description": "PDF p17-18 #100: no final scoring; only used at DEFCON 2; three choices give six and end, give six and continue, or neither. No dedicated zero-result answer in this block."
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "Sections 5.2, 10.2, 10.3.1: successful event disposition, signed VP and complete-event automatic victory. Section 10.3.2 zero draw literally follows final scoring; not a dedicated Wargames ruling."
+    },
+    {
+      "id": "PROJECT-WG1",
+      "url": null,
+      "edition": "Named derivations and engineering boundary, 2026-10-12",
+      "description": "WG1-DERIVED-01: DEFCON 2 DeclineBoth counts as used and removes by FAQ used condition plus section 5.2, not a dedicated disposal answer. Nonzero Wargames winner follows accepted signed-VP comparison. Zero GiveSixAndEnd remains RequiresRuling pending explicit project policy. Source/receipt/atomic cleanup are planned contracts."
+    }
+  ],
+  "shared_refs": {
+    "printed_card": {
+      "dataset_id": "cards.deluxe2015.definitions",
+      "json_pointer": "/cards/99"
+    },
+    "victory": {
+      "dataset_id": "rules.deluxe2015.victory",
+      "json_pointer": ""
+    },
+    "defcon": {
+      "dataset_id": "rules.deluxe2015.defcon",
+      "json_pointer": ""
+    }
+  },
+  "source_policy": {
+    "supported_sources": [
+      "RootEvent",
+      "HeadlineEvent"
+    ],
+    "provider_contract_id": "module.turn-flow",
+    "neutral_five_year_plan_child": "NotPermitted",
+    "other_nested_sources": "RequiresSeparatelyBoundProviderBeforeAnyMutation",
+    "source_location": "UniqueInstanceAndBaseCardIdsAndSingleSourceFrameEntity",
+    "normal_source_roles": "EffectControllerEqualsSourceOwnerAndRootPhasingForTheseTwoProvidersOnly"
+  },
+  "preflight_policy": {
+    "vp_provider": "CompleteKnownEventBatchOrRequiresRuling",
+    "root_cleanup_provider": "CompleteCurrentAcceptedSourceAndSlotOnlyOrRequiresRuling",
+    "unknown_other_root_obligations": "RequiresRulingBeforeVpTransfer",
+    "running_state": "RejectFinishedNuclearDefconAlreadyWinningVpOrInvalidTypes",
+    "blocked_prerequisite": "InternalResolutionWithoutPlayerChoice"
+  },
+  "receipt_policy": {
+    "canonical_format": "UTF8SortedKeysCompactJSONIntegersOnlyNoNaN",
+    "anchors": "IndependentAcceptedCommandIndexAndHistoricalRequestSourceBeforeStateDigests",
+    "verification": "RecomputeHistoricalTransitionAndAllDigestsBeforeReplay",
+    "replay": "ReturnOriginalResultPreserveCurrentLiveState",
+    "conflicting_request": "RejectWithoutMutation",
+    "digest_is_authorization": false
+  },
+  "terminal_policy": {
+    "transaction": "VpBatchEventOccurrenceSourceDispositionAndAcceptedRootSlotCompleteBeforeFinished",
+    "after_finished": "NoNewCommandExceptAuthorizedOriginalReceiptReplay",
+    "random_draws": "None"
+  },
+  "parameters": {
+    "wargames": {
+      "card_id": "card.wargames",
+      "effect_id": "effect.wargames",
+      "description": "Three optional Wargames outcomes with one complete VP batch and no final scoring; exact-zero end is unresolved.",
+      "template": "OptionalOpponentVpThenOptionalImmediateEnd",
+      "decision_owner": "EffectController",
+      "choices": [
+        "GiveSixAndEnd",
+        "GiveSixAndContinue",
+        "DeclineBoth"
+      ],
+      "required_defcon_level": 2,
+      "opponent_vp": 6,
+      "vp_recipient": "OpponentOfEffectController",
+      "vp_batch": "CompleteEventBatchBeforeAutomaticVictory",
+      "continue_threshold_policy": "SharedAutomaticVictoryStillApplies",
+      "end_policy": "UseAcceptedPostTransferSignedVpOnly",
+      "zero_end_policy": "RequiresRulingBeforeAnyMutation",
+      "decline_policy": "SuccessfulEventWithZeroTransfer",
+      "decline_authority": "WG1-DERIVED-01",
+      "blocked_policy": "EventDidNotOccur_Discard",
+      "source_disposition_policy": "SharedPrintedStarAfterSuccessfulEvent",
+      "excluded_end_steps": [
+        "FinalScoring",
+        "ChinaFinalVp",
+        "EuropeControlScoring",
+        "EndTurnMilitaryAudit",
+        "HeldScoringAudit"
+      ],
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "Visually inspected PDF p15 English #100: Neutral, 4 Ops, Late, starred; DEFCON 2; give opponent 6 VP then may end without Final Scoring.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p17-18 #100: no final scoring; only used at DEFCON 2; three choices give six and end, give six and continue, or neither. No dedicated zero-result answer in this block.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Sections 5.2, 10.2, 10.3.1: successful event disposition, signed VP and complete-event automatic victory. Section 10.3.2 zero draw literally follows final scoring; not a dedicated Wargames ruling.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-WG1",
+          "locator": "WG1-DERIVED-01: DEFCON 2 DeclineBoth counts as used and removes by FAQ used condition plus section 5.2, not a dedicated disposal answer. Nonzero Wargames winner follows accepted signed-VP comparison. Zero GiveSixAndEnd remains RequiresRuling pending explicit project policy. Source/receipt/atomic cleanup are planned contracts.",
+          "verification": "ProjectDerivationOrEngineeringBoundary"
+        }
+      ]
+    }
+  }
+}

@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.33.0",
+  "content_version": "0.34.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计83牌效果参数已绑定，其余19个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计84牌效果参数已绑定，其余18个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -209,6 +209,12 @@
       "url": null,
       "edition": "Holder branch and typed transaction contracts, 2026-10-12",
       "description": "自己持FaceDown走奖励且不翻面为卡文直接推导；独立来源/China状态、原子计划/收据、延迟源牌去向和终局草稿为工程设计；离线模型不是真实鉴权或存档。"
+    },
+    {
+      "id": "PROJECT-WG1",
+      "url": null,
+      "edition": "Named derivations and engineering boundary, 2026-10-12",
+      "description": "WG1-DERIVED-01: DEFCON 2 DeclineBoth counts as used and removes by FAQ used condition plus section 5.2, not a dedicated disposal answer. Nonzero Wargames winner follows accepted signed-VP comparison. Zero GiveSixAndEnd remains RequiresRuling pending explicit project policy. Source/receipt/atomic cleanup are planned contracts."
     }
   ],
   "cards": [
@@ -3306,8 +3312,13 @@
       "effect_binding": {
         "effect_id": "effect.wargames",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.wargames",
+            "json_pointer": "/parameters/wargames"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -6005,14 +6016,31 @@
     {
       "effect_id": "effect.wargames",
       "contract_version": "0.1.0",
-      "description": "Wargames：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.wargames",
+      "description": "DEFCON2时选择给对手6VP并结束、给分继续或都不做；恰零结束仍待裁定，其他自动胜利正常。",
+      "handler_key": "composite.OptionalOpponentVpThenOptionalImmediateEnd",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:wargames:1#/$defs/wargames"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
+          "source_id": "C-DELUXE-EN",
+          "locator": "Visually inspected PDF p15 English #100: Neutral, 4 Ops, Late, starred; DEFCON 2; give opponent 6 VP then may end without Final Scoring.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p17-18 #100: no final scoring; only used at DEFCON 2; three choices give six and end, give six and continue, or neither. No dedicated zero-result answer in this block.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Sections 5.2, 10.2, 10.3.1: successful event disposition, signed VP and complete-event automatic victory. Section 10.3.2 zero draw literally follows final scoring; not a dedicated Wargames ruling.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-WG1",
+          "locator": "WG1-DERIVED-01: DEFCON 2 DeclineBoth counts as used and removes by FAQ used condition plus section 5.2, not a dedicated disposal answer. Nonzero Wargames winner follows accepted signed-VP comparison. Zero GiveSixAndEnd remains RequiresRuling pending explicit project policy. Source/receipt/atomic cleanup are planned contracts.",
           "verification": "Pending"
         }
       ]

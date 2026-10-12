@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "data.wargames",
+  "kind": "data",
+  "status": "ready",
+  "description": "Wargames #100 parameter and bounded transaction design; production handlers, persistence and authentication remain planned.",
+  "dataset_id": "effects.deluxe2015.wargames",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/wargames.schema.json",
+  "documentation": "Docs/Wiki/wargames.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/wargames.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "Stable Wargames parameter lookup; planned trusted source/provider evidence and choice requests"
+  ],
+  "outputs": [
+    "Read-only verified subset parameters and planned historical receipt contracts"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "rules.deluxe2015.victory",
+    "rules.deluxe2015.defcon"
+  ],
+  "preconditions": [
+    "Data ready; game handler and source/VP/terminal providers planned",
+    "DEFCON 2 for event occurrence; zero-result ending requires a ruling; only the two normal providers are supported"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "Unknown relevant provider or accepted-root obligation",
+    "Stale, unauthorized, malformed or conflicting command; corrupt receipt",
+    "Unresolved zero-result GiveSixAndEnd before transfer"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "Visually inspected PDF p15 English #100: Neutral, 4 Ops, Late, starred; DEFCON 2; give opponent 6 VP then may end without Final Scoring."
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe answers",
+      "description": "PDF p17-18 #100: no final scoring; only used at DEFCON 2; three choices give six and end, give six and continue, or neither. No dedicated zero-result answer in this block."
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "Sections 5.2, 10.2, 10.3.1: successful event disposition, signed VP and complete-event automatic victory. Section 10.3.2 zero draw literally follows final scoring; not a dedicated Wargames ruling."
+    },
+    {
+      "id": "PROJECT-WG1",
+      "url": null,
+      "edition": "Named derivations and engineering boundary, 2026-10-12",
+      "description": "WG1-DERIVED-01: DEFCON 2 DeclineBoth counts as used and removes by FAQ used condition plus section 5.2, not a dedicated disposal answer. Nonzero Wargames winner follows accepted signed-VP comparison. Zero GiveSixAndEnd remains RequiresRuling pending explicit project policy. Source/receipt/atomic cleanup are planned contracts."
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/wargames.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/wargames.validation.json"
+  },
+  "retrieval_hints": [
+    "Read source_policy and preflight_policy before parameters/wargames; receipt_policy anchors historical replay",
+    "Source printed facts, VP direction/threshold and legal DEFCON range remain shared references"
+  ]
+}

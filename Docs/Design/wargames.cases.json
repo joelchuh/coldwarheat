@@ -1,0 +1,5267 @@
+{
+  "schema_version": 1,
+  "description": "New-only strict data shapes plus finite deterministic historical transaction/replay examples. No game services, RNG, persistence, authentication or old regression suite is executed.",
+  "status": "mixed-reference-and-planned",
+  "dataset": "Data/Cards/deluxe-2015/wargames.parameters.json",
+  "schema": "Docs/Contracts/wargames.schema.json",
+  "fixtures": {
+    "source_context": {
+      "card_id": "card.wargames",
+      "effect_id": "effect.wargames",
+      "source_instance_id": "instance.wargames",
+      "resolution_id": "resolution.wargames",
+      "frame_id": "frame.wargames",
+      "root_action_id": "root.wargames",
+      "root_phasing_player": "US",
+      "effect_controller": "US",
+      "source_owner": "US",
+      "source_kind": "RootEvent",
+      "phase": "ActionRound",
+      "provider_contract_id": "module.turn-flow",
+      "provider_proof_id": "proof.root.synthetic",
+      "ruleset_id": "ruleset.deluxe2015",
+      "ruleset_version": "0.1.0",
+      "data_digest": "8018133b87d14e61a64a7c483ff0088f4bb2c5d3ed86295545774ebbf36f5c87"
+    },
+    "source_bundle": {
+      "context": {
+        "card_id": "card.wargames",
+        "effect_id": "effect.wargames",
+        "source_instance_id": "instance.wargames",
+        "resolution_id": "resolution.wargames",
+        "frame_id": "frame.wargames",
+        "root_action_id": "root.wargames",
+        "root_phasing_player": "US",
+        "effect_controller": "US",
+        "source_owner": "US",
+        "source_kind": "RootEvent",
+        "phase": "ActionRound",
+        "provider_contract_id": "module.turn-flow",
+        "provider_proof_id": "proof.root.synthetic",
+        "ruleset_id": "ruleset.deluxe2015",
+        "ruleset_version": "0.1.0",
+        "data_digest": "8018133b87d14e61a64a7c483ff0088f4bb2c5d3ed86295545774ebbf36f5c87"
+      },
+      "authoritative_card_locations": [
+        {
+          "instance_id": "instance.wargames",
+          "card_id": "card.wargames",
+          "zone": "InResolution",
+          "frame_id": "frame.wargames"
+        },
+        {
+          "instance_id": "instance.unrelated",
+          "card_id": "card.containment",
+          "zone": "Hand",
+          "frame_id": null
+        }
+      ],
+      "authority_revision": 7
+    },
+    "card_location": {
+      "instance_id": "instance.wargames",
+      "card_id": "card.wargames",
+      "zone": "InResolution",
+      "frame_id": "frame.wargames"
+    },
+    "root_slot": {
+      "root_action_id": "root.wargames",
+      "kind": "ActionRound",
+      "status": "Accepted",
+      "accepted_source_instance_id": "instance.wargames"
+    },
+    "snapshot": {
+      "revision": 7,
+      "status": "Running",
+      "signed_vp": 7,
+      "defcon": 2,
+      "rng_cursor": 31,
+      "winner": null,
+      "cards": [
+        {
+          "instance_id": "instance.wargames",
+          "card_id": "card.wargames",
+          "zone": "InResolution",
+          "frame_id": "frame.wargames"
+        },
+        {
+          "instance_id": "instance.unrelated",
+          "card_id": "card.containment",
+          "zone": "Hand",
+          "frame_id": null
+        }
+      ],
+      "root_slot": {
+        "root_action_id": "root.wargames",
+        "kind": "ActionRound",
+        "status": "Accepted",
+        "accepted_source_instance_id": "instance.wargames"
+      },
+      "final_scoring_only": {
+        "china_owner": "USSR",
+        "europe_control": "USSR",
+        "military_due": {
+          "US": 4,
+          "USSR": 0
+        },
+        "held_scoring": {
+          "US": true,
+          "USSR": false
+        }
+      }
+    },
+    "decision": {
+      "decision_id": "decision.wargames",
+      "owner": "US",
+      "frame_id": "frame.wargames",
+      "revision": 7,
+      "source_context_digest": "c9aae779636fe835d7bffa641fa75b6385c5d19d5292b71323a89cddce7531d6",
+      "choices": [
+        "GiveSixAndEnd",
+        "GiveSixAndContinue",
+        "DeclineBoth"
+      ]
+    },
+    "request": {
+      "command_id": "command.wargames",
+      "command_kind": "ChooseBranch",
+      "decision_id": "decision.wargames",
+      "expected_revision": 7,
+      "choice": "GiveSixAndEnd",
+      "source_context_digest": "c9aae779636fe835d7bffa641fa75b6385c5d19d5292b71323a89cddce7531d6"
+    },
+    "vp_evidence": {
+      "status": "CompleteKnownBatch",
+      "provider_contract_id": "module.victory",
+      "proof_id": "proof.vp.synthetic",
+      "resolution_id": "resolution.wargames",
+      "revision": 7,
+      "unknown_relevant_awards": false
+    },
+    "cleanup_evidence": {
+      "status": "CompleteCurrentSourceAndSlot",
+      "provider_contract_id": "module.turn-flow",
+      "proof_id": "proof.cleanup.synthetic",
+      "root_action_id": "root.wargames",
+      "revision": 7,
+      "accepted_source_instance_id": "instance.wargames",
+      "slot_kind": "ActionRound",
+      "other_accepted_root_obligations": []
+    },
+    "historical_input": {
+      "state": {
+        "revision": 7,
+        "status": "Running",
+        "signed_vp": 7,
+        "defcon": 2,
+        "rng_cursor": 31,
+        "winner": null,
+        "cards": [
+          {
+            "instance_id": "instance.wargames",
+            "card_id": "card.wargames",
+            "zone": "InResolution",
+            "frame_id": "frame.wargames"
+          },
+          {
+            "instance_id": "instance.unrelated",
+            "card_id": "card.containment",
+            "zone": "Hand",
+            "frame_id": null
+          }
+        ],
+        "root_slot": {
+          "root_action_id": "root.wargames",
+          "kind": "ActionRound",
+          "status": "Accepted",
+          "accepted_source_instance_id": "instance.wargames"
+        },
+        "final_scoring_only": {
+          "china_owner": "USSR",
+          "europe_control": "USSR",
+          "military_due": {
+            "US": 4,
+            "USSR": 0
+          },
+          "held_scoring": {
+            "US": true,
+            "USSR": false
+          }
+        }
+      },
+      "source": {
+        "card_id": "card.wargames",
+        "effect_id": "effect.wargames",
+        "source_instance_id": "instance.wargames",
+        "resolution_id": "resolution.wargames",
+        "frame_id": "frame.wargames",
+        "root_action_id": "root.wargames",
+        "root_phasing_player": "US",
+        "effect_controller": "US",
+        "source_owner": "US",
+        "source_kind": "RootEvent",
+        "phase": "ActionRound",
+        "provider_contract_id": "module.turn-flow",
+        "provider_proof_id": "proof.root.synthetic",
+        "ruleset_id": "ruleset.deluxe2015",
+        "ruleset_version": "0.1.0",
+        "data_digest": "8018133b87d14e61a64a7c483ff0088f4bb2c5d3ed86295545774ebbf36f5c87"
+      },
+      "decision": {
+        "decision_id": "decision.wargames",
+        "owner": "US",
+        "frame_id": "frame.wargames",
+        "revision": 7,
+        "source_context_digest": "c9aae779636fe835d7bffa641fa75b6385c5d19d5292b71323a89cddce7531d6",
+        "choices": [
+          "GiveSixAndEnd",
+          "GiveSixAndContinue",
+          "DeclineBoth"
+        ]
+      },
+      "vp_evidence": {
+        "status": "CompleteKnownBatch",
+        "provider_contract_id": "module.victory",
+        "proof_id": "proof.vp.synthetic",
+        "resolution_id": "resolution.wargames",
+        "revision": 7,
+        "unknown_relevant_awards": false
+      },
+      "cleanup_evidence": {
+        "status": "CompleteCurrentSourceAndSlot",
+        "provider_contract_id": "module.turn-flow",
+        "proof_id": "proof.cleanup.synthetic",
+        "root_action_id": "root.wargames",
+        "revision": 7,
+        "accepted_source_instance_id": "instance.wargames",
+        "slot_kind": "ActionRound",
+        "other_accepted_root_obligations": []
+      },
+      "request": {
+        "command_id": "command.wargames",
+        "command_kind": "ChooseBranch",
+        "decision_id": "decision.wargames",
+        "expected_revision": 7,
+        "choice": "GiveSixAndEnd",
+        "source_context_digest": "c9aae779636fe835d7bffa641fa75b6385c5d19d5292b71323a89cddce7531d6"
+      },
+      "authenticated_actor": "US",
+      "command_authority": "AuthenticatedDecision"
+    },
+    "result": {
+      "outcome": "Finished",
+      "event_occurred": true,
+      "vp_recipient": "USSR",
+      "vp_delta": -6,
+      "winner": "US",
+      "finish_reason": "Wargames",
+      "source_disposition": "RemovedFromGame",
+      "trace": [
+        "PreflightComplete",
+        "CloseCompleteVpBatch",
+        "ApplyAcceptedVp",
+        "RecordEventOccurrence",
+        "FinalizeSourceDisposition",
+        "FinalizeAcceptedRootSlot",
+        "SetFinished",
+        "RecordReceipt"
+      ],
+      "after": {
+        "revision": 8,
+        "status": "Finished",
+        "signed_vp": 1,
+        "defcon": 2,
+        "rng_cursor": 31,
+        "winner": "US",
+        "cards": [
+          {
+            "instance_id": "instance.wargames",
+            "card_id": "card.wargames",
+            "zone": "RemovedFromGame",
+            "frame_id": null
+          },
+          {
+            "instance_id": "instance.unrelated",
+            "card_id": "card.containment",
+            "zone": "Hand",
+            "frame_id": null
+          }
+        ],
+        "root_slot": {
+          "root_action_id": "root.wargames",
+          "kind": "ActionRound",
+          "status": "Completed",
+          "accepted_source_instance_id": "instance.wargames"
+        },
+        "final_scoring_only": {
+          "china_owner": "USSR",
+          "europe_control": "USSR",
+          "military_due": {
+            "US": 4,
+            "USSR": 0
+          },
+          "held_scoring": {
+            "US": true,
+            "USSR": false
+          }
+        }
+      }
+    },
+    "receipt_body": {
+      "resolution_id": "resolution.wargames",
+      "historical_input": {
+        "state": {
+          "revision": 7,
+          "status": "Running",
+          "signed_vp": 7,
+          "defcon": 2,
+          "rng_cursor": 31,
+          "winner": null,
+          "cards": [
+            {
+              "instance_id": "instance.wargames",
+              "card_id": "card.wargames",
+              "zone": "InResolution",
+              "frame_id": "frame.wargames"
+            },
+            {
+              "instance_id": "instance.unrelated",
+              "card_id": "card.containment",
+              "zone": "Hand",
+              "frame_id": null
+            }
+          ],
+          "root_slot": {
+            "root_action_id": "root.wargames",
+            "kind": "ActionRound",
+            "status": "Accepted",
+            "accepted_source_instance_id": "instance.wargames"
+          },
+          "final_scoring_only": {
+            "china_owner": "USSR",
+            "europe_control": "USSR",
+            "military_due": {
+              "US": 4,
+              "USSR": 0
+            },
+            "held_scoring": {
+              "US": true,
+              "USSR": false
+            }
+          }
+        },
+        "source": {
+          "card_id": "card.wargames",
+          "effect_id": "effect.wargames",
+          "source_instance_id": "instance.wargames",
+          "resolution_id": "resolution.wargames",
+          "frame_id": "frame.wargames",
+          "root_action_id": "root.wargames",
+          "root_phasing_player": "US",
+          "effect_controller": "US",
+          "source_owner": "US",
+          "source_kind": "RootEvent",
+          "phase": "ActionRound",
+          "provider_contract_id": "module.turn-flow",
+          "provider_proof_id": "proof.root.synthetic",
+          "ruleset_id": "ruleset.deluxe2015",
+          "ruleset_version": "0.1.0",
+          "data_digest": "8018133b87d14e61a64a7c483ff0088f4bb2c5d3ed86295545774ebbf36f5c87"
+        },
+        "decision": {
+          "decision_id": "decision.wargames",
+          "owner": "US",
+          "frame_id": "frame.wargames",
+          "revision": 7,
+          "source_context_digest": "c9aae779636fe835d7bffa641fa75b6385c5d19d5292b71323a89cddce7531d6",
+          "choices": [
+            "GiveSixAndEnd",
+            "GiveSixAndContinue",
+            "DeclineBoth"
+          ]
+        },
+        "vp_evidence": {
+          "status": "CompleteKnownBatch",
+          "provider_contract_id": "module.victory",
+          "proof_id": "proof.vp.synthetic",
+          "resolution_id": "resolution.wargames",
+          "revision": 7,
+          "unknown_relevant_awards": false
+        },
+        "cleanup_evidence": {
+          "status": "CompleteCurrentSourceAndSlot",
+          "provider_contract_id": "module.turn-flow",
+          "proof_id": "proof.cleanup.synthetic",
+          "root_action_id": "root.wargames",
+          "revision": 7,
+          "accepted_source_instance_id": "instance.wargames",
+          "slot_kind": "ActionRound",
+          "other_accepted_root_obligations": []
+        },
+        "request": {
+          "command_id": "command.wargames",
+          "command_kind": "ChooseBranch",
+          "decision_id": "decision.wargames",
+          "expected_revision": 7,
+          "choice": "GiveSixAndEnd",
+          "source_context_digest": "c9aae779636fe835d7bffa641fa75b6385c5d19d5292b71323a89cddce7531d6"
+        },
+        "authenticated_actor": "US",
+        "command_authority": "AuthenticatedDecision"
+      },
+      "source_context_digest": "c9aae779636fe835d7bffa641fa75b6385c5d19d5292b71323a89cddce7531d6",
+      "original_request_digest": "9c1829ab1119b8a22a1c78982994b5fda22447e84da072cd4d09b7a45b255323",
+      "before_state_digest": "c9176e8ab4699b457b198739c72ace3644c4b6ae895fc0f46e701f9d491becad",
+      "result": {
+        "outcome": "Finished",
+        "event_occurred": true,
+        "vp_recipient": "USSR",
+        "vp_delta": -6,
+        "winner": "US",
+        "finish_reason": "Wargames",
+        "source_disposition": "RemovedFromGame",
+        "trace": [
+          "PreflightComplete",
+          "CloseCompleteVpBatch",
+          "ApplyAcceptedVp",
+          "RecordEventOccurrence",
+          "FinalizeSourceDisposition",
+          "FinalizeAcceptedRootSlot",
+          "SetFinished",
+          "RecordReceipt"
+        ],
+        "after": {
+          "revision": 8,
+          "status": "Finished",
+          "signed_vp": 1,
+          "defcon": 2,
+          "rng_cursor": 31,
+          "winner": "US",
+          "cards": [
+            {
+              "instance_id": "instance.wargames",
+              "card_id": "card.wargames",
+              "zone": "RemovedFromGame",
+              "frame_id": null
+            },
+            {
+              "instance_id": "instance.unrelated",
+              "card_id": "card.containment",
+              "zone": "Hand",
+              "frame_id": null
+            }
+          ],
+          "root_slot": {
+            "root_action_id": "root.wargames",
+            "kind": "ActionRound",
+            "status": "Completed",
+            "accepted_source_instance_id": "instance.wargames"
+          },
+          "final_scoring_only": {
+            "china_owner": "USSR",
+            "europe_control": "USSR",
+            "military_due": {
+              "US": 4,
+              "USSR": 0
+            },
+            "held_scoring": {
+              "US": true,
+              "USSR": false
+            }
+          }
+        }
+      }
+    },
+    "receipt": {
+      "body": {
+        "resolution_id": "resolution.wargames",
+        "historical_input": {
+          "state": {
+            "revision": 7,
+            "status": "Running",
+            "signed_vp": 7,
+            "defcon": 2,
+            "rng_cursor": 31,
+            "winner": null,
+            "cards": [
+              {
+                "instance_id": "instance.wargames",
+                "card_id": "card.wargames",
+                "zone": "InResolution",
+                "frame_id": "frame.wargames"
+              },
+              {
+                "instance_id": "instance.unrelated",
+                "card_id": "card.containment",
+                "zone": "Hand",
+                "frame_id": null
+              }
+            ],
+            "root_slot": {
+              "root_action_id": "root.wargames",
+              "kind": "ActionRound",
+              "status": "Accepted",
+              "accepted_source_instance_id": "instance.wargames"
+            },
+            "final_scoring_only": {
+              "china_owner": "USSR",
+              "europe_control": "USSR",
+              "military_due": {
+                "US": 4,
+                "USSR": 0
+              },
+              "held_scoring": {
+                "US": true,
+                "USSR": false
+              }
+            }
+          },
+          "source": {
+            "card_id": "card.wargames",
+            "effect_id": "effect.wargames",
+            "source_instance_id": "instance.wargames",
+            "resolution_id": "resolution.wargames",
+            "frame_id": "frame.wargames",
+            "root_action_id": "root.wargames",
+            "root_phasing_player": "US",
+            "effect_controller": "US",
+            "source_owner": "US",
+            "source_kind": "RootEvent",
+            "phase": "ActionRound",
+            "provider_contract_id": "module.turn-flow",
+            "provider_proof_id": "proof.root.synthetic",
+            "ruleset_id": "ruleset.deluxe2015",
+            "ruleset_version": "0.1.0",
+            "data_digest": "8018133b87d14e61a64a7c483ff0088f4bb2c5d3ed86295545774ebbf36f5c87"
+          },
+          "decision": {
+            "decision_id": "decision.wargames",
+            "owner": "US",
+            "frame_id": "frame.wargames",
+            "revision": 7,
+            "source_context_digest": "c9aae779636fe835d7bffa641fa75b6385c5d19d5292b71323a89cddce7531d6",
+            "choices": [
+              "GiveSixAndEnd",
+              "GiveSixAndContinue",
+              "DeclineBoth"
+            ]
+          },
+          "vp_evidence": {
+            "status": "CompleteKnownBatch",
+            "provider_contract_id": "module.victory",
+            "proof_id": "proof.vp.synthetic",
+            "resolution_id": "resolution.wargames",
+            "revision": 7,
+            "unknown_relevant_awards": false
+          },
+          "cleanup_evidence": {
+            "status": "CompleteCurrentSourceAndSlot",
+            "provider_contract_id": "module.turn-flow",
+            "proof_id": "proof.cleanup.synthetic",
+            "root_action_id": "root.wargames",
+            "revision": 7,
+            "accepted_source_instance_id": "instance.wargames",
+            "slot_kind": "ActionRound",
+            "other_accepted_root_obligations": []
+          },
+          "request": {
+            "command_id": "command.wargames",
+            "command_kind": "ChooseBranch",
+            "decision_id": "decision.wargames",
+            "expected_revision": 7,
+            "choice": "GiveSixAndEnd",
+            "source_context_digest": "c9aae779636fe835d7bffa641fa75b6385c5d19d5292b71323a89cddce7531d6"
+          },
+          "authenticated_actor": "US",
+          "command_authority": "AuthenticatedDecision"
+        },
+        "source_context_digest": "c9aae779636fe835d7bffa641fa75b6385c5d19d5292b71323a89cddce7531d6",
+        "original_request_digest": "9c1829ab1119b8a22a1c78982994b5fda22447e84da072cd4d09b7a45b255323",
+        "before_state_digest": "c9176e8ab4699b457b198739c72ace3644c4b6ae895fc0f46e701f9d491becad",
+        "result": {
+          "outcome": "Finished",
+          "event_occurred": true,
+          "vp_recipient": "USSR",
+          "vp_delta": -6,
+          "winner": "US",
+          "finish_reason": "Wargames",
+          "source_disposition": "RemovedFromGame",
+          "trace": [
+            "PreflightComplete",
+            "CloseCompleteVpBatch",
+            "ApplyAcceptedVp",
+            "RecordEventOccurrence",
+            "FinalizeSourceDisposition",
+            "FinalizeAcceptedRootSlot",
+            "SetFinished",
+            "RecordReceipt"
+          ],
+          "after": {
+            "revision": 8,
+            "status": "Finished",
+            "signed_vp": 1,
+            "defcon": 2,
+            "rng_cursor": 31,
+            "winner": "US",
+            "cards": [
+              {
+                "instance_id": "instance.wargames",
+                "card_id": "card.wargames",
+                "zone": "RemovedFromGame",
+                "frame_id": null
+              },
+              {
+                "instance_id": "instance.unrelated",
+                "card_id": "card.containment",
+                "zone": "Hand",
+                "frame_id": null
+              }
+            ],
+            "root_slot": {
+              "root_action_id": "root.wargames",
+              "kind": "ActionRound",
+              "status": "Completed",
+              "accepted_source_instance_id": "instance.wargames"
+            },
+            "final_scoring_only": {
+              "china_owner": "USSR",
+              "europe_control": "USSR",
+              "military_due": {
+                "US": 4,
+                "USSR": 0
+              },
+              "held_scoring": {
+                "US": true,
+                "USSR": false
+              }
+            }
+          }
+        }
+      },
+      "receipt_digest": "b01d82e7bb69a17376e453c7f6db40e5f0b2762fa364c715ac04e90896322d3b"
+    },
+    "accepted_anchor": {
+      "command_id": "command.wargames",
+      "resolution_id": "resolution.wargames",
+      "source_context_digest": "c9aae779636fe835d7bffa641fa75b6385c5d19d5292b71323a89cddce7531d6",
+      "original_request_digest": "9c1829ab1119b8a22a1c78982994b5fda22447e84da072cd4d09b7a45b255323",
+      "before_state_digest": "c9176e8ab4699b457b198739c72ace3644c4b6ae895fc0f46e701f9d491becad",
+      "receipt_digest": "b01d82e7bb69a17376e453c7f6db40e5f0b2762fa364c715ac04e90896322d3b"
+    }
+  },
+  "base_historical_input": {
+    "state": {
+      "revision": 7,
+      "status": "Running",
+      "signed_vp": 7,
+      "defcon": 2,
+      "rng_cursor": 31,
+      "winner": null,
+      "cards": [
+        {
+          "instance_id": "instance.wargames",
+          "card_id": "card.wargames",
+          "zone": "InResolution",
+          "frame_id": "frame.wargames"
+        },
+        {
+          "instance_id": "instance.unrelated",
+          "card_id": "card.containment",
+          "zone": "Hand",
+          "frame_id": null
+        }
+      ],
+      "root_slot": {
+        "root_action_id": "root.wargames",
+        "kind": "ActionRound",
+        "status": "Accepted",
+        "accepted_source_instance_id": "instance.wargames"
+      },
+      "final_scoring_only": {
+        "china_owner": "USSR",
+        "europe_control": "USSR",
+        "military_due": {
+          "US": 4,
+          "USSR": 0
+        },
+        "held_scoring": {
+          "US": true,
+          "USSR": false
+        }
+      }
+    },
+    "source": {
+      "card_id": "card.wargames",
+      "effect_id": "effect.wargames",
+      "source_instance_id": "instance.wargames",
+      "resolution_id": "resolution.wargames",
+      "frame_id": "frame.wargames",
+      "root_action_id": "root.wargames",
+      "root_phasing_player": "US",
+      "effect_controller": "US",
+      "source_owner": "US",
+      "source_kind": "RootEvent",
+      "phase": "ActionRound",
+      "provider_contract_id": "module.turn-flow",
+      "provider_proof_id": "proof.root.synthetic",
+      "ruleset_id": "ruleset.deluxe2015",
+      "ruleset_version": "0.1.0",
+      "data_digest": "8018133b87d14e61a64a7c483ff0088f4bb2c5d3ed86295545774ebbf36f5c87"
+    },
+    "decision": {
+      "decision_id": "decision.wargames",
+      "owner": "US",
+      "frame_id": "frame.wargames",
+      "revision": 7,
+      "source_context_digest": "c9aae779636fe835d7bffa641fa75b6385c5d19d5292b71323a89cddce7531d6",
+      "choices": [
+        "GiveSixAndEnd",
+        "GiveSixAndContinue",
+        "DeclineBoth"
+      ]
+    },
+    "vp_evidence": {
+      "status": "CompleteKnownBatch",
+      "provider_contract_id": "module.victory",
+      "proof_id": "proof.vp.synthetic",
+      "resolution_id": "resolution.wargames",
+      "revision": 7,
+      "unknown_relevant_awards": false
+    },
+    "cleanup_evidence": {
+      "status": "CompleteCurrentSourceAndSlot",
+      "provider_contract_id": "module.turn-flow",
+      "proof_id": "proof.cleanup.synthetic",
+      "root_action_id": "root.wargames",
+      "revision": 7,
+      "accepted_source_instance_id": "instance.wargames",
+      "slot_kind": "ActionRound",
+      "other_accepted_root_obligations": []
+    },
+    "request": {
+      "command_id": "command.wargames",
+      "command_kind": "ChooseBranch",
+      "decision_id": "decision.wargames",
+      "expected_revision": 7,
+      "choice": "GiveSixAndEnd",
+      "source_context_digest": "c9aae779636fe835d7bffa641fa75b6385c5d19d5292b71323a89cddce7531d6"
+    },
+    "authenticated_actor": "US",
+    "command_authority": "AuthenticatedDecision"
+  },
+  "base_receipt": {
+    "body": {
+      "resolution_id": "resolution.wargames",
+      "historical_input": {
+        "state": {
+          "revision": 7,
+          "status": "Running",
+          "signed_vp": 7,
+          "defcon": 2,
+          "rng_cursor": 31,
+          "winner": null,
+          "cards": [
+            {
+              "instance_id": "instance.wargames",
+              "card_id": "card.wargames",
+              "zone": "InResolution",
+              "frame_id": "frame.wargames"
+            },
+            {
+              "instance_id": "instance.unrelated",
+              "card_id": "card.containment",
+              "zone": "Hand",
+              "frame_id": null
+            }
+          ],
+          "root_slot": {
+            "root_action_id": "root.wargames",
+            "kind": "ActionRound",
+            "status": "Accepted",
+            "accepted_source_instance_id": "instance.wargames"
+          },
+          "final_scoring_only": {
+            "china_owner": "USSR",
+            "europe_control": "USSR",
+            "military_due": {
+              "US": 4,
+              "USSR": 0
+            },
+            "held_scoring": {
+              "US": true,
+              "USSR": false
+            }
+          }
+        },
+        "source": {
+          "card_id": "card.wargames",
+          "effect_id": "effect.wargames",
+          "source_instance_id": "instance.wargames",
+          "resolution_id": "resolution.wargames",
+          "frame_id": "frame.wargames",
+          "root_action_id": "root.wargames",
+          "root_phasing_player": "US",
+          "effect_controller": "US",
+          "source_owner": "US",
+          "source_kind": "RootEvent",
+          "phase": "ActionRound",
+          "provider_contract_id": "module.turn-flow",
+          "provider_proof_id": "proof.root.synthetic",
+          "ruleset_id": "ruleset.deluxe2015",
+          "ruleset_version": "0.1.0",
+          "data_digest": "8018133b87d14e61a64a7c483ff0088f4bb2c5d3ed86295545774ebbf36f5c87"
+        },
+        "decision": {
+          "decision_id": "decision.wargames",
+          "owner": "US",
+          "frame_id": "frame.wargames",
+          "revision": 7,
+          "source_context_digest": "c9aae779636fe835d7bffa641fa75b6385c5d19d5292b71323a89cddce7531d6",
+          "choices": [
+            "GiveSixAndEnd",
+            "GiveSixAndContinue",
+            "DeclineBoth"
+          ]
+        },
+        "vp_evidence": {
+          "status": "CompleteKnownBatch",
+          "provider_contract_id": "module.victory",
+          "proof_id": "proof.vp.synthetic",
+          "resolution_id": "resolution.wargames",
+          "revision": 7,
+          "unknown_relevant_awards": false
+        },
+        "cleanup_evidence": {
+          "status": "CompleteCurrentSourceAndSlot",
+          "provider_contract_id": "module.turn-flow",
+          "proof_id": "proof.cleanup.synthetic",
+          "root_action_id": "root.wargames",
+          "revision": 7,
+          "accepted_source_instance_id": "instance.wargames",
+          "slot_kind": "ActionRound",
+          "other_accepted_root_obligations": []
+        },
+        "request": {
+          "command_id": "command.wargames",
+          "command_kind": "ChooseBranch",
+          "decision_id": "decision.wargames",
+          "expected_revision": 7,
+          "choice": "GiveSixAndEnd",
+          "source_context_digest": "c9aae779636fe835d7bffa641fa75b6385c5d19d5292b71323a89cddce7531d6"
+        },
+        "authenticated_actor": "US",
+        "command_authority": "AuthenticatedDecision"
+      },
+      "source_context_digest": "c9aae779636fe835d7bffa641fa75b6385c5d19d5292b71323a89cddce7531d6",
+      "original_request_digest": "9c1829ab1119b8a22a1c78982994b5fda22447e84da072cd4d09b7a45b255323",
+      "before_state_digest": "c9176e8ab4699b457b198739c72ace3644c4b6ae895fc0f46e701f9d491becad",
+      "result": {
+        "outcome": "Finished",
+        "event_occurred": true,
+        "vp_recipient": "USSR",
+        "vp_delta": -6,
+        "winner": "US",
+        "finish_reason": "Wargames",
+        "source_disposition": "RemovedFromGame",
+        "trace": [
+          "PreflightComplete",
+          "CloseCompleteVpBatch",
+          "ApplyAcceptedVp",
+          "RecordEventOccurrence",
+          "FinalizeSourceDisposition",
+          "FinalizeAcceptedRootSlot",
+          "SetFinished",
+          "RecordReceipt"
+        ],
+        "after": {
+          "revision": 8,
+          "status": "Finished",
+          "signed_vp": 1,
+          "defcon": 2,
+          "rng_cursor": 31,
+          "winner": "US",
+          "cards": [
+            {
+              "instance_id": "instance.wargames",
+              "card_id": "card.wargames",
+              "zone": "RemovedFromGame",
+              "frame_id": null
+            },
+            {
+              "instance_id": "instance.unrelated",
+              "card_id": "card.containment",
+              "zone": "Hand",
+              "frame_id": null
+            }
+          ],
+          "root_slot": {
+            "root_action_id": "root.wargames",
+            "kind": "ActionRound",
+            "status": "Completed",
+            "accepted_source_instance_id": "instance.wargames"
+          },
+          "final_scoring_only": {
+            "china_owner": "USSR",
+            "europe_control": "USSR",
+            "military_due": {
+              "US": 4,
+              "USSR": 0
+            },
+            "held_scoring": {
+              "US": true,
+              "USSR": false
+            }
+          }
+        }
+      }
+    },
+    "receipt_digest": "b01d82e7bb69a17376e453c7f6db40e5f0b2762fa364c715ac04e90896322d3b"
+  },
+  "base_anchor": {
+    "command_id": "command.wargames",
+    "resolution_id": "resolution.wargames",
+    "source_context_digest": "c9aae779636fe835d7bffa641fa75b6385c5d19d5292b71323a89cddce7531d6",
+    "original_request_digest": "9c1829ab1119b8a22a1c78982994b5fda22447e84da072cd4d09b7a45b255323",
+    "before_state_digest": "c9176e8ab4699b457b198739c72ace3644c4b6ae895fc0f46e701f9d491becad",
+    "receipt_digest": "b01d82e7bb69a17376e453c7f6db40e5f0b2762fa364c715ac04e90896322d3b"
+  },
+  "cases": [
+    {
+      "id": "WG1-D-valid",
+      "validation_layer": "data",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "WG1-D-fourth-choice",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "wargames",
+              "choices"
+            ],
+            "value": [
+              "GiveSixAndEnd",
+              "GiveSixAndContinue",
+              "DeclineBoth",
+              "GiveZeroAndEnd"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-D-omit-continue",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "wargames",
+              "choices"
+            ],
+            "value": [
+              "GiveSixAndEnd",
+              "DeclineBoth"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-D-wrong-gift",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "wargames",
+              "opponent_vp"
+            ],
+            "value": 4
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-D-wrong-defcon",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "wargames",
+              "required_defcon_level"
+            ],
+            "value": 3
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-D-root-recipient",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "wargames",
+              "vp_recipient"
+            ],
+            "value": "OpponentOfRootPhasing"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-D-draw-assumed",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "wargames",
+              "zero_end_policy"
+            ],
+            "value": "Draw"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-D-skip-victory",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "wargames",
+              "continue_threshold_policy"
+            ],
+            "value": "AlwaysContinue"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-D-decline-not-used",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "wargames",
+              "decline_policy"
+            ],
+            "value": "EventDidNotOccur"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-D-nested-fyp",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "source_policy",
+              "supported_sources"
+            ],
+            "value": [
+              "RootEvent",
+              "HeadlineEvent",
+              "VerifiedHandEventChild"
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-D-partial-batch",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "preflight_policy",
+              "vp_provider"
+            ],
+            "value": "SixVpOnlyNoProviderCheck"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-D-finish-before-cleanup",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "terminal_policy",
+              "transaction"
+            ],
+            "value": "FinishedThenCleanup"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-D-live-recompute",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "receipt_policy",
+              "replay"
+            ],
+            "value": "RecomputeFromLive"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-D-hash-auth",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "receipt_policy",
+              "digest_is_authorization"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-D-extra-finalstep",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "wargames",
+              "excluded_end_steps"
+            ],
+            "value": []
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-D-unknown-root",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "unrecognized"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-D-parameter-unknown",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "wargames",
+              "unexpected"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-D-ref-drift",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "shared_refs",
+              "victory",
+              "json_pointer"
+            ],
+            "value": "/missing"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-D-gift-bool",
+      "validation_layer": "data",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "parameters",
+              "wargames",
+              "opponent_vp"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-source_context-valid",
+      "validation_layer": "contract",
+      "schema_def": "source_context",
+      "fixture": "source_context",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "WG1-C-source_context-extra",
+      "validation_layer": "contract",
+      "schema_def": "source_context",
+      "fixture": "source_context",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "unexpected"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-source_context-missing",
+      "validation_layer": "contract",
+      "schema_def": "source_context",
+      "fixture": "source_context",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "card_id"
+            ],
+            "delete": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-source_context-type",
+      "validation_layer": "contract",
+      "schema_def": "source_context",
+      "fixture": "source_context",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "card_id"
+            ],
+            "value": []
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-source_bundle-valid",
+      "validation_layer": "contract",
+      "schema_def": "source_bundle",
+      "fixture": "source_bundle",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "WG1-C-source_bundle-extra",
+      "validation_layer": "contract",
+      "schema_def": "source_bundle",
+      "fixture": "source_bundle",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "unexpected"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-source_bundle-missing",
+      "validation_layer": "contract",
+      "schema_def": "source_bundle",
+      "fixture": "source_bundle",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "context"
+            ],
+            "delete": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-source_bundle-type",
+      "validation_layer": "contract",
+      "schema_def": "source_bundle",
+      "fixture": "source_bundle",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "context"
+            ],
+            "value": []
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-card_location-valid",
+      "validation_layer": "contract",
+      "schema_def": "card_location",
+      "fixture": "card_location",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "WG1-C-card_location-extra",
+      "validation_layer": "contract",
+      "schema_def": "card_location",
+      "fixture": "card_location",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "unexpected"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-card_location-missing",
+      "validation_layer": "contract",
+      "schema_def": "card_location",
+      "fixture": "card_location",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "instance_id"
+            ],
+            "delete": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-card_location-type",
+      "validation_layer": "contract",
+      "schema_def": "card_location",
+      "fixture": "card_location",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "instance_id"
+            ],
+            "value": []
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-root_slot-valid",
+      "validation_layer": "contract",
+      "schema_def": "root_slot",
+      "fixture": "root_slot",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "WG1-C-root_slot-extra",
+      "validation_layer": "contract",
+      "schema_def": "root_slot",
+      "fixture": "root_slot",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "unexpected"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-root_slot-missing",
+      "validation_layer": "contract",
+      "schema_def": "root_slot",
+      "fixture": "root_slot",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "root_action_id"
+            ],
+            "delete": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-root_slot-type",
+      "validation_layer": "contract",
+      "schema_def": "root_slot",
+      "fixture": "root_slot",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "root_action_id"
+            ],
+            "value": []
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-snapshot-valid",
+      "validation_layer": "contract",
+      "schema_def": "snapshot",
+      "fixture": "snapshot",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "WG1-C-snapshot-extra",
+      "validation_layer": "contract",
+      "schema_def": "snapshot",
+      "fixture": "snapshot",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "unexpected"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-snapshot-missing",
+      "validation_layer": "contract",
+      "schema_def": "snapshot",
+      "fixture": "snapshot",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "revision"
+            ],
+            "delete": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-snapshot-type",
+      "validation_layer": "contract",
+      "schema_def": "snapshot",
+      "fixture": "snapshot",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "revision"
+            ],
+            "value": []
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-decision-valid",
+      "validation_layer": "contract",
+      "schema_def": "decision",
+      "fixture": "decision",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "WG1-C-decision-extra",
+      "validation_layer": "contract",
+      "schema_def": "decision",
+      "fixture": "decision",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "unexpected"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-decision-missing",
+      "validation_layer": "contract",
+      "schema_def": "decision",
+      "fixture": "decision",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "decision_id"
+            ],
+            "delete": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-decision-type",
+      "validation_layer": "contract",
+      "schema_def": "decision",
+      "fixture": "decision",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "decision_id"
+            ],
+            "value": []
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-request-valid",
+      "validation_layer": "contract",
+      "schema_def": "request",
+      "fixture": "request",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "WG1-C-request-extra",
+      "validation_layer": "contract",
+      "schema_def": "request",
+      "fixture": "request",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "unexpected"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-request-missing",
+      "validation_layer": "contract",
+      "schema_def": "request",
+      "fixture": "request",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "command_id"
+            ],
+            "delete": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-request-type",
+      "validation_layer": "contract",
+      "schema_def": "request",
+      "fixture": "request",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "command_id"
+            ],
+            "value": []
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-vp_evidence-valid",
+      "validation_layer": "contract",
+      "schema_def": "vp_evidence",
+      "fixture": "vp_evidence",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "WG1-C-vp_evidence-extra",
+      "validation_layer": "contract",
+      "schema_def": "vp_evidence",
+      "fixture": "vp_evidence",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "unexpected"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-vp_evidence-missing",
+      "validation_layer": "contract",
+      "schema_def": "vp_evidence",
+      "fixture": "vp_evidence",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "status"
+            ],
+            "delete": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-vp_evidence-type",
+      "validation_layer": "contract",
+      "schema_def": "vp_evidence",
+      "fixture": "vp_evidence",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "status"
+            ],
+            "value": []
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-cleanup_evidence-valid",
+      "validation_layer": "contract",
+      "schema_def": "cleanup_evidence",
+      "fixture": "cleanup_evidence",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "WG1-C-cleanup_evidence-extra",
+      "validation_layer": "contract",
+      "schema_def": "cleanup_evidence",
+      "fixture": "cleanup_evidence",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "unexpected"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-cleanup_evidence-missing",
+      "validation_layer": "contract",
+      "schema_def": "cleanup_evidence",
+      "fixture": "cleanup_evidence",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "status"
+            ],
+            "delete": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-cleanup_evidence-type",
+      "validation_layer": "contract",
+      "schema_def": "cleanup_evidence",
+      "fixture": "cleanup_evidence",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "status"
+            ],
+            "value": []
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-historical_input-valid",
+      "validation_layer": "contract",
+      "schema_def": "historical_input",
+      "fixture": "historical_input",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "WG1-C-historical_input-extra",
+      "validation_layer": "contract",
+      "schema_def": "historical_input",
+      "fixture": "historical_input",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "unexpected"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-historical_input-missing",
+      "validation_layer": "contract",
+      "schema_def": "historical_input",
+      "fixture": "historical_input",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "state"
+            ],
+            "delete": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-historical_input-type",
+      "validation_layer": "contract",
+      "schema_def": "historical_input",
+      "fixture": "historical_input",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "state"
+            ],
+            "value": []
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-result-valid",
+      "validation_layer": "contract",
+      "schema_def": "result",
+      "fixture": "result",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "WG1-C-result-extra",
+      "validation_layer": "contract",
+      "schema_def": "result",
+      "fixture": "result",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "unexpected"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-result-missing",
+      "validation_layer": "contract",
+      "schema_def": "result",
+      "fixture": "result",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "outcome"
+            ],
+            "delete": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-result-type",
+      "validation_layer": "contract",
+      "schema_def": "result",
+      "fixture": "result",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "outcome"
+            ],
+            "value": []
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-receipt_body-valid",
+      "validation_layer": "contract",
+      "schema_def": "receipt_body",
+      "fixture": "receipt_body",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "WG1-C-receipt_body-extra",
+      "validation_layer": "contract",
+      "schema_def": "receipt_body",
+      "fixture": "receipt_body",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "unexpected"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-receipt_body-missing",
+      "validation_layer": "contract",
+      "schema_def": "receipt_body",
+      "fixture": "receipt_body",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "resolution_id"
+            ],
+            "delete": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-receipt_body-type",
+      "validation_layer": "contract",
+      "schema_def": "receipt_body",
+      "fixture": "receipt_body",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "resolution_id"
+            ],
+            "value": []
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-receipt-valid",
+      "validation_layer": "contract",
+      "schema_def": "receipt",
+      "fixture": "receipt",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "WG1-C-receipt-extra",
+      "validation_layer": "contract",
+      "schema_def": "receipt",
+      "fixture": "receipt",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "unexpected"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-receipt-missing",
+      "validation_layer": "contract",
+      "schema_def": "receipt",
+      "fixture": "receipt",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "body"
+            ],
+            "delete": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-receipt-type",
+      "validation_layer": "contract",
+      "schema_def": "receipt",
+      "fixture": "receipt",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "body"
+            ],
+            "value": []
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-accepted_anchor-valid",
+      "validation_layer": "contract",
+      "schema_def": "accepted_anchor",
+      "fixture": "accepted_anchor",
+      "input": {
+        "edits": []
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "WG1-C-accepted_anchor-extra",
+      "validation_layer": "contract",
+      "schema_def": "accepted_anchor",
+      "fixture": "accepted_anchor",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "unexpected"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-accepted_anchor-missing",
+      "validation_layer": "contract",
+      "schema_def": "accepted_anchor",
+      "fixture": "accepted_anchor",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "command_id"
+            ],
+            "delete": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-accepted_anchor-type",
+      "validation_layer": "contract",
+      "schema_def": "accepted_anchor",
+      "fixture": "accepted_anchor",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "command_id"
+            ],
+            "value": []
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-review-duplicate-card-id",
+      "validation_layer": "contract",
+      "schema_def": "source_bundle",
+      "fixture": "source_bundle",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "authoritative_card_locations"
+            ],
+            "value": [
+              {
+                "instance_id": "instance.wargames",
+                "card_id": "card.wargames",
+                "zone": "InResolution",
+                "frame_id": "frame.wargames"
+              },
+              {
+                "instance_id": "instance.unrelated",
+                "card_id": "card.containment",
+                "zone": "Hand",
+                "frame_id": null
+              },
+              {
+                "instance_id": "instance.second-wargames",
+                "card_id": "card.wargames",
+                "zone": "Hand",
+                "frame_id": null
+              }
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-review-reused-source-frame",
+      "validation_layer": "contract",
+      "schema_def": "source_bundle",
+      "fixture": "source_bundle",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "authoritative_card_locations"
+            ],
+            "value": [
+              {
+                "instance_id": "instance.wargames",
+                "card_id": "card.wargames",
+                "zone": "InResolution",
+                "frame_id": "frame.wargames"
+              },
+              {
+                "instance_id": "instance.unrelated",
+                "card_id": "card.containment",
+                "zone": "InResolution",
+                "frame_id": "frame.wargames"
+              }
+            ]
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-neutral-fyp",
+      "validation_layer": "contract",
+      "schema_def": "source_context",
+      "fixture": "source_context",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "source_kind"
+            ],
+            "value": "VerifiedHandEventChild"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-root-headline",
+      "validation_layer": "contract",
+      "schema_def": "source_context",
+      "fixture": "source_context",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "phase"
+            ],
+            "value": "Headline"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-wrong-provider",
+      "validation_layer": "contract",
+      "schema_def": "source_context",
+      "fixture": "source_context",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "provider_contract_id"
+            ],
+            "value": "module.hand-events"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-root-is-not-controller",
+      "validation_layer": "contract",
+      "schema_def": "source_context",
+      "fixture": "source_context",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "root_phasing_player"
+            ],
+            "value": "USSR"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-client-gift",
+      "validation_layer": "contract",
+      "schema_def": "request",
+      "fixture": "request",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "opponent_vp"
+            ],
+            "value": 6
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-fourth-choice",
+      "validation_layer": "contract",
+      "schema_def": "request",
+      "fixture": "request",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "choice"
+            ],
+            "value": "GiveZeroAndEnd"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-blocked-has-choice",
+      "validation_layer": "contract",
+      "schema_def": "request",
+      "fixture": "request",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "command_kind"
+            ],
+            "value": "ResolveBlockedPrerequisite"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-vp-bool",
+      "validation_layer": "contract",
+      "schema_def": "snapshot",
+      "fixture": "snapshot",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "signed_vp"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-vp-fraction",
+      "validation_layer": "contract",
+      "schema_def": "snapshot",
+      "fixture": "snapshot",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "signed_vp"
+            ],
+            "value": 1.5
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-negative-revision",
+      "validation_layer": "contract",
+      "schema_def": "request",
+      "fixture": "request",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "expected_revision"
+            ],
+            "value": -1
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-proof-null-complete",
+      "validation_layer": "contract",
+      "schema_def": "vp_evidence",
+      "fixture": "vp_evidence",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "proof_id"
+            ],
+            "value": null
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-empty-proof",
+      "validation_layer": "contract",
+      "schema_def": "cleanup_evidence",
+      "fixture": "cleanup_evidence",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "proof_id"
+            ],
+            "value": ""
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-source-hand",
+      "validation_layer": "contract",
+      "schema_def": "source_bundle",
+      "fixture": "source_bundle",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "authoritative_card_locations",
+              0,
+              "zone"
+            ],
+            "value": "Hand"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-source-frame",
+      "validation_layer": "contract",
+      "schema_def": "source_bundle",
+      "fixture": "source_bundle",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "authoritative_card_locations",
+              0,
+              "frame_id"
+            ],
+            "value": "wrong"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-C-source-card",
+      "validation_layer": "contract",
+      "schema_def": "source_bundle",
+      "fixture": "source_bundle",
+      "input": {
+        "edits": [
+          {
+            "path": [
+              "authoritative_card_locations",
+              0,
+              "card_id"
+            ],
+            "value": "card.cia_created"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "WG1-R-us-leads-seven-end",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": []
+      },
+      "expected": {
+        "outcome": "Finished",
+        "accepted": true,
+        "signed_vp": 1,
+        "winner": "US",
+        "finish_reason": "Wargames",
+        "vp_delta": -6,
+        "event_occurred": true,
+        "source_zone": "RemovedFromGame",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-us-leads-five-end",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "signed_vp": 5
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "Finished",
+        "accepted": true,
+        "signed_vp": -1,
+        "winner": "USSR",
+        "finish_reason": "Wargames",
+        "vp_delta": -6,
+        "event_occurred": true,
+        "source_zone": "RemovedFromGame",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-ussr-leads-seven-end",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "controller": "USSR",
+          "signed_vp": -7
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "Finished",
+        "accepted": true,
+        "signed_vp": -1,
+        "winner": "USSR",
+        "finish_reason": "Wargames",
+        "vp_delta": 6,
+        "event_occurred": true,
+        "source_zone": "RemovedFromGame",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-ussr-leads-five-end",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "controller": "USSR",
+          "signed_vp": -5
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "Finished",
+        "accepted": true,
+        "signed_vp": 1,
+        "winner": "US",
+        "finish_reason": "Wargames",
+        "vp_delta": 6,
+        "event_occurred": true,
+        "source_zone": "RemovedFromGame",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-headline-end",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "headline": true
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "Finished",
+        "accepted": true,
+        "signed_vp": 1,
+        "winner": "US",
+        "finish_reason": "Wargames",
+        "vp_delta": -6,
+        "event_occurred": true,
+        "source_zone": "RemovedFromGame",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-review-duplicate-card-id",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "state",
+              "cards"
+            ],
+            "value": [
+              {
+                "instance_id": "instance.wargames",
+                "card_id": "card.wargames",
+                "zone": "InResolution",
+                "frame_id": "frame.wargames"
+              },
+              {
+                "instance_id": "instance.unrelated",
+                "card_id": "card.containment",
+                "zone": "Hand",
+                "frame_id": null
+              },
+              {
+                "instance_id": "instance.second-wargames",
+                "card_id": "card.wargames",
+                "zone": "Hand",
+                "frame_id": null
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidSource",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-review-reused-source-frame",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "state",
+              "cards"
+            ],
+            "value": [
+              {
+                "instance_id": "instance.wargames",
+                "card_id": "card.wargames",
+                "zone": "InResolution",
+                "frame_id": "frame.wargames"
+              },
+              {
+                "instance_id": "instance.unrelated",
+                "card_id": "card.containment",
+                "zone": "InResolution",
+                "frame_id": "frame.wargames"
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidSource",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-unknown-nested-provider",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "source",
+              "source_kind"
+            ],
+            "value": "VerifiedNestedEvent"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-US-continue-7",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "controller": "US",
+          "signed_vp": 7,
+          "choice": "GiveSixAndContinue"
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "Continue",
+        "accepted": true,
+        "signed_vp": 1,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": -6,
+        "event_occurred": true,
+        "source_zone": "RemovedFromGame",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-USSR-continue--7",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "controller": "USSR",
+          "signed_vp": -7,
+          "choice": "GiveSixAndContinue"
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "Continue",
+        "accepted": true,
+        "signed_vp": -1,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 6,
+        "event_occurred": true,
+        "source_zone": "RemovedFromGame",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-US-continue-6",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "controller": "US",
+          "signed_vp": 6,
+          "choice": "GiveSixAndContinue"
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "Continue",
+        "accepted": true,
+        "signed_vp": 0,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": -6,
+        "event_occurred": true,
+        "source_zone": "RemovedFromGame",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-USSR-continue--6",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "controller": "USSR",
+          "signed_vp": -6,
+          "choice": "GiveSixAndContinue"
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "Continue",
+        "accepted": true,
+        "signed_vp": 0,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 6,
+        "event_occurred": true,
+        "source_zone": "RemovedFromGame",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-US-continue--13",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "controller": "US",
+          "signed_vp": -13,
+          "choice": "GiveSixAndContinue"
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "Continue",
+        "accepted": true,
+        "signed_vp": -19,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": -6,
+        "event_occurred": true,
+        "source_zone": "RemovedFromGame",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-USSR-continue-13",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "controller": "USSR",
+          "signed_vp": 13,
+          "choice": "GiveSixAndContinue"
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "Continue",
+        "accepted": true,
+        "signed_vp": 19,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 6,
+        "event_occurred": true,
+        "source_zone": "RemovedFromGame",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-US-GiveSixAndContinue-automatic--14",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "controller": "US",
+          "signed_vp": -14,
+          "choice": "GiveSixAndContinue"
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "Finished",
+        "accepted": true,
+        "signed_vp": -20,
+        "winner": "USSR",
+        "finish_reason": "AutomaticVp",
+        "vp_delta": -6,
+        "event_occurred": true,
+        "source_zone": "RemovedFromGame",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-US-GiveSixAndEnd-automatic--14",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "controller": "US",
+          "signed_vp": -14,
+          "choice": "GiveSixAndEnd"
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "Finished",
+        "accepted": true,
+        "signed_vp": -20,
+        "winner": "USSR",
+        "finish_reason": "AutomaticVp",
+        "vp_delta": -6,
+        "event_occurred": true,
+        "source_zone": "RemovedFromGame",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-USSR-GiveSixAndContinue-automatic-14",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "controller": "USSR",
+          "signed_vp": 14,
+          "choice": "GiveSixAndContinue"
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "Finished",
+        "accepted": true,
+        "signed_vp": 20,
+        "winner": "US",
+        "finish_reason": "AutomaticVp",
+        "vp_delta": 6,
+        "event_occurred": true,
+        "source_zone": "RemovedFromGame",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-USSR-GiveSixAndEnd-automatic-14",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "controller": "USSR",
+          "signed_vp": 14,
+          "choice": "GiveSixAndEnd"
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "Finished",
+        "accepted": true,
+        "signed_vp": 20,
+        "winner": "US",
+        "finish_reason": "AutomaticVp",
+        "vp_delta": 6,
+        "event_occurred": true,
+        "source_zone": "RemovedFromGame",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-US-GiveSixAndContinue-automatic--19",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "controller": "US",
+          "signed_vp": -19,
+          "choice": "GiveSixAndContinue"
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "Finished",
+        "accepted": true,
+        "signed_vp": -25,
+        "winner": "USSR",
+        "finish_reason": "AutomaticVp",
+        "vp_delta": -6,
+        "event_occurred": true,
+        "source_zone": "RemovedFromGame",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-US-GiveSixAndEnd-automatic--19",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "controller": "US",
+          "signed_vp": -19,
+          "choice": "GiveSixAndEnd"
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "Finished",
+        "accepted": true,
+        "signed_vp": -25,
+        "winner": "USSR",
+        "finish_reason": "AutomaticVp",
+        "vp_delta": -6,
+        "event_occurred": true,
+        "source_zone": "RemovedFromGame",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-USSR-GiveSixAndContinue-automatic-19",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "controller": "USSR",
+          "signed_vp": 19,
+          "choice": "GiveSixAndContinue"
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "Finished",
+        "accepted": true,
+        "signed_vp": 25,
+        "winner": "US",
+        "finish_reason": "AutomaticVp",
+        "vp_delta": 6,
+        "event_occurred": true,
+        "source_zone": "RemovedFromGame",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-USSR-GiveSixAndEnd-automatic-19",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "controller": "USSR",
+          "signed_vp": 19,
+          "choice": "GiveSixAndEnd"
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "Finished",
+        "accepted": true,
+        "signed_vp": 25,
+        "winner": "US",
+        "finish_reason": "AutomaticVp",
+        "vp_delta": 6,
+        "event_occurred": true,
+        "source_zone": "RemovedFromGame",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-US-decline",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "controller": "US",
+          "signed_vp": 0,
+          "choice": "DeclineBoth"
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "accepted": true,
+        "signed_vp": 0,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": true,
+        "source_zone": "RemovedFromGame",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-USSR-decline",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "controller": "USSR",
+          "signed_vp": -19,
+          "choice": "DeclineBoth"
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "ResolvedNoChange",
+        "accepted": true,
+        "signed_vp": -19,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": true,
+        "source_zone": "RemovedFromGame",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-blocked-3",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "defcon": 3,
+          "blocked": true
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "BlockedPrerequisite",
+        "accepted": true,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "DiscardPile",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-blocked-4",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "defcon": 4,
+          "blocked": true
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "BlockedPrerequisite",
+        "accepted": true,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "DiscardPile",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-blocked-5",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "defcon": 5,
+          "blocked": true
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "BlockedPrerequisite",
+        "accepted": true,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "DiscardPile",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-headline-blocked",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "headline": true,
+          "defcon": 4,
+          "blocked": true
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "BlockedPrerequisite",
+        "accepted": true,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "DiscardPile",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 8,
+        "current_unchanged": false,
+        "final_scoring_unchanged": true,
+        "receipt_valid": true
+      }
+    },
+    {
+      "id": "WG1-R-decline-unknown-vp-provider",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "choice": "DeclineBoth"
+        },
+        "edits": [
+          {
+            "path": [
+              "vp_evidence",
+              "unknown_relevant_awards"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-blocked-unknown-cleanup",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "defcon": 3,
+          "blocked": true
+        },
+        "edits": [
+          {
+            "path": [
+              "cleanup_evidence",
+              "other_accepted_root_obligations"
+            ],
+            "value": [
+              "other.accepted"
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-US-zero-end-unresolved",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "controller": "US",
+          "signed_vp": 6
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "accepted": false,
+        "signed_vp": 6,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-USSR-zero-end-unresolved",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "controller": "USSR",
+          "signed_vp": -6
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "accepted": false,
+        "signed_vp": -6,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-wrong-actor",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "authenticated_actor"
+            ],
+            "value": "USSR"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "Unauthorized",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-stale-request",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "request",
+              "expected_revision"
+            ],
+            "value": 6
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "StaleRevision",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-bad-choice",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "request",
+              "choice"
+            ],
+            "value": "GiveZeroAndEnd"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidContract",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-client-vp",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "request",
+              "opponent_vp"
+            ],
+            "value": 100
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidContract",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-source-hand",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "state",
+              "cards",
+              0,
+              "zone"
+            ],
+            "value": "Hand"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidSource",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "Hand",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-source-missing",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "state",
+              "cards"
+            ],
+            "value": [
+              {
+                "instance_id": "instance.unrelated",
+                "card_id": "card.containment",
+                "zone": "Hand",
+                "frame_id": null
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidSource",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": null,
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-source-duplicate",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "state",
+              "cards"
+            ],
+            "value": [
+              {
+                "instance_id": "instance.wargames",
+                "card_id": "card.wargames",
+                "zone": "InResolution",
+                "frame_id": "frame.wargames"
+              },
+              {
+                "instance_id": "instance.unrelated",
+                "card_id": "card.containment",
+                "zone": "Hand",
+                "frame_id": null
+              },
+              {
+                "instance_id": "instance.wargames",
+                "card_id": "card.wargames",
+                "zone": "InResolution",
+                "frame_id": "frame.wargames"
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidSource",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-source-wrong-card",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "state",
+              "cards",
+              0,
+              "card_id"
+            ],
+            "value": "card.lone_gunman"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidSource",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-source-wrong-frame",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "state",
+              "cards",
+              0,
+              "frame_id"
+            ],
+            "value": "frame.other"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidSource",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-fyp-neutral",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "source",
+              "source_kind"
+            ],
+            "value": "VerifiedHandEventChild"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "UnsupportedProvider",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-unknown-provider",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "source",
+              "provider_contract_id"
+            ],
+            "value": "module.unknown"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-root-headline-mismatch",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "source",
+              "phase"
+            ],
+            "value": "Headline"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidContract",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-wrong-root",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "source",
+              "root_phasing_player"
+            ],
+            "value": "USSR"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidContract",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-old-data",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "source",
+              "data_digest"
+            ],
+            "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "StaleBinding",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-old-rules",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "source",
+              "ruleset_version"
+            ],
+            "value": "other"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "StaleBinding",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-request-source",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "request",
+              "source_context_digest"
+            ],
+            "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidBinding",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-decision-owner",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "decision",
+              "owner"
+            ],
+            "value": "USSR"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidDecision",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-decision-frame",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "decision",
+              "frame_id"
+            ],
+            "value": "other"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidDecision",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-decision-stale",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "decision",
+              "revision"
+            ],
+            "value": 6
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidDecision",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-decision-id",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "request",
+              "decision_id"
+            ],
+            "value": "decision.other"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidDecision",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-decision-choice-list",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "decision",
+              "choices"
+            ],
+            "value": [
+              "GiveSixAndEnd"
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidContract",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-vp-provider-unknown",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "vp_evidence",
+              "status"
+            ],
+            "value": "RequiresRuling"
+          },
+          {
+            "path": [
+              "vp_evidence",
+              "proof_id"
+            ],
+            "value": null
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-vp-awards-unknown",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "vp_evidence",
+              "unknown_relevant_awards"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-vp-proof-stale",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "vp_evidence",
+              "revision"
+            ],
+            "value": 6
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidProviderBinding",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-vp-resolution",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "vp_evidence",
+              "resolution_id"
+            ],
+            "value": "other"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidProviderBinding",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-cleanup-unknown",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "cleanup_evidence",
+              "status"
+            ],
+            "value": "RequiresRuling"
+          },
+          {
+            "path": [
+              "cleanup_evidence",
+              "proof_id"
+            ],
+            "value": null
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-cleanup-other-obligations",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "cleanup_evidence",
+              "other_accepted_root_obligations"
+            ],
+            "value": [
+              "accepted.other"
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "RequiresRuling",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-cleanup-root",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "cleanup_evidence",
+              "root_action_id"
+            ],
+            "value": "other"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidProviderBinding",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-cleanup-source",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "cleanup_evidence",
+              "accepted_source_instance_id"
+            ],
+            "value": "other"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidProviderBinding",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-cleanup-kind",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "cleanup_evidence",
+              "slot_kind"
+            ],
+            "value": "Headline"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidProviderBinding",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-slot-completed",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "state",
+              "root_slot",
+              "status"
+            ],
+            "value": "Completed"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidRootSlot",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Completed",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-slot-source",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "state",
+              "root_slot",
+              "accepted_source_instance_id"
+            ],
+            "value": "other"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidRootSlot",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-finished",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "state",
+              "status"
+            ],
+            "value": "Finished"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "AlreadyFinished",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-winner-already-present",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "state",
+              "winner"
+            ],
+            "value": "USSR"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidRunningState",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": "USSR",
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-defcon-nuclear",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "state",
+              "defcon"
+            ],
+            "value": 1
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidRunningState",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-defcon-high",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "state",
+              "defcon"
+            ],
+            "value": 6
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidRunningState",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-defcon-bool",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "state",
+              "defcon"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidContract",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-vp-bool",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "state",
+              "signed_vp"
+            ],
+            "value": true
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidContract",
+        "accepted": false,
+        "signed_vp": true,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-vp-already-winning",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "state",
+              "signed_vp"
+            ],
+            "value": 20
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidRunningState",
+        "accepted": false,
+        "signed_vp": 20,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-not-internal-blocked-authority",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {},
+        "edits": [
+          {
+            "path": [
+              "command_authority"
+            ],
+            "value": "InternalResolver"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidCommandAuthority",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-blocked-client",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "blocked": true,
+          "defcon": 3
+        },
+        "edits": [
+          {
+            "path": [
+              "command_authority"
+            ],
+            "value": "AuthenticatedDecision"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidCommandAuthority",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-blocked-choice-command",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "blocked": true,
+          "defcon": 3
+        },
+        "edits": [
+          {
+            "path": [
+              "request",
+              "command_kind"
+            ],
+            "value": "ChooseBranch"
+          },
+          {
+            "path": [
+              "request",
+              "choice"
+            ],
+            "value": "DeclineBoth"
+          },
+          {
+            "path": [
+              "request",
+              "decision_id"
+            ],
+            "value": "decision.wargames"
+          },
+          {
+            "path": [
+              "command_authority"
+            ],
+            "value": "AuthenticatedDecision"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "InvalidDecision",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-defcon-two-blocked-command",
+      "validation_layer": "reference",
+      "model": "fresh",
+      "input": {
+        "variant": {
+          "blocked": true
+        },
+        "edits": []
+      },
+      "expected": {
+        "outcome": "InvalidDecision",
+        "accepted": false,
+        "signed_vp": 7,
+        "winner": null,
+        "finish_reason": null,
+        "vp_delta": 0,
+        "event_occurred": false,
+        "source_zone": "InResolution",
+        "root_slot": "Accepted",
+        "rng_cursor": 31,
+        "revision": 7,
+        "current_unchanged": true,
+        "final_scoring_unchanged": true,
+        "receipt_valid": false
+      }
+    },
+    {
+      "id": "WG1-R-retry-same-command",
+      "validation_layer": "reference",
+      "model": "retry",
+      "input": {},
+      "expected": {
+        "outcome": "Replayed",
+        "current_unchanged": true,
+        "rng_unchanged": true,
+        "returned_original": true
+      }
+    },
+    {
+      "id": "WG1-R-retry-live-vp-defcon-cards-changed",
+      "validation_layer": "reference",
+      "model": "retry",
+      "input": {
+        "live_changed": true
+      },
+      "expected": {
+        "outcome": "Replayed",
+        "current_unchanged": true,
+        "rng_unchanged": true,
+        "returned_original": true
+      }
+    },
+    {
+      "id": "WG1-R-retry-finished-live",
+      "validation_layer": "reference",
+      "model": "retry",
+      "input": {
+        "live_finished": true
+      },
+      "expected": {
+        "outcome": "Replayed",
+        "current_unchanged": true,
+        "rng_unchanged": true,
+        "returned_original": true
+      }
+    },
+    {
+      "id": "WG1-R-retry-choice-conflict",
+      "validation_layer": "reference",
+      "model": "retry",
+      "input": {
+        "request_edits": [
+          {
+            "path": [
+              "choice"
+            ],
+            "value": "DeclineBoth"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "ConflictingRetry",
+        "current_unchanged": true,
+        "rng_unchanged": true,
+        "returned_original": false
+      }
+    },
+    {
+      "id": "WG1-R-retry-revision-conflict",
+      "validation_layer": "reference",
+      "model": "retry",
+      "input": {
+        "request_edits": [
+          {
+            "path": [
+              "expected_revision"
+            ],
+            "value": 9
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "ConflictingRetry",
+        "current_unchanged": true,
+        "rng_unchanged": true,
+        "returned_original": false
+      }
+    },
+    {
+      "id": "WG1-R-retry-wrong-actor",
+      "validation_layer": "reference",
+      "model": "retry",
+      "input": {
+        "actor": "USSR"
+      },
+      "expected": {
+        "outcome": "Unauthorized",
+        "current_unchanged": true,
+        "rng_unchanged": true,
+        "returned_original": false
+      }
+    },
+    {
+      "id": "WG1-R-retry-new-command-same-resolution",
+      "validation_layer": "reference",
+      "model": "retry",
+      "input": {
+        "request_edits": [
+          {
+            "path": [
+              "command_id"
+            ],
+            "value": "new.command"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "ResolutionAlreadyAccepted",
+        "current_unchanged": true,
+        "rng_unchanged": true,
+        "returned_original": false
+      }
+    },
+    {
+      "id": "WG1-R-retry-receipt-hash",
+      "validation_layer": "reference",
+      "model": "retry",
+      "input": {
+        "receipt_edits": [
+          {
+            "path": [
+              "receipt_digest"
+            ],
+            "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "CorruptReceipt",
+        "current_unchanged": true,
+        "rng_unchanged": true,
+        "returned_original": false
+      }
+    },
+    {
+      "id": "WG1-R-retry-winner-rehashed",
+      "validation_layer": "reference",
+      "model": "retry",
+      "input": {
+        "receipt_edits": [
+          {
+            "path": [
+              "body",
+              "result",
+              "winner"
+            ],
+            "value": "USSR"
+          }
+        ],
+        "rehash": true,
+        "reanchor": true
+      },
+      "expected": {
+        "outcome": "CorruptReceipt",
+        "current_unchanged": true,
+        "rng_unchanged": true,
+        "returned_original": false
+      }
+    },
+    {
+      "id": "WG1-R-retry-history-vp-rehashed",
+      "validation_layer": "reference",
+      "model": "retry",
+      "input": {
+        "receipt_edits": [
+          {
+            "path": [
+              "body",
+              "historical_input",
+              "state",
+              "signed_vp"
+            ],
+            "value": 8
+          }
+        ],
+        "rehash": true,
+        "reanchor": true
+      },
+      "expected": {
+        "outcome": "CorruptReceipt",
+        "current_unchanged": true,
+        "rng_unchanged": true,
+        "returned_original": false
+      }
+    },
+    {
+      "id": "WG1-R-retry-cleanup-undone-rehashed",
+      "validation_layer": "reference",
+      "model": "retry",
+      "input": {
+        "receipt_edits": [
+          {
+            "path": [
+              "body",
+              "result",
+              "after",
+              "root_slot",
+              "status"
+            ],
+            "value": "Accepted"
+          }
+        ],
+        "rehash": true,
+        "reanchor": true
+      },
+      "expected": {
+        "outcome": "CorruptReceipt",
+        "current_unchanged": true,
+        "rng_unchanged": true,
+        "returned_original": false
+      }
+    },
+    {
+      "id": "WG1-R-retry-source-not-removed-rehashed",
+      "validation_layer": "reference",
+      "model": "retry",
+      "input": {
+        "receipt_edits": [
+          {
+            "path": [
+              "body",
+              "result",
+              "after",
+              "cards",
+              0,
+              "zone"
+            ],
+            "value": "InResolution"
+          }
+        ],
+        "rehash": true,
+        "reanchor": true
+      },
+      "expected": {
+        "outcome": "CorruptReceipt",
+        "current_unchanged": true,
+        "rng_unchanged": true,
+        "returned_original": false
+      }
+    },
+    {
+      "id": "WG1-R-retry-finish-before-cleanup-rehashed",
+      "validation_layer": "reference",
+      "model": "retry",
+      "input": {
+        "receipt_edits": [
+          {
+            "path": [
+              "body",
+              "result",
+              "trace"
+            ],
+            "value": [
+              "SetFinished",
+              "FinalizeSourceDisposition"
+            ]
+          }
+        ],
+        "rehash": true,
+        "reanchor": true
+      },
+      "expected": {
+        "outcome": "CorruptReceipt",
+        "current_unchanged": true,
+        "rng_unchanged": true,
+        "returned_original": false
+      }
+    },
+    {
+      "id": "WG1-R-retry-anchor-digest",
+      "validation_layer": "reference",
+      "model": "retry",
+      "input": {
+        "anchor_edits": [
+          {
+            "path": [
+              "original_request_digest"
+            ],
+            "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        ]
+      },
+      "expected": {
+        "outcome": "CorruptReceipt",
+        "current_unchanged": true,
+        "rng_unchanged": true,
+        "returned_original": false
+      }
+    },
+    {
+      "id": "WG1-R-retry-whole-valid-history-rewrite-unanchored",
+      "validation_layer": "reference",
+      "model": "retry",
+      "input": {
+        "replace_valid_history": true
+      },
+      "expected": {
+        "outcome": "CorruptReceipt",
+        "current_unchanged": true,
+        "rng_unchanged": true,
+        "returned_original": false
+      }
+    },
+    {
+      "id": "WG1-R-real-source-authentication",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "Requires the real service/provider/storage integration; the finite offline model does not verify this behavior."
+    },
+    {
+      "id": "WG1-R-real-vp-provider-closure",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "Requires the real service/provider/storage integration; the finite offline model does not verify this behavior."
+    },
+    {
+      "id": "WG1-R-real-parent-root-cleanup-provider",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "Requires the real service/provider/storage integration; the finite offline model does not verify this behavior."
+    },
+    {
+      "id": "WG1-R-atomic-commit-crash-between-vp-and-finish",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "Requires the real service/provider/storage integration; the finite offline model does not verify this behavior."
+    },
+    {
+      "id": "WG1-R-source-and-root-cleanup-in-terminal-transaction",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "Requires the real service/provider/storage integration; the finite offline model does not verify this behavior."
+    },
+    {
+      "id": "WG1-R-durable-original-receipt-anchor",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "Requires the real service/provider/storage integration; the finite offline model does not verify this behavior."
+    },
+    {
+      "id": "WG1-R-concurrent-same-command-deduplication",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "Requires the real service/provider/storage integration; the finite offline model does not verify this behavior."
+    },
+    {
+      "id": "WG1-R-finished-absorbing-state",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "Requires the real service/provider/storage integration; the finite offline model does not verify this behavior."
+    },
+    {
+      "id": "WG1-R-network-replay-after-live-state-change",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "Requires the real service/provider/storage integration; the finite offline model does not verify this behavior."
+    },
+    {
+      "id": "WG1-R-localization-and-client-choice-ui",
+      "validation_layer": "runtime",
+      "status": "planned-runtime",
+      "implementation_tested": false,
+      "description": "Requires the real service/provider/storage integration; the finite offline model does not verify this behavior."
+    }
+  ]
+}

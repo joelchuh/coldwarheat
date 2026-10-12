@@ -41,3 +41,5 @@
 [国家指标VP](../country-metric-vp-events.md)按实际局面查询；不是地区计分投影。
 
 [晚期影响力第一批](../late-influence-batch1.md)：铁娘子、改革者、海军陆战队营房爆炸、潘兴II；复用影响力计划、长期实例与VP检查点。
+
+[战争游戏](../wargames.md)：DEFCON2时给对手6VP后结束、给分继续或都不做；选择继续也要检查正常自动胜利。
