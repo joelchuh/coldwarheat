@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.27.0",
+  "content_version": "0.28.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计70牌效果参数已绑定，其余32个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计71牌效果参数已绑定，其余31个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -167,6 +167,12 @@
       "url": null,
       "edition": "Engineering contracts and unresolved shortages, 2026-10-12",
       "description": "完整选择/移除计划原子提交；Puppet may允许拒绝全部但未授权任选少于3国；Puppet不足3合法国与VOA不足4可移除量RequiresRuling，未借用其他牌的用户短缺解释。"
+    },
+    {
+      "id": "PROJECT-OSS",
+      "url": null,
+      "edition": "Scoped design, 2026-10-12",
+      "description": "可信EffectController、完整位置/次数/到达记录预检、不可变计划、来源摘要去重、原子终局；7对8越界停止，不采用Scientist终点未确认建议。"
     }
   ],
   "cards": [
@@ -2639,8 +2645,13 @@
       "effect_binding": {
         "effect_id": "effect.one_small_step",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.one_small_step",
+            "json_pointer": "/parameters/one_small_step"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -5384,15 +5395,27 @@
     {
       "effect_id": "effect.one_small_step",
       "contract_version": "0.1.0",
-      "description": "One Small Step…：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.one_small_step",
+      "description": "一小步：落后门禁、事件推进两格、仅目标格VP、共享领先能力与越终点待裁定。",
+      "handler_key": "space.ConditionalTwoStepSpaceAdvance",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:one-small-step:1#/$defs/one_small_step"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDFp12 English #80, visually verified 2026-10-12",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2/5.5; §6.4.2–6; threshold via existing victory dataset",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-OSS",
+          "locator": "OSS-OPEN-01 crossing end; named source/validation/transaction contracts are engineering, not additional official rulings",
+          "verification": "Verified"
         }
       ]
     },

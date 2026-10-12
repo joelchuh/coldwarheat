@@ -31,7 +31,8 @@
   "inputs": [
     "权威出牌/事件授权、双方轨道位置、回合计数与有效OPS",
     "不可变轨道定义与可保存随机源；回合末选择上下文",
-    "可信ResolutionFrame.EffectController；共享轨道、AdvanceId与到达收据"
+    "可信ResolutionFrame.EffectController；共享轨道、AdvanceId与到达收据",
+    "OneSmallStep严格落后门禁/两格计划，仅第二格VP；越终点RequiresRuling"
   ],
   "outputs": [
     "尝试资格、骰子和推进奖励计划、能力集合或可保存弃牌决策"
@@ -56,7 +57,8 @@
     "cards.deluxe2015.definitions",
     "effects.deluxe2015.persistent_batch1",
     "effects.deluxe2015.space_events_batch1",
-    "effects.deluxe2015.persistent_batch2"
+    "effects.deluxe2015.persistent_batch2",
+    "effects.deluxe2015.one_small_step"
   ],
   "preconditions": [
     "当前为设计；尚无可调用实现",
@@ -69,14 +71,15 @@
   "stop_conditions": [
     "终点、尝试额度不足或OPS不足时拒绝普通尝试",
     "未知效果政策、非法位置/计数/骰点或到达记录损坏",
-    "已终局、过期命令或绑定版本不符"
+    "已终局、过期命令或绑定版本不符",
+    "OneSmallStep7对8越终点停止；不借用Scientist终点未确认解释"
   ],
   "rule_sources": [
     {
       "id": "R2015",
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
       "checked_on": "2026-10-06",
-      "description": " SS1: §2.2.4–5星号/永久标记；§5.2/5.3实际事件与牌区；§6.1.1直接影响力；§6.4太空奖励/能力与事件推进；§7.3永久效果。 PE2: §7.4.1作用于实际OPS actor不随偷牌转交，§7.4.2所有OPS用途/门槛，§7.4.3视同OPS，§6.3政变骰与OPS不同。"
+      "description": " SS1: §2.2.4–5星号/永久标记；§5.2/5.3实际事件与牌区；§6.1.1直接影响力；§6.4太空奖励/能力与事件推进；§7.3永久效果。 PE2: §7.4.1作用于实际OPS actor不随偷牌转交，§7.4.2所有OPS用途/门槛，§7.4.3视同OPS，§6.3政变骰与OPS不同。 OSS: §5.2条件未满足与事件结果；§5.5卡文优先；§6.4.2事件推进、§6.4.3先后奖励、§6.4.4位置能力、§6.4.6终点普通太空限制。"
     },
     {
       "id": "F2010",
@@ -102,6 +105,18 @@
       "url": null,
       "edition": "Engineering contracts and pending repeat ruling, 2026-10-06",
       "description": "配对原子替换仅是待用户确认候选，反方及同方新ID重复均RequiresRuling。引用共享OPS限制，骰channel不夹修正结果，实际运行/完整集成未验证，参考模型仅有限投影。"
+    },
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "PDFp12 #80英文卡图：中立2OPS中期非星号，落后时推进两格，仅第二格VP。"
+    },
+    {
+      "id": "PROJECT-OSS",
+      "url": null,
+      "edition": "Scoped design, 2026-10-12",
+      "description": "可信EffectController、完整位置/次数/到达记录预检、不可变计划、来源摘要去重、原子终局；7对8越界停止，不采用Scientist终点未确认建议。"
     }
   ],
   "tests": [
@@ -121,17 +136,22 @@
     {
       "path": "Docs/Design/persistent-effects-batch2.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/one-small-step.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
-    "latest_design_report": "Docs/Design/persistent-effects-batch2.validation.json"
+    "latest_design_report": "Docs/Design/one-small-step.validation.json"
   },
   "open_items": [
     "其他太空事件策略及Scientist终点裁定"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:space-events-batch1:1",
-    "urn:coldwarheat:contract:persistent-effects-batch2:1"
+    "urn:coldwarheat:contract:persistent-effects-batch2:1",
+    "urn:coldwarheat:contract:one-small-step:1"
   ]
 }

@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.one_small_step",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "release-candidate",
+  "description": "一小步：落后门禁、事件推进两格、仅目标格VP、共享领先能力与越终点待裁定。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "PDFp12 #80英文卡图：中立2OPS中期非星号，落后时推进两格，仅第二格VP。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§5.2条件未满足与事件结果；§5.5卡文优先；§6.4.2事件推进、§6.4.3先后奖励、§6.4.4位置能力、§6.4.6终点普通太空限制。"
+    },
+    {
+      "id": "PROJECT-OSS",
+      "url": null,
+      "edition": "Scoped design, 2026-10-12",
+      "description": "可信EffectController、完整位置/次数/到达记录预检、不可变计划、来源摘要去重、原子终局；7对8越界停止，不采用Scientist终点未确认建议。"
+    }
+  ],
+  "parameters": {
+    "one_small_step": {
+      "card_id": "card.one_small_step",
+      "effect_id": "effect.one_small_step",
+      "description": "一小步：落后门禁、事件推进两格、仅目标格VP、共享领先能力与越终点待裁定。",
+      "template": "ConditionalTwoStepSpaceAdvance",
+      "beneficiary": "EffectController",
+      "activation_gate": {
+        "checkpoint": "EventResolution",
+        "condition": "BeneficiaryStrictlyBehindOpponent",
+        "not_met": "BlockedPrerequisite"
+      },
+      "advance_steps": 2,
+      "ordinary_attempt_consumption": 0,
+      "ordinary_attempt_reset": false,
+      "requires_ordinary_ops_qualification": false,
+      "random_roll": "None",
+      "track_dataset_id": "rules.deluxe2015.space-race",
+      "victory_dataset_id": "rules.deluxe2015.victory",
+      "reward_policy": "DestinationOnlyNormalFirstOrSecond",
+      "intermediate_reward_policy": "SuppressVpAndRecordReach",
+      "ability_policy": "QueryAuthoritativeFinalTrackPositions",
+      "overflow_policy": "RequiresRulingBeforeMutation",
+      "state_validation_policy": "ValidatePositionsAttemptsTurnAndArrivalEvidenceBeforeMutation",
+      "idempotency_policy": "FullRequestDigestAndSourceFrame",
+      "proposal_policy": "ImmutableCompletePlanBeforeCommit",
+      "root_slot_policy": "NoNewRootSlot",
+      "terminal_policy": "FinalizeAcceptedWorkInWinningTransactionThenFinishedAbsorbing",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDFp12 English #80, visually verified 2026-10-12",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2/5.5; §6.4.2–6; threshold via existing victory dataset",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-OSS",
+          "locator": "OSS-OPEN-01 crossing end; named source/validation/transaction contracts are engineering, not additional official rulings",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

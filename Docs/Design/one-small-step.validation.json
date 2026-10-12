@@ -1,0 +1,475 @@
+{
+  "description": "一小步两格事件推进有限投影与共享定义回归，非生产C#/Unity验证。",
+  "checked_on": "2026-10-12",
+  "new_cases_passed": 83,
+  "previous_cases_passed": 1801,
+  "total_cases_passed": 1884,
+  "cases_by_layer": {
+    "data": 29,
+    "reference": 54,
+    "runtime": 10
+  },
+  "runtime_cases_not_run": 10,
+  "runtime_game_tests_run": 0,
+  "bound_cards": 71,
+  "unresolved_bindings": 31,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 36,
+    "json_files_parsed": 214,
+    "data_descriptors": 39,
+    "module_descriptors": 21,
+    "relative_links_checked": 164,
+    "parameter_pointers_resolved": 117
+  },
+  "validated_sha256": {
+    "Data/Cards/deluxe-2015/one-small-step.parameters.json": "baa12f9fab1422bfb3fa741f1303d625d4d889c88511f1adcb797747411b145c",
+    "Docs/Contracts/one-small-step.schema.json": "0f6825303debec69912ec206037a8535a5eb801883590ca55ba26e9d812a16d8",
+    "Docs/Design/one-small-step.cases.json": "a93c2d69cb41e268204f0f7a6287939fde81eacbc0988108fd82b52efde322ae",
+    "Data/Cards/deluxe-2015/cards.json": "bfbb67f6cca4c06b393b176a02e3366742aacad6fa6e7106ecb95bb2741a6f55",
+    "Data/Rulesets/deluxe-2015/space-race.json": "09c91fcb420867e910ef809a7036b4607ce608f014b387021d3a6cfa38866bb1",
+    "Data/Rulesets/deluxe-2015/victory.json": "f8566187874ff89c181b7c0c6cb46048788f7558fa5d9326273e64306d4a8624",
+    "Data/Descriptors/one-small-step.data.json": "b8fcfa5336187c71ca8e3302c651433092c9cbcae88f26e9a6ea3812b7a5df48",
+    "Docs/Descriptors/space-race.module.json": "49cf748426c1237ffd8f50ee27896c5468e92bbc187971ce38485453a0fe269d"
+  },
+  "results": [
+    {
+      "id": "OSS-D-baseline",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-steps",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-consume",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-reset",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-ops",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-die",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-beneficiary",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-reward",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-intermediate",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-ability",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-overflow",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-state-validation",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-idempotency",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-proposal",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-root",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-terminal",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-track",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-victory",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-card",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-template",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-condition",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-checkpoint",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-not-met",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-extra-root",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-extra-param",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-missing-required",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-unknown-source",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-extra-source-field",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-D-missing-ref",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-0-1-to2",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-1-2-to3",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-1-3-to3",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-2-3-to4",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-2-4-to4",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-3-4-to5",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-3-5-to5",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-4-5-to6",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-4-6-to6",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-5-6-to7",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-5-7-to7",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-5-8-to7",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-6-7-to8",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-6-8-to8",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-far-behind-cancel-only-two-attempts",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-far-behind-cancel-headline",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-ussr-controller-us-root",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-us-controller-ussr-root",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-equal",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-ahead",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-both-origin",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-at-end-equal",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-at-end-ahead",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-overflow",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-overflow-ussr",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-attempts-exhausted",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-suppressed-intermediate-cannot-win",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-destination-us-wins",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-destination-ussr-wins",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-finished-absorbing",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-replay-completed",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-replay-winning-receipt",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-conflicting-retry",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-untrusted-frame",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-wrong-card",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-authorization-card-mismatch",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-invalid-controller",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-invalid-root",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-stale-frame",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-not-event",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-unknown-intervention",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-negative-position",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-over-track-position",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-fractional-position",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-boolean-position",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-missing-position",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-unexpected-position-owner",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-negative-attempt",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-boolean-attempt",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-missing-attempt",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-attempt-turn-mismatch",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-arrival-incomplete",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-arrival-conflict",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "OSS-R-invalid-before-condition",
+      "validation_layer": "reference",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "10runtime未运行；真实来源/到达账本/终局事务/根牌区/保存未验证",
+    "参考模型用合成帧和到达标签，能力按最终位置计算，未验证真实跨服务执行",
+    "1801旧预期保持，只适配库存/完成出处/历史绑定；13note38Tools另层",
+    "7对8越终点RequiresRuling；Scientist终点仍未裁定",
+    "所有102handlers仍planned"
+  ],
+  "independent_review": {
+    "status": "ready-no-critical-important-minor",
+    "independently_checked": [
+      "83new:29data54reference",
+      "309baselineSHA/8reportSHA",
+      "214JSON/36Schema meta/39data registry/21moduleDAG/117pointers/documentation paths",
+      "103 printed definitions unchanged,only80binding,71Bound31Unresolved102planned",
+      "English80/R2015/FAQ scope; overflow/terminal/receipt boundaries",
+      "32 actual dataset schema-validator calls;7 schema-less datasets parsed/reference-checked only"
+    ],
+    "not_independently_run": [
+      "1801 historical",
+      "10runtime/actual authentication,arrival ledger,transactions,disposition,save",
+      "13note38Tools"
+    ]
+  }
+}
