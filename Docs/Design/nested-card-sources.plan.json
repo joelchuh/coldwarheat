@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "id": "plan.nested-card-sources",
+  "description": "最后三张调用其他卡牌的事件及其共享执行帧的下一阶段计划：先核实各自选牌与用牌路线，再逐个登记下游消费者；不代表三牌已绑定或任何运行实现已存在。",
+  "status": "research-and-design-plan-only",
+  "checked_on": "2026-10-13",
+  "entrypoints": [],
+  "implementation_status": "planned",
+  "scope": [
+    "card.star_wars",
+    "card.grain_sales_to_soviets",
+    "card.missile_envy"
+  ],
+  "intent": "继续完成规则设计。规则与画面分离，共享业务事实按稳定ID读取；未知边界停止，不能因为某个卡牌参数Bound就假定所有新来源都受支持。",
+  "recommended_order": [
+    {
+      "card_id": "card.star_wars",
+      "reason": "公开弃牌堆中非计分牌、只执行事件，路线相对集中；先建立单一子事件来源。",
+      "verified_constraints": [
+        "US太空位置必须严格领先；并列或落后不能发生事件，原星号牌按被阻止事件弃置。",
+        "US选择Discard中的非计分牌；包括东南亚在内的计分牌均排除。",
+        "只允许事件路线，不能改作普通OPS或太空；子事件仍检查前置及阻止关系。"
+      ],
+      "unresolved": [
+        "不存在合法弃牌候选时的完成与去向政策需核实或单独确认。",
+        "下游未知来源及重复/递归调用不得通过通用许可自动放行。"
+      ]
+    },
+    {
+      "card_id": "card.grain_sales_to_soviets",
+      "reason": "在共享子帧上增加随机取得实体牌、US私有察看与使用/退回分支。",
+      "verified_constraints": [
+        "随机选择USSR普通Hand中的一张；US作选择，根PhasingPlayer保持不变。",
+        "空手或退回时，由US按此牌OPS执行行动。取得实体牌的太空路线与一般事件赠予OPS不同。",
+        "取得Defectors不能撤销已执行的苏方头条；FAQ中Grain Sales在头条取得UN必须退回的例外单列。"
+      ],
+      "unresolved": [
+        "每一种子用牌路线均需要真实类型化提供者及完成回调，不能靠card_id或外部布尔值授权。"
+      ]
+    },
+    {
+      "card_id": "card.missile_envy",
+      "reason": "最后增加交换、按阵营选择事件/OPS和下一行动轮强制义务，避免把未来用牌义务塞入一次性事件收尾。",
+      "verified_constraints": [
+        "交换对方最高OPS牌，并列由对方决定；所取同方/中立牌发生事件，反方牌用于OPS而不触发该事件。",
+        "Missile Envy实体进入对方手牌；当前事件的常规源清理不能又把它弃置。",
+        "取得Missile Envy的一方下一行动轮须按要求用它；陷阱与Purge例外按FAQ逐项核实。"
+      ],
+      "unresolved": [
+        "最高OPS比较在修正与封顶后的含义、无可交换牌、跨回合义务及强制计分优先序需单列证据。"
+      ]
+    }
+  ],
+  "shared_contract_plan": {
+    "frame_identity": [
+      "RootSlot",
+      "RootPhasingPlayer",
+      "ParentFrame",
+      "ChildFrame",
+      "ResolutionId",
+      "SourceEntity",
+      "SelectedEntity"
+    ],
+    "roles": [
+      "SelectingPlayer",
+      "ActualCardUser",
+      "OperationsActor",
+      "EventController",
+      "InformationViewer"
+    ],
+    "legal_routes": "显式枚举事件、OPS、太空、计分、UN配对与退回路线；每牌允许集合不同，拒绝未登记路线。",
+    "continuation": "父帧暂停并保存继续位置；接受子帧完成收据后按实际结果清理实体与剩余义务；同一根只完成一次。",
+    "privacy": "权威候选/随机证据与按玩家投影分开；历史重放返回原结果，不能刷新当时不存在的可见信息。",
+    "atomicity": "非法输入不消耗随机或部分移牌；已接受的等待状态不能因坏回调回滚成未执行。",
+    "terminal": "核战和VP检查沿用具名提供者；终局后不再执行父帧剩余OPS，按已核实来源清理。"
+  },
+  "consumer_registration_plan": {
+    "description": "每种新来源与目标处理器组成一行能力矩阵，标明Allowed、BlockedByRule或RequiresRuling及对应案例；先完成有限明示路线，再扩大覆盖。",
+    "columns": [
+      "source_kind",
+      "target_effect_id",
+      "route",
+      "controller_rule",
+      "source_disposition",
+      "parent_continuation",
+      "rule_source",
+      "case_ids",
+      "status"
+    ],
+    "initial_review_targets": [
+      "普通影响力事件",
+      "计分牌与Grain Sales",
+      "Defectors头条时间窗",
+      "UN双牌与WWBY",
+      "Wargames即时终局",
+      "Ask Not抽牌等待",
+      "Missile Envy后续强制义务"
+    ],
+    "does_not_authorize_all_bound_cards": true
+  },
+  "references": [
+    {
+      "path": "Docs/Wiki/turn-flow.md",
+      "description": "根行动轮、父子事件及阶段继续位置"
+    },
+    {
+      "path": "Docs/Wiki/hand-events-batch1.md",
+      "description": "普通手牌、FYP子事件与来源边界"
+    },
+    {
+      "path": "Docs/Wiki/un-intervention.md",
+      "description": "UN双实体与实际用牌证据"
+    },
+    {
+      "path": "Docs/Wiki/defectors.md",
+      "description": "头条取消只影响未执行目标"
+    },
+    {
+      "path": "Docs/Wiki/deferred-vp-events-batch1.md",
+      "description": "WWBY与UN实际用牌和奖分顺序"
+    }
+  ],
+  "sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "locator": "英文PDF p8 #49、p10 #67、p13 #85"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "locator": "p5 §5.2及Star Wars阻止示例；§7.4修正；§9中国牌区"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "locator": "p7 Grain Sales/UN头条例外；pp11–12 #49/#50/#57；pp13–14 #67；仅适用Deluxe条款"
+    }
+  ],
+  "validation_scope": "本文件只是可渐进检索的下一阶段计划，不注册参数数据集，不改变牌绑定，不增加运行或规则案例通过数量。",
+  "runtime_game_tests_run": 0,
+  "priority_before_consumer_expansion": {
+    "description": "用户确认Wargames零分Draw后，逐个核验完整live snapshot的历史重放兼容；结构inventory不是行为通过证据。",
+    "steps": [
+      "区分全局终局winner与局部竞赛winner，禁止批量放宽enum。",
+      "对使用完整live snapshot的路径增加later Finished/Draw旧收据重放正例。",
+      "保持Running/Draw非法状态拒绝、新执行在Finished拒绝与当前视图终局关闭。",
+      "只按实际反例修订；未知来源和未实现运行边界保留。"
+    ],
+    "status": "AskNot与LADC已复现并在修；其余待逐项验证。"
+  }
+}

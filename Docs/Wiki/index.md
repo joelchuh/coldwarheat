@@ -5,6 +5,7 @@
 | 知识点 | description | 状态 | 入口 |
 |---|---|---|---|
 | 2026-10-13项目裁定 | 查5牌已获用户确认的短缺、军事比较与零分结束政策 | 已确认；运行待实现 | [confirmed-rulings-20261013.md](confirmed-rulings-20261013.md) |
+| 嵌套出牌下一步计划 | 查Star Wars、Grain Sales、Missile Envy及Draw兼容审计顺序 | 研究与计划；三牌未绑定 | [nested-card-sources.md](nested-card-sources.md) |
 | 开发工作流与共享数据 | 查找模块/脚本 JSON 描述、脚本化条件、共享数据与执行边界 | 已采用；只读核验工具就绪，其他自动化待实现 | [workflow-and-data.md](workflow-and-data.md) |
 | 正式脚本目录 | 按description找快照核验、审阅基线导出及对应测试 | 4正式脚本；生产工具不写Git，测试只写新建合成Git | [catalog.json](../../Tools/Descriptors/catalog.json) |
 | 审阅基线导出 | 查干净HEAD、受跟踪工作字节、新目标、SHA清单与失败边界 | 工作流工具；游戏实现未开始 | [export-review-baseline.md](export-review-baseline.md) |
