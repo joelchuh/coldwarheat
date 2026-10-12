@@ -101,4 +101,6 @@
 
 此前：[中国牌事件转交](Docs/Wiki/china-transfer-batch1.md)，83 Bound /19 Unresolved，102处理器planned；持有者条件、转交面向、奖励与源牌收尾具名。
 
-最新：[战争游戏](Docs/Wiki/wargames.md)，84 Bound /18 Unresolved，102处理器planned；三选择明确，给分后恰零结束仍待用户裁定。
+此前：[战争游戏](Docs/Wiki/wargames.md)，84 Bound /18 Unresolved，102处理器planned；三选择明确，给分后恰零结束仍待用户裁定。
+
+最新：[OPEC与北海石油](Docs/Wiki/opec-north-sea-batch1.md)，86 Bound /16 Unresolved，102处理器planned；永久阻止与回合额度分开，太空名额不叠加到9。

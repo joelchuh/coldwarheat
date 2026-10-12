@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.opec_north_sea_batch1",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "verified-subset",
+  "description": "OPEC/NSO finite design: source ledger, current control VP, permanent prevention and total root-slot allowance. Runtime remains planned.",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe images; inspected 2026-10-12",
+      "description": "PDF p10 #61 lists Egypt, Iran, Libya, Saudi Arabia, Iraq, Gulf States, Venezuela; USSR1VP each controlled; NSO blocks. PDF p13 #86 US3Late starred/underlined: OPEC prohibited, US may play eight cards this turn."
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe 2015; checked 2026-10-12",
+      "description": "Sections 2.1.7,4.5C-D,5.2,6.4.4-5,7.3,7.5,10.3: actual control, root action rounds, source disposition, Space8 total allowance, permanent effect, blocked event and full VP batch."
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010; searched 2026-10-12",
+      "description": "No dedicated OPEC/North Sea Oil answer found in the 22-page PDF. No claim of explicit NSO/Space stacking or late-provider decline ruling."
+    },
+    {
+      "id": "PROJECT-ON1",
+      "url": null,
+      "edition": "Named derivations and finite contracts 2026-10-13",
+      "description": "ON1-D01: known NSO8/Space8 combine by max, not addition, not a universal cap on future providers. ON1-D02: physical card entities and child events do not add root slots. Two durations and source-set-bound optional decline are engineering contracts; unknown later grants/repeats remain RequiresRuling."
+    }
+  ],
+  "shared_refs": {
+    "map": {
+      "dataset_id": "map.deluxe2015.world",
+      "json_pointer": ""
+    },
+    "victory": {
+      "dataset_id": "rules.deluxe2015.victory",
+      "json_pointer": ""
+    },
+    "defcon": {
+      "dataset_id": "rules.deluxe2015.defcon",
+      "json_pointer": ""
+    },
+    "normal_allowances": {
+      "dataset_id": "rules.deluxe2015.turn-flow",
+      "json_pointer": "/era_bands"
+    },
+    "normal_first_side": {
+      "dataset_id": "rules.deluxe2015.turn-flow",
+      "json_pointer": "/normal_first_side"
+    },
+    "space_allowance": {
+      "dataset_id": "rules.deluxe2015.space-race",
+      "json_pointer": "/abilities/3"
+    },
+    "space_milestone": {
+      "dataset_id": "rules.deluxe2015.space-race",
+      "json_pointer": "/spaces/7"
+    },
+    "space_active_rule": {
+      "dataset_id": "rules.deluxe2015.space-race",
+      "json_pointer": "/ability_active_rule"
+    },
+    "hand_child": {
+      "dataset_id": "effects.deluxe2015.hand_events_batch1",
+      "json_pointer": "/parameters/five_year_plan"
+    },
+    "opec_printed": {
+      "dataset_id": "cards.deluxe2015.definitions",
+      "json_pointer": "/cards/60"
+    },
+    "north_sea_oil_printed": {
+      "dataset_id": "cards.deluxe2015.definitions",
+      "json_pointer": "/cards/85"
+    }
+  },
+  "source_policy": {
+    "providers": [
+      "RootEvent",
+      "OpponentCardEvent",
+      "HeadlineEvent",
+      "VerifiedFypUsChild"
+    ],
+    "fyp_parent_controller": "ReadSharedFypUsEventAffiliationNotRootPhasing",
+    "unique_keys": [
+      "InstanceId",
+      "BaseCardId",
+      "FrameId",
+      "ResolutionId"
+    ],
+    "completed_parent": "RejectBeforeMutation",
+    "unknown_provider": "RequiresRuling"
+  },
+  "transaction_policy": {
+    "preflight": "CompleteRelevantEffectsVpAndRootCleanupProviders",
+    "finished": "FinalizeAcceptedSourceParentAndRootBeforeFinished",
+    "remaining_ops": "ReturnToAcceptedRootWithoutPrematureCardDisposition",
+    "retry": "VerifyOriginalHistoryAndIndependentAnchor_ReturnOriginalPreserveLive",
+    "random": "None"
+  },
+  "quota_policy": {
+    "scope": "KnownNormalSpaceAndNsoProvidersOnly",
+    "query_boundary": "BetweenCompletedRoots",
+    "one_optional_decision": "BoundToCurrentAuthorizationSetAndRevision",
+    "decline": "RecordAllCurrentlyOfferedSourceTokensOnly",
+    "later_independent_provider_after_decline": "RequiresRuling",
+    "unknown_eligibility_or_trap": "RequiresRuling",
+    "physical_card_count": "NeverUsedAsSlotCount"
+  },
+  "parameters": {
+    "opec": {
+      "card_id": "card.opec",
+      "effect_id": "effect.opec",
+      "description": "One current-state USSR-control count over seven printed country identities, then one complete USSR VP batch.",
+      "template": "VpPerNamedCountryControlled",
+      "beneficiary": "USSR",
+      "country_ids": [
+        "country.egypt",
+        "country.iran",
+        "country.libya",
+        "country.saudi_arabia",
+        "country.iraq",
+        "country.gulf_states",
+        "country.venezuela"
+      ],
+      "vp_per_country": 1,
+      "control_policy": "SharedStabilityAndActualInfluenceDifference",
+      "scoring_projections": "Excluded",
+      "zero_outcome": "ResolvedNoChange",
+      "prevention_source": "effect.north_sea_oil",
+      "prevented_outcome": "SuppressedNoEvent",
+      "vp_checkpoint": "CompleteEventBatch"
+    },
+    "north_sea_oil": {
+      "card_id": "card.north_sea_oil",
+      "effect_id": "effect.north_sea_oil",
+      "description": "One verified activation creates permanent OPEC prevention and a separate US allowance for the activation turn.",
+      "template": "PermanentPreventionAndTurnAllowance",
+      "controller": "US",
+      "prevention": {
+        "target_effect_id": "effect.opec",
+        "duration": "Game",
+        "requires_success_fact": true
+      },
+      "allowance": {
+        "beneficiary": "US",
+        "kind": "ActionRoundAllowance",
+        "total": 8,
+        "duration": "RemainderOfActivationTurn",
+        "expiry_boundary": "ExpireAndReset",
+        "unit": "CompletedRootActionRoundSlots",
+        "merge_known_sources": "MaximumOfNormalNsoAndActiveSpaceAllowance",
+        "immediate_action": false,
+        "resets_space_attempts": false,
+        "draws_cards": false
+      },
+      "repeat_activation": "RequiresRulingForNewResolution",
+      "unknown_late_or_reopened_source": "RequiresRulingBeforeActivation"
+    }
+  }
+}

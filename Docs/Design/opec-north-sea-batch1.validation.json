@@ -1,0 +1,1087 @@
+{
+  "description": "OPEC七国控制VP与NSO永久阻止/当回合行动额度分离；已知Space名额取max的具名推导。",
+  "checked_on": "2026-10-13",
+  "new_cases_passed": 202,
+  "previous_cases_passed": 3244,
+  "total_cases_passed": 3446,
+  "cases_by_layer": {
+    "data": 17,
+    "contract": 92,
+    "reference": 93,
+    "runtime": 10
+  },
+  "runtime_cases_not_run": 10,
+  "runtime_game_tests_run": 0,
+  "bound_cards": 86,
+  "unresolved_bindings": 16,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 43,
+    "json_files_parsed": 252,
+    "data_descriptors": 46,
+    "module_descriptors": 21,
+    "relative_links_checked": 217,
+    "parameter_pointers_resolved": 190
+  },
+  "validated_sha256": {
+    "Data/Cards/deluxe-2015/opec-north-sea-batch1.parameters.json": "b2bd51b39eec3edf7924b489ec2f8935ee979bf6d39f12c5e944d37e149becf5",
+    "Data/Descriptors/opec-north-sea-batch1.data.json": "56c36cb7532a8fb729b49f8bc723919d046e7763bb7cb246eadac56475252090",
+    "Docs/Contracts/opec-north-sea-batch1.schema.json": "cf06d075bc6fbc1dc2609c1a97f047cd0024eb1aaa482ebb2b56ac464ef7f83f",
+    "Docs/Design/opec-north-sea-batch1.cases.json": "558949c1b24fe724ba7fc6a159ef3957e8514e3476415533b71f84560f99587d",
+    "Docs/Wiki/opec-north-sea-batch1.md": "9bd764ad4283f6624c5763362328ffaee0c6c0c5c5dbd7a2a2490de2d4cf1104",
+    "Data/Cards/deluxe-2015/cards.json": "38f0143e543c30b95d83b1179d0ac673625a452126294198e2ea7ea162d34c8e",
+    "Docs/Descriptors/composite-events.module.json": "6a9aea3719e8f3ac50dad64a102938f6f6719edf90abe08b627564f82cd5809a",
+    "Docs/Descriptors/turn-flow.module.json": "1cf82930d22c90320704a75a906310c59663d63b5453cc0190c14426f117da8b",
+    "Docs/Descriptors/space-race.module.json": "20cc851cc40b84547b479de6f4707d88c88e5bb203e44a4f17f51ba30db53d00"
+  },
+  "results": [
+    {
+      "id": "ON1-D-valid",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "ON1-D-wrong-beneficiary",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "ON1-D-whole-region",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "ON1-D-omit-gulf",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "ON1-D-wrong-vp",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "ON1-D-presence",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "ON1-D-zero-blocked",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "ON1-D-nso-duration",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "ON1-D-nso-increment",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "ON1-D-stack-nine",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "ON1-D-immediate-slot",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "ON1-D-reset-space",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "ON1-D-draw-cards",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "ON1-D-entity-count",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "ON1-D-repeat-refresh",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "ON1-D-extra",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "ON1-D-vp-bool",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "ON1-C-source-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-source-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-source-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-source-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-card_entity-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-card_entity-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-card_entity-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-card_entity-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-frame-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-frame-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-frame-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-frame-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-success_fact-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-success_fact-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-success_fact-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-success_fact-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-nso_effects-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-nso_effects-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-nso_effects-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-nso_effects-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-completed_slot-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-completed_slot-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-completed_slot-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-completed_slot-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-decline_record-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-decline_record-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-decline_record-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-decline_record-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-fyp_selection-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-fyp_selection-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-fyp_selection-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-fyp_selection-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-snapshot-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-snapshot-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-snapshot-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-snapshot-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-providers-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-providers-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-providers-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-providers-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-event_request-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-event_request-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-event_request-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-event_request-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-event_input-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-event_input-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-event_input-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-event_input-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_request-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_request-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_request-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_request-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-result-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-result-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-result-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-result-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-receipt_body-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-receipt_body-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-receipt_body-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-receipt_body-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-receipt-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-receipt-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-receipt-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-receipt-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-anchor-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-anchor-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-anchor-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-anchor-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_evidence-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_evidence-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_evidence-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_evidence-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_input-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_input-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_input-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_input-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_result-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_result-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_result-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_result-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_receipt_body-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_receipt_body-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_receipt_body-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_receipt_body-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_receipt-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_receipt-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_receipt-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_receipt-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_anchor-valid",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_anchor-extra",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_anchor-missing",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-C-quota_anchor-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "ON1-R-opec-zero",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-opec-all-seven",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-opec-gulf-venezuela",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-opec-unlisted-middle-east",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-opec-control-threshold",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-opec-terminal",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-opec-opponent-before-ops",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-opec-terminal-cleans-root",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-opec-headline-opponent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-opec-blocked",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-opec-block-next-turn",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-nso-root",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-nso-headline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-nso-opponent-before-ops",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-nso-opponent-after-ops",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-nso-fyp-us-root",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-nso-fyp-ussr-root",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-nso-fyp-ussr-root-before-ops",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-defcon-one",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-finished",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-stale",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-wrong-actor",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-source-hand",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-wrong-controller",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-frame-completed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-root-completed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-same-resolutions",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-same-frame-ids",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-effects-unknown",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-vp-unknown",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-root-cleanup-unknown",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-wrong-version",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-wrong-request-binding",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-unknown-source-kind",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-wrong-source-provider",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-negative-influence",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-fyp-opec-not-US",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-fyp-parent-controller-is-not-root",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-fyp-parent-already-completed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-fyp-selection-wrong-instance",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-fyp-child-parent-resolution-alias",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-fyp-parent-success-cannot-reexecute",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-duplicate-card-id",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-second-entity-source-frame",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-nso-repeat",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-nso-after-turn-ended",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-nso-after-prior-decline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-removed-nso-no-provenance",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-active-fact-controller-wrong",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-active-source-link-wrong",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-provider-wrong-revision",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-provider-wrong-root",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-own-event-cannot-invent-remaining-ops",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-source-phase-state-mismatch",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-nso-unknown-quota-provider",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-root-success-fact-cannot-reexecute",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-nso-seven",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-nso-space-seven",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-nso-eight",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-space-caught-nso",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-space-alone",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-space-caught-no-nso",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-nso-expired",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-normal-not-optional",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-UN-two-cards-one-root",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-decline-one-offer",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-unknown-provider",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-new-nso-after-space-decline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-unresolved-root",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-unknown-eligibility",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-no-card-is-not-free-skip",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-retry-normal-retry",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-retry-live-state-changed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-retry-live-finished",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-retry-request-conflict",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-retry-wrong-actor",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-retry-result-rehashed",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-retry-history-replaced",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-retry-nso-later-expired",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-command-valid",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-command-stale-command",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-command-wrong-actor",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-command-wrong-authorization",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-command-stale-provider",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-command-wrong-turn-provider",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-command-unknown-relevant-effects",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-command-headline-not-action-boundary",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-command-unreleased-source-not-action-boundary",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-command-retry-later-live",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-command-retry-Finished-live",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-command-retry-corrupt-result",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-command-retry-replaced-history",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "ON1-R-quota-command-retry-conflict",
+      "passed": true,
+      "validation_layer": "reference"
+    }
+  ],
+  "limitations": [
+    "Pure finite Python projection and synthetic authoritative provider/ledger evidence.",
+    "No live game handler, server authorization, network, persistence, C# or Unity tested.",
+    "Unknown repeated NSO and late/reopened/independent allowance after decline remain RequiresRuling.",
+    "旧案例只适配绑定库存/已完成来源和相同文件overlay读取，不改规则期望。",
+    "13note及72Tools独立，不计入且本批未重跑。",
+    "45独立额外探针另计，不重复计入设计总数。"
+  ],
+  "independent_review": {
+    "status": "ready-no-findings",
+    "checked_on": "2026-10-13",
+    "critical": 0,
+    "important": 0,
+    "minor": 0,
+    "new_cases_independently_passed": 202,
+    "separate_probes": 45,
+    "old_cases_independently_rerun": 0,
+    "integration_review": {
+      "json": 252,
+      "schemas": 43,
+      "datasets": 46,
+      "planned_module_dag": 21,
+      "module_dependency_edges": 42,
+      "catalog_and_dependency_paths_checked": 430,
+      "module_dependency_paths": 58,
+      "dataset_parameter_pointers": 190,
+      "effect_contract_pointers": 86,
+      "stage_markdown_relative_links": 220
+    },
+    "baseline_sha256_verified": 365,
+    "report_sha256_verified": 9,
+    "printed_cards_unchanged": 103,
+    "only_two_new_bindings": true,
+    "author_lineage": "Parameters/schema/cases match author after CRLF/LF normalization; descriptor only removes verification.report_status; Wiki diff is the formal status/count/report link and validation-scope update. No rule or finite-case change.",
+    "execution_scope": "Author202, independent202+45separate probes and integrated202 are repeated execution of202unique checks; parent total3446 includes old3244. Runtime0."
+  },
+  "post_validation_document_links_checked": 7,
+  "metadata_after_validation": "Only Wiki final validation/binding status and Worklog updated; links checked and Wiki hash refreshed."
+}

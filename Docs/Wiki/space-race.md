@@ -115,3 +115,5 @@ flowchart TD
 [Scientist一格事件策略](space-events-batch1.md)已绑定；终点仍待裁定，普通轨道数值不改。
 
 [#80一小步](one-small-step.md)复用事件推进，第二格奖励与原子两次到达收据；7对8仍待裁定。
+
+[北海石油与Space8](opec-north-sea-batch1.md)：已知两个总8来源不相加成9；太空能力按领先条件动态失效，NSO本回合额度独立。过期额度不能删除永久OPEC阻止。

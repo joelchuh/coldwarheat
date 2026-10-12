@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.34.0",
+  "content_version": "0.35.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计84牌效果参数已绑定，其余18个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计86牌效果参数已绑定，其余16个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -215,6 +215,12 @@
       "url": null,
       "edition": "Named derivations and engineering boundary, 2026-10-12",
       "description": "WG1-DERIVED-01: DEFCON 2 DeclineBoth counts as used and removes by FAQ used condition plus section 5.2, not a dedicated disposal answer. Nonzero Wargames winner follows accepted signed-VP comparison. Zero GiveSixAndEnd remains RequiresRuling pending explicit project policy. Source/receipt/atomic cleanup are planned contracts."
+    },
+    {
+      "id": "PROJECT-ON1",
+      "url": null,
+      "edition": "Named derivations and finite contracts 2026-10-13",
+      "description": "ON1-D01: known NSO8/Space8 combine by max, not addition, not a universal cap on future providers. ON1-D02: physical card entities and child events do not add root slots. Two durations and source-set-bound optional decline are engineering contracts; unknown later grants/repeats remain RequiresRuling."
     }
   ],
   "cards": [
@@ -2134,8 +2140,13 @@
       "effect_binding": {
         "effect_id": "effect.opec",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.opec_north_sea_batch1",
+            "json_pointer": "/parameters/opec"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -2909,8 +2920,13 @@
       "effect_binding": {
         "effect_id": "effect.north_sea_oil",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.opec_north_sea_batch1",
+            "json_pointer": "/parameters/north_sea_oil"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -5111,14 +5127,26 @@
     {
       "effect_id": "effect.opec",
       "contract_version": "0.1.0",
-      "description": "OPEC：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.opec",
+      "description": "One current-state USSR-control count over seven printed country identities, then one complete USSR VP batch.",
+      "handler_key": "composite.VpPerNamedCountryControlled",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:opec-north-sea-batch1:1#/$defs/opec"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
+          "source_id": "C-DELUXE-EN",
+          "locator": "English PDF p10 #61 seven named USSR-controlled countries and NSO prevention",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Sections 2.1.7,4.5C-D,5.2,6.4.4-5,7.3,7.5,10.3: control, root slots, source disposition, Space total allowance, permanent effects, complete VP batch",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-ON1",
+          "locator": "Known NSO8/Space8 max not sum and separate lifetimes are named derivation/engineering contracts. Unknown repeat/late/reopened allowance remains RequiresRuling.",
           "verification": "Pending"
         }
       ]
@@ -5731,14 +5759,26 @@
     {
       "effect_id": "effect.north_sea_oil",
       "contract_version": "0.1.0",
-      "description": "North Sea Oil：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.north_sea_oil",
+      "description": "One verified activation creates permanent OPEC prevention and a separate US allowance for the activation turn.",
+      "handler_key": "composite.PermanentPreventionAndTurnAllowance",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:opec-north-sea-batch1:1#/$defs/north_sea_oil"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
+          "source_id": "C-DELUXE-EN",
+          "locator": "English PDF p13 #86 permanent OPEC prevention and US eight cards this turn",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Sections 2.1.7,4.5C-D,5.2,6.4.4-5,7.3,7.5,10.3: control, root slots, source disposition, Space total allowance, permanent effects, complete VP batch",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-ON1",
+          "locator": "Known NSO8/Space8 max not sum and separate lifetimes are named derivation/engineering contracts. Unknown repeat/late/reopened allowance remains RequiresRuling.",
           "verification": "Pending"
         }
       ]

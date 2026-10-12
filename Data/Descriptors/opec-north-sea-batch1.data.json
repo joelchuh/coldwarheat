@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "id": "data.opec-north-sea-batch1",
+  "kind": "data",
+  "status": "ready",
+  "description": "OPEC/NSO finite design: source ledger, current control VP, permanent prevention and total root-slot allowance. Runtime remains planned.",
+  "dataset_id": "effects.deluxe2015.opec_north_sea_batch1",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/opec-north-sea-batch1.schema.json",
+  "documentation": "Docs/Wiki/opec-north-sea-batch1.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/opec-north-sea-batch1.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "Shared map/card/VP/DEFCON/turn/Space/FYP definitions and planned authority evidence"
+  ],
+  "outputs": [
+    "Read-only OPEC/NSO parameters and closed transaction/allowance shapes"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "map.deluxe2015.world",
+    "rules.deluxe2015.victory",
+    "rules.deluxe2015.defcon",
+    "rules.deluxe2015.turn-flow",
+    "rules.deluxe2015.space-race",
+    "effects.deluxe2015.hand_events_batch1",
+    "cards.deluxe2015.definitions"
+  ],
+  "preconditions": [
+    "All handlers/providers planned",
+    "Current complete influence, independent source ledger and all relevant evidence validated before event execution"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "Unknown nested, repeat, late/reopened allowance or relevant provider",
+    "Invalid source/card/frame/resolution/active-effect provenance",
+    "Stale or conflicting request; corrupt original receipt"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe images; inspected 2026-10-12",
+      "description": "PDF p10 #61 lists Egypt, Iran, Libya, Saudi Arabia, Iraq, Gulf States, Venezuela; USSR1VP each controlled; NSO blocks. PDF p13 #86 US3Late starred/underlined: OPEC prohibited, US may play eight cards this turn."
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe 2015; checked 2026-10-12",
+      "description": "Sections 2.1.7,4.5C-D,5.2,6.4.4-5,7.3,7.5,10.3: actual control, root action rounds, source disposition, Space8 total allowance, permanent effect, blocked event and full VP batch."
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010; searched 2026-10-12",
+      "description": "No dedicated OPEC/North Sea Oil answer found in the 22-page PDF. No claim of explicit NSO/Space stacking or late-provider decline ruling."
+    },
+    {
+      "id": "PROJECT-ON1",
+      "url": null,
+      "edition": "Named derivations and finite contracts 2026-10-13",
+      "description": "ON1-D01: known NSO8/Space8 combine by max, not addition, not a universal cap on future providers. ON1-D02: physical card entities and child events do not add root slots. Two durations and source-set-bound optional decline are engineering contracts; unknown later grants/repeats remain RequiresRuling."
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/opec-north-sea-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/opec-north-sea-batch1.validation.json"
+  },
+  "retrieval_hints": [
+    "parameters/opec for seven-country metric; parameters/north_sea_oil and quota_policy for two lifetimes",
+    "source_policy and strict event_input define supported parent chains; no C# entrypoint"
+  ]
+}

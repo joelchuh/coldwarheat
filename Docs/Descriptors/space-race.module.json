@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.space-race",
   "kind": "module",
-  "description": "查询8格太空尝试、先后奖励、领先能力、事件推进与回合衔接；当前为设计，尚不可调用。",
+  "description": "查询8格太空尝试、先后奖励、领先能力、事件推进与回合衔接；当前为设计，尚不可调用。 太空八格额度与NSO已知总8额度由TurnFlow合并，不额外叠加成9。",
   "status": "planned",
   "entrypoints": [],
   "documentation": "Docs/Wiki/space-race.md",
@@ -32,7 +32,8 @@
     "权威出牌/事件授权、双方轨道位置、回合计数与有效OPS",
     "不可变轨道定义与可保存随机源；回合末选择上下文",
     "可信ResolutionFrame.EffectController；共享轨道、AdvanceId与到达收据",
-    "OneSmallStep严格落后门禁/两格计划，仅第二格VP；越终点RequiresRuling"
+    "OneSmallStep严格落后门禁/两格计划，仅第二格VP；越终点RequiresRuling",
+    "TurnFlow在每个行动资格边界重新查询当前Space领先能力；NSO另有自己的回合期限"
   ],
   "outputs": [
     "尝试资格、骰子和推进奖励计划、能力集合或可保存弃牌决策"
@@ -58,7 +59,8 @@
     "effects.deluxe2015.persistent_batch1",
     "effects.deluxe2015.space_events_batch1",
     "effects.deluxe2015.persistent_batch2",
-    "effects.deluxe2015.one_small_step"
+    "effects.deluxe2015.one_small_step",
+    "effects.deluxe2015.opec_north_sea_batch1"
   ],
   "preconditions": [
     "当前为设计；尚无可调用实现",
@@ -72,20 +74,21 @@
     "终点、尝试额度不足或OPS不足时拒绝普通尝试",
     "未知效果政策、非法位置/计数/骰点或到达记录损坏",
     "已终局、过期命令或绑定版本不符",
-    "OneSmallStep7对8越终点停止；不借用Scientist终点未确认解释"
+    "OneSmallStep7对8越终点停止；不借用Scientist终点未确认解释",
+    "不能以NSO重置太空尝试次数、抽牌或新增即时行动；未核实额度提供者不忽略"
   ],
   "rule_sources": [
     {
       "id": "R2015",
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
       "checked_on": "2026-10-06",
-      "description": " SS1: §2.2.4–5星号/永久标记；§5.2/5.3实际事件与牌区；§6.1.1直接影响力；§6.4太空奖励/能力与事件推进；§7.3永久效果。 PE2: §7.4.1作用于实际OPS actor不随偷牌转交，§7.4.2所有OPS用途/门槛，§7.4.3视同OPS，§6.3政变骰与OPS不同。 OSS: §5.2条件未满足与事件结果；§5.5卡文优先；§6.4.2事件推进、§6.4.3先后奖励、§6.4.4位置能力、§6.4.6终点普通太空限制。"
+      "description": " SS1: §2.2.4–5星号/永久标记；§5.2/5.3实际事件与牌区；§6.1.1直接影响力；§6.4太空奖励/能力与事件推进；§7.3永久效果。 PE2: §7.4.1作用于实际OPS actor不随偷牌转交，§7.4.2所有OPS用途/门槛，§7.4.3视同OPS，§6.3政变骰与OPS不同。 OSS: §5.2条件未满足与事件结果；§5.5卡文优先；§6.4.2事件推进、§6.4.3先后奖励、§6.4.4位置能力、§6.4.6终点普通太空限制。 ON1: Sections 2.1.7,4.5C-D,5.2,6.4.4-5,7.3,7.5,10.3: actual control, root action rounds, source disposition, Space8 total allowance, permanent effect, blocked event and full VP batch."
     },
     {
       "id": "F2010",
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
       "checked_on": "2026-10-06",
-      "description": " SS1: PDFp4 #18事件推进不算普通尝试；p5旧二格后续问答不覆盖Deluxe一格卡值。 PE2: PDFp14 #69对方-1亦仅中/南美。"
+      "description": " SS1: PDFp4 #18事件推进不算普通尝试；p5旧二格后续问答不覆盖Deluxe一格卡值。 PE2: PDFp14 #69对方-1亦仅中/南美。 ON1: No dedicated OPEC/North Sea Oil answer found in the 22-page PDF. No claim of explicit NSO/Space stacking or late-provider decline ruling."
     },
     {
       "id": "M-DELUXE",
@@ -110,13 +113,19 @@
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "edition": "English Deluxe card images",
-      "description": "PDFp12 #80英文卡图：中立2OPS中期非星号，落后时推进两格，仅第二格VP。"
+      "description": "PDFp12 #80英文卡图：中立2OPS中期非星号，落后时推进两格，仅第二格VP。 ON1: PDF p10 #61 lists Egypt, Iran, Libya, Saudi Arabia, Iraq, Gulf States, Venezuela; USSR1VP each controlled; NSO blocks. PDF p13 #86 US3Late starred/underlined: OPEC prohibited, US may play eight cards this turn."
     },
     {
       "id": "PROJECT-OSS",
       "url": null,
       "edition": "Scoped design, 2026-10-12",
       "description": "可信EffectController、完整位置/次数/到达记录预检、不可变计划、来源摘要去重、原子终局；7对8越界停止，不采用Scientist终点未确认建议。"
+    },
+    {
+      "id": "PROJECT-ON1",
+      "url": null,
+      "edition": "Named derivations and finite contracts 2026-10-13",
+      "description": "ON1-D01: known NSO8/Space8 combine by max, not addition, not a universal cap on future providers. ON1-D02: physical card entities and child events do not add root slots. Two durations and source-set-bound optional decline are engineering contracts; unknown later grants/repeats remain RequiresRuling."
     }
   ],
   "tests": [
@@ -140,11 +149,15 @@
     {
       "path": "Docs/Design/one-small-step.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/opec-north-sea-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
-    "latest_design_report": "Docs/Design/one-small-step.validation.json"
+    "latest_design_report": "Docs/Design/opec-north-sea-batch1.validation.json"
   },
   "open_items": [
     "其他太空事件策略及Scientist终点裁定"
@@ -152,6 +165,7 @@
   "contract_dependencies": [
     "urn:coldwarheat:contract:space-events-batch1:1",
     "urn:coldwarheat:contract:persistent-effects-batch2:1",
-    "urn:coldwarheat:contract:one-small-step:1"
+    "urn:coldwarheat:contract:one-small-step:1",
+    "urn:coldwarheat:contract:opec-north-sea-batch1:1"
   ]
 }

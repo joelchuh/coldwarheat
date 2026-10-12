@@ -4,7 +4,7 @@
   "entries": [
     {
       "id": "module.turn-flow",
-      "description": "定位回合阶段、秘密头条、行动名额、出牌结算栈、回合末候选胜利与存档继续位置；当前是设计，不可作为已实现模块调用。 消费CT1转交/奖励计划，保留独立ChinaState并按剩余源步骤收尾。",
+      "description": "定位回合阶段、秘密头条、行动名额、出牌结算栈、回合末候选胜利与存档继续位置；当前是设计，不可作为已实现模块调用。 消费CT1转交/奖励计划，保留独立ChinaState并按剩余源步骤收尾。 ON1按已完成根行动槽合并已知NSO/Space总额度并绑定放弃来源集合。",
       "status": "planned",
       "descriptor": "Docs/Descriptors/turn-flow.module.json"
     },
@@ -34,7 +34,7 @@
     },
     {
       "id": "module.space-race",
-      "description": "查询8格太空尝试、先后奖励、领先能力、事件推进与回合衔接；当前为设计，尚不可调用。",
+      "description": "查询8格太空尝试、先后奖励、领先能力、事件推进与回合衔接；当前为设计，尚不可调用。 太空八格额度与NSO已知总8额度由TurnFlow合并，不额外叠加成9。",
       "status": "planned",
       "descriptor": "Docs/Descriptors/space-race.module.json"
     },
@@ -76,7 +76,7 @@
     },
     {
       "id": "module.composite-events",
-      "description": "固定组合事件与可选区域行动：影响力、VP、成功事实、永久取消阻止和授权子帧；封闭步骤，终局截断。 国家指标直接VP以封闭具名查询生成。 军备竞赛/峰会共享比较结果与耐久双骰收据，胜者可选DEFCON。 RO1先私有揭示，再建立可选普通OPS继续点。 LI1首VP批次终局截断；Pershing先持久VP再等待选择；同命令重放原结果且保留后来局面。 Olympic对手选参赛/抵制；参赛平局双骰继续链，抵制先核战检查。 CT1持有者条件转交或奖励，Ussuri完整亚洲分配。 Wargames三选择、给对手完整6VP批次及结束候选。",
+      "description": "固定组合事件与可选区域行动：影响力、VP、成功事实、永久取消阻止和授权子帧；封闭步骤，终局截断。 国家指标直接VP以封闭具名查询生成。 军备竞赛/峰会共享比较结果与耐久双骰收据，胜者可选DEFCON。 RO1先私有揭示，再建立可选普通OPS继续点。 LI1首VP批次终局截断；Pershing先持久VP再等待选择；同命令重放原结果且保留后来局面。 Olympic对手选参赛/抵制；参赛平局双骰继续链，抵制先核战检查。 CT1持有者条件转交或奖励，Ussuri完整亚洲分配。 Wargames三选择、给对手完整6VP批次及结束候选。 OPEC七国真实控制一次VP；NSO永久阻止与本回合US总行动额度分离。",
       "status": "planned",
       "descriptor": "Docs/Descriptors/composite-events.module.json"
     },

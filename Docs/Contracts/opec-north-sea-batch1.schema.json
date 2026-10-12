@@ -1,0 +1,1852 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:opec-north-sea-batch1:1",
+  "title": "OPEC and North Sea Oil contracts",
+  "description": "Strict data and internal source/ledger/receipt/allowance shapes with additional cross-field semantic validation; production providers remain planned.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "shared_refs",
+    "source_policy",
+    "transaction_policy",
+    "quota_policy",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "type": "integer"
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.opec_north_sea_batch1",
+      "type": "string"
+    },
+    "content_version": {
+      "const": "0.1.0",
+      "type": "string"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015",
+      "type": "string"
+    },
+    "scope": {
+      "const": "verified-subset",
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "C-DELUXE-EN",
+              "type": "string"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+              "type": "string"
+            },
+            "edition": {
+              "const": "English Deluxe images; inspected 2026-10-12",
+              "type": "string"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "R2015",
+              "type": "string"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+              "type": "string"
+            },
+            "edition": {
+              "const": "Deluxe 2015; checked 2026-10-12",
+              "type": "string"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "F2010",
+              "type": "string"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+              "type": "string"
+            },
+            "edition": {
+              "const": "FAQ v5 2010; searched 2026-10-12",
+              "type": "string"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "PROJECT-ON1",
+              "type": "string"
+            },
+            "url": {
+              "const": null,
+              "type": "null"
+            },
+            "edition": {
+              "const": "Named derivations and finite contracts 2026-10-13",
+              "type": "string"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "shared_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "map",
+        "victory",
+        "defcon",
+        "normal_allowances",
+        "normal_first_side",
+        "space_allowance",
+        "space_milestone",
+        "space_active_rule",
+        "hand_child",
+        "opec_printed",
+        "north_sea_oil_printed"
+      ],
+      "properties": {
+        "map": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "map.deluxe2015.world",
+              "type": "string"
+            },
+            "json_pointer": {
+              "const": "",
+              "type": "string"
+            }
+          }
+        },
+        "victory": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.victory",
+              "type": "string"
+            },
+            "json_pointer": {
+              "const": "",
+              "type": "string"
+            }
+          }
+        },
+        "defcon": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.defcon",
+              "type": "string"
+            },
+            "json_pointer": {
+              "const": "",
+              "type": "string"
+            }
+          }
+        },
+        "normal_allowances": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.turn-flow",
+              "type": "string"
+            },
+            "json_pointer": {
+              "const": "/era_bands",
+              "type": "string"
+            }
+          }
+        },
+        "normal_first_side": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.turn-flow",
+              "type": "string"
+            },
+            "json_pointer": {
+              "const": "/normal_first_side",
+              "type": "string"
+            }
+          }
+        },
+        "space_allowance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.space-race",
+              "type": "string"
+            },
+            "json_pointer": {
+              "const": "/abilities/3",
+              "type": "string"
+            }
+          }
+        },
+        "space_milestone": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.space-race",
+              "type": "string"
+            },
+            "json_pointer": {
+              "const": "/spaces/7",
+              "type": "string"
+            }
+          }
+        },
+        "space_active_rule": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.space-race",
+              "type": "string"
+            },
+            "json_pointer": {
+              "const": "/ability_active_rule",
+              "type": "string"
+            }
+          }
+        },
+        "hand_child": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.hand_events_batch1",
+              "type": "string"
+            },
+            "json_pointer": {
+              "const": "/parameters/five_year_plan",
+              "type": "string"
+            }
+          }
+        },
+        "opec_printed": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "cards.deluxe2015.definitions",
+              "type": "string"
+            },
+            "json_pointer": {
+              "const": "/cards/60",
+              "type": "string"
+            }
+          }
+        },
+        "north_sea_oil_printed": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "cards.deluxe2015.definitions",
+              "type": "string"
+            },
+            "json_pointer": {
+              "const": "/cards/85",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "source_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "providers",
+        "fyp_parent_controller",
+        "unique_keys",
+        "completed_parent",
+        "unknown_provider"
+      ],
+      "properties": {
+        "providers": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "const": "RootEvent",
+              "type": "string"
+            },
+            {
+              "const": "OpponentCardEvent",
+              "type": "string"
+            },
+            {
+              "const": "HeadlineEvent",
+              "type": "string"
+            },
+            {
+              "const": "VerifiedFypUsChild",
+              "type": "string"
+            }
+          ],
+          "items": false
+        },
+        "fyp_parent_controller": {
+          "const": "ReadSharedFypUsEventAffiliationNotRootPhasing",
+          "type": "string"
+        },
+        "unique_keys": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "const": "InstanceId",
+              "type": "string"
+            },
+            {
+              "const": "BaseCardId",
+              "type": "string"
+            },
+            {
+              "const": "FrameId",
+              "type": "string"
+            },
+            {
+              "const": "ResolutionId",
+              "type": "string"
+            }
+          ],
+          "items": false
+        },
+        "completed_parent": {
+          "const": "RejectBeforeMutation",
+          "type": "string"
+        },
+        "unknown_provider": {
+          "const": "RequiresRuling",
+          "type": "string"
+        }
+      }
+    },
+    "transaction_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "preflight",
+        "finished",
+        "remaining_ops",
+        "retry",
+        "random"
+      ],
+      "properties": {
+        "preflight": {
+          "const": "CompleteRelevantEffectsVpAndRootCleanupProviders",
+          "type": "string"
+        },
+        "finished": {
+          "const": "FinalizeAcceptedSourceParentAndRootBeforeFinished",
+          "type": "string"
+        },
+        "remaining_ops": {
+          "const": "ReturnToAcceptedRootWithoutPrematureCardDisposition",
+          "type": "string"
+        },
+        "retry": {
+          "const": "VerifyOriginalHistoryAndIndependentAnchor_ReturnOriginalPreserveLive",
+          "type": "string"
+        },
+        "random": {
+          "const": "None",
+          "type": "string"
+        }
+      }
+    },
+    "quota_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope",
+        "query_boundary",
+        "one_optional_decision",
+        "decline",
+        "later_independent_provider_after_decline",
+        "unknown_eligibility_or_trap",
+        "physical_card_count"
+      ],
+      "properties": {
+        "scope": {
+          "const": "KnownNormalSpaceAndNsoProvidersOnly",
+          "type": "string"
+        },
+        "query_boundary": {
+          "const": "BetweenCompletedRoots",
+          "type": "string"
+        },
+        "one_optional_decision": {
+          "const": "BoundToCurrentAuthorizationSetAndRevision",
+          "type": "string"
+        },
+        "decline": {
+          "const": "RecordAllCurrentlyOfferedSourceTokensOnly",
+          "type": "string"
+        },
+        "later_independent_provider_after_decline": {
+          "const": "RequiresRuling",
+          "type": "string"
+        },
+        "unknown_eligibility_or_trap": {
+          "const": "RequiresRuling",
+          "type": "string"
+        },
+        "physical_card_count": {
+          "const": "NeverUsedAsSlotCount",
+          "type": "string"
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "opec",
+        "north_sea_oil"
+      ],
+      "properties": {
+        "opec": {
+          "$ref": "#/$defs/opec"
+        },
+        "north_sea_oil": {
+          "$ref": "#/$defs/north_sea_oil"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "opec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "beneficiary",
+        "country_ids",
+        "vp_per_country",
+        "control_policy",
+        "scoring_projections",
+        "zero_outcome",
+        "prevention_source",
+        "prevented_outcome",
+        "vp_checkpoint"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.opec",
+          "type": "string"
+        },
+        "effect_id": {
+          "const": "effect.opec",
+          "type": "string"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "VpPerNamedCountryControlled",
+          "type": "string"
+        },
+        "beneficiary": {
+          "const": "USSR",
+          "type": "string"
+        },
+        "country_ids": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "prefixItems": [
+            {
+              "const": "country.egypt",
+              "type": "string"
+            },
+            {
+              "const": "country.iran",
+              "type": "string"
+            },
+            {
+              "const": "country.libya",
+              "type": "string"
+            },
+            {
+              "const": "country.saudi_arabia",
+              "type": "string"
+            },
+            {
+              "const": "country.iraq",
+              "type": "string"
+            },
+            {
+              "const": "country.gulf_states",
+              "type": "string"
+            },
+            {
+              "const": "country.venezuela",
+              "type": "string"
+            }
+          ],
+          "items": false
+        },
+        "vp_per_country": {
+          "const": 1,
+          "type": "integer"
+        },
+        "control_policy": {
+          "const": "SharedStabilityAndActualInfluenceDifference",
+          "type": "string"
+        },
+        "scoring_projections": {
+          "const": "Excluded",
+          "type": "string"
+        },
+        "zero_outcome": {
+          "const": "ResolvedNoChange",
+          "type": "string"
+        },
+        "prevention_source": {
+          "const": "effect.north_sea_oil",
+          "type": "string"
+        },
+        "prevented_outcome": {
+          "const": "SuppressedNoEvent",
+          "type": "string"
+        },
+        "vp_checkpoint": {
+          "const": "CompleteEventBatch",
+          "type": "string"
+        }
+      }
+    },
+    "north_sea_oil": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "controller",
+        "prevention",
+        "allowance",
+        "repeat_activation",
+        "unknown_late_or_reopened_source"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.north_sea_oil",
+          "type": "string"
+        },
+        "effect_id": {
+          "const": "effect.north_sea_oil",
+          "type": "string"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "PermanentPreventionAndTurnAllowance",
+          "type": "string"
+        },
+        "controller": {
+          "const": "US",
+          "type": "string"
+        },
+        "prevention": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target_effect_id",
+            "duration",
+            "requires_success_fact"
+          ],
+          "properties": {
+            "target_effect_id": {
+              "const": "effect.opec",
+              "type": "string"
+            },
+            "duration": {
+              "const": "Game",
+              "type": "string"
+            },
+            "requires_success_fact": {
+              "const": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "allowance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "beneficiary",
+            "kind",
+            "total",
+            "duration",
+            "expiry_boundary",
+            "unit",
+            "merge_known_sources",
+            "immediate_action",
+            "resets_space_attempts",
+            "draws_cards"
+          ],
+          "properties": {
+            "beneficiary": {
+              "const": "US",
+              "type": "string"
+            },
+            "kind": {
+              "const": "ActionRoundAllowance",
+              "type": "string"
+            },
+            "total": {
+              "const": 8,
+              "type": "integer"
+            },
+            "duration": {
+              "const": "RemainderOfActivationTurn",
+              "type": "string"
+            },
+            "expiry_boundary": {
+              "const": "ExpireAndReset",
+              "type": "string"
+            },
+            "unit": {
+              "const": "CompletedRootActionRoundSlots",
+              "type": "string"
+            },
+            "merge_known_sources": {
+              "const": "MaximumOfNormalNsoAndActiveSpaceAllowance",
+              "type": "string"
+            },
+            "immediate_action": {
+              "const": false,
+              "type": "boolean"
+            },
+            "resets_space_attempts": {
+              "const": false,
+              "type": "boolean"
+            },
+            "draws_cards": {
+              "const": false,
+              "type": "boolean"
+            }
+          }
+        },
+        "repeat_activation": {
+          "const": "RequiresRulingForNewResolution",
+          "type": "string"
+        },
+        "unknown_late_or_reopened_source": {
+          "const": "RequiresRulingBeforeActivation",
+          "type": "string"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "instance_id",
+        "frame_id",
+        "resolution_id",
+        "root_frame_id",
+        "root_action_id",
+        "root_phasing_player",
+        "controller",
+        "kind",
+        "phase",
+        "provider_id",
+        "proof_id",
+        "ruleset_id",
+        "ruleset_version",
+        "data_digest"
+      ],
+      "properties": {
+        "card_id": {
+          "enum": [
+            "card.opec",
+            "card.north_sea_oil"
+          ]
+        },
+        "effect_id": {
+          "enum": [
+            "effect.opec",
+            "effect.north_sea_oil"
+          ]
+        },
+        "instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_phasing_player": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "controller": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "kind": {
+          "enum": [
+            "RootEvent",
+            "OpponentCardEvent",
+            "HeadlineEvent",
+            "VerifiedFypUsChild"
+          ]
+        },
+        "phase": {
+          "enum": [
+            "ActionRound",
+            "Headline"
+          ]
+        },
+        "provider_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "proof_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ruleset_id": {
+          "const": "ruleset.deluxe2015",
+          "type": "string"
+        },
+        "ruleset_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "data_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "description": "Domain checks bind printed affiliation, actual card owner/location, unique source/frame/resolution tree and provider-specific parent controller. A source-kind string or proof id alone grants no authority."
+    },
+    "card_entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "instance_id",
+        "card_id",
+        "owner",
+        "zone",
+        "frame_id"
+      ],
+      "properties": {
+        "instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "zone": {
+          "enum": [
+            "Hand",
+            "InResolution",
+            "DiscardPile",
+            "RemovedFromGame",
+            "HeadlineReserved"
+          ]
+        },
+        "frame_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        }
+      }
+    },
+    "frame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "frame_id",
+        "resolution_id",
+        "parent_frame_id",
+        "kind",
+        "root_action_id",
+        "controller",
+        "source_instance_id",
+        "card_id",
+        "status"
+      ],
+      "properties": {
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parent_frame_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "RootCard",
+            "CardEvent",
+            "FiveYearPlanEvent"
+          ]
+        },
+        "root_action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "controller": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "source_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "Active",
+            "WaitingChild",
+            "Completed"
+          ]
+        }
+      }
+    },
+    "success_fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resolution_id",
+        "frame_id",
+        "source_instance_id",
+        "card_id",
+        "effect_id",
+        "controller",
+        "turn",
+        "outcome",
+        "provider_proof_id"
+      ],
+      "properties": {
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effect_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "controller": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "outcome": {
+          "const": "EventSucceeded",
+          "type": "string"
+        },
+        "provider_proof_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "nso_effects": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "permanent_block",
+        "turn_allowance"
+      ],
+      "properties": {
+        "permanent_block": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source_resolution_id",
+            "target_effect_id"
+          ],
+          "properties": {
+            "source_resolution_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "target_effect_id": {
+              "const": "effect.opec",
+              "type": "string"
+            }
+          }
+        },
+        "turn_allowance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source_resolution_id",
+            "activation_turn",
+            "expired"
+          ],
+          "properties": {
+            "source_resolution_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "activation_turn": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "expired": {
+              "type": "boolean"
+            }
+          }
+        }
+      },
+      "description": "Both records must reference the same unique successful NSO fact, verified source entity and completed event frame. Permanent prevention survives allowance expiry."
+    },
+    "completed_slot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "root_action_id",
+        "turn",
+        "actor",
+        "card_instance_ids"
+      ],
+      "properties": {
+        "root_action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "actor": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "card_instance_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "decline_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "turn",
+        "authorization_tokens",
+        "accepted_revision"
+      ],
+      "properties": {
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "authorization_tokens": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "accepted_revision": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "fyp_selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "parent_frame_id",
+        "parent_resolution_id",
+        "child_frame_id",
+        "child_resolution_id",
+        "selected_instance_id",
+        "selected_card_id",
+        "hand_owner",
+        "selection_receipt_id",
+        "proof_id"
+      ],
+      "properties": {
+        "parent_frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parent_resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "child_frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "child_resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selected_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selected_card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hand_owner": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "selection_receipt_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "proof_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "revision",
+        "status",
+        "turn",
+        "phase",
+        "vp",
+        "defcon",
+        "winner",
+        "rng_cursor",
+        "influence",
+        "cards",
+        "frames",
+        "success_facts",
+        "nso_effects",
+        "completed_slots",
+        "space_positions",
+        "space_attempts_used",
+        "decline_record",
+        "quota_boundary"
+      ],
+      "properties": {
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "status": {
+          "enum": [
+            "Running",
+            "Finished"
+          ]
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "phase": {
+          "enum": [
+            "ActionRound",
+            "Headline",
+            "TurnEnd"
+          ]
+        },
+        "vp": {
+          "type": "integer"
+        },
+        "defcon": {
+          "type": "integer"
+        },
+        "winner": {
+          "enum": [
+            null,
+            "US",
+            "USSR"
+          ]
+        },
+        "rng_cursor": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "influence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "country_id",
+              "US",
+              "USSR"
+            ],
+            "properties": {
+              "country_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "US": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "USSR": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          }
+        },
+        "cards": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/card_entity"
+          }
+        },
+        "frames": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/frame"
+          }
+        },
+        "success_facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/success_fact"
+          }
+        },
+        "nso_effects": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/nso_effects"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "completed_slots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/completed_slot"
+          }
+        },
+        "space_positions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "US",
+            "USSR"
+          ],
+          "properties": {
+            "US": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "USSR": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "space_attempts_used": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "US",
+            "USSR"
+          ],
+          "properties": {
+            "US": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "USSR": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "decline_record": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/decline_record"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "quota_boundary": {
+          "enum": [
+            "ResolvingRoot",
+            "BetweenRoots",
+            "TurnEnded"
+          ]
+        }
+      }
+    },
+    "providers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resolution_id",
+        "root_action_id",
+        "revision",
+        "source_digest",
+        "relevant_effects_complete",
+        "vp_batch_complete",
+        "root_cleanup_complete",
+        "quota_eligibility_known",
+        "unknown_quota_providers",
+        "proof_id"
+      ],
+      "properties": {
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "relevant_effects_complete": {
+          "type": "boolean"
+        },
+        "vp_batch_complete": {
+          "type": "boolean"
+        },
+        "root_cleanup_complete": {
+          "type": "boolean"
+        },
+        "quota_eligibility_known": {
+          "type": "boolean"
+        },
+        "unknown_quota_providers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "proof_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "event_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "expected_revision",
+        "source_digest"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "event_input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "state",
+        "request",
+        "authenticated_actor",
+        "providers",
+        "root_remaining_ops",
+        "fyp_selection"
+      ],
+      "properties": {
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "state": {
+          "$ref": "#/$defs/snapshot"
+        },
+        "request": {
+          "$ref": "#/$defs/event_request"
+        },
+        "authenticated_actor": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "providers": {
+          "$ref": "#/$defs/providers"
+        },
+        "root_remaining_ops": {
+          "type": "boolean"
+        },
+        "fyp_selection": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/fyp_selection"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcome",
+        "event_occurred",
+        "vp_delta",
+        "metric_country_ids",
+        "trace",
+        "after"
+      ],
+      "properties": {
+        "outcome": {
+          "enum": [
+            "ResolvedChanged",
+            "ResolvedNoChange",
+            "SuppressedNoEvent",
+            "Finished"
+          ]
+        },
+        "event_occurred": {
+          "type": "boolean"
+        },
+        "vp_delta": {
+          "type": "integer"
+        },
+        "metric_country_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "trace": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "after": {
+          "$ref": "#/$defs/snapshot"
+        }
+      }
+    },
+    "receipt_body": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "historical_input",
+        "request_digest",
+        "source_digest",
+        "before_digest",
+        "result"
+      ],
+      "properties": {
+        "historical_input": {
+          "$ref": "#/$defs/event_input"
+        },
+        "request_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "source_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "before_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "result": {
+          "$ref": "#/$defs/result"
+        }
+      }
+    },
+    "receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "body",
+        "digest"
+      ],
+      "properties": {
+        "body": {
+          "$ref": "#/$defs/receipt_body"
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "anchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "resolution_id",
+        "request_digest",
+        "source_digest",
+        "before_digest",
+        "receipt_digest"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "source_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "before_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "receipt_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "quota_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "expected_revision",
+        "authorization_digest",
+        "choice"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "authorization_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "choice": {
+          "enum": [
+            "DeclineOptionalAllowance"
+          ]
+        }
+      }
+    },
+    "quota_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "turn",
+        "revision",
+        "relevant_effects_complete",
+        "quota_eligibility_known",
+        "unknown_quota_providers",
+        "proof_id"
+      ],
+      "properties": {
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "relevant_effects_complete": {
+          "type": "boolean"
+        },
+        "quota_eligibility_known": {
+          "type": "boolean"
+        },
+        "unknown_quota_providers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "proof_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "quota_input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "providers",
+        "request",
+        "authenticated_actor"
+      ],
+      "properties": {
+        "state": {
+          "$ref": "#/$defs/snapshot"
+        },
+        "providers": {
+          "$ref": "#/$defs/quota_evidence"
+        },
+        "request": {
+          "$ref": "#/$defs/quota_request"
+        },
+        "authenticated_actor": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        }
+      }
+    },
+    "quota_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcome",
+        "after"
+      ],
+      "properties": {
+        "outcome": {
+          "const": "Declined",
+          "type": "string"
+        },
+        "after": {
+          "$ref": "#/$defs/snapshot"
+        }
+      }
+    },
+    "quota_receipt_body": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "historical_input",
+        "request_digest",
+        "before_digest",
+        "provider_digest",
+        "result"
+      ],
+      "properties": {
+        "historical_input": {
+          "$ref": "#/$defs/quota_input"
+        },
+        "request_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "before_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "provider_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "result": {
+          "$ref": "#/$defs/quota_result"
+        }
+      }
+    },
+    "quota_receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "body",
+        "digest"
+      ],
+      "properties": {
+        "body": {
+          "$ref": "#/$defs/quota_receipt_body"
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "quota_anchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "turn",
+        "request_digest",
+        "before_digest",
+        "provider_digest",
+        "receipt_digest"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "request_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "before_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "provider_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "receipt_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    }
+  }
+}
