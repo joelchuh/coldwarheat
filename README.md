@@ -93,4 +93,6 @@
 
 此前：[军备竞赛与峰会](Docs/Wiki/contest-events.md)，73 Bound /29 Unresolved，102处理器planned；军事>5边界待裁定。
 
-最新：[CIA与Lone Gunman一次手牌揭示](Docs/Wiki/reveal-ops-batch1.md)，75 Bound /27 Unresolved，102处理器planned；特殊来源影响力起点待核实。
+此前：[CIA与Lone Gunman一次手牌揭示](Docs/Wiki/reveal-ops-batch1.md)，75 Bound /27 Unresolved，102处理器planned；特殊来源影响力起点待核实。
+
+最新：[晚期影响力第一批](Docs/Wiki/late-influence-batch1.md)，79 Bound /23 Unresolved，102处理器planned；海军营房额外移除短缺待裁定。

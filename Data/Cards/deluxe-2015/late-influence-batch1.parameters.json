@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.late_influence_batch1",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "verified-subset",
+  "description": "晚期影响力四牌：固定/完整分配、VP首批次及长期禁止；正式域契约候选，C#与生产消费者均待实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "GMT-hosted English Deluxe card images",
+      "description": "仅英文卡图p13 #83/#87/#88及p15 #99；不采用旁列译文。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.2.4–5星号/长期标记，§5.2事件执行方与去向，§6.1.1事件放置，§6.3.5免费政变，§7.3/7.5永久/禁止，§10.2–10.3 VP。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5, 2010",
+      "description": "p15 #90说明Glasnost额外OPS；仅未来消费者边界，不把OPS限制反套给Reformer。本次未发现四牌专门短缺裁定。"
+    },
+    {
+      "id": "PROJECT-LI1",
+      "url": null,
+      "edition": "LI1-D01–D04 / LI1-E01, 2026-10-12",
+      "description": "4或6替代总量、Marine完整计划、Pershing零选择正影响规范化、首VP批次终局与来源/重放工程解释；不是新增官方FAQ。短缺和重复未答仍RequiresRuling。"
+    }
+  ],
+  "shared_refs": {
+    "map": {
+      "dataset_id": "map.deluxe2015.world",
+      "json_pointer": "/countries"
+    },
+    "cards": {
+      "dataset_id": "cards.deluxe2015.definitions",
+      "json_pointer": "/cards"
+    },
+    "victory": {
+      "dataset_id": "rules.deluxe2015.victory",
+      "json_pointer": ""
+    },
+    "socialist_governments": {
+      "dataset_id": "effects.deluxe2015.early_influence_batch2",
+      "json_pointer": "/parameters/socialist_governments"
+    }
+  },
+  "resolution_policy": {
+    "controller": "PrintedAffiliationNotCardPlayer",
+    "influence_mode": "DirectEventNotOperations",
+    "unknown_relevant_provider": "RequiresRulingBeforeDependentPlan",
+    "first_activation_only": true,
+    "new_resolution_repeat": "RequiresRuling",
+    "same_command_replay": "ReturnAcceptedReceiptWithoutMutation",
+    "terminal_checkpoint": "VpBatchClosed",
+    "terminal_cleanup": "SuccessfulEventFactAndStarDispositionInTerminalDraft_NoRemainingGameplay",
+    "map_policy": "CompleteAuthoritativeSnapshot_NoMissingCountryDefaults",
+    "replay_integrity": "VerifyOriginalAcceptedResultAndReceiptAgainstTrustedStoredAnchor",
+    "replay_live_state": "PreserveCurrentStateWithoutRequiringHistoricalAfterDigest",
+    "replay_payload": "ReturnOriginalAcceptedReceiptAndResult"
+  },
+  "parameters": {
+    "the_iron_lady": {
+      "card_id": "card.the_iron_lady",
+      "effect_id": "effect.the_iron_lady",
+      "template": "OrderedInfluencePreventionComposite",
+      "beneficiary": "US",
+      "duration": "UntilCancelledOrGameEnd",
+      "expiry_boundary": null,
+      "prevention_consumer_ref": {
+        "dataset_id": "effects.deluxe2015.early_influence_batch2",
+        "json_pointer": "/parameters/socialist_governments"
+      },
+      "prevention_match_field": "blocked_by_effect_id",
+      "ordered_steps": [
+        {
+          "kind": "AwardVictoryPoints",
+          "side": "US",
+          "amount": 1,
+          "checkpoint": "VpBatchClosed"
+        },
+        {
+          "kind": "AddInfluence",
+          "side": "USSR",
+          "country_id": "country.argentina",
+          "amount": 1
+        },
+        {
+          "kind": "ClearInfluence",
+          "side": "USSR",
+          "country_id": "country.uk"
+        },
+        {
+          "kind": "ActivateEventPreventionFromConsumerReference"
+        }
+      ],
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p13 English card #83",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.2.4–5; §5.2; §6.1.1; §7.3; §7.5; §10.2.2–3; §10.3.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-LI1",
+          "locator": "Wiki LI1-D01–D04 / LI1-E01: derived and engineering boundaries",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "the_reformer": {
+      "card_id": "card.the_reformer",
+      "effect_id": "effect.the_reformer",
+      "template": "ConditionalAllocationAndCoupPrevention",
+      "beneficiary": "USSR",
+      "duration": "UntilCancelledOrGameEnd",
+      "expiry_boundary": null,
+      "target_region_id": "region.europe",
+      "ordinary_total": 4,
+      "alternative_total": 6,
+      "amount_policy": "LI1-D01_ChooseFourOrSixWhenUssrLeadsOtherwiseFour",
+      "lead_policy": "CurrentSignedVpBelowZeroWithSharedUsPositiveConvention",
+      "sample_boundary": "AuthoritativeEventAllocationSnapshot",
+      "per_country_new_influence_cap": 2,
+      "enemy_control_filter": false,
+      "insufficient_capacity_policy": "RequiresRuling",
+      "coup_prevention": {
+        "actor": "USSR",
+        "region_id": "region.europe",
+        "action_kind": "Coup",
+        "free_coup_override": false,
+        "other_action_policy": "NoVetoFromThisEffect"
+      },
+      "future_consumer_ref": {
+        "dataset_id": "cards.deluxe2015.definitions",
+        "json_pointer": "/cards/89",
+        "expected_card_id": "card.glasnost"
+      },
+      "future_consumer_policy": "ActiveSuccessfulSourceFactLookupOnly_NoHandlerOrActionGrant",
+      "ordered_steps": [
+        {
+          "kind": "AllocateInfluence",
+          "side": "USSR"
+        },
+        {
+          "kind": "ActivateCoupPreventionAndSuccessfulSourceFact"
+        }
+      ],
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p13 English card #87",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.2.4–5; §5.2; §6.1.1; §7.3; §7.5; §10.2.2–3; §10.3.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-LI1",
+          "locator": "Wiki LI1-D01–D04 / LI1-E01: derived and engineering boundaries",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p15 #90 Glasnost: extra OPS is a separate future consumer",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "marine_barracks_bombing": {
+      "card_id": "card.marine_barracks_bombing",
+      "effect_id": "effect.marine_barracks_bombing",
+      "template": "ClearThenExactRemoval",
+      "beneficiary": "USSR",
+      "target_region_id": "region.middle_east",
+      "clear_country_id": "country.lebanon",
+      "removed_side": "US",
+      "additional_total": 2,
+      "per_country_cap": null,
+      "shortage_policy": "RequiresRulingBeforeAnyMutation",
+      "plan_policy": "ValidateEntirePostClearAllocationBeforeCommit",
+      "ordered_steps": [
+        {
+          "kind": "ClearInfluence",
+          "side": "US",
+          "country_id": "country.lebanon"
+        },
+        {
+          "kind": "RemoveExactAdditionalInfluence",
+          "side": "US",
+          "amount": 2
+        }
+      ],
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p13 English card #88",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.2.4–5; §5.2; §6.1.1; §7.3; §7.5; §10.2.2–3; §10.3.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-LI1",
+          "locator": "Wiki LI1-D01–D04 / LI1-E01: derived and engineering boundaries",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "pershing_ii_deployed": {
+      "card_id": "card.pershing_ii_deployed",
+      "effect_id": "effect.pershing_ii_deployed",
+      "template": "VpThenOptionalDistinctRemoval",
+      "beneficiary": "USSR",
+      "target_region_id": "region.western_europe",
+      "removed_side": "US",
+      "minimum_target_count": 0,
+      "maximum_target_count": 3,
+      "amount_per_country": 1,
+      "selection_policy": "LI1-D03_UpToDistinctPositiveInfluenceTargets_ZeroSelectionAllowed",
+      "ordered_steps": [
+        {
+          "kind": "AwardVictoryPoints",
+          "side": "USSR",
+          "amount": 1,
+          "checkpoint": "VpBatchClosed"
+        },
+        {
+          "kind": "RemoveFromOptionalDistinctCountries",
+          "side": "US"
+        }
+      ],
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p15 English card #99",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.2.4–5; §5.2; §6.1.1; §7.3; §7.5; §10.2.2–3; §10.3.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-LI1",
+          "locator": "Wiki LI1-D01–D04 / LI1-E01: derived and engineering boundaries",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

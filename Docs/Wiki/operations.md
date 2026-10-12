@@ -178,3 +178,5 @@ INF-A/B、COUP-A/B、REAL-A 的基础期望依据本页规则摘要；其余是�
 [战争事件服务](war-events.md)独立结算单骰，不走政变算法、OPS可达性、DEFCON地理门禁或战场降级；目标零影响力也合法。
 
 [DEFCON事件与政变干预](defcon-events-batch1.md)补齐危机实际Actor责任、任意边界解除、核潜艇/SALT政策与ABM视同OPS；全部仍planned。
+
+[Reformer长期限制](late-influence-batch1.md)是独立事件政变门禁：实际苏联Actor不能在欧洲政变，免费不豁免；不扩展到调整、战争或美国政变。

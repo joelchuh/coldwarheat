@@ -1,0 +1,2095 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:late-influence-batch1:1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "shared_refs",
+    "resolution_policy",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "dataset_id": {
+      "type": "string",
+      "const": "effects.deluxe2015.late_influence_batch1"
+    },
+    "content_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "type": "string",
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "type": "string",
+      "const": "verified-subset"
+    },
+    "description": {
+      "type": "string",
+      "const": "晚期影响力四牌：固定/完整分配、VP首批次及长期禁止；正式域契约候选，C#与生产消费者均待实现。"
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "const": "C-DELUXE-EN"
+            },
+            "url": {
+              "type": "string",
+              "const": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf"
+            },
+            "edition": {
+              "type": "string",
+              "const": "GMT-hosted English Deluxe card images"
+            },
+            "description": {
+              "type": "string",
+              "const": "仅英文卡图p13 #83/#87/#88及p15 #99；不采用旁列译文。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "const": "R2015"
+            },
+            "url": {
+              "type": "string",
+              "const": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf"
+            },
+            "edition": {
+              "type": "string",
+              "const": "Deluxe rules 2015"
+            },
+            "description": {
+              "type": "string",
+              "const": "§2.2.4–5星号/长期标记，§5.2事件执行方与去向，§6.1.1事件放置，§6.3.5免费政变，§7.3/7.5永久/禁止，§10.2–10.3 VP。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "const": "F2010"
+            },
+            "url": {
+              "type": "string",
+              "const": "https://www.gmtgames.com/nnts/FAQv5.pdf"
+            },
+            "edition": {
+              "type": "string",
+              "const": "FAQ v5, 2010"
+            },
+            "description": {
+              "type": "string",
+              "const": "p15 #90说明Glasnost额外OPS；仅未来消费者边界，不把OPS限制反套给Reformer。本次未发现四牌专门短缺裁定。"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "const": "PROJECT-LI1"
+            },
+            "url": {
+              "type": "null"
+            },
+            "edition": {
+              "type": "string",
+              "const": "LI1-D01–D04 / LI1-E01, 2026-10-12"
+            },
+            "description": {
+              "type": "string",
+              "const": "4或6替代总量、Marine完整计划、Pershing零选择正影响规范化、首VP批次终局与来源/重放工程解释；不是新增官方FAQ。短缺和重复未答仍RequiresRuling。"
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "shared_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "map",
+        "cards",
+        "victory",
+        "socialist_governments"
+      ],
+      "properties": {
+        "map": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "map.deluxe2015.world"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": "/countries"
+            }
+          }
+        },
+        "cards": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "cards.deluxe2015.definitions"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": "/cards"
+            }
+          }
+        },
+        "victory": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "rules.deluxe2015.victory"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": ""
+            }
+          }
+        },
+        "socialist_governments": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "effects.deluxe2015.early_influence_batch2"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": "/parameters/socialist_governments"
+            }
+          }
+        }
+      }
+    },
+    "resolution_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "controller",
+        "influence_mode",
+        "unknown_relevant_provider",
+        "first_activation_only",
+        "new_resolution_repeat",
+        "same_command_replay",
+        "terminal_checkpoint",
+        "terminal_cleanup",
+        "map_policy",
+        "replay_integrity",
+        "replay_live_state",
+        "replay_payload"
+      ],
+      "properties": {
+        "controller": {
+          "type": "string",
+          "const": "PrintedAffiliationNotCardPlayer"
+        },
+        "influence_mode": {
+          "type": "string",
+          "const": "DirectEventNotOperations"
+        },
+        "unknown_relevant_provider": {
+          "type": "string",
+          "const": "RequiresRulingBeforeDependentPlan"
+        },
+        "first_activation_only": {
+          "type": "boolean",
+          "const": true
+        },
+        "new_resolution_repeat": {
+          "type": "string",
+          "const": "RequiresRuling"
+        },
+        "same_command_replay": {
+          "type": "string",
+          "const": "ReturnAcceptedReceiptWithoutMutation"
+        },
+        "terminal_checkpoint": {
+          "type": "string",
+          "const": "VpBatchClosed"
+        },
+        "terminal_cleanup": {
+          "type": "string",
+          "const": "SuccessfulEventFactAndStarDispositionInTerminalDraft_NoRemainingGameplay"
+        },
+        "map_policy": {
+          "type": "string",
+          "const": "CompleteAuthoritativeSnapshot_NoMissingCountryDefaults"
+        },
+        "replay_integrity": {
+          "type": "string",
+          "const": "VerifyOriginalAcceptedResultAndReceiptAgainstTrustedStoredAnchor"
+        },
+        "replay_live_state": {
+          "type": "string",
+          "const": "PreserveCurrentStateWithoutRequiringHistoricalAfterDigest"
+        },
+        "replay_payload": {
+          "type": "string",
+          "const": "ReturnOriginalAcceptedReceiptAndResult"
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "the_iron_lady",
+        "the_reformer",
+        "marine_barracks_bombing",
+        "pershing_ii_deployed"
+      ],
+      "properties": {
+        "the_iron_lady": {
+          "$ref": "#/$defs/the_iron_lady"
+        },
+        "the_reformer": {
+          "$ref": "#/$defs/the_reformer"
+        },
+        "marine_barracks_bombing": {
+          "$ref": "#/$defs/marine_barracks_bombing"
+        },
+        "pershing_ii_deployed": {
+          "$ref": "#/$defs/pershing_ii_deployed"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "the_iron_lady": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "template",
+        "beneficiary",
+        "duration",
+        "expiry_boundary",
+        "prevention_consumer_ref",
+        "prevention_match_field",
+        "ordered_steps",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "const": "card.the_iron_lady"
+        },
+        "effect_id": {
+          "type": "string",
+          "const": "effect.the_iron_lady"
+        },
+        "template": {
+          "type": "string",
+          "const": "OrderedInfluencePreventionComposite"
+        },
+        "beneficiary": {
+          "type": "string",
+          "const": "US"
+        },
+        "duration": {
+          "type": "string",
+          "const": "UntilCancelledOrGameEnd"
+        },
+        "expiry_boundary": {
+          "type": "null"
+        },
+        "prevention_consumer_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "effects.deluxe2015.early_influence_batch2"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": "/parameters/socialist_governments"
+            }
+          }
+        },
+        "prevention_match_field": {
+          "type": "string",
+          "const": "blocked_by_effect_id"
+        },
+        "ordered_steps": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind",
+                "side",
+                "amount",
+                "checkpoint"
+              ],
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "AwardVictoryPoints"
+                },
+                "side": {
+                  "type": "string",
+                  "const": "US"
+                },
+                "amount": {
+                  "type": "integer",
+                  "const": 1
+                },
+                "checkpoint": {
+                  "type": "string",
+                  "const": "VpBatchClosed"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind",
+                "side",
+                "country_id",
+                "amount"
+              ],
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "AddInfluence"
+                },
+                "side": {
+                  "type": "string",
+                  "const": "USSR"
+                },
+                "country_id": {
+                  "type": "string",
+                  "const": "country.argentina"
+                },
+                "amount": {
+                  "type": "integer",
+                  "const": 1
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind",
+                "side",
+                "country_id"
+              ],
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "ClearInfluence"
+                },
+                "side": {
+                  "type": "string",
+                  "const": "USSR"
+                },
+                "country_id": {
+                  "type": "string",
+                  "const": "country.uk"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind"
+              ],
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "ActivateEventPreventionFromConsumerReference"
+                }
+              }
+            }
+          ],
+          "items": false
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "PDF p13 English card #83"
+                },
+                "verification": {
+                  "type": "string",
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "R2015"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "§2.2.4–5; §5.2; §6.1.1; §7.3; §7.5; §10.2.2–3; §10.3.1"
+                },
+                "verification": {
+                  "type": "string",
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "PROJECT-LI1"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "Wiki LI1-D01–D04 / LI1-E01: derived and engineering boundaries"
+                },
+                "verification": {
+                  "type": "string",
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "the_reformer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "template",
+        "beneficiary",
+        "duration",
+        "expiry_boundary",
+        "target_region_id",
+        "ordinary_total",
+        "alternative_total",
+        "amount_policy",
+        "lead_policy",
+        "sample_boundary",
+        "per_country_new_influence_cap",
+        "enemy_control_filter",
+        "insufficient_capacity_policy",
+        "coup_prevention",
+        "future_consumer_ref",
+        "future_consumer_policy",
+        "ordered_steps",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "const": "card.the_reformer"
+        },
+        "effect_id": {
+          "type": "string",
+          "const": "effect.the_reformer"
+        },
+        "template": {
+          "type": "string",
+          "const": "ConditionalAllocationAndCoupPrevention"
+        },
+        "beneficiary": {
+          "type": "string",
+          "const": "USSR"
+        },
+        "duration": {
+          "type": "string",
+          "const": "UntilCancelledOrGameEnd"
+        },
+        "expiry_boundary": {
+          "type": "null"
+        },
+        "target_region_id": {
+          "type": "string",
+          "const": "region.europe"
+        },
+        "ordinary_total": {
+          "type": "integer",
+          "const": 4
+        },
+        "alternative_total": {
+          "type": "integer",
+          "const": 6
+        },
+        "amount_policy": {
+          "type": "string",
+          "const": "LI1-D01_ChooseFourOrSixWhenUssrLeadsOtherwiseFour"
+        },
+        "lead_policy": {
+          "type": "string",
+          "const": "CurrentSignedVpBelowZeroWithSharedUsPositiveConvention"
+        },
+        "sample_boundary": {
+          "type": "string",
+          "const": "AuthoritativeEventAllocationSnapshot"
+        },
+        "per_country_new_influence_cap": {
+          "type": "integer",
+          "const": 2
+        },
+        "enemy_control_filter": {
+          "type": "boolean",
+          "const": false
+        },
+        "insufficient_capacity_policy": {
+          "type": "string",
+          "const": "RequiresRuling"
+        },
+        "coup_prevention": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "actor",
+            "region_id",
+            "action_kind",
+            "free_coup_override",
+            "other_action_policy"
+          ],
+          "properties": {
+            "actor": {
+              "type": "string",
+              "const": "USSR"
+            },
+            "region_id": {
+              "type": "string",
+              "const": "region.europe"
+            },
+            "action_kind": {
+              "type": "string",
+              "const": "Coup"
+            },
+            "free_coup_override": {
+              "type": "boolean",
+              "const": false
+            },
+            "other_action_policy": {
+              "type": "string",
+              "const": "NoVetoFromThisEffect"
+            }
+          }
+        },
+        "future_consumer_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer",
+            "expected_card_id"
+          ],
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "const": "cards.deluxe2015.definitions"
+            },
+            "json_pointer": {
+              "type": "string",
+              "const": "/cards/89"
+            },
+            "expected_card_id": {
+              "type": "string",
+              "const": "card.glasnost"
+            }
+          }
+        },
+        "future_consumer_policy": {
+          "type": "string",
+          "const": "ActiveSuccessfulSourceFactLookupOnly_NoHandlerOrActionGrant"
+        },
+        "ordered_steps": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind",
+                "side"
+              ],
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "AllocateInfluence"
+                },
+                "side": {
+                  "type": "string",
+                  "const": "USSR"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind"
+              ],
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "ActivateCoupPreventionAndSuccessfulSourceFact"
+                }
+              }
+            }
+          ],
+          "items": false
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "PDF p13 English card #87"
+                },
+                "verification": {
+                  "type": "string",
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "R2015"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "§2.2.4–5; §5.2; §6.1.1; §7.3; §7.5; §10.2.2–3; §10.3.1"
+                },
+                "verification": {
+                  "type": "string",
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "PROJECT-LI1"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "Wiki LI1-D01–D04 / LI1-E01: derived and engineering boundaries"
+                },
+                "verification": {
+                  "type": "string",
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "F2010"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "PDF p15 #90 Glasnost: extra OPS is a separate future consumer"
+                },
+                "verification": {
+                  "type": "string",
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "marine_barracks_bombing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "template",
+        "beneficiary",
+        "target_region_id",
+        "clear_country_id",
+        "removed_side",
+        "additional_total",
+        "per_country_cap",
+        "shortage_policy",
+        "plan_policy",
+        "ordered_steps",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "const": "card.marine_barracks_bombing"
+        },
+        "effect_id": {
+          "type": "string",
+          "const": "effect.marine_barracks_bombing"
+        },
+        "template": {
+          "type": "string",
+          "const": "ClearThenExactRemoval"
+        },
+        "beneficiary": {
+          "type": "string",
+          "const": "USSR"
+        },
+        "target_region_id": {
+          "type": "string",
+          "const": "region.middle_east"
+        },
+        "clear_country_id": {
+          "type": "string",
+          "const": "country.lebanon"
+        },
+        "removed_side": {
+          "type": "string",
+          "const": "US"
+        },
+        "additional_total": {
+          "type": "integer",
+          "const": 2
+        },
+        "per_country_cap": {
+          "type": "null"
+        },
+        "shortage_policy": {
+          "type": "string",
+          "const": "RequiresRulingBeforeAnyMutation"
+        },
+        "plan_policy": {
+          "type": "string",
+          "const": "ValidateEntirePostClearAllocationBeforeCommit"
+        },
+        "ordered_steps": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind",
+                "side",
+                "country_id"
+              ],
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "ClearInfluence"
+                },
+                "side": {
+                  "type": "string",
+                  "const": "US"
+                },
+                "country_id": {
+                  "type": "string",
+                  "const": "country.lebanon"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind",
+                "side",
+                "amount"
+              ],
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "RemoveExactAdditionalInfluence"
+                },
+                "side": {
+                  "type": "string",
+                  "const": "US"
+                },
+                "amount": {
+                  "type": "integer",
+                  "const": 2
+                }
+              }
+            }
+          ],
+          "items": false
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "PDF p13 English card #88"
+                },
+                "verification": {
+                  "type": "string",
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "R2015"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "§2.2.4–5; §5.2; §6.1.1; §7.3; §7.5; §10.2.2–3; §10.3.1"
+                },
+                "verification": {
+                  "type": "string",
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "PROJECT-LI1"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "Wiki LI1-D01–D04 / LI1-E01: derived and engineering boundaries"
+                },
+                "verification": {
+                  "type": "string",
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "pershing_ii_deployed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "template",
+        "beneficiary",
+        "target_region_id",
+        "removed_side",
+        "minimum_target_count",
+        "maximum_target_count",
+        "amount_per_country",
+        "selection_policy",
+        "ordered_steps",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "type": "string",
+          "const": "card.pershing_ii_deployed"
+        },
+        "effect_id": {
+          "type": "string",
+          "const": "effect.pershing_ii_deployed"
+        },
+        "template": {
+          "type": "string",
+          "const": "VpThenOptionalDistinctRemoval"
+        },
+        "beneficiary": {
+          "type": "string",
+          "const": "USSR"
+        },
+        "target_region_id": {
+          "type": "string",
+          "const": "region.western_europe"
+        },
+        "removed_side": {
+          "type": "string",
+          "const": "US"
+        },
+        "minimum_target_count": {
+          "type": "integer",
+          "const": 0
+        },
+        "maximum_target_count": {
+          "type": "integer",
+          "const": 3
+        },
+        "amount_per_country": {
+          "type": "integer",
+          "const": 1
+        },
+        "selection_policy": {
+          "type": "string",
+          "const": "LI1-D03_UpToDistinctPositiveInfluenceTargets_ZeroSelectionAllowed"
+        },
+        "ordered_steps": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind",
+                "side",
+                "amount",
+                "checkpoint"
+              ],
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "AwardVictoryPoints"
+                },
+                "side": {
+                  "type": "string",
+                  "const": "USSR"
+                },
+                "amount": {
+                  "type": "integer",
+                  "const": 1
+                },
+                "checkpoint": {
+                  "type": "string",
+                  "const": "VpBatchClosed"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind",
+                "side"
+              ],
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "RemoveFromOptionalDistinctCountries"
+                },
+                "side": {
+                  "type": "string",
+                  "const": "US"
+                }
+              }
+            }
+          ],
+          "items": false
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "PDF p15 English card #99"
+                },
+                "verification": {
+                  "type": "string",
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "R2015"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "§2.2.4–5; §5.2; §6.1.1; §7.3; §7.5; §10.2.2–3; §10.3.1"
+                },
+                "verification": {
+                  "type": "string",
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "const": "PROJECT-LI1"
+                },
+                "locator": {
+                  "type": "string",
+                  "const": "Wiki LI1-D01–D04 / LI1-E01: derived and engineering boundaries"
+                },
+                "verification": {
+                  "type": "string",
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "influence_pair": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "US",
+        "USSR"
+      ],
+      "properties": {
+        "US": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "USSR": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "influence_snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "country.canada",
+        "country.uk",
+        "country.norway",
+        "country.sweden",
+        "country.finland",
+        "country.denmark",
+        "country.benelux",
+        "country.france",
+        "country.spain_portugal",
+        "country.italy",
+        "country.greece",
+        "country.turkey",
+        "country.west_germany",
+        "country.east_germany",
+        "country.poland",
+        "country.czechoslovakia",
+        "country.austria",
+        "country.hungary",
+        "country.yugoslavia",
+        "country.romania",
+        "country.bulgaria",
+        "country.afghanistan",
+        "country.pakistan",
+        "country.india",
+        "country.burma",
+        "country.laos_cambodia",
+        "country.thailand",
+        "country.vietnam",
+        "country.malaysia",
+        "country.indonesia",
+        "country.philippines",
+        "country.australia",
+        "country.taiwan",
+        "country.japan",
+        "country.south_korea",
+        "country.north_korea",
+        "country.lebanon",
+        "country.syria",
+        "country.israel",
+        "country.iraq",
+        "country.iran",
+        "country.jordan",
+        "country.gulf_states",
+        "country.saudi_arabia",
+        "country.egypt",
+        "country.libya",
+        "country.morocco",
+        "country.algeria",
+        "country.tunisia",
+        "country.west_african_states",
+        "country.saharan_states",
+        "country.ivory_coast",
+        "country.nigeria",
+        "country.cameroon",
+        "country.zaire",
+        "country.angola",
+        "country.south_africa",
+        "country.botswana",
+        "country.zimbabwe",
+        "country.southeast_african_states",
+        "country.kenya",
+        "country.somalia",
+        "country.ethiopia",
+        "country.sudan",
+        "country.mexico",
+        "country.guatemala",
+        "country.el_salvador",
+        "country.honduras",
+        "country.nicaragua",
+        "country.costa_rica",
+        "country.panama",
+        "country.cuba",
+        "country.haiti",
+        "country.dominican_republic",
+        "country.colombia",
+        "country.venezuela",
+        "country.ecuador",
+        "country.peru",
+        "country.bolivia",
+        "country.brazil",
+        "country.paraguay",
+        "country.uruguay",
+        "country.argentina",
+        "country.chile"
+      ],
+      "properties": {
+        "country.canada": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.uk": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.norway": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.sweden": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.finland": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.denmark": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.benelux": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.france": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.spain_portugal": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.italy": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.greece": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.turkey": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.west_germany": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.east_germany": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.poland": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.czechoslovakia": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.austria": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.hungary": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.yugoslavia": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.romania": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.bulgaria": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.afghanistan": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.pakistan": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.india": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.burma": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.laos_cambodia": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.thailand": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.vietnam": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.malaysia": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.indonesia": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.philippines": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.australia": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.taiwan": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.japan": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.south_korea": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.north_korea": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.lebanon": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.syria": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.israel": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.iraq": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.iran": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.jordan": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.gulf_states": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.saudi_arabia": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.egypt": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.libya": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.morocco": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.algeria": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.tunisia": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.west_african_states": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.saharan_states": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.ivory_coast": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.nigeria": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.cameroon": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.zaire": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.angola": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.south_africa": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.botswana": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.zimbabwe": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.southeast_african_states": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.kenya": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.somalia": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.ethiopia": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.sudan": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.mexico": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.guatemala": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.el_salvador": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.honduras": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.nicaragua": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.costa_rica": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.panama": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.cuba": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.haiti": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.dominican_republic": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.colombia": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.venezuela": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.ecuador": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.peru": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.bolivia": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.brazil": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.paraguay": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.uruguay": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.argentina": {
+          "$ref": "#/$defs/influence_pair"
+        },
+        "country.chile": {
+          "$ref": "#/$defs/influence_pair"
+        }
+      }
+    },
+    "active_effect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "effect_id",
+        "source_resolution_id",
+        "source_card_id",
+        "duration"
+      ],
+      "properties": {
+        "effect_id": {
+          "type": "string",
+          "enum": [
+            "effect.the_iron_lady",
+            "effect.the_reformer"
+          ]
+        },
+        "source_resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_card_id": {
+          "type": "string",
+          "enum": [
+            "card.the_iron_lady",
+            "card.the_reformer"
+          ]
+        },
+        "duration": {
+          "type": "string",
+          "enum": [
+            "UntilCancelledOrGameEnd"
+          ]
+        }
+      }
+    },
+    "event_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "influence",
+        "signed_vp",
+        "status",
+        "winner",
+        "state_version",
+        "rng_cursor",
+        "active_effects",
+        "successful_event_facts",
+        "card_disposition"
+      ],
+      "properties": {
+        "influence": {
+          "$ref": "#/$defs/influence_snapshot"
+        },
+        "signed_vp": {
+          "type": "integer"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Running",
+            "Finished"
+          ]
+        },
+        "winner": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "state_version": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rng_cursor": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "active_effects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/active_effect"
+          }
+        },
+        "successful_event_facts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "card_disposition": {
+          "type": "string",
+          "enum": [
+            "InResolution",
+            "Removed",
+            "Discard"
+          ]
+        }
+      }
+    },
+    "allocation_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "country_id",
+        "amount"
+      ],
+      "properties": {
+        "country_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "amount": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "selected_total",
+        "allocation",
+        "country_ids"
+      ],
+      "properties": {
+        "selected_total": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "allocation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/allocation_item"
+          }
+        },
+        "country_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "event_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "resolution_id",
+        "frame_id",
+        "root_action_id",
+        "root_phasing_player",
+        "card_player",
+        "submitted_by",
+        "source_card_id",
+        "source_effect_id",
+        "source_authorization",
+        "ruleset_id",
+        "data_version",
+        "expected_state_version",
+        "decision_id",
+        "decision_revision",
+        "current_decision_revision",
+        "sampled_signed_vp",
+        "event_attempt"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_phasing_player": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "card_player": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "submitted_by": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "source_card_id": {
+          "type": "string",
+          "enum": [
+            "card.the_iron_lady",
+            "card.the_reformer",
+            "card.marine_barracks_bombing",
+            "card.pershing_ii_deployed"
+          ]
+        },
+        "source_effect_id": {
+          "type": "string",
+          "enum": [
+            "effect.the_iron_lady",
+            "effect.the_reformer",
+            "effect.marine_barracks_bombing",
+            "effect.pershing_ii_deployed"
+          ]
+        },
+        "source_authorization": {
+          "type": "string",
+          "enum": [
+            "VerifiedInternal",
+            "Unverified"
+          ]
+        },
+        "ruleset_id": {
+          "type": "string",
+          "enum": [
+            "ruleset.deluxe2015"
+          ]
+        },
+        "data_version": {
+          "type": "string",
+          "enum": [
+            "0.1.0"
+          ]
+        },
+        "expected_state_version": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "decision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision_revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "current_decision_revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sampled_signed_vp": {
+          "type": "integer"
+        },
+        "event_attempt": {
+          "type": "boolean"
+        }
+      }
+    },
+    "provider_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "map_complete",
+        "active_effects_complete",
+        "vp_providers_complete",
+        "influence_providers_complete",
+        "prevention_providers_complete",
+        "source_supported",
+        "unknown_relevant_interference"
+      ],
+      "properties": {
+        "map_complete": {
+          "type": "boolean"
+        },
+        "active_effects_complete": {
+          "type": "boolean"
+        },
+        "vp_providers_complete": {
+          "type": "boolean"
+        },
+        "influence_providers_complete": {
+          "type": "boolean"
+        },
+        "prevention_providers_complete": {
+          "type": "boolean"
+        },
+        "source_supported": {
+          "type": "boolean"
+        },
+        "unknown_relevant_interference": {
+          "type": "boolean"
+        }
+      }
+    },
+    "event_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "context",
+        "state",
+        "selection",
+        "evidence"
+      ],
+      "properties": {
+        "context": {
+          "$ref": "#/$defs/event_context"
+        },
+        "state": {
+          "$ref": "#/$defs/event_state"
+        },
+        "selection": {
+          "$ref": "#/$defs/selection"
+        },
+        "evidence": {
+          "$ref": "#/$defs/provider_evidence"
+        }
+      }
+    },
+    "effect_query": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "effects_complete",
+        "kind",
+        "actor",
+        "action_kind",
+        "country_id",
+        "target_card_id",
+        "free_coup",
+        "other_providers_known"
+      ],
+      "properties": {
+        "state": {
+          "$ref": "#/$defs/event_state"
+        },
+        "effects_complete": {
+          "type": "boolean"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "Action",
+            "Event",
+            "FutureConsumer"
+          ]
+        },
+        "actor": {
+          "type": "string",
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "action_kind": {
+          "type": "string",
+          "enum": [
+            "Coup",
+            "Realignment",
+            "WarEvent",
+            "PlaceInfluence",
+            "Operations"
+          ]
+        },
+        "country_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "free_coup": {
+          "type": "boolean"
+        },
+        "other_providers_known": {
+          "type": "boolean"
+        }
+      }
+    },
+    "accepted_event_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcome",
+        "state",
+        "trace"
+      ],
+      "properties": {
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "Resolved",
+            "Finished"
+          ]
+        },
+        "state": {
+          "$ref": "#/$defs/event_state"
+        },
+        "trace": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "accepted_receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "request_digest",
+        "after_digest",
+        "outcome",
+        "accepted_result",
+        "accepted_result_digest",
+        "receipt_digest"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "after_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "Resolved",
+            "Finished"
+          ]
+        },
+        "accepted_result": {
+          "$ref": "#/$defs/accepted_event_result"
+        },
+        "accepted_result_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "receipt_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    }
+  },
+  "description": "晚期影响力四牌：固定/完整分配、VP首批次及长期禁止；正式域契约候选，C#与生产消费者均待实现。"
+}

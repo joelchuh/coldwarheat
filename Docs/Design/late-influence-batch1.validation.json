@@ -1,0 +1,2751 @@
+{
+  "description": "晚期影响力四牌静态参数、严格输入与有限完整结果投影；非生产中间事务或游戏执行。",
+  "checked_on": "2026-10-12",
+  "new_cases_passed": 537,
+  "previous_cases_passed": 2141,
+  "total_cases_passed": 2678,
+  "cases_by_layer": {
+    "data": 299,
+    "input-schema": 111,
+    "reference": 127,
+    "runtime": 12
+  },
+  "runtime_cases_not_run": 12,
+  "runtime_game_tests_run": 0,
+  "bound_cards": 79,
+  "unresolved_bindings": 23,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 39,
+    "json_files_parsed": 232,
+    "data_descriptors": 42,
+    "module_descriptors": 21,
+    "relative_links_checked": 161,
+    "parameter_pointers_resolved": 149
+  },
+  "validated_sha256": {
+    "Data/Cards/deluxe-2015/late-influence-batch1.parameters.json": "2930f6488f0a8685a96a1ab74184d3d0ef7fcaa3f642f3ba42f6431e8fa46bb3",
+    "Docs/Contracts/late-influence-batch1.schema.json": "cb97e86a5148104468cbccf04e556cc78ff79edbf90527292beb0d055644fdb3",
+    "Docs/Design/late-influence-batch1.cases.json": "5686e754f55d2f9e395a5e2edb811ddcba338d989ce493382f9a4c736041fac3",
+    "Data/Descriptors/late-influence-batch1.data.json": "9fe293488f3516933a1af0ca18381fb098d93ec7297552d744fb8503626b9215",
+    "Docs/Wiki/late-influence-batch1.md": "ee867dff9e5a762811848b57756141055346aa2577689596a9fecc54669aa946",
+    "Data/Cards/deluxe-2015/cards.json": "9776d5a8e97bff2ba74cbcf3436449c6ee15540fb0686d47f0c5e8814bc71321",
+    "Docs/Descriptors/influence-events.module.json": "23e5904ac3f71ff34249ad576b80befea5b2b3c02cfd78b3e903870e7d97811c",
+    "Docs/Descriptors/active-effects.module.json": "3a9b81cdd384dbf7de5900489a36f33d9945b3a2e29dc0419820b6a6d7506b0b",
+    "Docs/Descriptors/action-restrictions.module.json": "7a5c4bdc634032d40dbe64a0b1f2c79289898006fb3231bcda85ae65c56e443e",
+    "Docs/Descriptors/composite-events.module.json": "b1aa524a31a2a492f2f7d859e0d0548844b3fea3b20a236bcf502b218cc2dd49"
+  },
+  "results": [
+    {
+      "id": "LI1-D-baseline",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-001",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-002",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-003",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-004",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-005",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-006",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-007",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-008",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-008",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-008",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-009",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-010",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-011",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-012",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-013",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-013",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-013",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-014",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-015",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-016",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-017",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-018",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-018",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-018",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-019",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-020",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-021",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-022",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-023",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-023",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-023",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-024",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-025",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-026",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-027",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-028",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-028",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-028",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-029",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-029",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-029",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-030",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-031",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-032",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-032",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-032",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-033",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-034",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-035",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-035",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-035",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-036",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-037",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-038",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-038",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-038",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-039",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-040",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-041",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-041",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-041",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-042",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-043",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-044",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-045",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-046",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-047",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-048",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-049",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-050",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-051",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-051",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-051",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-052",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-052",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-052",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-053",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-054",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-055",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-056",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-057",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-058",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-059",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-059",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-059",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-060",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-061",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-062",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-063",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-064",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-064",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-064",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-065",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-066",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-067",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-068",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-069",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-069",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-069",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-070",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-071",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-072",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-073",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-074",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-074",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-074",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-075",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-076",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-077",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-078",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-078",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-078",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-079",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-080",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-081",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-081",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-081",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-082",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-083",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-084",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-085",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-085",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-085",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-086",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-087",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-088",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-089",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-089",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-089",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-090",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-091",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-092",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-093",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-093",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-093",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-094",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-095",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-096",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-097",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-098",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-099",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-100",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-101",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-102",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-103",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-104",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-105",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-106",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-107",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-108",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-109",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-109",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-109",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-110",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-111",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-112",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-113",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-114",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-115",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-115",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-115",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-116",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-117",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-118",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-119",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-120",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-121",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-121",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-121",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-122",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-123",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-124",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-124",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-124",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-125",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-126",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-127",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-127",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-127",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-128",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-129",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-130",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-131",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-131",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-131",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-132",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-133",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-134",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-135",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-135",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-135",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-136",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-137",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-138",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-139",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-139",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-139",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-140",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-141",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-142",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-143",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-143",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-143",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-144",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-145",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-146",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-147",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-148",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-149",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-150",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-151",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-152",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-153",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-154",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-155",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-156",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-156",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-156",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-157",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-158",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-159",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-160",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-160",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-160",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-161",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-162",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-163",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-164",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-165",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-165",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-165",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-166",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-167",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-168",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-169",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-169",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-169",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-170",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-171",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-172",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-173",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-173",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-173",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-174",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-175",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-176",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-177",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-177",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-177",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-178",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-179",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-180",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-181",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-182",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-183",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-184",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-185",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-186",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-187",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-188",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-189",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-189",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-189",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-190",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-191",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-192",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-193",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-194",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-194",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-194",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-195",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-196",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-197",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-198",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-198",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-198",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-199",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-200",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-201",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-202",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-202",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-202",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-203",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-204",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-205",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-206",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-unknown-206",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-required-206",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-207",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-208",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-type-209",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-root-unknown",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-baseline",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-unknown-0",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-required-0",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-unknown-1",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-required-1",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-1",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-2",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-3",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-4",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-5",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-6",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-7",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-8",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-9",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-10",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-11",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-12",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-13",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-14",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-15",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-16",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-17",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-18",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-19",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-unknown-20",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-required-20",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-20",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-unknown-21",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-required-21",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-21",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-unknown-22",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-required-22",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-22",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-23",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-24",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-274",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-275",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-276",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-277",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-278",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-279",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-unknown-280",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-required-280",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-280",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-281",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-282",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-283",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-284",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-285",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-286",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-287",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-unknown-288",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-required-288",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-288",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-289",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-290",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-unknown-291",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-required-291",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-291",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-292",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-293",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-294",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-295",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-unknown-296",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-required-296",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-296",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-297",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-298",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-299",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-300",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-301",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-302",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-event_request-type-303",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-baseline",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-unknown-0",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-required-0",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-unknown-1",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-required-1",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-type-1",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-unknown-2",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-required-2",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-type-2",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-unknown-3",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-required-3",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-type-3",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-type-4",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-type-5",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-type-255",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-type-256",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-type-257",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-type-258",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-type-259",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-type-260",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-type-261",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-type-262",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-type-263",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-type-264",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-type-265",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-type-266",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-type-267",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-type-268",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-type-269",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-effect_query-type-270",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-iron-ordered",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-iron-terminal",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-iron-clear-zero",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-tie-four",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-us-lead-four",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-ussr-lead-six",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-ussr-lead-choose-four",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-enemy-control-existing-seven",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-five",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-tie-six",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-ten",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-cap-three",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-outside-europe",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-duplicate-country",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-wrong-total",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-zero",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-current-score-revalidated",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-marine-two-same",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-marine-two-split-lebanon-zero",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-marine-shortage-0",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-marine-shortage-1",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-marine-postclear-lebanon",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-marine-outside-region",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-marine-duplicate",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-marine-three",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-marine-overdraw",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-pershing-choose-0",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-pershing-choose-1",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-pershing-choose-2",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-pershing-choose-3",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-pershing-no-eligible-zero",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-pershing-one-eligible-decline",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-pershing-terminal",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-pershing-four",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-pershing-duplicate",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-pershing-eastern-only",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-pershing-zero-influence",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-pershing-bulk-three",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-the_iron_lady-no-event",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-the_iron_lady-wrong-owner",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-the_reformer-no-event",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-the_reformer-wrong-owner",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-marine_barracks_bombing-no-event",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-marine_barracks_bombing-wrong-owner",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-pershing_ii_deployed-no-event",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-pershing_ii_deployed-wrong-owner",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-unverified",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-wrong-effect",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-stale-state",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-stale-revision",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-provider-map_complete",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-provider-active_effects_complete",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-provider-vp_providers_complete",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-provider-influence_providers_complete",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-provider-prevention_providers_complete",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-provider-source_supported",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-provider-unknown_relevant_interference",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-the_iron_lady-new-resolution-repeat",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-the_reformer-new-resolution-repeat",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-invalid-active-provenance",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-already-finished",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-invalid-running-terminal-score",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-incomplete-map",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-negative-influence",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-boolean-influence",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-replay-same-command",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-replay-changed-choice",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-replay-changed-command",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-replay-changed-source",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-replay-changed-receipt",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-gate-reformer-france",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-gate-reformer-poland",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-gate-reformer-canada",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-gate-reformer-free-coup",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-gate-us-coup",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-gate-realignment",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-gate-war",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-gate-outside",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-gate-future-glasnost",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-gate-other-future-card",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-gate-socialist-prevent",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-gate-socialist-ops",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-gate-incomplete-effects",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-gate-unknown-provider",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-gate-missing-success-fact",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-europe-member-canada",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-europe-member-uk",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-europe-member-norway",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-europe-member-sweden",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-europe-member-finland",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-europe-member-denmark",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-europe-member-benelux",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-europe-member-france",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-europe-member-spain_portugal",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-europe-member-italy",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-europe-member-greece",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-europe-member-turkey",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-europe-member-west_germany",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-europe-member-east_germany",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-europe-member-poland",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-europe-member-czechoslovakia",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-europe-member-austria",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-europe-member-hungary",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-europe-member-yugoslavia",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-europe-member-romania",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-europe-member-bulgaria",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-opponent-play-current-four",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-preserves-iron-marker",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-marine-provider-preflight-no-lebanon-mutation",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-pershing-terminal-no-later-choice",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-marine-wrong-side",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-reformer-boolean-amount",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-pershing-unknown-country",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-resolution-already-successful-no-receipt",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-boolean-not-integer-510",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-boolean-not-integer-511",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-boolean-not-integer-512",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-replay-after-later-france-change",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-replay-later-version-only",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-replay-later-finished-state",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-replay-original-terminal-result",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-replay-corrupt-stored-state",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-replay-corrupt-stored-trace",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-replay-corrupt-stored-outcome",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-replay-corrupt-stored-result-hash",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-replay-corrupt-stored-receipt-hash",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-replay-rehash-cannot-replace-trusted-record",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-replay-missing-stored-result",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-replay-unknown-stored-field",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-R-replay-later-current-and-conflicting-request",
+      "validation_layer": "reference",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-replay-live-state-must-not-match",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-replay-return-original-result",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-D-replay-trusted-receipt-integrity",
+      "validation_layer": "data",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-accepted-receipt-baseline",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-accepted-receipt-missing-result",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-accepted-receipt-unknown-field",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-accepted-receipt-invalid-hash",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-accepted-receipt-result-outcome",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-accepted-receipt-result-state-version",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-accepted-receipt-trace-type",
+      "validation_layer": "input-schema",
+      "passed": true
+    },
+    {
+      "id": "LI1-S-accepted-receipt-outcome-type",
+      "validation_layer": "input-schema",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "Synthetic VerifiedInternal/provider labels do not authenticate real sources or implement provider dispatch.",
+    "Accepted complete-plan projections do not exercise production intermediate VP commits, pending choices, continuation, rollback, persistence or Finished transaction atomicity.",
+    "SHA fixture binding and same-command projection do not prove trusted durable receipts, authentication or concurrent idempotency.",
+    "Marine capacity below two and new-resolution repeat activation remain RequiresRuling.",
+    "No C#/Unity game runtime, old regression execution, shared registry changes or overall card-count claim.",
+    "Replay anchor and returned receipt copies are in-memory synthetic ledger projections; no trusted storage, authentication or network idempotency is implemented.",
+    "2141旧案例只适配绑定库存/来源已完成与相同文件的overlay读取，不改业务期望。",
+    "新批参考读取正式基线共享印刷事实，整合另核验103印刷字段不变和4绑定，所有引用再解析。",
+    "13note及72Tools独立不计入，本批未重跑。",
+    "Pershing首VP持久后等待选择属于运行验收，完整计划模型未测试中间提交。"
+  ],
+  "independent_review": {
+    "status": "ready-no-findings-after-replay-fix",
+    "critical": 0,
+    "important": 0,
+    "minor": 0,
+    "new_cases_independently_passed": 537,
+    "separate_recheck_probes": 14,
+    "old_cases_independently_rerun": 0,
+    "remediation": "Original accepted result and receipt verified against independent stored anchor; later current state preserved. Original later-state probe and corruption/rehash/copy checks passed.",
+    "integration_review": "337baseline SHA/10report SHA/232JSON39Schema42datasets21module42dependencyDAG149refs79schema pointers164links;103printed unchanged,4bindings. scope normalization and metadata description only; no runtime.",
+    "checker_adaptation": "Artifact overlay fallback only; inverse transformation reproduces prechange checker hash; newest checker independently537passed."
+  },
+  "post_validation_document_links_checked": 3,
+  "metadata_after_validation": "Only Wiki state/count and worklog updated; checked their links and refreshed Wiki hash; no business rules changed."
+}

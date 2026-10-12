@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.30.0",
+  "content_version": "0.31.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计75牌效果参数已绑定，其余27个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计79牌效果参数已绑定，其余23个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -191,6 +191,12 @@
       "url": null,
       "edition": "Private immutable receipt and atomic continuation contracts, 2026-10-12",
       "description": "权威普通Hand快照、可信接收方、初次揭示/授权/决策原子提交、重试旧收据、空手完成、引用共享OPS；仅工程设计。来源/效果完整性布尔是假设，不是鉴权实现。"
+    },
+    {
+      "id": "PROJECT-LI1",
+      "url": null,
+      "edition": "LI1-D01–D04 / LI1-E01, 2026-10-12",
+      "description": "4或6替代总量、Marine完整计划、Pershing零选择正影响规范化、首VP批次终局与来源/重放工程解释；不是新增官方FAQ。短缺和重复未答仍RequiresRuling。"
     }
   ],
   "cards": [
@@ -2774,8 +2780,13 @@
       "effect_binding": {
         "effect_id": "effect.the_iron_lady",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.late_influence_batch1",
+            "json_pointer": "/parameters/the_iron_lady"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -2887,8 +2898,13 @@
       "effect_binding": {
         "effect_id": "effect.the_reformer",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.late_influence_batch1",
+            "json_pointer": "/parameters/the_reformer"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -2914,8 +2930,13 @@
       "effect_binding": {
         "effect_id": "effect.marine_barracks_bombing",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.late_influence_batch1",
+            "json_pointer": "/parameters/marine_barracks_bombing"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -3221,8 +3242,13 @@
       "effect_binding": {
         "effect_id": "effect.pershing_ii_deployed",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.late_influence_batch1",
+            "json_pointer": "/parameters/pershing_ii_deployed"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -5570,15 +5596,27 @@
     {
       "effect_id": "effect.the_iron_lady",
       "contract_version": "0.1.0",
-      "description": "The Iron Lady：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.the_iron_lady",
+      "description": "US首批1VP，未终局再苏联Argentina加1、清UK苏联及禁止社会主义政府。",
+      "handler_key": "composite.OrderedInfluencePreventionComposite",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:late-influence-batch1:1#/$defs/the_iron_lady"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p13 English card #83",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.2.4–5; §5.2; §6.1.1; §7.3; §7.5; §10.2.2–3; §10.3.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-LI1",
+          "locator": "Wiki LI1-D01–D04 / LI1-E01: derived and engineering boundaries",
+          "verification": "Verified"
         }
       ]
     },
@@ -5642,30 +5680,59 @@
     {
       "effect_id": "effect.the_reformer",
       "contract_version": "0.1.0",
-      "description": "The Reformer：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.the_reformer",
+      "description": "苏联欧洲精确4或领先时可选6，每国最多2；长期禁止苏联欧洲政变。",
+      "handler_key": "composite.ConditionalAllocationAndCoupPrevention",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:late-influence-batch1:1#/$defs/the_reformer"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p13 English card #87",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.2.4–5; §5.2; §6.1.1; §7.3; §7.5; §10.2.2–3; §10.3.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-LI1",
+          "locator": "Wiki LI1-D01–D04 / LI1-E01: derived and engineering boundaries",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p15 #90 Glasnost: extra OPS is a separate future consumer",
+          "verification": "Verified"
         }
       ]
     },
     {
       "effect_id": "effect.marine_barracks_bombing",
       "contract_version": "0.1.0",
-      "description": "Marine Barracks Bombing：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.marine_barracks_bombing",
+      "description": "先清黎巴嫩US，再移中东额外2US；不足2保持待裁定。",
+      "handler_key": "composite.ClearThenExactRemoval",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:late-influence-batch1:1#/$defs/marine_barracks_bombing"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p13 English card #88",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.2.4–5; §5.2; §6.1.1; §7.3; §7.5; §10.2.2–3; §10.3.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-LI1",
+          "locator": "Wiki LI1-D01–D04 / LI1-E01: derived and engineering boundaries",
+          "verification": "Verified"
         }
       ]
     },
@@ -5856,15 +5923,27 @@
     {
       "effect_id": "effect.pershing_ii_deployed",
       "contract_version": "0.1.0",
-      "description": "Pershing II Deployed：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.pershing_ii_deployed",
+      "description": "苏联首批1VP，未终局再可选至多3西欧国家各移1US。",
+      "handler_key": "composite.VpThenOptionalDistinctRemoval",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:late-influence-batch1:1#/$defs/pershing_ii_deployed"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p15 English card #99",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§2.2.4–5; §5.2; §6.1.1; §7.3; §7.5; §10.2.2–3; §10.3.1",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-LI1",
+          "locator": "Wiki LI1-D01–D04 / LI1-E01: derived and engineering boundaries",
+          "verification": "Verified"
         }
       ]
     },

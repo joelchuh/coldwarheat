@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "id": "data.late-influence-batch1",
+  "kind": "data",
+  "status": "ready",
+  "description": "晚期影响力四牌：固定/完整分配、VP首批次及长期禁止；正式域契约候选，C#与生产消费者均待实现。",
+  "dataset_id": "effects.deluxe2015.late_influence_batch1",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/late-influence-batch1.schema.json",
+  "documentation": "Docs/Wiki/late-influence-batch1.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/late-influence-batch1.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "完整权威影响力/当前VP/活动效果快照、已验证事件帧与完整选择计划"
+  ],
+  "outputs": [
+    "只读四牌参数、拟定影响力/VP/预防计划；不是执行处理器"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "map.deluxe2015.world",
+    "cards.deluxe2015.definitions",
+    "rules.deluxe2015.victory",
+    "effects.deluxe2015.early_influence_batch2"
+  ],
+  "preconditions": [
+    "ready仅指静态设计参数；所有运行消费者planned",
+    "地图/卡牌印刷字段/VP符号阈值/EI2禁止目标保持单一来源",
+    "同一授权命令重放与新来源再次激活必须区分"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "Marine清空Lebanon后不足2：RequiresRuling且不先清Lebanon",
+    "新结算ID重复永久激活、未知相关provider/来源：RequiresRuling",
+    "错误owner/source/revision/完整计划拒绝；Finished后不再运行余项",
+    "Glasnost引用不授予该牌处理器或额外行动"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "GMT-hosted English Deluxe card images",
+      "description": "仅英文卡图p13 #83/#87/#88及p15 #99；不采用旁列译文。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§2.2.4–5星号/长期标记，§5.2事件执行方与去向，§6.1.1事件放置，§6.3.5免费政变，§7.3/7.5永久/禁止，§10.2–10.3 VP。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5, 2010",
+      "description": "p15 #90说明Glasnost额外OPS；仅未来消费者边界，不把OPS限制反套给Reformer。本次未发现四牌专门短缺裁定。"
+    },
+    {
+      "id": "PROJECT-LI1",
+      "url": null,
+      "edition": "LI1-D01–D04 / LI1-E01, 2026-10-12",
+      "description": "4或6替代总量、Marine完整计划、Pershing零选择正影响规范化、首VP批次终局与来源/重放工程解释；不是新增官方FAQ。短缺和重复未答仍RequiresRuling。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/late-influence-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/late-influence-batch1.validation.json"
+  },
+  "retrieval_hints": [
+    "Reformer普通4；当前SignedVp<0可选4或6，总5非法，每国新加最多2",
+    "Pershing 0至3个不同西欧有US影响国家各减1；零选择仍有VP与星号去向",
+    "Iron Lady消费者从EI2引用解查，禁止关系不另复制"
+  ]
+}

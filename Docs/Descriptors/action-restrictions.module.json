@@ -1,7 +1,8 @@
 {
   "schema_version": 1,
   "inputs": [
-    "权威候选行动、Actor、CountryId、sourceCardId、stateRevision和活动实例/事件事实"
+    "权威候选行动、Actor、CountryId、sourceCardId、stateRevision和活动实例/事件事实",
+    "Reformer完整有效实例、实际Actor和目标主地区；中立/免费事件OPS不改变真实Actor"
   ],
   "outputs": [
     "NoTreatyBlock/BlockedByTreaty/RequiresRuling；这只是条约过滤结果",
@@ -17,26 +18,33 @@
   ],
   "stop_conditions": [
     "未知来源/ID/状态版本；相关例外状态未知；未实现处理器",
-    "前置历史不完整且无已知成功前置；不得猜测未发生"
+    "前置历史不完整且无已知成功前置；不得猜测未发生",
+    "未知Reformer取消来源或实例生命周期：RequiresRuling，不猜作未激活"
   ],
   "rule_sources": [
     {
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "edition": "English Deluxe card images",
-      "description": "p4 #21北约、p5 #27美日安保；接缝p3 #16、p4 #17/#23、p9 #55、p14 #96；仅英文卡图。"
+      "description": "p4 #21北约、p5 #27美日安保；接缝p3 #16、p4 #17/#23、p9 #55、p14 #96；仅英文卡图。 LI1: 仅英文卡图p13 #83/#87/#88及p15 #99；不采用旁列译文。"
     },
     {
       "id": "R2015",
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
       "edition": "Deluxe rules 2015",
-      "description": "§2.1.1–2地区、§2.1.7控制、§5.2前置与去向、§7.3永久效果及取消、§8.1 DEFCON。"
+      "description": "§2.1.1–2地区、§2.1.7控制、§5.2前置与去向、§7.3永久效果及取消、§8.1 DEFCON。 LI1: §2.2.4–5星号/长期标记，§5.2事件执行方与去向，§6.1.1事件放置，§6.3.5免费政变，§7.3/7.5永久/禁止，§10.2–10.3 VP。"
     },
     {
       "id": "F2010",
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
       "edition": "FAQ v5 (2010), compatible Deluxe clarifications only",
-      "description": "p3/p5 #21明确北约的Brush War保护；不采用第一版设置或旧卡值。"
+      "description": "p3/p5 #21明确北约的Brush War保护；不采用第一版设置或旧卡值。 LI1: p15 #90说明Glasnost额外OPS；仅未来消费者边界，不把OPS限制反套给Reformer。本次未发现四牌专门短缺裁定。"
+    },
+    {
+      "id": "PROJECT-LI1",
+      "url": null,
+      "edition": "LI1-D01–D04 / LI1-E01, 2026-10-12",
+      "description": "4或6替代总量、Marine完整计划、Pershing零选择正影响规范化、首VP批次终局与来源/重放工程解释；不是新增官方FAQ。短缺和重复未答仍RequiresRuling。"
     }
   ],
   "tests": [
@@ -63,13 +71,17 @@
     {
       "path": "Docs/Design/defcon-events-batch1.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/late-influence-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "documentation": "Docs/Wiki/treaty-protection.md",
   "id": "module.action-restrictions",
   "kind": "module",
   "status": "planned",
-  "description": "查询条约保护与前置条件，组合DEFCON和基础目标合法性；动态重查控制权并返回具名阻止原因，尚无C#实现。",
+  "description": "查询条约保护与前置条件，组合DEFCON和基础目标合法性；动态重查控制权并返回具名阻止原因，尚无C#实现。 Reformer阻止实际USSR Actor在全部欧洲Coup，含免费政变；不阻止US/调整/战争。",
   "entrypoints": [],
   "data_dependencies": [
     "effects.deluxe2015.treaty_protection",
@@ -80,12 +92,13 @@
     "effects.deluxe2015.nato_exceptions",
     "effects.deluxe2015.event_operations_batch1",
     "effects.deluxe2015.war_events_batch2",
-    "effects.deluxe2015.defcon_events_batch1"
+    "effects.deluxe2015.defcon_events_batch1",
+    "effects.deluxe2015.late_influence_batch1"
   ],
   "verification": {
     "implementation_tested": false,
     "report": "Docs/Design/treaty-protection.validation.json",
-    "latest_design_report": "Docs/Design/defcon-events-batch1.validation.json"
+    "latest_design_report": "Docs/Design/late-influence-batch1.validation.json"
   },
   "planned_entrypoints": [
     {
@@ -99,9 +112,14 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Treaties/TreatyEventResolver.cs",
       "symbol": "BuildActivationPlan"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Operations/ActionRestrictionService.cs",
+      "symbol": "CheckPersistentCoupProhibition"
     }
   ],
   "contract_dependencies": [
-    "urn:coldwarheat:contract:treaty-protection:1"
+    "urn:coldwarheat:contract:treaty-protection:1",
+    "urn:coldwarheat:contract:late-influence-batch1:1"
   ]
 }
