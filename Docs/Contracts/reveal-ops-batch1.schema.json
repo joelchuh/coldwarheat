@@ -1,0 +1,1640 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:reveal-ops-batch1:1",
+  "description": "两牌参数及计划中的可信来源、不可变私有揭示收据、OPS授权/决策形状；跨对象身份和权限须运行验证。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "reveal_policy",
+    "operations_policy",
+    "continuation_policy",
+    "parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.reveal_ops_batch1"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "verified-subset"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "C-DELUXE-EN"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf"
+            },
+            "edition": {
+              "const": "English Deluxe card images"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "R2015"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf"
+            },
+            "edition": {
+              "const": "Deluxe rules 2015"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "F2010"
+            },
+            "url": {
+              "const": "https://www.gmtgames.com/nnts/FAQv5.pdf"
+            },
+            "edition": {
+              "const": "FAQ v5 2010, compatible Deluxe clarification only"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "url",
+            "edition",
+            "description"
+          ],
+          "properties": {
+            "id": {
+              "const": "PROJECT-RO1"
+            },
+            "url": {
+              "const": null
+            },
+            "edition": {
+              "const": "Private immutable receipt and atomic continuation contracts, 2026-10-12"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "reveal_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_zone",
+        "capture_timing",
+        "candidate_kind_policy",
+        "exclude_zones",
+        "receipt_visibility",
+        "snapshot_kind",
+        "new_cards_later",
+        "hand_mutation",
+        "revealed_card_event_policy",
+        "empty_hand",
+        "random_policy",
+        "initial_atomicity",
+        "before_commit_visibility",
+        "later_rejected_choice",
+        "retry_policy"
+      ],
+      "properties": {
+        "source_zone": {
+          "const": "Hand"
+        },
+        "capture_timing": {
+          "const": "ThisEventRevealStepCommit"
+        },
+        "candidate_kind_policy": {
+          "const": "AllOrdinaryCardsIncludingScoring"
+        },
+        "exclude_zones": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 6,
+          "prefixItems": [
+            {
+              "const": "InResolution"
+            },
+            {
+              "const": "HeadlineReserved"
+            },
+            {
+              "const": "DrawPile"
+            },
+            {
+              "const": "DiscardPile"
+            },
+            {
+              "const": "RemovedFromGame"
+            },
+            {
+              "const": "China"
+            }
+          ],
+          "items": false
+        },
+        "receipt_visibility": {
+          "const": "AuthorityAndTrustedRecipientOnly"
+        },
+        "snapshot_kind": {
+          "const": "ImmutableHistoricalCardIdentities"
+        },
+        "new_cards_later": {
+          "const": "NeverAppendOrRefresh"
+        },
+        "hand_mutation": {
+          "const": "None"
+        },
+        "revealed_card_event_policy": {
+          "const": "DoNotTrigger"
+        },
+        "empty_hand": {
+          "const": "CommitEmptySnapshotAndOfferOperations"
+        },
+        "random_policy": {
+          "const": "NoRandom"
+        },
+        "initial_atomicity": {
+          "const": "ValidateThenCommitSnapshotReceiptGrantAndDecision"
+        },
+        "before_commit_visibility": {
+          "const": "NoPrivateOutput"
+        },
+        "later_rejected_choice": {
+          "const": "PreserveCommittedReveal"
+        },
+        "retry_policy": {
+          "const": "ReturnBoundOriginalReceiptWithoutReadingCurrentHand"
+        }
+      }
+    },
+    "operations_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "base_ops",
+        "budget_source",
+        "ops_policy_ref",
+        "allowed_modes",
+        "decline_allowed",
+        "mode_lock",
+        "finish_policy",
+        "geographic_exemption",
+        "treaty_exemption",
+        "coup_credit_kind",
+        "military_policy_ref",
+        "defcon_policy_ref",
+        "coup_intervention_ref",
+        "space_allowed",
+        "consumes_additional_card",
+        "consumes_additional_root_action",
+        "modifier_policy",
+        "budget_evidence",
+        "influence_reachability",
+        "missing_influence_baseline",
+        "influence_cost_policy",
+        "regional_bonus_policy",
+        "china_source_bonus",
+        "ordinary_nuclear_loser",
+        "fatal_crisis_loser",
+        "unknown_related_state"
+      ],
+      "properties": {
+        "base_ops": {
+          "const": 1
+        },
+        "budget_source": {
+          "const": "VerifiedEventLiteral"
+        },
+        "ops_policy_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.persistent_batch1"
+            },
+            "json_pointer": {
+              "const": "/ops_policy"
+            }
+          }
+        },
+        "allowed_modes": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "const": "Influence"
+            },
+            {
+              "const": "Coup"
+            },
+            {
+              "const": "Realignment"
+            }
+          ],
+          "items": false
+        },
+        "decline_allowed": {
+          "const": true
+        },
+        "mode_lock": {
+          "const": "FirstAcceptedOperation"
+        },
+        "finish_policy": {
+          "const": "BetweenAcceptedOperationsMayForfeitRemainder"
+        },
+        "geographic_exemption": {
+          "const": false
+        },
+        "treaty_exemption": {
+          "const": false
+        },
+        "coup_credit_kind": {
+          "const": "OperationsCoup"
+        },
+        "military_policy_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.military-operations"
+            },
+            "json_pointer": {
+              "const": "/credit_sources/OperationsCoup"
+            }
+          }
+        },
+        "defcon_policy_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.defcon"
+            },
+            "json_pointer": {
+              "const": ""
+            }
+          }
+        },
+        "coup_intervention_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.defcon_events_batch1"
+            },
+            "json_pointer": {
+              "const": "/intervention_policy"
+            }
+          }
+        },
+        "space_allowed": {
+          "const": false
+        },
+        "consumes_additional_card": {
+          "const": false
+        },
+        "consumes_additional_root_action": {
+          "const": false
+        },
+        "modifier_policy": {
+          "const": "CurrentActorAndVerifiedRegionalHistory"
+        },
+        "budget_evidence": {
+          "const": "FreezeVerifiedActorEffectsAtGrantCreation"
+        },
+        "influence_reachability": {
+          "const": "RootActionRoundStartActorOrSeparatelyVerifiedNamedBaseline"
+        },
+        "missing_influence_baseline": {
+          "const": "RequiresRulingForInfluenceQueryOrChoicePreserveRevealAndOtherModes"
+        },
+        "influence_cost_policy": {
+          "const": "SharedOperationsDynamicControlCost"
+        },
+        "regional_bonus_policy": {
+          "const": "SharedOpsQuoteWithVerifiedTargetHistory"
+        },
+        "china_source_bonus": {
+          "const": "InapplicableSourceIsNotChina"
+        },
+        "ordinary_nuclear_loser": {
+          "const": "InheritedRootPhasingPlayer"
+        },
+        "fatal_crisis_loser": {
+          "const": "ActualCoupActor"
+        },
+        "unknown_related_state": {
+          "const": "RequiresRuling"
+        }
+      }
+    },
+    "continuation_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_validation",
+        "known_source_kinds",
+        "nested_source_policy",
+        "unknown_provider",
+        "finished_policy",
+        "successful_empty_or_declined",
+        "disposition_policy",
+        "terminal_policy",
+        "hand_child_policy_ref"
+      ],
+      "properties": {
+        "source_validation": {
+          "const": "RegisteredResolutionStepAndKnownProviderOnly"
+        },
+        "known_source_kinds": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "const": "RootEvent"
+            },
+            {
+              "const": "OpponentCardEvent"
+            },
+            {
+              "const": "HeadlineEvent"
+            },
+            {
+              "const": "VerifiedHandEventChild"
+            }
+          ],
+          "items": false
+        },
+        "nested_source_policy": {
+          "const": "RequireSeparatelyBoundProviderAndInheritedRootProvenance"
+        },
+        "unknown_provider": {
+          "const": "RequiresRulingBeforeReveal"
+        },
+        "finished_policy": {
+          "const": "AbsorbingExceptOriginalReceiptReplay"
+        },
+        "successful_empty_or_declined": {
+          "const": "EventHappened"
+        },
+        "disposition_policy": {
+          "const": "ExistingTurnFlowEventOutcomeAndPrintedRemovalPolicy"
+        },
+        "terminal_policy": {
+          "const": "FinalizeCommittedEventEvidenceAndDispositionWithinSameTerminalTransaction"
+        },
+        "hand_child_policy_ref": {
+          "const": {
+            "dataset_id": "effects.deluxe2015.hand_events_batch1",
+            "json_pointer": "/parameters/five_year_plan"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cia_created",
+        "lone_gunman"
+      ],
+      "properties": {
+        "cia_created": {
+          "$ref": "#/$defs/cia_created"
+        },
+        "lone_gunman": {
+          "$ref": "#/$defs/lone_gunman"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "cia_created": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "actor",
+        "decision_owner",
+        "reveal_recipient",
+        "hand_owner",
+        "reveal_policy_ref",
+        "operations_policy_ref",
+        "continuation_policy_ref",
+        "ordered_steps",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.cia_created"
+        },
+        "effect_id": {
+          "const": "effect.cia_created"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "RevealCurrentHandThenOptionalAsIfCardOps"
+        },
+        "actor": {
+          "const": "US"
+        },
+        "decision_owner": {
+          "const": "US"
+        },
+        "reveal_recipient": {
+          "const": "US"
+        },
+        "hand_owner": {
+          "const": "USSR"
+        },
+        "reveal_policy_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.reveal_ops_batch1"
+            },
+            "json_pointer": {
+              "const": "/reveal_policy"
+            }
+          }
+        },
+        "operations_policy_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.reveal_ops_batch1"
+            },
+            "json_pointer": {
+              "const": "/operations_policy"
+            }
+          }
+        },
+        "continuation_policy_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.reveal_ops_batch1"
+            },
+            "json_pointer": {
+              "const": "/continuation_policy"
+            }
+          }
+        },
+        "ordered_steps": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "const": "RevealCurrentOpponentHand"
+            },
+            {
+              "const": "OfferOptionalAsIfCardOperations"
+            }
+          ],
+          "items": false
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "亲看英文PDF p5 #26、p10 #62：固定US/USSR先看对手当前手牌，再可选视同1OPS；均星号。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "§5.2成功星号，§6.0行动限制，§7.4.1按Actor修正，§7.4.2例3 CIA+遏制为2，§7.4.3视同OPS，§8.1.3核战根Phasing责任，§8.2.3普通政变军事。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "F2010"
+                },
+                "locator": {
+                  "const": "PDF p5–6 #26及p13 #62一次揭示，后得牌不公开；p13 #62普通核战Phasing输/CMC实际Actor先输；p14 #67事件OPS不能太空，取得实体牌可play的例外不适用本批。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-RO1"
+                },
+                "locator": {
+                  "const": "权威普通Hand快照、可信接收方、初次揭示/授权/决策原子提交、重试旧收据、空手完成、引用共享OPS；仅工程设计。来源/效果完整性布尔是假设，不是鉴权实现。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "lone_gunman": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "actor",
+        "decision_owner",
+        "reveal_recipient",
+        "hand_owner",
+        "reveal_policy_ref",
+        "operations_policy_ref",
+        "continuation_policy_ref",
+        "ordered_steps",
+        "source_refs"
+      ],
+      "properties": {
+        "card_id": {
+          "const": "card.lone_gunman"
+        },
+        "effect_id": {
+          "const": "effect.lone_gunman"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "template": {
+          "const": "RevealCurrentHandThenOptionalAsIfCardOps"
+        },
+        "actor": {
+          "const": "USSR"
+        },
+        "decision_owner": {
+          "const": "USSR"
+        },
+        "reveal_recipient": {
+          "const": "USSR"
+        },
+        "hand_owner": {
+          "const": "US"
+        },
+        "reveal_policy_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.reveal_ops_batch1"
+            },
+            "json_pointer": {
+              "const": "/reveal_policy"
+            }
+          }
+        },
+        "operations_policy_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.reveal_ops_batch1"
+            },
+            "json_pointer": {
+              "const": "/operations_policy"
+            }
+          }
+        },
+        "continuation_policy_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.reveal_ops_batch1"
+            },
+            "json_pointer": {
+              "const": "/continuation_policy"
+            }
+          }
+        },
+        "ordered_steps": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "const": "RevealCurrentOpponentHand"
+            },
+            {
+              "const": "OfferOptionalAsIfCardOperations"
+            }
+          ],
+          "items": false
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "C-DELUXE-EN"
+                },
+                "locator": {
+                  "const": "亲看英文PDF p5 #26、p10 #62：固定US/USSR先看对手当前手牌，再可选视同1OPS；均星号。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "R2015"
+                },
+                "locator": {
+                  "const": "§5.2成功星号，§6.0行动限制，§7.4.1按Actor修正，§7.4.2例3 CIA+遏制为2，§7.4.3视同OPS，§8.1.3核战根Phasing责任，§8.2.3普通政变军事。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "F2010"
+                },
+                "locator": {
+                  "const": "PDF p5–6 #26及p13 #62一次揭示，后得牌不公开；p13 #62普通核战Phasing输/CMC实际Actor先输；p14 #67事件OPS不能太空，取得实体牌可play的例外不适用本批。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_id",
+                "locator",
+                "verification"
+              ],
+              "properties": {
+                "source_id": {
+                  "const": "PROJECT-RO1"
+                },
+                "locator": {
+                  "const": "权威普通Hand快照、可信接收方、初次揭示/授权/决策原子提交、重试旧收据、空手完成、引用共享OPS；仅工程设计。来源/效果完整性布尔是假设，不是鉴权实现。"
+                },
+                "verification": {
+                  "const": "Verified"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "card_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "instance_id",
+        "card_id"
+      ],
+      "properties": {
+        "instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "pattern": "^card\\.[a-z][a-z0-9_]*$"
+        }
+      }
+    },
+    "trusted_frame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_card_id",
+        "source_effect_id",
+        "resolution_id",
+        "frame_id",
+        "step_id",
+        "root_action_id",
+        "parent_frame_id",
+        "root_phasing_player",
+        "source_kind",
+        "provider_contract_id",
+        "source_proof_id",
+        "actor",
+        "decision_owner",
+        "recipient",
+        "hand_owner",
+        "ruleset_id",
+        "data_digest",
+        "source_instance_id",
+        "source_location",
+        "root_phase"
+      ],
+      "properties": {
+        "source_card_id": {
+          "enum": [
+            "card.cia_created",
+            "card.lone_gunman"
+          ]
+        },
+        "source_effect_id": {
+          "enum": [
+            "effect.cia_created",
+            "effect.lone_gunman"
+          ]
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "step_id": {
+          "const": "RevealCurrentOpponentHand"
+        },
+        "root_action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parent_frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_phasing_player": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "source_kind": {
+          "enum": [
+            "RootEvent",
+            "OpponentCardEvent",
+            "HeadlineEvent",
+            "VerifiedHandEventChild"
+          ]
+        },
+        "provider_contract_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_proof_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actor": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "decision_owner": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "recipient": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "hand_owner": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "ruleset_id": {
+          "const": "ruleset.deluxe2015"
+        },
+        "data_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "source_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_phase": {
+          "enum": [
+            "ActionRound",
+            "Headline"
+          ]
+        },
+        "source_location": {
+          "$ref": "#/$defs/source_location"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "source_card_id": {
+                "const": "card.cia_created"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_effect_id": {
+                "const": "effect.cia_created"
+              },
+              "actor": {
+                "const": "US"
+              },
+              "decision_owner": {
+                "const": "US"
+              },
+              "recipient": {
+                "const": "US"
+              },
+              "hand_owner": {
+                "const": "USSR"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "source_card_id": {
+                "const": "card.lone_gunman"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_effect_id": {
+                "const": "effect.lone_gunman"
+              },
+              "actor": {
+                "const": "USSR"
+              },
+              "decision_owner": {
+                "const": "USSR"
+              },
+              "recipient": {
+                "const": "USSR"
+              },
+              "hand_owner": {
+                "const": "US"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "source_kind": {
+                "const": "VerifiedHandEventChild"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "provider_contract_id": {
+                "const": "urn:coldwarheat:contract:hand-events-batch1:1"
+              },
+              "source_card_id": {
+                "const": "card.cia_created"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "provider_contract_id": {
+                "const": "module.turn-flow"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "source_kind": {
+                "const": "HeadlineEvent"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "root_phase": {
+                "const": "Headline"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "source_kind": {
+                "enum": [
+                  "RootEvent",
+                  "OpponentCardEvent"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "root_phase": {
+                "const": "ActionRound"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "snapshot_id",
+        "resolution_id",
+        "hand_owner",
+        "recipient",
+        "captured_revision",
+        "source_zone",
+        "identities",
+        "ongoing"
+      ],
+      "properties": {
+        "snapshot_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hand_owner": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "recipient": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "captured_revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_zone": {
+          "const": "Hand"
+        },
+        "identities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/card_identity"
+          },
+          "uniqueItems": true
+        },
+        "ongoing": {
+          "const": false
+        }
+      }
+    },
+    "influence_baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policy",
+        "policy_proof_id",
+        "snapshot_id",
+        "actor"
+      ],
+      "properties": {
+        "policy": {
+          "enum": [
+            "RootActionRoundStartActor",
+            "SeparatelyVerifiedNamedBaseline",
+            "RequiresRuling"
+          ]
+        },
+        "policy_proof_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "snapshot_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "actor": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "policy": {
+                "const": "RequiresRuling"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "policy_proof_id": {
+                "const": null
+              },
+              "snapshot_id": {
+                "const": null
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "policy_proof_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "snapshot_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "grant_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "grant_id",
+        "frame_id",
+        "actor",
+        "root_phasing_player",
+        "budget_source",
+        "base_ops",
+        "quoted_at_revision",
+        "effects_snapshot_id",
+        "influence_baseline",
+        "regional_history_id",
+        "ops_policy_ref"
+      ],
+      "properties": {
+        "grant_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actor": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "root_phasing_player": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "budget_source": {
+          "const": "VerifiedEventLiteral"
+        },
+        "base_ops": {
+          "const": 1
+        },
+        "quoted_at_revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "effects_snapshot_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "influence_baseline": {
+          "$ref": "#/$defs/influence_baseline"
+        },
+        "regional_history_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ops_policy_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.persistent_batch1"
+            },
+            "json_pointer": {
+              "const": "/ops_policy"
+            }
+          }
+        }
+      }
+    },
+    "pending_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision_id",
+        "frame_id",
+        "grant_id",
+        "owner",
+        "revision",
+        "allowed_modes",
+        "may_decline",
+        "mode_lock",
+        "spent",
+        "status"
+      ],
+      "properties": {
+        "decision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "grant_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "allowed_modes": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "const": "Influence"
+            },
+            {
+              "const": "Coup"
+            },
+            {
+              "const": "Realignment"
+            }
+          ],
+          "items": false
+        },
+        "may_decline": {
+          "const": true
+        },
+        "mode_lock": {
+          "enum": [
+            null,
+            "Influence",
+            "Coup",
+            "Realignment"
+          ]
+        },
+        "spent": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "status": {
+          "const": "AwaitingDecision"
+        }
+      }
+    },
+    "reveal_receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "receipt_id",
+        "command_id",
+        "request_fingerprint",
+        "resolution_id",
+        "step_id",
+        "committed_revision",
+        "status",
+        "frame",
+        "snapshot",
+        "grant",
+        "decision",
+        "visibility",
+        "event_happened"
+      ],
+      "properties": {
+        "receipt_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request_fingerprint": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "step_id": {
+          "const": "RevealCurrentOpponentHand"
+        },
+        "committed_revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "status": {
+          "const": "Committed"
+        },
+        "frame": {
+          "$ref": "#/$defs/trusted_frame"
+        },
+        "snapshot": {
+          "$ref": "#/$defs/snapshot"
+        },
+        "grant": {
+          "$ref": "#/$defs/grant_evidence"
+        },
+        "decision": {
+          "$ref": "#/$defs/pending_decision"
+        },
+        "visibility": {
+          "const": "AuthorityAndTrustedRecipientOnly"
+        },
+        "event_happened": {
+          "const": true
+        }
+      }
+    },
+    "decision_command": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "command_id",
+            "decision_id",
+            "grant_id",
+            "expected_revision",
+            "choice"
+          ],
+          "properties": {
+            "command_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "decision_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "grant_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "expected_revision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "choice": {
+              "enum": [
+                "Decline",
+                "Finish"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "command_id",
+            "decision_id",
+            "grant_id",
+            "expected_revision",
+            "choice",
+            "ordered_targets"
+          ],
+          "properties": {
+            "command_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "decision_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "grant_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "expected_revision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "choice": {
+              "const": "Influence"
+            },
+            "ordered_targets": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "pattern": "^country\\.[a-z][a-z0-9_]*$"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "command_id",
+            "decision_id",
+            "grant_id",
+            "expected_revision",
+            "choice",
+            "country_id"
+          ],
+          "properties": {
+            "command_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "decision_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "grant_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "expected_revision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "choice": {
+              "enum": [
+                "Coup",
+                "Realignment"
+              ]
+            },
+            "country_id": {
+              "type": "string",
+              "pattern": "^country\\.[a-z][a-z0-9_]*$"
+            }
+          }
+        }
+      ]
+    },
+    "source_location": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "独立权威牌区快照中的源实体记录；跨对象匹配及真实状态读取仍由运行验证，不接受客户端自报。",
+      "required": [
+        "instance_id",
+        "card_id",
+        "zone"
+      ],
+      "properties": {
+        "instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "enum": [
+            "card.cia_created",
+            "card.lone_gunman"
+          ]
+        },
+        "zone": {
+          "const": "InResolution"
+        }
+      }
+    }
+  }
+}

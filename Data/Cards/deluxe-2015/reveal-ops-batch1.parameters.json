@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.reveal_ops_batch1",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "verified-subset",
+  "description": "CIA Created与Lone Gunman：一次私有当前手牌揭示后固定阵营可选视同1OPS，复用普通行动授权；参数设计，运行未实现。",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "亲看英文PDF p5 #26、p10 #62：固定US/USSR先看对手当前手牌，再可选视同1OPS；均星号。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§5.2成功星号，§6.0行动限制，§7.4.1按Actor修正，§7.4.2例3 CIA+遏制为2，§7.4.3视同OPS，§8.1.3核战根Phasing责任，§8.2.3普通政变军事。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarification only",
+      "description": "PDF p5–6 #26及p13 #62一次揭示，后得牌不公开；p13 #62普通核战Phasing输/CMC实际Actor先输；p14 #67事件OPS不能太空，取得实体牌可play的例外不适用本批。"
+    },
+    {
+      "id": "PROJECT-RO1",
+      "url": null,
+      "edition": "Private immutable receipt and atomic continuation contracts, 2026-10-12",
+      "description": "权威普通Hand快照、可信接收方、初次揭示/授权/决策原子提交、重试旧收据、空手完成、引用共享OPS；仅工程设计。来源/效果完整性布尔是假设，不是鉴权实现。"
+    }
+  ],
+  "reveal_policy": {
+    "source_zone": "Hand",
+    "capture_timing": "ThisEventRevealStepCommit",
+    "candidate_kind_policy": "AllOrdinaryCardsIncludingScoring",
+    "exclude_zones": [
+      "InResolution",
+      "HeadlineReserved",
+      "DrawPile",
+      "DiscardPile",
+      "RemovedFromGame",
+      "China"
+    ],
+    "receipt_visibility": "AuthorityAndTrustedRecipientOnly",
+    "snapshot_kind": "ImmutableHistoricalCardIdentities",
+    "new_cards_later": "NeverAppendOrRefresh",
+    "hand_mutation": "None",
+    "revealed_card_event_policy": "DoNotTrigger",
+    "empty_hand": "CommitEmptySnapshotAndOfferOperations",
+    "random_policy": "NoRandom",
+    "initial_atomicity": "ValidateThenCommitSnapshotReceiptGrantAndDecision",
+    "before_commit_visibility": "NoPrivateOutput",
+    "later_rejected_choice": "PreserveCommittedReveal",
+    "retry_policy": "ReturnBoundOriginalReceiptWithoutReadingCurrentHand"
+  },
+  "operations_policy": {
+    "base_ops": 1,
+    "budget_source": "VerifiedEventLiteral",
+    "ops_policy_ref": {
+      "dataset_id": "effects.deluxe2015.persistent_batch1",
+      "json_pointer": "/ops_policy"
+    },
+    "allowed_modes": [
+      "Influence",
+      "Coup",
+      "Realignment"
+    ],
+    "decline_allowed": true,
+    "mode_lock": "FirstAcceptedOperation",
+    "finish_policy": "BetweenAcceptedOperationsMayForfeitRemainder",
+    "geographic_exemption": false,
+    "treaty_exemption": false,
+    "coup_credit_kind": "OperationsCoup",
+    "military_policy_ref": {
+      "dataset_id": "rules.deluxe2015.military-operations",
+      "json_pointer": "/credit_sources/OperationsCoup"
+    },
+    "defcon_policy_ref": {
+      "dataset_id": "rules.deluxe2015.defcon",
+      "json_pointer": ""
+    },
+    "coup_intervention_ref": {
+      "dataset_id": "effects.deluxe2015.defcon_events_batch1",
+      "json_pointer": "/intervention_policy"
+    },
+    "space_allowed": false,
+    "consumes_additional_card": false,
+    "consumes_additional_root_action": false,
+    "modifier_policy": "CurrentActorAndVerifiedRegionalHistory",
+    "budget_evidence": "FreezeVerifiedActorEffectsAtGrantCreation",
+    "influence_reachability": "RootActionRoundStartActorOrSeparatelyVerifiedNamedBaseline",
+    "missing_influence_baseline": "RequiresRulingForInfluenceQueryOrChoicePreserveRevealAndOtherModes",
+    "influence_cost_policy": "SharedOperationsDynamicControlCost",
+    "regional_bonus_policy": "SharedOpsQuoteWithVerifiedTargetHistory",
+    "china_source_bonus": "InapplicableSourceIsNotChina",
+    "ordinary_nuclear_loser": "InheritedRootPhasingPlayer",
+    "fatal_crisis_loser": "ActualCoupActor",
+    "unknown_related_state": "RequiresRuling"
+  },
+  "continuation_policy": {
+    "source_validation": "RegisteredResolutionStepAndKnownProviderOnly",
+    "known_source_kinds": [
+      "RootEvent",
+      "OpponentCardEvent",
+      "HeadlineEvent",
+      "VerifiedHandEventChild"
+    ],
+    "nested_source_policy": "RequireSeparatelyBoundProviderAndInheritedRootProvenance",
+    "unknown_provider": "RequiresRulingBeforeReveal",
+    "finished_policy": "AbsorbingExceptOriginalReceiptReplay",
+    "successful_empty_or_declined": "EventHappened",
+    "disposition_policy": "ExistingTurnFlowEventOutcomeAndPrintedRemovalPolicy",
+    "terminal_policy": "FinalizeCommittedEventEvidenceAndDispositionWithinSameTerminalTransaction",
+    "hand_child_policy_ref": {
+      "dataset_id": "effects.deluxe2015.hand_events_batch1",
+      "json_pointer": "/parameters/five_year_plan"
+    }
+  },
+  "parameters": {
+    "cia_created": {
+      "card_id": "card.cia_created",
+      "effect_id": "effect.cia_created",
+      "description": "US取得USSR当前普通手牌不可变快照，随后可选视同1OPS。",
+      "template": "RevealCurrentHandThenOptionalAsIfCardOps",
+      "actor": "US",
+      "decision_owner": "US",
+      "reveal_recipient": "US",
+      "hand_owner": "USSR",
+      "reveal_policy_ref": {
+        "dataset_id": "effects.deluxe2015.reveal_ops_batch1",
+        "json_pointer": "/reveal_policy"
+      },
+      "operations_policy_ref": {
+        "dataset_id": "effects.deluxe2015.reveal_ops_batch1",
+        "json_pointer": "/operations_policy"
+      },
+      "continuation_policy_ref": {
+        "dataset_id": "effects.deluxe2015.reveal_ops_batch1",
+        "json_pointer": "/continuation_policy"
+      },
+      "ordered_steps": [
+        "RevealCurrentOpponentHand",
+        "OfferOptionalAsIfCardOperations"
+      ],
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "亲看英文PDF p5 #26、p10 #62：固定US/USSR先看对手当前手牌，再可选视同1OPS；均星号。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2成功星号，§6.0行动限制，§7.4.1按Actor修正，§7.4.2例3 CIA+遏制为2，§7.4.3视同OPS，§8.1.3核战根Phasing责任，§8.2.3普通政变军事。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p5–6 #26及p13 #62一次揭示，后得牌不公开；p13 #62普通核战Phasing输/CMC实际Actor先输；p14 #67事件OPS不能太空，取得实体牌可play的例外不适用本批。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-RO1",
+          "locator": "权威普通Hand快照、可信接收方、初次揭示/授权/决策原子提交、重试旧收据、空手完成、引用共享OPS；仅工程设计。来源/效果完整性布尔是假设，不是鉴权实现。",
+          "verification": "Verified"
+        }
+      ]
+    },
+    "lone_gunman": {
+      "card_id": "card.lone_gunman",
+      "effect_id": "effect.lone_gunman",
+      "description": "USSR取得US当前普通手牌不可变快照，随后可选视同1OPS。",
+      "template": "RevealCurrentHandThenOptionalAsIfCardOps",
+      "actor": "USSR",
+      "decision_owner": "USSR",
+      "reveal_recipient": "USSR",
+      "hand_owner": "US",
+      "reveal_policy_ref": {
+        "dataset_id": "effects.deluxe2015.reveal_ops_batch1",
+        "json_pointer": "/reveal_policy"
+      },
+      "operations_policy_ref": {
+        "dataset_id": "effects.deluxe2015.reveal_ops_batch1",
+        "json_pointer": "/operations_policy"
+      },
+      "continuation_policy_ref": {
+        "dataset_id": "effects.deluxe2015.reveal_ops_batch1",
+        "json_pointer": "/continuation_policy"
+      },
+      "ordered_steps": [
+        "RevealCurrentOpponentHand",
+        "OfferOptionalAsIfCardOperations"
+      ],
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "亲看英文PDF p5 #26、p10 #62：固定US/USSR先看对手当前手牌，再可选视同1OPS；均星号。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2成功星号，§6.0行动限制，§7.4.1按Actor修正，§7.4.2例3 CIA+遏制为2，§7.4.3视同OPS，§8.1.3核战根Phasing责任，§8.2.3普通政变军事。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p5–6 #26及p13 #62一次揭示，后得牌不公开；p13 #62普通核战Phasing输/CMC实际Actor先输；p14 #67事件OPS不能太空，取得实体牌可play的例外不适用本批。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-RO1",
+          "locator": "权威普通Hand快照、可信接收方、初次揭示/授权/决策原子提交、重试旧收据、空手完成、引用共享OPS；仅工程设计。来源/效果完整性布尔是假设，不是鉴权实现。",
+          "verification": "Verified"
+        }
+      ]
+    }
+  }
+}

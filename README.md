@@ -91,4 +91,6 @@
 
 此前：[一小步事件太空推进](Docs/Wiki/one-small-step.md)，71 Bound /31 Unresolved，102处理器planned。
 
-最新：[军备竞赛与峰会](Docs/Wiki/contest-events.md)，73 Bound /29 Unresolved，102处理器planned；军事>5边界待裁定。
+此前：[军备竞赛与峰会](Docs/Wiki/contest-events.md)，73 Bound /29 Unresolved，102处理器planned；军事>5边界待裁定。
+
+最新：[CIA与Lone Gunman一次手牌揭示](Docs/Wiki/reveal-ops-batch1.md)，75 Bound /27 Unresolved，102处理器planned；特殊来源影响力起点待核实。

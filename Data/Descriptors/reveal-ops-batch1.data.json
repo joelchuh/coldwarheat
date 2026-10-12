@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "data.reveal-ops-batch1",
+  "kind": "data",
+  "status": "ready",
+  "description": "CIA Created与Lone Gunman：一次私有当前手牌揭示后固定阵营可选视同1OPS，复用普通行动授权；参数设计，运行未实现。",
+  "dataset_id": "effects.deluxe2015.reveal_ops_batch1",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/reveal-ops-batch1.schema.json",
+  "documentation": "Docs/Wiki/reveal-ops-batch1.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/reveal-ops-batch1.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "稳定CardId查询；运行契约要求可信已注册步骤、Actor/手牌拥有者与根来源分离"
+  ],
+  "outputs": [
+    "两牌参数、共享一次揭示政策与可选普通OPS引用；不会执行游戏规则"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world",
+    "effects.deluxe2015.persistent_batch1",
+    "effects.deluxe2015.persistent_batch2",
+    "effects.deluxe2015.defcon_events_batch1",
+    "rules.deluxe2015.military-operations",
+    "rules.deluxe2015.defcon",
+    "rules.deluxe2015.victory",
+    "rules.deluxe2015.turn-flow",
+    "effects.deluxe2015.hand_events_batch1"
+  ],
+  "preconditions": [
+    "ready仅数据可读；C#处理器、会话身份、真实隐藏信息投影和持久化仍planned",
+    "按描述读取 module.hand-events / module.event-operations / module.turn-flow；仅已绑定来源提供者可交接"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知来源/相关效果或缺少可靠Actor快照：揭示前停止",
+    "越权/陈旧/冲突决策不能泄露手牌或消耗RNG；后续拒绝保留已提交揭示"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "description": "亲看英文PDF p5 #26、p10 #62：固定US/USSR先看对手当前手牌，再可选视同1OPS；均星号。"
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe rules 2015",
+      "description": "§5.2成功星号，§6.0行动限制，§7.4.1按Actor修正，§7.4.2例3 CIA+遏制为2，§7.4.3视同OPS，§8.1.3核战根Phasing责任，§8.2.3普通政变军事。"
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQ v5 2010, compatible Deluxe clarification only",
+      "description": "PDF p5–6 #26及p13 #62一次揭示，后得牌不公开；p13 #62普通核战Phasing输/CMC实际Actor先输；p14 #67事件OPS不能太空，取得实体牌可play的例外不适用本批。"
+    },
+    {
+      "id": "PROJECT-RO1",
+      "url": null,
+      "edition": "Private immutable receipt and atomic continuation contracts, 2026-10-12",
+      "description": "权威普通Hand快照、可信接收方、初次揭示/授权/决策原子提交、重试旧收据、空手完成、引用共享OPS；仅工程设计。来源/效果完整性布尔是假设，不是鉴权实现。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/reveal-ops-batch1.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/reveal-ops-batch1.validation.json"
+  },
+  "retrieval_hints": [
+    "先读parameters的阵营关系，再读reveal_policy / operations_policy；typed收据见schema $defs",
+    "不复制OPS上下限/地图/军事/DEFCON常数；基值1是英文卡文VerifiedEventLiteral，不从印刷OPS偶合推定"
+  ]
+}

@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.29.0",
+  "content_version": "0.30.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计73牌效果参数已绑定，其余29个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计75牌效果参数已绑定，其余27个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -185,6 +185,12 @@
       "url": null,
       "edition": "Bounded design and source gap, 2026-10-12",
       "description": "双方任一累计>5即CE-OPEN-01 RequiresRuling，5是保守支持边界而非采用封顶；原累计不变。Arms零奖分标ResolvedNoChange、US后USSR抽样、完整骰/VP收据先提交再等DEFCON均为工程约定。"
+    },
+    {
+      "id": "PROJECT-RO1",
+      "url": null,
+      "edition": "Private immutable receipt and atomic continuation contracts, 2026-10-12",
+      "description": "权威普通Hand快照、可信接收方、初次揭示/授权/决策原子提交、重试旧收据、空手完成、引用共享OPS；仅工程设计。来源/效果完整性布尔是假设，不是鉴权实现。"
     }
   ],
   "cards": [
@@ -967,8 +973,13 @@
       "effect_binding": {
         "effect_id": "effect.cia_created",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.reveal_ops_batch1",
+            "json_pointer": "/parameters/cia_created"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -2116,8 +2127,13 @@
       "effect_binding": {
         "effect_id": "effect.lone_gunman",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.reveal_ops_batch1",
+            "json_pointer": "/parameters/lone_gunman"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -4005,15 +4021,32 @@
     {
       "effect_id": "effect.cia_created",
       "contract_version": "0.1.0",
-      "description": "CIA Created：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.cia_created",
+      "description": "US取得USSR当前普通手牌不可变快照，随后可选视同1OPS。",
+      "handler_key": "composite.RevealCurrentHandThenOptionalAsIfCardOps",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:reveal-ops-batch1:1#/$defs/cia_created"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "亲看英文PDF p5 #26、p10 #62：固定US/USSR先看对手当前手牌，再可选视同1OPS；均星号。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2成功星号，§6.0行动限制，§7.4.1按Actor修正，§7.4.2例3 CIA+遏制为2，§7.4.3视同OPS，§8.1.3核战根Phasing责任，§8.2.3普通政变军事。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p5–6 #26及p13 #62一次揭示，后得牌不公开；p13 #62普通核战Phasing输/CMC实际Actor先输；p14 #67事件OPS不能太空，取得实体牌可play的例外不适用本批。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-RO1",
+          "locator": "权威普通Hand快照、可信接收方、初次揭示/授权/决策原子提交、重试旧收据、空手完成、引用共享OPS；仅工程设计。来源/效果完整性布尔是假设，不是鉴权实现。",
+          "verification": "Verified"
         }
       ]
     },
@@ -5005,15 +5038,32 @@
     {
       "effect_id": "effect.lone_gunman",
       "contract_version": "0.1.0",
-      "description": "Lone Gunman：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.lone_gunman",
+      "description": "USSR取得US当前普通手牌不可变快照，随后可选视同1OPS。",
+      "handler_key": "composite.RevealCurrentHandThenOptionalAsIfCardOps",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:reveal-ops-batch1:1#/$defs/lone_gunman"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
-          "verification": "Pending"
+          "source_id": "C-DELUXE-EN",
+          "locator": "亲看英文PDF p5 #26、p10 #62：固定US/USSR先看对手当前手牌，再可选视同1OPS；均星号。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "§5.2成功星号，§6.0行动限制，§7.4.1按Actor修正，§7.4.2例3 CIA+遏制为2，§7.4.3视同OPS，§8.1.3核战根Phasing责任，§8.2.3普通政变军事。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p5–6 #26及p13 #62一次揭示，后得牌不公开；p13 #62普通核战Phasing输/CMC实际Actor先输；p14 #67事件OPS不能太空，取得实体牌可play的例外不适用本批。",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-RO1",
+          "locator": "权威普通Hand快照、可信接收方、初次揭示/授权/决策原子提交、重试旧收据、空手完成、引用共享OPS；仅工程设计。来源/效果完整性布尔是假设，不是鉴权实现。",
+          "verification": "Verified"
         }
       ]
     },

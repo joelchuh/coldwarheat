@@ -86,3 +86,5 @@
 [一小步](../one-small-step.md)：严格落后两格、第二格VP、最终位置能力；越终点待裁定。
 
 [军备竞赛与峰会](../contest-events.md)：军事严格比较和实际地图双骰，胜者后续DEFCON选择；与普通计分分开。
+
+[CIA与Lone Gunman](../reveal-ops-batch1.md)：固定接收方的一次手牌快照，随后可选普通1OPS；不是持续公开对手手牌。

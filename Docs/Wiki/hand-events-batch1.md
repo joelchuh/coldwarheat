@@ -29,3 +29,5 @@ DiscardDecision保存Owner/FrameId/Revision和私有候选快照；回答只Sele
 主离线验证28数据＋37固定参考＝65新项，992旧回归，共1057通过；21 Schema/25数据描述/18模块/67指针，12runtime未运行。独立审阅两项Important（子事件授权与永久随机收据）已修复，复核合入Yes；135 JSON/67指针/18模块无环及8摘要核对，未独立复跑1057。
 
 HC1-RUNTIME恢复边界：提交前计划若基于旧候选状态则拒绝且不耗随机；已接受CommandId收据永久保存。子事件后续改手牌不能废弃该收据，也不能重试五年计划重抽。
+
+[CIA与Lone Gunman](reveal-ops-batch1.md)复用当前手牌私有快照与普通as-if授权。五年计划只可触发US关联CIA；头条/特殊嵌套来源的影响力起点必须另证，不默认授权创建时。

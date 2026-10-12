@@ -1,0 +1,811 @@
+{
+  "description": "CIA与Lone Gunman一次私有揭示及普通OPS参数、输入契约与有限参考投影；非生产游戏执行。",
+  "checked_on": "2026-10-12",
+  "new_cases_passed": 150,
+  "previous_cases_passed": 1991,
+  "total_cases_passed": 2141,
+  "cases_by_layer": {
+    "data": 30,
+    "contract": 54,
+    "reference": 66,
+    "runtime": 10
+  },
+  "runtime_cases_not_run": 10,
+  "runtime_game_tests_run": 0,
+  "bound_cards": 75,
+  "unresolved_bindings": 27,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 38,
+    "json_files_parsed": 227,
+    "data_descriptors": 41,
+    "module_descriptors": 21,
+    "relative_links_checked": 199,
+    "parameter_pointers_resolved": 139
+  },
+  "validated_sha256": {
+    "Data/Cards/deluxe-2015/reveal-ops-batch1.parameters.json": "0eb10e48d92802eef3ecd401005119cc2e2e416bc26d5e6441c12b73d195303e",
+    "Docs/Contracts/reveal-ops-batch1.schema.json": "cf0ac369092da38da1e848e780d205c75aa8bd9f8231830b9708204ba8c1eb6d",
+    "Data/Descriptors/reveal-ops-batch1.data.json": "6d6129708a81ca2fc67b335e229b004ef462f5b0279272f04fbfc0d474c36a65",
+    "Docs/Design/reveal-ops-batch1.cases.json": "314abb5f0a1a69537c8cf898d0142a2f877e8b1b1ec9bead97d470f1f47b1a45",
+    "Docs/Wiki/reveal-ops-batch1.md": "0084fb91fee443d8d72baf25d723aa33447c2aedd9f3e1464118b365e8291133",
+    "Data/Cards/deluxe-2015/cards.json": "b9ad2bdcaf7024388be10b0227388bfdf08cb84daae534c51537288abf2dad25",
+    "Docs/Descriptors/hand-events.module.json": "62faa738b56b51d94a3e2015a636bfb4a2260c00c2abb40f0fd9d5bf0c88e0b5",
+    "Docs/Descriptors/event-operations.module.json": "680b6b1760ec9b0f1b172f4d5a44d26915eca4b4d2ee5d5eb23f808b2b3c226e",
+    "Docs/Descriptors/composite-events.module.json": "550dd9ff80a7d9269875a6df8f9954b9d6a8c23acfb1b546643d3726e8655234"
+  },
+  "results": [
+    {
+      "id": "RO1-D-baseline",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-cia-actor",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-lone-owner",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-recipient",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-literal",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-printed-budget",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-space",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-free-coup",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-defcon-bypass",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-treaty-bypass",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-extra-card",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-extra-root",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-no-decline",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-source-bonus",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-continuous",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-all-zones",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-exclude-scoring",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-public",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-precommit-leak",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-rollback-reveal",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-reread-retry",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-root-loser",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-crisis-loser",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-unknown-default",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-unknown-provider",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-empty-failure",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-step-order",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-foreign-field",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-ops-ref",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-D-missing-actor",
+      "passed": true,
+      "validation_layer": "data"
+    },
+    {
+      "id": "RO1-S-trusted_frame",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-snapshot",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-grant_evidence",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-pending_decision",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-reveal_receipt",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-decision_command",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-frame-owner",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-frame-actor",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-wrong-effect",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-source-space",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-snapshot-live",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-snapshot-drawpile",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-snapshot-duplicate",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-snapshot-negative",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-receipt-public",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-receipt-uncommitted",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-receipt-refresh",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-grant-space",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-grant-budget-source",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-decision-space",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-choice-die",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-choice-budget",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-choice-actor",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-choice-snapshot",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-choice-space",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-choice-stale-type",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-choice-decline",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-choice-finish",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-choice-influence",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-receipt-recipient-mismatch",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-receipt-resolution-mismatch",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-receipt-decision-owner-mismatch",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-receipt-grant-root-mismatch",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-receipt-revision-mismatch",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-grant-baseline-actor-mismatch",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-grant-unverified-current-baseline",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-snapshot-china",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-snapshot-duplicate-id",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-snapshot-unknown-card",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-provider-not-bound",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-unresolved-influence-baseline",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-R-cia-base",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-cia-containment",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-cia-purge-floor",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-cia-both",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-cia-no-root-modifier",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-lone-brezhnev",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-lone-purge",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-lone-both",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-lone-no-us-modifier",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-vietnam-all-sea",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-vietnam-off-region",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-vietnam-mixed-history",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-purge-before-region-floor",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-atomic-start",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-bad-source",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-unknown-provider",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-unknown-effect",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-wrong-identity",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-stale-start",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-failed-commit",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-finished-start",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-empty-hand",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-lone-hand-owner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-retry-after-new-hand",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-retry-after-finished",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-conflicting-retry",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-wrong-source-retry",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-unauthorized-retry",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-projection-US",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-projection-USSR",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-projection-Spectator",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-projection-US-unauthenticated",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-projection-no-refresh",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-decline-preserves-reveal",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-choice-space",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-choice-wrong-owner",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-choice-stale",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-choice-unknown-effect",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-choice-illegal-target",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-choice-lock",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-choice-real-accept",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-choice-finish-partial",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-influence-missing-baseline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-decline-missing-baseline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-coup-missing-influence-baseline",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-root-ops-removed-last-actor-marker",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-no-rolling-reachability",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-grant-current-does-not-expand-root-start",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-headline-baseline-unresolved",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-cia-ordinary-coup",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-cia-containment-credit",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-cia-nuclear-root",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-lone-nuclear-root",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-lone-cmc-before-rng",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-cia-europe-blocked",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-lone-asia-blocked",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-cia-non-bg",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-treaty-protected",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-no-opponent",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-cia-salt-die-not-budget",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-cia-lads-controller",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-cia-nuclear-subs",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-REVIEW-01",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-REVIEW-02",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-REVIEW-03",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-fyp-cia-allowed",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-source-evidence-147",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-source-evidence-148",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-source-evidence-149",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-source-evidence-150",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-source-baseline-151",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-source-baseline-152",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-source-baseline-153",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-source-baseline-154",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-source-baseline-155",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-S-source-baseline-156",
+      "passed": true,
+      "validation_layer": "contract"
+    },
+    {
+      "id": "RO1-R-source-wrong-id",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-source-missing",
+      "passed": true,
+      "validation_layer": "reference"
+    },
+    {
+      "id": "RO1-R-source-discard",
+      "passed": true,
+      "validation_layer": "reference"
+    }
+  ],
+  "limitations": [
+    "Trusted source/effect/treaty/identity booleans and provider registry are synthetic premises, not actual security or service calls.",
+    "Projection/retry models copy immutable values in memory; no real persistence, networking, durable commit or hidden-information subsystem tested.",
+    "OPS/coup/reachability models are bounded calculations; influence transactional costs and full realignment algorithms remain shared planned runtime work.",
+    "Headline/nested Influence baseline remains RequiresRuling without independently verified named policy.",
+    "1991旧案例仅适配绑定库存和历史已完成来源；contest历史读取相同已审阅文件的overlay回退，不改业务预期。",
+    "13note及72Tools独立，不计入且本批未重跑。",
+    "102handlers仍planned；头条/特殊来源影响力起点需独立具名证明，否则仅该分支RequiresRuling。"
+  ],
+  "independent_review": {
+    "status": "ready-no-findings-after-three-fixes",
+    "critical": 0,
+    "important": 0,
+    "minor": 0,
+    "new_cases_independently_passed": 150,
+    "separate_recheck_probes": 13,
+    "old_cases_independently_rerun": 0,
+    "remediation": "FYP USSR child rejected; independent source entity must be InResolution; source/phase binds influence baseline. Each original probe repeated with valid new evidence.",
+    "integration_review": "Separate reviewer checked330baseline SHA,9report SHA,150new cases,227JSON38Schema41datasets21moduleDAG139refs384paths202currentlinks;only2bindings and103printed records unchanged. No game runtime."
+  },
+  "post_validation_document_links_checked": 12,
+  "metadata_after_validation": "Only Wiki binding/validation status and Worklog updated; checked their links and refreshed Wiki hash; no rule/schema/model changes."
+}
