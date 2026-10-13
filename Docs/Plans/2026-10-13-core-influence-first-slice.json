@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "id": "plan.core-influence-first-slice",
+  "kind": "implementation-plan",
+  "description": "首批C#工程、完整静态地图、影响力事务、身份/幂等及单人查看双方信息的测试视图；一个本地宿主，两方固定会话，非两个客户端。先读本摘要再读对应任务。",
+  "status": "prepared-for-review-not-executed",
+  "path_base": "repository-root",
+  "document": "Docs/Plans/2026-10-13-core-influence-first-slice.md",
+  "entrypoints": [],
+  "planned_entrypoints": [
+    "ControlRules.GetController",
+    "MapDefinitionLoader",
+    "InfluenceRules.PlanPlacement",
+    "IGameSession.SubmitAsync",
+    "LocalGameHost.ReadLocalTestSnapshot"
+  ],
+  "inputs": [
+    "已认可架构方向",
+    "用户选择单人测试并允许查看双方信息",
+    "已有地图和普通影响力契约"
+  ],
+  "outputs": [
+    "可审阅任务、接口、测试和交付边界"
+  ],
+  "dependencies": [
+    "Docs/Design/implementation-architecture.proposal.md",
+    "Docs/Wiki/local-test-mode.md",
+    "Docs/Wiki/operations.md",
+    "Docs/Wiki/map-card-contracts.md"
+  ],
+  "preconditions": [
+    "用户已同意方向；具体计划准备供审阅",
+    "实际Unity编译和包解析兼容性需在执行任务1验证"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "计划本身不执行命令",
+    "运行测试缺失、零测试或失败不得报告已通过",
+    "正式规则包不得跳过未实现处理器门禁"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/operations.md",
+      "scope": "INF-01/02/03及INF-A/B/C/D"
+    }
+  ],
+  "tests": [],
+  "planned_test_suites": [
+    "DefinitionTests",
+    "InfluenceRulesTests",
+    "SessionTests",
+    "ProjectionTests"
+  ],
+  "execution_recommendation": "native-in-current-session-with-final-independent-review",
+  "prototype_mode": "single-operator-dual-side-local-test",
+  "client_count_proposal": 1,
+  "authority_game_count": 1,
+  "player_session_count": 2,
+  "direction_approved": true,
+  "production_code_written": false,
+  "unity_project_created": false,
+  "runtime_game_tests_run": 0
+}

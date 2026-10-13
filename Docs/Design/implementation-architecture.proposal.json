@@ -2,8 +2,8 @@
   "schema_version": 1,
   "id": "discussion.implementation-architecture",
   "kind": "design-discussion",
-  "description": "编码前查整体分层、可替换地图的加载/呈现/意图接口、独立轨道面板、玩家视角与版本隔离，以及首批影响力闭环；不授权运行或创建游戏工程。",
-  "status": "proposal-awaiting-user-confirmation",
+  "description": "已认可的分层和可替换地图接口方向；首个原型供单人测试双方。查首批计划和测试视图边界，尚无可调用C#实现。",
+  "status": "direction-approved-implementation-not-started",
   "path_base": "repository-root",
   "document": "Docs/Design/implementation-architecture.proposal.md",
   "entrypoints": [],
@@ -22,11 +22,11 @@
   ],
   "data_dependencies": [],
   "preconditions": [
-    "按提案阅读；所有接口尚未实现"
+    "方向已确认；接口与生产源码尚未实现"
   ],
   "side_effects": [],
   "stop_conditions": [
-    "开始正式源码或Unity工程前等待用户确认方向和开工范围"
+    "依具体实现计划推进；不能把方向同意当作现有接口已可调用"
   ],
   "rule_sources": [],
   "tests": [],
@@ -42,12 +42,10 @@
     "action mode or decision ID",
     "latest query sequence"
   ],
-  "implementation_authorized": false,
   "production_code_written": false,
   "unity_project_created": false,
   "runtime_game_tests_run": 0,
   "unresolved_decisions": [
-    "用户确认整体方向和首批交付范围",
     "获准后核实实际Unity编译与测试兼容性",
     "最终画风与布局未定；不阻塞纯规则闭环"
   ],
@@ -60,5 +58,8 @@
     "IMapView.Dispose",
     "MapPresenter",
     "IGameSession"
-  ]
+  ],
+  "direction_approved": true,
+  "implementation_plan": "Docs/Plans/2026-10-13-core-influence-first-slice.md",
+  "prototype_mode": "single-operator-dual-side-local-test"
 }
