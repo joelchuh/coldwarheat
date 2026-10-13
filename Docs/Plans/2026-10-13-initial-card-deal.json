@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "id": "plan.initial-card-deal",
+  "kind": "implementation-plan",
+  "status": "implemented-reviewed",
+  "description": "实现唯一完整牌区、独立中国牌及确定性初始发牌；共享参数加载，不接完整RulePack或UI。",
+  "entrypoints": [],
+  "inputs": [
+    "CardCatalog",
+    "setup/turn-flow",
+    "IRandomProvider"
+  ],
+  "outputs": [
+    "CardZones与随机快照",
+    "经过校验的初始发牌定义"
+  ],
+  "dependencies": [
+    "module.card-data",
+    "module.deterministic-random",
+    "module.turn-calendar"
+  ],
+  "preconditions": [
+    "持续编码授权",
+    "使用已审核印刷目录"
+  ],
+  "side_effects": [
+    "仅新随机副本与返回状态；不改变原随机源"
+  ],
+  "stop_conditions": [
+    "牌区重复/遗漏/非法来源/未知版本/错误引用/牌数不足拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/setup.md",
+      "scope": "既有发牌与确定性重放约定"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Testing/initial-card-deal.validation.json",
+      "status": "729-passed"
+    }
+  ],
+  "document": "Docs/Plans/2026-10-13-initial-card-deal.md"
+}

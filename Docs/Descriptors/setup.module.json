@@ -13,12 +13,12 @@
     "module.map-data"
   ],
   "preconditions": [
-    "当前只实现部署子集；不返回完整RulePack、不处理随机发牌或轨道引用",
-    "正式开局仍需完整规则包、卡牌区域和可恢复随机源"
+    "本模块只处理影响力部署；独立初始发牌由module.card-zones提供，完整轨道与开局编排尚未接入",
+    "完整开局仍需可执行规则包和宿主事务/创建幂等"
   ],
   "side_effects": [
     "纯规则仅规划新不可变状态；原始状态不变",
-    "固定身份会话已接入完整部署命令，实际地图UI在后续批次接线"
+    "固定身份会话已接入完整部署命令，实际地图UI已接入显式fixture练习"
   ],
   "stop_conditions": [
     "未知国家/子区、不支持数据版本或未核实来源拒绝",
@@ -61,7 +61,7 @@
   "id": "module.setup",
   "kind": "module",
   "status": "implemented-subset",
-  "description": "初始影响力部署子集：共享固定布置、苏先美后完整分配与阶段门禁已实现；正式发牌、轨道初始化及进入首回合仍planned。",
+  "description": "初始影响力部署子集：共享固定布置、苏先美后完整分配与阶段门禁已实现；独立发牌见module.card-zones，完整轨道初始化及首回合衔接仍planned。",
   "entrypoints": [
     {
       "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/SetupDeploymentLoader.cs",

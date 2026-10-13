@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "id": "module.card-zones",
+  "kind": "module",
+  "description": "不可变完整牌区、独立中国牌与确定性初始发牌；校验唯一位置/时代，读取setup共享引用。返回新牌区及随机快照，尚未接GameState、UI或完整开局。",
+  "status": "implemented-subset",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/CardZones.cs",
+      "symbol": "ChinaCardState"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/CardZones.cs",
+      "symbol": "CardZones"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/CardZones.cs",
+      "symbol": "GetHand"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/InitialDealService.cs",
+      "symbol": "InitialDealDefinition"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/InitialDealService.cs",
+      "symbol": "Create"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/InitialDealDefinitionLoader.cs",
+      "symbol": "LoadSubset"
+    }
+  ],
+  "inputs": [
+    "经批准CardCatalog、CardZones完整分区或初始发牌定义",
+    "setup/schema/turn-flow文本；显式IRandomProvider"
+  ],
+  "outputs": [
+    "不可变牌区与独立ChinaCardState，未知查询拒绝",
+    "InitialDealResult包含新Cards及RandomSnapshot，原随机源不变"
+  ],
+  "dependencies": [
+    "module.card-data",
+    "module.deterministic-random",
+    "module.turn-calendar"
+  ],
+  "data_dependencies": [
+    "setup.deluxe2015.standard",
+    "rules.deluxe2015.turn-flow",
+    "cards.deluxe2015.definitions"
+  ],
+  "preconditions": [
+    "可信宿主使用审核后的卡牌目录；静态目录不是可执行RulePack",
+    "创建结果只供权威侧，宿主以后共同提交牌区与随机快照；本批没有会话/创建请求去重"
+  ],
+  "side_effects": [
+    "仅工作随机副本推进，不修改源随机或现有GameState",
+    "加载器只处理传入文本，不打开文件；集合防御复制"
+  ],
+  "stop_conditions": [
+    "普通牌重复/遗漏/未知、China混入普通牌区、时代与Reserve不符拒绝",
+    "不连续EnteredEras、未知身份/朝向、无效初始定义或牌数不足拒绝",
+    "未知版本/来源/引用或原始时代数组重排拒绝；不猜其他轨道初值"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/setup.md",
+      "scope": "既有R2015初始发牌与工程重放约定"
+    },
+    {
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "sections": [
+        "3.1",
+        "3.4"
+      ],
+      "scope": "早期发牌与独立中国牌；洗牌顺序/交替次序另属项目约定"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/CardZonesTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/InitialDealTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/InitialDealLoaderTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/card-zones.md",
+  "verification": {
+    "report": "Docs/Testing/initial-card-deal.validation.json"
+  }
+}

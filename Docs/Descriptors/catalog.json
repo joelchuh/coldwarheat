@@ -52,7 +52,7 @@
     },
     {
       "id": "module.setup",
-      "description": "初始影响力部署子集：共享固定布置、苏先美后完整分配与阶段门禁已实现；正式发牌、轨道初始化及进入首回合仍planned。",
+      "description": "初始影响力部署子集：共享固定布置、苏先美后完整分配与阶段门禁已实现；独立发牌见module.card-zones，完整轨道初始化及首回合衔接仍planned。",
       "status": "implemented-subset",
       "descriptor": "Docs/Descriptors/setup.module.json"
     },
@@ -199,6 +199,12 @@
       "description": "可恢复PCG32随机源、独立事务副本与精确JSON状态；用于后续骰子/洗牌，不是完整存档，也未接入GameState。",
       "status": "implemented-subset",
       "descriptor": "Docs/Descriptors/deterministic-random.module.json"
+    },
+    {
+      "id": "module.card-zones",
+      "description": "不可变完整牌区、独立中国牌与确定性初始发牌；校验唯一位置/时代，读取setup共享引用。返回新牌区及随机快照，尚未接GameState、UI或完整开局。",
+      "status": "implemented-subset",
+      "descriptor": "Docs/Descriptors/card-zones.module.json"
     }
   ]
 }

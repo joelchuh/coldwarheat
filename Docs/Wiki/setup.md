@@ -1,7 +1,7 @@
 # 初始布置与开局流程 v0.1
 
 > description: 查询固定影响力、自由部署范围/顺序、发牌与中国牌、初始轨道、幂等恢复及首回合衔接。
-> 状态：2026-10-13；影响力部署子集已实现并运行测试；完整SetupFlow、发牌及整局仍未实现。历史设计与当前子集范围如下分列。
+> 状态：2026-10-13；影响力部署与独立牌区/初始发牌服务已实现并运行测试；完整SetupFlow与整局仍未实现。历史设计与当前子集范围如下分列。
 > 入口：[数据描述](../../Data/Descriptors/setup.data.json)、[模块描述](../Descriptors/setup.module.json)、[唯一数据](../../Data/Rulesets/deluxe-2015/setup.json)、[Schema](../Contracts/setup.schema.json)、[验收案例](../Design/setup.cases.json)。
 
 ## 范围与选择
@@ -124,3 +124,7 @@ SubmitInitialDeploymentCommand沿用CommandId、GameId、ExpectedStateVersion；
 `PublicDeploymentView`只公开阶段、拥有者、决策ID、地区和所需额度，不包含完整Definition、GameState、他人手牌或草稿。正常手牌投影不变，查看双方只通过显式只读测试入口。全部真实回归与限制见[会话报告](../Testing/deployment-session.validation.json)。
 
 部署地图练习入口与草稿生命周期见[Demo说明](first-demo.md)，UI实现与载荷验证见[报告](../Testing/deployment-demo.validation.json)。
+
+## 已实现：独立牌区与初始发牌服务
+
+详见[牌区知识点](card-zones.md)与[模块描述](../Descriptors/card-zones.module.json)。初始手牌/回合引用及中国牌由InitialDealDefinitionLoader读取，InitialDealService返回完整唯一牌区与随机快照。正式GameState、部署前查看真实手牌、创建去重及首回合衔接尚未接入；上表仍是完整编排设计，不能用独立服务替代运行门禁。

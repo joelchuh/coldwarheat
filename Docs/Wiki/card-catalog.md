@@ -40,4 +40,4 @@ description：按CardId、印刷编号或时代查询不可变卡牌定义；定
 
 真实运行、失败修复与SHA见[验证报告](../Testing/card-catalog.validation.json)，设计/实现区别见[工作记录](../Worklogs/2026-10-13-card-catalog.md)。核心测试入口为CardCatalogTests、CardCatalogLoaderTests和ContractConditionalTests；既有地图profile与部署/事件回归共同通过。
 
-后续实现可恢复随机源及牌区/洗牌/初始发牌，再接手牌视图；静态目录不承担这些动态责任。现有八个事件算法仍需正式出牌生命周期接线，不能因为本页有103个定义就称102个事件全部可玩。
+可恢复随机源与[独立牌区/初始发牌](card-zones.md)已实现，后续接GameState与手牌视图；静态目录不承担这些动态责任。现有八个事件算法仍需正式出牌生命周期接线，不能因为本页有103个定义就称102个事件全部可玩。
