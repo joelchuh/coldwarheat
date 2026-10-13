@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "validation.allocation-event-sessions",
+  "date": "2026-10-13",
+  "status": "passed",
+  "description": "新增21项实际端到端会话测试，与原235项全量回归；核心容量/额度不接受客户端覆盖。",
+  "runs": [
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 256,
+      "passed": 235,
+      "failed": 21,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "4299ac99a1673763585b65da8603837cae781b00419c4e348691983fd945d5c9",
+      "schema_version": 1,
+      "run_id": "allocation-session-red",
+      "duration_ms": 10250,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\allocation-session-red",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\allocation-session-red\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\allocation-session-red\\editor.log"
+    },
+    {
+      "status": "passed",
+      "error_code": null,
+      "total": 256,
+      "passed": 256,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "4d3e8f5af5d972347fdc547348d1a3510e4cc4f1a5b1c2f4bfcab533f5a91c91",
+      "schema_version": 1,
+      "run_id": "allocation-session-green",
+      "duration_ms": 9672,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\allocation-session-green",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\allocation-session-green\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\allocation-session-green\\editor.log"
+    }
+  ],
+  "green": {
+    "status": "passed",
+    "error_code": null,
+    "total": 256,
+    "passed": 256,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0,
+    "unity_exit_code": 0,
+    "xml_sha256": "4d3e8f5af5d972347fdc547348d1a3510e4cc4f1a5b1c2f4bfcab533f5a91c91",
+    "schema_version": 1,
+    "run_id": "allocation-session-green",
+    "duration_ms": 9672,
+    "project": "E:\\TwilightStruggle",
+    "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+    "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+    "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\allocation-session-green",
+    "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\allocation-session-green\\results.xml",
+    "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\allocation-session-green\\editor.log"
+  },
+  "independent_review": "passed-no-findings; read-only review verified red/green XML and SHA, no Unity rerun",
+  "build": "not-run; allocation Demo UI not wired yet",
+  "scope": [
+    "Owner和PhasingPlayer分离，版本/实例/决策/游戏门禁",
+    "完整分配原子完成、OPS等待保护、成功/拒绝收据幂等",
+    "格式错误及取消不记收据、与旧命令共用身份命名空间",
+    "零容量无选择完成，已完成事件和过期新命令不能重放"
+  ],
+  "limitations": [
+    "人工预装公开事件；完整出牌/牌区/回合/持续效果尚未实现",
+    "UI与新练习数据仍待接入，不声称播放器鼠标验证通过",
+    "无存档/网络协议兼容或持久化收据"
+  ],
+  "evidence_sha256": {
+    "TestResults/UnityRuns/allocation-session-red/results.xml": "4299ac99a1673763585b65da8603837cae781b00419c4e348691983fd945d5c9",
+    "TestResults/UnityRuns/allocation-session-green/results.xml": "4d3e8f5af5d972347fdc547348d1a3510e4cc4f1a5b1c2f4bfcab533f5a91c91"
+  },
+  "descriptor_verification": "modified required fields, entrypoint paths and symbols verified"
+}

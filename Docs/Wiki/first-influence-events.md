@@ -30,7 +30,7 @@ flowchart LR
 
 ## 新增两牌额度纯规划
 
-社会主义政府和苏伊士危机现在共用 `BudgetedRemovalEffect`，通过 `InfluenceEventSelection.Allocate` 提交数量分配。查询返回只读逐国容量和总量；规则、参数加载与实际验证见[第二批](early-influence-batch2.md)。这两牌尚未接入以下宿主/界面流程，旧五牌选择继续使用国家集合。不要在旧Demo装配器注入新定义后假定可以选择数量。
+社会主义政府和苏伊士危机现在共用 `BudgetedRemovalEffect`，通过 `InfluenceEventSelection.Allocate` 提交数量分配。查询返回只读逐国容量和总量；规则、参数加载与实际验证见[第二批](early-influence-batch2.md)。这两牌已接入宿主数量命令，UI待接入；旧五牌继续使用国家集合。不要在旧Demo装配器注入新定义后假定可以选择数量。
 
 ## 数据契约支持范围
 
@@ -65,3 +65,13 @@ stateDiagram-v2
 - Core纯转换不执行回调，宿主锁内只计算、替换状态、记录收据；动画和界面不进入事务。
 
 对应测试 `InfluenceEventFlowTests`、`EventSessionTests` 和原 `SessionTests`，实际报告 [influence-event-sessions.validation.json](../Testing/influence-event-sessions.validation.json)。尚未实现保存/加载收据、完整出牌生命周期、持续效果系统或网络身份认证。
+
+## 数量分配会话
+
+`EventTargetsResult.Kind` 区分 `CountrySet` 与 `Allocation`；后者公开 `RequiredAmount` 和只读 `Capacities`。只有当前Owner能成功查询；错误查询返回空容量与零总量。界面不得把RequiredTargets为零当作“无需选择”，应以Kind和事件Stage驱动。
+
+数量响应调用 `EventCommandEnvelope.Allocate(id,game,version,execution,decision,allocations)`，随后仍通过 `IGameSession.SubmitEventAsync`。宿主验证固定身份和完整上下文后调用 `InfluenceEventFlow.ResolveAllocation`；该方法与旧Resolve共用阶段/Owner/Decision检查，再由纯规则验证精确总额和逐国容量。一次提交同时写入国家变化、Resolved状态、新版本及收据。用户不能提交规则上限、预算或活动策略。
+
+新增ResolveAllocation和旧Begin/Resolve共享同一收据表。精确相同载荷重发返回原对象；改金额、国家、数组顺序、类型或版本而复用同ID则冲突。语义相同但顺序不同的分配可以各自规划出同一规范结果，不代表它们是同一请求。格式错误与预先取消不记收据，合法格式但规则拒绝会记收据；修正时使用新ID。
+
+实际21项新增端到端测试与原有测试共256项通过，见 [数量会话验证](../Testing/allocation-event-sessions.validation.json)。播放器的数量草稿和练习尚待接入；本批只验证会话功能，不声称GUI已可操作。

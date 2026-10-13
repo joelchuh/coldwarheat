@@ -52,13 +52,20 @@ namespace ColdWarStruggle.Core
             catch(OverflowException) { return new InfluenceEventTransition(RuleError.NumericOverflow); }
         }
         public static InfluenceEventTransition Resolve(GameState state,PlayerSide actor,string decisionId,IReadOnlyList<CountryId> targets)
+            =>ResolveSelected(state,actor,decisionId,targets,null,InfluenceDecisionKind.CountrySet);
+        public static InfluenceEventTransition ResolveAllocation(GameState state,PlayerSide actor,string decisionId,IReadOnlyList<InfluenceAllocation> allocations)
+            =>ResolveSelected(state,actor,decisionId,null,allocations,InfluenceDecisionKind.Allocation);
+        static InfluenceEventTransition ResolveSelected(GameState state,PlayerSide actor,string decisionId,
+            IReadOnlyList<CountryId> targets,IReadOnlyList<InfluenceAllocation> allocations,InfluenceDecisionKind kind)
         {
             var error=Check(state);if(error!=RuleError.None)return new InfluenceEventTransition(error);
             var execution=state.InfluenceEvent;
             if(execution.Stage!=InfluenceEventStage.AwaitingChoice)return new InfluenceEventTransition(RuleError.EventNotStarted);
             if(actor!=execution.Owner)return new InfluenceEventTransition(RuleError.WrongActor);
             if(decisionId!=execution.DecisionId || state.Version!=execution.DecisionSourceVersion)return new InfluenceEventTransition(RuleError.StaleDecision);
-            var plan=InfluenceEventRules.Plan(state,execution.Definition,new InfluenceEventSelection(actor,state.Version,targets),execution.Policy);
+            var selection=kind==InfluenceDecisionKind.Allocation?InfluenceEventSelection.Allocate(actor,state.Version,allocations)
+                :new InfluenceEventSelection(actor,state.Version,targets);
+            var plan=InfluenceEventRules.Plan(state,execution.Definition,selection,execution.Policy);
             return plan.Resolved?Complete(execution,plan):new InfluenceEventTransition(MapError(plan.Error),plan.Error);
         }
         static RuleError Check(GameState state)

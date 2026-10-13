@@ -102,16 +102,26 @@ namespace ColdWarStruggle.Application
         }
         EventCommandResult RejectEvent(RuleError error,PlayerSide side,InfluenceEventTransition transition=null)
             =>new EventCommandResult(error,new PlayerViewSnapshot(state,side),transition);
+        static bool ValidEventEnvelope(EventCommandEnvelope command)
+        {
+            if(!ValidEnvelope(command) || string.IsNullOrWhiteSpace(command.ExecutionId) || command.ExecutionId.Length>128
+                || command.Targets.Count>InfluenceEventSelection.MaxTargets || command.Allocations.Count>InfluenceEventSelection.MaxTargets)return false;
+            if(command.Kind==EventCommandKind.Begin)
+                return command.DecisionId==null && command.Targets.Count==0 && command.Allocations.Count==0;
+            if(string.IsNullOrWhiteSpace(command.DecisionId) || command.DecisionId.Length>256)return false;
+            switch(command.Kind)
+            {
+                case EventCommandKind.Resolve:return command.Targets.Count>0 && command.Allocations.Count==0;
+                case EventCommandKind.ResolveAllocation:return command.Targets.Count==0 && command.Allocations.Count>0;
+                default:return false;
+            }
+        }
         Task<EventCommandResult> SubmitEvent(PlayerSide side,EventCommandEnvelope command,CancellationToken token)
         {
             lock(gate)
             {
                 if(token.IsCancellationRequested)return Task.FromCanceled<EventCommandResult>(token);
-                if(!ValidEnvelope(command) || string.IsNullOrWhiteSpace(command.ExecutionId) || command.ExecutionId.Length>128
-                    || command.Targets.Count>InfluenceEventSelection.MaxTargets
-                    || command.Kind!=EventCommandKind.Begin && command.Kind!=EventCommandKind.Resolve
-                    || command.Kind==EventCommandKind.Begin && (command.DecisionId!=null || command.Targets.Count!=0)
-                    || command.Kind==EventCommandKind.Resolve && (string.IsNullOrWhiteSpace(command.DecisionId) || command.DecisionId.Length>256 || command.Targets.Count==0))
+                if(!ValidEventEnvelope(command))
                     return Task.FromResult(RejectEvent(RuleError.InvalidCommand,side));
                 var key=(side,command.CommandId);
                 if(receipts.TryGetValue(key,out var receipt))
@@ -122,6 +132,7 @@ namespace ColdWarStruggle.Application
                 else
                 {
                     var transition=command.Kind==EventCommandKind.Begin?InfluenceEventFlow.Begin(state,side)
+                        :command.Kind==EventCommandKind.ResolveAllocation?InfluenceEventFlow.ResolveAllocation(state,side,command.DecisionId,command.Allocations)
                         :InfluenceEventFlow.Resolve(state,side,command.DecisionId,command.Targets);
                     if(!transition.Accepted)result=RejectEvent(transition.Error,side,transition);
                     else

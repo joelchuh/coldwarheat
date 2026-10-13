@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.influence-event-sessions",
   "kind": "module",
-  "description": "同一GameState中的一次性影响力事件、受益方等待选择与原子完成；LocalGameHost共用版本、身份收据和只读玩家视图。只接可信装配的公开事件，正式出牌/牌区/回合仍未实现。",
+  "description": "同一GameState中的一次性影响力事件与受益方选择：支持国家集合和数量分配，公开容量由核心计算；固定身份、版本和同一收据表原子提交。数量UI待接入，正式出牌/牌区/回合未实现。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -24,14 +24,22 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/SessionContracts.cs",
       "symbol": "QueryEventTargets"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventFlow.cs",
+      "symbol": "ResolveAllocation"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/EventSessionContracts.cs",
+      "symbol": "Allocate"
     }
   ],
   "inputs": [
     "可信初始GameState中已授权且公开的InfluenceEventExecution",
-    "固定身份会话；EventCommandEnvelope含GameId/ExpectedVersion/ExecutionId/DecisionId/完整目标"
+    "固定身份会话；EventCommandEnvelope含GameId/ExpectedVersion/ExecutionId/DecisionId及完整国家集合或CountryId/Amount分配；不接受Owner和规则额度"
   ],
   "outputs": [
-    "新玩家视图、只读候选、完成或请求选择序号、幂等事件收据"
+    "新玩家视图、只读候选/Kind/容量/有效总量、完成或请求序号、幂等事件收据"
   ],
   "dependencies": [
     "module.influence-event-planners",
@@ -46,12 +54,17 @@
   ],
   "stop_conditions": [
     "未知政策或短缺待裁定、禁止事件、错误身份/版本/实例/决策、数值溢出",
-    "未完成事件阻止普通OPS；同身份同命令ID改类型或payload冲突"
+    "未完成事件阻止普通OPS；同身份同命令ID改类型或payload冲突",
+    "分配金额/国家/顺序/kind改变但复用同ID冲突；未知种类、混合载荷、空/超128条格式拒绝且不记收据"
   ],
   "rule_sources": [
     {
       "path": "Docs/Wiki/early-influence-batch1.md",
       "scope": "已确认基础事件与受益方选择；无新裁定"
+    },
+    {
+      "path": "Docs/Wiki/early-influence-batch2.md",
+      "scope": "两牌额度分配事务，EI2-RULING-01不变"
     }
   ],
   "tests": [
@@ -66,10 +79,15 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/SessionTests.cs",
       "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/AllocationSessionTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "documentation": "Docs/Wiki/first-influence-events.md",
   "verification": {
-    "report": "Docs/Testing/influence-event-sessions.validation.json"
+    "report": "Docs/Testing/influence-event-sessions.validation.json",
+    "allocation_report": "Docs/Testing/allocation-event-sessions.validation.json"
   }
 }

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "id": "plan.allocation-event-sessions",
+  "kind": "implementation-plan",
+  "status": "implemented",
+  "description": "将数量分配接入固定身份会话与同一原子事务，保留精确载荷幂等和错误门禁；UI单独接入。",
+  "entrypoints": [],
+  "document": "Docs/Plans/2026-10-13-allocation-event-sessions.md",
+  "inputs": [
+    "可信公开InfluenceEventExecution",
+    "类型化CountryId/Amount完整分配"
+  ],
+  "outputs": [
+    "共享宿主的数量选择事务、容量查询、幂等收据和验证证据"
+  ],
+  "dependencies": [
+    "module.influence-event-sessions",
+    "module.influence-event-planners"
+  ],
+  "preconditions": [
+    "用户已授权持续编码与日常Git同步"
+  ],
+  "side_effects": [
+    "源代码、文档和测试报告"
+  ],
+  "stop_conditions": [
+    "验证或审阅失败先修复"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/early-influence-batch2.md"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Testing/allocation-event-sessions.validation.json",
+      "status": "256-passed-independent-review-passed"
+    }
+  ]
+}

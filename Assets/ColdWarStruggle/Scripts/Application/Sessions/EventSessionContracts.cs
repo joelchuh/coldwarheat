@@ -14,22 +14,33 @@ namespace ColdWarStruggle.Application
         { CommandId=commandId;GameId=gameId;ExpectedVersion=expectedVersion; }
         internal abstract bool SameContent(SessionCommand other);
     }
-    public enum EventCommandKind { Begin, Resolve }
+    public enum EventCommandKind { Begin, Resolve, ResolveAllocation }
     public sealed class EventCommandEnvelope : SessionCommand
     {
         public EventCommandKind Kind { get; }
         public string ExecutionId { get; }
         public string DecisionId { get; }
         public IReadOnlyList<CountryId> Targets { get; }
+        public IReadOnlyList<InfluenceAllocation> Allocations { get; }
         public EventCommandEnvelope(string id,string game,long version,EventCommandKind kind,string executionId,string decisionId=null,IEnumerable<CountryId> targets=null)
             : base(id,game,version)
         {
             Kind=kind;ExecutionId=executionId;DecisionId=decisionId;
             Targets=Array.AsReadOnly((targets??Enumerable.Empty<CountryId>()).Take(InfluenceEventSelection.MaxTargets+1).ToArray());
+            Allocations=Array.AsReadOnly(Array.Empty<InfluenceAllocation>());
         }
+        private EventCommandEnvelope(string id,string game,long version,string executionId,string decisionId,IEnumerable<InfluenceAllocation> allocations)
+            : base(id,game,version)
+        {
+            Kind=EventCommandKind.ResolveAllocation;ExecutionId=executionId;DecisionId=decisionId;
+            Targets=Array.AsReadOnly(Array.Empty<CountryId>());
+            Allocations=Array.AsReadOnly((allocations??Enumerable.Empty<InfluenceAllocation>()).Take(InfluenceEventSelection.MaxTargets+1).ToArray());
+        }
+        public static EventCommandEnvelope Allocate(string id,string game,long version,string executionId,string decisionId,IEnumerable<InfluenceAllocation> allocations)
+            =>new EventCommandEnvelope(id,game,version,executionId,decisionId,allocations);
         internal override bool SameContent(SessionCommand other)=>other is EventCommandEnvelope e
             && GameId==e.GameId && ExpectedVersion==e.ExpectedVersion && Kind==e.Kind && ExecutionId==e.ExecutionId
-            && DecisionId==e.DecisionId && Targets.SequenceEqual(e.Targets);
+            && DecisionId==e.DecisionId && Targets.SequenceEqual(e.Targets) && Allocations.SequenceEqual(e.Allocations);
     }
     public sealed class PublicEventView
     {
@@ -72,10 +83,15 @@ namespace ColdWarStruggle.Application
         public string DecisionId { get; }
         public int RequiredTargets { get; }
         public IReadOnlyList<CountryId> Targets { get; }
+        public InfluenceDecisionKind Kind { get; }
+        public int RequiredAmount { get; }
+        public IReadOnlyList<InfluenceAllocation> Capacities { get; }
         internal EventTargetsResult(RuleError error,PlayerSide viewer,GameState state,InfluenceEventQuery query=null)
         {
             Error=error;Version=state.Version;Viewer=viewer;ExecutionId=state.InfluenceEvent?.Id;DecisionId=state.InfluenceEvent?.DecisionId;
             RequiredTargets=query?.RequiredTargets??0;Targets=Array.AsReadOnly(query?.LegalCountries.ToArray()??Array.Empty<CountryId>());
+            Kind=query?.Kind??InfluenceDecisionKind.None;RequiredAmount=query?.RequiredAmount??0;
+            Capacities=Array.AsReadOnly(query?.Capacities.ToArray()??Array.Empty<InfluenceAllocation>());
         }
     }
 }
