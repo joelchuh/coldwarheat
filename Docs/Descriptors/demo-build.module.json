@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.demo-build",
   "kind": "module",
-  "description": "Unity编辑器构建模块：验证并同步六份权威JSON到忽略的StreamingAssets；标准Build回调也同步。提供Prepare/Play/Windows Build菜单，不执行Git。",
+  "description": "Unity编辑器构建模块：验证并同步九份权威JSON到忽略的StreamingAssets；标准Build回调也同步。提供Prepare/Play/Windows Build菜单，不执行Git。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -23,7 +23,7 @@
     }
   ],
   "inputs": [
-    "项目根目录Data与Docs/Contracts中的六份规范数据"
+    "项目根目录Data与Docs/Contracts中的九份规范数据"
   ],
   "outputs": [
     "Assets/ColdWarStruggle/Scenes/FirstDemo.unity；Builds/FirstDemo/ColdWarStruggleDemo.exe与必要同目录运行文件"
@@ -44,23 +44,33 @@
     {
       "path": "Docs/Wiki/operations.md",
       "scope": "INF-01/02/03；只有普通影响力已接入"
+    },
+    {
+      "path": "Docs/Wiki/early-influence-batch1.md",
+      "scope": "已实现五张基础事件练习"
     }
   ],
   "tests": [
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/DemoBuildTests.cs",
       "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/EventDemoCatalogTests.cs",
+      "status": "canonical-to-player-nine-json-verified"
     }
   ],
   "documentation": "Docs/Wiki/first-demo.md",
   "verification": {
     "checked_on": "2026-10-13",
-    "report": "Docs/Worklogs/2026-10-13-first-demo.md"
+    "report": "Docs/Testing/event-demo.validation.json"
   },
   "data_dependencies": [
     "rules.deluxe2015.influence_placement",
     "demo.influence_scenarios",
     "map.deluxe2015.world",
-    "map.deluxe2015.approved_profile"
+    "map.deluxe2015.approved_profile",
+    "demo.event_scenarios",
+    "effects.deluxe2015.early_influence_batch1"
   ]
 }

@@ -6,7 +6,7 @@
 
 当前已进入**首批 Unity 原型实现阶段**。仓库已整理 84 个国家及邻接、103 张基础牌的印刷定义、初始布置、回合流程、行动、计分、胜负和分批卡牌事件设计。具体参数绑定与未确认边界见[正式数据索引](Docs/Wiki/map-card-data.md)及各牌的验证报告。
 
-已创建 Unity 6000.6.0f1 工程、纯 C# 影响力规则与单窗口诊断 Demo；已增加五张基础事件与受益方选择事务，129 项真实 EditMode 测试通过；当前发布Demo界面仍为普通影响力练习。尚无可运行的完整对局。JSON 参数 `Bound` 只表示参数已登记；完整出牌处理器注册表的 102 项仍为 `planned`，五牌基础算法与人工实例事务见[实际实现](Docs/Wiki/first-influence-events.md)。有限设计检查、资料核对和实际游戏测试分别记录，未接入的组合与运行验收不视为完成。
+已创建 Unity 6000.6.0f1 工程、纯 C# 影响力规则与单窗口诊断 Demo；已增加五张基础事件与受益方选择事务，149 项真实 EditMode 测试通过；当前Windows Demo包含两项普通影响力和五项事件练习。尚无可运行的完整对局。JSON 参数 `Bound` 只表示参数已登记；完整出牌处理器注册表的 102 项仍为 `planned`，五牌基础算法与人工实例事务见[实际实现](Docs/Wiki/first-influence-events.md)。有限设计检查、资料核对和实际游戏测试分别记录，未接入的组合与运行验收不视为完成。
 
 **第一个影响力 Demo 已构建。** 本机双击 `E:\TwilightStruggle\Builds\FirstDemo\ColdWarStruggleDemo.exe`；从源码打开 Unity 后选择 **ColdWarStruggle → Play First Demo**。操作步骤、真实入口和已知限制见 [Demo 说明](Docs/Wiki/first-demo.md)。当前一个窗口、两个固定身份会话，用户可查看双方示例手牌；实际游戏渲染截图已检查；鼠标自动实测仍受窗口工具限制。详见[测试模式](Docs/Wiki/local-test-mode.md)、[首批计划](Docs/Plans/2026-10-13-core-influence-first-slice.md)及[JSON 摘要](Docs/Plans/2026-10-13-core-influence-first-slice.json)。
 

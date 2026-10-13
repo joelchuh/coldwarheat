@@ -5,7 +5,7 @@ using ColdWarStruggle.Application;
 using ColdWarStruggle.Core;
 namespace ColdWarStruggle.Presentation
 {
-    public sealed class DemoController
+    public sealed partial class DemoController
     {
         public PlayerSide SelectedSide { get; private set; }
         public CountryId SelectedCountry { get; private set; }
@@ -25,11 +25,14 @@ namespace ColdWarStruggle.Presentation
             var next=factory(id);
             if(!next.UsSession.ReadView().Countries.Any(c=>c.Definition.Id.Equals(country)))throw new ArgumentException("Unknown selection.");
             host=next;SelectedSide=side;SelectedCountry=country;generation++;legal=null;lastCommand=null;LastResult=null;
+            ResetEventInteraction(true);
         }
         public void SelectSide(PlayerSide side)
         {
             if(side!=PlayerSide.US && side!=PlayerSide.USSR)throw new ArgumentOutOfRangeException(nameof(side));
+            if(side==SelectedSide)return;
             SelectedSide=side;generation++;legal=null;LastResult=null;
+            ResetEventInteraction(false);
         }
         public void SelectCountry(CountryId country)
         { if(!ReadView().Countries.Any(c=>c.Definition.Id.Equals(country)))throw new ArgumentException("Unknown selection.");SelectedCountry=country; }

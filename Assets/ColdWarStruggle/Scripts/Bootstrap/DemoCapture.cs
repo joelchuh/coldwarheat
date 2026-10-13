@@ -41,6 +41,8 @@ namespace ColdWarStruggle.Bootstrap
             int exitCode = 1;
             try
             {
+                if (exitAfterCapture && (view == null || !view.IsReady))
+                    throw new InvalidOperationException("Demo initialization failed; refusing a successful capture of the error page.");
                 texture = ScreenCapture.CaptureScreenshotAsTexture();
                 if (texture == null || texture.width < 1 || texture.height < 1)
                     throw new InvalidOperationException("No rendered game frame is available.");

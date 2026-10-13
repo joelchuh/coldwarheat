@@ -14,10 +14,11 @@ namespace ColdWarStruggle.Infrastructure
         public PlayerSide Actor { get; }
         public CountryId SelectedCountry { get; }
         public int Ops { get; }
+        public InfluenceEffectDefinition EventDefinition { get; }
         public IReadOnlyDictionary<CountryId,CountryState> Countries { get; }
         public IReadOnlyDictionary<PlayerSide,IReadOnlyList<string>> Hands { get; }
-        internal DemoScenario(string id,string title,PlayerSide actor,CountryId selected,int ops,IReadOnlyDictionary<CountryId,CountryState> countries,IReadOnlyDictionary<PlayerSide,IReadOnlyList<string>> hands)
-        { Id=id;Title=title;Actor=actor;SelectedCountry=selected;Ops=ops;Countries=countries;Hands=hands; }
+        internal DemoScenario(string id,string title,PlayerSide actor,CountryId selected,int ops,IReadOnlyDictionary<CountryId,CountryState> countries,IReadOnlyDictionary<PlayerSide,IReadOnlyList<string>> hands,InfluenceEffectDefinition eventDefinition=null)
+        { Id=id;Title=title;Actor=actor;SelectedCountry=selected;Ops=ops;Countries=countries;Hands=hands;EventDefinition=eventDefinition; }
     }
     public sealed class DemoCatalog
     {
@@ -42,9 +43,40 @@ namespace ColdWarStruggle.Infrastructure
             var items=new List<DemoScenario>();var ids=new HashSet<string>(StringComparer.Ordinal);
             foreach(var raw in Array(data,"scenarios"))
             {
-                var s=Object(raw,"id title actor ops selected_country influence hands");var id=Text(s,"id");var title=Text(s,"title");var actor=Side(Text(s,"actor"));var ops=Int(s,"ops");
+                items.Add(ReadScenario(raw,world,rates,ids));
+            }
+            if(items.Count==0 || items.Count>20)throw new ArgumentException("Invalid demo scenario count.");
+            return new DemoCatalog(world,rates,items,dictionary);
+        }
+        public LocalGameHost CreateHost(string scenarioId)
+        {
+            var s=Scenarios.FirstOrDefault(x=>x.Id==scenarioId)??throw new ArgumentException("Unknown scenario.");
+            var ctx=OperationsContext.FromRoundStart(s.Id+".ops",s.Actor,s.Ops,Map,s.Countries,costs);
+            var gameId="demo-"+Guid.NewGuid().ToString("N");
+            var execution=s.EventDefinition==null?null:new InfluenceEventExecution(gameId+".event",s.EventDefinition,s.Actor,InfluenceEventPolicy.NoActiveInterference);
+            return new LocalGameHost(new GameState(Map,s.Countries,ctx,gameId,hands:s.Hands,influenceEvent:execution),true);
+        }
+        public DemoCatalog WithEventScenarios(string fixtures,string parameters,string parameterSchema)
+        {
+            var definitions=EarlyInfluenceCatalogLoader.Load(parameters,parameterSchema,Map);
+            var data=Object(ContractJson.Parse(fixtures),"schema_version dataset_id description scope scenarios");
+            if(Int(data,"schema_version")!=1 || Text(data,"dataset_id")!="demo.event_scenarios" || Text(data,"scope")!="fixture")
+                throw new ArgumentException("Event lessons must be explicit fixtures.");
+            var rows=Array(data,"scenarios");if(rows.Count==0 || rows.Count>20)throw new ArgumentException("Invalid event fixture count.");
+            var ids=new HashSet<string>(Scenarios.Select(s=>s.Id),StringComparer.Ordinal);var all=Scenarios.ToList();
+            foreach(var raw in rows)
+            {
+                var row=raw as JObject??throw new ArgumentException("Invalid event fixture.");
+                if(!definitions.TryGetValue(Text(row,"event_card"),out var definition))throw new ArgumentException("Unknown fixture event.");
+                all.Add(ReadScenario(row,Map,costs,ids,definition));
+            }
+            return new DemoCatalog(Map,costs,all,Names.ToDictionary(p=>p.Key,p=>p.Value,StringComparer.Ordinal));
+        }
+        static DemoScenario ReadScenario(JToken raw,MapDefinition world,InfluenceCosts rates,HashSet<string> ids,InfluenceEffectDefinition eventDefinition=null)
+        {
+                var s=Object(raw,eventDefinition==null?"id title actor ops selected_country influence hands":"id title actor ops selected_country influence hands event_card");var id=Text(s,"id");var title=Text(s,"title");var actor=Side(Text(s,"actor"));var ops=Int(s,"ops");
                 var selected=new CountryId(Text(s,"selected_country"));
-                if(!ids.Add(id) || ops<1 || ops>4 || !world.Contains(selected))throw new ArgumentException("Invalid scenario.");
+                if(!ids.Add(id) || (eventDefinition==null?(ops<1 || ops>4):ops!=0) || !world.Contains(selected))throw new ArgumentException("Invalid scenario.");
                 var countries=world.Countries.ToDictionary(c=>c.Id,c=>new CountryState(0,0));var overrides=new HashSet<CountryId>();
                 foreach(var rawPlacement in Array(s,"influence"))
                 {
@@ -59,19 +91,10 @@ namespace ColdWarStruggle.Infrastructure
                     if(list.Count>20 || list.Any(x=>x.Type!=JTokenType.String || string.IsNullOrWhiteSpace((string)x)))throw new ArgumentException("Invalid demo hands.");
                     hands.Add(side,System.Array.AsReadOnly(list.Values<string>().ToArray()));
                 }
-                var scenario=new DemoScenario(id,title,actor,selected,ops,new ReadOnlyDictionary<CountryId,CountryState>(countries),new ReadOnlyDictionary<PlayerSide,IReadOnlyList<string>>(hands));
+                var scenario=new DemoScenario(id,title,actor,selected,ops,new ReadOnlyDictionary<CountryId,CountryState>(countries),new ReadOnlyDictionary<PlayerSide,IReadOnlyList<string>>(hands),eventDefinition);
                 // Validate the whole fixture before publishing the catalog.
                 _=new GameState(world,scenario.Countries,OperationsContext.FromRoundStart(id,actor,ops,world,scenario.Countries,rates),hands:scenario.Hands);
-                items.Add(scenario);
-            }
-            if(items.Count==0 || items.Count>20)throw new ArgumentException("Invalid demo scenario count.");
-            return new DemoCatalog(world,rates,items,dictionary);
-        }
-        public LocalGameHost CreateHost(string scenarioId)
-        {
-            var s=Scenarios.FirstOrDefault(x=>x.Id==scenarioId)??throw new ArgumentException("Unknown scenario.");
-            var ctx=OperationsContext.FromRoundStart(s.Id+".ops",s.Actor,s.Ops,Map,s.Countries,costs);
-            return new LocalGameHost(new GameState(Map,s.Countries,ctx,"demo-"+Guid.NewGuid().ToString("N"),hands:s.Hands),true);
+                return scenario;
         }
         static JObject Object(JToken token,string fields)
         {

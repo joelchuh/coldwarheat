@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.demo-presentation",
   "kind": "module",
-  "description": "单窗口影响力Demo：JSON人工场景、双方操作者切换、国家分区面板、投放/重发/重置。规则由固定会话裁决；示例牌不可出牌，尚无IMapView正式实现。 显式F12或--capture-demo可导出本游戏渲染帧；不是桌面截图或游戏存档。",
+  "description": "单窗口七练习：普通影响力与五张基础事件，固定身份切换、跨地区选择草稿、完整确认/重发/重置；只读投影驱动可替换国家面板，正式IMapView仍待实现。F12/--capture-demo导出本游戏帧，--demo-scenario仅选择已知练习。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -28,10 +28,35 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Bootstrap/DemoCapture.cs",
       "symbol": "DemoCapture"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.cs",
+      "symbol": "WithEventScenarios"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Events.cs",
+      "symbol": "ToggleEventTarget"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Events.cs",
+      "symbol": "BeginEventAsync"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Events.cs",
+      "symbol": "ConfirmEventAsync"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Events.cs",
+      "symbol": "RetryEventAsync"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoLaunchOptions.cs",
+      "symbol": "ScenarioIndex"
     }
   ],
   "inputs": [
-    "正式地图与批准profile、地图Schema、演示局面、影响力费用、名称字典"
+    "正式地图与批准profile、地图Schema、演示局面、影响力费用、名称字典",
+    "事件人工场景、五牌共享参数及参数Schema"
   ],
   "outputs": [
     "只读视图驱动的Unity诊断界面"
@@ -39,7 +64,8 @@
   "dependencies": [
     "module.map-data",
     "module.influence-core",
-    "module.local-session"
+    "module.local-session",
+    "module.influence-event-sessions"
   ],
   "preconditions": [
     "Unity 6000.6.0f1，显式fixture，Windows本地运行"
@@ -55,6 +81,10 @@
     {
       "path": "Docs/Wiki/operations.md",
       "scope": "INF-01/02/03；只有普通影响力已接入"
+    },
+    {
+      "path": "Docs/Wiki/early-influence-batch1.md",
+      "scope": "已实现五张基础事件练习"
     }
   ],
   "tests": [
@@ -69,17 +99,31 @@
     {
       "path": "Docs/Worklogs/2026-10-13-demo-diagnostics.md",
       "status": "actual-player-render-verified"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/EventDemoControllerTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/EventDemoCatalogTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DemoLaunchTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "documentation": "Docs/Wiki/first-demo.md",
   "verification": {
     "checked_on": "2026-10-13",
-    "report": "Docs/Worklogs/2026-10-13-first-demo.md"
+    "report": "Docs/Testing/event-demo.validation.json"
   },
   "data_dependencies": [
     "rules.deluxe2015.influence_placement",
     "demo.influence_scenarios",
     "map.deluxe2015.world",
-    "map.deluxe2015.approved_profile"
+    "map.deluxe2015.approved_profile",
+    "demo.event_scenarios",
+    "effects.deluxe2015.early_influence_batch1"
   ]
 }

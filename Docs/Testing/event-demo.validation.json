@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "description": "七个人工场景（两普通影响力、五事件）的实际测试、构建与游戏帧检查；鼠标自动验收受窗口工具阻挡。",
+  "result": {
+    "total": "149",
+    "passed": "149",
+    "failed": "0",
+    "start-time": "2026-10-13 09:52:54Z",
+    "end-time": "2026-10-13 09:52:55Z"
+  },
+  "suites": {
+    "ColdWarStruggle.Tests.ContractReferenceTests": 14,
+    "ColdWarStruggle.Tests.DefinitionTests": 24,
+    "ColdWarStruggle.Tests.DemoBuildTests": 2,
+    "ColdWarStruggle.Tests.DemoControllerTests": 3,
+    "ColdWarStruggle.Tests.DemoLaunchTests": 5,
+    "ColdWarStruggle.Tests.DemoTests": 2,
+    "ColdWarStruggle.Tests.EventDemoCatalogTests": 8,
+    "ColdWarStruggle.Tests.EventDemoControllerTests": 7,
+    "ColdWarStruggle.Tests.EventSessionTests": 16,
+    "ColdWarStruggle.Tests.InfluenceEventFlowTests": 11,
+    "ColdWarStruggle.Tests.InfluenceEventTests": 36,
+    "ColdWarStruggle.Tests.InfluenceRulesTests": 13,
+    "ColdWarStruggle.Tests.SessionTests": 8
+  },
+  "red": [
+    {
+      "path": "TestResults/first-events/controller-red2.xml",
+      "total": 135,
+      "passed": 129,
+      "failed": 6
+    },
+    {
+      "path": "TestResults/first-events/fixtures-red.xml",
+      "total": 143,
+      "passed": 134,
+      "failed": 9,
+      "note": "8 fixture/payload failures plus one incorrect test expectation: Egypt is not an Africa-region target; fixed to Kenya."
+    },
+    {
+      "path": "TestResults/first-events/launch-red.xml",
+      "total": 147,
+      "passed": 143,
+      "failed": 4
+    },
+    {
+      "path": "TestResults/first-events/demo-review-red.xml",
+      "total": 149,
+      "passed": 147,
+      "failed": 2
+    }
+  ],
+  "green_xml": "TestResults/first-events/demo-review-green.xml",
+  "green_sha256": "7de5a565a3cfb91c6d91e60cb7953b32f5f19e1a2d35ce0ec4469c36775c74a3",
+  "build_log": "TestResults/first-events/build-demo-final.log",
+  "build_marker": "FIRST_DEMO_BUILD_SUCCEEDED 96716968",
+  "verified_payloads": [
+    {
+      "source": "Data/Maps/deluxe-2015/world.json",
+      "payload": "world.json",
+      "sha256": "6d4e20c674bd74d44cdb0f1ca66e8e960f125b3e45076d05307125a3c36ea45b"
+    },
+    {
+      "source": "Docs/Contracts/map.schema.json",
+      "payload": "map.schema.json",
+      "sha256": "8d1c4ef9f7ebb34557bb53ab37a1c102b815dc748ae446e29b7400d5eb831be5"
+    },
+    {
+      "source": "Data/Maps/deluxe-2015/world.profile.json",
+      "payload": "world.profile.json",
+      "sha256": "87388cb762d3134e684f2a8131fc8dfd6a32c18b3a7f7f281f6f866db82fe4da"
+    },
+    {
+      "source": "Data/Demo/influence-scenarios.json",
+      "payload": "influence-scenarios.json",
+      "sha256": "9c98cb7f8e18047127fe4f06bf9b65c29387be0c948724ae87f6d76e6ebc3ad7"
+    },
+    {
+      "source": "Data/Rulesets/deluxe-2015/influence-placement.json",
+      "payload": "influence-placement.json",
+      "sha256": "2762acfc9e3578668a43d6f0429252dc5deba326a1eb3f3de0c983aeb6374d72"
+    },
+    {
+      "source": "Data/Localization/en-US.catalog-names.json",
+      "payload": "names.json",
+      "sha256": "ff6cac31cd15e03f78d792843d86bc2c90f2aaa8465ba89e3829ad3d3c6cd29a"
+    },
+    {
+      "source": "Data/Demo/event-scenarios.json",
+      "payload": "event-scenarios.json",
+      "sha256": "f61eba670a44e1a62af8e27f9e9998835b4ed49763c9df0cd284a7c375be9c87"
+    },
+    {
+      "source": "Data/Cards/deluxe-2015/early-influence-batch1.parameters.json",
+      "payload": "early-influence-batch1.parameters.json",
+      "sha256": "909e9ffe13437623f5c9e055d45b7273dce9afe04de50881a6e207aa14166e75"
+    },
+    {
+      "source": "Docs/Contracts/early-influence-parameters.schema.json",
+      "payload": "early-influence-parameters.schema.json",
+      "sha256": "fe280aa3deddafc7df7fdbf0e38ce60e4d9e43b823a6f638e5ac98361c39488c"
+    }
+  ],
+  "render": {
+    "player_log": "TestResults/first-events/player-final.log",
+    "image": "Docs/Images/event-demo.png",
+    "image_sha256": "015b4785cea6e73e50ac29587420d270227a5f4e74142dc0ce2c22da32cbd923",
+    "observed": "decolonization ready screen, seven-scene navigation, Chinese text, map tabs and event controls visible",
+    "mouse_automation": "not verified; fresh window selection and one recovery both failed to activate captured window"
+  },
+  "scope_limit": "Artificial public-event instances; no full play-card/disposition/turn/AI/network workflow.",
+  "negative_render": {
+    "player_log": "TestResults/first-events/player-invalid-scenario.log",
+    "args": [
+      "--capture-demo",
+      "--demo-scenario=unknown"
+    ],
+    "exit_code": 1,
+    "new_png_count": 0,
+    "success_marker_found": false
+  },
+  "review": "Independent review: P2 capture false-success and P3 same-side draft clearing fixed; re-review passed with no new findings."
+}

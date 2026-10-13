@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "data.demo-event-scenarios",
+  "kind": "data",
+  "description": "五张基础影响力事件的人工练习局面，零OPS、无活动干预；通过event_card引用共享五牌定义，不复制事件算法或冒充正式开局。",
+  "status": "fixture",
+  "entrypoints": [
+    {
+      "path": "Data/Demo/event-scenarios.json",
+      "symbol": "scenarios"
+    }
+  ],
+  "inputs": [
+    "稳定场景ID"
+  ],
+  "outputs": [
+    "公开事件CardId、触发方、人工影响力和示例手牌"
+  ],
+  "dependencies": [
+    "effects.deluxe2015.early_influence_batch1",
+    "map.deluxe2015.world"
+  ],
+  "preconditions": [
+    "由DemoCatalog.WithEventScenarios装配，scope必须fixture",
+    "参数模板和地图数据已验证，普通练习ID与事件ID不得重复"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知卡牌/国家/身份、重复场景ID、非零事件OPS或未知字段"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/first-demo.md",
+      "scope": "工程人工练习，不是官方初始局面"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/EventDemoCatalogTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "dataset_id": "demo.event_scenarios",
+  "verification": {
+    "report": "Docs/Testing/event-demo.validation.json"
+  }
+}

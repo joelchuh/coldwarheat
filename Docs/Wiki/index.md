@@ -4,7 +4,7 @@
 
 | 知识点 | description | 状态 | 入口 |
 |---|---|---|---|
-| 首个影响力 Demo | 查运行、人工场景、影响力/会话/UI/构建模块及真实测试 | 52项EditMode通过；真实渲染已核验，鼠标实测待完成 | [first-demo.md](first-demo.md) |
+| 首个影响力 Demo | 查运行、人工场景、影响力/会话/UI/构建模块及真实测试 | 149项EditMode通过；七场景真实构建，鼠标实测待完成 | [first-demo.md](first-demo.md) |
 | 单人双边测试与首批计划 | 查一个客户端、两方身份、调试观察和正常信息过滤，以及首批核心任务 | 首批影响力已实现 | [模式说明](local-test-mode.md) · [计划](../Plans/2026-10-13-core-influence-first-slice.md) · [JSON](../Plans/2026-10-13-core-influence-first-slice.json) |
 | 游戏实现与可替换地图接口 | 查整体分层、地图输入输出、状态面板和首批影响力闭环 | 首批子集已实现；完整地图接口待接入 | [接口提案](../Design/implementation-architecture.proposal.md) · [JSON](../Design/implementation-architecture.proposal.json) |
 | 编码前方向讨论 | 比较第一版交付顺序、统一状态、占位地图与数据边界 | 方向已认可；首批已实现 | [coding-direction-discussion.md](../Design/coding-direction-discussion.md) · [JSON](../Design/coding-direction-discussion.json) |
@@ -20,7 +20,7 @@
 | 审阅基线导出 | 查干净HEAD、受跟踪工作字节、新目标、SHA清单与失败边界 | 工作流工具；游戏实现未开始 | [export-review-baseline.md](export-review-baseline.md) |
 | 工作流策略 JSON | 快速定位结构化开发约定和描述契约 | 已采用 | [workflow-policy.json](../Workflow/workflow-policy.json) |
 | 游戏模块设计 | 查找大模块、规则子模块、命令流程、换画风边界与验收顺序 | 总体设计；首批影响力已实现 | [architecture.md](architecture.md) |
-| 首批事件C#规划 | 查五牌真实算法、选择校验、参数加载与后续事务接入 | 纯规划与宿主决策已实现；129项总回归通过 | [first-influence-events.md](first-influence-events.md) |
+| 首批事件C#规划 | 查五牌真实算法、选择校验、参数加载与后续事务接入 | 纯规划与宿主决策已实现；149项总回归通过，事件UI已接入 | [first-influence-events.md](first-influence-events.md) |
 | 早期影响力事件第一批 | 查5牌参数、复用原语、受益方选择和事务继续机制 | 五牌基础C#与选择事务已实现；跨卡干预待实现/核实 | [early-influence-batch1.md](early-influence-batch1.md) |
 | 早期影响力事件第二批 | 查总额度/每国上限、东欧动荡时代量、铁娘子禁止与用户确认的短缺策略 | 3牌参数已绑定；C#待实现 | [early-influence-batch2.md](early-influence-batch2.md) |
 | 早期影响力事件第三批 | 查独立红色政权追平、经互会敌控筛选与候选不足边界 | 2牌参数已绑定；C#待实现 | [early-influence-batch3.md](early-influence-batch3.md) |
@@ -75,7 +75,7 @@
 | 地图布局与未定画风 | 区分规则图、位置拾取和主题资源，了解2D/3D接入边界 | 设计稿；未选定美术 | [map-presentation.md](map-presentation.md) |
 | 数据结构契约目录 | 按description定位五十三份JSON Schema（含事件参数、setup及卡牌v1/v2）与合成样例 | 结构契约；不是完整规则包 | [catalog.json](../Contracts/catalog.json) |
 | 模块描述目录 | 先按 description 定位模块，再读完整契约与相关代码 | 28模块：6已实现、地图1子集、21仍planned | [catalog.json](../Descriptors/catalog.json) |
-| 共享规则数据目录 | 查找数据集描述、来源与独立参数文件 | 59数据集；新增费用、Demo场景与地图批准profile | [catalog.json](../../Data/catalog.json) |
+| 共享规则数据目录 | 查找数据集描述、来源与独立参数文件 | 60数据集；含费用、两类Demo场景与地图批准profile | [catalog.json](../../Data/catalog.json) |
 | 行动规则 | 查找影响力、政变、调整、预算、对象契约与验收案例 | 影响力子集已实现；政变/调整待实现 | [operations.md](operations.md) |
 | 规则资料 | 查找版本来源、FAQ 适用边界和资料冻结缺口 | 已登记；未完整冻结 | [rules-sources.md](rules-sources.md) |
 | 工程边界 | 查找纯 C# 核心、命令、事件、玩家视角、确定性和程序集约束 | 实际分层与后续设计边界 | [AGENTS.md](../../AGENTS.md) |

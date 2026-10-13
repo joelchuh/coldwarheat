@@ -1,6 +1,6 @@
 # 首批影响力事件的实际实现
 
-description: 定位五牌类型化参数、纯效果规划、选择和测试；纯Core规划和宿主等待事务已实现，事件演示尚待接入。
+description: 定位五牌类型化参数、纯效果规划、选择和测试；纯Core规划和宿主等待事务已实现，事件演示已接入。
 
 先读 [模块描述](../Descriptors/influence-event-planners.module.json)，需要规则含义再读 [早期第一批](early-influence-batch1.md)。参数事实仅来自 `Data/Cards/deluxe-2015/early-influence-batch1.parameters.json`；正式卡牌注册表仍为 planned，不能据此开启完整 RulePack。
 
@@ -36,7 +36,7 @@ flowchart LR
 
 实际运行和XML摘要见 [验证报告](../Testing/first-influence-events.validation.json)。规则测试在 `Tests/EditMode/InfluenceEventTests.cs`，契约回归在 `ContractReferenceTests.cs`。涵盖完整选择、错误身份和版本、溢出整体失败、零变化、无OPS成本及只读结果。
 
-宿主事务已按实施计划任务2实现，见下节。下一步为任务3的人工事件练习。纯Plan及可信事件实例仍不等于正式出牌/弃牌/移出，玩家不能上传任意效果定义。
+宿主事务已按实施计划任务2实现，见下节。任务3的人工事件练习已接入，参见first-demo.md。纯Plan及可信事件实例仍不等于正式出牌/弃牌/移出，玩家不能上传任意效果定义。
 
 ## 同一宿主的事件事务
 

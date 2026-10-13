@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "dataset_id": "demo.event_scenarios",
+  "description": "五张基础影响力事件的人工练习，零OPS、无持续干预；不是正式开局或手牌出牌。规则事实通过event_card引用共享参数。",
+  "scope": "fixture",
+  "scenarios": [
+    {
+      "id": "demo.event.fidel", "title": "菲德尔 / 清除后补控制", "actor": "US", "ops": 0,
+      "event_card": "card.fidel", "selected_country": "country.cuba",
+      "influence": [{"country_id":"country.cuba","us":5,"ussr":1}],
+      "hands": {"US":["测试牌 US-A"],"USSR":["测试牌 USSR-A"]}
+    },
+    {
+      "id": "demo.event.romanian_abdication", "title": "罗马尼亚退位 / 复用控制效果", "actor": "US", "ops": 0,
+      "event_card": "card.romanian_abdication", "selected_country": "country.romania",
+      "influence": [{"country_id":"country.romania","us":4,"ussr":6}],
+      "hands": {"US":["测试牌 US-A"],"USSR":["测试牌 USSR-A"]}
+    },
+    {
+      "id": "demo.event.nasser", "title": "纳赛尔 / 奇数影响力取整", "actor": "US", "ops": 0,
+      "event_card": "card.nasser", "selected_country": "country.egypt",
+      "influence": [{"country_id":"country.egypt","us":5,"ussr":1}],
+      "hands": {"US":["测试牌 US-A"],"USSR":["测试牌 USSR-A"]}
+    },
+    {
+      "id": "demo.event.truman_doctrine", "title": "杜鲁门主义 / 未控制国选择", "actor": "USSR", "ops": 0,
+      "event_card": "card.truman_doctrine", "selected_country": "country.france",
+      "influence": [{"country_id":"country.france","us":1,"ussr":2},{"country_id":"country.east_germany","us":0,"ussr":3}],
+      "hands": {"US":["测试牌 US-A"],"USSR":["测试牌 USSR-A"]}
+    },
+    {
+      "id": "demo.event.decolonization", "title": "去殖民化 / 跨地区完整选择", "actor": "US", "ops": 0,
+      "event_card": "card.decolonization", "selected_country": "country.angola",
+      "influence": [{"country_id":"country.vietnam","us":5,"ussr":0}],
+      "hands": {"US":["测试牌 US-A"],"USSR":["测试牌 USSR-A"]}
+    }
+  ]
+}
