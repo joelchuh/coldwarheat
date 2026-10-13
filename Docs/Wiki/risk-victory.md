@@ -1,7 +1,7 @@
 # DEFCON、军事行动与胜负服务设计 v0.1
 
 > description: 定位 DEFCON 目标限制、核战责任、军事行动记账、回合末审核和终局检查点；包含双方面临扣留计分牌的裁定矩阵。
-> 状态：2026-09-22 设计稿；没有 C# 实现、运行测试或完整规则包。RV-H-11已于2026-09-22由用户确认，新版条款优先判USSR胜。
+> 状态：2026-10-13，DEFCON基础纯服务与数据加载已实现并通过840项回归；军事行动/胜负及完整编排仍为设计，完整规则包未实现。RV-H-11采用用户确认的新版条款优先，判USSR胜。
 > 检索：[模块目录](../Descriptors/catalog.json) → 对应 description → 本文相关节 → planned_entrypoints。参数见[数据目录](../../Data/catalog.json)，案例见[risk-victory.cases.json](../Design/risk-victory.cases.json)。
 
 ## 1. 服务边界
@@ -10,7 +10,7 @@
 
 相比把全部判断塞入 TurnFlow，拆分后可以单独验证风险和分数；相比可执行 JSON 规则解释器，具名服务更容易追踪责任和调试。JSON 只保存参数、裁定记录与契约，不能写入任意表达式驱动游戏。
 
-| 服务（均待实现） | 输入 → 输出 | 不负责的事项 |
+| 服务（DEFCON基础子集已实现，其余待实现） | 输入 → 输出 | 不负责的事项 |
 |---|---|---|
 | DefconService.CheckRestriction / PlanChange | 行动类型、目标规则标签、来源授权、当前 DEFCON、责任上下文 → 允许/拒绝原因，或轨道变更与 NuclearWar 信号 | 骰子、影响力计算、直接宣布任意玩家胜负 |
 | MilitaryOperationsService.PlanCredit / AssessTurnEnd | 经规则计算的军事行动信用、双方累计、期末 DEFCON → 新累计或双方缺额与净 VP 批次 | 用印刷 OPS 猜奖励、读取卡名、提前宣布胜利 |
@@ -157,3 +157,26 @@ TurnFlow 调用结果服务，不解析原文或根据文件顺序挑规则。�
 [战争游戏的结束候选](wargames.md)：使用给对手6VP后的完整结果，不执行最终计分与回合末审计；GiveSixAndEnd恰零按2026-10-13用户确认解释判Draw；GiveSixAndContinue恰零仍继续。
 
 [WWBY与U2奖分批次](deferred-vp-events-batch1.md)：WWBY3VP先于美国事件VP，不净额合并；即时核战与延后奖分分开。
+
+
+## 当前可调用：DEFCON基础子集
+
+先读[defcon模块JSON](../Descriptors/defcon.module.json)，再定位DefconDefinition、DefconState、DefconService.CheckRestriction/PlanChange与DefconDefinitionLoader.LoadSubset。完整事件资格、ExceptionGrant和命令提交仍按上文设计等待接入，不能把本节扩张成完整政变实现。
+
+定义保存地图引用、共享轨道参数、受限动作和各级地区表。集合复制且只读；非核战等级须完整、最高等级无限制、等级下降不能减少限制。目标从绑定Map按CountryId查询，匹配Region与Subregions，因此东南亚受亚洲限制，加拿大按规则属于欧洲；地图画面位置不参与判断。基础Allowed只表示通过这一地理检查，不能跳过条约、目标影响力、OPS、卡牌拦截等条件。
+
+PlanChange支持回合改善、战场政变降级、单格改善/降级及明确目标SetLevel。前两者读共享步长；单格方法的1是操作语义。合法改善封顶，下降到核战位置返回NuclearWar信号；任何下降必须给PhasingPlayer，未知侧拒绝，已核战不能用改善救回。服务不自己猜Actor/EffectController，不直接宣告胜者，也不扣OPS、掷骰或移动卡牌。
+
+~~~mermaid
+flowchart LR
+ A[共享DEFCON JSON + 审核Map] --> B[严格LoadSubset]
+ B --> C[不可变定义与DefconState]
+ C --> D[基础地理检查]
+ C --> E[PlanChange + 权威责任方]
+ E --> F[新轨道与核战信号]
+ F --> G[未来整笔事务与Victory编排]
+~~~
+
+加载器严格拒绝未知根/来源字段、版本、动作、非整数、重复JSON键、非规范等级键与未知规则地区。最多64个非核战等级是工程输入界限，不是桌游规则数值。源文件保持原0.2.0及region_binding_status兼容标记，后者不表示完整RulePack已认证。
+
+此批46个纯服务案例及32个加载案例加入既有回归，最终840/840、零跳过，详见[实际报告](../Testing/defcon-core.validation.json)和[工作记录](../Worklogs/2026-10-13-defcon-core.md)。RV-D-02的步骤去重、RV-D-05/10的例外、RV-D-06/07/08的完整终局/政变编排仍待验证；不能把基础信号测试冒称全案例通过。此批未改Demo入口或重建播放器。

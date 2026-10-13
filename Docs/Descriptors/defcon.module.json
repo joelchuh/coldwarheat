@@ -2,11 +2,9 @@
   "schema_version": 1,
   "id": "module.defcon",
   "kind": "module",
-  "description": "查询政变/调整地理门禁、生成DEFCON变更和核战责任信号；只读设计契约，尚不可调用。",
-  "status": "planned",
-  "entrypoints": [],
-  "documentation": "Docs/Wiki/risk-victory.md",
-  "planned_entrypoints": [
+  "description": "已实现DEFCON基础地理门禁、不可变轨道与责任明确的核战信号；共享JSON加载子集可调用，卡牌例外/完整政变/胜负与UI接线仍待实现。",
+  "status": "implemented",
+  "entrypoints": [
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/DefconService.cs",
       "symbol": "CheckRestriction"
@@ -14,47 +12,49 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/DefconService.cs",
       "symbol": "PlanChange"
-    }
-  ],
-  "inputs": [
-    "已验证行动、目标地区、例外授权、当前DEFCON与责任上下文",
-    "不可变规则定义及版本绑定"
-  ],
-  "outputs": [
-    "RestrictionResult或DefconChangePlan"
-  ],
-  "dependencies": [
-    {
-      "path": "Docs/Wiki/turn-flow.md",
-      "relation": "由编排层调用；无服务互调环"
     },
     {
-      "path": "Docs/Wiki/operations.md",
-      "relation": "接收已验证预算及动作上下文"
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/DefconDefinition.cs",
+      "symbol": "DefconDefinition"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/DefconDefinition.cs",
+      "symbol": "DefconState"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DefconDefinitionLoader.cs",
+      "symbol": "LoadSubset"
     }
+  ],
+  "documentation": "Docs/Wiki/risk-victory.md",
+  "planned_entrypoints": [],
+  "inputs": [
+    "审核MapDefinition与defcon.json基础参数",
+    "DefconState、动作类型与目标CountryId",
+    "具名变更原因；所有下降须权威PhasingPlayer；SetLevel须合法目标"
+  ],
+  "outputs": [
+    "DefconRestrictionResult仅基础地理允许/拒绝，非完整行动授权",
+    "DefconChangePlan含Before/After、变更种类、核战信号和PhasingPlayer"
+  ],
+  "dependencies": [
+    "module.map-data"
   ],
   "data_dependencies": [
     "rules.deluxe2015.defcon",
-    "map.deluxe2015.world",
-    "effects.deluxe2015.treaty_protection",
-    "effects.deluxe2015.event_operations_batch1",
-    "effects.deluxe2015.defcon_events_batch1",
-    "effects.deluxe2015.defcon_vp_events"
+    "map.deluxe2015.world"
   ],
   "preconditions": [
-    "权威事务及身份验证",
-    "相关规则、卡牌处理器及正式数据齐备",
-    "当前为设计，尚无可调用实现"
+    "可信内部调用，数据与规则地图已审核",
+    "事件来源资格、根责任构造与会话身份由未来外围编排保证；本服务无客户端授权入口"
   ],
   "side_effects": [
-    "服务本身规划为纯计算；结果经RuleEngine提交后改变权威对局"
+    "纯计算；不修改输入、GameState、随机状态或文件；尚不发布GameEnded"
   ],
   "stop_conditions": [
-    "已终局",
-    "缺少责任、正式数据或卡牌处理器",
-    "未解决裁定",
-    "不匹配的规则/状态版本",
-    "不合法检查点"
+    "未知版本/来源/字段/动作/地区或不完整等级表拒绝",
+    "损坏等级、缺失下降责任、未知玩家或SetLevel参数错误拒绝",
+    "已核战不能改善救回；地理豁免与其它行动门禁未实现，不得据Allowed绕过"
   ],
   "rule_sources": [
     {
@@ -96,16 +96,33 @@
     {
       "path": "Docs/Design/defcon-vp-events.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DefconTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DefconLoaderTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "verification": {
-    "implementation_tested": false,
-    "latest_design_report": "Docs/Design/defcon-vp-events.validation.json"
+    "implementation_tested": true,
+    "latest_design_report": "Docs/Design/defcon-vp-events.validation.json",
+    "latest_runtime_report": "Docs/Testing/defcon-core.validation.json"
   },
   "open_items": [
-    "正式国家/卡牌目录与逐卡策略"
+    "权威GameState/命令/去重与完整胜负接线",
+    "条约保护/卡牌地理或降级例外/完整政变事务",
+    "对应完整RV-D案例仍须编排层验证，当前仅基础服务"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:defcon-events-batch1:1"
+  ],
+  "planned_data_dependencies": [
+    "effects.deluxe2015.treaty_protection",
+    "effects.deluxe2015.event_operations_batch1",
+    "effects.deluxe2015.defcon_events_batch1",
+    "effects.deluxe2015.defcon_vp_events"
   ]
 }

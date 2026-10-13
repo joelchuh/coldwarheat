@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "data.defcon",
   "kind": "data",
-  "description": "DEFCON 初值、上下限、每回合恢复和政变/调整地区限制；不含逐卡例外。",
+  "description": "DEFCON初值、上下限、回合改善与政变/调整地区表；已由DefconDefinitionLoader基础子集消费，不含逐卡例外。",
   "status": "ready",
   "dataset_id": "rules.deluxe2015.defcon",
   "entrypoints": [
@@ -45,14 +45,19 @@
     {
       "path": "Docs/Design/risk-victory.cases.json",
       "status": "planned"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DefconLoaderTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "verification": {
-    "checked_on": "2026-09-28",
-    "runtime_consumers_tested": false
+    "checked_on": "2026-10-13",
+    "runtime_consumers_tested": true,
+    "latest_report": "Docs/Testing/defcon-core.validation.json"
   },
   "validation": {
-    "schema_status": "无通用JSON Schema；本次用字段、领域和引用断言校验",
+    "schema_status": "无通用JSON Schema；运行加载器执行有界解析、封闭字段/来源/版本与不可变领域约束",
     "constraints": [
       "稳定ID唯一",
       "数值为符合领域的整数",

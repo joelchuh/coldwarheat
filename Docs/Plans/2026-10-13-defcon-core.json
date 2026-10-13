@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "id": "plan.defcon-core",
+  "kind": "implementation-plan",
+  "status": "implemented-verified",
+  "description": "实现独立DEFCON基础地理门禁、轨道规划与核战责任信号；读取共享数据，尚不接完整政变/胜负/UI。",
+  "entrypoints": [],
+  "inputs": [
+    "Docs/Wiki/risk-victory.md 第1–3节",
+    "rules.deluxe2015.defcon",
+    "已审核MapDefinition"
+  ],
+  "outputs": [
+    "纯不可变定义与服务",
+    "严格数据加载子集与真实测试证据"
+  ],
+  "dependencies": [
+    "module.map-data",
+    "module.defcon"
+  ],
+  "preconditions": [
+    "用户持续编码/Git已授权",
+    "不推断未核实卡牌例外"
+  ],
+  "side_effects": [
+    "代码/测试/描述/知识库与Git同步"
+  ],
+  "stop_conditions": [
+    "未知版本/来源/地图标签/状态拒绝",
+    "缺少下降责任拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/risk-victory.md"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Testing/defcon-core.validation.json",
+      "status": "840-passed"
+    }
+  ],
+  "document": "Docs/Plans/2026-10-13-defcon-core.md"
+}
