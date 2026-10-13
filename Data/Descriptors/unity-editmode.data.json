@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "data.unity-editmode",
+  "kind": "data",
+  "status": "ready",
+  "dataset_id": "workflow.unity_editmode",
+  "description": "Unity验证工作流的共享技术配置：EditMode平台、项目测试命名空间、输出根及XML/用例上限；不含游戏规则数值。",
+  "entrypoints": [
+    {
+      "path": "Tools/Configuration/unity-editmode.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [],
+  "outputs": [
+    "固定字段技术配置；生产脚本和合成测试读取同一文件。"
+  ],
+  "dependencies": [
+    "script.run-unity-editmode"
+  ],
+  "preconditions": [
+    "schema_version=1，仅允许八个已知字段，无重复键。"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知/缺失/重复字段、类型错误、输出逃逸、超出技术硬上限。"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Workflow/workflow-policy.json",
+      "scope": "工程配置"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Tools/Tests/run-unity-editmode.tests.ps1",
+      "status": "passed"
+    }
+  ],
+  "verification": {
+    "report": "Docs/Testing/unity-verification-workflow.validation.json"
+  }
+}

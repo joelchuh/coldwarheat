@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "kind": "script",
+  "status": "ready",
+  "documentation": "Docs/Wiki/unity-verification-workflow.md",
+  "runtime": {
+    "powershell_minimum": "7.0",
+    "tested_platform": "Windows",
+    "tested_powershell": "7.6.5"
+  },
+  "id": "script.run-unity-editmode",
+  "description": "预览或运行可信本地Unity项目的EditMode测试：版本匹配、全新输出目录、真实XML计数；失败保留证据，不覆盖旧结果、不自动Git或重试。",
+  "entrypoints": [
+    {
+      "path": "Tools/Scripts/run-unity-editmode.ps1",
+      "symbol": null
+    },
+    {
+      "path": "Tools/Scripts/unity-editmode-support.psm1",
+      "symbol": "New-UnityVerificationPlan"
+    },
+    {
+      "path": "Tools/Scripts/unity-editmode-support.psm1",
+      "symbol": "Read-UnityTestResult"
+    }
+  ],
+  "inputs": [
+    "ProjectRoot：可信本地Unity项目根绝对路径，非盘根，无重解析点。",
+    "UnityEditor：可信Unity.exe绝对路径，产品版本和修订须与ProjectVersion一致。",
+    "RunId：1–64字符小写字母/数字/连字符，首字母或数字，拒绝设备名；对应输出不得存在。",
+    "TimeoutSeconds：30–1800秒，默认180。Preview：只读计划，退出0不代表测试通过。"
+  ],
+  "outputs": [
+    "预览JSON status=preview；实际运行JSON status=passed/failed。",
+    "新TestResults/UnityRuns/<RunId>目录中的results.xml、editor.log和summary.json；预检失败不创建目录。",
+    "实际退出0须进程退出0且全部真实test-case Passed、根计数一致；其余退出1。"
+  ],
+  "dependencies": [
+    "Unity Editor及项目Unity Test Framework",
+    "Tools/Scripts/unity-editmode-support.psm1"
+  ],
+  "data_dependencies": [
+    "workflow.unity_editmode"
+  ],
+  "preconditions": [
+    "Windows PowerShell 7，本地Fixed盘；调用者确认物理本地存储。",
+    "可信项目/Editor/配置；Unity会执行项目代码，工具不是不可信代码沙箱。",
+    "路径、祖先、配置、项目及输出在调用期间无并发替换。",
+    "实际运行无已有Unity Editor进程；有则拒绝，不主动关闭。",
+    "实际Unity许可及项目写入由宿主授权；描述本身不授予权限。"
+  ],
+  "side_effects": [
+    "Preview无写入。",
+    "真实运行创建新输出，Unity会导入项目、写Library/Temp/meta并可能使用许可服务。",
+    "超时只Kill本次创建的Unity进程，不关闭共享许可服务或整棵进程树。",
+    "不自动Git、网络命令、清理、重试或在旧结果目录续写。"
+  ],
+  "stop_conditions": [
+    "路径/配置/版本不合法，旧输出存在，已有Unity Editor。",
+    "Unity启动失败、超时或非零退出。",
+    "XML缺失/损坏/DTD/过大/零用例/重复ID/陌生测试前缀/计数矛盾/非全部通过。",
+    "IO异常；保留本次已写产物，换新RunId处理，不能将失败当成功。"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Workflow/workflow-policy.json",
+      "scope": "项目工程约定，不是桌游规则"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Tools/Tests/run-unity-editmode.tests.ps1",
+      "status": "passed",
+      "count": 31
+    },
+    {
+      "path": "TestResults/UnityRuns/workflow-integration-01/summary.json",
+      "status": "passed-real-unity",
+      "game_tests": 149
+    }
+  ],
+  "verification": {
+    "report": "Docs/Testing/unity-verification-workflow.validation.json",
+    "independent_review": "passed-after-scalar-type-fix",
+    "real_unity_timeout_tested": false,
+    "host_force_termination_cleanup_guaranteed": false
+  },
+  "scriptification_evidence": {
+    "condition": "repeated_workflow",
+    "observed_occurrences": 4,
+    "expected_future_reuse": true,
+    "stable_inputs_outputs_and_steps": true,
+    "contexts": [
+      {
+        "worklog": "Docs/Worklogs/2026-10-13-first-demo.md",
+        "commit": "08fad628a404202536aab05bf222ad54529140b9"
+      },
+      {
+        "worklog": "Docs/Worklogs/2026-10-13-first-influence-event-planners.md",
+        "commit": "f116a2a6777cf6cab87851aea2f00cc8522f1e91"
+      },
+      {
+        "worklog": "Docs/Worklogs/2026-10-13-influence-event-sessions.md",
+        "commit": "59ac3c61277d6a74b7f2fbb567bdf34d163d36d2"
+      },
+      {
+        "worklog": "Docs/Worklogs/2026-10-13-event-demo.md",
+        "commit": "df05359c369c4a4c0de7661a0161eb269798d750"
+      }
+    ],
+    "scope_note": "四个独立实际批次；没有将同一失败的重试计为复用。"
+  }
+}

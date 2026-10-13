@@ -77,3 +77,5 @@ planned 状态的描述只能用于规划；entrypoints 不得指向尚不存在
 已固化[只读设计快照核验](design-snapshot-verifier.md)，JSON描述先行，报告作为共享查找输入；四个独立批次的复用依据见scriptification_evidence。逐卡临时模型没有因此变成正式工具。
 
 已固化[审阅基线导出](export-review-baseline.md)，四次独立实际复用依据见导出描述；真实工具测试与独立完成稿审阅分别记录，不并入规则检查数。
+
+已固化[Unity EditMode验证](unity-verification-workflow.md)，四批实际复用后建立预览/全新结果/真实XML核验入口；脚本31项与游戏149项分开记录。

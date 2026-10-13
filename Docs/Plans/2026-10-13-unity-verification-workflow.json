@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "id": "plan.unity-verification-workflow",
+  "kind": "implementation-plan",
+  "status": "implemented",
+  "description": "将四个独立批次已复用的Unity EditMode执行和XML核验固化为有界脚本：版本/路径检查、只读预览、新目录、真实用例计数，不自动Git或重试。",
+  "document": "Docs/Plans/2026-10-13-unity-verification-workflow.md",
+  "entrypoints": [],
+  "inputs": [
+    "用户已确认脚本化策略",
+    "四批真实Unity验证记录"
+  ],
+  "outputs": [
+    "工作脚本、共享配置、描述、实际脚本与游戏验证记录"
+  ],
+  "dependencies": [
+    "Docs/Workflow/workflow-policy.json"
+  ],
+  "preconditions": [
+    "Windows PowerShell 7，可信项目与已安装Editor"
+  ],
+  "side_effects": [
+    "实施源码和知识库；实际Unity验证需本地进程和项目写入权限"
+  ],
+  "stop_conditions": [
+    "不满足路径/版本/输出边界",
+    "测试或独立审查失败",
+    "可读取额度接近剩余10%时收尾"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Workflow/workflow-policy.json"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Testing/unity-verification-workflow.validation.json",
+      "status": "passed"
+    }
+  ]
+}

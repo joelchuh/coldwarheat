@@ -16,7 +16,8 @@
 | Star Wars | 查公开弃牌、空池解释与有限子事件 | 1牌参数Bound；消费者运行待实现 | [star-wars.md](star-wars.md) |
 | 嵌套出牌下一步计划 | 查Star Wars、Grain Sales、Missile Envy及Draw兼容审计顺序 | 分批设计；三牌参数已绑定；全部运行服务待实现 | [nested-card-sources.md](nested-card-sources.md) |
 | 开发工作流与共享数据 | 查找模块/脚本 JSON 描述、脚本化条件、共享数据与执行边界 | 已采用；只读核验工具就绪，其他自动化待实现 | [workflow-and-data.md](workflow-and-data.md) |
-| 正式脚本目录 | 按description找快照核验、审阅基线导出及对应测试 | 4正式脚本；生产工具不写Git，测试只写新建合成Git | [catalog.json](../../Tools/Descriptors/catalog.json) |
+| 正式脚本目录 | 按description找快照核验、审阅基线导出及对应测试 | 6正式脚本；含有界Unity验证，均不自动Git同步 | [catalog.json](../../Tools/Descriptors/catalog.json) |
+| Unity验证工作流 | 查版本校验、预览、新输出、XML真实计数与失败保留 | 31脚本测试与149游戏测试通过；独立复审通过 | [unity-verification-workflow.md](unity-verification-workflow.md) |
 | 审阅基线导出 | 查干净HEAD、受跟踪工作字节、新目标、SHA清单与失败边界 | 工作流工具；游戏实现未开始 | [export-review-baseline.md](export-review-baseline.md) |
 | 工作流策略 JSON | 快速定位结构化开发约定和描述契约 | 已采用 | [workflow-policy.json](../Workflow/workflow-policy.json) |
 | 游戏模块设计 | 查找大模块、规则子模块、命令流程、换画风边界与验收顺序 | 总体设计；首批影响力已实现 | [architecture.md](architecture.md) |
@@ -75,7 +76,7 @@
 | 地图布局与未定画风 | 区分规则图、位置拾取和主题资源，了解2D/3D接入边界 | 设计稿；未选定美术 | [map-presentation.md](map-presentation.md) |
 | 数据结构契约目录 | 按description定位五十三份JSON Schema（含事件参数、setup及卡牌v1/v2）与合成样例 | 结构契约；不是完整规则包 | [catalog.json](../Contracts/catalog.json) |
 | 模块描述目录 | 先按 description 定位模块，再读完整契约与相关代码 | 28模块：6已实现、地图1子集、21仍planned | [catalog.json](../Descriptors/catalog.json) |
-| 共享规则数据目录 | 查找数据集描述、来源与独立参数文件 | 60数据集；含费用、两类Demo场景与地图批准profile | [catalog.json](../../Data/catalog.json) |
+| 共享规则数据目录 | 查找数据集描述、来源与独立参数文件 | 61数据集；含规则数据、Demo、地图profile及Unity验证技术配置 | [catalog.json](../../Data/catalog.json) |
 | 行动规则 | 查找影响力、政变、调整、预算、对象契约与验收案例 | 影响力子集已实现；政变/调整待实现 | [operations.md](operations.md) |
 | 规则资料 | 查找版本来源、FAQ 适用边界和资料冻结缺口 | 已登记；未完整冻结 | [rules-sources.md](rules-sources.md) |
 | 工程边界 | 查找纯 C# 核心、命令、事件、玩家视角、确定性和程序集约束 | 实际分层与后续设计边界 | [AGENTS.md](../../AGENTS.md) |

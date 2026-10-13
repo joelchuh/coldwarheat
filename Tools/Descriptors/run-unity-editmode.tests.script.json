@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "kind": "script",
+  "status": "ready",
+  "documentation": "Docs/Wiki/unity-verification-workflow.md",
+  "runtime": {
+    "powershell_minimum": "7.0",
+    "tested_platform": "Windows",
+    "tested_powershell": "7.6.5"
+  },
+  "id": "script.test-unity-editmode",
+  "description": "在全新自有目录验证Unity验证工具的路径、版本、XML计数和真实预览/旧输出拒绝入口；不启动Unity，不写Git，保留测试产物。",
+  "entrypoints": [
+    {
+      "path": "Tools/Tests/run-unity-editmode.tests.ps1",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "UnityEditor：项目匹配的本地Unity.exe，仅读取版本。",
+    "FixtureRoot：全新绝对目录；默认系统临时目录内随机子目录。"
+  ],
+  "outputs": [
+    "stdout及FixtureRoot/summary.json测试数与单例结果；全部通过退出0，否则1。"
+  ],
+  "dependencies": [
+    "script.run-unity-editmode"
+  ],
+  "data_dependencies": [
+    "workflow.unity_editmode"
+  ],
+  "preconditions": [
+    "Windows PowerShell 7；可在自有目录创建junction以验证拒绝行为。",
+    "FixtureRoot及祖先无重解析点、无并发变动且尚不存在。"
+  ],
+  "side_effects": [
+    "创建合成项目、XML、junction和报告并全部保留；junction目标也在本次自有目录。",
+    "启动PowerShell子进程执行Preview或已有输出拒绝分支，不启动Unity。"
+  ],
+  "stop_conditions": [
+    "FixtureRoot已存在/路径无效/祖先为链接。",
+    "任意测试失败或入口子进程15秒超时。"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Workflow/workflow-policy.json"
+    }
+  ],
+  "tests": [
+    {
+      "path": "TestResults/unity-workflow-tests-review-green/summary.json",
+      "count": 31,
+      "status": "passed"
+    }
+  ],
+  "verification": {
+    "report": "Docs/Testing/unity-verification-workflow.validation.json"
+  },
+  "scriptification_evidence": {
+    "condition": "companion_tests",
+    "production_descriptor": "Tools/Descriptors/run-unity-editmode.script.json"
+  }
+}

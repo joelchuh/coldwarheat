@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "description": "脚本测试与实际Unity游戏测试分别记录；不声称未执行的超时或强制退出分支通过。",
+  "result": "passed",
+  "script_tests": {
+    "red": {
+      "path": "TestResults/unity-workflow-tests-red-native/summary.json",
+      "total": 24,
+      "passed": 0,
+      "failed": 24
+    },
+    "green": {
+      "path": "TestResults/unity-workflow-tests-review-green/summary.json",
+      "total": 31,
+      "passed": 31,
+      "failed": 0
+    },
+    "review_red": {
+      "path": "TestResults/unity-workflow-tests-review-red/summary.json",
+      "total": 31,
+      "passed": 27,
+      "failed": 4
+    }
+  },
+  "unity_integration": {
+    "status": "passed",
+    "error_code": null,
+    "total": 149,
+    "passed": 149,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0,
+    "unity_exit_code": 0,
+    "xml_sha256": "d9dc60b008eae44f72b8c8c429181b82329be6f2bd7bcd71c1606b860e72923a",
+    "schema_version": 1,
+    "run_id": "workflow-integration-01",
+    "duration_ms": 7918,
+    "project": "E:\\TwilightStruggle",
+    "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+    "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+    "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\workflow-integration-01",
+    "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\workflow-integration-01\\results.xml",
+    "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\workflow-integration-01\\editor.log"
+  },
+  "repeat_existing_run": {
+    "exit_code": 1,
+    "error_code": "OUTPUT_ALREADY_EXISTS",
+    "files_unchanged": true,
+    "checked_files": 3
+  },
+  "independent_review": "passed-after-scalar-type-fix",
+  "not_verified": [
+    "Real Unity timeout branch",
+    "Host force termination cleanup"
+  ],
+  "evidence_sha256": {
+    "Tools/Scripts/run-unity-editmode.ps1": "b53988b882e905c764aac693519b9ac0c46cacfe904771205f0251e6816ea169",
+    "Tools/Scripts/unity-editmode-support.psm1": "fbb356e0a7de567f4882268ab42eba02df3cacb3087e28edfafc95d8b2db6e51",
+    "Tools/Tests/run-unity-editmode.tests.ps1": "e24ca4f0422e778ca212aeaf0723b7fec93f0d01542c6ec09623fa46a3404d78",
+    "Tools/Configuration/unity-editmode.json": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+    "TestResults/unity-workflow-tests-red-native/summary.json": "585edeaa1919e491bf06cb747388fdc138d185c72c59fc35d27e17d7d0cdaf18",
+    "TestResults/unity-workflow-tests-green3/summary.json": "c8249a8a6ad3eaf7b3e67ffa8e537f5c2af6490a89488dfa6e2cc092c83683d7",
+    "TestResults/UnityRuns/workflow-integration-01/results.xml": "d9dc60b008eae44f72b8c8c429181b82329be6f2bd7bcd71c1606b860e72923a",
+    "TestResults/UnityRuns/workflow-integration-01/editor.log": "51d74ad76b196c9eab988ecbdc64afaa5d228b027d4bc46125fd367f05390a21",
+    "TestResults/UnityRuns/workflow-integration-01/summary.json": "e22b935079916bb59f97d66520277847968005d981ae9b7848eaa14e37d08806",
+    "TestResults/unity-workflow-tests-review-red/summary.json": "3ea3da4da07121ec1edaf1d8a3d84c98fcb2c24210ca37849a2feeeb21c4b53c",
+    "TestResults/unity-workflow-tests-review-green/summary.json": "7cb8cff2e8d5dca72359786593e3d9bbd4861400b53cdb33d89cb1a0881b0b1d"
+  },
+  "review_fix": "P2: reject array dataset_id/test_platform before scalar comparison; four real regression failures then pass."
+}
