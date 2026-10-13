@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.demo-presentation",
   "kind": "module",
-  "description": "单窗口影响力Demo：JSON人工场景、双方操作者切换、国家分区面板、投放/重发/重置。规则由固定会话裁决；示例牌不可出牌，尚无IMapView正式实现。",
+  "description": "单窗口影响力Demo：JSON人工场景、双方操作者切换、国家分区面板、投放/重发/重置。规则由固定会话裁决；示例牌不可出牌，尚无IMapView正式实现。 显式F12或--capture-demo可导出本游戏渲染帧；不是桌面截图或游戏存档。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -24,6 +24,10 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Bootstrap/DemoBootstrap.cs",
       "symbol": "Awake"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Bootstrap/DemoCapture.cs",
+      "symbol": "DemoCapture"
     }
   ],
   "inputs": [
@@ -41,7 +45,8 @@
     "Unity 6000.6.0f1，显式fixture，Windows本地运行"
   ],
   "side_effects": [
-    "UI提交玩家意图；重置创建新宿主；不修改正式JSON"
+    "UI提交玩家意图；重置创建新宿主；不修改正式JSON",
+    "仅显式F12或--capture-demo写persistentDataPath/DemoCaptures唯一PNG；CLI导出完成退出，失败不冒称成功"
   ],
   "stop_conditions": [
     "缺失/损坏数据加载失败；显示规则拒绝原因"
@@ -60,6 +65,10 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/DemoControllerTests.cs",
       "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Docs/Worklogs/2026-10-13-demo-diagnostics.md",
+      "status": "actual-player-render-verified"
     }
   ],
   "documentation": "Docs/Wiki/first-demo.md",

@@ -12,6 +12,7 @@ namespace ColdWarStruggle.Bootstrap
         {
             UnityEngine.Application.targetFrameRate=30;
             var view=gameObject.AddComponent<DemoView>();
+            gameObject.AddComponent<DemoCapture>();
             try
             {
 #if UNITY_EDITOR

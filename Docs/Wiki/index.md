@@ -4,7 +4,7 @@
 
 | 知识点 | description | 状态 | 入口 |
 |---|---|---|---|
-| 首个影响力 Demo | 查运行、人工场景、影响力/会话/UI/构建模块及真实测试 | 52项EditMode通过；窗口实测待完成 | [first-demo.md](first-demo.md) |
+| 首个影响力 Demo | 查运行、人工场景、影响力/会话/UI/构建模块及真实测试 | 52项EditMode通过；真实渲染已核验，鼠标实测待完成 | [first-demo.md](first-demo.md) |
 | 单人双边测试与首批计划 | 查一个客户端、两方身份、调试观察和正常信息过滤，以及首批核心任务 | 首批影响力已实现 | [模式说明](local-test-mode.md) · [计划](../Plans/2026-10-13-core-influence-first-slice.md) · [JSON](../Plans/2026-10-13-core-influence-first-slice.json) |
 | 游戏实现与可替换地图接口 | 查整体分层、地图输入输出、状态面板和首批影响力闭环 | 首批子集已实现；完整地图接口待接入 | [接口提案](../Design/implementation-architecture.proposal.md) · [JSON](../Design/implementation-architecture.proposal.json) |
 | 编码前方向讨论 | 比较第一版交付顺序、统一状态、占位地图与数据边界 | 方向已认可；首批已实现 | [coding-direction-discussion.md](../Design/coding-direction-discussion.md) · [JSON](../Design/coding-direction-discussion.json) |

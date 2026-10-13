@@ -8,7 +8,7 @@
 
 已创建 Unity 6000.6.0f1 工程、纯 C# 影响力规则与单窗口诊断 Demo；52 项真实 EditMode 测试通过。尚无可运行的完整对局。JSON 参数 `Bound` 只表示参数已登记；所有 102 个事件处理器仍为 `planned`。有限设计检查、资料核对和实际游戏测试分别记录，未接入的组合与运行验收不视为完成。
 
-**第一个影响力 Demo 已构建。** 本机双击 `E:\TwilightStruggle\Builds\FirstDemo\ColdWarStruggleDemo.exe`；从源码打开 Unity 后选择 **ColdWarStruggle → Play First Demo**。操作步骤、真实入口和已知限制见 [Demo 说明](Docs/Wiki/first-demo.md)。当前一个窗口、两个固定身份会话，用户可查看双方示例手牌；窗口视觉验收尚未完成。详见[测试模式](Docs/Wiki/local-test-mode.md)、[首批计划](Docs/Plans/2026-10-13-core-influence-first-slice.md)及[JSON 摘要](Docs/Plans/2026-10-13-core-influence-first-slice.json)。
+**第一个影响力 Demo 已构建。** 本机双击 `E:\TwilightStruggle\Builds\FirstDemo\ColdWarStruggleDemo.exe`；从源码打开 Unity 后选择 **ColdWarStruggle → Play First Demo**。操作步骤、真实入口和已知限制见 [Demo 说明](Docs/Wiki/first-demo.md)。当前一个窗口、两个固定身份会话，用户可查看双方示例手牌；实际游戏渲染截图已检查；鼠标自动实测仍受窗口工具限制。详见[测试模式](Docs/Wiki/local-test-mode.md)、[首批计划](Docs/Plans/2026-10-13-core-influence-first-slice.md)及[JSON 摘要](Docs/Plans/2026-10-13-core-influence-first-slice.json)。
 
 ## 已确认的工程原则
 

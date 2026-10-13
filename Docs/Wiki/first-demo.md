@@ -2,7 +2,9 @@
 
 description：运行单窗口双边测试，定位影响力规则、固定身份、幂等、数据加载及 Unity 构建入口。先读模块 JSON，再定位对应函数。
 
-状态：2026-10-13，真实 Unity 工程与 Windows 构建已建立；52 项 EditMode 测试通过。窗口自动实测仍受 computer-use 激活失败影响，不能把自动测试当成鼠标验收。
+状态：2026-10-13，真实 Unity 工程与 Windows 构建已建立；52 项 EditMode 测试通过。已通过游戏自身导出真实渲染并检查字体/布局；computer-use鼠标实测仍受窗口激活失败影响，不能把截图当成点击验收。
+
+![真实运行画面](../Images/first-demo.png)
 
 ## 运行与尝试
 
@@ -59,3 +61,7 @@ Core/Application/Infrastructure 没有 UnityEngine 引用。Core 不读文件；
 下一批先增加可复用的事件选择与影响力效果，接入 Fidel / Decolonization 等已设计案例，再逐步衔接出牌和回合。地图布局与主题可并行演进，但沿用稳定 CountryId 和会话边界。
 
 [返回索引](index.md)
+
+## 画面导出
+
+F12只导出游戏当前渲染帧到本机 `Application.persistentDataPath/DemoCaptures`，使用唯一文件名，不覆盖原图，不导出桌面。Windows通常位于用户AppData/LocalLow/ColdWarStruggle/ColdWarStruggle First Demo。显式 `--capture-demo` 在初始化后导出一帧并退出：成功0、错误1；用于渲染验收，不自动改变局面。需要正常显示窗口，隐藏/无图形模式没有可导出的帧时明确失败。此诊断功能不是存档或回放。

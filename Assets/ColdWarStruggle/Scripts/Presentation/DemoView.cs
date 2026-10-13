@@ -27,12 +27,14 @@ namespace ColdWarStruggle.Presentation
         Font font;
         GUIStyle title,label,small,button,large;
         string fatal;
+        string captureStatus="F12：保存游戏画面";
         readonly string[] regions={"region.europe","region.asia","region.middle_east","region.africa","region.central_america","region.south_america"};
         readonly string[] regionNames={"欧洲","亚洲","中东","非洲","中美洲","南美洲"};
         static readonly Color Background=new Color(.035f,.057f,.095f),Panel=new Color(.075f,.105f,.15f),Muted=new Color(.58f,.66f,.76f),Ink=new Color(.91f,.94f,.98f),Blue=new Color(.32f,.64f,1f),Red=new Color(1f,.43f,.4f),Green=new Color(.36f,.83f,.65f);
         public void Initialize(DemoController controller,IReadOnlyDictionary<string,string> names,IReadOnlyList<DemoScenarioOption> scenarios)
         { this.controller=controller;this.names=names;this.scenarios=scenarios;Reset(0); }
         public void ShowError(string message) { fatal=message; }
+        public void SetCaptureStatus(string message) { captureStatus=message; }
         void Reset(int index)
         { var s=scenarios[index];controller.LoadScenario(s.Id,s.Actor,s.SelectedCountry);scenarioIndex=index;regionIndex=0;scroll=Vector2.zero; }
         void Styles()
@@ -57,6 +59,7 @@ namespace ColdWarStruggle.Presentation
             Block(new Rect(0,0,1280,820),Background);
             Text(26,20,900,46,"COLD WAR / 冷战热斗 · 规则操作 Demo",title);
             Text(28,70,1100,28,"单人双边测试  /  人工练习局面  /  占位界面，可替换正式地图",small);
+            Text(820,70,434,28,captureStatus,small);
             if(fatal!=null) { Text(30,140,1180,400,"加载失败："+fatal);return; }
             if(controller==null) { Text(30,140,800,60,"正在读取演示数据…");return; }
             if(Button(26,115,225,40,"练习 1：美国 → 法国")) { Reset(0);GUIUtility.ExitGUI(); }
