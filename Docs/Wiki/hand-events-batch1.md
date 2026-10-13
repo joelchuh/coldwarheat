@@ -33,3 +33,5 @@ HC1-RUNTIME恢复边界：提交前计划若基于旧候选状态则拒绝且不
 [CIA与Lone Gunman](reveal-ops-batch1.md)复用当前手牌私有快照与普通as-if授权。五年计划只可触发US关联CIA；头条/特殊嵌套来源的影响力起点必须另证，不默认授权创建时。
 
 [晚期手牌扩展](late-hand-batch1.md)：两张随机弃牌整批提交；Ames当前视图独立于旧历史收据；不套用五年计划空手规则。
+
+[LADC1](latin-american-debt-crisis.md)复用Blockade阈值与弃牌规则，后续回退行为由本牌双国翻倍参数定义。

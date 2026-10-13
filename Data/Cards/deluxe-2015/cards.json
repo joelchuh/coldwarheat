@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.40.1",
+  "content_version": "0.41.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计97牌效果参数已绑定，其余5个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。 其中5牌边界采用2026-10-13用户确认的项目解释，非官方专门裁定。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计98牌效果参数已绑定，其余4个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。 其中5牌边界采用2026-10-13用户确认的项目解释，非官方专门裁定。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -275,6 +275,12 @@
       "url": null,
       "edition": "Human-confirmed project interpretation, 2026-10-13",
       "description": "GiveSixAndEnd向对手完整转移6VP并结束后，恰零判Draw；不是官方专门裁定。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
+    },
+    {
+      "id": "PROJECT-LADC1",
+      "url": null,
+      "edition": "Engineering boundary and explicit derivation 2026-10-13",
+      "description": "Optional US response derives from unless and ordinary event decision rules. Two distinct SouthAmerica targets including zero derive from the unrestricted card wording; zero doubles to zero. Private candidates, synthetic source proofs and immutable receipt continuation are engineering, not official specialized rulings. Runtime planned."
     }
   ],
   "cards": [
@@ -3282,8 +3288,13 @@
       "effect_binding": {
         "effect_id": "effect.latin_american_debt_crisis",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.latin_american_debt_crisis",
+            "json_pointer": "/parameters/latin_american_debt_crisis"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -6234,14 +6245,31 @@
     {
       "effect_id": "effect.latin_american_debt_crisis",
       "contract_version": "0.1.0",
-      "description": "Latin American Debt Crisis：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.latin_american_debt_crisis",
+      "description": "US私有有效OPS弃牌回应；否则USSR选两个不同南美国，原子翻倍自身影响，来源与控制者分开。",
+      "handler_key": "composite.DiscardOrDoubleRegionalInfluence",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:latin-american-debt-crisis:1#/$defs/latin_american_debt_crisis"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
+          "source_id": "C-DELUXE-EN",
+          "locator": "Personally viewed English PDF p14 #95: USSR2 Late nonstar; US immediate 3+OPS discard or double USSR influence in two South American countries. Adjacent translation unused.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Sections5.2-5.5/7.4-7.4.2/9.5/9.8: fixed event controller, higher-value discard, discarded event not triggered, aggregate actual-player OPS, China exclusion.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFp19 discard pile public. No dedicated #95 answer found; no claim of a special LADC modifier or zero-target FAQ.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-LADC1",
+          "locator": "Optional US response derives from unless and ordinary event decision rules. Two distinct SouthAmerica targets including zero derive from the unrestricted card wording; zero doubles to zero. Private candidates, synthetic source proofs and immutable receipt continuation are engineering, not official specialized rulings. Runtime planned.",
           "verification": "Pending"
         }
       ]

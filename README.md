@@ -113,6 +113,10 @@
 
 此前：[延迟VP事件](Docs/Wiki/deferred-vp-events-batch1.md)，95 Bound /7 Unresolved，102处理器planned；即时前缀与后续检查点分开，未定来源不伪授权。
 
-最新：[伊朗门与切尔诺贝利](Docs/Wiki/late-restrictions-batch1.md)，97 Bound /5 Unresolved，102处理器planned。规则图与活动状态驱动，画风保持独立。
+此前：[伊朗门与切尔诺贝利](Docs/Wiki/late-restrictions-batch1.md)，97 Bound /5 Unresolved，102处理器planned。规则图与活动状态驱动，画风保持独立。
 
 本轮裁定更新：[五牌项目解释](Docs/Wiki/confirmed-rulings-20261013.md)已获用户确认；参数与案例同步，卡牌绑定总数不变。
+
+最新：[拉美债务危机](Docs/Wiki/latin-american-debt-crisis.md)，98 Bound /4 Unresolved，102处理器planned；私有手牌回应与双国影响计划复用共享服务。
+
+本批设计验证：[拉美债务危机报告](Docs/Design/latin-american-debt-crisis.validation.json)，4605项离线检查；游戏运行代码仍待方向讨论后启动。

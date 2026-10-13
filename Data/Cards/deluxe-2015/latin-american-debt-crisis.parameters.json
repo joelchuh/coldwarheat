@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.latin_american_debt_crisis",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "verified-subset",
+  "description": "US private effective-OPS discard response, otherwise USSR doubles two SouthAmerica influence totals; source-bound finite design, runtime planned.",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe images, rechecked 2026-10-13",
+      "description": "Personally viewed English PDF p14 #95: USSR2 Late nonstar; US immediate 3+OPS discard or double USSR influence in two South American countries. Adjacent translation unused."
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe 2015",
+      "description": "Sections5.2-5.5/7.4-7.4.2/9.5/9.8: fixed event controller, higher-value discard, discarded event not triggered, aggregate actual-player OPS, China exclusion."
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "Compatible FAQv5 only",
+      "description": "PDFp19 discard pile public. No dedicated #95 answer found; no claim of a special LADC modifier or zero-target FAQ."
+    },
+    {
+      "id": "PROJECT-LADC1",
+      "url": null,
+      "edition": "Engineering boundary and explicit derivation 2026-10-13",
+      "description": "Optional US response derives from unless and ordinary event decision rules. Two distinct SouthAmerica targets including zero derive from the unrestricted card wording; zero doubles to zero. Private candidates, synthetic source proofs and immutable receipt continuation are engineering, not official specialized rulings. Runtime planned."
+    }
+  ],
+  "shared_refs": {
+    "cards": {
+      "dataset_id": "cards.deluxe2015.definitions",
+      "path": "Data/Cards/deluxe-2015/cards.json",
+      "json_pointer": "/cards"
+    },
+    "map": {
+      "dataset_id": "map.deluxe2015.world",
+      "path": "Data/Maps/deluxe-2015/world.json",
+      "json_pointer": "/countries"
+    },
+    "blockade": {
+      "dataset_id": "effects.deluxe2015.hand_events_batch1",
+      "path": "Data/Cards/deluxe-2015/hand-events-batch1.parameters.json",
+      "json_pointer": "/parameters/blockade"
+    },
+    "fyp": {
+      "dataset_id": "effects.deluxe2015.hand_events_batch1",
+      "path": "Data/Cards/deluxe-2015/hand-events-batch1.parameters.json",
+      "json_pointer": "/parameters/five_year_plan"
+    },
+    "ops": {
+      "dataset_id": "effects.deluxe2015.persistent_batch1",
+      "path": "Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json",
+      "json_pointer": "/ops_policy"
+    },
+    "flat_effects": {
+      "dataset_id": "effects.deluxe2015.persistent_batch1",
+      "path": "Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json",
+      "json_pointer": "/parameters"
+    },
+    "brezhnev": {
+      "dataset_id": "effects.deluxe2015.persistent_batch2",
+      "path": "Data/Cards/deluxe-2015/persistent-effects-batch2.parameters.json",
+      "json_pointer": "/parameters/brezhnev_doctrine"
+    },
+    "vp": {
+      "dataset_id": "rules.deluxe2015.victory",
+      "path": "Data/Rulesets/deluxe-2015/victory.json",
+      "json_pointer": ""
+    },
+    "defcon": {
+      "dataset_id": "rules.deluxe2015.defcon",
+      "path": "Data/Rulesets/deluxe-2015/defcon.json",
+      "json_pointer": ""
+    },
+    "turns": {
+      "dataset_id": "rules.deluxe2015.turn-flow",
+      "path": "Data/Rulesets/deluxe-2015/turn-flow.json",
+      "json_pointer": "/era_bands"
+    }
+  },
+  "parameters": {
+    "latin_american_debt_crisis": {
+      "card_id": "card.latin_american_debt_crisis",
+      "effect_id": "effect.latin_american_debt_crisis",
+      "description": "US may discard one ordinary eligible Hand card; otherwise USSR chooses two distinct SouthAmerican countries and doubles its current influence.",
+      "template": "DiscardOrDoubleRegionalInfluence",
+      "discard_policy_ref": {
+        "dataset_id": "effects.deluxe2015.hand_events_batch1",
+        "json_pointer": "/parameters/blockade"
+      },
+      "discard_actor": "US",
+      "choice_actor": "USSR",
+      "region_id": "region.south_america",
+      "country_count": 2,
+      "multiplier": 2,
+      "zero_influence_allowed": true,
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "Personally viewed English PDF p14 #95: USSR2 Late nonstar; US immediate 3+OPS discard or double USSR influence in two South American countries. Adjacent translation unused.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "Sections5.2-5.5/7.4-7.4.2/9.5/9.8: fixed event controller, higher-value discard, discarded event not triggered, aggregate actual-player OPS, China exclusion.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFp19 discard pile public. No dedicated #95 answer found; no claim of a special LADC modifier or zero-target FAQ.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-LADC1",
+          "locator": "Optional US response derives from unless and ordinary event decision rules. Two distinct SouthAmerica targets including zero derive from the unrestricted card wording; zero doubles to zero. Private candidates, synthetic source proofs and immutable receipt continuation are engineering, not official specialized rulings. Runtime planned.",
+          "verification": "EngineeringBoundary"
+        }
+      ]
+    }
+  },
+  "source_policy": {
+    "supported": [
+      "RootEvent",
+      "OpponentCardEvent",
+      "HeadlineEvent"
+    ],
+    "provider_contract": "LADC1.SourceAndCleanup.v1",
+    "fyp_policy": "SharedFypAffiliationGateRejectsThisUssrCard",
+    "unknown_parent": "RequiresRulingBeforeDecision",
+    "ordinary_remaining": "SourceStaysInResolutionUntilAcceptedRootOperationsComplete"
+  },
+  "continuation_policy": {
+    "US": "DiscardOrDecline",
+    "USSR": "ExactlyTwoDistinctMappedCountries",
+    "private_candidates": "USOnly",
+    "discard_visibility": "PublicAfterAcceptedDiscard",
+    "historical_receipts": "AuthorityOnly",
+    "replay": "OriginalCommandResultPreserveLaterCurrent",
+    "new_command": "ExactAcceptedPredecessorStateAndIndependentAnchor",
+    "rng": "None",
+    "begin_once": "KnownDispatchFrameOrResolutionCannotStartAnotherCommand",
+    "current_private_view": "ExactAcceptedActiveDecisionStateAndAnchoredHistory"
+  }
+}

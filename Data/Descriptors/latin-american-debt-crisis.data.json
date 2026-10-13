@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "data.latin-american-debt-crisis",
+  "kind": "data",
+  "status": "ready",
+  "description": "US private effective-OPS discard response, otherwise USSR doubles two SouthAmerica influence totals; source-bound finite design, runtime planned.",
+  "dataset_id": "effects.deluxe2015.latin_american_debt_crisis",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/latin-american-debt-crisis.schema.json",
+  "documentation": "Docs/Wiki/latin-american-debt-crisis.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/latin-american-debt-crisis.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "Source/dispatch/root and full current map/physical Hand; verified US OPS coverage and private response"
+  ],
+  "outputs": [
+    "Read-only verified-subset parameters, closed contracts and planned continuation/receipt boundary"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "effects.deluxe2015.hand_events_batch1",
+    "effects.deluxe2015.persistent_batch1",
+    "effects.deluxe2015.persistent_batch2",
+    "map.deluxe2015.world",
+    "rules.deluxe2015.defcon",
+    "rules.deluxe2015.turn-flow",
+    "rules.deluxe2015.victory"
+  ],
+  "preconditions": [
+    "Runtime planned; independent proof identifiers are synthetic finite premises"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "Unknown provider/parent/OPS coverage; source or history identity conflict; stale continuation; Finished/nuclear/VP terminal"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe images, rechecked 2026-10-13",
+      "description": "Personally viewed English PDF p14 #95: USSR2 Late nonstar; US immediate 3+OPS discard or double USSR influence in two South American countries. Adjacent translation unused."
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe 2015",
+      "description": "Sections5.2-5.5/7.4-7.4.2/9.5/9.8: fixed event controller, higher-value discard, discarded event not triggered, aggregate actual-player OPS, China exclusion."
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "Compatible FAQv5 only",
+      "description": "PDFp19 discard pile public. No dedicated #95 answer found; no claim of a special LADC modifier or zero-target FAQ."
+    },
+    {
+      "id": "PROJECT-LADC1",
+      "url": null,
+      "edition": "Engineering boundary and explicit derivation 2026-10-13",
+      "description": "Optional US response derives from unless and ordinary event decision rules. Two distinct SouthAmerica targets including zero derive from the unrestricted card wording; zero doubles to zero. Private candidates, synthetic source proofs and immutable receipt continuation are engineering, not official specialized rulings. Runtime planned."
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/latin-american-debt-crisis.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/latin-american-debt-crisis.validation.json"
+  }
+}

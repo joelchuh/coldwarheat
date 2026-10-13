@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.turn-flow",
   "kind": "module",
-  "description": "定位回合阶段、秘密头条、行动名额、出牌结算栈、回合末候选胜利与存档继续位置；当前是设计，不可作为已实现模块调用。 消费CT1转交/奖励计划，保留独立ChinaState并按剩余源步骤收尾。 ON1按已完成根行动槽合并已知NSO/Space总额度并绑定放弃来源集合。 LH1等待Ames选择保留已接受揭示，源/根完成与后续OPS分开。 LEO1已提交前缀保留；等待共享行动不得提前移牌或占根槽。 DV1 next-US根槽检查点与Headline分开，未定调度保持待办。 LR1在已核实ExpireAndReset边界到期，等待地区选择不提前完成根或推进普通动作。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。",
+  "description": "定位回合阶段、秘密头条、行动名额、出牌结算栈、回合末候选胜利与存档继续位置；当前是设计，不可作为已实现模块调用。 消费CT1转交/奖励计划，保留独立ChinaState并按剩余源步骤收尾。 ON1按已完成根行动槽合并已知NSO/Space总额度并绑定放弃来源集合。 LH1等待Ames选择保留已接受揭示，源/根完成与后续OPS分开。 LEO1已提交前缀保留；等待共享行动不得提前移牌或占根槽。 DV1 next-US根槽检查点与Headline分开，未定调度保持待办。 LR1在已核实ExpireAndReset边界到期，等待地区选择不提前完成根或推进普通动作。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。 LADC1等待US回应/USSR完整目标不增根槽，事件完成不替父根执行剩余OPS。",
   "status": "planned",
   "entrypoints": [],
   "documentation": "Docs/Wiki/turn-flow.md",
@@ -151,7 +151,8 @@
     "effects.deluxe2015.defectors",
     "effects.deluxe2015.late_event_operations_batch1",
     "effects.deluxe2015.deferred_vp_events_batch1",
-    "effects.deluxe2015.late_restrictions_batch1"
+    "effects.deluxe2015.late_restrictions_batch1",
+    "effects.deluxe2015.latin_american_debt_crisis"
   ],
   "preconditions": [
     "规则集及被触发的处理器必须齐备",
@@ -185,13 +186,13 @@
         "9",
         "10.3"
       ],
-      "description": " CT1: §2.1.2亚洲含东南亚；§2.2.4/5.2事件与星号；§6.1.1直接事件投放；§8.1.3核战即时终局；§9中国持有/正常转交/事件例外/使用限制；§10.3 VP。 WG1: Sections 5.2, 10.2, 10.3.1: successful event disposition, signed VP and complete-event automatic victory. Section 10.3.2 zero draw literally follows final scoring; not a dedicated Wargames ruling. ON1: Sections 2.1.7,4.5C-D,5.2,6.4.4-5,7.3,7.5,10.3: actual control, root action rounds, source disposition, Space8 total allowance, permanent effect, blocked event and full VP batch. LH1: PDF p5 §§5.2/5.4/5.5事件归属、去向及强迫弃牌无事件；p8 §7.3永久效果；p9 §9中国独立牌区/不可强迫弃置。 DF1: Sections 4.5C, 5.2, 6.4.5, 10.2-10.3: ordinary headline ordering, opponent-event controller and order, no event from Space, complete VP batch automatic victory. LEO1: Sections 5.2,6.0,7.4.1-3,8.1,8.2.5,10.3: source, actor OPS, nuclear and VP checkpoints, free-coup credit. DV1: PDF p4 4.5C-D ordinary alternating slots; p5 5.2/5.4/5.5; p7 6.4.1 Operations-valued Space eligibility; p8 8.1.3; p10 10.2.3/10.3.1 SHA256: d5c827cf78fc4800e0993c1e3313ec909d3c7da2c1b03b735ccf0042a0c4ac8e LR1: Sections 2.0,2.1.1-2,5.2,6.1-2,7.4.3: standard die; six Regions distinct from sub-regions; Asia/Europe include sub-regions; event disposition; realignment has two die sides; as-if OPS ordinary restrictions."
+      "description": " CT1: §2.1.2亚洲含东南亚；§2.2.4/5.2事件与星号；§6.1.1直接事件投放；§8.1.3核战即时终局；§9中国持有/正常转交/事件例外/使用限制；§10.3 VP。 WG1: Sections 5.2, 10.2, 10.3.1: successful event disposition, signed VP and complete-event automatic victory. Section 10.3.2 zero draw literally follows final scoring; not a dedicated Wargames ruling. ON1: Sections 2.1.7,4.5C-D,5.2,6.4.4-5,7.3,7.5,10.3: actual control, root action rounds, source disposition, Space8 total allowance, permanent effect, blocked event and full VP batch. LH1: PDF p5 §§5.2/5.4/5.5事件归属、去向及强迫弃牌无事件；p8 §7.3永久效果；p9 §9中国独立牌区/不可强迫弃置。 DF1: Sections 4.5C, 5.2, 6.4.5, 10.2-10.3: ordinary headline ordering, opponent-event controller and order, no event from Space, complete VP batch automatic victory. LEO1: Sections 5.2,6.0,7.4.1-3,8.1,8.2.5,10.3: source, actor OPS, nuclear and VP checkpoints, free-coup credit. DV1: PDF p4 4.5C-D ordinary alternating slots; p5 5.2/5.4/5.5; p7 6.4.1 Operations-valued Space eligibility; p8 8.1.3; p10 10.2.3/10.3.1 SHA256: d5c827cf78fc4800e0993c1e3313ec909d3c7da2c1b03b735ccf0042a0c4ac8e LR1: Sections 2.0,2.1.1-2,5.2,6.1-2,7.4.3: standard die; six Regions distinct from sub-regions; Asia/Europe include sub-regions; event disposition; realignment has two die sides; as-if OPS ordinary restrictions. LADC1: Sections5.2-5.5/7.4-7.4.2/9.5/9.8: fixed event controller, higher-value discard, discarded event not triggered, aggregate actual-player OPS, China exclusion."
     },
     {
       "id": "F2010",
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
       "scope": "采用未被新版覆盖的太空弃牌与双方扣留一般裁定；排除CF-001旧答案，CF-003按用户确认的新版优先解释",
-      "description": " CT1: PDF p4 #6实际US中国太空取消Formosan及不可事件弃置；p8 #35不弃手中未发生的Formosan；p19中国不计普通手牌。未发现三牌专门答案。 WG1: PDF p17-18 #100: no final scoring; only used at DEFCON 2; three choices give six and end, give six and continue, or neither. No dedicated zero-result answer in this block. ON1: No dedicated OPEC/North Sea Oil answer found in the 22-page PDF. No claim of explicit NSO/Space stacking or late-provider decline ruling. LH1: PDF p16 #92额外弃牌也随机；#98导言排除旧版排序问答；p19公开弃牌堆。未找到本批空手/不足弃牌专门裁定。 DF1: PDF p1 nonstar erratum; p18 #103 USSR selected headline self-cancels with zero VP, US selected Defectors overrides higher Soviet Ops, nested cannot undo an executed headline; p14 #67 Grain Sales actual order. LEO1: PDF p15 #90: Glasnost obeys ordinary influence rules and Chernobyl. PDF p16 #94: direct event influence differs from OPS placement; #96: named regional action geographical waiver does not waive battleground DEFCON/free-coup credit. DV1: PDF pp11-12 #49/#50: immediate nuclear loss; next US ActionRound; priority over Duck and Cover; no next ActionRound no VP; legal UN via ME/StarWars/GrainSales with Soviet companion SHA256: 9c8ac9ef5c2b25f558d81aa2e12205609661dc80d9ead52b64367659bac99374 LR1: PDF p15 #90 Glasnost OPS placement subject to Chernobyl; p16 #94 permits realignment, coup including added influence and direct event influence. No dedicated Iran-Contra or optional no-designation/repeat answer found."
+      "description": " CT1: PDF p4 #6实际US中国太空取消Formosan及不可事件弃置；p8 #35不弃手中未发生的Formosan；p19中国不计普通手牌。未发现三牌专门答案。 WG1: PDF p17-18 #100: no final scoring; only used at DEFCON 2; three choices give six and end, give six and continue, or neither. No dedicated zero-result answer in this block. ON1: No dedicated OPEC/North Sea Oil answer found in the 22-page PDF. No claim of explicit NSO/Space stacking or late-provider decline ruling. LH1: PDF p16 #92额外弃牌也随机；#98导言排除旧版排序问答；p19公开弃牌堆。未找到本批空手/不足弃牌专门裁定。 DF1: PDF p1 nonstar erratum; p18 #103 USSR selected headline self-cancels with zero VP, US selected Defectors overrides higher Soviet Ops, nested cannot undo an executed headline; p14 #67 Grain Sales actual order. LEO1: PDF p15 #90: Glasnost obeys ordinary influence rules and Chernobyl. PDF p16 #94: direct event influence differs from OPS placement; #96: named regional action geographical waiver does not waive battleground DEFCON/free-coup credit. DV1: PDF pp11-12 #49/#50: immediate nuclear loss; next US ActionRound; priority over Duck and Cover; no next ActionRound no VP; legal UN via ME/StarWars/GrainSales with Soviet companion SHA256: 9c8ac9ef5c2b25f558d81aa2e12205609661dc80d9ead52b64367659bac99374 LR1: PDF p15 #90 Glasnost OPS placement subject to Chernobyl; p16 #94 permits realignment, coup including added influence and direct event influence. No dedicated Iran-Contra or optional no-designation/repeat answer found. LADC1: PDFp19 discard pile public. No dedicated #95 answer found; no claim of a special LADC modifier or zero-target FAQ."
     },
     {
       "id": "PROJECT-HC1",
@@ -215,7 +216,7 @@
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "edition": "English Deluxe card images",
-      "description": "亲看英文PDF p2 #5、p9 #58、p11 #71、p12 #76；FYP为US关联及持有者条件、转交面向与奖励；不使用旁列译文。 WG1: Visually inspected PDF p15 English #100: Neutral, 4 Ops, Late, starred; DEFCON 2; give opponent 6 VP then may end without Final Scoring. ON1: PDF p10 #61 lists Egypt, Iran, Libya, Saudi Arabia, Iraq, Gulf States, Venezuela; USSR1VP each controlled; NSO blocks. PDF p13 #86 US3Late starred/underlined: OPEC prohibited, US may play eight cards this turn. LH1: 目视英文PDF p13 #82、p14 #92、p15 #98；不采用旁列译文。 DF1: Personally viewed PDF p6 #103: US2 Early nonstar; headline cancels USSR headline including Scoring, canceled card discarded; Soviet ActionRound use US1VP except Space. LEO1: English PDF p13 #89 and p14 #90/#91; no use of adjacent translation. DV1: English images PDF p8 #50 and p10 #60 personally inspected; adjacent translation excluded SHA256: 3fded13f03c63154de72af93faceaf8700db19f12c033ff477497232f2c2a0f0 LR1: PDF p14 #93 USSR2 Late starred: US Realignment die -1 remainder turn. #94 US3 Late starred: US may designate one region; USSR OPS influence placement there prohibited remainder turn."
+      "description": "亲看英文PDF p2 #5、p9 #58、p11 #71、p12 #76；FYP为US关联及持有者条件、转交面向与奖励；不使用旁列译文。 WG1: Visually inspected PDF p15 English #100: Neutral, 4 Ops, Late, starred; DEFCON 2; give opponent 6 VP then may end without Final Scoring. ON1: PDF p10 #61 lists Egypt, Iran, Libya, Saudi Arabia, Iraq, Gulf States, Venezuela; USSR1VP each controlled; NSO blocks. PDF p13 #86 US3Late starred/underlined: OPEC prohibited, US may play eight cards this turn. LH1: 目视英文PDF p13 #82、p14 #92、p15 #98；不采用旁列译文。 DF1: Personally viewed PDF p6 #103: US2 Early nonstar; headline cancels USSR headline including Scoring, canceled card discarded; Soviet ActionRound use US1VP except Space. LEO1: English PDF p13 #89 and p14 #90/#91; no use of adjacent translation. DV1: English images PDF p8 #50 and p10 #60 personally inspected; adjacent translation excluded SHA256: 3fded13f03c63154de72af93faceaf8700db19f12c033ff477497232f2c2a0f0 LR1: PDF p14 #93 USSR2 Late starred: US Realignment die -1 remainder turn. #94 US3 Late starred: US may designate one region; USSR OPS influence placement there prohibited remainder turn. LADC1: Personally viewed English PDF p14 #95: USSR2 Late nonstar; US immediate 3+OPS discard or double USSR influence in two South American countries. Adjacent translation unused."
     },
     {
       "id": "PROJECT-CT1",
@@ -270,6 +271,12 @@
       "url": null,
       "edition": "Human-confirmed project interpretation, 2026-10-13",
       "description": "GiveSixAndEnd向对手完整转移6VP并结束后，恰零判Draw；不是官方专门裁定。 Verified仅表示本线程用户明确确认，非官方专门裁定；不扩大其它未答项目解释。"
+    },
+    {
+      "id": "PROJECT-LADC1",
+      "url": null,
+      "edition": "Engineering boundary and explicit derivation 2026-10-13",
+      "description": "Optional US response derives from unless and ordinary event decision rules. Two distinct SouthAmerica targets including zero derive from the unrestricted card wording; zero doubles to zero. Private candidates, synthetic source proofs and immutable receipt continuation are engineering, not official specialized rulings. Runtime planned."
     }
   ],
   "tests": [
@@ -365,12 +372,16 @@
     {
       "path": "Docs/Design/late-restrictions-batch1.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/latin-american-debt-crisis.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
     "design_review": "检查源规则版本、转换边界、持久化、保密与异常路径；实际检查记录见工作记录",
-    "latest_design_report": "Docs/Design/confirmed-rulings-20261013.validation.json"
+    "latest_design_report": "Docs/Design/latin-american-debt-crisis.validation.json"
   },
   "open_items": [
     "全部逐卡参数/处理器与跨卡优先级",
@@ -384,6 +395,7 @@
     "urn:coldwarheat:contract:defectors:1",
     "urn:coldwarheat:contract:late-event-operations-batch1:1",
     "urn:coldwarheat:contract:deferred-vp-events-batch1:1",
-    "urn:coldwarheat:contract:late-restrictions-batch1:1"
+    "urn:coldwarheat:contract:late-restrictions-batch1:1",
+    "urn:coldwarheat:contract:latin-american-debt-crisis:1"
   ]
 }

@@ -248,3 +248,5 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 [延迟VP检查点](deferred-vp-events-batch1.md)：核实目标根与完整UN证据，未定后续检查点不撤销此前已接受前缀。
 
 [LR1回合到期](late-restrictions-batch1.md)消费匹配ExpireAndReset证据，选择等待与源父链必须完成。
+
+[LADC1选择链](latin-american-debt-crisis.md)等待US回应再等USSR双国，合法完成后仅收尾自己的事件与根义务。
