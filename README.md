@@ -128,4 +128,6 @@
 
 此前：[Star Wars与借牌模块](Docs/Wiki/star-wars.md)，100 Bound /2 Unresolved，102处理器planned；合法候选和消费者支持分开，画风与规则无耦合。
 
-最新：[Grain Sales随机借牌](Docs/Wiki/grain-sales.md)，101 Bound /1 Unresolved，102处理器planned；随机证据、私有选择和有限子用牌分开。
+此前：[Grain Sales随机借牌](Docs/Wiki/grain-sales.md)，101 Bound /1 Unresolved，102处理器planned；随机证据、私有选择和有限子用牌分开。
+
+最新：[Missile Envy交换与义务](Docs/Wiki/missile-envy.md)，102 Bound /0 Unresolved；这是参数登记完成，102处理器仍planned，未知组合和真实运行验收仍待后续。

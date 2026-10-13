@@ -98,3 +98,5 @@
 [Ask Not](../ask-not.md)：先锁定美国弃牌完整集合，再补同量。
 
 [Grain Sales](../grain-sales.md)：随机借牌、私有选择和四个有限来源消费者。
+
+[Missile Envy](../missile-envy.md)：最高OPS、双实体交换与后续用牌义务；两项目解释由用户确认。

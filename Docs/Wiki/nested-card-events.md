@@ -31,3 +31,5 @@ flowchart LR
 检索顺序：[模块描述](../Descriptors/nested-card-events.module.json) → [Star Wars](star-wars.md) → 对应参数中的 consumer_registry → 下游模块描述和相关函数。正式代码不存在时，不把 planned_entrypoints 当成可调用函数。
 
 [Grain Sales](grain-sales.md)增加完整普通Hand随机取得、私有察看、使用或退回，以及四个有限消费者；借来的实体牌太空与来源事件赠予OPS是不同授权。
+
+[Missile Envy](missile-envy.md)把来源实体转交与后续用牌义务分开；父帧清理不得再次弃置已经转到对方Hand的来源牌。

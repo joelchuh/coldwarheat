@@ -1,6 +1,6 @@
 # 调用其他卡牌的事件：下一阶段计划
 
-本页是设计路线，不是已经实现的通用执行器。先看[JSON 摘要](../Design/nested-card-sources.plan.json)，再按其中的卡牌与依赖读取已有契约。Star Wars与Grain Sales现已完成有限设计登记；Missile Envy仍未绑定。所有运行实现仍planned。
+本页是设计路线，不是已经实现的通用执行器。先看[JSON 摘要](../Design/nested-card-sources.plan.json)，再按其中的卡牌与依赖读取已有契约。三张牌现已完成参数与有限设计登记，尚未接通完整新来源能力。所有运行实现仍planned。
 
 建议顺序是 Star Wars → Grain Sales → Missile Envy。第一张只从公开弃牌堆选择非计分牌并执行事件；第二张增加随机取得对手实体牌、私有察看与使用或退回；第三张再加入交换及下一行动轮的强制义务。按这个顺序，可以逐步验证共用部分。
 
@@ -23,7 +23,7 @@ flowchart TD
 
 先覆盖普通影响力事件，再核对 Grain Sales 的计分与太空路线、Defectors 的头条时间窗、UN 与 WWBY、Wargames 即时终局、Ask Not 的等待抽牌，以及 Missile Envy 的后续强制义务。完整对局测试要等真实服务实现后进行；有限设计模型不能证明真实鉴权、随机性或存储正确。
 
-尚未确认的规则边界单列在 JSON 中，例如 Missile Envy 比较修正后的 OPS。Star Wars空合法池已由用户确认；详见[单牌设计](star-wars.md)。跨回合强制用牌的新来源研究尚须并入该牌设计。继续核实官方资料；仍不能确认且需要决定时再向用户提出具体选择。本计划不提前采纳默认答案。
+尚未确认的边界单列在JSON中。Star Wars空合法池，以及Missile Envy最高OPS修正与空可交换池已由用户分别确认；详见[Star Wars](star-wars.md)和[Missile Envy](missile-envy.md)。ME强制计分跨回合已有FAQ依据，其他例外仍按该牌pending清单处理。继续核实官方资料；仍不能确认且需要决定时再向用户提出具体选择。本计划不提前采纳默认答案。
 
 显示层只接收按玩家过滤的状态、合法选择和领域事件。更换地图画风、卡面、弹窗或动画时，不需要改变这里的选牌与结算规则。
 

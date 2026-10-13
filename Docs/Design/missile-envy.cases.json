@@ -1,0 +1,855 @@
+{
+  "schema_version": 1,
+  "description": "New Missile Envy finite checks only; synthetic complete-card/world fixtures and independent anchors; no C#/Unity, actual OPS, trap roll or full turn runner.",
+  "dataset": "Data/Cards/deluxe-2015/missile-envy.parameters.json",
+  "schema": "Docs/Contracts/missile-envy.schema.json",
+  "reference_snapshot": {
+    "baseline_head": "815cde4dc6a22ab51134674ef64881c7f23434ef",
+    "baseline_metadata_sha256": "a48634d0917a6badbf9a6dffe3095ae7b77a4e5f9c8de18750adda77560a1829",
+    "files": [
+      {
+        "key": "cards",
+        "dataset_id": "cards.deluxe2015.definitions",
+        "path": "Data/Cards/deluxe-2015/cards.json",
+        "json_pointer": "/cards",
+        "sha256": "af6e404a5c3fd5114449f3d796c5d616ef0aeb96e731898a459901f90baf8001"
+      },
+      {
+        "key": "world",
+        "dataset_id": "map.deluxe2015.world",
+        "path": "Data/Maps/deluxe-2015/world.json",
+        "json_pointer": "/countries",
+        "sha256": "6d4e20c674bd74d44cdb0f1ca66e8e960f125b3e45076d05307125a3c36ea45b"
+      },
+      {
+        "key": "fidel",
+        "dataset_id": "effects.deluxe2015.early_influence_batch1",
+        "path": "Data/Cards/deluxe-2015/early-influence-batch1.parameters.json",
+        "json_pointer": "/parameters/fidel",
+        "sha256": "4dd8d8b8b33b234503418b27a9dae070dfffd878fc6e0c603d1d024edadff2c9"
+      },
+      {
+        "key": "ops",
+        "dataset_id": "effects.deluxe2015.persistent_batch1",
+        "path": "Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json",
+        "json_pointer": "",
+        "sha256": "e229d5494deba9031c3348f7d726dd09fc2d8ce28eb2db618142712c79d538d4"
+      },
+      {
+        "key": "trap",
+        "dataset_id": "effects.deluxe2015.trap_events",
+        "path": "Data/Cards/deluxe-2015/trap-events.parameters.json",
+        "json_pointer": "",
+        "sha256": "b0181de82281eea5bcc1f2db084381e7d3be76892be5927a4f6dbd6b20ca5dfa"
+      },
+      {
+        "key": "turn_flow",
+        "dataset_id": "rules.deluxe2015.turn-flow",
+        "path": "Data/Rulesets/deluxe-2015/turn-flow.json",
+        "json_pointer": "",
+        "sha256": "257b1cb35040e6bcab177ab23ea9122dc28921b1cb1c0661a540498a44017562"
+      },
+      {
+        "key": "victory",
+        "dataset_id": "rules.deluxe2015.victory",
+        "path": "Data/Rulesets/deluxe-2015/victory.json",
+        "json_pointer": "",
+        "sha256": "f8566187874ff89c181b7c0c6cb46048788f7558fa5d9326273e64306d4a8624"
+      }
+    ],
+    "sources": [
+      {
+        "path": "tmp/pdfs/TS_Cards_Deluxe.pdf",
+        "sha256": "3fded13f03c63154de72af93faceaf8700db19f12c033ff477497232f2c2a0f0"
+      },
+      {
+        "path": "tmp/pdfs/TS_Rules-2015.pdf",
+        "sha256": "d5c827cf78fc4800e0993c1e3313ec909d3c7da2c1b03b735ccf0042a0c4ac8e"
+      },
+      {
+        "path": "tmp/pdfs/FAQv5-review.pdf",
+        "sha256": "9c8ac9ef5c2b25f558d81aa2e12205609661dc80d9ead52b64367659bac99374"
+      },
+      {
+        "path": "work/missile-envy-user-interpretations.json",
+        "sha256": "6dc167bbb4c4b74ddf5bce461a06430cff6ba86b1507e582f2503cadaceee2ea"
+      }
+    ]
+  },
+  "fixture_policy": {
+    "inventory": "All shared card definitions exactly once; one zone per entity",
+    "world": "All shared countries exactly once; normal Fidel changes only referenced target",
+    "trust": "Independent synthetic source, receipt-chain, nonce and provider anchors; none supplied by untrusted callback",
+    "operations": "Budget and wait only; no fake OPS consumer or completion",
+    "terminal": "Later Finished/Draw fixture for old receipt replay only; no terminal card row",
+    "obligation": "Gate probes only; complete scoring/trap/next-turn runner remains UNRUN",
+    "modifiers": "Synthetic trusted current ordinary modifier totals; values in rule probes derive from shared Containment/Purge parameters. Production persistent-effect quote service remains UNRUN."
+  },
+  "cases": [
+    {
+      "id": "ME-001",
+      "layer": "StructureReference",
+      "probe": "schema_data",
+      "description": "schema data",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-002",
+      "layer": "StructureReference",
+      "probe": "single_def",
+      "description": "single def",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-003",
+      "layer": "StructureReference",
+      "probe": "no_printed_copy",
+      "description": "no printed copy",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-004",
+      "layer": "StructureReference",
+      "probe": "closed_parameters",
+      "description": "closed parameters",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-005",
+      "layer": "StructureReference",
+      "probe": "references",
+      "description": "references",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-006",
+      "layer": "StructureReference",
+      "probe": "source_hashes",
+      "description": "source hashes",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-007",
+      "layer": "StructureReference",
+      "probe": "baseline_snapshot",
+      "description": "baseline snapshot",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-008",
+      "layer": "StructureReference",
+      "probe": "five_files",
+      "description": "five files",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-009",
+      "layer": "StructureReference",
+      "probe": "descriptor",
+      "description": "descriptor",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-010",
+      "layer": "StructureReference",
+      "probe": "runtime_unrun",
+      "description": "runtime unrun",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-011",
+      "layer": "FiniteRuleModel",
+      "probe": "unique_highest",
+      "description": "With no modifiers, complete holder Hand yields Fidel as unique maximum.",
+      "expected": "With no modifiers, complete holder Hand yields Fidel as unique maximum.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-012",
+      "layer": "FiniteRuleModel",
+      "probe": "fidel_result",
+      "description": "Compute Cuba from shared Fidel parameter and stability; clear US, ensure USSR control, remove actual child.",
+      "expected": "Compute Cuba from shared Fidel parameter and stability; clear US, ensure USSR control, remove actual child.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-013",
+      "layer": "FiniteRuleModel",
+      "probe": "source_transfer",
+      "description": "Exchange moves the same ME entity to original holder Hand and child to InResolution atomically.",
+      "expected": "Exchange moves the same ME entity to original holder Hand and child to InResolution atomically.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-014",
+      "layer": "FiniteRuleModel",
+      "probe": "persistent_obligation",
+      "description": "Child completion leaves independent recipient obligation and same source in Hand.",
+      "expected": "Child completion leaves independent recipient obligation and same source in Hand.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-015",
+      "layer": "FiniteRuleModel",
+      "probe": "root_stable",
+      "description": "Root slot and root phasing remain identical through exchange and completed child.",
+      "expected": "Root slot and root phasing remain identical through exchange and completed child.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-016",
+      "layer": "FiniteRuleModel",
+      "probe": "headline_source",
+      "description": "Headline source binding is distinct while root responsibility is preserved.",
+      "expected": "Headline source binding is distinct while root responsibility is preserved.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-017",
+      "layer": "FiniteRuleModel",
+      "probe": "roundtrip",
+      "description": "JSON roundtrip of waiting snapshot and receipts resumes actual child and full audit.",
+      "expected": "JSON roundtrip of waiting snapshot and receipts resumes actual child and full audit.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-018",
+      "layer": "FiniteRuleModel",
+      "probe": "tie_holder",
+      "description": "Holder receives exactly both unmodified maximum candidates and may choose Fidel.",
+      "expected": "Holder receives exactly both unmodified maximum candidates and may choose Fidel.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-019",
+      "layer": "FiniteRuleModel",
+      "probe": "opponent_ops",
+      "description": "Opposite-affiliation received card creates OPS budget/wait, no event effects; actual completion is Unsupported.",
+      "expected": "Opposite-affiliation received card creates OPS budget/wait, no event effects; actual completion is Unsupported.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-020",
+      "layer": "FiniteRuleModel",
+      "probe": "ops_actual_user",
+      "description": "Standalone use-time quote applies actual user modifiers and shared floor/cap; does not adjudicate highest comparison.",
+      "expected": "Standalone use-time quote applies actual user modifiers and shared floor/cap; does not adjudicate highest comparison.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-021",
+      "layer": "FiniteRuleModel",
+      "probe": "empty",
+      "description": "Empty ordinary Hand completes source to Discard with no exchange, no influence change and no obligation; duplicate replays original.",
+      "expected": "Empty ordinary Hand completes source to Discard with no exchange, no influence change and no obligation; duplicate replays original.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-022",
+      "layer": "FiniteRuleModel",
+      "probe": "scoring_only",
+      "description": "Scoring-only Hand remains unchanged while ME goes Discard; no exchange/obligation and duplicate replay unchanged.",
+      "expected": "Scoring-only Hand remains unchanged while ME goes Discard; no exchange/obligation and duplicate replay unchanged.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-023",
+      "layer": "FiniteRuleModel",
+      "probe": "modified_comparison",
+      "description": "Highest comparison applies original holder shared ordinary modifier before comparing, with shared bounds.",
+      "expected": "Highest comparison applies original holder shared ordinary modifier before comparing, with shared bounds.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-024",
+      "layer": "FiniteRuleModel",
+      "probe": "neutral",
+      "description": "Neutral received card is Event route in rule contract; unknown controller row stops before exchange.",
+      "expected": "Neutral received card is Event route in rule contract; unknown controller row stops before exchange.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-025",
+      "layer": "FiniteRuleModel",
+      "probe": "unsupported_same",
+      "description": "Same-side unsupported event row cannot move entities or mint obligation.",
+      "expected": "Same-side unsupported event row cannot move entities or mint obligation.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-026",
+      "layer": "FiniteRuleModel",
+      "probe": "wrong_highest",
+      "description": "Nonmaximum selection rejected while accepted holder decision and ledger remain.",
+      "expected": "Nonmaximum selection rejected while accepted holder decision and ledger remain.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-027",
+      "layer": "FiniteRuleModel",
+      "probe": "wrong_chooser",
+      "description": "Only original holder chooses among maximum candidates.",
+      "expected": "Only original holder chooses among maximum candidates.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-028",
+      "layer": "FiniteRuleModel",
+      "probe": "china_excluded",
+      "description": "Separate China never enters complete ordinary-Hand candidate set.",
+      "expected": "Separate China never enters complete ordinary-Hand candidate set.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-029",
+      "layer": "FiniteRuleModel",
+      "probe": "reserved_excluded",
+      "description": "Higher OPS HeadlineReserved entity cannot enter ordinary Hand maximum.",
+      "expected": "Higher OPS HeadlineReserved entity cannot enter ordinary Hand maximum.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-030",
+      "layer": "ProtocolRejection",
+      "probe": "command_null",
+      "description": "command null",
+      "expected": "Closed command shape rejects null before reading fields; accepted state and ledger unchanged.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-031",
+      "layer": "ProtocolRejection",
+      "probe": "command_unknown",
+      "description": "command unknown",
+      "expected": "Closed command shape rejects unknown before reading fields; accepted state and ledger unchanged.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-032",
+      "layer": "ProtocolRejection",
+      "probe": "command_missing",
+      "description": "command missing",
+      "expected": "Closed command shape rejects missing before reading fields; accepted state and ledger unchanged.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-033",
+      "layer": "ProtocolRejection",
+      "probe": "command_wrongtype",
+      "description": "command wrongtype",
+      "expected": "Closed command shape rejects wrongtype before reading fields; accepted state and ledger unchanged.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-034",
+      "layer": "ProtocolRejection",
+      "probe": "stale_version",
+      "description": "stale version",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-035",
+      "layer": "ProtocolRejection",
+      "probe": "principal_spoof",
+      "description": "principal spoof",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-036",
+      "layer": "ProtocolRejection",
+      "probe": "source_tamper",
+      "description": "source tamper",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-037",
+      "layer": "ProtocolRejection",
+      "probe": "inventory_missing",
+      "description": "inventory missing",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-038",
+      "layer": "ProtocolRejection",
+      "probe": "world_missing",
+      "description": "world missing",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-039",
+      "layer": "ProtocolRejection",
+      "probe": "active_draw",
+      "description": "active draw",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-040",
+      "layer": "ProtocolRejection",
+      "probe": "new_finished",
+      "description": "new finished",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-041",
+      "layer": "ProtocolRejection",
+      "probe": "callback_null",
+      "description": "callback null",
+      "expected": "Reject malformed, untrusted or wrongly bound callback; full accepted waiting snapshot and ledger unchanged; subsequent correct Fidel evidence still succeeds.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-042",
+      "layer": "ProtocolRejection",
+      "probe": "callback_unknown",
+      "description": "callback unknown",
+      "expected": "Reject malformed, untrusted or wrongly bound callback; full accepted waiting snapshot and ledger unchanged; subsequent correct Fidel evidence still succeeds.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-043",
+      "layer": "ProtocolRejection",
+      "probe": "callback_missing",
+      "description": "callback missing",
+      "expected": "Reject malformed, untrusted or wrongly bound callback; full accepted waiting snapshot and ledger unchanged; subsequent correct Fidel evidence still succeeds.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-044",
+      "layer": "ProtocolRejection",
+      "probe": "callback_wrongtype",
+      "description": "callback wrongtype",
+      "expected": "Reject malformed, untrusted or wrongly bound callback; full accepted waiting snapshot and ledger unchanged; subsequent correct Fidel evidence still succeeds.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-045",
+      "layer": "ProtocolRejection",
+      "probe": "callback_untrusted",
+      "description": "callback untrusted",
+      "expected": "Reject malformed, untrusted or wrongly bound callback; full accepted waiting snapshot and ledger unchanged; subsequent correct Fidel evidence still succeeds.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-046",
+      "layer": "ProtocolRejection",
+      "probe": "callback_wrongentity",
+      "description": "callback wrongentity",
+      "expected": "Reject malformed, untrusted or wrongly bound callback; full accepted waiting snapshot and ledger unchanged; subsequent correct Fidel evidence still succeeds.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-047",
+      "layer": "ProtocolRejection",
+      "probe": "callback_wrongroot",
+      "description": "callback wrongroot",
+      "expected": "Reject malformed, untrusted or wrongly bound callback; full accepted waiting snapshot and ledger unchanged; subsequent correct Fidel evidence still succeeds.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-048",
+      "layer": "ProtocolRejection",
+      "probe": "callback_false_result",
+      "description": "callback false result",
+      "expected": "Reject malformed, untrusted or wrongly bound callback; full accepted waiting snapshot and ledger unchanged; subsequent correct Fidel evidence still succeeds.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-049",
+      "layer": "ProtocolRejection",
+      "probe": "callback_false_terminal",
+      "description": "callback false terminal",
+      "expected": "Reject malformed, untrusted or wrongly bound callback; full accepted waiting snapshot and ledger unchanged; subsequent correct Fidel evidence still succeeds.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-050",
+      "layer": "HistoryReplay",
+      "probe": "duplicate_begin",
+      "description": "duplicate begin",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-051",
+      "layer": "HistoryReplay",
+      "probe": "duplicate_child",
+      "description": "duplicate child",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-052",
+      "layer": "HistoryReplay",
+      "probe": "later_draw_replay",
+      "description": "Old receipt projects original state after later Finished/Draw; later live remains exact; new command rejected.",
+      "expected": "Old receipt projects original state after later Finished/Draw; later live remains exact; new command rejected.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-053",
+      "layer": "HistoryReplay",
+      "probe": "nonce_reuse",
+      "description": "nonce reuse",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-054",
+      "layer": "HistoryReplay",
+      "probe": "changed_duplicate",
+      "description": "changed duplicate",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-055",
+      "layer": "HistoryReplay",
+      "probe": "cross_principal_replay",
+      "description": "cross principal replay",
+      "expected": "Declared probe invariants hold; rejection probes keep accepted state and ledger; finite model only",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-056",
+      "layer": "HistoryReplay",
+      "probe": "history_key",
+      "description": "history key",
+      "expected": "Detect corruption of key through complete chain plus independent accepted-ID/nonce indexes; reject old and new commands unchanged.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-057",
+      "layer": "HistoryReplay",
+      "probe": "history_request_id",
+      "description": "history request id",
+      "expected": "Detect corruption of request id through complete chain plus independent accepted-ID/nonce indexes; reject old and new commands unchanged.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-058",
+      "layer": "HistoryReplay",
+      "probe": "history_result_id",
+      "description": "history result id",
+      "expected": "Detect corruption of result id through complete chain plus independent accepted-ID/nonce indexes; reject old and new commands unchanged.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-059",
+      "layer": "HistoryReplay",
+      "probe": "history_rehash",
+      "description": "history rehash",
+      "expected": "Detect corruption of rehash through complete chain plus independent accepted-ID/nonce indexes; reject old and new commands unchanged.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-060",
+      "layer": "HistoryReplay",
+      "probe": "history_clear_receipts",
+      "description": "history clear receipts",
+      "expected": "Detect corruption of clear receipts through complete chain plus independent accepted-ID/nonce indexes; reject old and new commands unchanged.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-061",
+      "layer": "HistoryReplay",
+      "probe": "history_clear_anchors",
+      "description": "history clear anchors",
+      "expected": "Detect corruption of clear anchors through complete chain plus independent accepted-ID/nonce indexes; reject old and new commands unchanged.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-062",
+      "layer": "HistoryReplay",
+      "probe": "history_clear_ids",
+      "description": "history clear ids",
+      "expected": "Detect corruption of clear ids through complete chain plus independent accepted-ID/nonce indexes; reject old and new commands unchanged.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-063",
+      "layer": "HistoryReplay",
+      "probe": "history_clear_nonces",
+      "description": "history clear nonces",
+      "expected": "Detect corruption of clear nonces through complete chain plus independent accepted-ID/nonce indexes; reject old and new commands unchanged.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-064",
+      "layer": "HistoryReplay",
+      "probe": "history_clear_evidence",
+      "description": "history clear evidence",
+      "expected": "Detect corruption of clear evidence through complete chain plus independent accepted-ID/nonce indexes; reject old and new commands unchanged.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-065",
+      "layer": "HistoryReplay",
+      "probe": "history_nonce_mapping",
+      "description": "history nonce mapping",
+      "expected": "Detect corruption of nonce mapping through complete chain plus independent accepted-ID/nonce indexes; reject old and new commands unchanged.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-066",
+      "layer": "HistoryReplay",
+      "probe": "history_break_chain",
+      "description": "history break chain",
+      "expected": "Detect corruption of break chain through complete chain plus independent accepted-ID/nonce indexes; reject old and new commands unchanged.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-067",
+      "layer": "HistoryReplay",
+      "probe": "history_earlier_on_new",
+      "description": "history earlier on new",
+      "expected": "Detect corruption of earlier on new through complete chain plus independent accepted-ID/nonce indexes; reject old and new commands unchanged.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-068",
+      "layer": "PlayerProjection",
+      "probe": "privacy_holder",
+      "description": "Only holder sees own private legal maximum set.",
+      "expected": "Only holder sees own private legal maximum set.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-069",
+      "layer": "PlayerProjection",
+      "probe": "privacy_actor",
+      "description": "Actor sees waiting without any opposing hand identity.",
+      "expected": "Actor sees waiting without any opposing hand identity.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-070",
+      "layer": "PlayerProjection",
+      "probe": "privacy_spectator",
+      "description": "Spectator sees neither hand identities nor legal maximum candidates.",
+      "expected": "Spectator sees neither hand identities nor legal maximum candidates.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-071",
+      "layer": "PlayerProjection",
+      "probe": "privacy_after",
+      "description": "Accepted exchange reveals selected card and transferred source; credentials remain absent.",
+      "expected": "Accepted exchange reveals selected card and transferred source; credentials remain absent.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-072",
+      "layer": "PlayerProjection",
+      "probe": "privacy_historical",
+      "description": "Begin replay never reveals later selected entity.",
+      "expected": "Begin replay never reveals later selected entity.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-073",
+      "layer": "PlayerProjection",
+      "probe": "privacy_stale_query",
+      "description": "Current query rejects fork inconsistent with accepted head.",
+      "expected": "Current query rejects fork inconsistent with accepted head.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-074",
+      "layer": "ObligationGateOnly",
+      "probe": "gate_normal",
+      "description": "Independent obligation requires same source for OPS at next normal owner AR; no operation performed.",
+      "expected": "Independent obligation requires same source for OPS at next normal owner AR; no operation performed.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-075",
+      "layer": "ObligationGateOnly",
+      "probe": "gate_headline",
+      "description": "Headline does not consume or delete obligation.",
+      "expected": "Headline does not consume or delete obligation.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-076",
+      "layer": "ObligationGateOnly",
+      "probe": "gate_other_owner",
+      "description": "Other player action does not consume or delete obligation.",
+      "expected": "Other player action does not consume or delete obligation.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-077",
+      "layer": "ObligationGateOnly",
+      "probe": "gate_scoring",
+      "description": "Verified mandatory scoring has priority; derive DeferredForScoring/FirstARNextTurn and retain source.",
+      "expected": "Verified mandatory scoring has priority; derive DeferredForScoring/FirstARNextTurn and retain source.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-078",
+      "layer": "ObligationGateOnly",
+      "probe": "gate_trap",
+      "description": "Without Purge, gate narrows trap discard to source; no die/discard implementation claimed.",
+      "expected": "Without Purge, gate narrows trap discard to source; no die/discard implementation claimed.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-079",
+      "layer": "ObligationGateOnly",
+      "probe": "gate_purge",
+      "description": "Shared Purge value reduces source below shared trap threshold; retain record and leave later lifecycle Pending.",
+      "expected": "Shared Purge value reduces source below shared trap threshold; retain record and leave later lifecycle Pending.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-080",
+      "layer": "ObligationGateOnly",
+      "probe": "gate_extra",
+      "description": "Extra slot stops Pending; no default obligation satisfaction.",
+      "expected": "Extra slot stops Pending; no default obligation satisfaction.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-081",
+      "layer": "ObligationGateOnly",
+      "probe": "gate_exception_later",
+      "description": "Post-Purge/trap exception lifecycle stops Pending.",
+      "expected": "Post-Purge/trap exception lifecycle stops Pending.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-082",
+      "layer": "ObligationGateOnly",
+      "probe": "gate_badshape",
+      "description": "Malformed gate context rejected before field read.",
+      "expected": "Malformed gate context rejected before field read.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-083",
+      "layer": "ObligationGateOnly",
+      "probe": "gate_next_turn",
+      "description": "Serialized obligation survives synthetic turn boundary and different root actor/frame/resolution; originating resolution retained, source OPS required. Real turn runner UNRUN.",
+      "expected": "Serialized obligation survives synthetic turn boundary and different root actor/frame/resolution; originating resolution retained, source OPS required. Real turn runner UNRUN.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-084",
+      "layer": "HistoryReplay",
+      "probe": "active_draw_replay",
+      "description": "Active state cannot carry Draw even when request matches old receipt.",
+      "expected": "GlobalResult rejection; malformed live state and existing ledger unchanged.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-085",
+      "layer": "FiniteRuleModel",
+      "probe": "upper_tie",
+      "description": "Positive holder modifier creates cap tie; holder chooses an original maximum or formerly lower printed card.",
+      "expected": "Positive holder modifier creates cap tie; holder chooses an original maximum or formerly lower printed card.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-086",
+      "layer": "FiniteRuleModel",
+      "probe": "lower_tie",
+      "description": "Purge holder modifier creates floor tie between different printed values.",
+      "expected": "Purge holder modifier creates floor tie between different printed values.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-087",
+      "layer": "FiniteRuleModel",
+      "probe": "holder_user_separate",
+      "description": "Comparison uses holder positive modifier; received OPS budget uses actual actor negative modifier and shared bounds.",
+      "expected": "Comparison uses holder positive modifier; received OPS budget uses actual actor negative modifier and shared bounds.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-088",
+      "layer": "HistoryReplay",
+      "probe": "empty_later_draw_replay",
+      "description": "No-candidate accepted receipt replays historical view after later Finished/Draw; later live unchanged.",
+      "expected": "No-candidate accepted receipt replays historical view after later Finished/Draw; later live unchanged.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-089",
+      "layer": "HistoryReplay",
+      "probe": "scoring_later_draw_replay",
+      "description": "Scoring-only accepted receipt replays after later Finished/Draw without discarding scoring or minting obligation.",
+      "expected": "Scoring-only accepted receipt replays after later Finished/Draw without discarding scoring or minting obligation.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-090",
+      "layer": "FiniteRuleModel",
+      "probe": "upper_tie_lower_choice",
+      "description": "Holder may actually exchange the formerly lower printed card when shared ordinary cap creates a tie.",
+      "expected": "Holder may actually exchange the formerly lower printed card when shared ordinary cap creates a tie.",
+      "runtime_status": "UNRUN"
+    },
+    {
+      "id": "ME-091",
+      "layer": "ObligationGateOnly",
+      "probe": "gate_use_time_quote",
+      "description": "After headline exchange, later Purge quote uses recipient current modifier; budget changes while obligation persists. Gate only, no actual OPS execution.",
+      "expected": "After headline exchange, later Purge quote uses recipient current modifier; budget changes while obligation persists. Gate only, no actual OPS execution.",
+      "runtime_status": "UNRUN"
+    }
+  ],
+  "runtime_acceptance": [
+    {
+      "id": "ME-U01",
+      "status": "UNRUN",
+      "description": "C# actual source/session authorization and save/replay integration"
+    },
+    {
+      "id": "ME-U02",
+      "status": "UNRUN",
+      "description": "Shared Operations executor, event suppression, actual-user modifiers and consumed route receipt"
+    },
+    {
+      "id": "ME-U03",
+      "status": "UNRUN",
+      "description": "TurnFlow normal next AR and scoring priority/cross-turn retained entity"
+    },
+    {
+      "id": "ME-U04",
+      "status": "UNRUN",
+      "description": "Trap actual discard and die receipt; exception later lifecycle requires ruling"
+    },
+    {
+      "id": "ME-U05",
+      "status": "UNRUN",
+      "description": "Registered neutral/UN/WWBY/Flower/GS/SW consumers and nested cycles"
+    },
+    {
+      "id": "ME-U06",
+      "status": "UNRUN",
+      "description": "Real terminal consumer cleanup and remaining parent OPS"
+    },
+    {
+      "id": "ME-U07",
+      "status": "UNRUN",
+      "description": "Production private logs/player projections and persistent accepted-ID/nonce storage"
+    }
+  ]
+}

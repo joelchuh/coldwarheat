@@ -1,0 +1,898 @@
+{
+  "description": "Missile Envy bounded design: historical5092+111 new=5203; actually executed 111+173 GS+119 SW=403. No production runtime.",
+  "checked_on": "2026-10-13",
+  "previous_cases_passed": 5092,
+  "new_cases_passed": 111,
+  "total_cases_passed": 5203,
+  "previous_cases_rerun_this_batch": 292,
+  "previous_unchanged_cases_not_rerun": 4800,
+  "actual_finite_checks_executed_this_batch": 403,
+  "cases_by_layer": {
+    "StructureReference": 10,
+    "FiniteRuleModel": 23,
+    "ProtocolRejection": 20,
+    "HistoryReplay": 21,
+    "PlayerProjection": 6,
+    "ObligationGateOnly": 11,
+    "ObligationGateRegression": 20
+  },
+  "runtime_cases_not_run": 7,
+  "runtime_game_tests_run": 0,
+  "actual_rng_implementation_tests": 0,
+  "bound_cards": 102,
+  "unresolved_bindings": 0,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 53,
+    "data_descriptors": 56,
+    "module_descriptors": 22,
+    "module_dependency_edges": 52,
+    "parameter_pointers_resolved": 297,
+    "stage_relative_links_checked": 253
+  },
+  "new_checker": {
+    "sha256": "d06b73555a1d1c57c5947b6a21ba0093cf344c1790ab3d9b85ee44107ebadb50",
+    "original_checker_sha256": "73d9cd55327e23e248b9babf613c34eb345fa3b3871ce32698e94d1e92473ef2",
+    "adapter_changes": [
+      {
+        "id": "ME-005",
+        "probe": "references",
+        "difference": "Keep original snapshot true against archived 432-file baseline; independently resolve effective stage references and hash their actual bytes."
+      },
+      {
+        "id": "ME-007",
+        "probe": "baseline_snapshot",
+        "difference": "Verify supplied current clean baseline actual metadata HEAD/count/all file SHA256; never substitute the author HEAD or fabricate metadata."
+      },
+      {
+        "id": "ME-008",
+        "probe": "five_files",
+        "difference": "Require original five paths in effective integration stage while permitting other integrated files."
+      }
+    ],
+    "rule_oracle_changed": false
+  },
+  "effective_shared_references": [
+    {
+      "key": "cards",
+      "dataset_id": "cards.deluxe2015.definitions",
+      "path": "Data/Cards/deluxe-2015/cards.json",
+      "json_pointer": "/cards",
+      "sha256": "f78907409a95986f651a1b21d333dafe280c78b8ad68be6d0fe0f894e1acffae"
+    },
+    {
+      "key": "world",
+      "dataset_id": "map.deluxe2015.world",
+      "path": "Data/Maps/deluxe-2015/world.json",
+      "json_pointer": "/countries",
+      "sha256": "6d4e20c674bd74d44cdb0f1ca66e8e960f125b3e45076d05307125a3c36ea45b"
+    },
+    {
+      "key": "fidel",
+      "dataset_id": "effects.deluxe2015.early_influence_batch1",
+      "path": "Data/Cards/deluxe-2015/early-influence-batch1.parameters.json",
+      "json_pointer": "/parameters/fidel",
+      "sha256": "4dd8d8b8b33b234503418b27a9dae070dfffd878fc6e0c603d1d024edadff2c9"
+    },
+    {
+      "key": "ops",
+      "dataset_id": "effects.deluxe2015.persistent_batch1",
+      "path": "Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json",
+      "json_pointer": "",
+      "sha256": "e229d5494deba9031c3348f7d726dd09fc2d8ce28eb2db618142712c79d538d4"
+    },
+    {
+      "key": "trap",
+      "dataset_id": "effects.deluxe2015.trap_events",
+      "path": "Data/Cards/deluxe-2015/trap-events.parameters.json",
+      "json_pointer": "",
+      "sha256": "b0181de82281eea5bcc1f2db084381e7d3be76892be5927a4f6dbd6b20ca5dfa"
+    },
+    {
+      "key": "turn_flow",
+      "dataset_id": "rules.deluxe2015.turn-flow",
+      "path": "Data/Rulesets/deluxe-2015/turn-flow.json",
+      "json_pointer": "",
+      "sha256": "257b1cb35040e6bcab177ab23ea9122dc28921b1cb1c0661a540498a44017562"
+    },
+    {
+      "key": "victory",
+      "dataset_id": "rules.deluxe2015.victory",
+      "path": "Data/Rulesets/deluxe-2015/victory.json",
+      "json_pointer": "",
+      "sha256": "f8566187874ff89c181b7c0c6cb46048788f7558fa5d9326273e64306d4a8624"
+    }
+  ],
+  "regressions_rerun": [
+    {
+      "suite": "grain-sales",
+      "passed": 173,
+      "checker_sha256": "debec20baa2040feb30009b1859a65ad858a31c8205bdca618b605b812bd4248"
+    },
+    {
+      "suite": "star-wars",
+      "passed": 119,
+      "checker_sha256": "318147ecc422ded94a394994e29e9154c47ec2244977632067b34a5cc623366d"
+    }
+  ],
+  "original_case_definitions_preserved": 91,
+  "gate_regression_evidence": {
+    "script_sha256": "20f2e5dfbf88138009f2e999621eb05871f7a661be19a7a952f666ad8d322144",
+    "root_report_sha256": "ab92ee73af556eaa43acba0bca56067364cd216e54dd1620c669f1f45eb09951",
+    "before": {
+      "failed": 16,
+      "control_passed": 4,
+      "report_sha256": "f14eb3635de27049ef4c9f5a09428fac9d1571b49b07173bdde6ec224f54ff58"
+    },
+    "after": {
+      "passed": 20,
+      "failed": 0
+    }
+  },
+  "results": [
+    {
+      "id": "ME-001",
+      "validation_layer": "StructureReference",
+      "passed": true
+    },
+    {
+      "id": "ME-002",
+      "validation_layer": "StructureReference",
+      "passed": true
+    },
+    {
+      "id": "ME-003",
+      "validation_layer": "StructureReference",
+      "passed": true
+    },
+    {
+      "id": "ME-004",
+      "validation_layer": "StructureReference",
+      "passed": true
+    },
+    {
+      "id": "ME-005",
+      "validation_layer": "StructureReference",
+      "passed": true
+    },
+    {
+      "id": "ME-006",
+      "validation_layer": "StructureReference",
+      "passed": true
+    },
+    {
+      "id": "ME-007",
+      "validation_layer": "StructureReference",
+      "passed": true
+    },
+    {
+      "id": "ME-008",
+      "validation_layer": "StructureReference",
+      "passed": true
+    },
+    {
+      "id": "ME-009",
+      "validation_layer": "StructureReference",
+      "passed": true
+    },
+    {
+      "id": "ME-010",
+      "validation_layer": "StructureReference",
+      "passed": true
+    },
+    {
+      "id": "ME-011",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-012",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-013",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-014",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-015",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-016",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-017",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-018",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-019",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-020",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-021",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-022",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-023",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-024",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-025",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-026",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-027",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-028",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-029",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-030",
+      "validation_layer": "ProtocolRejection",
+      "passed": true
+    },
+    {
+      "id": "ME-031",
+      "validation_layer": "ProtocolRejection",
+      "passed": true
+    },
+    {
+      "id": "ME-032",
+      "validation_layer": "ProtocolRejection",
+      "passed": true
+    },
+    {
+      "id": "ME-033",
+      "validation_layer": "ProtocolRejection",
+      "passed": true
+    },
+    {
+      "id": "ME-034",
+      "validation_layer": "ProtocolRejection",
+      "passed": true
+    },
+    {
+      "id": "ME-035",
+      "validation_layer": "ProtocolRejection",
+      "passed": true
+    },
+    {
+      "id": "ME-036",
+      "validation_layer": "ProtocolRejection",
+      "passed": true
+    },
+    {
+      "id": "ME-037",
+      "validation_layer": "ProtocolRejection",
+      "passed": true
+    },
+    {
+      "id": "ME-038",
+      "validation_layer": "ProtocolRejection",
+      "passed": true
+    },
+    {
+      "id": "ME-039",
+      "validation_layer": "ProtocolRejection",
+      "passed": true
+    },
+    {
+      "id": "ME-040",
+      "validation_layer": "ProtocolRejection",
+      "passed": true
+    },
+    {
+      "id": "ME-041",
+      "validation_layer": "ProtocolRejection",
+      "passed": true
+    },
+    {
+      "id": "ME-042",
+      "validation_layer": "ProtocolRejection",
+      "passed": true
+    },
+    {
+      "id": "ME-043",
+      "validation_layer": "ProtocolRejection",
+      "passed": true
+    },
+    {
+      "id": "ME-044",
+      "validation_layer": "ProtocolRejection",
+      "passed": true
+    },
+    {
+      "id": "ME-045",
+      "validation_layer": "ProtocolRejection",
+      "passed": true
+    },
+    {
+      "id": "ME-046",
+      "validation_layer": "ProtocolRejection",
+      "passed": true
+    },
+    {
+      "id": "ME-047",
+      "validation_layer": "ProtocolRejection",
+      "passed": true
+    },
+    {
+      "id": "ME-048",
+      "validation_layer": "ProtocolRejection",
+      "passed": true
+    },
+    {
+      "id": "ME-049",
+      "validation_layer": "ProtocolRejection",
+      "passed": true
+    },
+    {
+      "id": "ME-050",
+      "validation_layer": "HistoryReplay",
+      "passed": true
+    },
+    {
+      "id": "ME-051",
+      "validation_layer": "HistoryReplay",
+      "passed": true
+    },
+    {
+      "id": "ME-052",
+      "validation_layer": "HistoryReplay",
+      "passed": true
+    },
+    {
+      "id": "ME-053",
+      "validation_layer": "HistoryReplay",
+      "passed": true
+    },
+    {
+      "id": "ME-054",
+      "validation_layer": "HistoryReplay",
+      "passed": true
+    },
+    {
+      "id": "ME-055",
+      "validation_layer": "HistoryReplay",
+      "passed": true
+    },
+    {
+      "id": "ME-056",
+      "validation_layer": "HistoryReplay",
+      "passed": true
+    },
+    {
+      "id": "ME-057",
+      "validation_layer": "HistoryReplay",
+      "passed": true
+    },
+    {
+      "id": "ME-058",
+      "validation_layer": "HistoryReplay",
+      "passed": true
+    },
+    {
+      "id": "ME-059",
+      "validation_layer": "HistoryReplay",
+      "passed": true
+    },
+    {
+      "id": "ME-060",
+      "validation_layer": "HistoryReplay",
+      "passed": true
+    },
+    {
+      "id": "ME-061",
+      "validation_layer": "HistoryReplay",
+      "passed": true
+    },
+    {
+      "id": "ME-062",
+      "validation_layer": "HistoryReplay",
+      "passed": true
+    },
+    {
+      "id": "ME-063",
+      "validation_layer": "HistoryReplay",
+      "passed": true
+    },
+    {
+      "id": "ME-064",
+      "validation_layer": "HistoryReplay",
+      "passed": true
+    },
+    {
+      "id": "ME-065",
+      "validation_layer": "HistoryReplay",
+      "passed": true
+    },
+    {
+      "id": "ME-066",
+      "validation_layer": "HistoryReplay",
+      "passed": true
+    },
+    {
+      "id": "ME-067",
+      "validation_layer": "HistoryReplay",
+      "passed": true
+    },
+    {
+      "id": "ME-068",
+      "validation_layer": "PlayerProjection",
+      "passed": true
+    },
+    {
+      "id": "ME-069",
+      "validation_layer": "PlayerProjection",
+      "passed": true
+    },
+    {
+      "id": "ME-070",
+      "validation_layer": "PlayerProjection",
+      "passed": true
+    },
+    {
+      "id": "ME-071",
+      "validation_layer": "PlayerProjection",
+      "passed": true
+    },
+    {
+      "id": "ME-072",
+      "validation_layer": "PlayerProjection",
+      "passed": true
+    },
+    {
+      "id": "ME-073",
+      "validation_layer": "PlayerProjection",
+      "passed": true
+    },
+    {
+      "id": "ME-074",
+      "validation_layer": "ObligationGateOnly",
+      "passed": true
+    },
+    {
+      "id": "ME-075",
+      "validation_layer": "ObligationGateOnly",
+      "passed": true
+    },
+    {
+      "id": "ME-076",
+      "validation_layer": "ObligationGateOnly",
+      "passed": true
+    },
+    {
+      "id": "ME-077",
+      "validation_layer": "ObligationGateOnly",
+      "passed": true
+    },
+    {
+      "id": "ME-078",
+      "validation_layer": "ObligationGateOnly",
+      "passed": true
+    },
+    {
+      "id": "ME-079",
+      "validation_layer": "ObligationGateOnly",
+      "passed": true
+    },
+    {
+      "id": "ME-080",
+      "validation_layer": "ObligationGateOnly",
+      "passed": true
+    },
+    {
+      "id": "ME-081",
+      "validation_layer": "ObligationGateOnly",
+      "passed": true
+    },
+    {
+      "id": "ME-082",
+      "validation_layer": "ObligationGateOnly",
+      "passed": true
+    },
+    {
+      "id": "ME-083",
+      "validation_layer": "ObligationGateOnly",
+      "passed": true
+    },
+    {
+      "id": "ME-084",
+      "validation_layer": "HistoryReplay",
+      "passed": true
+    },
+    {
+      "id": "ME-085",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-086",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-087",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-088",
+      "validation_layer": "HistoryReplay",
+      "passed": true
+    },
+    {
+      "id": "ME-089",
+      "validation_layer": "HistoryReplay",
+      "passed": true
+    },
+    {
+      "id": "ME-090",
+      "validation_layer": "FiniteRuleModel",
+      "passed": true
+    },
+    {
+      "id": "ME-091",
+      "validation_layer": "ObligationGateOnly",
+      "passed": true
+    },
+    {
+      "id": "ME-GR-01",
+      "validation_layer": "ObligationGateRegression",
+      "description": "finished",
+      "expected": "RejectBeforeGateResult",
+      "actual": {
+        "rejected": true,
+        "error": "Finished"
+      },
+      "unchanged": true,
+      "passed": true
+    },
+    {
+      "id": "ME-GR-02",
+      "validation_layer": "ObligationGateRegression",
+      "description": "active_draw",
+      "expected": "RejectBeforeGateResult",
+      "actual": {
+        "rejected": true,
+        "error": "GlobalResult"
+      },
+      "unchanged": true,
+      "passed": true
+    },
+    {
+      "id": "ME-GR-03",
+      "validation_layer": "ObligationGateRegression",
+      "description": "awaiting_child",
+      "expected": "RejectBeforeGateResult",
+      "actual": {
+        "rejected": true,
+        "error": "GateNotReady"
+      },
+      "unchanged": true,
+      "passed": true
+    },
+    {
+      "id": "ME-GR-04",
+      "validation_layer": "ObligationGateRegression",
+      "description": "phase_mismatch",
+      "expected": "RejectBeforeGateResult",
+      "actual": {
+        "rejected": true,
+        "error": "GateCurrentContext"
+      },
+      "unchanged": true,
+      "passed": true
+    },
+    {
+      "id": "ME-GR-05",
+      "validation_layer": "ObligationGateRegression",
+      "description": "owner_mismatch",
+      "expected": "RejectBeforeGateResult",
+      "actual": {
+        "rejected": true,
+        "error": "GateCurrentContext"
+      },
+      "unchanged": true,
+      "passed": true
+    },
+    {
+      "id": "ME-GR-06",
+      "validation_layer": "ObligationGateRegression",
+      "description": "forged_origin_both",
+      "expected": "RejectBeforeGateResult",
+      "actual": {
+        "rejected": true,
+        "error": "GateScheduleAnchor"
+      },
+      "unchanged": true,
+      "passed": true
+    },
+    {
+      "id": "ME-GR-07",
+      "validation_layer": "ObligationGateRegression",
+      "description": "conflicting_entity",
+      "expected": "RejectBeforeGateResult",
+      "actual": {
+        "rejected": true,
+        "error": "Pending:ConflictingObligations"
+      },
+      "unchanged": true,
+      "passed": true
+    },
+    {
+      "id": "ME-GR-08",
+      "validation_layer": "ObligationGateRegression",
+      "description": "purge_offset",
+      "expected": "RejectBeforeGateResult",
+      "actual": {
+        "rejected": true,
+        "error": "Pending:TrapModifierCombination"
+      },
+      "unchanged": true,
+      "passed": true
+    },
+    {
+      "id": "ME-GR-09",
+      "validation_layer": "ObligationGateRegression",
+      "description": "purge_flag_inconsistent",
+      "expected": "RejectBeforeGateResult",
+      "actual": {
+        "rejected": true,
+        "error": "GatePurgeEvidence"
+      },
+      "unchanged": true,
+      "passed": true
+    },
+    {
+      "id": "ME-GR-10",
+      "validation_layer": "ObligationGateRegression",
+      "description": "stale_schedule",
+      "expected": "RejectBeforeGateResult",
+      "actual": {
+        "rejected": true,
+        "error": "GateScheduleAnchor"
+      },
+      "unchanged": true,
+      "passed": true
+    },
+    {
+      "id": "ME-GR-11",
+      "validation_layer": "ObligationGateRegression",
+      "description": "root_forged_together",
+      "expected": "RejectBeforeGateResult",
+      "actual": {
+        "rejected": true,
+        "error": "GateScheduleAnchor"
+      },
+      "unchanged": true,
+      "passed": true
+    },
+    {
+      "id": "ME-GR-12",
+      "validation_layer": "ObligationGateRegression",
+      "description": "missing_trust",
+      "expected": "RejectBeforeGateResult",
+      "actual": {
+        "rejected": true,
+        "error": "GateTrustShape"
+      },
+      "unchanged": true,
+      "passed": true
+    },
+    {
+      "id": "ME-GR-13",
+      "validation_layer": "ObligationGateRegression",
+      "description": "creation_rehashed",
+      "expected": "RejectBeforeGateResult",
+      "actual": {
+        "rejected": true,
+        "error": "GateReceiptAnchor"
+      },
+      "unchanged": true,
+      "passed": true
+    },
+    {
+      "id": "ME-GR-14",
+      "validation_layer": "ObligationGateRegression",
+      "description": "forged_origin_rescheduled",
+      "expected": "RejectBeforeGateResult",
+      "actual": {
+        "rejected": true,
+        "error": "GateObligationOrigin"
+      },
+      "unchanged": true,
+      "passed": true
+    },
+    {
+      "id": "ME-GR-15",
+      "validation_layer": "ObligationGateRegression",
+      "description": "wrong_game_admitted",
+      "expected": "RejectBeforeGateResult",
+      "actual": {
+        "rejected": true,
+        "error": "GateOriginGame"
+      },
+      "unchanged": true,
+      "passed": true
+    },
+    {
+      "id": "ME-GR-16",
+      "validation_layer": "ObligationGateRegression",
+      "description": "completed_current_root",
+      "expected": "RejectBeforeGateResult",
+      "actual": {
+        "rejected": true,
+        "error": "GateNotReady"
+      },
+      "unchanged": true,
+      "passed": true
+    },
+    {
+      "id": "ME-GR-17",
+      "validation_layer": "ObligationGateRegression",
+      "description": "valid_normal",
+      "expected": "RequireSourceOperations",
+      "actual": {
+        "rejected": false,
+        "action": "RequireSourceOperations"
+      },
+      "unchanged": true,
+      "passed": true
+    },
+    {
+      "id": "ME-GR-18",
+      "validation_layer": "ObligationGateRegression",
+      "description": "valid_headline",
+      "expected": "Unaffected",
+      "actual": {
+        "rejected": false,
+        "action": "Unaffected"
+      },
+      "unchanged": true,
+      "passed": true
+    },
+    {
+      "id": "ME-GR-19",
+      "validation_layer": "ObligationGateRegression",
+      "description": "valid_purge",
+      "expected": "TrapExceptionKeepRecord_LaterPending",
+      "actual": {
+        "rejected": false,
+        "action": "TrapExceptionKeepRecord_LaterPending"
+      },
+      "unchanged": true,
+      "passed": true
+    },
+    {
+      "id": "ME-GR-20",
+      "validation_layer": "ObligationGateRegression",
+      "description": "valid_later_turn",
+      "expected": "RequireSourceOperations",
+      "actual": {
+        "rejected": false,
+        "action": "RequireSourceOperations"
+      },
+      "unchanged": true,
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "Three context changes only; no parameter/schema/case edits or synthetic metadata",
+    "Original source_hashes probe still checks real cached PDFs and user-confirmation bytes",
+    "Synthetic anchors do not prove real authentication/storage; all seven runtime acceptance groups UNRUN",
+    "Root workflow owns independent structural checks and formal registration",
+    "Only Fidel is a finite complete child; opposing Operations remains budget handoff/wait.",
+    "Obligation gate validates finite trusted fixtures; real TurnFlow, Trap, storage, authentication and execution are unimplemented.",
+    "4800 unchanged historical checks were not rerun this batch."
+  ],
+  "independent_review": {
+    "status": "ready",
+    "reviewer": "independent scoped design reviewer",
+    "review_report_sha256": "077d1c0969c55b3060d28f16d2b0ac4f9e7ec5032bd946b092c64a56c6ccc9ec",
+    "reviewed_root_report_sha256": "9cc20cc50a92e5ce7e5d0e1ddc0cd8f2dccdb0849480d7dd6cd3be0f30dbe935",
+    "reviewed_files": 27,
+    "actual_finite_checks_executed": 403,
+    "new_cases": 111,
+    "regressions": 292,
+    "open_findings": 0,
+    "runtime_game_tests_run": 0,
+    "limitations": [
+      "No historical 4800-case rerun is claimed. Cumulative 5203 combines prior evidence with 111 new finite ME checks; this independent integration execution ran 403 checks.",
+      "No C#, Unity, actual Operations/scoring/trap/turn runner, production authentication/storage or true terminal consumer executed. ME has 7 UNRUN runtime groups; GS and SW runtime groups remain their own prior UNRUN evidence.",
+      "Parameter Bound does not mean full-card runtime playability or support for every nested source/consumer combination.",
+      "Source cache paths and synthetic trusted inputs are evidence artifacts, not newly introduced production services.",
+      "This review created only new C-side reviewer files and a new merged view; it did not edit the author candidate, integration overlay, prior reports, E-drive or Git, and used no subagent."
+    ]
+  },
+  "validated_sha256": {
+    "Data/Cards/deluxe-2015/cards.json": "f78907409a95986f651a1b21d333dafe280c78b8ad68be6d0fe0f894e1acffae",
+    "Data/Cards/deluxe-2015/missile-envy.parameters.json": "0d2737ecede5e7277f97e6287efb0ba6cb7d994afe6a9e1a8f532739c7331e8b",
+    "Data/Descriptors/card-definitions.data.json": "b218f85761fad937cc769bcdef50356410a2511f42b5abd5a8bfe389b4cbef78",
+    "Data/Descriptors/missile-envy.data.json": "610d6e83856c95f3a561b7d3a4395606d21d74acfa189289db51b5b285e49343",
+    "Data/catalog.json": "8d127e2f43146144e1442288a322436e2bfc7b9080c52b706fbb09a361a5fa65",
+    "Docs/Contracts/catalog.json": "271a3dd7bac6d5398b097a9458b7966c322c04308e8ff347707de75761f9571f",
+    "Docs/Contracts/missile-envy.schema.json": "267a7d75bce807f7fb1073c324f8d966f4570c260bf10237bbecb5b2c71e7ebc",
+    "Docs/Descriptors/card-data.module.json": "f3deb316e7131c0557e1ecee244f183485fa58852c7f46ff58b8e0e18ba864ca",
+    "Docs/Descriptors/catalog.json": "f5f6b61bcf41a695174ce15b1dbaade6e60d7ce2acc662e762090b31bdbaf681",
+    "Docs/Descriptors/nested-card-events.module.json": "fc55f7d831b4777b052cc751302f8325f987afaff268f093db5acd0182bc03a2",
+    "Docs/Descriptors/trap-actions.module.json": "4ce426202fbb9a7e89b0ecb3b66bc84c6a0048622a1894bcf72c20a2371cff9c",
+    "Docs/Descriptors/turn-flow.module.json": "7af2bfe2ab44f71ea2c03605d2f1b71f2367f48e9028410e55056f66027d6050",
+    "Docs/Design/missile-envy.cases.json": "1a5452958647d6b7ab3c6745b28d509e2f8d9716bb59e9cc62be75ba541a98e3",
+    "Docs/Design/nested-card-sources.plan.json": "92952bff8749723e0a45c947321608600b4bb13efa89c3edababb161ebcca153",
+    "Docs/Design/rules-design-roadmap.json": "d7ff9bb986f8362ea682df9ad63732001940e66505e44ccabaf010a9c68b3d1a",
+    "Docs/Wiki/cards/mid.md": "d9ea870750fdb387a84af8af6eb19bd19d5a39c6c4bc981e3552948eaeb580a3",
+    "Docs/Wiki/index.md": "cf6ddf814aba020287bbe87b64199dd1942eb9bf4ece399ce37753fc1149d12e",
+    "Docs/Wiki/map-card-data.md": "0cce8efe8397eb3215588dfdf69a1f4bb7fb725df2e48043ef46f0662c592c25",
+    "Docs/Wiki/missile-envy.md": "711248b6f0ae97a1afd22a5c18c0770d7a9ae8bf7e920494e6060ee587f84491",
+    "Docs/Wiki/nested-card-events.md": "71be543f2919c2339ef4dd68b7f6428ae8125cc540ad3a763b8f58f9b2332fda",
+    "Docs/Wiki/nested-card-sources.md": "35bc3da17cd36f64955756a1ea8af8fa20e06dcb0bf0dbf4a0618b30b4537752",
+    "Docs/Wiki/setup.md": "5ad1a71e7c51a5b48ebb13eca2029f97bcd3835561e17951ef67f0dad4173bc0",
+    "Docs/Wiki/trap-events.md": "cbbbfe35195e290e83903cbcfa3a7df0cc80026739e358085cae640b01ff0168",
+    "Docs/Wiki/turn-flow.md": "6bde6d1b3e69f00945eed31d60486b03e45d53e3ee0f11aac2b0970ffecc58bf",
+    "Docs/Worklogs/2026-10-13-missile-envy.md": "ca6601b9b28d43632f1398ef7a2931ec5318545b6116464258a572b815e075b8",
+    "README.md": "c05a3c79ddbf6a1926dc0e4cafc7350e6e575ddd16a86a0732d18ba2602c199a"
+  },
+  "author_candidate_review": {
+    "status": "ready",
+    "fixed_review_sha256": "0a1c72bd2ea60dd8c694cd3bb08a5e79f055af556cef87f51953552b3a95e602",
+    "original_suite_passed": 91,
+    "new_regressions_passed": 20,
+    "original_independent_probes_adapted_passed": 12,
+    "red_reproduced": {
+      "failed": 16,
+      "controls_passed": 4
+    },
+    "three_P2_findings_closed": true,
+    "runtime_game_tests_run": 0
+  }
+}

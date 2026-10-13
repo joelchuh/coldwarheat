@@ -22,7 +22,8 @@
   ],
   "inputs": [
     "可信新根slot/PhasingPlayer/ActivationRootId/阶段/版本、活动实例",
-    "本人普通Hand/OPS阈值报价、编排计分义务和已验证优先弃牌来源、注入随机状态"
+    "本人普通Hand/OPS阈值报价、编排计分义务和已验证优先弃牌来源、注入随机状态",
+    "ME来源实体及独立后续义务；仅消费已核实陷阱优先/不足阈值例外门禁设计"
   ],
   "outputs": [
     "Owner私有PendingDecision或计分委派/规则跳过、弃牌/骰记录/逃脱/一次根slot计划"
@@ -45,11 +46,13 @@
     "cards.deluxe2015.definitions",
     "effects.deluxe2015.persistent_batch1",
     "effects.deluxe2015.persistent_batch2",
-    "rules.deluxe2015.turn-flow"
+    "rules.deluxe2015.turn-flow",
+    "effects.deluxe2015.missile_envy"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:trap-events:1",
-    "urn:coldwarheat:contract:standard-dice:1"
+    "urn:coldwarheat:contract:standard-dice:1",
+    "https://coldwarstruggle.local/contracts/missile-envy.schema.json"
   ],
   "preconditions": [
     "设计不可调用；SourceSlot、身份/候选/计分义务齐备",
@@ -61,7 +64,8 @@
   "stop_conditions": [
     "额外/外部slot政策未知、计分义务未知、强制弃牌来源缺损",
     "过期/非法回应或损坏实例/随机值，旧ID冲突，新ID重复激活未裁定",
-    "基础包未知optionalNORAD状态不得默许取消后继续"
+    "基础包未知optionalNORAD状态不得默许取消后继续",
+    "ME真实陷阱弃牌/骰子/义务完成仍待实现；Purge例外后恢复策略未确认"
   ],
   "rule_sources": [
     {
@@ -87,16 +91,36 @@
       "url": null,
       "edition": "Engineering scope/verified-source boundaries, 2026-10-06",
       "description": "新受影响根slot gate排除激活根，私有选择/原子弃骰/根slot收据；计分义务由编排提供，不私算可放弃额外slot。未知外部/额外slot来源与新ID重复停止。标准D6新消费者共享，旧Space/war数值留兼容检查，未声称迁移旧消费者。"
+    },
+    {
+      "id": "PROJECT-ME1",
+      "url": null,
+      "edition": "Finite design 2026-10-13",
+      "locator": "Five-file candidate and disposable probe",
+      "description": "Independent obligation, atomic transfer, typed receipt and synthetic authority boundaries are engineering choices, not official rulings."
+    },
+    {
+      "id": "PROJECT-ME1-USER-20261013",
+      "url": null,
+      "edition": "User confirmation 2026-10-13",
+      "locator": "work/missile-envy-user-interpretations.json: two recorded questions and accepted answers",
+      "description": "HumanConfirmed project interpretation only, not a dedicated official ruling. Scope: highest comparator and empty ordinary-OPS candidate fallback.",
+      "local_path": "work/missile-envy-user-interpretations.json",
+      "sha256": "6dc167bbb4c4b74ddf5bce461a06430cff6ba86b1507e582f2503cadaceee2ea"
     }
   ],
   "tests": [
     {
       "path": "Docs/Design/trap-events.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/missile-envy.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
-    "latest_design_report": "Docs/Design/trap-events.validation.json"
+    "latest_design_report": "Docs/Design/missile-envy.validation.json"
   }
 }

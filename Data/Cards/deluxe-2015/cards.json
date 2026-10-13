@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.44.0",
+  "content_version": "0.45.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计101牌效果参数已绑定，其余1个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。 其中5牌边界采用2026-10-13用户确认的项目解释，非官方专门裁定。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。102个非中国牌效果参数均已绑定，102个处理器仍planned；可选104–110不启用。用户确认的项目解释与官方规则分开记录，未知组合继续标Pending。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -305,6 +305,18 @@
       "url": null,
       "edition": "Finite design 2026-10-13",
       "description": "Complete inventory, trusted independent anchors and finite evidence are engineering; real RNG/auth/storage/network unimplemented."
+    },
+    {
+      "id": "PROJECT-ME1",
+      "url": null,
+      "edition": "Finite design 2026-10-13",
+      "description": "Independent obligation, atomic transfer, typed receipt and synthetic authority boundaries are engineering choices, not official rulings."
+    },
+    {
+      "id": "PROJECT-ME1-USER-20261013",
+      "url": null,
+      "edition": "User confirmation 2026-10-13",
+      "description": "HumanConfirmed project interpretation only, not a dedicated official ruling. Scope: highest comparator and empty ordinary-OPS candidate fallback."
     }
   ],
   "cards": [
@@ -1860,8 +1872,13 @@
       "effect_binding": {
         "effect_id": "effect.missile_envy",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.missile_envy",
+            "json_pointer": "/parameters/missile_envy"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -5015,15 +5032,37 @@
     {
       "effect_id": "effect.missile_envy",
       "contract_version": "0.1.0",
-      "description": "Missile Envy：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.missile_envy",
+      "description": "原持牌者按已确认修正比较最高OPS；原子交换、有限子用牌与独立后续义务，空候选按用户解释完成。",
+      "handler_key": "nested.ExchangeHighestThenNestedUseAndObligation",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "https://coldwarstruggle.local/contracts/missile-envy.schema.json#/$defs/missile_envy"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
+          "source_id": "C-DELUXE-EN",
+          "locator": "PDF p8 #49; p2 #8 Personally checked original cached source; concise paraphrase only; FAQ not authority for incompatible older-edition text.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "2.2.1-6; 4.2; 5.2; 7.4.1-2; 8.1.3; 9.1,9.5,9.8 Personally checked original cached source; concise paraphrase only; FAQ not authority for incompatible older-edition text.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDF p6 #31; p12 #49; pp19-20 forced scoring precedence Personally checked original cached source; concise paraphrase only; FAQ not authority for incompatible older-edition text.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-ME1",
+          "locator": "Five-file candidate and disposable probe Independent obligation, atomic transfer, typed receipt and synthetic authority boundaries are engineering choices, not official rulings.",
           "verification": "Pending"
+        },
+        {
+          "source_id": "PROJECT-ME1-USER-20261013",
+          "locator": "work/missile-envy-user-interpretations.json: two recorded questions and accepted answers HumanConfirmed project interpretation only, not a dedicated official ruling. Scope: highest comparator and empty ordinary-OPS candidate fallback.",
+          "verification": "Verified"
         }
       ]
     },

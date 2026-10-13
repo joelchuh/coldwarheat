@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "id": "plan.nested-card-sources",
-  "description": "借牌三事件分批设计：Star Wars与Grain Sales有限参数及消费者已登记，Missile Envy未绑定；运行服务均planned。",
-  "status": "design-in-progress",
+  "description": "Star Wars、Grain Sales、Missile Envy参数与有限消费者均已登记；新来源覆盖、未知组合和所有运行实现仍待逐步完成。",
+  "status": "bounded-designs-registered-runtime-planned",
   "checked_on": "2026-10-13",
   "entrypoints": [],
   "implementation_status": "planned",
@@ -46,11 +46,16 @@
       "verified_constraints": [
         "交换对方最高OPS牌，并列由对方决定；所取同方/中立牌发生事件，反方牌用于OPS而不触发该事件。",
         "Missile Envy实体进入对方手牌；当前事件的常规源清理不能又把它弃置。",
-        "取得Missile Envy的一方下一行动轮须按要求用它；陷阱与Purge例外按FAQ逐项核实。"
+        "取得Missile Envy的一方下一行动轮须按要求用它；陷阱与Purge例外按FAQ逐项核实。",
+        "用户PROJECT-ME1-USER-20261013：原持牌者当前普通OPS修正及共享上下限比较最高，并列其选；实际使用重新按使用者修正。",
+        "用户PROJECT-ME1-USER-20261013：无可交换普通OPS牌时无变化完成弃ME，不交换且无义务。",
+        "FAQ pp19–20强制计分优先时保留ME，下回合首AR用OPS；头条不履行后续普通AR义务。"
       ],
       "unresolved": [
-        "最高OPS比较在修正与封顶后的含义、无可交换牌、跨回合义务及强制计分优先序需单列证据。"
-      ]
+        "Purge导致陷阱例外之后的义务恢复、额外行动、其他事件移走及UN覆盖尚未默认定案。",
+        "真实OPS/回合/陷阱/中立复杂事件及终局消费者仍未实现。"
+      ],
+      "status": "bounded-design-registered-runtime-planned"
     }
   ],
   "shared_contract_plan": {
@@ -142,9 +147,14 @@
       "id": "PROJECT-SW1-USER-20261013",
       "url": null,
       "locator": "用户2026-10-13确认；限定太空严格领先且合法非计分弃牌为空分支"
+    },
+    {
+      "id": "PROJECT-ME1-USER-20261013",
+      "url": null,
+      "locator": "人类用户2026-10-13确认最高普通OPS修正/并列及空可交换池两分支；非官方专门裁定"
     }
   ],
-  "validation_scope": "本计划只索引分批状态，不独立增加案例通过数量；Star Wars登记和有限验证见其参数/契约/报告，运行服务仍未实现。",
+  "validation_scope": "本计划只索引三牌有限设计与未知能力，不独立增加规则案例数；各牌报告列出实际检查、未重跑历史和UNRUN运行验收。",
   "runtime_game_tests_run": 0,
   "priority_before_consumer_expansion": {
     "description": "用户确认Wargames零分Draw后，逐个核验完整live snapshot的历史重放兼容；结构inventory不是行为通过证据。",

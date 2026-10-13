@@ -1,0 +1,310 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.missile_envy",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "verified-subset",
+  "description": "Missile Envy exchange and durable obligation design with two user-confirmed project interpretations; finite offline model, no runtime implementation.",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe card images",
+      "locator": "PDF p8 #49; p2 #8",
+      "local_path": "tmp/pdfs/TS_Cards_Deluxe.pdf",
+      "sha256": "3fded13f03c63154de72af93faceaf8700db19f12c033ff477497232f2c2a0f0",
+      "description": "Personally checked original cached source; concise paraphrase only; FAQ not authority for incompatible older-edition text."
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe 2015",
+      "locator": "2.2.1-6; 4.2; 5.2; 7.4.1-2; 8.1.3; 9.1,9.5,9.8",
+      "local_path": "tmp/pdfs/TS_Rules-2015.pdf",
+      "sha256": "d5c827cf78fc4800e0993c1e3313ec909d3c7da2c1b03b735ccf0042a0c4ac8e",
+      "description": "Personally checked original cached source; concise paraphrase only; FAQ not authority for incompatible older-edition text."
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQv5 compatible Deluxe passages only",
+      "locator": "PDF p6 #31; p12 #49; pp19-20 forced scoring precedence",
+      "local_path": "tmp/pdfs/FAQv5-review.pdf",
+      "sha256": "9c8ac9ef5c2b25f558d81aa2e12205609661dc80d9ead52b64367659bac99374",
+      "description": "Personally checked original cached source; concise paraphrase only; FAQ not authority for incompatible older-edition text."
+    },
+    {
+      "id": "PROJECT-ME1",
+      "url": null,
+      "edition": "Finite design 2026-10-13",
+      "locator": "Five-file candidate and disposable probe",
+      "description": "Independent obligation, atomic transfer, typed receipt and synthetic authority boundaries are engineering choices, not official rulings."
+    },
+    {
+      "id": "PROJECT-ME1-USER-20261013",
+      "url": null,
+      "edition": "User confirmation 2026-10-13",
+      "locator": "work/missile-envy-user-interpretations.json: two recorded questions and accepted answers",
+      "description": "HumanConfirmed project interpretation only, not a dedicated official ruling. Scope: highest comparator and empty ordinary-OPS candidate fallback.",
+      "local_path": "work/missile-envy-user-interpretations.json",
+      "sha256": "6dc167bbb4c4b74ddf5bce461a06430cff6ba86b1507e582f2503cadaceee2ea"
+    }
+  ],
+  "shared_refs": {
+    "cards": {
+      "dataset_id": "cards.deluxe2015.definitions",
+      "path": "Data/Cards/deluxe-2015/cards.json",
+      "json_pointer": "/cards"
+    },
+    "world": {
+      "dataset_id": "map.deluxe2015.world",
+      "path": "Data/Maps/deluxe-2015/world.json",
+      "json_pointer": "/countries"
+    },
+    "fidel": {
+      "dataset_id": "effects.deluxe2015.early_influence_batch1",
+      "path": "Data/Cards/deluxe-2015/early-influence-batch1.parameters.json",
+      "json_pointer": "/parameters/fidel"
+    },
+    "ops": {
+      "dataset_id": "effects.deluxe2015.persistent_batch1",
+      "path": "Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json",
+      "json_pointer": ""
+    },
+    "trap": {
+      "dataset_id": "effects.deluxe2015.trap_events",
+      "path": "Data/Cards/deluxe-2015/trap-events.parameters.json",
+      "json_pointer": ""
+    },
+    "turn_flow": {
+      "dataset_id": "rules.deluxe2015.turn-flow",
+      "path": "Data/Rulesets/deluxe-2015/turn-flow.json",
+      "json_pointer": ""
+    },
+    "victory": {
+      "dataset_id": "rules.deluxe2015.victory",
+      "path": "Data/Rulesets/deluxe-2015/victory.json",
+      "json_pointer": ""
+    }
+  },
+  "parameters": {
+    "missile_envy": {
+      "card_id": "card.missile_envy",
+      "effect_id": "effect.missile_envy",
+      "description": "Holder-modified highest exchange with shared ordinary floor/cap; confirmed empty fallback; typed received use and separate next-AR obligation.",
+      "template": "ExchangeHighestThenNestedUseAndObligation",
+      "selector": "OpponentOrdinaryHandHolder",
+      "source_transfer": "SameEntityToOpponentHand",
+      "candidate_kind": "OrdinaryHandEventWithOperations",
+      "comparison": {
+        "quote_actor": "OriginalHandHolder",
+        "ops_policy_ref_key": "ops",
+        "value": "CurrentOrdinaryOperationsValueAtComparison",
+        "ordinary_bounds": "ReadSharedOpsPolicyMinimumAndOrdinaryMaximum",
+        "regional_bonuses": "ExcludedFromOrdinaryComparison",
+        "tie": "HolderChoosesExactlyOneMaximumAfterBounds",
+        "empty": "SuccessfulNoChangeDiscardMissileEnvy_NoExchangeNoObligation",
+        "china": "ExcludedSeparateCard",
+        "scoring": "ExcludedNoOperationsValue"
+      },
+      "received_route": {
+        "same_association": "Event",
+        "neutral": "Event_ControllerPending",
+        "opponent_association": "Operations_SuppressEvent",
+        "actual_user": "MissileEnvyEventActor",
+        "ops_modifiers": "ActualUserAtUseTime"
+      },
+      "obligation": {
+        "storage": "IndependentPersistentRecord",
+        "owner": "ExchangeRecipient",
+        "card": "SameMissileEnvyEntity",
+        "due": "NextNormalActionRoundOfOwner",
+        "required_route": "Operations",
+        "headline": "DoesNotConsumeObligation",
+        "forced_scoring": "DeferKeepSourceThenFirstARNextTurn",
+        "eligible_trap": "RequiredNextTrapDiscard",
+        "purge_ineligible_trap": "KeepRecordRequiresRulingForLaterLifecycle",
+        "completion": "OnlyAcceptedBoundActualUseOrTrapDiscardReceipt",
+        "expiry": "NoAutomaticParentCompletionOrTurnEndExpiry"
+      },
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "p8 #49",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "2.2.1 and 9.1/9.8 candidate exclusions",
+          "verification": "TextualDerivation"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "7.4.1-2 actual user use-time OPS",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "p6 actual forced-use modifier; p12 trap; pp19-20 scoring carry",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-ME1",
+          "locator": "Independent obligation, atomic transfer, receipt and finite support are engineering design",
+          "verification": "EngineeringBoundary"
+        },
+        {
+          "source_id": "PROJECT-ME1-USER-20261013",
+          "locator": "User accepted holder ordinary modified comparison and empty/scoring-only completion policy on 2026-10-13",
+          "verification": "HumanConfirmed"
+        }
+      ]
+    }
+  },
+  "source_policy": {
+    "allowed": [
+      "RootEvent",
+      "HeadlineEvent"
+    ],
+    "nested_parent": "UnsupportedBeforeMutation",
+    "root_identity": "RootSlotAndRootPhasingNeverReassigned",
+    "source_entity": "UniqueSourceInResolution",
+    "source_cleanup": "EmptyCandidateCompletesWithDiscard;AfterActualExchangeTransferredSourceRemainsOpponentHand",
+    "active_interventions": "UnknownEffectsRequireRuling"
+  },
+  "consumer_registry": {
+    "rows": [
+      {
+        "id": "cap.missile_envy.fidel",
+        "target_card_id": "card.fidel",
+        "route": "Event",
+        "provider_id": "ME1.Fidel.v1",
+        "event_actor": "USSR",
+        "coverage": "CompleteFidelNoActiveInterventions",
+        "model_status": "FiniteDesignSupported",
+        "runtime_status": "planned"
+      },
+      {
+        "id": "cap.missile_envy.opponent_ops",
+        "target_card_id": "AnyOrdinaryOpponentAssociatedEvent",
+        "route": "Operations",
+        "provider_id": "ME1.OperationsHandoff.v1",
+        "event_actor": "ActualMissileEnvyActor",
+        "coverage": "BudgetAndAwaitingHandoffOnly_NoActualOperations",
+        "model_status": "FiniteHandoffOnly",
+        "runtime_status": "planned"
+      }
+    ],
+    "default": "UnsupportedBeforeExchange"
+  },
+  "protocol": {
+    "version": 1,
+    "commands": [
+      "Begin",
+      "ChooseHighest",
+      "CompleteChild"
+    ],
+    "validation": "ClosedShapeBeforeReadingFields;LiveAndFullHistoryThenSemantics",
+    "deduplication": "ExactCommandAndAuthenticatedPrincipalReturnsOriginalProjectedResult;NeverOverwriteLaterLive",
+    "history": "AllAcceptedIDsAndNoncesCrossCheckReceiptKeysCommandIDsResultIDsAndIndependentAnchors",
+    "callback_failure": "KeepAcceptedAwaitingStateAndLedgerByteEquivalent",
+    "source_binding": "GameRulesDigestsRootParentSourceTargetChildProviderBeforeAfterNonce",
+    "global_result": "ActiveRequiresNullWinner;FinishedRequiresUSorUSSRorDraw;NoNewFinishedCommands",
+    "model_trust": "AnchorsAreIndependentSyntheticInputs_NotRuntimeAuthentication",
+    "obligation_gate": "ValidateFullActiveState;NoAwaitingChild;IndependentAcceptedCreationAndCompletionAnchors;AdmittedLaterRootSnapshotAndPhaseOwnerBinding;UniqueObligationPerSourceEntity",
+    "gate_modifier_evidence": "CurrentOrdinaryTotalsMustMatchIndependentlyAdmittedSharedModifierIds;TrapPurgeOnlyKnownCase;PositiveOffsetCombinationPending"
+  },
+  "privacy": {
+    "choice": "OnlyHolderSeesOwnLegalMaximumSet;ActorAndSpectatorSeeWaitingOnly",
+    "exchange": "SelectedAndTransferredSourceBecomePublicOnlyAfterAcceptedExchange",
+    "history": "ReturnOriginalPlayerProjectionNotRawReceiptOrLaterState",
+    "authority_only": [
+      "UnselectedHandIdentities",
+      "DeckOrder",
+      "SourceCredentials",
+      "Anchors",
+      "RawReceipts"
+    ]
+  },
+  "pending": [
+    {
+      "id": "ME-P03",
+      "topic": "Trap plus Purge exception lifecycle",
+      "status": "Pending",
+      "needed": "FAQ confirms degraded card is not mandatory trap discard; recovery after escape/expiry and positive modifier combination remain unresolved. Keep obligation record, block continuation needing ruling.",
+      "source_refs": [
+        {
+          "source_id": "F2010",
+          "locator": "p12 #49",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "ME-P04",
+      "topic": "UN override; UN/WWBY/Flower nested consumers; Grain Sales/Star Wars recursion",
+      "status": "Pending",
+      "needed": "Dedicated paired entities, source and timing contracts; no blanket rules prohibition claimed.",
+      "source_refs": [
+        {
+          "source_id": "F2010",
+          "locator": "p12 NOTE establishes limited nested UN interaction only",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "ME-P05",
+      "topic": "Neutral event controller and all unregistered event consumers",
+      "status": "Pending",
+      "needed": "Card text chooses Event route; actual neutral decisions/control need a supported row. Neutral is never treated as FYP US-only child.",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "p8 #49 event applicable to both players",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "ME-P06",
+      "topic": "Extra action slots, disposal of retained source, conflicting obligations, new repeated activation",
+      "status": "Pending",
+      "needed": "No generalized carry/expiry/removal rule beyond cited scoring case and next normal AR; source entity must remain bound.",
+      "source_refs": [
+        {
+          "source_id": "F2010",
+          "locator": "pp19-20 narrow scoring example",
+          "verification": "Verified"
+        }
+      ]
+    },
+    {
+      "id": "ME-P07",
+      "topic": "Terminal child, immediate cleanup and remaining parent OPS",
+      "status": "Pending",
+      "needed": "No actual terminal consumer admitted. Global Finished/Draw replay is protocol only; no terminal cleanup ruling fabricated.",
+      "source_refs": [
+        {
+          "source_id": "R2015",
+          "locator": "8.1.3 immediate outcome",
+          "verification": "Verified"
+        }
+      ]
+    }
+  ],
+  "project_rulings": [
+    {
+      "id": "ME-RULING-01",
+      "status": "HumanConfirmed",
+      "source_id": "PROJECT-ME1-USER-20261013",
+      "description": "Compare current ordinary Operations with original holder modifiers and shared minimum/ordinary maximum; ties after bounds belong to holder. At actual OPS use recalculate under actual user current modifiers. Dedicated official ruling not claimed."
+    },
+    {
+      "id": "ME-RULING-02",
+      "status": "HumanConfirmed",
+      "source_id": "PROJECT-ME1-USER-20261013",
+      "description": "No exchangeable ordinary OPS card, including empty/scoring-only Hand: successful no-change event; source ME discarded; no exchange and no forced-next-use obligation. Dedicated official ruling not claimed."
+    }
+  ]
+}

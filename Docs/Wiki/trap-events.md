@@ -21,3 +21,5 @@ PlanForcedDiscardAndEscape完整验证后单事务：手牌→Discard、来源�
 已提交Finished保持吸收；骰子与弃牌事务不等待动画。真实鉴权、私有候选、RNG/牌区/实例/根收据原子提交、计分义务、SourceSlot授权和保存未运行。依据[英文卡图](https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf)p7/p8/p16、[R2015](https://www.gmtgames.com/nnts/TS_Rules-2015.pdf)§2/4.2/5.3–4/7.4.1–2/9.5/10.1.5、[FAQ](https://www.gmtgames.com/nnts/FAQv5.pdf)PDFp9–10/p12/p19–20。
 
 主20结构＋53有限参考＝73新项，1599旧回归，共1672通过；33Schema/36data/21模块、110参数指针。8runtime未运行，13note/38Tools另层；独立完成契约审阅Ready Yes，无Critical/Important；20结构＋53参考=73及33Schema meta独立通过，工作记录字段名Minor已主側修正。
+
+[Missile Envy](missile-envy.md)已记录陷阱优先与Purge不足门槛例外，真正弃牌/骰子/义务解除需未来消费者验证，例外后的恢复仍待裁定。

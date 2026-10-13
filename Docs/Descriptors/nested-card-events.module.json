@@ -28,12 +28,14 @@
     "已验证的根行动与父帧上下文、卡牌实体与来源",
     "共享卡牌/地图/规则数据、具名来源与目标能力",
     "已接受状态对应的选择或子执行结果",
-    "Grain Sales完整普通Hand与独立随机证据，美国私有的使用或退回选择"
+    "Grain Sales完整普通Hand与独立随机证据，美国私有的使用或退回选择",
+    "ME原持牌者完整候选及修正最高值、已绑定选择、原子双实体交换和后续义务"
   ],
   "outputs": [
     "不可变候选与选择计划、子调用计划、父帧继续或终局计划",
     "按玩家过滤的可见信息与历史结果；不直接驱动动画",
-    "有限Sadat/SEA/NATO-Space/Defectors计划；空手或退回的来源OPS报价与等待契约"
+    "有限Sadat/SEA/NATO-Space/Defectors计划；空手或退回的来源OPS报价与等待契约",
+    "有限Fidel完成或反方OPS等待；无候选来源弃置且无义务；正常来源转Hand不被父收尾丢弃"
   ],
   "dependencies": [
     {
@@ -75,16 +77,23 @@
       "id": "module.card-play-hooks",
       "path": "Docs/Descriptors/card-play-hooks.module.json",
       "status": "planned"
+    },
+    {
+      "id": "module.trap-actions",
+      "path": "Docs/Descriptors/trap-actions.module.json",
+      "status": "planned"
     }
   ],
   "data_dependencies": [
     "effects.deluxe2015.star_wars",
     "cards.deluxe2015.definitions",
-    "effects.deluxe2015.grain_sales"
+    "effects.deluxe2015.grain_sales",
+    "effects.deluxe2015.missile_envy"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:star-wars:1",
-    "https://coldwarstruggle.local/contracts/grain-sales.schema.json"
+    "https://coldwarstruggle.local/contracts/grain-sales.schema.json",
+    "https://coldwarstruggle.local/contracts/missile-envy.schema.json"
   ],
   "preconditions": [
     "执行前区分规则合法候选与已登记消费者；未知支持不能被当成无合法候选",
@@ -135,6 +144,22 @@
       "url": null,
       "edition": "Finite design 2026-10-13",
       "description": "Complete inventory, trusted independent anchors and finite evidence are engineering; real RNG/auth/storage/network unimplemented."
+    },
+    {
+      "id": "PROJECT-ME1",
+      "url": null,
+      "edition": "Finite design 2026-10-13",
+      "locator": "Five-file candidate and disposable probe",
+      "description": "Independent obligation, atomic transfer, typed receipt and synthetic authority boundaries are engineering choices, not official rulings."
+    },
+    {
+      "id": "PROJECT-ME1-USER-20261013",
+      "url": null,
+      "edition": "User confirmation 2026-10-13",
+      "locator": "work/missile-envy-user-interpretations.json: two recorded questions and accepted answers",
+      "description": "HumanConfirmed project interpretation only, not a dedicated official ruling. Scope: highest comparator and empty ordinary-OPS candidate fallback.",
+      "local_path": "work/missile-envy-user-interpretations.json",
+      "sha256": "6dc167bbb4c4b74ddf5bce461a06430cff6ba86b1507e582f2503cadaceee2ea"
     }
   ],
   "tests": [
@@ -145,15 +170,19 @@
     {
       "path": "Docs/Design/grain-sales.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/missile-envy.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "runtime_consumers_tested": false,
     "runtime_game_tests_run": 0,
-    "latest_design_report": "Docs/Design/grain-sales.validation.json"
+    "latest_design_report": "Docs/Design/missile-envy.validation.json"
   },
   "retrieval_hints": [
-    "先查对应牌的能力范围：Star Wars读consumer_registry/coverage，Grain Sales读consumer_matrix/status，再查下游函数；Bound不等于所有来源可调用",
+    "按卡牌选择能力表：Star Wars读consumer_registry/coverage，Grain Sales读consumer_matrix/status，Missile Envy读consumer_registry与pending；再读具体服务，Bound不代表新来源已实现。",
     "TurnFlow消费本模块的计划，本模块不回调TurnFlow，避免循环依赖",
     "正式源码路径仅为待讨论计划，不存在可调用实现"
   ]

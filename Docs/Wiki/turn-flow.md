@@ -256,3 +256,5 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 [借牌模块](nested-card-events.md)生成子事件计划；本调度器接收完成结果，保留根责任与阶段推进。
 
 [Grain Sales](grain-sales.md)保留已接受随机结果与父根余项；普通来源OPS及精确终局清理仍待接入。
+
+[Missile Envy](missile-envy.md)的后续义务跨父帧保存，计分优先与陷阱门禁见有限设计；真实消费者仍UNRUN。
