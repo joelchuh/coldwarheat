@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "id": "validation.metadata-validator",
+  "date": "2026-10-14",
+  "description": "Read-only catalog/descriptor/entrypoint/data-reference consistency validator; 48 real CLI fixtures and 2 separate Windows junction checks.",
+  "status": "verified-review-findings-addressed",
+  "baseline_commit": "b7c963e737b79a284fc6ea6626d5d1c7634d387f",
+  "runs": [
+    {
+      "path": "TestResults/metadata-validator-red-02.json",
+      "sha256": "912c6ed36d1e838a3690732be528e9b7c067904757d5ff037453f7face73b863",
+      "status": "failed",
+      "total": 38,
+      "passed": 0,
+      "failed": 38,
+      "fixture_root": "C:\\Users\\JC\\AppData\\Local\\Temp\\coldwarheat-metadata-tests-qtx_a0ya",
+      "note": ""
+    },
+    {
+      "path": "TestResults/metadata-validator-green.json",
+      "sha256": "f993fc30bd81d74908701c2044f0ca51895e3dbd14ac9498d93970909cc5c572",
+      "status": "failed",
+      "total": 38,
+      "passed": 0,
+      "failed": 38,
+      "fixture_root": "C:\\Users\\JC\\AppData\\Local\\Temp\\coldwarheat-metadata-tests-zw732ct5",
+      "note": "Second stub run after author bookkeeping assertion prevented implementation write; not GREEN."
+    },
+    {
+      "path": "TestResults/metadata-validator-green-02.json",
+      "sha256": "e7c5bf6ad4a22e3118e13ee0a8a3c1f2ed99a9a41d6fa3e0aedfcaaada086b23",
+      "status": "passed",
+      "total": 38,
+      "passed": 38,
+      "failed": 0,
+      "fixture_root": "C:\\Users\\JC\\AppData\\Local\\Temp\\coldwarheat-metadata-tests-rw0h9rif",
+      "note": ""
+    },
+    {
+      "path": "TestResults/metadata-validator-review-red.json",
+      "sha256": "501d08ad6c90ab418544d1607b3a22342d19eecb73c279a9d0cac15fcce2b82c",
+      "status": "failed",
+      "total": 48,
+      "passed": 38,
+      "failed": 10,
+      "fixture_root": "C:\\Users\\JC\\AppData\\Local\\Temp\\coldwarheat-metadata-tests-3ajibbjg",
+      "note": "Important review regression: Windows case and trailing-dot/space path aliases."
+    },
+    {
+      "path": "TestResults/metadata-validator-review-green.json",
+      "sha256": "6ace4720116859505d5302f287cf4975e25402e1c2df563142f6b7dc891e7921",
+      "status": "passed",
+      "total": 48,
+      "passed": 48,
+      "failed": 0,
+      "fixture_root": "C:\\Users\\JC\\AppData\\Local\\Temp\\coldwarheat-metadata-tests-5x924lch",
+      "note": "Important review regression: Windows case and trailing-dot/space path aliases."
+    }
+  ],
+  "environment_attempt": "Initial default-sandbox Temp write failed; no valid report, not counted as a behavioral RED.",
+  "junction_checks": {
+    "status": "passed",
+    "checks": 2,
+    "root_junction": {
+      "status": "failed",
+      "error_code": "LINK_REJECTED",
+      "detail": "C:\\Users\\JC\\AppData\\Local\\Temp\\coldwarheat-metadata-tests-rw0h9rif\\junction-root"
+    },
+    "entry_junction": {
+      "status": "failed",
+      "error_code": "LINK_REJECTED",
+      "detail": "C:\\Users\\JC\\AppData\\Local\\Temp\\coldwarheat-metadata-tests-rw0h9rif\\junction-entry-fixture\\CodeLink"
+    },
+    "fixture_root": "C:/Users/JC/AppData/Local/Temp/coldwarheat-metadata-tests-rw0h9rif",
+    "cleanup": "none; owned fixtures retained"
+  },
+  "repository_check": {
+    "status": "passed",
+    "exit_code": 0,
+    "result": {
+      "status": "passed",
+      "descriptors": 111,
+      "catalog_entries": 111,
+      "datasets": 69,
+      "csharp_symbols_checked": 147,
+      "data_dependencies_checked": 575,
+      "files_read": 184,
+      "limitations": [
+        "C# symbols are lexical matches, not compilation proof.",
+        "Data catalog status has independent business meaning.",
+        "Paths and inputs must remain stable during this read-only check."
+      ]
+    },
+    "input_file_count": 261,
+    "before_sha256": "7ff9104e7d2b08978540ca198dc3bafd6791ed91240b8ddd5eb0fafcb9fe8bdd",
+    "after_sha256": "7ff9104e7d2b08978540ca198dc3bafd6791ed91240b8ddd5eb0fafcb9fe8bdd",
+    "git_status_unchanged": true,
+    "hash_method": "SHA256 of sorted relative path + NUL + per-file SHA256 lines joined by LF"
+  },
+  "source_sha256": {
+    "Tools/Scripts/validate-project-metadata.py": "c4870575fac291e935d6f5e3fda22ecb4b32ad2f8360d3678faca8db313410cf",
+    "Tools/Tests/validate-project-metadata.tests.py": "8fb554db8e60b24e53bd57679175157e17073bb95f1f8205fe997d2d76fa9729",
+    "Tools/Configuration/metadata-validation.json": "b94498fa51409427b6524a6ac0763fccedc4e93d66623698a0da84d9ae1d13d7"
+  },
+  "independent_review": {
+    "status": "one-review-completed-one-fix-pass-verified",
+    "reviewer": "review_metadata_validator",
+    "critical": 0,
+    "important": 1,
+    "minor": 1,
+    "resolution": "Added ten CLI regressions: RED 10/48 failed, GREEN 48/48. Normalize extensions, reject trailing-dot/space relative components. Removed stale fixed script count. No second review requested."
+  },
+  "limitations": [
+    "C# symbol presence is lexical, not compilation/semantic proof.",
+    "Inputs/paths must remain stable; not a concurrent filesystem attacker sandbox or hardlink detector.",
+    "Dataset content/adoption authenticity is not validated; only declared metadata references.",
+    "No Unity code change or player build; existing 1009 game test result remains prior batch evidence.",
+    "NTFS junction checks were separate real one-off checks, not created by the Python fixture test script."
+  ],
+  "metadata_migrations": [
+    {
+      "path": "Data/Descriptors/world-layout.data.json",
+      "change": "Legacy kind dataset to data; dataset_id added equal to unchanged original ID; no payload changed."
+    },
+    {
+      "path": "Data/Descriptors/world-land.data.json",
+      "change": "Legacy kind dataset to data; dataset_id added equal to unchanged original ID; no payload changed."
+    }
+  ]
+}

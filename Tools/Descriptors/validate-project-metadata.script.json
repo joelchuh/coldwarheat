@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "kind": "script",
+  "status": "ready",
+  "documentation": "Docs/Wiki/metadata-validation.md",
+  "runtime": {
+    "python_minimum": "3.11",
+    "tested_python": "3.12.14",
+    "tested_platform": "Windows"
+  },
+  "dependencies": [
+    "Python standard library"
+  ],
+  "data_dependencies": [
+    "workflow.metadata_validation"
+  ],
+  "preconditions": [
+    "可信本地绝对ProjectRoot，不是盘根/UNC，不含重解析点；调用期间路径/文件稳定",
+    "JSON描述只用于定位，不授予执行权限",
+    "相对子路径每一段不得以点或空格结尾；.cs/.json扩展名大小写统一识别"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "缺失/重复/畸形/超限输入、路径逃逸、链接或元数据不一致时退出1；不自动修复"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Workflow/workflow-policy.json",
+      "scope": "项目工程约定"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Tools/Tests/validate-project-metadata.tests.py",
+      "status": "48-passed"
+    },
+    {
+      "path": "Docs/Testing/metadata-validator.validation.json",
+      "status": "report"
+    }
+  ],
+  "id": "script.validate-project-metadata",
+  "description": "只读核对三目录、描述必备字段/ID/摘要、模块脚本status、入口文件与C#词法符号及数据依赖；拒绝越界与链接，不执行或修复所描述代码。",
+  "entrypoints": [
+    {
+      "path": "Tools/Scripts/validate-project-metadata.py",
+      "symbol": "main"
+    }
+  ],
+  "inputs": [
+    "--project-root：已存在本地绝对项目根目录",
+    "Tools/Configuration/metadata-validation.json与现有workflow-policy"
+  ],
+  "outputs": [
+    "stdout JSON：status passed/failed、计数或error_code；成功退出0，失败退出1",
+    "不会写报告文件；调用方可自行保存stdout"
+  ],
+  "verification": {
+    "report": "Docs/Testing/metadata-validator.validation.json",
+    "csharp_symbol_check": "lexical-only",
+    "real_windows_junction_checks": 2
+  },
+  "scriptification_evidence": {
+    "condition": "repeated_workflow",
+    "observed_occurrences": 6,
+    "expected_future_reuse": true,
+    "stable_inputs_outputs_and_steps": true,
+    "contexts": [
+      {
+        "worklog": "Docs/Worklogs/2026-10-13-deterministic-random.md"
+      },
+      {
+        "worklog": "Docs/Worklogs/2026-10-13-initial-card-deal.md"
+      },
+      {
+        "worklog": "Docs/Worklogs/2026-10-13-dealt-setup-demo.md"
+      },
+      {
+        "worklog": "Docs/Worklogs/2026-10-13-defcon-core.md"
+      },
+      {
+        "worklog": "Docs/Worklogs/2026-10-13-military-core.md"
+      },
+      {
+        "worklog": "Docs/Worklogs/2026-10-13-victory-core.md"
+      }
+    ],
+    "scope_note": "六个独立实际批次；重试不计为新的复用。目录事实与必备字段从配置/策略读取。"
+  }
+}

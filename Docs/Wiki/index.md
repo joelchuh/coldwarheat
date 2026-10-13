@@ -20,7 +20,8 @@
 | Star Wars | 查公开弃牌、空池解释与有限子事件 | 1牌参数Bound；消费者运行待实现 | [star-wars.md](star-wars.md) |
 | 嵌套出牌下一步计划 | 查Star Wars、Grain Sales、Missile Envy及Draw兼容审计顺序 | 分批设计；三牌参数已绑定；全部运行服务待实现 | [nested-card-sources.md](nested-card-sources.md) |
 | 开发工作流与共享数据 | 查找模块/脚本 JSON 描述、脚本化条件、共享数据与执行边界 | 已采用；只读核验工具就绪，其他自动化待实现 | [workflow-and-data.md](workflow-and-data.md) |
-| 正式脚本目录 | 按description找快照核验、审阅基线导出及对应测试 | 6正式脚本；含有界Unity验证，均不自动Git同步 | [catalog.json](../../Tools/Descriptors/catalog.json) |
+| 元数据校验工具 | 查共享配置、catalog/描述/入口/数据依赖检查和只读边界 | 正式工具；48案例及2次真实链接检查 | [metadata-validation.md](metadata-validation.md) |
+| 正式脚本目录 | 按description找快照核验、审阅基线导出及对应测试 | 已登记正式脚本；含有界Unity验证，均不自动Git同步 | [catalog.json](../../Tools/Descriptors/catalog.json) |
 | Unity验证工作流 | 查版本校验、预览、新输出、XML真实计数与失败保留 | 31脚本测试与149游戏测试通过；独立复审通过 | [unity-verification-workflow.md](unity-verification-workflow.md) |
 | 审阅基线导出 | 查干净HEAD、受跟踪工作字节、新目标、SHA清单与失败边界 | 工作流工具；游戏实现未开始 | [export-review-baseline.md](export-review-baseline.md) |
 | 工作流策略 JSON | 快速定位结构化开发约定和描述契约 | 已采用 | [workflow-policy.json](../Workflow/workflow-policy.json) |

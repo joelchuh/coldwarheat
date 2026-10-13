@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "dataset_id": "workflow.metadata_validation",
+  "description": "项目元数据只读一致性检查的路径、类别与工程输入界限；不含游戏规则。",
+  "policy_path": "Docs/Workflow/workflow-policy.json",
+  "limits": {
+    "max_json_bytes": 1048576,
+    "max_source_bytes": 2097152,
+    "max_depth": 64,
+    "max_descriptors": 512,
+    "max_catalog_entries": 512
+  },
+  "catalogs": [
+    {
+      "path": "Docs/Descriptors/catalog.json",
+      "directory": "Docs/Descriptors",
+      "kind": "module",
+      "id_field": "id",
+      "status_mode": "match"
+    },
+    {
+      "path": "Data/catalog.json",
+      "directory": "Data/Descriptors",
+      "kind": "data",
+      "id_field": "dataset_id",
+      "status_mode": "independent"
+    },
+    {
+      "path": "Tools/Descriptors/catalog.json",
+      "directory": "Tools/Descriptors",
+      "kind": "script",
+      "id_field": "id",
+      "status_mode": "match"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "kind": "script",
+  "status": "ready",
+  "documentation": "Docs/Wiki/metadata-validation.md",
+  "runtime": {
+    "python_minimum": "3.11",
+    "tested_python": "3.12.14",
+    "tested_platform": "Windows"
+  },
+  "dependencies": [
+    "script.validate-project-metadata",
+    "Python standard library"
+  ],
+  "data_dependencies": [
+    "workflow.metadata_validation"
+  ],
+  "preconditions": [
+    "可信本地绝对ProjectRoot，不是盘根/UNC，不含重解析点；调用期间路径/文件稳定",
+    "JSON描述只用于定位，不授予执行权限",
+    "相对子路径每一段不得以点或空格结尾；.cs/.json扩展名大小写统一识别"
+  ],
+  "side_effects": [
+    "创建新自有临时目录及合成文件，启动本脚本指定的Python校验器子进程（单次15秒上限），不执行descriptor入口",
+    "保留产物，无删除/清理/Git/网络/Unity；两个真实NTFS链接检查为本批独立手工验证，非本测试脚本创建"
+  ],
+  "stop_conditions": [
+    "缺失/重复/畸形/超限输入、路径逃逸、链接或元数据不一致时退出1；不自动修复"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Workflow/workflow-policy.json",
+      "scope": "项目工程约定"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Tools/Tests/validate-project-metadata.tests.py",
+      "status": "48-passed"
+    },
+    {
+      "path": "Docs/Testing/metadata-validator.validation.json",
+      "status": "report"
+    }
+  ],
+  "id": "script.test-project-metadata",
+  "description": "在新自有临时目录运行元数据校验器的真实CLI成功/失败案例，检查只读与不执行入口；保留全部fixture，不运行游戏或Git。",
+  "entrypoints": [
+    {
+      "path": "Tools/Tests/validate-project-metadata.tests.py",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "已存在的可信脚本与共享配置/策略",
+    "本机可写临时目录；每次创建新目录"
+  ],
+  "outputs": [
+    "stdout JSON检查结果、退出码及fixture_root",
+    "新临时根中的合成项目与summary.json"
+  ],
+  "scriptification_evidence": {
+    "condition": "repeated_workflow",
+    "observed_occurrences": 6,
+    "expected_future_reuse": true,
+    "stable_inputs_outputs_and_steps": true,
+    "scope_note": "与同批正式校验器共同交付的回归入口，复用依据见其描述。"
+  }
+}

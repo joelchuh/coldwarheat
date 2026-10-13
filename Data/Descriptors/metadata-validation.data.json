@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "data.metadata-validation",
+  "kind": "data",
+  "description": "元数据检查器的共享工程配置：三目录路径/ID语义/状态比较方式与输入限额；必备描述字段仍从现有workflow-policy读取。",
+  "status": "ready",
+  "entrypoints": [
+    {
+      "path": "Tools/Configuration/metadata-validation.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [],
+  "outputs": [
+    "不可执行的校验参数"
+  ],
+  "dependencies": [
+    "script.validate-project-metadata"
+  ],
+  "preconditions": [
+    "schema1；只包含已知配置字段，工程值有硬上限"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知字段、错误类型/版本、重复目录或不支持的类别/状态语义"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Workflow/workflow-policy.json",
+      "scope": "工程规则"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Tools/Tests/validate-project-metadata.tests.py",
+      "status": "38-passed"
+    }
+  ],
+  "dataset_id": "workflow.metadata_validation",
+  "verification": {
+    "report": "Docs/Testing/metadata-validator.validation.json"
+  }
+}

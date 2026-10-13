@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "id": "plan.metadata-validator",
+  "kind": "implementation-plan",
+  "status": "implemented-verified",
+  "description": "固化至少六个批次复用的只读元数据一致性检查，不执行所描述代码。",
+  "entrypoints": [],
+  "inputs": [
+    "ProjectRoot",
+    "共享配置",
+    "workflow-policy及三catalog"
+  ],
+  "outputs": [
+    "有界JSON检查报告与退出码"
+  ],
+  "dependencies": [
+    "Docs/Workflow/workflow-policy.json"
+  ],
+  "preconditions": [
+    "本地绝对根目录",
+    "Python3.11+"
+  ],
+  "side_effects": [
+    "实现脚本和测试；正式检查器本身只读"
+  ],
+  "stop_conditions": [
+    "路径/链接/类型/重复键/超限/不一致即失败"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Workflow/workflow-policy.json"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Testing/metadata-validator.validation.json",
+      "status": "48-tests-and-2-junction-checks-passed"
+    }
+  ],
+  "document": "Docs/Plans/2026-10-13-metadata-validator.md"
+}
