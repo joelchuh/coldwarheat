@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "description": "可替换同步地图子集的真实测试、构建与渲染；正式资源系统和完整对局未实现。",
+  "result": "passed",
+  "red_runs": [
+    {
+      "run_id": "map-contract-red",
+      "total": 162,
+      "passed": 149,
+      "failed": 13,
+      "xml_sha256": "f89748b24d6b4084a1f1bc10ec1de801965cbe365a16d208079a75d01ca045c7"
+    },
+    {
+      "run_id": "map-adapters-red2",
+      "total": 166,
+      "passed": 162,
+      "failed": 4,
+      "xml_sha256": "2c8d48409e96f84ef55cbfa40b12664aee50cc5a6ac1470f6f2bd37d47f7937b"
+    },
+    {
+      "run_id": "map-lifecycle-red",
+      "total": 168,
+      "passed": 166,
+      "failed": 2,
+      "xml_sha256": "ccb02548572efa3faf9c4870f405ffb0bb0a6d44fa1a42b3111420c83cf916b7"
+    },
+    {
+      "run_id": "map-review-red",
+      "total": 170,
+      "passed": 168,
+      "failed": 2,
+      "xml_sha256": "6e9c415a9dfc58fa57bd9da2a8d292564394fdd49a719379af75f6574359cf4c"
+    }
+  ],
+  "green": {
+    "status": "passed",
+    "error_code": null,
+    "total": 170,
+    "passed": 170,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0,
+    "unity_exit_code": 0,
+    "xml_sha256": "219be5574793e528a29615f762c16d06586fcfa4f13d5a54c6dc2df16603bf2a",
+    "schema_version": 1,
+    "run_id": "map-review-green",
+    "duration_ms": 7349,
+    "project": "E:\\TwilightStruggle",
+    "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+    "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+    "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\map-review-green",
+    "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\map-review-green\\results.xml",
+    "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\map-review-green\\editor.log"
+  },
+  "build_log": "TestResults/map-build-final.log",
+  "build_marker": "FIRST_DEMO_BUILD_SUCCEEDED 96731816",
+  "executable": "Builds/PreviewDemo/ColdWarStruggleDemo.exe",
+  "old_first_demo_preserved": true,
+  "independent_review": "passed-after-P2-P3-fixes",
+  "mouse_acceptance": {
+    "status": "not-verified",
+    "observation": "User foreground restored; screenshots of final PreviewDemo show real interface; before user pause, concurrent input prevented attribution.",
+    "last_error": "failed to activate captured window",
+    "recovery": "Fresh list_windows/get_window and one activation retry returned the same error after user paused input. Stopped clicking.",
+    "click_success_claimed": false
+  },
+  "invalid_launch": {
+    "log": "TestResults/map-preview-invalid.log",
+    "exit_code": 1,
+    "png_count_unchanged": true
+  },
+  "captures": [
+    {
+      "image": "Docs/Images/map-table-demo.png",
+      "log": "TestResults/map-preview-final-table.log",
+      "build": "final",
+      "exit_code": 0,
+      "visual_review": "layout and fonts checked; identical visual layout to first capture"
+    },
+    {
+      "image": "Docs/Images/map-tiles-demo.png",
+      "log": "TestResults/map-preview-tiles.log",
+      "build": "pre-review-fix",
+      "exit_code": 0,
+      "visual_review": "layout and fonts checked"
+    }
+  ],
+  "evidence_sha256": {
+    "TestResults/UnityRuns/map-review-green/results.xml": "219be5574793e528a29615f762c16d06586fcfa4f13d5a54c6dc2df16603bf2a",
+    "TestResults/UnityRuns/map-review-green/summary.json": "dce249646a4c6f882d8174f95c930af3e6c5bcee2dec0d107c21e1187e946446",
+    "TestResults/map-build-final.log": "4a04c9da4bfa78cd373bc6df6c37ca861a955bf4692140103ba5393ea735431d",
+    "TestResults/map-preview-final-table.log": "2f9437211eeea254bf5d3f34ed280ec5dbb18c38751680ecdd69869ed46411a0",
+    "TestResults/map-preview-tiles.log": "95b692389d05dde551d55a8f209e923dc2a234af33e084161d545518e282f1eb",
+    "TestResults/map-preview-invalid.log": "7b3b0c622bfaa8d9ec1879db02293650b476591aa0e0319081dbb6de3c85b11c",
+    "Docs/Images/map-table-demo.png": "41e06e400ac72e997e38cd5b9d56d63bc50ba74e9e74d622ef56e7d297837783",
+    "Docs/Images/map-tiles-demo.png": "d3fca4e0781168893c9cba5f32250b5e9679233d1e5a2e33188f2e08224593c2"
+  },
+  "verified_payloads": [
+    {
+      "source": "Data/Maps/deluxe-2015/world.json",
+      "payload": "world.json",
+      "sha256": "6d4e20c674bd74d44cdb0f1ca66e8e960f125b3e45076d05307125a3c36ea45b"
+    },
+    {
+      "source": "Docs/Contracts/map.schema.json",
+      "payload": "map.schema.json",
+      "sha256": "8d1c4ef9f7ebb34557bb53ab37a1c102b815dc748ae446e29b7400d5eb831be5"
+    },
+    {
+      "source": "Data/Maps/deluxe-2015/world.profile.json",
+      "payload": "world.profile.json",
+      "sha256": "87388cb762d3134e684f2a8131fc8dfd6a32c18b3a7f7f281f6f866db82fe4da"
+    },
+    {
+      "source": "Data/Demo/influence-scenarios.json",
+      "payload": "influence-scenarios.json",
+      "sha256": "9c98cb7f8e18047127fe4f06bf9b65c29387be0c948724ae87f6d76e6ebc3ad7"
+    },
+    {
+      "source": "Data/Rulesets/deluxe-2015/influence-placement.json",
+      "payload": "influence-placement.json",
+      "sha256": "2762acfc9e3578668a43d6f0429252dc5deba326a1eb3f3de0c983aeb6374d72"
+    },
+    {
+      "source": "Data/Localization/en-US.catalog-names.json",
+      "payload": "names.json",
+      "sha256": "ff6cac31cd15e03f78d792843d86bc2c90f2aaa8465ba89e3829ad3d3c6cd29a"
+    },
+    {
+      "source": "Data/Demo/event-scenarios.json",
+      "payload": "event-scenarios.json",
+      "sha256": "f61eba670a44e1a62af8e27f9e9998835b4ed49763c9df0cd284a7c375be9c87"
+    },
+    {
+      "source": "Data/Cards/deluxe-2015/early-influence-batch1.parameters.json",
+      "payload": "early-influence-batch1.parameters.json",
+      "sha256": "909e9ffe13437623f5c9e055d45b7273dce9afe04de50881a6e207aa14166e75"
+    },
+    {
+      "source": "Docs/Contracts/early-influence-parameters.schema.json",
+      "payload": "early-influence-parameters.schema.json",
+      "sha256": "fe280aa3deddafc7df7fdbf0e38ce60e4d9e43b823a6f638e5ac98361c39488c"
+    }
+  ]
+}

@@ -2,11 +2,20 @@
   "schema_version": 1,
   "id": "discussion.implementation-architecture",
   "kind": "design-discussion",
-  "description": "已认可的分层和可替换地图接口方向；首个原型供单人测试双方。查首批计划和测试视图边界，实际子集见first-demo Wiki，完整地图接口仍待实现。",
-  "status": "first-slice-implemented-review-fixes-verified",
+  "description": "已认可分层与可替换地图方向；影响力、五基础事件和IMapView同步诊断子集已实现，首个原型供单人测试双方，正式地图资源接口仍待后续。",
+  "status": "diagnostic-map-subset-implemented",
   "path_base": "repository-root",
   "document": "Docs/Design/implementation-architecture.proposal.md",
-  "entrypoints": [],
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/MapContracts.cs",
+      "symbol": "IMapView"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/MapPresenter.cs",
+      "symbol": "MapPresenter"
+    }
+  ],
   "inputs": [
     "用户接受草图作为参考且要求地图可替换",
     "已确认架构与地图/布局/主题数据契约"
@@ -45,21 +54,16 @@
   ],
   "production_code_written": true,
   "unity_project_created": true,
-  "runtime_game_tests_run": 52,
+  "runtime_game_tests_run": 170,
   "unresolved_decisions": [
     "最终地图布局和美术未定；完整规则仍分批实现"
   ],
   "planned_entrypoints": [
-    "IMapView.LoadAsync",
-    "IMapView.Present",
-    "IMapView.Intent",
-    "IMapView.FocusOn",
-    "IMapView.PlayTransitions",
-    "IMapView.Dispose",
-    "MapPresenter"
+    "Async map resource loading",
+    "Cancelable visible map transitions"
   ],
   "direction_approved": true,
   "implementation_plan": "Docs/Plans/2026-10-13-core-influence-first-slice.md",
   "prototype_mode": "single-operator-dual-side-local-test",
-  "verification_report": "Docs/Worklogs/2026-10-13-first-demo.md"
+  "verification_report": "Docs/Testing/replaceable-map-view.validation.json"
 }

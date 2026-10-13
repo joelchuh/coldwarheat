@@ -15,6 +15,10 @@ namespace ColdWarStruggle.Presentation
         CommandEnvelope lastCommand;
         PlayerSide lastSide;
         int generation;
+        public int ViewGeneration=>generation;
+        long interactionRevision;
+        public long InteractionRevision=>interactionRevision;
+        void MarkInteractionChanged() { interactionRevision=checked(interactionRevision+1); }
         LegalTargetsResult legal;
         IGameSession Session=>SelectedSide==PlayerSide.US?host.UsSession:host.UssrSession;
         public bool CanRetry => lastCommand!=null && lastSide==SelectedSide;
@@ -35,7 +39,11 @@ namespace ColdWarStruggle.Presentation
             ResetEventInteraction(false);
         }
         public void SelectCountry(CountryId country)
-        { if(!ReadView().Countries.Any(c=>c.Definition.Id.Equals(country)))throw new ArgumentException("Unknown selection.");SelectedCountry=country; }
+        {
+            if(!ReadView().Countries.Any(c=>c.Definition.Id.Equals(country)))throw new ArgumentException("Unknown selection.");
+            if(SelectedCountry.Equals(country))return;
+            SelectedCountry=country;MarkInteractionChanged();
+        }
         public PlayerViewSnapshot ReadView() => Session.ReadView();
         public LocalTestSnapshot ReadBoth() => host.ReadLocalTestSnapshot();
         public LegalTargetsResult LegalTargets()

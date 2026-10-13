@@ -2,7 +2,7 @@
 
 description：运行单窗口双边测试，定位影响力规则、固定身份、幂等、数据加载及 Unity 构建入口。先读模块 JSON，再定位对应函数。
 
-状态：2026-10-13，真实 Unity 工程与 Windows 构建已建立；149 项 EditMode 测试通过。已通过游戏自身导出真实渲染并检查字体/布局；computer-use鼠标实测仍受窗口激活失败影响，不能把截图当成点击验收。
+状态：2026-10-13，真实 Unity 工程与 Windows 构建已建立；170 项 EditMode 测试通过。已通过游戏自身导出真实渲染并检查字体/布局；computer-use鼠标实测仍受窗口激活失败影响，不能把截图当成点击验收。
 
 ![当前事件练习真实运行画面](../Images/event-demo.png)
 
@@ -10,9 +10,9 @@ description：运行单窗口双边测试，定位影响力规则、固定身份
 
 ## 运行与尝试
 
-本机双击 `E:\TwilightStruggle\Builds\FirstDemo\ColdWarStruggleDemo.exe`。运行需要保留同目录的 `_Data`、`UnityPlayer.dll`、`MonoBleedingEdge` 等文件，不能只复制 exe。构建目录不进 Git；源码可重建。
+最新可替换地图预览：`E:\TwilightStruggle\Builds\PreviewDemo\ColdWarStruggleDemo.exe`。旧版FirstDemo仍保留，未关闭用户窗口。运行需要保留同目录的 `_Data`、`UnityPlayer.dll`、`MonoBleedingEdge` 等文件，不能只复制 exe。构建目录不进 Git；源码可重建。
 
-从 Git 检出后，用 Unity **6000.6.0f1** 打开项目，选择 **ColdWarStruggle → Play First Demo**。菜单 **Build Windows Demo** 生成 Windows 版；标准 Unity Build 也会执行数据校验和同步。先打开已跟踪的 `Assets/ColdWarStruggle/Scenes/FirstDemo.unity`，不要构建空场景。
+从 Git 检出后，用 Unity **6000.6.0f1** 打开项目，选择 **ColdWarStruggle → Play First Demo**。菜单 **Build Windows Demo** 输出FirstDemo，**Build Side-by-side Preview** 输出PreviewDemo；标准 Unity Build 也会执行数据校验和同步。先打开已跟踪的 `Assets/ColdWarStruggle/Scenes/FirstDemo.unity`，不要构建空场景。
 
 1. 默认美国练习，目标 France（法国），美国 0 / 苏联 3，稳定度 3，预算 4 OPS。
 2. 点“一次提交 3 点”：费用应为 **2 + 1 + 1**，美国影响力变为 3，剩余 OPS 为 0，版本变为 1。
@@ -42,7 +42,7 @@ flowchart LR
     V --> UI
 ```
 
-Core/Application/Infrastructure 没有 UnityEngine 引用。Core 不读文件；Bootstrap 和 Editor 读取源文件，Infrastructure 校验并构造定义。Presentation 只读视图、发送意图，不获得可写局面。`IMapView` 的完整提案仍未实现，当前 `DemoView` 可以单独更换；后续正式地图适配不得把规则搬进 UI。
+Core/Application/Infrastructure 没有 UnityEngine 引用。Core 不读文件；Bootstrap 和 Editor 读取源文件，Infrastructure 校验并构造定义。Presentation 只读视图、发送意图，不获得可写局面。`IMapView` 同步诊断子集现已实现，国家区可在卡片/列表间切换；正式布局、主题资源和异步加载仍未实现。详见[实际接口](replaceable-map-view.md)。
 
 ## 唯一数据与边界
 
@@ -58,7 +58,7 @@ Core/Application/Infrastructure 没有 UnityEngine 引用。Core 不读文件；
 
 ## 验证与后续
 
-真实测试入口：`Assets/ColdWarStruggle/Tests/EditMode`。运行 Unity EditMode，筛选 `ColdWarStruggle.Tests`；当前 149 项通过。详细 RED/GREEN、构建和实际限制见 [本批工作记录](../Worklogs/2026-10-13-first-demo.md)。旧的有限 Python 设计检查不能计入 C# 测试数。
+真实测试入口：`Assets/ColdWarStruggle/Tests/EditMode`。运行 Unity EditMode，筛选 `ColdWarStruggle.Tests`；当前 170 项通过。详细 RED/GREEN、构建和实际限制见 [本批工作记录](../Worklogs/2026-10-13-first-demo.md)。旧的有限 Python 设计检查不能计入 C# 测试数。
 
 五张基础事件、受益方选择及界面已实现；下一批逐步扩展效果模板并衔接正式出牌和回合。地图布局与主题可并行演进，但沿用稳定 CountryId 和会话边界。
 
@@ -83,3 +83,5 @@ F12只导出游戏当前渲染帧到本机 `Application.persistentDataPath/DemoC
 `DemoController.Events.cs` 只编辑意图，`DemoView.Events.cs` 只显示投影。草稿绑定GameId/Version/DecisionId/操作方；这些值变化就失效。玩家切换身份不会改变PhasingPlayer/Owner或OPS Actor。完成状态永久保留在本次人工实例中，不能通过新命令重复触发。
 
 本批实际报告 [event-demo.validation.json](../Testing/event-demo.validation.json) 记录149项测试、Windows构建、九份源数据与播放器逐字节一致及真实渲染截图。computer-use重新定位后仍无法激活窗口；未把渲染导出或控制器测试称为鼠标实测通过。
+
+当前地图接口追加21项回归（总170），包括公开帧、生命周期、实际适配器与审查修复，见[地图验证报告](../Testing/replaceable-map-view.validation.json)。顶部“切列表/切卡片”保留同一对局和草稿；启动可选`--demo-map=tiles|table`。

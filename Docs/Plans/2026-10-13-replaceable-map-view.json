@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "id": "plan.replaceable-map-view",
+  "kind": "implementation-plan",
+  "status": "implemented",
+  "description": "已认可地图方向的同步诊断实施：公开帧、生命周期和旧输入门禁、两个真实适配器与同一对局保持；正式画风/资源装配仍待后续。",
+  "entrypoints": [],
+  "document": "Docs/Plans/2026-10-13-replaceable-map-view.md",
+  "inputs": [
+    "已批准的可替换地图架构及七场景Demo"
+  ],
+  "outputs": [
+    "IMapView同步子集、MapPresenter与两真实适配器、验证证据"
+  ],
+  "dependencies": [
+    "module.demo-presentation",
+    "module.map-view"
+  ],
+  "preconditions": [
+    "已有用户编码与持续优化授权"
+  ],
+  "side_effects": [
+    "源代码、文档、验证产物及独立预览构建"
+  ],
+  "stop_conditions": [
+    "测试/审查失败先修复",
+    "额度剩余接近10%时收尾"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Design/implementation-architecture.proposal.md"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Testing/replaceable-map-view.validation.json",
+      "status": "passed-with-mouse-limitation"
+    }
+  ]
+}

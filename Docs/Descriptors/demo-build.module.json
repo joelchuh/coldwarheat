@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.demo-build",
   "kind": "module",
-  "description": "Unity编辑器构建模块：验证并同步九份权威JSON到忽略的StreamingAssets；标准Build回调也同步。提供Prepare/Play/Windows Build菜单，不执行Git。",
+  "description": "Unity构建：验证同步九份权威JSON，标准Build回调也同步；Build输出FirstDemo，BuildPreview固定输出PreviewDemo供并排运行，不关闭旧窗口，不执行Git。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -20,13 +20,18 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
       "symbol": "OnPreprocessBuild"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "symbol": "BuildPreview"
     }
   ],
   "inputs": [
     "项目根目录Data与Docs/Contracts中的九份规范数据"
   ],
   "outputs": [
-    "Assets/ColdWarStruggle/Scenes/FirstDemo.unity；Builds/FirstDemo/ColdWarStruggleDemo.exe与必要同目录运行文件"
+    "Assets/ColdWarStruggle/Scenes/FirstDemo.unity；Builds/FirstDemo/ColdWarStruggleDemo.exe与必要同目录运行文件",
+    "BuildPreview额外固定入口：Builds/PreviewDemo/ColdWarStruggleDemo.exe与必要运行文件，不接受外部任意输出路径。"
   ],
   "dependencies": [
     "module.demo-presentation"
@@ -63,7 +68,7 @@
   "documentation": "Docs/Wiki/first-demo.md",
   "verification": {
     "checked_on": "2026-10-13",
-    "report": "Docs/Testing/event-demo.validation.json"
+    "report": "Docs/Testing/replaceable-map-view.validation.json"
   },
   "data_dependencies": [
     "rules.deluxe2015.influence_placement",

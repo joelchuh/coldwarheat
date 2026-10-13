@@ -112,3 +112,7 @@ ViewContextId 用于隔离玩家视角、会话和视图生命周期；StateVers
 用户已同意实现方向：采用上述分层和地图接口边界，按“最小规则闭环 → 占位地图 → 完整本地对局”推进；首批以一次影响力操作为验收。画风、最终地图布局、渲染管线和对局中热切换暂不冻结。
 
 方向已获认可；本次没有创建 C# 文件、Unity 工程、运行处理器或游戏测试通过记录。[首批实现计划](../Plans/2026-10-13-core-influence-first-slice.md)已准备，尚未执行。单人查看双方信息通过独立测试观察视图实现，正常玩家视图继续过滤；详见[单人测试模式](../Wiki/local-test-mode.md)。一个客户端/窗口是当前建议，两方会话共享一局权威状态；用户对双客户端的询问不作为新增联网要求。
+
+## 同步诊断实现记录
+
+2026-10-13落地IMapView.Initialize/Present/Intent/FocusOn/Clear/Dispose与MapPresenter，契约无Unity类型，两种真实IMGUI视图复用同一对局；详见[实现Wiki](../Wiki/replaceable-map-view.md)。LoadAsync及PlayTransitions是上文后续资源/动画语义提案，当前没有用空方法冒充实现。

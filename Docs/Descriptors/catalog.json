@@ -148,13 +148,13 @@
     },
     {
       "id": "module.demo-presentation",
-      "description": "单窗口七练习：普通影响力与五张基础事件，固定身份切换、跨地区选择草稿、完整确认/重发/重置；只读投影驱动可替换国家面板，正式IMapView仍待实现。F12/--capture-demo导出本游戏帧，--demo-scenario仅选择已知练习。",
+      "description": "单窗口七练习：普通影响力与五张基础事件，固定身份、草稿和明确确认；IMapView同步子集支持卡片/列表互换，规则对局不变。F12/--capture-demo导出游戏帧，启动只接受已知场景和地图白名单。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/demo-presentation.module.json"
     },
     {
       "id": "module.demo-build",
-      "description": "Unity编辑器构建模块：验证并同步九份权威JSON到忽略的StreamingAssets；标准Build回调也同步。提供Prepare/Play/Windows Build菜单，不执行Git。",
+      "description": "Unity构建：验证同步九份权威JSON，标准Build回调也同步；Build输出FirstDemo，BuildPreview固定输出PreviewDemo供并排运行，不关闭旧窗口，不执行Git。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/demo-build.module.json"
     },
@@ -169,6 +169,12 @@
       "description": "同一GameState中的一次性影响力事件、受益方等待选择与原子完成；LocalGameHost共用版本、身份收据和只读玩家视图。只接可信装配的公开事件，正式出牌/牌区/回合仍未实现。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/influence-event-sessions.module.json"
+    },
+    {
+      "id": "module.map-view",
+      "description": "可替换地图的同步诊断子集：公开只读国家帧、上下文/版本/序号/本地修订门禁、卡片和列表两个实际适配器；换视图保留对局及草稿，不实现正式layout/theme或异步资源。",
+      "status": "implemented",
+      "descriptor": "Docs/Descriptors/map-view.module.json"
     }
   ]
 }

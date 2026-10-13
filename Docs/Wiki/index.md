@@ -6,7 +6,7 @@
 |---|---|---|---|
 | 首个影响力 Demo | 查运行、人工场景、影响力/会话/UI/构建模块及真实测试 | 149项EditMode通过；七场景真实构建，鼠标实测待完成 | [first-demo.md](first-demo.md) |
 | 单人双边测试与首批计划 | 查一个客户端、两方身份、调试观察和正常信息过滤，以及首批核心任务 | 首批影响力已实现 | [模式说明](local-test-mode.md) · [计划](../Plans/2026-10-13-core-influence-first-slice.md) · [JSON](../Plans/2026-10-13-core-influence-first-slice.json) |
-| 游戏实现与可替换地图接口 | 查整体分层、地图输入输出、状态面板和首批影响力闭环 | 首批子集已实现；完整地图接口待接入 | [接口提案](../Design/implementation-architecture.proposal.md) · [JSON](../Design/implementation-architecture.proposal.json) |
+| 游戏实现与可替换地图接口 | 查整体分层、地图输入输出、状态面板和首批影响力闭环 | 影响力与同步诊断地图接口已实现；资源接口待接入 | [接口提案](../Design/implementation-architecture.proposal.md) · [JSON](../Design/implementation-architecture.proposal.json) |
 | 编码前方向讨论 | 比较第一版交付顺序、统一状态、占位地图与数据边界 | 方向已认可；首批已实现 | [coding-direction-discussion.md](../Design/coding-direction-discussion.md) · [JSON](../Design/coding-direction-discussion.json) |
 | 全局平局结果契约 | 查8组完整状态的Draw表示、旧命令重放与新行动拒绝边界 | Schema修订；游戏运行待实现 | [draw-global-contracts.md](draw-global-contracts.md) |
 | 2026-10-13项目裁定 | 查5牌已获用户确认的短缺、军事比较与零分结束政策 | 已确认；运行待实现 | [confirmed-rulings-20261013.md](confirmed-rulings-20261013.md) |
@@ -73,9 +73,10 @@
 | 太空竞赛 | 查找8格门槛、先后奖励、领先能力、事件推进与回合衔接 | v0.1设计；待实现 | [space-race.md](space-race.md) |
 | 地图与卡牌数据契约 | 查找正式数据字段、邻接、三类卡牌、效果注册、Schema及加载门禁 | 契约与正式印刷定义已建立；服务待实现 | [map-card-contracts.md](map-card-contracts.md) |
 | 正式地图与卡牌数据 | 按地区查84国与邻接，按时代查103张基础牌及效果待实现边界 | 静态定义已录入；不是可运行规则包 | [map-card-data.md](map-card-data.md) |
+| 可替换地图视图实现 | 查同步公开帧、过期输入、两适配器及局面保持 | 170回归通过；正式资源与画风未定 | [replaceable-map-view.md](replaceable-map-view.md) |
 | 地图布局与未定画风 | 区分规则图、位置拾取和主题资源，了解2D/3D接入边界 | 设计稿；未选定美术 | [map-presentation.md](map-presentation.md) |
 | 数据结构契约目录 | 按description定位五十三份JSON Schema（含事件参数、setup及卡牌v1/v2）与合成样例 | 结构契约；不是完整规则包 | [catalog.json](../Contracts/catalog.json) |
-| 模块描述目录 | 先按 description 定位模块，再读完整契约与相关代码 | 28模块：6已实现、地图1子集、21仍planned | [catalog.json](../Descriptors/catalog.json) |
+| 模块描述目录 | 先按 description 定位模块，再读完整契约与相关代码 | 29模块：7已实现、地图数据1子集、21仍planned | [catalog.json](../Descriptors/catalog.json) |
 | 共享规则数据目录 | 查找数据集描述、来源与独立参数文件 | 61数据集；含规则数据、Demo、地图profile及Unity验证技术配置 | [catalog.json](../../Data/catalog.json) |
 | 行动规则 | 查找影响力、政变、调整、预算、对象契约与验收案例 | 影响力子集已实现；政变/调整待实现 | [operations.md](operations.md) |
 | 规则资料 | 查找版本来源、FAQ 适用边界和资料冻结缺口 | 已登记；未完整冻结 | [rules-sources.md](rules-sources.md) |

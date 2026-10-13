@@ -27,7 +27,8 @@ namespace ColdWarStruggle.Bootstrap
 #endif
                 view.Initialize(new DemoController(catalog.CreateHost),catalog.Names,
                     catalog.Scenarios.Select(s=>new DemoScenarioOption(s.Id,s.Title,s.Actor,s.SelectedCountry)).ToArray(),
-                    DemoLaunchOptions.ScenarioIndex(Environment.GetCommandLineArgs(),catalog.Scenarios.Select(s=>s.Id).ToArray()));
+                    DemoLaunchOptions.ScenarioIndex(Environment.GetCommandLineArgs(),catalog.Scenarios.Select(s=>s.Id).ToArray()),
+                    DemoLaunchOptions.MapKind(Environment.GetCommandLineArgs()));
             }
             catch(Exception e) { view.ShowError(e.Message);Debug.LogException(e); }
         }

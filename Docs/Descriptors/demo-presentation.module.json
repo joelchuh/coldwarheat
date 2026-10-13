@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.demo-presentation",
   "kind": "module",
-  "description": "单窗口七练习：普通影响力与五张基础事件，固定身份切换、跨地区选择草稿、完整确认/重发/重置；只读投影驱动可替换国家面板，正式IMapView仍待实现。F12/--capture-demo导出本游戏帧，--demo-scenario仅选择已知练习。",
+  "description": "单窗口七练习：普通影响力与五张基础事件，固定身份、草稿和明确确认；IMapView同步子集支持卡片/列表互换，规则对局不变。F12/--capture-demo导出游戏帧，启动只接受已知场景和地图白名单。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -52,6 +52,10 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoLaunchOptions.cs",
       "symbol": "ScenarioIndex"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoLaunchOptions.cs",
+      "symbol": "MapKind"
     }
   ],
   "inputs": [
@@ -116,7 +120,7 @@
   "documentation": "Docs/Wiki/first-demo.md",
   "verification": {
     "checked_on": "2026-10-13",
-    "report": "Docs/Testing/event-demo.validation.json"
+    "report": "Docs/Testing/replaceable-map-view.validation.json"
   },
   "data_dependencies": [
     "rules.deluxe2015.influence_placement",

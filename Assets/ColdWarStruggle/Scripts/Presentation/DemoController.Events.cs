@@ -27,11 +27,11 @@ namespace ColdWarStruggle.Presentation
         void EnsureDraftContext(PlayerViewSnapshot view)
         {
             if(draftGame==view.GameId && draftVersion==view.Version && draftSide==SelectedSide && draftDecision==view.Event?.DecisionId)return;
-            eventDraft.Clear();eventTargets=null;draftGame=view.GameId;draftVersion=view.Version;draftSide=SelectedSide;draftDecision=view.Event?.DecisionId;
+            eventDraft.Clear();eventTargets=null;draftGame=view.GameId;draftVersion=view.Version;draftSide=SelectedSide;draftDecision=view.Event?.DecisionId;MarkInteractionChanged();
         }
         void ResetEventInteraction(bool clearReceipt)
         {
-            eventDraft.Clear();eventTargets=null;draftGame=null;draftVersion=-1;draftDecision=null;LastEventResult=null;
+            eventDraft.Clear();eventTargets=null;draftGame=null;draftVersion=-1;draftDecision=null;LastEventResult=null;MarkInteractionChanged();
             if(clearReceipt)lastEventCommand=null;
         }
         public EventTargetsResult EventTargets()
@@ -42,11 +42,11 @@ namespace ColdWarStruggle.Presentation
         public bool ToggleEventTarget(CountryId country)
         {
             var query=EventTargets();if(query.Error!=RuleError.None || !query.Targets.Contains(country))return false;
-            if(eventDraft.Remove(country))return true;
+            if(eventDraft.Remove(country)) { MarkInteractionChanged();return true; }
             if(eventDraft.Count>=query.RequiredTargets)return false;
-            eventDraft.Add(country);return true;
+            eventDraft.Add(country);MarkInteractionChanged();return true;
         }
-        public void ClearEventDraft() { eventDraft.Clear(); }
+        public void ClearEventDraft() { if(eventDraft.Count==0)return;eventDraft.Clear();MarkInteractionChanged(); }
         public Task<EventCommandResult> BeginEventAsync()=>SubmitEvent(EventCommandKind.Begin);
         public Task<EventCommandResult> ConfirmEventAsync()=>SubmitEvent(EventCommandKind.Resolve);
         async Task<EventCommandResult> SubmitEvent(EventCommandKind kind)

@@ -5,6 +5,20 @@ namespace ColdWarStruggle.Presentation
 {
     public static class DemoLaunchOptions
     {
+        public static DiagnosticMapKind MapKind(IEnumerable<string> args)
+        {
+            if(args==null)throw new ArgumentException("Missing launch arguments.");
+            const string prefix="--demo-map=";
+            var values=args.Where(a=>a!=null && a.StartsWith(prefix,StringComparison.Ordinal)).ToArray();
+            if(values.Length==0)return DiagnosticMapKind.Tiles;
+            if(values.Length!=1)throw new ArgumentException("Only one map view may be selected.");
+            switch(values[0].Substring(prefix.Length))
+            {
+                case "tiles":return DiagnosticMapKind.Tiles;
+                case "table":return DiagnosticMapKind.Table;
+                default:throw new ArgumentException("Unknown diagnostic map view.");
+            }
+        }
         public static int ScenarioIndex(IEnumerable<string> args,IReadOnlyList<string> knownIds)
         {
             if(args==null || knownIds==null || knownIds.Count==0)throw new ArgumentException("Missing demo launch context.");

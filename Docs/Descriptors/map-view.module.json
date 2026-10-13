@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "id": "module.map-view",
+  "kind": "module",
+  "status": "implemented",
+  "description": "可替换地图的同步诊断子集：公开只读国家帧、上下文/版本/序号/本地修订门禁、卡片和列表两个实际适配器；换视图保留对局及草稿，不实现正式layout/theme或异步资源。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/MapContracts.cs",
+      "symbol": "IMapView"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/MapContracts.cs",
+      "symbol": "MapViewContext"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/MapContracts.cs",
+      "symbol": "MapFrame"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/MapContracts.cs",
+      "symbol": "MapIntent"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/MapViewBuffer.cs",
+      "symbol": "Present"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/MapViewBuffer.cs",
+      "symbol": "TrySelect"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/MapPresenter.cs",
+      "symbol": "Attach"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/MapPresenter.cs",
+      "symbol": "Refresh"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/DiagnosticMapView.cs",
+      "symbol": "Create"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/DiagnosticMapView.cs",
+      "symbol": "Draw"
+    }
+  ],
+  "inputs": [
+    "公开国家ID/名称/地区/稳定度/战场定义",
+    "玩家投影已算好的影响力、控制方与合法目标；本地选中态和事件草稿",
+    "带ViewContextId、StateVersion、FrameSequence、InteractionKey的国家输入"
+  ],
+  "outputs": [
+    "同一局面的卡片或列表视图",
+    "通过来源/新鲜度验证后，仅更新控制器本地选中态及合法事件草稿"
+  ],
+  "dependencies": [
+    "module.demo-presentation",
+    "module.local-session"
+  ],
+  "preconditions": [
+    "Windows Unity6000.6.0f1；公开数据已在内存，本接口不加载外部资源",
+    "同步主线程调用；未来网络异步查询另行实现",
+    "每帧完整覆盖上下文全部国家；不接收GameState、会话或手牌"
+  ],
+  "side_effects": [
+    "Attach释放旧视图与监听，换新显示上下文；不重建宿主",
+    "Intent编辑本地选择；确认和结算仍由既有Demo按钮与会话完成",
+    "FocusOn和地区浏览只改显示；Dispose后拒绝输入"
+  ],
+  "stop_conditions": [
+    "未知/重复/缺失国家或无效DTO拒绝",
+    "旧上下文/身份generation/版本/帧序号/操作键/本地交互修订输入忽略",
+    "呈现返回false或抛异常时退役视图、移除监听，旧委托无效果",
+    "初始化失败清空旧映射；Dispose后不能初始化、呈现或聚焦"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Design/implementation-architecture.proposal.md",
+      "scope": "用户认可的分层与地图可替换方向"
+    },
+    {
+      "path": "Docs/Plans/2026-10-13-replaceable-map-view.md",
+      "scope": "同步v1诊断实现范围"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/MapViewTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/MapPresenterTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DiagnosticMapTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/replaceable-map-view.md",
+  "verification": {
+    "report": "Docs/Testing/replaceable-map-view.validation.json",
+    "independent_review": "passed-after-P2-P3-fixes"
+  },
+  "data_dependencies": [
+    "map.deluxe2015.world",
+    "localization.en_us.catalog_names"
+  ],
+  "not_implemented": [
+    "正式地图几何与86节点layout装配",
+    "ThemeDefinition资源加载",
+    "异步网络查询/资源加载",
+    "地图动画/镜头缩放"
+  ]
+}

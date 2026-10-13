@@ -35,10 +35,13 @@ namespace ColdWarStruggle.Editor
         public static void Play()
         { if(!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())return;Prepare();EditorSceneManager.OpenScene(ScenePath);EditorApplication.isPlaying=true; }
         [MenuItem("ColdWarStruggle/Build Windows Demo")]
-        public static void Build()
+        public static void Build()=>BuildAt("Builds/FirstDemo");
+        [MenuItem("ColdWarStruggle/Build Side-by-side Preview")]
+        public static void BuildPreview()=>BuildAt("Builds/PreviewDemo");
+        static void BuildAt(string directory)
         {
-            Prepare();Directory.CreateDirectory("Builds/FirstDemo");
-            var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{ScenePath},locationPathName="Builds/FirstDemo/ColdWarStruggleDemo.exe",target=BuildTarget.StandaloneWindows64,options=BuildOptions.None});
+            Prepare();Directory.CreateDirectory(directory);
+            var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{ScenePath},locationPathName=Path.Combine(directory,"ColdWarStruggleDemo.exe"),target=BuildTarget.StandaloneWindows64,options=BuildOptions.None});
             if(report.summary.result!=BuildResult.Succeeded)throw new InvalidOperationException("Demo build failed: "+report.summary.result);
             Debug.Log("FIRST_DEMO_BUILD_SUCCEEDED "+report.summary.totalSize);
         }
