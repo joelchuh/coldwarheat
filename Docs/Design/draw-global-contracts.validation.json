@@ -1,0 +1,531 @@
+{
+  "description": "Eight global result schema domains only. Historical total4760 plus40 new cases; this batch reruns1943 affected cases, retaining2817 unchanged prior cases. No production runtime.",
+  "checked_on": "2026-10-13",
+  "previous_cases_passed": 4760,
+  "new_cases_passed": 40,
+  "total_cases_passed": 4800,
+  "previous_cases_rerun_this_batch": 1943,
+  "previous_unchanged_cases_not_rerun": 2817,
+  "actual_finite_checks_executed_this_batch": 1983,
+  "cases_by_layer": {
+    "contract": 16,
+    "reference": 24
+  },
+  "runtime_cases_not_run": 1,
+  "runtime_game_tests_run": 0,
+  "bound_cards": 99,
+  "unresolved_bindings": 3,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 50,
+    "data_descriptors": 53,
+    "module_descriptors": 21,
+    "stage_relative_links_checked": 193
+  },
+  "red_green": {
+    "before": {
+      "passed": 32,
+      "failed": 8,
+      "cause": "Only Finished/Draw shape positive tests rejected"
+    },
+    "after": {
+      "passed": 40,
+      "failed": 0
+    },
+    "existing_replay_failure_reproduced": false
+  },
+  "regression_evidence_note": "All1943+40 ran successfully immediately before aggregation failed on an optional schema_path; only the catalog adapter was corrected, no business artifacts changed or rerun.",
+  "regressions_rerun": [
+    {
+      "suite": "china-transfer-batch1",
+      "checks": 233,
+      "passed": 233,
+      "report": "work/draw-contracts-final-regression-china-transfer-batch1.json",
+      "checker_sha256": "38a1eb7ad7172531b393cfd8779a2b580b708f95832ed68ef7330121026f3aa2"
+    },
+    {
+      "suite": "defectors",
+      "checks": 169,
+      "passed": 169,
+      "report": "work/draw-contracts-final-regression-defectors.json",
+      "checker_sha256": "99c3ff6549f7b9b761d908cebab52d50f4bd8c9b153dd964c3b332093368351a"
+    },
+    {
+      "suite": "deferred-vp-events-batch1",
+      "checks": 160,
+      "passed": 160,
+      "report": "work/draw-contracts-final-regression-deferred-vp-events-batch1.json",
+      "checker_sha256": "ad0fd2dbdc7fbbaba5eaa09067471b1faba53bda935f19af757a84dedb9fe4c4"
+    },
+    {
+      "suite": "late-event-operations-batch1",
+      "checks": 185,
+      "passed": 185,
+      "report": "work/draw-contracts-final-regression-late-event-operations-batch1.json",
+      "checker_sha256": "18e2939bf1745abf501ba6feac7b98018b4b564696035a2d0a06951ba3071a1e"
+    },
+    {
+      "suite": "late-hand-batch1",
+      "checks": 173,
+      "passed": 173,
+      "report": "work/draw-contracts-final-regression-late-hand-batch1.json",
+      "checker_sha256": "a64de375054201a4e321a6c966b2e172578c51602b15234a8f9f6291d4beb7b9"
+    },
+    {
+      "suite": "late-influence-batch1",
+      "checks": 546,
+      "passed": 546,
+      "report": "work/draw-contracts-final-regression-late-influence-batch1.json",
+      "checker_sha256": "b95e554de245e502ad7f48c2e7f2b96c03e2d3747964f4be0e1b6c1362b1b7c0"
+    },
+    {
+      "suite": "late-restrictions-batch1",
+      "checks": 275,
+      "passed": 275,
+      "report": "work/draw-contracts-final-regression-late-restrictions-batch1.json",
+      "checker_sha256": "34e5a6fe113cb53e80e543927333ed3ca76d7364fd3803b4c562ff5a75caf692"
+    },
+    {
+      "suite": "opec-north-sea-batch1",
+      "checks": 202,
+      "passed": 202,
+      "report": "work/draw-contracts-final-regression-opec-north-sea-batch1.json",
+      "checker_sha256": "9db996931819ba507cac300a9888996d74047d474a92b0abee16c7cf36016b2e"
+    }
+  ],
+  "revised_legacy_case": {
+    "id": "LH1-S-extra-negative-153",
+    "old_invalid_value": "Draw",
+    "new_invalid_value": "UnknownWinner",
+    "expected_valid_unchanged": false,
+    "reason": "Draw is now a valid global outcome; keep invalid-value coverage and add explicit Draw guards separately."
+  },
+  "validated_sha256": {
+    "Data/Descriptors/china-transfer-batch1.data.json": "62bb46924e7cff075244e69a7c7d21d868f8d7eaea5032275f05619d6c0eb47f",
+    "Data/Descriptors/defectors.data.json": "d524f8daf2501576bff8099e44bc7ef023972cdcd1cc4789bfd9793f2588725f",
+    "Data/Descriptors/deferred-vp-events-batch1.data.json": "47d0eaf2be9fd0f2881b85ba588da40ae01d658a2c5fdae0837a30045918d802",
+    "Data/Descriptors/late-event-operations-batch1.data.json": "b880e5dd74d16602daf6e44c813c8f0ece2104b0d442a40e051e0fab12adfc59",
+    "Data/Descriptors/late-hand-batch1.data.json": "efb7337f724e0a2b0055b51e19f9e778680d2e687d208110b2759ae46e9e207b",
+    "Data/Descriptors/late-influence-batch1.data.json": "bbd04f790c7e031ff005d2ecca3b8c08534a7d3f3204dbf34959c52b217d2387",
+    "Data/Descriptors/late-restrictions-batch1.data.json": "4fa433e68168a15b848cf35064b06ce42649270f59f263d7af4c808eefa9ae4d",
+    "Data/Descriptors/opec-north-sea-batch1.data.json": "d9109d89ab431aa2616bc05c5d2e33e4860ec11250f748c2b51a0dc25fbeb52c",
+    "Docs/Contracts/china-transfer-batch1.schema.json": "e592669f2ff2479156bb222419dc2b2dce0b499b2294c2be1806620affae4767",
+    "Docs/Contracts/defectors.schema.json": "4bd44307d06b7e7043249aa9749822eb2496af4896d2b7bd707689bb05b68a5e",
+    "Docs/Contracts/deferred-vp-events-batch1.schema.json": "952ee3ee353cb6f6030161e093bc28509dc6af14f7b8c29836a4a6e391123273",
+    "Docs/Contracts/late-event-operations-batch1.schema.json": "55e2931b0813cce21dba6fb602da213de69b28f688310afa6393df76bbf495ff",
+    "Docs/Contracts/late-hand-batch1.schema.json": "368cfb57968fd8c1a3c9f5279dccf2f46bcbc5677a4b4c6e5d14630716785def",
+    "Docs/Contracts/late-influence-batch1.schema.json": "491a27a0183facf6d8c643a7b65a465f1f4b7010c9296d0a2f0c17bca516b3db",
+    "Docs/Contracts/late-restrictions-batch1.schema.json": "324431c545c8caab7569f4e6179c299fe6d254a2371e75cfd2efbf283686b18e",
+    "Docs/Contracts/opec-north-sea-batch1.schema.json": "4c00e8d56fe3f96474ae61fef75cc77ce2afcb58e72e6469a84b1b780663bc82",
+    "Docs/Design/draw-global-contracts.cases.json": "f495f3cae93d52895bc685acc33eb1c76fa7afcd3a02063626f43ec0c31d19ee",
+    "Docs/Design/late-hand-batch1.cases.json": "aadd1823b30ab14d9475c8e6648f3201eb478b0996a91e069125867730979d96",
+    "Docs/Design/nested-card-sources.plan.json": "c9ee1abe7a6344f9f56b2c3b90596e6341f451cbf1c3275ffdf0057a84436e4a",
+    "Docs/Wiki/china-transfer-batch1.md": "eaf586d8fcf94a440ad438832ded378779ca2c65f2bd24cc63e3880f878b9bb1",
+    "Docs/Wiki/defectors.md": "b491be3cbe384342d234e9292ea8a96283bd376dead73431d25734e5342bbe25",
+    "Docs/Wiki/deferred-vp-events-batch1.md": "9ba124816828b401b6092f07b222b68821b90c43feb670ba9e7b4fdb16fcbd3f",
+    "Docs/Wiki/draw-global-contracts.md": "7e3063001a447ed8d5a872b04287ae29f32d394ec02301ca3511ec4bd2943327",
+    "Docs/Wiki/index.md": "7cde4e01bb86cc1522bff04eaa17fa7b18797619fae03b232244d2bd46a260c7",
+    "Docs/Wiki/late-event-operations-batch1.md": "9d3a2a95c2ce1b2bc784309903b65b95e2d383bd58da9f177a94001be27c1930",
+    "Docs/Wiki/late-hand-batch1.md": "263b3d57e7d9570a229ff8657ac2086702ec0caded76c2ad36c19b623e0ed8f7",
+    "Docs/Wiki/late-influence-batch1.md": "3970f2a0458e60fd0ec651d213df6b85af7ceaad0240424af47dbd96c9a7e574",
+    "Docs/Wiki/late-restrictions-batch1.md": "b240535cabdc943b8c598a195608b8b836ed243c13c608377ef3cc3194d5494e",
+    "Docs/Wiki/nested-card-sources.md": "69e550859f03a07b45e6e47779a84f690556f74dd65f80596cf08642118e742b",
+    "Docs/Wiki/opec-north-sea-batch1.md": "d8a4e88fb1955fffe50c90e9574071c6f70da6a9fcbef36a0004fbbf286e25e5",
+    "Docs/Worklogs/2026-10-13-draw-global-contracts.md": "7befe762bd63eb180230d1c27cf636c3eeb609f92592ae96f6b2ced47a204061",
+    "README.md": "67fce164635ae314767ddea32a907fa7598b15340d2c80ef0d16e3368d892163"
+  },
+  "results": [
+    {
+      "id": "DWC1-china-transfer-batch1-finished-draw-shape",
+      "layer": "contract",
+      "passed": true,
+      "actual": {
+        "shape_valid": true
+      }
+    },
+    {
+      "id": "DWC1-china-transfer-batch1-unknown-winner-rejected",
+      "layer": "contract",
+      "passed": true,
+      "actual": {
+        "shape_valid": false
+      }
+    },
+    {
+      "id": "DWC1-china-transfer-batch1-replay-later-finished-draw",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "AlreadyCompleted",
+        "original_returned": true,
+        "live_and_history_unchanged": true
+      }
+    },
+    {
+      "id": "DWC1-china-transfer-batch1-new-finished-draw-rejected",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "FinishedState",
+        "input_unchanged": true,
+        "no_effects": true
+      }
+    },
+    {
+      "id": "DWC1-china-transfer-batch1-new-active-draw-rejected",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "InvalidState",
+        "input_unchanged": true,
+        "no_effects": true
+      }
+    },
+    {
+      "id": "DWC1-defectors-finished-draw-shape",
+      "layer": "contract",
+      "passed": true,
+      "actual": {
+        "shape_valid": true
+      }
+    },
+    {
+      "id": "DWC1-defectors-unknown-winner-rejected",
+      "layer": "contract",
+      "passed": true,
+      "actual": {
+        "shape_valid": false
+      }
+    },
+    {
+      "id": "DWC1-defectors-replay-later-finished-draw",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "AlreadyCompleted",
+        "original_returned": true,
+        "live_and_history_unchanged": true
+      }
+    },
+    {
+      "id": "DWC1-defectors-new-finished-draw-rejected",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "FinishedState",
+        "input_unchanged": true,
+        "no_effects": true
+      }
+    },
+    {
+      "id": "DWC1-defectors-new-active-draw-rejected",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "InvalidState",
+        "input_unchanged": true,
+        "no_effects": true
+      }
+    },
+    {
+      "id": "DWC1-deferred-vp-events-batch1-finished-draw-shape",
+      "layer": "contract",
+      "passed": true,
+      "actual": {
+        "shape_valid": true
+      }
+    },
+    {
+      "id": "DWC1-deferred-vp-events-batch1-unknown-winner-rejected",
+      "layer": "contract",
+      "passed": true,
+      "actual": {
+        "shape_valid": false
+      }
+    },
+    {
+      "id": "DWC1-deferred-vp-events-batch1-replay-later-finished-draw",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "AlreadyCompleted",
+        "original_returned": true,
+        "live_and_history_unchanged": true
+      }
+    },
+    {
+      "id": "DWC1-deferred-vp-events-batch1-new-finished-draw-rejected",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "FinishedState",
+        "input_unchanged": true,
+        "no_effects": true
+      }
+    },
+    {
+      "id": "DWC1-deferred-vp-events-batch1-new-active-draw-rejected",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "InvalidState",
+        "input_unchanged": true,
+        "no_effects": true
+      }
+    },
+    {
+      "id": "DWC1-late-event-operations-batch1-finished-draw-shape",
+      "layer": "contract",
+      "passed": true,
+      "actual": {
+        "shape_valid": true
+      }
+    },
+    {
+      "id": "DWC1-late-event-operations-batch1-unknown-winner-rejected",
+      "layer": "contract",
+      "passed": true,
+      "actual": {
+        "shape_valid": false
+      }
+    },
+    {
+      "id": "DWC1-late-event-operations-batch1-replay-later-finished-draw",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "Replayed",
+        "original_returned": true,
+        "live_and_history_unchanged": true
+      }
+    },
+    {
+      "id": "DWC1-late-event-operations-batch1-new-finished-draw-rejected",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "InvalidRunningState",
+        "input_unchanged": true,
+        "no_effects": true
+      }
+    },
+    {
+      "id": "DWC1-late-event-operations-batch1-new-active-draw-rejected",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "InvalidRunningState",
+        "input_unchanged": true,
+        "no_effects": true
+      }
+    },
+    {
+      "id": "DWC1-late-hand-batch1-finished-draw-shape",
+      "layer": "contract",
+      "passed": true,
+      "actual": {
+        "shape_valid": true
+      }
+    },
+    {
+      "id": "DWC1-late-hand-batch1-unknown-winner-rejected",
+      "layer": "contract",
+      "passed": true,
+      "actual": {
+        "shape_valid": false
+      }
+    },
+    {
+      "id": "DWC1-late-hand-batch1-replay-later-finished-draw",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "AlreadyCompleted",
+        "original_returned": true,
+        "live_and_history_unchanged": true
+      }
+    },
+    {
+      "id": "DWC1-late-hand-batch1-new-finished-draw-rejected",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "FinishedState",
+        "input_unchanged": true,
+        "no_effects": true
+      }
+    },
+    {
+      "id": "DWC1-late-hand-batch1-new-active-draw-rejected",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "InvalidState",
+        "input_unchanged": true,
+        "no_effects": true
+      }
+    },
+    {
+      "id": "DWC1-late-influence-batch1-finished-draw-shape",
+      "layer": "contract",
+      "passed": true,
+      "actual": {
+        "shape_valid": true
+      }
+    },
+    {
+      "id": "DWC1-late-influence-batch1-unknown-winner-rejected",
+      "layer": "contract",
+      "passed": true,
+      "actual": {
+        "shape_valid": false
+      }
+    },
+    {
+      "id": "DWC1-late-influence-batch1-replay-later-finished-draw",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "AlreadyCompleted",
+        "original_returned": true,
+        "live_and_history_unchanged": true
+      }
+    },
+    {
+      "id": "DWC1-late-influence-batch1-new-finished-draw-rejected",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "AlreadyFinished",
+        "input_unchanged": true,
+        "no_effects": true
+      }
+    },
+    {
+      "id": "DWC1-late-influence-batch1-new-active-draw-rejected",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "InvalidState",
+        "input_unchanged": true,
+        "no_effects": true
+      }
+    },
+    {
+      "id": "DWC1-late-restrictions-batch1-finished-draw-shape",
+      "layer": "contract",
+      "passed": true,
+      "actual": {
+        "shape_valid": true
+      }
+    },
+    {
+      "id": "DWC1-late-restrictions-batch1-unknown-winner-rejected",
+      "layer": "contract",
+      "passed": true,
+      "actual": {
+        "shape_valid": false
+      }
+    },
+    {
+      "id": "DWC1-late-restrictions-batch1-replay-later-finished-draw",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "Replayed",
+        "original_returned": true,
+        "live_and_history_unchanged": true
+      }
+    },
+    {
+      "id": "DWC1-late-restrictions-batch1-new-finished-draw-rejected",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "InvalidRunningState",
+        "input_unchanged": true,
+        "no_effects": true
+      }
+    },
+    {
+      "id": "DWC1-late-restrictions-batch1-new-active-draw-rejected",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "InvalidRunningState",
+        "input_unchanged": true,
+        "no_effects": true
+      }
+    },
+    {
+      "id": "DWC1-opec-north-sea-batch1-finished-draw-shape",
+      "layer": "contract",
+      "passed": true,
+      "actual": {
+        "shape_valid": true
+      }
+    },
+    {
+      "id": "DWC1-opec-north-sea-batch1-unknown-winner-rejected",
+      "layer": "contract",
+      "passed": true,
+      "actual": {
+        "shape_valid": false
+      }
+    },
+    {
+      "id": "DWC1-opec-north-sea-batch1-replay-later-finished-draw",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "Replayed",
+        "original_returned": true,
+        "live_and_history_unchanged": true
+      }
+    },
+    {
+      "id": "DWC1-opec-north-sea-batch1-new-finished-draw-rejected",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "AlreadyFinished",
+        "input_unchanged": true,
+        "no_effects": true
+      }
+    },
+    {
+      "id": "DWC1-opec-north-sea-batch1-new-active-draw-rejected",
+      "layer": "reference",
+      "passed": true,
+      "actual": {
+        "outcome": "InvalidRunningState",
+        "input_unchanged": true,
+        "no_effects": true
+      }
+    }
+  ],
+  "limitations": [
+    "The existing replay methods already accepted later Draw; only schema representation failed before this patch.",
+    "Only the audited main event entrypoint is used for new-command guards; choice/expiry/query routes are not exhaustively proven.",
+    "Later live states are synthetic terminal states, not an executed cross-card Wargames pipeline.",
+    "Original finite checkers are loaded without their report-writing main routines; no production engine, storage, RNG or authorization exists."
+  ],
+  "independent_review": {
+    "status": "ready-after-independent-schema-and-model-review",
+    "reviewer": "review_draw_candidates",
+    "new_checks_independently_rerun": 40,
+    "additional_bounded_probes_passed": 10,
+    "historical_1943_results_and_artifact_hashes_checked": true,
+    "historical_1943_independently_rerun": false,
+    "baseline_tracked_sha256_verified": 428,
+    "manifest_files": 33,
+    "validated_artifact_hashes": 32,
+    "findings_open": [],
+    "local_evidence": "work/draw-contracts-independent-final-review.json",
+    "limitations": [
+      "Only main event entrypoint rejection tested, not exhaustive expiry/choice/query coverage.",
+      "The original eight replay methods already returned historical results with later Draw; no eight-replay-bug claim.",
+      "Production Wargames-to-consumer pipeline and runtime remain unimplemented."
+    ]
+  }
+}

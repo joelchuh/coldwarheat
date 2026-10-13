@@ -4,6 +4,7 @@
 
 | 知识点 | description | 状态 | 入口 |
 |---|---|---|---|
+| 全局平局结果契约 | 查8组完整状态的Draw表示、旧命令重放与新行动拒绝边界 | Schema修订；游戏运行待实现 | [draw-global-contracts.md](draw-global-contracts.md) |
 | 2026-10-13项目裁定 | 查5牌已获用户确认的短缺、军事比较与零分结束政策 | 已确认；运行待实现 | [confirmed-rulings-20261013.md](confirmed-rulings-20261013.md) |
 | 嵌套出牌下一步计划 | 查Star Wars、Grain Sales、Missile Envy及Draw兼容审计顺序 | 研究与计划；三牌未绑定 | [nested-card-sources.md](nested-card-sources.md) |
 | 开发工作流与共享数据 | 查找模块/脚本 JSON 描述、脚本化条件、共享数据与执行边界 | 已采用；只读核验工具就绪，其他自动化待实现 | [workflow-and-data.md](workflow-and-data.md) |

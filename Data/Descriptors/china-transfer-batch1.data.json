@@ -71,15 +71,21 @@
     {
       "path": "Docs/Design/china-transfer-batch1.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/draw-global-contracts.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "runtime_consumers_tested": false,
-    "report": "Docs/Design/china-transfer-batch1.validation.json"
+    "report": "Docs/Design/china-transfer-batch1.validation.json",
+    "latest_design_report": "Docs/Design/draw-global-contracts.validation.json"
   },
   "retrieval_hints": [
     "parameters按CardId定位；shared_refs解析China/Formosan/地图/VP唯一事实",
     "typed source_ledger与实际source card/frame逐项对照；不复制China到Hand",
-    "receipt保存原完整结果；同命令重试不要求current等于原after"
+    "receipt保存原完整结果；同命令重试不要求current等于原after",
+    "DWC1：全局结果域允许Finished/Draw；局部竞赛赢家未改。新增主入口终局守卫与历史重放检查，非真实游戏运行测试。"
   ]
 }

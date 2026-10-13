@@ -21,3 +21,5 @@ Active 已有 winner、VP 已达到自动胜利或 DEFCON 核战等级均拒绝�
 作者验证：169 个新离线检查（9 data、21 schema、139 reference）通过，另列 10 个 runtime 案例未执行。先记录未实现投影的 RED，再补一次普通手牌携带 foreign frame 的 RED 后收紧实体约束。历史结果的反例既测旧独立锚点，也用合成匹配锚点测重新投影的领域不变量。独立审阅复跑169并增加129探针全部通过；探针单列，不计入3788。10运行验收仍未执行。
 
 来源：[英文卡图](https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf) p6 #103（目视英文）；[FAQ v5](https://www.gmtgames.com/nnts/FAQv5.pdf) p1 勘误、p14 #67、p18 #103；[R2015](https://www.gmtgames.com/nnts/TS_Rules-2015.pdf) §§4.5C/5.2/6.4.5/10.2–10.3。队列、实体、收据和终局草稿是工程契约，不冒称专门 FAQ。
+
+全局快照结果域现允许 Finished/Draw；本事件不因此新增平局分支。主入口的新行动仍拒绝终局或活动局面的非空赢家，历史重放保持原结果与当前状态。范围与实际证据见[全局结果契约](draw-global-contracts.md)。

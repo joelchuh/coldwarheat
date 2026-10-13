@@ -76,14 +76,20 @@
     {
       "path": "Docs/Design/late-event-operations-batch1.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/draw-global-contracts.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "runtime_consumers_tested": false,
-    "report": "Docs/Design/late-event-operations-batch1.validation.json"
+    "report": "Docs/Design/late-event-operations-batch1.validation.json",
+    "latest_design_report": "Docs/Design/draw-global-contracts.validation.json"
   },
   "retrieval_hints": [
     "parameters contains card-specific order and capabilities; shared_refs locates all common numerical policies",
-    "schema start_input/choice_input and receipt define finite gates; operation_request is a handoff, not an executed operation"
+    "schema start_input/choice_input and receipt define finite gates; operation_request is a handoff, not an executed operation",
+    "DWC1：全局结果域允许Finished/Draw；局部竞赛赢家未改。新增主入口终局守卫与历史重放检查，非真实游戏运行测试。"
   ]
 }

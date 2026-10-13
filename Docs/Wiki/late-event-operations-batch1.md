@@ -69,3 +69,5 @@ proof、ledger 和 anchor 在离线检查中是合成的权威前提，不代表
 [返回索引](index.md)
 
 整合状态：[验证报告](../Design/late-event-operations-batch1.validation.json)记录185新＋3788旧＝3973离线检查，93 Bound/9 Unresolved，102处理器planned。另114独立探针全过，不重复累计；12运行验收未执行，游戏runtime0。
+
+全局快照结果域现允许 Finished/Draw；本事件不因此新增平局分支。主入口的新行动仍拒绝终局或活动局面的非空赢家，历史重放保持原结果与当前状态。范围与实际证据见[全局结果契约](draw-global-contracts.md)。

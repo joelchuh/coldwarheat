@@ -27,3 +27,5 @@ Ames期限作用于手牌集合；同回合后来进入普通Hand的牌进入独
 共享地图、印刷属性、China、VP/DEFCON、Hand/随机模式和TurnFlow/ActiveEffects接口通过参数引用；不在此复制共享常量或历史全局计数。[整合验证报告](../Design/late-hand-batch1.validation.json)：173新＋3446旧＝3619离线检查，89 Bound/13 Unresolved，102处理器planned；12个runtime案例保留UNRUN。
 
 来源：[英文卡图](https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf)p13 #82、p14 #92、p15 #98；[R2015](https://www.gmtgames.com/nnts/TS_Rules-2015.pdf)§§5.2/5.4/5.5/7.3/9；[FAQv5](https://www.gmtgames.com/nnts/FAQv5.pdf)p16 #92及#98版本声明、p19。来源备忘work/late-hand-research.json只作为研究入口，不是运行规则。
+
+全局快照结果域现允许 Finished/Draw；本事件不因此新增平局分支。主入口的新行动仍拒绝终局或活动局面的非空赢家，历史重放保持原结果与当前状态。范围与实际证据见[全局结果契约](draw-global-contracts.md)。

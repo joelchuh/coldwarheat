@@ -65,3 +65,5 @@ ExpireAndReset 只接受回合服务的匹配边界证据，并要求本回合�
 资料：[GMT 英文卡](https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf) PDF p14 #93/#94；[R2015](https://www.gmtgames.com/nnts/TS_Rules-2015.pdf) §2.0/2.1.1–2/5.2/6.1–2/7.4.3；FAQ p15–16。官方站限定检索未找到专门的重复或不选地区回答，未采用策略网站替代规则。关联设计：[普通行动](operations.md)、[持续修正](persistent-effects-batch2.md)、[回合流程](turn-flow.md)。
 
 整合状态：[验证报告](../Design/late-restrictions-batch1.validation.json)记录275新＋4133旧＝4408离线检查，97 Bound/5 Unresolved，102处理器planned；10运行验收未执行。独立探针另外计数，不重复累计。
+
+全局快照结果域现允许 Finished/Draw；本事件不因此新增平局分支。主入口的新行动仍拒绝终局或活动局面的非空赢家，历史重放保持原结果与当前状态。范围与实际证据见[全局结果契约](draw-global-contracts.md)。

@@ -23,3 +23,5 @@ WWBY 无 UN 的有限观察来源包括直接 Duck and Cover 事件开始之前�
 来源：[英文卡图](https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf) p8 #50、p10 #60；[FAQv5](https://www.gmtgames.com/nnts/FAQv5.pdf) pp11–12；[R2015](https://www.gmtgames.com/nnts/TS_Rules-2015.pdf) §§4.5C–D/5.2/5.4/5.5/6.4.1/8.1.3/10.2.3/10.3.1。英文图已亲视，邻近译文不用作依据。U2 重复使用及 WWBY 未定时点无新增官方裁定，保留待裁定。
 
 整合状态：[验证报告](../Design/deferred-vp-events-batch1.validation.json)记录160新＋3973旧＝4133离线检查，95 Bound/7 Unresolved，102处理器planned；12运行验收未执行。独立探针另外计数，不重复累计。
+
+全局快照结果域现允许 Finished/Draw；本事件不因此新增平局分支。主入口的新行动仍拒绝终局或活动局面的非空赢家，历史重放保持原结果与当前状态。范围与实际证据见[全局结果契约](draw-global-contracts.md)。

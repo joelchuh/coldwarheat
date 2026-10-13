@@ -29,4 +29,4 @@ flowchart TD
 
 关联入口：[回合状态机](turn-flow.md)、[手牌事件](hand-events-batch1.md)、[UN 双牌](un-intervention.md)、[Defectors](defectors.md)、[延后奖分](deferred-vp-events-batch1.md)。资料定位与版本见 JSON 的 sources；没有新增规则通过数量或游戏运行测试。
 
-扩大这些来源的覆盖前，先逐项核验已确认的 Draw 终局与现有完整 live snapshot 契约是否兼容。Ask Not 与拉美债务危机已发现相关历史重放问题并进入修复；其他文件目前只有结构线索，不能据此宣布业务错误或通过。局部竞赛赢家与全局终局赢家须区分，不能批量放宽枚举；回归需要包含后来 Finished/Draw 时重放旧收据，以及 Running/Draw 仍被拒绝。
+扩大这些来源的覆盖前，先逐项核验已确认的 Draw 终局与现有完整 live snapshot 契约是否兼容。Ask Not 与拉美债务危机已修复并发布；其余八组已完成逐项核查并修补全局结果域，原参考重放本身均成功。实际范围见[全局结果契约](draw-global-contracts.md)。局部竞赛赢家与全局终局赢家须区分，不能批量放宽枚举；回归需要包含后来 Finished/Draw 时重放旧收据，以及 Running/Draw 仍被拒绝。

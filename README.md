@@ -123,3 +123,5 @@
 
 最新：[Ask Not换手牌](Docs/Wiki/ask-not.md)，99 Bound /3 Unresolved，102处理器planned；弃牌集合锁定与抽牌提供者分开。
 离线设计主验4760项；详见[Ask Not验证记录](Docs/Design/ask-not.validation.json)。
+
+[全局平局结果契约](Docs/Wiki/draw-global-contracts.md)：累计4800项设计案例；本批实际运行1943项受影响回归＋40项新检查，游戏runtime仍0。

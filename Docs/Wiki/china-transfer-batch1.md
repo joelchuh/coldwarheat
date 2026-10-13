@@ -27,3 +27,5 @@ Active状态已有winner、达到共享VP自动终局阈值或到达共享DEFCON
 范围外：可选Chinese Civil War未启用，基础状态必须一个US/USSR holder；缺holder不是默认US。未知嵌套、未来影响力干预及实际存档/China使用/父帧收尾仍待对应实现。有限投影覆盖具名来源与终局草稿，未执行真实生产事务。无RNG、军事、DEFCON或额外根名额由这三牌事件产生。
 
 来源：[英文卡图](https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf) p2 #5、p9 #58、p11 #71、p12 #76（目视英文）；[R2015](https://www.gmtgames.com/nnts/TS_Rules-2015.pdf) §§2.1.2/5.2/6.1.1/8.1.3/9/10.3；[FAQv5](https://www.gmtgames.com/nnts/FAQv5.pdf) p4 #6、p8 #35、p19手牌。FAQ未发现这三牌专门问答，不把工程事务/收据说成官方规则。
+
+全局快照结果域现允许 Finished/Draw；本事件不因此新增平局分支。主入口的新行动仍拒绝终局或活动局面的非空赢家，历史重放保持原结果与当前状态。范围与实际证据见[全局结果契约](draw-global-contracts.md)。
