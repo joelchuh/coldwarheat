@@ -80,10 +80,11 @@
 | 可替换地图视图实现 | 查同步公开帧、过期输入、两适配器及局面保持 | 170回归通过；正式资源与画风未定 | [replaceable-map-view.md](replaceable-map-view.md) |
 | 地图布局与未定画风 | 区分规则图、位置拾取和主题资源，了解2D/3D接入边界 | 设计稿；未选定美术 | [map-presentation.md](map-presentation.md) |
 | 数据结构契约目录 | 按description定位五十三份JSON Schema（含事件参数、setup及卡牌v1/v2）与合成样例 | 结构契约；不是完整规则包 | [catalog.json](../Contracts/catalog.json) |
-| 模块描述目录 | 先按 description 定位模块，再读完整契约与相关代码 | 32模块；按各描述文件区分已实现子集与planned | [catalog.json](../Descriptors/catalog.json) |
+| 模块描述目录 | 先按 description 定位模块，再读完整契约与相关代码 | 模块目录；按各描述文件区分已实现子集与planned | [catalog.json](../Descriptors/catalog.json) |
 | 共享规则数据目录 | 查找数据集描述、来源与独立参数文件 | 67数据集；含规则、Demo、地图布局/陆地与工程技术配置 | [catalog.json](../../Data/catalog.json) |
 | 行动规则 | 查找影响力、政变、调整、预算、对象契约与验收案例 | 影响力子集已实现；政变/调整待实现 | [operations.md](operations.md) |
 | 规则资料 | 查找版本来源、FAQ 适用边界和资料冻结缺口 | 已登记；未完整冻结 | [rules-sources.md](rules-sources.md) |
+| 可恢复随机状态 | 查完整状态/Fork、无偏范围采样、精确JSON与失败不推进 | Core与编码已实现；发牌/完整存档待接入 | [deterministic-random.md](deterministic-random.md) |
 | 工程边界 | 查找纯 C# 核心、命令、事件、玩家视角、确定性和程序集约束 | 实际分层与后续设计边界 | [AGENTS.md](../../AGENTS.md) |
 | Git 工作流 | 理解本地提交、远程同步、忽略文件及每次工作的收尾方式 | 本地已关联；推送另行核验 | [git-workflow.md](git-workflow.md) |
 | GitHub 保存 | 查找 coldwarheat 地址、线上提交方式和本地同步限制 | 已记录 | [GitHub 工作记录](../Worklogs/2026-09-17-github-bootstrap.md) |

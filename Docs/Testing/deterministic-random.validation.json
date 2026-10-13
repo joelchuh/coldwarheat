@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "id": "validation.deterministic-random",
+  "date": "2026-10-13",
+  "description": "PCG32和完整随机快照JSON，真实674项EditMode通过；不含游戏事务/牌库/UI。",
+  "status": "passed",
+  "baseline_commit": "c3998b667129836c1ffe4eb0fa0b1f7c1536e8de",
+  "runs": [
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 649,
+      "passed": 634,
+      "failed": 15,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "826d8101f8d5dbe1b96658469ececd145bfb959044b01c3e063ff8bbf5ba7516",
+      "schema_version": 1,
+      "run_id": "random-core-red",
+      "duration_ms": 24018,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\random-core-red",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\random-core-red\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\random-core-red\\editor.log"
+    },
+    {
+      "status": "passed",
+      "error_code": null,
+      "total": 649,
+      "passed": 649,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "d36051d167de8ef7a5359895cef35c6d42cd1f80341c0768f30512145bc6855d",
+      "schema_version": 1,
+      "run_id": "random-core-green",
+      "duration_ms": 15844,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\random-core-green",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\random-core-green\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\random-core-green\\editor.log"
+    },
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 674,
+      "passed": 649,
+      "failed": 25,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "d6da817c4ebf37c0c384bbb9fa673d37838757cf9a5977a56adf93b92c39c581",
+      "schema_version": 1,
+      "run_id": "random-json-red",
+      "duration_ms": 16301,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\random-json-red",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\random-json-red\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\random-json-red\\editor.log"
+    },
+    {
+      "status": "passed",
+      "error_code": null,
+      "total": 674,
+      "passed": 674,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "11a995287539374c33626105dab9536b9fd14738603e178899f03ca801d4b720",
+      "schema_version": 1,
+      "run_id": "random-json-green",
+      "duration_ms": 18776,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\random-json-green",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\random-json-green\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\random-json-green\\editor.log"
+    }
+  ],
+  "external_vector": {
+    "seed": 42,
+    "stream": 54,
+    "hex_outputs": [
+      "a15c02b7",
+      "7b47f409",
+      "ba1d3330",
+      "83d2f293",
+      "bfa4784b",
+      "cbed606e"
+    ],
+    "source": "https://www.pcg-random.org/using-pcg-c-basic.html"
+  },
+  "limitations": [
+    "No GameState/command integration",
+    "No deck/deal or full game save",
+    "No UI changes or player rebuild"
+  ],
+  "review": {
+    "status": "approved",
+    "reviewer": "review_deterministic_random",
+    "critical": 0,
+    "important": 0,
+    "minor_fixed": [
+      "Removed stale module count in Wiki index"
+    ],
+    "evidence": "All four XML hashes and final 674 passing cases independently inspected; no Unity rerun",
+    "declined": [
+      "GameState command transaction/deduplication",
+      "Deck/deal/full game save/replay",
+      "Concurrent instance access",
+      "UI/player/IL2CPP/cross-platform execution",
+      "Legal conclusions beyond engineering attribution check"
+    ]
+  }
+}

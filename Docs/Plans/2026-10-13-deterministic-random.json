@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "id": "plan.deterministic-random",
+  "kind": "implementation-plan",
+  "status": "implemented-reviewed",
+  "description": "实现PCG32有界随机、完整状态快照、事务副本与精确JSON往返；为洗牌/骰子准备，不等于完整存档。",
+  "entrypoints": [],
+  "inputs": [
+    "显式seed/stream或受支持快照"
+  ],
+  "outputs": [
+    "可恢复的纯C#随机源与JSON编码"
+  ],
+  "dependencies": [],
+  "preconditions": [
+    "持续编码授权；算法版本固定"
+  ],
+  "side_effects": [
+    "仅随机实例内部状态、代码/测试/知识库与Git"
+  ],
+  "stop_conditions": [
+    "未知算法或错误状态拒绝；不公开隐藏随机状态"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/setup.md"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Testing/deterministic-random.validation.json",
+      "status": "674-passed"
+    }
+  ],
+  "document": "Docs/Plans/2026-10-13-deterministic-random.md"
+}

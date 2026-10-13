@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "id": "module.deterministic-random",
+  "kind": "module",
+  "description": "可恢复PCG32随机源、独立事务副本与精确JSON状态；用于后续骰子/洗牌，不是完整存档，也未接入GameState。",
+  "status": "implemented-subset",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Random/IRandomProvider.cs",
+      "symbol": "IRandomProvider"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Random/Pcg32Random.cs",
+      "symbol": "FromSeed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Random/Pcg32Random.cs",
+      "symbol": "NextUInt32"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Random/Pcg32Random.cs",
+      "symbol": "NextInt"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Random/Pcg32Random.cs",
+      "symbol": "Capture"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Random/Pcg32Random.cs",
+      "symbol": "Fork"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/Serialization/RandomSnapshotJson.cs",
+      "symbol": "Serialize"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/Serialization/RandomSnapshotJson.cs",
+      "symbol": "Deserialize"
+    }
+  ],
+  "inputs": [
+    "64位seed与63位stream，或受支持的不可变RandomSnapshot",
+    "有界整数区间[minInclusive,maxExclusive)；精确JSON v1"
+  ],
+  "outputs": [
+    "确定性整数与包含algorithm/state/increment/drawCount的完整快照",
+    "固定16位小写hex保存三个ulong，不丢失JSON数值精度"
+  ],
+  "dependencies": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/ContractJson.cs",
+      "relation": "JSON解析与重复键/尺寸/深度边界"
+    }
+  ],
+  "preconditions": [
+    "可信宿主拥有随机源；同一实例由单线程或宿主锁串行使用",
+    "命令在Fork副本执行，整体成功后才由宿主采用结果；本批未集成命令事务"
+  ],
+  "side_effects": [
+    "成功采样推进该实例状态；原始输出包括拒绝样本",
+    "编码只返回字符串，不读写文件；快照只留权威侧"
+  ],
+  "stop_conditions": [
+    "未知算法/版本、偶数增量、高位stream、空区间、计数耗尽明确拒绝",
+    "失败NextInt保留原状态；额外/缺失/重复字段和错误hex拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "AGENTS.md",
+      "sections": [
+        "8",
+        "12"
+      ]
+    },
+    {
+      "url": "https://www.pcg-random.org/using-pcg-c-basic.html",
+      "scope": "seed/stream与作者公开测试序列"
+    },
+    {
+      "url": "https://github.com/imneme/pcg-c-basic/blob/master/pcg_basic.c",
+      "scope": "PCG XSH-RR转换、初始化和无偏有界采样；Apache-2.0"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/Pcg32RandomTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/RandomSnapshotJsonTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/deterministic-random.md",
+  "verification": {
+    "report": "Docs/Testing/deterministic-random.validation.json"
+  }
+}

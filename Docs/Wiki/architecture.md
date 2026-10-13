@@ -94,6 +94,8 @@ ResolveDecisionCommand 必须匹配当前 DecisionId 和负责选择的身份，
 
 完整 GameState、手牌顺序、牌库和秘密选择仅在权威侧。快照、错误信息、合法目标、事件和普通回放均按玩家视角过滤。供调试的完整日志单独存放，不发给普通客户端。
 
+PCG32随机源与精确状态JSON已实现，见[可恢复随机状态](deterministic-random.md)；尚未接入完整GameState和命令事务。
+
 随机算法版本和完整随机状态必须保存；只保存 seed 不足以恢复到中局。失败命令不推进随机序列；相同初始数据、规则版本、命令和随机状态应产生相同结果。
 
 JSON 存档记录 SchemaVersion、RulesVersion、GameVersion、状态、持续效果、待选择、随机状态、去重结果和事件序号。未知版本明确拒绝；支持的旧版本通过具名迁移转换。不把 MonoBehaviour 序列化成正式存档。
