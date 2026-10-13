@@ -1,7 +1,7 @@
 # 地区计分服务设计 v0.1
 
 > description: 查询国家控制、地区存在/支配/控制、战场与邻接奖励、东南亚特殊计分、最终六地区汇总和中国牌附加分的服务边界。
-> 状态：2026-09-22 设计稿；规则参数已核对，国家目录与首批计分修正参数已建立，C#服务与完整逐卡修正未实现。
+> 状态：2026-10-14基础无修正C#服务已实现，1106项EditMode通过；完整最终汇总/动态修正/宿主仍待实现。下文完整设计接口与现有子集须区分，真实入口以模块JSON为准。
 > 入口：[模块描述](../Descriptors/region-scoring.module.json)、[地区参数](../../Data/Rulesets/deluxe-2015/region-scoring.json)、[卡牌计分参数](../../Data/Rulesets/deluxe-2015/scoring-card-parameters.json)、[验收案例](../Design/scoring-space.cases.json)。
 
 ## 1. 选择与接口
@@ -15,7 +15,7 @@
 | FinalScoringService.BuildPlan | 回合末已完成的状态、规则数据、计分提供者 | 确定的地区ID集合与附加项计划 |
 | FinalScoringService.Summarize | 完整结果集合、附加分、开始时VP与绑定信息 | FinalScoringResult，交给现有胜负服务 |
 
-这些是拟定符号，entrypoints仍为空。Core不读文件、不查数据库、不引用Unity。加载器将JSON转为不可变定义；会话及RuleEngine负责命令版本、事务和存档。
+上表是完整设计的拟定符号；现有子集入口见下文与模块JSON。Core不读文件、不查数据库、不引用Unity。加载器将JSON转为不可变定义；会话及RuleEngine负责命令版本、事务和存档。
 
 ## 2. 一次计分使用一个事实快照
 
@@ -106,3 +106,15 @@ flowchart LR
 [七张计分牌](scoring-cards.md)已绑定本单一数据与结构契约；欧洲Control传独立胜者，不算大数，SEA权重不混入标准奖励。R2015来源页码复核为PDF p2/3/10，旧p18/19已修正，不改分值。
 
 [峰会](contest-events.md)仅复用实际控制与档位谓词，不执行地区计分：Shuttle不消费、Formosan不重分类、欧洲Control不触发自动胜利。
+
+## 当前可调用：基础地区计分
+
+先看模块JSON的entrypoints，分别定位RegionScoringDefinition、ScoringSnapshot、CalculateUnmodified、InspectActualRegionTiers和LoadSubset。六主地区共用档位算法，东南亚单独按控制国权重计算；分值从共享JSON读取。源码不依赖地图贴图、坐标或Unity。
+
+ScoringSnapshot复制同一规则地图的全部国家，携带SnapshotId/StateVersion及显式活动计分效果清单。缺国、未知国、跨Map实例、重复效果或非法参数均拒绝。任何活动计分修正使CalculateUnmodified拒绝；当前不能假装支持台湾决议或穿梭外交。InspectActualRegionTiers只看实际地图的六个标准地区，忽略计分专用修正，不奖分、不产生胜负信号、不消费效果。
+
+结果由纯计算器创建、属性只读。普通结果包含档位/基础分/战场/敌邻接/权重与净VP。欧洲控制用EuropeControlWinner；此分支双方BaseVp、TotalVp、NetVpForUS均为null，其他奖励列0表示未计算，不能显示成“欧洲得0分”。ScoringResolvedEvidence在真实计分完成后由宿主使用：欧洲信号先判胜，否则完整净VP再判普通阈值。查询和计算本身没有写入局面，不能把构造证据当作完成了一次命令。
+
+加载器使用可信仓库Schema检查结构，再检查三份来源引用、Int32数值、唯一地区/权重及真实地图覆盖；允许数值由JSON变更，不存第二份分值表。它不认证数据来源真实性或完整规则包。工程输入上限为512国/定义项、128个活动效果、ID256字符；数值溢出拒绝，均非桌游规则常量。
+
+本批48个Core及49个加载/胜负接缝案例；中美洲净-4、东南亚净+1、总国/战场平手、控制无需非战场、重叠标签、欧洲独立信号和输入保护均有真实测试。详见[验证报告](../Testing/region-scoring-core.validation.json)。最终六区汇总、中国牌附加、动态效果、卡牌弃置、宿主提交/防重和UI接线仍待完成；未重建播放器。

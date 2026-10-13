@@ -55,4 +55,12 @@ namespace ColdWarStruggle.Core
             SignedVp=vp;Change=change;
         }
     }
+    public sealed class ScoringResolvedEvidence : VictoryEvidence
+    {
+        public int BeforeSignedVp { get; }
+        public RegionScoringResult Result { get; }
+        public ScoringResolvedEvidence(string id,string source,int before,RegionScoringResult result):base(id,source,VictoryCheckpoint.ScoringResolved)
+        { BeforeSignedVp=before;Result=result??throw new ArgumentNullException(nameof(result)); }
+    }
+
 }

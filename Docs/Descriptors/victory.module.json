@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.victory",
   "kind": "module",
-  "description": "已实现完整VP批次、军事候选延后、双方扣留矩阵和核战责任四类纯胜负检查点；CF-003按用户确认解释执行。最终计分、特殊卡终局及宿主提交/终局吸收仍待实现。",
+  "description": "已实现完整VP批次、军事候选延后、双方扣留矩阵和核战责任与地区计分五类纯胜负检查点；CF-003按用户确认解释执行。最终计分、特殊卡终局及宿主提交/终局吸收仍待实现。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -40,13 +40,17 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/VictoryDefinitionLoader.cs",
       "symbol": "LoadSubset"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/VictoryEvidence.cs",
+      "symbol": "ScoringResolvedEvidence"
     }
   ],
   "documentation": "Docs/Wiki/risk-victory.md",
   "planned_entrypoints": [],
   "inputs": [
     "不可变VictoryDefinition",
-    "四种封闭类型证据之一；军事/DEFCON证据来自实际只读计划",
+    "五种封闭类型证据之一；军事/DEFCON/地区证据来自实际只读计划或结果",
     "权威双方是否扣留计分牌的布尔审核结果"
   ],
   "outputs": [
@@ -60,6 +64,10 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/DefconService.cs",
       "relation": "只读核战降级计划及PhasingPlayer"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/RegionScoringService.cs",
+      "relation": "只读地区结果的净VP/欧洲信号"
     }
   ],
   "data_dependencies": [
@@ -68,7 +76,7 @@
   "preconditions": [
     "调用方已确认检查点完整及规则资格",
     "服务只计算，不提交GameState；顺序、幂等、终局吸收和存档由未来宿主负责",
-    "普通/军事批次前VP必须在自动胜利线内；审核Pending须来自同一定义"
+    "普通/军事/地区批次前VP必须在自动胜利线内；审核Pending须来自同一定义"
   ],
   "side_effects": [
     "纯计算，无状态写入、随机数、文件或UI依赖"
@@ -79,7 +87,7 @@
     "跨定义Pending",
     "整数溢出或批次前VP已到终局线",
     "未采用裁定返回UnresolvedAdjudication，无赢家；不当作平局",
-    "最终计分、欧洲控制与特殊卡结束没有本批证据入口"
+    "最终计分与特殊卡结束没有本批证据入口"
   ],
   "rule_sources": [
     {
@@ -179,15 +187,19 @@
     {
       "path": "Docs/Design/deferred-vp-events-batch1.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Testing/region-scoring-core.validation.json",
+      "status": "1106-passed"
     }
   ],
   "verification": {
     "implementation_tested": true,
-    "scope": "四个基础检查点；不等于完整设计案例/宿主集成",
-    "report": "Docs/Testing/victory-core.validation.json"
+    "scope": "五个基础检查点，含地区计分证据；不等于完整设计案例/宿主集成",
+    "report": "Docs/Testing/region-scoring-core.validation.json"
   },
   "open_items": [
-    "地区/最终计分/特殊卡终局证据仍待实现",
+    "最终计分/特殊卡终局证据仍待实现",
     "GameResult吸收态、全局命令防重、VP/状态/游标原子提交及保存恢复仍待接入",
     "完整RulePack版本摘要与来源批准仍待实现"
   ],

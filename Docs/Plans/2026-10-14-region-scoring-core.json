@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "id": "plan.region-scoring-core",
+  "kind": "implementation-plan",
+  "status": "implemented-verified",
+  "description": "六地区基础计分与SEA权重，欧洲信号接胜负纯检查点；完整最终计分/动态修正待实现。",
+  "entrypoints": [],
+  "inputs": [
+    "共享地区参数与规则地图",
+    "完整双方影响力快照及显式活动修正清单"
+  ],
+  "outputs": [
+    "只读地区分项/净VP/欧洲控制信号"
+  ],
+  "dependencies": [
+    "module.region-scoring",
+    "module.victory",
+    "module.map-data"
+  ],
+  "preconditions": [
+    "持续编码/Git已授权"
+  ],
+  "side_effects": [
+    "实现纯规则及测试/同步知识描述"
+  ],
+  "stop_conditions": [
+    "地图/国家/类型/修正/溢出问题拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/region-scoring.md"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Testing/region-scoring-core.validation.json",
+      "status": "1106-passed"
+    }
+  ],
+  "document": "Docs/Plans/2026-10-14-region-scoring-core.md"
+}

@@ -33,7 +33,7 @@
 - [x] 两份script描述、配置data描述、对应catalog；Wiki说明命令和错误边界，Worklog记录真实复用依据与实际结果。
 - [x] 运行工具核验本仓库全部元数据；只读模式前后Git状态/源文件hash一致。
 - [x] 独立整批审查并修复重要问题；不运行Unity（不改游戏源码）。
-- [ ] 交付步骤：提交、快进main、push并核对远端。
+- [x] 交付步骤：78caade已提交、快进main、push并核对远端。
 
 ## Review Focus
 

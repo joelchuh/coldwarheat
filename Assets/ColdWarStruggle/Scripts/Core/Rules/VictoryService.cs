@@ -44,6 +44,13 @@ namespace ColdWarStruggle.Core
                     var row=definition.HeldScoringRows.Single(r=>r.UsHolds==audit.UsHolds && r.UssrHolds==audit.UssrHolds
                         && r.MilitaryCandidate==audit.Pending.Candidate);
                     return new VictoryDecision(audit,audit.Pending.SignedVp,row.Outcome,row.Winner,row:row);
+                case ScoringResolvedEvidence scoring:
+                    RequireLiveScore(definition,scoring.BeforeSignedVp);
+                    if(scoring.Result.EuropeControlWinner.HasValue)
+                        return new VictoryDecision(scoring,scoring.BeforeSignedVp,VictoryOutcome.Finished,scoring.Result.EuropeControlWinner);
+                    int scoringVp=checked(scoring.BeforeSignedVp+scoring.Result.NetVpForUS.Value);
+                    var scoringWinner=Candidate(definition,scoringVp);
+                    return new VictoryDecision(scoring,scoringVp,scoringWinner.HasValue?VictoryOutcome.Finished:VictoryOutcome.Continue,scoringWinner);
                 case NuclearWarEvidence nuclear:
                     return new VictoryDecision(nuclear,nuclear.SignedVp,VictoryOutcome.Finished,
                         nuclear.Change.PhasingPlayer==PlayerSide.US?PlayerSide.USSR:PlayerSide.US);

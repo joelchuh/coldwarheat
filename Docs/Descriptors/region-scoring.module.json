@@ -2,9 +2,34 @@
   "schema_version": 1,
   "id": "module.region-scoring",
   "kind": "module",
-  "description": "查询六地区档位、东南亚权重和完整最终汇总；纯规则服务设计，尚不可调用。 峰会复用实际地图档位查询，不调用奖分/欧洲胜利或计分临时投影。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。",
-  "status": "planned",
-  "entrypoints": [],
+  "description": "六地区基础档位、战场/敌超级大国邻接奖励与东南亚权重的只读计算已实现；实际地图档位查询不执行计分。活动修正显式拒绝，完整最终汇总及宿主事务待实现。",
+  "status": "implemented-subset",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/RegionScoringDefinition.cs",
+      "symbol": "RegionScoringDefinition"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/RegionScoringDefinition.cs",
+      "symbol": "RegionScoreTable"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ScoringSnapshot.cs",
+      "symbol": "ScoringSnapshot"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/RegionScoringService.cs",
+      "symbol": "CalculateUnmodified"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/RegionScoringService.cs",
+      "symbol": "InspectActualRegionTiers"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/RegionScoringDefinitionLoader.cs",
+      "symbol": "LoadSubset"
+    }
+  ],
   "documentation": "Docs/Wiki/region-scoring.md",
   "planned_entrypoints": [
     {
@@ -22,21 +47,16 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Scoring/CardScoringService.cs",
       "symbol": "ResolveFromCard"
-    },
-    {
-      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/RegionScoringService.cs",
-      "symbol": "InspectActualRegionTiers"
     }
   ],
   "inputs": [
-    "同一版本的权威计分快照、地区ID、Normal/Final模式及已核实修正",
-    "完整规则地图与不可变参数定义",
-    "ScoringInvocationKind独立于Mode：真实牌Normal/PlayedScoringCard，最终Final/FinalScoring；预览单独只读标志",
-    "Summit查询具名ActualMap指标模式，六主地区只算一次，基础战场与完整双方影响力"
+    "同一Map对象绑定的RegionScoringDefinition与完整ScoringSnapshot（SnapshotId、StateVersion、84国影响力、显式活动计分效果列表）",
+    "可信仓库Schema与共享JSON供加载器读取；不认证规则包真实性",
+    "CalculateUnmodified读取地区ID；InspectActualRegionTiers仅查六主地区实际地图档位"
   ],
   "outputs": [
-    "双方分项、净VP、EuropeControlWinner与最终完整性证据",
-    "实际地区档位与证据；不生成计分VP、欧洲胜利、不消费Shuttle、不改Formosan"
+    "只读双方分项及完整净VP，欧洲ControlWinner独立；自动胜利时双方Base/Total及Net为null，奖励0表示未计算",
+    "ActualRegionTiers只读查询，没有VP或胜负信号，不消费效果"
   ],
   "dependencies": [
     {
@@ -66,11 +86,12 @@
     "effects.deluxe2015.contest_events"
   ],
   "preconditions": [
-    "当前为设计；尚无可调用实现",
-    "国家集合及控制事实完整；前序事件选择已完成"
+    "地图/国家集合完整且定义绑定同一Map对象；快照复制输入",
+    "计算计分时活动修正必须为空；实际档位查询忽略计分专用修正",
+    "来源/时机/资格/版本新鲜性由未来宿主保证；这里没有卡牌使用权限或事务"
   ],
   "side_effects": [
-    "规则方法计算计划；RuleEngine在事务中应用状态与事件"
+    "纯计算，不写GameState/卡牌/日志/文件，不依赖Unity或美术"
   ],
   "stop_conditions": [
     "地区缺漏、重复或混合快照",
@@ -140,11 +161,16 @@
     {
       "path": "Docs/Design/contest-events.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Testing/region-scoring-core.validation.json",
+      "status": "1106-passed"
     }
   ],
   "verification": {
-    "implementation_tested": false,
-    "latest_design_report": "Docs/Design/confirmed-rulings-20261013.validation.json"
+    "implementation_tested": true,
+    "latest_design_report": "Docs/Design/confirmed-rulings-20261013.validation.json",
+    "runtime_report": "Docs/Testing/region-scoring-core.validation.json"
   },
   "open_items": [
     "已绑定台湾决议/穿梭外交的真实实现；其余未设计修正",

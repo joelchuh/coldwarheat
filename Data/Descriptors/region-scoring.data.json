@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "data.region-scoring",
   "kind": "data",
-  "description": "六标准地区/东南亚权重与最终集合的单一计分数据；七计分牌引用此处，动态效果另行绑定，运行待实现。",
+  "description": "六标准地区/东南亚权重与最终集合的单一计分数据；基础无修正计分已接入纯C#，动态效果与完整最终汇总待实现。",
   "status": "ready",
   "dataset_id": "rules.deluxe2015.region-scoring",
   "entrypoints": [
@@ -23,7 +23,7 @@
   ],
   "preconditions": [
     "校验结构、版本、ID与领域约束",
-    "正式地图/卡牌已录入；强制校验引用，运行服务仍待实现",
+    "正式地图/卡牌已录入；基础加载器检查类型/来源引用/地区与国家覆盖，完整RulePack认证仍待实现",
     "ready仅表示数据文件已存在"
   ],
   "side_effects": [],
@@ -85,6 +85,10 @@
     {
       "path": "Docs/Design/scoring-cards.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Testing/region-scoring-core.validation.json",
+      "status": "1106-passed"
     }
   ],
   "documentation": "Docs/Wiki/region-scoring.md",
