@@ -28,7 +28,7 @@
 - [x] VictoryEvidence/Checkpoint/Service增加ScoringResolvedEvidence；新测试证明只有实际计分检查点才消费欧洲信号，数值净分完整后判胜。
 - [x] 保留原有1009项回归；不改共享游戏数据的分值或正式地图。
 - [x] 同步region-scoring/victory模块、data描述、catalog、Wiki/README和实际报告，用正式metadata工具校验。
-- [ ] 整批独立审阅、按授权提交/快进main/push核验。无UI接线，不重建播放器。
+- [x] 整批独立审阅、按授权提交/快进main/push核验：e4977b5。无UI接线，不重建播放器。
 
 ## Review Focus
 

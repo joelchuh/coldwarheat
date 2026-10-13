@@ -7,6 +7,7 @@
 | 卡牌印刷静态目录 | 查103牌类型、ID/编号/时代查询、来源和冻结摘要；不执行事件 | 634项EditMode通过，完整规则包待实现 | [card-catalog.md](card-catalog.md) |
 | 卡牌效果引用索引 | 仅核对稳定效果ID存在性，不判断完整卡牌可执行 | 102个只读引用已接入两牌参数装配 | [card-effect-reference-index.md](card-effect-reference-index.md) |
 | 回合日历与权威时代 | 查共享时代表、不可变Turn及复制保持，区别于完整状态机 | 371回归通过；不自动推进阶段 | [turn-calendar.md](turn-calendar.md) |
+| 从原型到完整游戏 | 区分exe、源码和设计，查询地图可替换边界与可玩里程碑 | 诊断原型；完整对局待接通 | [prototype-roadmap.md](prototype-roadmap.md) |
 | 开局与规则 Demo | 查运行、发牌/部署、影响力/会话/UI/构建模块及真实测试 | 762项EditMode通过；十三练习含真实手牌，鼠标实测待完成 | [first-demo.md](first-demo.md) |
 | 世界地图占位视图 | 查86节点布局、公共领域陆地、镜头、拾取和资源装配 | 467项回归通过；局部标签实际渲染已核对，鼠标待验收 | [world-map-view.md](world-map-view.md) |
 | 单人双边测试与首批计划 | 查一个客户端、两方身份、调试观察和正常信息过滤，以及首批核心任务 | 首批影响力已实现 | [模式说明](local-test-mode.md) · [计划](../Plans/2026-10-13-core-influence-first-slice.md) · [JSON](../Plans/2026-10-13-core-influence-first-slice.json) |

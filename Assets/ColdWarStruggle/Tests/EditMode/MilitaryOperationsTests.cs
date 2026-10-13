@@ -64,6 +64,19 @@ namespace ColdWarStruggle.Tests
             Assert.That(()=>MilitaryOperationsService.PlanCredit(s,changed),Throws.InstanceOf<ArgumentException>());
             Assert.That(s.UsEarned,Is.EqualTo(2));Assert.That(s.AppliedCredits.Count,Is.EqualTo(1));
         }
+        [TestCase(MilitaryCreditKind.WarEvent,MilitaryCreditKind.DirectEventFixedCredit)]
+        [TestCase(MilitaryCreditKind.DirectEventFixedCredit,MilitaryCreditKind.WarEvent)]
+        public void Same_id_different_kind_is_rejected_even_when_both_sources_are_valid(MilitaryCreditKind firstKind,MilitaryCreditKind secondKind)
+        {
+            var first=Credit("same.valid-source",2,kind:firstKind,basis:MilitaryCreditBasis.VerifiedCardParameter,rule:"rule.fixture");
+            var conflicting=Credit("same.valid-source",2,kind:secondKind,basis:MilitaryCreditBasis.VerifiedCardParameter,rule:"rule.fixture");
+            // Each request is valid in a fresh state: rejection below must not be the source/basis gate.
+            Assert.That(MilitaryOperationsService.PlanCredit(State(),conflicting).AmountApplied,Is.EqualTo(2));
+            var state=MilitaryOperationsService.PlanCredit(State(),first).After;
+            Assert.Throws<ArgumentException>(()=>MilitaryOperationsService.PlanCredit(state,conflicting));
+            Assert.That(state.UsEarned,Is.EqualTo(2));Assert.That(state.AppliedCredits.Count,Is.EqualTo(1));
+            Assert.That(state.AppliedCredits[first.Id],Is.SameAs(first));
+        }
         [TestCase("id")] [TestCase("long-id")] [TestCase("turn")] [TestCase("side")]
         [TestCase("kind")] [TestCase("basis")] [TestCase("amount")] [TestCase("source")] [TestCase("long-source")]
         public void Invalid_credit_facts_are_rejected(string mutation)
