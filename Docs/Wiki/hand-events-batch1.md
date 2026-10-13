@@ -35,3 +35,5 @@ HC1-RUNTIME恢复边界：提交前计划若基于旧候选状态则拒绝且不
 [晚期手牌扩展](late-hand-batch1.md)：两张随机弃牌整批提交；Ames当前视图独立于旧历史收据；不套用五年计划空手规则。
 
 [LADC1](latin-american-debt-crisis.md)复用Blockade阈值与弃牌规则，后续回退行为由本牌双国翻倍参数定义。
+
+[Ask Not](ask-not.md)复用普通Hand资格，抽牌与重洗使用共享牌堆定义。

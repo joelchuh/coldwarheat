@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.ask_not",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "verified-subset",
+  "description": "Ask Not fixed US complete-hand-subset exchange and finite bound DrawProvider handoff; actual shuffle, RNG and game runtime planned.",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe images, checked 2026-10-13",
+      "description": "Personally viewed PDF p12 #77, US3 Mid starred: US may discard up to entire hand including scoring; replacement count decided before any draw."
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe 2015",
+      "description": "PDFp4 sections4.3/4.3.1/4.4: consume old deck, empty deck reshuffles all discards, era insertion at era transition only; p5 5.2/5.4 discard without event; section9 China separate."
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "Compatible FAQv5",
+      "description": "PDFp15 #77: choosing replacements creates no held-scoring exemption. p16 #98 intro excludes pre-Remix sequencing questions; old Ames order is not adopted."
+    },
+    {
+      "id": "PROJECT-AN1",
+      "url": null,
+      "edition": "Explicit derivation and finite-provider design, 2026-10-13",
+      "description": "Zero selection is successful no-change event. Freshly discarded selected cards join all discards and may be redrawn. Positive draw exactly exhausting old deck reshuffles eligible current discards before source/parent cleanup, without extra draw, from R2015 4.3/4.3.1; not specialist FAQ. Locked selection and bound permutation receipts are engineering; real shuffle/RNG, authentication and durable storage remain planned."
+    }
+  ],
+  "shared_refs": {
+    "cards": {
+      "dataset_id": "cards.deluxe2015.definitions",
+      "path": "Data/Cards/deluxe-2015/cards.json",
+      "json_pointer": "/cards"
+    },
+    "world": {
+      "dataset_id": "map.deluxe2015.world",
+      "path": "Data/Maps/deluxe-2015/world.json",
+      "json_pointer": "/countries"
+    },
+    "vp": {
+      "dataset_id": "rules.deluxe2015.victory",
+      "path": "Data/Rulesets/deluxe-2015/victory.json",
+      "json_pointer": ""
+    },
+    "defcon": {
+      "dataset_id": "rules.deluxe2015.defcon",
+      "path": "Data/Rulesets/deluxe-2015/defcon.json",
+      "json_pointer": ""
+    },
+    "turns": {
+      "dataset_id": "rules.deluxe2015.turn-flow",
+      "path": "Data/Rulesets/deluxe-2015/turn-flow.json",
+      "json_pointer": "/era_bands"
+    },
+    "china": {
+      "dataset_id": "setup.deluxe2015.standard",
+      "path": "Data/Rulesets/deluxe-2015/setup.json",
+      "json_pointer": "/china"
+    },
+    "fyp": {
+      "dataset_id": "effects.deluxe2015.hand_events_batch1",
+      "path": "Data/Cards/deluxe-2015/hand-events-batch1.parameters.json",
+      "json_pointer": "/parameters/five_year_plan"
+    },
+    "ordinary_hand": {
+      "dataset_id": "effects.deluxe2015.hand_events_batch1",
+      "path": "Data/Cards/deluxe-2015/hand-events-batch1.parameters.json",
+      "json_pointer": "/parameters/blockade"
+    },
+    "ames": {
+      "dataset_id": "effects.deluxe2015.late_hand_batch1",
+      "path": "Data/Cards/deluxe-2015/late-hand-batch1.parameters.json",
+      "json_pointer": "/parameters/aldrich_ames_remix"
+    }
+  },
+  "parameters": {
+    "ask_not": {
+      "card_id": "card.ask_not_what_your_country_can_do_for_you",
+      "effect_id": "effect.ask_not_what_your_country_can_do_for_you",
+      "description": "US locks zero-to-all ordinary Hand subset including scoring, discards without event, then receives exactly the selected count.",
+      "template": "HandExchangeEvent",
+      "actor": "US",
+      "ordinary_hand_policy_ref": {
+        "dataset_id": "effects.deluxe2015.hand_events_batch1",
+        "json_pointer": "/parameters/blockade"
+      },
+      "allowed_card_kinds": [
+        "Event",
+        "Scoring"
+      ],
+      "selection": "CompleteDistinctSubsetBeforeAnyDraw",
+      "replacement_count": "AcceptedSelectionCount",
+      "zero_selection": "CompleteWithoutDrawProvider",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "Personally viewed PDF p12 #77, US3 Mid starred: US may discard up to entire hand including scoring; replacement count decided before any draw.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "PDFp4 sections4.3/4.3.1/4.4: consume old deck, empty deck reshuffles all discards, era insertion at era transition only; p5 5.2/5.4 discard without event; section9 China separate.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFp15 #77: choosing replacements creates no held-scoring exemption. p16 #98 intro excludes pre-Remix sequencing questions; old Ames order is not adopted.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-AN1",
+          "locator": "Zero selection is successful no-change event. Freshly discarded selected cards join all discards and may be redrawn. Positive draw exactly exhausting old deck reshuffles eligible current discards before source/parent cleanup, without extra draw, from R2015 4.3/4.3.1; not specialist FAQ. Locked selection and bound permutation receipts are engineering; real shuffle/RNG, authentication and durable storage remain planned.",
+          "verification": "EngineeringBoundary"
+        }
+      ]
+    }
+  },
+  "draw_policy": {
+    "provider": "DrawProvider.AN1.FinitePermutation.v1",
+    "old_deck": "ConsumeCurrentOrderFirst",
+    "reshuffle": "OnPositiveDrawExhaustionEvenIfQuotaJustMet",
+    "pool": "AllCurrentDiscardIncludingSelected_NoSourceOrParent",
+    "era_reserve": "NoInsertionDuringEvent",
+    "permutation": "ExactUniquePoolPermutationWithIndependentProofAndRngTokens",
+    "unverified_provider_or_capacity": "RequiresRulingBeforeDiscardOrPreserveLockedWait",
+    "implementation": "Planned_NoRandomAlgorithmInReferenceModel"
+  },
+  "source_policy": {
+    "provider": "AN1.SourceAndCleanup.v1",
+    "sources": [
+      "RootEvent",
+      "OpponentCardEvent",
+      "HeadlineEvent",
+      "VerifiedFypUsChild"
+    ],
+    "fyp": "IndependentParentEntityFrameSelectionAndUsControllerRequired",
+    "unknown_nested": "RequiresRuling",
+    "receipt_chain": "BeginRequiresNoPredecessorThenExactAcceptedState",
+    "disposition": "SourceAndVerifiedParentAfterDrawCompletionAccordingToPrintedPolicy"
+  },
+  "privacy": {
+    "hand": "USOnlyInThisEventView",
+    "drawn": "USOnly",
+    "discarded": "PublicAfterCommit",
+    "deck_and_permutation": "AuthorityOnly",
+    "ames": "SeparateEstablishedCurrentViewConsumer_NotHistoricalReceiptRefresh",
+    "history": "OriginalAcceptedCommandResultPreserveLaterCurrent"
+  }
+}

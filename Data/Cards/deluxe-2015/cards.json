@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.41.0",
+  "content_version": "0.42.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计98牌效果参数已绑定，其余4个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。 其中5牌边界采用2026-10-13用户确认的项目解释，非官方专门裁定。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计99牌效果参数已绑定，其余3个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。 其中5牌边界采用2026-10-13用户确认的项目解释，非官方专门裁定。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -281,6 +281,12 @@
       "url": null,
       "edition": "Engineering boundary and explicit derivation 2026-10-13",
       "description": "Optional US response derives from unless and ordinary event decision rules. Two distinct SouthAmerica targets including zero derive from the unrestricted card wording; zero doubles to zero. Private candidates, synthetic source proofs and immutable receipt continuation are engineering, not official specialized rulings. Runtime planned."
+    },
+    {
+      "id": "PROJECT-AN1",
+      "url": null,
+      "edition": "Explicit derivation and finite-provider design, 2026-10-13",
+      "description": "Zero selection is successful no-change event. Freshly discarded selected cards join all discards and may be redrawn. Positive draw exactly exhausting old deck reshuffles eligible current discards before source/parent cleanup, without extra draw, from R2015 4.3/4.3.1; not specialist FAQ. Locked selection and bound permutation receipts are engineering; real shuffle/RNG, authentication and durable storage remain planned."
     }
   ],
   "cards": [
@@ -2722,8 +2728,13 @@
       "effect_binding": {
         "effect_id": "effect.ask_not_what_your_country_can_do_for_you",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.ask_not",
+            "json_pointer": "/parameters/ask_not"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -5738,14 +5749,31 @@
     {
       "effect_id": "effect.ask_not_what_your_country_can_do_for_you",
       "contract_version": "0.1.0",
-      "description": "Ask Not What Your Country Can Do for You…：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.ask_not_what_your_country_can_do_for_you",
+      "description": "US先锁定完整手牌弃置集合，再由绑定DrawProvider补相同数量；牌堆、来源清理与私有视图分开。",
+      "handler_key": "hand.HandExchangeEvent",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:ask-not:1#/$defs/ask_not"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
+          "source_id": "C-DELUXE-EN",
+          "locator": "Personally viewed PDF p12 #77, US3 Mid starred: US may discard up to entire hand including scoring; replacement count decided before any draw.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "PDFp4 sections4.3/4.3.1/4.4: consume old deck, empty deck reshuffles all discards, era insertion at era transition only; p5 5.2/5.4 discard without event; section9 China separate.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "PDFp15 #77: choosing replacements creates no held-scoring exemption. p16 #98 intro excludes pre-Remix sequencing questions; old Ames order is not adopted.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-AN1",
+          "locator": "Zero selection is successful no-change event. Freshly discarded selected cards join all discards and may be redrawn. Positive draw exactly exhausting old deck reshuffles eligible current discards before source/parent cleanup, without extra draw, from R2015 4.3/4.3.1; not specialist FAQ. Locked selection and bound permutation receipts are engineering; real shuffle/RNG, authentication and durable storage remain planned.",
           "verification": "Pending"
         }
       ]

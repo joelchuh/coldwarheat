@@ -117,6 +117,9 @@
 
 本轮裁定更新：[五牌项目解释](Docs/Wiki/confirmed-rulings-20261013.md)已获用户确认；参数与案例同步，卡牌绑定总数不变。
 
-最新：[拉美债务危机](Docs/Wiki/latin-american-debt-crisis.md)，98 Bound /4 Unresolved，102处理器planned；私有手牌回应与双国影响计划复用共享服务。
+此前：[拉美债务危机](Docs/Wiki/latin-american-debt-crisis.md)，98 Bound /4 Unresolved，102处理器planned；私有手牌回应与双国影响计划复用共享服务。
 
 本批设计验证：[拉美债务危机报告](Docs/Design/latin-american-debt-crisis.validation.json)，4605项离线检查；游戏运行代码仍待方向讨论后启动。
+
+最新：[Ask Not换手牌](Docs/Wiki/ask-not.md)，99 Bound /3 Unresolved，102处理器planned；弃牌集合锁定与抽牌提供者分开。
+离线设计主验4760项；详见[Ask Not验证记录](Docs/Design/ask-not.validation.json)。

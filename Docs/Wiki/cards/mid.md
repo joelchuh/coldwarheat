@@ -94,3 +94,5 @@
 [OPEC七国控制VP](../opec-north-sea-batch1.md)：共享当前控制与根行动额度契约，运行服务仍待实现。
 
 [WWBY／U2延迟奖分](../deferred-vp-events-batch1.md)：前缀、下一美方行动和本回合later UN分开。
+
+[Ask Not](../ask-not.md)：先锁定美国弃牌完整集合，再补同量。

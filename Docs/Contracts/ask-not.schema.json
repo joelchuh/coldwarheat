@@ -1,0 +1,1483 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coldwarheat:contract:ask-not:1",
+  "title": "Ask Not hand exchange and DrawProvider boundary",
+  "description": "Closed source, locked selection, deck, finite permutation proof and receipt shapes; semantic provider and history checks remain finite design, not runtime.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.ask_not"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "verified-subset"
+    },
+    "description": {
+      "const": "Ask Not fixed US complete-hand-subset exchange and finite bound DrawProvider handoff; actual shuffle, RNG and game runtime planned."
+    },
+    "source_catalog": {
+      "const": [
+        {
+          "id": "C-DELUXE-EN",
+          "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+          "edition": "English Deluxe images, checked 2026-10-13",
+          "description": "Personally viewed PDF p12 #77, US3 Mid starred: US may discard up to entire hand including scoring; replacement count decided before any draw."
+        },
+        {
+          "id": "R2015",
+          "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+          "edition": "Deluxe 2015",
+          "description": "PDFp4 sections4.3/4.3.1/4.4: consume old deck, empty deck reshuffles all discards, era insertion at era transition only; p5 5.2/5.4 discard without event; section9 China separate."
+        },
+        {
+          "id": "F2010",
+          "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+          "edition": "Compatible FAQv5",
+          "description": "PDFp15 #77: choosing replacements creates no held-scoring exemption. p16 #98 intro excludes pre-Remix sequencing questions; old Ames order is not adopted."
+        },
+        {
+          "id": "PROJECT-AN1",
+          "url": null,
+          "edition": "Explicit derivation and finite-provider design, 2026-10-13",
+          "description": "Zero selection is successful no-change event. Freshly discarded selected cards join all discards and may be redrawn. Positive draw exactly exhausting old deck reshuffles eligible current discards before source/parent cleanup, without extra draw, from R2015 4.3/4.3.1; not specialist FAQ. Locked selection and bound permutation receipts are engineering; real shuffle/RNG, authentication and durable storage remain planned."
+        }
+      ]
+    },
+    "shared_refs": {
+      "type": "object",
+      "properties": {
+        "cards": {
+          "type": "object",
+          "properties": {
+            "dataset_id": {
+              "const": "cards.deluxe2015.definitions"
+            },
+            "path": {
+              "const": "Data/Cards/deluxe-2015/cards.json"
+            },
+            "json_pointer": {
+              "const": "/cards"
+            }
+          },
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "additionalProperties": false
+        },
+        "world": {
+          "type": "object",
+          "properties": {
+            "dataset_id": {
+              "const": "map.deluxe2015.world"
+            },
+            "path": {
+              "const": "Data/Maps/deluxe-2015/world.json"
+            },
+            "json_pointer": {
+              "const": "/countries"
+            }
+          },
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "additionalProperties": false
+        },
+        "vp": {
+          "type": "object",
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.victory"
+            },
+            "path": {
+              "const": "Data/Rulesets/deluxe-2015/victory.json"
+            },
+            "json_pointer": {
+              "const": ""
+            }
+          },
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "additionalProperties": false
+        },
+        "defcon": {
+          "type": "object",
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.defcon"
+            },
+            "path": {
+              "const": "Data/Rulesets/deluxe-2015/defcon.json"
+            },
+            "json_pointer": {
+              "const": ""
+            }
+          },
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "additionalProperties": false
+        },
+        "turns": {
+          "type": "object",
+          "properties": {
+            "dataset_id": {
+              "const": "rules.deluxe2015.turn-flow"
+            },
+            "path": {
+              "const": "Data/Rulesets/deluxe-2015/turn-flow.json"
+            },
+            "json_pointer": {
+              "const": "/era_bands"
+            }
+          },
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "additionalProperties": false
+        },
+        "china": {
+          "type": "object",
+          "properties": {
+            "dataset_id": {
+              "const": "setup.deluxe2015.standard"
+            },
+            "path": {
+              "const": "Data/Rulesets/deluxe-2015/setup.json"
+            },
+            "json_pointer": {
+              "const": "/china"
+            }
+          },
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "additionalProperties": false
+        },
+        "fyp": {
+          "type": "object",
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.hand_events_batch1"
+            },
+            "path": {
+              "const": "Data/Cards/deluxe-2015/hand-events-batch1.parameters.json"
+            },
+            "json_pointer": {
+              "const": "/parameters/five_year_plan"
+            }
+          },
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "additionalProperties": false
+        },
+        "ordinary_hand": {
+          "type": "object",
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.hand_events_batch1"
+            },
+            "path": {
+              "const": "Data/Cards/deluxe-2015/hand-events-batch1.parameters.json"
+            },
+            "json_pointer": {
+              "const": "/parameters/blockade"
+            }
+          },
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "additionalProperties": false
+        },
+        "ames": {
+          "type": "object",
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.late_hand_batch1"
+            },
+            "path": {
+              "const": "Data/Cards/deluxe-2015/late-hand-batch1.parameters.json"
+            },
+            "json_pointer": {
+              "const": "/parameters/aldrich_ames_remix"
+            }
+          },
+          "required": [
+            "dataset_id",
+            "path",
+            "json_pointer"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "cards",
+        "world",
+        "vp",
+        "defcon",
+        "turns",
+        "china",
+        "fyp",
+        "ordinary_hand",
+        "ames"
+      ],
+      "additionalProperties": false
+    },
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "ask_not": {
+          "$ref": "#/$defs/ask_not"
+        }
+      },
+      "required": [
+        "ask_not"
+      ],
+      "additionalProperties": false
+    },
+    "draw_policy": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "const": "DrawProvider.AN1.FinitePermutation.v1"
+        },
+        "old_deck": {
+          "const": "ConsumeCurrentOrderFirst"
+        },
+        "reshuffle": {
+          "const": "OnPositiveDrawExhaustionEvenIfQuotaJustMet"
+        },
+        "pool": {
+          "const": "AllCurrentDiscardIncludingSelected_NoSourceOrParent"
+        },
+        "era_reserve": {
+          "const": "NoInsertionDuringEvent"
+        },
+        "permutation": {
+          "const": "ExactUniquePoolPermutationWithIndependentProofAndRngTokens"
+        },
+        "unverified_provider_or_capacity": {
+          "const": "RequiresRulingBeforeDiscardOrPreserveLockedWait"
+        },
+        "implementation": {
+          "const": "Planned_NoRandomAlgorithmInReferenceModel"
+        }
+      },
+      "required": [
+        "provider",
+        "old_deck",
+        "reshuffle",
+        "pool",
+        "era_reserve",
+        "permutation",
+        "unverified_provider_or_capacity",
+        "implementation"
+      ],
+      "additionalProperties": false
+    },
+    "source_policy": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "const": "AN1.SourceAndCleanup.v1"
+        },
+        "sources": {
+          "const": [
+            "RootEvent",
+            "OpponentCardEvent",
+            "HeadlineEvent",
+            "VerifiedFypUsChild"
+          ]
+        },
+        "fyp": {
+          "const": "IndependentParentEntityFrameSelectionAndUsControllerRequired"
+        },
+        "unknown_nested": {
+          "const": "RequiresRuling"
+        },
+        "receipt_chain": {
+          "const": "BeginRequiresNoPredecessorThenExactAcceptedState"
+        },
+        "disposition": {
+          "const": "SourceAndVerifiedParentAfterDrawCompletionAccordingToPrintedPolicy"
+        }
+      },
+      "required": [
+        "provider",
+        "sources",
+        "fyp",
+        "unknown_nested",
+        "receipt_chain",
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "privacy": {
+      "type": "object",
+      "properties": {
+        "hand": {
+          "const": "USOnlyInThisEventView"
+        },
+        "drawn": {
+          "const": "USOnly"
+        },
+        "discarded": {
+          "const": "PublicAfterCommit"
+        },
+        "deck_and_permutation": {
+          "const": "AuthorityOnly"
+        },
+        "ames": {
+          "const": "SeparateEstablishedCurrentViewConsumer_NotHistoricalReceiptRefresh"
+        },
+        "history": {
+          "const": "OriginalAcceptedCommandResultPreserveLaterCurrent"
+        }
+      },
+      "required": [
+        "hand",
+        "drawn",
+        "discarded",
+        "deck_and_permutation",
+        "ames",
+        "history"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "shared_refs",
+    "parameters",
+    "draw_policy",
+    "source_policy",
+    "privacy"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "source": {
+      "type": "object",
+      "properties": {
+        "dispatch_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "controller": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "root_action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_phasing_player": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "phase": {
+          "enum": [
+            "ActionRound",
+            "Headline"
+          ]
+        },
+        "kind": {
+          "enum": [
+            "RootEvent",
+            "OpponentCardEvent",
+            "HeadlineEvent",
+            "VerifiedFypUsChild",
+            "UnknownNested"
+          ]
+        },
+        "parent_frame_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "remaining": {
+          "enum": [
+            "None",
+            "RootOperations"
+          ]
+        },
+        "parameter_digest": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "dispatch_id",
+        "resolution_id",
+        "frame_id",
+        "source_instance_id",
+        "card_id",
+        "controller",
+        "root_action_id",
+        "root_phasing_player",
+        "phase",
+        "kind",
+        "parent_frame_id",
+        "remaining",
+        "parameter_digest"
+      ],
+      "additionalProperties": false
+    },
+    "frame": {
+      "type": "object",
+      "properties": {
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "controller": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "parent_frame_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "remaining": {
+          "enum": [
+            "None",
+            "RootOperations"
+          ]
+        },
+        "completed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "frame_id",
+        "resolution_id",
+        "source_instance_id",
+        "card_id",
+        "controller",
+        "parent_frame_id",
+        "remaining",
+        "completed"
+      ],
+      "additionalProperties": false
+    },
+    "entity": {
+      "type": "object",
+      "properties": {
+        "instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "zone": {
+          "enum": [
+            "Hand",
+            "Deck",
+            "DiscardPile",
+            "Removed",
+            "EraReserve",
+            "HeadlineReserved",
+            "InResolution"
+          ]
+        },
+        "owner": {
+          "anyOf": [
+            {
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "frame_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "instance_id",
+        "card_id",
+        "zone",
+        "owner",
+        "frame_id"
+      ],
+      "additionalProperties": false
+    },
+    "draw_request": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selection_command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selected_instance_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "original_deck_order": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "discard_pool": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "rng_before_token": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "request_id",
+        "source_digest",
+        "selection_command_id",
+        "selected_instance_ids",
+        "count",
+        "original_deck_order",
+        "discard_pool",
+        "rng_before_token"
+      ],
+      "additionalProperties": false
+    },
+    "state": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "Active",
+            "Finished"
+          ]
+        },
+        "winner": {
+          "anyOf": [
+            {
+              "enum": [
+                "US",
+                "USSR",
+                "Draw"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "signed_vp": {
+          "type": "integer"
+        },
+        "defcon": {
+          "type": "integer"
+        },
+        "rng_token": {
+          "type": "string",
+          "minLength": 1
+        },
+        "military": {
+          "type": "object",
+          "properties": {
+            "US": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "USSR": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "US",
+            "USSR"
+          ],
+          "additionalProperties": false
+        },
+        "card_use_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "entered_eras": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "Early",
+              "Mid",
+              "Late"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "root": {
+          "type": "object",
+          "properties": {
+            "action_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "phasing_player": {
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            "phase": {
+              "enum": [
+                "ActionRound",
+                "Headline"
+              ]
+            },
+            "closed": {
+              "type": "boolean"
+            },
+            "completed_slots": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "action_id",
+            "phasing_player",
+            "phase",
+            "closed",
+            "completed_slots"
+          ],
+          "additionalProperties": false
+        },
+        "frame": {
+          "$ref": "#/$defs/frame"
+        },
+        "parent": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/frame"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/entity"
+          }
+        },
+        "china": {
+          "type": "object",
+          "properties": {
+            "instance_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "card_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "holder": {
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            "face": {
+              "enum": [
+                "FaceUp",
+                "FaceDown"
+              ]
+            }
+          },
+          "required": [
+            "instance_id",
+            "card_id",
+            "holder",
+            "face"
+          ],
+          "additionalProperties": false
+        },
+        "deck_order": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "influence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "country_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "US": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "USSR": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "country_id",
+              "US",
+              "USSR"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "active_view_effects": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "successful_resolutions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "pending": {
+          "enum": [
+            null,
+            "AwaitingUSSelection",
+            "WaitingDraw"
+          ]
+        },
+        "draw_request": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/draw_request"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "last_drawn": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "version",
+        "turn",
+        "status",
+        "winner",
+        "signed_vp",
+        "defcon",
+        "rng_token",
+        "military",
+        "card_use_count",
+        "entered_eras",
+        "root",
+        "frame",
+        "parent",
+        "cards",
+        "china",
+        "deck_order",
+        "influence",
+        "active_view_effects",
+        "successful_resolutions",
+        "pending",
+        "draw_request",
+        "last_drawn"
+      ],
+      "additionalProperties": false
+    },
+    "parent_selection": {
+      "type": "object",
+      "properties": {
+        "parent_frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parent_resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selected_instance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selected_card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "discarded_hand_owner": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "child_controller": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "parent_controller": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "remaining_work": {
+          "enum": [
+            "None",
+            "RootOperations"
+          ]
+        },
+        "selection_proof_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selection_accepted": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "parent_frame_id",
+        "parent_resolution_id",
+        "selected_instance_id",
+        "selected_card_id",
+        "discarded_hand_owner",
+        "child_controller",
+        "parent_controller",
+        "remaining_work",
+        "selection_proof_id",
+        "selection_accepted"
+      ],
+      "additionalProperties": false
+    },
+    "authority": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_coverage": {
+          "enum": [
+            "CompleteKnown",
+            "Unknown"
+          ]
+        },
+        "cleanup_coverage": {
+          "enum": [
+            "CompleteKnown",
+            "Unknown"
+          ]
+        },
+        "draw_coverage": {
+          "enum": [
+            "CompleteKnown",
+            "Unknown"
+          ]
+        },
+        "other_obligations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "proof_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parent_selection": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/parent_selection"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "provider",
+        "source",
+        "version",
+        "source_coverage",
+        "cleanup_coverage",
+        "draw_coverage",
+        "other_obligations",
+        "proof_id",
+        "parent_selection"
+      ],
+      "additionalProperties": false
+    },
+    "shuffle_evidence": {
+      "type": "object",
+      "properties": {
+        "pool_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "permutation": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "rng_before_token": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rng_after_token": {
+          "type": "string",
+          "minLength": 1
+        },
+        "proof_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "pool_digest",
+        "permutation",
+        "rng_before_token",
+        "rng_after_token",
+        "proof_id"
+      ],
+      "additionalProperties": false
+    },
+    "draw_evidence": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pre_state_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "complete_pool": {
+          "type": "boolean"
+        },
+        "drawn_instance_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "remaining_deck_order": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "shuffle": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/shuffle_evidence"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "proof_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "provider",
+        "request_digest",
+        "pre_state_digest",
+        "complete_pool",
+        "drawn_instance_ids",
+        "remaining_deck_order",
+        "shuffle",
+        "proof_id"
+      ],
+      "additionalProperties": false
+    },
+    "command": {
+      "type": "object",
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actor": {
+          "enum": [
+            "US",
+            "USSR",
+            "InternalResolver",
+            "Spectator"
+          ]
+        },
+        "action": {
+          "enum": [
+            "Begin",
+            "Select",
+            "CompleteDraw"
+          ]
+        },
+        "selected_instance_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "draw_evidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/draw_evidence"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "command_id",
+        "expected_version",
+        "source_digest",
+        "actor",
+        "action",
+        "selected_instance_ids",
+        "draw_evidence"
+      ],
+      "additionalProperties": false
+    },
+    "input": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "$ref": "#/$defs/state"
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "authority": {
+          "$ref": "#/$defs/authority"
+        },
+        "command": {
+          "$ref": "#/$defs/command"
+        }
+      },
+      "required": [
+        "state",
+        "source",
+        "authority",
+        "command"
+      ],
+      "additionalProperties": false
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "outcome": {
+          "enum": [
+            "AwaitingUSSelection",
+            "WaitingDraw",
+            "EventCompleted",
+            "EventCompletedWaitingRootOperations"
+          ]
+        },
+        "state": {
+          "$ref": "#/$defs/state"
+        }
+      },
+      "required": [
+        "outcome",
+        "state"
+      ],
+      "additionalProperties": false
+    },
+    "receipt_body": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "$ref": "#/$defs/input"
+        },
+        "previous_command_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "result": {
+          "$ref": "#/$defs/result"
+        }
+      },
+      "required": [
+        "input",
+        "previous_command_id",
+        "result"
+      ],
+      "additionalProperties": false
+    },
+    "receipt": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "$ref": "#/$defs/receipt_body"
+        },
+        "digest": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "body",
+        "digest"
+      ],
+      "additionalProperties": false
+    },
+    "anchor": {
+      "type": "object",
+      "properties": {
+        "command": {
+          "$ref": "#/$defs/command"
+        },
+        "source_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "before_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "result_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "receipt_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "previous_command_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "command",
+        "source_digest",
+        "before_digest",
+        "result_digest",
+        "receipt_digest",
+        "previous_command_id"
+      ],
+      "additionalProperties": false
+    },
+    "execution_request": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "$ref": "#/$defs/input"
+        },
+        "previous_command_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "input",
+        "previous_command_id"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "input": {
+                "properties": {
+                  "command": {
+                    "properties": {
+                      "action": {
+                        "const": "Begin"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "previous_command_id": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ask_not": {
+      "type": "object",
+      "properties": {
+        "card_id": {
+          "const": "card.ask_not_what_your_country_can_do_for_you"
+        },
+        "effect_id": {
+          "const": "effect.ask_not_what_your_country_can_do_for_you"
+        },
+        "description": {
+          "const": "US locks zero-to-all ordinary Hand subset including scoring, discards without event, then receives exactly the selected count."
+        },
+        "template": {
+          "const": "HandExchangeEvent"
+        },
+        "actor": {
+          "const": "US"
+        },
+        "ordinary_hand_policy_ref": {
+          "type": "object",
+          "properties": {
+            "dataset_id": {
+              "const": "effects.deluxe2015.hand_events_batch1"
+            },
+            "json_pointer": {
+              "const": "/parameters/blockade"
+            }
+          },
+          "required": [
+            "dataset_id",
+            "json_pointer"
+          ],
+          "additionalProperties": false
+        },
+        "allowed_card_kinds": {
+          "const": [
+            "Event",
+            "Scoring"
+          ]
+        },
+        "selection": {
+          "const": "CompleteDistinctSubsetBeforeAnyDraw"
+        },
+        "replacement_count": {
+          "const": "AcceptedSelectionCount"
+        },
+        "zero_selection": {
+          "const": "CompleteWithoutDrawProvider"
+        },
+        "source_refs": {
+          "const": [
+            {
+              "source_id": "C-DELUXE-EN",
+              "locator": "Personally viewed PDF p12 #77, US3 Mid starred: US may discard up to entire hand including scoring; replacement count decided before any draw.",
+              "verification": "Verified"
+            },
+            {
+              "source_id": "R2015",
+              "locator": "PDFp4 sections4.3/4.3.1/4.4: consume old deck, empty deck reshuffles all discards, era insertion at era transition only; p5 5.2/5.4 discard without event; section9 China separate.",
+              "verification": "Verified"
+            },
+            {
+              "source_id": "F2010",
+              "locator": "PDFp15 #77: choosing replacements creates no held-scoring exemption. p16 #98 intro excludes pre-Remix sequencing questions; old Ames order is not adopted.",
+              "verification": "Verified"
+            },
+            {
+              "source_id": "PROJECT-AN1",
+              "locator": "Zero selection is successful no-change event. Freshly discarded selected cards join all discards and may be redrawn. Positive draw exactly exhausting old deck reshuffles eligible current discards before source/parent cleanup, without extra draw, from R2015 4.3/4.3.1; not specialist FAQ. Locked selection and bound permutation receipts are engineering; real shuffle/RNG, authentication and durable storage remain planned.",
+              "verification": "EngineeringBoundary"
+            }
+          ]
+        }
+      },
+      "required": [
+        "card_id",
+        "effect_id",
+        "description",
+        "template",
+        "actor",
+        "ordinary_hand_policy_ref",
+        "allowed_card_kinds",
+        "selection",
+        "replacement_count",
+        "zero_selection",
+        "source_refs"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

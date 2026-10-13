@@ -250,3 +250,5 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 [LR1回合到期](late-restrictions-batch1.md)消费匹配ExpireAndReset证据，选择等待与源父链必须完成。
 
 [LADC1选择链](latin-american-debt-crisis.md)等待US回应再等USSR双国，合法完成后仅收尾自己的事件与根义务。
+
+[Ask Not选择与抽牌](ask-not.md)保存等待状态，抽牌接受前不提前清理源或未完成父帧。

@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "id": "data.ask-not",
+  "kind": "data",
+  "status": "ready",
+  "description": "Ask Not fixed US complete-hand-subset exchange and finite bound DrawProvider handoff; actual shuffle, RNG and game runtime planned.",
+  "dataset_id": "effects.deluxe2015.ask_not",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/ask-not.schema.json",
+  "documentation": "Docs/Wiki/ask-not.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/ask-not.parameters.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "Fixed US whole Hand subset; independent source/root/FYP/cleanup and complete deck evidence",
+    "Bound DrawProvider receipt containing exact permutation proof, not player-controlled random order"
+  ],
+  "outputs": [
+    "Read-only HandExchangeEvent parameters and planned DrawProvider/receipt contracts"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "effects.deluxe2015.hand_events_batch1",
+    "effects.deluxe2015.late_hand_batch1",
+    "map.deluxe2015.world",
+    "rules.deluxe2015.defcon",
+    "rules.deluxe2015.turn-flow",
+    "rules.deluxe2015.victory",
+    "setup.deluxe2015.standard"
+  ],
+  "preconditions": [
+    "All actual runtime services remain planned; source/provider/anchor evidence is synthetic trusted input"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "Unknown provider/parent/capacity evidence before selection; invalid callback preserves locked waiting state",
+    "Finished/nuclear/VP terminal or stale/forked source/receipt",
+    "Never expose deck order, permutation, raw receipt or unchosen Hand to another viewer"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe images, checked 2026-10-13",
+      "description": "Personally viewed PDF p12 #77, US3 Mid starred: US may discard up to entire hand including scoring; replacement count decided before any draw."
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe 2015",
+      "description": "PDFp4 sections4.3/4.3.1/4.4: consume old deck, empty deck reshuffles all discards, era insertion at era transition only; p5 5.2/5.4 discard without event; section9 China separate."
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "Compatible FAQv5",
+      "description": "PDFp15 #77: choosing replacements creates no held-scoring exemption. p16 #98 intro excludes pre-Remix sequencing questions; old Ames order is not adopted."
+    },
+    {
+      "id": "PROJECT-AN1",
+      "url": null,
+      "edition": "Explicit derivation and finite-provider design, 2026-10-13",
+      "description": "Zero selection is successful no-change event. Freshly discarded selected cards join all discards and may be redrawn. Positive draw exactly exhausting old deck reshuffles eligible current discards before source/parent cleanup, without extra draw, from R2015 4.3/4.3.1; not specialist FAQ. Locked selection and bound permutation receipts are engineering; real shuffle/RNG, authentication and durable storage remain planned."
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/ask-not.cases.json",
+      "status": "mixed-reference-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "report": "Docs/Design/ask-not.validation.json"
+  }
+}

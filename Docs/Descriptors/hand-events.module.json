@@ -3,7 +3,7 @@
   "id": "module.hand-events",
   "kind": "module",
   "status": "planned",
-  "description": "手牌事件服务：私有阈值候选/弃牌、随机单牌收据与US事件子帧路由；不负责直接执行子牌事件或修改玩家快照。 CIA/Lone一次当前手牌私有历史快照与原收据重放。 LH1整批无放回随机弃牌、Ames选择与当前私有查询；旧收据不刷新。 LADC1复用Blockade有效OPS阈值/弃牌资格；报价按US实际修正，候选和数量私有。",
+  "description": "手牌事件服务：私有阈值候选/弃牌、随机单牌收据与US事件子帧路由；不负责直接执行子牌事件或修改玩家快照。 CIA/Lone一次当前手牌私有历史快照与原收据重放。 LH1整批无放回随机弃牌、Ames选择与当前私有查询；旧收据不刷新。 LADC1复用Blockade有效OPS阈值/弃牌资格；报价按US实际修正，候选和数量私有。 AN1先锁定US完整弃牌集合再补等量，零选择不抽牌；洗牌与RNG待实现。",
   "documentation": "Docs/Wiki/hand-events-batch1.md",
   "entrypoints": [],
   "planned_entrypoints": [
@@ -38,17 +38,27 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Hand/HandEventService.cs",
       "symbol": "QueryAuthorizedCurrentHand"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Hand/HandEventService.cs",
+      "symbol": "PlanHandExchange"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Hand/HandEventService.cs",
+      "symbol": "PlanDrawProviderHandoff"
     }
   ],
   "inputs": [
     "已验证内部帧/身份、完整牌区、当前OPS状态与可持久化随机源",
     "已核实来源与独立权威源实体位置、当前普通Hand、可信接收方、Revision；不从历史收据刷新当前手牌",
     "独立来源实体、完整普通Hand、原子RNG批次、有效Hostage/Ames活动事实；当前查询须合法活动局面",
-    "LADC1独立完整US OPS覆盖、普通Hand与已锚定决策；当前私有视图和原收据重放分开"
+    "LADC1独立完整US OPS覆盖、普通Hand与已锚定决策；当前私有视图和原收据重放分开",
+    "AN1独立来源、完整US Hand子集与共享Deck/Discard定义；锁定状态绑定DrawProvider收据"
   ],
   "outputs": [
     "不可变牌区/影响力计划、公开选牌收据、等待Owner决定或US子事件帧",
-    "一次揭示不可变私有收据；公开只投影发生事实，空Hand仍成功"
+    "一次揭示不可变私有收据；公开只投影发生事实，空Hand仍成功",
+    "AwaitingUSSelection/WaitingDraw/EventCompleted；补牌数量等于已接受弃置集合"
   ],
   "dependencies": [
     {
@@ -70,13 +80,15 @@
     "effects.deluxe2015.trap_events",
     "effects.deluxe2015.reveal_ops_batch1",
     "effects.deluxe2015.late_hand_batch1",
-    "effects.deluxe2015.latin_american_debt_crisis"
+    "effects.deluxe2015.latin_american_debt_crisis",
+    "effects.deluxe2015.ask_not"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:hand-events-batch1:1",
     "urn:coldwarheat:contract:reveal-ops-batch1:1",
     "urn:coldwarheat:contract:late-hand-batch1:1",
-    "urn:coldwarheat:contract:latin-american-debt-crisis:1"
+    "urn:coldwarheat:contract:latin-american-debt-crisis:1",
+    "urn:coldwarheat:contract:ask-not:1"
   ],
   "preconditions": [
     "Runtime planned；由RuleEngine统一提交计划与RNG状态，事件栈由TurnFlow调度",
@@ -88,26 +100,27 @@
     "不允许客户端提供随机索引或结果；不得泄露未选手牌",
     "提供者不允许本事件、源实体仍在Hand/位置冲突：揭示前拒绝；未提交不输出私有内容",
     "短缺、未知提供者或同Resolution跨牌/身份冲突在披露前停止；新CurrentView禁止Active终局状态，旧历史收据不读later current",
-    "LADC1未知相关OPS或source/parent提供者、复用来源resolution、新命令缺失原接受前序，不得默认回退或泄露候选数量"
+    "LADC1未知相关OPS或source/parent提供者、复用来源resolution、新命令缺失原接受前序，不得默认回退或泄露候选数量",
+    "未知牌区完整性/来源提供者在弃前停止；无效抽牌回调保持已接受锁定状态，不再次弃牌"
   ],
   "rule_sources": [
     {
       "id": "C-DELUXE-EN",
       "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
       "edition": "English Deluxe card images",
-      "description": "目视英文p2 #5随机弃苏联手牌：仅US关联事件立即发生；p3 #10 US立即弃3+OPS牌否则移除西德全部US影响力。 RO1: 亲看英文PDF p5 #26、p10 #62：固定US/USSR先看对手当前手牌，再可选视同1OPS；均星号。 LH1: 目视英文PDF p13 #82、p14 #92、p15 #98；不采用旁列译文。 LADC1: Personally viewed English PDF p14 #95: USSR2 Late nonstar; US immediate 3+OPS discard or double USSR influence in two South American countries. Adjacent translation unused."
+      "description": "目视英文p2 #5随机弃苏联手牌：仅US关联事件立即发生；p3 #10 US立即弃3+OPS牌否则移除西德全部US影响力。 RO1: 亲看英文PDF p5 #26、p10 #62：固定US/USSR先看对手当前手牌，再可选视同1OPS；均星号。 LH1: 目视英文PDF p13 #82、p14 #92、p15 #98；不采用旁列译文。 LADC1: Personally viewed English PDF p14 #95: USSR2 Late nonstar; US immediate 3+OPS discard or double USSR influence in two South American countries. Adjacent translation unused. AN1: Personally viewed PDF p12 #77, US3 Mid starred: US may discard up to entire hand including scoring; replacement count decided before any draw."
     },
     {
       "id": "R2015",
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
       "edition": "Deluxe rules 2015",
-      "description": "§5.2事件归属与成功星号；§5.4弃牌不触发及§5.5卡文优先；§7.4.1/7.4.2有效OPS归属/所有用途；§9.5/9.8中国牌不接受事件弃牌。 RO1: §5.2成功星号，§6.0行动限制，§7.4.1按Actor修正，§7.4.2例3 CIA+遏制为2，§7.4.3视同OPS，§8.1.3核战根Phasing责任，§8.2.3普通政变军事。 LH1: PDF p5 §§5.2/5.4/5.5事件归属、去向及强迫弃牌无事件；p8 §7.3永久效果；p9 §9中国独立牌区/不可强迫弃置。 LADC1: Sections5.2-5.5/7.4-7.4.2/9.5/9.8: fixed event controller, higher-value discard, discarded event not triggered, aggregate actual-player OPS, China exclusion."
+      "description": "§5.2事件归属与成功星号；§5.4弃牌不触发及§5.5卡文优先；§7.4.1/7.4.2有效OPS归属/所有用途；§9.5/9.8中国牌不接受事件弃牌。 RO1: §5.2成功星号，§6.0行动限制，§7.4.1按Actor修正，§7.4.2例3 CIA+遏制为2，§7.4.3视同OPS，§8.1.3核战根Phasing责任，§8.2.3普通政变军事。 LH1: PDF p5 §§5.2/5.4/5.5事件归属、去向及强迫弃牌无事件；p8 §7.3永久效果；p9 §9中国独立牌区/不可强迫弃置。 LADC1: Sections5.2-5.5/7.4-7.4.2/9.5/9.8: fixed event controller, higher-value discard, discarded event not triggered, aggregate actual-player OPS, China exclusion. AN1: PDFp4 sections4.3/4.3.1/4.4: consume old deck, empty deck reshuffles all discards, era insertion at era transition only; p5 5.2/5.4 discard without event; section9 China separate."
     },
     {
       "id": "F2010",
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
       "edition": "FAQ v5 2010, compatible Deluxe clarifications only",
-      "description": "PDF p3 #5可合法随机弃持有计分牌；p19 §5弃牌堆公开。 RO1: PDF p5–6 #26及p13 #62一次揭示，后得牌不公开；p13 #62普通核战Phasing输/CMC实际Actor先输；p14 #67事件OPS不能太空，取得实体牌可play的例外不适用本批。 LH1: PDF p16 #92额外弃牌也随机；#98导言排除旧版排序问答；p19公开弃牌堆。未找到本批空手/不足弃牌专门裁定。 LADC1: PDFp19 discard pile public. No dedicated #95 answer found; no claim of a special LADC modifier or zero-target FAQ."
+      "description": "PDF p3 #5可合法随机弃持有计分牌；p19 §5弃牌堆公开。 RO1: PDF p5–6 #26及p13 #62一次揭示，后得牌不公开；p13 #62普通核战Phasing输/CMC实际Actor先输；p14 #67事件OPS不能太空，取得实体牌可play的例外不适用本批。 LH1: PDF p16 #92额外弃牌也随机；#98导言排除旧版排序问答；p19公开弃牌堆。未找到本批空手/不足弃牌专门裁定。 LADC1: PDFp19 discard pile public. No dedicated #95 answer found; no claim of a special LADC modifier or zero-target FAQ. AN1: PDFp15 #77: choosing replacements creates no held-scoring exemption. p16 #98 intro excludes pre-Remix sequencing questions; old Ames order is not adopted."
     },
     {
       "id": "PROJECT-HC1",
@@ -132,6 +145,12 @@
       "url": null,
       "edition": "Engineering boundary and explicit derivation 2026-10-13",
       "description": "Optional US response derives from unless and ordinary event decision rules. Two distinct SouthAmerica targets including zero derive from the unrestricted card wording; zero doubles to zero. Private candidates, synthetic source proofs and immutable receipt continuation are engineering, not official specialized rulings. Runtime planned."
+    },
+    {
+      "id": "PROJECT-AN1",
+      "url": null,
+      "edition": "Explicit derivation and finite-provider design, 2026-10-13",
+      "description": "Zero selection is successful no-change event. Freshly discarded selected cards join all discards and may be redrawn. Positive draw exactly exhausting old deck reshuffles eligible current discards before source/parent cleanup, without extra draw, from R2015 4.3/4.3.1; not specialist FAQ. Locked selection and bound permutation receipts are engineering; real shuffle/RNG, authentication and durable storage remain planned."
     }
   ],
   "tests": [
@@ -154,11 +173,15 @@
     {
       "path": "Docs/Design/latin-american-debt-crisis.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/ask-not.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
     "report": "Docs/Design/hand-events-batch1.validation.json",
-    "latest_design_report": "Docs/Design/latin-american-debt-crisis.validation.json"
+    "latest_design_report": "Docs/Design/ask-not.validation.json"
   }
 }
