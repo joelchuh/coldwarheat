@@ -3,11 +3,15 @@
   "id": "data.turn-flow",
   "kind": "data",
   "status": "ready",
-  "description": "读取 Deluxe 2015 的时代、手牌目标、普通行动名额与头条排序；DEFCON参数按数据ID另查。",
+  "description": "读取 Deluxe 2015 的时代、手牌目标、普通行动名额与头条排序；DEFCON参数按数据ID另查。 时代日历子集已有C#加载器；头条/发牌/阶段流程仍未实现。",
   "entrypoints": [
     {
       "path": "Data/Rulesets/deluxe-2015/turn-flow.json",
       "symbol": null
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/TurnCalendarLoader.cs",
+      "symbol": "Load"
     }
   ],
   "dataset_id": "rules.deluxe2015.turn-flow",
@@ -26,7 +30,7 @@
   "preconditions": [
     "按 schema_version 检查字段与领域约束",
     "不得把子集状态当成完整规则集",
-    "实际加载器尚未实现",
+    "实际加载器仅消费时代区间/手牌目标/基础行动数，不返回完整流程服务",
     "读取v3；旧initial_setup_order已迁至setup.deployment_stages，不再回退旧字段"
   ],
   "side_effects": [],
@@ -58,6 +62,10 @@
         "era",
         "headline"
       ]
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/TurnCalendarTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "validation": {
@@ -71,7 +79,9 @@
   },
   "verification": {
     "dataset_checked_on": "2026-09-21",
-    "runtime_consumers_tested": false
+    "runtime_consumers_tested": true,
+    "runtime_scope": "era calendar subset only",
+    "runtime_report": "Docs/Testing/era-removal.validation.json"
   },
   "data_dependencies": [
     "rules.deluxe2015.defcon"

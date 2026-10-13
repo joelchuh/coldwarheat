@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "id": "plan.era-removal",
+  "kind": "implementation-plan",
+  "status": "implemented",
+  "description": "共享回合日历与权威时代上下文，驱动东欧动荡的逐国移除并复用国家集合会话；不实现完整TurnFlow。",
+  "entrypoints": [],
+  "document": "Docs/Plans/2026-10-13-era-removal.md",
+  "inputs": [
+    "已确认turn-flow时代表、EI2-RULING-01和第二批参数"
+  ],
+  "outputs": [
+    "不可变回合日历、时代移除规划/加载/会话、验证记录"
+  ],
+  "dependencies": [
+    "module.turn-calendar",
+    "module.influence-event-planners",
+    "module.influence-event-sessions"
+  ],
+  "preconditions": [
+    "用户已授权持续编码与日常Git同步"
+  ],
+  "side_effects": [
+    "源代码、文档和测试报告"
+  ],
+  "stop_conditions": [
+    "验证或审阅失败先修复"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/early-influence-batch2.md"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Testing/era-removal.validation.json",
+      "status": "371-passed-independent-review-passed"
+    }
+  ]
+}

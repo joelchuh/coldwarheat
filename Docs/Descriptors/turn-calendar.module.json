@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "id": "module.turn-calendar",
+  "kind": "module",
+  "description": "读取唯一回合表生成不可变时代/手牌目标/基础行动数；GameState.Turn提供权威回合并在状态复制中保持。缺少时不猜时代；不推进阶段、不发牌、不装配完整TurnFlow。",
+  "status": "implemented",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/State/TurnCalendar.cs",
+      "symbol": "TurnCalendar"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/State/TurnCalendar.cs",
+      "symbol": "ForTurn"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/State/TurnCalendar.cs",
+      "symbol": "GameTurnContext"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/TurnCalendarLoader.cs",
+      "symbol": "Load"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/State/GameState.cs",
+      "symbol": "Turn"
+    }
+  ],
+  "inputs": [
+    "turn-flow schema3 / content0.3.0 / verified-subset / R2015来源",
+    "可信宿主选择的TurnNumber"
+  ],
+  "outputs": [
+    "只读日历与GameTurnContext；GameEra不从卡牌印刷时代读取"
+  ],
+  "dependencies": [],
+  "preconditions": [
+    "由可信开局或流程装配；本批仅人工实例使用，不授权玩家指定回合"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "缺少时代、未知/重复时代、区间缺口/重叠/非法数值、版本/来源不符拒绝",
+    "查询范围外回合拒绝；没有默认早期"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/turn-flow.md",
+      "scope": "R2015时代区间的既有共享事实"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/TurnCalendarTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/EraRemovalTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/turn-calendar.md",
+  "data_dependencies": [
+    "rules.deluxe2015.turn-flow"
+  ],
+  "verification": {
+    "report": "Docs/Testing/era-removal.validation.json"
+  }
+}

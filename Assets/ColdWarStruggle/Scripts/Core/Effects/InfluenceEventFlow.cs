@@ -83,6 +83,7 @@ namespace ColdWarStruggle.Core
             switch(error)
             {
                 case InfluenceEventError.InvalidDefinition:return RuleError.InvalidDefinition;
+                case InfluenceEventError.MissingTurnContext:return RuleError.MissingTurnContext;
                 case InfluenceEventError.InvalidSelection:return RuleError.InvalidSelection;
                 case InfluenceEventError.WrongDecisionOwner:return RuleError.WrongActor;
                 case InfluenceEventError.StaleSelection:return RuleError.StaleVersion;

@@ -19,8 +19,7 @@ namespace ColdWarStruggle.Infrastructure
             catch (OverflowException error) { throw new ArgumentException("Effect parameter out of range.", error); }
         }
 
-        static IReadOnlyDictionary<string, InfluenceEffectDefinition> LoadChecked(string json, string schema,
-            MapDefinition map, HashSet<string> knownEffects)
+        internal static JToken ReadDocument(string json,string schema)
         {
             var root = ContractJson.Parse(json); var contract = ContractJson.Parse(schema) as JObject;
             if (contract == null || (string)contract["$id"] != "urn:coldwarheat:contract:early-influence-batch2:1")
@@ -32,8 +31,21 @@ namespace ColdWarStruggle.Infrastructure
             var sourceIds = new HashSet<string>(StringComparer.Ordinal);
             foreach (var source in root["source_catalog"])
                 if (!sourceIds.Add((string)source["id"])) throw new ArgumentException("Duplicate source.");
+            return root;
+        }
+        internal static void ValidateSources(JToken root,JToken parameters)
+        {
+            var sourceIds=new HashSet<string>(root["source_catalog"].Select(s=>(string)s["id"]),StringComparer.Ordinal);
+            foreach(var source in parameters["source_refs"])
+                if((string)source["verification"]!="Verified" || !sourceIds.Contains((string)source["source_id"]))
+                    throw new ArgumentException("Unverified removal source.");
+        }
+        static IReadOnlyDictionary<string, InfluenceEffectDefinition> LoadChecked(string json, string schema,
+            MapDefinition map, HashSet<string> knownEffects)
+        {
+            var root=ReadDocument(json,schema);
             var definitions = new Dictionary<string, InfluenceEffectDefinition>(StringComparer.Ordinal);
-            // Explicit subset: the era-dependent third parameter is schema-checked but is not a runnable definition.
+            // This entrypoint returns two budgeted effects; the third uses EraRemovalCatalogLoader.
             foreach (var name in new[] { "socialist_governments", "suez_crisis" })
             {
                 var p = root["parameters"][name]; var card = (string)p["card_id"]; var effect = (string)p["effect_id"];
@@ -41,9 +53,7 @@ namespace ColdWarStruggle.Infrastructure
                     throw new ArgumentException("Removal identity mismatch or unknown effect reference.");
                 if ((string)p["template"] != "BudgetedRemoval" || (string)p["shortage_policy"] != "RemoveMaximumAvailable")
                     throw new ArgumentException("Unsupported removal semantics.");
-                foreach (var source in p["source_refs"])
-                    if ((string)source["verification"] != "Verified" || !sourceIds.Contains((string)source["source_id"]))
-                        throw new ArgumentException("Unverified removal source.");
+                ValidateSources(root,p);
                 var blocker = (string)p["blocked_by_effect_id"];
                 if (blocker != null && !knownEffects.Contains(blocker)) throw new ArgumentException("Unknown blocking effect reference.");
                 var scope = p["target_scope"]; string region = null; CountryId[] countries = null;

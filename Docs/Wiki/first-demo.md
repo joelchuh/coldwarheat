@@ -98,6 +98,8 @@ F12只导出游戏当前渲染帧到本机 `Application.persistentDataPath/DemoC
 
 数量入口先读 [Demo描述](../Descriptors/demo-presentation.module.json)，再定位 `DemoController.Allocation.cs` 的 `ChangeEventAllocation`、`CanChangeEventAllocation`、`AllocationDraft`；确认仍经 `DemoController.Events.cs` 的 `ConfirmEventAsync`。UI根据 `Query.Kind` 选择控件，不根据卡名写规则。
 
-卡牌文件只作为 [效果引用索引](card-effect-reference-index.md) 的来源，索引返回102个ID并不表示102个处理器可执行。东欧动荡需要真实回合时代，仍未接入本批。
+卡牌文件只作为 [效果引用索引](card-effect-reference-index.md) 的来源，索引返回102个ID并不表示102个处理器可执行。东欧动荡现已在规则与会话层接入权威时代，尚未新增Demo场景。
 
 实际 [295项验证报告](../Testing/allocation-demo.validation.json) 记录6次测试运行与中间失败、13份规范源/播放器字节一致、Windows构建和Ready阶段真实游戏帧。图中事件尚未开始；不据此声称数量按钮或鼠标实测通过。
+
+后续时代规则批次已通过371项EditMode；当前可运行九练习播放器仍为295项通过时的allocation-demo构建。二者范围分别记录，见[时代批次报告](../Testing/era-removal.validation.json)。

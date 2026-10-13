@@ -23,7 +23,8 @@
     "预装事件实例及EventCommandEnvelope，玩家不能上传效果定义"
   ],
   "outputs": [
-    "过滤的PlayerViewSnapshot、收据、LegalTargetsResult；授权观察入口可读双方示例手牌"
+    "过滤的PlayerViewSnapshot、收据、LegalTargetsResult；授权观察入口可读双方示例手牌",
+    "公开只读GameTurnContext；旧fixture无回合时为null"
   ],
   "dependencies": [
     "module.influence-core"
@@ -47,11 +48,16 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/SessionTests.cs",
       "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/EraRemovalTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "documentation": "Docs/Wiki/first-demo.md",
   "verification": {
     "checked_on": "2026-10-13",
-    "report": "Docs/Testing/influence-event-sessions.validation.json"
+    "report": "Docs/Testing/influence-event-sessions.validation.json",
+    "era_report": "Docs/Testing/era-removal.validation.json"
   }
 }

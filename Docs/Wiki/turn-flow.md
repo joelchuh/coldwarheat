@@ -1,7 +1,7 @@
 # 回合与出牌状态机设计 v0.2
 
 > description: 查找阶段转换、头条保密、行动资格、事件与 OPS 次序、卡牌去向、等待选择及恢复规则。
-> 状态：设计完成到本文声明的编排边界；尚无 C# 实现。逐卡事件、计分计算和完整数据集仍需后续完成。
+> 状态：完整阶段编排仍为设计；独立[回合日历与权威时代](turn-calendar.md)子集已有C#，不代表本页完整状态机可调用。
 > 模块摘要：[turn-flow.module.json](../Descriptors/turn-flow.module.json)；参数数据：[turn-flow.json](../../Data/Rulesets/deluxe-2015/turn-flow.json)；[验收案例](../Design/turn-flow.cases.json)。
 > 本文中的类型、阶段和算法组织是项目工程设计；桌游依据使用 [R2015](https://www.gmtgames.com/nnts/TS_Rules-2015.pdf) 与经过版本筛选的 [F2010](https://www.gmtgames.com/nnts/FAQv5.pdf)，不复制卡牌正文。
 

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.influence-event-sessions",
   "kind": "module",
-  "description": "同一GameState中的一次性影响力事件与受益方选择：支持国家集合和数量分配，公开容量由核心计算；固定身份、版本和同一收据表原子提交。数量UI已接入九练习Demo，正式出牌/牌区/回合未实现。",
+  "description": "同一GameState中的一次性影响力事件与受益方选择：支持国家集合和数量分配，公开容量由核心计算；固定身份、版本和同一收据表原子提交。数量UI已接入九练习Demo，正式出牌/牌区/回合未实现。 东欧动荡复用国家集合，时代由宿主Turn决定；缺失回合有具名拒绝。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -47,7 +47,8 @@
   ],
   "preconditions": [
     "实例由可信装配器加载；玩家不能指定效果/受益方/数值",
-    "仅一项事件继续状态；完整父子出牌结算栈待实现"
+    "仅一项事件继续状态；完整父子出牌结算栈待实现",
+    "时代事件必须由可信宿主提供GameTurnContext，客户端不能自报时代"
   ],
   "side_effects": [
     "成功命令在同一宿主锁内替换权威状态并记收据；纯Core方法只返回隔离结果"
@@ -83,11 +84,16 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/AllocationSessionTests.cs",
       "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/EraRemovalTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "documentation": "Docs/Wiki/first-influence-events.md",
   "verification": {
     "report": "Docs/Testing/influence-event-sessions.validation.json",
-    "allocation_report": "Docs/Testing/allocation-event-sessions.validation.json"
+    "allocation_report": "Docs/Testing/allocation-event-sessions.validation.json",
+    "era_report": "Docs/Testing/era-removal.validation.json"
   }
 }

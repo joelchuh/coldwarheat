@@ -5,7 +5,7 @@ namespace ColdWarStruggle.Core
 {
     public enum RuleError { None, InvalidCommand, WrongGame, WrongActor, StaleVersion, StaleContext, ModeMismatch, UnknownCountry,
         IllegalTarget, InsufficientBudget, GameAlreadyEnded, NumericOverflow, CommandIdConflict,
-        EventNotAvailable, EventAlreadyResolved, EventNotStarted, EventInProgress, StaleDecision, InvalidSelection, EventRequiresRuling, EventForbidden, InvalidDefinition }
+        EventNotAvailable, EventAlreadyResolved, EventNotStarted, EventInProgress, StaleDecision, InvalidSelection, EventRequiresRuling, EventForbidden, InvalidDefinition, MissingTurnContext }
     public sealed class InfluencePlaced
     {
         public CountryId Country { get; }

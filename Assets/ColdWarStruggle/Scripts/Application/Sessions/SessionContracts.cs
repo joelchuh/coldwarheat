@@ -37,12 +37,13 @@ namespace ColdWarStruggle.Application
         public IReadOnlyList<string> OwnHand { get; }
         public int OpponentHandCount { get; }
         public PublicEventView Event { get; }
+        public GameTurnContext Turn { get; }
         internal PlayerViewSnapshot(GameState s,PlayerSide viewer)
         {
             GameId=s.GameId;Viewer=viewer;Version=s.Version;EventSequence=s.EventSequence;ContextId=s.Operations.Id;Actor=s.Operations.Actor;RemainingOps=s.Operations.Budget-s.SpentOps;
             Countries=Array.AsReadOnly(s.Map.Countries.Select(c=>new CountryView(c,s.Countries[c.Id])).ToArray());
             OwnHand=Array.AsReadOnly(s.GetHand(viewer).ToArray());OpponentHandCount=s.GetHand(viewer==PlayerSide.US?PlayerSide.USSR:PlayerSide.US).Count;
-            Event=s.InfluenceEvent==null?null:new PublicEventView(s.InfluenceEvent);
+            Event=s.InfluenceEvent==null?null:new PublicEventView(s.InfluenceEvent);Turn=s.Turn;
         }
     }
     public sealed class LocalTestSnapshot

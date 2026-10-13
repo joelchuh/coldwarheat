@@ -1,6 +1,6 @@
 # 首批影响力事件的实际实现
 
-description: 定位五牌类型化参数、纯效果规划、选择和测试；纯Core规划和宿主等待事务已实现，事件演示已接入。
+description: 定位八牌基础规划、参数与选择事务；七牌有Demo，东欧动荡已有时代上下文与宿主支持，尚待界面。
 
 先读 [模块描述](../Descriptors/influence-event-planners.module.json)，需要规则含义再读 [早期第一批](early-influence-batch1.md)。参数事实仅来自 `Data/Cards/deluxe-2015/early-influence-batch1.parameters.json`；正式卡牌注册表仍为 planned，不能据此开启完整 RulePack。
 
@@ -75,3 +75,5 @@ stateDiagram-v2
 新增ResolveAllocation和旧Begin/Resolve共享同一收据表。精确相同载荷重发返回原对象；改金额、国家、数组顺序、类型或版本而复用同ID则冲突。语义相同但顺序不同的分配可以各自规划出同一规范结果，不代表它们是同一请求。格式错误与预先取消不记收据，合法格式但规则拒绝会记收据；修正时使用新ID。
 
 实际21项新增端到端测试与原有测试共256项通过，见 [数量会话验证](../Testing/allocation-event-sessions.validation.json)。此报告只验证会话功能；随后数量草稿与两个人工练习已接入，最新[Demo报告](../Testing/allocation-demo.validation.json)为295项回归与构建证据，鼠标实测仍单独标记。
+
+东欧动荡现可用`EraRemovalCatalogLoader`与`EraCountryRemovalEffect`装配人工实例，复用CountrySet命令；权威时代见[回合日历](turn-calendar.md)，逐国短缺与实际371项回归见[第二批](early-influence-batch2.md#东欧动荡实际实现)。完整出牌生命周期仍待实现。

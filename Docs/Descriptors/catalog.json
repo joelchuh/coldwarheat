@@ -4,7 +4,7 @@
   "entries": [
     {
       "id": "module.turn-flow",
-      "description": "定位回合阶段、秘密头条、行动名额、出牌结算栈、回合末候选胜利与存档继续位置；当前是设计，不可作为已实现模块调用。 消费CT1转交/奖励计划，保留独立ChinaState并按剩余源步骤收尾。 ON1按已完成根行动槽合并已知NSO/Space总额度并绑定放弃来源集合。 LH1等待Ames选择保留已接受揭示，源/根完成与后续OPS分开。 LEO1已提交前缀保留；等待共享行动不得提前移牌或占根槽。 DV1 next-US根槽检查点与Headline分开，未定调度保持待办。 LR1在已核实ExpireAndReset边界到期，等待地区选择不提前完成根或推进普通动作。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。 LADC1等待US回应/USSR完整目标不增根槽，事件完成不替父根执行剩余OPS。 AN1等待抽牌保留源与父帧，接受后只完成已核实根义务。 Star Wars借牌子帧由独立模块产生计划，TurnFlow保持根责任与阶段推进。",
+      "description": "定位回合阶段、秘密头条、行动名额、出牌结算栈、回合末候选胜利与存档继续位置；当前是设计，不可作为已实现模块调用。 消费CT1转交/奖励计划，保留独立ChinaState并按剩余源步骤收尾。 ON1按已完成根行动槽合并已知NSO/Space总额度并绑定放弃来源集合。 LH1等待Ames选择保留已接受揭示，源/根完成与后续OPS分开。 LEO1已提交前缀保留；等待共享行动不得提前移牌或占根槽。 DV1 next-US根槽检查点与Headline分开，未定调度保持待办。 LR1在已核实ExpireAndReset边界到期，等待地区选择不提前完成根或推进普通动作。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。 LADC1等待US回应/USSR完整目标不增根槽，事件完成不替父根执行剩余OPS。 AN1等待抽牌保留源与父帧，接受后只完成已核实根义务。 Star Wars借牌子帧由独立模块产生计划，TurnFlow保持根责任与阶段推进。 日历查询与不可变回合上下文已有module.turn-calendar实现，完整阶段编排仍planned。",
       "status": "planned",
       "descriptor": "Docs/Descriptors/turn-flow.module.json"
     },
@@ -58,7 +58,7 @@
     },
     {
       "id": "module.influence-events",
-      "description": "影响力增减/追平/控制筛选与迁移、固定与可选多国选择；完整计划及短缺停止，卡牌参数逐批绑定，完整处理器仍待实现。 LI1欧洲4或6完整分配、清空后额外精确移除与至多3国不同目标。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。 LADC1共享南美地区两个不同国的当前USSR影响乘参数倍数；0合法，不套OPS可达/控制限制。 基础五牌纯规划与一次性选择事务已实现，见module.influence-event-planners与module.influence-event-sessions；完整处理器生命周期仍planned。 社会主义政府/苏伊士危机的纯额度规划已实现；数量选择已接入宿主，UI已接入九练习Demo。",
+      "description": "影响力增减/追平/控制筛选与迁移、固定与可选多国选择；完整计划及短缺停止，卡牌参数逐批绑定，完整处理器仍待实现。 LI1欧洲4或6完整分配、清空后额外精确移除与至多3国不同目标。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。 LADC1共享南美地区两个不同国的当前USSR影响乘参数倍数；0合法，不套OPS可达/控制限制。 基础五牌纯规划与一次性选择事务已实现，见module.influence-event-planners与module.influence-event-sessions；完整处理器生命周期仍planned。 社会主义政府/苏伊士危机的纯额度规划已实现；数量选择已接入宿主，UI已接入九练习Demo。 东欧动荡按权威回合时代的纯规划与人工实例会话已实现；正式生命周期仍planned。",
       "status": "planned",
       "descriptor": "Docs/Descriptors/influence-events.module.json"
     },
@@ -160,13 +160,13 @@
     },
     {
       "id": "module.influence-event-planners",
-      "description": "七张基础影响力事件的纯C#规划：原五牌加社会主义政府/苏伊士危机额度移除；类型化选择、共享参数、原子失败。额度分配已接入宿主，UI已接入九练习Demo；完整出牌/牌区与RulePack未实现。",
+      "description": "八张基础影响力事件的纯C#规划：原五牌、两张额度移除与东欧动荡按权威时代逐国移除；类型化选择、共享参数、原子失败。七牌有Demo，东欧动荡待UI；完整出牌/牌区未实现。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/influence-event-planners.module.json"
     },
     {
       "id": "module.influence-event-sessions",
-      "description": "同一GameState中的一次性影响力事件与受益方选择：支持国家集合和数量分配，公开容量由核心计算；固定身份、版本和同一收据表原子提交。数量UI已接入九练习Demo，正式出牌/牌区/回合未实现。",
+      "description": "同一GameState中的一次性影响力事件与受益方选择：支持国家集合和数量分配，公开容量由核心计算；固定身份、版本和同一收据表原子提交。数量UI已接入九练习Demo，正式出牌/牌区/回合未实现。 东欧动荡复用国家集合，时代由宿主Turn决定；缺失回合有具名拒绝。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/influence-event-sessions.module.json"
     },
@@ -181,6 +181,12 @@
       "description": "从固定版本卡牌目录读取只读效果ID集合，检查引用结构与唯一性；只供参数跨文件引用核验，不装配完整卡牌、RulePack或处理器。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/card-effect-reference-index.module.json"
+    },
+    {
+      "id": "module.turn-calendar",
+      "description": "读取唯一回合表生成不可变时代/手牌目标/基础行动数；GameState.Turn提供权威回合并在状态复制中保持。缺少时不猜时代；不推进阶段、不发牌、不装配完整TurnFlow。",
+      "status": "implemented",
+      "descriptor": "Docs/Descriptors/turn-calendar.module.json"
     }
   ]
 }

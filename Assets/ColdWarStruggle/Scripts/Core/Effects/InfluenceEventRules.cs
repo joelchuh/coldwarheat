@@ -21,6 +21,13 @@ namespace ColdWarStruggle.Core
             {
                 case BudgetedRemovalEffect budget:
                     return BudgetedRemovalRules.Query(state,budget);
+                case EraCountryRemovalEffect eraRemoval:
+                    if(state.Turn==null)return Stop(InfluenceEventStatus.Rejected,InfluenceEventError.MissingTurnContext);
+                    var eraRegion=state.Map.GetCountriesInRegion(eraRemoval.Region);
+                    if(eraRegion.Count==0)return Stop(InfluenceEventStatus.Rejected,InfluenceEventError.InvalidDefinition);
+                    var removedSide=eraRemoval.Beneficiary==PlayerSide.US?PlayerSide.USSR:PlayerSide.US;
+                    var positive=eraRegion.Where(c=>state.GetInfluence(c.Id,removedSide)>0).Select(c=>c.Id).ToArray();
+                    candidates=positive;required=Math.Min(eraRemoval.TargetCount,positive.Length);break;
                 case ClearThenControlEffect clear:
                     if(!state.Map.Contains(clear.Country))return Stop(InfluenceEventStatus.Rejected,InfluenceEventError.InvalidDefinition);
                     candidates=new[]{clear.Country};break;
@@ -69,6 +76,11 @@ namespace ColdWarStruggle.Core
                 var opponent=definition.Beneficiary==PlayerSide.US?PlayerSide.USSR:PlayerSide.US;
                 switch(definition)
                 {
+                    case EraCountryRemovalEffect eraRemoval:
+                        if(query.RequiredTargets>0)
+                            foreach(var country in selection.Targets.OrderBy(c=>c.Value,StringComparer.Ordinal))
+                                work.RemoveExact(country,opponent,Math.Min(state.GetInfluence(country,opponent),eraRemoval.AmountByEra[state.Turn.Era]));
+                        break;
                     case BudgetedRemovalEffect _:
                         if(query.RequiredAmount>0)
                             foreach(var allocation in selection.Allocations.OrderBy(a=>a.Country.Value,StringComparer.Ordinal))
