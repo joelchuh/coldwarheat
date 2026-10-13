@@ -2,10 +2,9 @@
   "schema_version": 1,
   "id": "module.map-data",
   "kind": "module",
-  "description": "查询规则地区、国家、超级大国和无向邻接的数据契约与校验边界；不涉及地图坐标或画风，Core尚未实现。",
-  "status": "planned",
-  "entrypoints": [],
-  "planned_entrypoints": [
+  "description": "只读84国地图查询与经批准profile锁定的结构/语义/摘要加载；没有画风坐标。完整RulePack与卡牌处理器加载仍待实现。",
+  "status": "implemented-subset",
+  "entrypoints": [
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Domain/MapDefinition.cs",
       "symbol": "GetCountry"
@@ -23,6 +22,12 @@
       "symbol": "GetCountriesInRegion"
     },
     {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/MapDefinitionLoader.cs",
+      "symbol": "Load"
+    }
+  ],
+  "planned_entrypoints": [
+    {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Domain/MapDefinition.cs",
       "symbol": "IsInRegion"
     },
@@ -37,8 +42,7 @@
     "稳定ID、数据版本及已核对来源；禁止fixture启动真实对局"
   ],
   "outputs": [
-    "只读定义、稳定排序查询结果或明确错误",
-    "卡牌效果仅返回显式注册的版本匹配处理器"
+    "只读定义、双向稳定排序邻接或明确错误；不返回完整可运行规则包"
   ],
   "dependencies": [
     {
@@ -49,15 +53,16 @@
   "data_dependencies": [
     "rules.deluxe2015.region-scoring",
     "rules.deluxe2015.defcon",
-    "map.deluxe2015.world"
+    "map.deluxe2015.world",
+    "map.deluxe2015.approved_profile"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:map:1",
     "urn:coldwarheat:contract:ruleset-manifest:1"
   ],
   "preconditions": [
-    "静态定义已录入；尚无C#查询、加载或效果实现",
-    "完整国家/卡牌目录、资料审核及相关处理器齐备后才能创建正式对局"
+    "正式地图Schema、独立批准profile与版本一致；只返回地图定义",
+    "完整国家/卡牌目录、资料审核及全部处理器齐备后才能创建正式对局"
   ],
   "side_effects": [
     "查询和校验无对局副作用；文件读取由Infrastructure负责"
@@ -87,15 +92,19 @@
     {
       "path": "Docs/Design/map-card-contracts.cases.json",
       "status": "mixed-schema-and-planned"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DefinitionTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "verification": {
-    "implementation_tested": false,
-    "schema_validation_report": "Docs/Worklogs/2026-09-27-map-card-contracts.md"
+    "implementation_tested": true,
+    "report": "Docs/Worklogs/2026-10-13-first-demo.md",
+    "scope": "地图定义与加载子集"
   },
   "open_items": [
-    "逐卡效果参数/交互核实；初始布置数据已建立",
-    "Core与数据加载器实现",
-    "完整规则包审核与运行测试"
+    "完整规则包审核与加载",
+    "逐卡效果及未确认交互"
   ]
 }

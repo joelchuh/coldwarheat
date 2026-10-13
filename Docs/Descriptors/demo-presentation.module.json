@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "id": "module.demo-presentation",
+  "kind": "module",
+  "description": "单窗口影响力Demo：JSON人工场景、双方操作者切换、国家分区面板、投放/重发/重置。规则由固定会话裁决；示例牌不可出牌，尚无IMapView正式实现。",
+  "status": "implemented",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.cs",
+      "symbol": "Load"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.cs",
+      "symbol": "SubmitAsync"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.cs",
+      "symbol": "RetryAsync"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.cs",
+      "symbol": "Initialize"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Bootstrap/DemoBootstrap.cs",
+      "symbol": "Awake"
+    }
+  ],
+  "inputs": [
+    "正式地图与批准profile、地图Schema、演示局面、影响力费用、名称字典"
+  ],
+  "outputs": [
+    "只读视图驱动的Unity诊断界面"
+  ],
+  "dependencies": [
+    "module.map-data",
+    "module.influence-core",
+    "module.local-session"
+  ],
+  "preconditions": [
+    "Unity 6000.6.0f1，显式fixture，Windows本地运行"
+  ],
+  "side_effects": [
+    "UI提交玩家意图；重置创建新宿主；不修改正式JSON"
+  ],
+  "stop_conditions": [
+    "缺失/损坏数据加载失败；显示规则拒绝原因"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/operations.md",
+      "scope": "INF-01/02/03；只有普通影响力已接入"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DemoTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DemoControllerTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/first-demo.md",
+  "verification": {
+    "checked_on": "2026-10-13",
+    "report": "Docs/Worklogs/2026-10-13-first-demo.md"
+  },
+  "data_dependencies": [
+    "rules.deluxe2015.influence_placement",
+    "demo.influence_scenarios",
+    "map.deluxe2015.world",
+    "map.deluxe2015.approved_profile"
+  ]
+}

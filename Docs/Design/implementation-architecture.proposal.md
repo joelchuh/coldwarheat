@@ -2,7 +2,7 @@
 
 description：供编码前共同确认的分层、地图输入输出与首批交付边界；接口名称是提案，不是已经存在的 C# 类型。
 
-状态：2026-10-13，用户已认可实现方向与推进顺序，并选择首个原型供单人测试、允许查看双方信息。最终布局和美术仍未冻结；尚未开始生产源码。本稿承接 [架构](../Wiki/architecture.md)、[编码方向讨论](coding-direction-discussion.md) 和 [地图契约](../Wiki/map-presentation.md)，不改动已确认规则。
+状态：2026-10-13，用户已认可实现方向与推进顺序，并选择首个原型供单人测试、允许查看双方信息。最终布局和美术仍未冻结；首批影响力Demo已有生产源码与52项真实测试；完整地图接口仍是提案，实际入口见 [Demo](../Wiki/first-demo.md)。本稿承接 [架构](../Wiki/architecture.md)、[编码方向讨论](coding-direction-discussion.md) 和 [地图契约](../Wiki/map-presentation.md)，不改动已确认规则。
 
 ## 1. 目标与起步方式
 

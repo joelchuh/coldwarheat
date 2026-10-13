@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "data.approved-map-profile",
+  "kind": "data",
+  "description": "已审核地图0.1.0的独立SHA256批准值；从23314ef原有审核数据冻结，运行或构建不得从候选数据自动批准。",
+  "status": "ready",
+  "entrypoints": [
+    {
+      "path": "Data/Maps/deluxe-2015/world.profile.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "按稳定dataset_id读取"
+  ],
+  "outputs": [
+    "只读数据或明确错误"
+  ],
+  "dependencies": [
+    "map.deluxe2015.world"
+  ],
+  "preconditions": [
+    "限当前版本；fixture不能用于正式开局"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知版本、结构或摘要不符时拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Worklogs/2026-09-28-map-card-data.md",
+      "scope": "已有地图资料核验；摘要冻结其原样数据"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DefinitionTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/first-demo.md",
+  "verification": {
+    "checked_on": "2026-10-13",
+    "report": "Docs/Worklogs/2026-10-13-first-demo.md"
+  },
+  "dataset_id": "map.deluxe2015.approved_profile"
+}

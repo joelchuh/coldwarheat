@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "data.influence-placement",
+  "kind": "data",
+  "description": "普通影响力每点费用：一般1、敌控2；由Core逐点重查控制权，不在UI重复存放数值。",
+  "status": "ready",
+  "entrypoints": [
+    {
+      "path": "Data/Rulesets/deluxe-2015/influence-placement.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "按稳定dataset_id读取"
+  ],
+  "outputs": [
+    "只读数据或明确错误"
+  ],
+  "dependencies": [
+    "module.influence-core"
+  ],
+  "preconditions": [
+    "限当前版本；fixture不能用于正式开局"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知版本、结构或摘要不符时拒绝"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015",
+      "path": "Docs/Wiki/operations.md",
+      "sections": [
+        "2.1.7",
+        "6.1.2"
+      ],
+      "scope": "继承已核对INF-01/03；本批未重做资料核验"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/InfluenceRulesTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/first-demo.md",
+  "verification": {
+    "checked_on": "2026-10-13",
+    "report": "Docs/Worklogs/2026-10-13-first-demo.md"
+  },
+  "dataset_id": "rules.deluxe2015.influence_placement"
+}

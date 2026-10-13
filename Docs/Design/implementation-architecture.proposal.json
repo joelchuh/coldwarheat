@@ -2,8 +2,8 @@
   "schema_version": 1,
   "id": "discussion.implementation-architecture",
   "kind": "design-discussion",
-  "description": "已认可的分层和可替换地图接口方向；首个原型供单人测试双方。查首批计划和测试视图边界，尚无可调用C#实现。",
-  "status": "direction-approved-implementation-not-started",
+  "description": "已认可的分层和可替换地图接口方向；首个原型供单人测试双方。查首批计划和测试视图边界，实际子集见first-demo Wiki，完整地图接口仍待实现。",
+  "status": "first-slice-implemented-review-fixes-verified",
   "path_base": "repository-root",
   "document": "Docs/Design/implementation-architecture.proposal.md",
   "entrypoints": [],
@@ -22,7 +22,8 @@
   ],
   "data_dependencies": [],
   "preconditions": [
-    "方向已确认；接口与生产源码尚未实现"
+    "用户已批准首批编码；Unity 6000.6.0f1已实际编译和测试",
+    "只按已实现子集使用；其余设计不当作运行模块"
   ],
   "side_effects": [],
   "stop_conditions": [
@@ -42,12 +43,11 @@
     "action mode or decision ID",
     "latest query sequence"
   ],
-  "production_code_written": false,
-  "unity_project_created": false,
-  "runtime_game_tests_run": 0,
+  "production_code_written": true,
+  "unity_project_created": true,
+  "runtime_game_tests_run": 52,
   "unresolved_decisions": [
-    "获准后核实实际Unity编译与测试兼容性",
-    "最终画风与布局未定；不阻塞纯规则闭环"
+    "最终地图布局和美术未定；完整规则仍分批实现"
   ],
   "planned_entrypoints": [
     "IMapView.LoadAsync",
@@ -56,10 +56,10 @@
     "IMapView.FocusOn",
     "IMapView.PlayTransitions",
     "IMapView.Dispose",
-    "MapPresenter",
-    "IGameSession"
+    "MapPresenter"
   ],
   "direction_approved": true,
   "implementation_plan": "Docs/Plans/2026-10-13-core-influence-first-slice.md",
-  "prototype_mode": "single-operator-dual-side-local-test"
+  "prototype_mode": "single-operator-dual-side-local-test",
+  "verification_report": "Docs/Worklogs/2026-10-13-first-demo.md"
 }

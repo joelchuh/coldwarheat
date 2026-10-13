@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "dataset_id": "demo.influence_scenarios",
+  "description": "单人双边测试用的人工局面，非正式开局；示例手牌仅检验可见性，不绑定卡牌效果。未列出的国家双方影响力均为0。",
+  "scope": "fixture",
+  "scenarios": [
+    {
+      "id": "us-placement",
+      "title": "美国行动 · 法国影响力练习",
+      "actor": "US",
+      "ops": 4,
+      "selected_country": "country.france",
+      "influence": [
+        {"country_id": "country.west_germany", "us": 1, "ussr": 0},
+        {"country_id": "country.france", "us": 0, "ussr": 3}
+      ],
+      "hands": {"US": ["美国示例牌 A", "美国示例牌 B"], "USSR": ["苏联示例牌 A", "苏联示例牌 B"]}
+    },
+    {
+      "id": "ussr-placement",
+      "title": "苏联行动 · 东德影响力练习",
+      "actor": "USSR",
+      "ops": 4,
+      "selected_country": "country.east_germany",
+      "influence": [
+        {"country_id": "country.poland", "us": 0, "ussr": 1},
+        {"country_id": "country.east_germany", "us": 3, "ussr": 0}
+      ],
+      "hands": {"US": ["美国示例牌 A", "美国示例牌 B"], "USSR": ["苏联示例牌 A", "苏联示例牌 B"]}
+    }
+  ]
+}

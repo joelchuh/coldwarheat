@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "description": "按 description 选择设计模块；planned 条目尚不可执行。",
+  "description": "按description选择模块；implemented条目有真实代码入口，planned条目仍不可执行；map-data仅地图子集。",
   "entries": [
     {
       "id": "module.turn-flow",
@@ -40,8 +40,8 @@
     },
     {
       "id": "module.map-data",
-      "description": "查询规则地区、国家、超级大国和无向邻接的数据契约与校验边界；不涉及地图坐标或画风，Core尚未实现。",
-      "status": "planned",
+      "description": "只读84国地图查询与经批准profile锁定的结构/语义/摘要加载；没有画风坐标。完整RulePack与卡牌处理器加载仍待实现。",
+      "status": "implemented-subset",
       "descriptor": "Docs/Descriptors/map-data.module.json"
     },
     {
@@ -133,6 +133,30 @@
       "description": "查询借用卡牌的候选、使用路线、父子结算帧与完成收据；按逐项登记的能力调用下游事件。规则与显示分离，当前只有有限设计模型。",
       "status": "planned",
       "descriptor": "Docs/Descriptors/nested-card-events.module.json"
+    },
+    {
+      "id": "module.influence-core",
+      "description": "纯C#影响力规划：冻结起始可达集合、逐点费用/控制权、完整命令原子失败；不含政变、调整、卡牌修正或正式回合。",
+      "status": "implemented",
+      "descriptor": "Docs/Descriptors/influence-core.module.json"
+    },
+    {
+      "id": "module.local-session",
+      "description": "同一权威局面的美苏固定身份会话；命令版本/上下文校验、按身份幂等、只读玩家投影和显式本地测试观察。",
+      "status": "implemented",
+      "descriptor": "Docs/Descriptors/local-session.module.json"
+    },
+    {
+      "id": "module.demo-presentation",
+      "description": "单窗口影响力Demo：JSON人工场景、双方操作者切换、国家分区面板、投放/重发/重置。规则由固定会话裁决；示例牌不可出牌，尚无IMapView正式实现。",
+      "status": "implemented",
+      "descriptor": "Docs/Descriptors/demo-presentation.module.json"
+    },
+    {
+      "id": "module.demo-build",
+      "description": "Unity编辑器构建模块：验证并同步六份权威JSON到忽略的StreamingAssets；标准Build回调也同步。提供Prepare/Play/Windows Build菜单，不执行Git。",
+      "status": "implemented",
+      "descriptor": "Docs/Descriptors/demo-build.module.json"
     }
   ]
 }

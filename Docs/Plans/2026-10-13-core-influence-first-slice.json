@@ -3,24 +3,18 @@
   "id": "plan.core-influence-first-slice",
   "kind": "implementation-plan",
   "description": "首批C#工程、完整静态地图、影响力事务、身份/幂等及单人查看双方信息的测试视图；一个本地宿主，两方固定会话，非两个客户端。先读本摘要再读对应任务。",
-  "status": "prepared-for-review-not-executed",
+  "status": "first-slice-implemented-review-fixes-verified",
   "path_base": "repository-root",
   "document": "Docs/Plans/2026-10-13-core-influence-first-slice.md",
   "entrypoints": [],
-  "planned_entrypoints": [
-    "ControlRules.GetController",
-    "MapDefinitionLoader",
-    "InfluenceRules.PlanPlacement",
-    "IGameSession.SubmitAsync",
-    "LocalGameHost.ReadLocalTestSnapshot"
-  ],
+  "planned_entrypoints": [],
   "inputs": [
     "已认可架构方向",
     "用户选择单人测试并允许查看双方信息",
     "已有地图和普通影响力契约"
   ],
   "outputs": [
-    "可审阅任务、接口、测试和交付边界"
+    "已实现影响力/身份/投影闭环及独立Windows诊断Demo"
   ],
   "dependencies": [
     "Docs/Design/implementation-architecture.proposal.md",
@@ -29,8 +23,8 @@
     "Docs/Wiki/map-card-contracts.md"
   ],
   "preconditions": [
-    "用户已同意方向；具体计划准备供审阅",
-    "实际Unity编译和包解析兼容性需在执行任务1验证"
+    "用户已批准首批编码；Unity 6000.6.0f1已实际编译和测试",
+    "只按已实现子集使用；其余设计不当作运行模块"
   ],
   "side_effects": [],
   "stop_conditions": [
@@ -44,7 +38,12 @@
       "scope": "INF-01/02/03及INF-A/B/C/D"
     }
   ],
-  "tests": [],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/",
+      "status": "52-passed-unity-editmode"
+    }
+  ],
   "planned_test_suites": [
     "DefinitionTests",
     "InfluenceRulesTests",
@@ -57,7 +56,21 @@
   "authority_game_count": 1,
   "player_session_count": 2,
   "direction_approved": true,
-  "production_code_written": false,
-  "unity_project_created": false,
-  "runtime_game_tests_run": 0
+  "production_code_written": true,
+  "unity_project_created": true,
+  "runtime_game_tests_run": 52,
+  "verification_report": "Docs/Worklogs/2026-10-13-first-demo.md",
+  "deviations": [
+    "同目录feature分支，非新worktree",
+    "小DTO按职责聚合，投影测试并入SessionTests；CountryState并入GameState",
+    "额外JSON费用/profile及可点击诊断UI/Windows构建响应用户整批Demo要求",
+    "以锁保护串行提交；无网络异步队列；可信fixture示例牌不是CardInstance"
+  ],
+  "implemented_modules": [
+    "module.map-data",
+    "module.influence-core",
+    "module.local-session",
+    "module.demo-presentation",
+    "module.demo-build"
+  ]
 }

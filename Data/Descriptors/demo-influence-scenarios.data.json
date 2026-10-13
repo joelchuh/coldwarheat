@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "id": "data.demo-influence-scenarios",
+  "kind": "data",
+  "description": "美苏两个人工4OPS练习场景和示例手牌标签；显式fixture，不是正式初始布置或真实卡牌。",
+  "status": "ready",
+  "entrypoints": [
+    {
+      "path": "Data/Demo/influence-scenarios.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "按稳定dataset_id读取"
+  ],
+  "outputs": [
+    "只读数据或明确错误"
+  ],
+  "dependencies": [
+    "module.demo-presentation"
+  ],
+  "preconditions": [
+    "限当前版本；fixture不能用于正式开局"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知版本、结构或摘要不符时拒绝"
+  ],
+  "rule_sources": [],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DemoTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/first-demo.md",
+  "verification": {
+    "checked_on": "2026-10-13",
+    "report": "Docs/Worklogs/2026-10-13-first-demo.md"
+  },
+  "dataset_id": "demo.influence_scenarios"
+}

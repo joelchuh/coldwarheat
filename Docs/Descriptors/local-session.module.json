@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "id": "module.local-session",
+  "kind": "module",
+  "description": "同一权威局面的美苏固定身份会话；命令版本/上下文校验、按身份幂等、只读玩家投影和显式本地测试观察。",
+  "status": "implemented",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/LocalGameHost.cs",
+      "symbol": "LocalGameHost"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/SessionContracts.cs",
+      "symbol": "IGameSession"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/LocalGameHost.cs",
+      "symbol": "ReadLocalTestSnapshot"
+    }
+  ],
+  "inputs": [
+    "可信初始GameState、显式localTest开关、CommandEnvelope"
+  ],
+  "outputs": [
+    "过滤的PlayerViewSnapshot、收据、LegalTargetsResult；授权观察入口可读双方示例手牌"
+  ],
+  "dependencies": [
+    "module.influence-core"
+  ],
+  "preconditions": [
+    "单进程可信Bootstrap；不是联网身份认证"
+  ],
+  "side_effects": [
+    "接受命令原子替换局面并保存内存收据；重试不重放效果"
+  ],
+  "stop_conditions": [
+    "错误身份/版本/上下文/同ID不同payload；未开启localTest禁止观察"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/operations.md",
+      "scope": "INF-01/02/03；只有普通影响力已接入"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SessionTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/first-demo.md",
+  "verification": {
+    "checked_on": "2026-10-13",
+    "report": "Docs/Worklogs/2026-10-13-first-demo.md"
+  }
+}

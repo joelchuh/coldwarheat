@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "id": "module.demo-build",
+  "kind": "module",
+  "description": "Unity编辑器构建模块：验证并同步六份权威JSON到忽略的StreamingAssets；标准Build回调也同步。提供Prepare/Play/Windows Build菜单，不执行Git。",
+  "status": "implemented",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "symbol": "Prepare"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "symbol": "Build"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "symbol": "SynchronizeData"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "symbol": "OnPreprocessBuild"
+    }
+  ],
+  "inputs": [
+    "项目根目录Data与Docs/Contracts中的六份规范数据"
+  ],
+  "outputs": [
+    "Assets/ColdWarStruggle/Scenes/FirstDemo.unity；Builds/FirstDemo/ColdWarStruggleDemo.exe与必要同目录运行文件"
+  ],
+  "dependencies": [
+    "module.demo-presentation"
+  ],
+  "preconditions": [
+    "Unity Editor、WindowsStandalone模块、数据通过DemoCatalog；源地图profile需独立审核"
+  ],
+  "side_effects": [
+    "只写生成数据、Demo场景和项目构建设置/输出；创建场景前保护未保存场景"
+  ],
+  "stop_conditions": [
+    "数据校验失败则停止构建；不自动重算批准摘要；构建失败不报告成功"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/operations.md",
+      "scope": "INF-01/02/03；只有普通影响力已接入"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DemoBuildTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/first-demo.md",
+  "verification": {
+    "checked_on": "2026-10-13",
+    "report": "Docs/Worklogs/2026-10-13-first-demo.md"
+  },
+  "data_dependencies": [
+    "rules.deluxe2015.influence_placement",
+    "demo.influence_scenarios",
+    "map.deluxe2015.world",
+    "map.deluxe2015.approved_profile"
+  ]
+}

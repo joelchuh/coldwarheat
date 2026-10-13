@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "id": "module.influence-core",
+  "kind": "module",
+  "description": "纯C#影响力规划：冻结起始可达集合、逐点费用/控制权、完整命令原子失败；不含政变、调整、卡牌修正或正式回合。",
+  "status": "implemented",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/InfluenceRules.cs",
+      "symbol": "PlanPlacement"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OperationsContext.cs",
+      "symbol": "FromRoundStart"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ControlRules.cs",
+      "symbol": "GetController"
+    }
+  ],
+  "inputs": [
+    "不可变GameState、它自己的OperationsContext、按顺序CountryId列表"
+  ],
+  "outputs": [
+    "隔离PlacementPlan、费用、事件和NextState或具名拒绝"
+  ],
+  "dependencies": [],
+  "preconditions": [
+    "由可信宿主注入已验证地图和费用；基础影响力场景"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "非法目标、越权上下文、预算不足、溢出；整条命令拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/operations.md",
+      "scope": "INF-01/02/03；只有普通影响力已接入"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/InfluenceRulesTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/first-demo.md",
+  "verification": {
+    "checked_on": "2026-10-13",
+    "report": "Docs/Worklogs/2026-10-13-first-demo.md"
+  },
+  "data_dependencies": [
+    "rules.deluxe2015.influence_placement"
+  ]
+}
