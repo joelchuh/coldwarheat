@@ -16,12 +16,13 @@ namespace ColdWarStruggle.Infrastructure
         public int Ops { get; }
         public InfluenceEffectDefinition EventDefinition { get; }
         public GameTurnContext Turn { get; }
+        public SetupDeploymentDefinition DeploymentDefinition { get; }
         public IReadOnlyDictionary<CountryId,CountryState> Countries { get; }
         public IReadOnlyDictionary<PlayerSide,IReadOnlyList<string>> Hands { get; }
-        internal DemoScenario(string id,string title,PlayerSide actor,CountryId selected,int ops,IReadOnlyDictionary<CountryId,CountryState> countries,IReadOnlyDictionary<PlayerSide,IReadOnlyList<string>> hands,InfluenceEffectDefinition eventDefinition=null,GameTurnContext turn=null)
-        { Id=id;Title=title;Actor=actor;SelectedCountry=selected;Ops=ops;Countries=countries;Hands=hands;EventDefinition=eventDefinition;Turn=turn; }
+        internal DemoScenario(string id,string title,PlayerSide actor,CountryId selected,int ops,IReadOnlyDictionary<CountryId,CountryState> countries,IReadOnlyDictionary<PlayerSide,IReadOnlyList<string>> hands,InfluenceEffectDefinition eventDefinition=null,GameTurnContext turn=null,SetupDeploymentDefinition deployment=null)
+        { Id=id;Title=title;Actor=actor;SelectedCountry=selected;Ops=ops;Countries=countries;Hands=hands;EventDefinition=eventDefinition;Turn=turn;DeploymentDefinition=deployment; }
     }
-    public sealed class DemoCatalog
+    public sealed partial class DemoCatalog
     {
         public MapDefinition Map { get; }
         public IReadOnlyList<DemoScenario> Scenarios { get; }
@@ -55,7 +56,14 @@ namespace ColdWarStruggle.Infrastructure
             var ctx=OperationsContext.FromRoundStart(s.Id+".ops",s.Actor,s.Ops,Map,s.Countries,costs);
             var gameId="demo-"+Guid.NewGuid().ToString("N");
             var execution=s.EventDefinition==null?null:new InfluenceEventExecution(gameId+".event",s.EventDefinition,s.Actor,InfluenceEventPolicy.NoActiveInterference);
-            return new LocalGameHost(new GameState(Map,s.Countries,ctx,gameId,hands:s.Hands,influenceEvent:execution,turn:s.Turn),true);
+            var state=new GameState(Map,s.Countries,ctx,gameId,hands:s.Hands,influenceEvent:execution,turn:s.Turn);
+            if(s.DeploymentDefinition!=null)
+            {
+                var started=InitialDeploymentFlow.Begin(state,s.DeploymentDefinition,gameId+".deployment");
+                if(!started.Accepted)throw new ArgumentException("Invalid deployment fixture: "+started.Error);
+                state=started.NextState;
+            }
+            return new LocalGameHost(state,true);
         }
         public DemoCatalog WithEventScenarios(string fixtures,string parameters,string parameterSchema)
         {

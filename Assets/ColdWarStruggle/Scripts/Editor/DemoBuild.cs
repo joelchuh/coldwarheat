@@ -56,7 +56,8 @@ namespace ColdWarStruggle.Editor
                 Read(root,"Data/Localization/en-US.catalog-names.json"),Read(root,"Data/Maps/deluxe-2015/world.profile.json"))
                 .WithEventScenarios(Read(root,"Data/Demo/event-scenarios.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch1.parameters.json"),Read(root,"Docs/Contracts/early-influence-parameters.schema.json"))
                 .WithAllocationScenarios(Read(root,"Data/Demo/allocation-scenarios.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch2.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch2.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
-                .WithEraScenarios(Read(root,"Data/Demo/era-scenarios.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch2.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch2.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"),Read(root,"Data/Rulesets/deluxe-2015/turn-flow.json"));
+                .WithEraScenarios(Read(root,"Data/Demo/era-scenarios.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch2.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch2.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"),Read(root,"Data/Rulesets/deluxe-2015/turn-flow.json"))
+                    .WithDeploymentScenario(Read(root,"Data/Demo/deployment-scenario.json"),Read(root,"Data/Rulesets/deluxe-2015/setup.json"),Read(root,"Docs/Contracts/setup.schema.json"));
             WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
             Directory.CreateDirectory(payload);
             Copy(root,"Data/Maps/deluxe-2015/world.json",payload,"world.json");Copy(root,"Docs/Contracts/map.schema.json",payload,"map.schema.json");
@@ -74,6 +75,9 @@ namespace ColdWarStruggle.Editor
             Copy(root,"Data/Rulesets/deluxe-2015/turn-flow.json",payload,"turn-flow.json");
             Copy(root,"Data/Presentation/world-layout.json",payload,"world-layout.json");
             Copy(root,"Data/Presentation/world-land.json",payload,"world-land.json");
+            Copy(root,"Data/Demo/deployment-scenario.json",payload,"deployment-scenario.json");
+            Copy(root,"Data/Rulesets/deluxe-2015/setup.json",payload,"setup.json");
+            Copy(root,"Docs/Contracts/setup.schema.json",payload,"setup.schema.json");
             AssetDatabase.Refresh();
         }
         static string Read(string root,string relative)=>File.ReadAllText(Path.Combine(root,relative));

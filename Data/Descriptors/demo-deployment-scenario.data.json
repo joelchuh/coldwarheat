@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "id": "data.demo-deployment-scenario",
+  "kind": "data",
+  "description": "初始部署的显式人工练习入口，仅存标题、选中国家与示例牌；固定影响力、部署顺序与额度统一读取setup数据。",
+  "status": "fixture",
+  "entrypoints": [
+    {
+      "path": "Data/Demo/deployment-scenario.json",
+      "symbol": "scenario"
+    }
+  ],
+  "inputs": [
+    "固定场景ID"
+  ],
+  "outputs": [
+    "零影响力准备态经规则Begin生成的部署练习"
+  ],
+  "dependencies": [
+    "setup.deluxe2015.standard",
+    "map.deluxe2015.world"
+  ],
+  "preconditions": [
+    "显式fixture；选中国家属于首阶段目标；示例牌不代表真实发牌"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "额外规则字段、重复场景ID、错误profile/国家/手牌立即拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/setup.md",
+      "scope": "初始影响力部署子集；正式发牌未实现"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DeploymentDemoTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "dataset_id": "demo.deployment_scenario",
+  "verification": {
+    "report": "Docs/Testing/deployment-demo.validation.json"
+  }
+}

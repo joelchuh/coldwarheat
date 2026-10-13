@@ -2,15 +2,15 @@
 
 description：运行单窗口双边测试，定位影响力规则、固定身份、幂等、数据加载及 Unity 构建入口。先读模块 JSON，再定位对应函数。
 
-状态：2026-10-13，真实 Unity 工程与 Windows 构建已建立；467 项 EditMode 测试通过。已通过游戏自身导出真实渲染并检查字体/布局；computer-use鼠标实测仍受窗口激活失败影响，不能把截图当成点击验收。
+状态：2026-10-13，真实 Unity 工程与 Windows 构建已建立；566 项 EditMode 测试通过。已通过游戏自身导出真实渲染并检查字体/布局；computer-use鼠标实测仍受窗口激活失败影响，不能把截图当成点击验收。
 
 ![世界地图占位实际运行画面](../Images/world-map-demo.png)
 
-共有十一个场景，顶部“上一个/下一个”切换。前两个是普通OPS，后九个是八种公开事件的人工练习。
+共有十二个场景，顶部“上一个/下一个”切换。前两个是普通OPS，第3–11个是八种公开事件，第12个是初始影响力部署练习。
 
 ## 运行与尝试
 
-最新十一练习版本：`E:\TwilightStruggle\Builds\FirstDemo\ColdWarStruggleDemo.exe`。用户已打开的旧PreviewDemo窗口保留，未被关闭；运行中的旧窗口不会自动变成新版。运行需要保留同目录的 `_Data`、`UnityPlayer.dll`、`MonoBleedingEdge` 等文件，不能只复制 exe。构建目录不进 Git；源码可重建。
+最新十二练习版本：`E:\TwilightStruggle\Builds\FirstDemo\ColdWarStruggleDemo.exe`。用户已打开的旧PreviewDemo窗口保留，未被关闭；运行中的旧窗口不会自动变成新版。运行需要保留同目录的 `_Data`、`UnityPlayer.dll`、`MonoBleedingEdge` 等文件，不能只复制 exe。构建目录不进 Git；源码可重建。
 
 从 Git 检出后，用 Unity **6000.6.0f1** 打开项目，选择 **ColdWarStruggle → Play First Demo**。菜单 **Build Windows Demo** 输出FirstDemo，**Build Side-by-side Preview** 输出PreviewDemo；标准 Unity Build 也会执行数据校验和同步。先打开已跟踪的 `Assets/ColdWarStruggle/Scenes/FirstDemo.unity`，不要构建空场景。
 
@@ -50,7 +50,7 @@ Core/Application/Infrastructure 没有 UnityEngine 引用。Core 不读文件；
 - 人工场景：[influence-scenarios.json](../../Data/Demo/influence-scenarios.json)，明确 `scope=fixture`；不冒充正式初始布置。
 - 地图：[world.json](../../Data/Maps/deluxe-2015/world.json)；独立 [world.profile.json](../../Data/Maps/deluxe-2015/world.profile.json) 锁定原有审核版本。批准摘要忽略排版和对象键顺序，保留数组顺序；修改定义后要重新审核 profile，构建不会替候选文件自行批准。
 - 名称：[en-US.catalog-names.json](../../Data/Localization/en-US.catalog-names.json)，国家暂用英文名称，界面提示为中文。
-- `Assets/StreamingAssets/ColdWarStruggle` 是生成的十七文件副本，被 Git 忽略；每次构建先验证权威源再同步。编辑副本不能改变权威数据。
+- `Assets/StreamingAssets/ColdWarStruggle` 是生成的二十文件副本，被 Git 忽略；每次构建先验证权威源再同步。编辑副本不能改变权威数据。
 
 运行门禁只批准当前地图定义，**没有返回完整 RulePack**。完整注册表的102个处理器仍为planned；现有八牌算法和人工事件事务不能冒充正式出牌生命周期。没有完整开局、发牌、回合、计分、DEFCON、军事行动、太空、存档、联网或 AI。`OperationsMode` 的政变/调整枚举不代表这些行动已实现。人工手牌标签不是完整卡牌实体。
 
@@ -58,7 +58,7 @@ Core/Application/Infrastructure 没有 UnityEngine 引用。Core 不读文件；
 
 ## 验证与后续
 
-真实测试入口：`Assets/ColdWarStruggle/Tests/EditMode`。运行 Unity EditMode，筛选 `ColdWarStruggle.Tests`；当前 467 项通过。详细 RED/GREEN、构建和实际限制见 [世界地图工作记录](../Worklogs/2026-10-13-world-map.md)。旧的有限 Python 设计检查不能计入 C# 测试数。
+真实测试入口：`Assets/ColdWarStruggle/Tests/EditMode`。运行 Unity EditMode，筛选 `ColdWarStruggle.Tests`；当前 566 项通过。详细 RED/GREEN、构建和实际限制见 [部署地图工作记录](../Worklogs/2026-10-13-deployment-demo.md)。旧的有限 Python 设计检查不能计入 C# 测试数。
 
 八张基础事件、国家集合和数量分配界面已实现；世界地图占位视图已接入，后续改善地图可读性和真实操作验收；正式出牌与完整阶段编排仍待推进。地图布局与主题可并行演进，但沿用稳定 CountryId 和会话边界。
 
@@ -117,3 +117,20 @@ F12只导出游戏当前渲染帧到本机 `Application.persistentDataPath/DemoC
 当前世界图批次的17份载荷、构建和截图见[世界图验证报告](../Testing/world-map.validation.json)，功能入口见[世界图知识点](world-map-view.md)。
 
 World视图可追加`--demo-focus=selected`，初始定位所选国家以重复检查局部画面。默认仍全图；此参数不改变局面或代为提交操作。放大后文字会避开热点与其他标签，空间不足的名称通过底部详情读取。
+
+
+## 初始部署地图练习
+
+练习12（`--demo-scenario=demo.setup.deployment`）使用共享setup中的固定布置与自由部署额度。只读示例手牌用于界面演示，没有正式洗牌/发牌；完成部署也不会冒充完整新游戏。
+
+1. 先由苏联在东欧分配6点：选绿色国家，在右侧用±1编辑，额度用完后确认。固定影响力已由规则加载；编辑草稿不改变权威局面。
+2. 苏方确认后，规则同时应用美国固定布置。切换“操作方：美国”，在西欧分配7点，再确认。加拿大在规则数据中属于欧洲/西欧；可用全图找到北美位置，或切到欧洲列表定位。
+3. 自由部署不受稳定度或邻接限制，也不消耗OPS。界面显示部署额度；国家控制权仍由统一影响力规则计算。
+4. 切地图/卡片/列表保留同一局面与草稿；切换身份、重置或权威阶段变化清除未确认草稿。重发返回上次历史收据，当前画面仍读取最新局面。
+5. 美国确认后显示部署练习完成；示例牌不能出牌，正式头条与回合尚未接入。
+
+先读[Demo描述](../Descriptors/demo-presentation.module.json)和[fixture描述](../../Data/Descriptors/demo-deployment-scenario.data.json)，再定位`DemoCatalog.WithDeploymentScenario`、`DemoController.Deployment`和`DemoView.DrawDeploymentControls`。`MapPresenter`只传递公开帧与选国意图，地图不裁决部署规则。
+
+流程：fixture + setup → 规则Begin → 身份查询合法国 → 本地完整草稿 → 固定身份SubmitDeploymentAsync → 规则Resolve → 最新公开帧。实际测试、20份载荷、构建和截图见[部署Demo验证报告](../Testing/deployment-demo.validation.json)。
+
+![初始部署地图实际运行帧](../Images/deployment-demo.png)

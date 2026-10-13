@@ -51,7 +51,12 @@ namespace ColdWarStruggle.Presentation
             var snapshot=controller.ReadView();
             if(sourceGeneration!=controller.ViewGeneration || gameId!=snapshot.GameId || viewer!=snapshot.Viewer)Initialize(snapshot);
             IEnumerable<CountryId> permitted=Array.Empty<CountryId>();
-            if(snapshot.Event==null)
+            if(snapshot.Deployment!=null)
+            {
+                var q=controller.DeploymentTargets();
+                if(q.Error==RuleError.None && q.Version==snapshot.Version && q.Viewer==snapshot.Viewer && q.ExecutionId==snapshot.Deployment.ExecutionId && q.DecisionId==snapshot.Deployment.DecisionId)permitted=q.Targets;
+            }
+            else if(snapshot.Event==null)
             {
                 var q=controller.LegalTargets();
                 if(q.Error==RuleError.None && q.Version==snapshot.Version && q.Viewer==snapshot.Viewer && q.ContextId==snapshot.ContextId)permitted=q.Targets;
@@ -61,7 +66,8 @@ namespace ColdWarStruggle.Presentation
                 var q=controller.EventTargets();
                 if(q.Error==RuleError.None && q.Version==snapshot.Version && q.Viewer==snapshot.Viewer && q.ExecutionId==snapshot.Event.ExecutionId && q.DecisionId==snapshot.Event.DecisionId)permitted=q.Targets;
             }
-            var allowed=new HashSet<CountryId>(permitted);var draft=new HashSet<CountryId>(controller.EventDraft);
+            var allowed=new HashSet<CountryId>(permitted);
+            var draft=new HashSet<CountryId>(snapshot.Deployment!=null?controller.DeploymentDraft.Select(a=>a.Country):controller.EventDraft);
             sourceInteractionRevision=controller.InteractionRevision;
             var next=new MapFrame(contextId,snapshot.Version,checked(++sequence),Interaction(snapshot),snapshot.Countries.Select(c=>
                 new MapCountryFrame(c.Definition.Id,c.US,c.USSR,c.Controller,allowed.Contains(c.Definition.Id),draft.Contains(c.Definition.Id),c.Definition.Id.Equals(controller.SelectedCountry))));
@@ -79,7 +85,9 @@ namespace ColdWarStruggle.Presentation
         }
         // Length-prefixed IDs avoid ambiguity; this key is display context, never an authorization token.
         static string Token(string value)=>value==null?"-1:":value.Length+":"+value;
-        static string Interaction(PlayerViewSnapshot snapshot)=>snapshot.Event==null?"ops"+Token(snapshot.ContextId)
+        static string Interaction(PlayerViewSnapshot snapshot)=>snapshot.Deployment!=null?
+            "deployment"+Token(snapshot.Deployment.ExecutionId)+Token(snapshot.Deployment.StageIndex.ToString(System.Globalization.CultureInfo.InvariantCulture))+Token(snapshot.Deployment.DecisionId)
+            :snapshot.Event==null?"ops"+Token(snapshot.ContextId)
             :"event"+Token(snapshot.Event.ExecutionId)+Token(snapshot.Event.Stage.ToString())+Token(snapshot.Event.DecisionId);
         void Detach()
         {

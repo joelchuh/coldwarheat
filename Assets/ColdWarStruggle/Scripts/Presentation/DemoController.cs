@@ -30,6 +30,7 @@ namespace ColdWarStruggle.Presentation
             if(!next.UsSession.ReadView().Countries.Any(c=>c.Definition.Id.Equals(country)))throw new ArgumentException("Unknown selection.");
             host=next;SelectedSide=side;SelectedCountry=country;generation++;legal=null;lastCommand=null;LastResult=null;
             ResetEventInteraction(true);
+            ResetDeploymentInteraction(true);
         }
         public void SelectSide(PlayerSide side)
         {
@@ -37,6 +38,7 @@ namespace ColdWarStruggle.Presentation
             if(side==SelectedSide)return;
             SelectedSide=side;generation++;legal=null;LastResult=null;
             ResetEventInteraction(false);
+            ResetDeploymentInteraction(false);
         }
         public void SelectCountry(CountryId country)
         {

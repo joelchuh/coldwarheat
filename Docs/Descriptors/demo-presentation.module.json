@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.demo-presentation",
   "kind": "module",
-  "description": "单窗口十一练习：普通影响力与八种事件，含东欧动荡7/8回合；世界图/卡片/列表共享固定身份、数量草稿与权威会话，仍非完整对局。",
+  "description": "单窗口十二练习：普通影响力、八种事件与初始部署；世界图/卡片/列表共享固定身份、私有草稿与权威会话，仍非完整对局。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -80,6 +80,30 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoLaunchOptions.cs",
       "symbol": "FocusSelected"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.Deployment.cs",
+      "symbol": "WithDeploymentScenario"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Deployment.cs",
+      "symbol": "DeploymentTargets"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Deployment.cs",
+      "symbol": "ChangeDeploymentAllocation"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Deployment.cs",
+      "symbol": "ConfirmDeploymentAsync"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Deployment.cs",
+      "symbol": "RetryDeploymentAsync"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Deployment.cs",
+      "symbol": "DrawDeploymentControls"
     }
   ],
   "inputs": [
@@ -87,7 +111,8 @@
     "事件人工场景、五牌共享参数及参数Schema",
     "数量练习、第二批参数/Schema、正式卡牌效果引用索引",
     "时代人工场景turn_number与共享turn-flow日历；禁止场景自报era或移除额度",
-    "World下可选--demo-focus=overview|selected，只改初始镜头"
+    "World下可选--demo-focus=overview|selected，只改初始镜头",
+    "初始部署fixture、共享setup数据与setup Schema；禁止fixture自报部署额度或操作方"
   ],
   "outputs": [
     "只读视图驱动的Unity诊断界面"
@@ -99,7 +124,8 @@
     "module.influence-event-sessions",
     "module.card-effect-reference-index",
     "module.turn-calendar",
-    "module.world-map-view"
+    "module.world-map-view",
+    "module.setup"
   ],
   "preconditions": [
     "Unity 6000.6.0f1，显式fixture，Windows本地运行"
@@ -165,13 +191,21 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/MapFocusLaunchTests.cs",
       "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DeploymentMapTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DeploymentDemoTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "documentation": "Docs/Wiki/first-demo.md",
   "verification": {
     "checked_on": "2026-10-13",
     "report": "Docs/Testing/era-demo.validation.json",
-    "latest_report": "Docs/Testing/map-focus.validation.json"
+    "latest_report": "Docs/Testing/deployment-demo.validation.json"
   },
   "data_dependencies": [
     "rules.deluxe2015.influence_placement",
@@ -186,6 +220,8 @@
     "demo.era_scenarios",
     "rules.deluxe2015.turn-flow",
     "layout.demo.world",
-    "presentation.natural_earth.land"
+    "presentation.natural_earth.land",
+    "demo.deployment_scenario",
+    "setup.deluxe2015.standard"
   ]
 }

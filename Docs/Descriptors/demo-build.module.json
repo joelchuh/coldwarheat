@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.demo-build",
   "kind": "module",
-  "description": "校验规则、十一练习与世界地图资源并同步17份运行载荷，生成Windows Demo；最终画风与完整对局仍待实现。",
+  "description": "校验规则、十二练习与世界地图资源并同步20份运行载荷，生成Windows Demo；最终画风与完整对局仍待实现。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -27,7 +27,7 @@
     }
   ],
   "inputs": [
-    "项目根目录Data与Docs/Contracts中的十七份规范数据"
+    "项目根目录Data与Docs/Contracts中的二十份规范数据"
   ],
   "outputs": [
     "Assets/ColdWarStruggle/Scenes/FirstDemo.unity；Builds/FirstDemo/ColdWarStruggleDemo.exe与必要同目录运行文件",
@@ -76,13 +76,17 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/EraDemoTests.cs",
       "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DeploymentDemoTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "documentation": "Docs/Wiki/first-demo.md",
   "verification": {
     "checked_on": "2026-10-13",
     "report": "Docs/Testing/era-demo.validation.json",
-    "latest_report": "Docs/Testing/world-map.validation.json"
+    "latest_report": "Docs/Testing/deployment-demo.validation.json"
   },
   "data_dependencies": [
     "rules.deluxe2015.influence_placement",
@@ -97,6 +101,8 @@
     "demo.era_scenarios",
     "rules.deluxe2015.turn-flow",
     "layout.demo.world",
-    "presentation.natural_earth.land"
+    "presentation.natural_earth.land",
+    "demo.deployment_scenario",
+    "setup.deluxe2015.standard"
   ]
 }
