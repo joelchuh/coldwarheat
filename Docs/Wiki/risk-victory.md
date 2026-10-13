@@ -1,7 +1,7 @@
 # DEFCON、军事行动与胜负服务设计 v0.1
 
 > description: 定位 DEFCON 目标限制、核战责任、军事行动记账、回合末审核和终局检查点；包含双方面临扣留计分牌的裁定矩阵。
-> 状态：2026-10-13，DEFCON/军事行动基础纯服务与数据加载已实现并通过911项回归；胜负及完整编排仍为设计，完整规则包未实现。RV-H-11采用用户确认的新版条款优先，判USSR胜。
+> 状态：2026-10-13，DEFCON/军事行动及四类基础胜负检查点已实现并通过1009项回归；完整编排、最终计分及特殊卡终局仍待实现，完整规则包未实现。RV-H-11采用用户确认的新版条款优先，判USSR胜。
 > 检索：[模块目录](../Descriptors/catalog.json) → 对应 description → 本文相关节 → planned_entrypoints。参数见[数据目录](../../Data/catalog.json)，案例见[risk-victory.cases.json](../Design/risk-victory.cases.json)。
 
 ## 1. 服务边界
@@ -10,7 +10,7 @@
 
 相比把全部判断塞入 TurnFlow，拆分后可以单独验证风险和分数；相比可执行 JSON 规则解释器，具名服务更容易追踪责任和调试。JSON 只保存参数、裁定记录与契约，不能写入任意表达式驱动游戏。
 
-| 服务（DEFCON/军事基础子集已实现，胜负待实现） | 输入 → 输出 | 不负责的事项 |
+| 服务（基础子集已实现，完整编排待接入） | 输入 → 输出 | 不负责的事项 |
 |---|---|---|
 | DefconService.CheckRestriction / PlanChange | 行动类型、目标规则标签、来源授权、当前 DEFCON、责任上下文 → 允许/拒绝原因，或轨道变更与 NuclearWar 信号 | 骰子、影响力计算、直接宣布任意玩家胜负 |
 | MilitaryOperationsService.PlanCredit / AssessTurnEnd | 经规则计算的军事行动信用、双方累计、期末 DEFCON → 新累计或双方缺额与净 VP 批次 | 用印刷 OPS 猜奖励、读取卡名、提前宣布胜利 |
@@ -205,3 +205,31 @@ flowchart LR
 每回合最多4096信用记录、ID最多256字符是有界工程限制，与军事累计不封顶是不同概念。整数溢出不发布半次结果。当前只在返回State内防重，跨进程保存/全局CommandId与VP原子提交尚未实现。
 
 本批41个核心案例、30个加载案例，合计911/911真实EditMode通过，零跳过；[报告](../Testing/military-core.validation.json)保留RED/GREEN的XML摘要。未接Demo，不重建播放器。RV-M全流程中的战争/政变资格、进入下一回合、VP候选胜利及宿主恢复仍需后续集成测试。
+
+## 当前可调用：四类基础胜负检查点
+
+先读[victory模块JSON](../Descriptors/victory.module.json)，按入口定位VictoryDefinition、四种Evidence和VictoryService.Evaluate。它返回只读VictoryDecision，包含绝对SignedVp、结果种类、赢家、检查点/来源标识及必要矩阵行证据。它还不是已提交的GameResult，没有修改权威状态或宣布完整对局结束。
+
+- ClosedVpBatchEvidence：调用方确认同一规则批次已完整汇总双方奖分；long中间值净算后检查int范围，再按共享阈值判定。19+2-3得到18，不因中途21提前判胜；结果23也不截成20。
+- MilitaryAssessedEvidence：使用真实军事Assessment的原净值，始终Deferred，产生绑定当前VictoryDefinition的PendingMilitaryVictory。即使没有候选，也必须继续审核双方手牌。
+- HeldScoringAuditedEvidence：消费该Pending与双方违规布尔值，一次查共享12行矩阵。CF-003结果为USSR胜；未采用行只能返回UnresolvedAdjudication。结果不含任何手牌ID。
+- NuclearWarEvidence：只接受实际DEFCON降级计划已核战且有PhasingPlayer；其对手获胜，不能由事件选择者或客户端指定赢家。
+
+~~~mermaid
+flowchart LR
+ A[完整双方VP批次] --> E[Evaluate]
+ B[军事Assessment] --> E
+ E --> P[Deferred + Pending]
+ P --> H[双方扣留布尔审核]
+ H --> M[共享12行裁定]
+ N[DEFCON核战计划与责任方] --> E
+ E --> D[只读VictoryDecision]
+ M --> D
+ D --> F[未来宿主原子提交与终局吸收]
+~~~
+
+普通/军事批次前VP必须还在胜利线内，不能用新奖分救回已应终局的分数。Pending只可在同一定义对象下使用；恢复后的跨对象规则版本绑定须由未来存档实现。这里返回绝对分数，不返回可反复累加的VP增量。调用方仍必须保证来源、回合、检查点顺序、命令防重，以及军事归零/VP/游标共同提交。重复纯计算不会写入任何状态，但不等于已经完成宿主幂等。
+
+VictoryDefinitionLoader.LoadSubset严格读取既有schema2、双方符号、共享阈值和12行表，检查来源/政策及CF-003用户采用记录；来源数组原始值和null也统一报格式错误。其数据检查不是完整RulePack签名认证。final_tie_score仅确认现有格式，本批未实现最终计分、欧洲控制或战争游戏结束，不把null赢家解释为平局。
+
+本批50项Core与48项Loader案例加入既有回归，最终1009/1009零跳过；[实际报告](../Testing/victory-core.validation.json)保留六轮RED/GREEN及XML摘要，[工作记录](../Worklogs/2026-10-13-victory-core.md)保留边界决定。RV-H十二格纯判定、RV-V-01/02基础计算有实际覆盖，完整游戏命令/公开日志/回合序列仍待集成。未修改UI，未重建播放器。

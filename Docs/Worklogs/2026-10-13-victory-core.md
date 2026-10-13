@@ -1,0 +1,19 @@
+# 胜负基础检查点实现记录
+
+基线cb514c5fc0898772d7385de78a9c9fbfa6653bea，已核对GitHub相等；feature/victory-core。
+Spec为既定risk-victory和共享victory.json。执行既有用户持续优化授权。
+Pre-flight: DEFCON计划包含不可变责任，MilitaryAssessment包含原净值而非重试零增量；胜负评估返回绝对SignedVp，宿主未来只能原子提交一次。
+Ruling: 当前选择纯检查点评估，不另造完整权威胜负状态机；代价是终局吸收态、命令防重、保存恢复与UI接线仍必须随后实现并集成测试，文档不声称已完成。
+Task1：已写可编译桩与行为测试，等待真实RED。
+
+Task1 RED: victory-core-red 961项中新增50失败，全部NotImplementedException；原911通过，XML SHA0c519e5aa6ccffd3febf2a52cd6c589e04fdeb7820e2c328a23cff7becc4c01a。已实现四种具名证据、完整净VP和共享矩阵查找；等待GREEN。
+
+Task1 GREEN: 961/961零跳过，XML SHA05c2e41978ce1303b544a54eaa869839f4020bdeea6e6ae950fdb0579018ea66。Task2共享加载桩及真实/变异数据测试已写，等待RED。
+
+Task2 RED: 1007项中46新增失败，全部NotImplementedException；XML SHA76ef826eb7e0f77fef152802b5d8fc1f46485a85650c9b6834ccc38eba452436。严格加载器已实现，官方JSON未改。
+
+Task2 GREEN: victory-loader-green为1007/1007。补验发现来源数组原始值/null在读取id前抛InvalidOperationException，统一格式错误边界不一致。新增2例真实RED（1009中2失败，XML SHAe157f1687ed0c366302bd65c0f9ecab7b8f6996b4880fbd049511a204d9d580c），定位根因后先检查JObject，再读取id；等待最终GREEN。
+
+最终GREEN: victory-source-shape-green 1009/1009零跳过，exit0，XML SHAe297c64a97bc080a9b7396d8372317eea43afe3a7d406ed5108d7b51e45b7dfa。50项核心+48项加载案例；共享数据未改；元数据/Wiki/README与当前源码范围同步，播放器仍为762测试对应版本。等待独立整批审阅及Git。
+
+Final review: 四个检查点子集可合并，无Critical/Important/Minor；六轮XML、数据hash、描述与GUID独立核对一致。Ruling保持原纯服务范围，未评宿主顺序/防重/吸收/保存、最终地区及特殊卡与UI；这些是后续明确任务，不扩张当前通过声明。

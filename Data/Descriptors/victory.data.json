@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "data.victory",
   "kind": "data",
-  "description": "普通胜利阈值与双方扣留计分牌12格矩阵；CF-003已由用户确认按新版条款优先判定。",
+  "description": "基础胜利阈值及双边扣留12行矩阵，CF-003为用户确认项目解释；已由VictoryDefinitionLoader.LoadSubset读取并用于四类纯检查点。",
   "status": "ready",
   "dataset_id": "rules.deluxe2015.victory",
   "entrypoints": [
@@ -60,13 +60,19 @@
   ],
   "tests": [
     {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/VictoryDefinitionLoaderTests.cs",
+      "status": "48-passed"
+    },
+    {
       "path": "Docs/Design/risk-victory.cases.json",
       "status": "planned"
     }
   ],
   "verification": {
-    "checked_on": "2026-09-22",
-    "runtime_consumers_tested": false
+    "checked_on": "2026-10-13",
+    "runtime_consumers_tested": true,
+    "scope": "基础检查点；完整终局和宿主未接入",
+    "report": "Docs/Testing/victory-core.validation.json"
   },
   "validation": {
     "schema_status": "无通用JSON Schema；本次用字段、领域和引用断言校验",

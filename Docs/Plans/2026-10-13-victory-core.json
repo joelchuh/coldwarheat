@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "id": "plan.victory-core",
+  "kind": "implementation-plan",
+  "status": "implemented-verified",
+  "description": "基础VP、军事延后/双边扣留审核与核战纯检查点；完整宿主终局、最终计分和特殊卡仍待实现。",
+  "entrypoints": [],
+  "inputs": [
+    "已有风险胜负设计与共享victory.json"
+  ],
+  "outputs": [
+    "强类型证据与纯VictoryDecision",
+    "真实EditMode验证"
+  ],
+  "dependencies": [
+    "module.victory",
+    "module.defcon",
+    "module.military-operations"
+  ],
+  "preconditions": [
+    "用户持续开发及Git授权有效"
+  ],
+  "side_effects": [
+    "增加源码/测试及同步知识描述"
+  ],
+  "stop_conditions": [
+    "缺证据、损坏数据、溢出或跨定义拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/risk-victory.md"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Testing/victory-core.validation.json",
+      "status": "1009-passed"
+    }
+  ],
+  "document": "Docs/Plans/2026-10-13-victory-core.md"
+}

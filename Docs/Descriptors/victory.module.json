@@ -2,64 +2,84 @@
   "schema_version": 1,
   "id": "module.victory",
   "kind": "module",
-  "description": "按检查点判定核战、批次VP、扣留计分牌和最终胜负；CF-003已采纳，模块仍未实现。 Wargames完整给6VP后结束，恰零按用户确认的项目解释判Draw。 Defectors苏方普通行动用牌US1VP按正常自动胜利检查。 DV1完整WWBY3VP先于美国事件VP；U2即时与延后奖分独立检查。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。",
-  "status": "planned",
-  "entrypoints": [],
-  "documentation": "Docs/Wiki/risk-victory.md",
-  "planned_entrypoints": [
+  "description": "已实现完整VP批次、军事候选延后、双方扣留矩阵和核战责任四类纯胜负检查点；CF-003按用户确认解释执行。最终计分、特殊卡终局及宿主提交/终局吸收仍待实现。",
+  "status": "implemented",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/VictoryDefinition.cs",
+      "symbol": "VictoryDefinition"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/VictoryDefinition.cs",
+      "symbol": "HeldScoringRow"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/VictoryEvidence.cs",
+      "symbol": "ClosedVpBatchEvidence"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/VictoryEvidence.cs",
+      "symbol": "MilitaryAssessedEvidence"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/VictoryEvidence.cs",
+      "symbol": "PendingMilitaryVictory"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/VictoryEvidence.cs",
+      "symbol": "HeldScoringAuditedEvidence"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/VictoryEvidence.cs",
+      "symbol": "NuclearWarEvidence"
+    },
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/VictoryService.cs",
       "symbol": "Evaluate"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/VictoryDefinitionLoader.cs",
+      "symbol": "LoadSubset"
     }
   ],
+  "documentation": "Docs/Wiki/risk-victory.md",
+  "planned_entrypoints": [],
   "inputs": [
-    "已完成检查点、规则证据、VP批次与责任上下文",
-    "不可变规则定义及版本绑定",
-    "Wargames完整VP批次/三选择以及共享自动胜利轨道；结束来源和root收尾证据",
-    "Defectors普通苏方CardUse与事件来源的完整US1VP批次，Space hook为0且不伪执行共享太空动作"
+    "不可变VictoryDefinition",
+    "四种封闭类型证据之一；军事/DEFCON证据来自实际只读计划",
+    "权威双方是否扣留计分牌的布尔审核结果"
   ],
   "outputs": [
-    "Continue、Deferred、Finished或UnresolvedAdjudication",
-    "Wargames用户项目解释：完整向对手转移VP后恰零，完成源根清理并Finished/Draw；Continue恰零不终局"
+    "只读VictoryDecision：绝对SignedVp、Continue/Deferred/Finished/UnresolvedAdjudication、赢家或军事Pending、来源与矩阵行ID"
   ],
   "dependencies": [
     {
-      "path": "Docs/Wiki/turn-flow.md",
-      "relation": "由编排层调用；无服务互调环"
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/MilitaryOperationsDefinition.cs",
+      "relation": "只读期末Assessment"
     },
     {
-      "path": "Docs/Wiki/operations.md",
-      "relation": "接收已验证预算及动作上下文"
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/DefconService.cs",
+      "relation": "只读核战降级计划及PhasingPlayer"
     }
   ],
   "data_dependencies": [
-    "rules.deluxe2015.victory",
-    "effects.deluxe2015.nato_exceptions",
-    "effects.deluxe2015.event_operations_batch1",
-    "effects.deluxe2015.war_events_batch1",
-    "effects.deluxe2015.war_events_batch2",
-    "effects.deluxe2015.defcon_events_batch1",
-    "effects.deluxe2015.wargames",
-    "effects.deluxe2015.defectors",
-    "effects.deluxe2015.deferred_vp_events_batch1"
+    "rules.deluxe2015.victory"
   ],
   "preconditions": [
-    "权威事务及身份验证",
-    "相关规则、卡牌处理器及正式数据齐备",
-    "当前为设计，尚无可调用实现"
+    "调用方已确认检查点完整及规则资格",
+    "服务只计算，不提交GameState；顺序、幂等、终局吸收和存档由未来宿主负责",
+    "普通/军事批次前VP必须在自动胜利线内；审核Pending须来自同一定义"
   ],
   "side_effects": [
-    "服务本身规划为纯计算；结果经RuleEngine提交后改变权威对局"
+    "纯计算，无状态写入、随机数、文件或UI依赖"
   ],
   "stop_conditions": [
-    "已终局",
-    "缺少责任、正式数据或卡牌处理器",
-    "未解决裁定",
-    "不匹配的规则/状态版本",
-    "不合法检查点",
-    "Wargames结束不执行最终地区/中国牌/军备/扣留计分审计；GiveSixAndEnd恰零按已确认项目解释判Draw",
-    "Defectors自动胜利先在同草稿清理已接受源/当前根后Finished，不执行余下OPS",
-    "WWBY与DuckAndCover不得跨事件净额；核战优先于安装hook，终局在同草稿完成已接受单卡/双牌源根收尾后Finished"
+    "缺失/非法证据或定义",
+    "损坏/缺失/重复矩阵条件与不合法采用状态",
+    "跨定义Pending",
+    "整数溢出或批次前VP已到终局线",
+    "未采用裁定返回UnresolvedAdjudication，无赢家；不当作平局",
+    "最终计分、欧洲控制与特殊卡结束没有本批证据入口"
   ],
   "rule_sources": [
     {
@@ -112,6 +132,18 @@
   ],
   "tests": [
     {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/VictoryTests.cs",
+      "status": "50-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/VictoryDefinitionLoaderTests.cs",
+      "status": "48-passed"
+    },
+    {
+      "path": "Docs/Testing/victory-core.validation.json",
+      "status": "1009-passed"
+    },
+    {
       "path": "Docs/Design/risk-victory.cases.json",
       "status": "planned",
       "coverage_prefix": "RV-V/RV-H/RV-S"
@@ -150,15 +182,48 @@
     }
   ],
   "verification": {
-    "implementation_tested": false,
-    "latest_design_report": "Docs/Design/confirmed-rulings-20261013.validation.json"
+    "implementation_tested": true,
+    "scope": "四个基础检查点；不等于完整设计案例/宿主集成",
+    "report": "Docs/Testing/victory-core.validation.json"
   },
   "open_items": [
-    "正式国家/卡牌目录及逐卡终局、计分修正提供者；地区/太空基础设计已完成，仍未实现"
+    "地区/最终计分/特殊卡终局证据仍待实现",
+    "GameResult吸收态、全局命令防重、VP/状态/游标原子提交及保存恢复仍待接入",
+    "完整RulePack版本摘要与来源批准仍待实现"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:wargames:1",
     "urn:coldwarheat:contract:defectors:1",
     "urn:coldwarheat:contract:deferred-vp-events-batch1:1"
+  ],
+  "planned_inputs": [
+    "已完成检查点、规则证据、VP批次与责任上下文",
+    "不可变规则定义及版本绑定",
+    "Wargames完整VP批次/三选择以及共享自动胜利轨道；结束来源和root收尾证据",
+    "Defectors普通苏方CardUse与事件来源的完整US1VP批次，Space hook为0且不伪执行共享太空动作"
+  ],
+  "planned_outputs": [
+    "Continue、Deferred、Finished或UnresolvedAdjudication",
+    "Wargames用户项目解释：完整向对手转移VP后恰零，完成源根清理并Finished/Draw；Continue恰零不终局"
+  ],
+  "planned_data_dependencies": [
+    "effects.deluxe2015.nato_exceptions",
+    "effects.deluxe2015.event_operations_batch1",
+    "effects.deluxe2015.war_events_batch1",
+    "effects.deluxe2015.war_events_batch2",
+    "effects.deluxe2015.defcon_events_batch1",
+    "effects.deluxe2015.wargames",
+    "effects.deluxe2015.defectors",
+    "effects.deluxe2015.deferred_vp_events_batch1"
+  ],
+  "planned_stop_conditions": [
+    "已终局",
+    "缺少责任、正式数据或卡牌处理器",
+    "未解决裁定",
+    "不匹配的规则/状态版本",
+    "不合法检查点",
+    "Wargames结束不执行最终地区/中国牌/军备/扣留计分审计；GiveSixAndEnd恰零按已确认项目解释判Draw",
+    "Defectors自动胜利先在同草稿清理已接受源/当前根后Finished，不执行余下OPS",
+    "WWBY与DuckAndCover不得跨事件净额；核战优先于安装hook，终局在同草稿完成已接受单卡/双牌源根收尾后Finished"
   ]
 }
