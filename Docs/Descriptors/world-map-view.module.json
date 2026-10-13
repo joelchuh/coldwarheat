@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "id": "module.world-map-view",
+  "kind": "module",
+  "status": "implemented",
+  "description": "可替换世界地图占位模块：86节点布局与公共领域陆地只读装配，缩放/平移、圆点拾取；共享IMapView和权威命令，未确定最终画风。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/WorldMapAssets.cs",
+      "symbol": "Load"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/MapViewport.cs",
+      "symbol": "Project"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/MapViewport.cs",
+      "symbol": "Unproject"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/MapViewport.cs",
+      "symbol": "ZoomAt"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/MapViewport.cs",
+      "symbol": "Pan"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/MapViewport.cs",
+      "symbol": "Focus"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/MapViewport.cs",
+      "symbol": "Reset"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/DrawableMapView.cs",
+      "symbol": "CreateView"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/WorldMapView.cs",
+      "symbol": "HitTest"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/WorldMapView.cs",
+      "symbol": "SelectAt"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/WorldMapView.Drawing.cs",
+      "symbol": "Draw"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/DrawableMapView.cs",
+      "symbol": "NextKind"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/WorldMapView.cs",
+      "symbol": "VisibleMarkers"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/WorldMapView.cs",
+      "symbol": "RequestRegionFocus"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/WorldMapView.cs",
+      "symbol": "RequestCountryFocus"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/WorldMapView.cs",
+      "symbol": "PrepareViewport"
+    }
+  ],
+  "inputs": [
+    "已验证MapDefinition及世界布局/陆地JSON",
+    "公开MapViewContext和MapFrame；视口与指针位置"
+  ],
+  "outputs": [
+    "只读显示资源与世界地图画面",
+    "带原上下文的国家选择意图"
+  ],
+  "dependencies": [
+    "module.map-view",
+    "module.map-data"
+  ],
+  "preconditions": [
+    "Unity6000.6.0f1、现有Newtonsoft.Json；同步主线程调用",
+    "Flat2D/fixture/marker.circle/空路线实现子集，86节点覆盖当前规则地图"
+  ],
+  "side_effects": [
+    "修改显示镜头和本地选中态；不裁决规则或直接写权威状态",
+    "首次Draw生成纹理，Dispose释放；不访问运行时网络"
+  ],
+  "stop_conditions": [
+    "缺/重复/未知节点、非有限坐标、无效/超限JSON、未支持类型或形状拒绝",
+    "视图失效/无公开帧/视口外不拾取；不兼容上下文退役视图"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/map-presentation.md",
+      "scope": "用户已确认的可替换显示边界"
+    },
+    {
+      "path": "Docs/References/world-map-art-source.md",
+      "scope": "公共领域底图来源"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/WorldMapDataTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/MapViewportTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/WorldMapViewTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "data_dependencies": [
+    "layout.demo.world",
+    "presentation.natural_earth.land",
+    "map.deluxe2015.world"
+  ],
+  "documentation": "Docs/Wiki/world-map-view.md",
+  "verification": {
+    "report": "Docs/Testing/world-map.validation.json",
+    "independent_review": "passed-after-fixes"
+  }
+}

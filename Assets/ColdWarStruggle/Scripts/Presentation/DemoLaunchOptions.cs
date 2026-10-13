@@ -10,12 +10,13 @@ namespace ColdWarStruggle.Presentation
             if(args==null)throw new ArgumentException("Missing launch arguments.");
             const string prefix="--demo-map=";
             var values=args.Where(a=>a!=null && a.StartsWith(prefix,StringComparison.Ordinal)).ToArray();
-            if(values.Length==0)return DiagnosticMapKind.Tiles;
+            if(values.Length==0)return DiagnosticMapKind.World;
             if(values.Length!=1)throw new ArgumentException("Only one map view may be selected.");
             switch(values[0].Substring(prefix.Length))
             {
                 case "tiles":return DiagnosticMapKind.Tiles;
                 case "table":return DiagnosticMapKind.Table;
+                case "world":return DiagnosticMapKind.World;
                 default:throw new ArgumentException("Unknown diagnostic map view.");
             }
         }

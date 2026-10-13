@@ -5,10 +5,9 @@ using ColdWarStruggle.Core;
 using UnityEngine;
 namespace ColdWarStruggle.Presentation
 {
-    public enum DiagnosticMapKind { Tiles, Table }
-    public abstract class DiagnosticMapView : MapViewBuffer
+    public enum DiagnosticMapKind { Tiles, Table, World }
+    public abstract class DiagnosticMapView : DrawableMapView
     {
-        public abstract DiagnosticMapKind Kind { get; }
         protected abstract int Columns { get; }
         protected abstract float RowHeight { get; }
         protected virtual float HeaderHeight=>0;
@@ -22,7 +21,7 @@ namespace ColdWarStruggle.Presentation
             base.Initialize(context);nodes=context.Nodes.ToDictionary(n=>n.Id);scroll=Vector2.zero;previousRegion=null;previousFocus=null;
         }
         public IReadOnlyList<CountryId> VisibleCountries(string region)=>Array.AsReadOnly(Context==null?Array.Empty<CountryId>():Context.Nodes.Where(n=>n.Region==region).Select(n=>n.Id).ToArray());
-        public void Draw(Rect area,string region,GUIStyle label,GUIStyle small)
+        public override void Draw(Rect area,string region,GUIStyle label,GUIStyle small)
         {
             if(IsDisposed || Frame==null || Context==null)return;
             var current=Frame;var countries=current.Countries.Where(c=>nodes[c.Id].Region==region).ToArray();

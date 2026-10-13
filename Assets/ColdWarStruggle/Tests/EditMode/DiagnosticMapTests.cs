@@ -9,9 +9,9 @@ namespace ColdWarStruggle.Tests
 {
     public class DiagnosticMapTests
     {
-        [Test] public void Launch_option_is_a_closed_whitelist_with_tiles_default()
+        [Test] public void Launch_option_is_a_closed_whitelist_with_world_default()
         {
-            Assert.That(DemoLaunchOptions.MapKind(new[]{"game.exe"}),Is.EqualTo(DiagnosticMapKind.Tiles));
+            Assert.That(DemoLaunchOptions.MapKind(new[]{"game.exe"}),Is.EqualTo(DiagnosticMapKind.World));
             Assert.That(DemoLaunchOptions.MapKind(new[]{"--demo-map=tiles"}),Is.EqualTo(DiagnosticMapKind.Tiles));
             Assert.That(DemoLaunchOptions.MapKind(new[]{"--demo-map=table"}),Is.EqualTo(DiagnosticMapKind.Table));
             Assert.Throws<ArgumentException>(()=>DemoLaunchOptions.MapKind(new[]{"--demo-map=table","--demo-map=table"}));

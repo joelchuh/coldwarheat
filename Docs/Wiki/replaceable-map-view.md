@@ -8,7 +8,7 @@
 
 本机新版位于 `E:\TwilightStruggle\Builds\PreviewDemo\ColdWarStruggleDemo.exe`。顶部“切列表/切卡片”更换国家区显示；保留同一个GameId、版本、OPS、选中国家与事件草稿。旧FirstDemo窗口当时仍在运行，因此本批使用独立输出，未关闭旧窗口或覆盖其二进制。
 
-启动时可使用 `--demo-map=tiles` 或 `--demo-map=table`，默认tiles；未知/重复值拒绝。它们是明确白名单，不能传任意脚本、类名或资源路径。构建菜单新增 **Build Side-by-side Preview**；原 **Build Windows Demo** 仍输出FirstDemo。
+启动时可使用 `--demo-map=tiles` 或 `--demo-map=table`，当前默认world（本批最初默认为tiles）；未知/重复值拒绝。它们是明确白名单，不能传任意脚本、类名或资源路径。构建菜单新增 **Build Side-by-side Preview**；原 **Build Windows Demo** 仍输出FirstDemo。
 
 ![列表视图实际运行画面](../Images/map-table-demo.png)
 
@@ -64,3 +64,7 @@ DemoView继续管理手牌、状态与明确的操作按钮。MapPresenter当前
 [返回索引](index.md)
 
 鼠标验收补充：用户恢复前台后可读窗口；暂停人工操作后的点击仍返回`failed to activate captured window`，重新选择窗口并恢复一次仍失败。已停止点击，鼠标路径仍未核验，不阻塞独立代码/渲染工作。
+
+## 世界图接入更新
+
+后续已新增第三个真实适配器 [WorldMapView](world-map-view.md)：Flat2D占位布局覆盖84国及2超级大国，陆地轮廓、圆点拾取、缩放和平移已实现。上文“两适配器/未实现布局与镜头”描述对应初始批次；最终ThemeDefinition、3D和动画仍待实现。三个视图共用公开帧与输入保护，445项全量回归通过。

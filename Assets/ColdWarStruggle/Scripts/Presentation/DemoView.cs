@@ -24,7 +24,8 @@ namespace ColdWarStruggle.Presentation
         int scenarioIndex,regionIndex;
         bool revealBoth=true;
         MapPresenter mapPresenter;
-        DiagnosticMapView mapView;
+        DrawableMapView mapView;
+        WorldMapAssets worldAssets;
         Font font;
         GUIStyle title,label,small,button,large;
         string fatal;
@@ -33,10 +34,10 @@ namespace ColdWarStruggle.Presentation
         readonly string[] regions={"region.europe","region.asia","region.middle_east","region.africa","region.central_america","region.south_america"};
         readonly string[] regionNames={"欧洲","亚洲","中东","非洲","中美洲","南美洲"};
         static readonly Color Background=new Color(.035f,.057f,.095f),Panel=new Color(.075f,.105f,.15f),Muted=new Color(.58f,.66f,.76f),Ink=new Color(.91f,.94f,.98f),Blue=new Color(.32f,.64f,1f),Red=new Color(1f,.43f,.4f),Green=new Color(.36f,.83f,.65f);
-        public void Initialize(DemoController controller,IReadOnlyDictionary<string,string> names,IReadOnlyList<DemoScenarioOption> scenarios,int initialScenario=0,DiagnosticMapKind mapKind=DiagnosticMapKind.Tiles)
+        public void Initialize(DemoController controller,IReadOnlyDictionary<string,string> names,IReadOnlyList<DemoScenarioOption> scenarios,int initialScenario=0,DiagnosticMapKind mapKind=DiagnosticMapKind.Tiles,WorldMapAssets worldAssets=null)
         {
             if(initialScenario<0 || initialScenario>=scenarios.Count)throw new ArgumentOutOfRangeException(nameof(initialScenario));
-            this.controller=controller;this.names=names;this.scenarios=scenarios;Reset(initialScenario);
+            this.controller=controller;this.names=names;this.scenarios=scenarios;this.worldAssets=worldAssets;Reset(initialScenario);
             mapPresenter?.Dispose();mapPresenter=new MapPresenter(controller,names);SwitchMap(mapKind);
         }
         public void ShowError(string message) { fatal=message; }
@@ -48,7 +49,7 @@ namespace ColdWarStruggle.Presentation
             regionIndex=Math.Max(0,System.Array.IndexOf(regions,region));
         }
         void SwitchMap(DiagnosticMapKind kind)
-        { var next=DiagnosticMapView.Create(kind);mapPresenter.Attach(next);mapView=next; }
+        { var next=DrawableMapView.CreateView(kind,worldAssets);mapPresenter.Attach(next);mapView=next; }
         void Styles()
         {
             if(label!=null)return;
@@ -70,7 +71,7 @@ namespace ColdWarStruggle.Presentation
             GUI.matrix=Matrix4x4.TRS(new Vector3((Screen.width-1280*scale)/2,(Screen.height-820*scale)/2,0),Quaternion.identity,new Vector3(scale,scale,1));
             Block(new Rect(0,0,1280,820),Background);
             Text(26,20,900,46,"COLD WAR / 冷战热斗 · 规则操作 Demo",title);
-            Text(28,70,1100,28,"单人双边测试  /  人工练习局面  /  占位界面，可替换正式地图",small);
+            Text(28,70,780,28,"单人双边测试  /  人工练习局面  /  世界地图占位，可更换画风",small);
             Text(820,70,434,28,captureStatus,small);
             if(fatal!=null) { Text(30,140,1180,400,"加载失败："+fatal);return; }
             if(controller==null) { Text(30,140,800,60,"正在读取演示数据…");return; }
@@ -78,8 +79,9 @@ namespace ColdWarStruggle.Presentation
             Text(126,119,348,36,$"练习 {scenarioIndex+1} / {scenarios.Count}  ·  "+scenarios[scenarioIndex].Title,small);
             if(Button(485,115,90,40,"下一个")) { Reset((scenarioIndex+1)%scenarios.Count);GUIUtility.ExitGUI(); }
             if(Button(589,115,145,40,"重置当前场景")) { Reset(scenarioIndex);GUIUtility.ExitGUI(); }
-            if(Button(745,115,85,40,mapView.Kind==DiagnosticMapKind.Tiles?"切列表":"切卡片"))
-            { SwitchMap(mapView.Kind==DiagnosticMapKind.Tiles?DiagnosticMapKind.Table:DiagnosticMapKind.Tiles);GUIUtility.ExitGUI(); }
+            var nextMap=DrawableMapView.NextKind(mapView.Kind,worldAssets!=null);
+            if(Button(745,115,85,40,nextMap==DiagnosticMapKind.Tiles?"切卡片":nextMap==DiagnosticMapKind.Table?"切列表":"切地图"))
+            { SwitchMap(nextMap);GUIUtility.ExitGUI(); }
             if(Button(840,115,190,40,"操作方：美国")) { controller.SelectSide(PlayerSide.US);GUIUtility.ExitGUI(); }
             if(Button(1040,115,214,40,"操作方：苏联")) { controller.SelectSide(PlayerSide.USSR);GUIUtility.ExitGUI(); }
             var view=controller.ReadView();mapPresenter.Refresh();
@@ -93,7 +95,8 @@ namespace ColdWarStruggle.Presentation
             Text(44,594,208,150,view.Event==null?"试一试：\n1. 在默认目标投放 3 点\n2. 重发命令，观察不重复扣点\n3. 切换另一方，观察资格检查\n4. 重置后选择其他国家":"事件练习：\n1. 点击开始事件\n2. 按提示切换选择方\n3. 选国，按右侧提示编辑\n4. 确认后一次结算\n事件不消耗 OPS。",small);
             Text(312,194,590,28,view.Event==null?"国家面板  ·  绿色表示当前可投放目标":"国家面板  ·  绿色为合法选择，✓ 为草稿，确认后才结算",small);
             for(int i=0;i<regions.Length;i++)
-                if(Button(312+(i%3)*201,232+(i/3)*39,193,32,(regionIndex==i?"● ":"")+regionNames[i]))regionIndex=i;
+                if(Button(312+(i%3)*201,232+(i/3)*39,193,32,(regionIndex==i?"● ":"")+regionNames[i]))
+                { regionIndex=i;if(mapView is WorldMapView world)world.RequestRegionFocus(regions[i]); }
             mapView.Draw(new Rect(307,321,614,440),regions[regionIndex],label,small);
             var selectedCountry=view.Countries.First(c=>c.Definition.Id.Equals(controller.SelectedCountry));
             Text(972,195,262,26,"已选国家",small);Text(972,228,262,65,Name(controller.SelectedCountry),new GUIStyle(title){fontSize=24});

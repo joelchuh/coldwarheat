@@ -2,9 +2,9 @@
 
 description：运行单窗口双边测试，定位影响力规则、固定身份、幂等、数据加载及 Unity 构建入口。先读模块 JSON，再定位对应函数。
 
-状态：2026-10-13，真实 Unity 工程与 Windows 构建已建立；387 项 EditMode 测试通过。已通过游戏自身导出真实渲染并检查字体/布局；computer-use鼠标实测仍受窗口激活失败影响，不能把截图当成点击验收。
+状态：2026-10-13，真实 Unity 工程与 Windows 构建已建立；445 项 EditMode 测试通过。已通过游戏自身导出真实渲染并检查字体/布局；computer-use鼠标实测仍受窗口激活失败影响，不能把截图当成点击验收。
 
-![当前事件练习真实运行画面](../Images/era-demo.png)
+![世界地图占位实际运行画面](../Images/world-map-demo.png)
 
 共有十一个场景，顶部“上一个/下一个”切换。前两个是普通OPS，后九个是八种公开事件的人工练习。
 
@@ -20,7 +20,7 @@ description：运行单窗口双边测试，定位影响力规则、固定身份
 4. 重置后切换“操作方：苏联”，仍是美国的行动上下文；提交会被拒绝。要测试苏联的合法行动，点“下一个”进入练习2。
 5. 关闭“查看双方示例手牌”后，只显示当前身份自己的标签和对手数量。两份手牌仅测试投影，不能出牌。
 
-国家面板按六个地区排列，绿色边条表示此刻可投放。所有 84 国都可查询；它是诊断面板，尚无地理轮廓、镜头缩放、正式主题或卡牌拖放。
+默认显示世界轮廓和84国热点，两个超级大国仅作装饰。绿圈为合法目标；滚轮缩放、右键拖动，“定位所选”放大当前国家；地区按钮定位游戏地区。可切到卡片/列表。正式主题与卡牌拖放待实现，见[世界地图](world-map-view.md)。
 
 ## 模块与流程
 
@@ -42,7 +42,7 @@ flowchart LR
     V --> UI
 ```
 
-Core/Application/Infrastructure 没有 UnityEngine 引用。Core 不读文件；Bootstrap 和 Editor 读取源文件，Infrastructure 校验并构造定义。Presentation 只读视图、发送意图，不获得可写局面。`IMapView` 同步诊断子集现已实现，国家区可在卡片/列表间切换；正式布局、主题资源和异步加载仍未实现。详见[实际接口](replaceable-map-view.md)。
+Core/Application/Infrastructure 没有 UnityEngine 引用。Core 不读文件；Bootstrap 和 Editor 读取源文件，Infrastructure 校验并构造定义。Presentation 只读视图、发送意图，不获得可写局面。`IMapView` 同步子集现已实现，国家区可在世界图/卡片/列表间切换；Flat2D占位布局与镜头已装配，最终主题资源和异步加载仍未实现。详见[实际接口](replaceable-map-view.md)。
 
 ## 唯一数据与边界
 
@@ -50,7 +50,7 @@ Core/Application/Infrastructure 没有 UnityEngine 引用。Core 不读文件；
 - 人工场景：[influence-scenarios.json](../../Data/Demo/influence-scenarios.json)，明确 `scope=fixture`；不冒充正式初始布置。
 - 地图：[world.json](../../Data/Maps/deluxe-2015/world.json)；独立 [world.profile.json](../../Data/Maps/deluxe-2015/world.profile.json) 锁定原有审核版本。批准摘要忽略排版和对象键顺序，保留数组顺序；修改定义后要重新审核 profile，构建不会替候选文件自行批准。
 - 名称：[en-US.catalog-names.json](../../Data/Localization/en-US.catalog-names.json)，国家暂用英文名称，界面提示为中文。
-- `Assets/StreamingAssets/ColdWarStruggle` 是生成的十五文件副本，被 Git 忽略；每次构建先验证权威源再同步。编辑副本不能改变权威数据。
+- `Assets/StreamingAssets/ColdWarStruggle` 是生成的十七文件副本，被 Git 忽略；每次构建先验证权威源再同步。编辑副本不能改变权威数据。
 
 运行门禁只批准当前地图定义，**没有返回完整 RulePack**。完整注册表的102个处理器仍为planned；现有八牌算法和人工事件事务不能冒充正式出牌生命周期。没有完整开局、发牌、回合、计分、DEFCON、军事行动、太空、存档、联网或 AI。`OperationsMode` 的政变/调整枚举不代表这些行动已实现。人工手牌标签不是完整卡牌实体。
 
@@ -58,9 +58,9 @@ Core/Application/Infrastructure 没有 UnityEngine 引用。Core 不读文件；
 
 ## 验证与后续
 
-真实测试入口：`Assets/ColdWarStruggle/Tests/EditMode`。运行 Unity EditMode，筛选 `ColdWarStruggle.Tests`；当前 387 项通过。详细 RED/GREEN、构建和实际限制见 [时代Demo工作记录](../Worklogs/2026-10-13-era-demo.md)。旧的有限 Python 设计检查不能计入 C# 测试数。
+真实测试入口：`Assets/ColdWarStruggle/Tests/EditMode`。运行 Unity EditMode，筛选 `ColdWarStruggle.Tests`；当前 445 项通过。详细 RED/GREEN、构建和实际限制见 [世界地图工作记录](../Worklogs/2026-10-13-world-map.md)。旧的有限 Python 设计检查不能计入 C# 测试数。
 
-八张基础事件、国家集合和数量分配界面已实现；下一批改进世界地图占位视图，正式出牌与完整阶段编排仍待推进。地图布局与主题可并行演进，但沿用稳定 CountryId 和会话边界。
+八张基础事件、国家集合和数量分配界面已实现；世界地图占位视图已接入，后续改善地图可读性和真实操作验收；正式出牌与完整阶段编排仍待推进。地图布局与主题可并行演进，但沿用稳定 CountryId 和会话边界。
 
 [返回索引](index.md)
 
@@ -84,7 +84,7 @@ F12只导出游戏当前渲染帧到本机 `Application.persistentDataPath/DemoC
 
 本批实际报告 [event-demo.validation.json](../Testing/event-demo.validation.json) 记录149项测试、Windows构建、九份源数据与播放器逐字节一致及真实渲染截图。computer-use重新定位后仍无法激活窗口；未把渲染导出或控制器测试称为鼠标实测通过。
 
-地图接口批次曾追加21项回归（当批总170），包括公开帧、生命周期、实际适配器与审查修复，见[地图验证报告](../Testing/replaceable-map-view.validation.json)。顶部“切列表/切卡片”保留同一对局和草稿；启动可选`--demo-map=tiles|table`。
+地图接口批次曾追加21项回归（当批总170），包括公开帧、生命周期、实际适配器与审查修复，见[地图验证报告](../Testing/replaceable-map-view.validation.json)。顶部“切列表/切卡片”保留同一对局和草稿；当前启动可选`--demo-map=world|tiles|table`，默认world。
 
 ## 两张数量分配练习
 
@@ -102,7 +102,7 @@ F12只导出游戏当前渲染帧到本机 `Application.persistentDataPath/DemoC
 
 实际 [295项验证报告](../Testing/allocation-demo.validation.json) 记录6次测试运行与中间失败、13份规范源/播放器字节一致、Windows构建和Ready阶段真实游戏帧。图中事件尚未开始；不据此声称数量按钮或鼠标实测通过。
 
-时代规则批次曾通过371项EditMode，随后时代Demo集成达到387项并重新构建。历史[规则批次报告](../Testing/era-removal.validation.json)与[当前播放器报告](../Testing/era-demo.validation.json)分别记录。
+时代规则批次曾通过371项EditMode，随后时代Demo集成达到387项并重新构建。历史[规则批次报告](../Testing/era-removal.validation.json)与[当时播放器报告](../Testing/era-demo.validation.json)分别记录。
 
 ## 时代对照练习与当前原型定位
 
@@ -110,6 +110,8 @@ F12只导出游戏当前渲染帧到本机 `Application.persistentDataPath/DemoC
 
 `DemoCatalog.WithEraScenarios`只接受显式turn_number，由共享日历查时代；旧九练习没有回合信息，显示“独立操作练习”。数据见[时代fixture](../../Data/Demo/era-scenarios.json)，规则量没有复制到fixture或UI。
 
-2026-10-13用户确认当前界面观感接近纯点击面板，并询问游戏与地图进度：这里是规则/框架诊断Demo，尚不能完整打一局。84国规则地图和可替换视图基础已实现，地理轮廓/国家标记布局/镜头与正式主题尚未制作。下一阶段优先接入简化世界地图占位视图，沿用CountryId、公开帧和命令；不要求先实现全部102个事件，也不把占位图定为最终画风。
+2026-10-13用户确认当前界面观感接近纯点击面板，并询问游戏与地图进度：这里是规则/框架诊断Demo，尚不能完整打一局。当时84国规则地图和可替换视图基础已实现，用户提问后本批已接入地理轮廓/国家标记布局/镜头，最终主题仍待确认。后续继续改善世界地图占位视图，沿用CountryId、公开帧和命令；不要求先实现全部102个事件，也不把占位图定为最终画风。
 
-当前[387项报告](../Testing/era-demo.validation.json)含15份规范源与播放器逐字节一致、构建exit0及实际Ready帧。鼠标实测仍未完成。
+历史[387项报告](../Testing/era-demo.validation.json)含15份规范源与播放器逐字节一致、构建exit0及实际Ready帧。鼠标实测仍未完成。
+
+当前世界图批次的17份载荷、构建和截图见[世界图验证报告](../Testing/world-map.validation.json)，功能入口见[世界图知识点](world-map-view.md)。

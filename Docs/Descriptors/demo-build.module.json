@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.demo-build",
   "kind": "module",
-  "description": "Unity构建：验证同步十五份权威JSON，标准Build回调也同步；Build输出FirstDemo，BuildPreview固定输出PreviewDemo供并排运行，不关闭旧窗口，不执行Git。",
+  "description": "校验规则、十一练习与世界地图资源并同步17份运行载荷，生成Windows Demo；最终画风与完整对局仍待实现。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -27,17 +27,18 @@
     }
   ],
   "inputs": [
-    "项目根目录Data与Docs/Contracts中的十五份规范数据"
+    "项目根目录Data与Docs/Contracts中的十七份规范数据"
   ],
   "outputs": [
     "Assets/ColdWarStruggle/Scenes/FirstDemo.unity；Builds/FirstDemo/ColdWarStruggleDemo.exe与必要同目录运行文件",
     "BuildPreview额外固定入口：Builds/PreviewDemo/ColdWarStruggleDemo.exe与必要运行文件，不接受外部任意输出路径。"
   ],
   "dependencies": [
-    "module.demo-presentation"
+    "module.demo-presentation",
+    "module.world-map-view"
   ],
   "preconditions": [
-    "Unity Editor、WindowsStandalone模块、数据通过DemoCatalog；源地图profile需独立审核"
+    "Unity Editor、WindowsStandalone模块；DemoCatalog与WorldMapAssets均验证通过；源地图profile需独立审核"
   ],
   "side_effects": [
     "只写生成数据、Demo场景和项目构建设置/输出；创建场景前保护未保存场景"
@@ -80,7 +81,8 @@
   "documentation": "Docs/Wiki/first-demo.md",
   "verification": {
     "checked_on": "2026-10-13",
-    "report": "Docs/Testing/era-demo.validation.json"
+    "report": "Docs/Testing/era-demo.validation.json",
+    "latest_report": "Docs/Testing/world-map.validation.json"
   },
   "data_dependencies": [
     "rules.deluxe2015.influence_placement",
@@ -93,6 +95,8 @@
     "effects.deluxe2015.early_influence_batch2",
     "cards.deluxe2015.definitions",
     "demo.era_scenarios",
-    "rules.deluxe2015.turn-flow"
+    "rules.deluxe2015.turn-flow",
+    "layout.demo.world",
+    "presentation.natural_earth.land"
   ]
 }

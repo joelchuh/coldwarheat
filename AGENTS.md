@@ -621,3 +621,9 @@ ADR-006-player-view-and-hidden-information.md
 - 人工局面和示例牌明确标fixture；完整开局、102个卡牌事件处理器、回合与整局规则仍未实现。地图面板已接入IMapView同步诊断子集（卡片/列表），不是最终画风或完整资源接口；先读Docs/Wiki/replaceable-map-view.md。
 - 地图批准profile独立维护，不在构建时从候选数据自动批准。Editor和播放器读取相同数据；构建前验证并生成忽略的StreamingAssets副本，权威事实仍在Data。
 - 本批52项真实EditMode测试通过；窗口视觉/鼠标验收状态见最新工作记录，不用单元测试替代。后续新增测试时更新对应报告，旧数量不作为永久断言。
+
+## 27. 世界地图占位实现（2026-10-13后续）
+
+已在十一练习Demo中加入WorldMapView，与Tiles/Table共享IMapView。Data/Presentation独立保存86节点Flat2D布局与公共领域陆地；缩放/平移和国家热点已有实现，最终ThemeDefinition和美术仍待确定。第26节“只有卡片/列表”的描述是此前批次状态。
+
+先查Docs/Wiki/world-map-view.md及对应JSON摘要。底图、坐标和主题不得修改Core邻接与规则。完整游戏回合、出牌和胜负仍未接入，不能将地图版Demo称为完整游戏；自动测试、构建、截图与真实鼠标验证分别报告。

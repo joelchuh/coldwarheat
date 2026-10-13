@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "layout.demo.world",
+  "kind": "dataset",
+  "status": "fixture",
+  "description": "84个游戏国家/区域与2个超级大国的Flat2D占位坐标；自制近似显示位置，不是规则属性或最终画风。",
+  "entrypoints": [
+    {
+      "path": "Data/Presentation/world-layout.json",
+      "symbol": "$"
+    }
+  ],
+  "inputs": [
+    "按稳定ID或rings读取"
+  ],
+  "outputs": [
+    "归一化只读显示数据"
+  ],
+  "dependencies": [
+    "map.deluxe2015.world"
+  ],
+  "preconditions": [
+    "仅供世界地图占位模块；底图与布局使用相同2:1投影"
+  ],
+  "side_effects": [
+    "无，静态数据"
+  ],
+  "stop_conditions": [
+    "未知版本、错误覆盖、越界/非有限坐标或坏轮廓拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/References/world-map-art-source.md"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/WorldMapDataTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/world-map-view.md"
+}

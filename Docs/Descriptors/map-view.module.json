@@ -3,7 +3,7 @@
   "id": "module.map-view",
   "kind": "module",
   "status": "implemented",
-  "description": "可替换地图的同步诊断子集：公开只读国家帧、上下文/版本/序号/本地修订门禁、卡片和列表两个实际适配器；换视图保留对局及草稿，不实现正式layout/theme或异步资源。",
+  "description": "可替换地图同步接口：公开国家帧与输入新鲜度保护；World、Tiles、Table三个适配器共享规则会话。World占位布局/镜头另查world-map-view模块。",
   "entrypoints": [
     {
       "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/MapContracts.cs",
@@ -102,16 +102,16 @@
   "documentation": "Docs/Wiki/replaceable-map-view.md",
   "verification": {
     "report": "Docs/Testing/replaceable-map-view.validation.json",
-    "independent_review": "passed-after-P2-P3-fixes"
+    "independent_review": "passed-after-P2-P3-fixes",
+    "latest_report": "Docs/Testing/world-map.validation.json"
   },
   "data_dependencies": [
     "map.deluxe2015.world",
     "localization.en_us.catalog_names"
   ],
   "not_implemented": [
-    "正式地图几何与86节点layout装配",
-    "ThemeDefinition资源加载",
+    "最终ThemeDefinition资源加载",
     "异步网络查询/资源加载",
-    "地图动画/镜头缩放"
+    "3D地图与动画"
   ]
 }

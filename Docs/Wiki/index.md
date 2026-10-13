@@ -6,7 +6,8 @@
 |---|---|---|---|
 | 卡牌效果引用索引 | 仅核对稳定效果ID存在性，不判断完整卡牌可执行 | 102个只读引用已接入两牌参数装配 | [card-effect-reference-index.md](card-effect-reference-index.md) |
 | 回合日历与权威时代 | 查共享时代表、不可变Turn及复制保持，区别于完整状态机 | 371回归通过；不自动推进阶段 | [turn-calendar.md](turn-calendar.md) |
-| 首个影响力 Demo | 查运行、人工场景、影响力/会话/UI/构建模块及真实测试 | 387项EditMode通过；十一场景真实构建，鼠标实测待完成 | [first-demo.md](first-demo.md) |
+| 首个影响力 Demo | 查运行、人工场景、影响力/会话/UI/构建模块及真实测试 | 445项EditMode通过；十一场景世界图真实构建，鼠标实测待完成 | [first-demo.md](first-demo.md) |
+| 世界地图占位视图 | 查86节点布局、公共领域陆地、镜头、拾取和资源装配 | 445项回归通过；实际渲染已核对，鼠标待验收 | [world-map-view.md](world-map-view.md) |
 | 单人双边测试与首批计划 | 查一个客户端、两方身份、调试观察和正常信息过滤，以及首批核心任务 | 首批影响力已实现 | [模式说明](local-test-mode.md) · [计划](../Plans/2026-10-13-core-influence-first-slice.md) · [JSON](../Plans/2026-10-13-core-influence-first-slice.json) |
 | 游戏实现与可替换地图接口 | 查整体分层、地图输入输出、状态面板和首批影响力闭环 | 影响力与同步诊断地图接口已实现；资源接口待接入 | [接口提案](../Design/implementation-architecture.proposal.md) · [JSON](../Design/implementation-architecture.proposal.json) |
 | 编码前方向讨论 | 比较第一版交付顺序、统一状态、占位地图与数据边界 | 方向已认可；首批已实现 | [coding-direction-discussion.md](../Design/coding-direction-discussion.md) · [JSON](../Design/coding-direction-discussion.json) |

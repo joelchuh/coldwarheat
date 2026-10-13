@@ -148,13 +148,13 @@
     },
     {
       "id": "module.demo-presentation",
-      "description": "单窗口十一练习：普通影响力与八种基础事件，含东欧动荡7/8回合对照；固定身份、数量/国家草稿与地图视图切换。显示权威回合，仍是诊断UI，未实现完整对局。",
+      "description": "单窗口十一练习：普通影响力与八种事件，含东欧动荡7/8回合；世界图/卡片/列表共享固定身份、数量草稿与权威会话，仍非完整对局。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/demo-presentation.module.json"
     },
     {
       "id": "module.demo-build",
-      "description": "Unity构建：验证同步十五份权威JSON，标准Build回调也同步；Build输出FirstDemo，BuildPreview固定输出PreviewDemo供并排运行，不关闭旧窗口，不执行Git。",
+      "description": "校验规则、十一练习与世界地图资源并同步17份运行载荷，生成Windows Demo；最终画风与完整对局仍待实现。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/demo-build.module.json"
     },
@@ -172,7 +172,7 @@
     },
     {
       "id": "module.map-view",
-      "description": "可替换地图的同步诊断子集：公开只读国家帧、上下文/版本/序号/本地修订门禁、卡片和列表两个实际适配器；换视图保留对局及草稿，不实现正式layout/theme或异步资源。",
+      "description": "可替换地图同步接口：公开国家帧与输入新鲜度保护；World、Tiles、Table三个适配器共享规则会话。World占位布局/镜头另查world-map-view模块。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/map-view.module.json"
     },
@@ -187,6 +187,12 @@
       "description": "读取唯一回合表生成不可变时代/手牌目标/基础行动数；GameState.Turn提供权威回合并在状态复制中保持。缺少时不猜时代；不推进阶段、不发牌、不装配完整TurnFlow。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/turn-calendar.module.json"
+    },
+    {
+      "id": "module.world-map-view",
+      "description": "可替换世界地图占位模块：86节点布局与公共领域陆地只读装配，缩放/平移、圆点拾取；共享IMapView和权威命令，未确定最终画风。",
+      "status": "implemented",
+      "descriptor": "Docs/Descriptors/world-map-view.module.json"
     }
   ]
 }
