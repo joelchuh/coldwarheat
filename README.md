@@ -1,133 +1,34 @@
 # ColdWarStruggle
 
-《冷战热斗》电脑端学习项目，GitHub 仓库名称为 coldwarheat，内部项目代号为 ColdWarStruggle。
+《冷战热斗》电脑端学习项目，GitHub 仓库名为 **coldwarheat**，内部项目名为 **ColdWarStruggle**。
 
-## 当前状态
+## 当前阶段
 
-本仓库保存工程约定、Wiki、Git 教程和项目 Skill。远程仓库由用户创建，地址为 https://github.com/joelchuh/coldwarheat，当前为公开仓库。
+当前是**规则数据与契约设计阶段**。仓库已整理 84 个国家及邻接、103 张基础牌的印刷定义、初始布置、回合流程、行动、计分、胜负和分批卡牌事件设计。具体参数绑定与未确认边界见[正式数据索引](Docs/Wiki/map-card-data.md)及各牌的验证报告。
 
-本地项目目录为 E:\TwilightStruggle，目录名称与远程仓库名可以不同。已通过克隆接入完整 Git 历史，main 跟踪 origin/main；旧文件保留在 E:\TwilightStruggle-backup-20260919。同步与推送结果逐次核验，克隆成功不代表已验证推送权限。
+尚未创建 Unity 工程或 C# 游戏源码，尚无可运行的完整对局。JSON 参数 `Bound` 只表示参数已登记；所有 102 个事件处理器仍为 `planned`。有限设计检查、资料核对和实际游戏测试分别记录，未接入的组合与运行验收不视为完成。
 
-尚未创建 Unity 工程、游戏源码或运行游戏测试。
+**下一步先讨论实现方向，再开始编码。** 建议从纯规则闭环开始，接占位地图，再逐步完成本地双人对局；具体方案见[编码前讨论稿](Docs/Design/coding-direction-discussion.md)和它的[JSON 摘要](Docs/Design/coding-direction-discussion.json)。本稿是建议，不代表已获准创建工程。
 
-## 已确认的方向
+## 已确认的工程原则
 
-- Unity 6 + URP + C#；已在本机发现编辑器 6000.6.0f1。尚未生成 ProjectSettings 或锁定包版本。
-- 纯 C# 规则核心，独立于 Unity、UI、网络和美术资源。
-- 官方 Deluxe 基础规则作为研究基准；首版不启用可选规则、扩展和自定义平衡。精确资料版本、勘误及卡牌清单在规则设计阶段锁定。
-- 当前先细化全部规则设计，再逐步实施；本地双人优先，真实联网和 AI 后置。
-- 代码、规则文档、Wiki、工作记录和项目 Skill 保存在同一仓库，便于版本同步。
+- Unity 6、URP、C#；本机编辑器为 6000.6.0f1，正式工程与包版本尚未建立。
+- Core 是独立于 Unity、网络与美术的纯规则层。玩家通过 Command 操作，表现层读取按身份过滤的视图。
+- 先做本地双人，再接真实联网与 AI。客户端和正常 AI 不持有对手隐藏信息。
+- 规则以已核对的 Deluxe 基础资料及明确记录的项目解释为准；未知边界保持待处理，不猜默认值。可选 104–110 号牌未启用。
+- 卡牌、地图、固定规则使用共享 JSON 定义；动态局面单独保存。界面通过稳定 ID 关联布局和主题，画风仍可调整。
 
-## 从哪里开始
+## 如何查找与继续工作
 
-1. 阅读 [AGENTS.md](AGENTS.md) 了解工程边界和当前阶段。
-2. 从 [Wiki 索引](Docs/Wiki/index.md) 的摘要定位主题。
-3. 阅读相关知识点，再按类或函数定位必要源码及测试；当前尚无源码。开发须遵循 [模块、数据与脚本工作流](Docs/Wiki/workflow-and-data.md) 及其 JSON 策略。
-4. 初始化经过见 [本地工作记录](Docs/Worklogs/2026-09-16-repository-bootstrap.md)，线上保存状态见 [GitHub 工作记录](Docs/Worklogs/2026-09-17-github-bootstrap.md)。
+1. 读 [AGENTS.md](AGENTS.md)，核对当前阶段和 Git 状态。
+2. 从 [Wiki 索引](Docs/Wiki/index.md) 的短描述选择知识点。
+3. 读命中的模块、数据或脚本描述，再按入口定位相关函数及必要上下文；`planned_entrypoints` 不是已有代码。
+4. 修改后同步数据、描述、Wiki、验证证据和工作记录，再审阅、提交并核对远程。
 
-## Git 入门
+结构与边界见[游戏架构](Docs/Wiki/architecture.md)；共享数据与脚本化条件见[模块、数据及脚本工作流](Docs/Wiki/workflow-and-data.md)。逐批历史已集中到[设计进度记录](Docs/Worklogs/2026-10-13-design-progress-history.md)，不把旧批次的累计数当成当前库存。
 
-见 [Git 工作流与操作理由](Docs/Wiki/git-workflow.md)。Unity 的缓存、构建输出和个人配置不纳入版本管理；Assets 及其 .meta、Packages 和 ProjectSettings 在创建后需要纳入版本管理。
+## Git 与目录
 
-这里是项目准备仓库，不是已可运行的游戏。请勿把编辑器安装文件复制进仓库。
+本地项目为 `E:\TwilightStruggle`；远程为 [joelchuh/coldwarheat](https://github.com/joelchuh/coldwarheat)，`main` 跟踪 `origin/main`。提交保存本地历史，推送并核对后才算远程同步；教程见 [Git 工作流](Docs/Wiki/git-workflow.md)。
 
-## 地图与卡牌数据进度（2026-09-28）
-
-[正式数据索引](Docs/Wiki/map-card-data.md)已按地区整理84国和邻接、按时代整理103张基础牌，并提供数据JSON描述和英文名称字典。布局/主题独立，画风未定。卡牌印刷事实已核对，但效果参数与处理器待实现；初始布置已在后续任务建立，但完整可执行规则包仍未完成，不能开局。
-
-[开局设计](Docs/Wiki/setup.md)已补齐官方固定影响力、苏联/美国自由部署和共享初值引用，并定义先看初始手牌、幂等恢复与首回合不重复发牌的流程。运行服务待实现。
-
-[早期影响力事件第一批](Docs/Wiki/early-influence-batch1.md)已为5张牌建立参数绑定、4类具名模板与可复用选择流程。Bound仅指参数就绪；所有事件处理器仍待实现，不能据此运行完整对局。
-
-2026-09-30：新增[第二批影响力事件设计](Docs/Wiki/early-influence-batch2.md)，两批共8牌参数已绑定；仍无C#运行实现。
-
-第三批：[独立红色政权与经互会](Docs/Wiki/early-influence-batch3.md)，三批共10牌参数已绑定；仍处于设计阶段。
-
-截至2026-10-01：[持续效果与OPS修正](Docs/Wiki/persistent-effects.md)，增加越南起义、遏制政策、红色恐怖／清洗，共13牌参数已绑定、89牌待绑定。全部处理器仍待实现；本次验证是数据与离线参考检查，不代表游戏可以运行。
-
-条约首批：[北约与美日安保条约](Docs/Wiki/treaty-protection.md)已完成参数和保护机制设计；累计15牌Bound、87牌Unresolved，全部处理器仍待实现。
-
-前置事件批：[马歇尔计划与华沙条约](Docs/Wiki/alliance-prerequisites.md)的影响力与玩家选择已设计；累计17牌Bound、85牌Unresolved，处理器仍planned。
-
-北约局部例外批：[戴高乐与勃兰特](Docs/Wiki/nato-exceptions.md)已设计固定组合效果和局部北约例外。
-
-此前：[拆墙与事件行动授权](Docs/Wiki/event-operations.md)补齐固定收益、可选欧洲行动、OPS预算和核战责任；当时累计20牌Bound、82牌Unresolved，102处理器均planned。
-
-此前：[首批战争事件](Docs/Wiki/war-events.md)绑定朝鲜、阿以、印巴战争，累计23牌Bound、79牌Unresolved；102处理器仍planned。三牌复用单骰与转移模板，画风接口独立。
-
-此前：[战争第二批](Docs/Wiki/war-events-batch2.md)补齐Brush War与两伊战争，五张战争参数均已绑定；累计25 Bound / 77 Unresolved，处理器仍planned。后续持续设计见[批次规划](Docs/Design/rules-design-roadmap.json)。
-
-此前：[战争牌持续与取消](Docs/Wiki/war-card-hooks.md)新增Flower、戴维营与邪恶帝国；累计28 Bound / 74 Unresolved，102处理器仍planned；Flower两项边界待裁定。
-
-此前：[DEFCON事件与政变干预](Docs/Wiki/defcon-events-batch1.md)绑定4牌；累计32 Bound / 70 Unresolved，102处理器仍planned。
-
-此前：[影响力迁移](Docs/Wiki/influence-relocation.md)绑定去斯大林化已知参数；累计33 Bound / 69 Unresolved，102处理器planned，重叠边界待裁定。
-
-此前：[封锁与五年计划](Docs/Wiki/hand-events-batch1.md)绑定两牌；累计35 Bound / 67 Unresolved，102处理器planned。
-
-此前：[动态计分效果](Docs/Wiki/scoring-effects-batch1.md)绑定台湾决议/穿梭；累计37 Bound / 65 Unresolved，102处理器planned。
-
-此前：[七张计分牌绑定](Docs/Wiki/scoring-cards.md)共用现有地区/SEA定义；累计44 Bound / 58 Unresolved，102处理器planned。
-
-此前：[DEFCON与VP顺序事件](Docs/Wiki/defcon-vp-events.md)绑定3牌；累计47 Bound / 55 Unresolved，102处理器planned。
-
-此前：[中期影响力四牌](Docs/Wiki/mid-influence-batch1.md)共用既有影响力原语；当时当时累计51 Bound / 51 Unresolved，102处理器planned。
-
-此前：[事件太空](Docs/Wiki/space-events-batch1.md)与[教皇链](Docs/Wiki/solidarity-chain.md)，当时累计54 Bound / 48 Unresolved，102处理器planned；终点/移除不足裁定尚未采纳。
-
-此前：[国家指标VP三牌](Docs/Wiki/country-metric-vp-events.md)，当时累计57 Bound / 45 Unresolved，102处理器planned。
-
-此前：[中期影响力第二批](Docs/Wiki/mid-influence-batch2.md)，当时累计60 Bound / 42 Unresolved，102处理器planned。
-
-此前：[持续修正第二批](Docs/Wiki/persistent-effects-batch2.md)，当时累计62 Bound /40 Unresolved，102处理器planned，LADS重复仍待裁定。
-
-此前：[UN双牌使用](Docs/Wiki/un-intervention.md)，当时累计63 Bound /39 Unresolved，102处理器planned。
-
-此前：[陷阱根行动与共享标准骰](Docs/Wiki/trap-events.md)，当时累计65 Bound /37 Unresolved，102处理器planned。
-
-此前：[Junta分步事件](Docs/Wiki/junta.md)，累计66 Bound /36 Unresolved，102处理器planned。
-
-此前：[中期影响力第三批](Docs/Wiki/mid-influence-batch3.md)，70 Bound /32 Unresolved，102处理器仍planned，短缺待裁定不是默认放行。
-
-此前：[一小步事件太空推进](Docs/Wiki/one-small-step.md)，71 Bound /31 Unresolved，102处理器planned。
-
-此前：[军备竞赛与峰会](Docs/Wiki/contest-events.md)，73 Bound /29 Unresolved，102处理器planned；军事比较封顶已获用户确认。
-
-此前：[CIA与Lone Gunman一次手牌揭示](Docs/Wiki/reveal-ops-batch1.md)，75 Bound /27 Unresolved，102处理器planned；特殊来源影响力起点待核实。
-
-此前：[晚期影响力第一批](Docs/Wiki/late-influence-batch1.md)，79 Bound /23 Unresolved，102处理器planned；海军营房短缺按可完成量移除已确认。
-
-此前：[奥运会](Docs/Wiki/olympic-games.md)，80 Bound /22 Unresolved，102处理器planned；平局强制重掷与抵制核战检查具名。
-
-此前：[中国牌事件转交](Docs/Wiki/china-transfer-batch1.md)，83 Bound /19 Unresolved，102处理器planned；持有者条件、转交面向、奖励与源牌收尾具名。
-
-此前：[战争游戏](Docs/Wiki/wargames.md)，84 Bound /18 Unresolved，102处理器planned；三选择明确，给分后恰零结束按用户确认判平局。
-
-此前：[OPEC与北海石油](Docs/Wiki/opec-north-sea-batch1.md)，86 Bound /16 Unresolved，102处理器planned；永久阻止与回合额度分开，太空名额不叠加到9。
-
-此前：[晚期手牌事件](Docs/Wiki/late-hand-batch1.md)，89 Bound /13 Unresolved，102处理器planned；原子随机弃牌与持续当前视图分开，短缺待裁定。
-
-此前：[叛逃者](Docs/Wiki/defectors.md)，90 Bound /12 Unresolved，102处理器planned；头条取消与普通苏方用牌VP已设计，未知嵌套来源停止。
-
-此前：[晚期受限行动事件](Docs/Wiki/late-event-operations-batch1.md)，93 Bound /9 Unresolved，102处理器planned；三牌前缀顺序和共享OPS交接明确，尚未执行真实行动。
-
-此前：[延迟VP事件](Docs/Wiki/deferred-vp-events-batch1.md)，95 Bound /7 Unresolved，102处理器planned；即时前缀与后续检查点分开，未定来源不伪授权。
-
-此前：[伊朗门与切尔诺贝利](Docs/Wiki/late-restrictions-batch1.md)，97 Bound /5 Unresolved，102处理器planned。规则图与活动状态驱动，画风保持独立。
-
-本轮裁定更新：[五牌项目解释](Docs/Wiki/confirmed-rulings-20261013.md)已获用户确认；参数与案例同步，卡牌绑定总数不变。
-
-此前：[拉美债务危机](Docs/Wiki/latin-american-debt-crisis.md)，98 Bound /4 Unresolved，102处理器planned；私有手牌回应与双国影响计划复用共享服务。
-
-本批设计验证：[拉美债务危机报告](Docs/Design/latin-american-debt-crisis.validation.json)，4605项离线检查；游戏运行代码仍待方向讨论后启动。
-
-此前：[Ask Not换手牌](Docs/Wiki/ask-not.md)，99 Bound /3 Unresolved，102处理器planned；弃牌集合锁定与抽牌提供者分开。
-离线设计主验4760项；详见[Ask Not验证记录](Docs/Design/ask-not.validation.json)。
-
-[全局平局结果契约](Docs/Wiki/draw-global-contracts.md)：累计4800项设计案例；本批实际运行1943项受影响回归＋40项新检查，游戏runtime仍0。
-
-此前：[Star Wars与借牌模块](Docs/Wiki/star-wars.md)，100 Bound /2 Unresolved，102处理器planned；合法候选和消费者支持分开，画风与规则无耦合。
-
-此前：[Grain Sales随机借牌](Docs/Wiki/grain-sales.md)，101 Bound /1 Unresolved，102处理器planned；随机证据、私有选择和有限子用牌分开。
-
-最新：[Missile Envy交换与义务](Docs/Wiki/missile-envy.md)，102 Bound /0 Unresolved；这是参数登记完成，102处理器仍planned，未知组合和真实运行验收仍待后续。
+代码、规则数据、Wiki、工作日志和项目 Skill 保存在同一仓库。Unity 工程建立后应跟踪 Assets 及 `.meta`、Packages、ProjectSettings；缓存、构建输出、个人设置和编辑器安装文件不纳入仓库。
