@@ -76,13 +76,18 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.cs",
       "symbol": "WithEraScenarios"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoLaunchOptions.cs",
+      "symbol": "FocusSelected"
     }
   ],
   "inputs": [
     "正式地图与批准profile、地图Schema、演示局面、影响力费用、名称字典",
     "事件人工场景、五牌共享参数及参数Schema",
     "数量练习、第二批参数/Schema、正式卡牌效果引用索引",
-    "时代人工场景turn_number与共享turn-flow日历；禁止场景自报era或移除额度"
+    "时代人工场景turn_number与共享turn-flow日历；禁止场景自报era或移除额度",
+    "World下可选--demo-focus=overview|selected，只改初始镜头"
   ],
   "outputs": [
     "只读视图驱动的Unity诊断界面"
@@ -156,13 +161,17 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/EraDemoTests.cs",
       "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/MapFocusLaunchTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "documentation": "Docs/Wiki/first-demo.md",
   "verification": {
     "checked_on": "2026-10-13",
     "report": "Docs/Testing/era-demo.validation.json",
-    "latest_report": "Docs/Testing/world-map.validation.json"
+    "latest_report": "Docs/Testing/map-focus.validation.json"
   },
   "data_dependencies": [
     "rules.deluxe2015.influence_placement",

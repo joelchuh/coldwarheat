@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "plan.map-focus",
+  "kind": "implementation-plan",
+  "status": "implemented-verified",
+  "description": "为世界地图追加只读启动焦点，重复检查局部画面并修复密集标签重叠；不改规则或提交事件。",
+  "entrypoints": [],
+  "inputs": [
+    "World显示参数、现有练习的SelectedCountry"
+  ],
+  "outputs": [
+    "欧洲/中东放大画面证据"
+  ],
+  "dependencies": [
+    "module.demo-presentation",
+    "module.world-map-view"
+  ],
+  "preconditions": [
+    "已有持续优化授权与世界图实现"
+  ],
+  "side_effects": [
+    "源码、文档、播放器和游戏画面导出"
+  ],
+  "stop_conditions": [
+    "未知/重复或非World焦点参数拒绝；验证失败先修复"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/world-map-view.md"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/MapFocusLaunchTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/MapLabelLayoutTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "document": "Docs/Plans/2026-10-13-map-focus.md"
+}

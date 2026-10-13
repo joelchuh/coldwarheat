@@ -34,11 +34,13 @@ namespace ColdWarStruggle.Presentation
         readonly string[] regions={"region.europe","region.asia","region.middle_east","region.africa","region.central_america","region.south_america"};
         readonly string[] regionNames={"欧洲","亚洲","中东","非洲","中美洲","南美洲"};
         static readonly Color Background=new Color(.035f,.057f,.095f),Panel=new Color(.075f,.105f,.15f),Muted=new Color(.58f,.66f,.76f),Ink=new Color(.91f,.94f,.98f),Blue=new Color(.32f,.64f,1f),Red=new Color(1f,.43f,.4f),Green=new Color(.36f,.83f,.65f);
-        public void Initialize(DemoController controller,IReadOnlyDictionary<string,string> names,IReadOnlyList<DemoScenarioOption> scenarios,int initialScenario=0,DiagnosticMapKind mapKind=DiagnosticMapKind.Tiles,WorldMapAssets worldAssets=null)
+        public void Initialize(DemoController controller,IReadOnlyDictionary<string,string> names,IReadOnlyList<DemoScenarioOption> scenarios,int initialScenario=0,DiagnosticMapKind mapKind=DiagnosticMapKind.Tiles,WorldMapAssets worldAssets=null,bool focusSelected=false)
         {
+            if(focusSelected && mapKind!=DiagnosticMapKind.World)throw new ArgumentException("Selected focus requires the world view.");
             if(initialScenario<0 || initialScenario>=scenarios.Count)throw new ArgumentOutOfRangeException(nameof(initialScenario));
             this.controller=controller;this.names=names;this.scenarios=scenarios;this.worldAssets=worldAssets;Reset(initialScenario);
             mapPresenter?.Dispose();mapPresenter=new MapPresenter(controller,names);SwitchMap(mapKind);
+            if(focusSelected && mapView is WorldMapView world)world.RequestCountryFocus(controller.SelectedCountry);
         }
         public void ShowError(string message) { fatal=message; }
         public void SetCaptureStatus(string message) { captureStatus=message; }

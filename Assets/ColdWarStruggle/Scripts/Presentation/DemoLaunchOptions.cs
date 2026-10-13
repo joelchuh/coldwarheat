@@ -5,6 +5,21 @@ namespace ColdWarStruggle.Presentation
 {
     public static class DemoLaunchOptions
     {
+        public static bool FocusSelected(IEnumerable<string> args,DiagnosticMapKind kind)
+        {
+            if(args==null)throw new ArgumentNullException(nameof(args));
+            if(!Enum.IsDefined(typeof(DiagnosticMapKind),kind))throw new ArgumentOutOfRangeException(nameof(kind));
+            const string prefix="--demo-focus=";
+            var choices=args.Where(a=>a!=null && a.StartsWith(prefix,StringComparison.Ordinal)).ToArray();
+            if(choices.Length==0)return false;
+            if(choices.Length!=1 || kind!=DiagnosticMapKind.World)throw new ArgumentException("Focus requires a single world-map display option.");
+            switch(choices[0].Substring(prefix.Length))
+            {
+                case "overview":return false;
+                case "selected":return true;
+                default:throw new ArgumentException("Unknown map focus option.");
+            }
+        }
         public static DiagnosticMapKind MapKind(IEnumerable<string> args)
         {
             if(args==null)throw new ArgumentException("Missing launch arguments.");

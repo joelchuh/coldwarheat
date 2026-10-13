@@ -3,7 +3,7 @@
   "id": "module.world-map-view",
   "kind": "module",
   "status": "implemented",
-  "description": "可替换世界地图占位模块：86节点布局与公共领域陆地只读装配，缩放/平移、圆点拾取；共享IMapView和权威命令，未确定最终画风。",
+  "description": "可替换世界地图占位模块：86节点与公共领域陆地、缩放/平移、圆点拾取及标签避让；共享IMapView和权威命令，未确定最终画风。",
   "entrypoints": [
     {
       "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/WorldMapAssets.cs",
@@ -68,6 +68,10 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/WorldMapView.cs",
       "symbol": "PrepareViewport"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/MapLabelLayout.cs",
+      "symbol": "Arrange"
     }
   ],
   "inputs": [
@@ -116,6 +120,10 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/WorldMapViewTests.cs",
       "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/MapLabelLayoutTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "data_dependencies": [
@@ -126,6 +134,7 @@
   "documentation": "Docs/Wiki/world-map-view.md",
   "verification": {
     "report": "Docs/Testing/world-map.validation.json",
-    "independent_review": "passed-after-fixes"
+    "independent_review": "passed-after-fixes",
+    "latest_report": "Docs/Testing/map-focus.validation.json"
   }
 }

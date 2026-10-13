@@ -2,7 +2,7 @@
 
 description：运行单窗口双边测试，定位影响力规则、固定身份、幂等、数据加载及 Unity 构建入口。先读模块 JSON，再定位对应函数。
 
-状态：2026-10-13，真实 Unity 工程与 Windows 构建已建立；445 项 EditMode 测试通过。已通过游戏自身导出真实渲染并检查字体/布局；computer-use鼠标实测仍受窗口激活失败影响，不能把截图当成点击验收。
+状态：2026-10-13，真实 Unity 工程与 Windows 构建已建立；467 项 EditMode 测试通过。已通过游戏自身导出真实渲染并检查字体/布局；computer-use鼠标实测仍受窗口激活失败影响，不能把截图当成点击验收。
 
 ![世界地图占位实际运行画面](../Images/world-map-demo.png)
 
@@ -58,7 +58,7 @@ Core/Application/Infrastructure 没有 UnityEngine 引用。Core 不读文件；
 
 ## 验证与后续
 
-真实测试入口：`Assets/ColdWarStruggle/Tests/EditMode`。运行 Unity EditMode，筛选 `ColdWarStruggle.Tests`；当前 445 项通过。详细 RED/GREEN、构建和实际限制见 [世界地图工作记录](../Worklogs/2026-10-13-world-map.md)。旧的有限 Python 设计检查不能计入 C# 测试数。
+真实测试入口：`Assets/ColdWarStruggle/Tests/EditMode`。运行 Unity EditMode，筛选 `ColdWarStruggle.Tests`；当前 467 项通过。详细 RED/GREEN、构建和实际限制见 [世界地图工作记录](../Worklogs/2026-10-13-world-map.md)。旧的有限 Python 设计检查不能计入 C# 测试数。
 
 八张基础事件、国家集合和数量分配界面已实现；世界地图占位视图已接入，后续改善地图可读性和真实操作验收；正式出牌与完整阶段编排仍待推进。地图布局与主题可并行演进，但沿用稳定 CountryId 和会话边界。
 
@@ -115,3 +115,5 @@ F12只导出游戏当前渲染帧到本机 `Application.persistentDataPath/DemoC
 历史[387项报告](../Testing/era-demo.validation.json)含15份规范源与播放器逐字节一致、构建exit0及实际Ready帧。鼠标实测仍未完成。
 
 当前世界图批次的17份载荷、构建和截图见[世界图验证报告](../Testing/world-map.validation.json)，功能入口见[世界图知识点](world-map-view.md)。
+
+World视图可追加`--demo-focus=selected`，初始定位所选国家以重复检查局部画面。默认仍全图；此参数不改变局面或代为提交操作。放大后文字会避开热点与其他标签，空间不足的名称通过底部详情读取。

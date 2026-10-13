@@ -31,10 +31,11 @@ namespace ColdWarStruggle.Bootstrap
                     .WithEraScenarios(Read(root,"era-scenarios.json"),Read(root,"early-influence-batch2.parameters.json"),Read(root,"early-influence-batch2.schema.json"),Read(root,"cards.json"),Read(root,"turn-flow.json"));
                 var worldAssets=WorldMapAssets.Load(Read(root,"world-layout.json"),Read(root,"world-land.json"),catalog.Map);
 #endif
+                var mapKind=DemoLaunchOptions.MapKind(Environment.GetCommandLineArgs());
                 view.Initialize(new DemoController(catalog.CreateHost),catalog.Names,
                     catalog.Scenarios.Select(s=>new DemoScenarioOption(s.Id,s.Title,s.Actor,s.SelectedCountry)).ToArray(),
                     DemoLaunchOptions.ScenarioIndex(Environment.GetCommandLineArgs(),catalog.Scenarios.Select(s=>s.Id).ToArray()),
-                    DemoLaunchOptions.MapKind(Environment.GetCommandLineArgs()),worldAssets);
+                    mapKind,worldAssets,DemoLaunchOptions.FocusSelected(Environment.GetCommandLineArgs(),mapKind));
             }
             catch(Exception e) { view.ShowError(e.Message);Debug.LogException(e); }
         }

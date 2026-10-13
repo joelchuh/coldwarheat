@@ -36,6 +36,7 @@ namespace ColdWarStruggle.Presentation
                     var hovered=HitTest(Event.current.mousePosition,mapArea);
                     var selected=Frame.Countries.SingleOrDefault(c=>c.Selected);
                     foreach(var c in VisibleMarkers(mapArea,Event.current.mousePosition))DrawMarker(c,mapArea,small,hovered.HasValue && c.Id.Equals(hovered.Value));
+                    DrawLabels(mapArea,small,hovered);
                     DrawPower("superpower.us","US",Us,mapArea,small);DrawPower("superpower.ussr","USSR",Ussr,mapArea,small);
                     detail=hovered??selected?.Id;
                 }
@@ -76,12 +77,6 @@ namespace ColdWarStruggle.Presentation
             Circle(p,radius-2,Ocean);
             if(c.Drafted)GUI.Label(new Rect(p.x-6,p.y-10,18,20),"✓",small);
             else if(c.US>0 || c.USSR>0)Circle(p,3,c.US>c.USSR?Us:c.USSR>c.US?Ussr:Color.white);
-            if(Viewport.Zoom>=5)
-            {
-                var style=new GUIStyle(small){fontSize=12,wordWrap=false};style.normal.textColor=c.Selected?Selected:Color.white;
-                GUI.Label(new Rect(p.x+12,p.y-11,148,20),Context.Nodes.Single(n=>n.Id.Equals(c.Id)).Name,style);
-                style.normal.textColor=Neutral;GUI.Label(new Rect(p.x+12,p.y+6,120,20),$"美{c.US} / 苏{c.USSR}",style);
-            }
         }
         void DrawPower(string id,string text,Color color,Rect area,GUIStyle small)
         {
