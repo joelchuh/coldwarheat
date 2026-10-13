@@ -38,12 +38,14 @@ namespace ColdWarStruggle.Application
         public int OpponentHandCount { get; }
         public PublicEventView Event { get; }
         public GameTurnContext Turn { get; }
+        public PublicDeploymentView Deployment { get; }
         internal PlayerViewSnapshot(GameState s,PlayerSide viewer)
         {
             GameId=s.GameId;Viewer=viewer;Version=s.Version;EventSequence=s.EventSequence;ContextId=s.Operations.Id;Actor=s.Operations.Actor;RemainingOps=s.Operations.Budget-s.SpentOps;
             Countries=Array.AsReadOnly(s.Map.Countries.Select(c=>new CountryView(c,s.Countries[c.Id])).ToArray());
             OwnHand=Array.AsReadOnly(s.GetHand(viewer).ToArray());OpponentHandCount=s.GetHand(viewer==PlayerSide.US?PlayerSide.USSR:PlayerSide.US).Count;
             Event=s.InfluenceEvent==null?null:new PublicEventView(s.InfluenceEvent);Turn=s.Turn;
+            Deployment=s.Deployment==null?null:new PublicDeploymentView(s.Deployment);
         }
     }
     public sealed class LocalTestSnapshot
@@ -82,5 +84,7 @@ namespace ColdWarStruggle.Application
         Task<PlayerCommandResult> SubmitAsync(CommandEnvelope command,CancellationToken cancellationToken=default);
         EventTargetsResult QueryEventTargets(string executionId,long expectedVersion);
         Task<EventCommandResult> SubmitEventAsync(EventCommandEnvelope command,CancellationToken cancellationToken=default);
+        DeploymentTargetsResult QueryDeploymentTargets(string executionId,long expectedVersion);
+        Task<DeploymentCommandResult> SubmitDeploymentAsync(DeploymentCommandEnvelope command,CancellationToken cancellationToken=default);
     }
 }

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.local-session",
   "kind": "module",
-  "description": "同一权威局面的美苏固定身份会话；普通影响力与事件命令共用身份收据，版本/上下文/决策校验，公开事件投影与显式测试观察。",
+  "description": "同一权威局面的固定身份会话：普通影响力、事件与初始部署共用身份收据；版本/上下文/决策校验，公开阶段投影和显式测试观察。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -16,6 +16,18 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/LocalGameHost.cs",
       "symbol": "ReadLocalTestSnapshot"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/SessionContracts.cs",
+      "symbol": "QueryDeploymentTargets"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/SessionContracts.cs",
+      "symbol": "SubmitDeploymentAsync"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/DeploymentSessionContracts.cs",
+      "symbol": "DeploymentCommandEnvelope"
     }
   ],
   "inputs": [
@@ -53,12 +65,14 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/EraRemovalTests.cs",
       "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DeploymentSessionTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "documentation": "Docs/Wiki/first-demo.md",
   "verification": {
-    "checked_on": "2026-10-13",
-    "report": "Docs/Testing/influence-event-sessions.validation.json",
-    "era_report": "Docs/Testing/era-removal.validation.json"
+    "report": "Docs/Testing/deployment-session.validation.json"
   }
 }

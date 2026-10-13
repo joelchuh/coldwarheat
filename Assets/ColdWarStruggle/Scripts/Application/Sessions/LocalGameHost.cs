@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ColdWarStruggle.Core;
 namespace ColdWarStruggle.Application
 {
-    public sealed class LocalGameHost
+    public sealed partial class LocalGameHost
     {
         readonly object gate=new object();
         readonly bool localTest;
@@ -17,8 +17,10 @@ namespace ColdWarStruggle.Application
             internal readonly SessionCommand Command;
             internal readonly PlayerCommandResult Placement;
             internal readonly EventCommandResult Event;
+            internal readonly DeploymentCommandResult Deployment;
             internal CommandReceipt(CommandEnvelope command,PlayerCommandResult result) { Command=command;Placement=result; }
             internal CommandReceipt(EventCommandEnvelope command,EventCommandResult result) { Command=command;Event=result; }
+            internal CommandReceipt(DeploymentCommandEnvelope command,DeploymentCommandResult result) { Command=command;Deployment=result; }
         }
         public IGameSession UsSession { get; }
         public IGameSession UssrSession { get; }
@@ -158,6 +160,9 @@ namespace ColdWarStruggle.Application
             public EventTargetsResult QueryEventTargets(string executionId,long expectedVersion)=>host.QueryEvent(Side,executionId,expectedVersion);
             public Task<EventCommandResult> SubmitEventAsync(EventCommandEnvelope command,CancellationToken cancellationToken=default)
                 =>host.SubmitEvent(Side,command,cancellationToken);
+            public DeploymentTargetsResult QueryDeploymentTargets(string executionId,long expectedVersion)=>host.QueryDeployment(Side,executionId,expectedVersion);
+            public Task<DeploymentCommandResult> SubmitDeploymentAsync(DeploymentCommandEnvelope command,CancellationToken cancellationToken=default)
+                =>host.SubmitDeployment(Side,command,cancellationToken);
         }
     }
 }

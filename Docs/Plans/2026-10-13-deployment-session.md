@@ -17,9 +17,9 @@
 
 文件：Application/Sessions/DeploymentSessionContracts.cs、LocalGameHost.Deployment.cs；必要修改SessionContracts.cs/LocalGameHost.cs；Tests/EditMode/DeploymentSessionTests.cs。
 
-- [ ] 先写成功两阶段、身份与私有投影、完整事务、重复/冲突/跨类型/同ID双身份、错误游戏/版本/决策/执行ID、取消、129项边界和并发重复测试。
-- [ ] 真正运行RED后实现接口；全量EditMode GREEN。
-- [ ] 更新模块JSON、Wiki、真实工作记录；独立审阅并按授权提交/推送。
+- [x] 先写成功两阶段、身份与私有投影、完整事务、重复/冲突/跨类型/同ID双身份、错误游戏/版本/决策/执行ID、取消、129项边界和并发重复测试。
+- [x] 真正运行RED后实现接口；全量EditMode GREEN。
+- [x] 更新模块JSON、Wiki、真实工作记录；独立审阅并按授权提交/推送。
 
 ## Review Focus
 
@@ -27,4 +27,4 @@
 
 ## 执行记录
 
-依赖初始部署规则批次审阅完成后再实施；当前文件仅计划，接口尚不可调用。
+基线ebc9db9，依赖部署规则已审阅通过并同步。会话接口已实现，25项新增测试与全量541/541通过；独立审阅已通过，无未解决问题；尚未接入地图UI。

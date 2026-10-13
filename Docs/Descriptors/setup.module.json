@@ -18,7 +18,7 @@
   ],
   "side_effects": [
     "纯规则仅规划新不可变状态；原始状态不变",
-    "暂未提供对外部署会话提交/UI入口"
+    "固定身份会话已接入完整部署命令，实际地图UI在后续批次接线"
   ],
   "stop_conditions": [
     "未知国家/子区、不支持数据版本或未核实来源拒绝",
@@ -51,6 +51,10 @@
     {
       "path": "Docs/Design/setup.cases.json",
       "status": "mixed-data-and-planned-full-setup"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DeploymentSessionTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "documentation": "Docs/Wiki/setup.md",
@@ -78,6 +82,10 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/InitialDeploymentFlow.cs",
       "symbol": "Resolve"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/DeploymentSessionContracts.cs",
+      "symbol": "PublicDeploymentView"
     }
   ],
   "planned_entrypoints": [
@@ -112,6 +120,7 @@
   "verification": {
     "implementation_tested": true,
     "scope": "deployment-subset",
-    "report": "Docs/Testing/setup-deployment.validation.json"
+    "report": "Docs/Testing/setup-deployment.validation.json",
+    "latest_report": "Docs/Testing/deployment-session.validation.json"
   }
 }

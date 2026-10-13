@@ -113,4 +113,12 @@ SubmitInitialDeploymentCommand沿用CommandId、GameId、ExpectedStateVersion；
 
 部署不是OPS：无邻接、稳定度上限或敌控双倍费用。普通影响力/卡牌事件在部署标记存在时拒绝，包括部署已完成但尚未由正式流程交接的状态。
 
-当前还没有部署会话命令和地图草稿；后续沿用固定身份、幂等收据与IMapView，显式fixture不能冒称正式初始发牌。实际测试见[报告](../Testing/setup-deployment.validation.json)。
+部署会话命令已接入固定身份与幂等收据；地图草稿尚待接线，显式fixture不能冒称正式初始发牌。实际测试见[报告](../Testing/setup-deployment.validation.json)。
+
+## 已实现：固定身份部署命令
+
+`IGameSession.QueryDeploymentTargets`按当前会话身份、执行ID和版本查询；`SubmitDeploymentAsync`接收不可变DeploymentCommandEnvelope，只包含请求标识与完整分配，不接受客户端预算或玩家字段。宿主使用同一锁、同一GameState和同一收据表调用规则Flow。
+
+同身份同CommandId及相同内容返回原历史收据，即使另一方已经完成部署；当前界面应重新ReadView读取现状。相同ID更改内容或跨OPS/事件/部署类型均拒绝冲突。格式不合法或受理前已取消的请求不占用ID；格式合法的规则拒绝保留历史结果。
+
+`PublicDeploymentView`只公开阶段、拥有者、决策ID、地区和所需额度，不包含完整Definition、GameState、他人手牌或草稿。正常手牌投影不变，查看双方只通过显式只读测试入口。全部真实回归与限制见[会话报告](../Testing/deployment-session.validation.json)。
