@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "id": "plan.card-catalog",
+  "kind": "implementation-plan",
+  "status": "implemented-verified",
+  "description": "将三类卡牌印刷定义加载为纯C#只读目录，补齐现有条件Schema与版本/来源/摘要门禁；不执行效果或发牌。",
+  "entrypoints": [],
+  "inputs": [
+    "cards v0.45.0",
+    "cards-v2 schema",
+    "已提交基线"
+  ],
+  "outputs": [
+    "CardCatalog查询接口"
+  ],
+  "dependencies": [
+    "module.card-data",
+    "module.map-data"
+  ],
+  "preconditions": [
+    "现有静态定义已核对；持续编码已授权"
+  ],
+  "side_effects": [
+    "源码/测试/描述/知识库与日常Git同步"
+  ],
+  "stop_conditions": [
+    "失败测试先修复；不把静态目录作为可运行规则包"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/map-card-contracts.md"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Testing/card-catalog.validation.json",
+      "status": "634-passed-independent-review-complete"
+    }
+  ],
+  "document": "Docs/Plans/2026-10-13-card-catalog.md"
+}

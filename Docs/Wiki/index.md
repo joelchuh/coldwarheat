@@ -4,6 +4,7 @@
 
 | 知识点 | description | 状态 | 入口 |
 |---|---|---|---|
+| 卡牌印刷静态目录 | 查103牌类型、ID/编号/时代查询、来源和冻结摘要；不执行事件 | 634项EditMode通过，完整规则包待实现 | [card-catalog.md](card-catalog.md) |
 | 卡牌效果引用索引 | 仅核对稳定效果ID存在性，不判断完整卡牌可执行 | 102个只读引用已接入两牌参数装配 | [card-effect-reference-index.md](card-effect-reference-index.md) |
 | 回合日历与权威时代 | 查共享时代表、不可变Turn及复制保持，区别于完整状态机 | 371回归通过；不自动推进阶段 | [turn-calendar.md](turn-calendar.md) |
 | 首个影响力 Demo | 查运行、人工场景、影响力/会话/UI/构建模块及真实测试 | 566项EditMode通过；十二场景含部署地图真实构建，鼠标实测待完成 | [first-demo.md](first-demo.md) |
@@ -80,7 +81,7 @@
 | 地图布局与未定画风 | 区分规则图、位置拾取和主题资源，了解2D/3D接入边界 | 设计稿；未选定美术 | [map-presentation.md](map-presentation.md) |
 | 数据结构契约目录 | 按description定位五十三份JSON Schema（含事件参数、setup及卡牌v1/v2）与合成样例 | 结构契约；不是完整规则包 | [catalog.json](../Contracts/catalog.json) |
 | 模块描述目录 | 先按 description 定位模块，再读完整契约与相关代码 | 32模块；按各描述文件区分已实现子集与planned | [catalog.json](../Descriptors/catalog.json) |
-| 共享规则数据目录 | 查找数据集描述、来源与独立参数文件 | 66数据集；含规则、Demo、地图布局/陆地与工程技术配置 | [catalog.json](../../Data/catalog.json) |
+| 共享规则数据目录 | 查找数据集描述、来源与独立参数文件 | 67数据集；含规则、Demo、地图布局/陆地与工程技术配置 | [catalog.json](../../Data/catalog.json) |
 | 行动规则 | 查找影响力、政变、调整、预算、对象契约与验收案例 | 影响力子集已实现；政变/调整待实现 | [operations.md](operations.md) |
 | 规则资料 | 查找版本来源、FAQ 适用边界和资料冻结缺口 | 已登记；未完整冻结 | [rules-sources.md](rules-sources.md) |
 | 工程边界 | 查找纯 C# 核心、命令、事件、玩家视角、确定性和程序集约束 | 实际分层与后续设计边界 | [AGENTS.md](../../AGENTS.md) |

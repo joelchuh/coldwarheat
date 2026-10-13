@@ -77,3 +77,6 @@ flowchart LR
 [战争牌持续与取消](war-card-hooks.md)绑定Flower、戴维营与邪恶帝国；已知参数与待裁定边界分开记录。
 
 [DEFCON事件四牌](defcon-events-batch1.md)参数已绑定，服务仍planned。
+
+
+2026-10-13实现更新：三类卡牌只读印刷目录、条件Schema与独立冻结profile已接入，详见[卡牌目录](card-catalog.md)。本页历史“加载器待实现”指此前状态；完整RulePack/处理器与正式发牌仍未实现。

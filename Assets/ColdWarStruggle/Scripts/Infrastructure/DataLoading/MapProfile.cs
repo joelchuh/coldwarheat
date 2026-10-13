@@ -1,8 +1,5 @@
 using System;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace ColdWarStruggle.Infrastructure
@@ -22,22 +19,8 @@ namespace ColdWarStruggle.Infrastructure
                 || (string)profile["map_content_version"] != (string)map["content_version"]
                 || (string)profile["canonicalization"] != "sorted-object-keys-json-utf8-v1")
                 throw new ArgumentException("Unsupported approved map profile.");
-            using (var hash = SHA256.Create())
-            {
-                var bytes = Encoding.UTF8.GetBytes(Canonical(map).ToString(Formatting.None));
-                var actual = BitConverter.ToString(hash.ComputeHash(bytes)).Replace("-", "").ToLowerInvariant();
-                if (!string.Equals(actual, (string)profile["sha256"], StringComparison.Ordinal))
-                    throw new ArgumentException("Map differs from the independently approved profile.");
-            }
-        }
-
-        static JToken Canonical(JToken token)
-        {
-            if (token is JObject obj)
-                return new JObject(obj.Properties().OrderBy(p => p.Name, StringComparer.Ordinal)
-                    .Select(p => new JProperty(p.Name, Canonical(p.Value))));
-            if (token is JArray array) return new JArray(array.Select(Canonical));
-            return token.DeepClone();
+            if (!string.Equals(CanonicalJsonDigest.Compute(map), (string)profile["sha256"], StringComparison.Ordinal))
+                throw new ArgumentException("Map differs from the independently approved profile.");
         }
     }
 }

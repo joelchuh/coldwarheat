@@ -31,7 +31,7 @@ namespace ColdWarStruggle.Infrastructure
             CheckSchema(schema,schema,new HashSet<JObject>(),0,ref budget);
             ValidateNode(value,schema,schema,0,ref budget);
         }
-        static readonly string[] KnownKeywords={"$schema","$id","$defs","$ref","title","description","type","properties","required","additionalProperties","items","minItems","maxItems","minLength","minimum","pattern","const","enum","anyOf","oneOf","uniqueItems"};
+        static readonly string[] KnownKeywords={"$schema","$id","$defs","$ref","title","description","type","properties","required","additionalProperties","items","minItems","maxItems","minLength","minimum","maximum","pattern","const","enum","anyOf","oneOf","allOf","if","then","else","uniqueItems"};
         static readonly string[] KnownTypes={"null","object","array","string","boolean","integer"};
         static void CheckKeywordShapes(JObject schema)
         {
@@ -44,17 +44,17 @@ namespace ColdWarStruggle.Infrastructure
                 {
                     case "$schema": case "$id": case "$ref": case "title": case "description": case "pattern":
                         valid=v.Type==JTokenType.String;break;
-                    case "$defs": case "properties": case "items": valid=v is JObject;break;
+                    case "$defs": case "properties": case "items": case "if": case "then": case "else": valid=v is JObject;break;
                     case "additionalProperties": case "uniqueItems": valid=v.Type==JTokenType.Boolean;break;
                     case "required": valid=Strings(v) && ((JArray)v).Distinct(new JTokenEqualityComparer()).Count()==((JArray)v).Count;break;
-                    case "anyOf": case "oneOf": valid=v is JArray alternatives && alternatives.Count>0 && alternatives.All(x=>x is JObject);break;
+                    case "anyOf": case "oneOf": case "allOf": valid=v is JArray alternatives && alternatives.Count>0 && alternatives.All(x=>x is JObject);break;
                     case "enum": valid=v is JArray choices && choices.Count>0;break;
                     case "type":
                         valid=v.Type==JTokenType.String ? KnownTypes.Contains((string)v)
                             : Strings(v) && ((JArray)v).Count>0 && ((JArray)v).Values<string>().All(KnownTypes.Contains);break;
                     case "minItems": case "maxItems": case "minLength":
                         valid=v.Type==JTokenType.Integer && (double)v>=0 && (double)v<=int.MaxValue;break;
-                    case "minimum": valid=v.Type==JTokenType.Integer || v.Type==JTokenType.Float;break;
+                    case "minimum": case "maximum": valid=v.Type==JTokenType.Integer || v.Type==JTokenType.Float;break;
                     case "const": valid=true;break;
                     default: valid=false;break;
                 }
@@ -91,8 +91,9 @@ namespace ColdWarStruggle.Infrastructure
                             if(p.Value is not JObject child)throw new ArgumentException("Invalid contract object.");
                             CheckSchema(child,root,active,depth+1,ref budget);
                         }
-                if(schema["items"] is JObject items)CheckSchema(items,root,active,depth+1,ref budget);
-                foreach(var keyword in new[]{"anyOf","oneOf"})
+                foreach(var keyword in new[]{"items","if","then","else"})
+                    if(schema[keyword] is JObject child)CheckSchema(child,root,active,depth+1,ref budget);
+                foreach(var keyword in new[]{"anyOf","oneOf","allOf"})
                 if(schema[keyword] is JArray alternatives)
                     foreach(var item in alternatives)
                     {
@@ -106,6 +107,15 @@ namespace ColdWarStruggle.Infrastructure
         {
             Limit(depth,ref budget);
             if(schema["$ref"]!=null)ValidateNode(value,LocalReference(schema,root),root,depth+1,ref budget);
+            if(schema["allOf"] is JArray combined)
+                foreach(JObject constraint in combined)ValidateNode(value,constraint,root,depth+1,ref budget);
+            if(schema["if"] is JObject condition)
+            {
+                bool matched=true;
+                try { ValidateNode(value,condition,root,depth+1,ref budget); }
+                catch(ArgumentException e) when(e is not ContractLimitException) { matched=false; }
+                if(schema[matched?"then":"else"] is JObject branch)ValidateNode(value,branch,root,depth+1,ref budget);
+            }
             if(schema["anyOf"] is JArray alternatives)
             {
                 bool matched=false;
@@ -140,6 +150,7 @@ namespace ColdWarStruggle.Infrastructure
                 if(schema["pattern"]!=null && !Regex.IsMatch(s,(string)schema["pattern"],RegexOptions.CultureInvariant,TimeSpan.FromSeconds(1))) throw new ArgumentException("Invalid contract ID.");
             }
             if(schema["minimum"]!=null && (value.Type==JTokenType.Integer || value.Type==JTokenType.Float) && (double)value<(double)schema["minimum"]) throw new ArgumentException("Below minimum.");
+            if(schema["maximum"]!=null && (value.Type==JTokenType.Integer || value.Type==JTokenType.Float) && (double)value>(double)schema["maximum"]) throw new ArgumentException("Above maximum.");
             if(value is JArray array)
             {
                 if(schema["minItems"]!=null && array.Count<(int)schema["minItems"] || schema["maxItems"]!=null && array.Count>(int)schema["maxItems"]) throw new ArgumentException("Array size.");

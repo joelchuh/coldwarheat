@@ -10,6 +10,8 @@
 
 **十二练习的世界地图版本已构建，新增初始影响力部署。** 默认显示可缩放/平移的[世界地图占位视图](Docs/Wiki/world-map-view.md)，卡片与列表视图保留，最终画风未定。 本机双击 `E:\TwilightStruggle\Builds\FirstDemo\ColdWarStruggleDemo.exe`（已运行的旧PreviewDemo窗口保留）；从源码打开 Unity 后选择 **ColdWarStruggle → Play First Demo**。操作步骤、真实入口和已知限制见 [Demo 说明](Docs/Wiki/first-demo.md)。当前一个窗口、两个固定身份会话，用户可查看双方示例手牌；实际游戏渲染截图已检查；鼠标自动实测仍受窗口工具限制。详见[测试模式](Docs/Wiki/local-test-mode.md)、[首批计划](Docs/Plans/2026-10-13-core-influence-first-slice.md)及[JSON 摘要](Docs/Plans/2026-10-13-core-influence-first-slice.json)。
 
+最新源码另已通过634项EditMode，新增[卡牌静态目录](Docs/Wiki/card-catalog.md)：103牌按ID/印刷编号/时代查询；不代表完整事件或正式发牌已实现。上文566为最近部署Demo构建批次的验证数量。
+
 ## 已确认的工程原则
 
 - Unity 6、C#；实际编辑器为 6000.6.0f1，包版本已锁定。首个诊断界面无需 URP；正式渲染与画风后续确定。

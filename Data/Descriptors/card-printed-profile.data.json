@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "id": "data.card-printed-profile",
+  "kind": "data",
+  "status": "frozen-printed-subset",
+  "description": "冻结已提交cards v0.45.0的103牌印刷定义及声明目录规范化摘要；不复制印刷数值，不批准运行处理器，构建不自动更新。",
+  "dataset_id": "cards.deluxe2015.printed_profile",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/cards.printed-profile.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "固定Git基线与卡牌候选数据"
+  ],
+  "outputs": [
+    "印刷静态加载的身份、版本与摘要比较依据"
+  ],
+  "dependencies": [
+    "cards.deluxe2015.definitions"
+  ],
+  "preconditions": [
+    "从记录的Git基线生成并审阅；候选数据不能自我批准"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "字段/版本/摘要/规范化不匹配拒绝",
+    "改动卡牌后须另行审阅profile，不能运行时重算放行"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/card-catalog.md",
+      "scope": "工程冻结，不代表对全部复杂事件来源的官方认证"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/CardCatalogLoaderTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "verification": {
+    "report": "Docs/Testing/card-catalog.validation.json"
+  }
+}
