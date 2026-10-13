@@ -1,7 +1,7 @@
 # 早期影响力事件：第一批
 
 > description: 查询5张早期影响力牌的类型化参数、4个具名效果模板、公共原语、国家选择与可恢复继续位置。
-> 状态：2026-09-29，基础效果设计与参数绑定已完成；5个Bound仅表示引用已绑定，102个处理器仍全部planned，尚无C#实现。
+> 状态：2026-10-13，五牌基础C#规划与参数加载已实现，见 [实际入口](first-influence-events.md)。正式卡牌注册表的102个完整处理器仍planned；事件等待、牌区去向及回合接入另行验证。
 > 入口：[参数描述](../../Data/Descriptors/early-influence-batch1.data.json)、[参数数据](../../Data/Cards/deluxe-2015/early-influence-batch1.parameters.json)、[模块描述](../Descriptors/influence-events.module.json)、[参数Schema](../Contracts/early-influence-parameters.schema.json)、[案例](../Design/early-influence-batch1.cases.json)。
 
 ## 本批范围与分工
@@ -92,7 +92,7 @@ InfluenceEventPolicy拟返回Allowed / Forbidden / RequiresRuling。对未知或
 
 ## 验收与后续批次
 
-[案例文件](../Design/early-influence-batch1.cases.json)区分参数/引用检查、离线效果参考模型及planned运行案例。参考模型验证算式与选择约束，不证明事务、视角隔离和持久化代码存在。当前没有C#服务测试。
+[案例文件](../Design/early-influence-batch1.cases.json)区分参数/引用检查、离线效果参考模型及planned运行案例。参考模型验证算式与选择约束，不证明事务、视角隔离和持久化代码存在。基础纯规划现有真实C#测试，事务/持久化验收仍待实现。
 
 [第二批](early-influence-batch2.md)已展开Socialist Governments、Suez Crisis、East European Unrest。[第三批](early-influence-batch3.md)已展开Independent Reds、COMECON；后续设计持续效果和跨卡拦截。第一批额外活动效果交互一并排入该阶段，资料不明确时登记待核实。
 

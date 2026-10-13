@@ -1,12 +1,13 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 namespace ColdWarStruggle.Infrastructure
 {
-    // Implements only the keywords in the repository map contract, not arbitrary JSON Schema.
+    // A bounded evaluator for the repository's map and first-event contracts, not arbitrary JSON Schema.
     public static class ContractJson
     {
         public static JToken Parse(string json)
@@ -25,12 +26,94 @@ namespace ColdWarStruggle.Infrastructure
         }
         public static void Validate(JToken value,JObject schema)
         {
-            var known=new[]{"$schema","$id","title","description","type","properties","required","additionalProperties","items","minItems","maxItems","minLength","minimum","pattern","const","enum","anyOf","uniqueItems"};
-            if(schema.Properties().Any(p=>!known.Contains(p.Name))) throw new ArgumentException("Unsupported contract keyword.");
+            if(value==null || schema==null)throw new ArgumentException("Missing contract or value.");
+            int budget=100000;
+            CheckSchema(schema,schema,new HashSet<JObject>(),0,ref budget);
+            ValidateNode(value,schema,schema,0,ref budget);
+        }
+        static readonly string[] KnownKeywords={"$schema","$id","$defs","$ref","title","description","type","properties","required","additionalProperties","items","minItems","maxItems","minLength","minimum","pattern","const","enum","anyOf","uniqueItems"};
+        static readonly string[] KnownTypes={"null","object","array","string","boolean","integer"};
+        static void CheckKeywordShapes(JObject schema)
+        {
+            bool Strings(JToken token) => token is JArray a && a.All(x=>x.Type==JTokenType.String);
+            foreach(var p in schema.Properties())
+            {
+                var v=p.Value;
+                bool valid;
+                switch(p.Name)
+                {
+                    case "$schema": case "$id": case "$ref": case "title": case "description": case "pattern":
+                        valid=v.Type==JTokenType.String;break;
+                    case "$defs": case "properties": case "items": valid=v is JObject;break;
+                    case "additionalProperties": case "uniqueItems": valid=v.Type==JTokenType.Boolean;break;
+                    case "required": valid=Strings(v) && ((JArray)v).Distinct(new JTokenEqualityComparer()).Count()==((JArray)v).Count;break;
+                    case "anyOf": valid=v is JArray alternatives && alternatives.Count>0 && alternatives.All(x=>x is JObject);break;
+                    case "enum": valid=v is JArray choices && choices.Count>0;break;
+                    case "type":
+                        valid=v.Type==JTokenType.String ? KnownTypes.Contains((string)v)
+                            : Strings(v) && ((JArray)v).Count>0 && ((JArray)v).Values<string>().All(KnownTypes.Contains);break;
+                    case "minItems": case "maxItems": case "minLength":
+                        valid=v.Type==JTokenType.Integer && (double)v>=0 && (double)v<=int.MaxValue;break;
+                    case "minimum": valid=v.Type==JTokenType.Integer || v.Type==JTokenType.Float;break;
+                    case "const": valid=true;break;
+                    default: valid=false;break;
+                }
+                if(!valid)throw new ArgumentException("Unsupported contract keyword shape: "+p.Name);
+            }
+            if(schema["pattern"]!=null)new Regex((string)schema["pattern"],RegexOptions.CultureInvariant,TimeSpan.FromSeconds(1));
+        }
+        sealed class ContractLimitException : ArgumentException { public ContractLimitException() : base("Contract complexity limit.") {} }
+        static void Limit(int depth,ref int budget)
+        { if(depth>64 || --budget<0)throw new ContractLimitException(); }
+        static JObject LocalReference(JObject schema,JObject root)
+        {
+            var reference=(string)schema["$ref"];
+            const string prefix="#/$defs/";
+            if(reference==null || !reference.StartsWith(prefix,StringComparison.Ordinal))throw new ArgumentException("Only local definition references are supported.");
+            var name=reference.Substring(prefix.Length);
+            if(name.Length==0 || name.Contains("/") || name.Contains("~") || root["$defs"]?[name] is not JObject target)
+                throw new ArgumentException("Unknown local definition reference.");
+            return target;
+        }
+        static void CheckSchema(JObject schema,JObject root,HashSet<JObject> active,int depth,ref int budget)
+        {
+            Limit(depth,ref budget);
+            if(!active.Add(schema))throw new ArgumentException("Recursive contracts are not supported.");
+            try
+            {
+                if(schema.Properties().Any(p=>!KnownKeywords.Contains(p.Name)))throw new ArgumentException("Unsupported contract keyword.");
+                CheckKeywordShapes(schema);
+                if(schema["$ref"]!=null)CheckSchema(LocalReference(schema,root),root,active,depth+1,ref budget);
+                foreach(var group in new[]{"$defs","properties"})
+                    if(schema[group] is JObject children)
+                        foreach(var p in children.Properties())
+                        {
+                            if(p.Value is not JObject child)throw new ArgumentException("Invalid contract object.");
+                            CheckSchema(child,root,active,depth+1,ref budget);
+                        }
+                if(schema["items"] is JObject items)CheckSchema(items,root,active,depth+1,ref budget);
+                if(schema["anyOf"] is JArray alternatives)
+                    foreach(var item in alternatives)
+                    {
+                        if(item is not JObject child)throw new ArgumentException("Invalid contract alternative.");
+                        CheckSchema(child,root,active,depth+1,ref budget);
+                    }
+            }
+            finally { active.Remove(schema); }
+        }
+        static void ValidateNode(JToken value,JObject schema,JObject root,int depth,ref int budget)
+        {
+            Limit(depth,ref budget);
+            if(schema["$ref"]!=null)ValidateNode(value,LocalReference(schema,root),root,depth+1,ref budget);
             if(schema["anyOf"] is JArray alternatives)
             {
-                foreach(JObject a in alternatives) { try { Validate(value,a); return; } catch(ArgumentException) {} }
-                throw new ArgumentException("No contract alternative matches.");
+                bool matched=false;
+                foreach(JObject a in alternatives)
+                {
+                    try { ValidateNode(value,a,root,depth+1,ref budget);matched=true;break; }
+                    catch(ArgumentException e) when(e is not ContractLimitException) {}
+                }
+                if(!matched)throw new ArgumentException("No contract alternative matches.");
             }
             if(schema["type"]!=null)
             {
@@ -45,12 +128,12 @@ namespace ColdWarStruggle.Infrastructure
                 if(schema["minLength"]!=null && s.Length<(int)schema["minLength"]) throw new ArgumentException("Empty contract string.");
                 if(schema["pattern"]!=null && !Regex.IsMatch(s,(string)schema["pattern"],RegexOptions.CultureInvariant,TimeSpan.FromSeconds(1))) throw new ArgumentException("Invalid contract ID.");
             }
-            if(schema["minimum"]!=null && (double)value<(double)schema["minimum"]) throw new ArgumentException("Below minimum.");
+            if(schema["minimum"]!=null && (value.Type==JTokenType.Integer || value.Type==JTokenType.Float) && (double)value<(double)schema["minimum"]) throw new ArgumentException("Below minimum.");
             if(value is JArray array)
             {
                 if(schema["minItems"]!=null && array.Count<(int)schema["minItems"] || schema["maxItems"]!=null && array.Count>(int)schema["maxItems"]) throw new ArgumentException("Array size.");
                 if((bool?)schema["uniqueItems"]==true && array.Distinct(new JTokenEqualityComparer()).Count()!=array.Count) throw new ArgumentException("Duplicate item.");
-                if(schema["items"] is JObject itemSchema) foreach(var item in array) Validate(item,itemSchema);
+                if(schema["items"] is JObject itemSchema) foreach(var item in array) ValidateNode(item,itemSchema,root,depth+1,ref budget);
             }
             if(value is JObject obj)
             {
@@ -59,7 +142,7 @@ namespace ColdWarStruggle.Infrastructure
                     if(obj.Property(key)==null) throw new ArgumentException("Missing field: "+key);
                 foreach(var p in obj.Properties())
                 {
-                    if(properties?[p.Name] is JObject propertySchema) Validate(p.Value,propertySchema);
+                    if(properties?[p.Name] is JObject propertySchema) ValidateNode(p.Value,propertySchema,root,depth+1,ref budget);
                     else if((bool?)schema["additionalProperties"]==false) throw new ArgumentException("Unknown field: "+p.Name);
                 }
             }

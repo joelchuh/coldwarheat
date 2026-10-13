@@ -58,7 +58,7 @@
     },
     {
       "id": "module.influence-events",
-      "description": "影响力增减/追平/控制筛选与迁移、固定与可选多国选择；完整计划及短缺停止，卡牌参数逐批绑定，C#待实现。 LI1欧洲4或6完整分配、清空后额外精确移除与至多3国不同目标。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。 LADC1共享南美地区两个不同国的当前USSR影响乘参数倍数；0合法，不套OPS可达/控制限制。",
+      "description": "影响力增减/追平/控制筛选与迁移、固定与可选多国选择；完整计划及短缺停止，卡牌参数逐批绑定，C#待实现。 LI1欧洲4或6完整分配、清空后额外精确移除与至多3国不同目标。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。 LADC1共享南美地区两个不同国的当前USSR影响乘参数倍数；0合法，不套OPS可达/控制限制。 基础五牌纯规划子模块已实现，见module.influence-event-planners；本模块完整选择继续/处理器生命周期仍planned。",
       "status": "planned",
       "descriptor": "Docs/Descriptors/influence-events.module.json"
     },
@@ -157,6 +157,12 @@
       "description": "Unity编辑器构建模块：验证并同步六份权威JSON到忽略的StreamingAssets；标准Build回调也同步。提供Prepare/Play/Windows Build菜单，不执行Git。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/demo-build.module.json"
+    },
+    {
+      "id": "module.influence-event-planners",
+      "description": "五张早期基础影响力事件的纯C#规划与国家选择：Fidel/Romanian/Nasser/Truman/Decolonization；共享参数、原子失败、零变化完成。尚未接入事件等待宿主、出牌/弃牌生命周期或正式RulePack。",
+      "status": "implemented",
+      "descriptor": "Docs/Descriptors/influence-event-planners.module.json"
     }
   ]
 }

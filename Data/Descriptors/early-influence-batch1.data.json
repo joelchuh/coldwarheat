@@ -42,13 +42,17 @@
     {
       "path": "Docs/Design/early-influence-batch1.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/InfluenceEventTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "documentation": "Docs/Wiki/early-influence-batch1.md",
   "id": "data.early-influence-batch1",
   "kind": "data",
   "status": "ready",
-  "description": "早期影响力事件第一批：菲德尔、罗马尼亚退位、纳赛尔、杜鲁门主义、去殖民化的类型化参数；行为流程由具名处理器设计规定，尚无C#实现。",
+  "description": "五张早期影响力事件的共享类型化参数；C#基础规划已实现并通过测试，完整事件事务/牌区去向仍待接入。",
   "dataset_id": "effects.deluxe2015.early_influence_batch1",
   "content_version": "0.1.0",
   "schema_path": "Docs/Contracts/early-influence-parameters.schema.json",
@@ -62,8 +66,10 @@
     "map.deluxe2015.world"
   ],
   "verification": {
-    "runtime_consumers_tested": false,
-    "report": "Docs/Worklogs/2026-09-28-early-influence-batch1.md"
+    "runtime_consumers_tested": true,
+    "report": "Docs/Worklogs/2026-09-28-early-influence-batch1.md",
+    "runtime_scope": "five pure base-effect planners",
+    "runtime_report": "Docs/Testing/first-influence-events.validation.json"
   },
   "retrieval_hints": [
     "parameters按card ID后缀查询；卡牌定义通过JSON Pointer引用唯一参数",

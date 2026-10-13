@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "id": "module.influence-event-planners",
+  "kind": "module",
+  "description": "五张早期基础影响力事件的纯C#规划与国家选择：Fidel/Romanian/Nasser/Truman/Decolonization；共享参数、原子失败、零变化完成。尚未接入事件等待宿主、出牌/弃牌生命周期或正式RulePack。",
+  "status": "implemented",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/EarlyInfluenceCatalogLoader.cs",
+      "symbol": "Load"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventRules.cs",
+      "symbol": "Query"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventRules.cs",
+      "symbol": "Plan"
+    }
+  ],
+  "inputs": [
+    "完整不可变GameState、类型化定义、带Owner和SourceVersion的完整选择",
+    "显式已确认无活动干预的policy；默认Unknown停止"
+  ],
+  "outputs": [
+    "只读候选与选择拥有者/数量",
+    "隔离NextState、顺序InfluenceChanged与完成序号，或AwaitingChoice/RequiresRuling/Blocked/Rejected"
+  ],
+  "dependencies": [
+    "module.map-data",
+    "module.influence-core"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.early_influence_batch1",
+    "map.deluxe2015.world"
+  ],
+  "preconditions": [
+    "只实现本批已核对基础效果；输入由可信调用者装配",
+    "纯规划不持久化等待，也不授权玩家直接触发任意牌"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知参数/模板/国家/地区/来源或版本",
+    "选择Owner/版本/数量/唯一性/候选不符",
+    "溢出整条拒绝；未知干预或未裁定短缺RequiresRuling"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/early-influence-batch1.md",
+      "scope": "既有已确认本体规则；本批未改变解释"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/InfluenceEventTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/ContractReferenceTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/first-influence-events.md",
+  "verification": {
+    "report": "Docs/Testing/first-influence-events.validation.json",
+    "scope": "pure planners only"
+  }
+}
