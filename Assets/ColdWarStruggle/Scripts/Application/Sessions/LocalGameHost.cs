@@ -11,7 +11,15 @@ namespace ColdWarStruggle.Application
         readonly object gate=new object();
         readonly bool localTest;
         GameState state;
-        readonly Dictionary<(PlayerSide,string),(CommandEnvelope,PlayerCommandResult)> receipts=new Dictionary<(PlayerSide,string),(CommandEnvelope,PlayerCommandResult)>();
+        readonly Dictionary<(PlayerSide,string),CommandReceipt> receipts=new Dictionary<(PlayerSide,string),CommandReceipt>();
+        sealed class CommandReceipt
+        {
+            internal readonly SessionCommand Command;
+            internal readonly PlayerCommandResult Placement;
+            internal readonly EventCommandResult Event;
+            internal CommandReceipt(CommandEnvelope command,PlayerCommandResult result) { Command=command;Placement=result; }
+            internal CommandReceipt(EventCommandEnvelope command,EventCommandResult result) { Command=command;Event=result; }
+        }
         public IGameSession UsSession { get; }
         public IGameSession UssrSession { get; }
         public LocalGameHost(GameState state,bool enableLocalTestView)
@@ -29,6 +37,7 @@ namespace ColdWarStruggle.Application
             if(version!=state.Version)return RuleError.StaleVersion;
             if(contextId!=state.Operations.Id)return RuleError.StaleContext;
             if(state.Ended)return RuleError.GameAlreadyEnded;
+            if(state.InfluenceEvent!=null && state.InfluenceEvent.Stage!=InfluenceEventStage.Resolved)return RuleError.EventInProgress;
             if(side!=state.Operations.Actor)return RuleError.WrongActor;
             if(state.Operations.Mode!=OperationsMode.Influence)return RuleError.ModeMismatch;
             return RuleError.None;
@@ -43,17 +52,19 @@ namespace ColdWarStruggle.Application
             }
         }
         PlayerCommandResult Reject(RuleError error,PlayerSide side) => new PlayerCommandResult(error,new PlayerViewSnapshot(state,side));
+        static bool ValidEnvelope(SessionCommand command)=>command!=null && !string.IsNullOrWhiteSpace(command.CommandId)
+            && command.CommandId.Length<=128 && !string.IsNullOrWhiteSpace(command.GameId) && command.ExpectedVersion>=0;
         Task<PlayerCommandResult> Submit(PlayerSide side,CommandEnvelope command,CancellationToken token)
         {
             lock(gate)
             {
                 if(token.IsCancellationRequested)return Task.FromCanceled<PlayerCommandResult>(token);
-                if(command==null || string.IsNullOrWhiteSpace(command.CommandId) || command.CommandId.Length>128 || string.IsNullOrWhiteSpace(command.GameId)
+                if(!ValidEnvelope(command)
                     || string.IsNullOrWhiteSpace(command.ContextId) || command.ExpectedVersion<0 || command.Targets==null || command.Targets.Count==0 || command.Targets.Count>128)
                     return Task.FromResult(Reject(RuleError.InvalidCommand,side));
                 var key=(side,command.CommandId);
                 if(receipts.TryGetValue(key,out var receipt))
-                    return Task.FromResult(command.SameContent(receipt.Item1)?receipt.Item2:Reject(RuleError.CommandIdConflict,side));
+                    return Task.FromResult(command.SameContent(receipt.Command)?receipt.Placement:Reject(RuleError.CommandIdConflict,side));
                 var error=command.GameId!=state.GameId?RuleError.WrongGame:Check(side,command.ContextId,command.ExpectedVersion);
                 PlayerCommandResult result;
                 if(error!=RuleError.None)result=Reject(error,side);
@@ -68,7 +79,58 @@ namespace ColdWarStruggle.Application
                         state=plan.NextState;
                     }
                 }
-                receipts.Add(key,(command,result));
+                receipts.Add(key,new CommandReceipt(command,result));
+                return Task.FromResult(result);
+            }
+        }
+        RuleError CheckEventContext(string executionId,long version)
+        {
+            if(version!=state.Version)return RuleError.StaleVersion;
+            if(state.Ended)return RuleError.GameAlreadyEnded;
+            if(state.InfluenceEvent==null)return RuleError.EventNotAvailable;
+            if(executionId!=state.InfluenceEvent.Id)return RuleError.StaleContext;
+            return RuleError.None;
+        }
+        EventTargetsResult QueryEvent(PlayerSide side,string executionId,long version)
+        {
+            lock(gate)
+            {
+                var error=CheckEventContext(executionId,version);
+                var query=error==RuleError.None?InfluenceEventFlow.QueryDecision(state,side,out error):null;
+                return new EventTargetsResult(error,side,state,query);
+            }
+        }
+        EventCommandResult RejectEvent(RuleError error,PlayerSide side,InfluenceEventTransition transition=null)
+            =>new EventCommandResult(error,new PlayerViewSnapshot(state,side),transition);
+        Task<EventCommandResult> SubmitEvent(PlayerSide side,EventCommandEnvelope command,CancellationToken token)
+        {
+            lock(gate)
+            {
+                if(token.IsCancellationRequested)return Task.FromCanceled<EventCommandResult>(token);
+                if(!ValidEnvelope(command) || string.IsNullOrWhiteSpace(command.ExecutionId) || command.ExecutionId.Length>128
+                    || command.Targets.Count>InfluenceEventSelection.MaxTargets
+                    || command.Kind!=EventCommandKind.Begin && command.Kind!=EventCommandKind.Resolve
+                    || command.Kind==EventCommandKind.Begin && (command.DecisionId!=null || command.Targets.Count!=0)
+                    || command.Kind==EventCommandKind.Resolve && (string.IsNullOrWhiteSpace(command.DecisionId) || command.DecisionId.Length>256 || command.Targets.Count==0))
+                    return Task.FromResult(RejectEvent(RuleError.InvalidCommand,side));
+                var key=(side,command.CommandId);
+                if(receipts.TryGetValue(key,out var receipt))
+                    return Task.FromResult(command.SameContent(receipt.Command)?receipt.Event:RejectEvent(RuleError.CommandIdConflict,side));
+                var error=command.GameId!=state.GameId?RuleError.WrongGame:CheckEventContext(command.ExecutionId,command.ExpectedVersion);
+                EventCommandResult result;
+                if(error!=RuleError.None)result=RejectEvent(error,side);
+                else
+                {
+                    var transition=command.Kind==EventCommandKind.Begin?InfluenceEventFlow.Begin(state,side)
+                        :InfluenceEventFlow.Resolve(state,side,command.DecisionId,command.Targets);
+                    if(!transition.Accepted)result=RejectEvent(transition.Error,side,transition);
+                    else
+                    {
+                        result=new EventCommandResult(RuleError.None,new PlayerViewSnapshot(transition.NextState,side),transition);
+                        state=transition.NextState;
+                    }
+                }
+                receipts.Add(key,new CommandReceipt(command,result));
                 return Task.FromResult(result);
             }
         }
@@ -80,6 +142,9 @@ namespace ColdWarStruggle.Application
             public PlayerViewSnapshot ReadView()=>host.Read(Side);
             public LegalTargetsResult QueryInfluenceTargets(string contextId,long expectedVersion)=>host.Query(Side,contextId,expectedVersion);
             public Task<PlayerCommandResult> SubmitAsync(CommandEnvelope command,CancellationToken cancellationToken=default)=>host.Submit(Side,command,cancellationToken);
+            public EventTargetsResult QueryEventTargets(string executionId,long expectedVersion)=>host.QueryEvent(Side,executionId,expectedVersion);
+            public Task<EventCommandResult> SubmitEventAsync(EventCommandEnvelope command,CancellationToken cancellationToken=default)
+                =>host.SubmitEvent(Side,command,cancellationToken);
         }
     }
 }

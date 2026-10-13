@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.local-session",
   "kind": "module",
-  "description": "同一权威局面的美苏固定身份会话；命令版本/上下文校验、按身份幂等、只读玩家投影和显式本地测试观察。",
+  "description": "同一权威局面的美苏固定身份会话；普通影响力与事件命令共用身份收据，版本/上下文/决策校验，公开事件投影与显式测试观察。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -19,7 +19,8 @@
     }
   ],
   "inputs": [
-    "可信初始GameState、显式localTest开关、CommandEnvelope"
+    "可信初始GameState、显式localTest开关、CommandEnvelope",
+    "预装事件实例及EventCommandEnvelope，玩家不能上传效果定义"
   ],
   "outputs": [
     "过滤的PlayerViewSnapshot、收据、LegalTargetsResult；授权观察入口可读双方示例手牌"
@@ -51,6 +52,6 @@
   "documentation": "Docs/Wiki/first-demo.md",
   "verification": {
     "checked_on": "2026-10-13",
-    "report": "Docs/Worklogs/2026-10-13-first-demo.md"
+    "report": "Docs/Testing/influence-event-sessions.validation.json"
   }
 }

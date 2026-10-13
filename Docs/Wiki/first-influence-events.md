@@ -1,6 +1,6 @@
 # 首批影响力事件的实际实现
 
-description: 定位五牌类型化参数、纯效果规划、选择和测试；当前已实现纯Core规划，宿主等待事务与事件演示尚待接入。
+description: 定位五牌类型化参数、纯效果规划、选择和测试；纯Core规划和宿主等待事务已实现，事件演示尚待接入。
 
 先读 [模块描述](../Descriptors/influence-event-planners.module.json)，需要规则含义再读 [早期第一批](early-influence-batch1.md)。参数事实仅来自 `Data/Cards/deluxe-2015/early-influence-batch1.parameters.json`；正式卡牌注册表仍为 planned，不能据此开启完整 RulePack。
 
@@ -36,4 +36,28 @@ flowchart LR
 
 实际运行和XML摘要见 [验证报告](../Testing/first-influence-events.validation.json)。规则测试在 `Tests/EditMode/InfluenceEventTests.cs`，契约回归在 `ContractReferenceTests.cs`。涵盖完整选择、错误身份和版本、溢出整体失败、零变化、无OPS成本及只读结果。
 
-下一步按 [实施计划任务2](../Plans/2026-10-13-first-influence-events.md) 接入同一 LocalGameHost：可信装配器提供事件实例，出牌方开始，受益方响应决策；共用命令收据和权威状态。当前纯Plan不能当作已经执行出牌/弃牌/移出，也不能由玩家上传任意效果定义。
+宿主事务已按实施计划任务2实现，见下节。下一步为任务3的人工事件练习。纯Plan及可信事件实例仍不等于正式出牌/弃牌/移出，玩家不能上传任意效果定义。
+
+## 同一宿主的事件事务
+
+先读 [事件会话描述](../Descriptors/influence-event-sessions.module.json)。`GameState.InfluenceEvent` 保存可信装配器预装的一个公开事件；`InfluenceEventFlow.Begin/Resolve/QueryDecision` 位于 Core/Effects。它是人工练习的继续状态，不能代替设计中的整套卡牌结算栈。
+
+```mermaid
+stateDiagram-v2
+    [*] --> Ready: 可信装配事件
+    Ready --> AwaitingChoice: 出牌方开始且需要选择
+    Ready --> Resolved: 固定效果或无候选无变化完成
+    AwaitingChoice --> Resolved: 受益方提交完整合法集合
+    AwaitingChoice --> AwaitingChoice: 拒绝非法集合，原状态保留
+    Resolved --> Resolved: 新命令重触发被拒绝
+```
+
+- Ready 与 AwaitingChoice 都阻挡普通OPS，Core与宿主查询/提交都执行这条检查。
+- 请求选择写入一个新版本、DecisionId、DecisionSourceVersion和请求序号，不提前加点。完成时全部变化、完成标记和新版本作为一个结果提交；无变化也完成。
+- 会话固定身份；Begin检查PhasingPlayer，Resolve与候选查询检查受益方Owner。选择命令不携带可修改的Owner/额度/效果定义。
+- `IGameSession.SubmitEventAsync/QueryEventTargets` 对接同一LocalGameHost。GameId、ExpectedVersion、事件实例和决策标识分别验证，重置局面必须生成新GameId。
+- 两类命令使用同一 `(PlayerSide, CommandId)` 收据表。合法格式的拒绝也保存收据；同ID同内容返回原对象，即使后续状态已经前进；改内容或改命令类型返回CommandIdConflict。未通过格式校验和提交前取消不占收据。
+- 收据里的View是当时快照，界面需要刷新时重新ReadView；不能把旧收据当作当前版本。对手手牌仍不可见，PublicEventView仅包含已公开事件与决策信息。
+- Core纯转换不执行回调，宿主锁内只计算、替换状态、记录收据；动画和界面不进入事务。
+
+对应测试 `InfluenceEventFlowTests`、`EventSessionTests` 和原 `SessionTests`，实际报告 [influence-event-sessions.validation.json](../Testing/influence-event-sessions.validation.json)。尚未实现保存/加载收据、完整出牌生命周期、持续效果系统或网络身份认证。

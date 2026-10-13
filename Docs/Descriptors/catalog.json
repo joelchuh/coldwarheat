@@ -58,7 +58,7 @@
     },
     {
       "id": "module.influence-events",
-      "description": "影响力增减/追平/控制筛选与迁移、固定与可选多国选择；完整计划及短缺停止，卡牌参数逐批绑定，C#待实现。 LI1欧洲4或6完整分配、清空后额外精确移除与至多3国不同目标。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。 LADC1共享南美地区两个不同国的当前USSR影响乘参数倍数；0合法，不套OPS可达/控制限制。 基础五牌纯规划子模块已实现，见module.influence-event-planners；本模块完整选择继续/处理器生命周期仍planned。",
+      "description": "影响力增减/追平/控制筛选与迁移、固定与可选多国选择；完整计划及短缺停止，卡牌参数逐批绑定，C#待实现。 LI1欧洲4或6完整分配、清空后额外精确移除与至多3国不同目标。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。 LADC1共享南美地区两个不同国的当前USSR影响乘参数倍数；0合法，不套OPS可达/控制限制。 基础五牌纯规划与一次性选择事务已实现，见module.influence-event-planners与module.influence-event-sessions；完整处理器生命周期仍planned。",
       "status": "planned",
       "descriptor": "Docs/Descriptors/influence-events.module.json"
     },
@@ -142,7 +142,7 @@
     },
     {
       "id": "module.local-session",
-      "description": "同一权威局面的美苏固定身份会话；命令版本/上下文校验、按身份幂等、只读玩家投影和显式本地测试观察。",
+      "description": "同一权威局面的美苏固定身份会话；普通影响力与事件命令共用身份收据，版本/上下文/决策校验，公开事件投影与显式测试观察。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/local-session.module.json"
     },
@@ -160,9 +160,15 @@
     },
     {
       "id": "module.influence-event-planners",
-      "description": "五张早期基础影响力事件的纯C#规划与国家选择：Fidel/Romanian/Nasser/Truman/Decolonization；共享参数、原子失败、零变化完成。尚未接入事件等待宿主、出牌/弃牌生命周期或正式RulePack。",
+      "description": "五张早期基础影响力事件的纯C#规划与国家选择：Fidel/Romanian/Nasser/Truman/Decolonization；共享参数、原子失败、零变化完成。宿主接入另见influence-event-sessions；正式出牌/弃牌和RulePack尚未实现。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/influence-event-planners.module.json"
+    },
+    {
+      "id": "module.influence-event-sessions",
+      "description": "同一GameState中的一次性影响力事件、受益方等待选择与原子完成；LocalGameHost共用版本、身份收据和只读玩家视图。只接可信装配的公开事件，正式出牌/牌区/回合仍未实现。",
+      "status": "implemented",
+      "descriptor": "Docs/Descriptors/influence-event-sessions.module.json"
     }
   ]
 }

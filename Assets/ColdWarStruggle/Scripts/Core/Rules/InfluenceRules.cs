@@ -4,7 +4,8 @@ using System.Linq;
 namespace ColdWarStruggle.Core
 {
     public enum RuleError { None, InvalidCommand, WrongGame, WrongActor, StaleVersion, StaleContext, ModeMismatch, UnknownCountry,
-        IllegalTarget, InsufficientBudget, GameAlreadyEnded, NumericOverflow, CommandIdConflict }
+        IllegalTarget, InsufficientBudget, GameAlreadyEnded, NumericOverflow, CommandIdConflict,
+        EventNotAvailable, EventAlreadyResolved, EventNotStarted, EventInProgress, StaleDecision, InvalidSelection, EventRequiresRuling, EventForbidden, InvalidDefinition }
     public sealed class InfluencePlaced
     {
         public CountryId Country { get; }
@@ -29,6 +30,7 @@ namespace ColdWarStruggle.Core
         {
             if(state==null || orderedTargets==null || orderedTargets.Count==0 || orderedTargets.Count>128) return Reject(RuleError.InvalidCommand);
             if(state.Ended) return Reject(RuleError.GameAlreadyEnded);
+            if(state.InfluenceEvent!=null && state.InfluenceEvent.Stage!=InfluenceEventStage.Resolved)return Reject(RuleError.EventInProgress);
             if(!ReferenceEquals(context,state.Operations)) return Reject(RuleError.StaleContext);
             if(context.Mode!=OperationsMode.Influence) return Reject(RuleError.ModeMismatch);
             var working=state.Countries.ToDictionary(x=>x.Key,x=>x.Value);

@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 using ColdWarStruggle.Core;
 namespace ColdWarStruggle.Application
 {
-    public sealed class CommandEnvelope
+    public sealed class CommandEnvelope : SessionCommand
     {
-        public string CommandId { get; }
-        public string GameId { get; }
-        public long ExpectedVersion { get; }
         public string ContextId { get; }
         public IReadOnlyList<CountryId> Targets { get; }
         public CommandEnvelope(string commandId,string gameId,long expectedVersion,string contextId,IEnumerable<CountryId> targets)
-        { CommandId=commandId;GameId=gameId;ExpectedVersion=expectedVersion;ContextId=contextId;Targets=targets==null?null:Array.AsReadOnly(targets.Take(129).ToArray()); }
-        internal bool SameContent(CommandEnvelope other) => GameId==other.GameId && ExpectedVersion==other.ExpectedVersion && ContextId==other.ContextId && Targets.SequenceEqual(other.Targets);
+            :base(commandId,gameId,expectedVersion)
+        { ContextId=contextId;Targets=targets==null?null:Array.AsReadOnly(targets.Take(129).ToArray()); }
+        internal override bool SameContent(SessionCommand other) => other is CommandEnvelope c && GameId==c.GameId && ExpectedVersion==c.ExpectedVersion && ContextId==c.ContextId && Targets.SequenceEqual(c.Targets);
     }
     public sealed class CountryView
     {
@@ -38,11 +36,13 @@ namespace ColdWarStruggle.Application
         public IReadOnlyList<CountryView> Countries { get; }
         public IReadOnlyList<string> OwnHand { get; }
         public int OpponentHandCount { get; }
+        public PublicEventView Event { get; }
         internal PlayerViewSnapshot(GameState s,PlayerSide viewer)
         {
             GameId=s.GameId;Viewer=viewer;Version=s.Version;EventSequence=s.EventSequence;ContextId=s.Operations.Id;Actor=s.Operations.Actor;RemainingOps=s.Operations.Budget-s.SpentOps;
             Countries=Array.AsReadOnly(s.Map.Countries.Select(c=>new CountryView(c,s.Countries[c.Id])).ToArray());
             OwnHand=Array.AsReadOnly(s.GetHand(viewer).ToArray());OpponentHandCount=s.GetHand(viewer==PlayerSide.US?PlayerSide.USSR:PlayerSide.US).Count;
+            Event=s.InfluenceEvent==null?null:new PublicEventView(s.InfluenceEvent);
         }
     }
     public sealed class LocalTestSnapshot
@@ -79,5 +79,7 @@ namespace ColdWarStruggle.Application
         PlayerViewSnapshot ReadView();
         LegalTargetsResult QueryInfluenceTargets(string contextId,long expectedVersion);
         Task<PlayerCommandResult> SubmitAsync(CommandEnvelope command,CancellationToken cancellationToken=default);
+        EventTargetsResult QueryEventTargets(string executionId,long expectedVersion);
+        Task<EventCommandResult> SubmitEventAsync(EventCommandEnvelope command,CancellationToken cancellationToken=default);
     }
 }

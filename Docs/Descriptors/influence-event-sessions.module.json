@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "id": "module.influence-event-sessions",
+  "kind": "module",
+  "description": "同一GameState中的一次性影响力事件、受益方等待选择与原子完成；LocalGameHost共用版本、身份收据和只读玩家视图。只接可信装配的公开事件，正式出牌/牌区/回合仍未实现。",
+  "status": "implemented",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventFlow.cs",
+      "symbol": "Begin"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventFlow.cs",
+      "symbol": "Resolve"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventFlow.cs",
+      "symbol": "QueryDecision"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/SessionContracts.cs",
+      "symbol": "SubmitEventAsync"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/SessionContracts.cs",
+      "symbol": "QueryEventTargets"
+    }
+  ],
+  "inputs": [
+    "可信初始GameState中已授权且公开的InfluenceEventExecution",
+    "固定身份会话；EventCommandEnvelope含GameId/ExpectedVersion/ExecutionId/DecisionId/完整目标"
+  ],
+  "outputs": [
+    "新玩家视图、只读候选、完成或请求选择序号、幂等事件收据"
+  ],
+  "dependencies": [
+    "module.influence-event-planners",
+    "module.local-session"
+  ],
+  "preconditions": [
+    "实例由可信装配器加载；玩家不能指定效果/受益方/数值",
+    "仅一项事件继续状态；完整父子出牌结算栈待实现"
+  ],
+  "side_effects": [
+    "成功命令在同一宿主锁内替换权威状态并记收据；纯Core方法只返回隔离结果"
+  ],
+  "stop_conditions": [
+    "未知政策或短缺待裁定、禁止事件、错误身份/版本/实例/决策、数值溢出",
+    "未完成事件阻止普通OPS；同身份同命令ID改类型或payload冲突"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/early-influence-batch1.md",
+      "scope": "已确认基础事件与受益方选择；无新裁定"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/InfluenceEventFlowTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/EventSessionTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SessionTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/first-influence-events.md",
+  "verification": {
+    "report": "Docs/Testing/influence-event-sessions.validation.json"
+  }
+}
