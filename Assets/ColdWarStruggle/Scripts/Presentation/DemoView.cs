@@ -89,7 +89,7 @@ namespace ColdWarStruggle.Presentation
             Text(44,338,220,34,Side(view.Event==null?view.Actor:view.Event.Stage==InfluenceEventStage.AwaitingChoice?view.Event.Owner:view.Event.PhasingPlayer));
             Text(44,389,220,26,"你正在操作",small);Text(44,420,220,34,Side(controller.SelectedSide));
             Text(44,485,220,26,"剩余 OPS",small);Text(44,513,210,60,view.RemainingOps.ToString(),large);
-            Text(44,594,208,150,view.Event==null?"试一试：\n1. 在默认目标投放 3 点\n2. 重发命令，观察不重复扣点\n3. 切换另一方，观察资格检查\n4. 重置后选择其他国家":"事件练习：\n1. 点击开始事件\n2. 按提示切换选择方\n3. 点绿色国家编辑草稿\n4. 确认后一次结算\n事件不消耗 OPS。",small);
+            Text(44,594,208,150,view.Event==null?"试一试：\n1. 在默认目标投放 3 点\n2. 重发命令，观察不重复扣点\n3. 切换另一方，观察资格检查\n4. 重置后选择其他国家":"事件练习：\n1. 点击开始事件\n2. 按提示切换选择方\n3. 选国，按右侧提示编辑\n4. 确认后一次结算\n事件不消耗 OPS。",small);
             Text(312,194,590,28,view.Event==null?"国家面板  ·  绿色表示当前可投放目标":"国家面板  ·  绿色为合法选择，✓ 为草稿，确认后才结算",small);
             for(int i=0;i<regions.Length;i++)
                 if(Button(312+(i%3)*201,232+(i/3)*39,193,32,(regionIndex==i?"● ":"")+regionNames[i]))regionIndex=i;
@@ -113,7 +113,7 @@ namespace ColdWarStruggle.Presentation
                 var both=controller.ReadBoth();Text(972,681,266,60,"美："+string.Join("、",both.USHand)+"\n苏："+string.Join("、",both.USSRHand),small);
             }
             else Text(972,681,266,62,"本方："+string.Join("、",view.OwnHand)+"\n对手："+view.OpponentHandCount+" 张（隐藏）",small);
-            Text(28,786,1220,27,$"普通影响力 + 五张基础事件练习；示例牌不能正式出牌，未启用完整回合、计分或 AI。   局面版本 {view.Version} · 事件序号 {view.EventSequence}",small);
+            Text(28,786,1220,27,$"普通影响力 + 七张基础事件练习；示例牌不能正式出牌，未启用完整回合、计分或 AI。   局面版本 {view.Version} · 事件序号 {view.EventSequence}",small);
         }
         async void Place(int points) { try { await controller.SubmitAsync(points); } catch(Exception e) { fatal=e.Message;Debug.LogException(e); } }
         async void Retry() { try { await controller.RetryAsync(); } catch(Exception e) { fatal=e.Message;Debug.LogException(e); } }

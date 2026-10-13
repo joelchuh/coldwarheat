@@ -1,7 +1,7 @@
 # 早期影响力事件：第二批
 
 > description: 查询社会主义政府、苏伊士危机的额度移除，东欧动荡的逐国移除，以及选择权限、当前时代、铁娘子禁止与短缺处理。
-> 状态：2026-10-13，社会主义政府/苏伊士危机的纯C#额度规划与参数加载已实现；东欧动荡仍待权威时代接入。新增数量选择已接入固定身份宿主，UI待接入，完整出牌处理器仍planned。参数绑定进度见[正式数据状态](map-card-data.md)。
+> 状态：2026-10-13，社会主义政府/苏伊士危机的纯C#额度规划与参数加载已实现；东欧动荡仍待权威时代接入。新增数量选择已接入固定身份宿主，UI已接入九练习Demo，完整出牌处理器仍planned。参数绑定进度见[正式数据状态](map-card-data.md)。
 > 入口：[参数描述](../../Data/Descriptors/early-influence-batch2.data.json)、[参数](../../Data/Cards/deluxe-2015/early-influence-batch2.parameters.json)、[Schema](../Contracts/early-influence-batch2.schema.json)、[模块描述](../Descriptors/influence-events.module.json)、[案例](../Design/early-influence-batch2.cases.json)、[验证报告](../Design/early-influence-batch2.validation.json)。
 
 ## 范围、资料与复用选择
@@ -84,7 +84,7 @@ US打出社会主义政府或苏伊士危机触发对方事件时，由USSR选�
 
 ## 已实现的额度规划
 
-先读 [实际模块描述](../Descriptors/influence-event-planners.module.json)，再读取下面的对应符号。新增算法没有注入旧 Demo，当前播放器仍为原五牌事件练习；不能把纯规划进度当作完整出牌进度。
+先读 [实际模块描述](../Descriptors/influence-event-planners.module.json)，再读取下面的对应符号。两牌现已接入Demo数量草稿；不能把人工实例进度当作完整出牌进度。
 
 | 入口（路径位于 Assets/ColdWarStruggle/Scripts/） | 职责 |
 |---|---|
@@ -101,7 +101,7 @@ Loader接收可信装配者的knownEffectIds，校验本牌与blocked_by_effect_
 
 实际测试与红绿证据见 [235项回归报告](../Testing/budgeted-influence-removal.validation.json)。新增测试文件是 `BudgetedRemovalTests.cs`、`BudgetedRemovalCatalogTests.cs`，契约扩展测试在 `ContractReferenceTests.cs`。本批没有播放器构建或鼠标验收；存档、真实出牌/移出、Suppressed父帧继续仍未实现。
 
-后续数量会话已实现：`EventCommandEnvelope.Allocate` 经固定身份会话进入 `InfluenceEventFlow.ResolveAllocation`，与旧命令共用版本和收据。`EventTargetsResult`传递选择Kind、容量及总额。见 [会话知识点](first-influence-events.md#数量分配会话) 与 [256项回归报告](../Testing/allocation-event-sessions.validation.json)。尚未给旧Demo装配新增场景。
+后续数量会话已实现：`EventCommandEnvelope.Allocate` 经固定身份会话进入 `InfluenceEventFlow.ResolveAllocation`，与旧命令共用版本和收据。`EventTargetsResult`传递选择Kind、容量及总额。见 [会话知识点](first-influence-events.md#数量分配会话) 与 [256项回归报告](../Testing/allocation-event-sessions.validation.json)。后续已新增两个人工练习及数量界面，见 [Demo操作](first-demo.md#两张数量分配练习) 与 [295项报告](../Testing/allocation-demo.validation.json)。
 
 ## 完整编排的拟定代码与验证边界
 

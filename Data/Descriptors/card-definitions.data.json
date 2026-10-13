@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "data.card-definitions",
   "kind": "data",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。102个非中国牌效果参数均已绑定，102个处理器仍planned；可选104–110不启用。用户确认的项目解释与官方规则分开记录，未知组合继续标Pending。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。102个非中国牌效果参数均已绑定，102个处理器仍planned；可选104–110不启用。用户确认的项目解释与官方规则分开记录，未知组合继续标Pending。 引用索引已实装；完整卡牌运行加载仍未实现。",
   "status": "ready",
   "dataset_id": "cards.deluxe2015.definitions",
   "content_version": "0.45.0",
@@ -11,6 +11,10 @@
     {
       "path": "Data/Cards/deluxe-2015/cards.json",
       "symbol": null
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/CardEffectReferenceIndex.cs",
+      "symbol": "Load"
     }
   ],
   "inputs": [
@@ -252,14 +256,20 @@
     {
       "path": "Docs/Design/missile-envy.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/AllocationDemoCatalogTests.cs",
+      "status": "passed-reference-index-subset"
     }
   ],
   "documentation": "Docs/Wiki/map-card-data.md",
   "verification": {
     "checked_on": "2026-09-28",
-    "runtime_consumers_tested": false,
+    "runtime_consumers_tested": true,
     "report": "Docs/Worklogs/2026-09-28-map-card-data.md",
-    "latest_design_report": "Docs/Design/missile-envy.validation.json"
+    "latest_design_report": "Docs/Design/missile-envy.validation.json",
+    "runtime_scope": "reference-only; not full schema/OPS/source/handler readiness",
+    "runtime_report": "Docs/Testing/allocation-demo.validation.json"
   },
   "retrieval_hints": [
     "cards[id]",

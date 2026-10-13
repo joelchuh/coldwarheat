@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "id": "data.demo-allocation-scenarios",
+  "kind": "data",
+  "description": "社会主义政府与苏伊士危机的两个人工额度移除练习；仅保存初始影响力与触发方，额度和上限从共享参数获取。",
+  "status": "fixture",
+  "entrypoints": [
+    {
+      "path": "Data/Demo/allocation-scenarios.json",
+      "symbol": "scenarios"
+    }
+  ],
+  "inputs": [
+    "稳定场景ID"
+  ],
+  "outputs": [
+    "零OPS公开事件局面与示例手牌标签"
+  ],
+  "dependencies": [
+    "effects.deluxe2015.early_influence_batch2",
+    "map.deluxe2015.world"
+  ],
+  "preconditions": [
+    "显式fixture，已有两牌规划与数量会话，已确认无活动干预"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知事件/国家、重复场景、非fixture或不合法数值拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/early-influence-batch2.md",
+      "scope": "EI2-RULING-01与两牌额度规则"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/AllocationDemoCatalogTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "dataset_id": "demo.allocation_scenarios",
+  "verification": {
+    "report": "Docs/Testing/allocation-demo.validation.json"
+  }
+}

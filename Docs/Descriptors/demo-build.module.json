@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.demo-build",
   "kind": "module",
-  "description": "Unity构建：验证同步九份权威JSON，标准Build回调也同步；Build输出FirstDemo，BuildPreview固定输出PreviewDemo供并排运行，不关闭旧窗口，不执行Git。",
+  "description": "Unity构建：验证同步十三份权威JSON，标准Build回调也同步；Build输出FirstDemo，BuildPreview固定输出PreviewDemo供并排运行，不关闭旧窗口，不执行Git。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -27,7 +27,7 @@
     }
   ],
   "inputs": [
-    "项目根目录Data与Docs/Contracts中的九份规范数据"
+    "项目根目录Data与Docs/Contracts中的十三份规范数据"
   ],
   "outputs": [
     "Assets/ColdWarStruggle/Scenes/FirstDemo.unity；Builds/FirstDemo/ColdWarStruggleDemo.exe与必要同目录运行文件",
@@ -53,6 +53,10 @@
     {
       "path": "Docs/Wiki/early-influence-batch1.md",
       "scope": "已实现五张基础事件练习"
+    },
+    {
+      "path": "Docs/Wiki/early-influence-batch2.md",
+      "scope": "两牌数量分配与EI2-RULING-01"
     }
   ],
   "tests": [
@@ -63,12 +67,16 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/EventDemoCatalogTests.cs",
       "status": "canonical-to-player-nine-json-verified"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/AllocationDemoCatalogTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "documentation": "Docs/Wiki/first-demo.md",
   "verification": {
     "checked_on": "2026-10-13",
-    "report": "Docs/Testing/replaceable-map-view.validation.json"
+    "report": "Docs/Testing/allocation-demo.validation.json"
   },
   "data_dependencies": [
     "rules.deluxe2015.influence_placement",
@@ -76,6 +84,9 @@
     "map.deluxe2015.world",
     "map.deluxe2015.approved_profile",
     "demo.event_scenarios",
-    "effects.deluxe2015.early_influence_batch1"
+    "effects.deluxe2015.early_influence_batch1",
+    "demo.allocation_scenarios",
+    "effects.deluxe2015.early_influence_batch2",
+    "cards.deluxe2015.definitions"
   ]
 }

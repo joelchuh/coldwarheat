@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "id": "plan.allocation-demo",
+  "kind": "implementation-plan",
+  "status": "implemented",
+  "description": "九练习诊断Demo：数量分配草稿、两牌正式参数引用、卡牌效果ID索引与构建载荷；不扩展到完整出牌。",
+  "entrypoints": [],
+  "document": "Docs/Plans/2026-10-13-allocation-demo.md",
+  "inputs": [
+    "两牌已实现数量会话与共享参数"
+  ],
+  "outputs": [
+    "数量草稿UI、九场景构建、描述与验证记录"
+  ],
+  "dependencies": [
+    "module.demo-presentation",
+    "module.card-effect-reference-index"
+  ],
+  "preconditions": [
+    "用户已授权持续编码与日常Git同步"
+  ],
+  "side_effects": [
+    "源代码、文档和测试报告"
+  ],
+  "stop_conditions": [
+    "验证或审阅失败先修复"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/early-influence-batch2.md"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Testing/allocation-demo.validation.json",
+      "status": "295-passed-independent-review-passed"
+    }
+  ]
+}

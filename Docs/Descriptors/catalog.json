@@ -58,7 +58,7 @@
     },
     {
       "id": "module.influence-events",
-      "description": "影响力增减/追平/控制筛选与迁移、固定与可选多国选择；完整计划及短缺停止，卡牌参数逐批绑定，完整处理器仍待实现。 LI1欧洲4或6完整分配、清空后额外精确移除与至多3国不同目标。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。 LADC1共享南美地区两个不同国的当前USSR影响乘参数倍数；0合法，不套OPS可达/控制限制。 基础五牌纯规划与一次性选择事务已实现，见module.influence-event-planners与module.influence-event-sessions；完整处理器生命周期仍planned。 社会主义政府/苏伊士危机的纯额度规划已实现；数量选择已接入宿主，UI尚未接入。",
+      "description": "影响力增减/追平/控制筛选与迁移、固定与可选多国选择；完整计划及短缺停止，卡牌参数逐批绑定，完整处理器仍待实现。 LI1欧洲4或6完整分配、清空后额外精确移除与至多3国不同目标。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。 LADC1共享南美地区两个不同国的当前USSR影响乘参数倍数；0合法，不套OPS可达/控制限制。 基础五牌纯规划与一次性选择事务已实现，见module.influence-event-planners与module.influence-event-sessions；完整处理器生命周期仍planned。 社会主义政府/苏伊士危机的纯额度规划已实现；数量选择已接入宿主，UI已接入九练习Demo。",
       "status": "planned",
       "descriptor": "Docs/Descriptors/influence-events.module.json"
     },
@@ -148,25 +148,25 @@
     },
     {
       "id": "module.demo-presentation",
-      "description": "单窗口七练习：普通影响力与五张基础事件，固定身份、草稿和明确确认；IMapView同步子集支持卡片/列表互换，规则对局不变。F12/--capture-demo导出游戏帧，启动只接受已知场景和地图白名单。",
+      "description": "单窗口九练习：普通影响力与七张基础事件，国家集合/数量草稿、固定身份和明确确认；卡片/列表互换保留局面与草稿。F12/CLI只导出游戏帧，鼠标实测另计。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/demo-presentation.module.json"
     },
     {
       "id": "module.demo-build",
-      "description": "Unity构建：验证同步九份权威JSON，标准Build回调也同步；Build输出FirstDemo，BuildPreview固定输出PreviewDemo供并排运行，不关闭旧窗口，不执行Git。",
+      "description": "Unity构建：验证同步十三份权威JSON，标准Build回调也同步；Build输出FirstDemo，BuildPreview固定输出PreviewDemo供并排运行，不关闭旧窗口，不执行Git。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/demo-build.module.json"
     },
     {
       "id": "module.influence-event-planners",
-      "description": "七张基础影响力事件的纯C#规划：原五牌加社会主义政府/苏伊士危机额度移除；类型化选择、共享参数、原子失败。额度分配已接入宿主，UI待接入；完整出牌/牌区与RulePack未实现。",
+      "description": "七张基础影响力事件的纯C#规划：原五牌加社会主义政府/苏伊士危机额度移除；类型化选择、共享参数、原子失败。额度分配已接入宿主，UI已接入九练习Demo；完整出牌/牌区与RulePack未实现。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/influence-event-planners.module.json"
     },
     {
       "id": "module.influence-event-sessions",
-      "description": "同一GameState中的一次性影响力事件与受益方选择：支持国家集合和数量分配，公开容量由核心计算；固定身份、版本和同一收据表原子提交。数量UI待接入，正式出牌/牌区/回合未实现。",
+      "description": "同一GameState中的一次性影响力事件与受益方选择：支持国家集合和数量分配，公开容量由核心计算；固定身份、版本和同一收据表原子提交。数量UI已接入九练习Demo，正式出牌/牌区/回合未实现。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/influence-event-sessions.module.json"
     },
@@ -175,6 +175,12 @@
       "description": "可替换地图的同步诊断子集：公开只读国家帧、上下文/版本/序号/本地修订门禁、卡片和列表两个实际适配器；换视图保留对局及草稿，不实现正式layout/theme或异步资源。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/map-view.module.json"
+    },
+    {
+      "id": "module.card-effect-reference-index",
+      "description": "从固定版本卡牌目录读取只读效果ID集合，检查引用结构与唯一性；只供参数跨文件引用核验，不装配完整卡牌、RulePack或处理器。",
+      "status": "implemented",
+      "descriptor": "Docs/Descriptors/card-effect-reference-index.module.json"
     }
   ]
 }

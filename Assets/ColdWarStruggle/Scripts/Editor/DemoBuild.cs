@@ -53,7 +53,8 @@ namespace ColdWarStruggle.Editor
             DemoCatalog.Load(Read(root,"Data/Maps/deluxe-2015/world.json"),Read(root,"Docs/Contracts/map.schema.json"),
                 Read(root,"Data/Demo/influence-scenarios.json"),Read(root,"Data/Rulesets/deluxe-2015/influence-placement.json"),
                 Read(root,"Data/Localization/en-US.catalog-names.json"),Read(root,"Data/Maps/deluxe-2015/world.profile.json"))
-                .WithEventScenarios(Read(root,"Data/Demo/event-scenarios.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch1.parameters.json"),Read(root,"Docs/Contracts/early-influence-parameters.schema.json"));
+                .WithEventScenarios(Read(root,"Data/Demo/event-scenarios.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch1.parameters.json"),Read(root,"Docs/Contracts/early-influence-parameters.schema.json"))
+                .WithAllocationScenarios(Read(root,"Data/Demo/allocation-scenarios.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch2.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch2.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"));
             Directory.CreateDirectory(payload);
             Copy(root,"Data/Maps/deluxe-2015/world.json",payload,"world.json");Copy(root,"Docs/Contracts/map.schema.json",payload,"map.schema.json");
             Copy(root,"Data/Maps/deluxe-2015/world.profile.json",payload,"world.profile.json");
@@ -62,6 +63,10 @@ namespace ColdWarStruggle.Editor
             Copy(root,"Data/Demo/event-scenarios.json",payload,"event-scenarios.json");
             Copy(root,"Data/Cards/deluxe-2015/early-influence-batch1.parameters.json",payload,"early-influence-batch1.parameters.json");
             Copy(root,"Docs/Contracts/early-influence-parameters.schema.json",payload,"early-influence-parameters.schema.json");
+            Copy(root,"Data/Demo/allocation-scenarios.json",payload,"allocation-scenarios.json");
+            Copy(root,"Data/Cards/deluxe-2015/early-influence-batch2.parameters.json",payload,"early-influence-batch2.parameters.json");
+            Copy(root,"Docs/Contracts/early-influence-batch2.schema.json",payload,"early-influence-batch2.schema.json");
+            Copy(root,"Data/Cards/deluxe-2015/cards.json",payload,"cards.json");
             AssetDatabase.Refresh();
         }
         static string Read(string root,string relative)=>File.ReadAllText(Path.Combine(root,relative));

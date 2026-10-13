@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.demo-presentation",
   "kind": "module",
-  "description": "单窗口七练习：普通影响力与五张基础事件，固定身份、草稿和明确确认；IMapView同步子集支持卡片/列表互换，规则对局不变。F12/--capture-demo导出游戏帧，启动只接受已知场景和地图白名单。",
+  "description": "单窗口九练习：普通影响力与七张基础事件，国家集合/数量草稿、固定身份和明确确认；卡片/列表互换保留局面与草稿。F12/CLI只导出游戏帧，鼠标实测另计。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -56,11 +56,28 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoLaunchOptions.cs",
       "symbol": "MapKind"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.cs",
+      "symbol": "WithAllocationScenarios"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Allocation.cs",
+      "symbol": "AllocationDraft"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Allocation.cs",
+      "symbol": "CanChangeEventAllocation"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Allocation.cs",
+      "symbol": "ChangeEventAllocation"
     }
   ],
   "inputs": [
     "正式地图与批准profile、地图Schema、演示局面、影响力费用、名称字典",
-    "事件人工场景、五牌共享参数及参数Schema"
+    "事件人工场景、五牌共享参数及参数Schema",
+    "数量练习、第二批参数/Schema、正式卡牌效果引用索引"
   ],
   "outputs": [
     "只读视图驱动的Unity诊断界面"
@@ -69,7 +86,8 @@
     "module.map-data",
     "module.influence-core",
     "module.local-session",
-    "module.influence-event-sessions"
+    "module.influence-event-sessions",
+    "module.card-effect-reference-index"
   ],
   "preconditions": [
     "Unity 6000.6.0f1，显式fixture，Windows本地运行"
@@ -89,6 +107,10 @@
     {
       "path": "Docs/Wiki/early-influence-batch1.md",
       "scope": "已实现五张基础事件练习"
+    },
+    {
+      "path": "Docs/Wiki/early-influence-batch2.md",
+      "scope": "两牌数量分配与EI2-RULING-01"
     }
   ],
   "tests": [
@@ -115,12 +137,20 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/DemoLaunchTests.cs",
       "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/AllocationDemoCatalogTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/AllocationDemoControllerTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "documentation": "Docs/Wiki/first-demo.md",
   "verification": {
     "checked_on": "2026-10-13",
-    "report": "Docs/Testing/replaceable-map-view.validation.json"
+    "report": "Docs/Testing/allocation-demo.validation.json"
   },
   "data_dependencies": [
     "rules.deluxe2015.influence_placement",
@@ -128,6 +158,9 @@
     "map.deluxe2015.world",
     "map.deluxe2015.approved_profile",
     "demo.event_scenarios",
-    "effects.deluxe2015.early_influence_batch1"
+    "effects.deluxe2015.early_influence_batch1",
+    "demo.allocation_scenarios",
+    "effects.deluxe2015.early_influence_batch2",
+    "cards.deluxe2015.definitions"
   ]
 }

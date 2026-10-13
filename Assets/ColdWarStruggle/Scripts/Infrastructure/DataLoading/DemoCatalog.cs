@@ -59,8 +59,17 @@ namespace ColdWarStruggle.Infrastructure
         public DemoCatalog WithEventScenarios(string fixtures,string parameters,string parameterSchema)
         {
             var definitions=EarlyInfluenceCatalogLoader.Load(parameters,parameterSchema,Map);
+            return WithEventDefinitions(fixtures,"demo.event_scenarios",definitions);
+        }
+        public DemoCatalog WithAllocationScenarios(string fixtures,string parameters,string parameterSchema,string cardReferences)
+        {
+            var definitions=BudgetedRemovalCatalogLoader.Load(parameters,parameterSchema,Map,CardEffectReferenceIndex.Load(cardReferences));
+            return WithEventDefinitions(fixtures,"demo.allocation_scenarios",definitions);
+        }
+        DemoCatalog WithEventDefinitions(string fixtures,string dataset,IReadOnlyDictionary<string,InfluenceEffectDefinition> definitions)
+        {
             var data=Object(ContractJson.Parse(fixtures),"schema_version dataset_id description scope scenarios");
-            if(Int(data,"schema_version")!=1 || Text(data,"dataset_id")!="demo.event_scenarios" || Text(data,"scope")!="fixture")
+            if(Int(data,"schema_version")!=1 || Text(data,"dataset_id")!=dataset || Text(data,"scope")!="fixture")
                 throw new ArgumentException("Event lessons must be explicit fixtures.");
             var rows=Array(data,"scenarios");if(rows.Count==0 || rows.Count>20)throw new ArgumentException("Invalid event fixture count.");
             var ids=new HashSet<string>(Scenarios.Select(s=>s.Id),StringComparer.Ordinal);var all=Scenarios.ToList();

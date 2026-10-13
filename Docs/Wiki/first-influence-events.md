@@ -30,7 +30,7 @@ flowchart LR
 
 ## 新增两牌额度纯规划
 
-社会主义政府和苏伊士危机现在共用 `BudgetedRemovalEffect`，通过 `InfluenceEventSelection.Allocate` 提交数量分配。查询返回只读逐国容量和总量；规则、参数加载与实际验证见[第二批](early-influence-batch2.md)。这两牌已接入宿主数量命令，UI待接入；旧五牌继续使用国家集合。不要在旧Demo装配器注入新定义后假定可以选择数量。
+社会主义政府和苏伊士危机现在共用 `BudgetedRemovalEffect`，通过 `InfluenceEventSelection.Allocate` 提交数量分配。查询返回只读逐国容量和总量；规则、参数加载与实际验证见[第二批](early-influence-batch2.md)。这两牌已接入宿主数量命令和Demo数量草稿；旧五牌继续使用国家集合。界面根据查询Kind分派，不把总额当成国家数量。
 
 ## 数据契约支持范围
 
@@ -74,4 +74,4 @@ stateDiagram-v2
 
 新增ResolveAllocation和旧Begin/Resolve共享同一收据表。精确相同载荷重发返回原对象；改金额、国家、数组顺序、类型或版本而复用同ID则冲突。语义相同但顺序不同的分配可以各自规划出同一规范结果，不代表它们是同一请求。格式错误与预先取消不记收据，合法格式但规则拒绝会记收据；修正时使用新ID。
 
-实际21项新增端到端测试与原有测试共256项通过，见 [数量会话验证](../Testing/allocation-event-sessions.validation.json)。播放器的数量草稿和练习尚待接入；本批只验证会话功能，不声称GUI已可操作。
+实际21项新增端到端测试与原有测试共256项通过，见 [数量会话验证](../Testing/allocation-event-sessions.validation.json)。此报告只验证会话功能；随后数量草稿与两个人工练习已接入，最新[Demo报告](../Testing/allocation-demo.validation.json)为295项回归与构建证据，鼠标实测仍单独标记。

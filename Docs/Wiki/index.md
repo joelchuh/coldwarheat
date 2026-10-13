@@ -4,7 +4,7 @@
 
 | 知识点 | description | 状态 | 入口 |
 |---|---|---|---|
-| 首个影响力 Demo | 查运行、人工场景、影响力/会话/UI/构建模块及真实测试 | 149项EditMode通过；七场景真实构建，鼠标实测待完成 | [first-demo.md](first-demo.md) |
+| 首个影响力 Demo | 查运行、人工场景、影响力/会话/UI/构建模块及真实测试 | 295项EditMode通过；九场景真实构建，鼠标实测待完成 | [first-demo.md](first-demo.md) |
 | 单人双边测试与首批计划 | 查一个客户端、两方身份、调试观察和正常信息过滤，以及首批核心任务 | 首批影响力已实现 | [模式说明](local-test-mode.md) · [计划](../Plans/2026-10-13-core-influence-first-slice.md) · [JSON](../Plans/2026-10-13-core-influence-first-slice.json) |
 | 游戏实现与可替换地图接口 | 查整体分层、地图输入输出、状态面板和首批影响力闭环 | 影响力与同步诊断地图接口已实现；资源接口待接入 | [接口提案](../Design/implementation-architecture.proposal.md) · [JSON](../Design/implementation-architecture.proposal.json) |
 | 编码前方向讨论 | 比较第一版交付顺序、统一状态、占位地图与数据边界 | 方向已认可；首批已实现 | [coding-direction-discussion.md](../Design/coding-direction-discussion.md) · [JSON](../Design/coding-direction-discussion.json) |
@@ -21,9 +21,9 @@
 | 审阅基线导出 | 查干净HEAD、受跟踪工作字节、新目标、SHA清单与失败边界 | 工作流工具；游戏实现未开始 | [export-review-baseline.md](export-review-baseline.md) |
 | 工作流策略 JSON | 快速定位结构化开发约定和描述契约 | 已采用 | [workflow-policy.json](../Workflow/workflow-policy.json) |
 | 游戏模块设计 | 查找大模块、规则子模块、命令流程、换画风边界与验收顺序 | 总体设计；首批影响力已实现 | [architecture.md](architecture.md) |
-| 首批事件C#规划 | 查七牌纯规划、选择校验、参数加载与后续事务接入 | 七牌有宿主；原五牌有UI，256项回归通过 | [first-influence-events.md](first-influence-events.md) |
+| 首批事件C#规划 | 查七牌纯规划、选择校验、参数加载与后续事务接入 | 七牌有宿主和UI，295项回归通过 | [first-influence-events.md](first-influence-events.md) |
 | 早期影响力事件第一批 | 查5牌参数、复用原语、受益方选择和事务继续机制 | 五牌基础C#与选择事务已实现；跨卡干预待实现/核实 | [early-influence-batch1.md](early-influence-batch1.md) |
-| 早期影响力事件第二批 | 查总额度/每国上限、东欧动荡时代量、铁娘子禁止与用户确认的短缺策略 | 两牌额度纯规划已实现；额度宿主已实现；东欧动荡及额度UI仍待接入 | [early-influence-batch2.md](early-influence-batch2.md) |
+| 早期影响力事件第二批 | 查总额度/每国上限、东欧动荡时代量、铁娘子禁止与用户确认的短缺策略 | 两牌规划/宿主/数量UI已实现；东欧动荡等待回合时代 | [early-influence-batch2.md](early-influence-batch2.md) |
 | 早期影响力事件第三批 | 查独立红色政权追平、经互会敌控筛选与候选不足边界 | 2牌参数已绑定；C#待实现 | [early-influence-batch3.md](early-influence-batch3.md) |
 | 持续效果与OPS修正 | 查激活/到期/取消、行动者归属、地区奖励与三牌参数 | 设计与参数；C#待实现 | [persistent-effects.md](persistent-effects.md) |
 | 条约保护与前置事件 | 查北约/美日安保、动态控制、法国西德例外、DEFCON接缝与事件成功记录 | 2牌参数绑定；C#待实现 | [treaty-protection.md](treaty-protection.md) |
@@ -72,6 +72,7 @@
 | 地区计分与最终汇总 | 查找六地区档位、东南亚权重、最终完整性和中国牌附加分 | v0.1设计；待实现 | [region-scoring.md](region-scoring.md) |
 | 太空竞赛 | 查找8格门槛、先后奖励、领先能力、事件推进与回合衔接 | v0.1设计；待实现 | [space-race.md](space-race.md) |
 | 地图与卡牌数据契约 | 查找正式数据字段、邻接、三类卡牌、效果注册、Schema及加载门禁 | 契约与正式印刷定义已建立；服务待实现 | [map-card-contracts.md](map-card-contracts.md) |
+| 卡牌效果引用索引 | 仅核对稳定效果ID存在性，不判断完整卡牌可执行 | 102个只读引用已接入两牌参数装配 | [card-effect-reference-index.md](card-effect-reference-index.md) |
 | 正式地图与卡牌数据 | 按地区查84国与邻接，按时代查103张基础牌及效果待实现边界 | 静态定义已录入；不是可运行规则包 | [map-card-data.md](map-card-data.md) |
 | 可替换地图视图实现 | 查同步公开帧、过期输入、两适配器及局面保持 | 170回归通过；正式资源与画风未定 | [replaceable-map-view.md](replaceable-map-view.md) |
 | 地图布局与未定画风 | 区分规则图、位置拾取和主题资源，了解2D/3D接入边界 | 设计稿；未选定美术 | [map-presentation.md](map-presentation.md) |

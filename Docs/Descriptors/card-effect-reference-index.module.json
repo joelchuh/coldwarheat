@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "module.card-effect-reference-index",
+  "kind": "module",
+  "description": "从固定版本卡牌目录读取只读效果ID集合，检查引用结构与唯一性；只供参数跨文件引用核验，不装配完整卡牌、RulePack或处理器。",
+  "status": "implemented",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/CardEffectReferenceIndex.cs",
+      "symbol": "Load"
+    }
+  ],
+  "inputs": [
+    "cards.deluxe2015.definitions / schema2 / content0.45.0 / ruleset.deluxe2015 / release-candidate JSON"
+  ],
+  "outputs": [
+    "按Ordinal排序的只读EffectId集合；当前正式数据102项"
+  ],
+  "dependencies": [],
+  "preconditions": [
+    "调用者只需引用存在性，完整运行需另外的规则包验证"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知profile、非法稳定ID、重复卡/效果、缺失绑定、错误kind或China绑定则拒绝",
+    "最多256张（技术边界）；ContractJson限制输入大小和深度"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/map-card-data.md",
+      "scope": "正式卡牌ID与效果引用；本模块仅实现引用子集"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/AllocationDemoCatalogTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/card-effect-reference-index.md",
+  "verification": {
+    "report": "Docs/Testing/allocation-demo.validation.json"
+  },
+  "data_dependencies": [
+    "cards.deluxe2015.definitions"
+  ]
+}
