@@ -254,3 +254,5 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 [Ask Not选择与抽牌](ask-not.md)保存等待状态，抽牌接受前不提前清理源或未完成父帧。
 
 [借牌模块](nested-card-events.md)生成子事件计划；本调度器接收完成结果，保留根责任与阶段推进。
+
+[Grain Sales](grain-sales.md)保留已接受随机结果与父根余项；普通来源OPS及精确终局清理仍待接入。

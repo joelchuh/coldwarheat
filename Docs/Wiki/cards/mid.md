@@ -96,3 +96,5 @@
 [WWBY／U2延迟奖分](../deferred-vp-events-batch1.md)：前缀、下一美方行动和本回合later UN分开。
 
 [Ask Not](../ask-not.md)：先锁定美国弃牌完整集合，再补同量。
+
+[Grain Sales](../grain-sales.md)：随机借牌、私有选择和四个有限来源消费者。

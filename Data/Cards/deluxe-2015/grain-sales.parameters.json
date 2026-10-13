@@ -1,0 +1,501 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.grain_sales",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "verified-subset",
+  "description": "Grain Sales complete ordinary Hand random evidence, US private choice and limited nested consumers; runtime planned.",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe images; checked 2026-10-13",
+      "description": "p10 #67 random USSR Hand card; US play/return; empty/return source OPS."
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe 2015",
+      "description": "2.2/5.2 routes and disposition; 6.4.5 Space discard; 7.4 actual-user modifiers; 8.1.3 root phasing; 9 China separate."
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQv5 compatible Deluxe rulings; checked 2026-10-13",
+      "description": "p7 headline UN return; pp13-14 #67 private choice, empty fallback, root responsibility, Defectors timing, physical received card Space even headline."
+    },
+    {
+      "id": "PROJECT-GS1",
+      "url": null,
+      "edition": "Finite design 2026-10-13",
+      "description": "Complete inventory, trusted independent anchors and finite evidence are engineering; real RNG/auth/storage/network unimplemented."
+    }
+  ],
+  "shared_refs": {
+    "cards": {
+      "dataset_id": "cards.deluxe2015.definitions",
+      "path": "Data/Cards/deluxe-2015/cards.json",
+      "json_pointer": "/cards"
+    },
+    "hand": {
+      "dataset_id": "effects.deluxe2015.hand_events_batch1",
+      "path": "Data/Cards/deluxe-2015/hand-events-batch1.parameters.json",
+      "json_pointer": "/parameters/five_year_plan"
+    },
+    "ops": {
+      "dataset_id": "effects.deluxe2015.persistent_batch1",
+      "path": "Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json",
+      "json_pointer": ""
+    },
+    "space": {
+      "dataset_id": "rules.deluxe2015.space-race",
+      "path": "Data/Rulesets/deluxe-2015/space-race.json",
+      "json_pointer": ""
+    },
+    "world": {
+      "dataset_id": "map.deluxe2015.world",
+      "path": "Data/Maps/deluxe-2015/world.json",
+      "json_pointer": "/countries"
+    },
+    "sea": {
+      "dataset_id": "rules.deluxe2015.region-scoring",
+      "path": "Data/Rulesets/deluxe-2015/region-scoring.json",
+      "json_pointer": "/southeast_asia"
+    },
+    "sadat": {
+      "dataset_id": "effects.deluxe2015.mid_influence_batch1",
+      "path": "Data/Cards/deluxe-2015/mid-influence-batch1.parameters.json",
+      "json_pointer": "/parameters/sadat_expels_soviets"
+    },
+    "defectors": {
+      "dataset_id": "effects.deluxe2015.defectors",
+      "path": "Data/Cards/deluxe-2015/defectors.parameters.json",
+      "json_pointer": "/parameters/defectors"
+    },
+    "victory": {
+      "dataset_id": "rules.deluxe2015.victory",
+      "path": "Data/Rulesets/deluxe-2015/victory.json",
+      "json_pointer": ""
+    },
+    "defcon": {
+      "dataset_id": "rules.deluxe2015.defcon",
+      "path": "Data/Rulesets/deluxe-2015/defcon.json",
+      "json_pointer": ""
+    },
+    "china": {
+      "dataset_id": "setup.deluxe2015.standard",
+      "path": "Data/Rulesets/deluxe-2015/setup.json",
+      "json_pointer": "/china"
+    },
+    "turns": {
+      "dataset_id": "rules.deluxe2015.turn-flow",
+      "path": "Data/Rulesets/deluxe-2015/turn-flow.json",
+      "json_pointer": "/era_bands"
+    }
+  },
+  "parameters": {
+    "grain_sales": {
+      "card_id": "card.grain_sales_to_soviets",
+      "effect_id": "effect.grain_sales_to_soviets",
+      "template": "RandomBorrowedPhysicalCardUseOrSourceOperations",
+      "actor": "US",
+      "hand_owner": "USSR",
+      "source_zone": "Hand",
+      "candidate_kinds": [
+        "Event",
+        "Scoring"
+      ],
+      "selection_count": 1,
+      "sampling": "UniformBoundedDrawOnStableCardIdOrder",
+      "empty_hand": "SourceOperationsWithoutRandom",
+      "singleton": "OneLogicalBoundedDraw",
+      "choice": [
+        "Play",
+        "Return"
+      ],
+      "return_destination": "OriginalUSSRHandSameEntity",
+      "ops_budget": "SourceCardDefinitionThenActualUSSharedModifiers",
+      "received_card_use_source": "GrainSalesReceivedPhysicalCard",
+      "source_ops_kind": "GrainSalesSourceOperations",
+      "headline_un": "MustReturn",
+      "root_phasing": "ImmutableInherited",
+      "source_disposition": "NormalCompletionDiscardAfterRemainingRootWork",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "p10 #67 random USSR Hand card; US play/return; empty/return source OPS.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "2.2/5.2 routes and disposition; 6.4.5 Space discard; 7.4 actual-user modifiers; 8.1.3 root phasing; 9 China separate.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "p7 headline UN return; pp13-14 #67 private choice, empty fallback, root responsibility, Defectors timing, physical received card Space even headline.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-GS1",
+          "locator": "Complete inventory, trusted independent anchors and finite evidence are engineering; real RNG/auth/storage/network unimplemented.",
+          "verification": "EngineeringBoundary"
+        }
+      ]
+    }
+  },
+  "consumer_matrix": [
+    {
+      "source_kind": "GrainSalesReceivedPhysicalCard",
+      "target_card_id": "card.sadat_expels_soviets",
+      "route": "Event",
+      "status": "FiniteReference",
+      "consumer": "GS1.Sadat.v1",
+      "conditions": "No active effects; shared Egypt mutation; normal completion",
+      "case_ids": [
+        "GS-EVENT",
+        "GS-ROOT-USSR",
+        "GS-ROOT-REMAIN"
+      ]
+    },
+    {
+      "source_kind": "GrainSalesReceivedPhysicalCard",
+      "target_card_id": "card.southeast_asia_scoring",
+      "route": "Scoring",
+      "status": "FiniteReference",
+      "consumer": "GS1.Sea.v1",
+      "conditions": "Complete world; no effects; shared weights; terminal prediction stops",
+      "case_ids": [
+        "GS-SCORING",
+        "GS-SCORING-TERMINAL"
+      ]
+    },
+    {
+      "source_kind": "GrainSalesReceivedPhysicalCard",
+      "target_card_id": "card.nato",
+      "route": "Space",
+      "status": "FiniteReference",
+      "consumer": "GS1.Space.v1",
+      "conditions": "Shared qualification/flat modifiers/die/VP; independent die evidence; normal completion",
+      "case_ids": [
+        "GS-SPACE",
+        "GS-HEADLINE-SPACE",
+        "GS-SPACE-FAIL"
+      ]
+    },
+    {
+      "source_kind": "GrainSalesReceivedPhysicalCard",
+      "target_card_id": "card.defectors",
+      "route": "Event",
+      "status": "FiniteReference",
+      "consumer": "GS1.Defectors.v1",
+      "conditions": "US root Headline and separate USSR pending/completed selected entity; no undo",
+      "case_ids": [
+        "GS-DEFECTORS-PENDING",
+        "GS-DEFECTORS-DONE"
+      ]
+    },
+    {
+      "source_kind": "GrainSalesReceivedPhysicalCard",
+      "target_card_id": "card.un_intervention",
+      "route": "AnyPlayDuringHeadline",
+      "status": "BlockedByRule",
+      "consumer": null,
+      "conditions": "Must return FAQp7",
+      "case_ids": [
+        "GS-UN-HEADLINE"
+      ]
+    },
+    {
+      "source_kind": "GrainSalesReceivedPhysicalCard",
+      "target_card_id": "card.un_intervention",
+      "route": "Event",
+      "status": "ProtocolOnlyPending",
+      "consumer": null,
+      "conditions": "Normal-round paired-card and WWBY not connected",
+      "case_ids": [
+        "GS-UNSUPPORTED"
+      ]
+    },
+    {
+      "source_kind": "GrainSalesReceivedPhysicalCard",
+      "target_card_id": "card.missile_envy",
+      "route": "Event",
+      "status": "ProtocolOnlyPending",
+      "consumer": null,
+      "conditions": "Exchange/forced next-slot not connected",
+      "case_ids": [
+        "GS-UNSUPPORTED"
+      ]
+    },
+    {
+      "source_kind": "GrainSalesReceivedPhysicalCard",
+      "target_card_id": "card.star_wars",
+      "route": "Event",
+      "status": "ProtocolOnlyPending",
+      "consumer": null,
+      "conditions": "Recursive retrieval not connected",
+      "case_ids": [
+        "GS-UNSUPPORTED"
+      ]
+    },
+    {
+      "source_kind": "GrainSalesReceivedPhysicalCard",
+      "target_card_id": "card.ask_not_what_your_country_can_do_for_you",
+      "route": "Event",
+      "status": "ProtocolOnlyPending",
+      "consumer": null,
+      "conditions": "Draw continuation not connected",
+      "case_ids": [
+        "GS-UNSUPPORTED"
+      ]
+    },
+    {
+      "source_kind": "GrainSalesReceivedPhysicalCard",
+      "target_card_id": "card.we_will_bury_you",
+      "route": "Event",
+      "status": "ProtocolOnlyPending",
+      "consumer": null,
+      "conditions": "VP/cancellation hook not connected",
+      "case_ids": [
+        "GS-UNSUPPORTED"
+      ]
+    },
+    {
+      "source_kind": "GrainSalesReceivedPhysicalCard",
+      "target_card_id": "card.flower_power",
+      "route": "Event",
+      "status": "ProtocolOnlyPending",
+      "consumer": null,
+      "conditions": "War-use hook not connected",
+      "case_ids": [
+        "GS-UNSUPPORTED"
+      ]
+    },
+    {
+      "source_kind": "GrainSalesReceivedPhysicalCard",
+      "target_card_id": "card.wargames",
+      "route": "Event",
+      "status": "ProtocolOnlyPending",
+      "consumer": null,
+      "conditions": "Terminal disposition not adopted",
+      "case_ids": [
+        "GS-UNSUPPORTED"
+      ]
+    },
+    {
+      "source_kind": "GrainSalesReceivedPhysicalCard",
+      "target_card_id": "card.allende",
+      "route": "OperationsWithOpponentEvent",
+      "status": "ProtocolOnlyPending",
+      "consumer": null,
+      "conditions": "Opponent event/US OPS ordering not connected",
+      "case_ids": [
+        "GS-UNSUPPORTED"
+      ]
+    },
+    {
+      "source_kind": "GrainSalesReceivedPhysicalCard",
+      "target_card_id": "*",
+      "route": "Operations",
+      "status": "ProtocolOnlyPending",
+      "consumer": null,
+      "conditions": "Ordinary borrowed Operations not connected",
+      "case_ids": [
+        "GS-UNSUPPORTED"
+      ]
+    },
+    {
+      "source_kind": "GrainSalesReceivedPhysicalCard",
+      "target_card_id": "*",
+      "route": "Event",
+      "status": "ProtocolOnlyPending",
+      "consumer": null,
+      "conditions": "Every unlisted Bound event unsupported",
+      "case_ids": [
+        "GS-UNSUPPORTED"
+      ]
+    },
+    {
+      "source_kind": "GrainSalesReceivedPhysicalCard",
+      "target_card_id": "*",
+      "route": "Scoring",
+      "status": "ProtocolOnlyPending",
+      "consumer": null,
+      "conditions": "Only SEA finite",
+      "case_ids": [
+        "GS-UNSUPPORTED"
+      ]
+    },
+    {
+      "source_kind": "GrainSalesReceivedPhysicalCard",
+      "target_card_id": "*",
+      "route": "Space",
+      "status": "ProtocolOnlyPending",
+      "consumer": null,
+      "conditions": "Only NATO finite sample",
+      "case_ids": [
+        "GS-UNSUPPORTED"
+      ]
+    }
+  ],
+  "source_policy": {
+    "accepted_sources": [
+      "RootEvent",
+      "OpponentCardEvent",
+      "HeadlineEvent"
+    ],
+    "unknown_parent": "ProtocolOnlyPendingBeforeRandom",
+    "source_entity": "InResolutionUntilContinuationAndRemainingRootWork",
+    "roles": [
+      "RootSlot",
+      "RootPhasingPlayer",
+      "ParentFrameId",
+      "ChildFrameId",
+      "ResolutionId",
+      "SourceEntityId",
+      "SelectedEntityId",
+      "ActualCardUser",
+      "OperationsActor",
+      "EventController",
+      "Viewer"
+    ],
+    "actual_user": "US",
+    "operations_actor": "US",
+    "event_controller": "TargetAffiliationAndRoute",
+    "defcon_responsibility": "RootPhasingPlayer",
+    "cuban_missile_crisis": "SeparateSharedActualCoupActorPolicy_NotImplemented",
+    "bound_does_not_authorize_source": true
+  },
+  "random_policy": {
+    "complete_pool": "ExactOrdinaryUSSRHandIncludingScoringExcludingChinaReservedAndOtherZones",
+    "proof": "IndependentTrustedPoolBeforeStateCommandAndRngBeforeAfterAnchor",
+    "implementation": "FiniteInjectedEvidenceOnly_NoRandomAlgorithm",
+    "invalid": "RejectWithoutMutation_NoRedrawAfterAcceptedBegin"
+  },
+  "operations_handoff": {
+    "provider": "OperationsProvider.Planned",
+    "status": "ProtocolOnlyPending",
+    "source_budget_ref": "cards.printed_ops",
+    "modifier_ref": "ops",
+    "actor": "US",
+    "allowed_kinds": [
+      "Influence",
+      "Coup",
+      "Realignment"
+    ],
+    "space_allowed": false,
+    "completion": "NoFiniteOrRuntimeActionConsumerConnected",
+    "influence_start_snapshot": "RequiresSourceSpecificSharedProviderEvidence"
+  },
+  "receipt_policy": {
+    "binding": "FullCommandActorSourceEntitiesSequenceOriginalStateDataAndIndependentAnchor",
+    "replay": "OriginalAcceptedResultAndProjectionPreserveLaterLive",
+    "bad_callback": "PreserveAcceptedDrawChoiceAndWait",
+    "active_draw": "Reject",
+    "finished_draw": "HistoricalReplayOnly",
+    "accepted_identity_set": "ReconstructAndCrossValidateAnchoredHistory_NoDisposableNonceCache"
+  },
+  "terminal_policy": {
+    "status": "PendingProjectDecision",
+    "behavior": "PredictTerminalThenStopBeforeConsumerMutationPreserveAcceptedWait",
+    "reason": "Immediate end verified; exact source/child cleanup ordering not established",
+    "no_remaining_ops_after_terminal": true
+  },
+  "privacy": {
+    "pool": "AuthorityAndOriginalUSSRHandOwnerOnly",
+    "selected_before_use": "USPrivate_USSRMayKnowOwnMissingCard_SpectatorNoIdentity",
+    "return_identity": "NoNewPublicDisclosure",
+    "played_card": "PublicAfterAcceptedPlay",
+    "rng_receipts": "AuthorityOnly",
+    "history": "FrozenOriginalProjection"
+  },
+  "planned_entrypoints": [
+    {
+      "path": "Assets/Game/Core/Cards/GrainSalesEffect.cs",
+      "symbol": "BeginChooseContinue",
+      "status": "planned"
+    },
+    {
+      "path": "Assets/Game/Core/Rules/BorrowedCardUseProvider.cs",
+      "symbol": "ValidateSourceAndRoute",
+      "status": "planned"
+    },
+    {
+      "path": "Assets/Game/Core/Rules/OperationsProvider.cs",
+      "symbol": "BeginSourceOperations",
+      "status": "planned"
+    }
+  ],
+  "rule_evidence": [
+    {
+      "claim": "USRandomHandPlayReturnAndEmptyFallback",
+      "classification": "Verified",
+      "source_id": "C-DELUXE-EN",
+      "locator": "English p10 #67; FAQ pp13-14"
+    },
+    {
+      "claim": "ReceivedPhysicalCardSpaceEvenHeadline",
+      "classification": "Verified",
+      "source_id": "F2010",
+      "locator": "p14 #67 last question"
+    },
+    {
+      "claim": "HeadlineUNMustReturn",
+      "classification": "Verified",
+      "source_id": "F2010",
+      "locator": "p7 #32"
+    },
+    {
+      "claim": "DefectorsNoRetroactiveHeadlineCancellation",
+      "classification": "Verified",
+      "source_id": "F2010",
+      "locator": "pp13-14 #67; p18 #103"
+    },
+    {
+      "claim": "ActualUSModifiersAndImmutableRootNuclearResponsibility",
+      "classification": "Verified",
+      "source_id": "R2015",
+      "locator": "7.4.1 Grain Sales example; 8.1.3; FAQp14"
+    },
+    {
+      "claim": "OrdinaryHandExcludesChinaAndReservedZones",
+      "classification": "TextualDerivation",
+      "source_id": "R2015",
+      "locator": "4.5C/9; ordinary Hand representation follows shared hand-events"
+    },
+    {
+      "claim": "ParentInResolutionUntilContinuationAndNormalDiscard",
+      "classification": "TextualDerivation",
+      "source_id": "R2015",
+      "locator": "2.2/5.2 and #67 nonstar; FAQp14 implementing-event explanation"
+    },
+    {
+      "claim": "StablePoolSingletonLogicalDrawAndIndependentAnchors",
+      "classification": "EngineeringBoundary",
+      "source_id": "PROJECT-GS1",
+      "locator": "Synthetic finite verifier only; no production authentication/randomness"
+    },
+    {
+      "claim": "ExactImmediateTerminalEntityCleanupOrdering",
+      "classification": "Pending",
+      "source_id": "R2015",
+      "locator": "8.1.3/10.3.1 require immediate end but do not settle this engineering order"
+    }
+  ],
+  "disposition_policy": {
+    "normal_source": "DiscardPileAfterChildAndRemainingRootWork",
+    "event_success": "SharedPrintedRemoveAfterResolvedEvent",
+    "event_blocked": "DiscardPile_WhenASeparateVerifiedBlockedConsumerExists",
+    "space": "DiscardPileWithoutEventEvenStarred",
+    "transfers_or_display": "RequireSpecificConsumerNeverGenericCleanup",
+    "blocked_consumer_status": "ProtocolOnlyPending",
+    "source_refs": [
+      {
+        "source_id": "R2015",
+        "locator": "2.2.4-2.2.6,5.2,6.4.5",
+        "verification": "TextualDerivation"
+      }
+    ]
+  }
+}

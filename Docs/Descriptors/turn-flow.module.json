@@ -45,7 +45,8 @@
     "Defectors独立双方Headline根、活动源/目标实体与接受队列；USSelected策略优先于印刷OPS排序",
     "DV1已核实普通同回合或Headline目标根槽；FinalBoundary须末回合US最后普通来源与接受FinalScoring证据，不能清除遗漏旧待办",
     "LR1来源完成与无等待选择的ExpireAndReset证据；已到期状态不可回退为同回合行动查询",
-    "Star Wars独立子事件计划与已接受完成收据；根责任保持不变"
+    "Star Wars独立子事件计划与已接受完成收据；根责任保持不变",
+    "Grain Sales已接受随机结果、子用牌等待与来源OPS计划；原根责任及剩余工作分开"
   ],
   "outputs": [
     "更新后的流程位置",
@@ -160,7 +161,8 @@
     "effects.deluxe2015.late_restrictions_batch1",
     "effects.deluxe2015.latin_american_debt_crisis",
     "effects.deluxe2015.ask_not",
-    "effects.deluxe2015.star_wars"
+    "effects.deluxe2015.star_wars",
+    "effects.deluxe2015.grain_sales"
   ],
   "preconditions": [
     "规则集及被触发的处理器必须齐备",
@@ -181,7 +183,8 @@
     "ExpireAndReset只过期NSO回合额度，永久OPEC阻止保留；未知来源/放弃后重新开放须具名政策",
     "被取消的计分/星号目标均Discard且无成功事实；苏方自取消保留另一头条，普通事件留存未完成父OPS",
     "LEO1已接受前缀不能因Decline/失败选择撤销；WaitingSharedOperation保留源和根，只有核实完成回执才推进",
-    "新借牌来源按能力登记停止；不能把未支持消费者视为无合法候选"
+    "新借牌来源按能力登记停止；不能把未支持消费者视为无合法候选",
+    "GS普通OPS与精确终局清理未接入时停止，不重复抽牌或提前关闭父根"
   ],
   "rule_sources": [
     {
@@ -304,6 +307,12 @@
       "url": null,
       "edition": "Finite contract design 2026-10-13",
       "description": "Frame/entity/role/nonce/receipt/capability boundaries are engineering. Finite independent evidence anchors model trust; do not prove runtime authentication, storage or global downstream support."
+    },
+    {
+      "id": "PROJECT-GS1",
+      "url": null,
+      "edition": "Finite design 2026-10-13",
+      "description": "Complete inventory, trusted independent anchors and finite evidence are engineering; real RNG/auth/storage/network unimplemented."
     }
   ],
   "tests": [
@@ -411,12 +420,16 @@
     {
       "path": "Docs/Design/star-wars.cases.json",
       "status": "mixed-source-reference-protocol-and-planned"
+    },
+    {
+      "path": "Docs/Design/grain-sales.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
     "design_review": "检查源规则版本、转换边界、持久化、保密与异常路径；实际检查记录见工作记录",
-    "latest_design_report": "Docs/Design/star-wars.validation.json"
+    "latest_design_report": "Docs/Design/grain-sales.validation.json"
   },
   "open_items": [
     "全部逐卡参数/处理器与跨卡优先级",
@@ -433,6 +446,7 @@
     "urn:coldwarheat:contract:late-restrictions-batch1:1",
     "urn:coldwarheat:contract:latin-american-debt-crisis:1",
     "urn:coldwarheat:contract:ask-not:1",
-    "urn:coldwarheat:contract:star-wars:1"
+    "urn:coldwarheat:contract:star-wars:1",
+    "https://coldwarstruggle.local/contracts/grain-sales.schema.json"
   ]
 }

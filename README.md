@@ -126,4 +126,6 @@
 
 [全局平局结果契约](Docs/Wiki/draw-global-contracts.md)：累计4800项设计案例；本批实际运行1943项受影响回归＋40项新检查，游戏runtime仍0。
 
-最新：[Star Wars与借牌模块](Docs/Wiki/star-wars.md)，100 Bound /2 Unresolved，102处理器planned；合法候选和消费者支持分开，画风与规则无耦合。
+此前：[Star Wars与借牌模块](Docs/Wiki/star-wars.md)，100 Bound /2 Unresolved，102处理器planned；合法候选和消费者支持分开，画风与规则无耦合。
+
+最新：[Grain Sales随机借牌](Docs/Wiki/grain-sales.md)，101 Bound /1 Unresolved，102处理器planned；随机证据、私有选择和有限子用牌分开。

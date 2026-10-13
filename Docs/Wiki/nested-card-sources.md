@@ -1,6 +1,6 @@
 # 调用其他卡牌的事件：下一阶段计划
 
-本页是设计路线，不是已经实现的通用执行器。先看[JSON 摘要](../Design/nested-card-sources.plan.json)，再按其中的卡牌与依赖读取已有契约。Star Wars现已完成有限设计登记；Grain Sales与Missile Envy仍未绑定。所有运行实现仍planned。
+本页是设计路线，不是已经实现的通用执行器。先看[JSON 摘要](../Design/nested-card-sources.plan.json)，再按其中的卡牌与依赖读取已有契约。Star Wars与Grain Sales现已完成有限设计登记；Missile Envy仍未绑定。所有运行实现仍planned。
 
 建议顺序是 Star Wars → Grain Sales → Missile Envy。第一张只从公开弃牌堆选择非计分牌并执行事件；第二张增加随机取得对手实体牌、私有察看与使用或退回；第三张再加入交换及下一行动轮的强制义务。按这个顺序，可以逐步验证共用部分。
 

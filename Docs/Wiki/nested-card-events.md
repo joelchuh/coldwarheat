@@ -29,3 +29,5 @@ flowchart LR
 表现层只读取合法选择、状态投影和领域事件。地图、卡面、动画或整体画风变更，不影响候选算法、隐私权限和卡牌清理。样例消费者的有限通过，只证明其列明范围，完整来源能力表和运行实现仍有后续工作。
 
 检索顺序：[模块描述](../Descriptors/nested-card-events.module.json) → [Star Wars](star-wars.md) → 对应参数中的 consumer_registry → 下游模块描述和相关函数。正式代码不存在时，不把 planned_entrypoints 当成可调用函数。
+
+[Grain Sales](grain-sales.md)增加完整普通Hand随机取得、私有察看、使用或退回，以及四个有限消费者；借来的实体牌太空与来源事件赠予OPS是不同授权。

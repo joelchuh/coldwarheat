@@ -1,0 +1,1275 @@
+{
+  "schema_version": 1,
+  "description": "Literal finite outcomes and complete-state rejection probes; production runtime untested.",
+  "dataset": "Data/Cards/deluxe-2015/grain-sales.parameters.json",
+  "schema": "Docs/Contracts/grain-sales.schema.json",
+  "fixture_policy": "One entity for every shared non-China definition plus separate China; full world; trusted synthetic anchors independently retained outside serialized state.",
+  "cases": [
+    {
+      "id": "GS-EVENT",
+      "layer": "reference",
+      "scenario": "event",
+      "expected": {
+        "outcome": "Completed",
+        "egypt_us": 2,
+        "egypt_ussr": 0,
+        "child_zone": "Removed",
+        "source_zone": "DiscardPile",
+        "root_closed": true,
+        "completed_slots": 5,
+        "rng_reads": 1
+      }
+    },
+    {
+      "id": "GS-ROOT-USSR",
+      "layer": "reference",
+      "scenario": "event_ussr",
+      "expected": {
+        "outcome": "Completed",
+        "root_phasing": "USSR",
+        "actual_user": "US",
+        "child_zone": "Removed"
+      }
+    },
+    {
+      "id": "GS-ROOT-REMAIN",
+      "layer": "reference",
+      "scenario": "event_remaining",
+      "expected": {
+        "outcome": "AwaitingRootOperations",
+        "source_zone": "InResolution",
+        "root_closed": false,
+        "completed_slots": 4
+      }
+    },
+    {
+      "id": "GS-SCORING",
+      "layer": "reference",
+      "scenario": "scoring",
+      "expected": {
+        "outcome": "Completed",
+        "signed_vp": 1,
+        "child_zone": "Removed",
+        "source_zone": "DiscardPile"
+      }
+    },
+    {
+      "id": "GS-SCORING-TERMINAL",
+      "layer": "reference",
+      "scenario": "scoring_terminal",
+      "expected": {
+        "outcome": "TerminalCleanupPolicyPending",
+        "unchanged": true,
+        "pending": "Child"
+      }
+    },
+    {
+      "id": "GS-SPACE",
+      "layer": "reference",
+      "scenario": "space",
+      "expected": {
+        "outcome": "Completed",
+        "space_us": 1,
+        "signed_vp": 2,
+        "child_zone": "DiscardPile",
+        "rng_reads": 2
+      }
+    },
+    {
+      "id": "GS-HEADLINE-SPACE",
+      "layer": "reference",
+      "scenario": "headline_space",
+      "expected": {
+        "outcome": "Completed",
+        "space_us": 1,
+        "phase": "Headline",
+        "root_phasing": "USSR",
+        "child_zone": "DiscardPile"
+      }
+    },
+    {
+      "id": "GS-SPACE-FAIL",
+      "layer": "reference",
+      "scenario": "space_fail",
+      "expected": {
+        "outcome": "Completed",
+        "space_us": 0,
+        "signed_vp": 0,
+        "child_zone": "DiscardPile",
+        "rng_reads": 2
+      }
+    },
+    {
+      "id": "GS-SPACE-SECOND",
+      "layer": "reference",
+      "scenario": "space_second",
+      "expected": {
+        "outcome": "Completed",
+        "space_us": 1,
+        "signed_vp": 1
+      }
+    },
+    {
+      "id": "GS-SPACE-MIN",
+      "layer": "reference",
+      "scenario": "space_min",
+      "expected": {
+        "outcome": "IllegalSpaceAttempt",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "GS-SPACE-LIMIT",
+      "layer": "reference",
+      "scenario": "space_limit",
+      "expected": {
+        "outcome": "IllegalSpaceAttempt",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "GS-SPACE-END",
+      "layer": "reference",
+      "scenario": "space_end",
+      "expected": {
+        "outcome": "IllegalSpaceAttempt",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "GS-SPACE-TERMINAL",
+      "layer": "reference",
+      "scenario": "space_terminal",
+      "expected": {
+        "outcome": "TerminalCleanupPolicyPending",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "GS-DEFECTORS-PENDING",
+      "layer": "reference",
+      "scenario": "defectors_pending",
+      "expected": {
+        "outcome": "Completed",
+        "headline_status": "Cancelled",
+        "headline_zone": "DiscardPile",
+        "signed_vp": 0
+      }
+    },
+    {
+      "id": "GS-DEFECTORS-DONE",
+      "layer": "reference",
+      "scenario": "defectors_done",
+      "expected": {
+        "outcome": "Completed",
+        "headline_status": "Completed",
+        "headline_zone": "DiscardPile",
+        "signed_vp": 0
+      }
+    },
+    {
+      "id": "GS-UN-HEADLINE",
+      "layer": "reference",
+      "scenario": "un_headline",
+      "expected": {
+        "outcome": "MustReturnHeadlineUN",
+        "unchanged": true,
+        "return_outcome": "AwaitingOperations"
+      }
+    },
+    {
+      "id": "GS-RETURN",
+      "layer": "reference",
+      "scenario": "return",
+      "expected": {
+        "outcome": "AwaitingOperations",
+        "selected_zone": "Hand",
+        "selected_owner": "USSR",
+        "budget": 2,
+        "rng_reads": 1
+      }
+    },
+    {
+      "id": "GS-RETURN-PURGE",
+      "layer": "reference",
+      "scenario": "return_purge",
+      "expected": {
+        "outcome": "AwaitingOperations",
+        "budget": 1
+      }
+    },
+    {
+      "id": "GS-RETURN-CONTAINMENT",
+      "layer": "reference",
+      "scenario": "return_containment",
+      "expected": {
+        "outcome": "AwaitingOperations",
+        "budget": 3
+      }
+    },
+    {
+      "id": "GS-RETURN-OTHER-MODS",
+      "layer": "reference",
+      "scenario": "return_other_mods",
+      "expected": {
+        "outcome": "AwaitingOperations",
+        "budget": 2
+      }
+    },
+    {
+      "id": "GS-EMPTY",
+      "layer": "reference",
+      "scenario": "empty",
+      "expected": {
+        "outcome": "AwaitingOperations",
+        "budget": 2,
+        "rng_reads": 0
+      }
+    },
+    {
+      "id": "GS-SINGLE",
+      "layer": "reference",
+      "scenario": "single",
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "rng_reads": 1,
+        "pool_count": 1
+      }
+    },
+    {
+      "id": "GS-POOL",
+      "layer": "reference",
+      "scenario": "pool",
+      "expected": {
+        "outcome": "AwaitingDecision",
+        "pool_count": 4,
+        "includes_scoring": true,
+        "excludes_reserved": true,
+        "rng_reads": 1
+      }
+    },
+    {
+      "id": "GS-PRIVACY",
+      "layer": "reference",
+      "scenario": "privacy",
+      "expected": {
+        "us_selected_visible": true,
+        "spectator_selected_visible": false,
+        "unselected_us_hidden": true,
+        "rng_hidden": true,
+        "return_identity_public": false
+      }
+    },
+    {
+      "id": "GS-SOURCE-OPS-NO-SPACE",
+      "layer": "reference",
+      "scenario": "source_ops_space",
+      "expected": {
+        "outcome": "UnsupportedOperationsConsumer",
+        "unchanged": true,
+        "space_allowed": false
+      }
+    },
+    {
+      "id": "GS-REPLAY-LATER",
+      "layer": "reference",
+      "scenario": "replay_later",
+      "expected": {
+        "outcome": "HistoricalReplay",
+        "live_unchanged": true,
+        "receipt_equal": true,
+        "view_unchanged": true
+      }
+    },
+    {
+      "id": "GS-REPLAY-DRAW",
+      "layer": "reference",
+      "scenario": "replay_draw",
+      "expected": {
+        "outcome": "HistoricalReplay",
+        "live_unchanged": true,
+        "winner": "Draw",
+        "view_unchanged": true
+      }
+    },
+    {
+      "id": "GS-REPLAY-ACTIVE-DRAW",
+      "layer": "reference",
+      "scenario": "replay_active_draw",
+      "expected": {
+        "outcome": "InvalidState",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "GS-SAVE-WAIT",
+      "layer": "reference",
+      "scenario": "save_wait",
+      "expected": {
+        "outcome": "Completed",
+        "rng_reads": 1,
+        "source_zone": "DiscardPile"
+      }
+    },
+    {
+      "id": "GS-BAD-CALLBACK",
+      "layer": "reference",
+      "scenario": "bad_callback",
+      "expected": {
+        "outcome": "InvalidChildEvidence",
+        "unchanged": true,
+        "good_retry_outcome": "Completed",
+        "rng_reads": 1
+      }
+    },
+    {
+      "id": "GS-CONTENT-TAMPER",
+      "layer": "reference",
+      "scenario": "content_tamper",
+      "expected": {
+        "outcome": "CommandContentMismatch",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "GS-RECEIPT-TAMPER",
+      "layer": "reference",
+      "scenario": "receipt_tamper",
+      "expected": {
+        "outcome": "InvalidHistoricalReceipt",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "GS-REHASH-TAMPER",
+      "layer": "reference",
+      "scenario": "rehash_tamper",
+      "expected": {
+        "outcome": "InvalidHistoricalReceipt",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "GS-NO-ANCHOR",
+      "layer": "reference",
+      "scenario": "missing_anchor",
+      "expected": {
+        "outcome": "MissingAcceptedAnchor",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "GS-BAD-LINK",
+      "layer": "reference",
+      "scenario": "bad_link",
+      "expected": {
+        "outcome": "InvalidChain",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "GS-BAD-WAIT-STATE",
+      "layer": "reference",
+      "scenario": "bad_wait_state",
+      "expected": {
+        "outcome": "InvalidChain",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "GS-NO-REMAINING-AFTER-END",
+      "layer": "reference",
+      "scenario": "finished_new",
+      "expected": {
+        "outcome": "GameAlreadyEnded",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "GS-NEW-ACTIVE-DRAW",
+      "layer": "reference",
+      "scenario": "active_draw",
+      "expected": {
+        "outcome": "InvalidState",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "GS-NEW-FINISHED-DRAW",
+      "layer": "reference",
+      "scenario": "finished_draw",
+      "expected": {
+        "outcome": "GameAlreadyEnded",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "GS-ROOT-DEFCON",
+      "layer": "reference",
+      "scenario": "responsibility",
+      "expected": {
+        "root_loss": "USSR",
+        "coup_actor": "US",
+        "cuban_policy": "SeparateSharedActualCoupActorPolicy_NotImplemented"
+      }
+    },
+    {
+      "id": "GS-REJECT-MISSING-ENTITY",
+      "layer": "reference",
+      "scenario": "reject_begin",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "missing_entity"
+    },
+    {
+      "id": "GS-REJECT-DUPLICATE-ENTITY",
+      "layer": "reference",
+      "scenario": "reject_begin",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "duplicate_entity"
+    },
+    {
+      "id": "GS-REJECT-DUPLICATE-CARD",
+      "layer": "reference",
+      "scenario": "reject_begin",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "duplicate_card"
+    },
+    {
+      "id": "GS-REJECT-CHINA-IN-HAND",
+      "layer": "reference",
+      "scenario": "reject_begin",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "china_in_hand"
+    },
+    {
+      "id": "GS-REJECT-SOURCE-IN-HAND",
+      "layer": "reference",
+      "scenario": "reject_begin",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "source_in_hand"
+    },
+    {
+      "id": "GS-REJECT-SOURCE-WRONG-CARD",
+      "layer": "reference",
+      "scenario": "reject_begin",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "source_wrong_card"
+    },
+    {
+      "id": "GS-REJECT-UNKNOWN-CARD",
+      "layer": "reference",
+      "scenario": "reject_begin",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "unknown_card"
+    },
+    {
+      "id": "GS-REJECT-WRONG-HAND-OWNER",
+      "layer": "reference",
+      "scenario": "reject_begin",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "wrong_hand_owner"
+    },
+    {
+      "id": "GS-REJECT-BAD-DECK-INDEX",
+      "layer": "reference",
+      "scenario": "reject_begin",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "bad_deck_index"
+    },
+    {
+      "id": "GS-REJECT-SOURCE-WRONG-FRAME",
+      "layer": "reference",
+      "scenario": "reject_begin",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "source_wrong_frame"
+    },
+    {
+      "id": "GS-REJECT-ACTIVE-DEFCON-ONE",
+      "layer": "reference",
+      "scenario": "reject_begin",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "active_defcon_one"
+    },
+    {
+      "id": "GS-REJECT-ACTIVE-VP-TERMINAL",
+      "layer": "reference",
+      "scenario": "reject_begin",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "active_vp_terminal"
+    },
+    {
+      "id": "GS-REJECT-LATE-CARD-IN-HAND",
+      "layer": "reference",
+      "scenario": "reject_begin",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "late_card_in_hand"
+    },
+    {
+      "id": "GS-REJECT-WRONG-CONTROLLER",
+      "layer": "reference",
+      "scenario": "reject_begin",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "wrong_controller"
+    },
+    {
+      "id": "GS-REJECT-WRONG-ROOT",
+      "layer": "reference",
+      "scenario": "reject_begin",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "wrong_root"
+    },
+    {
+      "id": "GS-REJECT-WRONG-ACTOR",
+      "layer": "reference",
+      "scenario": "reject_begin",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "wrong_actor"
+    },
+    {
+      "id": "GS-REJECT-UNKNOWN-PARENT",
+      "layer": "reference",
+      "scenario": "reject_begin",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "unknown_parent"
+    },
+    {
+      "id": "GS-REJECT-CHANGED-SOURCE",
+      "layer": "reference",
+      "scenario": "reject_begin",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "changed_source"
+    },
+    {
+      "id": "GS-REJECT-DUPLICATE-RESOLUTION",
+      "layer": "reference",
+      "scenario": "reject_begin",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "duplicate_resolution"
+    },
+    {
+      "id": "GS-REJECT-ROOT-CLOSED",
+      "layer": "reference",
+      "scenario": "reject_begin",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "root_closed"
+    },
+    {
+      "id": "GS-RNG-MISSING-POOL-MEMBER",
+      "layer": "reference",
+      "scenario": "reject_rng",
+      "expected": {
+        "outcome": "InvalidRandomEvidence",
+        "unchanged": true
+      },
+      "corruption": "missing_pool_member"
+    },
+    {
+      "id": "GS-RNG-EXTRA-RESERVED",
+      "layer": "reference",
+      "scenario": "reject_rng",
+      "expected": {
+        "outcome": "InvalidRandomEvidence",
+        "unchanged": true
+      },
+      "corruption": "extra_reserved"
+    },
+    {
+      "id": "GS-RNG-EXTRA-CHINA",
+      "layer": "reference",
+      "scenario": "reject_rng",
+      "expected": {
+        "outcome": "InvalidRandomEvidence",
+        "unchanged": true
+      },
+      "corruption": "extra_china"
+    },
+    {
+      "id": "GS-RNG-SELECTED-NOT-POOL",
+      "layer": "reference",
+      "scenario": "reject_rng",
+      "expected": {
+        "outcome": "InvalidRandomEvidence",
+        "unchanged": true
+      },
+      "corruption": "selected_not_pool"
+    },
+    {
+      "id": "GS-RNG-INDEX-MISMATCH",
+      "layer": "reference",
+      "scenario": "reject_rng",
+      "expected": {
+        "outcome": "InvalidRandomEvidence",
+        "unchanged": true
+      },
+      "corruption": "index_mismatch"
+    },
+    {
+      "id": "GS-RNG-RNG-BEFORE",
+      "layer": "reference",
+      "scenario": "reject_rng",
+      "expected": {
+        "outcome": "InvalidRandomEvidence",
+        "unchanged": true
+      },
+      "corruption": "rng_before"
+    },
+    {
+      "id": "GS-RNG-RNG-AFTER-SAME",
+      "layer": "reference",
+      "scenario": "reject_rng",
+      "expected": {
+        "outcome": "InvalidRandomEvidence",
+        "unchanged": true
+      },
+      "corruption": "rng_after_same"
+    },
+    {
+      "id": "GS-RNG-WRONG-COMMAND",
+      "layer": "reference",
+      "scenario": "reject_rng",
+      "expected": {
+        "outcome": "InvalidRandomEvidence",
+        "unchanged": true
+      },
+      "corruption": "wrong_command"
+    },
+    {
+      "id": "GS-RNG-WRONG-STATE",
+      "layer": "reference",
+      "scenario": "reject_rng",
+      "expected": {
+        "outcome": "InvalidRandomEvidence",
+        "unchanged": true
+      },
+      "corruption": "wrong_state"
+    },
+    {
+      "id": "GS-RNG-WRONG-SOURCE",
+      "layer": "reference",
+      "scenario": "reject_rng",
+      "expected": {
+        "outcome": "InvalidRandomEvidence",
+        "unchanged": true
+      },
+      "corruption": "wrong_source"
+    },
+    {
+      "id": "GS-RNG-REHASHED-FORGERY",
+      "layer": "reference",
+      "scenario": "reject_rng",
+      "expected": {
+        "outcome": "InvalidRandomEvidence",
+        "unchanged": true
+      },
+      "corruption": "rehashed_forgery"
+    },
+    {
+      "id": "GS-RNG-MISSING-PROOF",
+      "layer": "reference",
+      "scenario": "reject_rng",
+      "expected": {
+        "outcome": "InvalidRandomEvidence",
+        "unchanged": true
+      },
+      "corruption": "missing_proof"
+    },
+    {
+      "id": "GS-CHOICE-WRONG-ACTOR",
+      "layer": "reference",
+      "scenario": "reject_choice",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "wrong_actor"
+    },
+    {
+      "id": "GS-CHOICE-WRONG-ENTITY",
+      "layer": "reference",
+      "scenario": "reject_choice",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "wrong_entity"
+    },
+    {
+      "id": "GS-CHOICE-SPACE-SCORING",
+      "layer": "reference",
+      "scenario": "reject_choice",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "space_scoring"
+    },
+    {
+      "id": "GS-CHOICE-WRONG-ROUTE",
+      "layer": "reference",
+      "scenario": "reject_choice",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "wrong_route"
+    },
+    {
+      "id": "GS-CHOICE-NULL-PAYLOAD",
+      "layer": "reference",
+      "scenario": "reject_choice",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "null_payload"
+    },
+    {
+      "id": "GS-CHOICE-STALE-VERSION",
+      "layer": "reference",
+      "scenario": "reject_choice",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "stale_version"
+    },
+    {
+      "id": "GS-CHOICE-SOURCE-DIGEST",
+      "layer": "reference",
+      "scenario": "reject_choice",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "source_digest"
+    },
+    {
+      "id": "GS-CHOICE-UNKNOWN-EFFECT",
+      "layer": "reference",
+      "scenario": "reject_choice",
+      "expected": {
+        "accepted": false,
+        "unchanged": true
+      },
+      "corruption": "unknown_effect"
+    },
+    {
+      "id": "GS-CHILD-WRONG-ROLES",
+      "layer": "reference",
+      "scenario": "reject_child",
+      "expected": {
+        "outcome": "InvalidChildEvidence",
+        "unchanged": true
+      },
+      "corruption": "wrong_roles"
+    },
+    {
+      "id": "GS-CHILD-WRONG-REQUEST",
+      "layer": "reference",
+      "scenario": "reject_child",
+      "expected": {
+        "outcome": "InvalidChildEvidence",
+        "unchanged": true
+      },
+      "corruption": "wrong_request"
+    },
+    {
+      "id": "GS-CHILD-WRONG-PROVIDER",
+      "layer": "reference",
+      "scenario": "reject_child",
+      "expected": {
+        "outcome": "InvalidChildEvidence",
+        "unchanged": true
+      },
+      "corruption": "wrong_provider"
+    },
+    {
+      "id": "GS-CHILD-WRONG-BEFORE",
+      "layer": "reference",
+      "scenario": "reject_child",
+      "expected": {
+        "outcome": "InvalidChildEvidence",
+        "unchanged": true
+      },
+      "corruption": "wrong_before"
+    },
+    {
+      "id": "GS-CHILD-WRONG-DISPOSITION",
+      "layer": "reference",
+      "scenario": "reject_child",
+      "expected": {
+        "outcome": "InvalidChildEvidence",
+        "unchanged": true
+      },
+      "corruption": "wrong_disposition"
+    },
+    {
+      "id": "GS-CHILD-EXTRA-INFLUENCE",
+      "layer": "reference",
+      "scenario": "reject_child",
+      "expected": {
+        "outcome": "InvalidChildEvidence",
+        "unchanged": true
+      },
+      "corruption": "extra_influence"
+    },
+    {
+      "id": "GS-CHILD-ROOT-CHANGED",
+      "layer": "reference",
+      "scenario": "reject_child",
+      "expected": {
+        "outcome": "InvalidChildEvidence",
+        "unchanged": true
+      },
+      "corruption": "root_changed"
+    },
+    {
+      "id": "GS-CHILD-SOURCE-MOVED",
+      "layer": "reference",
+      "scenario": "reject_child",
+      "expected": {
+        "outcome": "InvalidChildEvidence",
+        "unchanged": true
+      },
+      "corruption": "source_moved"
+    },
+    {
+      "id": "GS-CHILD-UNRELATED-HAND-CHANGED",
+      "layer": "reference",
+      "scenario": "reject_child",
+      "expected": {
+        "outcome": "InvalidChildEvidence",
+        "unchanged": true
+      },
+      "corruption": "unrelated_hand_changed"
+    },
+    {
+      "id": "GS-CHILD-WRONG-RNG",
+      "layer": "reference",
+      "scenario": "reject_child",
+      "expected": {
+        "outcome": "InvalidChildEvidence",
+        "unchanged": true
+      },
+      "corruption": "wrong_rng"
+    },
+    {
+      "id": "GS-CHILD-WRONG-DIE",
+      "layer": "reference",
+      "scenario": "reject_child",
+      "expected": {
+        "outcome": "InvalidChildEvidence",
+        "unchanged": true
+      },
+      "corruption": "wrong_die"
+    },
+    {
+      "id": "GS-CHILD-BOOLEAN-ONLY",
+      "layer": "reference",
+      "scenario": "reject_child",
+      "expected": {
+        "outcome": "InvalidChildEvidence",
+        "unchanged": true
+      },
+      "corruption": "boolean_only"
+    },
+    {
+      "id": "GS-CHILD-MISSING-PROOF",
+      "layer": "reference",
+      "scenario": "reject_child",
+      "expected": {
+        "outcome": "InvalidChildEvidence",
+        "unchanged": true
+      },
+      "corruption": "missing_proof"
+    },
+    {
+      "id": "GS-UNSUPPORTED-UN_INTERVENTION",
+      "layer": "reference",
+      "scenario": "unsupported",
+      "expected": {
+        "outcome": "UnsupportedConsumer",
+        "unchanged": true
+      },
+      "target": "card.un_intervention"
+    },
+    {
+      "id": "GS-UNSUPPORTED-MISSILE_ENVY",
+      "layer": "reference",
+      "scenario": "unsupported",
+      "expected": {
+        "outcome": "UnsupportedConsumer",
+        "unchanged": true
+      },
+      "target": "card.missile_envy"
+    },
+    {
+      "id": "GS-UNSUPPORTED-STAR_WARS",
+      "layer": "reference",
+      "scenario": "unsupported",
+      "expected": {
+        "outcome": "UnsupportedConsumer",
+        "unchanged": true
+      },
+      "target": "card.star_wars"
+    },
+    {
+      "id": "GS-UNSUPPORTED-ASK_NOT_WHAT_YOUR_COUNTRY_CAN_DO_FOR_YOU",
+      "layer": "reference",
+      "scenario": "unsupported",
+      "expected": {
+        "outcome": "UnsupportedConsumer",
+        "unchanged": true
+      },
+      "target": "card.ask_not_what_your_country_can_do_for_you"
+    },
+    {
+      "id": "GS-UNSUPPORTED-WE_WILL_BURY_YOU",
+      "layer": "reference",
+      "scenario": "unsupported",
+      "expected": {
+        "outcome": "UnsupportedConsumer",
+        "unchanged": true
+      },
+      "target": "card.we_will_bury_you"
+    },
+    {
+      "id": "GS-UNSUPPORTED-FLOWER_POWER",
+      "layer": "reference",
+      "scenario": "unsupported",
+      "expected": {
+        "outcome": "UnsupportedConsumer",
+        "unchanged": true
+      },
+      "target": "card.flower_power"
+    },
+    {
+      "id": "GS-UNSUPPORTED-WARGAMES",
+      "layer": "reference",
+      "scenario": "unsupported",
+      "expected": {
+        "outcome": "UnsupportedConsumer",
+        "unchanged": true
+      },
+      "target": "card.wargames"
+    },
+    {
+      "id": "GS-UNSUPPORTED-ALLENDE",
+      "layer": "reference",
+      "scenario": "unsupported",
+      "expected": {
+        "outcome": "UnsupportedConsumer",
+        "unchanged": true
+      },
+      "target": "card.allende"
+    },
+    {
+      "id": "GS-UNSUPPORTED-ASIA_SCORING",
+      "layer": "reference",
+      "scenario": "unsupported",
+      "expected": {
+        "outcome": "UnsupportedConsumer",
+        "unchanged": true
+      },
+      "target": "card.asia_scoring"
+    },
+    {
+      "id": "GS-UNSUPPORTED",
+      "layer": "reference",
+      "scenario": "unsupported",
+      "expected": {
+        "outcome": "UnsupportedConsumer",
+        "unchanged": true
+      },
+      "target": "card.marshall_plan"
+    },
+    {
+      "id": "GS-SAVE-DECISION",
+      "layer": "reference",
+      "scenario": "save_decision",
+      "expected": {
+        "outcome": "Completed",
+        "rng_reads": 1,
+        "source_zone": "DiscardPile"
+      }
+    },
+    {
+      "id": "GS-CHOICE-REPLAY-TAMPER",
+      "layer": "reference",
+      "scenario": "choice_replay_tamper",
+      "expected": {
+        "outcome": "CommandContentMismatch",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "GS-CHILD-REPLAY",
+      "layer": "reference",
+      "scenario": "child_replay",
+      "expected": {
+        "outcome": "HistoricalReplay",
+        "live_unchanged": true,
+        "receipt_equal": true,
+        "view_unchanged": true
+      }
+    },
+    {
+      "id": "GS-CHILD-REPLAY-DRAW",
+      "layer": "reference",
+      "scenario": "child_replay_draw",
+      "expected": {
+        "outcome": "HistoricalReplay",
+        "live_unchanged": true,
+        "receipt_equal": true,
+        "view_unchanged": true,
+        "winner": "Draw"
+      }
+    },
+    {
+      "id": "GS-FRESH-AFTER-COMPLETE",
+      "layer": "reference",
+      "scenario": "fresh_after_complete",
+      "expected": {
+        "outcome": "ResolutionAlreadyComplete",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "GS-NONCE-RECEIPTS-LOST",
+      "layer": "reference",
+      "scenario": "missing_receipts",
+      "expected": {
+        "outcome": "MissingHistoricalReceipt",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "GS-RECEIPT-KEY",
+      "layer": "reference",
+      "scenario": "receipt_key_tamper",
+      "expected": {
+        "outcome": "InvalidHistoricalReceipt",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "GS-RECEIPT-RESULT-ID",
+      "layer": "reference",
+      "scenario": "receipt_result_id_tamper",
+      "expected": {
+        "outcome": "InvalidHistoricalReceipt",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "GS-MALFORMED_COMMAND-MISSING_ID",
+      "layer": "reference",
+      "scenario": "malformed_command",
+      "corruption": "missing_id",
+      "expected": {
+        "outcome": "InvalidCommand",
+        "unchanged": true,
+        "ledgers_unchanged": true
+      }
+    },
+    {
+      "id": "GS-MALFORMED_COMMAND-NULL",
+      "layer": "reference",
+      "scenario": "malformed_command",
+      "corruption": "null",
+      "expected": {
+        "outcome": "InvalidCommand",
+        "unchanged": true,
+        "ledgers_unchanged": true
+      }
+    },
+    {
+      "id": "GS-MALFORMED_COMMAND-LIST",
+      "layer": "reference",
+      "scenario": "malformed_command",
+      "corruption": "list",
+      "expected": {
+        "outcome": "InvalidCommand",
+        "unchanged": true,
+        "ledgers_unchanged": true
+      }
+    },
+    {
+      "id": "GS-MALFORMED_COMMAND-WRONG_PAYLOAD",
+      "layer": "reference",
+      "scenario": "malformed_command",
+      "corruption": "wrong_payload",
+      "expected": {
+        "outcome": "InvalidCommand",
+        "unchanged": true,
+        "ledgers_unchanged": true
+      }
+    },
+    {
+      "id": "GS-MALFORMED_CALLBACK-NULL",
+      "layer": "reference",
+      "scenario": "malformed_callback",
+      "corruption": "null",
+      "expected": {
+        "outcome": "InvalidChildEvidence",
+        "unchanged": true,
+        "ledgers_unchanged": true
+      }
+    },
+    {
+      "id": "GS-MALFORMED_CALLBACK-LIST",
+      "layer": "reference",
+      "scenario": "malformed_callback",
+      "corruption": "list",
+      "expected": {
+        "outcome": "InvalidChildEvidence",
+        "unchanged": true,
+        "ledgers_unchanged": true
+      }
+    },
+    {
+      "id": "GS-MALFORMED_CALLBACK-MISSING_ROLES",
+      "layer": "reference",
+      "scenario": "malformed_callback",
+      "corruption": "missing_roles",
+      "expected": {
+        "outcome": "InvalidChildEvidence",
+        "unchanged": true,
+        "ledgers_unchanged": true
+      }
+    },
+    {
+      "id": "GS-MALFORMED_CALLBACK-BOOLEAN",
+      "layer": "reference",
+      "scenario": "malformed_callback",
+      "corruption": "boolean",
+      "expected": {
+        "outcome": "InvalidChildEvidence",
+        "unchanged": true,
+        "ledgers_unchanged": true
+      }
+    }
+  ],
+  "runtime_acceptance": [
+    {
+      "id": "GS-RUNTIME-RealSessionAuthentication",
+      "status": "planned-unrun",
+      "description": "RealSessionAuthentication"
+    },
+    {
+      "id": "GS-RUNTIME-ServerUniformRandomAndDurableRng",
+      "status": "planned-unrun",
+      "description": "ServerUniformRandomAndDurableRng"
+    },
+    {
+      "id": "GS-RUNTIME-AtomicPersistenceRecovery",
+      "status": "planned-unrun",
+      "description": "AtomicPersistenceRecovery"
+    },
+    {
+      "id": "GS-RUNTIME-NetworkRetryOrdering",
+      "status": "planned-unrun",
+      "description": "NetworkRetryOrdering"
+    },
+    {
+      "id": "GS-RUNTIME-OrdinaryOperationsExecution",
+      "status": "planned-unrun",
+      "description": "OrdinaryOperationsExecution"
+    },
+    {
+      "id": "GS-RUNTIME-RemainingOpponentRootOperations",
+      "status": "planned-unrun",
+      "description": "RemainingOpponentRootOperations"
+    },
+    {
+      "id": "GS-RUNTIME-FullNestedConsumerRegistry",
+      "status": "planned-unrun",
+      "description": "FullNestedConsumerRegistry"
+    },
+    {
+      "id": "GS-RUNTIME-UNCompanionWWBYAndFlower",
+      "status": "planned-unrun",
+      "description": "UNCompanionWWBYAndFlower"
+    },
+    {
+      "id": "GS-RUNTIME-RecursiveMissileEnvyStarWarsAskNot",
+      "status": "planned-unrun",
+      "description": "RecursiveMissileEnvyStarWarsAskNot"
+    },
+    {
+      "id": "GS-RUNTIME-TerminalDispositionProjectDecision",
+      "status": "planned-unrun",
+      "description": "TerminalDispositionProjectDecision"
+    },
+    {
+      "id": "GS-RUNTIME-FullGameHeadlineScheduler",
+      "status": "planned-unrun",
+      "description": "FullGameHeadlineScheduler"
+    },
+    {
+      "id": "GS-RUNTIME-FullReplayPerViewerPrivacy",
+      "status": "planned-unrun",
+      "description": "FullReplayPerViewerPrivacy"
+    }
+  ]
+}

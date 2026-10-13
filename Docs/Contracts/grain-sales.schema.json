@@ -1,0 +1,4687 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://coldwarstruggle.local/contracts/grain-sales.schema.json",
+  "title": "Grain Sales finite design contract",
+  "description": "Strict data and boundary shapes. Semantic complete inventory, independent anchor and source checks remain mandatory; hashes/provider labels are not production authorization.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "dataset_id": {
+      "const": "effects.deluxe2015.grain_sales"
+    },
+    "content_version": {
+      "const": "0.1.0"
+    },
+    "ruleset_id": {
+      "const": "ruleset.deluxe2015"
+    },
+    "scope": {
+      "const": "verified-subset"
+    },
+    "description": {
+      "const": "Grain Sales complete ordinary Hand random evidence, US private choice and limited nested consumers; runtime planned."
+    },
+    "source_catalog": {
+      "const": [
+        {
+          "id": "C-DELUXE-EN",
+          "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+          "edition": "English Deluxe images; checked 2026-10-13",
+          "description": "p10 #67 random USSR Hand card; US play/return; empty/return source OPS."
+        },
+        {
+          "id": "R2015",
+          "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+          "edition": "Deluxe 2015",
+          "description": "2.2/5.2 routes and disposition; 6.4.5 Space discard; 7.4 actual-user modifiers; 8.1.3 root phasing; 9 China separate."
+        },
+        {
+          "id": "F2010",
+          "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+          "edition": "FAQv5 compatible Deluxe rulings; checked 2026-10-13",
+          "description": "p7 headline UN return; pp13-14 #67 private choice, empty fallback, root responsibility, Defectors timing, physical received card Space even headline."
+        },
+        {
+          "id": "PROJECT-GS1",
+          "url": null,
+          "edition": "Finite design 2026-10-13",
+          "description": "Complete inventory, trusted independent anchors and finite evidence are engineering; real RNG/auth/storage/network unimplemented."
+        }
+      ]
+    },
+    "shared_refs": {
+      "const": {
+        "cards": {
+          "dataset_id": "cards.deluxe2015.definitions",
+          "path": "Data/Cards/deluxe-2015/cards.json",
+          "json_pointer": "/cards"
+        },
+        "hand": {
+          "dataset_id": "effects.deluxe2015.hand_events_batch1",
+          "path": "Data/Cards/deluxe-2015/hand-events-batch1.parameters.json",
+          "json_pointer": "/parameters/five_year_plan"
+        },
+        "ops": {
+          "dataset_id": "effects.deluxe2015.persistent_batch1",
+          "path": "Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json",
+          "json_pointer": ""
+        },
+        "space": {
+          "dataset_id": "rules.deluxe2015.space-race",
+          "path": "Data/Rulesets/deluxe-2015/space-race.json",
+          "json_pointer": ""
+        },
+        "world": {
+          "dataset_id": "map.deluxe2015.world",
+          "path": "Data/Maps/deluxe-2015/world.json",
+          "json_pointer": "/countries"
+        },
+        "sea": {
+          "dataset_id": "rules.deluxe2015.region-scoring",
+          "path": "Data/Rulesets/deluxe-2015/region-scoring.json",
+          "json_pointer": "/southeast_asia"
+        },
+        "sadat": {
+          "dataset_id": "effects.deluxe2015.mid_influence_batch1",
+          "path": "Data/Cards/deluxe-2015/mid-influence-batch1.parameters.json",
+          "json_pointer": "/parameters/sadat_expels_soviets"
+        },
+        "defectors": {
+          "dataset_id": "effects.deluxe2015.defectors",
+          "path": "Data/Cards/deluxe-2015/defectors.parameters.json",
+          "json_pointer": "/parameters/defectors"
+        },
+        "victory": {
+          "dataset_id": "rules.deluxe2015.victory",
+          "path": "Data/Rulesets/deluxe-2015/victory.json",
+          "json_pointer": ""
+        },
+        "defcon": {
+          "dataset_id": "rules.deluxe2015.defcon",
+          "path": "Data/Rulesets/deluxe-2015/defcon.json",
+          "json_pointer": ""
+        },
+        "china": {
+          "dataset_id": "setup.deluxe2015.standard",
+          "path": "Data/Rulesets/deluxe-2015/setup.json",
+          "json_pointer": "/china"
+        },
+        "turns": {
+          "dataset_id": "rules.deluxe2015.turn-flow",
+          "path": "Data/Rulesets/deluxe-2015/turn-flow.json",
+          "json_pointer": "/era_bands"
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "grain_sales": {
+          "$ref": "#/$defs/grain_sales"
+        }
+      },
+      "required": [
+        "grain_sales"
+      ],
+      "additionalProperties": false
+    },
+    "consumer_matrix": {
+      "const": [
+        {
+          "source_kind": "GrainSalesReceivedPhysicalCard",
+          "target_card_id": "card.sadat_expels_soviets",
+          "route": "Event",
+          "status": "FiniteReference",
+          "consumer": "GS1.Sadat.v1",
+          "conditions": "No active effects; shared Egypt mutation; normal completion",
+          "case_ids": [
+            "GS-EVENT",
+            "GS-ROOT-USSR",
+            "GS-ROOT-REMAIN"
+          ]
+        },
+        {
+          "source_kind": "GrainSalesReceivedPhysicalCard",
+          "target_card_id": "card.southeast_asia_scoring",
+          "route": "Scoring",
+          "status": "FiniteReference",
+          "consumer": "GS1.Sea.v1",
+          "conditions": "Complete world; no effects; shared weights; terminal prediction stops",
+          "case_ids": [
+            "GS-SCORING",
+            "GS-SCORING-TERMINAL"
+          ]
+        },
+        {
+          "source_kind": "GrainSalesReceivedPhysicalCard",
+          "target_card_id": "card.nato",
+          "route": "Space",
+          "status": "FiniteReference",
+          "consumer": "GS1.Space.v1",
+          "conditions": "Shared qualification/flat modifiers/die/VP; independent die evidence; normal completion",
+          "case_ids": [
+            "GS-SPACE",
+            "GS-HEADLINE-SPACE",
+            "GS-SPACE-FAIL"
+          ]
+        },
+        {
+          "source_kind": "GrainSalesReceivedPhysicalCard",
+          "target_card_id": "card.defectors",
+          "route": "Event",
+          "status": "FiniteReference",
+          "consumer": "GS1.Defectors.v1",
+          "conditions": "US root Headline and separate USSR pending/completed selected entity; no undo",
+          "case_ids": [
+            "GS-DEFECTORS-PENDING",
+            "GS-DEFECTORS-DONE"
+          ]
+        },
+        {
+          "source_kind": "GrainSalesReceivedPhysicalCard",
+          "target_card_id": "card.un_intervention",
+          "route": "AnyPlayDuringHeadline",
+          "status": "BlockedByRule",
+          "consumer": null,
+          "conditions": "Must return FAQp7",
+          "case_ids": [
+            "GS-UN-HEADLINE"
+          ]
+        },
+        {
+          "source_kind": "GrainSalesReceivedPhysicalCard",
+          "target_card_id": "card.un_intervention",
+          "route": "Event",
+          "status": "ProtocolOnlyPending",
+          "consumer": null,
+          "conditions": "Normal-round paired-card and WWBY not connected",
+          "case_ids": [
+            "GS-UNSUPPORTED"
+          ]
+        },
+        {
+          "source_kind": "GrainSalesReceivedPhysicalCard",
+          "target_card_id": "card.missile_envy",
+          "route": "Event",
+          "status": "ProtocolOnlyPending",
+          "consumer": null,
+          "conditions": "Exchange/forced next-slot not connected",
+          "case_ids": [
+            "GS-UNSUPPORTED"
+          ]
+        },
+        {
+          "source_kind": "GrainSalesReceivedPhysicalCard",
+          "target_card_id": "card.star_wars",
+          "route": "Event",
+          "status": "ProtocolOnlyPending",
+          "consumer": null,
+          "conditions": "Recursive retrieval not connected",
+          "case_ids": [
+            "GS-UNSUPPORTED"
+          ]
+        },
+        {
+          "source_kind": "GrainSalesReceivedPhysicalCard",
+          "target_card_id": "card.ask_not_what_your_country_can_do_for_you",
+          "route": "Event",
+          "status": "ProtocolOnlyPending",
+          "consumer": null,
+          "conditions": "Draw continuation not connected",
+          "case_ids": [
+            "GS-UNSUPPORTED"
+          ]
+        },
+        {
+          "source_kind": "GrainSalesReceivedPhysicalCard",
+          "target_card_id": "card.we_will_bury_you",
+          "route": "Event",
+          "status": "ProtocolOnlyPending",
+          "consumer": null,
+          "conditions": "VP/cancellation hook not connected",
+          "case_ids": [
+            "GS-UNSUPPORTED"
+          ]
+        },
+        {
+          "source_kind": "GrainSalesReceivedPhysicalCard",
+          "target_card_id": "card.flower_power",
+          "route": "Event",
+          "status": "ProtocolOnlyPending",
+          "consumer": null,
+          "conditions": "War-use hook not connected",
+          "case_ids": [
+            "GS-UNSUPPORTED"
+          ]
+        },
+        {
+          "source_kind": "GrainSalesReceivedPhysicalCard",
+          "target_card_id": "card.wargames",
+          "route": "Event",
+          "status": "ProtocolOnlyPending",
+          "consumer": null,
+          "conditions": "Terminal disposition not adopted",
+          "case_ids": [
+            "GS-UNSUPPORTED"
+          ]
+        },
+        {
+          "source_kind": "GrainSalesReceivedPhysicalCard",
+          "target_card_id": "card.allende",
+          "route": "OperationsWithOpponentEvent",
+          "status": "ProtocolOnlyPending",
+          "consumer": null,
+          "conditions": "Opponent event/US OPS ordering not connected",
+          "case_ids": [
+            "GS-UNSUPPORTED"
+          ]
+        },
+        {
+          "source_kind": "GrainSalesReceivedPhysicalCard",
+          "target_card_id": "*",
+          "route": "Operations",
+          "status": "ProtocolOnlyPending",
+          "consumer": null,
+          "conditions": "Ordinary borrowed Operations not connected",
+          "case_ids": [
+            "GS-UNSUPPORTED"
+          ]
+        },
+        {
+          "source_kind": "GrainSalesReceivedPhysicalCard",
+          "target_card_id": "*",
+          "route": "Event",
+          "status": "ProtocolOnlyPending",
+          "consumer": null,
+          "conditions": "Every unlisted Bound event unsupported",
+          "case_ids": [
+            "GS-UNSUPPORTED"
+          ]
+        },
+        {
+          "source_kind": "GrainSalesReceivedPhysicalCard",
+          "target_card_id": "*",
+          "route": "Scoring",
+          "status": "ProtocolOnlyPending",
+          "consumer": null,
+          "conditions": "Only SEA finite",
+          "case_ids": [
+            "GS-UNSUPPORTED"
+          ]
+        },
+        {
+          "source_kind": "GrainSalesReceivedPhysicalCard",
+          "target_card_id": "*",
+          "route": "Space",
+          "status": "ProtocolOnlyPending",
+          "consumer": null,
+          "conditions": "Only NATO finite sample",
+          "case_ids": [
+            "GS-UNSUPPORTED"
+          ]
+        }
+      ]
+    },
+    "source_policy": {
+      "const": {
+        "accepted_sources": [
+          "RootEvent",
+          "OpponentCardEvent",
+          "HeadlineEvent"
+        ],
+        "unknown_parent": "ProtocolOnlyPendingBeforeRandom",
+        "source_entity": "InResolutionUntilContinuationAndRemainingRootWork",
+        "roles": [
+          "RootSlot",
+          "RootPhasingPlayer",
+          "ParentFrameId",
+          "ChildFrameId",
+          "ResolutionId",
+          "SourceEntityId",
+          "SelectedEntityId",
+          "ActualCardUser",
+          "OperationsActor",
+          "EventController",
+          "Viewer"
+        ],
+        "actual_user": "US",
+        "operations_actor": "US",
+        "event_controller": "TargetAffiliationAndRoute",
+        "defcon_responsibility": "RootPhasingPlayer",
+        "cuban_missile_crisis": "SeparateSharedActualCoupActorPolicy_NotImplemented",
+        "bound_does_not_authorize_source": true
+      }
+    },
+    "random_policy": {
+      "const": {
+        "complete_pool": "ExactOrdinaryUSSRHandIncludingScoringExcludingChinaReservedAndOtherZones",
+        "proof": "IndependentTrustedPoolBeforeStateCommandAndRngBeforeAfterAnchor",
+        "implementation": "FiniteInjectedEvidenceOnly_NoRandomAlgorithm",
+        "invalid": "RejectWithoutMutation_NoRedrawAfterAcceptedBegin"
+      }
+    },
+    "operations_handoff": {
+      "const": {
+        "provider": "OperationsProvider.Planned",
+        "status": "ProtocolOnlyPending",
+        "source_budget_ref": "cards.printed_ops",
+        "modifier_ref": "ops",
+        "actor": "US",
+        "allowed_kinds": [
+          "Influence",
+          "Coup",
+          "Realignment"
+        ],
+        "space_allowed": false,
+        "completion": "NoFiniteOrRuntimeActionConsumerConnected",
+        "influence_start_snapshot": "RequiresSourceSpecificSharedProviderEvidence"
+      }
+    },
+    "receipt_policy": {
+      "const": {
+        "binding": "FullCommandActorSourceEntitiesSequenceOriginalStateDataAndIndependentAnchor",
+        "replay": "OriginalAcceptedResultAndProjectionPreserveLaterLive",
+        "bad_callback": "PreserveAcceptedDrawChoiceAndWait",
+        "active_draw": "Reject",
+        "finished_draw": "HistoricalReplayOnly",
+        "accepted_identity_set": "ReconstructAndCrossValidateAnchoredHistory_NoDisposableNonceCache"
+      }
+    },
+    "terminal_policy": {
+      "const": {
+        "status": "PendingProjectDecision",
+        "behavior": "PredictTerminalThenStopBeforeConsumerMutationPreserveAcceptedWait",
+        "reason": "Immediate end verified; exact source/child cleanup ordering not established",
+        "no_remaining_ops_after_terminal": true
+      }
+    },
+    "privacy": {
+      "const": {
+        "pool": "AuthorityAndOriginalUSSRHandOwnerOnly",
+        "selected_before_use": "USPrivate_USSRMayKnowOwnMissingCard_SpectatorNoIdentity",
+        "return_identity": "NoNewPublicDisclosure",
+        "played_card": "PublicAfterAcceptedPlay",
+        "rng_receipts": "AuthorityOnly",
+        "history": "FrozenOriginalProjection"
+      }
+    },
+    "planned_entrypoints": {
+      "const": [
+        {
+          "path": "Assets/Game/Core/Cards/GrainSalesEffect.cs",
+          "symbol": "BeginChooseContinue",
+          "status": "planned"
+        },
+        {
+          "path": "Assets/Game/Core/Rules/BorrowedCardUseProvider.cs",
+          "symbol": "ValidateSourceAndRoute",
+          "status": "planned"
+        },
+        {
+          "path": "Assets/Game/Core/Rules/OperationsProvider.cs",
+          "symbol": "BeginSourceOperations",
+          "status": "planned"
+        }
+      ]
+    },
+    "rule_evidence": {
+      "const": [
+        {
+          "claim": "USRandomHandPlayReturnAndEmptyFallback",
+          "classification": "Verified",
+          "source_id": "C-DELUXE-EN",
+          "locator": "English p10 #67; FAQ pp13-14"
+        },
+        {
+          "claim": "ReceivedPhysicalCardSpaceEvenHeadline",
+          "classification": "Verified",
+          "source_id": "F2010",
+          "locator": "p14 #67 last question"
+        },
+        {
+          "claim": "HeadlineUNMustReturn",
+          "classification": "Verified",
+          "source_id": "F2010",
+          "locator": "p7 #32"
+        },
+        {
+          "claim": "DefectorsNoRetroactiveHeadlineCancellation",
+          "classification": "Verified",
+          "source_id": "F2010",
+          "locator": "pp13-14 #67; p18 #103"
+        },
+        {
+          "claim": "ActualUSModifiersAndImmutableRootNuclearResponsibility",
+          "classification": "Verified",
+          "source_id": "R2015",
+          "locator": "7.4.1 Grain Sales example; 8.1.3; FAQp14"
+        },
+        {
+          "claim": "OrdinaryHandExcludesChinaAndReservedZones",
+          "classification": "TextualDerivation",
+          "source_id": "R2015",
+          "locator": "4.5C/9; ordinary Hand representation follows shared hand-events"
+        },
+        {
+          "claim": "ParentInResolutionUntilContinuationAndNormalDiscard",
+          "classification": "TextualDerivation",
+          "source_id": "R2015",
+          "locator": "2.2/5.2 and #67 nonstar; FAQp14 implementing-event explanation"
+        },
+        {
+          "claim": "StablePoolSingletonLogicalDrawAndIndependentAnchors",
+          "classification": "EngineeringBoundary",
+          "source_id": "PROJECT-GS1",
+          "locator": "Synthetic finite verifier only; no production authentication/randomness"
+        },
+        {
+          "claim": "ExactImmediateTerminalEntityCleanupOrdering",
+          "classification": "Pending",
+          "source_id": "R2015",
+          "locator": "8.1.3/10.3.1 require immediate end but do not settle this engineering order"
+        }
+      ]
+    },
+    "disposition_policy": {
+      "const": {
+        "normal_source": "DiscardPileAfterChildAndRemainingRootWork",
+        "event_success": "SharedPrintedRemoveAfterResolvedEvent",
+        "event_blocked": "DiscardPile_WhenASeparateVerifiedBlockedConsumerExists",
+        "space": "DiscardPileWithoutEventEvenStarred",
+        "transfers_or_display": "RequireSpecificConsumerNeverGenericCleanup",
+        "blocked_consumer_status": "ProtocolOnlyPending",
+        "source_refs": [
+          {
+            "source_id": "R2015",
+            "locator": "2.2.4-2.2.6,5.2,6.4.5",
+            "verification": "TextualDerivation"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "content_version",
+    "ruleset_id",
+    "scope",
+    "description",
+    "source_catalog",
+    "shared_refs",
+    "parameters",
+    "consumer_matrix",
+    "source_policy",
+    "random_policy",
+    "operations_handoff",
+    "receipt_policy",
+    "terminal_policy",
+    "privacy",
+    "planned_entrypoints",
+    "rule_evidence",
+    "disposition_policy"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "entity": {
+      "type": "object",
+      "properties": {
+        "entity_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "zone": {
+          "enum": [
+            "Hand",
+            "HeadlineReserved",
+            "Deck",
+            "DiscardPile",
+            "Removed",
+            "EraReserve",
+            "InResolution"
+          ]
+        },
+        "owner": {
+          "anyOf": [
+            {
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "frame_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "entity_id",
+        "card_id",
+        "zone",
+        "owner",
+        "frame_id"
+      ],
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "RootEvent",
+            "OpponentCardEvent",
+            "HeadlineEvent",
+            "UnknownNested"
+          ]
+        },
+        "root_slot_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_phasing_player": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "parent_frame_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_entity_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card_id": {
+          "const": "card.grain_sales_to_soviets"
+        },
+        "event_controller": {
+          "const": "US"
+        },
+        "actual_source_user": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "operations_actor": {
+          "const": "US"
+        },
+        "parameter_digest": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "kind",
+        "root_slot_id",
+        "root_phasing_player",
+        "parent_frame_id",
+        "frame_id",
+        "resolution_id",
+        "source_entity_id",
+        "card_id",
+        "event_controller",
+        "actual_source_user",
+        "operations_actor",
+        "parameter_digest"
+      ],
+      "additionalProperties": false
+    },
+    "roles": {
+      "type": "object",
+      "properties": {
+        "root_slot_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "root_phasing_player": {
+          "enum": [
+            "US",
+            "USSR"
+          ]
+        },
+        "parent_frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "child_frame_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_entity_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selected_entity_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "actual_card_user": {
+          "const": "US"
+        },
+        "operations_actor": {
+          "const": "US"
+        },
+        "event_controller": {
+          "anyOf": [
+            {
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_kind": {
+          "enum": [
+            "GrainSalesReceivedPhysicalCard",
+            "GrainSalesSourceOperations"
+          ]
+        }
+      },
+      "required": [
+        "root_slot_id",
+        "root_phasing_player",
+        "parent_frame_id",
+        "child_frame_id",
+        "resolution_id",
+        "source_entity_id",
+        "selected_entity_id",
+        "actual_card_user",
+        "operations_actor",
+        "event_controller",
+        "source_kind"
+      ],
+      "additionalProperties": false
+    },
+    "request": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "consumer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "route": {
+          "enum": [
+            "Event",
+            "Scoring",
+            "Space",
+            "Operations"
+          ]
+        },
+        "roles": {
+          "type": "object",
+          "properties": {
+            "root_slot_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "root_phasing_player": {
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            "parent_frame_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "child_frame_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "resolution_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "source_entity_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "selected_entity_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "actual_card_user": {
+              "const": "US"
+            },
+            "operations_actor": {
+              "const": "US"
+            },
+            "event_controller": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "US",
+                    "USSR"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_kind": {
+              "enum": [
+                "GrainSalesReceivedPhysicalCard",
+                "GrainSalesSourceOperations"
+              ]
+            }
+          },
+          "required": [
+            "root_slot_id",
+            "root_phasing_player",
+            "parent_frame_id",
+            "child_frame_id",
+            "resolution_id",
+            "source_entity_id",
+            "selected_entity_id",
+            "actual_card_user",
+            "operations_actor",
+            "event_controller",
+            "source_kind"
+          ],
+          "additionalProperties": false
+        },
+        "before_state_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "begin_command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "choice_command_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "budget": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "request_id",
+        "consumer",
+        "route",
+        "roles",
+        "before_state_digest",
+        "begin_command_id",
+        "choice_command_id",
+        "budget"
+      ],
+      "additionalProperties": false
+    },
+    "pending": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "Decision",
+            "Child",
+            "Operations",
+            "RootOperations"
+          ]
+        },
+        "selected_entity_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "begin_command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "request_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "consumer": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "route": {
+                  "enum": [
+                    "Event",
+                    "Scoring",
+                    "Space",
+                    "Operations"
+                  ]
+                },
+                "roles": {
+                  "type": "object",
+                  "properties": {
+                    "root_slot_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "root_phasing_player": {
+                      "enum": [
+                        "US",
+                        "USSR"
+                      ]
+                    },
+                    "parent_frame_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "child_frame_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "resolution_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "source_entity_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "selected_entity_id": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "actual_card_user": {
+                      "const": "US"
+                    },
+                    "operations_actor": {
+                      "const": "US"
+                    },
+                    "event_controller": {
+                      "anyOf": [
+                        {
+                          "enum": [
+                            "US",
+                            "USSR"
+                          ]
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "source_kind": {
+                      "enum": [
+                        "GrainSalesReceivedPhysicalCard",
+                        "GrainSalesSourceOperations"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "root_slot_id",
+                    "root_phasing_player",
+                    "parent_frame_id",
+                    "child_frame_id",
+                    "resolution_id",
+                    "source_entity_id",
+                    "selected_entity_id",
+                    "actual_card_user",
+                    "operations_actor",
+                    "event_controller",
+                    "source_kind"
+                  ],
+                  "additionalProperties": false
+                },
+                "before_state_digest": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "begin_command_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "choice_command_id": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "budget": {
+                  "anyOf": [
+                    {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "request_id",
+                "consumer",
+                "route",
+                "roles",
+                "before_state_digest",
+                "begin_command_id",
+                "choice_command_id",
+                "budget"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "selected_entity_id",
+        "begin_command_id",
+        "request"
+      ],
+      "additionalProperties": false
+    },
+    "state": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "event_seq": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "status": {
+          "enum": [
+            "Active",
+            "Finished"
+          ]
+        },
+        "winner": {
+          "enum": [
+            null,
+            "US",
+            "USSR",
+            "Draw"
+          ]
+        },
+        "signed_vp": {
+          "type": "integer"
+        },
+        "defcon": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "rng_token": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rng_reads": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "last_command_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "root": {
+          "type": "object",
+          "properties": {
+            "slot_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "phasing_player": {
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            "phase": {
+              "enum": [
+                "ActionRound",
+                "Headline"
+              ]
+            },
+            "closed": {
+              "type": "boolean"
+            },
+            "completed_slots": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "remaining_operations": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "slot_id",
+            "phasing_player",
+            "phase",
+            "closed",
+            "completed_slots",
+            "remaining_operations"
+          ],
+          "additionalProperties": false
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "entity_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "card_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "zone": {
+                "enum": [
+                  "Hand",
+                  "HeadlineReserved",
+                  "Deck",
+                  "DiscardPile",
+                  "Removed",
+                  "EraReserve",
+                  "InResolution"
+                ]
+              },
+              "owner": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "US",
+                      "USSR"
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "frame_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "entity_id",
+              "card_id",
+              "zone",
+              "owner",
+              "frame_id"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "china": {
+          "type": "object",
+          "properties": {
+            "entity_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "card_id": {
+              "const": "card.china"
+            },
+            "holder": {
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            }
+          },
+          "required": [
+            "entity_id",
+            "card_id",
+            "holder"
+          ],
+          "additionalProperties": false
+        },
+        "deck_order": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "influence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "country_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "US": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "USSR": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "country_id",
+              "US",
+              "USSR"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "space": {
+          "type": "object",
+          "properties": {
+            "US": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 8
+            },
+            "USSR": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 8
+            },
+            "attempts_us": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "US",
+            "USSR",
+            "attempts_us"
+          ],
+          "additionalProperties": false
+        },
+        "effects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "enum": [
+                  "containment",
+                  "red_scare_purge",
+                  "Unknown"
+                ]
+              },
+              "affected_side": {
+                "enum": [
+                  "US",
+                  "USSR"
+                ]
+              },
+              "turn": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "kind",
+              "affected_side",
+              "turn"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "headline": {
+          "type": "object",
+          "properties": {
+            "ussr_entity_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "status": {
+              "enum": [
+                "None",
+                "Pending",
+                "Completed",
+                "Cancelled"
+              ]
+            }
+          },
+          "required": [
+            "ussr_entity_id",
+            "status"
+          ],
+          "additionalProperties": false
+        },
+        "pending": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "Decision",
+                    "Child",
+                    "Operations",
+                    "RootOperations"
+                  ]
+                },
+                "selected_entity_id": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "begin_command_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "request": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "request_id": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "consumer": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "route": {
+                          "enum": [
+                            "Event",
+                            "Scoring",
+                            "Space",
+                            "Operations"
+                          ]
+                        },
+                        "roles": {
+                          "type": "object",
+                          "properties": {
+                            "root_slot_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "root_phasing_player": {
+                              "enum": [
+                                "US",
+                                "USSR"
+                              ]
+                            },
+                            "parent_frame_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "child_frame_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "resolution_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "source_entity_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "selected_entity_id": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
+                            "actual_card_user": {
+                              "const": "US"
+                            },
+                            "operations_actor": {
+                              "const": "US"
+                            },
+                            "event_controller": {
+                              "anyOf": [
+                                {
+                                  "enum": [
+                                    "US",
+                                    "USSR"
+                                  ]
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
+                            "source_kind": {
+                              "enum": [
+                                "GrainSalesReceivedPhysicalCard",
+                                "GrainSalesSourceOperations"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "root_slot_id",
+                            "root_phasing_player",
+                            "parent_frame_id",
+                            "child_frame_id",
+                            "resolution_id",
+                            "source_entity_id",
+                            "selected_entity_id",
+                            "actual_card_user",
+                            "operations_actor",
+                            "event_controller",
+                            "source_kind"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "before_state_digest": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "begin_command_id": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "choice_command_id": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "budget": {
+                          "anyOf": [
+                            {
+                              "type": "integer",
+                              "minimum": 0
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "required": [
+                        "request_id",
+                        "consumer",
+                        "route",
+                        "roles",
+                        "before_state_digest",
+                        "begin_command_id",
+                        "choice_command_id",
+                        "budget"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "kind",
+                "selected_entity_id",
+                "begin_command_id",
+                "request"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "completed_resolutions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "public_plays": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "version",
+        "event_seq",
+        "turn",
+        "status",
+        "winner",
+        "signed_vp",
+        "defcon",
+        "rng_token",
+        "rng_reads",
+        "last_command_id",
+        "root",
+        "entities",
+        "china",
+        "deck_order",
+        "influence",
+        "space",
+        "effects",
+        "headline",
+        "pending",
+        "completed_resolutions",
+        "public_plays"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "Active"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "winner": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "Finished"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "winner": {
+                "enum": [
+                  "US",
+                  "USSR",
+                  "Draw"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "command": {
+      "type": "object",
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actor": {
+          "enum": [
+            "US",
+            "USSR",
+            "Authority",
+            "Spectator"
+          ]
+        },
+        "action": {
+          "enum": [
+            "Begin",
+            "Choose",
+            "Complete"
+          ]
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "previous_command_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "payload": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "choice": {
+                  "enum": [
+                    "Play",
+                    "Return"
+                  ]
+                },
+                "selected_entity_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "route": {
+                  "enum": [
+                    null,
+                    "Event",
+                    "Scoring",
+                    "Space",
+                    "Operations",
+                    "OperationsWithOpponentEvent"
+                  ]
+                }
+              },
+              "required": [
+                "choice",
+                "selected_entity_id",
+                "route"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "command_id",
+        "actor",
+        "action",
+        "expected_version",
+        "source_digest",
+        "previous_command_id",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    "random_evidence": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "const": "GS1.FiniteRandomEvidence.v1"
+        },
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "before_state_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pool": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "selected_entity_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rng_before": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rng_after": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "provider",
+        "command_id",
+        "source_digest",
+        "before_state_digest",
+        "pool",
+        "selected_entity_id",
+        "index",
+        "rng_before",
+        "rng_after"
+      ],
+      "additionalProperties": false
+    },
+    "child_evidence": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "before_state_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "roles_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "result_state": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "event_seq": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "turn": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            },
+            "status": {
+              "enum": [
+                "Active",
+                "Finished"
+              ]
+            },
+            "winner": {
+              "enum": [
+                null,
+                "US",
+                "USSR",
+                "Draw"
+              ]
+            },
+            "signed_vp": {
+              "type": "integer"
+            },
+            "defcon": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5
+            },
+            "rng_token": {
+              "type": "string",
+              "minLength": 1
+            },
+            "rng_reads": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "last_command_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "root": {
+              "type": "object",
+              "properties": {
+                "slot_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "phasing_player": {
+                  "enum": [
+                    "US",
+                    "USSR"
+                  ]
+                },
+                "phase": {
+                  "enum": [
+                    "ActionRound",
+                    "Headline"
+                  ]
+                },
+                "closed": {
+                  "type": "boolean"
+                },
+                "completed_slots": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "remaining_operations": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "slot_id",
+                "phasing_player",
+                "phase",
+                "closed",
+                "completed_slots",
+                "remaining_operations"
+              ],
+              "additionalProperties": false
+            },
+            "entities": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "entity_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "card_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "zone": {
+                    "enum": [
+                      "Hand",
+                      "HeadlineReserved",
+                      "Deck",
+                      "DiscardPile",
+                      "Removed",
+                      "EraReserve",
+                      "InResolution"
+                    ]
+                  },
+                  "owner": {
+                    "anyOf": [
+                      {
+                        "enum": [
+                          "US",
+                          "USSR"
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "frame_id": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "entity_id",
+                  "card_id",
+                  "zone",
+                  "owner",
+                  "frame_id"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "china": {
+              "type": "object",
+              "properties": {
+                "entity_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "card_id": {
+                  "const": "card.china"
+                },
+                "holder": {
+                  "enum": [
+                    "US",
+                    "USSR"
+                  ]
+                }
+              },
+              "required": [
+                "entity_id",
+                "card_id",
+                "holder"
+              ],
+              "additionalProperties": false
+            },
+            "deck_order": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "influence": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "country_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "US": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "USSR": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "country_id",
+                  "US",
+                  "USSR"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "space": {
+              "type": "object",
+              "properties": {
+                "US": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 8
+                },
+                "USSR": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 8
+                },
+                "attempts_us": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "US",
+                "USSR",
+                "attempts_us"
+              ],
+              "additionalProperties": false
+            },
+            "effects": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "containment",
+                      "red_scare_purge",
+                      "Unknown"
+                    ]
+                  },
+                  "affected_side": {
+                    "enum": [
+                      "US",
+                      "USSR"
+                    ]
+                  },
+                  "turn": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "kind",
+                  "affected_side",
+                  "turn"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "headline": {
+              "type": "object",
+              "properties": {
+                "ussr_entity_id": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "status": {
+                  "enum": [
+                    "None",
+                    "Pending",
+                    "Completed",
+                    "Cancelled"
+                  ]
+                }
+              },
+              "required": [
+                "ussr_entity_id",
+                "status"
+              ],
+              "additionalProperties": false
+            },
+            "pending": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "enum": [
+                        "Decision",
+                        "Child",
+                        "Operations",
+                        "RootOperations"
+                      ]
+                    },
+                    "selected_entity_id": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "begin_command_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "request": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "request_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "consumer": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "route": {
+                              "enum": [
+                                "Event",
+                                "Scoring",
+                                "Space",
+                                "Operations"
+                              ]
+                            },
+                            "roles": {
+                              "type": "object",
+                              "properties": {
+                                "root_slot_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "root_phasing_player": {
+                                  "enum": [
+                                    "US",
+                                    "USSR"
+                                  ]
+                                },
+                                "parent_frame_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "child_frame_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "resolution_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "source_entity_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "selected_entity_id": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "actual_card_user": {
+                                  "const": "US"
+                                },
+                                "operations_actor": {
+                                  "const": "US"
+                                },
+                                "event_controller": {
+                                  "anyOf": [
+                                    {
+                                      "enum": [
+                                        "US",
+                                        "USSR"
+                                      ]
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "source_kind": {
+                                  "enum": [
+                                    "GrainSalesReceivedPhysicalCard",
+                                    "GrainSalesSourceOperations"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "root_slot_id",
+                                "root_phasing_player",
+                                "parent_frame_id",
+                                "child_frame_id",
+                                "resolution_id",
+                                "source_entity_id",
+                                "selected_entity_id",
+                                "actual_card_user",
+                                "operations_actor",
+                                "event_controller",
+                                "source_kind"
+                              ],
+                              "additionalProperties": false
+                            },
+                            "before_state_digest": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "begin_command_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "choice_command_id": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
+                            "budget": {
+                              "anyOf": [
+                                {
+                                  "type": "integer",
+                                  "minimum": 0
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "request_id",
+                            "consumer",
+                            "route",
+                            "roles",
+                            "before_state_digest",
+                            "begin_command_id",
+                            "choice_command_id",
+                            "budget"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "selected_entity_id",
+                    "begin_command_id",
+                    "request"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "completed_resolutions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "public_plays": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "required": [
+            "version",
+            "event_seq",
+            "turn",
+            "status",
+            "winner",
+            "signed_vp",
+            "defcon",
+            "rng_token",
+            "rng_reads",
+            "last_command_id",
+            "root",
+            "entities",
+            "china",
+            "deck_order",
+            "influence",
+            "space",
+            "effects",
+            "headline",
+            "pending",
+            "completed_resolutions",
+            "public_plays"
+          ],
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "Active"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "winner": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "Finished"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "winner": {
+                    "enum": [
+                      "US",
+                      "USSR",
+                      "Draw"
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "disposition": {
+          "enum": [
+            "Removed",
+            "DiscardPile"
+          ]
+        },
+        "die": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 6
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rng_before": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rng_after": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "provider",
+        "request_digest",
+        "before_state_digest",
+        "roles_digest",
+        "result_state",
+        "disposition",
+        "die",
+        "rng_before",
+        "rng_after"
+      ],
+      "additionalProperties": false
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "outcome": {
+          "type": "string",
+          "minLength": 1
+        },
+        "state": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "event_seq": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "turn": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            },
+            "status": {
+              "enum": [
+                "Active",
+                "Finished"
+              ]
+            },
+            "winner": {
+              "enum": [
+                null,
+                "US",
+                "USSR",
+                "Draw"
+              ]
+            },
+            "signed_vp": {
+              "type": "integer"
+            },
+            "defcon": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5
+            },
+            "rng_token": {
+              "type": "string",
+              "minLength": 1
+            },
+            "rng_reads": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "last_command_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "root": {
+              "type": "object",
+              "properties": {
+                "slot_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "phasing_player": {
+                  "enum": [
+                    "US",
+                    "USSR"
+                  ]
+                },
+                "phase": {
+                  "enum": [
+                    "ActionRound",
+                    "Headline"
+                  ]
+                },
+                "closed": {
+                  "type": "boolean"
+                },
+                "completed_slots": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "remaining_operations": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "slot_id",
+                "phasing_player",
+                "phase",
+                "closed",
+                "completed_slots",
+                "remaining_operations"
+              ],
+              "additionalProperties": false
+            },
+            "entities": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "entity_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "card_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "zone": {
+                    "enum": [
+                      "Hand",
+                      "HeadlineReserved",
+                      "Deck",
+                      "DiscardPile",
+                      "Removed",
+                      "EraReserve",
+                      "InResolution"
+                    ]
+                  },
+                  "owner": {
+                    "anyOf": [
+                      {
+                        "enum": [
+                          "US",
+                          "USSR"
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "frame_id": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "entity_id",
+                  "card_id",
+                  "zone",
+                  "owner",
+                  "frame_id"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "china": {
+              "type": "object",
+              "properties": {
+                "entity_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "card_id": {
+                  "const": "card.china"
+                },
+                "holder": {
+                  "enum": [
+                    "US",
+                    "USSR"
+                  ]
+                }
+              },
+              "required": [
+                "entity_id",
+                "card_id",
+                "holder"
+              ],
+              "additionalProperties": false
+            },
+            "deck_order": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "influence": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "country_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "US": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "USSR": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "country_id",
+                  "US",
+                  "USSR"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "space": {
+              "type": "object",
+              "properties": {
+                "US": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 8
+                },
+                "USSR": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 8
+                },
+                "attempts_us": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "US",
+                "USSR",
+                "attempts_us"
+              ],
+              "additionalProperties": false
+            },
+            "effects": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "containment",
+                      "red_scare_purge",
+                      "Unknown"
+                    ]
+                  },
+                  "affected_side": {
+                    "enum": [
+                      "US",
+                      "USSR"
+                    ]
+                  },
+                  "turn": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "kind",
+                  "affected_side",
+                  "turn"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "headline": {
+              "type": "object",
+              "properties": {
+                "ussr_entity_id": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "status": {
+                  "enum": [
+                    "None",
+                    "Pending",
+                    "Completed",
+                    "Cancelled"
+                  ]
+                }
+              },
+              "required": [
+                "ussr_entity_id",
+                "status"
+              ],
+              "additionalProperties": false
+            },
+            "pending": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "enum": [
+                        "Decision",
+                        "Child",
+                        "Operations",
+                        "RootOperations"
+                      ]
+                    },
+                    "selected_entity_id": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "begin_command_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "request": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "request_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "consumer": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "route": {
+                              "enum": [
+                                "Event",
+                                "Scoring",
+                                "Space",
+                                "Operations"
+                              ]
+                            },
+                            "roles": {
+                              "type": "object",
+                              "properties": {
+                                "root_slot_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "root_phasing_player": {
+                                  "enum": [
+                                    "US",
+                                    "USSR"
+                                  ]
+                                },
+                                "parent_frame_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "child_frame_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "resolution_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "source_entity_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "selected_entity_id": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "actual_card_user": {
+                                  "const": "US"
+                                },
+                                "operations_actor": {
+                                  "const": "US"
+                                },
+                                "event_controller": {
+                                  "anyOf": [
+                                    {
+                                      "enum": [
+                                        "US",
+                                        "USSR"
+                                      ]
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "source_kind": {
+                                  "enum": [
+                                    "GrainSalesReceivedPhysicalCard",
+                                    "GrainSalesSourceOperations"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "root_slot_id",
+                                "root_phasing_player",
+                                "parent_frame_id",
+                                "child_frame_id",
+                                "resolution_id",
+                                "source_entity_id",
+                                "selected_entity_id",
+                                "actual_card_user",
+                                "operations_actor",
+                                "event_controller",
+                                "source_kind"
+                              ],
+                              "additionalProperties": false
+                            },
+                            "before_state_digest": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "begin_command_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "choice_command_id": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
+                            "budget": {
+                              "anyOf": [
+                                {
+                                  "type": "integer",
+                                  "minimum": 0
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "request_id",
+                            "consumer",
+                            "route",
+                            "roles",
+                            "before_state_digest",
+                            "begin_command_id",
+                            "choice_command_id",
+                            "budget"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "selected_entity_id",
+                    "begin_command_id",
+                    "request"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "completed_resolutions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "public_plays": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "required": [
+            "version",
+            "event_seq",
+            "turn",
+            "status",
+            "winner",
+            "signed_vp",
+            "defcon",
+            "rng_token",
+            "rng_reads",
+            "last_command_id",
+            "root",
+            "entities",
+            "china",
+            "deck_order",
+            "influence",
+            "space",
+            "effects",
+            "headline",
+            "pending",
+            "completed_resolutions",
+            "public_plays"
+          ],
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "Active"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "winner": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "Finished"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "winner": {
+                    "enum": [
+                      "US",
+                      "USSR",
+                      "Draw"
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "outcome",
+        "state"
+      ],
+      "additionalProperties": false
+    },
+    "receipt": {
+      "type": "object",
+      "properties": {
+        "command": {
+          "type": "object",
+          "properties": {
+            "command_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "actor": {
+              "enum": [
+                "US",
+                "USSR",
+                "Authority",
+                "Spectator"
+              ]
+            },
+            "action": {
+              "enum": [
+                "Begin",
+                "Choose",
+                "Complete"
+              ]
+            },
+            "expected_version": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "source_digest": {
+              "type": "string",
+              "minLength": 1
+            },
+            "previous_command_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "payload": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "choice": {
+                      "enum": [
+                        "Play",
+                        "Return"
+                      ]
+                    },
+                    "selected_entity_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "route": {
+                      "enum": [
+                        null,
+                        "Event",
+                        "Scoring",
+                        "Space",
+                        "Operations",
+                        "OperationsWithOpponentEvent"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "choice",
+                    "selected_entity_id",
+                    "route"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "command_id",
+            "actor",
+            "action",
+            "expected_version",
+            "source_digest",
+            "previous_command_id",
+            "payload"
+          ],
+          "additionalProperties": false
+        },
+        "source": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "enum": [
+                "RootEvent",
+                "OpponentCardEvent",
+                "HeadlineEvent",
+                "UnknownNested"
+              ]
+            },
+            "root_slot_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "root_phasing_player": {
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            "parent_frame_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "frame_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "resolution_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "source_entity_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "card_id": {
+              "const": "card.grain_sales_to_soviets"
+            },
+            "event_controller": {
+              "const": "US"
+            },
+            "actual_source_user": {
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            "operations_actor": {
+              "const": "US"
+            },
+            "parameter_digest": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "kind",
+            "root_slot_id",
+            "root_phasing_player",
+            "parent_frame_id",
+            "frame_id",
+            "resolution_id",
+            "source_entity_id",
+            "card_id",
+            "event_controller",
+            "actual_source_user",
+            "operations_actor",
+            "parameter_digest"
+          ],
+          "additionalProperties": false
+        },
+        "before": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "event_seq": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "turn": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            },
+            "status": {
+              "enum": [
+                "Active",
+                "Finished"
+              ]
+            },
+            "winner": {
+              "enum": [
+                null,
+                "US",
+                "USSR",
+                "Draw"
+              ]
+            },
+            "signed_vp": {
+              "type": "integer"
+            },
+            "defcon": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5
+            },
+            "rng_token": {
+              "type": "string",
+              "minLength": 1
+            },
+            "rng_reads": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "last_command_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "root": {
+              "type": "object",
+              "properties": {
+                "slot_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "phasing_player": {
+                  "enum": [
+                    "US",
+                    "USSR"
+                  ]
+                },
+                "phase": {
+                  "enum": [
+                    "ActionRound",
+                    "Headline"
+                  ]
+                },
+                "closed": {
+                  "type": "boolean"
+                },
+                "completed_slots": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "remaining_operations": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "slot_id",
+                "phasing_player",
+                "phase",
+                "closed",
+                "completed_slots",
+                "remaining_operations"
+              ],
+              "additionalProperties": false
+            },
+            "entities": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "entity_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "card_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "zone": {
+                    "enum": [
+                      "Hand",
+                      "HeadlineReserved",
+                      "Deck",
+                      "DiscardPile",
+                      "Removed",
+                      "EraReserve",
+                      "InResolution"
+                    ]
+                  },
+                  "owner": {
+                    "anyOf": [
+                      {
+                        "enum": [
+                          "US",
+                          "USSR"
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "frame_id": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "entity_id",
+                  "card_id",
+                  "zone",
+                  "owner",
+                  "frame_id"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "china": {
+              "type": "object",
+              "properties": {
+                "entity_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "card_id": {
+                  "const": "card.china"
+                },
+                "holder": {
+                  "enum": [
+                    "US",
+                    "USSR"
+                  ]
+                }
+              },
+              "required": [
+                "entity_id",
+                "card_id",
+                "holder"
+              ],
+              "additionalProperties": false
+            },
+            "deck_order": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "influence": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "country_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "US": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "USSR": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "country_id",
+                  "US",
+                  "USSR"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "space": {
+              "type": "object",
+              "properties": {
+                "US": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 8
+                },
+                "USSR": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 8
+                },
+                "attempts_us": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "US",
+                "USSR",
+                "attempts_us"
+              ],
+              "additionalProperties": false
+            },
+            "effects": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "containment",
+                      "red_scare_purge",
+                      "Unknown"
+                    ]
+                  },
+                  "affected_side": {
+                    "enum": [
+                      "US",
+                      "USSR"
+                    ]
+                  },
+                  "turn": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "kind",
+                  "affected_side",
+                  "turn"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "headline": {
+              "type": "object",
+              "properties": {
+                "ussr_entity_id": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "status": {
+                  "enum": [
+                    "None",
+                    "Pending",
+                    "Completed",
+                    "Cancelled"
+                  ]
+                }
+              },
+              "required": [
+                "ussr_entity_id",
+                "status"
+              ],
+              "additionalProperties": false
+            },
+            "pending": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "enum": [
+                        "Decision",
+                        "Child",
+                        "Operations",
+                        "RootOperations"
+                      ]
+                    },
+                    "selected_entity_id": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "begin_command_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "request": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "request_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "consumer": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "route": {
+                              "enum": [
+                                "Event",
+                                "Scoring",
+                                "Space",
+                                "Operations"
+                              ]
+                            },
+                            "roles": {
+                              "type": "object",
+                              "properties": {
+                                "root_slot_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "root_phasing_player": {
+                                  "enum": [
+                                    "US",
+                                    "USSR"
+                                  ]
+                                },
+                                "parent_frame_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "child_frame_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "resolution_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "source_entity_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "selected_entity_id": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "actual_card_user": {
+                                  "const": "US"
+                                },
+                                "operations_actor": {
+                                  "const": "US"
+                                },
+                                "event_controller": {
+                                  "anyOf": [
+                                    {
+                                      "enum": [
+                                        "US",
+                                        "USSR"
+                                      ]
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "source_kind": {
+                                  "enum": [
+                                    "GrainSalesReceivedPhysicalCard",
+                                    "GrainSalesSourceOperations"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "root_slot_id",
+                                "root_phasing_player",
+                                "parent_frame_id",
+                                "child_frame_id",
+                                "resolution_id",
+                                "source_entity_id",
+                                "selected_entity_id",
+                                "actual_card_user",
+                                "operations_actor",
+                                "event_controller",
+                                "source_kind"
+                              ],
+                              "additionalProperties": false
+                            },
+                            "before_state_digest": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "begin_command_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "choice_command_id": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
+                            "budget": {
+                              "anyOf": [
+                                {
+                                  "type": "integer",
+                                  "minimum": 0
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "request_id",
+                            "consumer",
+                            "route",
+                            "roles",
+                            "before_state_digest",
+                            "begin_command_id",
+                            "choice_command_id",
+                            "budget"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "selected_entity_id",
+                    "begin_command_id",
+                    "request"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "completed_resolutions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "public_plays": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "required": [
+            "version",
+            "event_seq",
+            "turn",
+            "status",
+            "winner",
+            "signed_vp",
+            "defcon",
+            "rng_token",
+            "rng_reads",
+            "last_command_id",
+            "root",
+            "entities",
+            "china",
+            "deck_order",
+            "influence",
+            "space",
+            "effects",
+            "headline",
+            "pending",
+            "completed_resolutions",
+            "public_plays"
+          ],
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "Active"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "winner": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "Finished"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "winner": {
+                    "enum": [
+                      "US",
+                      "USSR",
+                      "Draw"
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "result": {
+          "type": "object",
+          "properties": {
+            "outcome": {
+              "type": "string",
+              "minLength": 1
+            },
+            "state": {
+              "type": "object",
+              "properties": {
+                "version": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "event_seq": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "turn": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10
+                },
+                "status": {
+                  "enum": [
+                    "Active",
+                    "Finished"
+                  ]
+                },
+                "winner": {
+                  "enum": [
+                    null,
+                    "US",
+                    "USSR",
+                    "Draw"
+                  ]
+                },
+                "signed_vp": {
+                  "type": "integer"
+                },
+                "defcon": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 5
+                },
+                "rng_token": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "rng_reads": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "last_command_id": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "root": {
+                  "type": "object",
+                  "properties": {
+                    "slot_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "phasing_player": {
+                      "enum": [
+                        "US",
+                        "USSR"
+                      ]
+                    },
+                    "phase": {
+                      "enum": [
+                        "ActionRound",
+                        "Headline"
+                      ]
+                    },
+                    "closed": {
+                      "type": "boolean"
+                    },
+                    "completed_slots": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "remaining_operations": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "slot_id",
+                    "phasing_player",
+                    "phase",
+                    "closed",
+                    "completed_slots",
+                    "remaining_operations"
+                  ],
+                  "additionalProperties": false
+                },
+                "entities": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "entity_id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "card_id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "zone": {
+                        "enum": [
+                          "Hand",
+                          "HeadlineReserved",
+                          "Deck",
+                          "DiscardPile",
+                          "Removed",
+                          "EraReserve",
+                          "InResolution"
+                        ]
+                      },
+                      "owner": {
+                        "anyOf": [
+                          {
+                            "enum": [
+                              "US",
+                              "USSR"
+                            ]
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "frame_id": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "entity_id",
+                      "card_id",
+                      "zone",
+                      "owner",
+                      "frame_id"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "china": {
+                  "type": "object",
+                  "properties": {
+                    "entity_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "card_id": {
+                      "const": "card.china"
+                    },
+                    "holder": {
+                      "enum": [
+                        "US",
+                        "USSR"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "entity_id",
+                    "card_id",
+                    "holder"
+                  ],
+                  "additionalProperties": false
+                },
+                "deck_order": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "influence": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "country_id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "US": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "USSR": {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    },
+                    "required": [
+                      "country_id",
+                      "US",
+                      "USSR"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "space": {
+                  "type": "object",
+                  "properties": {
+                    "US": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 8
+                    },
+                    "USSR": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 8
+                    },
+                    "attempts_us": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "required": [
+                    "US",
+                    "USSR",
+                    "attempts_us"
+                  ],
+                  "additionalProperties": false
+                },
+                "effects": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "enum": [
+                          "containment",
+                          "red_scare_purge",
+                          "Unknown"
+                        ]
+                      },
+                      "affected_side": {
+                        "enum": [
+                          "US",
+                          "USSR"
+                        ]
+                      },
+                      "turn": {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    },
+                    "required": [
+                      "kind",
+                      "affected_side",
+                      "turn"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "headline": {
+                  "type": "object",
+                  "properties": {
+                    "ussr_entity_id": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "status": {
+                      "enum": [
+                        "None",
+                        "Pending",
+                        "Completed",
+                        "Cancelled"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "ussr_entity_id",
+                    "status"
+                  ],
+                  "additionalProperties": false
+                },
+                "pending": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "enum": [
+                            "Decision",
+                            "Child",
+                            "Operations",
+                            "RootOperations"
+                          ]
+                        },
+                        "selected_entity_id": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "begin_command_id": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "request": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "request_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "consumer": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "route": {
+                                  "enum": [
+                                    "Event",
+                                    "Scoring",
+                                    "Space",
+                                    "Operations"
+                                  ]
+                                },
+                                "roles": {
+                                  "type": "object",
+                                  "properties": {
+                                    "root_slot_id": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    "root_phasing_player": {
+                                      "enum": [
+                                        "US",
+                                        "USSR"
+                                      ]
+                                    },
+                                    "parent_frame_id": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    "child_frame_id": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    "resolution_id": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    "source_entity_id": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    "selected_entity_id": {
+                                      "anyOf": [
+                                        {
+                                          "type": "string",
+                                          "minLength": 1
+                                        },
+                                        {
+                                          "type": "null"
+                                        }
+                                      ]
+                                    },
+                                    "actual_card_user": {
+                                      "const": "US"
+                                    },
+                                    "operations_actor": {
+                                      "const": "US"
+                                    },
+                                    "event_controller": {
+                                      "anyOf": [
+                                        {
+                                          "enum": [
+                                            "US",
+                                            "USSR"
+                                          ]
+                                        },
+                                        {
+                                          "type": "null"
+                                        }
+                                      ]
+                                    },
+                                    "source_kind": {
+                                      "enum": [
+                                        "GrainSalesReceivedPhysicalCard",
+                                        "GrainSalesSourceOperations"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "root_slot_id",
+                                    "root_phasing_player",
+                                    "parent_frame_id",
+                                    "child_frame_id",
+                                    "resolution_id",
+                                    "source_entity_id",
+                                    "selected_entity_id",
+                                    "actual_card_user",
+                                    "operations_actor",
+                                    "event_controller",
+                                    "source_kind"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                "before_state_digest": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "begin_command_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "choice_command_id": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "budget": {
+                                  "anyOf": [
+                                    {
+                                      "type": "integer",
+                                      "minimum": 0
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "request_id",
+                                "consumer",
+                                "route",
+                                "roles",
+                                "before_state_digest",
+                                "begin_command_id",
+                                "choice_command_id",
+                                "budget"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "selected_entity_id",
+                        "begin_command_id",
+                        "request"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "completed_resolutions": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "public_plays": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "required": [
+                "version",
+                "event_seq",
+                "turn",
+                "status",
+                "winner",
+                "signed_vp",
+                "defcon",
+                "rng_token",
+                "rng_reads",
+                "last_command_id",
+                "root",
+                "entities",
+                "china",
+                "deck_order",
+                "influence",
+                "space",
+                "effects",
+                "headline",
+                "pending",
+                "completed_resolutions",
+                "public_plays"
+              ],
+              "additionalProperties": false,
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "status": {
+                        "const": "Active"
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "winner": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "status": {
+                        "const": "Finished"
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "winner": {
+                        "enum": [
+                          "US",
+                          "USSR",
+                          "Draw"
+                        ]
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "required": [
+            "outcome",
+            "state"
+          ],
+          "additionalProperties": false
+        },
+        "evidence": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "views": {
+          "type": "object",
+          "properties": {
+            "US": {
+              "type": "object"
+            },
+            "USSR": {
+              "type": "object"
+            },
+            "Spectator": {
+              "type": "object"
+            }
+          },
+          "required": [
+            "US",
+            "USSR",
+            "Spectator"
+          ],
+          "additionalProperties": false
+        },
+        "digest": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "command",
+        "source",
+        "before",
+        "result",
+        "evidence",
+        "views",
+        "digest"
+      ],
+      "additionalProperties": false
+    },
+    "anchor": {
+      "type": "object",
+      "properties": {
+        "receipt_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "command": {
+          "type": "object",
+          "properties": {
+            "command_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "actor": {
+              "enum": [
+                "US",
+                "USSR",
+                "Authority",
+                "Spectator"
+              ]
+            },
+            "action": {
+              "enum": [
+                "Begin",
+                "Choose",
+                "Complete"
+              ]
+            },
+            "expected_version": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "source_digest": {
+              "type": "string",
+              "minLength": 1
+            },
+            "previous_command_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "payload": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "choice": {
+                      "enum": [
+                        "Play",
+                        "Return"
+                      ]
+                    },
+                    "selected_entity_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "route": {
+                      "enum": [
+                        null,
+                        "Event",
+                        "Scoring",
+                        "Space",
+                        "Operations",
+                        "OperationsWithOpponentEvent"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "choice",
+                    "selected_entity_id",
+                    "route"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "command_id",
+            "actor",
+            "action",
+            "expected_version",
+            "source_digest",
+            "previous_command_id",
+            "payload"
+          ],
+          "additionalProperties": false
+        },
+        "before_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "after_digest": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "receipt_digest",
+        "command",
+        "before_digest",
+        "after_digest"
+      ],
+      "additionalProperties": false
+    },
+    "authority": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "enum": [
+                "RootEvent",
+                "OpponentCardEvent",
+                "HeadlineEvent",
+                "UnknownNested"
+              ]
+            },
+            "root_slot_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "root_phasing_player": {
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            "parent_frame_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "frame_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "resolution_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "source_entity_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "card_id": {
+              "const": "card.grain_sales_to_soviets"
+            },
+            "event_controller": {
+              "const": "US"
+            },
+            "actual_source_user": {
+              "enum": [
+                "US",
+                "USSR"
+              ]
+            },
+            "operations_actor": {
+              "const": "US"
+            },
+            "parameter_digest": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "kind",
+            "root_slot_id",
+            "root_phasing_player",
+            "parent_frame_id",
+            "frame_id",
+            "resolution_id",
+            "source_entity_id",
+            "card_id",
+            "event_controller",
+            "actual_source_user",
+            "operations_actor",
+            "parameter_digest"
+          ],
+          "additionalProperties": false
+        },
+        "initial_digest": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "source",
+        "initial_digest"
+      ],
+      "additionalProperties": false
+    },
+    "grain_sales": {
+      "type": "object",
+      "properties": {
+        "card_id": {
+          "const": "card.grain_sales_to_soviets"
+        },
+        "effect_id": {
+          "const": "effect.grain_sales_to_soviets"
+        },
+        "template": {
+          "const": "RandomBorrowedPhysicalCardUseOrSourceOperations"
+        },
+        "actor": {
+          "const": "US"
+        },
+        "hand_owner": {
+          "const": "USSR"
+        },
+        "source_zone": {
+          "const": "Hand"
+        },
+        "candidate_kinds": {
+          "const": [
+            "Event",
+            "Scoring"
+          ]
+        },
+        "selection_count": {
+          "const": 1
+        },
+        "sampling": {
+          "const": "UniformBoundedDrawOnStableCardIdOrder"
+        },
+        "empty_hand": {
+          "const": "SourceOperationsWithoutRandom"
+        },
+        "singleton": {
+          "const": "OneLogicalBoundedDraw"
+        },
+        "choice": {
+          "const": [
+            "Play",
+            "Return"
+          ]
+        },
+        "return_destination": {
+          "const": "OriginalUSSRHandSameEntity"
+        },
+        "ops_budget": {
+          "const": "SourceCardDefinitionThenActualUSSharedModifiers"
+        },
+        "received_card_use_source": {
+          "const": "GrainSalesReceivedPhysicalCard"
+        },
+        "source_ops_kind": {
+          "const": "GrainSalesSourceOperations"
+        },
+        "headline_un": {
+          "const": "MustReturn"
+        },
+        "root_phasing": {
+          "const": "ImmutableInherited"
+        },
+        "source_disposition": {
+          "const": "NormalCompletionDiscardAfterRemainingRootWork"
+        },
+        "source_refs": {
+          "const": [
+            {
+              "source_id": "C-DELUXE-EN",
+              "locator": "p10 #67 random USSR Hand card; US play/return; empty/return source OPS.",
+              "verification": "Verified"
+            },
+            {
+              "source_id": "R2015",
+              "locator": "2.2/5.2 routes and disposition; 6.4.5 Space discard; 7.4 actual-user modifiers; 8.1.3 root phasing; 9 China separate.",
+              "verification": "Verified"
+            },
+            {
+              "source_id": "F2010",
+              "locator": "p7 headline UN return; pp13-14 #67 private choice, empty fallback, root responsibility, Defectors timing, physical received card Space even headline.",
+              "verification": "Verified"
+            },
+            {
+              "source_id": "PROJECT-GS1",
+              "locator": "Complete inventory, trusted independent anchors and finite evidence are engineering; real RNG/auth/storage/network unimplemented.",
+              "verification": "EngineeringBoundary"
+            }
+          ]
+        }
+      },
+      "required": [
+        "card_id",
+        "effect_id",
+        "template",
+        "actor",
+        "hand_owner",
+        "source_zone",
+        "candidate_kinds",
+        "selection_count",
+        "sampling",
+        "empty_hand",
+        "singleton",
+        "choice",
+        "return_destination",
+        "ops_budget",
+        "received_card_use_source",
+        "source_ops_kind",
+        "headline_un",
+        "root_phasing",
+        "source_disposition",
+        "source_refs"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -27,11 +27,13 @@
   "inputs": [
     "已验证的根行动与父帧上下文、卡牌实体与来源",
     "共享卡牌/地图/规则数据、具名来源与目标能力",
-    "已接受状态对应的选择或子执行结果"
+    "已接受状态对应的选择或子执行结果",
+    "Grain Sales完整普通Hand与独立随机证据，美国私有的使用或退回选择"
   ],
   "outputs": [
     "不可变候选与选择计划、子调用计划、父帧继续或终局计划",
-    "按玩家过滤的可见信息与历史结果；不直接驱动动画"
+    "按玩家过滤的可见信息与历史结果；不直接驱动动画",
+    "有限Sadat/SEA/NATO-Space/Defectors计划；空手或退回的来源OPS报价与等待契约"
   ],
   "dependencies": [
     {
@@ -53,14 +55,36 @@
       "id": "module.hand-events",
       "path": "Docs/Descriptors/hand-events.module.json",
       "status": "planned"
+    },
+    {
+      "id": "module.event-operations",
+      "path": "Docs/Descriptors/event-operations.module.json",
+      "status": "planned"
+    },
+    {
+      "id": "module.space-race",
+      "path": "Docs/Descriptors/space-race.module.json",
+      "status": "planned"
+    },
+    {
+      "id": "module.region-scoring",
+      "path": "Docs/Descriptors/region-scoring.module.json",
+      "status": "planned"
+    },
+    {
+      "id": "module.card-play-hooks",
+      "path": "Docs/Descriptors/card-play-hooks.module.json",
+      "status": "planned"
     }
   ],
   "data_dependencies": [
     "effects.deluxe2015.star_wars",
-    "cards.deluxe2015.definitions"
+    "cards.deluxe2015.definitions",
+    "effects.deluxe2015.grain_sales"
   ],
   "contract_dependencies": [
-    "urn:coldwarheat:contract:star-wars:1"
+    "urn:coldwarheat:contract:star-wars:1",
+    "https://coldwarstruggle.local/contracts/grain-sales.schema.json"
   ],
   "preconditions": [
     "执行前区分规则合法候选与已登记消费者；未知支持不能被当成无合法候选",
@@ -105,21 +129,31 @@
       "url": null,
       "edition": "Finite contract design 2026-10-13",
       "description": "Frame/entity/role/nonce/receipt/capability boundaries are engineering. Finite independent evidence anchors model trust; do not prove runtime authentication, storage or global downstream support."
+    },
+    {
+      "id": "PROJECT-GS1",
+      "url": null,
+      "edition": "Finite design 2026-10-13",
+      "description": "Complete inventory, trusted independent anchors and finite evidence are engineering; real RNG/auth/storage/network unimplemented."
     }
   ],
   "tests": [
     {
       "path": "Docs/Design/star-wars.cases.json",
       "status": "mixed-source-reference-protocol-and-planned"
+    },
+    {
+      "path": "Docs/Design/grain-sales.cases.json",
+      "status": "mixed-reference-and-planned"
     }
   ],
   "verification": {
     "runtime_consumers_tested": false,
     "runtime_game_tests_run": 0,
-    "latest_design_report": "Docs/Design/star-wars.validation.json"
+    "latest_design_report": "Docs/Design/grain-sales.validation.json"
   },
   "retrieval_hints": [
-    "先读各牌参数consumer_registry的coverage，再查下游函数；Bound不等于所有来源可调用",
+    "先查对应牌的能力范围：Star Wars读consumer_registry/coverage，Grain Sales读consumer_matrix/status，再查下游函数；Bound不等于所有来源可调用",
     "TurnFlow消费本模块的计划，本模块不回调TurnFlow，避免循环依赖",
     "正式源码路径仅为待讨论计划，不存在可调用实现"
   ]
