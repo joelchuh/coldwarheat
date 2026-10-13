@@ -1,7 +1,7 @@
 # 早期影响力事件：第二批
 
 > description: 查询社会主义政府、苏伊士危机的额度移除，东欧动荡的逐国移除，以及选择权限、当前时代、铁娘子禁止与短缺处理。
-> 状态：2026-09-30，3牌参数与基础效果设计已建立；短缺策略获用户确认。本批完成时累计8牌Bound；后续绑定进度见[正式数据状态](map-card-data.md)。102个处理器均planned，没有C#运行实现。
+> 状态：2026-10-13，社会主义政府/苏伊士危机的纯C#额度规划与参数加载已实现；东欧动荡仍待权威时代接入。新增数量选择尚未接入宿主/UI，完整出牌处理器仍planned。参数绑定进度见[正式数据状态](map-card-data.md)。
 > 入口：[参数描述](../../Data/Descriptors/early-influence-batch2.data.json)、[参数](../../Data/Cards/deluxe-2015/early-influence-batch2.parameters.json)、[Schema](../Contracts/early-influence-batch2.schema.json)、[模块描述](../Descriptors/influence-events.module.json)、[案例](../Design/early-influence-batch2.cases.json)、[验证报告](../Design/early-influence-batch2.validation.json)。
 
 ## 范围、资料与复用选择
@@ -82,7 +82,26 @@ US打出社会主义政府或苏伊士危机触发对方事件时，由USSR选�
 
 非法响应不改变影响力、卡牌区域、随机状态、控制查询、决策或完成标记。重复成功CommandId返回原结果；数组顺序不同的语义相同分配应产生相同排序后的增量/状态摘要，但不同CommandId仍须按当前决策状态验证，不能重放效果。公开决策不包含对手手牌、牌库或父帧私有字段。
 
-## 拟定代码与验证边界
+## 已实现的额度规划
+
+先读 [实际模块描述](../Descriptors/influence-event-planners.module.json)，再读取下面的对应符号。新增算法没有注入旧 Demo，当前播放器仍为原五牌事件练习；不能把纯规划进度当作完整出牌进度。
+
+| 入口（路径位于 Assets/ColdWarStruggle/Scripts/） | 职责 |
+|---|---|
+| Infrastructure/DataLoading/BudgetedRemovalCatalogLoader.Load | 校验整个参数文件结构，仅返回两张BudgetedRemoval定义；东欧动荡不进入可调用字典 |
+| Core/Effects/BudgetedRemovalEffect | 保存总量、每国上限、互斥的地区/国家范围、禁止效果引用；防御复制 |
+| Core/Effects/InfluenceEventRules.Query / Plan | 统一结束/干预门禁、类型化选择验证与隔离结果 |
+| Core/Effects/BudgetedRemovalRules.Query / IsValid | 内部计算容量、有效总量与完整分配校验；不暴露可写状态 |
+| Core/Effects/InfluenceEventSelection.Allocate | 提交CountryId/Amount、Owner与SourceVersion；不允许客户端上传规则容量 |
+| Core/Effects/InfluenceMutation.RemoveExact | 内部精确移除原语，拒绝不可能数值，不自动短缺裁定 |
+
+`Query.Kind=Allocation` 时读取 `RequiredAmount/Capacities`，不要读取 `RequiredTargets` 代替额度。旧国家集合仍为 `CountrySet`。零容量为 `Ready`，直接无变化完成。Plan使用long汇总容量和响应，按CountryId排序后一次移除；输入顺序变化不会改变增量序号。新类型不改变普通OPS预算与原有五牌行为。
+
+Loader接收可信装配者的knownEffectIds，校验本牌与blocked_by_effect_id引用；这不是处理器注册就绪检查，也不代表铁娘子已经发生。活动状态仍经显式可信policy提供：Unknown停止、Forbidden阻止、已确认NoActiveInterference才规划。完整ActiveEffectState服务尚未实现。时代模板仅做Schema检查，未执行其全部跨文件语义验证或建立可运行定义。
+
+实际测试与红绿证据见 [235项回归报告](../Testing/budgeted-influence-removal.validation.json)。新增测试文件是 `BudgetedRemovalTests.cs`、`BudgetedRemovalCatalogTests.cs`，契约扩展测试在 `ContractReferenceTests.cs`。本批没有播放器构建或鼠标验收；存档、真实出牌/移出、Suppressed父帧继续仍未实现。
+
+## 完整编排的拟定代码与验证边界
 
 | 拟定入口（均未实现） | 责任 |
 |---|---|
@@ -91,6 +110,6 @@ US打出社会主义政府或苏伊士危机触发对方事件时，由USSR选�
 | RemovalAllocationRules.ValidateAndBuildPlan | 额度容量、整数/每国/总额校验与完整增量计划 |
 | InfluenceMutation.BuildPlan | 已校验的RemoveExact；不决定短缺政策 |
 
-完整拟定路径与依赖见模块JSON；entrypoints仍为空，planned_entrypoints不可调用。案例区分参数验证、一次性离线参考模型和未来C#运行验收。离线通过不能证明事务、存档、权限、事件编排或联网实现已存在。
+完整拟定路径与依赖见influence-events模块JSON；其planned_entrypoints不可调用。已实现额度子集使用上节的真实入口，不使用表中拟定名称。案例区分参数验证、一次性离线参考模型和真实C#运行验收。离线通过不能证明事务、存档、权限、事件编排或联网实现已存在。
 
 [第三批Independent Reds与COMECON](early-influence-batch3.md)已展开补齐影响力和排除敌方控制目标的选择机制；持续效果的统一存续/取消随后单独展开。[返回索引](index.md)

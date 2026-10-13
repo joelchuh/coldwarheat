@@ -31,6 +31,12 @@ namespace ColdWarStruggle.Core
 
         public void Add(CountryId country, PlayerSide side, int amount) => Set(country, side, checked(Get(country, side) + amount));
         public void RemoveAll(CountryId country, PlayerSide side) => Set(country, side, 0);
+        public void RemoveExact(CountryId country, PlayerSide side, int amount)
+        {
+            var before = Get(country, side);
+            if (amount < 0 || amount > before) throw new ArgumentOutOfRangeException(nameof(amount));
+            Set(country, side, before - amount);
+        }
         public void RemoveFractionCeiling(CountryId country, PlayerSide side, int divisor)
         {
             int before = Get(country, side);

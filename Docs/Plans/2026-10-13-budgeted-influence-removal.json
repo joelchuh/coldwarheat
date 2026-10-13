@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "id": "plan.budgeted-influence-removal",
+  "kind": "implementation-plan",
+  "status": "implemented",
+  "description": "落实EI2-RULING-01的两牌额度移除纯规划及严格参数加载；按原接口扩展选择类型，不提前暴露旧Demo不支持的输入。",
+  "entrypoints": [],
+  "document": "Docs/Plans/2026-10-13-budgeted-influence-removal.md",
+  "inputs": [
+    "既有batch2设计与用户确认短缺规则"
+  ],
+  "outputs": [
+    "七牌纯规划、两牌参数子集加载、真实测试及知识库"
+  ],
+  "dependencies": [
+    "module.influence-event-planners"
+  ],
+  "preconditions": [
+    "持续开发与常规Git同步已获用户授权"
+  ],
+  "side_effects": [
+    "代码/文档/测试产物"
+  ],
+  "stop_conditions": [
+    "未知活动干预停止",
+    "测试或审阅失败先修复"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/early-influence-batch2.md"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Testing/budgeted-influence-removal.validation.json",
+      "status": "235-passed-independent-review-passed"
+    }
+  ]
+}

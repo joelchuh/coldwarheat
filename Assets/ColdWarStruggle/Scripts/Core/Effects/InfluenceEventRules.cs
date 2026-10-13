@@ -19,6 +19,8 @@ namespace ColdWarStruggle.Core
             IEnumerable<CountryId> candidates;int required=0;
             switch(definition)
             {
+                case BudgetedRemovalEffect budget:
+                    return BudgetedRemovalRules.Query(state,budget);
                 case ClearThenControlEffect clear:
                     if(!state.Map.Contains(clear.Country))return Stop(InfluenceEventStatus.Rejected,InfluenceEventError.InvalidDefinition);
                     candidates=new[]{clear.Country};break;
@@ -46,12 +48,17 @@ namespace ColdWarStruggle.Core
             InfluenceEventPlan Reject(InfluenceEventError error)
                 => new InfluenceEventPlan(InfluenceEventStatus.Rejected,error,definition,state);
             if(query.Error!=InfluenceEventError.None)return new InfluenceEventPlan(query.Status,query.Error,definition,state);
-            if(query.RequiredTargets>0)
+            if(query.Status==InfluenceEventStatus.AwaitingChoice)
             {
                 if(selection==null)return new InfluenceEventPlan(InfluenceEventStatus.AwaitingChoice,InfluenceEventError.None,definition,state);
                 if(selection.Owner!=query.Owner)return Reject(InfluenceEventError.WrongDecisionOwner);
                 if(selection.SourceVersion!=state.Version)return Reject(InfluenceEventError.StaleSelection);
-                if(selection.Targets==null || selection.Targets.Count!=query.RequiredTargets || selection.Targets.Count>InfluenceEventSelection.MaxTargets
+                if(selection.Kind!=query.Kind)return Reject(InfluenceEventError.InvalidSelection);
+                if(query.Kind==InfluenceDecisionKind.Allocation)
+                {
+                    if(!BudgetedRemovalRules.IsValid(query,selection))return Reject(InfluenceEventError.InvalidSelection);
+                }
+                else if(selection.Targets==null || selection.Targets.Count!=query.RequiredTargets || selection.Targets.Count>InfluenceEventSelection.MaxTargets
                     || selection.Targets.Distinct().Count()!=selection.Targets.Count || selection.Targets.Any(c=>!query.LegalCountries.Contains(c)))
                     return Reject(InfluenceEventError.InvalidSelection);
             }
@@ -62,6 +69,11 @@ namespace ColdWarStruggle.Core
                 var opponent=definition.Beneficiary==PlayerSide.US?PlayerSide.USSR:PlayerSide.US;
                 switch(definition)
                 {
+                    case BudgetedRemovalEffect _:
+                        if(query.RequiredAmount>0)
+                            foreach(var allocation in selection.Allocations.OrderBy(a=>a.Country.Value,StringComparer.Ordinal))
+                                work.RemoveExact(allocation.Country,opponent,allocation.Amount);
+                        break;
                     case ClearThenControlEffect clear:
                         work.RemoveAll(clear.Country,opponent);
                         work.EnsureControlByAdding(clear.Country,definition.Beneficiary);break;

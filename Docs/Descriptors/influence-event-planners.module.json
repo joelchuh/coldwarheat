@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.influence-event-planners",
   "kind": "module",
-  "description": "五张早期基础影响力事件的纯C#规划与国家选择：Fidel/Romanian/Nasser/Truman/Decolonization；共享参数、原子失败、零变化完成。宿主接入另见influence-event-sessions；正式出牌/弃牌和RulePack尚未实现。",
+  "description": "七张基础影响力事件的纯C#规划：原五牌加社会主义政府/苏伊士危机额度移除；类型化选择、共享参数、原子失败。额度分配尚未接入宿主/UI；完整出牌/牌区与RulePack未实现。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -16,14 +16,23 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventRules.cs",
       "symbol": "Plan"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/BudgetedRemovalCatalogLoader.cs",
+      "symbol": "Load"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventPlan.cs",
+      "symbol": "Allocate"
     }
   ],
   "inputs": [
     "完整不可变GameState、类型化定义、带Owner和SourceVersion的完整选择",
-    "显式已确认无活动干预的policy；默认Unknown停止"
+    "显式已确认无活动干预的policy；默认Unknown停止",
+    "额度模板使用 InfluenceEventSelection.Allocate；Loader接收可信knownEffectIds，仅校验引用存在，不等于处理器就绪或活动状态"
   ],
   "outputs": [
-    "只读候选与选择拥有者/数量",
+    "只读选择类型、候选国家数量或国家容量/有效总量；所有规则额度由核心计算",
     "隔离NextState、顺序InfluenceChanged与完成序号，或AwaitingChoice/RequiresRuling/Blocked/Rejected"
   ],
   "dependencies": [
@@ -32,22 +41,29 @@
   ],
   "data_dependencies": [
     "effects.deluxe2015.early_influence_batch1",
-    "map.deluxe2015.world"
+    "map.deluxe2015.world",
+    "effects.deluxe2015.early_influence_batch2"
   ],
   "preconditions": [
     "只实现本批已核对基础效果；输入由可信调用者装配",
-    "纯规划不持久化等待，也不授权玩家直接触发任意牌"
+    "纯规划不持久化等待，也不授权玩家直接触发任意牌",
+    "新增额度定义仅供纯规划；旧事件会话/界面只支持国家集合，后续单独接入"
   ],
   "side_effects": [],
   "stop_conditions": [
     "未知参数/模板/国家/地区/来源或版本",
     "选择Owner/版本/数量/唯一性/候选不符",
-    "溢出整条拒绝；未知干预或未裁定短缺RequiresRuling"
+    "溢出整条拒绝；未知干预或未裁定短缺RequiresRuling",
+    "分配必须正整数、互异且不超过逐国容量，合计等于有效总额；短缺按EI2-RULING-01"
   ],
   "rule_sources": [
     {
       "path": "Docs/Wiki/early-influence-batch1.md",
       "scope": "既有已确认本体规则；本批未改变解释"
+    },
+    {
+      "path": "Docs/Wiki/early-influence-batch2.md",
+      "scope": "EI2-RULING-01用户确认；本批仅两张BudgetedRemoval"
     }
   ],
   "tests": [
@@ -58,11 +74,20 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/ContractReferenceTests.cs",
       "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/BudgetedRemovalTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/BudgetedRemovalCatalogTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "documentation": "Docs/Wiki/first-influence-events.md",
   "verification": {
     "report": "Docs/Testing/first-influence-events.validation.json",
-    "scope": "pure planners only"
+    "scope": "pure planners only",
+    "latest_extension_report": "Docs/Testing/budgeted-influence-removal.validation.json"
   }
 }

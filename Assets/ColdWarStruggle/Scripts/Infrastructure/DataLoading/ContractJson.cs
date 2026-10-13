@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 namespace ColdWarStruggle.Infrastructure
 {
-    // A bounded evaluator for the repository's map and first-event contracts, not arbitrary JSON Schema.
+    // A bounded evaluator for the repository's supported contracts, not arbitrary JSON Schema.
     public static class ContractJson
     {
         public static JToken Parse(string json)
@@ -31,7 +31,7 @@ namespace ColdWarStruggle.Infrastructure
             CheckSchema(schema,schema,new HashSet<JObject>(),0,ref budget);
             ValidateNode(value,schema,schema,0,ref budget);
         }
-        static readonly string[] KnownKeywords={"$schema","$id","$defs","$ref","title","description","type","properties","required","additionalProperties","items","minItems","maxItems","minLength","minimum","pattern","const","enum","anyOf","uniqueItems"};
+        static readonly string[] KnownKeywords={"$schema","$id","$defs","$ref","title","description","type","properties","required","additionalProperties","items","minItems","maxItems","minLength","minimum","pattern","const","enum","anyOf","oneOf","uniqueItems"};
         static readonly string[] KnownTypes={"null","object","array","string","boolean","integer"};
         static void CheckKeywordShapes(JObject schema)
         {
@@ -47,7 +47,7 @@ namespace ColdWarStruggle.Infrastructure
                     case "$defs": case "properties": case "items": valid=v is JObject;break;
                     case "additionalProperties": case "uniqueItems": valid=v.Type==JTokenType.Boolean;break;
                     case "required": valid=Strings(v) && ((JArray)v).Distinct(new JTokenEqualityComparer()).Count()==((JArray)v).Count;break;
-                    case "anyOf": valid=v is JArray alternatives && alternatives.Count>0 && alternatives.All(x=>x is JObject);break;
+                    case "anyOf": case "oneOf": valid=v is JArray alternatives && alternatives.Count>0 && alternatives.All(x=>x is JObject);break;
                     case "enum": valid=v is JArray choices && choices.Count>0;break;
                     case "type":
                         valid=v.Type==JTokenType.String ? KnownTypes.Contains((string)v)
@@ -92,7 +92,8 @@ namespace ColdWarStruggle.Infrastructure
                             CheckSchema(child,root,active,depth+1,ref budget);
                         }
                 if(schema["items"] is JObject items)CheckSchema(items,root,active,depth+1,ref budget);
-                if(schema["anyOf"] is JArray alternatives)
+                foreach(var keyword in new[]{"anyOf","oneOf"})
+                if(schema[keyword] is JArray alternatives)
                     foreach(var item in alternatives)
                     {
                         if(item is not JObject child)throw new ArgumentException("Invalid contract alternative.");
@@ -114,6 +115,16 @@ namespace ColdWarStruggle.Infrastructure
                     catch(ArgumentException e) when(e is not ContractLimitException) {}
                 }
                 if(!matched)throw new ArgumentException("No contract alternative matches.");
+            }
+            if(schema["oneOf"] is JArray exclusive)
+            {
+                int matches=0;
+                foreach(JObject alternative in exclusive)
+                {
+                    try { ValidateNode(value,alternative,root,depth+1,ref budget);matches++; }
+                    catch(ArgumentException e) when(e is not ContractLimitException) {}
+                }
+                if(matches!=1)throw new ArgumentException("Exactly one contract alternative must match.");
             }
             if(schema["type"]!=null)
             {

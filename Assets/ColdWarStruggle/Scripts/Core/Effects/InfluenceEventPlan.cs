@@ -14,11 +14,21 @@ namespace ColdWarStruggle.Core
         public PlayerSide Owner { get; }
         public long SourceVersion { get; }
         public IReadOnlyList<CountryId> Targets { get; }
+        public InfluenceDecisionKind Kind { get; }
+        public IReadOnlyList<InfluenceAllocation> Allocations { get; }
         public InfluenceEventSelection(PlayerSide owner, long sourceVersion, IEnumerable<CountryId> targets)
         {
             Owner = owner; SourceVersion = sourceVersion;
+            Kind = InfluenceDecisionKind.CountrySet;
             Targets = targets == null ? null : Array.AsReadOnly(targets.Take(MaxTargets + 1).ToArray());
         }
+        private InfluenceEventSelection(PlayerSide owner, long sourceVersion, IEnumerable<InfluenceAllocation> allocations)
+        {
+            Owner = owner; SourceVersion = sourceVersion; Kind = InfluenceDecisionKind.Allocation;
+            Allocations = allocations == null ? null : Array.AsReadOnly(allocations.Take(MaxTargets + 1).ToArray());
+        }
+        public static InfluenceEventSelection Allocate(PlayerSide owner, long sourceVersion, IEnumerable<InfluenceAllocation> allocations)
+            => new InfluenceEventSelection(owner, sourceVersion, allocations);
     }
 
     public sealed class InfluenceEventQuery
@@ -29,10 +39,23 @@ namespace ColdWarStruggle.Core
         public long SourceVersion { get; }
         public int RequiredTargets { get; }
         public IReadOnlyList<CountryId> LegalCountries { get; }
+        public InfluenceDecisionKind Kind { get; }
+        public int RequiredAmount { get; }
+        public IReadOnlyList<InfluenceAllocation> Capacities { get; }
         internal InfluenceEventQuery(InfluenceEventStatus status, InfluenceEventError error, PlayerSide owner, long version, int required, IEnumerable<CountryId> countries)
         {
             Status = status; Error = error; Owner = owner; SourceVersion = version; RequiredTargets = required;
             LegalCountries = Array.AsReadOnly(countries.ToArray());
+            Kind = required > 0 ? InfluenceDecisionKind.CountrySet : InfluenceDecisionKind.None;
+            Capacities = Array.AsReadOnly(Array.Empty<InfluenceAllocation>());
+        }
+        internal InfluenceEventQuery(PlayerSide owner, long version, int requiredAmount, IEnumerable<InfluenceAllocation> capacities)
+        {
+            Owner = owner; SourceVersion = version; RequiredAmount = requiredAmount;
+            Status = requiredAmount > 0 ? InfluenceEventStatus.AwaitingChoice : InfluenceEventStatus.Ready;
+            Kind = requiredAmount > 0 ? InfluenceDecisionKind.Allocation : InfluenceDecisionKind.None;
+            Capacities = Array.AsReadOnly(capacities.ToArray());
+            LegalCountries = Array.AsReadOnly(Capacities.Select(c => c.Country).ToArray());
         }
     }
 

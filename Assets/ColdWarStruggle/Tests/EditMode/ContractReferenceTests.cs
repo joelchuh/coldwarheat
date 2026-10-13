@@ -7,6 +7,23 @@ namespace ColdWarStruggle.Tests
 {
     public class ContractReferenceTests
     {
+        [Test] public void One_of_requires_exactly_one_match_and_keeps_sibling_constraints()
+        {
+            var schema=JObject.Parse("{\"oneOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}],\"type\":\"string\",\"minLength\":3}");
+            Assert.DoesNotThrow(()=>ContractJson.Validate(new JValue("valid"),schema));
+            Assert.Throws<ArgumentException>(()=>ContractJson.Validate(new JValue(true),schema));
+            Assert.Throws<ArgumentException>(()=>ContractJson.Validate(new JValue(3),schema));
+            Assert.Throws<ArgumentException>(()=>ContractJson.Validate(new JValue("x"),schema));
+            var overlap=JObject.Parse("{\"oneOf\":[{\"type\":\"integer\"},{\"type\":\"integer\",\"minimum\":2}]}");
+            Assert.DoesNotThrow(()=>ContractJson.Validate(new JValue(1),overlap));
+            Assert.Throws<ArgumentException>(()=>ContractJson.Validate(new JValue(2),overlap));
+        }
+        [TestCase("{\"oneOf\":true}")]
+        [TestCase("{\"oneOf\":[]}")]
+        [TestCase("{\"oneOf\":[{\"type\":\"string\"},{\"execute\":\"anything\"}]}")]
+        [TestCase("{\"$defs\":{\"loop\":{\"oneOf\":[{\"type\":\"string\"},{\"$ref\":\"#/$defs/loop\"}]}},\"$ref\":\"#/$defs/loop\"}")]
+        public void Invalid_one_of_is_rejected_even_with_a_matching_alternative(string json)
+            => Assert.Throws<ArgumentException>(()=>ContractJson.Validate(new JValue("text"),JObject.Parse(json)));
         [TestCase("{\"type\":\"array\",\"items\":false}")]
         [TestCase("{\"anyOf\":true}")]
         [TestCase("{\"type\":[\"string\",\"unsupported\"]}")]

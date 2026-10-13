@@ -28,9 +28,13 @@ flowchart LR
 
 直接事件不读取OPS可达性，不消耗OPS、不收敌控费用，不顺带执行计分、DEFCON或军事行动。未知干预默认 RequiresRuling；明确禁止返回 Blocked。选择短缺没有确认规则时保持待裁定。零变化事件仍得到完成状态、新版本和完成序号。
 
+## 新增两牌额度纯规划
+
+社会主义政府和苏伊士危机现在共用 `BudgetedRemovalEffect`，通过 `InfluenceEventSelection.Allocate` 提交数量分配。查询返回只读逐国容量和总量；规则、参数加载与实际验证见[第二批](early-influence-batch2.md)。这两牌尚未接入以下宿主/界面流程，旧五牌选择继续使用国家集合。不要在旧Demo装配器注入新定义后假定可以选择数量。
+
 ## 数据契约支持范围
 
-`ContractJson` 是仓库专用的有界校验器，不是完整 JSON Schema 引擎。仅支持代码 `KnownKeywords` 与 `KnownTypes` 声明的集合；items/properties/$defs 使用对象，additionalProperties 使用布尔；不支持布尔Schema、远程引用或递归引用。`$ref` 只解析根部 `#/$defs/name`。预检所有分支的关键词和值形状，避免 anyOf 已匹配后跳过未知类型或同级约束。解析拒绝重复字段和尾随文档；深度、体积与工作量有上限。
+`ContractJson` 是仓库专用的有界校验器，不是完整 JSON Schema 引擎。仅支持代码 `KnownKeywords` 与 `KnownTypes` 声明的集合；items/properties/$defs 使用对象，additionalProperties 使用布尔；不支持布尔Schema、远程引用或递归引用。`$ref` 只解析根部 `#/$defs/name`。预检所有分支的关键词和值形状，避免 anyOf/oneOf 已匹配后跳过未知类型或同级约束；oneOf 必须恰有一个分支匹配。解析拒绝重复字段和尾随文档；深度、体积与工作量有上限。
 
 ## 验证与后续
 
