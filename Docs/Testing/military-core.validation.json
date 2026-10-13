@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "id": "validation.military-core",
+  "date": "2026-10-13",
+  "description": "Immutable military credit accounting, idempotent net assessment/reset plans and strict shared-parameter loader.",
+  "status": "verified",
+  "baseline_commit": "737bd61dfd3d79b5ff363f046a3330332a5d7e73",
+  "runs": [
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 881,
+      "passed": 840,
+      "failed": 41,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "e59f4e44de0652e9596ebfc14de817acf19ad4953d47ac9aa3d854616f9c578d",
+      "schema_version": 1,
+      "run_id": "military-core-red",
+      "duration_ms": 21440,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\military-core-red",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\military-core-red\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\military-core-red\\editor.log"
+    },
+    {
+      "status": "passed",
+      "error_code": null,
+      "total": 881,
+      "passed": 881,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "9f0965ff502ca773dc7e4dd49cff597352f2857513369c40109465ce35f2df9d",
+      "schema_version": 1,
+      "run_id": "military-core-green",
+      "duration_ms": 24176,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\military-core-green",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\military-core-green\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\military-core-green\\editor.log"
+    },
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 911,
+      "passed": 881,
+      "failed": 30,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "7a6c06c5550b4aecc9bfc810b31b0e4f33039daff46a16a5701f1b69319c3636",
+      "schema_version": 1,
+      "run_id": "military-loader-red",
+      "duration_ms": 23314,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\military-loader-red",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\military-loader-red\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\military-loader-red\\editor.log"
+    },
+    {
+      "status": "passed",
+      "error_code": null,
+      "total": 911,
+      "passed": 911,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "a5176b5c0d0dd68d449fc714167ec6646c5fa92bf2aedfd4ec82102c435b14b6",
+      "schema_version": 1,
+      "run_id": "military-loader-green",
+      "duration_ms": 28772,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\military-loader-green",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\military-loader-green\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\military-loader-green\\editor.log"
+    }
+  ],
+  "source_data": {
+    "path": "Data/Rulesets/deluxe-2015/military-operations.json",
+    "sha256": "0b00fa575def470d5e96032b00ce0ad614d29ea837cf1dd2196cab0017d08c37",
+    "changed": false
+  },
+  "metadata_checks": {
+    "descriptors": 108,
+    "module_catalog": 34,
+    "data_catalog": 68,
+    "script_catalog": 6,
+    "paths_symbols_descriptions_and_module_script_status": "passed"
+  },
+  "independent_review": {
+    "status": "approved",
+    "critical": 0,
+    "important": 0,
+    "minor": [
+      {
+        "status": "deferred",
+        "description": "Kind-conflict test currently reaches source validation first; a compatible WarEvent -> DirectEventFixedCredit pair would isolate the conflicting-ID branch. Implementation compares all facts; add this precise coverage in a future accounting test batch."
+      }
+    ],
+    "independent_evidence": "Reviewer inspected all four XML hashes/counts, source hash, metadata/GUIDs and diff; no Unity rerun."
+  },
+  "limitations": [
+    "Trusted rules must verify credit provenance; SourceRuleId alone grants no authorization.",
+    "No GameState/session/VP commit or Victory result integration.",
+    "Assessment and credit dedup is in returned immutable state; full persistence and global command dedup not implemented.",
+    "No UI change, build or native interaction acceptance in this batch."
+  ]
+}

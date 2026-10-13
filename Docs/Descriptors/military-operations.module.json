@@ -2,11 +2,9 @@
   "schema_version": 1,
   "id": "module.military-operations",
   "kind": "module",
-  "description": "定位军事行动信用、双方缺额净结算与归零快照；用于防止重复记账和逐方早判胜，尚不可调用。",
-  "status": "planned",
-  "entrypoints": [],
-  "documentation": "Docs/Wiki/risk-victory.md",
-  "planned_entrypoints": [
+  "description": "已实现不可变军事信用记账、相同ID防重、期末双方缺额净评估和归零计划；共享参数加载可用，完整VP/胜负及宿主事务待接入。",
+  "status": "implemented",
+  "entrypoints": [
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/MilitaryOperationsService.cs",
       "symbol": "PlanCredit"
@@ -14,49 +12,59 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/MilitaryOperationsService.cs",
       "symbol": "AssessTurnEnd"
-    }
-  ],
-  "inputs": [
-    "规则授予的MilitaryCredit或期末双方累计及DEFCON",
-    "不可变规则定义及版本绑定",
-    "DV1 DirectEventFixedCredit：直接事件已核实固定量，无OPS/战争混用，无新cap"
-  ],
-  "outputs": [
-    "CreditPlan或TurnEndAssessment"
-  ],
-  "dependencies": [
-    {
-      "path": "Docs/Wiki/turn-flow.md",
-      "relation": "由编排层调用；无服务互调环"
     },
     {
-      "path": "Docs/Wiki/operations.md",
-      "relation": "接收已验证预算及动作上下文"
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/MilitaryOperationsDefinition.cs",
+      "symbol": "MilitaryOperationsDefinition"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/MilitaryOperationsDefinition.cs",
+      "symbol": "MilitaryCredit"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/MilitaryOperationsDefinition.cs",
+      "symbol": "MilitaryOperationsState"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/MilitaryOperationsDefinition.cs",
+      "symbol": "MilitaryTurnEndAssessment"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/MilitaryOperationsLoader.cs",
+      "symbol": "LoadSubset"
     }
   ],
+  "documentation": "Docs/Wiki/risk-victory.md",
+  "planned_entrypoints": [],
+  "inputs": [
+    "审核的军事参数与GameTurnContext；Create开始该回合独立累计",
+    "可信MilitaryCredit：ID/回合/受益方/种类/来源依据/数量/来源规则",
+    "期末AssessmentId与当前非核战DefconState"
+  ],
+  "outputs": [
+    "MilitaryCreditPlan：完整事实一致的重复信用AmountApplied=0；冲突拒绝",
+    "MilitaryAssessmentPlan：同一快照双方缺额、一次净VP与归零后State；重复VpDeltaToApply=0，原Assessment保留"
+  ],
+  "dependencies": [
+    "module.defcon",
+    "module.turn-calendar"
+  ],
   "data_dependencies": [
-    "rules.deluxe2015.military-operations",
-    "effects.deluxe2015.persistent_batch1",
-    "effects.deluxe2015.event_operations_batch1",
-    "effects.deluxe2015.war_events_batch1",
-    "effects.deluxe2015.war_events_batch2",
-    "effects.deluxe2015.defcon_events_batch1",
-    "effects.deluxe2015.defcon_vp_events"
+    "rules.deluxe2015.military-operations"
   ],
   "preconditions": [
-    "权威事务及身份验证",
-    "相关规则、卡牌处理器及正式数据齐备",
-    "当前为设计，尚无可调用实现"
+    "可信内部规则已验证信用资格；SourceRuleId仅定位信息，不是客户端奖励授权",
+    "宿主未来共同提交状态/VP/游标，本服务不直接修改GameState",
+    "相同运行定义对象参与评估重试；完整存档恢复绑定另行实现"
   ],
   "side_effects": [
-    "服务本身规划为纯计算；结果经RuleEngine提交后改变权威对局"
+    "纯计算，返回不可变状态；不改输入、不掷骰、不读写文件、不宣布胜者"
   ],
   "stop_conditions": [
-    "已终局",
-    "缺少责任、正式数据或卡牌处理器",
-    "未解决裁定",
-    "不匹配的规则/状态版本",
-    "不合法检查点"
+    "信用种类/来源/身份/回合不匹配、同ID不同事实或数值溢出拒绝",
+    "已评估后新信用、不同评估ID/DEFCON输入及核战后评估拒绝",
+    "损坏数据/来源/策略拒绝；不猜印刷OPS/骰子加成/战争奖励",
+    "每回合4096信用记录和ID长度256为工程上限，不是军事累计5点封顶"
   ],
   "rule_sources": [
     {
@@ -100,13 +108,32 @@
     {
       "path": "Docs/Design/defcon-vp-events.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/MilitaryOperationsTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/MilitaryOperationsLoaderTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "verification": {
-    "implementation_tested": false,
-    "latest_design_report": "Docs/Design/defcon-vp-events.validation.json"
+    "implementation_tested": true,
+    "latest_design_report": "Docs/Design/defcon-vp-events.validation.json",
+    "latest_runtime_report": "Docs/Testing/military-core.validation.json"
   },
   "open_items": [
-    "正式国家/卡牌目录与逐卡策略"
+    "规则信用资格提供者与完整政变/战争动作",
+    "GameState/VP/游标共同事务提交、命令身份和完整保存",
+    "军事候选胜利/计分牌审核及完整胜负编排"
+  ],
+  "planned_data_dependencies": [
+    "effects.deluxe2015.persistent_batch1",
+    "effects.deluxe2015.event_operations_batch1",
+    "effects.deluxe2015.war_events_batch1",
+    "effects.deluxe2015.war_events_batch2",
+    "effects.deluxe2015.defcon_events_batch1",
+    "effects.deluxe2015.defcon_vp_events"
   ]
 }

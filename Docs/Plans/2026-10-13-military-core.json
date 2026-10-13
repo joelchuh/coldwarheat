@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "id": "plan.military-core",
+  "kind": "implementation-plan",
+  "status": "implemented-verified",
+  "description": "不可变军事信用与期末双边净评估；重复输入无额外增量，读取共享参数，完整VP/宿主事务待接入。",
+  "entrypoints": [],
+  "inputs": [
+    "rules.deluxe2015.military-operations",
+    "可信军事信用",
+    "GameTurnContext与DefconState"
+  ],
+  "outputs": [
+    "记账计划与期末评估/归零计划",
+    "实际EditMode证据"
+  ],
+  "dependencies": [
+    "module.military-operations",
+    "module.defcon",
+    "module.turn-calendar"
+  ],
+  "preconditions": [
+    "持续编码及常规Git已授权",
+    "规则奖励资格在调用方验证"
+  ],
+  "side_effects": [
+    "新增源码/测试并维护描述知识库"
+  ],
+  "stop_conditions": [
+    "信用来源/身份/回合/ID冲突拒绝",
+    "已经核战/评估后新信用/溢出拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/risk-victory.md",
+      "scope": "第2、4节"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Testing/military-core.validation.json",
+      "status": "911-passed"
+    }
+  ],
+  "document": "Docs/Plans/2026-10-13-military-core.md"
+}

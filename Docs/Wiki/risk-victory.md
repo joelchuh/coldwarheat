@@ -1,7 +1,7 @@
 # DEFCON、军事行动与胜负服务设计 v0.1
 
 > description: 定位 DEFCON 目标限制、核战责任、军事行动记账、回合末审核和终局检查点；包含双方面临扣留计分牌的裁定矩阵。
-> 状态：2026-10-13，DEFCON基础纯服务与数据加载已实现并通过840项回归；军事行动/胜负及完整编排仍为设计，完整规则包未实现。RV-H-11采用用户确认的新版条款优先，判USSR胜。
+> 状态：2026-10-13，DEFCON/军事行动基础纯服务与数据加载已实现并通过911项回归；胜负及完整编排仍为设计，完整规则包未实现。RV-H-11采用用户确认的新版条款优先，判USSR胜。
 > 检索：[模块目录](../Descriptors/catalog.json) → 对应 description → 本文相关节 → planned_entrypoints。参数见[数据目录](../../Data/catalog.json)，案例见[risk-victory.cases.json](../Design/risk-victory.cases.json)。
 
 ## 1. 服务边界
@@ -10,7 +10,7 @@
 
 相比把全部判断塞入 TurnFlow，拆分后可以单独验证风险和分数；相比可执行 JSON 规则解释器，具名服务更容易追踪责任和调试。JSON 只保存参数、裁定记录与契约，不能写入任意表达式驱动游戏。
 
-| 服务（DEFCON基础子集已实现，其余待实现） | 输入 → 输出 | 不负责的事项 |
+| 服务（DEFCON/军事基础子集已实现，胜负待实现） | 输入 → 输出 | 不负责的事项 |
 |---|---|---|
 | DefconService.CheckRestriction / PlanChange | 行动类型、目标规则标签、来源授权、当前 DEFCON、责任上下文 → 允许/拒绝原因，或轨道变更与 NuclearWar 信号 | 骰子、影响力计算、直接宣布任意玩家胜负 |
 | MilitaryOperationsService.PlanCredit / AssessTurnEnd | 经规则计算的军事行动信用、双方累计、期末 DEFCON → 新累计或双方缺额与净 VP 批次 | 用印刷 OPS 猜奖励、读取卡名、提前宣布胜利 |
@@ -180,3 +180,28 @@ flowchart LR
 加载器严格拒绝未知根/来源字段、版本、动作、非整数、重复JSON键、非规范等级键与未知规则地区。最多64个非核战等级是工程输入界限，不是桌游规则数值。源文件保持原0.2.0及region_binding_status兼容标记，后者不表示完整RulePack已认证。
 
 此批46个纯服务案例及32个加载案例加入既有回归，最终840/840、零跳过，详见[实际报告](../Testing/defcon-core.validation.json)和[工作记录](../Worklogs/2026-10-13-defcon-core.md)。RV-D-02的步骤去重、RV-D-05/10的例外、RV-D-06/07/08的完整终局/政变编排仍待验证；不能把基础信号测试冒称全案例通过。此批未改Demo入口或重建播放器。
+
+
+## 当前可调用：军事信用与期末评估
+
+先读[军事模块JSON](../Descriptors/military-operations.module.json)，再定位MilitaryOperationsDefinition、MilitaryCredit、MilitaryOperationsState.Create和MilitaryOperationsService.PlanCredit/AssessTurnEnd。共享JSON的来源映射、初值/归零值与罚分系数由MilitaryOperationsLoader.LoadSubset读取，禁止UI自行声明奖励。
+
+MilitaryCredit含ID、回合、受益方、种类、依据、数量和来源规则。依据必须匹配定义；None只接受0。累计保留非负实际总量，不截断为5。服务不根据印刷OPS、骰子强度或根行动方推断奖励。SourceRuleId是追踪信息，资格仍由可信规则提供者核实。
+
+同回合相同ID及全部事实相同返回无变化计划，AmountApplied=0；改数量、受益方、来源或跨回合拒绝。评估后禁止新信用，但已经接受的信用仍可无变化重试。State的定义、回合与信用记录均只读；Create新回合从共享初值开始，不结转超额或旧记录，具体何时推进仍由TurnFlow决定。
+
+AssessTurnEnd从同一快照一次计算双方缺额，输出完整netVpForUS与同时归零后的状态，不逐方写VP。原Assessment保存期末DEFCON、双方原累计和缺额。同ID及同定义/等级重试保留原审计结果，但VpDeltaToApply为0；换评估ID、改变输入或核战后调用拒绝。不能对已经归零的累计再扣一次。
+
+~~~mermaid
+flowchart LR
+ A[可信规则 MilitaryCredit] --> B[核对来源/回合/ID]
+ B --> C[不可变军事累计]
+ C --> D[双方同一快照 + 当前DEFCON]
+ D --> E[净VP + Assessment + 归零状态]
+ E --> F[未来宿主共同提交状态/VP/步骤]
+ F --> G[未来胜负服务 审核计分牌]
+~~~
+
+每回合最多4096信用记录、ID最多256字符是有界工程限制，与军事累计不封顶是不同概念。整数溢出不发布半次结果。当前只在返回State内防重，跨进程保存/全局CommandId与VP原子提交尚未实现。
+
+本批41个核心案例、30个加载案例，合计911/911真实EditMode通过，零跳过；[报告](../Testing/military-core.validation.json)保留RED/GREEN的XML摘要。未接Demo，不重建播放器。RV-M全流程中的战争/政变资格、进入下一回合、VP候选胜利及宿主恢复仍需后续集成测试。
