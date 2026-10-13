@@ -4,7 +4,7 @@
   "entries": [
     {
       "id": "module.turn-flow",
-      "description": "定位回合阶段、秘密头条、行动名额、出牌结算栈、回合末候选胜利与存档继续位置；当前是设计，不可作为已实现模块调用。 消费CT1转交/奖励计划，保留独立ChinaState并按剩余源步骤收尾。 ON1按已完成根行动槽合并已知NSO/Space总额度并绑定放弃来源集合。 LH1等待Ames选择保留已接受揭示，源/根完成与后续OPS分开。 LEO1已提交前缀保留；等待共享行动不得提前移牌或占根槽。 DV1 next-US根槽检查点与Headline分开，未定调度保持待办。 LR1在已核实ExpireAndReset边界到期，等待地区选择不提前完成根或推进普通动作。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。 LADC1等待US回应/USSR完整目标不增根槽，事件完成不替父根执行剩余OPS。 AN1等待抽牌保留源与父帧，接受后只完成已核实根义务。",
+      "description": "定位回合阶段、秘密头条、行动名额、出牌结算栈、回合末候选胜利与存档继续位置；当前是设计，不可作为已实现模块调用。 消费CT1转交/奖励计划，保留独立ChinaState并按剩余源步骤收尾。 ON1按已完成根行动槽合并已知NSO/Space总额度并绑定放弃来源集合。 LH1等待Ames选择保留已接受揭示，源/根完成与后续OPS分开。 LEO1已提交前缀保留；等待共享行动不得提前移牌或占根槽。 DV1 next-US根槽检查点与Headline分开，未定调度保持待办。 LR1在已核实ExpireAndReset边界到期，等待地区选择不提前完成根或推进普通动作。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。 LADC1等待US回应/USSR完整目标不增根槽，事件完成不替父根执行剩余OPS。 AN1等待抽牌保留源与父帧，接受后只完成已核实根义务。 Star Wars借牌子帧由独立模块产生计划，TurnFlow保持根责任与阶段推进。",
       "status": "planned",
       "descriptor": "Docs/Descriptors/turn-flow.module.json"
     },
@@ -127,6 +127,12 @@
       "description": "陷阱根行动服务：私有有效OPS弃牌/计分优先/单骰逃脱与内部跳过计划，精确源slot和收据；不全局封锁OPS Actor。",
       "status": "planned",
       "descriptor": "Docs/Descriptors/trap-actions.module.json"
+    },
+    {
+      "id": "module.nested-card-events",
+      "description": "查询借用卡牌的候选、使用路线、父子结算帧与完成收据；按逐项登记的能力调用下游事件。规则与显示分离，当前只有有限设计模型。",
+      "status": "planned",
+      "descriptor": "Docs/Descriptors/nested-card-events.module.json"
     }
   ]
 }

@@ -252,3 +252,5 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 [LADC1选择链](latin-american-debt-crisis.md)等待US回应再等USSR双国，合法完成后仅收尾自己的事件与根义务。
 
 [Ask Not选择与抽牌](ask-not.md)保存等待状态，抽牌接受前不提前清理源或未完成父帧。
+
+[借牌模块](nested-card-events.md)生成子事件计划；本调度器接收完成结果，保留根责任与阶段推进。

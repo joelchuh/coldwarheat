@@ -53,3 +53,5 @@
 [伊朗门与切尔诺贝利](../late-restrictions-batch1.md)：按骰方修正及按实际OPS行动者限制。
 
 [拉美债务危机](../latin-american-debt-crisis.md)：美国有效OPS弃牌或苏联南美两国翻倍。
+
+[Star Wars](../star-wars.md)：严格太空领先、公开弃牌选择与有限子事件。

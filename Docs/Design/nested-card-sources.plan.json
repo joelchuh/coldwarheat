@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "id": "plan.nested-card-sources",
-  "description": "最后三张调用其他卡牌的事件及其共享执行帧的下一阶段计划：先核实各自选牌与用牌路线，再逐个登记下游消费者；不代表三牌已绑定或任何运行实现已存在。",
-  "status": "research-and-design-plan-only",
+  "description": "借牌三事件的分批设计与能力扩展计划：Star Wars已建立有限参数与消费者设计，Grain Sales和Missile Envy未绑定；所有运行实现仍planned。",
+  "status": "design-in-progress",
   "checked_on": "2026-10-13",
   "entrypoints": [],
   "implementation_status": "planned",
@@ -19,12 +19,13 @@
       "verified_constraints": [
         "US太空位置必须严格领先；并列或落后不能发生事件，原星号牌按被阻止事件弃置。",
         "US选择Discard中的非计分牌；包括东南亚在内的计分牌均排除。",
-        "只允许事件路线，不能改作普通OPS或太空；子事件仍检查前置及阻止关系。"
+        "只允许事件路线，不能改作普通OPS或太空；子事件仍检查前置及阻止关系。",
+        "用户确认PROJECT-SW1-USER-20261013：严格领先且合法非计分弃牌池为空时，无变化完成并移除Star Wars；不是官方专门裁定。"
       ],
       "unresolved": [
-        "不存在合法弃牌候选时的完成与去向政策需核实或单独确认。",
         "下游未知来源及重复/递归调用不得通过通用许可自动放行。"
-      ]
+      ],
+      "status": "bounded-design-registered-runtime-planned"
     },
     {
       "card_id": "card.grain_sales_to_soviets",
@@ -135,9 +136,14 @@
       "id": "F2010",
       "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
       "locator": "p7 Grain Sales/UN头条例外；pp11–12 #49/#50/#57；pp13–14 #67；仅适用Deluxe条款"
+    },
+    {
+      "id": "PROJECT-SW1-USER-20261013",
+      "url": null,
+      "locator": "用户2026-10-13确认；限定太空严格领先且合法非计分弃牌为空分支"
     }
   ],
-  "validation_scope": "本文件只是可渐进检索的下一阶段计划，不注册参数数据集，不改变牌绑定，不增加运行或规则案例通过数量。",
+  "validation_scope": "本计划只索引分批状态，不独立增加案例通过数量；Star Wars登记和有限验证见其参数/契约/报告，运行服务仍未实现。",
   "runtime_game_tests_run": 0,
   "priority_before_consumer_expansion": {
     "description": "用户确认Wargames零分Draw后，逐个核验完整live snapshot的历史重放兼容；结构inventory不是行为通过证据。",

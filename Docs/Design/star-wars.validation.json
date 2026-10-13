@@ -1,0 +1,763 @@
+{
+  "description": "Star Wars finite design integrated with current shared data. Historical4800+119 new=4919; this batch actually executes119 new plus40 unchanged Draw compatibility checks. No production runtime.",
+  "checked_on": "2026-10-13",
+  "previous_cases_passed": 4800,
+  "new_cases_passed": 119,
+  "total_cases_passed": 4919,
+  "previous_cases_rerun_this_batch": 40,
+  "previous_unchanged_cases_not_rerun": 4760,
+  "actual_finite_checks_executed_this_batch": 159,
+  "cases_by_layer": {
+    "reference_cases": 12,
+    "adversarial_cases": 74,
+    "history_cases": 21,
+    "schema_cases": 7,
+    "protocol_only_cases": 5
+  },
+  "source_cases_reviewed_manually_not_counted": 5,
+  "runtime_cases_not_run": 14,
+  "runtime_game_tests_run": 0,
+  "bound_cards": 100,
+  "unresolved_bindings": 2,
+  "implemented_handlers": 0,
+  "catalog_checks": {
+    "schemas_meta_validated": 51,
+    "data_descriptors": 54,
+    "module_descriptors": 22,
+    "module_dependency_edges": 47,
+    "parameter_pointers_resolved": 276,
+    "stage_relative_links_checked": 240
+  },
+  "review_fix_regressions": {
+    "original_cases_preserved": 104,
+    "new_cases": 15,
+    "before_failed": 13,
+    "before_passed_controls": 2,
+    "after_passed": 15
+  },
+  "regressions_rerun": [
+    {
+      "suite": "draw-global-contracts",
+      "passed": 40,
+      "report": "work/star-wars-draw-compatibility.validation.json",
+      "checker_sha256": "b0683432568bc078f244cd06ad2741ef8192aaeb76b6610972384ecbe00556bf"
+    }
+  ],
+  "checker_sha256": "318147ecc422ded94a394994e29e9154c47ec2244977632067b34a5cc623366d",
+  "effective_shared_references": [
+    {
+      "key": "cards",
+      "dataset_id": "cards.deluxe2015.definitions",
+      "path": "Data/Cards/deluxe-2015/cards.json",
+      "json_pointer": "/cards",
+      "sha256": "d5529651fcb177178b60ffe23845d2cb39078439242dcbdbbeb8e3774df88b00"
+    },
+    {
+      "key": "world",
+      "dataset_id": "map.deluxe2015.world",
+      "path": "Data/Maps/deluxe-2015/world.json",
+      "json_pointer": "/countries",
+      "sha256": "6d4e20c674bd74d44cdb0f1ca66e8e960f125b3e45076d05307125a3c36ea45b"
+    },
+    {
+      "key": "space",
+      "dataset_id": "rules.deluxe2015.space-race",
+      "path": "Data/Rulesets/deluxe-2015/space-race.json",
+      "json_pointer": "",
+      "sha256": "09c91fcb420867e910ef809a7036b4607ce608f014b387021d3a6cfa38866bb1"
+    },
+    {
+      "key": "vp",
+      "dataset_id": "rules.deluxe2015.victory",
+      "path": "Data/Rulesets/deluxe-2015/victory.json",
+      "json_pointer": "",
+      "sha256": "f8566187874ff89c181b7c0c6cb46048788f7558fa5d9326273e64306d4a8624"
+    },
+    {
+      "key": "defcon",
+      "dataset_id": "rules.deluxe2015.defcon",
+      "path": "Data/Rulesets/deluxe-2015/defcon.json",
+      "json_pointer": "",
+      "sha256": "e9a842358cc3f772cfcba0e7f307fb6d8fe26b812aa5e303ea046bf618565eba"
+    },
+    {
+      "key": "china",
+      "dataset_id": "setup.deluxe2015.standard",
+      "path": "Data/Rulesets/deluxe-2015/setup.json",
+      "json_pointer": "/china",
+      "sha256": "46b278c265b4bee2ef308960ff3146ad0752a8df5a30699843fb7d37910dc46c"
+    },
+    {
+      "key": "influence",
+      "dataset_id": "effects.deluxe2015.early_influence_batch1",
+      "path": "Data/Cards/deluxe-2015/early-influence-batch1.parameters.json",
+      "json_pointer": "/parameters",
+      "sha256": "4dd8d8b8b33b234503418b27a9dae070dfffd878fc6e0c603d1d024edadff2c9"
+    },
+    {
+      "key": "nato",
+      "dataset_id": "effects.deluxe2015.treaty_protection",
+      "path": "Data/Cards/deluxe-2015/treaty-protection.parameters.json",
+      "json_pointer": "/parameters/nato",
+      "sha256": "a2799c1d7817dc7d251c5963b794dd581a6a83fef429b28e0017833b58c58141"
+    },
+    {
+      "key": "turns",
+      "dataset_id": "rules.deluxe2015.turn-flow",
+      "path": "Data/Rulesets/deluxe-2015/turn-flow.json",
+      "json_pointer": "/era_bands",
+      "sha256": "257b1cb35040e6bcab177ab23ea9122dc28921b1cb1c0661a540498a44017562"
+    }
+  ],
+  "results": [
+    {
+      "id": "SW-R01",
+      "validation_layer": "reference_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-R02",
+      "validation_layer": "reference_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-R03",
+      "validation_layer": "reference_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-R04",
+      "validation_layer": "reference_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-R05",
+      "validation_layer": "reference_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-R06",
+      "validation_layer": "reference_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-R07",
+      "validation_layer": "reference_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-R08",
+      "validation_layer": "reference_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-R09",
+      "validation_layer": "reference_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-R10",
+      "validation_layer": "reference_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-R11",
+      "validation_layer": "reference_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-R12",
+      "validation_layer": "reference_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A01",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A02",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A03",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A04",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A05",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A06",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A07",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A08",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A09",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A10",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A11",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A12",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A13",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A14",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A15",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A16",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A17",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A18",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A19",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A20",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A21",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A22",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A23",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A24",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A25",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A26",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A27",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A28",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A29",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A30",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A31",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A32",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A33",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A34",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A35",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A36",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A37",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A38",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A39",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A40",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A41",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A42",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A43",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A44",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A45",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A46",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A47",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A48",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A49",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A50",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A51",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A52",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A53",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A54",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A55",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A56",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A57",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A58",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A59",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A60",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A61",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A62",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A63",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A64",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A65",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A66",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A67",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A68",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A69",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A70",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A71",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A72",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A73",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-A74",
+      "validation_layer": "adversarial_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-H01",
+      "validation_layer": "history_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-H02",
+      "validation_layer": "history_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-H03",
+      "validation_layer": "history_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-H04",
+      "validation_layer": "history_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-H05",
+      "validation_layer": "history_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-H06",
+      "validation_layer": "history_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-H07",
+      "validation_layer": "history_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-H08",
+      "validation_layer": "history_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-H09",
+      "validation_layer": "history_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-H10",
+      "validation_layer": "history_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-H11",
+      "validation_layer": "history_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-H12",
+      "validation_layer": "history_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-H13",
+      "validation_layer": "history_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-H14",
+      "validation_layer": "history_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-H15",
+      "validation_layer": "history_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-H16",
+      "validation_layer": "history_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-H17",
+      "validation_layer": "history_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-H18",
+      "validation_layer": "history_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-H19",
+      "validation_layer": "history_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-H20",
+      "validation_layer": "history_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-H21",
+      "validation_layer": "history_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-J01",
+      "validation_layer": "schema_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-J02",
+      "validation_layer": "schema_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-J03",
+      "validation_layer": "schema_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-J04",
+      "validation_layer": "schema_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-J05",
+      "validation_layer": "schema_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-J06",
+      "validation_layer": "schema_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-J07",
+      "validation_layer": "schema_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-PROT01",
+      "validation_layer": "protocol_only_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-PROT02",
+      "validation_layer": "protocol_only_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-PROT03",
+      "validation_layer": "protocol_only_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-PROT04",
+      "validation_layer": "protocol_only_cases",
+      "passed": true
+    },
+    {
+      "id": "SW-PROT05",
+      "validation_layer": "protocol_only_cases",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "119 are finite design/protocol/schema cases; not119 runtime tests.",
+    "Existing4800 case total is retained evidence: only40 Draw compatibility cases rerun this batch.",
+    "Fidel/Decolonization and blocked-NATO are the only finite consumer rows, with active interventions excluded.",
+    "Terminal fixtures do not register Wargames or another terminal-producing target.",
+    "Real authentication, RNG, persistence, complete consumers and C#/Unity remain unimplemented.",
+    "User-confirmed empty-pool interpretation applies only when strict US Space lead is satisfied and there are no legal non-scoring discard cards."
+  ],
+  "independent_review": {
+    "status": "ready-independent-integration-review",
+    "review_report_sha256": "338950449e73ed53b82a54df950ae2bdee52181c219107cff3e97e36951b8430",
+    "reviewed_snapshot_files": 25,
+    "reviewed_payload_hashes": 24,
+    "actual_finite_checks_rerun": 159,
+    "actual_new_checks": 119,
+    "actual_draw_regression_checks": 40,
+    "runtime_game_tests_run": 0,
+    "previous_unchanged_cases_not_rerun": 4760,
+    "open_findings": 0
+  },
+  "validated_sha256": {
+    "Data/Cards/deluxe-2015/cards.json": "d5529651fcb177178b60ffe23845d2cb39078439242dcbdbbeb8e3774df88b00",
+    "Data/Cards/deluxe-2015/star-wars.parameters.json": "80b5ef0b87eb7e75c4175dc47d837912d8c0098fa5c83236482f3746ae5c5eca",
+    "Data/Descriptors/card-definitions.data.json": "f6788e63e6da18cf1cc3d9b3ab1d424eaae32718ea842dcfd1f6f266190bce0d",
+    "Data/Descriptors/star-wars.data.json": "6a9f2fbd2be7d2c6c05f5f1db2913d9cfc7a705df8c828b3d846e929403d9669",
+    "Data/catalog.json": "4a8b7345906bb29c5da742e62fbe3e3f52def3ef6826828535f982408a2af708",
+    "Docs/Contracts/catalog.json": "3d456dd21c4e6d6e4f3a8a56b167a3e699dd152b05baa880638c494080c08a46",
+    "Docs/Contracts/star-wars.schema.json": "844c9e07e997514d613d791a7c8273ae94b5184c93f820d63d89adb0a21a7ebb",
+    "Docs/Descriptors/card-data.module.json": "2a07b7f61a37af35c126dfc9f822e794c3de2f9fdd500ed0dfa536d9278191e0",
+    "Docs/Descriptors/catalog.json": "f5f6b61bcf41a695174ce15b1dbaade6e60d7ce2acc662e762090b31bdbaf681",
+    "Docs/Descriptors/nested-card-events.module.json": "a84cb15e2918ef3745c2e2354504893af0417c81e9e55277c91aac73ea00ce9f",
+    "Docs/Descriptors/turn-flow.module.json": "678b560bbcdd66d70b783562961dd8eb6100651b88c8a833eb5b031e1dfc24a3",
+    "Docs/Design/nested-card-sources.plan.json": "a0bfc6749ddd60c434c807680cd1c6437e8e903ab9a3cc4162dfa9766b2fb7b0",
+    "Docs/Design/rules-design-roadmap.json": "c087f3d274efb73c17bf788e7ff319e2d165e347875f2aa815ed129aedf7b12b",
+    "Docs/Design/star-wars.cases.json": "e4f858ec966f0302bd736f61c2766468b32810238592be6705e3521941240274",
+    "Docs/Wiki/cards/late.md": "8a7a866210b92f4a1d78209ebf602c7eb6b8ad72427d0db3e909885edacea15c",
+    "Docs/Wiki/index.md": "6e3c8f8642890b01bc7174fd70cbffa91e7023f9295fe7ad2cd16b4646331835",
+    "Docs/Wiki/map-card-data.md": "02e3c0eecc301ad8dc5e5f6af6c37fc6243ae8cc41b9423a60a63597d851bfe2",
+    "Docs/Wiki/nested-card-events.md": "07ed3b8f1917863eedecf807f934e7543512757e3a7ff822ca3ffdf5d29ee203",
+    "Docs/Wiki/nested-card-sources.md": "c9e78b4fefcabc4b78a6d002e4359cf1461e94042357f55f3a049ea84b6f4edf",
+    "Docs/Wiki/setup.md": "765322cffe3dcf5fe869030ec141889c4d02f1dbd9aed27bbdbad57e77e778c4",
+    "Docs/Wiki/star-wars.md": "964784c10728307bc94895a443ca4749e5968bfbd3278de502222fad929234e6",
+    "Docs/Wiki/turn-flow.md": "1d1b0b65f4f2b46c0cec1dcc4bf819e9138b28b3c6fa4fb3a802e36aaf1990ad",
+    "Docs/Worklogs/2026-10-13-star-wars.md": "c55cb3b882d23a3c362db0ac97787d4cfc4c7a02efa8a7f7fab6ba0df79e331f",
+    "README.md": "deb951e679c74af470f3bd0c195405e7b41e7686b3c125b4d85324c5f96d92e6"
+  },
+  "author_candidate_review": {
+    "status": "ready-five-file-design",
+    "report_sha256": "f2d86e85ea3450b0866cc6c8187bd5b04dc7b6a09259deddb1eb8ee23750b4c1",
+    "actual_finite_rerun": 119,
+    "independent_original_probes": 12,
+    "resolved_findings": 3,
+    "runtime_game_tests_run": 0
+  }
+}

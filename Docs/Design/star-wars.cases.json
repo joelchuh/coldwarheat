@@ -1,0 +1,849 @@
+{
+  "schema_version": 1,
+  "description": "Source facts, literal finite rule outcomes, adversarial command/proof/history cases and UNRUN runtime acceptances are distinct layers. No execution of C# or Unity.",
+  "dataset": "Data/Cards/deluxe-2015/star-wars.parameters.json",
+  "schema": "Docs/Contracts/star-wars.schema.json",
+  "fixture_contract": {
+    "description": "Build complete 102 ordinary card inventory plus separate China from shared definitions, complete84 world influence rows; all other cards Deck except listed fixtures. This is a closed finite projection, not a full production save schema.",
+    "turn": 8,
+    "us_space": 5,
+    "ussr_space": 4,
+    "discard_card_ids": [
+      "card.fidel",
+      "card.decolonization",
+      "card.nato",
+      "card.southeast_asia_scoring",
+      "card.asia_scoring",
+      "card.un_intervention"
+    ],
+    "source_card_id": "card.star_wars",
+    "private_card_ids": {
+      "US": "card.nasser",
+      "USSR": "card.truman_doctrine"
+    },
+    "initial_influence": {
+      "country.cuba": {
+        "US": 2,
+        "USSR": 1
+      }
+    },
+    "decolonization_targets": [
+      "country.angola",
+      "country.botswana",
+      "country.vietnam",
+      "country.thailand"
+    ]
+  },
+  "source_cases": [
+    {
+      "id": "SW-S01",
+      "claim": "Strictly ahead, non-scoring and immediate event route",
+      "source_id": "C-DELUXE-EN",
+      "locator": "p13 English #85",
+      "verification": "Verified"
+    },
+    {
+      "id": "SW-S02",
+      "claim": "Behind StarWars discarded; blocked and successful-star outcomes differ",
+      "source_id": "R2015",
+      "locator": "p5 section5.2 example4",
+      "verification": "Verified"
+    },
+    {
+      "id": "SW-S03",
+      "claim": "Equal is not strictly ahead; every scoring card including SEA excluded",
+      "source_id": "C-DELUXE-EN",
+      "locator": "p13 #85 with shared kind definition",
+      "verification": "TextualDerivation"
+    },
+    {
+      "id": "SW-S04",
+      "claim": "Empty pool after valid lead resolves no change and source Removed",
+      "source_id": "PROJECT-SW1-USER-20261013",
+      "locator": "User explicit 2026-10-13 confirmation",
+      "verification": "HumanConfirmed"
+    },
+    {
+      "id": "SW-S05",
+      "claim": "Discard identities public; selecting authorization remains US",
+      "source_id": "F2010",
+      "locator": "p19 section5",
+      "verification": "Verified"
+    }
+  ],
+  "reference_cases": [
+    {
+      "id": "SW-R01",
+      "scenario": "fidel",
+      "expected": {
+        "source_zone": "Removed",
+        "child_zone": "Removed",
+        "cuba": {
+          "US": 0,
+          "USSR": 3
+        },
+        "root_phasing": "US",
+        "slots_added": 1
+      }
+    },
+    {
+      "id": "SW-R02",
+      "scenario": "equal",
+      "expected": {
+        "source_zone": "Discard",
+        "outcome": "BlockedPrerequisite",
+        "child": null
+      }
+    },
+    {
+      "id": "SW-R03",
+      "scenario": "behind",
+      "expected": {
+        "source_zone": "Discard",
+        "outcome": "BlockedPrerequisite",
+        "child": null
+      }
+    },
+    {
+      "id": "SW-R04",
+      "scenario": "empty",
+      "expected": {
+        "source_zone": "Removed",
+        "outcome": "ResolvedNoChange",
+        "child": null
+      }
+    },
+    {
+      "id": "SW-R05",
+      "scenario": "fidel_usssr_root",
+      "expected": {
+        "source_zone": "Removed",
+        "child_zone": "Removed",
+        "root_phasing": "USSR",
+        "child_controller": "USSR"
+      }
+    },
+    {
+      "id": "SW-R06",
+      "scenario": "decolonization",
+      "expected": {
+        "source_zone": "Removed",
+        "child_zone": "Discard",
+        "each_target_added": 1,
+        "child_controller": "USSR"
+      }
+    },
+    {
+      "id": "SW-R07",
+      "scenario": "nato_blocked",
+      "expected": {
+        "source_zone": "Removed",
+        "child_zone": "Discard",
+        "child_outcome": "BlockedPrerequisite",
+        "child_controller": "US"
+      }
+    },
+    {
+      "id": "SW-R08",
+      "scenario": "pool",
+      "expected": {
+        "candidate_cards": [
+          "card.decolonization",
+          "card.fidel",
+          "card.nato",
+          "card.un_intervention"
+        ]
+      }
+    },
+    {
+      "id": "SW-R09",
+      "scenario": "unsupported_only_pool",
+      "expected": {
+        "stage": "AwaitingSelection",
+        "source_zone": "InResolution",
+        "candidate_cards": [
+          "card.un_intervention"
+        ]
+      }
+    },
+    {
+      "id": "SW-R10",
+      "scenario": "remaining_ops",
+      "expected": {
+        "source_zone": "InResolution",
+        "child_zone": "Removed",
+        "root_closed": false,
+        "remaining": "RootOperations"
+      }
+    },
+    {
+      "id": "SW-R11",
+      "scenario": "headline",
+      "expected": {
+        "source_zone": "Removed",
+        "child_zone": "Removed",
+        "slots_added": 0
+      }
+    },
+    {
+      "id": "SW-R12",
+      "scenario": "fidel_nochange",
+      "expected": {
+        "source_zone": "Removed",
+        "child_zone": "Removed",
+        "cuba": {
+          "US": 0,
+          "USSR": 5
+        },
+        "child_outcome": "ResolvedNoChange"
+      }
+    }
+  ],
+  "adversarial_cases": [
+    {
+      "id": "SW-A01",
+      "scenario": "wrong_selector",
+      "expected": "Unauthorized"
+    },
+    {
+      "id": "SW-A02",
+      "scenario": "wrong_auth",
+      "expected": "Unauthorized"
+    },
+    {
+      "id": "SW-A03",
+      "scenario": "wrong_source",
+      "expected": "InvalidSource"
+    },
+    {
+      "id": "SW-A04",
+      "scenario": "stale_version",
+      "expected": "StaleVersion"
+    },
+    {
+      "id": "SW-A05",
+      "scenario": "unknown_provider",
+      "expected": "RequiresRuling"
+    },
+    {
+      "id": "SW-A06",
+      "scenario": "unknown_target",
+      "expected": "Unsupported"
+    },
+    {
+      "id": "SW-A07",
+      "scenario": "select_scoring",
+      "expected": "IllegalSelection"
+    },
+    {
+      "id": "SW-A08",
+      "scenario": "select_sea",
+      "expected": "IllegalSelection"
+    },
+    {
+      "id": "SW-A09",
+      "scenario": "select_china",
+      "expected": "IllegalSelection"
+    },
+    {
+      "id": "SW-A10",
+      "scenario": "select_source",
+      "expected": "IllegalSelection"
+    },
+    {
+      "id": "SW-A11",
+      "scenario": "select_hand",
+      "expected": "IllegalSelection"
+    },
+    {
+      "id": "SW-A12",
+      "scenario": "select_inresolution",
+      "expected": "IllegalSelection"
+    },
+    {
+      "id": "SW-A13",
+      "scenario": "duplicate_instance",
+      "expected": "InvalidState"
+    },
+    {
+      "id": "SW-A14",
+      "scenario": "duplicate_card",
+      "expected": "InvalidState"
+    },
+    {
+      "id": "SW-A15",
+      "scenario": "unknown_intervention",
+      "expected": "RequiresRuling"
+    },
+    {
+      "id": "SW-A16",
+      "scenario": "operations_route",
+      "expected": "IllegalRoute"
+    },
+    {
+      "id": "SW-A17",
+      "scenario": "space_route",
+      "expected": "IllegalRoute"
+    },
+    {
+      "id": "SW-A18",
+      "scenario": "bad_callback",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A19",
+      "scenario": "wrong_child_controller",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A20",
+      "scenario": "nato_success_unsupported",
+      "expected": "Unsupported"
+    },
+    {
+      "id": "SW-A21",
+      "scenario": "active_draw",
+      "expected": "InvalidRunningState"
+    },
+    {
+      "id": "SW-A22",
+      "scenario": "running_draw",
+      "expected": "InvalidRunningState"
+    },
+    {
+      "id": "SW-A23",
+      "scenario": "finished_new",
+      "expected": "InvalidRunningState"
+    },
+    {
+      "id": "SW-A24",
+      "scenario": "source_wrong_root",
+      "expected": "InvalidSource"
+    },
+    {
+      "id": "SW-A25",
+      "scenario": "source_wrong_frame",
+      "expected": "InvalidSource"
+    },
+    {
+      "id": "SW-A26",
+      "scenario": "source_wrong_entity",
+      "expected": "InvalidSource"
+    },
+    {
+      "id": "SW-A27",
+      "scenario": "source_reused_resolution",
+      "expected": "InvalidSource"
+    },
+    {
+      "id": "SW-A28",
+      "scenario": "source_not_inresolution",
+      "expected": "InvalidSource"
+    },
+    {
+      "id": "SW-A29",
+      "scenario": "bad_reference_digest",
+      "expected": "StaleBinding"
+    },
+    {
+      "id": "SW-A30",
+      "scenario": "nested_source",
+      "expected": "Unsupported"
+    },
+    {
+      "id": "SW-A31",
+      "scenario": "foreign_predecessor",
+      "expected": "InvalidPredecessor"
+    },
+    {
+      "id": "SW-A32",
+      "scenario": "bad_proof_nonce",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A33",
+      "scenario": "bad_proof_entity",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A34",
+      "scenario": "bad_proof_source",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A35",
+      "scenario": "bad_proof_sequence",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A36",
+      "scenario": "bad_proof_before",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A37",
+      "scenario": "bad_proof_after",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A38",
+      "scenario": "bad_proof_provider",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A39",
+      "scenario": "bad_decolonization_targets",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A40",
+      "scenario": "bad_decolonization_actor",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A41",
+      "scenario": "proof_other_country_mutation",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A42",
+      "scenario": "proof_rng_mutation",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A43",
+      "scenario": "source_cleaned_before_callback",
+      "expected": "StateFork"
+    },
+    {
+      "id": "SW-A44",
+      "scenario": "callback_outcome_lie",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A45",
+      "scenario": "begin_with_predecessor",
+      "expected": "InvalidPredecessor"
+    },
+    {
+      "id": "SW-A46",
+      "scenario": "same_nonce_new_command",
+      "expected": "NonceConflict"
+    },
+    {
+      "id": "SW-A47",
+      "scenario": "active_vp_terminal",
+      "expected": "InvalidRunningState"
+    },
+    {
+      "id": "SW-A48",
+      "scenario": "active_nuclear",
+      "expected": "InvalidRunningState"
+    },
+    {
+      "id": "SW-A49",
+      "scenario": "space_out_of_range",
+      "expected": "InvalidState"
+    },
+    {
+      "id": "SW-A50",
+      "scenario": "missing_card",
+      "expected": "InvalidState"
+    },
+    {
+      "id": "SW-A51",
+      "scenario": "missing_world",
+      "expected": "InvalidState"
+    },
+    {
+      "id": "SW-A52",
+      "scenario": "bad_deck",
+      "expected": "InvalidState"
+    },
+    {
+      "id": "SW-A53",
+      "scenario": "bad_proof_root",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A54",
+      "scenario": "bad_proof_parent_frame",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A55",
+      "scenario": "bad_proof_parent_resolution",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A56",
+      "scenario": "bad_proof_child_frame",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A57",
+      "scenario": "bad_proof_child_resolution",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A58",
+      "scenario": "bad_proof_capability",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A59",
+      "scenario": "bad_proof_actual_user",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A60",
+      "scenario": "child_before_wait_state",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A61",
+      "scenario": "callback_cleans_parent_early",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A62",
+      "scenario": "bad_proof_route",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A63",
+      "scenario": "bad_proof_source_entity",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A64",
+      "scenario": "select_without_begin",
+      "expected": "InvalidPredecessor"
+    },
+    {
+      "id": "SW-A65",
+      "scenario": "callback_without_begin",
+      "expected": "InvalidPredecessor"
+    },
+    {
+      "id": "SW-A66",
+      "scenario": "source_before_late_era",
+      "expected": "InvalidSource"
+    },
+    {
+      "id": "SW-A67",
+      "scenario": "submit_missing_command_id",
+      "expected": "InvalidCommand"
+    },
+    {
+      "id": "SW-A68",
+      "scenario": "submit_missing_nonce",
+      "expected": "InvalidCommand"
+    },
+    {
+      "id": "SW-A69",
+      "scenario": "submit_command_wrong_type",
+      "expected": "InvalidCommand"
+    },
+    {
+      "id": "SW-A70",
+      "scenario": "submit_auth_missing_role",
+      "expected": "InvalidAuthentication"
+    },
+    {
+      "id": "SW-A71",
+      "scenario": "submit_proof_missing_sequence",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A72",
+      "scenario": "submit_proof_missing_id",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A73",
+      "scenario": "submit_proof_wrong_type",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-A74",
+      "scenario": "submit_proof_unknown_field",
+      "expected": "InvalidProof"
+    }
+  ],
+  "history_cases": [
+    {
+      "id": "SW-H01",
+      "scenario": "historical_replay_later_live",
+      "expected": "OriginalResultCurrentUnchanged"
+    },
+    {
+      "id": "SW-H02",
+      "scenario": "historical_replay_finished_draw",
+      "expected": "OriginalResultCurrentUnchanged"
+    },
+    {
+      "id": "SW-H03",
+      "scenario": "historical_replay_running_draw",
+      "expected": "InvalidRunningState"
+    },
+    {
+      "id": "SW-H04",
+      "scenario": "replay_content_conflict",
+      "expected": "CommandConflict"
+    },
+    {
+      "id": "SW-H05",
+      "scenario": "receipt_hash_rewrite",
+      "expected": "InvalidHistory"
+    },
+    {
+      "id": "SW-H06",
+      "scenario": "receipt_anchor_rewrite",
+      "expected": "InvalidHistory"
+    },
+    {
+      "id": "SW-H07",
+      "scenario": "wrong_replay_actor",
+      "expected": "Unauthorized"
+    },
+    {
+      "id": "SW-H08",
+      "scenario": "current_public_private_boundary",
+      "expected": "NoPrivateFields"
+    },
+    {
+      "id": "SW-H09",
+      "scenario": "current_wrong_viewer",
+      "expected": "Unauthorized"
+    },
+    {
+      "id": "SW-H10",
+      "scenario": "current_finished_draw",
+      "expected": "NoCurrentAction"
+    },
+    {
+      "id": "SW-H11",
+      "scenario": "current_fork",
+      "expected": "StateFork"
+    },
+    {
+      "id": "SW-H12",
+      "scenario": "historical_result_not_view_refresh",
+      "expected": "OriginalResultCurrentUnchanged"
+    },
+    {
+      "id": "SW-H13",
+      "scenario": "callback_retry",
+      "expected": "OriginalResultCurrentUnchanged"
+    },
+    {
+      "id": "SW-H14",
+      "scenario": "bad_callback_then_valid",
+      "expected": "ValidRetryAfterRejectedCallback"
+    },
+    {
+      "id": "SW-H15",
+      "scenario": "new_action_finished_after_history",
+      "expected": "InvalidRunningState"
+    },
+    {
+      "id": "SW-H16",
+      "scenario": "lost_nonce_ledger_reuse",
+      "expected": "InvalidHistory"
+    },
+    {
+      "id": "SW-H17",
+      "scenario": "extra_nonce_ledger_entry",
+      "expected": "InvalidHistory"
+    },
+    {
+      "id": "SW-H18",
+      "scenario": "remapped_nonce_ledger",
+      "expected": "InvalidHistory"
+    },
+    {
+      "id": "SW-H19",
+      "scenario": "reanchored_duplicate_nonce",
+      "expected": "InvalidHistory"
+    },
+    {
+      "id": "SW-H20",
+      "scenario": "receipt_key_request_result_mismatch",
+      "expected": "InvalidHistory"
+    },
+    {
+      "id": "SW-H21",
+      "scenario": "receipt_result_id_mismatch",
+      "expected": "InvalidHistory"
+    }
+  ],
+  "schema_cases": [
+    {
+      "id": "SW-J01",
+      "scenario": "finished_draw_shape",
+      "expected": true
+    },
+    {
+      "id": "SW-J02",
+      "scenario": "unknown_state_field",
+      "expected": false
+    },
+    {
+      "id": "SW-J03",
+      "scenario": "missing_nonce",
+      "expected": false
+    },
+    {
+      "id": "SW-J04",
+      "scenario": "float_version",
+      "expected": false
+    },
+    {
+      "id": "SW-J05",
+      "scenario": "unknown_proof_field",
+      "expected": false
+    },
+    {
+      "id": "SW-J06",
+      "scenario": "local_controller_draw",
+      "expected": false
+    },
+    {
+      "id": "SW-J07",
+      "scenario": "standalone_parameter_fragment",
+      "expected": {
+        "ref": "#/$defs/star_wars",
+        "valid": true,
+        "missing_required": false,
+        "unknown_property": false,
+        "wrong_card": false
+      }
+    }
+  ],
+  "protocol_only_cases": [
+    {
+      "id": "SW-PROT01",
+      "scenario": "terminal_cleanup_us_root",
+      "expected": {
+        "winner": "USSR",
+        "source_zone": "Removed",
+        "child_zone": "Removed",
+        "root_closed": true,
+        "remaining": "None"
+      }
+    },
+    {
+      "id": "SW-PROT02",
+      "scenario": "terminal_cleanup_ussr_root",
+      "expected": {
+        "winner": "US",
+        "source_zone": "Removed",
+        "child_zone": "Removed",
+        "root_closed": true,
+        "remaining": "None"
+      }
+    },
+    {
+      "id": "SW-PROT03",
+      "scenario": "terminal_wrong_responsibility",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-PROT04",
+      "scenario": "terminal_no_authority",
+      "expected": "InvalidProof"
+    },
+    {
+      "id": "SW-PROT05",
+      "scenario": "terminal_fixture_not_selectable",
+      "expected": "Unsupported"
+    }
+  ],
+  "runtime_acceptance": [
+    {
+      "id": "SW-RUN01",
+      "name": "Typed registry dispatch refuses unregistered nested sources",
+      "status": "UNRUN",
+      "implementation_status": "planned"
+    },
+    {
+      "id": "SW-RUN02",
+      "name": "Persistent parent-child reservation and transaction rollback after crash",
+      "status": "UNRUN",
+      "implementation_status": "planned"
+    },
+    {
+      "id": "SW-RUN03",
+      "name": "Server session identity and capability proof authentication",
+      "status": "UNRUN",
+      "implementation_status": "planned"
+    },
+    {
+      "id": "SW-RUN04",
+      "name": "Durable immutable receipt anchors across restart",
+      "status": "UNRUN",
+      "implementation_status": "planned"
+    },
+    {
+      "id": "SW-RUN05",
+      "name": "Atomic child decision and complete world influence plan",
+      "status": "UNRUN",
+      "implementation_status": "planned"
+    },
+    {
+      "id": "SW-RUN06",
+      "name": "Production source and child disposition including remaining OPS",
+      "status": "UNRUN",
+      "implementation_status": "planned"
+    },
+    {
+      "id": "SW-RUN07",
+      "name": "Real terminal result provider and no remaining parent OPS",
+      "status": "UNRUN",
+      "implementation_status": "planned"
+    },
+    {
+      "id": "SW-RUN08",
+      "name": "UN companion and WWBY actual-use integration",
+      "status": "UNRUN",
+      "implementation_status": "planned"
+    },
+    {
+      "id": "SW-RUN09",
+      "name": "Grain Sales and Missile Envy recursion and source cycles",
+      "status": "UNRUN",
+      "implementation_status": "planned"
+    },
+    {
+      "id": "SW-RUN10",
+      "name": "Ask Not persisted pending draw completion",
+      "status": "UNRUN",
+      "implementation_status": "planned"
+    },
+    {
+      "id": "SW-RUN11",
+      "name": "Wargames Draw and target-specific terminal cleanup",
+      "status": "UNRUN",
+      "implementation_status": "planned"
+    },
+    {
+      "id": "SW-RUN12",
+      "name": "Current/historical PlayerView no hand/deck leakage",
+      "status": "UNRUN",
+      "implementation_status": "planned"
+    },
+    {
+      "id": "SW-RUN13",
+      "name": "No C# Unity dependency in GameCore",
+      "status": "UNRUN",
+      "implementation_status": "planned"
+    },
+    {
+      "id": "SW-RUN14",
+      "name": "Full target consumer coverage before complete-game claim",
+      "status": "UNRUN",
+      "implementation_status": "planned"
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "id": "module.nested-card-events",
+  "kind": "module",
+  "status": "planned",
+  "description": "查询借用卡牌的候选、使用路线、父子结算帧与完成收据；按逐项登记的能力调用下游事件。规则与显示分离，当前只有有限设计模型。",
+  "documentation": "Docs/Wiki/nested-card-events.md",
+  "entrypoints": [],
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Nested/NestedCardEventService.cs",
+      "symbol": "BuildSelectionPlan"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Nested/NestedCardEventService.cs",
+      "symbol": "BuildChildInvocation"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Nested/NestedCardEventService.cs",
+      "symbol": "AcceptChildCompletion"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Nested/NestedEventCapabilityRegistry.cs",
+      "symbol": "ResolveSupportedRoute"
+    }
+  ],
+  "inputs": [
+    "已验证的根行动与父帧上下文、卡牌实体与来源",
+    "共享卡牌/地图/规则数据、具名来源与目标能力",
+    "已接受状态对应的选择或子执行结果"
+  ],
+  "outputs": [
+    "不可变候选与选择计划、子调用计划、父帧继续或终局计划",
+    "按玩家过滤的可见信息与历史结果；不直接驱动动画"
+  ],
+  "dependencies": [
+    {
+      "id": "module.card-data",
+      "path": "Docs/Descriptors/card-data.module.json",
+      "status": "planned"
+    },
+    {
+      "id": "module.influence-events",
+      "path": "Docs/Descriptors/influence-events.module.json",
+      "status": "planned"
+    },
+    {
+      "id": "module.active-effects",
+      "path": "Docs/Descriptors/active-effects.module.json",
+      "status": "planned"
+    },
+    {
+      "id": "module.hand-events",
+      "path": "Docs/Descriptors/hand-events.module.json",
+      "status": "planned"
+    }
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.star_wars",
+    "cards.deluxe2015.definitions"
+  ],
+  "contract_dependencies": [
+    "urn:coldwarheat:contract:star-wars:1"
+  ],
+  "preconditions": [
+    "执行前区分规则合法候选与已登记消费者；未知支持不能被当成无合法候选",
+    "根行动方、实际用牌者、事件控制方和可见方分别保存",
+    "共享依赖提供具名、完整的权威输入；具体消费者仍逐项验证"
+  ],
+  "side_effects": [
+    "未来由Application接受计划并一次提交状态；本描述与当前设计文件不执行游戏"
+  ],
+  "stop_conditions": [
+    "未登记来源/目标/路线、未确认规则在依赖步骤前停止",
+    "坏回调不撤销此前已接受步骤，不再次取得或弃置同一实体",
+    "终局不再执行剩余玩法动作；已有命令仅返回原历史结果"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe images checked 2026-10-13",
+      "description": "Personally inspected existing render p13 #85, p2 #8, p4 #21 and p5 #30. Only English images, no Turkish translation authority."
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe 2015",
+      "description": "p5 section5.2: prerequisite prevention and actual event result determine disposition; example4 Star Wars behind is discarded. Sections2.1.7,7.1,9 supply referenced control/controller/China context."
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQv5 compatible Deluxe paragraphs only",
+      "description": "p19 public discard inspection; p12 UN/WWBY includes Star Wars but is pending integration here; no dedicated empty-pool ruling claimed."
+    },
+    {
+      "id": "PROJECT-SW1-USER-20261013",
+      "url": null,
+      "edition": "User confirmation 2026-10-13",
+      "description": "US strictly ahead plus no legal non-scoring discard candidate: successful no-change, Star Wars Removed. HumanConfirmed project interpretation; not official specialist ruling."
+    },
+    {
+      "id": "PROJECT-SW1-DESIGN",
+      "url": null,
+      "edition": "Finite contract design 2026-10-13",
+      "description": "Frame/entity/role/nonce/receipt/capability boundaries are engineering. Finite independent evidence anchors model trust; do not prove runtime authentication, storage or global downstream support."
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/star-wars.cases.json",
+      "status": "mixed-source-reference-protocol-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "runtime_game_tests_run": 0,
+    "latest_design_report": "Docs/Design/star-wars.validation.json"
+  },
+  "retrieval_hints": [
+    "先读各牌参数consumer_registry的coverage，再查下游函数；Bound不等于所有来源可调用",
+    "TurnFlow消费本模块的计划，本模块不回调TurnFlow，避免循环依赖",
+    "正式源码路径仅为待讨论计划，不存在可调用实现"
+  ]
+}

@@ -121,7 +121,9 @@
 
 本批设计验证：[拉美债务危机报告](Docs/Design/latin-american-debt-crisis.validation.json)，4605项离线检查；游戏运行代码仍待方向讨论后启动。
 
-最新：[Ask Not换手牌](Docs/Wiki/ask-not.md)，99 Bound /3 Unresolved，102处理器planned；弃牌集合锁定与抽牌提供者分开。
+此前：[Ask Not换手牌](Docs/Wiki/ask-not.md)，99 Bound /3 Unresolved，102处理器planned；弃牌集合锁定与抽牌提供者分开。
 离线设计主验4760项；详见[Ask Not验证记录](Docs/Design/ask-not.validation.json)。
 
 [全局平局结果契约](Docs/Wiki/draw-global-contracts.md)：累计4800项设计案例；本批实际运行1943项受影响回归＋40项新检查，游戏runtime仍0。
+
+最新：[Star Wars与借牌模块](Docs/Wiki/star-wars.md)，100 Bound /2 Unresolved，102处理器planned；合法候选和消费者支持分开，画风与规则无耦合。

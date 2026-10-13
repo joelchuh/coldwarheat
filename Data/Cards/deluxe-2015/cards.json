@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "dataset_id": "cards.deluxe2015.definitions",
-  "content_version": "0.42.0",
+  "content_version": "0.43.0",
   "ruleset_id": "ruleset.deluxe2015",
   "scope": "release-candidate",
-  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计99牌效果参数已绑定，其余3个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。 其中5牌边界采用2026-10-13用户确认的项目解释，非官方专门裁定。",
+  "description": "基础牌编号1–103，按时代整理；印刷事实已核对。累计100牌效果参数已绑定，其余2个非中国牌Unresolved；全部102处理器仍planned，可选104–110不启用。 其中5牌边界采用2026-10-13用户确认的项目解释，非官方专门裁定。",
   "source_catalog": [
     {
       "id": "C-DELUXE-EN",
@@ -287,6 +287,18 @@
       "url": null,
       "edition": "Explicit derivation and finite-provider design, 2026-10-13",
       "description": "Zero selection is successful no-change event. Freshly discarded selected cards join all discards and may be redrawn. Positive draw exactly exhausting old deck reshuffles eligible current discards before source/parent cleanup, without extra draw, from R2015 4.3/4.3.1; not specialist FAQ. Locked selection and bound permutation receipts are engineering; real shuffle/RNG, authentication and durable storage remain planned."
+    },
+    {
+      "id": "PROJECT-SW1-USER-20261013",
+      "url": null,
+      "edition": "User confirmation 2026-10-13",
+      "description": "US strictly ahead plus no legal non-scoring discard candidate: successful no-change, Star Wars Removed. HumanConfirmed project interpretation; not official specialist ruling."
+    },
+    {
+      "id": "PROJECT-SW1-DESIGN",
+      "url": null,
+      "edition": "Finite contract design 2026-10-13",
+      "description": "Frame/entity/role/nonce/receipt/capability boundaries are engineering. Finite independent evidence anchors model trust; do not prove runtime authentication, storage or global downstream support."
     }
   ],
   "cards": [
@@ -2984,8 +2996,13 @@
       "effect_binding": {
         "effect_id": "effect.star_wars",
         "contract_version": "0.1.0",
-        "parameter_binding_status": "Unresolved",
-        "parameter_refs": []
+        "parameter_binding_status": "Bound",
+        "parameter_refs": [
+          {
+            "dataset_id": "effects.deluxe2015.star_wars",
+            "json_pointer": "/parameters/star_wars"
+          }
+        ]
       },
       "source_refs": [
         {
@@ -5975,14 +5992,36 @@
     {
       "effect_id": "effect.star_wars",
       "contract_version": "0.1.0",
-      "description": "Star Wars：预留显式注册键；参数、执行步骤与交互裁定尚待设计，禁止运行。",
-      "handler_key": "card_effect.star_wars",
+      "description": "美国领先时从公开弃牌选择非计分事件，按有限来源能力创建子帧；无合法候选政策为用户确认解释。",
+      "handler_key": "nested.DiscardEventInvocation",
       "implementation_status": "planned",
-      "parameter_schema_contract_ids": [],
+      "parameter_schema_contract_ids": [
+        "urn:coldwarheat:contract:star-wars:1#/$defs/star_wars"
+      ],
       "source_refs": [
         {
-          "source_id": "PROJECT",
-          "locator": "Docs/Wiki/map-card-data.md: effect binding boundary",
+          "source_id": "C-DELUXE-EN",
+          "locator": "Personally inspected existing render p13 #85, p2 #8, p4 #21 and p5 #30. Only English images, no Turkish translation authority.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "p5 section5.2: prerequisite prevention and actual event result determine disposition; example4 Star Wars behind is discarded. Sections2.1.7,7.1,9 supply referenced control/controller/China context.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "F2010",
+          "locator": "p19 public discard inspection; p12 UN/WWBY includes Star Wars but is pending integration here; no dedicated empty-pool ruling claimed.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-SW1-USER-20261013",
+          "locator": "US strictly ahead plus no legal non-scoring discard candidate: successful no-change, Star Wars Removed. HumanConfirmed project interpretation; not official specialist ruling.",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "PROJECT-SW1-DESIGN",
+          "locator": "Frame/entity/role/nonce/receipt/capability boundaries are engineering. Finite independent evidence anchors model trust; do not prove runtime authentication, storage or global downstream support.",
           "verification": "Pending"
         }
       ]

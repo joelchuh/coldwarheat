@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.turn-flow",
   "kind": "module",
-  "description": "定位回合阶段、秘密头条、行动名额、出牌结算栈、回合末候选胜利与存档继续位置；当前是设计，不可作为已实现模块调用。 消费CT1转交/奖励计划，保留独立ChinaState并按剩余源步骤收尾。 ON1按已完成根行动槽合并已知NSO/Space总额度并绑定放弃来源集合。 LH1等待Ames选择保留已接受揭示，源/根完成与后续OPS分开。 LEO1已提交前缀保留；等待共享行动不得提前移牌或占根槽。 DV1 next-US根槽检查点与Headline分开，未定调度保持待办。 LR1在已核实ExpireAndReset边界到期，等待地区选择不提前完成根或推进普通动作。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。 LADC1等待US回应/USSR完整目标不增根槽，事件完成不替父根执行剩余OPS。 AN1等待抽牌保留源与父帧，接受后只完成已核实根义务。",
+  "description": "定位回合阶段、秘密头条、行动名额、出牌结算栈、回合末候选胜利与存档继续位置；当前是设计，不可作为已实现模块调用。 消费CT1转交/奖励计划，保留独立ChinaState并按剩余源步骤收尾。 ON1按已完成根行动槽合并已知NSO/Space总额度并绑定放弃来源集合。 LH1等待Ames选择保留已接受揭示，源/根完成与后续OPS分开。 LEO1已提交前缀保留；等待共享行动不得提前移牌或占根槽。 DV1 next-US根槽检查点与Headline分开，未定调度保持待办。 LR1在已核实ExpireAndReset边界到期，等待地区选择不提前完成根或推进普通动作。 2026-10-13用户确认的五牌边界只应用于对应参数，其他未答分支不变。 LADC1等待US回应/USSR完整目标不增根槽，事件完成不替父根执行剩余OPS。 AN1等待抽牌保留源与父帧，接受后只完成已核实根义务。 Star Wars借牌子帧由独立模块产生计划，TurnFlow保持根责任与阶段推进。",
   "status": "planned",
   "entrypoints": [],
   "documentation": "Docs/Wiki/turn-flow.md",
@@ -44,7 +44,8 @@
     "ON1永久OPEC阻止与独立当回合US allowance；正常/NSO/当前Space名额取max而非相加，UN两实体仍一个root slot",
     "Defectors独立双方Headline根、活动源/目标实体与接受队列；USSelected策略优先于印刷OPS排序",
     "DV1已核实普通同回合或Headline目标根槽；FinalBoundary须末回合US最后普通来源与接受FinalScoring证据，不能清除遗漏旧待办",
-    "LR1来源完成与无等待选择的ExpireAndReset证据；已到期状态不可回退为同回合行动查询"
+    "LR1来源完成与无等待选择的ExpireAndReset证据；已到期状态不可回退为同回合行动查询",
+    "Star Wars独立子事件计划与已接受完成收据；根责任保持不变"
   ],
   "outputs": [
     "更新后的流程位置",
@@ -122,6 +123,11 @@
       "path": "Docs/Descriptors/trap-actions.module.json",
       "status": "planned",
       "relation": "consume root eligibility/scoring-discard plans; trap service never calls TurnFlow"
+    },
+    {
+      "id": "module.nested-card-events",
+      "path": "Docs/Descriptors/nested-card-events.module.json",
+      "status": "planned"
     }
   ],
   "data_dependencies": [
@@ -153,7 +159,8 @@
     "effects.deluxe2015.deferred_vp_events_batch1",
     "effects.deluxe2015.late_restrictions_batch1",
     "effects.deluxe2015.latin_american_debt_crisis",
-    "effects.deluxe2015.ask_not"
+    "effects.deluxe2015.ask_not",
+    "effects.deluxe2015.star_wars"
   ],
   "preconditions": [
     "规则集及被触发的处理器必须齐备",
@@ -173,7 +180,8 @@
     "Wargames终局草稿完成接受的源牌/当前根slot收尾后提交Finished；不追加FinalScoring或回合末审计",
     "ExpireAndReset只过期NSO回合额度，永久OPEC阻止保留；未知来源/放弃后重新开放须具名政策",
     "被取消的计分/星号目标均Discard且无成功事实；苏方自取消保留另一头条，普通事件留存未完成父OPS",
-    "LEO1已接受前缀不能因Decline/失败选择撤销；WaitingSharedOperation保留源和根，只有核实完成回执才推进"
+    "LEO1已接受前缀不能因Decline/失败选择撤销；WaitingSharedOperation保留源和根，只有核实完成回执才推进",
+    "新借牌来源按能力登记停止；不能把未支持消费者视为无合法候选"
   ],
   "rule_sources": [
     {
@@ -284,6 +292,18 @@
       "url": null,
       "edition": "Explicit derivation and finite-provider design, 2026-10-13",
       "description": "Zero selection is successful no-change event. Freshly discarded selected cards join all discards and may be redrawn. Positive draw exactly exhausting old deck reshuffles eligible current discards before source/parent cleanup, without extra draw, from R2015 4.3/4.3.1; not specialist FAQ. Locked selection and bound permutation receipts are engineering; real shuffle/RNG, authentication and durable storage remain planned."
+    },
+    {
+      "id": "PROJECT-SW1-USER-20261013",
+      "url": null,
+      "edition": "User confirmation 2026-10-13",
+      "description": "US strictly ahead plus no legal non-scoring discard candidate: successful no-change, Star Wars Removed. HumanConfirmed project interpretation; not official specialist ruling."
+    },
+    {
+      "id": "PROJECT-SW1-DESIGN",
+      "url": null,
+      "edition": "Finite contract design 2026-10-13",
+      "description": "Frame/entity/role/nonce/receipt/capability boundaries are engineering. Finite independent evidence anchors model trust; do not prove runtime authentication, storage or global downstream support."
     }
   ],
   "tests": [
@@ -387,12 +407,16 @@
     {
       "path": "Docs/Design/ask-not.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Docs/Design/star-wars.cases.json",
+      "status": "mixed-source-reference-protocol-and-planned"
     }
   ],
   "verification": {
     "implementation_tested": false,
     "design_review": "检查源规则版本、转换边界、持久化、保密与异常路径；实际检查记录见工作记录",
-    "latest_design_report": "Docs/Design/ask-not.validation.json"
+    "latest_design_report": "Docs/Design/star-wars.validation.json"
   },
   "open_items": [
     "全部逐卡参数/处理器与跨卡优先级",
@@ -408,6 +432,7 @@
     "urn:coldwarheat:contract:deferred-vp-events-batch1:1",
     "urn:coldwarheat:contract:late-restrictions-batch1:1",
     "urn:coldwarheat:contract:latin-american-debt-crisis:1",
-    "urn:coldwarheat:contract:ask-not:1"
+    "urn:coldwarheat:contract:ask-not:1",
+    "urn:coldwarheat:contract:star-wars:1"
   ]
 }

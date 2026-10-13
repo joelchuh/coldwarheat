@@ -1,0 +1,350 @@
+{
+  "schema_version": 1,
+  "dataset_id": "effects.deluxe2015.star_wars",
+  "content_version": "0.1.0",
+  "ruleset_id": "ruleset.deluxe2015",
+  "scope": "verified-subset",
+  "description": "Star Wars strict US Space lead, public non-scoring discard choice, typed child-event handoff and finite consumer receipt design; C# and full target registry planned.",
+  "source_catalog": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe images checked 2026-10-13",
+      "description": "Personally inspected existing render p13 #85, p2 #8, p4 #21 and p5 #30. Only English images, no Turkish translation authority."
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe 2015",
+      "description": "p5 section5.2: prerequisite prevention and actual event result determine disposition; example4 Star Wars behind is discarded. Sections2.1.7,7.1,9 supply referenced control/controller/China context."
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQv5 compatible Deluxe paragraphs only",
+      "description": "p19 public discard inspection; p12 UN/WWBY includes Star Wars but is pending integration here; no dedicated empty-pool ruling claimed."
+    },
+    {
+      "id": "PROJECT-SW1-USER-20261013",
+      "url": null,
+      "edition": "User confirmation 2026-10-13",
+      "description": "US strictly ahead plus no legal non-scoring discard candidate: successful no-change, Star Wars Removed. HumanConfirmed project interpretation; not official specialist ruling."
+    },
+    {
+      "id": "PROJECT-SW1-DESIGN",
+      "url": null,
+      "edition": "Finite contract design 2026-10-13",
+      "description": "Frame/entity/role/nonce/receipt/capability boundaries are engineering. Finite independent evidence anchors model trust; do not prove runtime authentication, storage or global downstream support."
+    }
+  ],
+  "shared_refs": {
+    "cards": {
+      "dataset_id": "cards.deluxe2015.definitions",
+      "path": "Data/Cards/deluxe-2015/cards.json",
+      "json_pointer": "/cards"
+    },
+    "world": {
+      "dataset_id": "map.deluxe2015.world",
+      "path": "Data/Maps/deluxe-2015/world.json",
+      "json_pointer": "/countries"
+    },
+    "space": {
+      "dataset_id": "rules.deluxe2015.space-race",
+      "path": "Data/Rulesets/deluxe-2015/space-race.json",
+      "json_pointer": ""
+    },
+    "vp": {
+      "dataset_id": "rules.deluxe2015.victory",
+      "path": "Data/Rulesets/deluxe-2015/victory.json",
+      "json_pointer": ""
+    },
+    "defcon": {
+      "dataset_id": "rules.deluxe2015.defcon",
+      "path": "Data/Rulesets/deluxe-2015/defcon.json",
+      "json_pointer": ""
+    },
+    "china": {
+      "dataset_id": "setup.deluxe2015.standard",
+      "path": "Data/Rulesets/deluxe-2015/setup.json",
+      "json_pointer": "/china"
+    },
+    "influence": {
+      "dataset_id": "effects.deluxe2015.early_influence_batch1",
+      "path": "Data/Cards/deluxe-2015/early-influence-batch1.parameters.json",
+      "json_pointer": "/parameters"
+    },
+    "nato": {
+      "dataset_id": "effects.deluxe2015.treaty_protection",
+      "path": "Data/Cards/deluxe-2015/treaty-protection.parameters.json",
+      "json_pointer": "/parameters/nato"
+    },
+    "turns": {
+      "dataset_id": "rules.deluxe2015.turn-flow",
+      "path": "Data/Rulesets/deluxe-2015/turn-flow.json",
+      "json_pointer": "/era_bands"
+    }
+  },
+  "parameters": {
+    "star_wars": {
+      "card_id": "card.star_wars",
+      "effect_id": "effect.star_wars",
+      "template": "DiscardEventInvocation",
+      "selecting_player": "US",
+      "gate": "USSpacePositionStrictlyGreaterThanUSSR",
+      "candidate_zone": "Discard",
+      "allowed_card_kinds": [
+        "Event"
+      ],
+      "route": "EventOnly",
+      "candidate_support_separation": "UnsupportedLegalCardsRemainCandidates_NotAnEmptyPool",
+      "empty_pool": "ResolvedNoChange_SourcePrintedSuccessfulDisposition",
+      "source_refs": [
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "English p13 #85, ahead/non-scoring/event immediately",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "R2015",
+          "locator": "p5 section5.2 example4, blocked source Discard",
+          "verification": "Verified"
+        },
+        {
+          "source_id": "C-DELUXE-EN",
+          "locator": "Equal is not ahead; SEA scoring is still Scoring",
+          "verification": "TextualDerivation"
+        },
+        {
+          "source_id": "PROJECT-SW1-USER-20261013",
+          "locator": "Empty legal pool after strict lead; scope only this branch",
+          "verification": "HumanConfirmed"
+        }
+      ]
+    }
+  },
+  "source_policy": {
+    "provider": "SW1.Source.v1",
+    "sources": [
+      "RootEvent",
+      "OpponentCardEvent",
+      "HeadlineEvent"
+    ],
+    "nested_parent": "UnsupportedBeforeMutation; FYP and other borrowed sources need their own registration",
+    "source_entity": "UniqueStarWarsInResolutionBoundToParentFrame",
+    "root_identity": "RootSlotAndRootPhasingPlayerNeverReassignedToSelectorOrChildController",
+    "cleanup": "AfterAcceptedChildReceipt; hold source for verified remaining RootOperations unless terminal; never execute parent OPS in this contract"
+  },
+  "consumer_registry": {
+    "description": "Exact finite design rows only; no production registry is installed. Evaluate coverage before any selected entity leaves Discard. Unknown active effects RequiresRuling. Never infer permission from Bound.",
+    "rows": [
+      {
+        "id": "cap.star_wars.fidel",
+        "source_kind": "StarWarsDiscardEvent",
+        "target_card_id": "card.fidel",
+        "target_effect_id": "effect.fidel",
+        "route": "EventOnly",
+        "provider_id": "SW1.Fidel.v1",
+        "controller_rule": "SelectedPrintedAffiliation_OnlyUSOrUSSR",
+        "coverage": "CompleteEvent_NoActiveInterventions",
+        "parameter_ref_key": "influence",
+        "model_status": "FiniteDesignSupported",
+        "runtime_status": "planned",
+        "rule_provenance": [
+          {
+            "source_id": "C-DELUXE-EN",
+            "locator": "p2 #8; R2015 control/event ownership",
+            "verification": "Verified"
+          },
+          {
+            "source_id": "R2015",
+            "locator": "section5.2; selected event retains own restrictions",
+            "verification": "TextualDerivation"
+          },
+          {
+            "source_id": "PROJECT-SW1-DESIGN",
+            "locator": "Exact provider row, source and child binding; not any Bound card",
+            "verification": "EngineeringBoundary"
+          }
+        ],
+        "case_ids": [
+          "SW-R01",
+          "SW-R05",
+          "SW-R12",
+          "SW-H01"
+        ]
+      },
+      {
+        "id": "cap.star_wars.decolonization",
+        "source_kind": "StarWarsDiscardEvent",
+        "target_card_id": "card.decolonization",
+        "target_effect_id": "effect.decolonization",
+        "route": "EventOnly",
+        "provider_id": "SW1.Decolonization.v1",
+        "controller_rule": "SelectedPrintedAffiliation_OnlyUSOrUSSR",
+        "coverage": "CompleteEvent_FourCountryDecision_NoActiveInterventions",
+        "parameter_ref_key": "influence",
+        "model_status": "FiniteDesignSupported",
+        "runtime_status": "planned",
+        "rule_provenance": [
+          {
+            "source_id": "C-DELUXE-EN",
+            "locator": "p5 #30; R2015 event ownership",
+            "verification": "Verified"
+          },
+          {
+            "source_id": "R2015",
+            "locator": "section5.2; selected event retains own restrictions",
+            "verification": "TextualDerivation"
+          },
+          {
+            "source_id": "PROJECT-SW1-DESIGN",
+            "locator": "Exact provider row, source and child binding; not any Bound card",
+            "verification": "EngineeringBoundary"
+          }
+        ],
+        "case_ids": [
+          "SW-R06",
+          "SW-A39",
+          "SW-A40"
+        ]
+      },
+      {
+        "id": "cap.star_wars.nato-blocked",
+        "source_kind": "StarWarsDiscardEvent",
+        "target_card_id": "card.nato",
+        "target_effect_id": "effect.nato",
+        "route": "EventOnly",
+        "provider_id": "SW1.NatoGate.v1",
+        "controller_rule": "SelectedPrintedAffiliation_OnlyUSOrUSSR",
+        "coverage": "BlockedPrerequisiteOnly_NoSuccessfulPrerequisite_NoActiveInterventions",
+        "parameter_ref_key": "nato",
+        "model_status": "FiniteDesignSupported",
+        "runtime_status": "planned",
+        "rule_provenance": [
+          {
+            "source_id": "C-DELUXE-EN",
+            "locator": "p4 #21; R2015 p5 section5.2 example1",
+            "verification": "Verified"
+          },
+          {
+            "source_id": "R2015",
+            "locator": "section5.2; selected event retains own restrictions",
+            "verification": "TextualDerivation"
+          },
+          {
+            "source_id": "PROJECT-SW1-DESIGN",
+            "locator": "Exact provider row, source and child binding; not any Bound card",
+            "verification": "EngineeringBoundary"
+          }
+        ],
+        "case_ids": [
+          "SW-R07",
+          "SW-A20"
+        ]
+      }
+    ],
+    "default": "UnsupportedBeforeMutation",
+    "runtime_capability_registry_plan": {
+      "status": "planned",
+      "key_fields": [
+        "ruleset_id",
+        "parameter_digest",
+        "source_kind",
+        "target_effect_id",
+        "route",
+        "provider_id",
+        "coverage",
+        "controller_rule",
+        "receipt_contract_version"
+      ],
+      "requirements": [
+        "Compile-time explicit registry; no reflection or data-driven code",
+        "Resolve typed gate and event/decision/cleanup providers; verify same registered source at consumer entry",
+        "Authoritative coverage evidence and exact source/frame/entity binding",
+        "Update each target descriptor/contract and run its integration cases before expanding the row set"
+      ]
+    }
+  },
+  "protocol": {
+    "description": "Serial Begin -> Select -> ChildReceipt; completed blocked or empty Begin skips child. Child execution and parent cleanup share one accepted completion transaction.",
+    "version": 1,
+    "history": "BeginHasNoPredecessor; later commands name exact accepted predecessor; same command identity/content returns original accepted result without current-view refresh or current-state overwrite",
+    "binding_fields": [
+      "command_id",
+      "nonce",
+      "authenticated_principal",
+      "role",
+      "source_digest",
+      "expected_version",
+      "sequence",
+      "previous_command_id",
+      "before_hash",
+      "after_hash",
+      "root_slot",
+      "root_phasing_player",
+      "parent_frame_id",
+      "parent_resolution_id",
+      "child_frame_id",
+      "child_resolution_id",
+      "source_instance_id",
+      "selected_instance_id",
+      "route",
+      "provider_id",
+      "parameter_digest",
+      "reference_digest",
+      "actual_card_user"
+    ],
+    "callback_failure": "KeepAlreadyAcceptedAwaitingChildStateAndEarlierReceipts",
+    "terminal": "Accept verified terminal child evidence in completion transaction; close root and skip remaining parent OPS; global Finished/Draw historical replay allowed; Active/Running with any winner rejected",
+    "terminal_model_limit": "Protocol-only terminal fixture exercises receipt and cleanup; no admitted target row may generate terminal, Wargames is Pending"
+  },
+  "privacy": {
+    "description": "Discard cards and accepted selection are public; only US receives selectable action authorization. Raw receipts, deck order, source credentials, private hands and independent proof anchors stay authority-only.",
+    "history": "Return original accepted public result, never project later live data from a historical receipt",
+    "current_view": "Verify accepted chain and exact live continuation; deny action query for wrong viewer, any Finished state or stale fork"
+  },
+  "pending": [
+    {
+      "id": "SW-P01",
+      "topic": "UN and WWBY paired-card consumption",
+      "source": "F2010 p12 recognizes interaction",
+      "status": "Pending",
+      "needed": "UN companion entity/actor/phase/source and actual-use receipt integration; no blanket ban claimed"
+    },
+    {
+      "id": "SW-P02",
+      "topic": "Grain Sales / Missile Envy nested recursion and cycles",
+      "source": "No admitted row",
+      "status": "Pending",
+      "needed": "Nested source identity, fresh entity reservation, depth/cycle policy, card-specific rules"
+    },
+    {
+      "id": "SW-P03",
+      "topic": "Wargames immediate result including Draw",
+      "source": "Existing Wargames project interpretation; no SW consumer registered",
+      "status": "Pending",
+      "needed": "Actual terminal provider/VP batch/choice receipt and cleanup rule integration"
+    },
+    {
+      "id": "SW-P04",
+      "topic": "Ask Not waiting DrawProvider",
+      "source": "Existing Ask Not design",
+      "status": "Pending",
+      "needed": "Persist child pending draw; prevent parent cleanup until actual accepted completion"
+    },
+    {
+      "id": "SW-P05",
+      "topic": "Other event-derived OPS, neutral controllers and active prevention",
+      "source": "Target-specific rules required",
+      "status": "Pending",
+      "needed": "Register each route and actual actor separately; EventOnly does not prohibit OPS granted inside a selected event"
+    },
+    {
+      "id": "SW-P06",
+      "topic": "Successful NATO and all remaining targets",
+      "source": "Current rows expressly limited",
+      "status": "Pending",
+      "needed": "Register full target behavior plus receipts; Bound alone is insufficient"
+    }
+  ]
+}

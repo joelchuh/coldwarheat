@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "id": "data.star-wars",
+  "kind": "data",
+  "status": "ready",
+  "description": "Star Wars strict US Space lead, public non-scoring discard choice, typed child-event handoff and finite consumer receipt design; C# and full target registry planned.",
+  "dataset_id": "effects.deluxe2015.star_wars",
+  "content_version": "0.1.0",
+  "schema_path": "Docs/Contracts/star-wars.schema.json",
+  "documentation": "Docs/Wiki/star-wars.md",
+  "entrypoints": [
+    {
+      "path": "Data/Cards/deluxe-2015/star-wars.parameters.json",
+      "symbol": null
+    }
+  ],
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Nested/StarWarsStrategy.cs",
+      "symbol": "StarWarsStrategy",
+      "status": "planned"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Nested/NestedEventCapabilityRegistry.cs",
+      "symbol": "NestedEventCapabilityRegistry",
+      "status": "planned"
+    }
+  ],
+  "inputs": [
+    "US public-discard selection; authenticated source and immutable root/frame identity",
+    "Exact row-specific child proof with actual before/after state and independently anchored binding"
+  ],
+  "outputs": [
+    "Read-only invocation parameters and finite typed consumer matrix; no callable game implementation"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "effects.deluxe2015.early_influence_batch1",
+    "effects.deluxe2015.treaty_protection",
+    "map.deluxe2015.world",
+    "rules.deluxe2015.defcon",
+    "rules.deluxe2015.space-race",
+    "rules.deluxe2015.turn-flow",
+    "rules.deluxe2015.victory",
+    "setup.deluxe2015.standard"
+  ],
+  "preconditions": [
+    "Only the three listed finite rows, no active interventions; complete card inventory/world projection",
+    "Independent source/provider/receipt anchors are trusted synthetic inputs in offline checks"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "Unknown source/provider/target coverage before any movement",
+    "Invalid child callback preserves accepted awaiting state",
+    "Finished new action, Active/Running winner, stale state/content/nonce or unauthorized viewer"
+  ],
+  "rule_sources": [
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "edition": "English Deluxe images checked 2026-10-13",
+      "description": "Personally inspected existing render p13 #85, p2 #8, p4 #21 and p5 #30. Only English images, no Turkish translation authority."
+    },
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "edition": "Deluxe 2015",
+      "description": "p5 section5.2: prerequisite prevention and actual event result determine disposition; example4 Star Wars behind is discarded. Sections2.1.7,7.1,9 supply referenced control/controller/China context."
+    },
+    {
+      "id": "F2010",
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "edition": "FAQv5 compatible Deluxe paragraphs only",
+      "description": "p19 public discard inspection; p12 UN/WWBY includes Star Wars but is pending integration here; no dedicated empty-pool ruling claimed."
+    },
+    {
+      "id": "PROJECT-SW1-USER-20261013",
+      "url": null,
+      "edition": "User confirmation 2026-10-13",
+      "description": "US strictly ahead plus no legal non-scoring discard candidate: successful no-change, Star Wars Removed. HumanConfirmed project interpretation; not official specialist ruling."
+    },
+    {
+      "id": "PROJECT-SW1-DESIGN",
+      "url": null,
+      "edition": "Finite contract design 2026-10-13",
+      "description": "Frame/entity/role/nonce/receipt/capability boundaries are engineering. Finite independent evidence anchors model trust; do not prove runtime authentication, storage or global downstream support."
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Design/star-wars.cases.json",
+      "status": "mixed-source-reference-protocol-and-planned"
+    }
+  ],
+  "verification": {
+    "runtime_consumers_tested": false,
+    "runtime_game_tests_run": 0,
+    "latest_design_report": "Docs/Design/star-wars.validation.json"
+  }
+}
