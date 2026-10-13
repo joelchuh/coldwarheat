@@ -52,9 +52,11 @@ namespace ColdWarStruggle.Core
         public InfluenceEventPlan Complete(InfluenceEffectDefinition definition)
         {
             // The final event is resolution itself, including a zero-change resolution.
-            var next = source.Apply(countries, source.SpentOps, checked(changes.Count + 1));
+            var next = Commit();
             return new InfluenceEventPlan(changes.Count == 0 ? InfluenceEventStatus.ResolvedNoChange : InfluenceEventStatus.ResolvedChange,
                 InfluenceEventError.None, definition, source, next, changes);
         }
+        internal GameState Commit()=>source.Apply(countries,source.SpentOps,checked(changes.Count+1));
+        internal IReadOnlyList<InfluenceChanged> Changes=>Array.AsReadOnly(changes.ToArray());
     }
 }

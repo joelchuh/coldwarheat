@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "id": "plan.setup-deployment",
+  "kind": "implementation-plan",
+  "status": "implemented-verified",
+  "description": "实现初始影响力部署的纯规则子集，保留完整Setup门禁；会话和地图接线在后续批次展开。",
+  "entrypoints": [],
+  "inputs": [
+    "已确认setup设计与共享数据"
+  ],
+  "outputs": [
+    "部署规则与实际回归记录"
+  ],
+  "dependencies": [
+    "module.setup"
+  ],
+  "preconditions": [
+    "用户已授权持续开发"
+  ],
+  "side_effects": [
+    "本地源码/文档及常规Git同步"
+  ],
+  "stop_conditions": [
+    "真实验证失败先修复；未知规则不猜测"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/setup.md"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SetupDeploymentTests.cs"
+    }
+  ],
+  "document": "Docs/Plans/2026-10-13-setup-deployment.md"
+}

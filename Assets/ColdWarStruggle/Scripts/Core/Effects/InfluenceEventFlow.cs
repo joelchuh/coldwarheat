@@ -72,6 +72,7 @@ namespace ColdWarStruggle.Core
         {
             if(state==null)return RuleError.InvalidCommand;
             if(state.Ended)return RuleError.GameAlreadyEnded;
+            if(state.Deployment!=null)return RuleError.SetupInProgress;
             if(state.InfluenceEvent==null)return RuleError.EventNotAvailable;
             if(state.InfluenceEvent.Stage==InfluenceEventStage.Resolved)return RuleError.EventAlreadyResolved;
             return RuleError.None;
@@ -84,6 +85,7 @@ namespace ColdWarStruggle.Core
             {
                 case InfluenceEventError.InvalidDefinition:return RuleError.InvalidDefinition;
                 case InfluenceEventError.MissingTurnContext:return RuleError.MissingTurnContext;
+                case InfluenceEventError.SetupInProgress:return RuleError.SetupInProgress;
                 case InfluenceEventError.InvalidSelection:return RuleError.InvalidSelection;
                 case InfluenceEventError.WrongDecisionOwner:return RuleError.WrongActor;
                 case InfluenceEventError.StaleSelection:return RuleError.StaleVersion;

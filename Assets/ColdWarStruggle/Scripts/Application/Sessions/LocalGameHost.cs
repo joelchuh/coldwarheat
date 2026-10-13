@@ -37,6 +37,7 @@ namespace ColdWarStruggle.Application
             if(version!=state.Version)return RuleError.StaleVersion;
             if(contextId!=state.Operations.Id)return RuleError.StaleContext;
             if(state.Ended)return RuleError.GameAlreadyEnded;
+            if(state.Deployment!=null)return RuleError.SetupInProgress;
             if(state.InfluenceEvent!=null && state.InfluenceEvent.Stage!=InfluenceEventStage.Resolved)return RuleError.EventInProgress;
             if(side!=state.Operations.Actor)return RuleError.WrongActor;
             if(state.Operations.Mode!=OperationsMode.Influence)return RuleError.ModeMismatch;
@@ -87,6 +88,7 @@ namespace ColdWarStruggle.Application
         {
             if(version!=state.Version)return RuleError.StaleVersion;
             if(state.Ended)return RuleError.GameAlreadyEnded;
+            if(state.Deployment!=null)return RuleError.SetupInProgress;
             if(state.InfluenceEvent==null)return RuleError.EventNotAvailable;
             if(executionId!=state.InfluenceEvent.Id)return RuleError.StaleContext;
             return RuleError.None;

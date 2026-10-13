@@ -5,7 +5,8 @@ namespace ColdWarStruggle.Core
 {
     public enum RuleError { None, InvalidCommand, WrongGame, WrongActor, StaleVersion, StaleContext, ModeMismatch, UnknownCountry,
         IllegalTarget, InsufficientBudget, GameAlreadyEnded, NumericOverflow, CommandIdConflict,
-        EventNotAvailable, EventAlreadyResolved, EventNotStarted, EventInProgress, StaleDecision, InvalidSelection, EventRequiresRuling, EventForbidden, InvalidDefinition, MissingTurnContext }
+        EventNotAvailable, EventAlreadyResolved, EventNotStarted, EventInProgress, StaleDecision, InvalidSelection, EventRequiresRuling, EventForbidden, InvalidDefinition, MissingTurnContext,
+        SetupNotActive, SetupInProgress, SetupComplete, InvalidSetupState, DuplicateCountry, InvalidAllocationAmount, OutsideSetupRegion, IncorrectAllocationTotal }
     public sealed class InfluencePlaced
     {
         public CountryId Country { get; }
@@ -30,6 +31,7 @@ namespace ColdWarStruggle.Core
         {
             if(state==null || orderedTargets==null || orderedTargets.Count==0 || orderedTargets.Count>128) return Reject(RuleError.InvalidCommand);
             if(state.Ended) return Reject(RuleError.GameAlreadyEnded);
+            if(state.Deployment!=null)return Reject(RuleError.SetupInProgress);
             if(state.InfluenceEvent!=null && state.InfluenceEvent.Stage!=InfluenceEventStage.Resolved)return Reject(RuleError.EventInProgress);
             if(!ReferenceEquals(context,state.Operations)) return Reject(RuleError.StaleContext);
             if(context.Mode!=OperationsMode.Influence) return Reject(RuleError.ModeMismatch);

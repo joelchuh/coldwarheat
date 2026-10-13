@@ -36,7 +36,8 @@
     "接受命令原子替换局面并保存内存收据；重试不重放效果"
   ],
   "stop_conditions": [
-    "错误身份/版本/上下文/同ID不同payload；未开启localTest禁止观察"
+    "错误身份/版本/上下文/同ID不同payload；未开启localTest禁止观察",
+    "GameState.Deployment存在时拒绝普通OPS/事件；部署完成后的正式阶段交接另行实现。"
   ],
   "rule_sources": [
     {

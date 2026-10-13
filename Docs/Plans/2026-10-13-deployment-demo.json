@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "id": "plan.deployment-demo",
+  "kind": "implementation-plan",
+  "status": "planned",
+  "description": "将初始影响力部署接入同一窗口和可替换地图；只读公开帧、私有数量草稿、固定身份确认及明确fixture范围。",
+  "entrypoints": [],
+  "inputs": [
+    "部署规则与固定身份会话"
+  ],
+  "outputs": [
+    "可操作的初始部署地图练习"
+  ],
+  "dependencies": [
+    "module.setup",
+    "module.demo-presentation",
+    "module.map-view"
+  ],
+  "preconditions": [
+    "规则与会话批次通过验证"
+  ],
+  "side_effects": [
+    "源码/数据/知识库、播放器构建与常规Git同步"
+  ],
+  "stop_conditions": [
+    "不绕过正式发牌或规则包门禁；构建/测试失败先修复"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/setup.md"
+    }
+  ],
+  "tests": [],
+  "document": "Docs/Plans/2026-10-13-deployment-demo.md"
+}

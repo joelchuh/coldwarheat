@@ -9,8 +9,7 @@
   ],
   "dependencies": [],
   "preconditions": [
-    "当前仅数据与设计，尚无C#运行实现",
-    "正式开局须完整规则包、显式效果注册表和可恢复随机源全部就绪"
+    "部署子集已有C#加载器；正式开局仍需完整规则包、牌区和可恢复随机源"
   ],
   "side_effects": [],
   "stop_conditions": [
@@ -36,13 +35,17 @@
     {
       "path": "Docs/Design/setup.cases.json",
       "status": "mixed-data-and-planned"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SetupDeploymentTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "documentation": "Docs/Wiki/setup.md",
   "id": "data.setup",
   "kind": "data",
   "status": "ready",
-  "description": "Deluxe基础开局：固定影响力、苏联先/美国后自由部署、中国牌初始持有；轨道与手牌数量引用共享参数。无让子、竞价、可选中国内战或Turn Zero。",
+  "description": "Deluxe基础开局共享数据：固定影响力与苏先美后自由部署已由C#子集读取；中国牌/轨道引用仍由完整Setup设计维护，尚不能启动整局。",
   "dataset_id": "setup.deluxe2015.standard",
   "content_version": "0.1.0",
   "schema_path": "Docs/Contracts/setup.schema.json",
@@ -62,8 +65,9 @@
     "rules.deluxe2015.victory"
   ],
   "verification": {
-    "runtime_consumers_tested": false,
-    "report": "Docs/Worklogs/2026-09-28-setup-design.md"
+    "runtime_consumers_tested": true,
+    "scope": "deployment-subset-only",
+    "report": "Docs/Testing/setup-deployment.validation.json"
   },
   "retrieval_hints": [
     "deployment_stages按side筛选；数组顺序即部署顺序",

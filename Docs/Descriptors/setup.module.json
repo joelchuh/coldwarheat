@@ -1,24 +1,29 @@
 {
   "schema_version": 1,
   "inputs": [
-    "通过资料/结构/引用校验的规则包",
-    "稳定玩家身份；部署数组包含CountryId及整数amount"
+    "已验证地图、setup.json与Schema",
+    "零影响力、零OPS、无事件的可信准备状态；测试状态显式fixture",
+    "当前身份、DecisionId与完整分配"
   ],
   "outputs": [
-    "只读开局定义或开局阶段结果"
+    "只读部署定义、合法目标、原子影响力和阶段转换"
   ],
-  "dependencies": [],
+  "dependencies": [
+    "module.influence-core",
+    "module.map-data"
+  ],
   "preconditions": [
-    "当前仅数据与设计，尚无C#运行实现",
-    "正式开局须完整规则包、显式效果注册表和可恢复随机源全部就绪"
+    "当前只实现部署子集；不返回完整RulePack、不处理随机发牌或轨道引用",
+    "正式开局仍需完整规则包、卡牌区域和可恢复随机源"
   ],
   "side_effects": [
-    "拟定服务在权威事务中修改初始状态与随机游标；目前无可调用实现"
+    "纯规则仅规划新不可变状态；原始状态不变",
+    "暂未提供对外部署会话提交/UI入口"
   ],
   "stop_conditions": [
-    "未知国家/地区/参数引用、重复记录或版本不支持",
-    "不完整规则包、未实现处理器或Unresolved参数",
-    "非法部署或过期命令不得部分修改状态"
+    "未知国家/子区、不支持数据版本或未核实来源拒绝",
+    "非零准备局面、已有部署/事件或OPS拒绝开始",
+    "非法身份/决策/分配或数值溢出不提交；完成后不能重复部署"
   ],
   "rule_sources": [
     {
@@ -36,16 +41,45 @@
   ],
   "tests": [
     {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SetupDeploymentTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SetupDeploymentBoundaryTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
       "path": "Docs/Design/setup.cases.json",
-      "status": "mixed-data-and-planned"
+      "status": "mixed-data-and-planned-full-setup"
     }
   ],
   "documentation": "Docs/Wiki/setup.md",
   "id": "module.setup",
   "kind": "module",
-  "status": "planned",
-  "description": "开局状态机：先发牌查看手牌，按顺序固定布置与自由部署，幂等进入首回合；不引用Unity或画风。",
-  "entrypoints": [],
+  "status": "implemented-subset",
+  "description": "初始影响力部署子集：共享固定布置、苏先美后完整分配与阶段门禁已实现；正式发牌、轨道初始化及进入首回合仍planned。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/SetupDeploymentLoader.cs",
+      "symbol": "LoadSubset"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SetupDeploymentDefinition.cs",
+      "symbol": "SetupDeploymentDefinition"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/InitialDeploymentFlow.cs",
+      "symbol": "Begin"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/InitialDeploymentFlow.cs",
+      "symbol": "QueryDecision"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/InitialDeploymentFlow.cs",
+      "symbol": "Resolve"
+    }
+  ],
   "planned_entrypoints": [
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/Setup/SetupRules.cs",
@@ -76,7 +110,8 @@
     "urn:coldwarheat:contract:cards:2"
   ],
   "verification": {
-    "implementation_tested": false,
-    "report": "Docs/Worklogs/2026-09-28-setup-design.md"
+    "implementation_tested": true,
+    "scope": "deployment-subset",
+    "report": "Docs/Testing/setup-deployment.validation.json"
   }
 }

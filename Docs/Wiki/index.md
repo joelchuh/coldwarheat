@@ -69,7 +69,7 @@
 | 事件授权与欧洲额外行动 | 查拆墙完整步骤、美国OPS预算、可选政变/逐次调整、地区豁免与根行动责任 | 1牌参数绑定；C#待实现 | [event-operations.md](event-operations.md) |
 | 北约局部例外与组合事件 | 查戴高乐/勃兰特的固定步骤、VP终局、取消阻止与局部保护恢复 | 2牌参数绑定；C#待实现 | [nato-exceptions.md](nato-exceptions.md) |
 | 北约前置影响力事件 | 查马歇尔西欧筛选/确认短缺、华沙互斥分支、额度和成功记录 | 2牌参数绑定；C#待实现 | [alliance-prerequisites.md](alliance-prerequisites.md) |
-| 初始布置与开局 | 查固定影响力、自由部署、私有初始手牌、轨道引用、幂等与首回合衔接 | 数据和流程设计已建立；服务待实现 | [setup.md](setup.md) |
+| 初始布置与开局 | 查固定影响力、自由部署、私有初始手牌、轨道引用、幂等与首回合衔接 | 部署规则子集已实现；正式发牌与完整开局待实现 | [setup.md](setup.md) |
 | 回合与出牌状态机 | 查找阶段转换、头条保密、事件/OPS 顺序、卡牌去向和读档继续位置 | v0.2 编排设计；待实现 | [turn-flow.md](turn-flow.md) |
 | 风险与胜负服务 | 查找 DEFCON 限制与责任、军事净结算、胜负检查点及扣留计分牌矩阵 | v0.1 设计；CF-003已确认 | [risk-victory.md](risk-victory.md) |
 | 地区计分与最终汇总 | 查找六地区档位、东南亚权重、最终完整性和中国牌附加分 | v0.1设计；待实现 | [region-scoring.md](region-scoring.md) |

@@ -6,7 +6,7 @@ namespace ColdWarStruggle.Core
 {
     public enum InfluenceEventPolicy { Unknown, NoActiveInterference, Forbidden }
     public enum InfluenceEventStatus { Ready, AwaitingChoice, ResolvedChange, ResolvedNoChange, Rejected, RequiresRuling, Blocked }
-    public enum InfluenceEventError { None, InvalidDefinition, InvalidSelection, WrongDecisionOwner, StaleSelection, NumericOverflow, GameAlreadyEnded, InterferenceUnknown, CandidateShortage, Forbidden, MissingTurnContext }
+    public enum InfluenceEventError { None, InvalidDefinition, InvalidSelection, WrongDecisionOwner, StaleSelection, NumericOverflow, GameAlreadyEnded, InterferenceUnknown, CandidateShortage, Forbidden, MissingTurnContext, SetupInProgress }
 
     public sealed class InfluenceEventSelection
     {

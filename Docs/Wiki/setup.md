@@ -1,7 +1,7 @@
 # 初始布置与开局流程 v0.1
 
 > description: 查询固定影响力、自由部署范围/顺序、发牌与中国牌、初始轨道、幂等恢复及首回合衔接。
-> 状态：2026-09-28；官方基础开局数据与流程设计已建立，SetupRules/SetupFlow尚未实现，不能启动真实对局。
+> 状态：2026-10-13；影响力部署子集已实现并运行测试；完整SetupFlow、发牌及整局仍未实现。历史设计与当前子集范围如下分列。
 > 入口：[数据描述](../../Data/Descriptors/setup.data.json)、[模块描述](../Descriptors/setup.module.json)、[唯一数据](../../Data/Rulesets/deluxe-2015/setup.json)、[Schema](../Contracts/setup.schema.json)、[验收案例](../Design/setup.cases.json)。
 
 ## 范围与选择
@@ -102,3 +102,15 @@ SubmitInitialDeploymentCommand沿用CommandId、GameId、ExpectedStateVersion；
 验收将分别覆盖官方固定表、引用、子区、错误部署、私有手牌、随机恢复、内部步骤重复、首回合不多发牌和跨主题一致性。静态数据检查结果见[工作记录](../Worklogs/2026-09-28-setup-design.md)，C#运行案例仍为planned。下一步按小批设计早期卡牌事件参数、选择与持续效果，再结合既有行动/计分/太空服务逐步实现核心。
 
 [回合状态机](turn-flow.md) · [地图与卡牌](map-card-data.md) · [返回索引](index.md)
+
+## 已实现：初始影响力部署子集
+
+`SetupDeploymentLoader.LoadSubset`使用既有Schema验证部署数据的结构、版本、来源和地图引用；只返回部署定义，不解析轨道/手牌JSON Pointer，不代表正式规则包通过。固定数值仍只保存在setup.json；测试中的官方预期表用于独立核对。
+
+`InitialDeploymentFlow.Begin`要求零影响力、零OPS、没有事件或已有部署的准备状态。它原子应用苏联固定影响力并生成选择。`Resolve`只允许当前部署方；数组非空、最多128项、国家不重复、amount为正数、范围合法、总量恰好用完。成功后一次提交本方分配及下一方固定布置。美国完成后仅标`Deployment.Complete`，不进入回合或发牌。
+
+`SetupDeploymentExecution`保存顺序、拥有者和绑定版本的DecisionId；定义与结果只读。事务使用`InfluenceMutation`；保留GameId、手牌、Turn和OPS，版本只增加一次，失败不返回可提交状态。同一自由分配段内按Ordinal排序，随后是按Ordinal排序的下一方固定布置段；整个Changes并非跨阶段全局排序。阶段事件占最后一个序号。
+
+部署不是OPS：无邻接、稳定度上限或敌控双倍费用。普通影响力/卡牌事件在部署标记存在时拒绝，包括部署已完成但尚未由正式流程交接的状态。
+
+当前还没有部署会话命令和地图草稿；后续沿用固定身份、幂等收据与IMapView，显式fixture不能冒称正式初始发牌。实际测试见[报告](../Testing/setup-deployment.validation.json)。

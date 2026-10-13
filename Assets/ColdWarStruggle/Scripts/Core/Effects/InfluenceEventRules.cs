@@ -13,6 +13,7 @@ namespace ColdWarStruggle.Core
             InfluenceEventQuery Stop(InfluenceEventStatus status,InfluenceEventError error)
                 => new InfluenceEventQuery(status,error,owner,state.Version,0,Array.Empty<CountryId>());
             if(state.Ended)return Stop(InfluenceEventStatus.Rejected,InfluenceEventError.GameAlreadyEnded);
+            if(state.Deployment!=null)return Stop(InfluenceEventStatus.Rejected,InfluenceEventError.SetupInProgress);
             if(definition==null)return Stop(InfluenceEventStatus.Rejected,InfluenceEventError.InvalidDefinition);
             if(policy==InfluenceEventPolicy.Forbidden)return Stop(InfluenceEventStatus.Blocked,InfluenceEventError.Forbidden);
             if(policy!=InfluenceEventPolicy.NoActiveInterference)return Stop(InfluenceEventStatus.RequiresRuling,InfluenceEventError.InterferenceUnknown);
