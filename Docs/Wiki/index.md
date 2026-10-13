@@ -6,7 +6,7 @@
 |---|---|---|---|
 | 卡牌效果引用索引 | 仅核对稳定效果ID存在性，不判断完整卡牌可执行 | 102个只读引用已接入两牌参数装配 | [card-effect-reference-index.md](card-effect-reference-index.md) |
 | 回合日历与权威时代 | 查共享时代表、不可变Turn及复制保持，区别于完整状态机 | 371回归通过；不自动推进阶段 | [turn-calendar.md](turn-calendar.md) |
-| 首个影响力 Demo | 查运行、人工场景、影响力/会话/UI/构建模块及真实测试 | 295项EditMode通过；九场景真实构建，鼠标实测待完成 | [first-demo.md](first-demo.md) |
+| 首个影响力 Demo | 查运行、人工场景、影响力/会话/UI/构建模块及真实测试 | 387项EditMode通过；十一场景真实构建，鼠标实测待完成 | [first-demo.md](first-demo.md) |
 | 单人双边测试与首批计划 | 查一个客户端、两方身份、调试观察和正常信息过滤，以及首批核心任务 | 首批影响力已实现 | [模式说明](local-test-mode.md) · [计划](../Plans/2026-10-13-core-influence-first-slice.md) · [JSON](../Plans/2026-10-13-core-influence-first-slice.json) |
 | 游戏实现与可替换地图接口 | 查整体分层、地图输入输出、状态面板和首批影响力闭环 | 影响力与同步诊断地图接口已实现；资源接口待接入 | [接口提案](../Design/implementation-architecture.proposal.md) · [JSON](../Design/implementation-architecture.proposal.json) |
 | 编码前方向讨论 | 比较第一版交付顺序、统一状态、占位地图与数据边界 | 方向已认可；首批已实现 | [coding-direction-discussion.md](../Design/coding-direction-discussion.md) · [JSON](../Design/coding-direction-discussion.json) |
@@ -23,9 +23,9 @@
 | 审阅基线导出 | 查干净HEAD、受跟踪工作字节、新目标、SHA清单与失败边界 | 工作流工具；游戏实现未开始 | [export-review-baseline.md](export-review-baseline.md) |
 | 工作流策略 JSON | 快速定位结构化开发约定和描述契约 | 已采用 | [workflow-policy.json](../Workflow/workflow-policy.json) |
 | 游戏模块设计 | 查找大模块、规则子模块、命令流程、换画风边界与验收顺序 | 总体设计；首批影响力已实现 | [architecture.md](architecture.md) |
-| 首批事件C#规划 | 查八牌纯规划、选择校验、参数加载与后续事务接入 | 八牌有宿主、七牌有UI，371项回归通过 | [first-influence-events.md](first-influence-events.md) |
+| 首批事件C#规划 | 查八牌纯规划、选择校验、参数加载与后续事务接入 | 八牌有宿主与UI，387项回归通过 | [first-influence-events.md](first-influence-events.md) |
 | 早期影响力事件第一批 | 查5牌参数、复用原语、受益方选择和事务继续机制 | 五牌基础C#与选择事务已实现；跨卡干预待实现/核实 | [early-influence-batch1.md](early-influence-batch1.md) |
-| 早期影响力事件第二批 | 查总额度/每国上限、东欧动荡时代量、铁娘子禁止与用户确认的短缺策略 | 三牌规划/宿主已实现；东欧动荡待UI | [early-influence-batch2.md](early-influence-batch2.md) |
+| 早期影响力事件第二批 | 查总额度/每国上限、东欧动荡时代量、铁娘子禁止与用户确认的短缺策略 | 三牌规划/宿主/UI已实现；含时代对照 | [early-influence-batch2.md](early-influence-batch2.md) |
 | 早期影响力事件第三批 | 查独立红色政权追平、经互会敌控筛选与候选不足边界 | 2牌参数已绑定；C#待实现 | [early-influence-batch3.md](early-influence-batch3.md) |
 | 持续效果与OPS修正 | 查激活/到期/取消、行动者归属、地区奖励与三牌参数 | 设计与参数；C#待实现 | [persistent-effects.md](persistent-effects.md) |
 | 条约保护与前置事件 | 查北约/美日安保、动态控制、法国西德例外、DEFCON接缝与事件成功记录 | 2牌参数绑定；C#待实现 | [treaty-protection.md](treaty-protection.md) |

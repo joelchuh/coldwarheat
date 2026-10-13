@@ -2,15 +2,15 @@
 
 description：运行单窗口双边测试，定位影响力规则、固定身份、幂等、数据加载及 Unity 构建入口。先读模块 JSON，再定位对应函数。
 
-状态：2026-10-13，真实 Unity 工程与 Windows 构建已建立；295 项 EditMode 测试通过。已通过游戏自身导出真实渲染并检查字体/布局；computer-use鼠标实测仍受窗口激活失败影响，不能把截图当成点击验收。
+状态：2026-10-13，真实 Unity 工程与 Windows 构建已建立；387 项 EditMode 测试通过。已通过游戏自身导出真实渲染并检查字体/布局；computer-use鼠标实测仍受窗口激活失败影响，不能把截图当成点击验收。
 
-![当前事件练习真实运行画面](../Images/allocation-demo.png)
+![当前事件练习真实运行画面](../Images/era-demo.png)
 
-共有九个场景，顶部“上一个/下一个”切换。前两个是普通OPS，后七个是公开事件的人工练习。
+共有十一个场景，顶部“上一个/下一个”切换。前两个是普通OPS，后九个是八种公开事件的人工练习。
 
 ## 运行与尝试
 
-最新九练习版本：`E:\TwilightStruggle\Builds\FirstDemo\ColdWarStruggleDemo.exe`。用户已打开的旧PreviewDemo窗口保留，未被关闭；运行中的旧窗口不会自动变成新版。运行需要保留同目录的 `_Data`、`UnityPlayer.dll`、`MonoBleedingEdge` 等文件，不能只复制 exe。构建目录不进 Git；源码可重建。
+最新十一练习版本：`E:\TwilightStruggle\Builds\FirstDemo\ColdWarStruggleDemo.exe`。用户已打开的旧PreviewDemo窗口保留，未被关闭；运行中的旧窗口不会自动变成新版。运行需要保留同目录的 `_Data`、`UnityPlayer.dll`、`MonoBleedingEdge` 等文件，不能只复制 exe。构建目录不进 Git；源码可重建。
 
 从 Git 检出后，用 Unity **6000.6.0f1** 打开项目，选择 **ColdWarStruggle → Play First Demo**。菜单 **Build Windows Demo** 输出FirstDemo，**Build Side-by-side Preview** 输出PreviewDemo；标准 Unity Build 也会执行数据校验和同步。先打开已跟踪的 `Assets/ColdWarStruggle/Scenes/FirstDemo.unity`，不要构建空场景。
 
@@ -50,17 +50,17 @@ Core/Application/Infrastructure 没有 UnityEngine 引用。Core 不读文件；
 - 人工场景：[influence-scenarios.json](../../Data/Demo/influence-scenarios.json)，明确 `scope=fixture`；不冒充正式初始布置。
 - 地图：[world.json](../../Data/Maps/deluxe-2015/world.json)；独立 [world.profile.json](../../Data/Maps/deluxe-2015/world.profile.json) 锁定原有审核版本。批准摘要忽略排版和对象键顺序，保留数组顺序；修改定义后要重新审核 profile，构建不会替候选文件自行批准。
 - 名称：[en-US.catalog-names.json](../../Data/Localization/en-US.catalog-names.json)，国家暂用英文名称，界面提示为中文。
-- `Assets/StreamingAssets/ColdWarStruggle` 是生成的十三文件副本，被 Git 忽略；每次构建先验证权威源再同步。编辑副本不能改变权威数据。
+- `Assets/StreamingAssets/ColdWarStruggle` 是生成的十五文件副本，被 Git 忽略；每次构建先验证权威源再同步。编辑副本不能改变权威数据。
 
-运行门禁只批准当前地图定义，**没有返回完整 RulePack**。完整注册表的102个处理器仍为planned；现有七牌算法和人工事件事务不能冒充正式出牌生命周期。没有完整开局、发牌、回合、计分、DEFCON、军事行动、太空、存档、联网或 AI。`OperationsMode` 的政变/调整枚举不代表这些行动已实现。人工手牌标签不是完整卡牌实体。
+运行门禁只批准当前地图定义，**没有返回完整 RulePack**。完整注册表的102个处理器仍为planned；现有八牌算法和人工事件事务不能冒充正式出牌生命周期。没有完整开局、发牌、回合、计分、DEFCON、军事行动、太空、存档、联网或 AI。`OperationsMode` 的政变/调整枚举不代表这些行动已实现。人工手牌标签不是完整卡牌实体。
 
 合法高亮不是授权，实际提交重新校验。命令拒绝不修改局面；此前成功的其他命令保留。相同身份和命令编号重发返回原收据；改 payload 明确拒绝。取消已经结束的等待不会撤销已提交局面。
 
 ## 验证与后续
 
-真实测试入口：`Assets/ColdWarStruggle/Tests/EditMode`。运行 Unity EditMode，筛选 `ColdWarStruggle.Tests`；当前 295 项通过。详细 RED/GREEN、构建和实际限制见 [数量Demo工作记录](../Worklogs/2026-10-13-allocation-demo.md)。旧的有限 Python 设计检查不能计入 C# 测试数。
+真实测试入口：`Assets/ColdWarStruggle/Tests/EditMode`。运行 Unity EditMode，筛选 `ColdWarStruggle.Tests`；当前 387 项通过。详细 RED/GREEN、构建和实际限制见 [时代Demo工作记录](../Worklogs/2026-10-13-era-demo.md)。旧的有限 Python 设计检查不能计入 C# 测试数。
 
-七张基础事件、国家集合和数量分配界面已实现；下一批优先建立权威回合上下文，随后衔接正式出牌。地图布局与主题可并行演进，但沿用稳定 CountryId 和会话边界。
+八张基础事件、国家集合和数量分配界面已实现；下一批改进世界地图占位视图，正式出牌与完整阶段编排仍待推进。地图布局与主题可并行演进，但沿用稳定 CountryId 和会话边界。
 
 [返回索引](index.md)
 
@@ -98,8 +98,18 @@ F12只导出游戏当前渲染帧到本机 `Application.persistentDataPath/DemoC
 
 数量入口先读 [Demo描述](../Descriptors/demo-presentation.module.json)，再定位 `DemoController.Allocation.cs` 的 `ChangeEventAllocation`、`CanChangeEventAllocation`、`AllocationDraft`；确认仍经 `DemoController.Events.cs` 的 `ConfirmEventAsync`。UI根据 `Query.Kind` 选择控件，不根据卡名写规则。
 
-卡牌文件只作为 [效果引用索引](card-effect-reference-index.md) 的来源，索引返回102个ID并不表示102个处理器可执行。东欧动荡现已在规则与会话层接入权威时代，尚未新增Demo场景。
+卡牌文件只作为 [效果引用索引](card-effect-reference-index.md) 的来源，索引返回102个ID并不表示102个处理器可执行。东欧动荡现已在规则与会话层接入权威时代，并新增第7/8回合对照练习。
 
 实际 [295项验证报告](../Testing/allocation-demo.validation.json) 记录6次测试运行与中间失败、13份规范源/播放器字节一致、Windows构建和Ready阶段真实游戏帧。图中事件尚未开始；不据此声称数量按钮或鼠标实测通过。
 
-后续时代规则批次已通过371项EditMode；当前可运行九练习播放器仍为295项通过时的allocation-demo构建。二者范围分别记录，见[时代批次报告](../Testing/era-removal.validation.json)。
+时代规则批次曾通过371项EditMode，随后时代Demo集成达到387项并重新构建。历史[规则批次报告](../Testing/era-removal.validation.json)与[当前播放器报告](../Testing/era-demo.validation.json)分别记录。
+
+## 时代对照练习与当前原型定位
+
+练习10/11是同一张东欧动荡在第7/8回合的人工对照。左侧回合标识来自权威GameState.Turn，不是可编辑规则选项。开始事件后切换美国，选择奥地利、芬兰、波兰：第7回合苏联剩0/1/2，第8回合剩0/0/1；罗马尼亚保持2。重发不再次移除，重置建立新GameId。
+
+`DemoCatalog.WithEraScenarios`只接受显式turn_number，由共享日历查时代；旧九练习没有回合信息，显示“独立操作练习”。数据见[时代fixture](../../Data/Demo/era-scenarios.json)，规则量没有复制到fixture或UI。
+
+2026-10-13用户确认当前界面观感接近纯点击面板，并询问游戏与地图进度：这里是规则/框架诊断Demo，尚不能完整打一局。84国规则地图和可替换视图基础已实现，地理轮廓/国家标记布局/镜头与正式主题尚未制作。下一阶段优先接入简化世界地图占位视图，沿用CountryId、公开帧和命令；不要求先实现全部102个事件，也不把占位图定为最终画风。
+
+当前[387项报告](../Testing/era-demo.validation.json)含15份规范源与播放器逐字节一致、构建exit0及实际Ready帧。鼠标实测仍未完成。

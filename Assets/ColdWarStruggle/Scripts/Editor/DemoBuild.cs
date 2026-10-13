@@ -54,7 +54,8 @@ namespace ColdWarStruggle.Editor
                 Read(root,"Data/Demo/influence-scenarios.json"),Read(root,"Data/Rulesets/deluxe-2015/influence-placement.json"),
                 Read(root,"Data/Localization/en-US.catalog-names.json"),Read(root,"Data/Maps/deluxe-2015/world.profile.json"))
                 .WithEventScenarios(Read(root,"Data/Demo/event-scenarios.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch1.parameters.json"),Read(root,"Docs/Contracts/early-influence-parameters.schema.json"))
-                .WithAllocationScenarios(Read(root,"Data/Demo/allocation-scenarios.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch2.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch2.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"));
+                .WithAllocationScenarios(Read(root,"Data/Demo/allocation-scenarios.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch2.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch2.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
+                .WithEraScenarios(Read(root,"Data/Demo/era-scenarios.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch2.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch2.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"),Read(root,"Data/Rulesets/deluxe-2015/turn-flow.json"));
             Directory.CreateDirectory(payload);
             Copy(root,"Data/Maps/deluxe-2015/world.json",payload,"world.json");Copy(root,"Docs/Contracts/map.schema.json",payload,"map.schema.json");
             Copy(root,"Data/Maps/deluxe-2015/world.profile.json",payload,"world.profile.json");
@@ -67,6 +68,8 @@ namespace ColdWarStruggle.Editor
             Copy(root,"Data/Cards/deluxe-2015/early-influence-batch2.parameters.json",payload,"early-influence-batch2.parameters.json");
             Copy(root,"Docs/Contracts/early-influence-batch2.schema.json",payload,"early-influence-batch2.schema.json");
             Copy(root,"Data/Cards/deluxe-2015/cards.json",payload,"cards.json");
+            Copy(root,"Data/Demo/era-scenarios.json",payload,"era-scenarios.json");
+            Copy(root,"Data/Rulesets/deluxe-2015/turn-flow.json",payload,"turn-flow.json");
             AssetDatabase.Refresh();
         }
         static string Read(string root,string relative)=>File.ReadAllText(Path.Combine(root,relative));

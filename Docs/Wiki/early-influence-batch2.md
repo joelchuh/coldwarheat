@@ -1,7 +1,7 @@
 # 早期影响力事件：第二批
 
 > description: 查询社会主义政府、苏伊士危机的额度移除，东欧动荡的逐国移除，以及选择权限、当前时代、铁娘子禁止与短缺处理。
-> 状态：2026-10-13，三牌纯C#基础规划与参数加载已实现；东欧动荡读取权威时代，尚无Demo场景。新增数量选择已接入固定身份宿主，UI已接入九练习Demo，完整出牌处理器仍planned。参数绑定进度见[正式数据状态](map-card-data.md)。
+> 状态：2026-10-13，三牌纯C#基础规划与参数加载已实现；东欧动荡读取权威时代，已接入第7/8回合Demo。新增数量选择已接入固定身份宿主，UI已接入九练习Demo，完整出牌处理器仍planned。参数绑定进度见[正式数据状态](map-card-data.md)。
 > 入口：[参数描述](../../Data/Descriptors/early-influence-batch2.data.json)、[参数](../../Data/Cards/deluxe-2015/early-influence-batch2.parameters.json)、[Schema](../Contracts/early-influence-batch2.schema.json)、[模块描述](../Descriptors/influence-events.module.json)、[案例](../Design/early-influence-batch2.cases.json)、[验证报告](../Design/early-influence-batch2.validation.json)。
 
 ## 范围、资料与复用选择
@@ -122,4 +122,4 @@ Loader接收可信装配者的knownEffectIds，校验本牌与blocked_by_effect_
 
 `InfluenceEventRules.Query`要求GameState.Turn，筛选正USSR影响力的东欧国家，使用CountrySet数量min(3,候选数)。`Plan`按国家ID排序，对每国计算min(现有影响力,AmountByEra[Turn.Era])并调用RemoveExact。响应不能提供时代或移除量。少量国家、零候选、晚期每国短缺不转移均按既有EI2-RULING-01。
 
-原固定身份会话已可装配这一人工事件实例；苏联触发时美国选择，等待/完成/重试保持Turn，缺失回合返回具名错误。新增测试连同旧测试共371项通过，见 [报告](../Testing/era-removal.validation.json)。本批未改Demo练习、未构建新播放器，也未实现真正出牌/牌区/阶段推进。
+原固定身份会话已可装配这一人工事件实例；苏联触发时美国选择，等待/完成/重试保持Turn，缺失回合返回具名错误。新增测试连同旧测试共371项通过，见 [报告](../Testing/era-removal.validation.json)。时代规则批次未改Demo；后续已接入两个时代对照练习并构建，见 [387项Demo报告](../Testing/era-demo.validation.json)。真正出牌/牌区/阶段推进仍未实现。

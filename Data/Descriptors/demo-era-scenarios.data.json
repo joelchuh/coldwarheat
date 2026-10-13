@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "data.demo-era-scenarios",
+  "kind": "data",
+  "description": "东欧动荡第7与第8回合的两个人工对照练习；仅保存TurnNumber与初始局面，时代/每国移除量读取共享数据。",
+  "status": "fixture",
+  "entrypoints": [
+    {
+      "path": "Data/Demo/era-scenarios.json",
+      "symbol": "scenarios"
+    }
+  ],
+  "inputs": [
+    "稳定场景ID"
+  ],
+  "outputs": [
+    "带可信GameTurnContext的公开人工事件局面"
+  ],
+  "dependencies": [
+    "effects.deluxe2015.early_influence_batch2",
+    "map.deluxe2015.world",
+    "rules.deluxe2015.turn-flow"
+  ],
+  "preconditions": [
+    "显式fixture、零OPS、已确认无活动干预；回合必须在共享日历范围内"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "缺失/非法回合、额外时代或金额字段、非fixture、重复ID、未知事件/国家拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/early-influence-batch2.md",
+      "scope": "EI2-RULING-01"
+    },
+    {
+      "path": "Docs/Wiki/turn-calendar.md",
+      "scope": "实际回合时代查询"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/EraDemoTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "dataset_id": "demo.era_scenarios",
+  "verification": {
+    "report": "Docs/Testing/era-demo.validation.json"
+  }
+}

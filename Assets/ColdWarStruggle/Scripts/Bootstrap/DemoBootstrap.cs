@@ -20,12 +20,14 @@ namespace ColdWarStruggle.Bootstrap
                 var catalog=DemoCatalog.Load(Read(root,"Data/Maps/deluxe-2015/world.json"),Read(root,"Docs/Contracts/map.schema.json"),
                     Read(root,"Data/Demo/influence-scenarios.json"),Read(root,"Data/Rulesets/deluxe-2015/influence-placement.json"),Read(root,"Data/Localization/en-US.catalog-names.json"),Read(root,"Data/Maps/deluxe-2015/world.profile.json"))
                     .WithEventScenarios(Read(root,"Data/Demo/event-scenarios.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch1.parameters.json"),Read(root,"Docs/Contracts/early-influence-parameters.schema.json"))
-                    .WithAllocationScenarios(Read(root,"Data/Demo/allocation-scenarios.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch2.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch2.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"));
+                    .WithAllocationScenarios(Read(root,"Data/Demo/allocation-scenarios.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch2.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch2.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
+                    .WithEraScenarios(Read(root,"Data/Demo/era-scenarios.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch2.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch2.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"),Read(root,"Data/Rulesets/deluxe-2015/turn-flow.json"));
 #else
                 string root=Path.Combine(UnityEngine.Application.streamingAssetsPath,"ColdWarStruggle");
                 var catalog=DemoCatalog.Load(Read(root,"world.json"),Read(root,"map.schema.json"),Read(root,"influence-scenarios.json"),Read(root,"influence-placement.json"),Read(root,"names.json"),Read(root,"world.profile.json"))
                     .WithEventScenarios(Read(root,"event-scenarios.json"),Read(root,"early-influence-batch1.parameters.json"),Read(root,"early-influence-parameters.schema.json"))
-                    .WithAllocationScenarios(Read(root,"allocation-scenarios.json"),Read(root,"early-influence-batch2.parameters.json"),Read(root,"early-influence-batch2.schema.json"),Read(root,"cards.json"));
+                    .WithAllocationScenarios(Read(root,"allocation-scenarios.json"),Read(root,"early-influence-batch2.parameters.json"),Read(root,"early-influence-batch2.schema.json"),Read(root,"cards.json"))
+                    .WithEraScenarios(Read(root,"era-scenarios.json"),Read(root,"early-influence-batch2.parameters.json"),Read(root,"early-influence-batch2.schema.json"),Read(root,"cards.json"),Read(root,"turn-flow.json"));
 #endif
                 view.Initialize(new DemoController(catalog.CreateHost),catalog.Names,
                     catalog.Scenarios.Select(s=>new DemoScenarioOption(s.Id,s.Title,s.Actor,s.SelectedCountry)).ToArray(),

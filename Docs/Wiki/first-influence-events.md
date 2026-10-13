@@ -1,6 +1,6 @@
 # 首批影响力事件的实际实现
 
-description: 定位八牌基础规划、参数与选择事务；七牌有Demo，东欧动荡已有时代上下文与宿主支持，尚待界面。
+description: 定位八牌基础规划、参数与选择事务；八牌有Demo，东欧动荡有时代上下文、宿主与对照练习。
 
 先读 [模块描述](../Descriptors/influence-event-planners.module.json)，需要规则含义再读 [早期第一批](early-influence-batch1.md)。参数事实仅来自 `Data/Cards/deluxe-2015/early-influence-batch1.parameters.json`；正式卡牌注册表仍为 planned，不能据此开启完整 RulePack。
 

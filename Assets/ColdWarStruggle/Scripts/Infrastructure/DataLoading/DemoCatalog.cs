@@ -15,10 +15,11 @@ namespace ColdWarStruggle.Infrastructure
         public CountryId SelectedCountry { get; }
         public int Ops { get; }
         public InfluenceEffectDefinition EventDefinition { get; }
+        public GameTurnContext Turn { get; }
         public IReadOnlyDictionary<CountryId,CountryState> Countries { get; }
         public IReadOnlyDictionary<PlayerSide,IReadOnlyList<string>> Hands { get; }
-        internal DemoScenario(string id,string title,PlayerSide actor,CountryId selected,int ops,IReadOnlyDictionary<CountryId,CountryState> countries,IReadOnlyDictionary<PlayerSide,IReadOnlyList<string>> hands,InfluenceEffectDefinition eventDefinition=null)
-        { Id=id;Title=title;Actor=actor;SelectedCountry=selected;Ops=ops;Countries=countries;Hands=hands;EventDefinition=eventDefinition; }
+        internal DemoScenario(string id,string title,PlayerSide actor,CountryId selected,int ops,IReadOnlyDictionary<CountryId,CountryState> countries,IReadOnlyDictionary<PlayerSide,IReadOnlyList<string>> hands,InfluenceEffectDefinition eventDefinition=null,GameTurnContext turn=null)
+        { Id=id;Title=title;Actor=actor;SelectedCountry=selected;Ops=ops;Countries=countries;Hands=hands;EventDefinition=eventDefinition;Turn=turn; }
     }
     public sealed class DemoCatalog
     {
@@ -54,7 +55,7 @@ namespace ColdWarStruggle.Infrastructure
             var ctx=OperationsContext.FromRoundStart(s.Id+".ops",s.Actor,s.Ops,Map,s.Countries,costs);
             var gameId="demo-"+Guid.NewGuid().ToString("N");
             var execution=s.EventDefinition==null?null:new InfluenceEventExecution(gameId+".event",s.EventDefinition,s.Actor,InfluenceEventPolicy.NoActiveInterference);
-            return new LocalGameHost(new GameState(Map,s.Countries,ctx,gameId,hands:s.Hands,influenceEvent:execution),true);
+            return new LocalGameHost(new GameState(Map,s.Countries,ctx,gameId,hands:s.Hands,influenceEvent:execution,turn:s.Turn),true);
         }
         public DemoCatalog WithEventScenarios(string fixtures,string parameters,string parameterSchema)
         {
@@ -66,7 +67,14 @@ namespace ColdWarStruggle.Infrastructure
             var definitions=BudgetedRemovalCatalogLoader.Load(parameters,parameterSchema,Map,CardEffectReferenceIndex.Load(cardReferences));
             return WithEventDefinitions(fixtures,"demo.allocation_scenarios",definitions);
         }
-        DemoCatalog WithEventDefinitions(string fixtures,string dataset,IReadOnlyDictionary<string,InfluenceEffectDefinition> definitions)
+        public DemoCatalog WithEraScenarios(string fixtures,string parameters,string parameterSchema,string cardReferences,string turnFlow)
+        {
+            var calendar=TurnCalendarLoader.Load(turnFlow);
+            var definition=EraRemovalCatalogLoader.Load(parameters,parameterSchema,Map,CardEffectReferenceIndex.Load(cardReferences));
+            var definitions=new Dictionary<string,InfluenceEffectDefinition>(StringComparer.Ordinal){{definition.CardId,definition}};
+            return WithEventDefinitions(fixtures,"demo.era_scenarios",definitions,calendar);
+        }
+        DemoCatalog WithEventDefinitions(string fixtures,string dataset,IReadOnlyDictionary<string,InfluenceEffectDefinition> definitions,TurnCalendar calendar=null)
         {
             var data=Object(ContractJson.Parse(fixtures),"schema_version dataset_id description scope scenarios");
             if(Int(data,"schema_version")!=1 || Text(data,"dataset_id")!=dataset || Text(data,"scope")!="fixture")
@@ -77,13 +85,15 @@ namespace ColdWarStruggle.Infrastructure
             {
                 var row=raw as JObject??throw new ArgumentException("Invalid event fixture.");
                 if(!definitions.TryGetValue(Text(row,"event_card"),out var definition))throw new ArgumentException("Unknown fixture event.");
-                all.Add(ReadScenario(row,Map,costs,ids,definition));
+                all.Add(ReadScenario(row,Map,costs,ids,definition,calendar));
             }
             return new DemoCatalog(Map,costs,all,Names.ToDictionary(p=>p.Key,p=>p.Value,StringComparer.Ordinal));
         }
-        static DemoScenario ReadScenario(JToken raw,MapDefinition world,InfluenceCosts rates,HashSet<string> ids,InfluenceEffectDefinition eventDefinition=null)
+        static DemoScenario ReadScenario(JToken raw,MapDefinition world,InfluenceCosts rates,HashSet<string> ids,InfluenceEffectDefinition eventDefinition=null,TurnCalendar calendar=null)
         {
-                var s=Object(raw,eventDefinition==null?"id title actor ops selected_country influence hands":"id title actor ops selected_country influence hands event_card");var id=Text(s,"id");var title=Text(s,"title");var actor=Side(Text(s,"actor"));var ops=Int(s,"ops");
+                var fields=eventDefinition==null?"id title actor ops selected_country influence hands":"id title actor ops selected_country influence hands event_card";
+                var s=Object(raw,fields+(calendar==null?"":" turn_number"));var id=Text(s,"id");var title=Text(s,"title");var actor=Side(Text(s,"actor"));var ops=Int(s,"ops");
+                var turn=calendar?.ForTurn(Int(s,"turn_number"));
                 var selected=new CountryId(Text(s,"selected_country"));
                 if(!ids.Add(id) || (eventDefinition==null?(ops<1 || ops>4):ops!=0) || !world.Contains(selected))throw new ArgumentException("Invalid scenario.");
                 var countries=world.Countries.ToDictionary(c=>c.Id,c=>new CountryState(0,0));var overrides=new HashSet<CountryId>();
@@ -100,9 +110,9 @@ namespace ColdWarStruggle.Infrastructure
                     if(list.Count>20 || list.Any(x=>x.Type!=JTokenType.String || string.IsNullOrWhiteSpace((string)x)))throw new ArgumentException("Invalid demo hands.");
                     hands.Add(side,System.Array.AsReadOnly(list.Values<string>().ToArray()));
                 }
-                var scenario=new DemoScenario(id,title,actor,selected,ops,new ReadOnlyDictionary<CountryId,CountryState>(countries),new ReadOnlyDictionary<PlayerSide,IReadOnlyList<string>>(hands),eventDefinition);
+                var scenario=new DemoScenario(id,title,actor,selected,ops,new ReadOnlyDictionary<CountryId,CountryState>(countries),new ReadOnlyDictionary<PlayerSide,IReadOnlyList<string>>(hands),eventDefinition,turn);
                 // Validate the whole fixture before publishing the catalog.
-                _=new GameState(world,scenario.Countries,OperationsContext.FromRoundStart(id,actor,ops,world,scenario.Countries,rates),hands:scenario.Hands);
+                _=new GameState(world,scenario.Countries,OperationsContext.FromRoundStart(id,actor,ops,world,scenario.Countries,rates),hands:scenario.Hands,turn:turn);
                 return scenario;
         }
         static JObject Object(JToken token,string fields)
