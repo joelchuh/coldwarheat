@@ -69,3 +69,9 @@ flowchart LR
 ## 2026-09-28 数据接入位置
 
 实际地图ID为map.deluxe2015.world，卡牌ID目录为cards.deluxe2015.definitions；[正式数据](map-card-data.md)已提供稳定ID与name_key。未来布局覆盖84国及2个超级大国，主题用这些ID覆盖外观。当前没有为正式地图填坐标或选定主题，原fixture布局仍只绑定fixture地图，不能误当正式布局使用。接口目前是JSON契约和C#设计，尚无运行实现。
+
+## 2026-10-13 可替换地图接口提案
+
+用户已明确上一轮草图只作参考，并要求先确认接口再开始游戏编码。[实现与接口提案](../Design/implementation-architecture.proposal.md)及[JSON摘要](../Design/implementation-architecture.proposal.json)提出 IMapView 的加载、快照呈现、意图输出、镜头定位、可取消动画和释放职责，以及 MapPresenter 与会话的关系。状态轨道由独立面板显示。
+
+本提案复用以上布局与主题契约；同一规则地图可更换布局、资源及2D/3D视图。接口尚待确认和实现，未制作正式地图资源。第一版建议支持进入对局时选择模块，对局中无缝热切换另行规划；旧玩家视角、旧状态版本和旧操作模式的响应均不得污染当前视图。

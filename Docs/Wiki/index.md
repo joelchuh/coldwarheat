@@ -4,6 +4,7 @@
 
 | 知识点 | description | 状态 | 入口 |
 |---|---|---|---|
+| 游戏实现与可替换地图接口 | 查整体分层、地图输入输出、状态面板和首批影响力闭环 | 提案待确认；没有开始编码 | [接口提案](../Design/implementation-architecture.proposal.md) · [JSON](../Design/implementation-architecture.proposal.json) |
 | 编码前方向讨论 | 比较第一版交付顺序、统一状态、占位地图与数据边界 | 待共同讨论；未授权开始编码 | [coding-direction-discussion.md](../Design/coding-direction-discussion.md) · [JSON](../Design/coding-direction-discussion.json) |
 | 全局平局结果契约 | 查8组完整状态的Draw表示、旧命令重放与新行动拒绝边界 | Schema修订；游戏运行待实现 | [draw-global-contracts.md](draw-global-contracts.md) |
 | 2026-10-13项目裁定 | 查5牌已获用户确认的短缺、军事比较与零分结束政策 | 已确认；运行待实现 | [confirmed-rulings-20261013.md](confirmed-rulings-20261013.md) |

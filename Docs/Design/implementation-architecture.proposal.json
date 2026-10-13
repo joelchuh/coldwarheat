@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "id": "discussion.implementation-architecture",
+  "kind": "design-discussion",
+  "description": "编码前查整体分层、可替换地图的加载/呈现/意图接口、独立轨道面板、玩家视角与版本隔离，以及首批影响力闭环；不授权运行或创建游戏工程。",
+  "status": "proposal-awaiting-user-confirmation",
+  "path_base": "repository-root",
+  "document": "Docs/Design/implementation-architecture.proposal.md",
+  "entrypoints": [],
+  "inputs": [
+    "用户接受草图作为参考且要求地图可替换",
+    "已确认架构与地图/布局/主题数据契约"
+  ],
+  "outputs": [
+    "供确认的接口语义、依赖边界、交付顺序及验收范围"
+  ],
+  "dependencies": [
+    "Docs/Wiki/architecture.md",
+    "Docs/Wiki/map-presentation.md",
+    "Docs/Wiki/map-card-contracts.md",
+    "Docs/Design/coding-direction-discussion.md"
+  ],
+  "data_dependencies": [],
+  "preconditions": [
+    "按提案阅读；所有接口尚未实现"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "开始正式源码或Unity工程前等待用户确认方向和开工范围"
+  ],
+  "rule_sources": [],
+  "tests": [],
+  "map_contracts": [
+    "Docs/Contracts/map.schema.json",
+    "Docs/Contracts/layout.schema.json",
+    "Docs/Contracts/theme.schema.json"
+  ],
+  "first_acceptance": "One authorized influence operation in an explicit trusted test scenario; production RulePack gate remains strict",
+  "view_isolation": [
+    "ViewContextId",
+    "StateVersion",
+    "action mode or decision ID",
+    "latest query sequence"
+  ],
+  "implementation_authorized": false,
+  "production_code_written": false,
+  "unity_project_created": false,
+  "runtime_game_tests_run": 0,
+  "unresolved_decisions": [
+    "用户确认整体方向和首批交付范围",
+    "获准后核实实际Unity编译与测试兼容性",
+    "最终画风与布局未定；不阻塞纯规则闭环"
+  ],
+  "planned_entrypoints": [
+    "IMapView.LoadAsync",
+    "IMapView.Present",
+    "IMapView.Intent",
+    "IMapView.FocusOn",
+    "IMapView.PlayTransitions",
+    "IMapView.Dispose",
+    "MapPresenter",
+    "IGameSession"
+  ]
+}
