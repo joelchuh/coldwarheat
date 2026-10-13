@@ -51,13 +51,15 @@ namespace ColdWarStruggle.Editor
             string root=Path.GetFullPath(Path.Combine(UnityEngine.Application.dataPath,".."));
             string payload=Path.Combine(UnityEngine.Application.streamingAssetsPath,"ColdWarStruggle");
             // Validate canonical inputs before refreshing any generated runtime copies.
+            var printedCards=CardCatalogLoader.LoadPrintedSubset(Read(root,"Data/Cards/deluxe-2015/cards.json"),Read(root,"Docs/Contracts/cards-v2.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.printed-profile.json"));
             var catalog=DemoCatalog.Load(Read(root,"Data/Maps/deluxe-2015/world.json"),Read(root,"Docs/Contracts/map.schema.json"),
                 Read(root,"Data/Demo/influence-scenarios.json"),Read(root,"Data/Rulesets/deluxe-2015/influence-placement.json"),
                 Read(root,"Data/Localization/en-US.catalog-names.json"),Read(root,"Data/Maps/deluxe-2015/world.profile.json"))
                 .WithEventScenarios(Read(root,"Data/Demo/event-scenarios.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch1.parameters.json"),Read(root,"Docs/Contracts/early-influence-parameters.schema.json"))
                 .WithAllocationScenarios(Read(root,"Data/Demo/allocation-scenarios.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch2.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch2.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
                 .WithEraScenarios(Read(root,"Data/Demo/era-scenarios.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch2.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch2.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"),Read(root,"Data/Rulesets/deluxe-2015/turn-flow.json"))
-                    .WithDeploymentScenario(Read(root,"Data/Demo/deployment-scenario.json"),Read(root,"Data/Rulesets/deluxe-2015/setup.json"),Read(root,"Docs/Contracts/setup.schema.json"));
+                    .WithDeploymentScenario(Read(root,"Data/Demo/deployment-scenario.json"),Read(root,"Data/Rulesets/deluxe-2015/setup.json"),Read(root,"Docs/Contracts/setup.schema.json"))
+                    .WithInitialDealScenario(Read(root,"Data/Demo/initial-deal-scenario.json"),Read(root,"Data/Rulesets/deluxe-2015/setup.json"),Read(root,"Docs/Contracts/setup.schema.json"),Read(root,"Data/Rulesets/deluxe-2015/turn-flow.json"),printedCards,Read(root,"Data/Localization/en-US.catalog-names.json"));
             WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
             Directory.CreateDirectory(payload);
             Copy(root,"Data/Maps/deluxe-2015/world.json",payload,"world.json");Copy(root,"Docs/Contracts/map.schema.json",payload,"map.schema.json");
@@ -78,6 +80,11 @@ namespace ColdWarStruggle.Editor
             Copy(root,"Data/Demo/deployment-scenario.json",payload,"deployment-scenario.json");
             Copy(root,"Data/Rulesets/deluxe-2015/setup.json",payload,"setup.json");
             Copy(root,"Docs/Contracts/setup.schema.json",payload,"setup.schema.json");
+            Copy(root,"Data/Demo/initial-deal-scenario.json",payload,"initial-deal-scenario.json");
+            Copy(root,"Docs/Contracts/cards-v2.schema.json",payload,"cards-v2.schema.json");
+            Copy(root,"Data/Cards/deluxe-2015/cards.printed-profile.json",payload,"cards.printed-profile.json");
+            Copy(root,"Docs/References/ThirdParty/Apache-2.0.txt",payload,"Apache-2.0.txt");
+            Copy(root,"Docs/References/ThirdParty/pcg32.md",payload,"pcg32-notice.md");
             AssetDatabase.Refresh();
         }
         static string Read(string root,string relative)=>File.ReadAllText(Path.Combine(root,relative));

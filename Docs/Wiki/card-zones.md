@@ -1,6 +1,6 @@
 # 牌区与初始发牌
 
-> description: 查每张牌的唯一位置、独立中国牌、时代预备区、确定性洗牌发牌及setup共享引用。纯Core与加载子集已实现，尚未接入GameState/会话/UI或完整RulePack。
+> description: 查每张牌的唯一位置、独立中国牌、时代预备区、确定性洗牌发牌及setup共享引用。纯Core与加载子集已实现，并接入GameState、身份投影及发牌/部署Demo；完整RulePack仍未实现。
 
 先读[模块描述](../Descriptors/card-zones.module.json)，再读所需函数。实现基于已审核[卡牌静态目录](card-catalog.md)、[随机源](deterministic-random.md)与既有[开局设计](setup.md)。
 
@@ -12,7 +12,7 @@ EnteredEras必须从Early连续到已进入时代，拒绝重复/缺段/未知�
 
 ChinaCardState含稳定Id、Owner和Face，不改动静态CardDefinition。US持有或FaceDown可表达后续局面；InitialDealDefinition则只接受标准开局的USSR/FaceUp、回合1/Early。不存在自动转交中国牌或时代加入方法，这些后续按规则实现。
 
-CardZones是内部完整信息。正常玩家投影只能选择本人手牌和公开数量，不可把整个对象传给客户端；本批没有修改现有玩家视图。
+CardZones是内部完整信息。正常玩家投影只能选择本人手牌和公开数量，不可把整个对象传给客户端；PlayerViewSnapshot现只含本人手牌和PublicCardSummary，显式测试观察只额外提供双方手牌，不返回牌库或RNG。
 
 ## 初始发牌
 
@@ -46,6 +46,6 @@ Schema检查其他字段的结构，但本接口不解析DEFCON/太空/军事/VP
 
 ## 实际验证
 
-CardZonesTests覆盖唯一完整分区、只读集合、时代与中国牌；InitialDealTests覆盖固定小牌组顺序、实际103牌、随机隔离与失败；InitialDealLoaderTests覆盖真实引用和变异错误。测试数量与原始XML摘要见[验证报告](../Testing/initial-card-deal.validation.json)。本批无UI改动、不重建播放器。
+CardZonesTests覆盖唯一完整分区、只读集合、时代与中国牌；InitialDealTests覆盖固定小牌组顺序、实际103牌、随机隔离与失败；InitialDealLoaderTests覆盖真实引用和变异错误。测试数量与原始XML摘要见[验证报告](../Testing/initial-card-deal.validation.json)。该报告对应纯服务批次；随后Demo集成的测试、播放器与截图见[真实手牌报告](../Testing/dealt-setup-demo.validation.json)。
 
-下一步将这些权威牌区接入GameState和正常玩家/只读观察投影，在测试开局中显示真实发出的牌；完整出牌、头条、轨道和胜负仍继续分批实现。
+GameState已成对持有牌区与随机快照，拒绝与旧fixture手牌混用；状态复制保留两者。测试开局可先看真实手牌再部署，见[Demo说明](first-demo.md)。完整出牌、头条、轨道和胜负继续分批实现。

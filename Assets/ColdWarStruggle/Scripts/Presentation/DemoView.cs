@@ -34,11 +34,13 @@ namespace ColdWarStruggle.Presentation
         readonly string[] regions={"region.europe","region.asia","region.middle_east","region.africa","region.central_america","region.south_america"};
         readonly string[] regionNames={"欧洲","亚洲","中东","非洲","中美洲","南美洲"};
         static readonly Color Background=new Color(.035f,.057f,.095f),Panel=new Color(.075f,.105f,.15f),Muted=new Color(.58f,.66f,.76f),Ink=new Color(.91f,.94f,.98f),Blue=new Color(.32f,.64f,1f),Red=new Color(1f,.43f,.4f),Green=new Color(.36f,.83f,.65f);
-        public void Initialize(DemoController controller,IReadOnlyDictionary<string,string> names,IReadOnlyList<DemoScenarioOption> scenarios,int initialScenario=0,DiagnosticMapKind mapKind=DiagnosticMapKind.Tiles,WorldMapAssets worldAssets=null,bool focusSelected=false)
+        public void Initialize(DemoController controller,IReadOnlyDictionary<string,string> names,IReadOnlyList<DemoScenarioOption> scenarios,int initialScenario=0,DiagnosticMapKind mapKind=DiagnosticMapKind.Tiles,WorldMapAssets worldAssets=null,bool focusSelected=false,CardCatalog printedCards=null,bool showHands=false)
         {
             if(focusSelected && mapKind!=DiagnosticMapKind.World)throw new ArgumentException("Selected focus requires the world view.");
             if(initialScenario<0 || initialScenario>=scenarios.Count)throw new ArgumentOutOfRangeException(nameof(initialScenario));
-            this.controller=controller;this.names=names;this.scenarios=scenarios;this.worldAssets=worldAssets;Reset(initialScenario);
+            this.controller=controller;this.names=names;this.scenarios=scenarios;this.worldAssets=worldAssets;this.printedCards=printedCards;Reset(initialScenario);
+            if(showHands && (printedCards==null || controller.ReadView().Cards==null))throw new ArgumentException("Hand panel requires a real dealt scenario.");
+            handPanelOpen=showHands;
             mapPresenter?.Dispose();mapPresenter=new MapPresenter(controller,names);SwitchMap(mapKind);
             if(focusSelected && mapView is WorldMapView world)world.RequestCountryFocus(controller.SelectedCountry);
         }
@@ -47,6 +49,7 @@ namespace ColdWarStruggle.Presentation
         void Reset(int index)
         {
             var s=scenarios[index];controller.LoadScenario(s.Id,s.Actor,s.SelectedCountry);scenarioIndex=index;
+            handPanelOpen=false;handScroll=Vector2.zero;
             var region=controller.ReadView().Countries.First(c=>c.Definition.Id.Equals(s.SelectedCountry)).Definition.Region;
             regionIndex=Math.Max(0,System.Array.IndexOf(regions,region));
         }
@@ -72,7 +75,7 @@ namespace ColdWarStruggle.Presentation
             Styles();float scale=Math.Min(Screen.width/1280f,Screen.height/820f);
             GUI.matrix=Matrix4x4.TRS(new Vector3((Screen.width-1280*scale)/2,(Screen.height-820*scale)/2,0),Quaternion.identity,new Vector3(scale,scale,1));
             Block(new Rect(0,0,1280,820),Background);
-            Text(26,20,900,46,"COLD WAR / 冷战热斗 · 规则操作 Demo",title);
+            Text(26,20,900,46,"COLD WAR / 冷战热斗 · 开局与规则 Demo",title);
             Text(28,70,780,28,"单人双边测试  /  人工练习局面  /  世界地图占位，可更换画风",small);
             Text(820,70,434,28,captureStatus,small);
             if(fatal!=null) { Text(30,140,1180,400,"加载失败："+fatal);return; }
@@ -87,6 +90,7 @@ namespace ColdWarStruggle.Presentation
             if(Button(840,115,190,40,"操作方：美国")) { controller.SelectSide(PlayerSide.US);GUIUtility.ExitGUI(); }
             if(Button(1040,115,214,40,"操作方：苏联")) { controller.SelectSide(PlayerSide.USSR);GUIUtility.ExitGUI(); }
             var view=controller.ReadView();mapPresenter.Refresh();
+            if(handPanelOpen && view.Cards!=null){DrawHandPanel(view);return;}
             Block(new Rect(26,177,250,600),Panel);Block(new Rect(294,177,640,600),Panel);Block(new Rect(952,177,302,600),Panel);
             Text(44,195,220,26,"当前测试局面",small);Text(44,226,214,60,scenarios[scenarioIndex].Title);
             Text(44,307,220,26,view.Deployment!=null?"当前部署方":view.Event==null?"规则要求的行动方":view.Event.Stage==InfluenceEventStage.AwaitingChoice?"规则要求的选择方":"事件触发方",small);
@@ -95,7 +99,7 @@ namespace ColdWarStruggle.Presentation
             Text(44,455,220,27,view.Deployment!=null?"初始影响力部署练习":TurnText(view.Turn),small);
             Text(44,485,220,26,view.Deployment!=null?"待分配部署额度":"剩余 OPS",small);
             Text(44,513,210,60,(view.Deployment!=null?view.Deployment.RequiredAmount-controller.DeploymentDraft.Sum(a=>a.Amount):view.RemainingOps).ToString(),large);
-            Text(44,594,208,150,view.Deployment!=null?"先苏联、后美国：\n1. 选国后用右侧 ±1 分配\n2. 用完额度后确认\n3. 按提示切换操作方\n草稿未确认不改变局面。\n手牌只是示例，尚未发牌。":view.Event==null?"试一试：\n1. 在默认目标投放 3 点\n2. 重发命令，观察不重复扣点\n3. 切换另一方，观察资格检查\n4. 重置后选择其他国家":"事件练习：\n1. 点击开始事件\n2. 按提示切换选择方\n3. 选国，按右侧提示编辑\n4. 确认后一次结算\n事件不消耗 OPS。",small);
+            Text(44,594,208,150,view.Deployment!=null?"先苏联、后美国：\n1. 选国后用右侧 ±1 分配\n2. 用完额度后确认\n3. 按提示切换操作方\n草稿未确认不改变局面。\n"+(view.Cards!=null?"可先查看真实初始手牌。":"手牌只是示例，尚未发牌。"):view.Event==null?"试一试：\n1. 在默认目标投放 3 点\n2. 重发命令，观察不重复扣点\n3. 切换另一方，观察资格检查\n4. 重置后选择其他国家":"事件练习：\n1. 点击开始事件\n2. 按提示切换选择方\n3. 选国，按右侧提示编辑\n4. 确认后一次结算\n事件不消耗 OPS。",small);
             Text(312,194,590,28,view.Event==null && view.Deployment==null?"国家面板  ·  绿色表示当前可投放目标":"国家面板  ·  绿色为合法选择，✓ 为草稿，确认后才结算",small);
             for(int i=0;i<regions.Length;i++)
                 if(Button(312+(i%3)*201,232+(i/3)*39,193,32,(regionIndex==i?"● ":"")+regionNames[i]))
@@ -115,13 +119,17 @@ namespace ColdWarStruggle.Presentation
             var result=controller.LastResult;
             Text(972,538,262,96,result==null?"选择国家后提交操作。\n非法操作会显示原因，局面不变。":result.Accepted?"操作已接受\n逐点费用："+string.Join(" + ",result.Costs):"操作被拒绝\n"+ErrorText(result.Error),small);
             }
+            if(view.Cards!=null)DrawHandSummary(view);
+            else
+            {
             revealBoth=GUI.Toggle(new Rect(972,642,264,28),revealBoth," 查看双方示例手牌",button);
             if(revealBoth)
             {
                 var both=controller.ReadBoth();Text(972,681,266,60,"美："+string.Join("、",both.USHand)+"\n苏："+string.Join("、",both.USSRHand),small);
             }
             else Text(972,681,266,62,"本方："+string.Join("、",view.OwnHand)+"\n对手："+view.OpponentHandCount+" 张（隐藏）",small);
-            Text(28,786,1220,27,$"初始部署 / 普通影响力 / 八种事件练习；示例牌不能出牌，完整回合、计分和 AI 尚未接入。   版本 {view.Version} · 序号 {view.EventSequence}",small);
+            }
+            Text(28,786,1220,27,$"发牌 / 部署 / 普通影响力 / 八种事件练习；出牌、完整回合、计分和 AI 尚未接入。   版本 {view.Version} · 序号 {view.EventSequence}",small);
         }
         static string TurnText(GameTurnContext turn)
         {

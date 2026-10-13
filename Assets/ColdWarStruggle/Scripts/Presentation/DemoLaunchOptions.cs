@@ -5,6 +5,15 @@ namespace ColdWarStruggle.Presentation
 {
     public static class DemoLaunchOptions
     {
+        public static bool ShowHands(IEnumerable<string> args)
+        {
+            if(args==null)throw new ArgumentNullException(nameof(args));
+            const string prefix="--demo-hands=";
+            var choices=args.Where(a=>a!=null && a.StartsWith(prefix,StringComparison.Ordinal)).ToArray();
+            if(choices.Length==0)return false;
+            if(choices.Length!=1)throw new ArgumentException("Only one hand display option may be selected.");
+            return choices[0].Substring(prefix.Length) switch {"open"=>true,"closed"=>false,_=>throw new ArgumentException("Unknown hand display option.")};
+        }
         public static bool FocusSelected(IEnumerable<string> args,DiagnosticMapKind kind)
         {
             if(args==null)throw new ArgumentNullException(nameof(args));
@@ -40,7 +49,11 @@ namespace ColdWarStruggle.Presentation
             if(args==null || knownIds==null || knownIds.Count==0)throw new ArgumentException("Missing demo launch context.");
             const string prefix="--demo-scenario=";
             var choices=args.Where(a=>a!=null && a.StartsWith(prefix,StringComparison.Ordinal)).ToArray();
-            if(choices.Length==0)return 0;
+            if(choices.Length==0)
+            {
+                for(int i=0;i<knownIds.Count;i++)if(knownIds[i]=="demo.setup.initial_deal")return i;
+                return 0;
+            }
             if(choices.Length!=1)throw new ArgumentException("Only one demo scenario may be selected.");
             var id=choices[0].Substring(prefix.Length);
             for(int i=0;i<knownIds.Count;i++)if(knownIds[i]==id)return i;

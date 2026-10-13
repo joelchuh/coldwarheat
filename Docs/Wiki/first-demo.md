@@ -1,20 +1,24 @@
-# 第一个影响力 Demo
+# 开局与规则 Demo
 
 description：运行单窗口双边测试，定位影响力规则、固定身份、幂等、数据加载及 Unity 构建入口。先读模块 JSON，再定位对应函数。
 
-状态：2026-10-13，真实 Unity 工程与 Windows 构建已建立；566 项 EditMode 测试通过。已通过游戏自身导出真实渲染并检查字体/布局；computer-use鼠标实测仍受窗口激活失败影响，不能把截图当成点击验收。
+状态：2026-10-13，真实 Unity 工程与 Windows 构建已建立；762 项 EditMode 测试通过。已通过游戏自身导出真实渲染并检查字体/布局；computer-use鼠标实测仍受窗口激活失败影响，不能把截图当成点击验收。
 
-![世界地图占位实际运行画面](../Images/world-map-demo.png)
+![发牌与部署实际运行画面](../Images/dealt-setup-demo.png)
 
-共有十二个场景，顶部“上一个/下一个”切换。前两个是普通OPS，第3–11个是八种公开事件，第12个是初始影响力部署练习。
+共有十三个练习，顶部“上一个/下一个”切换。默认第13个是实际洗牌、发牌和初始部署预览；前两个是普通OPS，第3–11个是八种公开事件，第12个保留旧示例手牌的部署练习。
 
 ## 运行与尝试
 
-最新十二练习版本：`E:\TwilightStruggle\Builds\FirstDemo\ColdWarStruggleDemo.exe`。用户已打开的旧PreviewDemo窗口保留，未被关闭；运行中的旧窗口不会自动变成新版。运行需要保留同目录的 `_Data`、`UnityPlayer.dll`、`MonoBleedingEdge` 等文件，不能只复制 exe。构建目录不进 Git；源码可重建。
+最新十三练习版本：`E:\TwilightStruggle\Builds\FirstDemo\ColdWarStruggleDemo.exe`。用户已打开的旧PreviewDemo窗口保留，未被关闭；运行中的旧窗口不会自动变成新版。运行需要保留同目录的 `_Data`、`UnityPlayer.dll`、`MonoBleedingEdge` 等文件，不能只复制 exe。构建目录不进 Git；源码可重建。
 
 从 Git 检出后，用 Unity **6000.6.0f1** 打开项目，选择 **ColdWarStruggle → Play First Demo**。菜单 **Build Windows Demo** 输出FirstDemo，**Build Side-by-side Preview** 输出PreviewDemo；标准 Unity Build 也会执行数据校验和同步。先打开已跟踪的 `Assets/ColdWarStruggle/Scenes/FirstDemo.unity`，不要构建空场景。
 
-1. 默认美国练习，目标 France（法国），美国 0 / 苏联 3，稳定度 3，预算 4 OPS。
+默认进入“发牌与初始部署”：当前苏联部署，双方各有8张真实普通手牌；可先点“查看手牌”，再返回地图分配东欧6点，切美国完成西欧7点。部署完成后停止，不进入尚未实现的头条。重置新建GameId，并恢复同一固定测试发牌结果。
+
+以下是切到**练习1**后验证普通影响力的步骤：
+
+1. 美国练习，目标 France（法国），美国 0 / 苏联 3，稳定度 3，预算 4 OPS。
 2. 点“一次提交 3 点”：费用应为 **2 + 1 + 1**，美国影响力变为 3，剩余 OPS 为 0，版本变为 1。
 3. 点“重发上次命令”：同一收据返回，影响力、版本和事件序号不再增加。
 4. 重置后切换“操作方：苏联”，仍是美国的行动上下文；提交会被拒绝。要测试苏联的合法行动，点“下一个”进入练习2。
@@ -50,15 +54,15 @@ Core/Application/Infrastructure 没有 UnityEngine 引用。Core 不读文件；
 - 人工场景：[influence-scenarios.json](../../Data/Demo/influence-scenarios.json)，明确 `scope=fixture`；不冒充正式初始布置。
 - 地图：[world.json](../../Data/Maps/deluxe-2015/world.json)；独立 [world.profile.json](../../Data/Maps/deluxe-2015/world.profile.json) 锁定原有审核版本。批准摘要忽略排版和对象键顺序，保留数组顺序；修改定义后要重新审核 profile，构建不会替候选文件自行批准。
 - 名称：[en-US.catalog-names.json](../../Data/Localization/en-US.catalog-names.json)，国家暂用英文名称，界面提示为中文。
-- `Assets/StreamingAssets/ColdWarStruggle` 是生成的二十文件副本，被 Git 忽略；每次构建先验证权威源再同步。编辑副本不能改变权威数据。
+- `Assets/StreamingAssets/ColdWarStruggle` 是生成的25文件副本（23份JSON与2份第三方许可/说明），被 Git 忽略；每次构建先验证权威源再同步。编辑副本不能改变权威数据。
 
-运行门禁只批准当前地图定义，**没有返回完整 RulePack**。完整注册表的102个处理器仍为planned；现有八牌算法和人工事件事务不能冒充正式出牌生命周期。没有完整开局、发牌、回合、计分、DEFCON、军事行动、太空、存档、联网或 AI。`OperationsMode` 的政变/调整枚举不代表这些行动已实现。人工手牌标签不是完整卡牌实体。
+运行门禁只批准当前地图定义，**没有返回完整 RulePack**。完整注册表的102个处理器仍为planned；现有八牌算法和人工事件事务不能冒充正式出牌生命周期。已实现初始洗牌/发牌及部署预览；没有完整开局阶段衔接、出牌、回合、计分、DEFCON、军事行动、太空、完整存档、联网或 AI。`OperationsMode` 的政变/调整枚举不代表这些行动已实现。前12个练习的人工手牌标签不是完整卡牌实体；第13个使用实际CardZones。
 
 合法高亮不是授权，实际提交重新校验。命令拒绝不修改局面；此前成功的其他命令保留。相同身份和命令编号重发返回原收据；改 payload 明确拒绝。取消已经结束的等待不会撤销已提交局面。
 
 ## 验证与后续
 
-真实测试入口：`Assets/ColdWarStruggle/Tests/EditMode`。运行 Unity EditMode，筛选 `ColdWarStruggle.Tests`；当前 566 项通过。详细 RED/GREEN、构建和实际限制见 [部署地图工作记录](../Worklogs/2026-10-13-deployment-demo.md)。旧的有限 Python 设计检查不能计入 C# 测试数。
+真实测试入口：`Assets/ColdWarStruggle/Tests/EditMode`。运行 Unity EditMode，筛选 `ColdWarStruggle.Tests`；当前 762 项通过。详细 RED/GREEN、构建、载荷摘要与渲染限制见 [真实手牌报告](../Testing/dealt-setup-demo.validation.json)和[工作记录](../Worklogs/2026-10-13-dealt-setup-demo.md)。旧的有限 Python 设计检查不能计入 C# 测试数。
 
 八张基础事件、国家集合和数量分配界面已实现；世界地图占位视图已接入，后续改善地图可读性和真实操作验收；正式出牌与完整阶段编排仍待推进。地图布局与主题可并行演进，但沿用稳定 CountryId 和会话边界。
 
@@ -68,7 +72,7 @@ Core/Application/Infrastructure 没有 UnityEngine 引用。Core 不读文件；
 
 F12只导出游戏当前渲染帧到本机 `Application.persistentDataPath/DemoCaptures`，使用唯一文件名，不覆盖原图，不导出桌面。Windows通常位于用户AppData/LocalLow/ColdWarStruggle/ColdWarStruggle First Demo。显式 `--capture-demo` 在初始化后导出一帧并退出：初始化与捕获均成功0、错误1；用于渲染验收，不自动改变局面。需要正常显示窗口，隐藏/无图形模式没有可导出的帧时明确失败。此诊断功能不是存档或回放。
 
-可追加 `--demo-scenario=demo.event.decolonization`，只选择目录里已有的练习。未知/重复选择会报告加载错误，CLI捕获退出1且不生成PNG；不会加载外部路径、修改规则或自动提交事件。默认仍从第一个普通影响力练习开始。
+可追加 `--demo-scenario=demo.event.decolonization`，只选择目录里已有的练习。未知/重复选择会报告加载错误，CLI捕获退出1且不生成PNG；不会加载外部路径、修改规则或自动提交事件。默认选择发牌与部署练习。`--demo-hands=open`只打开当前真实手牌面板，`closed`关闭；未知或重复参数拒绝。
 
 ## 五张事件练习
 
@@ -134,3 +138,27 @@ World视图可追加`--demo-focus=selected`，初始定位所选国家以重复�
 流程：fixture + setup → 规则Begin → 身份查询合法国 → 本地完整草稿 → 固定身份SubmitDeploymentAsync → 规则Resolve → 最新公开帧。实际测试、20份载荷、构建和截图见[部署Demo验证报告](../Testing/deployment-demo.validation.json)。
 
 ![初始部署地图实际运行帧](../Images/deployment-demo.png)
+
+## 真实手牌与部署预览
+
+练习13（`demo.setup.initial_deal`）由审核后的CardCatalog、共享开局定义与固定PCG快照生成牌区。发牌后双方各8张、早期余牌19张、中晚期预备67张，中国牌正面归苏联且单独保存。业务数量由共享数据推导；固定随机快照仅用于复现测试，不是正式对战的种子策略。
+
+GameState成对持有不可变CardZones/RandomState，旧字符串手牌与其互斥。普通影响力、事件和部署复制都保留二者。PlayerViewSnapshot只含本人牌ID与PublicCardSummary；完整牌库与随机状态不进玩家投影。显式测试观察入口只额外返回双方手牌，可由Host禁用。
+
+手牌面板独立使用HandPanelFrame和静态目录；显示牌名、OPS、阵营及计分标记，不能出牌。关闭“观察双方”后只显示当前固定身份；切身份重新投影。打开面板时不绘制底层地图/部署控件，返回局面保留未确认草稿。当前英文牌名采用占位字体，长标题按可用高度缩小；这不是最终卡面。
+
+```mermaid
+flowchart LR
+ A[审核目录 + setup + 固定测试随机快照] --> B[InitialDealService]
+ B --> C[GameState 牌区与随机快照]
+ C --> D[初始部署 Begin]
+ D --> E[固定身份 PlayerViewSnapshot]
+ E --> F[地图与手牌面板]
+ G[显式只读测试观察] --> F
+ F --> H[完整部署意图]
+ H --> D
+```
+
+先读[Demo模块描述](../Descriptors/demo-presentation.module.json)和[fixture描述](../../Data/Descriptors/demo-initial-deal-scenario.data.json)，再定位DemoCatalog.WithInitialDealScenario、PublicCardSummary、HandPanelFrame.Create、DemoView.DrawHandPanel。Editor与Player都校验相同印刷profile并读取相同载荷；重发部署不会重新发牌。
+
+![双方手牌实际运行帧](../Images/dealt-setup-hands.png)

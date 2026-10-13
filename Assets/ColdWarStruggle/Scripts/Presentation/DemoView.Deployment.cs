@@ -12,7 +12,7 @@ namespace ColdWarStruggle.Presentation
             var phase=view.Deployment;var q=controller.DeploymentTargets();var draft=controller.DeploymentDraft;
             var amount=draft.FirstOrDefault(a=>a.Country.Equals(controller.SelectedCountry)).Amount;
             var region=phase.Region=="region.eastern_europe"?"东欧":phase.Region=="region.western_europe"?"西欧":phase.Region;
-            var message=phase.Complete?"部署练习完成。\n正式发牌与头条尚未接入。"
+            var message=phase.Complete?(view.Cards==null?"部署练习完成。\n正式发牌与头条尚未接入。":"部署完成。\n头条与完整对局尚未接入。")
                 :q.Error==RuleError.WrongActor?"请切换至 "+Side(phase.Owner.Value)+"。\n目标范围："+region
                 :q.Error!=RuleError.None?ErrorText(q.Error):$"{region}部署草稿 {draft.Sum(a=>a.Amount)} / {q.RequiredAmount} 点\n当前国家：{amount} 点";
             Text(972,366,262,42,message,small);

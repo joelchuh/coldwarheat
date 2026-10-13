@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.local-session",
   "kind": "module",
-  "description": "同一权威局面的固定身份会话：普通影响力、事件与初始部署共用身份收据；版本/上下文/决策校验，公开阶段投影和显式测试观察。",
+  "description": "固定身份会话共用权威局面与收据；普通影响力、事件、部署及真实手牌投影已接入，测试观察不公开牌库或随机状态。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -28,6 +28,10 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/DeploymentSessionContracts.cs",
       "symbol": "DeploymentCommandEnvelope"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/CardSessionView.cs",
+      "symbol": "PublicCardSummary"
     }
   ],
   "inputs": [
@@ -35,11 +39,14 @@
     "预装事件实例及EventCommandEnvelope，玩家不能上传效果定义"
   ],
   "outputs": [
-    "过滤的PlayerViewSnapshot、收据、LegalTargetsResult；授权观察入口可读双方示例手牌",
-    "公开只读GameTurnContext；旧fixture无回合时为null"
+    "过滤的PlayerViewSnapshot、收据、LegalTargetsResult；正常真实手牌按身份派生，观察入口可额外读双方",
+    "公开只读GameTurnContext；旧fixture无回合时为null",
+    "PublicCardSummary仅公共计数/中国牌/已进入时代，不含牌序或RNG"
   ],
   "dependencies": [
-    "module.influence-core"
+    "module.influence-core",
+    "module.card-zones",
+    "module.deterministic-random"
   ],
   "preconditions": [
     "单进程可信Bootstrap；不是联网身份认证"
@@ -69,10 +76,15 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/DeploymentSessionTests.cs",
       "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DealtStateTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "documentation": "Docs/Wiki/first-demo.md",
   "verification": {
-    "report": "Docs/Testing/deployment-session.validation.json"
+    "report": "Docs/Testing/deployment-session.validation.json",
+    "latest_report": "Docs/Testing/dealt-setup-demo.validation.json"
   }
 }

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.demo-presentation",
   "kind": "module",
-  "description": "单窗口十二练习：普通影响力、八种事件与初始部署；世界图/卡片/列表共享固定身份、私有草稿与权威会话，仍非完整对局。",
+  "description": "单窗口十三练习：真实发牌/部署、普通影响力和八种事件；可替换地图与只读手牌面板共享固定身份投影，仍非完整对局。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -104,6 +104,22 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Deployment.cs",
       "symbol": "DrawDeploymentControls"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.InitialDeal.cs",
+      "symbol": "WithInitialDealScenario"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/HandPanelFrame.cs",
+      "symbol": "Create"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Cards.cs",
+      "symbol": "DrawHandPanel"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoLaunchOptions.cs",
+      "symbol": "ShowHands"
     }
   ],
   "inputs": [
@@ -112,7 +128,9 @@
     "数量练习、第二批参数/Schema、正式卡牌效果引用索引",
     "时代人工场景turn_number与共享turn-flow日历；禁止场景自报era或移除额度",
     "World下可选--demo-focus=overview|selected，只改初始镜头",
-    "初始部署fixture、共享setup数据与setup Schema；禁止fixture自报部署额度或操作方"
+    "初始部署fixture、共享setup数据与setup Schema；禁止fixture自报部署额度或操作方",
+    "审核印刷目录/schema/profile、初始发牌fixture完整随机快照与静态名称",
+    "--demo-hands=open|closed控制只读面板初始状态，不提交游戏命令"
   ],
   "outputs": [
     "只读视图驱动的Unity诊断界面"
@@ -125,7 +143,10 @@
     "module.card-effect-reference-index",
     "module.turn-calendar",
     "module.world-map-view",
-    "module.setup"
+    "module.setup",
+    "module.card-data",
+    "module.card-zones",
+    "module.deterministic-random"
   ],
   "preconditions": [
     "Unity 6000.6.0f1，显式fixture，Windows本地运行"
@@ -199,13 +220,21 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/DeploymentDemoTests.cs",
       "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DealtDemoCatalogTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HandPanelTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "documentation": "Docs/Wiki/first-demo.md",
   "verification": {
     "checked_on": "2026-10-13",
     "report": "Docs/Testing/era-demo.validation.json",
-    "latest_report": "Docs/Testing/deployment-demo.validation.json"
+    "latest_report": "Docs/Testing/dealt-setup-demo.validation.json"
   },
   "data_dependencies": [
     "rules.deluxe2015.influence_placement",
@@ -222,6 +251,8 @@
     "layout.demo.world",
     "presentation.natural_earth.land",
     "demo.deployment_scenario",
-    "setup.deluxe2015.standard"
+    "setup.deluxe2015.standard",
+    "demo.initial_deal_scenario",
+    "cards.deluxe2015.printed_profile"
   ]
 }

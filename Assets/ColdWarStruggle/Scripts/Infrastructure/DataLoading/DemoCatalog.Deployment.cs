@@ -28,7 +28,7 @@ namespace ColdWarStruggle.Infrastructure
             var countries=Map.Countries.ToDictionary(c=>c.Id,c=>new CountryState(0,0));
             var scenario=new DemoScenario(id,title,definition.Stages[0].Side,selected,0,
                 new ReadOnlyDictionary<CountryId,CountryState>(countries),new ReadOnlyDictionary<PlayerSide,IReadOnlyList<string>>(hands),deployment:definition);
-            var result=new DemoCatalog(Map,costs,Scenarios.Concat(new[]{scenario}),Names.ToDictionary(p=>p.Key,p=>p.Value,StringComparer.Ordinal));
+            var result=new DemoCatalog(Map,costs,Scenarios.Concat(new[]{scenario}),Names.ToDictionary(p=>p.Key,p=>p.Value,StringComparer.Ordinal),PrintedCards);
             // Validate the complete trusted start before publishing the extended catalog.
             result.CreateHost(id);
             return result;

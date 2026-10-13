@@ -39,6 +39,7 @@ namespace ColdWarStruggle.Application
         public PublicEventView Event { get; }
         public GameTurnContext Turn { get; }
         public PublicDeploymentView Deployment { get; }
+        public PublicCardSummary Cards { get; }
         internal PlayerViewSnapshot(GameState s,PlayerSide viewer)
         {
             GameId=s.GameId;Viewer=viewer;Version=s.Version;EventSequence=s.EventSequence;ContextId=s.Operations.Id;Actor=s.Operations.Actor;RemainingOps=s.Operations.Budget-s.SpentOps;
@@ -46,6 +47,7 @@ namespace ColdWarStruggle.Application
             OwnHand=Array.AsReadOnly(s.GetHand(viewer).ToArray());OpponentHandCount=s.GetHand(viewer==PlayerSide.US?PlayerSide.USSR:PlayerSide.US).Count;
             Event=s.InfluenceEvent==null?null:new PublicEventView(s.InfluenceEvent);Turn=s.Turn;
             Deployment=s.Deployment==null?null:new PublicDeploymentView(s.Deployment);
+            Cards=s.Cards==null?null:new PublicCardSummary(s.Cards);
         }
     }
     public sealed class LocalTestSnapshot

@@ -30,3 +30,5 @@ description：解释第一版由一个人操作双方、查看双方信息的测
 首批代码和52项真实EditMode已建立；完整回合/卡牌尚未实现。第一批的[实现计划](../Plans/2026-10-13-core-influence-first-slice.md)及[JSON摘要](../Plans/2026-10-13-core-influence-first-slice.json)提供任务、接口和验收。
 
 [返回索引](index.md)
+
+当前第13个发牌与部署练习已用真实牌区替代示例标签；正常视图仍按固定身份过滤，显式观察可查看双方。只读手牌面板不暴露牌库顺序/RNG，不提供出牌动作。最新实现与证据见[Demo说明](first-demo.md)。

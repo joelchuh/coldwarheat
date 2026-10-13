@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "data.demo-initial-deal-scenario",
+  "kind": "data",
+  "description": "可复现的真实早期发牌与初始部署练习，仅存标题/选国和完整PCG初始状态；牌数/中国牌/影响力统一读取规则数据，仍是fixture。",
+  "status": "fixture",
+  "entrypoints": [
+    {
+      "path": "Data/Demo/initial-deal-scenario.json",
+      "symbol": "scenario"
+    }
+  ],
+  "inputs": [
+    "固定场景ID"
+  ],
+  "outputs": [
+    "含真实手牌/公共牌区摘要的第13个开局预览"
+  ],
+  "dependencies": [
+    "cards.deluxe2015.definitions",
+    "cards.deluxe2015.printed_profile",
+    "setup.deluxe2015.standard",
+    "rules.deluxe2015.turn-flow",
+    "map.deluxe2015.world"
+  ],
+  "preconditions": [
+    "审核印刷目录、setup和可恢复随机快照；本fixture固定局面不用于隐藏随机的真实对战"
+  ],
+  "side_effects": [
+    "加载只创建新不可变牌区；重置新GameId但恢复同一测试手牌"
+  ],
+  "stop_conditions": [
+    "未知字段/规则覆盖/无效选国/随机状态/静态牌名/来源拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/setup.md",
+      "scope": "已确认开局数据与工程重放约定"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DealtDemoCatalogTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "dataset_id": "demo.initial_deal_scenario",
+  "verification": {
+    "report": "Docs/Testing/dealt-setup-demo.validation.json"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "id": "plan.dealt-setup-demo",
+  "kind": "implementation-plan",
+  "status": "implemented-verified",
+  "description": "将真实初始牌区接入GameState与身份投影，添加可复现发牌/部署练习和只读手牌面板；仍未进入完整出牌对局。",
+  "entrypoints": [],
+  "inputs": [
+    "CardZones与RandomSnapshot",
+    "审核卡牌数据与开局参数",
+    "固定身份会话"
+  ],
+  "outputs": [
+    "权威状态保留与隐藏信息投影",
+    "第13个开局预览与Windows构建"
+  ],
+  "dependencies": [
+    "module.card-zones",
+    "module.deterministic-random",
+    "module.local-session",
+    "module.demo-presentation",
+    "module.demo-build"
+  ],
+  "preconditions": [
+    "持续编码与Git同步已授权",
+    "正常玩家只能看自己的牌，观察入口显式启用"
+  ],
+  "side_effects": [
+    "源码/测试/描述及fixture数据",
+    "生成忽略的运行载荷与FirstDemo构建",
+    "游戏自身截图"
+  ],
+  "stop_conditions": [
+    "身份泄漏或牌区/RNG分离拒绝",
+    "未知数据/profile/版本拒绝",
+    "保留运行中的旧PreviewDemo"
+  ],
+  "rule_sources": [
+    {
+      "path": "AGENTS.md",
+      "scope": "第25–27节单人测试与替换地图边界"
+    },
+    {
+      "path": "Docs/Wiki/card-zones.md"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Testing/dealt-setup-demo.validation.json",
+      "status": "762-passed-build-render-verified"
+    }
+  ],
+  "document": "Docs/Plans/2026-10-13-dealt-setup-demo.md"
+}

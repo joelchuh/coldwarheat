@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.card-zones",
   "kind": "module",
-  "description": "不可变完整牌区、独立中国牌与确定性初始发牌；校验唯一位置/时代，读取setup共享引用。返回新牌区及随机快照，尚未接GameState、UI或完整开局。",
+  "description": "不可变完整牌区、独立中国牌与确定性初始发牌；校验唯一位置/时代，读取setup共享引用，成对牌区/随机快照已接GameState及Demo。",
   "status": "implemented-subset",
   "entrypoints": [
     {
@@ -50,7 +50,7 @@
   ],
   "preconditions": [
     "可信宿主使用审核后的卡牌目录；静态目录不是可执行RulePack",
-    "创建结果只供权威侧，宿主以后共同提交牌区与随机快照；本批没有会话/创建请求去重"
+    "创建结果只供权威侧，GameState已成对持有牌区与随机快照；尚未实现创建请求去重或完整出牌事务"
   ],
   "side_effects": [
     "仅工作随机副本推进，不修改源随机或现有GameState",
@@ -91,6 +91,7 @@
   ],
   "documentation": "Docs/Wiki/card-zones.md",
   "verification": {
-    "report": "Docs/Testing/initial-card-deal.validation.json"
+    "report": "Docs/Testing/initial-card-deal.validation.json",
+    "latest_report": "Docs/Testing/dealt-setup-demo.validation.json"
   }
 }

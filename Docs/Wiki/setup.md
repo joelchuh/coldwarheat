@@ -127,4 +127,4 @@ SubmitInitialDeploymentCommand沿用CommandId、GameId、ExpectedStateVersion；
 
 ## 已实现：独立牌区与初始发牌服务
 
-详见[牌区知识点](card-zones.md)与[模块描述](../Descriptors/card-zones.module.json)。初始手牌/回合引用及中国牌由InitialDealDefinitionLoader读取，InitialDealService返回完整唯一牌区与随机快照。正式GameState、部署前查看真实手牌、创建去重及首回合衔接尚未接入；上表仍是完整编排设计，不能用独立服务替代运行门禁。
+详见[牌区知识点](card-zones.md)与[模块描述](../Descriptors/card-zones.module.json)。初始手牌/回合引用及中国牌由InitialDealDefinitionLoader读取，InitialDealService返回完整唯一牌区与随机快照。GameState与身份投影已接入，Demo可在部署前查看真实发出的手牌；创建请求去重、轨道完整初始化及首回合衔接尚未接入。第13个练习明确是fixture，不能代替完整运行门禁。见[真实手牌预览](first-demo.md)。
