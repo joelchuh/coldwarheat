@@ -61,6 +61,15 @@ namespace ColdWarStruggle.Application
         { Target=r.Request.Target;Roll=r.Calculation.Roll;Strength=r.Calculation.Strength;Margin=r.Calculation.Margin;Removed=r.Calculation.Removed;Added=r.Calculation.Added;
           MilitaryCredit=r.MilitaryCredit.Amount;DefconFrom=r.DefconChange?.Before.Level;DefconTo=r.DefconChange?.After.Level;NuclearWar=r.DefconChange?.NuclearWar==true; }
     }
+    public sealed class PublicCardEventResult
+    {
+        public CardId Card { get; }
+        public InfluenceEventStage Stage { get; }
+        public InfluenceEventStatus? Outcome { get; }
+        public IReadOnlyList<InfluenceChanged> Changes { get; }=Array.AsReadOnly(Array.Empty<InfluenceChanged>());
+        internal PublicCardEventResult(InfluenceEventTransition transition)
+        { var e=transition.NextState.InfluenceEvent;Card=new CardId(e.Definition.CardId);Stage=e.Stage;Outcome=e.Outcome;Changes=Array.AsReadOnly(transition.Changes.ToArray()); }
+    }
     public sealed class CardActionResult
     {
         public RuleError Error { get; }
@@ -69,8 +78,9 @@ namespace ColdWarStruggle.Application
         public PublicSpaceResult Space { get; }
         public PublicCoupResult Coup { get; }
         public PublicRegionScore Scoring { get; }
-        internal CardActionResult(RuleError error,PlayerViewSnapshot view,SpaceAttemptReceipt receipt=null,CoupAttemptReceipt coup=null,RegionScoringResult scoring=null)
-        { Scoring=scoring==null?null:new PublicRegionScore(scoring);Error=error;View=view;Space=receipt==null?null:new PublicSpaceResult(receipt);Coup=coup==null?null:new PublicCoupResult(coup); }
+        public PublicCardEventResult Event { get; }
+        internal CardActionResult(RuleError error,PlayerViewSnapshot view,SpaceAttemptReceipt receipt=null,CoupAttemptReceipt coup=null,RegionScoringResult scoring=null,InfluenceEventTransition eventTransition=null)
+        { Event=eventTransition==null?null:new PublicCardEventResult(eventTransition);Scoring=scoring==null?null:new PublicRegionScore(scoring);Error=error;View=view;Space=receipt==null?null:new PublicSpaceResult(receipt);Coup=coup==null?null:new PublicCoupResult(coup); }
     }
     public sealed class CardActionOption
     {
@@ -79,8 +89,9 @@ namespace ColdWarStruggle.Application
         public RuleError Space { get; }
         public RuleError Coup { get; }
         public RuleError Scoring { get; }
+        public RuleError Event { get; }=RuleError.UnsupportedCardAction;
         internal CardActionOption(GameState s,PlayerSide side,CardId id)
-        { Card=id;Influence=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Influence);Space=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Space);Coup=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Coup);Scoring=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Scoring); }
+        { Event=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Event);Card=id;Influence=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Influence);Space=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Space);Coup=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Coup);Scoring=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Scoring); }
     }
     public sealed class CardActionOptions
     {

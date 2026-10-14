@@ -28,6 +28,7 @@ namespace ColdWarStruggle.Bootstrap
                     .WithActionPractice(Read(root,"Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json"),Read(root,"Docs/Contracts/persistent-effects-batch1.schema.json"),Read(root,"Data/Rulesets/deluxe-2015/space-race.json"),Read(root,"Data/Rulesets/deluxe-2015/turn-flow.json"))
                     .WithPracticeRisk(Read(root,"Data/Rulesets/deluxe-2015/coup.json"),Read(root,"Data/Rulesets/deluxe-2015/defcon.json"),Read(root,"Data/Rulesets/deluxe-2015/military-operations.json"),Read(root,"Data/Rulesets/deluxe-2015/victory.json"))
                     .WithPracticeScoring(Read(root,"Data/Rulesets/deluxe-2015/region-scoring.json"),Read(root,"Docs/Contracts/region-scoring-rules.schema.json"))
+                    .WithPracticeInfluenceEvents(Read(root,"Data/Cards/deluxe-2015/early-influence-batch1.parameters.json"),Read(root,"Docs/Contracts/early-influence-parameters.schema.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch2.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch2.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
                     .WithQuickStartScenario(Read(root,"Data/Demo/quick-start-scenario.json"));
                 var worldAssets=WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
 #else
@@ -42,6 +43,7 @@ namespace ColdWarStruggle.Bootstrap
                     .WithActionPractice(Read(root,"persistent-effects-batch1.parameters.json"),Read(root,"persistent-effects-batch1.schema.json"),Read(root,"space-race.json"),Read(root,"turn-flow.json"))
                     .WithPracticeRisk(Read(root,"coup.json"),Read(root,"defcon.json"),Read(root,"military-operations.json"),Read(root,"victory.json"))
                     .WithPracticeScoring(Read(root,"region-scoring.json"),Read(root,"region-scoring-rules.schema.json"))
+                    .WithPracticeInfluenceEvents(Read(root,"early-influence-batch1.parameters.json"),Read(root,"early-influence-parameters.schema.json"),Read(root,"early-influence-batch2.parameters.json"),Read(root,"early-influence-batch2.schema.json"),Read(root,"cards.json"))
                     .WithQuickStartScenario(Read(root,"quick-start-scenario.json"));
                 var worldAssets=WorldMapAssets.Load(Read(root,"world-layout.json"),Read(root,"world-land.json"),catalog.Map);
 #endif

@@ -35,6 +35,11 @@ namespace ColdWarStruggle.Presentation
                 GUI.enabled=controller.SelectedSide==execution.PhasingPlayer;
                 if(Button(972,445,262,39,"开始事件"))BeginEvent();
             }
+            else if(execution.Stage==InfluenceEventStage.AwaitingChoice && query.Error==RuleError.WrongActor)
+            {
+                GUI.enabled=true;
+                if(Button(972,445,262,39,"切换至 "+Side(execution.Owner))) {controller.SelectSide(execution.Owner);GUIUtility.ExitGUI();}
+            }
             else
             {
                 GUI.enabled=controller.CanConfirmEvent;

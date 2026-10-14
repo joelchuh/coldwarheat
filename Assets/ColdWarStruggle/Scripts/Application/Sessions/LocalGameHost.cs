@@ -141,6 +141,7 @@ namespace ColdWarStruggle.Application
                     var transition=command.Kind==EventCommandKind.Begin?InfluenceEventFlow.Begin(state,side)
                         :command.Kind==EventCommandKind.ResolveAllocation?InfluenceEventFlow.ResolveAllocation(state,side,command.DecisionId,command.Allocations)
                         :InfluenceEventFlow.Resolve(state,side,command.DecisionId,command.Targets);
+                    transition=ActionPracticeRules.CompleteEventAction(transition);
                     if(!transition.Accepted)result=RejectEvent(transition.Error,side,transition);
                     else
                     {

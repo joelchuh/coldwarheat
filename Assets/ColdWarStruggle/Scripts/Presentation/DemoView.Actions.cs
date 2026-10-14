@@ -13,7 +13,7 @@ namespace ColdWarStruggle.Presentation
         {
             var p=view.Practice;
             Block(new Rect(26,67,1228,38),Background);
-            Text(28,70,1220,30,$"{Side(p.Actor)} 行动 {p.Round}/{p.RoundLimit}  |  VP（美+ / 苏−）{p.VpForUS}  |  DEFCON {p.Defcon?.ToString()??"—"}  |  军事累计 美 {p.UsMilitary?.ToString()??"—"} / 苏 {p.UssrMilitary?.ToString()??"—"}  |  太空 美 {p.UsSpace} / 苏 {p.UssrSpace}",small);
+            Text(28,70,1220,30,$"{Side(p.Actor)} 行动 {p.Round}/{p.RoundLimit}  |  VP（美+ / 苏−）{p.VpForUS}  |  DEFCON {p.Defcon?.ToString()??"—"}  |  军事累计 美 {p.UsMilitary?.ToString()??"—"} / 苏 {p.UssrMilitary?.ToString()??"—"}  |  太空 美 {p.UsSpace} / 苏 {p.UssrSpace}"+(view.Event?.Stage==InfluenceEventStage.AwaitingChoice?"  |  事件选择："+Side(view.Event.Owner):""),small);
         }
         void DrawPracticeControls(PlayerViewSnapshot view)
         {
@@ -41,7 +41,7 @@ namespace ColdWarStruggle.Presentation
                 var selected=controller.SelectedCard;
                 if(!selected.HasValue)
                 {
-                    Text(972,374,262,59,"先从本方手牌选择一张牌，再决定用于影响力、政变、太空或计分。",small);
+                    Text(972,374,262,59,"先从本方手牌选择一张牌，再决定用于影响力、政变、太空、计分或已支持事件。",small);
                     if(Button(972,440,262,43,"打开手牌 · 选择一张"))OpenCards();
                 }
                 else
@@ -59,7 +59,9 @@ namespace ColdWarStruggle.Presentation
                     GUI.enabled=option.Coup==RuleError.None;
                     if(Button(972,458,126,35,"选择政变目标")) {controller.SelectCoupUse();GUIUtility.ExitGUI();}
                     GUI.enabled=true;
-                    if(Button(1108,458,126,35,"重新选牌"))OpenCards();
+                    GUI.enabled=option.Event==RuleError.None;
+                    if(Button(1108,458,126,35,option.Event==RuleError.None?"发动事件":"事件未接入"))UseCard(CardActionKind.Event);
+                    GUI.enabled=true;
                     if(controller.SelectingCoup)
                     {
                         GUI.enabled=controller.LegalTargets().Targets.Contains(controller.SelectedCountry);
@@ -70,13 +72,15 @@ namespace ColdWarStruggle.Presentation
                     }
                     var reason=option.Influence!=RuleError.None?"影响力："+ErrorText(option.Influence):"";
                     if(option.Space!=RuleError.None)reason+="\n太空："+ErrorText(option.Space);
-                    if(!controller.SelectingCoup)Text(972,500,262,58,reason,small);
+                    if(!controller.SelectingCoup)
+                    { if(Button(972,500,262,32,"重新选牌"))OpenCards();Text(972,537,262,38,reason,small); }
                     }
                 }
             }
             var result=controller.LastCardResult;
             string message="";
-            if(result?.Scoring!=null)message="计分结果："+ScoringRegionName(result.Scoring.RegionId)+"\n"+ScoreSummary(result.Scoring);
+            if(result?.Event!=null)message=result.Event.Outcome==InfluenceEventStatus.ResolvedNoChange?"事件完成 · 影响力无需变化。":"事件完成 · 影响力变化 "+result.Event.Changes.Count+" 项。";
+            else if(result?.Scoring!=null)message="计分结果："+ScoringRegionName(result.Scoring.RegionId)+"\n"+ScoreSummary(result.Scoring);
             else if(result?.Coup!=null)
             {
                 var c=result.Coup;message=$"政变骰 {c.Roll} + OPS {c.Strength}，差额 {c.Margin}\n移除 {c.Removed} / 增加 {c.Added} · 军事 +{c.MilitaryCredit}";
@@ -85,6 +89,7 @@ namespace ColdWarStruggle.Presentation
             else if(result!=null)message=!result.Accepted?ErrorText(result.Error):result.Space!=null
                 ?$"太空骰 {result.Space.Roll} · {(result.Space.Success?"成功":"失败")}，轨道 {result.Space.From} → {result.Space.To}\nVP 变化 {result.Space.VpForUS:+0;-0;0}；{(result.View.Practice.Winner.HasValue?"终局停止收尾":"牌已弃置")}。":"行动命令已接受。";
             if(controller.LastResult!=null)message=controller.LastResult.Accepted?"投放成功，费用："+string.Join(" + ",controller.LastResult.Costs):ErrorText(controller.LastResult.Error);
+            if(controller.LastEventResult!=null)message=controller.LastEventResult.Accepted?"事件选择完成 · 影响力变化 "+controller.LastEventResult.Changes.Count+" 项。":ErrorText(controller.LastEventResult.Error);
             Text(972,578,262,65,message,small);
             GUI.enabled=controller.CanRetryCard;
             if(Button(972,646,262,27,"重发出牌命令（幂等）"))RetryCard();

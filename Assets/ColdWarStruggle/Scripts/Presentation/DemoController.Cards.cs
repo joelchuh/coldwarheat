@@ -39,7 +39,7 @@ namespace ColdWarStruggle.Presentation
         }
         public Task<CardActionResult> PlayCardAsync(CardActionKind kind)
         {
-            if(kind!=CardActionKind.Influence && kind!=CardActionKind.Space && kind!=CardActionKind.Coup && kind!=CardActionKind.Scoring)throw new ArgumentException("A card use is required.");
+            if(kind!=CardActionKind.Influence && kind!=CardActionKind.Space && kind!=CardActionKind.Coup && kind!=CardActionKind.Scoring && kind!=CardActionKind.Event)throw new ArgumentException("A card use is required.");
             var card=SelectedCard??throw new InvalidOperationException("Select a card first.");return SendCard(kind,card,kind==CardActionKind.Coup?SelectedCountry:(CountryId?)null);
         }
         public Task<CardActionResult> StartPracticeAsync()=>SendCard(CardActionKind.StartPractice);
@@ -50,7 +50,7 @@ namespace ColdWarStruggle.Presentation
             var command=new CardActionCommand(Guid.NewGuid().ToString("N"),v.GameId,v.Version,kind,card,target);
             lastCardCommand=command;lastCardSide=SelectedSide;
             var result=await session.SubmitCardActionAsync(command);
-            if(epoch==generation) { LastCardResult=result;LastResult=null;legal=null;if(result.Accepted){selectedCard=null;SelectingCoup=false;}MarkInteractionChanged(); }
+            if(epoch==generation) { LastCardResult=result;LastResult=null;legal=null;if(result.Accepted){selectedCard=null;SelectingCoup=false;ResetEventInteraction(false);}MarkInteractionChanged(); }
             return result;
         }
         public async Task<CardActionResult> RetryCardAsync()

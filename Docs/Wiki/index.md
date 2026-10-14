@@ -4,6 +4,7 @@
 
 | 知识点 | description | 状态 | 入口 |
 |---|---|---|---|
+| 真实出牌影响力事件 | 查八牌事件、受益方选择、星号去向与原子收尾 | EventPlaytest；1691项测试，鼠标未验收 | [playable-influence-events.md](playable-influence-events.md) |
 | 快速行动试玩 | 查示例部署、默认入口、真牌政变/计分和重置 | PlaytestDemo；证据见报告 | [quick-start-playtest.md](quick-start-playtest.md) |
 | 计分与公开预览 | 查七牌绑定、净VP/终局与不读手牌的地区预览 | 1648项回归；ScoringDemo | [playable-scoring-actions.md](playable-scoring-actions.md) |
 | 政变与风险试玩 | 查真实手牌政变、地图高亮、风险轨道、核战和幂等 | 新RiskDemo；验证见报告 | [playable-coup-actions.md](playable-coup-actions.md) |

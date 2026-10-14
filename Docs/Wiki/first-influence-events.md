@@ -77,3 +77,5 @@ stateDiagram-v2
 实际21项新增端到端测试与原有测试共256项通过，见 [数量会话验证](../Testing/allocation-event-sessions.validation.json)。此报告只验证会话功能；随后数量草稿与两个人工练习已接入，最新[Demo报告](../Testing/allocation-demo.validation.json)为295项回归与构建证据，鼠标实测仍单独标记。
 
 东欧动荡现可用`EraRemovalCatalogLoader`与`EraCountryRemovalEffect`装配人工实例，复用CountrySet命令；权威时代见[回合日历](turn-calendar.md)，逐国短缺与实际371项回归见[第二批](early-influence-batch2.md#东欧动荡实际实现)。完整出牌生命周期仍待实现。
+
+后续接线：八张纯影响力事件现已进入真实手牌生命周期，最新入口与证据见[事件试玩](playable-influence-events.md)。本页原批次证据保持历史记录。

@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "id": "module.playable-influence-events",
+  "kind": "module",
+  "status": "implemented-subset",
+  "description": "八张纯影响力事件的真实出牌生命周期：印刷ID绑定已实现效果，事件选择归受益方，牌留Resolving直至影响力/星号去向/根槽一次提交；无持续效果或对手事件加OPS。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeInfluenceCatalog.cs",
+      "symbol": "PracticeInfluenceCatalog"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Events.cs",
+      "symbol": "PlanEvent"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Events.cs",
+      "symbol": "CompleteEventAction"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/CardActionContracts.cs",
+      "symbol": "PublicCardEventResult"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.Events.cs",
+      "symbol": "WithPracticeInfluenceEvents"
+    }
+  ],
+  "inputs": [
+    "CardActionCommand Event用途，仅真实手牌ID/版本；既有EventCommand选择集合或分配",
+    "同一Map和CardCatalog绑定的纯影响力定义，明确无活动干预"
+  ],
+  "outputs": [
+    "完整下一GameState和公开事件反馈；待选保留源牌，完成只推进一槽",
+    "固定效果和无变化直接完成；选择者与根行动者分离"
+  ],
+  "dependencies": [
+    "module.playable-card-actions",
+    "module.playable-scoring-actions",
+    "module.influence-event-planners",
+    "module.influence-event-sessions"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.early_influence_batch1",
+    "effects.deluxe2015.early_influence_batch2",
+    "cards.deluxe2015.definitions"
+  ],
+  "preconditions": [
+    "无活动效果的单回合练习；正式出牌方与选择Owner必须分别校验；效果由可信加载器装配"
+  ],
+  "side_effects": [
+    "Core只规划中间不可变状态；Host只提交含牌去向/根完成的最终状态，失败不发布影响力"
+  ],
+  "stop_conditions": [
+    "不持牌/未注册事件/错身份/旧版本/无效完整选择/溢出拒绝；异图异牌目录和错印刷绑定拒绝",
+    "尚不接对手事件加OPS、持续状态、中国牌、头条、回合末和完整事件栈"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/first-influence-events.md",
+      "scope": "既有八牌规划/选择与共享参数"
+    },
+    {
+      "path": "Docs/Wiki/early-influence-batch2.md",
+      "scope": "用户已确认的分配/逐国短缺解释"
+    },
+    {
+      "path": "Docs/Wiki/turn-flow.md",
+      "scope": "源牌与根行动/选择拥有者分离、星号去向"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayInfluenceEventTests.cs",
+      "status": "passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayInfluenceEventSessionTests.cs",
+      "status": "passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayInfluenceEventCatalogTests.cs",
+      "status": "passed"
+    }
+  ],
+  "documentation": "Docs/Wiki/playable-influence-events.md",
+  "verification": {
+    "report": "Docs/Testing/playable-influence-events.validation.json"
+  }
+}

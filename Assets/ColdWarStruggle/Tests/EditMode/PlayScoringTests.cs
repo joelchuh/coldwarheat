@@ -10,13 +10,14 @@ namespace ColdWarStruggle.Tests
     public class PlayScoringTests
     {
         static string Read(string p)=>File.ReadAllText(Path.Combine(DefinitionTests.Root,p));
-        internal static GameState Ready(string scoring="card.europe_scoring",int vp=0,bool empty=false)
+        internal static GameState Ready(string scoring="card.europe_scoring",int vp=0,bool empty=false,Func<ActionPracticeDefinition,ActionPracticeDefinition> configure=null)
         {
             var s=PlayCoupTests.Prepared();var d=s.Practice.Definition;var rd=d.Risk;
             var victory=new VictoryDefinition(vp,rd.Victory.AutomaticVpThreshold,rd.Victory.HeldScoringRows);
             var risk=new PracticeRiskDefinition(rd.Coup,rd.Defcon,rd.Military,victory);
             var scoringDefinition=RegionScoringDefinitionLoader.LoadSubset(Read("Data/Rulesets/deluxe-2015/region-scoring.json"),Read("Docs/Contracts/region-scoring-rules.schema.json"),s.Map);
-            var p=ActionPracticeState.Create(new ActionPracticeDefinition(d.Cards,d.Ops,d.Space,d.Calendar,risk,scoringDefinition));
+            var definition=new ActionPracticeDefinition(d.Cards,d.Ops,d.Space,d.Calendar,risk,scoringDefinition);
+            var p=ActionPracticeState.Create(configure==null?definition:configure(definition));
             var id=new CardId(scoring);var hands=new Dictionary<PlayerSide,IReadOnlyList<CardId>> {
                 {PlayerSide.US,s.Cards.GetHand(PlayerSide.US).Where(c=>!c.Equals(id)).ToArray()},
                 {PlayerSide.USSR,s.Cards.GetHand(PlayerSide.USSR).Skip(1).Where(c=>!c.Equals(id)).Concat(new[]{id}).ToArray()}};

@@ -72,6 +72,7 @@ namespace ColdWarStruggle.Presentation
             if(epoch==generation)
             {
                 LastEventResult=result;legal=null;eventTargets=null;
+                if(result.Accepted){selectedCard=null;SelectingCoup=false;}
                 EnsureDraftContext(ReadView());
             }
             return result;
