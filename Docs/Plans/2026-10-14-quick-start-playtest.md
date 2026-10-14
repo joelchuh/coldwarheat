@@ -8,7 +8,7 @@ BASE: 8a18774934f863cc69974b2bc5c3d159fd9c45d0
 
 - [x] T1 数据与装配 RED/GREEN：数据新描述；DemoCatalog.QuickStart.cs严格字段/来源/重复/分配验证；DemoScenario保留不可变分配；主CreateHost串既有flow。测试正常地图与轨道/源场景不变、错误地区/总数/重复/顺序/未知源/坏scope拒绝、重复载入拒绝、快开不消耗RNG（首次太空与手动部署比较）、新局独立及真实双方行动。
 - [x] T2 默认入口 RED/GREEN与界面/构建：ScenarioIndex优先快开，旧fallback保留且显式指定优先；Bootstrap与Editor都加载同源JSON并复制35份载荷；独立BuildPlaytest使用唯一窗口标题且构建后恢复Editor产品名。实际capture检查行动地图和手牌，真实鼠标证据分列。
-- [ ] T3 更新Wiki/JSON/验证/worklog；完整检查后一次独立审查，常规commit/ff/push核对SHA。
+- [x] T3 更新Wiki/JSON/验证/worklog；完整检查后一次独立审查，常规commit/ff/push核对SHA。
 
 Review focus: 快开只能复用合法部署，不偷加影响力；固定牌/RNG和源场景保持；每次重开独立；默认入口改变有明确fixture标签和手动返回路径；视图/构建同一数据，窗口标题只在新产物生效。
 

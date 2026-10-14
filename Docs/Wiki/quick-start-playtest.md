@@ -1,7 +1,7 @@
 # 快速行动试玩
 
 > description: 查询免手动准备的行动练习、示例部署数据、默认/手动入口、重置与真实试玩边界。
-> 状态：1664项EditMode通过、独立构建和35份载荷核对通过；实际地图/手牌渲染已检查，鼠标未验收，独立审查待完成。
+> 状态：1664项EditMode通过、独立构建和35份载荷核对通过；实际地图/手牌渲染已检查，鼠标未验收，独立审查无阻塞项，1项Minor见worklog。
 
 入口：[模块JSON](../Descriptors/quick-start-playtest.module.json)、[数据JSON描述](../../Data/Descriptors/demo-quick-start-scenario.data.json)。
 
@@ -17,7 +17,7 @@
 
 测试定位：QuickStartDemoTests核对源场景不变、坏fixture拒绝、真实政变→计分→重置、手动/自动结果及首次随机一致、默认优先与显式手动选择。实现定位：DemoCatalog.QuickStart.cs（装配/启动）、DemoCatalog.cs（工厂）、DemoLaunchOptions.ScenarioIndex（默认）、DemoBootstrap与DemoBuild（两端相同数据）。
 
-运行 `E:\TwilightStruggle\Builds\PlaytestDemo\ColdWarStruggleDemo.exe`，窗口标题ColdWarStruggle Playtest。构建后恢复Editor原产品名。较早FirstDemo/PreviewDemo/PlayableDemo/RiskDemo/ScoringDemo的exe不会自动更新。
+运行 `E:\TwilightStruggle\Builds\PlaytestDemo\ColdWarStruggleDemo.exe`，窗口标题ColdWarStruggle Playtest。构建后恢复Prepare所设的First Demo产品名；自定义Editor产品名的保留是待改进项。较早FirstDemo/PreviewDemo/PlayableDemo/RiskDemo/ScoringDemo的exe不会自动更新。
 
 ![快速行动地图](../Images/quick-start-map.png)
 

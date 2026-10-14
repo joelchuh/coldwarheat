@@ -15,3 +15,11 @@ T2 render found China summary second line clipped at y746/h31. Adjusted only act
 T1/T2 complete: final source quick-start-layout-final1664/1664,0 skipped,exit0,XML2bcb31d3c7b4d6257fffdc200c89c33f1843a5963cc3ed84fd0c5e913dd5c7e1. Final build exit0/FIRST_DEMO_BUILD_SUCCEEDED97490186;35 payloads byte-equal. Final map/hands actual1280x820 inspected; China row fully visible. Metadata120/120/71/212/597/224 passed.
 Ruling: 新Playtest窗口捕获仍为壁纸且激活失败，不执行坐标输入 — 无可信当前画面 — 成本：真实鼠标出牌保留缺口；测试与渲染只证明各自范围。
 T3 source frozen; once-only independent final review pending.
+
+Final: fresh review a1aac42:0Critical/Important,1Minor. Independently matched1664 XML/192source/35payload/exe and inspected map+hands.
+Final: minor (deferred): BuildAt在Prepare后保存productName，不能保留进入前的自定义Editor产品名；当前First Demo配置不受影响。未来构建配置改进时处理。
+Final: Ruling: 真实鼠标仍未验证 — 无可靠激活/截图不输入 — 成本：用户试玩可能发现交互问题。
+Final: Ruling: 仅验1280x820布局 — 当前正式截图尺寸，缩放算法既有 — 成本：其他窗口比例仍需视觉QA。
+Final: Ruling: 完整游戏/头条/事件生命周期/期末/AI/联网/存档与部署最优性不属本fixture入口 — 明示当前练习范围，正式服务后续接入 — 成本：不能完整对局。
+Final: Ruling: 审查者Git只读调用被沙箱拒绝，使用固定diff与实际文件/摘要 — 主实施者已核对本地HEAD和干净状态 — 成本：Git范围身份由主实施者独立负责，未冒称审查者验证。
+T1/T2/T3 complete; routine merge/push follows.
