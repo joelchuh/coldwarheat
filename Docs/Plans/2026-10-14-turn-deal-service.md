@@ -16,7 +16,7 @@ Global constraints：纯C#、不复制手牌目标/时代数字、输入不可�
 ## T2 知识与交付
 - [x] 独立module JSON与catalog/index、Wiki状态、工作记录、源码/XML哈希报告；metadata validator通过。
 - [x] 只增加纯服务不重建或替换已鼠标验收Demo；报告明确无新UI/无下一回合按钮。下一批协调器才处理轨道/回合与头条。
-- [ ] 审阅diff并提交，唯一整分支只读review；Critical/Important一次TDD修复，Minor记账；ff/main推送远程核对。
+- [x] 审阅diff并提交，唯一整分支只读review；Critical/Important一次TDD修复，Minor记账；ff/main推送远程核对。
 
 ## Review Focus
 1. 新时代只加一次，不混弃牌；已进入同年代的重试不再次洗牌。对应Mid/FullHandRetry测试。

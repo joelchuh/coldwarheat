@@ -2,10 +2,19 @@
   "schema_version": 1,
   "id": "validation.turn-deal",
   "description": "补牌纯服务的实际测试及源码证据",
-  "status": "tested-review-pending",
+  "status": "passed",
   "baseline_commit": "9f6ab5286177f689c473221b4325510f9e1b255c",
   "ui": "unchanged; not integrated",
-  "review": "pending",
+  "review": {
+    "status": "approved",
+    "critical": 0,
+    "important": 0,
+    "minor": 1,
+    "deferred_minors": [
+      "Random failure regression currently fails on first sample; throwing Fork and failure-after-progress only verified by static inspection."
+    ],
+    "rulings_worklog": "Docs/Worklogs/2026-10-14-turn-deal-service.md"
+  },
   "runs": [
     {
       "status": "passed",
@@ -329,5 +338,6 @@
   "build": {
     "status": "not-rebuilt",
     "reason": "New pure service is not wired into Demo; prior TurnEndPlaytest remains the playable build."
-  }
+  },
+  "source_commit": "1c4fee5647f5e74bedb59e880765b42826ca08cb"
 }
