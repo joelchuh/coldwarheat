@@ -90,7 +90,7 @@ namespace ColdWarStruggle.Presentation
             if(Button(840,115,190,40,"操作方：美国")) { controller.SelectSide(PlayerSide.US);GUIUtility.ExitGUI(); }
             if(Button(1040,115,214,40,"操作方：苏联")) { controller.SelectSide(PlayerSide.USSR);GUIUtility.ExitGUI(); }
             var view=controller.ReadView();mapPresenter.Refresh();
-            if(view.Practice!=null && view.Deployment==null)DrawPracticeStatus(view);
+            if(view.Practice!=null && view.Deployment==null){DrawPracticeStatus(view);DrawOpsEffects(view.Practice);}
             if(handPanelOpen && view.Cards!=null){DrawHandPanel(view);return;}
             bool wideMap=view.Practice!=null && view.Deployment==null;
             float mapLeft=wideMap?26:294,mapWidth=wideMap?908:640;
@@ -139,7 +139,7 @@ namespace ColdWarStruggle.Presentation
             }
             else Text(972,681,266,62,"本方："+string.Join("、",view.OwnHand)+"\n对手："+view.OpponentHandCount+" 张（隐藏）",small);
             }
-            Text(28,786,1220,27,$"真实手牌 / 影响力、政变、太空、计分与十张已接事件；头条、其他事件、回合末与 AI 待接入。   版本 {view.Version} · 序号 {view.EventSequence}",small);
+            Text(28,786,1220,27,$"真实手牌 / 影响力、政变、太空、计分与十二张已接事件；头条、其他事件、回合末与 AI 待接入。   版本 {view.Version} · 序号 {view.EventSequence}",small);
         }
         static string TurnText(GameTurnContext turn)
         {

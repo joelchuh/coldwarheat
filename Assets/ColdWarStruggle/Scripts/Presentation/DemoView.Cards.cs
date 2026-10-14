@@ -30,8 +30,9 @@ namespace ColdWarStruggle.Presentation
             handScroll=GUI.BeginScrollView(new Rect(44,259,1194,476),handScroll,new Rect(0,0,1168,Math.Max(476,height)));
             float rowY=0;
             var cardTitle=new GUIStyle(label){fontSize=17,fontStyle=FontStyle.Bold};
-            var opsStyle=new GUIStyle(title){fontSize=25};
+            var opsStyle=new GUIStyle(title){fontSize=19};
             var footStyle=new GUIStyle(small){fontSize=12};
+            var options=view.Practice==null?null:controller.CardOptions().Cards.ToDictionary(c=>c.Card);
             foreach(var row in frame.Rows)
             {
                 Text(0,rowY,1140,27,$"{Side(row.Side)} · {row.Cards.Count} 张普通手牌"+(row.Side==view.Viewer?" · 当前操作方":" · 测试观察"),label);
@@ -46,9 +47,11 @@ namespace ColdWarStruggle.Presentation
                     while(cardTitle.fontSize>11 && cardTitle.CalcHeight(titleContent,118)>62)
                         cardTitle.fontSize--;
                     Text(x+10,y+14,118,62,card.Title,cardTitle);
-                    Text(x+10,y+79,118,32,card.Kind==CardKind.Scoring?"计分":$"OPS {card.PrintedOps}",opsStyle);
+                    Text(x+10,y+79,118,27,card.Kind==CardKind.Scoring?"计分":$"印刷 OPS {card.PrintedOps}",opsStyle);
+                    var current=row.Side==view.Viewer && options!=null && options.TryGetValue(card.Id,out var quote)?quote.CurrentOps:null;
+                    if(current.HasValue)Text(x+10,y+104,118,18,$"当前 OPS {current.Value}",footStyle);
                     var affiliation=card.Affiliation switch {CardAffiliation.US=>"美国事件",CardAffiliation.USSR=>"苏联事件",CardAffiliation.Neutral=>"中立事件",_=>"地区计分"};
-                    Text(x+10,y+115,118,25,affiliation,small);
+                    Text(x+10,y+(current.HasValue?122:115),118,current.HasValue?18:25,affiliation,current.HasValue?footStyle:small);
                     if(view.Practice!=null && row.Side==view.Viewer)
                     {
                         if(Button(x+8,y+140,122,27,"选择这张牌"))
@@ -60,7 +63,7 @@ namespace ColdWarStruggle.Presentation
             }
             GUI.EndScrollView();
             Text(48,744,1172,26,$"选牌只改变本地意图，点击用途后才提交；中国牌单独持有，本批暂不可使用。  版本 {frame.Version}",small);
-            Text(28,786,1220,27,"行动试玩支持影响力、政变、太空、计分与十张已接事件；对手事件加OPS、其他事件和完整回合待接入。",small);
+            Text(28,786,1220,27,"行动试玩支持影响力、政变、太空、计分与十二张已接事件；对手事件加OPS、其他事件和完整回合待接入。",small);
         }
     }
 }

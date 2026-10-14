@@ -5,7 +5,7 @@ namespace ColdWarStruggle.Core
     {
         static ActionPracticeState AfterImmediate(ActionPracticeState p,CardId card,SpaceAttemptState space,int vp,PracticeRiskState risk)
             =>risk?.Result?.Outcome==VictoryOutcome.Finished
-                ?new ActionPracticeState(p.Definition,ActionPracticeStage.Complete,p.CompletedActions,card,space,vp,risk)
+                ?new ActionPracticeState(p.Definition,ActionPracticeStage.Complete,p.CompletedActions,card,space,vp,risk,p.OpsEffects)
                 :Next(p,space,vp,risk);
         static CardActionTransition PlanScoring(GameState state,PlayerSide side,string actionId,CardId? card,CountryId? target)
         {

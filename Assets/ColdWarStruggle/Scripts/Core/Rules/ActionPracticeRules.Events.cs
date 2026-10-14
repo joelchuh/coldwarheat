@@ -10,9 +10,10 @@ namespace ColdWarStruggle.Core
             var error=CanPlay(state,side,card.Value,CardActionKind.Event);if(error!=RuleError.None)return new CardActionTransition(error);
             try
             {
+                if(state.Practice.Definition.TurnOpsEvents?.Effects.TryGetValue(card.Value,out var opsEffect)==true)return PlanTurnOpsEvent(state,side,opsEffect);
                 if(state.Practice.Definition.DefconVpEvents?.Effects.TryGetValue(card.Value,out var trackEffect)==true)return PlanDefconVpEvent(state,side,trackEffect);
                 var p=state.Practice;var effect=p.Definition.InfluenceEvents.Effects[card.Value];
-                var pending=new ActionPracticeState(p.Definition,ActionPracticeStage.ResolvingEvent,p.CompletedActions,card,p.Space,p.VpForUS,p.Risk);
+                var pending=new ActionPracticeState(p.Definition,ActionPracticeStage.ResolvingEvent,p.CompletedActions,card,p.Space,p.VpForUS,p.Risk,p.OpsEffects);
                 // Intermediate immutable states never leave the host's commit boundary.
                 var prepared=Commit(state,pending,Move(state,card.Value,true,true),state.RandomState).NextState
                     .WithInfluenceEvent(new InfluenceEventExecution("practice.event."+p.CompletedActions,effect,side,InfluenceEventPolicy.NoActiveInterference));

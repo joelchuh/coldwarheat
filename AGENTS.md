@@ -651,3 +651,7 @@ EventPlaytest接八张既有纯影响力事件：直接发动、受益方选择�
 ## 33. 即时DEFCON/VP事件试玩（2026-10-14）
 
 DefconEventPlaytest已接Duck and Cover / Nuclear Test Ban，支持十张直接Event。核战按根责任且跳过奖分，禁止核试验先旧DEFCON计分、获胜不再改善；保留旧风险历史。1729项回归、37份载荷、实际初始渲染和独立审查通过。共享ContractJson新增有界prefixItems/boolean items支持。先读Docs/Wiki/playable-defcon-vp-events.md与bounded-json-contract.md及JSON。How I Learned选择/军事、持续效果/对手Event加OPS/完整回合仍未接；鼠标与结果面板视觉未验收。
+
+## 34. 两张持续 OPS 事件试玩（2026-10-14）
+
+OpsEventPlaytest已接遏制政策/红色恐怖清洗的有限单回合持续实例，共十二张直接Event；统一报价影响投放、政变强度/军事与太空门槛，星号移出不取消效果。先读Docs/Wiki/playable-flat-ops-events.md及模块JSON。1768项回归、37份载荷及初始地图/手牌渲染已过；最终审查以工作记录为准。完整到期/取消/存档、地区奖励、对手Event加OPS/头条/回合末仍未接；动作Complete保持效果且不跨回合。鼠标及激活后/选牌结果面板视觉未验收。

@@ -4,7 +4,7 @@ namespace ColdWarStruggle.Core
 {
     public enum CardActionKind { StartPractice, Influence, Space, FinishInfluence, Coup, Scoring, Event }
     public enum ActionPracticeStage { AwaitingStart, ChooseCard, PlacingInfluence, Complete, ResolvingEvent }
-    // Explicit single-turn, no-active-effects practice. It is not the full turn coordinator.
+    // Explicit single-turn practice with a bounded, typed set of supported events. Not the full turn coordinator.
     public sealed class ActionPracticeDefinition
     {
         public CardCatalog Cards { get; }
@@ -15,13 +15,15 @@ namespace ColdWarStruggle.Core
         public RegionScoringDefinition Scoring { get; }
         public PracticeInfluenceCatalog InfluenceEvents { get; }
         public PracticeDefconVpCatalog DefconVpEvents { get; }
-        public ActionPracticeDefinition(CardCatalog cards,OpsGeneralDefinition ops,SpaceRaceDefinition space,TurnCalendar calendar,PracticeRiskDefinition risk=null,RegionScoringDefinition scoring=null,PracticeInfluenceCatalog influenceEvents=null,PracticeDefconVpCatalog defconVpEvents=null)
+        public PracticeTurnOpsCatalog TurnOpsEvents { get; }
+        public ActionPracticeDefinition(CardCatalog cards,OpsGeneralDefinition ops,SpaceRaceDefinition space,TurnCalendar calendar,PracticeRiskDefinition risk=null,RegionScoringDefinition scoring=null,PracticeInfluenceCatalog influenceEvents=null,PracticeDefconVpCatalog defconVpEvents=null,PracticeTurnOpsCatalog turnOpsEvents=null)
         {
             if(influenceEvents!=null && (!ReferenceEquals(influenceEvents.Cards,cards) || (risk!=null && !ReferenceEquals(influenceEvents.Map,risk.Defcon.Map)) || (scoring!=null && !ReferenceEquals(influenceEvents.Map,scoring.Map))))throw new ArgumentException("Influence events must share the same cards and map.");
             if(scoring!=null && (risk==null || !ReferenceEquals(scoring.Map,risk.Defcon.Map)))throw new ArgumentException("Scoring needs risk rules bound to the same map.");
             if(scoring!=null && cards!=null && cards.Cards.Where(c=>c.Kind==CardKind.Scoring).Any(c=>c.ScoringRegion!=scoring.WeightedRegionId && !scoring.Regions.Any(r=>r.Id==c.ScoringRegion)))throw new ArgumentException("Unknown printed scoring region.");
             if(defconVpEvents!=null && (risk==null || !ReferenceEquals(defconVpEvents.Cards,cards) || influenceEvents!=null && defconVpEvents.Effects.Keys.Any(influenceEvents.Effects.ContainsKey)))throw new ArgumentException("DEFCON events need same cards, risk and disjoint effect IDs.");
-            DefconVpEvents=defconVpEvents;InfluenceEvents=influenceEvents;Scoring=scoring;Cards=cards??throw new ArgumentNullException(nameof(cards));Ops=ops??throw new ArgumentNullException(nameof(ops));Space=space??throw new ArgumentNullException(nameof(space));Calendar=calendar??throw new ArgumentNullException(nameof(calendar));Risk=risk; }
+            if(turnOpsEvents!=null && (!ReferenceEquals(turnOpsEvents.Cards,cards) || turnOpsEvents.Effects.Keys.Any(id=>influenceEvents?.Effects.ContainsKey(id)==true || defconVpEvents?.Effects.ContainsKey(id)==true)))throw new ArgumentException("Flat OPS events require same cards and disjoint IDs.");
+            TurnOpsEvents=turnOpsEvents;DefconVpEvents=defconVpEvents;InfluenceEvents=influenceEvents;Scoring=scoring;Cards=cards??throw new ArgumentNullException(nameof(cards));Ops=ops??throw new ArgumentNullException(nameof(ops));Space=space??throw new ArgumentNullException(nameof(space));Calendar=calendar??throw new ArgumentNullException(nameof(calendar));Risk=risk; }
     }
     public sealed class ActionPracticeState
     {
@@ -34,8 +36,9 @@ namespace ColdWarStruggle.Core
         public SpaceAttemptState Space { get; }
         public int VpForUS { get; }
         public PracticeRiskState Risk { get; }
-        internal ActionPracticeState(ActionPracticeDefinition definition,ActionPracticeStage stage,int completed,CardId? card,SpaceAttemptState space,int vp,PracticeRiskState risk=null)
-        { Definition=definition;Stage=stage;CompletedActions=completed;ActiveCard=card;Space=space;VpForUS=vp;Risk=risk; }
+        public TurnOpsEffectState OpsEffects { get; }
+        internal ActionPracticeState(ActionPracticeDefinition definition,ActionPracticeStage stage,int completed,CardId? card,SpaceAttemptState space,int vp,PracticeRiskState risk=null,TurnOpsEffectState opsEffects=null)
+        { Definition=definition;Stage=stage;CompletedActions=completed;ActiveCard=card;Space=space;VpForUS=vp;Risk=risk;OpsEffects=opsEffects??TurnOpsEffectState.Create(space.Turn); }
         public static ActionPracticeState Create(ActionPracticeDefinition definition)
         {
             if(definition==null)throw new ArgumentNullException(nameof(definition));
@@ -53,7 +56,8 @@ namespace ColdWarStruggle.Core
         public RegionScoringResult ScoringResult { get; }
         public InfluenceEventTransition EventTransition { get; }
         public DefconVpEventPlan DefconVpEvent { get; }
-        internal CardActionTransition(RuleError error,GameState next=null,SpaceAttemptReceipt receipt=null,CoupAttemptReceipt coup=null,RegionScoringResult scoring=null,InfluenceEventTransition eventTransition=null,DefconVpEventPlan defconVpEvent=null)
-        { DefconVpEvent=defconVpEvent;EventTransition=eventTransition;ScoringResult=scoring;Error=error;NextState=next;SpaceReceipt=receipt;CoupReceipt=coup; }
+        public TurnOpsEffectInstance ActivatedOpsEffect { get; }
+        internal CardActionTransition(RuleError error,GameState next=null,SpaceAttemptReceipt receipt=null,CoupAttemptReceipt coup=null,RegionScoringResult scoring=null,InfluenceEventTransition eventTransition=null,DefconVpEventPlan defconVpEvent=null,TurnOpsEffectInstance activatedOpsEffect=null)
+        { ActivatedOpsEffect=activatedOpsEffect;DefconVpEvent=defconVpEvent;EventTransition=eventTransition;ScoringResult=scoring;Error=error;NextState=next;SpaceReceipt=receipt;CoupReceipt=coup; }
     }
 }

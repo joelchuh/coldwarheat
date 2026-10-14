@@ -15,6 +15,12 @@ namespace ColdWarStruggle.Presentation
             Block(new Rect(26,67,1228,38),Background);
             Text(28,70,1220,30,$"{Side(p.Actor)} 行动 {p.Round}/{p.RoundLimit}  |  VP（美+ / 苏−）{p.VpForUS}  |  DEFCON {p.Defcon?.ToString()??"—"}  |  军事累计 美 {p.UsMilitary?.ToString()??"—"} / 苏 {p.UssrMilitary?.ToString()??"—"}  |  太空 美 {p.UsSpace} / 苏 {p.UssrSpace}"+(view.Event?.Stage==InfluenceEventStage.AwaitingChoice?"  |  事件选择："+Side(view.Event.Owner):""),small);
         }
+        string OpsEffectSummary(PublicTurnOpsEffect effect)=>CardTitle(effect.Card)+" → "+Side(effect.AffectedSide)+$" {effect.Delta:+0;-0;0}";
+        void DrawOpsEffects(PublicPracticeView practice)
+        {
+            var text=practice.OpsEffects.Count==0?"本回合持续 OPS：无":"本回合持续 OPS："+string.Join("；",practice.OpsEffects.Select(OpsEffectSummary))+"  ·  回合末到期";
+            Text(28,155,1220,22,text,new GUIStyle(small){fontSize=12});
+        }
         void DrawPracticeControls(PlayerViewSnapshot view)
         {
             var p=view.Practice;
@@ -47,7 +53,7 @@ namespace ColdWarStruggle.Presentation
                 else
                 {
                     var option=controller.CardOptions().Cards.First(c=>c.Card.Equals(selected.Value));
-                    Text(972,365,262,44,CardTitle(selected.Value),small);
+                    Text(972,365,262,44,CardTitle(selected.Value)+(option.CurrentOps.HasValue?$"\n印刷 OPS {option.PrintedOps} → 当前 OPS {option.CurrentOps}":""),small);
                     if(option.Scoring==RuleError.None)DrawScoringChoice(selected.Value);
                     else
                     {
@@ -79,7 +85,8 @@ namespace ColdWarStruggle.Presentation
             }
             var result=controller.LastCardResult;
             string message="";
-            if(result?.DefconVpEvent!=null)
+            if(result?.ActivatedOpsEffect!=null)message="持续效果已生效\n"+OpsEffectSummary(result.ActivatedOpsEffect)+"\n本回合有效，弃牌或移出不取消。";
+            else if(result?.DefconVpEvent!=null)
             {
                 var e=result.DefconVpEvent;
                 message=string.Join("\n",e.Steps.Select(step=>step switch {

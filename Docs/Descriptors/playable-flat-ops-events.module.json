@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "id": "module.playable-flat-ops-events",
+  "kind": "module",
+  "status": "implemented-subset",
+  "description": "遏制政策与红色恐怖／清洗的有限回合持续实例、真实Event激活与统一OPS报价；保留效果跨动作和终局，公开印刷/当前OPS，完整到期与地区奖励未接入。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/TurnOpsEffects.cs",
+      "symbol": "TurnOpsEffectState"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/TurnOpsEffects.cs",
+      "symbol": "PracticeTurnOpsCatalog"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.TurnOpsEvents.cs",
+      "symbol": "PlanTurnOpsEvent"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.cs",
+      "symbol": "QuoteCard"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/TurnOpsEffectLoader.cs",
+      "symbol": "LoadFlatSubset"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.TurnOpsEvents.cs",
+      "symbol": "WithPracticeTurnOpsEvents"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/CardActionContracts.cs",
+      "symbol": "PublicTurnOpsEffect"
+    }
+  ],
+  "inputs": [
+    "已校验的两牌Flat参数、当前权威回合/序列/事件控制者",
+    "真实CardActionCommand(Event)，无客户修正数值或定义"
+  ],
+  "outputs": [
+    "不可变持续实例、来源与影响方、同回合报价贡献",
+    "原子下一状态、公开活动摘要和本会话手牌的印刷/当前OPS"
+  ],
+  "dependencies": [
+    "module.playable-defcon-vp-events",
+    "module.ops-general"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.persistent_batch1",
+    "cards.deluxe2015.definitions"
+  ],
+  "preconditions": [
+    "目录与其他事件共享Cards且ID互斥；只允许已知两牌Flat类型",
+    "仅单回合练习；OPS归实际使用方，非牌面阵营或事件选择方"
+  ],
+  "side_effects": [
+    "实例/牌去向/根推进一次发布；后续影响力预算、政变强度与军事信用、太空资格共同消费",
+    "不修改打印值、事件固定加点/VP/DEFCON、骰子或其他轨道"
+  ],
+  "stop_conditions": [
+    "同ID改请求冲突；同效果同方另一来源重复RequiresRuling；溢出不提交",
+    "跨回合查询拒绝，完整ExpireAndReset、取消/存档、地区奖励、对手Event加OPS未实现"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/persistent-effects.md",
+      "scope": "既有已核验Flat归属与期限；运行只接两牌，不表示完整ActiveEffectService"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/TurnOpsEffectTests.cs",
+      "status": "passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayTurnOpsEventTests.cs",
+      "status": "passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayTurnOpsCatalogTests.cs",
+      "status": "passed"
+    }
+  ],
+  "documentation": "Docs/Wiki/playable-flat-ops-events.md",
+  "verification": {
+    "report": "Docs/Testing/playable-flat-ops-events.validation.json"
+  }
+}

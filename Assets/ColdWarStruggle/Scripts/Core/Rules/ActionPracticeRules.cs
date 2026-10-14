@@ -5,6 +5,12 @@ namespace ColdWarStruggle.Core
 {
     public static partial class ActionPracticeRules
     {
+        public static OpsGeneralQuote QuoteCard(GameState state,PlayerSide side,CardId card,OpsValuePurpose purpose)
+        {
+            if(state?.Practice==null)throw new ArgumentException("OPS quote needs a real practice state.");
+            var p=state.Practice;
+            return OpsGeneralRules.QuoteCard(p.Definition.Ops,p.Definition.Cards.GetCard(card),side,purpose,p.OpsEffects.GetModifiers(state.Turn));
+        }
         static RuleError Check(GameState s,PlayerSide side)
         {
             if(s==null || (side!=PlayerSide.US && side!=PlayerSide.USSR))return RuleError.InvalidCommand;
@@ -25,7 +31,7 @@ namespace ColdWarStruggle.Core
             if(kind==CardActionKind.Scoring && state.Practice.Definition.Scoring==null)return RuleError.UnsupportedCardAction;
             if(!state.Cards.GetHand(side).Contains(card))return RuleError.CardNotOwned;
             var definition=state.Practice.Definition.Cards.GetCard(card);
-            if(kind==CardActionKind.Event)return definition.Kind==CardKind.Event && (state.Practice.Definition.InfluenceEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.DefconVpEvents?.Effects.ContainsKey(card)==true)?RuleError.None:RuleError.UnsupportedCardAction;
+            if(kind==CardActionKind.Event)return definition.Kind==CardKind.Event && (state.Practice.Definition.InfluenceEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.DefconVpEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.TurnOpsEvents?.Effects.ContainsKey(card)==true)?RuleError.None:RuleError.UnsupportedCardAction;
             if(kind==CardActionKind.Scoring)return definition.Kind==CardKind.Scoring?RuleError.None:RuleError.UnsupportedCardAction;
             if(definition.Kind!=CardKind.Event)return RuleError.UnsupportedCardAction;
             if(kind==CardActionKind.Influence || kind==CardActionKind.Coup)
@@ -33,7 +39,7 @@ namespace ColdWarStruggle.Core
                 var opponent=side==PlayerSide.US?CardAffiliation.USSR:CardAffiliation.US;
                 return definition.Affiliation==opponent?RuleError.UnsupportedCardAction:RuleError.None;
             }
-            var quote=OpsGeneralRules.QuoteCard(state.Practice.Definition.Ops,definition,side,OpsValuePurpose.Space,Array.Empty<OpsFlatModifier>());
+            var quote=QuoteCard(state,side,card,OpsValuePurpose.Space);
             var request=SpaceAttemptRequest.FromQuote("query","query",state.Turn.Number,quote);
             return SpaceAttemptRules.ValidateAttempt(state.Practice.Space,request)==SpaceAttemptEligibility.Allowed?RuleError.None:RuleError.SpaceAttemptUnavailable;
         }
@@ -54,7 +60,7 @@ namespace ColdWarStruggle.Core
                     if(p.Stage!=ActionPracticeStage.AwaitingStart)return new CardActionTransition(RuleError.ActionNotReady);
                     if(state.Deployment==null || !state.Deployment.Complete)return new CardActionTransition(RuleError.SetupInProgress);
                     if(state.Cards.ResolvingCards.Count!=0)return new CardActionTransition(RuleError.ActionNotReady);
-                    return Commit(state,new ActionPracticeState(p.Definition,ActionPracticeStage.ChooseCard,0,null,p.Space,p.VpForUS,p.Risk),state.Cards,state.RandomState);
+                    return Commit(state,new ActionPracticeState(p.Definition,ActionPracticeStage.ChooseCard,0,null,p.Space,p.VpForUS,p.Risk,p.OpsEffects),state.Cards,state.RandomState);
                 }
                 if(kind==CardActionKind.FinishInfluence)
                 {
@@ -66,11 +72,11 @@ namespace ColdWarStruggle.Core
                 var printed=p.Definition.Cards.GetCard(card.Value);
                 if(kind==CardActionKind.Influence)
                 {
-                    var quote=OpsGeneralRules.QuoteCard(p.Definition.Ops,printed,side,OpsValuePurpose.Influence,Array.Empty<OpsFlatModifier>());
+                    var quote=QuoteCard(state,side,card.Value,OpsValuePurpose.Influence);
                     var zones=Move(state,card.Value,true,true);
-                    return Commit(state,new ActionPracticeState(p.Definition,ActionPracticeStage.PlacingInfluence,p.CompletedActions,card,p.Space,p.VpForUS,p.Risk),zones,state.RandomState,quote.GeneralValue);
+                    return Commit(state,new ActionPracticeState(p.Definition,ActionPracticeStage.PlacingInfluence,p.CompletedActions,card,p.Space,p.VpForUS,p.Risk,p.OpsEffects),zones,state.RandomState,quote.GeneralValue);
                 }
-                var spaceQuote=OpsGeneralRules.QuoteCard(p.Definition.Ops,printed,side,OpsValuePurpose.Space,Array.Empty<OpsFlatModifier>());
+                var spaceQuote=QuoteCard(state,side,card.Value,OpsValuePurpose.Space);
                 // Scoped to the authoritative action slot, not a client supplied RNG or OPS value.
                 var request=SpaceAttemptRequest.FromQuote("practice."+p.CompletedActions,"practice."+p.CompletedActions,state.Turn.Number,spaceQuote);
                 var plan=SpaceAttemptRules.PlanAttempt(p.Space,request,new Pcg32Random(state.RandomState));
@@ -86,11 +92,11 @@ namespace ColdWarStruggle.Core
             }
             catch(OverflowException) { return new CardActionTransition(RuleError.NumericOverflow); }
         }
-        static ActionPracticeState Next(ActionPracticeState p,SpaceAttemptState space,int vp,PracticeRiskState risk=null)
+        static ActionPracticeState Next(ActionPracticeState p,SpaceAttemptState space,int vp,PracticeRiskState risk=null,TurnOpsEffectState opsEffects=null)
         {
             var completed=checked(p.CompletedActions+1);
             var stage=completed==checked(p.Space.Turn.Parameters.NormalActionsPerSide*2)?ActionPracticeStage.Complete:ActionPracticeStage.ChooseCard;
-            return new ActionPracticeState(p.Definition,stage,completed,null,space,vp,risk??p.Risk);
+            return new ActionPracticeState(p.Definition,stage,completed,null,space,vp,risk??p.Risk,opsEffects??p.OpsEffects);
         }
         static CardActionTransition Commit(GameState s,ActionPracticeState p,CardZones cards,RandomSnapshot random,int budget=0,SpaceAttemptReceipt receipt=null,RegionScoringResult scoring=null)
         {

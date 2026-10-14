@@ -51,6 +51,8 @@ namespace ColdWarStruggle.Editor
         public static void BuildEventPlaytest()=>BuildAt("Builds/EventPlaytest","ColdWarStruggle Event Playtest");
         [MenuItem("ColdWarStruggle/Build DEFCON Event Playtest")]
         public static void BuildDefconEventPlaytest()=>BuildAt("Builds/DefconEventPlaytest","ColdWarStruggle DEFCON Event Playtest");
+        [MenuItem("ColdWarStruggle/Build OPS Event Playtest")]
+        public static void BuildOpsEventPlaytest()=>BuildAt("Builds/OpsEventPlaytest","ColdWarStruggle OPS Event Playtest");
         static void BuildAt(string directory,string productName=null)
         {
             Prepare();Directory.CreateDirectory(directory);
@@ -83,6 +85,7 @@ namespace ColdWarStruggle.Editor
                     .WithPracticeScoring(Read(root,"Data/Rulesets/deluxe-2015/region-scoring.json"),Read(root,"Docs/Contracts/region-scoring-rules.schema.json"))
                     .WithPracticeInfluenceEvents(Read(root,"Data/Cards/deluxe-2015/early-influence-batch1.parameters.json"),Read(root,"Docs/Contracts/early-influence-parameters.schema.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch2.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch2.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
                     .WithPracticeDefconVpEvents(Read(root,"Data/Cards/deluxe-2015/defcon-vp-events.parameters.json"),Read(root,"Docs/Contracts/defcon-vp-events.schema.json"))
+                    .WithPracticeTurnOpsEvents(Read(root,"Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json"),Read(root,"Docs/Contracts/persistent-effects-batch1.schema.json"))
                     .WithQuickStartScenario(Read(root,"Data/Demo/quick-start-scenario.json"));
             WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
             Directory.CreateDirectory(payload);

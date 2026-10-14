@@ -16,14 +16,14 @@ namespace ColdWarStruggle.Core
             try
             {
                 var p=state.Practice;var printed=p.Definition.Cards.GetCard(card.Value);
-                var quote=OpsGeneralRules.QuoteCard(p.Definition.Ops,printed,side,OpsValuePurpose.Coup,Array.Empty<OpsFlatModifier>());
+                var quote=QuoteCard(state,side,card.Value,OpsValuePurpose.Coup);
                 var slot="practice."+p.CompletedActions;
                 var request=new CoupAttemptRequest(slot,state.GameId,slot,printed.Id.Value,state.Version,state.Turn.Number,target.Value,side,side,quote.GeneralValue,quote.GeneralValue);
                 var plan=CoupAttemptRules.PlanAttempt(p.Risk.BindCurrent(state),request,new Pcg32Random(state.RandomState));
                 if(plan.AlreadyApplied)throw new InvalidOperationException("Action cursor does not match coup receipts.");
                 var risk=p.Risk.After(plan,p.VpForUS);var nuclear=risk.Result?.Outcome==VictoryOutcome.Finished;
                 // Nuclear war interrupts the root action: preserve its physical resolving card for audit.
-                var next=nuclear?new ActionPracticeState(p.Definition,ActionPracticeStage.Complete,p.CompletedActions,card,p.Space,p.VpForUS,risk):Next(p,p.Space,p.VpForUS,risk);
+                var next=nuclear?new ActionPracticeState(p.Definition,ActionPracticeStage.Complete,p.CompletedActions,card,p.Space,p.VpForUS,risk,p.OpsEffects):Next(p,p.Space,p.VpForUS,risk);
                 var ops=OperationsContext.FromRoundStart(state.GameId+".action."+next.CompletedActions,next.Actor,0,state.Map,plan.After.Countries,state.Operations.Costs);
                 return new CardActionTransition(RuleError.None,state.WithPractice(next,ops,Move(state,card.Value,true,nuclear),plan.After.Random,plan.After.Countries,nuclear),coup:plan.Receipt);
             }
