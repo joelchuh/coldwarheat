@@ -75,7 +75,7 @@ namespace ColdWarStruggle.Presentation
             Styles();float scale=Math.Min(Screen.width/1280f,Screen.height/820f);
             GUI.matrix=Matrix4x4.TRS(new Vector3((Screen.width-1280*scale)/2,(Screen.height-820*scale)/2,0),Quaternion.identity,new Vector3(scale,scale,1));
             Block(new Rect(0,0,1280,820),Background);
-            Text(26,20,900,46,"COLD WAR / 冷战热斗 · 政变与风险 Demo",title);
+            Text(26,20,900,46,"COLD WAR / 冷战热斗 · 计分与行动 Demo",title);
             Text(28,70,780,28,"单人双边测试  /  人工练习局面  /  世界地图占位，可更换画风",small);
             Text(820,70,434,28,captureStatus,small);
             if(fatal!=null) { Text(30,140,1180,400,"加载失败："+fatal);return; }
@@ -111,7 +111,9 @@ namespace ColdWarStruggle.Presentation
             for(int i=0;i<regions.Length;i++)
                 if(Button(mapLeft+18+(wideMap?i:i%3)*(wideMap?145:201),232+(wideMap?0:i/3)*39,wideMap?137:193,32,(regionIndex==i?"● ":"")+regionNames[i]))
                 { regionIndex=i;if(mapView is WorldMapView world)world.RequestRegionFocus(regions[i]); }
-            mapView.Draw(new Rect(mapLeft+13,wideMap?280:321,mapWidth-26,wideMap?481:440),regions[regionIndex],label,small);
+            bool scoringPreview=wideMap && view.Practice.HasScoring;
+            if(scoringPreview)DrawScoringPreview(view,mapLeft,mapWidth);
+            mapView.Draw(new Rect(mapLeft+13,wideMap?(scoringPreview?311:280):321,mapWidth-26,wideMap?(scoringPreview?450:481):440),regions[regionIndex],label,small);
             var selectedCountry=view.Countries.First(c=>c.Definition.Id.Equals(controller.SelectedCountry));
             Text(972,195,262,26,"已选国家",small);Text(972,228,262,65,Name(controller.SelectedCountry),new GUIStyle(title){fontSize=24});
             Text(972,292,262,40,$"美国 {selectedCountry.US}   /   苏联 {selectedCountry.USSR}");
@@ -137,7 +139,7 @@ namespace ColdWarStruggle.Presentation
             }
             else Text(972,681,266,62,"本方："+string.Join("、",view.OwnHand)+"\n对手："+view.OpponentHandCount+" 张（隐藏）",small);
             }
-            Text(28,786,1220,27,$"真实手牌 / 部署 / 影响力、政变与太空试玩；完整头条、事件、回合末与 AI 尚未接入。   版本 {view.Version} · 序号 {view.EventSequence}",small);
+            Text(28,786,1220,27,$"真实手牌 / 部署 / 影响力、政变、太空与计分试玩；完整头条、事件、回合末与 AI 尚未接入。   版本 {view.Version} · 序号 {view.EventSequence}",small);
         }
         static string TurnText(GameTurnContext turn)
         {
@@ -151,7 +153,7 @@ namespace ColdWarStruggle.Presentation
         {
             switch(error)
             {
-                case RuleError.UnsupportedCardAction:return "此牌事件/计分路径尚未接入。";
+                case RuleError.UnsupportedCardAction:return "此牌尚不支持这个用途。";
                 case RuleError.CardNotOwned:return "此牌不在当前操作方手中。";
                 case RuleError.ActionNotReady:return "请先完成当前阶段。";
                 case RuleError.SpaceAttemptUnavailable:return "OPS 不足或本回合太空次数已用完。";

@@ -237,3 +237,5 @@ VictoryDefinitionLoader.LoadSubset严格读取既有schema2、双方符号、共
 2026-10-14补充：ScoringResolvedEvidence只消费RegionScoringService返回的只读结果。先检查旧VP仍属进行中；有EuropeControlWinner就返回Finished且保持原VP，否则加完整NetVpForUS后查共享阈值。它不用于最终六区汇总，也不授权UI随意结束游戏；宿主仍须验证来源/阶段/新鲜性和原子提交。最新1106项测试见[地区计分报告](../Testing/region-scoring-core.validation.json)。
 
 2026-10-14后续：普通手牌政变、军事累计、DEFCON与核战已由[政变风险模块](playable-coup-actions.md)接入；本页较早的“尚未接入宿主”仅描述当时批次。期末与活动效果仍未接入。
+
+2026-10-14后续：[真实计分牌与公开预览](playable-scoring-actions.md)已接入手牌、净VP和终局，普通太空也接入VP判胜；本页此前未接线描述是历史批次。活动修正、头条/期末/最终计分仍未接。

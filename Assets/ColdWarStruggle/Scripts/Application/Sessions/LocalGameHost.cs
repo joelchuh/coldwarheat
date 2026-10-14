@@ -159,6 +159,7 @@ namespace ColdWarStruggle.Application
             internal PlayerSession(LocalGameHost host,PlayerSide side) { this.host=host;Side=side; }
             public PlayerViewSnapshot ReadView()=>host.Read(Side);
             public LegalTargetsResult QueryCoupTargets(CardId card,long expectedVersion)=>host.QueryCoup(Side,card,expectedVersion);
+            public ScoringPreviewResult QueryScoringPreview(string region,long expectedVersion)=>host.QueryScoring(region,expectedVersion);
             public CardActionOptions QueryCardActions()=>host.QueryCards(Side);
             public Task<CardActionResult> SubmitCardActionAsync(CardActionCommand command,CancellationToken cancellationToken=default)=>host.SubmitCard(Side,command,cancellationToken);
             public LegalTargetsResult QueryInfluenceTargets(string contextId,long expectedVersion)=>host.Query(Side,contextId,expectedVersion);

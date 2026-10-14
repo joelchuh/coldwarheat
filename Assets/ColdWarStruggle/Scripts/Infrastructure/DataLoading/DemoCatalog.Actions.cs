@@ -5,6 +5,19 @@ namespace ColdWarStruggle.Infrastructure
 {
     public sealed partial class DemoCatalog
     {
+        public DemoCatalog WithPracticeScoring(string scoring,string schema)
+        {
+            if(Scenarios.Count(s=>s.PracticeDefinition?.Risk!=null)!=1 || Scenarios.Any(s=>s.PracticeDefinition?.Scoring!=null))throw new ArgumentException("Configure the risk action lesson once before adding scoring.");
+            var scoringDefinition=RegionScoringDefinitionLoader.LoadSubset(scoring,schema,Map);
+            var items=Scenarios.Select(s=>
+            {
+                if(s.PracticeDefinition==null)return s;
+                var d=s.PracticeDefinition;var definition=new ActionPracticeDefinition(d.Cards,d.Ops,d.Space,d.Calendar,d.Risk,scoringDefinition);
+                return new DemoScenario(s.Id,s.Title,s.Actor,s.SelectedCountry,s.Ops,s.Countries,s.Hands,s.EventDefinition,s.Turn,s.DeploymentDefinition,s.InitialCards,definition);
+            });
+            var result=new DemoCatalog(Map,costs,items,Names.ToDictionary(x=>x.Key,x=>x.Value,StringComparer.Ordinal),PrintedCards);
+            result.CreateHost(result.Scenarios.Single(s=>s.PracticeDefinition!=null).Id);return result;
+        }
         public DemoCatalog WithPracticeRisk(string coup,string defcon,string military,string victory)
         {
             if(Scenarios.Count(s=>s.PracticeDefinition!=null)!=1 || Scenarios.Any(s=>s.PracticeDefinition?.Risk!=null))throw new ArgumentException("Configure the real action lesson once before adding risk rules.");

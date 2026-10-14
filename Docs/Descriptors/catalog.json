@@ -22,13 +22,13 @@
     },
     {
       "id": "module.victory",
-      "description": "已实现完整VP批次、军事候选延后、双方扣留矩阵和核战责任与地区计分五类纯胜负检查点；CF-003按用户确认解释执行。最终计分、特殊卡终局及宿主提交/终局吸收仍待实现。",
+      "description": "已实现完整VP批次、军事候选延后、双方扣留矩阵、核战与地区计分检查点；Demo已接政变核战/地区/太空终局吸收，最终计分和特殊卡终局未接。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/victory.module.json"
     },
     {
       "id": "module.region-scoring",
-      "description": "六地区基础档位、战场/敌超级大国邻接奖励与东南亚权重的只读计算已实现；实际地图档位查询不执行计分。活动修正显式拒绝，完整最终汇总及宿主事务待实现。",
+      "description": "已实现无干预的六地区/东南亚纯计分、实际档位查询；ScoringDemo经真实手牌接净VP/胜负与公开预览，台湾/穿梭及最终计分仍待接入。",
       "status": "implemented-subset",
       "descriptor": "Docs/Descriptors/region-scoring.module.json"
     },
@@ -235,6 +235,12 @@
       "description": "真实手牌普通政变接线：共享OPS报价、合法目标、军事累计、DEFCON/核战与牌区/RNG一次提交；RiskDemo扩大地图并显示风险轨道，无活动事件、头条或回合末。",
       "status": "implemented-subset",
       "descriptor": "Docs/Descriptors/playable-coup-actions.module.json"
+    },
+    {
+      "id": "module.playable-scoring-actions",
+      "description": "真实七种计分牌与公开地区预览：按印刷地区复用共享算法，双方净VP一次提交，欧洲/VP/太空获胜即停止；预览不读取手牌、不改状态，无活动计分干预或最终计分。",
+      "status": "implemented-subset",
+      "descriptor": "Docs/Descriptors/playable-scoring-actions.module.json"
     }
   ]
 }

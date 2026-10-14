@@ -26,7 +26,8 @@ namespace ColdWarStruggle.Bootstrap
                     .WithDeploymentScenario(Read(root,"Data/Demo/deployment-scenario.json"),Read(root,"Data/Rulesets/deluxe-2015/setup.json"),Read(root,"Docs/Contracts/setup.schema.json"))
                     .WithInitialDealScenario(Read(root,"Data/Demo/initial-deal-scenario.json"),Read(root,"Data/Rulesets/deluxe-2015/setup.json"),Read(root,"Docs/Contracts/setup.schema.json"),Read(root,"Data/Rulesets/deluxe-2015/turn-flow.json"),printedCards,Read(root,"Data/Localization/en-US.catalog-names.json"))
                     .WithActionPractice(Read(root,"Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json"),Read(root,"Docs/Contracts/persistent-effects-batch1.schema.json"),Read(root,"Data/Rulesets/deluxe-2015/space-race.json"),Read(root,"Data/Rulesets/deluxe-2015/turn-flow.json"))
-                    .WithPracticeRisk(Read(root,"Data/Rulesets/deluxe-2015/coup.json"),Read(root,"Data/Rulesets/deluxe-2015/defcon.json"),Read(root,"Data/Rulesets/deluxe-2015/military-operations.json"),Read(root,"Data/Rulesets/deluxe-2015/victory.json"));
+                    .WithPracticeRisk(Read(root,"Data/Rulesets/deluxe-2015/coup.json"),Read(root,"Data/Rulesets/deluxe-2015/defcon.json"),Read(root,"Data/Rulesets/deluxe-2015/military-operations.json"),Read(root,"Data/Rulesets/deluxe-2015/victory.json"))
+                    .WithPracticeScoring(Read(root,"Data/Rulesets/deluxe-2015/region-scoring.json"),Read(root,"Docs/Contracts/region-scoring-rules.schema.json"));
                 var worldAssets=WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
 #else
                 string root=Path.Combine(UnityEngine.Application.streamingAssetsPath,"ColdWarStruggle");
@@ -38,7 +39,8 @@ namespace ColdWarStruggle.Bootstrap
                     .WithDeploymentScenario(Read(root,"deployment-scenario.json"),Read(root,"setup.json"),Read(root,"setup.schema.json"))
                     .WithInitialDealScenario(Read(root,"initial-deal-scenario.json"),Read(root,"setup.json"),Read(root,"setup.schema.json"),Read(root,"turn-flow.json"),printedCards,Read(root,"names.json"))
                     .WithActionPractice(Read(root,"persistent-effects-batch1.parameters.json"),Read(root,"persistent-effects-batch1.schema.json"),Read(root,"space-race.json"),Read(root,"turn-flow.json"))
-                    .WithPracticeRisk(Read(root,"coup.json"),Read(root,"defcon.json"),Read(root,"military-operations.json"),Read(root,"victory.json"));
+                    .WithPracticeRisk(Read(root,"coup.json"),Read(root,"defcon.json"),Read(root,"military-operations.json"),Read(root,"victory.json"))
+                    .WithPracticeScoring(Read(root,"region-scoring.json"),Read(root,"region-scoring-rules.schema.json"));
                 var worldAssets=WorldMapAssets.Load(Read(root,"world-layout.json"),Read(root,"world-land.json"),catalog.Map);
 #endif
                 var mapKind=DemoLaunchOptions.MapKind(Environment.GetCommandLineArgs());

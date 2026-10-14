@@ -29,3 +29,5 @@ CardDefinition.scoring_region_id是本牌地区唯一事实。六张标准牌的
 主离线验证17数据＋27固定参考＝44新项，1129旧回归，共1173通过；23 Schema/26数据描述/19模块/76指针，9runtime未运行。38工具实际检查独立记录。独立审阅合入Yes，模式/调用来源命名Minor已闭环；27参考独立重算、148JSON/76指针/19模块无环/169链接/9摘要核对；未独立跑17数据/元Schema/1129历史或runtime。
 
 契约字段映射：CardPlayContext.Mode为Scoring或Headline，是本次出牌用途；ScoringContext.Mode为Normal或Final，是汇总/终局算法模式；ScoringInvocationKind为PlayedScoringCard/FinalScoring/OtherEvent，决定卡文干预资格。真实计分牌对应Normal＋PlayedScoringCard，最终汇总对应Final＋FinalScoring；预览另由只读标志表示，不是第三种Mode。
+
+2026-10-14后续：[真实计分牌与公开预览](playable-scoring-actions.md)已接入手牌、净VP和终局，普通太空也接入VP判胜；本页此前未接线描述是历史批次。活动修正、头条/期末/最终计分仍未接。

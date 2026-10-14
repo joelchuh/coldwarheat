@@ -34,6 +34,11 @@ namespace ColdWarStruggle.Core
                 || CoupReceipts.Values.Any(r=>r.Request.GameId!=state.GameId))throw new ArgumentException("Risk history belongs to another authority.");
             return new CoupAttemptState(state.GameId,state.Version,Definition.Coup,Defcon,Military,state.Countries,state.RandomState,Array.Empty<string>(),CoupReceipts);
         }
+        internal PracticeRiskState WithVictory(VictoryDecision decision)
+        {
+            if(decision==null || (decision.Outcome!=VictoryOutcome.Continue && decision.Outcome!=VictoryOutcome.Finished))throw new ArgumentException("Expected a closed ordinary victory decision.");
+            return new PracticeRiskState(Definition,Defcon,Military,CoupReceipts,decision.Outcome==VictoryOutcome.Finished?decision:null);
+        }
         internal PracticeRiskState After(CoupAttemptPlan plan,int vp)
         {
             var result=plan.Receipt.DefconChange?.NuclearWar==true

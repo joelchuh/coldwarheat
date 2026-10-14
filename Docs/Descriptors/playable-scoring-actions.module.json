@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "id": "module.playable-scoring-actions",
+  "kind": "module",
+  "status": "implemented-subset",
+  "description": "真实七种计分牌与公开地区预览：按印刷地区复用共享算法，双方净VP一次提交，欧洲/VP/太空获胜即停止；预览不读取手牌、不改状态，无活动计分干预或最终计分。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Scoring.cs",
+      "symbol": "PlanScoring"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Scoring.cs",
+      "symbol": "AfterImmediate"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeRiskState.cs",
+      "symbol": "WithVictory"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/ScoringContracts.cs",
+      "symbol": "PublicRegionScore"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/LocalGameHost.Scoring.cs",
+      "symbol": "QueryScoring"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.Actions.cs",
+      "symbol": "WithPracticeScoring"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Scoring.cs",
+      "symbol": "ScoringPreview"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Scoring.cs",
+      "symbol": "DrawScoringChoice"
+    }
+  ],
+  "inputs": [
+    "固定身份计分命令只提交真实手牌ID/版本，地区和分值来自静态定义",
+    "完整公开地图快照、相同绑定Map、显式无活动效果；预览传地区和版本"
+  ],
+  "outputs": [
+    "RegionScoringResult与完整下一GameState；普通计分弃置、SEA已完成事件移出",
+    "终局吸收态保留源牌Resolving，不推进根槽；普通太空也评估完整净分",
+    "公开计分分项与只读预览，不含Definition/国家快照/随机状态或牌区"
+  ],
+  "dependencies": [
+    "module.playable-card-actions",
+    "module.playable-coup-actions",
+    "module.region-scoring",
+    "module.victory"
+  ],
+  "data_dependencies": [
+    "rules.deluxe2015.region-scoring",
+    "cards.deluxe2015.definitions",
+    "rules.deluxe2015.victory"
+  ],
+  "preconditions": [
+    "单回合无活动效果的显式练习；首轮从已完成部署启动，不声称完整开局状态机"
+  ],
+  "side_effects": [
+    "纯规则只规划；LocalGameHost在锁内一次提交完整状态和收据；UI只编辑意图"
+  ],
+  "stop_conditions": [
+    "无计分配置、非本方手牌、非计分用途、旧版本/身份/阶段、携带国家目标、未知地区、数值溢出拒绝；完整终局后新命令拒绝",
+    "中国牌/对手事件OPS/活动干预/头条/期末/最终计分尚未接入；预览不是出牌"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/scoring-cards.md",
+      "scope": "七牌地区绑定与星号去向"
+    },
+    {
+      "path": "Docs/Wiki/region-scoring.md",
+      "scope": "双方净分、EuropeControl和SEA"
+    },
+    {
+      "path": "Docs/Wiki/risk-victory.md",
+      "scope": "完整VP批次及终局中断"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayScoringTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayScoringSessionTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayScoringCatalogTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/playable-scoring-actions.md",
+  "verification": {
+    "report": "Docs/Testing/playable-scoring-actions.validation.json"
+  }
+}

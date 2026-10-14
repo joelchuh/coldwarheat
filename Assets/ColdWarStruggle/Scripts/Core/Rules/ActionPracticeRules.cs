@@ -20,10 +20,12 @@ namespace ColdWarStruggle.Core
             var error=Check(state,side);if(error!=RuleError.None)return error;
             if(state.Deployment!=null)return RuleError.SetupInProgress;
             if(state.Practice.Stage!=ActionPracticeStage.ChooseCard)return RuleError.ActionNotReady;
-            if(kind!=CardActionKind.Space && kind!=CardActionKind.Influence && kind!=CardActionKind.Coup)return RuleError.UnsupportedCardAction;
+            if(kind!=CardActionKind.Space && kind!=CardActionKind.Influence && kind!=CardActionKind.Coup && kind!=CardActionKind.Scoring)return RuleError.UnsupportedCardAction;
             if(kind==CardActionKind.Coup && state.Practice.Risk==null)return RuleError.UnsupportedCardAction;
+            if(kind==CardActionKind.Scoring && state.Practice.Definition.Scoring==null)return RuleError.UnsupportedCardAction;
             if(!state.Cards.GetHand(side).Contains(card))return RuleError.CardNotOwned;
             var definition=state.Practice.Definition.Cards.GetCard(card);
+            if(kind==CardActionKind.Scoring)return definition.Kind==CardKind.Scoring?RuleError.None:RuleError.UnsupportedCardAction;
             if(definition.Kind!=CardKind.Event)return RuleError.UnsupportedCardAction;
             if(kind==CardActionKind.Influence || kind==CardActionKind.Coup)
             {
@@ -36,6 +38,7 @@ namespace ColdWarStruggle.Core
         }
         public static CardActionTransition Plan(GameState state,PlayerSide side,CardActionKind kind,string actionId,CardId? card=null,CountryId? target=null)
         {
+            if(kind==CardActionKind.Scoring)return PlanScoring(state,side,actionId,card,target);
             if(kind==CardActionKind.Coup)return PlanCoup(state,side,actionId,card,target);
             if(target.HasValue)return new CardActionTransition(RuleError.InvalidCommand);
             if(string.IsNullOrWhiteSpace(actionId) || actionId.Length>128 || !Enum.IsDefined(typeof(CardActionKind),kind)
@@ -70,7 +73,14 @@ namespace ColdWarStruggle.Core
                 var request=SpaceAttemptRequest.FromQuote("practice."+p.CompletedActions,"practice."+p.CompletedActions,state.Turn.Number,spaceQuote);
                 var plan=SpaceAttemptRules.PlanAttempt(p.Space,request,new Pcg32Random(state.RandomState));
                 if(plan.AlreadyApplied || !plan.ApplyCardDisposition)throw new InvalidOperationException("Action cursor does not match space receipts.");
-                return Commit(state,Next(p,plan.After,checked(p.VpForUS+plan.VpDeltaToApply)),Move(state,card.Value,true,false),plan.RandomAfter,receipt:plan.Receipt);
+                var vp=checked(p.VpForUS+plan.VpDeltaToApply);var risk=p.Risk;
+                if(risk!=null)
+                {
+                    var decision=VictoryService.Evaluate(risk.Definition.Victory,new ClosedVpBatchEvidence(request.Id,printed.Id.Value,p.VpForUS,Math.Max(0,plan.VpDeltaToApply),checked((int)Math.Max(0L,-(long)plan.VpDeltaToApply))));
+                    risk=risk.WithVictory(decision);vp=decision.SignedVp;
+                }
+                var next=AfterImmediate(p,card.Value,plan.After,vp,risk);
+                return Commit(state,next,Move(state,card.Value,true,risk?.Result?.Outcome==VictoryOutcome.Finished),plan.RandomAfter,receipt:plan.Receipt);
             }
             catch(OverflowException) { return new CardActionTransition(RuleError.NumericOverflow); }
         }
@@ -80,19 +90,20 @@ namespace ColdWarStruggle.Core
             var stage=completed==checked(p.Space.Turn.Parameters.NormalActionsPerSide*2)?ActionPracticeStage.Complete:ActionPracticeStage.ChooseCard;
             return new ActionPracticeState(p.Definition,stage,completed,null,space,vp,risk??p.Risk);
         }
-        static CardActionTransition Commit(GameState s,ActionPracticeState p,CardZones cards,RandomSnapshot random,int budget=0,SpaceAttemptReceipt receipt=null)
+        static CardActionTransition Commit(GameState s,ActionPracticeState p,CardZones cards,RandomSnapshot random,int budget=0,SpaceAttemptReceipt receipt=null,RegionScoringResult scoring=null)
         {
             var ops=OperationsContext.FromRoundStart(s.GameId+".action."+p.CompletedActions,p.Actor,budget,s.Map,s.Countries,s.Operations.Costs);
-            return new CardActionTransition(RuleError.None,s.WithPractice(p,ops,cards,random),receipt);
+            return new CardActionTransition(RuleError.None,s.WithPractice(p,ops,cards,random,ended:p.Risk?.Result?.Outcome==VictoryOutcome.Finished),receipt,scoring:scoring);
         }
-        static CardZones Move(GameState s,CardId id,bool fromHand,bool toResolving)
+        static CardZones Move(GameState s,CardId id,bool fromHand,bool toResolving,bool remove=false)
         {
+            if(toResolving && remove)throw new ArgumentException("A card cannot resolve and be removed together.");
             var cards=s.Cards;var actor=s.Practice.Actor;
             if(!fromHand && (cards.ResolvingCards.Count!=1 || !cards.ResolvingCards.Contains(id)))throw new InvalidOperationException("Missing active physical card.");
             var hands=new Dictionary<PlayerSide,IReadOnlyList<CardId>>();
             foreach(var side in new[]{PlayerSide.US,PlayerSide.USSR})hands.Add(side,cards.GetHand(side).Where(c=>!(fromHand && side==actor && c.Equals(id))).ToArray());
             return new CardZones(s.Practice.Definition.Cards,cards.DrawPile,hands,cards.EraReserve,
-                toResolving?cards.DiscardPile:cards.DiscardPile.Concat(new[]{id}),cards.RemovedCards,
+                toResolving || remove?cards.DiscardPile:cards.DiscardPile.Concat(new[]{id}),remove?cards.RemovedCards.Concat(new[]{id}):cards.RemovedCards,
                 toResolving?cards.ResolvingCards.Concat(new[]{id}):cards.ResolvingCards.Where(c=>!c.Equals(id)),cards.China,cards.EnteredEras);
         }
     }

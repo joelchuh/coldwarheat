@@ -19,7 +19,7 @@ namespace ColdWarStruggle.Presentation
         {
             var p=view.Practice;
             if(p.Winner.HasValue)
-                Text(972,374,262,140,"核战结束 · "+Side(p.Winner.Value)+" 获胜。\n导致 DEFCON 降至 1 的行动方判负。\n可重置后尝试其他路线。",label);
+                Text(972,374,262,140,VictoryMessage(p),label);
             else if(p.Stage==ActionPracticeStage.Complete)
                 Text(972,374,262,140,"本回合行动试玩已结束。\n回合末审核与下一回合尚未接入。可重置重新尝试不同路线。",label);
             else if(p.Actor!=view.Viewer)
@@ -41,13 +41,16 @@ namespace ColdWarStruggle.Presentation
                 var selected=controller.SelectedCard;
                 if(!selected.HasValue)
                 {
-                    Text(972,374,262,59,"先从本方手牌选择一张牌，再决定用于影响力、政变或太空。",small);
+                    Text(972,374,262,59,"先从本方手牌选择一张牌，再决定用于影响力、政变、太空或计分。",small);
                     if(Button(972,440,262,43,"打开手牌 · 选择一张"))OpenCards();
                 }
                 else
                 {
                     var option=controller.CardOptions().Cards.First(c=>c.Card.Equals(selected.Value));
                     Text(972,365,262,44,CardTitle(selected.Value),small);
+                    if(option.Scoring==RuleError.None)DrawScoringChoice(selected.Value);
+                    else
+                    {
                     GUI.enabled=option.Influence==RuleError.None;
                     if(Button(972,411,126,40,"用于影响力"))UseCard(CardActionKind.Influence);
                     GUI.enabled=option.Space==RuleError.None;
@@ -68,17 +71,19 @@ namespace ColdWarStruggle.Presentation
                     var reason=option.Influence!=RuleError.None?"影响力："+ErrorText(option.Influence):"";
                     if(option.Space!=RuleError.None)reason+="\n太空："+ErrorText(option.Space);
                     if(!controller.SelectingCoup)Text(972,500,262,58,reason,small);
+                    }
                 }
             }
             var result=controller.LastCardResult;
             string message="";
-            if(result?.Coup!=null)
+            if(result?.Scoring!=null)message="计分结果："+ScoringRegionName(result.Scoring.RegionId)+"\n"+ScoreSummary(result.Scoring);
+            else if(result?.Coup!=null)
             {
                 var c=result.Coup;message=$"政变骰 {c.Roll} + OPS {c.Strength}，差额 {c.Margin}\n移除 {c.Removed} / 增加 {c.Added} · 军事 +{c.MilitaryCredit}";
                 if(c.DefconTo.HasValue)message+=$"\nDEFCON {c.DefconFrom} → {c.DefconTo}";
             }
             else if(result!=null)message=!result.Accepted?ErrorText(result.Error):result.Space!=null
-                ?$"太空骰 {result.Space.Roll} · {(result.Space.Success?"成功":"失败")}，轨道 {result.Space.From} → {result.Space.To}\nVP 变化 {result.Space.VpForUS:+0;-0;0}；牌已弃置。":"行动命令已接受。";
+                ?$"太空骰 {result.Space.Roll} · {(result.Space.Success?"成功":"失败")}，轨道 {result.Space.From} → {result.Space.To}\nVP 变化 {result.Space.VpForUS:+0;-0;0}；{(result.View.Practice.Winner.HasValue?"终局停止收尾":"牌已弃置")}。":"行动命令已接受。";
             if(controller.LastResult!=null)message=controller.LastResult.Accepted?"投放成功，费用："+string.Join(" + ",controller.LastResult.Costs):ErrorText(controller.LastResult.Error);
             Text(972,578,262,65,message,small);
             GUI.enabled=controller.CanRetryCard;

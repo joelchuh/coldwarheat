@@ -40,6 +40,7 @@ namespace ColdWarStruggle.Core
             if((cards==null)!=(randomState==null) || (cards!=null && hands!=null))
                 throw new ArgumentException("Cards and random state must be paired, without fixture hands.");
             if(practice?.Risk!=null && !ReferenceEquals(map,practice.Risk.Definition.Defcon.Map))throw new ArgumentException("Practice risk map mismatch.");
+            if(practice?.Definition.Scoring!=null && !ReferenceEquals(map,practice.Definition.Scoring.Map))throw new ArgumentException("Practice scoring map mismatch.");
             Map=map;Operations=context;GameId=gameId;Version=version;SpentOps=spentOps;EventSequence=eventSequence;Ended=ended;
             Cards=cards;RandomState=randomState;Practice=practice;
             if(practice!=null && (cards==null || turn==null || turn.Number!=practice.Space.Turn.Number))throw new ArgumentException("Practice requires real cards and the matching turn.");
