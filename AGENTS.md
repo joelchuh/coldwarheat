@@ -627,3 +627,7 @@ ADR-006-player-view-and-hidden-information.md
 已在十一练习Demo中加入WorldMapView，与Tiles/Table共享IMapView。Data/Presentation独立保存86节点Flat2D布局与公共领域陆地；缩放/平移和国家热点已有实现，最终ThemeDefinition和美术仍待确定。第26节“只有卡片/列表”的描述是此前批次状态。
 
 先查Docs/Wiki/world-map-view.md及对应JSON摘要。底图、坐标和主题不得修改Core邻接与规则。完整游戏回合、出牌和胜负仍未接入，不能将地图版Demo称为完整游戏；自动测试、构建、截图与真实鼠标验证分别报告。
+
+## 28. 可出牌行动试玩（2026-10-14）
+
+已新增ActionPracticeState/Rules、CardActionCommand及固定身份宿主接线，独立Builds/PlayableDemo。先读Docs/Wiki/playable-card-actions.md与模块JSON。部署后显式跳过头条，真实手牌影响力/普通太空、牌去向/VP/轨道/行动槽原子提交，1599项EditMode通过。无活动效果的单回合练习，不能按完整回合或整局宣传；计分/中国牌/对手事件OPS未接入，某些出牌路线会提前无可用牌。旧FirstDemo与PreviewDemo没有自动更新。鼠标工具激活失败；真实手牌渲染已检查，不冒充鼠标出牌验收。用户持续开发与常规Git授权继续有效，按当前消息设定额度阈值收尾。

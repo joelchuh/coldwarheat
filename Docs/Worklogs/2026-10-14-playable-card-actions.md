@@ -27,3 +27,12 @@ Task 3: complete — 数据与控制器5个RED→GREEN、界面、28载荷/构�
 窗口QA：sky正常返回新版窗口，但首次画面是壁纸且activate失败；按技能重新定位后再次失败，停止输入。游戏自身隐藏导出exit1无帧，可见预览导出exit0并检查1280×820手牌PNG。没有用截图冒充鼠标测试。
 Ruling: 延续已有PowerShell Unity测试脚本和工作日志，未运行仅Bash的skill task-done/review-package助手；真实XML/SHA和固定Git差异提供相同证据，不引入一次性工作流脚本。
 Task 4: descriptions/Wiki/报告已更新；最终独立审查待运行。
+
+Final review: independent gpt-6-astra high; BASE1f4fe16..e415f13; Critical0/Important0/Minor0, ready to merge. Reviewer independently confirmed final1599 XML and22 changed C# hashes; no additional test runs.
+Final: Ruling: 头条/计分/中国牌/对手事件OPS/政变/调整/完整事件/活动效果 — 作为明确拒绝的下一批功能保留，当前只承诺影响力和太空；成本是玩法覆盖有限。
+Final: Ruling: 回合末/下一回合/完整胜负/太空额外行动 — 单回合从初始轨道练习，在普通名额边界停止；成本是不能完成标准一局。
+Final: Ruling: 任意路线都走满12行动 — 当前不保证；若用本方/中立牌太空，余牌可能全为未接对手事件。Wiki/README明确可能需要重置，后续补事件；成本是试玩路线受限，不能宣称完整可玩回合。
+Final: Ruling: 存档/网络/不一致外部GameState构造 — 没有这些运行入口，可信Bootstrap受范围约束；成本是将来接入前必须新增守卫和测试。
+Final: Ruling: 真实鼠标验收 — 未通过，工具激活失败；控制器和渲染检查不替代输入验证，继续等待用户前台配合；成本是按钮端到端仍可能存在未发现问题。
+Ruling: finishing-a-development-branch 的合并选择使用用户持久授权：主分支常规同步已经明确，不重复展示确认菜单；ff-only，禁止覆盖远程历史。
+Task 4: complete — metadata116/116,70datasets,193symbols,586references通过；最终审查通过；常规同步结果见Git提交与远程核对。

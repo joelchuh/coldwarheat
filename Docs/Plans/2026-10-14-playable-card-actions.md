@@ -21,6 +21,6 @@ Spec: Docs/Wiki/prototype-roadmap.md、first-demo.md、operations.md、space-rac
 - [x] T1: ActionPracticeState/Rules + GameState 可选组合，行为测试 RED→GREEN。验证开始门禁、牌所有权、计分/对手事件拒绝、太空失败也弃牌、跨命令状态保留、行动上限。
 - [x] T2: PlayCardCommand、固定会话查询/提交、公共轨道投影；RED→GREEN 验证重试/冲突/秘密过滤/影响力预算与卡牌生命周期。
 - [x] T3: 给真实发牌场景配置规则；接手牌选牌、用途按钮、行动与结果提示；控制器/载荷验证；构建及真实帧检查。
-- [ ] T4: JSON descriptions/Wiki/worklog/真实验证报告；一次最终独立审查；修复重要问题后常规提交推送。
+- [x] T4: JSON descriptions/Wiki/worklog/真实验证报告；一次最终独立审查；修复重要问题后常规提交推送。
 
 后续批次：政变行动接入、可执行事件和计分、头条与完整回合。按额度和可验收 Demo 分批推进。
