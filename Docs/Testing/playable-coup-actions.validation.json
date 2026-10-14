@@ -3,7 +3,7 @@
   "id": "validation.playable-coup-actions",
   "description": "RiskDemo核心/会话/控制器/构建载荷证据；GUI鼠标验证与自动测试分别记录。",
   "date": "2026-10-14",
-  "status": "tests-and-build-passed-review-pending",
+  "status": "tests-build-review-passed",
   "baseline_commit": "4ce16f866bc6b30ae3bd6cf9e74d632c716249c4",
   "runs": [
     {
@@ -489,7 +489,60 @@
     }
   },
   "review": {
-    "status": "pending"
+    "agent": "review_playable_coup_actions",
+    "base": "4ce16f866bc6b30ae3bd6cf9e74d632c716249c4",
+    "head": "4fcd22b479287d716c3bf3f252870787c575a82f",
+    "critical": 0,
+    "important": 0,
+    "minor": 1,
+    "ready_to_merge": true,
+    "verified_source_hashes": 182,
+    "verified_payloads": 32,
+    "deferred_minors": [
+      "政变→真实影响力投放→政变完整交错测试尚未补强；未发现实现缺陷。"
+    ],
+    "declined_to_judge_rulings": [
+      {
+        "topic": "对手事件OPS顺序",
+        "ruling": "继续明确拒绝；不把未实现事件绕过去",
+        "cost": "试玩可用牌仍有限"
+      },
+      {
+        "topic": "中国牌用途",
+        "ruling": "继续单独持有并拒绝普通用途",
+        "cost": "缺少中国牌策略体验"
+      },
+      {
+        "topic": "计分及完整积分系统",
+        "ruling": "本批不阻塞；下一批按计划接入计分",
+        "cost": "当前仍不能完整打一局"
+      },
+      {
+        "topic": "条约/危机/活动效果",
+        "ruling": "保持无活动效果且无启用入口",
+        "cost": "未来必须接干预流水线再放行"
+      },
+      {
+        "topic": "头条/奖励/军事审核/下一回合",
+        "ruling": "保持明确单回合普通槽练习",
+        "cost": "不具备正式回合结束流程"
+      },
+      {
+        "topic": "所有出牌路线走满槽",
+        "ruling": "不保证；文档与选牌禁用明确解释",
+        "cost": "可能须重置重新选择"
+      },
+      {
+        "topic": "跨回合存档/恢复/回放",
+        "ruling": "无入口；终局Resolving状态另行设计",
+        "cost": "未来持久化要兼容此终局边界"
+      },
+      {
+        "topic": "扩大地图与鼠标验收",
+        "ruling": "无运行证据，不宣称通过",
+        "cost": "可能存在尚未发现的布局/命中问题，待用户前台试玩"
+      }
+    ]
   },
   "scope": [
     "无活动效果普通手牌影响力/政变/太空练习",

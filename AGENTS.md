@@ -631,3 +631,7 @@ ADR-006-player-view-and-hidden-information.md
 ## 28. 可出牌行动试玩（2026-10-14）
 
 已新增ActionPracticeState/Rules、CardActionCommand及固定身份宿主接线，独立Builds/PlayableDemo。先读Docs/Wiki/playable-card-actions.md与模块JSON。部署后显式跳过头条，真实手牌影响力/普通太空、牌去向/VP/轨道/行动槽原子提交，1599项EditMode通过。无活动效果的单回合练习，不能按完整回合或整局宣传；计分/中国牌/对手事件OPS未接入，某些出牌路线会提前无可用牌。旧FirstDemo与PreviewDemo没有自动更新。鼠标工具激活失败；真实手牌渲染已检查，不冒充鼠标出牌验收。用户持续开发与常规Git授权继续有效，按当前消息设定额度阈值收尾。
+
+## 29. 政变与风险试玩（2026-10-14）
+
+RiskDemo已从真实手牌接普通政变、军事累计、DEFCON与核战胜负，行动阶段扩大地图；先读Docs/Wiki/playable-coup-actions.md及对应JSON。1621项回归和32份构建载荷通过，独立审查0阻塞项；鼠标/行动地图视觉未验收，初始部署截图不能替代。仍无活动效果、头条、计分用途或回合末；第28节是此前批次，后续按prototype-roadmap分批接线。

@@ -33,3 +33,5 @@ flowchart LR
 共享数据分别来自coup.json、defcon.json、military-operations.json、victory.json；与OPS/地图一样在装配时严格读取，构建载荷不复制业务常量到UI。当前真实数据不会像核战测试fixture那样额外给尼日利亚影响力。
 
 实际部署画面：[截图](../Images/risk-demo-deployment.png)。窗口工具激活失败；尚未完成政变与大地图的真实鼠标验收。
+
+独立审查允许合并，0阻塞项。延后Minor：尚缺“政变→实际投放→政变”的完整交错回归；当前代码读取最新GameState，未发现状态回退。其他边界裁定及成本见本批工作记录。

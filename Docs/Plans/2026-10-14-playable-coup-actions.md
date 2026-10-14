@@ -22,4 +22,4 @@ Review focus: 连续政变/太空/影响力交错不回退历史或RNG；核战�
 - [x] T1 Core Risk + 原子政变计划：PracticeRiskState.cs、ActionPracticeState.cs、ActionPracticeRules.cs、GameState.cs；PlayCoupTests RED/GREEN。
 - [x] T2 命令与控制器：CardActionContracts.cs、LocalGameHost.Cards.cs、SessionContracts.cs、DemoController.Cards.cs；PlayCoupSessionTests/ControllerTests RED/GREEN。
 - [x] T3 数据装配与大地图UI：DemoCatalog.Actions.cs、DemoBootstrap.cs、DemoBuild.cs、DemoView.Actions.cs与DemoView.cs；启动前校验四份共享数据，追加新构建目录。
-- [ ] T4 descriptor/Wiki/报告/工作记录，最终独立审查，快进合并/推送。
+- [x] T4 descriptor/Wiki/报告/工作记录，最终独立审查，快进合并/推送。
