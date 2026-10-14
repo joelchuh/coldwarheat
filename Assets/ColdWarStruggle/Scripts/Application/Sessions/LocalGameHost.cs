@@ -162,6 +162,7 @@ namespace ColdWarStruggle.Application
             public LegalTargetsResult QueryRealignmentTargets(string contextId,long expectedVersion)=>host.QueryRealignment(Side,contextId,expectedVersion);
             public LegalTargetsResult QueryCoupTargets(CardId card,long expectedVersion)=>host.QueryCoup(Side,card,expectedVersion);
             public ScoringPreviewResult QueryScoringPreview(string region,long expectedVersion)=>host.QueryScoring(region,expectedVersion);
+            public PublicCoupQuote QueryCoupQuote(CardId card,CountryId target,long expectedVersion)=>host.QueryCoupQuote(Side,card,target,expectedVersion);
             public CardActionOptions QueryCardActions()=>host.QueryCards(Side);
             public Task<CardActionResult> SubmitCardActionAsync(CardActionCommand command,CancellationToken cancellationToken=default)=>host.SubmitCard(Side,command,cancellationToken);
             public LegalTargetsResult QueryInfluenceTargets(string contextId,long expectedVersion)=>host.Query(Side,contextId,expectedVersion);

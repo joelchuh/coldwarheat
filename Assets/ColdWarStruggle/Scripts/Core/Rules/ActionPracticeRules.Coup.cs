@@ -15,6 +15,12 @@ namespace ColdWarStruggle.Core
             if(!state.Countries.TryGetValue(target,out var country))return RuleError.UnknownCountry;
             return CoupRules.CheckTarget(state.Practice.Risk.Defcon,target,country,side,Array.Empty<string>())==CoupTargetReason.Allowed?RuleError.None:RuleError.IllegalTarget;
         }
+        public static int QuoteCoupStrength(GameState state,PlayerSide side,CardId card,CountryId target)
+        {
+            if(CheckCoupTarget(state,side,card,target)!=RuleError.None)throw new ArgumentException("A legal coup target is required.");
+            var quote=QuoteCard(state,side,card,OpsValuePurpose.Coup);
+            return RegionalBudget(state,quote)?.BudgetFor(target)??quote.GeneralValue;
+        }
         static CardActionTransition PlanOpponentCoup(GameState state,PlayerSide side,CountryId target,OpponentOpsSequence sequence)
         {
             var error=CheckCoupTarget(state,side,sequence.Card,target);if(error!=RuleError.None)return new CardActionTransition(error);
@@ -39,8 +45,7 @@ namespace ColdWarStruggle.Core
             try
             {
                 var p=state.Practice;var printed=p.Definition.Cards.GetCard(card.Value);
-                var quote=QuoteCard(state,side,card.Value,OpsValuePurpose.Coup);
-                var strength=RegionalBudget(state,quote)?.BudgetFor(target.Value)??quote.GeneralValue;
+                var strength=QuoteCoupStrength(state,side,card.Value,target.Value);
                 var slot="practice."+p.CompletedActions;
                 var request=new CoupAttemptRequest(slot,state.GameId,slot,printed.Id.Value,state.Version,state.Turn.Number,target.Value,side,side,strength,strength);
                 var plan=CoupAttemptRules.PlanAttempt(p.Risk.BindCurrent(state),request,new Pcg32Random(state.RandomState));

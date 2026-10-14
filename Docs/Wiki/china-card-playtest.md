@@ -30,4 +30,6 @@ flowchart LR
 
 边界：未接头条/回合末翻面、事件转交、Formosan取消、Vietnam运行时、强制弃牌、额外行动、完整存档/联网。当前单回合结束后仍需重置，102设计绑定不是全部可执行。
 
-测试：ChinaCardPlayTests / ChinaCardSessionTests / OpsRegionalBudgetTests。1928全量回归通过；源码、构建和鼠标证据分别见[报告](../Testing/china-card-playtest.validation.json)及[工作记录](../Worklogs/2026-10-14-china-card-playtest.md)。
+测试：ChinaCardPlayTests / ChinaCardSessionTests / OpsRegionalBudgetTests。1930全量回归通过；源码、构建和鼠标证据分别见[报告](../Testing/china-card-playtest.validation.json)及[工作记录](../Worklogs/2026-10-14-china-card-playtest.md)。
+
+政变确认使用固定身份/版本/合法目标的QueryCoupQuote，Core QuoteCoupStrength与执行共用地区计算；界面显示当前目标实际OPS和军事，不把普通报价标成实际政变强度。

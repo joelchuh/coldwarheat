@@ -16,6 +16,21 @@ namespace ColdWarStruggle.Tests
         internal static DemoCatalog Before()=>PlayRealignmentCatalogTests.Add(PlayTurnOpsCatalogTests.Add(PlayDefconVpCatalogTests.Add(PlayInfluenceEventCatalogTests.Add(PlayScoringCatalogTests.Catalog()))));
         internal static DemoCatalog Add(DemoCatalog c)=>c.WithPracticeChina(ChinaCardPlayTests.Data(),ChinaCardPlayTests.Schema());
         internal static DemoCatalog Catalog()=>Add(Before()).WithQuickStartScenario(QuickStartDemoTests.Data());
+        [Test] public async Task Coup_preview_follows_target_and_matches_committed_strength_without_drawing_random()
+        {
+            var state=ChinaCardPlayTests.Ready();var board=state.Countries.ToDictionary(x=>x.Key,x=>x.Value);board[C("japan")]=new CountryState(1,1);board[C("thailand")]=new CountryState(1,1);var h=new LocalGameHost(PlayScoringTests.Replace(state,board),true);var c=new DemoController(_=>h);c.LoadScenario("preview",PlayerSide.USSR,C("japan"));
+            c.SelectCard(China);Assert.That(c.SelectedCoupQuote,Is.Null);c.SelectCoupUse();var version=c.ReadView().Version;
+            Assert.That(c.SelectedCoupQuote,Is.Not.Null);Assert.That(c.SelectedCoupQuote.Strength,Is.EqualTo(5));Assert.That(c.SelectedCoupQuote.MilitaryCredit,Is.EqualTo(5));
+            c.SelectCountry(C("angola"));Assert.That(c.SelectedCoupQuote.Strength,Is.EqualTo(4));c.SelectCountry(C("thailand"));Assert.That(c.SelectedCoupQuote.Strength,Is.EqualTo(5));
+            Assert.That(c.ReadView().Version,Is.EqualTo(version));var quote=c.SelectedCoupQuote;var result=await c.PlayCardAsync(CardActionKind.Coup);Assert.That(result.Accepted,Is.True);Assert.That(result.Coup.Strength,Is.EqualTo(quote.Strength));Assert.That(result.Coup.MilitaryCredit,Is.EqualTo(quote.MilitaryCredit));Assert.That(c.SelectedCoupQuote,Is.Null);
+        }
+        [Test] public void Coup_preview_rejects_stale_wrong_identity_and_unknown_target_without_quote()
+        {
+            var h=new LocalGameHost(ChinaCardPlayTests.Ready(),true);var v=h.UssrSession.ReadView();
+            var stale=h.UssrSession.QueryCoupQuote(China,C("japan"),v.Version-1);Assert.That(stale.Error,Is.EqualTo(RuleError.StaleVersion));Assert.That(stale.Strength,Is.Null);
+            var wrong=h.UsSession.QueryCoupQuote(China,C("japan"),v.Version);Assert.That(wrong.Error,Is.EqualTo(RuleError.WrongActor));Assert.That(wrong.Strength,Is.Null);
+            var unknown=h.UssrSession.QueryCoupQuote(China,C("missing"),v.Version);Assert.That(unknown.Error,Is.EqualTo(RuleError.UnknownCountry));Assert.That(unknown.Strength,Is.Null);
+        }
         [Test] public void Public_China_option_is_separate_from_real_hand_and_lookup_preserves_ownership_checks()
         {var h=new LocalGameHost(ChinaCardPlayTests.Ready(),true);var s=h.UssrSession;var v=s.ReadView();var o=s.QueryCardActions();Assert.That(o.China,Is.Not.Null);Assert.That(o.Find(China),Is.SameAs(o.China));Assert.That(o.Cards.Select(x=>x.Card.Value),Is.EquivalentTo(v.OwnHand));Assert.That(v.OwnHand,Has.No.Member(China.Value));Assert.That(o.China.CurrentOps,Is.EqualTo(4));Assert.That(o.China.RegionalMaximum,Is.EqualTo(5));Assert.That(o.China.Influence,Is.EqualTo(RuleError.None));Assert.That(o.China.Space,Is.EqualTo(RuleError.None));Assert.That(o.China.Event,Is.EqualTo(RuleError.UnsupportedCardAction));Assert.That(h.UsSession.QueryCardActions().China.Influence,Is.EqualTo(RuleError.WrongActor));}
         [Test] public async Task Host_China_transfer_is_idempotent_and_regional_target_query_rejects_outside_fifth()

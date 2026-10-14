@@ -6,7 +6,7 @@
 
 当前已进入**首批 Unity 原型实现阶段**。仓库已整理 84 个国家及邻接、103 张基础牌的印刷定义、初始布置、回合流程、行动、计分、胜负和分批卡牌事件设计。具体参数绑定与未确认边界见[正式数据索引](Docs/Wiki/map-card-data.md)及各牌的验证报告。
 
-已创建 Unity 6000.6.0f1 工程、纯 C# 规则核心和单窗口 Demo，最新 **1928 项 EditMode 测试通过**。[中国牌与行动试玩](Docs/Wiki/china-card-playtest.md)位于 `E:\TwilightStruggle\Builds\ChinaPlaytest\ColdWarStruggleDemo.exe`：示例部署后进入真实手牌行动，可投放影响力、政变、政局调整、送太空、计分或发动已接入的十二张事件（八张影响力、两张DEFCON/VP、遏制与清洗持续OPS）；已实现的对手阵营事件可与投放、政变或调整按所选先后结算；事件先时看完结果再选择OPS用途。中国牌已支持四种用途、亚洲地区奖励、立即背面转交与计分义务检查，独立于普通手牌。原手动部署和独立练习保留，旧Demo文件不自动更新。
+已创建 Unity 6000.6.0f1 工程、纯 C# 规则核心和单窗口 Demo，最新 **1930 项 EditMode 测试通过**。[中国牌与行动试玩](Docs/Wiki/china-card-playtest.md)位于 `E:\TwilightStruggle\Builds\ChinaPlaytest\ColdWarStruggleDemo.exe`：示例部署后进入真实手牌行动，可投放影响力、政变、政局调整、送太空、计分或发动已接入的十二张事件（八张影响力、两张DEFCON/VP、遏制与清洗持续OPS）；已实现的对手阵营事件可与投放、政变或调整按所选先后结算；事件先时看完结果再选择OPS用途。中国牌已支持四种用途、亚洲地区奖励、立即背面转交与计分义务检查，独立于普通手牌。原手动部署和独立练习保留，旧Demo文件不自动更新。
 
 ![中国牌行动完成地图](Docs/Images/china-transfer-complete.png)
 

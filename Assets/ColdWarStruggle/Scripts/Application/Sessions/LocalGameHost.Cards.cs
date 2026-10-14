@@ -26,6 +26,16 @@ namespace ColdWarStruggle.Application
                 return new LegalTargetsResult(error,state.Version,side,state.Operations.Id,targets);
             }
         }
+        PublicCoupQuote QueryCoupQuote(PlayerSide side,CardId card,CountryId target,long version)
+        {
+            lock(gate)
+            {
+                var error=version!=state.Version?RuleError.StaleVersion:ActionPracticeRules.CheckCoupTarget(state,side,card,target);
+                if(error!=RuleError.None)return new PublicCoupQuote(error);
+                try { return new PublicCoupQuote(RuleError.None,ActionPracticeRules.QuoteCoupStrength(state,side,card,target)); }
+                catch(OverflowException) { return new PublicCoupQuote(RuleError.NumericOverflow); }
+            }
+        }
         CardActionResult RejectCard(RuleError error,PlayerSide side)=>new CardActionResult(error,new PlayerViewSnapshot(state,side));
         Task<CardActionResult> SubmitCard(PlayerSide side,CardActionCommand command,CancellationToken token)
         {

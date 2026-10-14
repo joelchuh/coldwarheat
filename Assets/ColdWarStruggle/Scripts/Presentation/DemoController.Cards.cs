@@ -48,6 +48,15 @@ namespace ColdWarStruggle.Presentation
             if(!v.OwnHand.Contains(card.Value) && !(china!=null && china.Id.Equals(card) && china.Owner==SelectedSide && china.Face==CardFace.FaceUp && CardOptions().China!=null))throw new ArgumentException("Only this identity's hand or available China card can be selected.");
             SelectingCoup=false;legal=null;selectedCard=card;selectedCardGame=v.GameId;selectedCardVersion=v.Version;selectedCardSide=SelectedSide;MarkInteractionChanged();
         }
+        public PublicCoupQuote SelectedCoupQuote
+        {
+            get
+            {
+                var v=ReadView();var card=SelectedCard;
+                if(v.Practice?.Stage==ActionPracticeStage.ChoosingOperations)card=v.Practice.ActiveCard;
+                return SelectingCoup && card.HasValue?Session.QueryCoupQuote(card.Value,SelectedCountry,v.Version):null;
+            }
+        }
         public bool SelectingCoup { get; private set; }
         public void SelectCoupUse()
         {

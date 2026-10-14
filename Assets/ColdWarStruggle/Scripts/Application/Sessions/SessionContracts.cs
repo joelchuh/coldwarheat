@@ -87,6 +87,7 @@ namespace ColdWarStruggle.Application
         LegalTargetsResult QueryRealignmentTargets(string contextId,long expectedVersion);
         LegalTargetsResult QueryCoupTargets(CardId card,long expectedVersion);
         ScoringPreviewResult QueryScoringPreview(string region,long expectedVersion);
+        PublicCoupQuote QueryCoupQuote(CardId card,CountryId target,long expectedVersion);
         CardActionOptions QueryCardActions();
         Task<CardActionResult> SubmitCardActionAsync(CardActionCommand command,CancellationToken cancellationToken=default);
         PlayerSide Side { get; }

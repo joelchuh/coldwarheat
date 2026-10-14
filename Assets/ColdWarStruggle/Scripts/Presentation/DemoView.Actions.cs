@@ -63,7 +63,9 @@ namespace ColdWarStruggle.Presentation
                 else
                 {
                     var option=controller.CardOptions().Find(selected.Value);
-                    Text(972,365,262,44,CardTitle(selected.Value)+(option.CurrentOps.HasValue?$"\n印刷 OPS {option.PrintedOps} → 当前 OPS {option.CurrentOps}":""),small);
+                    var coupQuote=controller.SelectedCoupQuote;
+                    var opsText=coupQuote?.Error==RuleError.None?$"\n政变 OPS {coupQuote.Strength} · 军事 +{coupQuote.MilitaryCredit}":option.CurrentOps.HasValue?$"\n印刷 OPS {option.PrintedOps} → 普通 OPS {option.CurrentOps}":"";
+                    Text(972,365,262,44,CardTitle(selected.Value)+opsText,small);
                     if(option.Scoring==RuleError.None)DrawScoringChoice(selected.Value);
                     else
                     {

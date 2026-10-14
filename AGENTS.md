@@ -670,4 +670,4 @@ OpponentOpsPlaytest先选事件/OPS顺序，到OPS步骤再选择投放、政变
 
 ## 38. 中国牌与地区OPS试玩（2026-10-14）
 
-中国牌四用途、使用即背面交给对方、计分义务门禁和可复用地区预算已接，1928项回归通过。先读Docs/Wiki/china-card-playtest.md与regional-ops-budget.md及JSON；ChinaPlaytest构建/真实鼠标/审查见报告。中国牌仍单独存放，普通Hand/Resolving/弃牌不含它，终局也保留已转交实体。全用于亚洲的地区奖励按接受历史与实际费用计算，Space不加。第37节未接中国牌为历史状态。完整回合末翻面、事件转交、Formosan/Vietnam运行时、额外行动与完整整局仍待接。
+中国牌四用途、使用即背面交给对方、计分义务门禁和可复用地区预算已接，1930项回归通过。先读Docs/Wiki/china-card-playtest.md与regional-ops-budget.md及JSON；ChinaPlaytest构建/真实鼠标/审查见报告。中国牌仍单独存放，普通Hand/Resolving/弃牌不含它，终局也保留已转交实体。全用于亚洲的地区奖励按接受历史与实际费用计算，Space不加。第37节未接中国牌为历史状态。完整回合末翻面、事件转交、Formosan/Vietnam运行时、额外行动与完整整局仍待接。

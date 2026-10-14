@@ -179,6 +179,13 @@ namespace ColdWarStruggle.Application
             if(Influence==RuleError.None)CurrentOps=ActionPracticeRules.QuoteCard(state,side,Card,OpsValuePurpose.Influence).GeneralValue;
         }
     }
+    public sealed class PublicCoupQuote
+    {
+        public RuleError Error { get; }
+        public int? Strength { get; }
+        public int? MilitaryCredit => Strength;
+        internal PublicCoupQuote(RuleError error,int? strength=null) { Error=error;Strength=strength; }
+    }
     public sealed class CardActionOptions
     {
         public string GameId { get; }
