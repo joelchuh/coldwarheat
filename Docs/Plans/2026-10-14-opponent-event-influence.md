@@ -21,7 +21,7 @@
 - [x] T1 RED/GREEN：序列两种顺序/固定身份/完整后拒绝/无误步；规则开始/结束/未知事件/错方/牌区/根只加一。Nasser前后顺序影响最终埃及数值；Containment先事件仍按实际USSR报价；Suez选择Owner与根不同，错误回应不推进。新增OpponentOpsSequence.cs与ActionPracticeRules.OpponentOps.cs，最少改Finish和事件收尾。
 - [x] T2 RED/GREEN：Host重放/改顺序ID冲突/旧版本；公开进度/Controller/地图合法目标；真实发牌Duck Event+OPS，两个顺序的核战/VP终局截断；选择提交失败及收尾溢出保留前缀；原1815回归全通过。
 - [x] T3：Demo界面两顺序入口/状态提示，独立OpponentEventPlaytest，同38数据装配；JSON摘要/Wiki/flow/报告/README/AGENTS更新。构建/源码哈希/载荷/初始渲染与鼠标分开。
-- [ ] T4：单一新最强reviewer全分支；Critical/Important一次RED/GREEN修复，Minor记账；常规ff合并push核验。
+- [x] T4：单一新最强reviewer全分支；Critical/Important一次RED/GREEN修复，Minor记账；常规ff合并push核验。
 
 裁定：不增加特殊前置缺失的“自动跳过”假实现。保持原单回合终局审计策略（终局卡留Resolving且根不推进），未来整局事务规范另行迁移。两类命令显式表达顺序，避免仅在客户端临时变量记录继续位置。此有限序列先不承诺嵌套出牌、暂停存档、事件授予OPS、头条/回合末。
 
