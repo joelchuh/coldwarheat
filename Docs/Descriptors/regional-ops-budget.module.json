@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "kind": "module",
+  "status": "implemented-subset",
+  "side_effects": [
+    "纯计划不修改输入；只有Host接受命令才发布新状态"
+  ],
+  "stop_conditions": [
+    "不明数据/不匹配状态拒绝；未知规则组合不补默认值"
+  ],
+  "rule_sources": [
+    {
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "sections": [
+        "7.4",
+        "9.1–9.8"
+      ],
+      "checked_on": "2026-10-14"
+    }
+  ],
+  "verification": {
+    "implementation_tested": true,
+    "report": "Docs/Testing/china-card-playtest.validation.json",
+    "unity_editmode_total": 1928,
+    "scope": "single-turn-normal-actions-subset"
+  },
+  "id": "module.regional-ops-budget",
+  "description": "冻结普通OPS报价，按全部已接受目标保持地区奖励；合并后保底、实际逐点费用、不可变前缀与超支原子拒绝，可复用于不同来源。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OpsRegionalBudget.cs",
+      "symbol": "OpsRegionalBudget"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OpsRegionalBudget.cs",
+      "symbol": "TrySpend"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OperationsContext.cs",
+      "symbol": "WithRegionalBudget"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/InfluenceRules.cs",
+      "symbol": "PlanPlacement"
+    }
+  ],
+  "inputs": [
+    "已验证地图、实际Actor普通报价、可信正地区奖励贡献",
+    "每个候选目标与实际OPS费用"
+  ],
+  "outputs": [
+    "可能总额、已花费和仍适用奖励的新不可变预算或拒绝"
+  ],
+  "dependencies": [
+    "module.ops-general",
+    "module.map-data",
+    "module.influence-core"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.persistent_batch1"
+  ],
+  "preconditions": [
+    "只允许Influence/Coup/Realignment用途，Context与State同Map/Actor/用途/总额/Spent"
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/OpsRegionalBudgetTests.cs",
+      "status": "passed"
+    }
+  ]
+}

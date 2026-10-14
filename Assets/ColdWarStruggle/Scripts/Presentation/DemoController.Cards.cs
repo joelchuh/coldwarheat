@@ -44,7 +44,8 @@ namespace ColdWarStruggle.Presentation
         public CardActionOptions CardOptions()=>Session.QueryCardActions();
         public void SelectCard(CardId card)
         {
-            var v=ReadView();if(!v.OwnHand.Contains(card.Value))throw new ArgumentException("Only this identity's real hand can be selected.");
+            var v=ReadView();var china=v.Cards?.China;
+            if(!v.OwnHand.Contains(card.Value) && !(china!=null && china.Id.Equals(card) && china.Owner==SelectedSide && china.Face==CardFace.FaceUp && CardOptions().China!=null))throw new ArgumentException("Only this identity's hand or available China card can be selected.");
             SelectingCoup=false;legal=null;selectedCard=card;selectedCardGame=v.GameId;selectedCardVersion=v.Version;selectedCardSide=SelectedSide;MarkInteractionChanged();
         }
         public bool SelectingCoup { get; private set; }
@@ -59,7 +60,7 @@ namespace ColdWarStruggle.Presentation
             else
             {
                 var card=SelectedCard??throw new InvalidOperationException("Select a card first.");
-                var option=CardOptions().Cards.Single(c=>c.Card.Equals(card));
+                var option=CardOptions().Find(card);
                 if(option.Coup!=RuleError.None)throw new InvalidOperationException("This card cannot be used for a coup.");
             }
             SelectingCoup=true;legal=null;MarkInteractionChanged();

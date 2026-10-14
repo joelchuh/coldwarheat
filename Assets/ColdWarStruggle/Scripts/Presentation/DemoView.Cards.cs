@@ -16,7 +16,8 @@ namespace ColdWarStruggle.Presentation
             revealBoth=GUI.Toggle(new Rect(972,action?676:642,264,action?26:28),revealBoth," 测试观察：查看双方",button);
             if(Button(972,action?706:680,262,action?27:41,$"手牌 本方{view.OwnHand.Count} / 对方{view.OpponentHandCount}"))
             { handPanelOpen=true;handScroll=Vector2.zero;GUIUtility.ExitGUI(); }
-            Text(972,action?737:730,262,40,$"牌库 {view.Cards.DrawPileCount} · 弃牌 {view.Cards.DiscardCount} · 移出 {view.Cards.RemovedCount}\n中国牌：{Side(view.Cards.China.Owner)} / {(view.Cards.China.Face==CardFace.FaceUp?"正面":"背面")}",small);
+            Text(972,action?737:730,262,20,$"牌库 {view.Cards.DrawPileCount} · 弃牌 {view.Cards.DiscardCount} · 移出 {view.Cards.RemovedCount}",small);
+            DrawChinaSelector(view,972,action?757:753,262,23);
         }
         void DrawHandPanel(PlayerViewSnapshot view)
         {
@@ -62,8 +63,9 @@ namespace ColdWarStruggle.Presentation
                 rowY+=32+Math.Max(1,(row.Cards.Count+7)/8)*184+18;
             }
             GUI.EndScrollView();
-            Text(48,744,1172,26,$"选牌只改变本地意图，点击用途后才提交；中国牌单独持有，本批暂不可使用。  版本 {frame.Version}",small);
-            Text(28,786,1220,27,"行动试玩支持影响力、政变、调整、太空、计分与十二张已接事件；已支持对手事件＋三种OPS先后；其他事件和完整回合待接。",small);
+            DrawChinaSelector(view,48,744,500,28);
+            Text(562,744,656,28,$"使用后立即背面交给对方；普通手牌数量不含中国牌。  版本 {frame.Version}",small);
+            Text(28,786,1220,27,"行动试玩支持影响力、政变、调整、太空、计分与十二张已接事件；已支持中国牌及对手事件＋三种OPS先后；其他事件和完整回合待接。",small);
         }
     }
 }

@@ -34,11 +34,13 @@ namespace ColdWarStruggle.Core
             SetupDeploymentExecution deployment=null,CardZones cards=null,RandomSnapshot randomState=null,ActionPracticeState practice=null)
         {
             if(map==null || countries==null || context==null || string.IsNullOrWhiteSpace(gameId)) throw new ArgumentException("Missing state data.");
+            if(context.RegionalBudget!=null && (!ReferenceEquals(context.RegionalBudget.Map,map) || context.RegionalBudget.Spent!=spentOps))throw new ArgumentException("Regional history must match the map and spent OPS.");
             if(version<0 || eventSequence<0 || spentOps<0 || spentOps>context.Budget) throw new ArgumentOutOfRangeException();
             if(countries.Count!=map.Countries.Count || countries.Keys.Any(x=>!map.Contains(x)) || context.Reachable.Any(x=>!map.Contains(x)))
                 throw new ArgumentException("State must cover the map exactly.");
             if((cards==null)!=(randomState==null) || (cards!=null && hands!=null))
                 throw new ArgumentException("Cards and random state must be paired, without fixture hands.");
+            if(practice?.Definition.China!=null && !ReferenceEquals(map,practice.Definition.China.Map))throw new ArgumentException("China map mismatch.");
             if(practice?.Definition.InfluenceEvents!=null && !ReferenceEquals(map,practice.Definition.InfluenceEvents.Map))throw new ArgumentException("Practice event map mismatch.");
             if(practice?.Risk!=null && !ReferenceEquals(map,practice.Risk.Definition.Defcon.Map))throw new ArgumentException("Practice risk map mismatch.");
             if(practice?.Definition.Scoring!=null && !ReferenceEquals(map,practice.Definition.Scoring.Map))throw new ArgumentException("Practice scoring map mismatch.");
@@ -59,10 +61,10 @@ namespace ColdWarStruggle.Core
         }
         public int GetInfluence(CountryId id,PlayerSide side) => Countries.TryGetValue(id,out var value)?value.For(side):throw new ArgumentException("Unknown country.");
         public IReadOnlyList<string> GetHand(PlayerSide side) => hands.TryGetValue(side,out var h)?h:throw new ArgumentOutOfRangeException(nameof(side));
-        internal GameState Apply(IReadOnlyDictionary<CountryId,CountryState> countries,int spent,int count)
-            => new GameState(Map,countries,Operations,GameId,checked(Version+1),spent,checked(EventSequence+count),Ended,Cards==null?hands:null,InfluenceEvent,Turn,Deployment,Cards,RandomState,Practice);
-        internal GameState ApplyRealignment(IReadOnlyDictionary<CountryId,CountryState> countries,int spent,RandomSnapshot random)
-            =>new GameState(Map,countries,Operations,GameId,checked(Version+1),spent,checked(EventSequence+1),Ended,
+        internal GameState Apply(IReadOnlyDictionary<CountryId,CountryState> countries,int spent,int count,OperationsContext operations=null)
+            => new GameState(Map,countries,operations??Operations,GameId,checked(Version+1),spent,checked(EventSequence+count),Ended,Cards==null?hands:null,InfluenceEvent,Turn,Deployment,Cards,RandomState,Practice);
+        internal GameState ApplyRealignment(IReadOnlyDictionary<CountryId,CountryState> countries,int spent,RandomSnapshot random,OperationsContext operations=null)
+            =>new GameState(Map,countries,operations??Operations,GameId,checked(Version+1),spent,checked(EventSequence+1),Ended,
                 influenceEvent:InfluenceEvent,turn:Turn,deployment:Deployment,cards:Cards,randomState:random,practice:Practice);
         internal GameState WithPractice(ActionPracticeState practice,OperationsContext operations,CardZones cards,RandomSnapshot random,IReadOnlyDictionary<CountryId,CountryState> countries=null,bool? ended=null)
             =>new GameState(Map,countries??Countries,operations,GameId,checked(Version+1),0,checked(EventSequence+1),ended??Ended,

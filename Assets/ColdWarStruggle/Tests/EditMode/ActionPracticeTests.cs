@@ -39,10 +39,10 @@ namespace ColdWarStruggle.Tests
         }
         [Test] public void Cannot_restart_a_started_slice()
         { Assert.That(ActionPracticeRules.Plan(Ready(),PlayerSide.USSR,CardActionKind.StartPractice,"again").Error,Is.EqualTo(RuleError.ActionNotReady)); }
-        [Test] public void Opponents_cards_and_china_cannot_be_played()
+        [Test] public void Opponent_hand_is_not_owned_and_unconfigured_china_is_unsupported()
         {
-            var s=Ready();foreach(var card in new[]{s.Cards.GetHand(PlayerSide.US)[0],s.Cards.China.Id})
-                Assert.That(ActionPracticeRules.CanPlay(s,PlayerSide.USSR,card,CardActionKind.Space),Is.EqualTo(RuleError.CardNotOwned));
+            var s=Ready();Assert.That(ActionPracticeRules.CanPlay(s,PlayerSide.USSR,s.Cards.GetHand(PlayerSide.US)[0],CardActionKind.Space),Is.EqualTo(RuleError.CardNotOwned));
+            Assert.That(ActionPracticeRules.CanPlay(s,PlayerSide.USSR,s.Cards.China.Id,CardActionKind.Space),Is.EqualTo(RuleError.UnsupportedCardAction));
         }
         [Test] public void Opponent_events_cannot_be_silently_skipped_for_ops()
         {

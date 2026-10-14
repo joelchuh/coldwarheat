@@ -33,6 +33,7 @@ namespace ColdWarStruggle.Application
         public string ContextId { get; }
         public PlayerSide Actor { get; }
         public int RemainingOps { get; }
+        public PublicRegionalOps RegionalOps { get; }
         public IReadOnlyList<CountryView> Countries { get; }
         public IReadOnlyList<string> OwnHand { get; }
         public int OpponentHandCount { get; }
@@ -43,6 +44,7 @@ namespace ColdWarStruggle.Application
         public PublicPracticeView Practice { get; }
         internal PlayerViewSnapshot(GameState s,PlayerSide viewer)
         {
+            RegionalOps=s.Operations.RegionalBudget==null?null:new PublicRegionalOps(s.Operations.RegionalBudget);
             GameId=s.GameId;Viewer=viewer;Version=s.Version;EventSequence=s.EventSequence;ContextId=s.Operations.Id;Actor=s.Operations.Actor;RemainingOps=s.Operations.Budget-s.SpentOps;
             Countries=Array.AsReadOnly(s.Map.Countries.Select(c=>new CountryView(c,s.Countries[c.Id])).ToArray());
             OwnHand=Array.AsReadOnly(s.GetHand(viewer).ToArray());OpponentHandCount=s.GetHand(viewer==PlayerSide.US?PlayerSide.USSR:PlayerSide.US).Count;

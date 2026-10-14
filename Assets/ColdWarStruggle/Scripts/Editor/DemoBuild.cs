@@ -59,6 +59,8 @@ namespace ColdWarStruggle.Editor
         public static void BuildOpponentEventPlaytest()=>BuildAt("Builds/OpponentEventPlaytest","ColdWarStruggle Opponent Event Playtest");
         [MenuItem("ColdWarStruggle/Build Opponent OPS Playtest")]
         public static void BuildOpponentOpsPlaytest()=>BuildAt("Builds/OpponentOpsPlaytest","ColdWarStruggle Opponent OPS Playtest");
+        [MenuItem("ColdWarStruggle/Build China Playtest")]
+        public static void BuildChinaPlaytest()=>BuildAt("Builds/ChinaPlaytest","ColdWarStruggle China Playtest");
         static void BuildAt(string directory,string productName=null)
         {
             Prepare();Directory.CreateDirectory(directory);
@@ -93,6 +95,7 @@ namespace ColdWarStruggle.Editor
                     .WithPracticeDefconVpEvents(Read(root,"Data/Cards/deluxe-2015/defcon-vp-events.parameters.json"),Read(root,"Docs/Contracts/defcon-vp-events.schema.json"))
                     .WithPracticeTurnOpsEvents(Read(root,"Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json"),Read(root,"Docs/Contracts/persistent-effects-batch1.schema.json"))
                     .WithPracticeRealignment(Read(root,"Data/Rulesets/deluxe-2015/realignment.json"))
+                    .WithPracticeChina(Read(root,"Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json"),Read(root,"Docs/Contracts/persistent-effects-batch1.schema.json"))
                     .WithQuickStartScenario(Read(root,"Data/Demo/quick-start-scenario.json"));
             WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
             Directory.CreateDirectory(payload);

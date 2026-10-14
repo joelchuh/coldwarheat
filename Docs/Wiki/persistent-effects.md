@@ -95,3 +95,5 @@ description：按效果参数查本回合持续状态的生效、到期、取消
 [DEFCON事件与政变干预](defcon-events-batch1.md)补齐危机实际Actor责任、任意边界解除、核潜艇/SALT政策与ABM视同OPS；全部仍planned。
 
 [教皇许可](solidarity-chain.md)复用活动实例且关联成功来源，保持当前状态与历史事实分开。
+
+2026-10-14运行时更新：[中国牌试玩](china-card-playtest.md)已接普通四用途/立即背面转交与[地区OPS预算](regional-ops-budget.md)；回合末翻面、事件转交、越南效果等仍按上述设计待接。该子集不代表完整回合编排。

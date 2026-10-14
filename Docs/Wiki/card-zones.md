@@ -49,3 +49,5 @@ Schema检查其他字段的结构，但本接口不解析DEFCON/太空/军事/VP
 CardZonesTests覆盖唯一完整分区、只读集合、时代与中国牌；InitialDealTests覆盖固定小牌组顺序、实际103牌、随机隔离与失败；InitialDealLoaderTests覆盖真实引用和变异错误。测试数量与原始XML摘要见[验证报告](../Testing/initial-card-deal.validation.json)。该报告对应纯服务批次；随后Demo集成的测试、播放器与截图见[真实手牌报告](../Testing/dealt-setup-demo.validation.json)。
 
 GameState已成对持有牌区与随机快照，拒绝与旧fixture手牌混用；状态复制保留两者。测试开局可先看真实手牌再部署，见[Demo说明](first-demo.md)。完整出牌、头条、轨道和胜负继续分批实现。
+
+2026-10-14运行时更新：[中国牌试玩](china-card-playtest.md)已接普通四用途/立即背面转交与[地区OPS预算](regional-ops-budget.md)；回合末翻面、事件转交、越南效果等仍按上述设计待接。该子集不代表完整回合编排。

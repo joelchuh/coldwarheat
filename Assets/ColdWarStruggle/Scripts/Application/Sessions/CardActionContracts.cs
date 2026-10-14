@@ -138,6 +138,7 @@ namespace ColdWarStruggle.Application
     public sealed class CardActionOption
     {
         public int? PrintedOps { get; }
+        public int? RegionalMaximum { get; }
         public int? CurrentOps { get; }
         public long? FlatModifierTotal { get; }
         public CardId Card { get; }
@@ -157,7 +158,7 @@ namespace ColdWarStruggle.Application
             {
                 var printed=s.Practice.Definition.Cards.GetCard(id);PrintedOps=printed.PrintedOps;
                 if(printed.PrintedOps.HasValue)
-                { var quote=ActionPracticeRules.QuoteCard(s,side,id,OpsValuePurpose.Influence);CurrentOps=quote.GeneralValue;FlatModifierTotal=quote.ModifierTotal; }
+                { var quote=ActionPracticeRules.QuoteCard(s,side,id,OpsValuePurpose.Influence);CurrentOps=quote.GeneralValue;FlatModifierTotal=quote.ModifierTotal;if(s.Practice.Definition.China is ChinaCardDefinition china && id.Equals(china.Card))RegionalMaximum=new OpsRegionalBudget(s.Map,quote,new[]{china.Bonus}).EffectiveBudget; }
             }
             OpponentEventFirst=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.OpponentEventFirst);OpponentOpsFirst=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.OpponentOpsFirst);
             EventThenInfluence=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.EventThenInfluence);InfluenceThenEvent=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.InfluenceThenEvent);Realignment=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Realignment);Event=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Event);Card=id;Influence=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Influence);Space=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Space);Coup=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Coup);Scoring=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Scoring); }
@@ -183,8 +184,10 @@ namespace ColdWarStruggle.Application
         public string GameId { get; }
         public long Version { get; }
         public IReadOnlyList<CardActionOption> Cards { get; }
+        public CardActionOption China { get; }
+        public CardActionOption Find(CardId card)=>China!=null && China.Card.Equals(card)?China:Cards.FirstOrDefault(c=>c.Card.Equals(card));
         public PendingOperationsOptions PendingOperations { get; }
         internal CardActionOptions(GameState s,PlayerSide side)
-        { PendingOperations=s.Practice?.Stage==ActionPracticeStage.ChoosingOperations?new PendingOperationsOptions(s,side):null;GameId=s.GameId;Version=s.Version;Cards=Array.AsReadOnly(s.Cards==null?Array.Empty<CardActionOption>():s.Cards.GetHand(side).Select(id=>new CardActionOption(s,side,id)).ToArray()); }
+        { China=s.Practice?.Definition.China==null?null:new CardActionOption(s,side,s.Cards.China.Id);PendingOperations=s.Practice?.Stage==ActionPracticeStage.ChoosingOperations?new PendingOperationsOptions(s,side):null;GameId=s.GameId;Version=s.Version;Cards=Array.AsReadOnly(s.Cards==null?Array.Empty<CardActionOption>():s.Cards.GetHand(side).Select(id=>new CardActionOption(s,side,id)).ToArray()); }
     }
 }

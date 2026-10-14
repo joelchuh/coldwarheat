@@ -6,7 +6,7 @@ namespace ColdWarStruggle.Core
     public enum RuleError { None, InvalidCommand, WrongGame, WrongActor, StaleVersion, StaleContext, ModeMismatch, UnknownCountry,
         IllegalTarget, InsufficientBudget, GameAlreadyEnded, NumericOverflow, CommandIdConflict,
         EventNotAvailable, EventAlreadyResolved, EventNotStarted, EventInProgress, StaleDecision, InvalidSelection, EventRequiresRuling, EventForbidden, InvalidDefinition, MissingTurnContext,
-        SetupNotActive, SetupInProgress, SetupComplete, InvalidSetupState, DuplicateCountry, InvalidAllocationAmount, OutsideSetupRegion, IncorrectAllocationTotal, CardNotOwned, UnsupportedCardAction, ActionNotReady, SpaceAttemptUnavailable, ActionSliceComplete }
+        SetupNotActive, SetupInProgress, SetupComplete, InvalidSetupState, DuplicateCountry, InvalidAllocationAmount, OutsideSetupRegion, IncorrectAllocationTotal, CardNotOwned, UnsupportedCardAction, ActionNotReady, SpaceAttemptUnavailable, ActionSliceComplete, ChinaUnavailable, ScoringMustBePlayed }
     public sealed class InfluencePlaced
     {
         public CountryId Country { get; }
@@ -36,7 +36,7 @@ namespace ColdWarStruggle.Core
             if(!ReferenceEquals(context,state.Operations)) return Reject(RuleError.StaleContext);
             if(context.Mode!=OperationsMode.Influence) return Reject(RuleError.ModeMismatch);
             var working=state.Countries.ToDictionary(x=>x.Key,x=>x.Value);
-            var costs=new List<int>();var events=new List<InfluencePlaced>();int spent=state.SpentOps;
+            var costs=new List<int>();var events=new List<InfluencePlaced>();int spent=state.SpentOps;var regional=context.RegionalBudget;
             try
             {
                 foreach(var id in orderedTargets.ToArray())
@@ -45,11 +45,13 @@ namespace ColdWarStruggle.Core
                     if(!context.Reachable.Contains(id)) return Reject(RuleError.IllegalTarget);
                     var before=working[id];var controller=ControlRules.GetController(before.US,before.USSR,state.Map.GetCountry(id).Stability);
                     int cost=controller.HasValue && controller.Value!=context.Actor?context.Costs.EnemyControlled:context.Costs.Normal;
-                    if(cost>context.Budget-spent)return Reject(RuleError.InsufficientBudget);
+                    if(regional!=null)
+                    { if(!regional.TrySpend(id,cost,out var candidate))return Reject(RuleError.InsufficientBudget);regional=candidate; }
+                    else if(cost>context.Budget-spent)return Reject(RuleError.InsufficientBudget);
                     working[id]=context.Actor==PlayerSide.US?new CountryState(checked(before.US+1),before.USSR):new CountryState(before.US,checked(before.USSR+1));
                     spent+=cost;costs.Add(cost);events.Add(new InfluencePlaced(id,context.Actor,cost,checked(state.EventSequence+events.Count+1)));
                 }
-                return new PlacementPlan(RuleError.None,state.Apply(working,spent,events.Count),costs.AsReadOnly(),events.AsReadOnly());
+                return new PlacementPlan(RuleError.None,state.Apply(working,spent,events.Count,regional==null?context:context.WithRegionalBudget(regional)),costs.AsReadOnly(),events.AsReadOnly());
             }
             catch(OverflowException) { return Reject(RuleError.NumericOverflow); }
         }

@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "kind": "module",
+  "status": "implemented-subset",
+  "side_effects": [
+    "纯计划不修改输入；只有Host接受命令才发布新状态"
+  ],
+  "stop_conditions": [
+    "不明数据/不匹配状态拒绝；未知规则组合不补默认值",
+    "头条/回合末翻面/事件转交/Formosan/Vietnam/额外行动/完整存档未接；背面不可重复使用"
+  ],
+  "rule_sources": [
+    {
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "sections": [
+        "7.4",
+        "9.1–9.8"
+      ],
+      "checked_on": "2026-10-14"
+    }
+  ],
+  "verification": {
+    "implementation_tested": true,
+    "report": "Docs/Testing/china-card-playtest.validation.json",
+    "unity_editmode_total": 1928,
+    "scope": "single-turn-normal-actions-subset"
+  },
+  "id": "module.china-card-playtest",
+  "description": "中国牌独立持有、四用途、使用即背面转交与计分义务门禁；接地区OPS、固定身份/幂等宿主、独立UI入口，当前仅普通单回合试玩。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ChinaCardRules.cs",
+      "symbol": "CanUse"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ChinaCardRules.cs",
+      "symbol": "TransferOnUse"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.cs",
+      "symbol": "CanPlay"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/ChinaCardDefinitionLoader.cs",
+      "symbol": "LoadSubset"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.China.cs",
+      "symbol": "WithPracticeChina"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/CardActionContracts.cs",
+      "symbol": "Find"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/RegionalOpsView.cs",
+      "symbol": "PublicRegionalOps"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.China.cs",
+      "symbol": "DrawChinaSelector"
+    }
+  ],
+  "inputs": [
+    "当前Actor/阶段、独立China状态、普通手牌和剩余行动",
+    "合法卡牌用途与目标；共享source_bonuses.china"
+  ],
+  "outputs": [
+    "立即转交独立中国牌，普通手牌/牌堆数量不变",
+    "投放/调整地区预算或政变/太空收据，完成一次行动或终局截断"
+  ],
+  "dependencies": [
+    "module.card-zones",
+    "module.regional-ops-budget",
+    "module.playable-card-actions",
+    "module.playable-realignment",
+    "module.playable-flat-ops-events"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.persistent_batch1",
+    "cards.deluxe2015.definitions"
+  ],
+  "preconditions": [
+    "当前Actor持有正面中国牌且不会妨碍打完计分牌",
+    "先装配真实手牌普通调整，再装配China，最后QuickStart"
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/ChinaCardPlayTests.cs",
+      "status": "passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/ChinaCardSessionTests.cs",
+      "status": "passed"
+    }
+  ]
+}

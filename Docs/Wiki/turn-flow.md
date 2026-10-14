@@ -266,3 +266,5 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 ## 对手事件通用OPS步骤（2026-10-14）
 
 [三种OPS](opponent-ops-modes.md)新增ChoosingOperations/可空Mode，事件先时允许看完结果再选择用途；只在两步结束后推进根，政变与后事件一次发布且保留两类结果。旧Influence专用入口兼容，不改变完整头条/回合末尚未接入的边界。
+
+2026-10-14运行时更新：[中国牌试玩](china-card-playtest.md)已接普通四用途/立即背面转交与[地区OPS预算](regional-ops-budget.md)；回合末翻面、事件转交、越南效果等仍按上述设计待接。该子集不代表完整回合编排。

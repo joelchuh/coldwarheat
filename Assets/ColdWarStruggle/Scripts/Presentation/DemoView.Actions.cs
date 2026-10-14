@@ -36,21 +36,21 @@ namespace ColdWarStruggle.Presentation
             else if(p.Stage==ActionPracticeStage.ChoosingOperations)DrawOpponentOperations(view);
             else if(p.Stage==ActionPracticeStage.Realigning)
             {
-                Text(972,368,262,38,"调整："+CardTitle(p.ActiveCard.Value),small);
+                Text(972,368,262,38,"调整："+CardTitle(p.ActiveCard.Value)+"\n"+RemainingOpsText(view),small);
                 GUI.enabled=controller.LegalTargets().Targets.Contains(controller.SelectedCountry);
                 if(Button(972,410,262,39,"调整一次："+Name(controller.SelectedCountry)))RollRealignment();
                 GUI.enabled=true;
-                if(Button(972,457,262,39,view.RemainingOps==0?"结束调整":$"结束调整（放弃 {view.RemainingOps} OPS）"))FinishRealignment();
-                Text(972,504,262,66,$"剩余 {view.RemainingOps} OPS；每次后可重选国家。\n"+(p.OpponentOps!=null && !p.OpponentOps.EventOccurred?"结束调整后仍须结算对手事件。":"双方掷骰，自己也可能失去影响力。"),small);
+                if(Button(972,457,262,39,view.RemainingOps==0?"结束调整":$"结束调整（放弃{(view.RegionalOps?.EligibleRegions.Count>0?"最多":"")} {view.RemainingOps} OPS）"))FinishRealignment();
+                Text(972,504,262,66,(view.RegionalOps!=null?RegionalBudgetHint(view):$"剩余 {view.RemainingOps} OPS；每次后可重选国家。")+"\n"+(p.OpponentOps!=null && !p.OpponentOps.EventOccurred?"结束调整后仍须结算对手事件。":"双方掷骰，自己也可能失去影响力。"),small);
             }
             else if(p.Stage==ActionPracticeStage.PlacingInfluence)
             {
-                Text(972,368,262,38,"使用："+CardTitle(p.ActiveCard.Value),small);
+                Text(972,368,262,38,"使用："+CardTitle(p.ActiveCard.Value)+"\n"+RemainingOpsText(view),small);
                 GUI.enabled=controller.LegalTargets().Targets.Contains(controller.SelectedCountry);
                 if(Button(972,410,262,39,"投放 1 点影响力"))Place(1);
                 GUI.enabled=true;
-                if(Button(972,457,262,39,view.RemainingOps==0?"结束投放":$"结束投放（放弃 {view.RemainingOps} OPS）"))FinishCard();
-                Text(972,504,262,66,p.OpponentOps==null?"点地图选国，再投放；绿色为合法目标。":p.OpponentOps.EventOccurred?"对手事件已完成。结束投放后交给下一方。":"结束投放后仍须结算对手事件；现在不会换方。",small);
+                if(Button(972,457,262,39,view.RemainingOps==0?"结束投放":$"结束投放（放弃{(view.RegionalOps?.EligibleRegions.Count>0?"最多":"")} {view.RemainingOps} OPS）"))FinishCard();
+                Text(972,504,262,66,p.OpponentOps==null?(view.RegionalOps!=null?RegionalBudgetHint(view):"点地图选国，再投放；绿色为合法目标。"):p.OpponentOps.EventOccurred?"对手事件已完成。结束投放后交给下一方。":"结束投放后仍须结算对手事件；现在不会换方。",small);
             }
             else
             {
@@ -62,7 +62,7 @@ namespace ColdWarStruggle.Presentation
                 }
                 else
                 {
-                    var option=controller.CardOptions().Cards.First(c=>c.Card.Equals(selected.Value));
+                    var option=controller.CardOptions().Find(selected.Value);
                     Text(972,365,262,44,CardTitle(selected.Value)+(option.CurrentOps.HasValue?$"\n印刷 OPS {option.PrintedOps} → 当前 OPS {option.CurrentOps}":""),small);
                     if(option.Scoring==RuleError.None)DrawScoringChoice(selected.Value);
                     else
@@ -78,7 +78,7 @@ namespace ColdWarStruggle.Presentation
                     { if(opponent)UseCard(CardActionKind.OpponentOpsFirst);else {controller.SelectCoupUse();GUIUtility.ExitGUI();} }
                     GUI.enabled=true;
                     GUI.enabled=option.Event==RuleError.None;
-                    if(Button(1108,458,126,35,option.Event==RuleError.None?"发动事件":"事件未接入"))UseCard(CardActionKind.Event);
+                    if(Button(1108,458,126,35,option.Event==RuleError.None?"发动事件":selected.Value.Equals(view.Cards.China.Id)?"中国牌无事件":"事件未接入"))UseCard(CardActionKind.Event);
                     GUI.enabled=true;
                     if(controller.SelectingCoup)
                     {
@@ -89,6 +89,7 @@ namespace ColdWarStruggle.Presentation
                         if(p.Defcon==2 && country.Definition.Battleground)Text(972,538,262,36,"危险：战场政变会触发核战，当前行动方判负！",small);
                     }
                     var reason=opponent?"对手牌：先选顺序，到OPS步骤再选用途。":option.Influence!=RuleError.None?"影响力："+ErrorText(option.Influence):"";
+                    if(option.RegionalMaximum.HasValue && option.Influence==RuleError.None)reason=$"全用于亚洲最多 {option.RegionalMaximum} OPS；太空仍 {option.CurrentOps}。";
                     if(option.Space!=RuleError.None)reason+="\n太空："+ErrorText(option.Space);
                     if(!controller.SelectingCoup)
                     {
@@ -126,7 +127,7 @@ namespace ColdWarStruggle.Presentation
                 if(c.DefconTo.HasValue)message+=$"\nDEFCON {c.DefconFrom} → {c.DefconTo}";
             }
             else if(result!=null)message=!result.Accepted?ErrorText(result.Error):result.Space!=null
-                ?$"太空骰 {result.Space.Roll} · {(result.Space.Success?"成功":"失败")}，轨道 {result.Space.From} → {result.Space.To}\nVP 变化 {result.Space.VpForUS:+0;-0;0}；{(result.View.Practice.Winner.HasValue?"终局停止收尾":"牌已弃置")}。":"行动命令已接受。";
+                ?$"太空骰 {result.Space.Roll} · {(result.Space.Success?"成功":"失败")}，轨道 {result.Space.From} → {result.Space.To}\nVP 变化 {result.Space.VpForUS:+0;-0;0}；{(result.View.Practice.Winner.HasValue?"终局停止收尾":"行动结束，请查看牌区")}。":"行动命令已接受。";
             if(result?.Coup!=null && (result.Event!=null || result.DefconVpEvent!=null || result.ActivatedOpsEffect!=null))message=CombinedCoupMessage(result);
             if(controller.LastResult!=null)message=controller.LastResult.Accepted?"投放成功，费用："+string.Join(" + ",controller.LastResult.Costs):ErrorText(controller.LastResult.Error);
             if(controller.LastEventResult!=null)message=controller.LastEventResult.Accepted?"事件选择完成 · 影响力变化 "+controller.LastEventResult.Changes.Count+" 项。":ErrorText(controller.LastEventResult.Error);

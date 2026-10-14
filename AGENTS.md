@@ -667,3 +667,7 @@ OpponentEventPlaytest已接已注册对手阵营事件＋影响力OPS的两种�
 ## 37. 对手事件与三种OPS（2026-10-14）
 
 OpponentOpsPlaytest先选事件/OPS顺序，到OPS步骤再选择投放、政变或调整；可空Mode/ChoosingOperations、当前目标与报价、政变和后事件复合收据、单根一次牌去向已接。1874项回归通过，审查漏显的等待选择政变摘要已修复，构建和鼠标证据见最新报告。先读Docs/Wiki/opponent-ops-modes.md及JSON；旧Influence专用入口兼容。初始渲染与鼠标分别验收，完整头条/回合末、未知前置事件/嵌套/中国牌仍未接。第36节未接对手政变/调整为历史状态。
+
+## 38. 中国牌与地区OPS试玩（2026-10-14）
+
+中国牌四用途、使用即背面交给对方、计分义务门禁和可复用地区预算已接，1928项回归通过。先读Docs/Wiki/china-card-playtest.md与regional-ops-budget.md及JSON；ChinaPlaytest构建/真实鼠标/审查见报告。中国牌仍单独存放，普通Hand/Resolving/弃牌不含它，终局也保留已转交实体。全用于亚洲的地区奖励按接受历史与实际费用计算，Space不加。第37节未接中国牌为历史状态。完整回合末翻面、事件转交、Formosan/Vietnam运行时、额外行动与完整整局仍待接。
