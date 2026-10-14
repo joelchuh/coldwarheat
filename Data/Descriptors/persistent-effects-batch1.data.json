@@ -48,7 +48,7 @@
   "id": "data.persistent-effects-batch1",
   "kind": "data",
   "status": "ready",
-  "description": "持续效果首批参数及ops_policy；General上下限/用途已有C#加载与报价消费者，地区奖励和三张牌的激活/到期处理器仍待实现。",
+  "description": "持续效果首批参数及ops_policy；PE-INTERPRETATION-01合并后保底已获用户确认。General报价已有C#消费者，地区奖励和三张牌的激活/到期处理器仍待实现。",
   "dataset_id": "effects.deluxe2015.persistent_batch1",
   "content_version": "0.1.0",
   "schema_path": "Docs/Contracts/persistent-effects-batch1.schema.json",
@@ -65,9 +65,31 @@
     "runtime_consumers_tested": true,
     "scope": "ops_policy-general-subset-only",
     "report": "Docs/Testing/ops-general-quote.validation.json",
-    "latest_design_report": "Docs/Design/persistent-effects-batch1.validation.json"
+    "latest_design_report": "Docs/Design/persistent-effects-batch1.validation.json",
+    "latest_adoption_report": "Docs/Testing/regional-ops-floor-adoption.validation.json"
   },
   "retrieval_hints": [
     "parameters按卡牌ID后缀查询；ops_policy只读共享上下限；source_bonuses按来源卡牌ID使用"
+  ],
+  "project_interpretations": [
+    {
+      "id": "PE-INTERPRETATION-01",
+      "status": "adopted",
+      "authority": "UserConfirmedProjectInterpretation",
+      "confirmed_on": "2026-10-14",
+      "description": "1 OPS受清洗−1和越南起义+1，完整行动目标均在东南亚时，合并后保底，结果为1；不先保底到1再加成到2。",
+      "scope": "本次小值组合及合并后保底顺序；不解决同效果重复激活或其它未知交互。",
+      "official_specific_ruling_found": false,
+      "user_confirmation": "采纳合并后保底，结果为 1",
+      "policy_ref": {
+        "path": "Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json",
+        "json_pointer": "/ops_policy/aggregation"
+      },
+      "case_ref": {
+        "path": "Docs/Design/persistent-effects-batch1.cases.json",
+        "id": "PE1-O19"
+      },
+      "runtime_status": "regional-bonus-not-implemented"
+    }
   ]
 }

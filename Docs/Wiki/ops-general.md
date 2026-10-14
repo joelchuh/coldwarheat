@@ -17,7 +17,7 @@
 
 `OpsFlatModifier`只是可信来源提供的条目，不是激活事件的许可。调用方负责来源、有效期、取消与同效果重复裁定；本模块仅检查条目ID重复、空/非法输入和128条工程上限。不能用不同ID绕过上游同效果重复政策。
 
-对Space/OpsThreshold不使用地区奖励；对Influence/Coup/Realignment，General结果仅通用部分，不能在地区条件尚未核实时充当完整可花预算。后续地区组合应使用Raw及政策，不能盲目在已保底的GeneralValue上再加奖励。PE-INTERPRETATION-01的小值组合已另向用户确认，未答前仍未采纳，本批不实现它。
+对Space/OpsThreshold不使用地区奖励；对Influence/Coup/Realignment，General结果仅通用部分，不能在地区条件尚未核实时充当完整可花预算。后续地区组合应使用Raw及政策，不能盲目在已保底的GeneralValue上再加奖励。PE-INTERPRETATION-01已于2026-10-14获得用户确认：1−1+1合并后保底得1，属于项目解释。地区预算仍未实现；当前General模块的范围不变。
 
 流程：共享政策 → 真实卡或已核实视同来源 + Actor + Flat条目 → 只读Quote → SpaceAttemptRequest.FromQuote（仅真实卡/Space） → 既有太空资格/计划。
 
