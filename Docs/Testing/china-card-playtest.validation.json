@@ -4,7 +4,7 @@
   "description": "中国牌四用途、独立转交、计分义务及可复用地区OPS预算的分层验证",
   "date": "2026-10-14",
   "baseline_commit": "d59bcced858d886b9da952440f1ce60ab65cb1f2",
-  "status": "tested-built-review-pending",
+  "status": "verified-review-fixed",
   "runs": [
     {
       "run_id": "china-regional-red",
@@ -375,7 +375,7 @@
     "status": "passed",
     "path": "Builds/ChinaPlaytest/ColdWarStruggleDemo.exe",
     "exit_code": 0,
-    "reported_bytes": 97582625,
+    "reported_bytes": 97584161,
     "exe_sha256": "a4c71b1bfc3e42d02f2f129fe04adef3ebf2343a662884e4b99598e9dfc90e7d",
     "payload_count": 38,
     "payloads": [
@@ -570,7 +570,7 @@
         "sha256": "8a7e1ec958c8585655aca84318fa4794fdff8d2b9dd6cf6fc1b84ec37bb55fb5"
       }
     ],
-    "log": "TestResults/china-ui-build.log"
+    "log": "TestResults/china-review-build.log"
   },
   "ui": {
     "status": "targeted-mouse-passed",
@@ -601,13 +601,32 @@
         "actual_render": true,
         "mouse_verified": true,
         "note": "Final wording build"
+      },
+      {
+        "path": "Docs/Images/china-coup-preview-outside.png",
+        "sha256": "d420d5147b2424f39ca0a309aec06efe93e55bfac642c00cbb0180faecfafbb8",
+        "width": 1280,
+        "height": 820,
+        "actual_render": true,
+        "mouse_verified": true,
+        "note": "Review-fix final build: target-specific authoritative coup quote before confirmation."
+      },
+      {
+        "path": "Docs/Images/china-coup-preview-asia.png",
+        "sha256": "3626bbb0e6b1547a2c5b12ae02c5540e3d33e7eb4d6fb36c0079313a7c0f76ed",
+        "width": 1280,
+        "height": 820,
+        "actual_render": true,
+        "mouse_verified": true,
+        "note": "Review-fix final build: target-specific authoritative coup quote before confirmation."
       }
     ],
     "flows": [
       "Default actual deal: USSR selects separate China; Influence starts with5potentialOPS and immediately transfers China faceDownUS, ordinary hand8 unchanged.",
       "Four1-cost Afghanistan placements; outsideAsia Iran no legal highlight and placement disabled; return Afghanistan accepts fifth point then remaining0.",
       "Finish changes root toUS with discard0/resolving0, selectUS sees disabled faceDownChina.",
-      "Final rebuilt default deal: China no-event label verified -> choose coup targetJapan -> die1+OPS5 margin-2, USSRmilitary5,DEFCON5to4, US root, ChinaFaceDownUS, ordinary hands8/8 and discard0. Retry preserves version5/sequence23/die/military."
+      "Final rebuilt default deal: China no-event label verified -> choose coup targetJapan -> die1+OPS5 margin-2, USSRmilitary5,DEFCON5to4, US root, ChinaFaceDownUS, ordinary hands8/8 and discard0. Retry preserves version5/sequence23/die/military.",
+      "Review-fix final executable: China -> coup selection atIran showsOPS4/military4; selectJapan showsOPS5/military5 before confirmation, unchangedversion4/sequence22."
     ],
     "limitations": "China Space/Realignment and scoring-obligation UI have automated coverage, not mouse verification. Influence screenshots predate wording-only changes; final coup path uses final executable. No Steam hands-on claim."
   },
@@ -626,7 +645,7 @@
     "descriptors": 130,
     "catalog_entries": 130,
     "datasets": 72,
-    "csharp_symbols_checked": 269,
+    "csharp_symbols_checked": 271,
     "data_dependencies_checked": 615,
     "files_read": 260
   }
