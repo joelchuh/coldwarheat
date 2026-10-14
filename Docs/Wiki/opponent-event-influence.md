@@ -4,6 +4,8 @@
 
 先读[JSON模块摘要](../Descriptors/opponent-event-influence.module.json)，再定位OpponentOpsSequence与ActionPracticeRules.OpponentOps。数据沿用现有牌/效果定义，没有另存一套OPS/影响力常量。
 
+此页记录Influence专用兼容入口；最新界面与通用三模式入口见[opponent-ops-modes](opponent-ops-modes.md)。以下描述原OpponentEventPlaytest批次。
+
 默认真实发牌下，苏联可选择Duck and Cover，右侧“先事件后投放”或“先投放后事件”表示两条明确用途。仍可选择直接事件或满足条件的太空。尚未实现的对手事件（如NATO）不会因此放行；对手牌政变/调整也未开放，避免漏结事件。
 
 根据[GMT2015 §5.2](https://www.gmtgames.com/nnts/TS_Rules-2015.pdf)，行动方决定事件与OPS顺序，对手实施自己的事件。程序先将同一实体牌放入Resolving，之后串行完成两步。事件要求选择时只切换选择者；根Actor不变，不消耗额外行动槽。事件在先时，之后的OPS报价与投放可达性从事件后的最新局面建立。纳赛尔先减半再投放与先投放再减半应得到不同结果。

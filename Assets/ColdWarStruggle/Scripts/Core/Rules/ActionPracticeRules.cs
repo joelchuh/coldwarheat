@@ -23,7 +23,7 @@ namespace ColdWarStruggle.Core
         }
         public static RuleError CanPlay(GameState state,PlayerSide side,CardId card,CardActionKind kind)
         {
-            if(kind==CardActionKind.EventThenInfluence || kind==CardActionKind.InfluenceThenEvent)return CanPlayOpponentInfluence(state,side,card);
+            if(kind==CardActionKind.EventThenInfluence || kind==CardActionKind.InfluenceThenEvent || kind==CardActionKind.OpponentEventFirst || kind==CardActionKind.OpponentOpsFirst)return CanPlayOpponentOps(state,side,card);
             var error=Check(state,side);if(error!=RuleError.None)return error;
             if(state.Deployment!=null)return RuleError.SetupInProgress;
             if(state.Practice.Stage!=ActionPracticeStage.ChooseCard)return RuleError.ActionNotReady;
@@ -47,7 +47,8 @@ namespace ColdWarStruggle.Core
         }
         public static CardActionTransition Plan(GameState state,PlayerSide side,CardActionKind kind,string actionId,CardId? card=null,CountryId? target=null)
         {
-            if(kind==CardActionKind.EventThenInfluence || kind==CardActionKind.InfluenceThenEvent)return PlanOpponentInfluence(state,side,kind,actionId,card,target);
+            if(kind==CardActionKind.EventThenInfluence || kind==CardActionKind.InfluenceThenEvent || kind==CardActionKind.OpponentEventFirst || kind==CardActionKind.OpponentOpsFirst)return PlanOpponentInfluence(state,side,kind,actionId,card,target);
+            if(kind==CardActionKind.UseOpponentInfluence || kind==CardActionKind.UseOpponentRealignment || kind==CardActionKind.UseOpponentCoup)return PlanOpponentOperations(state,side,kind,actionId,card,target);
             if(kind==CardActionKind.Realignment || kind==CardActionKind.RollRealignment || kind==CardActionKind.FinishRealignment)return PlanRealignment(state,side,kind,actionId,card,target);
             if(kind==CardActionKind.Event)return PlanEvent(state,side,actionId,card,target);
             if(kind==CardActionKind.Scoring)return PlanScoring(state,side,actionId,card,target);

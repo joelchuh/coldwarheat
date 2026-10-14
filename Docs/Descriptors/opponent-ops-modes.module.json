@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "id": "module.opponent-ops-modes",
+  "kind": "module",
+  "status": "implemented-subset",
+  "description": "已注册对手事件先选事件/OPS顺序，到OPS步骤再选择影响力、政变或政局调整；保持根责任、当前目标与报价、复合结果、原子提交及一次牌去向。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OpponentOpsSequence.cs",
+      "symbol": "SelectMode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.OpponentOps.cs",
+      "symbol": "CanChooseOpponentOperations"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.OpponentOps.cs",
+      "symbol": "PlanOpponentOperations"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Coup.cs",
+      "symbol": "CheckCoupCard"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Coup.cs",
+      "symbol": "PlanOpponentCoup"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/CardActionContracts.cs",
+      "symbol": "PendingOperationsOptions"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Cards.cs",
+      "symbol": "ChooseOpponentOperationsAsync"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.OpponentOps.cs",
+      "symbol": "DrawOpponentOperations"
+    }
+  ],
+  "inputs": [
+    "OpponentEventFirst/OpponentOpsFirst真实对手手牌顺序命令",
+    "当前根操作者的UseOpponentInfluence/UseOpponentRealignment/UseOpponentCoup；政变附目标，其余无目标",
+    "合法事件受益方选择，投放/逐次调整及明确结束"
+  ],
+  "outputs": [
+    "可空Mode待选阶段、按当前状态建立一种OPS模式；公开选项不含私有牌库/RNG",
+    "政变与随后的事件收据同时保留，最终实体牌只处理一次；核战/VP终局截断"
+  ],
+  "dependencies": [
+    "module.opponent-event-influence",
+    "module.playable-realignment",
+    "module.playable-flat-ops-events"
+  ],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions"
+  ],
+  "preconditions": [
+    "已注册对手事件，真实手牌入Resolving，根Actor不变",
+    "Mode只能在Operations当前步骤从未选变已选，不能混用；旧Influence专用入口保留"
+  ],
+  "side_effects": [
+    "投放/调整预算在实际模式开始时冻结，政变确认时使用当前报价/目标；所有规则/骰子来自既有服务",
+    "操作先政变及后续即时事件为一个Host原子发布，失败不发布RNG/军事；此前已接受前缀保留",
+    "选择目标是客户端预览，不消耗卡牌/OPS，无合法目标可改模式"
+  ],
+  "stop_conditions": [
+    "错身份/旧版本/换牌/错载荷/错阶段拒绝；重放不重复掷骰或事件",
+    "未实现事件/前置/取消、中国牌、嵌套、头条/回合末/存档仍不接；终局保留中断根及Resolving"
+  ],
+  "rule_sources": [
+    {
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "sections": [
+        "5.2",
+        "6.0",
+        "6.2",
+        "6.3"
+      ],
+      "checked_on": "2026-10-14"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayOpponentOpsTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayOpponentOpsSessionTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/opponent-ops-modes.md",
+  "verification": {
+    "report": "Docs/Testing/opponent-ops-modes.validation.json"
+  }
+}

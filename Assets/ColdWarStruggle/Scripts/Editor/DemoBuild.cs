@@ -57,6 +57,8 @@ namespace ColdWarStruggle.Editor
         public static void BuildOpsEventPlaytest()=>BuildAt("Builds/OpsEventPlaytest","ColdWarStruggle OPS Event Playtest");
         [MenuItem("ColdWarStruggle/Build Opponent Event Playtest")]
         public static void BuildOpponentEventPlaytest()=>BuildAt("Builds/OpponentEventPlaytest","ColdWarStruggle Opponent Event Playtest");
+        [MenuItem("ColdWarStruggle/Build Opponent OPS Playtest")]
+        public static void BuildOpponentOpsPlaytest()=>BuildAt("Builds/OpponentOpsPlaytest","ColdWarStruggle Opponent OPS Playtest");
         static void BuildAt(string directory,string productName=null)
         {
             Prepare();Directory.CreateDirectory(directory);

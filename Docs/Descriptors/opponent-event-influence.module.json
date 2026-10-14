@@ -3,7 +3,7 @@
   "id": "module.opponent-event-influence",
   "kind": "module",
   "status": "implemented-subset",
-  "description": "已注册对手阵营事件与影响力OPS的两步顺序：事件先/投放先、对手选择、根Actor保留、终局截断及最终一次弃置；不开放对手政变/调整或未实现事件。",
+  "description": "对手事件与影响力专用两步顺序兼容入口：根Actor/事件Owner分离、终局截断与一次牌去向；通用三种OPS入口见opponent-ops-modes。",
   "entrypoints": [
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OpponentOpsSequence.cs",
@@ -61,7 +61,7 @@
   ],
   "stop_conditions": [
     "新命令身份/旧版本/阶段/牌区冲突拒绝，重发仅返回旧收据；本命令溢出不发布草稿",
-    "未实现的前置/取消事件不能当无效果放行；对手政变/调整、完整嵌套/头条/回合末/存档未接"
+    "未实现的前置/取消事件不能当无效果放行；完整嵌套/头条/回合末/存档未接；对手政变/调整另见opponent-ops-modes"
   ],
   "rule_sources": [
     {

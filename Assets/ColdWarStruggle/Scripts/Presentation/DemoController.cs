@@ -52,7 +52,9 @@ namespace ColdWarStruggle.Presentation
         public LocalTestSnapshot ReadBoth() => host.ReadLocalTestSnapshot();
         public LegalTargetsResult LegalTargets()
         {
-            var v=ReadView();var card=SelectedCard;if(legal==null || legal.Version!=v.Version || legal.Viewer!=SelectedSide || legal.ContextId!=v.ContextId)
+            var v=ReadView();var card=SelectedCard;
+            if(v.Practice?.Stage==ActionPracticeStage.ChoosingOperations && SelectingCoup)card=v.Practice.ActiveCard;
+            if(legal==null || legal.Version!=v.Version || legal.Viewer!=SelectedSide || legal.ContextId!=v.ContextId)
                 legal=v.Practice?.Stage==ActionPracticeStage.Realigning?Session.QueryRealignmentTargets(v.ContextId,v.Version):SelectingCoup && card.HasValue?Session.QueryCoupTargets(card.Value,v.Version):Session.QueryInfluenceTargets(v.ContextId,v.Version);
             return legal;
         }

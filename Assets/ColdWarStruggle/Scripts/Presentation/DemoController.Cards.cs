@@ -32,15 +32,30 @@ namespace ColdWarStruggle.Presentation
         public bool SelectingCoup { get; private set; }
         public void SelectCoupUse()
         {
-            var card=SelectedCard??throw new InvalidOperationException("Select a card first.");
-            var option=CardOptions().Cards.Single(c=>c.Card.Equals(card));
-            if(option.Coup!=RuleError.None)throw new InvalidOperationException("This card cannot be used for a coup.");
+            var v=ReadView();
+            if(v.Practice?.Stage==ActionPracticeStage.ChoosingOperations)
+            {
+                if(CardOptions().PendingOperations?.Coup!=RuleError.None)throw new InvalidOperationException("Pending OPS cannot be used for a coup.");
+                selectedCard=null;selectedCardGame=v.GameId;selectedCardVersion=v.Version;selectedCardSide=SelectedSide;
+            }
+            else
+            {
+                var card=SelectedCard??throw new InvalidOperationException("Select a card first.");
+                var option=CardOptions().Cards.Single(c=>c.Card.Equals(card));
+                if(option.Coup!=RuleError.None)throw new InvalidOperationException("This card cannot be used for a coup.");
+            }
             SelectingCoup=true;legal=null;MarkInteractionChanged();
         }
         public Task<CardActionResult> PlayCardAsync(CardActionKind kind)
         {
-            if(kind!=CardActionKind.Influence && kind!=CardActionKind.Space && kind!=CardActionKind.Coup && kind!=CardActionKind.Scoring && kind!=CardActionKind.Event && kind!=CardActionKind.Realignment && kind!=CardActionKind.EventThenInfluence && kind!=CardActionKind.InfluenceThenEvent)throw new ArgumentException("A card use is required.");
+            if(kind!=CardActionKind.Influence && kind!=CardActionKind.Space && kind!=CardActionKind.Coup && kind!=CardActionKind.Scoring && kind!=CardActionKind.Event && kind!=CardActionKind.Realignment && kind!=CardActionKind.EventThenInfluence && kind!=CardActionKind.InfluenceThenEvent && kind!=CardActionKind.OpponentEventFirst && kind!=CardActionKind.OpponentOpsFirst)throw new ArgumentException("A card use is required.");
             var card=SelectedCard??throw new InvalidOperationException("Select a card first.");return SendCard(kind,card,kind==CardActionKind.Coup?SelectedCountry:(CountryId?)null);
+        }
+        public Task<CardActionResult> ChooseOpponentOperationsAsync(OperationsMode mode)
+        {
+            if(!Enum.IsDefined(typeof(OperationsMode),mode))throw new ArgumentOutOfRangeException(nameof(mode));
+            var kind=mode==OperationsMode.Coup?CardActionKind.UseOpponentCoup:mode==OperationsMode.Realignment?CardActionKind.UseOpponentRealignment:CardActionKind.UseOpponentInfluence;
+            return SendCard(kind,target:mode==OperationsMode.Coup?SelectedCountry:(CountryId?)null);
         }
         public Task<CardActionResult> RollRealignmentAsync()=>SendCard(CardActionKind.RollRealignment,target:SelectedCountry);
         public Task<CardActionResult> FinishRealignmentAsync()=>SendCard(CardActionKind.FinishRealignment);

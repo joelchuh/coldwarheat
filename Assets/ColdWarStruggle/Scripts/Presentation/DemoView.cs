@@ -139,7 +139,7 @@ namespace ColdWarStruggle.Presentation
             }
             else Text(972,681,266,62,"本方："+string.Join("、",view.OwnHand)+"\n对手："+view.OpponentHandCount+" 张（隐藏）",small);
             }
-            Text(28,786,1220,27,$"真实手牌 / 投放、政变、调整、太空、计分、十二事件及对手事件＋投放；完整回合待接。   版本 {view.Version} · 序号 {view.EventSequence}",small);
+            Text(28,786,1220,27,$"真实手牌 / 投放、政变、调整、太空、计分、十二事件及对手事件＋三种OPS；完整回合待接。   版本 {view.Version} · 序号 {view.EventSequence}",small);
         }
         static string TurnText(GameTurnContext turn)
         {

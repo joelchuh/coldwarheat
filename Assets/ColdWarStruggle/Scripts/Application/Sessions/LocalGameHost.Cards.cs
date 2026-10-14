@@ -21,7 +21,7 @@ namespace ColdWarStruggle.Application
         {
             lock(gate)
             {
-                var error=version!=state.Version?RuleError.StaleVersion:ActionPracticeRules.CanPlay(state,side,card,CardActionKind.Coup);
+                var error=version!=state.Version?RuleError.StaleVersion:ActionPracticeRules.CheckCoupCard(state,side,card);
                 var targets=error==RuleError.None?state.Map.Countries.Where(c=>ActionPracticeRules.CheckCoupTarget(state,side,card,c.Id)==RuleError.None).Select(c=>c.Id).ToArray():Array.Empty<CountryId>();
                 return new LegalTargetsResult(error,state.Version,side,state.Operations.Id,targets);
             }

@@ -32,7 +32,8 @@ namespace ColdWarStruggle.Application
         public CardResolutionStep CurrentStep { get; }
         public int CompletedSteps { get; }
         public bool EventOccurred { get; }
-        internal PublicOpponentOpsProgress(OpponentOpsSequence value) { Card=value.Card;Actor=value.Actor;EventSide=value.EventSide;Order=value.Order;CurrentStep=value.CurrentStep;CompletedSteps=value.CompletedSteps;EventOccurred=value.EventOccurred; }
+        public OperationsMode? Mode { get; }
+        internal PublicOpponentOpsProgress(OpponentOpsSequence value) { Mode=value.Mode;Card=value.Card;Actor=value.Actor;EventSide=value.EventSide;Order=value.Order;CurrentStep=value.CurrentStep;CompletedSteps=value.CompletedSteps;EventOccurred=value.EventOccurred; }
     }
     public sealed class PublicPracticeView
     {
@@ -146,6 +147,8 @@ namespace ColdWarStruggle.Application
         public RuleError Scoring { get; }
         public RuleError Event { get; }=RuleError.UnsupportedCardAction;
         public RuleError Realignment { get; }=RuleError.UnsupportedCardAction;
+        public RuleError OpponentEventFirst { get; }=RuleError.UnsupportedCardAction;
+        public RuleError OpponentOpsFirst { get; }=RuleError.UnsupportedCardAction;
         public RuleError EventThenInfluence { get; }=RuleError.UnsupportedCardAction;
         public RuleError InfluenceThenEvent { get; }=RuleError.UnsupportedCardAction;
         internal CardActionOption(GameState s,PlayerSide side,CardId id)
@@ -156,14 +159,32 @@ namespace ColdWarStruggle.Application
                 if(printed.PrintedOps.HasValue)
                 { var quote=ActionPracticeRules.QuoteCard(s,side,id,OpsValuePurpose.Influence);CurrentOps=quote.GeneralValue;FlatModifierTotal=quote.ModifierTotal; }
             }
+            OpponentEventFirst=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.OpponentEventFirst);OpponentOpsFirst=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.OpponentOpsFirst);
             EventThenInfluence=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.EventThenInfluence);InfluenceThenEvent=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.InfluenceThenEvent);Realignment=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Realignment);Event=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Event);Card=id;Influence=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Influence);Space=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Space);Coup=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Coup);Scoring=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Scoring); }
+    }
+    public sealed class PendingOperationsOptions
+    {
+        public CardId Card { get; }
+        public int? CurrentOps { get; }
+        public RuleError Influence { get; }
+        public RuleError Coup { get; }
+        public RuleError Realignment { get; }
+        internal PendingOperationsOptions(GameState state,PlayerSide side)
+        {
+            Card=state.Practice.ActiveCard.Value;
+            Influence=ActionPracticeRules.CanChooseOpponentOperations(state,side,OperationsMode.Influence);
+            Coup=ActionPracticeRules.CanChooseOpponentOperations(state,side,OperationsMode.Coup);
+            Realignment=ActionPracticeRules.CanChooseOpponentOperations(state,side,OperationsMode.Realignment);
+            if(Influence==RuleError.None)CurrentOps=ActionPracticeRules.QuoteCard(state,side,Card,OpsValuePurpose.Influence).GeneralValue;
+        }
     }
     public sealed class CardActionOptions
     {
         public string GameId { get; }
         public long Version { get; }
         public IReadOnlyList<CardActionOption> Cards { get; }
+        public PendingOperationsOptions PendingOperations { get; }
         internal CardActionOptions(GameState s,PlayerSide side)
-        { GameId=s.GameId;Version=s.Version;Cards=Array.AsReadOnly(s.Cards==null?Array.Empty<CardActionOption>():s.Cards.GetHand(side).Select(id=>new CardActionOption(s,side,id)).ToArray()); }
+        { PendingOperations=s.Practice?.Stage==ActionPracticeStage.ChoosingOperations?new PendingOperationsOptions(s,side):null;GameId=s.GameId;Version=s.Version;Cards=Array.AsReadOnly(s.Cards==null?Array.Empty<CardActionOption>():s.Cards.GetHand(side).Select(id=>new CardActionOption(s,side,id)).ToArray()); }
     }
 }

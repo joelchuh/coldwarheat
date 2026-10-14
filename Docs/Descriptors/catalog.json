@@ -280,9 +280,15 @@
     },
     {
       "id": "module.opponent-event-influence",
-      "description": "已注册对手阵营事件与影响力OPS的两步顺序：事件先/投放先、对手选择、根Actor保留、终局截断及最终一次弃置；不开放对手政变/调整或未实现事件。",
+      "description": "对手事件与影响力专用两步顺序兼容入口：根Actor/事件Owner分离、终局截断与一次牌去向；通用三种OPS入口见opponent-ops-modes。",
       "status": "implemented-subset",
       "descriptor": "Docs/Descriptors/opponent-event-influence.module.json"
+    },
+    {
+      "id": "module.opponent-ops-modes",
+      "description": "已注册对手事件先选事件/OPS顺序，到OPS步骤再选择影响力、政变或政局调整；保持根责任、当前目标与报价、复合结果、原子提交及一次牌去向。",
+      "status": "implemented-subset",
+      "descriptor": "Docs/Descriptors/opponent-ops-modes.module.json"
     }
   ]
 }

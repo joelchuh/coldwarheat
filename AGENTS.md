@@ -663,3 +663,7 @@ RealignmentPlaytest已接真实手牌普通调整：预算冻结、每次当前�
 ## 36. 对手事件与投放顺序（2026-10-14）
 
 OpponentEventPlaytest已接已注册对手阵营事件＋影响力OPS的两种顺序，固定根Actor/事件Owner、等待后继续、一次牌去向与终局截断。1843项回归通过，构建/审查见最新报告。先查Docs/Wiki/opponent-event-influence.md及JSON。对手事件＋政变/调整、前置/取消/嵌套/头条/回合末仍未接。原试玩终局留Resolving/不推进根审计策略保持；完整事件步骤结束才标EventOccurred。上批重复Editor菜单及历史等待收据措辞本批修正，实际验证见工作记录。
+
+## 37. 对手事件与三种OPS（2026-10-14）
+
+OpponentOpsPlaytest先选事件/OPS顺序，到OPS步骤再选择投放、政变或调整；可空Mode/ChoosingOperations、当前目标与报价、政变和后事件复合收据、单根一次牌去向已接。1872项回归通过，构建和审查见最新报告。先读Docs/Wiki/opponent-ops-modes.md及JSON；旧Influence专用入口兼容。初始渲染与鼠标分别验收，完整头条/回合末、未知前置事件/嵌套/中国牌仍未接。第36节未接对手政变/调整为历史状态。
