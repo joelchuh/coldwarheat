@@ -33,6 +33,7 @@ namespace ColdWarStruggle.Bootstrap
                     .WithPracticeTurnOpsEvents(Read(root,"Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json"),Read(root,"Docs/Contracts/persistent-effects-batch1.schema.json"))
                     .WithPracticeRealignment(Read(root,"Data/Rulesets/deluxe-2015/realignment.json"))
                     .WithPracticeChina(Read(root,"Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json"),Read(root,"Docs/Contracts/persistent-effects-batch1.schema.json"))
+                    .WithPracticeTurnEnd()
                     .WithQuickStartScenario(Read(root,"Data/Demo/quick-start-scenario.json"));
                 var worldAssets=WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
 #else
@@ -52,6 +53,7 @@ namespace ColdWarStruggle.Bootstrap
                     .WithPracticeTurnOpsEvents(Read(root,"persistent-effects-batch1.parameters.json"),Read(root,"persistent-effects-batch1.schema.json"))
                     .WithPracticeRealignment(Read(root,"realignment.json"))
                     .WithPracticeChina(Read(root,"persistent-effects-batch1.parameters.json"),Read(root,"persistent-effects-batch1.schema.json"))
+                    .WithPracticeTurnEnd()
                     .WithQuickStartScenario(Read(root,"quick-start-scenario.json"));
                 var worldAssets=WorldMapAssets.Load(Read(root,"world-layout.json"),Read(root,"world-land.json"),catalog.Map);
 #endif

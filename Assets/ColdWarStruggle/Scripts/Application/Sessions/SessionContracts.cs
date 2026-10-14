@@ -51,7 +51,7 @@ namespace ColdWarStruggle.Application
             Event=s.InfluenceEvent==null?null:new PublicEventView(s.InfluenceEvent);Turn=s.Turn;
             Deployment=s.Deployment==null?null:new PublicDeploymentView(s.Deployment);
             Cards=s.Cards==null?null:new PublicCardSummary(s.Cards);
-            Practice=s.Practice==null?null:new PublicPracticeView(s.Practice);
+            Practice=s.Practice==null?null:new PublicPracticeView(s.Practice,ActionPracticeRules.CanAssessTurnEnd(s,viewer)==RuleError.None);
         }
     }
     public sealed class LocalTestSnapshot

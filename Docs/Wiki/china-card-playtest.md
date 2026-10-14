@@ -33,3 +33,5 @@ flowchart LR
 测试：ChinaCardPlayTests / ChinaCardSessionTests / OpsRegionalBudgetTests。1930全量回归通过；源码、构建和鼠标证据分别见[报告](../Testing/china-card-playtest.validation.json)及[工作记录](../Worklogs/2026-10-14-china-card-playtest.md)。
 
 政变确认使用固定身份/版本/合法目标的QueryCoupQuote，Core QuoteCoupStrength与执行共用地区计算；界面显示当前目标实际OPS和军事，不把普通报价标成实际政变强度。
+
+2026-10-14运行时进展：[回合末结算试玩](turn-end-playtest.md)接军事净评估/计分牌审核，未终局才中国牌翻正和有限OPS到期；完整下一回合和特殊回合末能力仍待接。

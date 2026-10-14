@@ -58,6 +58,7 @@ namespace ColdWarStruggle.Core
         }
         public static CardActionTransition Plan(GameState state,PlayerSide side,CardActionKind kind,string actionId,CardId? card=null,CountryId? target=null)
         {
+            if(kind==CardActionKind.AssessTurnEnd)return PlanTurnEnd(state,side,actionId,card,target);
             if(kind==CardActionKind.EventThenInfluence || kind==CardActionKind.InfluenceThenEvent || kind==CardActionKind.OpponentEventFirst || kind==CardActionKind.OpponentOpsFirst)return PlanOpponentInfluence(state,side,kind,actionId,card,target);
             if(kind==CardActionKind.UseOpponentInfluence || kind==CardActionKind.UseOpponentRealignment || kind==CardActionKind.UseOpponentCoup)return PlanOpponentOperations(state,side,kind,actionId,card,target);
             if(kind==CardActionKind.Realignment || kind==CardActionKind.RollRealignment || kind==CardActionKind.FinishRealignment)return PlanRealignment(state,side,kind,actionId,card,target);

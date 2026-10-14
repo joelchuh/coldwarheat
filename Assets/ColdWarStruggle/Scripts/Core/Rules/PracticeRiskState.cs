@@ -34,6 +34,12 @@ namespace ColdWarStruggle.Core
                 || CoupReceipts.Values.Any(r=>r.Request.GameId!=state.GameId))throw new ArgumentException("Risk history belongs to another authority.");
             return new CoupAttemptState(state.GameId,state.Version,Definition.Coup,Defcon,Military,state.Countries,state.RandomState,Array.Empty<string>(),CoupReceipts);
         }
+        internal PracticeRiskState WithTurnEnd(MilitaryAssessmentPlan military,VictoryDecision decision)
+        {
+            if(military==null || decision==null || !ReferenceEquals(military.Before,Military) || military.AlreadyApplied || Result!=null
+                || decision.Checkpoint!=VictoryCheckpoint.HeldScoringAudited || (decision.Outcome!=VictoryOutcome.Continue && decision.Outcome!=VictoryOutcome.Finished))throw new ArgumentException("Expected a new assessment and closed held-card audit.");
+            return new PracticeRiskState(Definition,Defcon,military.After,CoupReceipts,decision.Outcome==VictoryOutcome.Finished?decision:null);
+        }
         internal PracticeRiskState WithVictory(VictoryDecision decision)
         {
             if(decision==null || (decision.Outcome!=VictoryOutcome.Continue && decision.Outcome!=VictoryOutcome.Finished))throw new ArgumentException("Expected a closed ordinary victory decision.");

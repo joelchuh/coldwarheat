@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "module.turn-end-playtest",
+  "kind": "module",
+  "description": "单回合全部行动完成后，原子结算军事净罚分与扣留计分牌矩阵；未终局才翻正中国牌并清理已实现回合OPS，公开报告不暴露手牌。",
+  "status": "implemented-subset",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeTurnEndRules.cs",
+      "symbol": "CanAssessTurnEnd"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeTurnEndRules.cs",
+      "symbol": "PlanTurnEnd"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeTurnEndRules.cs",
+      "symbol": "PracticeTurnEndReceipt"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeRiskState.cs",
+      "symbol": "WithTurnEnd"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/TurnEndView.cs",
+      "symbol": "PublicTurnEnd"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Cards.cs",
+      "symbol": "AssessTurnEndAsync"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.TurnEnd.cs",
+      "symbol": "DrawTurnEndReport"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.TurnEnd.cs",
+      "symbol": "WithPracticeTurnEnd"
+    }
+  ],
+  "inputs": [
+    "已配置的Complete且全部普通行动完成；无未结算牌/根/事件/部署",
+    "固定身份的无参数AssessTurnEnd命令；由权威手牌判断Scoring种类"
+  ],
+  "outputs": [
+    "军事快照/净VP/共享裁定结果；终局吸收或ChinaReady/有限OPS到期",
+    "公开只读结算报告；不公开牌名/牌库/RNG"
+  ],
+  "dependencies": [
+    "module.military-operations",
+    "module.victory",
+    "module.china-card-playtest",
+    "module.playable-flat-ops-events",
+    "module.turn-calendar"
+  ],
+  "data_dependencies": [
+    "rules.deluxe2015.military-operations",
+    "rules.deluxe2015.victory",
+    "rules.deluxe2015.turn-flow"
+  ],
+  "preconditions": [
+    "六轮双方动作均完成且所有牌根已结算；Enable配置有Risk/China",
+    "无即时终局；未曾完成本回合军事评估",
+    "本试玩只支持普通首回合，完整额外行动与回合末太空选择须由未来协调器接入"
+  ],
+  "side_effects": [
+    "纯计划构造不可变候选；Host接受后一次发布VP/军事/牌区/效果/报告/版本与序号",
+    "China未终局翻面不改变持有者；终局不做后续清理"
+  ],
+  "stop_conditions": [
+    "早调用/牌参数/目标参数/非法身份/重复审核拒绝",
+    "过期版本与同ID异内容由Host拒绝；相同已接受命令返回原收据",
+    "未裁定行返回EventRequiresRuling且不提交部分状态",
+    "溢出回滚；不发下一回合牌、不改Turn/DEFCON、不提前重置太空计数"
+  ],
+  "rule_sources": [
+    {
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "sections": [
+        "4.5E–H",
+        "8.2",
+        "9.3",
+        "10.3.1"
+      ],
+      "checked_on": "2026-10-14"
+    },
+    {
+      "path": "Docs/Wiki/risk-victory.md",
+      "scope": "CF003用户确认项目解释；本模块不重新解释矩阵"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/TurnEndPlayTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/TurnEndSessionTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/turn-end-playtest.md",
+  "verification": {
+    "implementation_tested": true,
+    "report": "Docs/Testing/turn-end-playtest.validation.json",
+    "scope": "single-turn-audit-subset",
+    "unity_editmode_total": 1960
+  }
+}

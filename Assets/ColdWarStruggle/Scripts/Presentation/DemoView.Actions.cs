@@ -13,7 +13,7 @@ namespace ColdWarStruggle.Presentation
         {
             var p=view.Practice;
             Block(new Rect(26,67,1228,38),Background);
-            Text(28,70,1220,30,$"{Side(p.Actor)} 行动 {p.Round}/{p.RoundLimit}  |  VP（美+ / 苏−）{p.VpForUS}  |  DEFCON {p.Defcon?.ToString()??"—"}  |  军事累计 美 {p.UsMilitary?.ToString()??"—"} / 苏 {p.UssrMilitary?.ToString()??"—"}  |  太空 美 {p.UsSpace} / 苏 {p.UssrSpace}"+(view.Event?.Stage==InfluenceEventStage.AwaitingChoice?"  |  事件选择："+Side(view.Event.Owner):""),small);
+            Text(28,70,1220,30,(p.Stage==ActionPracticeStage.Complete?(p.TurnEnd!=null?"回合末审核完成":"本回合行动结束"):$"{Side(p.Actor)} 行动 {p.Round}/{p.RoundLimit}")+$"  |  VP（美+ / 苏−）{p.VpForUS}  |  DEFCON {p.Defcon?.ToString()??"—"}  |  军事累计 美 {p.UsMilitary?.ToString()??"—"} / 苏 {p.UssrMilitary?.ToString()??"—"}  |  太空 美 {p.UsSpace} / 苏 {p.UssrSpace}"+(view.Event?.Stage==InfluenceEventStage.AwaitingChoice?"  |  事件选择："+Side(view.Event.Owner):""),small);
         }
         string OpsEffectSummary(PublicTurnOpsEffect effect)=>CardTitle(effect.Card)+" → "+Side(effect.AffectedSide)+$" {effect.Delta:+0;-0;0}";
         void DrawOpsEffects(PublicPracticeView practice)
@@ -24,10 +24,16 @@ namespace ColdWarStruggle.Presentation
         void DrawPracticeControls(PlayerViewSnapshot view)
         {
             var p=view.Practice;
+            if(p.TurnEnd!=null) { DrawTurnEndReport(view);return; }
             if(p.Winner.HasValue)
                 Text(972,374,262,140,VictoryMessage(p),label);
             else if(p.Stage==ActionPracticeStage.Complete)
-                Text(972,374,262,140,"本回合行动试玩已结束。\n回合末审核与下一回合尚未接入。可重置重新尝试不同路线。",label);
+            {
+                Text(972,374,262,100,p.TurnEndEnabled?"双方行动已全部结束。\n下一步：军事净罚分与扣留计分牌审核。":"本回合行动试玩已结束。\n此旧练习未启用回合末审核。",small);
+                GUI.enabled=p.TurnEndAvailable;
+                if(Button(972,485,262,42,"结算本回合"))AssessTurnEnd();
+                GUI.enabled=true;
+            }
             else if(p.Actor!=view.Viewer)
             {
                 Text(972,374,262,66,"行动已交给 "+Side(p.Actor)+"。\n当前操作方不能替对方出牌。",small);

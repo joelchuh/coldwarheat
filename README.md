@@ -6,11 +6,11 @@
 
 当前已进入**首批 Unity 原型实现阶段**。仓库已整理 84 个国家及邻接、103 张基础牌的印刷定义、初始布置、回合流程、行动、计分、胜负和分批卡牌事件设计。具体参数绑定与未确认边界见[正式数据索引](Docs/Wiki/map-card-data.md)及各牌的验证报告。
 
-已创建 Unity 6000.6.0f1 工程、纯 C# 规则核心和单窗口 Demo，最新 **1930 项 EditMode 测试通过**。[中国牌与行动试玩](Docs/Wiki/china-card-playtest.md)位于 `E:\TwilightStruggle\Builds\ChinaPlaytest\ColdWarStruggleDemo.exe`：示例部署后进入真实手牌行动，可投放影响力、政变、政局调整、送太空、计分或发动已接入的十二张事件（八张影响力、两张DEFCON/VP、遏制与清洗持续OPS）；已实现的对手阵营事件可与投放、政变或调整按所选先后结算；事件先时看完结果再选择OPS用途。中国牌已支持四种用途、亚洲地区奖励、立即背面转交与计分义务检查，独立于普通手牌。原手动部署和独立练习保留，旧Demo文件不自动更新。
+已创建 Unity 6000.6.0f1 工程、纯 C# 规则核心和单窗口 Demo，最新 **1960 项 EditMode 测试通过**。[回合末结算试玩](Docs/Wiki/turn-end-playtest.md)位于 `E:\TwilightStruggle\Builds\TurnEndPlaytest\ColdWarStruggleDemo.exe`：示例部署后进入真实手牌行动，可投放影响力、政变、政局调整、送太空、计分或发动已接入的十二张事件（八张影响力、两张DEFCON/VP、遏制与清洗持续OPS）；已实现的对手阵营事件可与投放、政变或调整按所选先后结算；事件先时看完结果再选择OPS用途。中国牌已支持四种用途、亚洲地区奖励、立即背面转交与计分义务检查，独立于普通手牌。双方行动全部完成后可结算军事净罚分与扣留计分牌，未终局翻正中国牌并清理本回合OPS；停在下一回合开始前。原手动部署和独立练习保留，旧Demo文件不自动更新。
 
 ![中国牌行动完成地图](Docs/Images/china-transfer-complete.png)
 
-世界地图已含84国热点，可切World/Tiles/Table；规则邻接与画面分离。一个窗口共用权威局面与两个固定身份会话，正常视图只读自己的牌，测试观察可查看双方。重置新建GameId并使用固定测试发牌结果。当前无完整头条、回合末、存档、联网或AI，不能完整打一局；部分路线会因余牌尚未支持而需要重置。102项效果绑定不等于102个已实现处理器。
+世界地图已含84国热点，可切World/Tiles/Table；规则邻接与画面分离。一个窗口共用权威局面与两个固定身份会话，正常视图只读自己的牌，测试观察可查看双方。重置新建GameId并使用固定测试发牌结果。当前无头条、下一回合/特殊回合末能力、存档、联网或AI，不能完整打一局；部分路线会因余牌尚未支持而需要重置。102项效果绑定不等于102个已实现处理器。
 
 当前构建复用38份共享数据。中国牌默认局面的独立选牌、亚洲投放第5点限制、结束与背面转交已做鼠标检查；对手事件三种OPS与等待事件选择的鼠标证据另见上一批报告。其他中国牌用途与边界有自动测试，具体截图、构建及独立审查状态见[本批验证报告](Docs/Testing/china-card-playtest.validation.json)。
 
@@ -36,3 +36,7 @@
 本地项目为 `E:\TwilightStruggle`；远程为 [joelchuh/coldwarheat](https://github.com/joelchuh/coldwarheat)，`main` 跟踪 `origin/main`。提交保存本地历史，推送并核对后才算远程同步；教程见 [Git 工作流](Docs/Wiki/git-workflow.md)。
 
 代码、规则数据、Wiki、工作日志和项目 Skill 保存在同一仓库。已跟踪 Assets 及 `.meta`、Packages、ProjectSettings；缓存、构建输出、个人设置和编辑器安装文件不纳入仓库。
+
+回合末实现与真实验证见[结算模块](Docs/Wiki/turn-end-playtest.md)和[报告](Docs/Testing/turn-end-playtest.validation.json)。不含下一回合补牌/头条/完整整局。
+
+最新回合末结算实测截图：[美国视角](Docs/Images/turn-end-report-us.png)、[切换苏联后](Docs/Images/turn-end-report-ussr.png)。实际默认发牌12行动→结算→重发→切身份已验证；仍停在下一回合开始前。

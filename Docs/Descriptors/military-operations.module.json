@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.military-operations",
   "kind": "module",
-  "description": "已实现不可变军事信用、ID防重与期末净评估/归零计划；RiskDemo已接普通政变累计，期末审核仍未接。",
+  "description": "已实现不可变军事信用、ID防重与期末净评估/归零；试玩已接政变累计和回合末军事/扣留审核，完整跨回合及战争仍待接。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -54,7 +54,7 @@
   ],
   "preconditions": [
     "可信内部规则已验证信用资格；SourceRuleId仅定位信息，不是客户端奖励授权",
-    "宿主未来共同提交状态/VP/游标，本服务不直接修改GameState",
+    "纯服务不修改GameState；有限试玩宿主共同提交状态/VP/游标，完整整局编排另行实现",
     "相同运行定义对象参与评估重试；完整存档恢复绑定另行实现"
   ],
   "side_effects": [
@@ -128,9 +128,8 @@
     "latest_runtime_report": "Docs/Testing/military-core.validation.json"
   },
   "open_items": [
-    "规则信用资格提供者与完整政变/战争动作",
-    "GameState/VP/游标共同事务提交、命令身份和完整保存",
-    "军事候选胜利/计分牌审核及完整胜负编排"
+    "完整战争动作信用资格提供者",
+    "完整跨回合协调与保存恢复"
   ],
   "planned_data_dependencies": [
     "effects.deluxe2015.persistent_batch1",
@@ -139,5 +138,10 @@
     "effects.deluxe2015.war_events_batch2",
     "effects.deluxe2015.defcon_events_batch1",
     "effects.deluxe2015.defcon_vp_events"
-  ]
+  ],
+  "runtime_integration": {
+    "module": "module.turn-end-playtest",
+    "report": "Docs/Testing/turn-end-playtest.validation.json",
+    "scope": "finite turn-end military/held audit; next-turn coordinator excluded"
+  }
 }

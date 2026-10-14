@@ -81,6 +81,11 @@ namespace ColdWarStruggle.Core
             if(Instances.Count>=128)return new TurnOpsActivation(RuleError.InvalidDefinition);
             return new TurnOpsActivation(RuleError.None,new TurnOpsEffectState(Turn,Instances.Append(instance)),instance);
         }
+        internal TurnOpsEffectState Expire(GameTurnContext currentTurn)
+        {
+            if(!Matches(currentTurn))throw new ArgumentException("Cannot expire another turn's effects.");
+            return Create(currentTurn);
+        }
         public IReadOnlyList<OpsFlatModifier> GetModifiers(GameTurnContext currentTurn)
         {
             if(!Matches(currentTurn))throw new ArgumentException("Turn effects require explicit expiry before changing turn.");

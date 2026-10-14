@@ -87,6 +87,17 @@ namespace ColdWarStruggle.Presentation
         }
         public Task<CardActionResult> RollRealignmentAsync()=>SendCard(CardActionKind.RollRealignment,target:SelectedCountry);
         public Task<CardActionResult> FinishRealignmentAsync()=>SendCard(CardActionKind.FinishRealignment);
+        public string TurnEndMessage
+        {
+            get
+            {
+                var r=ReadView().Practice?.TurnEnd;if(r==null)return null;
+                string SideName(PlayerSide? side)=>side==PlayerSide.US?"美国":side==PlayerSide.USSR?"苏联":"无";
+                return $"回合 {r.Turn} 结算 · 军事要求 {r.RequiredMilitary}\n美国累计 {r.UsEarned}，缺额 {r.UsShortfall}\n苏联累计 {r.UssrEarned}，缺额 {r.UssrShortfall}\n净 VP（美+）{r.VpDelta:+0;-0;0}：{r.BeforeVp} → {r.AfterVp}\n军事累计已归零。\n扣留计分牌：美{(r.UsHoldsScoring?"是":"否")} / 苏{(r.UssrHoldsScoring?"是":"否")}\n军事候选：{SideName(r.MilitaryCandidate)}\n"
+                    +(r.Winner.HasValue?$"最终：{SideName(r.Winner)}获胜。\n终局停止翻面与效果清理。":$"尚未终局。中国牌{(r.ChinaFlipped?"已翻正":"保持正面")}。\n本回合 OPS 效果到期 {r.ExpiredOpsEffects} 项。\n试玩停在下一回合开始前。");
+            }
+        }
+        public Task<CardActionResult> AssessTurnEndAsync()=>SendCard(CardActionKind.AssessTurnEnd);
         public Task<CardActionResult> StartPracticeAsync()=>SendCard(CardActionKind.StartPractice);
         public Task<CardActionResult> FinishInfluenceAsync()=>SendCard(CardActionKind.FinishInfluence);
         async Task<CardActionResult> SendCard(CardActionKind kind,CardId? card=null,CountryId? target=null)

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.victory",
   "kind": "module",
-  "description": "已实现完整VP批次、军事候选延后、双方扣留矩阵、核战与地区计分检查点；Demo已接政变核战/地区/太空终局吸收，最终计分和特殊卡终局未接。",
+  "description": "已实现VP批次、军事候选延后、双方扣留矩阵、核战与地区检查点；试玩已接回合末审核及风险/地区/太空终局，最终计分和特殊卡终局未接。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -75,7 +75,7 @@
   ],
   "preconditions": [
     "调用方已确认检查点完整及规则资格",
-    "服务只计算，不提交GameState；顺序、幂等、终局吸收和存档由未来宿主负责",
+    "服务只计算，不提交GameState；有限试玩宿主已接顺序/幂等/终局吸收，完整整局和存档另行实现",
     "普通/军事/地区批次前VP必须在自动胜利线内；审核Pending须来自同一定义"
   ],
   "side_effects": [
@@ -200,7 +200,7 @@
   },
   "open_items": [
     "最终计分/特殊卡终局证据仍待实现",
-    "GameResult吸收态、全局命令防重、VP/状态/游标原子提交及保存恢复仍待接入",
+    "完整整局吸收态协调、保存恢复仍待接入；有限试玩已有固定身份、防重及VP/状态/游标原子提交",
     "完整RulePack版本摘要与来源批准仍待实现"
   ],
   "contract_dependencies": [
@@ -237,5 +237,10 @@
     "Wargames结束不执行最终地区/中国牌/军备/扣留计分审计；GiveSixAndEnd恰零按已确认项目解释判Draw",
     "Defectors自动胜利先在同草稿清理已接受源/当前根后Finished，不执行余下OPS",
     "WWBY与DuckAndCover不得跨事件净额；核战优先于安装hook，终局在同草稿完成已接受单卡/双牌源根收尾后Finished"
-  ]
+  ],
+  "runtime_integration": {
+    "module": "module.turn-end-playtest",
+    "report": "Docs/Testing/turn-end-playtest.validation.json",
+    "scope": "finite turn-end military/held audit; next-turn coordinator excluded"
+  }
 }

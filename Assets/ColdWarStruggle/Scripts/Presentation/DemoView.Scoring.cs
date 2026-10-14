@@ -26,7 +26,7 @@ namespace ColdWarStruggle.Presentation
         }
         static string VictoryMessage(PublicPracticeView practice)
         {
-            var reason=practice.EndReason==VictoryCheckpoint.NuclearWarReached?"核战结束":practice.EndReason==VictoryCheckpoint.ScoringResolved?"地区计分结束":"胜利点达到获胜条件";
+            var reason=practice.EndReason==VictoryCheckpoint.NuclearWarReached?"核战结束":practice.EndReason==VictoryCheckpoint.ScoringResolved?"地区计分结束":practice.EndReason==VictoryCheckpoint.HeldScoringAudited?"回合末审核结束":"胜利点达到获胜条件";
             return reason+" · "+Side(practice.Winner.Value)+" 获胜。\n"+(practice.EndReason==VictoryCheckpoint.NuclearWarReached?"导致 DEFCON 降至 1 的行动方判负。\n":"")+"可重置后尝试其他路线。";
         }
     }

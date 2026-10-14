@@ -39,3 +39,5 @@ UI 只展示查询结果，地图 IMapView/布局/主题无需改变。界面显
 ## 验证
 
 真实运行结果、构建和视觉证据以 [报告](../Testing/playable-flat-ops-events.validation.json) / [工作记录](../Worklogs/2026-10-14-playable-flat-ops-events.md) 为准。初始画面渲染不等于持续效果面板或真实鼠标验收。
+
+2026-10-14运行时进展：[回合末结算试玩](turn-end-playtest.md)接军事净评估/计分牌审核，未终局才中国牌翻正和有限OPS到期；完整下一回合和特殊回合末能力仍待接。
