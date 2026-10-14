@@ -21,3 +21,14 @@ T2 GREEN complete: defcon-events-action-green1726/1726,0skip,exit0,XML2f4e271ccb
 T3 RED: defcon-events-catalog-red1726/1729,3expectedNotImplemented failures,0skip,XML1ff329962d18a0454db8c1cdfc6140d98f27e45e7ee11d1d61663b5d2076aaf8. Loader assembly,2payloads and UI ordered result now wired. Build target独立DefconEventPlaytest，不覆盖旧进程。
 
 T3 GREEN complete: defcon-events-catalog-green1729/1729,0skip,exit0,XML07e208657c566c0e998c205c06685d2e2ef1f5f11605ce553b9f32fd6ee28f55. Build exit0,97526820bytes;37payloads exact-source bytes,207 C# hashes; initial map/hands1280x820 actual renders inspected. Metadata123/123/71/225/604/236. Mouse/result panel unverified. Final review pending.
+
+Final review: fresh gpt-6-astra/high, 0Critical/0Important/0Minor, ready to merge. Independently matched1729XML/207sources/37payloads/exe/buildlog/screenshots; inspected2initial renders. No source changes after final green.
+Final: Ruling: How I Learned继续拒绝 — 本批两张无等待事件，第三张选择/军事服务未接线 — 成本：三牌设计仍只运行两张。
+Final: Ruling: 持续干预与可中断事件栈暂不接 — 当前无活动效果注册且待影响力选择会阻挡新事件；纯顺序一次提交 — 成本：后续持续/中断须扩展上下文，不可把本服务当完整栈。
+Final: Ruling: 对手事件加OPS继续禁用 — 直接Event仅完成效果，既有OPS资格门禁保留 — 成本：部分出牌路线仍有限制。
+Final: Ruling: 完整头条/回合末/保存另批处理 — 当前明确单回合行动练习 — 成本：不能完整打一局。
+Final: Ruling: 鼠标与选牌后结果面板视觉未验收 — 现有证据只覆盖程序化行为和初始地图/手牌渲染，原窗口激活失败未重复点击 — 成本：真实交互待用户试玩反馈。
+Final: Ruling: 不声称完整JSON Schema — 只扩展明确记录的prefix对象数组与boolean items，其他未知/形状拒绝 — 成本：后续Schema新关键字仍可能需新增测试与实现。
+Final: Ruling: 原产品名恢复及历史事件收据措辞问题继续延期 — 本批未改变它们且不影响两牌规则状态 — 成本：自定义Editor名/特定重发提示仍有历史Minor。
+Final: Ruling: 主执行者核验Git身份 — 独立review因沙箱拒绝用固定diff与匹配hash审查，本人核验真实Gitbase/head — 成本：独立审阅未直接访问Git元数据。
+Task4 complete: metadata/diff verified; regular commit/ff/push under standing user authorization, remote SHA recorded in conversation. No second review or repeated Unity run needed.

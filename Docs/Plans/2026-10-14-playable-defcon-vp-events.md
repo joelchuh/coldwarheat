@@ -9,7 +9,7 @@
 - [x] T1 RED/GREEN：纯定义/加载器/服务；真实Schema三牌全体验证但仅返回两牌，来源/绑定/枚举/步骤/错误参数门禁；两侧控制者与根责任分离、各合法DEFCON、零VP、上限、核战先停、VP先胜不改善、已终局与溢出拒绝、immutable计划。
 - [x] T2 RED/GREEN：ActionPracticeDefinition目录保留/同Cards/Risk必需与跨目录冲突门禁；PlanEvent分类分发，两牌实际出牌、非法权限/不持牌/未配置、终局牌去向、版本/序号溢出零变化，现有政变收据/军事/RNG/国家/太空保留；公共DTO、幂等/终局重发与控制器复用Event。
 - [x] T3 RED/GREEN：WithPracticeDefconVpEvents在Influence之后/QuickStart之前装配，前后复制不丢目录；默认Duck→Test Ban真实两槽、旧八牌仍可用、未知牌拒绝；Editor/Player共用参数和Schema，新增2份构建载荷。UI显示DEFCON与VP步骤、终局原因；独立Builds/DefconEventPlaytest保留旧窗口。
-- [ ] T4 全套测试与构建/载荷/初始渲染，维护模块JSON、Wiki、工作记录与报告；一次最终review，阻塞项一轮RED/GREEN修复，minor记录；commit/ff/push和远程SHA核验。真实鼠标与截图证据分开。
+- [x] T4 全套测试与构建/载荷/初始渲染，维护模块JSON、Wiki、工作记录与报告；一次最终review，阻塞项一轮RED/GREEN修复，minor记录；commit/ff/push和远程SHA核验。真实鼠标与截图证据分开。
 
 Review focus: Duck的固定US收益与Phasing核战责任不混淆；Test Ban必须先旧DEFCON算分再改善且VP终局截断；无活动效果前提、目录互斥与共享值来源真实成立；合法0分不同于未执行VP；保留政变/军事收据与RNG；终局源牌/根槽不收尾；重复/非法/溢出不产生部分轨道或VP变化；不启用第三张待选择事件。
 

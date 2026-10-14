@@ -1,7 +1,7 @@
 # 两张 DEFCON 与胜利点事件试玩
 
 > description: 查询 Duck and Cover / Nuclear Test Ban 的实际运行顺序、核战归责、VP终局、真实手牌接线与公开结果。
-> 状态：1729项回归、37份载荷与构建通过，初始地图/手牌已目视；独立审查进行中，鼠标未验收。
+> 状态：1729项回归、37份载荷与构建通过，初始地图/手牌已目视；独立审查无问题，鼠标未验收。
 > 入口：[模块JSON](../Descriptors/playable-defcon-vp-events.module.json) → 对应入口函数；数值仍来自[共享参数](../../Data/Cards/deluxe-2015/defcon-vp-events.parameters.json)。
 
 | 事件 | 实际顺序 | 终局截断 |
