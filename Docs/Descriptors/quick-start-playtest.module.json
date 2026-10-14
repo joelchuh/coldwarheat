@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "id": "module.quick-start-playtest",
+  "kind": "module",
+  "status": "implemented-subset",
+  "description": "快速试玩工厂：从真实发牌场景和fixture分配复用部署流程，启动单回合行动；保留手动入口，新GameId重现相同牌/RNG，不改变正式规则或地图接口。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.QuickStart.cs",
+      "symbol": "WithQuickStartScenario"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.QuickStart.cs",
+      "symbol": "ApplyStartup"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoLaunchOptions.cs",
+      "symbol": "ScenarioIndex"
+    }
+  ],
+  "inputs": [
+    "明示fixture JSON、已配置真实发牌/Risk/Scoring的DemoCatalog"
+  ],
+  "outputs": [
+    "拥有独立GameId、处于ChooseCard的LocalGameHost；额外快速试玩场景"
+  ],
+  "dependencies": [
+    "module.playable-scoring-actions"
+  ],
+  "data_dependencies": [
+    "demo.quick_start_scenario",
+    "demo.initial_deal_scenario",
+    "setup.deluxe2015.standard"
+  ],
+  "preconditions": [
+    "只能追加一次，所有自由部署通过InitialDeploymentFlow，启动练习明确跳过头条"
+  ],
+  "side_effects": [
+    "CreateHost只创建新不可变状态；UI重置清理意图与收据；构建复制规范源数据"
+  ],
+  "stop_conditions": [
+    "无源/缺定义/重复ID/非法分配拒绝整份fixture；不降级到偷偷改变规则"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/setup.md",
+      "scope": "共享部署资格/顺序；fixture自选分配不是规则固定值"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/QuickStartDemoTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/quick-start-playtest.md",
+  "verification": {
+    "report": "Docs/Testing/quick-start-playtest.validation.json"
+  }
+}

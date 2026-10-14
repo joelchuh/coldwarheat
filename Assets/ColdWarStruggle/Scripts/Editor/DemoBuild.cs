@@ -45,12 +45,20 @@ namespace ColdWarStruggle.Editor
         public static void BuildRisk()=>BuildAt("Builds/RiskDemo");
         [MenuItem("ColdWarStruggle/Build Scoring Actions Demo")]
         public static void BuildScoring()=>BuildAt("Builds/ScoringDemo");
-        static void BuildAt(string directory)
+        [MenuItem("ColdWarStruggle/Build Quick Playtest")]
+        public static void BuildPlaytest()=>BuildAt("Builds/PlaytestDemo","ColdWarStruggle Playtest");
+        static void BuildAt(string directory,string productName=null)
         {
             Prepare();Directory.CreateDirectory(directory);
-            var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{ScenePath},locationPathName=Path.Combine(directory,"ColdWarStruggleDemo.exe"),target=BuildTarget.StandaloneWindows64,options=BuildOptions.None});
-            if(report.summary.result!=BuildResult.Succeeded)throw new InvalidOperationException("Demo build failed: "+report.summary.result);
-            Debug.Log("FIRST_DEMO_BUILD_SUCCEEDED "+report.summary.totalSize);
+            var previousProduct=PlayerSettings.productName;
+            try
+            {
+                if(productName!=null)PlayerSettings.productName=productName;
+                var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{ScenePath},locationPathName=Path.Combine(directory,"ColdWarStruggleDemo.exe"),target=BuildTarget.StandaloneWindows64,options=BuildOptions.None});
+                if(report.summary.result!=BuildResult.Succeeded)throw new InvalidOperationException("Demo build failed: "+report.summary.result);
+                Debug.Log("FIRST_DEMO_BUILD_SUCCEEDED "+report.summary.totalSize);
+            }
+            finally { PlayerSettings.productName=previousProduct;AssetDatabase.SaveAssets(); }
         }
         public static void SynchronizeData()
         {
@@ -68,7 +76,8 @@ namespace ColdWarStruggle.Editor
                     .WithInitialDealScenario(Read(root,"Data/Demo/initial-deal-scenario.json"),Read(root,"Data/Rulesets/deluxe-2015/setup.json"),Read(root,"Docs/Contracts/setup.schema.json"),Read(root,"Data/Rulesets/deluxe-2015/turn-flow.json"),printedCards,Read(root,"Data/Localization/en-US.catalog-names.json"))
                     .WithActionPractice(Read(root,"Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json"),Read(root,"Docs/Contracts/persistent-effects-batch1.schema.json"),Read(root,"Data/Rulesets/deluxe-2015/space-race.json"),Read(root,"Data/Rulesets/deluxe-2015/turn-flow.json"))
                     .WithPracticeRisk(Read(root,"Data/Rulesets/deluxe-2015/coup.json"),Read(root,"Data/Rulesets/deluxe-2015/defcon.json"),Read(root,"Data/Rulesets/deluxe-2015/military-operations.json"),Read(root,"Data/Rulesets/deluxe-2015/victory.json"))
-                    .WithPracticeScoring(Read(root,"Data/Rulesets/deluxe-2015/region-scoring.json"),Read(root,"Docs/Contracts/region-scoring-rules.schema.json"));
+                    .WithPracticeScoring(Read(root,"Data/Rulesets/deluxe-2015/region-scoring.json"),Read(root,"Docs/Contracts/region-scoring-rules.schema.json"))
+                    .WithQuickStartScenario(Read(root,"Data/Demo/quick-start-scenario.json"));
             WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
             Directory.CreateDirectory(payload);
             Copy(root,"Data/Maps/deluxe-2015/world.json",payload,"world.json");Copy(root,"Docs/Contracts/map.schema.json",payload,"map.schema.json");
@@ -90,6 +99,7 @@ namespace ColdWarStruggle.Editor
             Copy(root,"Data/Rulesets/deluxe-2015/setup.json",payload,"setup.json");
             Copy(root,"Docs/Contracts/setup.schema.json",payload,"setup.schema.json");
             Copy(root,"Data/Demo/initial-deal-scenario.json",payload,"initial-deal-scenario.json");
+            Copy(root,"Data/Demo/quick-start-scenario.json",payload,"quick-start-scenario.json");
             Copy(root,"Docs/Contracts/cards-v2.schema.json",payload,"cards-v2.schema.json");
             Copy(root,"Data/Cards/deluxe-2015/cards.printed-profile.json",payload,"cards.printed-profile.json");
             Copy(root,"Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json",payload,"persistent-effects-batch1.parameters.json");

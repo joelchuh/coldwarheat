@@ -6,7 +6,7 @@
 
 当前已进入**首批 Unity 原型实现阶段**。仓库已整理 84 个国家及邻接、103 张基础牌的印刷定义、初始布置、回合流程、行动、计分、胜负和分批卡牌事件设计。具体参数绑定与未确认边界见[正式数据索引](Docs/Wiki/map-card-data.md)及各牌的验证报告。
 
-已创建 Unity 6000.6.0f1 工程、纯 C# 规则核心和单窗口 Demo，最新 **1648 项 EditMode 测试通过**。新版[计分与行动试玩](Docs/Wiki/playable-scoring-actions.md)位于 `E:\TwilightStruggle\Builds\ScoringDemo\ColdWarStruggleDemo.exe`：完成发牌/部署后显式跳过头条，从真实手牌投放影响力、政变、送太空或计分；地图显示公开地区预览。旧Demo文件不自动更新。
+已创建 Unity 6000.6.0f1 工程、纯 C# 规则核心和单窗口 Demo，最新 **1664 项 EditMode 测试通过**。[快速行动试玩](Docs/Wiki/quick-start-playtest.md)位于 `E:\TwilightStruggle\Builds\PlaytestDemo\ColdWarStruggleDemo.exe`：默认用示例部署直接进入真实手牌行动，可投放影响力、政变、送太空或计分；上一个练习保留手动部署。地图与手牌实际渲染已检查，鼠标未验收。仍是无完整头条/事件/回合末的练习，旧Demo文件不自动更新。
 
 ![新版真实手牌界面](Docs/Images/playable-demo-hands.png)
 

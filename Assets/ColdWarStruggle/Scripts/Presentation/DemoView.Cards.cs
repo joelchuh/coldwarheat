@@ -13,10 +13,10 @@ namespace ColdWarStruggle.Presentation
         void DrawHandSummary(PlayerViewSnapshot view)
         {
             bool action=view.Practice!=null && view.Deployment==null;
-            revealBoth=GUI.Toggle(new Rect(972,action?680:642,264,28),revealBoth," 测试观察：查看双方",button);
-            if(Button(972,action?714:680,262,action?28:41,$"手牌 本方{view.OwnHand.Count} / 对方{view.OpponentHandCount}"))
+            revealBoth=GUI.Toggle(new Rect(972,action?676:642,264,action?26:28),revealBoth," 测试观察：查看双方",button);
+            if(Button(972,action?706:680,262,action?27:41,$"手牌 本方{view.OwnHand.Count} / 对方{view.OpponentHandCount}"))
             { handPanelOpen=true;handScroll=Vector2.zero;GUIUtility.ExitGUI(); }
-            Text(972,action?746:730,262,action?31:40,$"牌库 {view.Cards.DrawPileCount} · 弃牌 {view.Cards.DiscardCount} · 移出 {view.Cards.RemovedCount}\n中国牌：{Side(view.Cards.China.Owner)} / {(view.Cards.China.Face==CardFace.FaceUp?"正面":"背面")}",small);
+            Text(972,action?737:730,262,40,$"牌库 {view.Cards.DrawPileCount} · 弃牌 {view.Cards.DiscardCount} · 移出 {view.Cards.RemovedCount}\n中国牌：{Side(view.Cards.China.Owner)} / {(view.Cards.China.Face==CardFace.FaceUp?"正面":"背面")}",small);
         }
         void DrawHandPanel(PlayerViewSnapshot view)
         {

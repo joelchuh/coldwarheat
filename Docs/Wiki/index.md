@@ -4,6 +4,7 @@
 
 | 知识点 | description | 状态 | 入口 |
 |---|---|---|---|
+| 快速行动试玩 | 查示例部署、默认入口、真牌政变/计分和重置 | PlaytestDemo；证据见报告 | [quick-start-playtest.md](quick-start-playtest.md) |
 | 计分与公开预览 | 查七牌绑定、净VP/终局与不读手牌的地区预览 | 1648项回归；ScoringDemo | [playable-scoring-actions.md](playable-scoring-actions.md) |
 | 政变与风险试玩 | 查真实手牌政变、地图高亮、风险轨道、核战和幂等 | 新RiskDemo；验证见报告 | [playable-coup-actions.md](playable-coup-actions.md) |
 | 真实出牌行动试玩 | 查从真实手牌使用影响力/太空、牌去向与轨道、明确跳过头条边界 | 1599项回归；独立PlayableDemo | [playable-card-actions.md](playable-card-actions.md) |

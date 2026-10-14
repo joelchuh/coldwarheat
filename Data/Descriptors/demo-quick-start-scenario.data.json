@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "data.demo-quick-start-scenario",
+  "kind": "data",
+  "description": "快速行动试玩的示例部署与来源场景；严格复用真实发牌和共享部署校验，跳过头条进入单回合练习，不是官方或最佳开局。",
+  "status": "fixture",
+  "entrypoints": [
+    {
+      "path": "Data/Demo/quick-start-scenario.json",
+      "symbol": "scenario"
+    }
+  ],
+  "inputs": [
+    "固定场景ID"
+  ],
+  "outputs": [
+    "追加的第14个示例部署行动场景；正式手动部署场景保留"
+  ],
+  "dependencies": [
+    "demo.initial_deal_scenario",
+    "setup.deluxe2015.standard",
+    "map.deluxe2015.world"
+  ],
+  "preconditions": [
+    "源场景已配置Risk/Scoring；选择额度/范围以共享规则校验"
+  ],
+  "side_effects": [
+    "创建新GameId的局面；不改源场景、不提前掷骰"
+  ],
+  "stop_conditions": [
+    "未知字段/来源/重复ID/非法地区、分配总数或阶段順序拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/setup.md",
+      "scope": "已确认开局数据与工程重放约定"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/QuickStartDemoTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "dataset_id": "demo.quick_start_scenario",
+  "verification": {
+    "report": "Docs/Testing/quick-start-playtest.validation.json"
+  }
+}

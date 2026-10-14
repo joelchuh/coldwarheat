@@ -19,10 +19,11 @@ namespace ColdWarStruggle.Infrastructure
         public SetupDeploymentDefinition DeploymentDefinition { get; }
         public InitialDealResult InitialCards { get; }
         public ActionPracticeDefinition PracticeDefinition { get; }
+        internal IReadOnlyList<DemoDeploymentChoice> StartupChoices { get; }
         public IReadOnlyDictionary<CountryId,CountryState> Countries { get; }
         public IReadOnlyDictionary<PlayerSide,IReadOnlyList<string>> Hands { get; }
-        internal DemoScenario(string id,string title,PlayerSide actor,CountryId selected,int ops,IReadOnlyDictionary<CountryId,CountryState> countries,IReadOnlyDictionary<PlayerSide,IReadOnlyList<string>> hands,InfluenceEffectDefinition eventDefinition=null,GameTurnContext turn=null,SetupDeploymentDefinition deployment=null,InitialDealResult initialCards=null,ActionPracticeDefinition practice=null)
-        { Id=id;Title=title;Actor=actor;SelectedCountry=selected;Ops=ops;Countries=countries;Hands=hands;EventDefinition=eventDefinition;Turn=turn;DeploymentDefinition=deployment;InitialCards=initialCards;PracticeDefinition=practice; }
+        internal DemoScenario(string id,string title,PlayerSide actor,CountryId selected,int ops,IReadOnlyDictionary<CountryId,CountryState> countries,IReadOnlyDictionary<PlayerSide,IReadOnlyList<string>> hands,InfluenceEffectDefinition eventDefinition=null,GameTurnContext turn=null,SetupDeploymentDefinition deployment=null,InitialDealResult initialCards=null,ActionPracticeDefinition practice=null,IEnumerable<DemoDeploymentChoice> startupChoices=null)
+        { Id=id;Title=title;Actor=actor;SelectedCountry=selected;Ops=ops;Countries=countries;Hands=hands;EventDefinition=eventDefinition;Turn=turn;DeploymentDefinition=deployment;InitialCards=initialCards;PracticeDefinition=practice;StartupChoices=startupChoices==null?null:System.Array.AsReadOnly(startupChoices.ToArray()); }
     }
     public sealed partial class DemoCatalog
     {
@@ -67,6 +68,7 @@ namespace ColdWarStruggle.Infrastructure
                 if(!started.Accepted)throw new ArgumentException("Invalid deployment fixture: "+started.Error);
                 state=started.NextState;
             }
+            if(s.StartupChoices!=null)state=ApplyStartup(state,s.StartupChoices);
             return new LocalGameHost(state,true);
         }
         public DemoCatalog WithEventScenarios(string fixtures,string parameters,string parameterSchema)
