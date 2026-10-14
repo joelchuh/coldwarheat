@@ -78,6 +78,7 @@
 | 地区计分与最终汇总 | 查找六地区档位、东南亚权重、最终完整性和中国牌附加分 | 基础无修正计分已实现；最终汇总待完成 | [region-scoring.md](region-scoring.md) |
 | 通用 OPS 报价 | 查Actor归属、Flat合并/上下限、真实牌/视同来源与太空工厂 | General子集已实现；地区与活动实例待接 | [ops-general.md](ops-general.md) |
 | 政变基础计算 | 目标门禁、共享骰子/稳定度系数、影响力与战场意图 | C#基础子集；完整命令待接 | [coup-calculation.md](coup-calculation.md) |
+| 政变整体计划 | 军事/随机/影响力/DEFCON一体结果、收据防重与版本 | C#已验证；宿主待接 | [coup-attempts.md](coup-attempts.md) |
 | 太空竞赛 | 查找8格门槛、先后奖励、领先能力、事件推进与回合衔接 | 轨道/领先能力/普通尝试计划已实现；宿主待接 | [space-race.md](space-race.md) |
 | 地图与卡牌数据契约 | 查找正式数据字段、邻接、三类卡牌、效果注册、Schema及加载门禁 | 契约与正式印刷定义已建立；服务待实现 | [map-card-contracts.md](map-card-contracts.md) |
 | 正式地图与卡牌数据 | 按地区查84国与邻接，按时代查103张基础牌及效果待实现边界 | 静态定义已录入；不是可运行规则包 | [map-card-data.md](map-card-data.md) |

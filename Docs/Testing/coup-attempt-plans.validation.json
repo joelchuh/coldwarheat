@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "validation.coup-attempt-plans",
+  "date": "2026-10-14",
+  "description": "One-turn aggregate ordinary coup plan with receipts, revision and isolated RNG; not actual GameState host commit.",
+  "status": "tests-verified-awaiting-review",
+  "baseline_commit": "74d8883ac42d7821cb3acbf64703bff94e4bea67",
+  "runs": [
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 1561,
+      "passed": 1511,
+      "failed": 50,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "1c486ab783038559f78b8c243197cfb49412489e02ae0e96fe52cb1d7c9adf1c",
+      "schema_version": 1,
+      "run_id": "coup-attempt-red",
+      "duration_ms": 21526,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\coup-attempt-red",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\coup-attempt-red\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\coup-attempt-red\\editor.log"
+    },
+    {
+      "status": "passed",
+      "error_code": null,
+      "total": 1561,
+      "passed": 1561,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "0b0ea07d4a3897189c50193346b89f1bfdb869693bf2b70e49e86153d7672919",
+      "schema_version": 1,
+      "run_id": "coup-attempt-green",
+      "duration_ms": 23216,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\coup-attempt-green",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\coup-attempt-green\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\coup-attempt-green\\editor.log"
+    }
+  ],
+  "inputs_sha256": {
+    "Assets/ColdWarStruggle/Scripts/Core/Rules/CoupAttemptState.cs": "3c99e8ff62088813b7ec534bbecae49201ed34820fa16acaa9de62b35c2e9db7",
+    "Assets/ColdWarStruggle/Scripts/Core/Rules/CoupAttemptRules.cs": "9cd92f2a4a51d447b8cf71bc474b602cc29408d4f1c174483f8971cfd8cf283c",
+    "Assets/ColdWarStruggle/Tests/EditMode/CoupAttemptTests.cs": "3e3ae3fb977ad98f5b044c8b3eddfba40e27df17e7a0b48dc622485cd18c2b5b",
+    "Assets/ColdWarStruggle/Scripts/Core/Rules/CoupCalculation.cs": "81ce536ad74021d2aa3dad92270bfaa445e9d9c78deff64d0c7de9a0b9692a7e",
+    "Data/Rulesets/deluxe-2015/coup.json": "72fc647270ed0067fde4f6b59f4edef1bae957750d83ef3de63aa9b89d98848b",
+    "Data/Rulesets/deluxe-2015/military-operations.json": "0b00fa575def470d5e96032b00ce0ad614d29ea837cf1dd2196cab0017d08c37",
+    "Data/Rulesets/deluxe-2015/defcon.json": "e9a842358cc3f772cfcba0e7f307fb6d8fe26b812aa5e303ea046bf618565eba"
+  },
+  "metadata_validation": {
+    "status": "passed",
+    "descriptors": 115,
+    "datasets": 70,
+    "csharp_symbols": 182,
+    "data_references": 582,
+    "files_read": 204
+  },
+  "review": "pending",
+  "player_rebuilt": false,
+  "limits": [
+    "GameState/真实出牌/卡牌去向/行动游标与完整终局提交",
+    "活动卡牌/地理例外/地区预算",
+    "跨回合继续与完整持久化恢复",
+    "UI命令和播放器重建",
+    "IRandomProvider trusted dependency; no malicious alias protection.",
+    "SourceActionId is causal metadata, not root-slot authorization."
+  ]
+}

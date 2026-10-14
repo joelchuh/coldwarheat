@@ -12,7 +12,7 @@
 
 一个窗口共用一局权威状态，美苏两个固定身份会话。正常视图仅含自己的牌；单人测试通过显式只读观察入口查看双方，牌库顺序和随机状态不公开。当前固定发牌fixture用于复现，重置建立新GameId但恢复同一手牌；完整存档、联网与AI尚未实现。
 
-最新源码已加入[DEFCON、军事行动与基础胜负检查点](Docs/Wiki/risk-victory.md)，**1511项EditMode通过**；播放器仍为上述762项测试对应的Demo构建。完整事件VP、军事延后/双边扣留审核、核战责任及[六地区/东南亚基础计分](Docs/Wiki/region-scoring.md)已可纯计算，[太空轨道、领先能力与普通尝试计划](Docs/Wiki/space-race.md)、[通用OPS报价](Docs/Wiki/ops-general.md)及[政变基础计算](Docs/Wiki/coup-calculation.md)已有实现；完整出牌、政变、最终计分、VP提交和整局胜负编排仍待接入。
+最新源码已加入[DEFCON、军事行动与基础胜负检查点](Docs/Wiki/risk-victory.md)，**1561项EditMode通过**；播放器仍为上述762项测试对应的Demo构建。完整事件VP、军事延后/双边扣留审核、核战责任及[六地区/东南亚基础计分](Docs/Wiki/region-scoring.md)已可纯计算，[太空轨道、领先能力与普通尝试计划](Docs/Wiki/space-race.md)、[通用OPS报价](Docs/Wiki/ops-general.md)及[政变基础计算与整体计划](Docs/Wiki/coup-attempts.md)已有实现；完整出牌、政变、最终计分、VP提交和整局胜负编排仍待接入。
 
 ## 已确认的工程原则
 

@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "description": "同一回合普通政变整体计划：显式门禁、军事信用、隔离掷骰、影响力和DEFCON组成不可变After；保存请求收据/版本/RNG防重，实际GameState提交与出牌授权待接。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/CoupAttemptState.cs",
+      "symbol": "CoupAttemptRequest"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/CoupAttemptState.cs",
+      "symbol": "CoupAttemptState"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/CoupAttemptState.cs",
+      "symbol": "CoupAttemptReceipt"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/CoupAttemptState.cs",
+      "symbol": "Create"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/CoupAttemptRules.cs",
+      "symbol": "PlanAttempt"
+    }
+  ],
+  "inputs": [
+    "可信当前GameId/Revision/军事回合、完整地图影响力、基础定义/DEFCON/军事、随机快照与活动效果ID快照",
+    "可信请求源/Actor/PhasingPlayer/目标/分别核实的强度和军事信用、匹配快照的IRandomProvider"
+  ],
+  "outputs": [
+    "一个不可变After，包含国家/军事/DEFCON/RNG/收据/递增修订",
+    "相同ID事实的重发返回当前状态及原收据，AlreadyApplied=true，不再抽样"
+  ],
+  "dependencies": [
+    "module.coup-calculation",
+    "module.military-operations",
+    "module.defcon"
+  ],
+  "preconditions": [
+    "只有同一军事回合内计划；Create不是存档恢复，不保留旧收据",
+    "玩家身份/阶段/持牌/预算/根槽与非核胜利结束由未来宿主授权，SourceActionId只是溯源",
+    "必须先验证全部活动干预；当前任意非空效果快照均拒绝",
+    "宿主比较Before与当前版本后一次性提交全部After，不能拆开应用收据各字段"
+  ],
+  "side_effects": [
+    "输入状态与原随机源不变，只在独立fork抽样；不操作文件/UI或实际GameState"
+  ],
+  "stop_conditions": [
+    "错GameId/turn、冲突ID、陈旧版本、记录已满、非法目标/活动效果",
+    "军事已审核/溢出或已有信用缺少政变收据",
+    "RNG快照不匹配、共享fork/坏范围/无推进/错stream；影响力或修订溢出",
+    "新的核战后操作拒绝；已完成请求仍可只读重发"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "checked_on": "2026-10-14",
+      "sections": [
+        "6.3",
+        "8.1",
+        "8.2"
+      ],
+      "description": "基础政变时序沿用risk-victory已核对解释；防重/版本/事务为工程保证。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/CoupAttemptTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "id": "plan.coup-attempts",
+  "kind": "plan",
+  "status": "implemented-awaiting-review",
+  "document": "Docs/Plans/2026-10-14-coup-attempt-plans.md"
+}
