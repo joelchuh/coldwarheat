@@ -49,7 +49,7 @@ namespace ColdWarStruggle.Presentation
                 if(Button(972,410,262,39,"投放 1 点影响力"))Place(1);
                 GUI.enabled=true;
                 if(Button(972,457,262,39,view.RemainingOps==0?"结束行动并弃牌":$"结束行动（放弃 {view.RemainingOps} OPS）"))FinishCard();
-                Text(972,504,262,36,"点地图选国，再投放；绿色为合法目标。",small);
+                Text(972,504,262,66,p.OpponentOps==null?"点地图选国，再投放；绿色为合法目标。":p.OpponentOps.EventOccurred?"对手事件已完成。结束投放后交给下一方。":"结束投放后仍须结算对手事件；现在不会换方。",small);
             }
             else
             {
@@ -66,13 +66,15 @@ namespace ColdWarStruggle.Presentation
                     if(option.Scoring==RuleError.None)DrawScoringChoice(selected.Value);
                     else
                     {
-                    GUI.enabled=option.Influence==RuleError.None;
-                    if(Button(972,411,126,40,"用于影响力"))UseCard(CardActionKind.Influence);
+                    var opponent=option.EventThenInfluence==RuleError.None;
+                    GUI.enabled=opponent || option.Influence==RuleError.None;
+                    if(Button(972,411,126,40,opponent?"先事件后投放":"用于影响力"))UseCard(opponent?CardActionKind.EventThenInfluence:CardActionKind.Influence);
                     GUI.enabled=option.Space==RuleError.None;
                     if(Button(1108,411,126,40,"送入太空"))UseCard(CardActionKind.Space);
                     GUI.enabled=true;
-                    GUI.enabled=option.Coup==RuleError.None;
-                    if(Button(972,458,126,35,"选择政变目标")) {controller.SelectCoupUse();GUIUtility.ExitGUI();}
+                    GUI.enabled=opponent || option.Coup==RuleError.None;
+                    if(Button(972,458,126,35,opponent?"先投放后事件":"选择政变目标"))
+                    { if(opponent)UseCard(CardActionKind.InfluenceThenEvent);else {controller.SelectCoupUse();GUIUtility.ExitGUI();} }
                     GUI.enabled=true;
                     GUI.enabled=option.Event==RuleError.None;
                     if(Button(1108,458,126,35,option.Event==RuleError.None?"发动事件":"事件未接入"))UseCard(CardActionKind.Event);
@@ -85,7 +87,7 @@ namespace ColdWarStruggle.Presentation
                         var country=view.Countries.First(c=>c.Definition.Id.Equals(controller.SelectedCountry));
                         if(p.Defcon==2 && country.Definition.Battleground)Text(972,538,262,36,"危险：战场政变会触发核战，当前行动方判负！",small);
                     }
-                    var reason=option.Influence!=RuleError.None?"影响力："+ErrorText(option.Influence):"";
+                    var reason=opponent?"对手牌：选择事件与投放的先后。":option.Influence!=RuleError.None?"影响力："+ErrorText(option.Influence):"";
                     if(option.Space!=RuleError.None)reason+="\n太空："+ErrorText(option.Space);
                     if(!controller.SelectingCoup)
                     {
@@ -115,7 +117,7 @@ namespace ColdWarStruggle.Presentation
                     _=>"核战 · 后续步骤停止" }));
                 if(e.Terminal && !e.Steps.Contains(DefconVpStep.NuclearWarReached))message+="\n已达胜利条件 · 后续步骤停止";
             }
-            else if(result?.Event!=null)message=result.Event.Outcome==InfluenceEventStatus.ResolvedNoChange?"事件完成 · 影响力无需变化。":"事件完成 · 影响力变化 "+result.Event.Changes.Count+" 项。";
+            else if(result?.Event!=null)message=result.Event.Stage==InfluenceEventStage.AwaitingChoice?"等待事件受益方完成选择。":result.Event.Outcome==InfluenceEventStatus.ResolvedNoChange?"事件完成 · 影响力无需变化。":"事件完成 · 影响力变化 "+result.Event.Changes.Count+" 项。";
             else if(result?.Scoring!=null)message="计分结果："+ScoringRegionName(result.Scoring.RegionId)+"\n"+ScoreSummary(result.Scoring);
             else if(result?.Coup!=null)
             {

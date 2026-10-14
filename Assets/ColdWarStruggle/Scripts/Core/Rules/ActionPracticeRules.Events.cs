@@ -37,6 +37,12 @@ namespace ColdWarStruggle.Core
             if(e.Stage!=InfluenceEventStage.Resolved)return new InfluenceEventTransition(RuleError.EventNotStarted);
             try
             {
+                if(p.OpponentOps!=null)
+                {
+                    var resumed=AdvanceOpponentStep(s.WithInfluenceEvent(null),CardResolutionStep.Event);
+                    return resumed.Accepted?new InfluenceEventTransition(RuleError.None,next:resumed.NextState,changes:transition.Changes,
+                        decision:transition.DecisionRequestedSequence,resolution:transition.ResolutionSequence):new InfluenceEventTransition(resumed.Error);
+                }
                 var printed=p.Definition.Cards.GetCard(p.ActiveCard.Value);
                 var cards=Move(s,p.ActiveCard.Value,false,false,printed.RemoveAfterResolvedEvent);
                 var done=Commit(s.WithInfluenceEvent(null),Next(p,p.Space,p.VpForUS),cards,s.RandomState);

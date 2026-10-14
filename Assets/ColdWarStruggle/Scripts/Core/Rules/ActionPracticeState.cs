@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 namespace ColdWarStruggle.Core
 {
-    public enum CardActionKind { StartPractice, Influence, Space, FinishInfluence, Coup, Scoring, Event, Realignment, RollRealignment, FinishRealignment }
+    public enum CardActionKind { StartPractice, Influence, Space, FinishInfluence, Coup, Scoring, Event, Realignment, RollRealignment, FinishRealignment, EventThenInfluence, InfluenceThenEvent }
     public enum ActionPracticeStage { AwaitingStart, ChooseCard, PlacingInfluence, Complete, ResolvingEvent, Realigning }
     // Explicit single-turn practice with a bounded, typed set of supported events. Not the full turn coordinator.
     public sealed class ActionPracticeDefinition
@@ -39,8 +39,9 @@ namespace ColdWarStruggle.Core
         public int VpForUS { get; }
         public PracticeRiskState Risk { get; }
         public TurnOpsEffectState OpsEffects { get; }
-        internal ActionPracticeState(ActionPracticeDefinition definition,ActionPracticeStage stage,int completed,CardId? card,SpaceAttemptState space,int vp,PracticeRiskState risk=null,TurnOpsEffectState opsEffects=null)
-        { Definition=definition;Stage=stage;CompletedActions=completed;ActiveCard=card;Space=space;VpForUS=vp;Risk=risk;OpsEffects=opsEffects??TurnOpsEffectState.Create(space.Turn); }
+        public OpponentOpsSequence OpponentOps { get; }
+        internal ActionPracticeState(ActionPracticeDefinition definition,ActionPracticeStage stage,int completed,CardId? card,SpaceAttemptState space,int vp,PracticeRiskState risk=null,TurnOpsEffectState opsEffects=null,OpponentOpsSequence opponentOps=null)
+        { OpponentOps=opponentOps;Definition=definition;Stage=stage;CompletedActions=completed;ActiveCard=card;Space=space;VpForUS=vp;Risk=risk;OpsEffects=opsEffects??TurnOpsEffectState.Create(space.Turn); }
         public static ActionPracticeState Create(ActionPracticeDefinition definition)
         {
             if(definition==null)throw new ArgumentNullException(nameof(definition));

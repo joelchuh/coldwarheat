@@ -51,10 +51,12 @@ namespace ColdWarStruggle.Editor
         public static void BuildEventPlaytest()=>BuildAt("Builds/EventPlaytest","ColdWarStruggle Event Playtest");
         [MenuItem("ColdWarStruggle/Build DEFCON Event Playtest")]
         public static void BuildDefconEventPlaytest()=>BuildAt("Builds/DefconEventPlaytest","ColdWarStruggle DEFCON Event Playtest");
-        [MenuItem("ColdWarStruggle/Build OPS Event Playtest")]
+        [MenuItem("ColdWarStruggle/Build Realignment Playtest")]
         public static void BuildRealignmentPlaytest()=>BuildAt("Builds/RealignmentPlaytest","ColdWarStruggle Realignment Playtest");
         [MenuItem("ColdWarStruggle/Build OPS Event Playtest")]
         public static void BuildOpsEventPlaytest()=>BuildAt("Builds/OpsEventPlaytest","ColdWarStruggle OPS Event Playtest");
+        [MenuItem("ColdWarStruggle/Build Opponent Event Playtest")]
+        public static void BuildOpponentEventPlaytest()=>BuildAt("Builds/OpponentEventPlaytest","ColdWarStruggle Opponent Event Playtest");
         static void BuildAt(string directory,string productName=null)
         {
             Prepare();Directory.CreateDirectory(directory);

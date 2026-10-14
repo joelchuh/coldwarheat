@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "id": "module.opponent-event-influence",
+  "kind": "module",
+  "status": "implemented-subset",
+  "description": "已注册对手阵营事件与影响力OPS的两步顺序：事件先/投放先、对手选择、根Actor保留、终局截断及最终一次弃置；不开放对手政变/调整或未实现事件。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OpponentOpsSequence.cs",
+      "symbol": "OpponentOpsSequence"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.OpponentOps.cs",
+      "symbol": "CanPlayOpponentInfluence"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.OpponentOps.cs",
+      "symbol": "PlanOpponentInfluence"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.OpponentOps.cs",
+      "symbol": "AdvanceOpponentStep"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Events.cs",
+      "symbol": "CompleteEventAction"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/CardActionContracts.cs",
+      "symbol": "PublicOpponentOpsProgress"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Cards.cs",
+      "symbol": "PlayCardAsync"
+    }
+  ],
+  "inputs": [
+    "权威实际持牌方、已注册对手事件、两种CardActionKind顺序意图",
+    "事件受益方完整选择、根操作方影响力命令及FinishInfluence"
+  ],
+  "outputs": [
+    "不可变Card/Actor/Order/CompletedSteps有限序列；派生当前步/事件完成标志",
+    "公开顺序/步骤进度与原事件收据，最终一次根行动与牌去向"
+  ],
+  "dependencies": [
+    "module.playable-flat-ops-events",
+    "module.playable-card-actions",
+    "module.playable-influence-events"
+  ],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "effects.deluxe2015.persistent_batch1"
+  ],
+  "preconditions": [
+    "仅ChooseCard真实本方手牌中的对手阵营且事件实现已注册；拒绝自己/中立/计分/中国与未知处理器",
+    "事件Owner按效应，PhasingPlayer与OPS Actor保持根操作方；OPS开始时重新报价及冻结可达性"
+  ],
+  "side_effects": [
+    "手牌只移入一次Resolving，两步未结束不换根/不移出；两步完成后星号按已发生移出，否则弃置",
+    "核战/VP终局停止后续步骤，沿用试玩终局留牌/根不推进策略；此前接受投放保留"
+  ],
+  "stop_conditions": [
+    "新命令身份/旧版本/阶段/牌区冲突拒绝，重发仅返回旧收据；本命令溢出不发布草稿",
+    "未实现的前置/取消事件不能当无效果放行；对手政变/调整、完整嵌套/头条/回合末/存档未接"
+  ],
+  "rule_sources": [
+    {
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "sections": [
+        "5.2"
+      ],
+      "checked_on": "2026-10-14"
+    },
+    {
+      "path": "Docs/Wiki/turn-flow.md",
+      "scope": "顺序/实体牌去向的既有设计；本实现是有限二步子集"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/OpponentOpsSequenceTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayOpponentInfluenceTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayOpponentInfluenceSessionTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/opponent-event-influence.md",
+  "verification": {
+    "report": "Docs/Testing/opponent-event-influence.validation.json"
+  }
+}

@@ -659,3 +659,7 @@ OpsEventPlaytest已接遏制政策/红色恐怖清洗的有限单回合持续实
 ## 35. 普通政局调整试玩（2026-10-14）
 
 RealignmentPlaytest已接真实手牌普通调整：预算冻结、每次当前目标/邻控、固定美苏双骰、移除与明确结束弃牌。1815项回归通过，构建/审查以最新报告为准。先读Docs/Wiki/playable-realignment.md及模块/数据JSON；不增加军事/不降DEFCON，不要求投放可达；特殊事件调整、骰干预、中国牌/对手Event加OPS与完整回合未接。初始渲染不能替代调整面板/鼠标验收。
+
+## 36. 对手事件与投放顺序（2026-10-14）
+
+OpponentEventPlaytest已接已注册对手阵营事件＋影响力OPS的两种顺序，固定根Actor/事件Owner、等待后继续、一次牌去向与终局截断。1843项回归通过，构建/审查见最新报告。先查Docs/Wiki/opponent-event-influence.md及JSON。对手事件＋政变/调整、前置/取消/嵌套/头条/回合末仍未接。原试玩终局留Resolving/不推进根审计策略保持；完整事件步骤结束才标EventOccurred。上批重复Editor菜单及历史等待收据措辞本批修正，实际验证见工作记录。

@@ -23,6 +23,17 @@ namespace ColdWarStruggle.Application
         public string ExpiryBoundary { get; }
         internal PublicTurnOpsEffect(TurnOpsEffectInstance instance) { Card=instance.Definition.Card;EffectId=instance.Definition.EffectId;AffectedSide=instance.AffectedSide;Delta=instance.Definition.Delta;Turn=instance.Turn;ExpiryBoundary=instance.ExpiryBoundary; }
     }
+    public sealed class PublicOpponentOpsProgress
+    {
+        public CardId Card { get; }
+        public PlayerSide Actor { get; }
+        public PlayerSide EventSide { get; }
+        public OpponentEventOrder Order { get; }
+        public CardResolutionStep CurrentStep { get; }
+        public int CompletedSteps { get; }
+        public bool EventOccurred { get; }
+        internal PublicOpponentOpsProgress(OpponentOpsSequence value) { Card=value.Card;Actor=value.Actor;EventSide=value.EventSide;Order=value.Order;CurrentStep=value.CurrentStep;CompletedSteps=value.CompletedSteps;EventOccurred=value.EventOccurred; }
+    }
     public sealed class PublicPracticeView
     {
         public ActionPracticeStage Stage { get; }
@@ -42,9 +53,10 @@ namespace ColdWarStruggle.Application
         public PlayerSide? Winner { get; }
         public VictoryCheckpoint? EndReason { get; }
         public bool HasScoring { get; }
+        public PublicOpponentOpsProgress OpponentOps { get; }
         public IReadOnlyList<PublicTurnOpsEffect> OpsEffects { get; }
         internal PublicPracticeView(ActionPracticeState s)
-        { OpsEffects=Array.AsReadOnly(s.OpsEffects.Instances.Select(i=>new PublicTurnOpsEffect(i)).ToArray());Stage=s.Stage;Actor=s.Actor;Round=s.ActionRound;RoundLimit=s.Space.Turn.Parameters.NormalActionsPerSide;CompletedActions=s.CompletedActions;ActiveCard=s.ActiveCard;
+        { OpponentOps=s.OpponentOps==null?null:new PublicOpponentOpsProgress(s.OpponentOps);OpsEffects=Array.AsReadOnly(s.OpsEffects.Instances.Select(i=>new PublicTurnOpsEffect(i)).ToArray());Stage=s.Stage;Actor=s.Actor;Round=s.ActionRound;RoundLimit=s.Space.Turn.Parameters.NormalActionsPerSide;CompletedActions=s.CompletedActions;ActiveCard=s.ActiveCard;
           UsSpace=s.Space.Track.US;UssrSpace=s.Space.Track.USSR;UsAttempts=s.Space.UsAttempts;UssrAttempts=s.Space.UssrAttempts;VpForUS=s.VpForUS;Defcon=s.Risk?.Defcon.Level;UsMilitary=s.Risk?.Military.UsEarned;UssrMilitary=s.Risk?.Military.UssrEarned;Winner=s.Risk?.Result?.Winner;EndReason=s.Risk?.Result?.Checkpoint;HasScoring=s.Definition.Scoring!=null; }
     }
     public sealed class PublicSpaceResult
@@ -134,6 +146,8 @@ namespace ColdWarStruggle.Application
         public RuleError Scoring { get; }
         public RuleError Event { get; }=RuleError.UnsupportedCardAction;
         public RuleError Realignment { get; }=RuleError.UnsupportedCardAction;
+        public RuleError EventThenInfluence { get; }=RuleError.UnsupportedCardAction;
+        public RuleError InfluenceThenEvent { get; }=RuleError.UnsupportedCardAction;
         internal CardActionOption(GameState s,PlayerSide side,CardId id)
         {
             if(s.Practice!=null)
@@ -142,7 +156,7 @@ namespace ColdWarStruggle.Application
                 if(printed.PrintedOps.HasValue)
                 { var quote=ActionPracticeRules.QuoteCard(s,side,id,OpsValuePurpose.Influence);CurrentOps=quote.GeneralValue;FlatModifierTotal=quote.ModifierTotal; }
             }
-            Realignment=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Realignment);Event=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Event);Card=id;Influence=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Influence);Space=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Space);Coup=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Coup);Scoring=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Scoring); }
+            EventThenInfluence=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.EventThenInfluence);InfluenceThenEvent=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.InfluenceThenEvent);Realignment=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Realignment);Event=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Event);Card=id;Influence=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Influence);Space=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Space);Coup=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Coup);Scoring=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Scoring); }
     }
     public sealed class CardActionOptions
     {

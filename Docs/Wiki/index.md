@@ -4,6 +4,7 @@
 
 | 知识点 | description | 状态 | 入口 |
 |---|---|---|---|
+| 对手事件＋投放 | 查两种顺序、选择者与根操作方、一次移牌和终局截断 | 有限二步试玩；见验证报告 | [opponent-event-influence.md](opponent-event-influence.md) |
 | 普通政局调整试玩 | 查真实牌预算、逐次双骰、动态修正与地图目标 | RealignmentPlaytest；验证见报告 | [playable-realignment.md](playable-realignment.md) |
 | DEFCON与VP事件试玩 | 查Duck/Test Ban顺序、核战责任与终局截断 | DefconEventPlaytest；1729项测试，鼠标未验收 | [playable-defcon-vp-events.md](playable-defcon-vp-events.md) |
 | 有界JSON契约 | 查Schema支持边界、tuple与尾项验证 | 共享加载器基础服务 | [bounded-json-contract.md](bounded-json-contract.md) |

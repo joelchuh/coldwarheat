@@ -1,0 +1,88 @@
+using System;
+using System.Linq;
+namespace ColdWarStruggle.Core
+{
+    public static partial class ActionPracticeRules
+    {
+        public static RuleError CanPlayOpponentInfluence(GameState state,PlayerSide side,CardId card)
+        {
+            var error=CanPlay(state,side,card,CardActionKind.Event);if(error!=RuleError.None)return error;
+            var p=state.Practice;var affiliation=p.Definition.Cards.GetCard(card).Affiliation;
+            if(affiliation!=(side==PlayerSide.US?CardAffiliation.USSR:CardAffiliation.US))return RuleError.UnsupportedCardAction;
+            if(p.OpponentOps!=null || state.Cards.ResolvingCards.Count!=0)return RuleError.ActionNotReady;
+            return RuleError.None;
+        }
+        static CardActionTransition PlanOpponentInfluence(GameState state,PlayerSide side,CardActionKind kind,string actionId,CardId? card,CountryId? target)
+        {
+            if(string.IsNullOrWhiteSpace(actionId) || actionId.Length>128 || !card.HasValue || target.HasValue)return new CardActionTransition(RuleError.InvalidCommand);
+            var error=CanPlayOpponentInfluence(state,side,card.Value);if(error!=RuleError.None)return new CardActionTransition(error);
+            try
+            {
+                var sequence=OpponentOpsSequence.Create(card.Value,side,kind==CardActionKind.EventThenInfluence?OpponentEventOrder.EventFirst:OpponentEventOrder.OperationsFirst);
+                var p=state.Practice;
+                var pending=new ActionPracticeState(p.Definition,ActionPracticeStage.ResolvingEvent,p.CompletedActions,card,p.Space,p.VpForUS,p.Risk,p.OpsEffects,sequence);
+                var prepared=Commit(state,pending,Move(state,card.Value,true,true),state.RandomState).NextState;
+                return sequence.CurrentStep==CardResolutionStep.Event?BeginOpponentEvent(prepared):BeginOpponentInfluence(prepared,sequence);
+            }
+            catch(OverflowException) { return new CardActionTransition(RuleError.NumericOverflow); }
+        }
+        static bool ValidOpponentRoot(GameState s)
+        {
+            var p=s.Practice;var q=p?.OpponentOps;
+            return q!=null && q.Actor==p.Actor && p.ActiveCard.HasValue && q.Card.Equals(p.ActiveCard.Value)
+                && s.Cards.ResolvingCards.Count==1 && s.Cards.ResolvingCards.Contains(q.Card);
+        }
+        static CardActionTransition BeginOpponentInfluence(GameState s,OpponentOpsSequence sequence)
+        {
+            if(!ValidOpponentRoot(s) || sequence.CurrentStep!=CardResolutionStep.Operations)return new CardActionTransition(RuleError.InvalidDefinition);
+            var p=s.Practice;
+            // Price and reachability are evaluated here, after any earlier accepted event.
+            var quote=QuoteCard(s,p.Actor,sequence.Card,OpsValuePurpose.Influence);
+            var next=new ActionPracticeState(p.Definition,ActionPracticeStage.PlacingInfluence,p.CompletedActions,sequence.Card,p.Space,p.VpForUS,p.Risk,p.OpsEffects,sequence);
+            return Commit(s,next,s.Cards,s.RandomState,quote.GeneralValue);
+        }
+        static CardActionTransition AdvanceOpponentStep(GameState s,CardResolutionStep step)
+        {
+            if(!ValidOpponentRoot(s) || s.Practice.OpponentOps.CurrentStep!=step)return new CardActionTransition(RuleError.InvalidDefinition);
+            var p=s.Practice;var sequence=p.OpponentOps.Advance(step);
+            if(sequence.CurrentStep==CardResolutionStep.Complete)
+            {
+                var printed=p.Definition.Cards.GetCard(sequence.Card);
+                return Commit(s,Next(p,p.Space,p.VpForUS),Move(s,sequence.Card,false,false,sequence.EventOccurred && printed.RemoveAfterResolvedEvent),s.RandomState);
+            }
+            if(sequence.CurrentStep==CardResolutionStep.Operations)return BeginOpponentInfluence(s,sequence);
+            var pending=new ActionPracticeState(p.Definition,ActionPracticeStage.ResolvingEvent,p.CompletedActions,sequence.Card,p.Space,p.VpForUS,p.Risk,p.OpsEffects,sequence);
+            return BeginOpponentEvent(Commit(s,pending,s.Cards,s.RandomState).NextState);
+        }
+        static CardActionTransition BeginOpponentEvent(GameState s)
+        {
+            if(!ValidOpponentRoot(s) || s.Practice.OpponentOps.CurrentStep!=CardResolutionStep.Event || s.Practice.Stage!=ActionPracticeStage.ResolvingEvent)return new CardActionTransition(RuleError.InvalidDefinition);
+            var p=s.Practice;var q=p.OpponentOps;
+            if(p.Definition.InfluenceEvents?.Effects.TryGetValue(q.Card,out var influence)==true)
+            {
+                var prepared=s.WithInfluenceEvent(new InfluenceEventExecution("practice.event."+p.CompletedActions,influence,p.Actor,InfluenceEventPolicy.NoActiveInterference));
+                var raw=InfluenceEventFlow.Begin(prepared,p.Actor);var done=CompleteEventAction(raw);
+                return done.Accepted?new CardActionTransition(RuleError.None,done.NextState,eventTransition:raw):new CardActionTransition(done.Error);
+            }
+            if(p.Definition.DefconVpEvents?.Effects.TryGetValue(q.Card,out var track)==true)
+            {
+                var plan=DefconVpEventService.Plan(track,p.Risk.Defcon,p.Risk.Definition.Victory,p.VpForUS,q.EventSide,p.Actor,"practice.event."+p.CompletedActions,DefconVpEventPolicy.NoActiveInterference);
+                var risk=p.Risk.After(plan);var terminal=risk.Result?.Outcome==VictoryOutcome.Finished;
+                var after=new ActionPracticeState(p.Definition,terminal?ActionPracticeStage.Complete:ActionPracticeStage.ResolvingEvent,p.CompletedActions,q.Card,p.Space,plan.Decision.SignedVp,risk,p.OpsEffects,q);
+                var committed=Commit(s,after,s.Cards,s.RandomState);
+                var done=terminal?committed:AdvanceOpponentStep(committed.NextState,CardResolutionStep.Event);
+                return done.Accepted?new CardActionTransition(RuleError.None,done.NextState,defconVpEvent:plan):done;
+            }
+            if(p.Definition.TurnOpsEvents?.Effects.TryGetValue(q.Card,out var flat)==true)
+            {
+                var activation=p.OpsEffects.Activate(flat,q.EventSide,"practice.event."+p.CompletedActions,checked(s.EventSequence+1),s.Turn);
+                if(!activation.Accepted)return new CardActionTransition(activation.Error);
+                if(activation.AlreadyApplied)return new CardActionTransition(RuleError.StaleContext);
+                var after=new ActionPracticeState(p.Definition,ActionPracticeStage.ResolvingEvent,p.CompletedActions,q.Card,p.Space,p.VpForUS,p.Risk,activation.After,q);
+                var committed=Commit(s,after,s.Cards,s.RandomState);var done=AdvanceOpponentStep(committed.NextState,CardResolutionStep.Event);
+                return done.Accepted?new CardActionTransition(RuleError.None,done.NextState,activatedOpsEffect:activation.Instance):done;
+            }
+            return new CardActionTransition(RuleError.UnsupportedCardAction);
+        }
+    }
+}

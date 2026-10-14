@@ -258,3 +258,7 @@ EndTurnChoices 处理已获得且仍有效的回合末能力。F2010 PDF 第 20�
 [Grain Sales](grain-sales.md)保留已接受随机结果与父根余项；普通来源OPS及精确终局清理仍待接入。
 
 [Missile Envy](missile-envy.md)的后续义务跨父帧保存，计分优先与陷阱门禁见有限设计；真实消费者仍UNRUN。
+
+## 对手事件与投放有限序列已接（2026-10-14）
+
+[对手事件＋影响力OPS](opponent-event-influence.md)已在单回合试玩中接两种顺序、对手选择/根Actor分离、两步一次牌去向；终局保留中断根用于审计。这是已有完整CardResolution设计的有限子集，不表示头条/完整回合、一般嵌套或前置/取消路径已可执行。
