@@ -33,3 +33,5 @@ ChoosingOperations预算为0，Sequence.Mode为空；实际选定后不可混用
 独立输出 `Builds/OpponentOpsPlaytest/ColdWarStruggleDemo.exe`。默认入口可选苏联手里的Duck and Cover，先选事件或OPS，到OPS步骤选用途，再点地图目标；直接事件/太空和普通本方/中立牌用途保留。另可切到美国操作其对手事件牌，事件需要苏联选择时再切换。
 
 仍只接已有十二张事件处理器；NATO等未知前置牌继续拒绝。中国牌、特殊事件内OPS/嵌套、头条、完整回合末与存档待接。终局留牌/根审计策略与前批一致。实际测试/构建/渲染/鼠标证据分别见[报告](../Testing/opponent-ops-modes.validation.json)和[工作记录](../Worklogs/2026-10-14-opponent-ops-modes.md)。
+
+等待事件选择面板通过`DemoController.EventPanelCoupMessage`读取公开政变摘要；摘要只含公开文本并绑定GameId/ExecutionId/AwaitingChoice，切换固定身份保留，事件完成或重载不再显示。完整CardActionResult仍随身份切换清除，避免旧OwnHand视图留存。审查修复后1874/1874通过，验证局面的鼠标证据详见工作记录。

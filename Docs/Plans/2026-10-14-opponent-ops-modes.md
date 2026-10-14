@@ -26,4 +26,4 @@ T4：一次最强独立全分支审查，Critical/Important单轮TDD修复，Min
 
 Review Focus：不在事件前锁定后续OPS类型；ChoosingOperations期间不能通过普通Influence命令偷投；无合法政变目标仍可改模式；Coup+即时/选择事件既保留两个结果又原子发布；终局截断、后续事件溢出回滚当前Coup但保留此前行动；旧枚举/旧Influence专用API兼容；查询不会泄露牌库/RNG。
 
-进度：T1/T2规则与Host/Controller完成，最终1872/1872通过；T3构建/报告及两条鼠标路线完成；T4审查与同步待完成。
+进度：T1/T2规则与Host/Controller完成，最终1872/1872通过；T3构建/报告及两条鼠标路线完成；T4审查1项Important已修复，最终1874/1874；真实等待选择路线通过，正在常规同步。

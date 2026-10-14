@@ -666,4 +666,4 @@ OpponentEventPlaytest已接已注册对手阵营事件＋影响力OPS的两种�
 
 ## 37. 对手事件与三种OPS（2026-10-14）
 
-OpponentOpsPlaytest先选事件/OPS顺序，到OPS步骤再选择投放、政变或调整；可空Mode/ChoosingOperations、当前目标与报价、政变和后事件复合收据、单根一次牌去向已接。1872项回归通过，构建和审查见最新报告。先读Docs/Wiki/opponent-ops-modes.md及JSON；旧Influence专用入口兼容。初始渲染与鼠标分别验收，完整头条/回合末、未知前置事件/嵌套/中国牌仍未接。第36节未接对手政变/调整为历史状态。
+OpponentOpsPlaytest先选事件/OPS顺序，到OPS步骤再选择投放、政变或调整；可空Mode/ChoosingOperations、当前目标与报价、政变和后事件复合收据、单根一次牌去向已接。1874项回归通过，审查漏显的等待选择政变摘要已修复，构建和鼠标证据见最新报告。先读Docs/Wiki/opponent-ops-modes.md及JSON；旧Influence专用入口兼容。初始渲染与鼠标分别验收，完整头条/回合末、未知前置事件/嵌套/中国牌仍未接。第36节未接对手政变/调整为历史状态。

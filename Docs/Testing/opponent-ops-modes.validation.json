@@ -4,7 +4,7 @@
   "description": "对手事件三种OPS编排：顺序、模式、真实目标/报价、原子复合收据与终局截断的分层证据",
   "date": "2026-10-14",
   "baseline_commit": "457b4d327897d4f9d659431815f8c8092773bd8d",
-  "status": "tested-built-review-pending",
+  "status": "verified-review-fix-complete",
   "runs": [
     {
       "run_id": "opponent-ops-core-red",
@@ -50,6 +50,24 @@
       "failed": 0,
       "skipped": 0,
       "xml_sha256": "e6900f800ae661e080da54b06629d77f1c9b31d0f742c9877cd1d6ff7df0d1b3"
+    },
+    {
+      "run_id": "opponent-ops-review-red",
+      "status": "failed",
+      "total": 1874,
+      "passed": 1872,
+      "failed": 2,
+      "skipped": 0,
+      "xml_sha256": "cb8fcc15ed35011a78d17018dcf6c753ab14d40a95aa1236418149b5556f16c8"
+    },
+    {
+      "run_id": "opponent-ops-review-green",
+      "status": "passed",
+      "total": 1874,
+      "passed": 1874,
+      "failed": 0,
+      "skipped": 0,
+      "xml_sha256": "3ab369b8c40ab75636b99a90eb6a8277c394db3145fd65d33be87727293d065b"
     }
   ],
   "source_hashes": {
@@ -164,7 +182,7 @@
     "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/VictoryDefinitionLoader.cs": "2ca75eb7f296f5656e74a8e705db031f70f0cf7e9d48460c900a7289defaf6f0",
     "Assets/ColdWarStruggle/Scripts/Infrastructure/Serialization/RandomSnapshotJson.cs": "de44fbe4b7afd9493496e8195237f7a8730e531a38739a52c9006dd2b328fe9c",
     "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Allocation.cs": "e0f1d7396cf14b740a42f5bba80a215b751baa1d0dfd6459526c97733620202c",
-    "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Cards.cs": "5ca45ad71d57f722255e21863258b9a3c28df77f36c1bcfaecf1462332e1039f",
+    "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Cards.cs": "0dab03fafed4fdb2d06366b3c19c65c0507dd60b81e50a6184574711fb316c91",
     "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.cs": "ec49f34d6cd9d68979ec48a73901cdb50dc96dbc9fa517b7c590bb954a32f083",
     "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Deployment.cs": "513738fce97513b08d695dc7b4406d51ac4873bb93d54a5abe943bd9adba51f5",
     "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Events.cs": "3798135ed6e19991bfbcdca9ce9b3dac532e92437a87092188bc3e74aba9b528",
@@ -174,7 +192,7 @@
     "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Cards.cs": "ce3d384f1868d89a04d99065430d96287dff0bd6365d419e4977643454d042b9",
     "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.cs": "e2829a627f26190fb93dd2a32ed9d952fa4dbd680acbb04cc569a7d4019e7e77",
     "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Deployment.cs": "75d04b07ac88cf8de7ed432df91efaea9d490acc2ab414bd1dfeb88dd44f8477",
-    "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Events.cs": "1ad8d27511b209e2a0afb28d2b0abca63a4a44c12e49e4cebb318c316ff0d2f1",
+    "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Events.cs": "c3a5de1dcc4995e658ac1e00761d028d32436e5a70d2e397a69fad68ae4f8e6c",
     "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.OpponentOps.cs": "dc0e1b30ff3d90345ad0418952d9295642c0b2199557237e0b0ca3f9f58bb735",
     "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Scoring.cs": "243a002778623567ef4f4b65a4d8e7fbd1ad9382113c668ab703638498a3a4ba",
     "Assets/ColdWarStruggle/Scripts/Presentation/HandPanelFrame.cs": "4621c23ae84dea8d38cf37268f490f2595ad7e12a53077c65fe4b0907219b624",
@@ -255,7 +273,7 @@
     "Assets/ColdWarStruggle/Tests/EditMode/PlayInfluenceEventTests.cs": "02f526dd1f4190f797b4144172e86a55984c1eae13602150cb649ea44b25cd5c",
     "Assets/ColdWarStruggle/Tests/EditMode/PlayOpponentInfluenceSessionTests.cs": "79a3dd44c6c3e65b26c09c67ff1f83a1ac5b35745b7c9e9b4e535bc280c223c5",
     "Assets/ColdWarStruggle/Tests/EditMode/PlayOpponentInfluenceTests.cs": "f6b2efaef7089f78ecf3a571fed7ee4fae06d65aca6a2deebebf1838b95ac09a",
-    "Assets/ColdWarStruggle/Tests/EditMode/PlayOpponentOpsSessionTests.cs": "8d7311536abcd56e18b1ab99504ed638b09a38b20c998efaf1a6f4fdab249d13",
+    "Assets/ColdWarStruggle/Tests/EditMode/PlayOpponentOpsSessionTests.cs": "29747854bfb012cb6394b0e1624f6c1eb9ea51508964e915ca71c6dd3bd48100",
     "Assets/ColdWarStruggle/Tests/EditMode/PlayOpponentOpsTests.cs": "6292bfaeae8774422a185e470db63a17e6a9a203f90c6e9fde38ffdfdd8c2a2c",
     "Assets/ColdWarStruggle/Tests/EditMode/PlayRealignmentCatalogTests.cs": "3a8a1f20999119708a7227f715650843d0f0ba26d2a1a31f08c57250667a4f85",
     "Assets/ColdWarStruggle/Tests/EditMode/PlayRealignmentTests.cs": "385bb27a6b7ea6b46df2afd22c3337bde6462708898000cf13258f0001996e1d",
@@ -286,7 +304,7 @@
   "build": {
     "path": "Builds/OpponentOpsPlaytest/ColdWarStruggleDemo.exe",
     "exit_code": 0,
-    "reported_bytes": 97570408,
+    "reported_bytes": 97570920,
     "exe_sha256": "a4c71b1bfc3e42d02f2f129fe04adef3ebf2343a662884e4b99598e9dfc90e7d",
     "payload_count": 38,
     "payloads": [
@@ -481,7 +499,8 @@
         "sha256": "8a7e1ec958c8585655aca84318fa4794fdff8d2b9dd6cf6fc1b84ec37bb55fb5"
       }
     ],
-    "log": "TestResults/opponent-ops-build.log"
+    "log": "TestResults/opponent-ops-review-build.log",
+    "post_review_rebuild": "exit0; restored canonical payloads verified after isolated UI seed fixture"
   },
   "ui": {
     "render_status": "actual-map-hands-order-mode-coup-realignment-continuation-inspected",
@@ -491,7 +510,8 @@
       "Default USSR hand Duck and Cover -> event first: DEFCON5 to4, US+1VP -> three mode choices.",
       "Coup preview highlights legal targets -> map South Africa -> confirm: die1, OPS3, no influence change, USSR military+3, DEFCON4 to3, root changes to US. Retry retained die/state/card counts.",
       "Switch fixed identity US -> own hand Nasser -> OPS first -> Realignment -> Middle East region -> Syria -> one roll US6 versus USSR1+1, removes1 USSR influence; remaining0OPS, no DEFCON/military change.",
-      "Finish realignment -> Nasser adds2USSR Egypt, star removed1, root advances to USSR round2."
+      "Finish realignment -> Nasser adds2USSR Egypt, star removed1, root advances to USSR round2.",
+      "Post-review executable, explicitly labelled alternate PCG state1 fixture: USSR Fidel event -> US Suez OPS first -> Cuba coup die5 OPS3 removes2 USSR/militaryUS3/DEFCON5to4 -> waiting choice shows summary -> switch USSR preserves summary -> UK2/Israel1 allocation -> finish hides old summary, star removed2 total, root USSR round2."
     ],
     "images": [
       {
@@ -525,12 +545,36 @@
         "height": 820,
         "actual_render": true,
         "mouse_verified": true
+      },
+      {
+        "path": "Docs/Images/opponent-ops-event-choice.png",
+        "sha256": "3849f138d9460a3586a1cc0af55b30af7298d105c3bf5b2bd7de830792a4cc33",
+        "width": 1280,
+        "height": 820,
+        "actual_render": true,
+        "mouse_verified": true,
+        "fixture": "random state 0000000000000001, not default deal; title explicitly marked"
+      },
+      {
+        "path": "Docs/Images/opponent-ops-event-complete.png",
+        "sha256": "900791a43052b9a1f56b1d3ee151d6ff7e1dba512a9e33a0a61856c7de4eb48a",
+        "width": 1280,
+        "height": 820,
+        "actual_render": true,
+        "mouse_verified": true,
+        "fixture": "random state 0000000000000001, not default deal; title explicitly marked"
       }
     ],
-    "limitations": "Pending opponent-owned allocation-choice continuation and combined coup+event result layout were covered by automated tests/static review, not this mouse flow. No Steam hands-on testing claim."
+    "limitations": "Immediate DEFCON/VP or Flat-effect composite result layout remains automated/static coverage only. Review seed fixture changed generated two JSON payloads only during mouse validation; both restored byte-for-byte from canonical Data and all38 payload hashes rechecked. No Steam hands-on claim."
   },
   "review": {
-    "status": "pending"
+    "status": "completed-with-important-fixed",
+    "reviewer": "gpt-6-astra/high fresh context",
+    "critical": 0,
+    "important": 1,
+    "minor": 0,
+    "fix": "Event panel public coup summary persists across fixed identity switch, bound to game/execution/AwaitingChoice. Two RED-to-GREEN tests; full1874passed; actual mouse path verified. No re-review.",
+    "rulings": "Docs/Worklogs/2026-10-14-opponent-ops-modes.md"
   },
   "scope": "12 registered event subset, three ordinary OPS modes, no prerequisite/cancel/nested/headline/turn end/China/save integration",
   "metadata_validation": {
@@ -538,7 +582,7 @@
     "descriptors": 128,
     "catalog_entries": 128,
     "datasets": 72,
-    "csharp_symbols_checked": 256,
+    "csharp_symbols_checked": 257,
     "data_dependencies_checked": 612,
     "files_read": 252
   }

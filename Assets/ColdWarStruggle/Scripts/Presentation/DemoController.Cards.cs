@@ -22,6 +22,24 @@ namespace ColdWarStruggle.Presentation
             }
         }
         public CardActionResult LastCardResult { get; private set; }
+        string eventCoupGame,eventCoupExecution,eventCoupMessage;
+        // Store only public display text across identity changes, never another player's snapshot.
+        public string EventPanelCoupMessage
+        {
+            get
+            {
+                var view=ReadView();return view.GameId==eventCoupGame && view.Event?.ExecutionId==eventCoupExecution
+                    && view.Event?.Stage==InfluenceEventStage.AwaitingChoice?eventCoupMessage:null;
+            }
+        }
+        void RememberEventCoup(CardActionResult result)
+        {
+            if(!result.Accepted)return;
+            eventCoupGame=null;eventCoupExecution=null;eventCoupMessage=null;
+            if(result.Coup==null || result.Event?.Stage!=InfluenceEventStage.AwaitingChoice)return;
+            var c=result.Coup;eventCoupGame=result.View.GameId;eventCoupExecution=result.View.Event.ExecutionId;
+            eventCoupMessage=$"政变骰 {c.Roll} / OPS {c.Strength} / 差额 {c.Margin}\n影响力 −{c.Removed}/+{c.Added} · 军事 +{c.MilitaryCredit}\n随后事件：等待受益方选择。";
+        }
         public bool CanRetryCard=>lastCardCommand!=null && lastCardSide==SelectedSide;
         public CardActionOptions CardOptions()=>Session.QueryCardActions();
         public void SelectCard(CardId card)
@@ -67,7 +85,7 @@ namespace ColdWarStruggle.Presentation
             var command=new CardActionCommand(Guid.NewGuid().ToString("N"),v.GameId,v.Version,kind,card,target);
             lastCardCommand=command;lastCardSide=SelectedSide;
             var result=await session.SubmitCardActionAsync(command);
-            if(epoch==generation) { LastCardResult=result;LastResult=null;legal=null;if(result.Accepted){selectedCard=null;SelectingCoup=false;ResetEventInteraction(false);}MarkInteractionChanged(); }
+            if(epoch==generation) { LastCardResult=result;RememberEventCoup(result);LastResult=null;legal=null;if(result.Accepted){selectedCard=null;SelectingCoup=false;ResetEventInteraction(false);}MarkInteractionChanged(); }
             return result;
         }
         public async Task<CardActionResult> RetryCardAsync()
@@ -77,6 +95,6 @@ namespace ColdWarStruggle.Presentation
             if(epoch==generation)LastCardResult=result;return result;
         }
         void ResetCardInteraction(bool clearReceipt)
-        { SelectingCoup=false;legal=null;selectedCard=null;selectedCardGame=null;LastCardResult=null;if(clearReceipt)lastCardCommand=null;MarkInteractionChanged(); }
+        { SelectingCoup=false;legal=null;selectedCard=null;selectedCardGame=null;LastCardResult=null;if(clearReceipt){lastCardCommand=null;eventCoupGame=null;eventCoupExecution=null;eventCoupMessage=null;}MarkInteractionChanged(); }
     }
 }

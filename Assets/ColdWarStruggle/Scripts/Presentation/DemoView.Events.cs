@@ -55,7 +55,9 @@ namespace ColdWarStruggle.Presentation
                 :!result.Accepted?"未执行："+ErrorText(result.Error)
                 :result.ResolutionSequence.HasValue?"完成收据 · 变化 "+result.Changes.Count+" 项\n序号 "+result.ResolutionSequence.Value
                 :"选择请求已建立。请按左侧提示操作。";
-            Text(972,574,262,62,message,small);
+            var coupMessage=controller.EventPanelCoupMessage;
+            Text(972,574,262,62,coupMessage??message,small);
+            if(coupMessage!=null && result!=null && !result.Accepted)Text(972,638,262,32,message,small);
         }
         async void BeginEvent() { try { await controller.BeginEventAsync(); } catch(Exception e) { fatal=e.Message;Debug.LogException(e); } }
         async void ConfirmEvent() { try { await controller.ConfirmEventAsync(); } catch(Exception e) { fatal=e.Message;Debug.LogException(e); } }
