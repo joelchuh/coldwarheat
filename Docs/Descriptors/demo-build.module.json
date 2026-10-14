@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.demo-build",
   "kind": "module",
-  "description": "校验并同步28份运行载荷（26 JSON和2许可/说明）；构建独立PlayableDemo真实手牌行动试玩，保留FirstDemo与PreviewDemo路径。",
+  "description": "验证共享规则、场景、地图与名称包，再同步运行载荷并构建固定目标Windows试玩；最新LocalizedPlaytest包含连续回合和中英文短名，旧exe不自动更新。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -28,15 +28,24 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
       "symbol": "BuildPlayable"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "symbol": "BuildContinuousPlaytest"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "symbol": "BuildLocalizedPlaytest"
     }
   ],
   "inputs": [
-    "26份共享JSON与两份第三方许可/说明；新增OPS参数/schema与太空定义，规则数值不复制到UI"
+    "DemoBuild.SynchronizeData显式列出的共享JSON和第三方许可/说明；当前39份载荷（37 JSON与2说明），完整源到构建映射见最新验证报告。"
   ],
   "outputs": [
     "Assets/ColdWarStruggle/Scenes/FirstDemo.unity；Builds/FirstDemo/ColdWarStruggleDemo.exe与必要同目录运行文件",
     "BuildPreview额外固定入口：Builds/PreviewDemo/ColdWarStruggleDemo.exe与必要运行文件，不接受外部任意输出路径。",
-    "BuildPlayable: Builds/PlayableDemo/ColdWarStruggleDemo.exe"
+    "BuildPlayable: Builds/PlayableDemo/ColdWarStruggleDemo.exe",
+    "BuildContinuousPlaytest: Builds/ContinuousPlaytest/ColdWarStruggleDemo.exe；BuildLocalizedPlaytest: Builds/LocalizedPlaytest/ColdWarStruggleDemo.exe；完整运行所需数据在同目录。"
   ],
   "dependencies": [
     "module.demo-presentation",
@@ -46,7 +55,8 @@
     "module.deterministic-random"
   ],
   "preconditions": [
-    "Unity Editor、WindowsStandalone模块；DemoCatalog与WorldMapAssets均验证通过；源地图profile需独立审核"
+    "Unity Editor、WindowsStandalone模块；DemoCatalog与WorldMapAssets均验证通过；源地图profile需独立审核",
+    "两份名称包通过CatalogNamesLoader校验；构建目录没有正在使用同一文件的播放器。"
   ],
   "side_effects": [
     "只写生成数据、Demo场景和项目构建设置/输出；创建场景前保护未保存场景"
@@ -96,9 +106,9 @@
   ],
   "documentation": "Docs/Wiki/first-demo.md",
   "verification": {
-    "checked_on": "2026-10-13",
+    "checked_on": "2026-10-14",
     "report": "Docs/Testing/era-demo.validation.json",
-    "latest_report": "Docs/Testing/playable-card-actions.validation.json"
+    "latest_report": "Docs/Testing/localized-catalog-names.validation.json"
   },
   "data_dependencies": [
     "rules.deluxe2015.influence_placement",
@@ -117,6 +127,7 @@
     "demo.deployment_scenario",
     "setup.deluxe2015.standard",
     "demo.initial_deal_scenario",
-    "cards.deluxe2015.printed_profile"
+    "cards.deluxe2015.printed_profile",
+    "localization.zh_cn.catalog_names"
   ]
 }

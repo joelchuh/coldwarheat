@@ -3,7 +3,7 @@
   "id": "validation.localized-catalog-names",
   "description": "显示名称切换与词典边界分层验证",
   "baseline_commit": "fcde880ec203c6513f0b9e33397b10ed38f0a161",
-  "status": "tests-build-passed-ui-blocked-review-pending",
+  "status": "tests-build-review-passed-ui-pending",
   "runs": [
     {
       "run_id": "localized-names-red",
@@ -293,19 +293,49 @@
     "descriptors": 135,
     "catalog_entries": 135,
     "datasets": 73,
-    "csharp_symbols_checked": 292,
-    "data_dependencies_checked": 627,
+    "csharp_symbols_checked": 294,
+    "data_dependencies_checked": 628,
     "files_read": 274
   },
   "ui": {
     "status": "blocked-window-activation",
     "error": "failed to activate captured window",
     "images": [],
-    "note": "首次截图为桌面背景，未作为游戏截图；重新选择返回窗口并激活一次仍失败，已请求用户切到前台。",
+    "note": "首次截图为桌面背景，未作为游戏截图；重新选择返回窗口并激活一次仍失败，已请求用户切到前台。 恢复会话后重新读取同一窗口仍仅有桌面背景；未点击未知画面。已告知用户可恢复操作。",
     "player_log_errors": []
   },
   "review": {
-    "status": "pending"
+    "status": "passed-with-minor",
+    "reviewer": "review_localized_names",
+    "range": "fcde880ec203c6513f0b9e33397b10ed38f0a161..9d7c623cc5a3709cadbefab2067f3edd92d0e284",
+    "critical": 0,
+    "important": 0,
+    "minor": [
+      {
+        "id": "pending-launch-focus-on-language-switch",
+        "status": "deferred",
+        "file": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Localization.cs",
+        "line": 26,
+        "description": "仅特殊启动 --demo-focus=selected --demo-hands=open 时，在地图首次绘制前切名会清掉待应用聚焦；当前默认视口被恢复为全图。牌局/选牌不受影响。",
+        "follow_up": "下批地图体验修复保留 pending focus，并增加 WorldMap 首帧前切名的用例。"
+      }
+    ],
+    "declined_to_judge": [
+      {
+        "topic": "真实按钮、中文字形、长标题及渲染视口",
+        "ruling": "仍待实际UI验收；不以代码审查或2009项测试替代。"
+      },
+      {
+        "topic": "官方术语、完整界面翻译和规则正文",
+        "ruling": "维持项目自译短名范围；完整术语校对与正文单独开展。"
+      },
+      {
+        "topic": "头条、剩余事件、特殊回合末、最终计分、存档、联网和AI",
+        "ruling": "沿用既有有限试玩边界；不把名称增量称为完整游戏。"
+      }
+    ],
+    "evidence": "审阅精确patch、相关实现/依赖与测试；253源码哈希、39源/构建载荷和exe哈希复核一致；没有重跑测试或操作UI。",
+    "post_review_changes": "仅更新描述、试玩指引、验证结论及工作记录，无源码和数据载荷变更。"
   },
   "build": {
     "status": "passed",
@@ -510,5 +540,6 @@
       }
     ],
     "log": "TestResults/localized-build.log"
-  }
+  },
+  "source_commit": "9d7c623cc5a3709cadbefab2067f3edd92d0e284"
 }

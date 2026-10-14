@@ -5,3 +5,5 @@ T1 数据/加载：Data/Localization/zh-CN.catalog-names.json（草稿198键已�
 T2 展示：MapPresenter.ReplaceNames及回归；DemoView.Localization.cs可选Initialize英文包，独立SwitchNameLanguage换表现并保存WorldViewport；Bootstrap读中文；Build预检/拷贝新包与BuildLocalizedPlaytest；真实渲染/按钮/选牌及哈希验证。
 T3 元数据：Data descriptor+目录，module descriptor+目录，Wiki/README/AGENTS/工作日志/验证JSON；单次独立审查后必要一次TDD修复，常规提交ff/main push核对。
 Review Focus：中文只影响名字，不参与规则/actor/RNG；地区或卡名静态知识不泄露私有手牌；替换names失败不得部分更新/留下可用陈旧点击；MapPresenter上下文新建而game/selectedcard/draft/版本保持；世界地图Center/Zoom恢复避免语言切换跳回全图；真实中文长标题换行/按钮不遮挡；旧Initialize无alternateNames仍可用。
+
+执行结论：T1/T2代码及自动测试/构建完成，T3描述与唯一审查完成；视觉/按钮验收因窗口捕获失败保留未完成，详见验证报告。Minor登记后不在本批扩展修复范围。
