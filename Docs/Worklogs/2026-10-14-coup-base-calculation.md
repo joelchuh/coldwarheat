@@ -18,3 +18,11 @@ Task 2 RED: coup-loader-red-02 1511总计/1483通过/28新增失败（加载桩N
 Task 2代码: coup-loader-green 1511/1511、0跳过、退出0；XML 265e30cfaff81943ad1142c1ea7427e045413b0a053a174b0f4d3659cbc19f32。模块/数据JSON、catalog、Wiki与报告已更新；metadata及最终审阅待完成。
 
 Task 2: complete。metadata通过114描述/catalog、70数据集、177符号、579数据引用、201读取文件；Unity1511全绿。一次整批独立审阅待完成。
+
+Final review: fresh gpt-6-astra reviewed 4e32063..54afbcc，ready to merge，0 Critical/Important/Minor；五份输入和四次有效RED/GREEN摘要一致，1511全绿。编译错误尝试不算行为RED。
+Final Ruling: 客户端身份/归属/阶段/版本、强度/影响力新鲜性和效果集合完整性继续由可信宿主验证；本基础计算不是直接玩家入口，错接会允许伪造事实。
+Final Ruling: 条约/逐卡拦截/豁免/地区奖励未实现，非空活动效果保守拒绝；代价为这些真实游戏分支暂不可用。
+Final Ruling: RNG/防重和军事/DEFCON/胜负/影响力原子时序由下一批计划接入；本批组合测试不证明宿主提交，误当完成会有重复副作用。
+Final Ruling: 非核胜利终局吸收、完整RulePack认证/数据真实性及存档兼容仍属宿主/后续加载契约；目前无完整游戏或存档入口，不扩大本API职责。
+Final Ruling: 未构建播放器或验收鼠标；审阅不重跑Unity/metadata或验证远端，采用作者实际证据，Git同步由随后命令核验；代价为没有审阅者独立运行证据。
+Deferred minors: none。
