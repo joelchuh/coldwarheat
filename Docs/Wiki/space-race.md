@@ -1,7 +1,7 @@
 # 太空竞赛：基础实现与后续设计
 
 > description: 查询太空尝试资格、8格轨道、先到/后到VP、4项领先能力、事件直接推进、额外行动与回合末弃牌。
-> 状态：2026-10-14基础轨道与只读能力查询已实现，新增172项测试、全量1280项通过；普通尝试、推进奖励及逐卡策略仍待实现。播放器未重建。
+> 状态：2026-10-14轨道/能力及普通单格尝试纯计划已实现，全量1376项通过；完整用牌/VP宿主、存档恢复与事件推进待实现。播放器未重建。
 > 入口：[模块描述](../Descriptors/space-race.module.json)、[轨道参数](../../Data/Rulesets/deluxe-2015/space-race.json)、[验收案例](../Design/scoring-space.cases.json)。
 
 ## 当前可调用子集
@@ -15,15 +15,34 @@
 
 流程：共享JSON → 严格加载 → 不可变定义 + 双方可信位置 → Query → 只读能力值 → 后续头条/回合编排按阶段使用。
 
-本子集不会掷骰、消耗次数或卡牌、产生VP、允许弃牌或开启额外行动；下面这些流程仍是设计。测试文件为SpaceAbilityTests.cs（121项，含9×9位置组合）和SpaceRaceLoaderTests.cs（51项）；[实际报告](../Testing/space-track-foundation.validation.json)。
+上述轨道查询不会掷骰、消耗次数或卡牌、产生VP、允许弃牌或开启额外行动。普通尝试的计算部分见下一节，完整宿主流程仍是设计。测试文件为SpaceAbilityTests.cs（121项，含9×9位置组合）和SpaceRaceLoaderTests.cs（51项）；[实际报告](../Testing/space-track-foundation.validation.json)。
+
+## 普通尝试计划（已实现）
+
+先定位Core/Rules/SpaceAttemptState.cs与SpaceAttemptRules.cs：
+
+- `SpaceAttemptState.Create`：绑定同一日历与轨道，从可信位置建立零次数初态；不是恢复任意旧存档的入口。
+- `ValidateAttempt`：检查请求回合、非计分牌、目标存在、当前能力额度与目标OPS门槛，不读随机源。
+- `PlanAttempt`：按AttemptId和完整请求事实去重，再Fork随机副本掷骰；成功只推进一格，失败也次数+1。按对方是否已到目标取共享先到/后到VP，US正、USSR负。
+- `BeginNextTurn`：只推进相邻合法回合并清零次数，保留位置/收据；同回合重试返回原状态，不能再次抹掉已花次数。
+
+流程：可信用牌授权/OPS报价（宿主待接） → 资格/请求去重 → Fork → 单次范围采样 → 不可变After/Receipt/RandomAfter/VP/牌去向意图 → 宿主原子提交（待接）。
+
+同ID同事实返回原收据，`VpDeltaToApply=0`、`ApplyCardDisposition=false`，随机前后均为当前快照，不能倒退到原收据时点。CardDefinition必须绑定同一对象；完整恢复功能须重绑批准目录，当前尚无该恢复入口。4096条收据是工程上限。
+
+本服务接受可信的正整数EffectiveOps，不自行计算通用修正/地区奖励，也不验证持牌、阶段、中国牌状态或活动拦截。调用方缺这些策略时不能放行完整玩家命令。普通带星牌的太空去向意图仍为Discard且不执行牌面事件；中国牌返回ChinaTransferRequired，转交与外部钩子并未实现。
+
+IRandomProvider必须守Capture只读/Fork独立契约；本实现拒绝相同实例、初态不一致、非法骰点及未推进快照，但不声称能防恶意共享隐藏状态的提供者。范围采用NextInt(min-1,max)+1，和普通[min,max]骰面一致；PCG拒绝采样可能消耗多次原始输出。
+
+测试：SpaceAttemptTests.cs 25项，SpaceAttemptPlanTests.cs 71项（48组目标/骰点各覆盖双方与先后到达）；[验证报告](../Testing/space-attempt-plans.validation.json)。事件推进、跳格奖励政策、卡牌/VP实际提交、胜负证据与存档恢复仍待接入。
 
 ## 1. 模块选择与职责
 
 采用SpaceRaceService处理普通尝试和经授权的轨道推进；SpaceAbilityRules提供只读能力查询。回合、头条与出牌模块查询能力，不各自维护一份已获得奖励。相较在TurnFlow硬写所有太空条件，这样可以独立测试；相比动态脚本执行器，显式方法能清楚区分“出牌尝试”与“事件推进”。
 
-| 接口（除Query外仍待实现） | 输入 → 输出 |
+| 接口（标明当前实现） | 输入 → 输出 |
 |---|---|
-| SpaceRaceService.ValidateAttempt | 权威出牌上下文、当前格、卡牌有效OPS、已用次数及规则定义 → 资格与拒绝原因 |
+| SpaceAttemptRules.ValidateAttempt（纯资格已实现） | 权威出牌上下文、当前格、卡牌有效OPS、已用次数及规则定义 → 资格与拒绝原因 |
 | SpaceRaceService.ResolveAttempt | 已验证尝试与注入随机源 → 骰子、成功/失败、轨道与奖励计划 |
 | SpaceRaceService.PlanEventAdvance | 已注册效果授予的推进请求 → 无普通尝试计数的推进计划 |
 | SpaceAbilityRules.Query | 双方轨道位置和能力定义 → 当前生效的能力集合 |
@@ -50,7 +69,7 @@
 
 ## 3. 普通尝试的命令流程
 
-用户通过既有PlayCardCommand选择Space用途，只提交CardId；目标固定为当前格的下一格，玩家不能自行传奖励、骰点、次数或跳格。
+用户将通过未来PlayCardCommand选择Space用途，只提交CardId；目标固定为当前格的下一格，玩家不能自行传奖励、骰点、次数或跳格。
 
 ~~~text
 身份/版本/出牌资格

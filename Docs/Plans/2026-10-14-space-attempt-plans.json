@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "id": "plan.space-attempt-plans",
+  "kind": "implementation-plan",
+  "status": "implemented-awaiting-review",
+  "description": "普通单格太空尝试的可信纯规则计划：资格、次数、事务随机、先后奖励、重试保护；不接玩家命令/牌区/VP宿主或事件推进。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAttemptState.cs",
+      "symbol": "SpaceAttemptRequest"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAttemptState.cs",
+      "symbol": "Create"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAttemptRules.cs",
+      "symbol": "ValidateAttempt"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAttemptRules.cs",
+      "symbol": "BeginNextTurn"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAttemptRules.cs",
+      "symbol": "PlanAttempt"
+    }
+  ],
+  "inputs": [
+    "共享轨道、日历、可信卡牌/有效OPS和随机源"
+  ],
+  "outputs": [
+    "不可变尝试状态与待原子提交的结果计划"
+  ],
+  "dependencies": [
+    "module.space-race",
+    "module.deterministic-random"
+  ],
+  "preconditions": [
+    "用户持续优化授权；剩余约1%时使用一张已有重置卡并验证"
+  ],
+  "side_effects": [
+    "新增C#与测试、描述和知识库；无播放器构建"
+  ],
+  "stop_conditions": [
+    "未知规则/授权不默认放行；不实现事件推进或完整存档"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/space-race.md"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceAttemptTests.cs",
+      "status": "passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceAttemptPlanTests.cs",
+      "status": "passed"
+    }
+  ],
+  "document": "Docs/Plans/2026-10-14-space-attempt-plans.md"
+}

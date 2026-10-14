@@ -76,7 +76,7 @@
 | 回合与出牌状态机 | 查找阶段转换、头条保密、事件/OPS 顺序、卡牌去向和读档继续位置 | v0.2 编排设计；待实现 | [turn-flow.md](turn-flow.md) |
 | 风险与胜负服务 | 查找 DEFCON 限制与责任、军事净结算、胜负检查点及扣留计分牌矩阵 | DEFCON/军事及五类基础胜负检查点已实现；完整编排待接入 | [risk-victory.md](risk-victory.md) |
 | 地区计分与最终汇总 | 查找六地区档位、东南亚权重、最终完整性和中国牌附加分 | 基础无修正计分已实现；最终汇总待完成 | [region-scoring.md](region-scoring.md) |
-| 太空竞赛 | 查找8格门槛、先后奖励、领先能力、事件推进与回合衔接 | 基础轨道/领先能力已实现；普通尝试待实现 | [space-race.md](space-race.md) |
+| 太空竞赛 | 查找8格门槛、先后奖励、领先能力、事件推进与回合衔接 | 轨道/领先能力/普通尝试计划已实现；宿主待接 | [space-race.md](space-race.md) |
 | 地图与卡牌数据契约 | 查找正式数据字段、邻接、三类卡牌、效果注册、Schema及加载门禁 | 契约与正式印刷定义已建立；服务待实现 | [map-card-contracts.md](map-card-contracts.md) |
 | 正式地图与卡牌数据 | 按地区查84国与邻接，按时代查103张基础牌及效果待实现边界 | 静态定义已录入；不是可运行规则包 | [map-card-data.md](map-card-data.md) |
 | 可替换地图视图实现 | 查同步公开帧、过期输入、两适配器及局面保持 | 170回归通过；正式资源与画风未定 | [replaceable-map-view.md](replaceable-map-view.md) |
@@ -87,7 +87,7 @@
 | 行动规则 | 查找影响力、政变、调整、预算、对象契约与验收案例 | 影响力子集已实现；政变/调整待实现 | [operations.md](operations.md) |
 | 规则资料 | 查找版本来源、FAQ 适用边界和资料冻结缺口 | 已登记；未完整冻结 | [rules-sources.md](rules-sources.md) |
 | 牌区与初始发牌 | 查唯一实体位置、独立中国牌、确定性洗牌与共享引用 | 已接GameState/身份投影/手牌预览；完整出牌待实现 | [card-zones.md](card-zones.md) |
-| 可恢复随机状态 | 查完整状态/Fork、无偏范围采样、精确JSON与失败不推进 | 初始发牌与状态持有已接入；完整存档待实现 | [deterministic-random.md](deterministic-random.md) |
+| 可恢复随机状态 | 查完整状态/Fork、无偏范围采样、精确JSON与失败不推进 | 初始发牌/太空尝试计划使用随机副本；完整存档待实现 | [deterministic-random.md](deterministic-random.md) |
 | 工程边界 | 查找纯 C# 核心、命令、事件、玩家视角、确定性和程序集约束 | 实际分层与后续设计边界 | [AGENTS.md](../../AGENTS.md) |
 | Git 工作流 | 理解本地提交、远程同步、忽略文件及每次工作的收尾方式 | 本地已关联；推送另行核验 | [git-workflow.md](git-workflow.md) |
 | GitHub 保存 | 查找 coldwarheat 地址、线上提交方式和本地同步限制 | 已记录 | [GitHub 工作记录](../Worklogs/2026-09-17-github-bootstrap.md) |

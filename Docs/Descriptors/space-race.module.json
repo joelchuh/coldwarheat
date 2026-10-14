@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.space-race",
   "kind": "module",
-  "description": "基础太空轨道、双方位置与四项领先能力只读查询已实现；共享JSON严格加载。普通尝试、骰子、次数、VP、卡牌去向及事件推进仍待实现，查询结果不授予行动。",
+  "description": "太空轨道/领先能力及普通单格尝试计划已实现：目标OPS门槛、动态次数、随机副本、先后VP、重复保护和牌去向意图。持牌/阶段/有效OPS报价/活动限制、宿主提交和事件推进仍待接入。",
   "status": "implemented-subset",
   "entrypoints": [
     {
@@ -28,14 +28,30 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/SpaceRaceDefinitionLoader.cs",
       "symbol": "LoadSubset"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAttemptState.cs",
+      "symbol": "SpaceAttemptRequest"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAttemptState.cs",
+      "symbol": "Create"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAttemptRules.cs",
+      "symbol": "ValidateAttempt"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAttemptRules.cs",
+      "symbol": "BeginNextTurn"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAttemptRules.cs",
+      "symbol": "PlanAttempt"
     }
   ],
   "documentation": "Docs/Wiki/space-race.md",
   "planned_entrypoints": [
-    {
-      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceRaceService.cs",
-      "symbol": "ValidateAttempt"
-    },
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceRaceService.cs",
       "symbol": "ResolveAttempt"
@@ -52,11 +68,15 @@
   "inputs": [
     "LoadSubset: schema1/content0.2.0共享太空JSON，已支持政策与来源；不是完整RulePack认证",
     "SpaceRaceDefinition: 有界不可变格子/能力定义，连续位置与唯一引用",
-    "SpaceTrackState + PlayerSide: 同一轨道内的双方可信位置"
+    "SpaceTrackState + PlayerSide: 同一轨道内的双方可信位置",
+    "SpaceAttemptState绑定同一TurnCalendar与轨道；请求含AttemptId/SourceActionId/TurnNumber/Actor/共享CardDefinition/可信有效OPS",
+    "可信IRandomProvider必须遵守Capture只读与Fork独立复制契约；玩家不可直接构造请求提交该服务"
   ],
   "outputs": [
     "只读SpaceAbilitySnapshot：尝试上限、对手先揭示头条、回合末弃牌上限、可空的总行动轮额度、活动能力ID",
-    "无八格能力时ActionRoundAllowance=null，由TurnCalendar提供普通额度；不是零行动或额外+1"
+    "无八格能力时ActionRoundAllowance=null，由TurnCalendar提供普通额度；不是零行动或额外+1",
+    "SpaceAttemptPlan: Before/After、只读原收据、完整随机前后快照、待应用VP及牌去向开关；旧ID重试保持当前RNG并返回0增量",
+    "普通事件牌Discard、不执行该牌事件；中国牌仅ChinaTransferRequired意图，不直接修改ChinaState"
   ],
   "dependencies": [
     {
@@ -83,18 +103,22 @@
     "effects.deluxe2015.opec_north_sea_batch1"
   ],
   "preconditions": [
-    "仅基础定义/状态/查询及严格加载可调用；普通尝试与事件推进保留planned入口",
-    "能力以本人达到或越过该格且对方尚未到达推导；不依赖双方谁更远",
-    "Core定义最多64格/能力、ID最长256字符是工程上限，加载器锁定现有8格/4种能力形状",
-    "调用方负责头条/回合时机、授权与状态真实性，构造快照不表示发生移动或发放奖励"
+    "轨道定义/查询及普通单格尝试纯计划可调用；完整出牌与事件推进仍planned",
+    "宿主必须验证持牌、出牌阶段、中国牌资格、有效OPS修正、活动限制和外部用牌钩子；本服务不是授权边界",
+    "尝试状态Create是可信位置的零次数初态，不是存档恢复；收据绑定共享CardDefinition对象，未来恢复须重新绑定目录",
+    "BeginNextTurn只接受相邻日历回合，同一回合重试不重新清零；调用阶段仍由宿主保证",
+    "4096收据、64格/能力与256字符ID为工程上限；加载器只支持已核对形状"
   ],
   "side_effects": [
-    "无状态修改、随机数、I/O、卡牌消费或VP；基础查询是纯计算，加载器只解析传入文本"
+    "PlanAttempt只在独立随机副本采样，输入状态和原随机源保持；无牌区/VP/完整GameState写入",
+    "宿主必须把After、RandomAfter、牌区/中国牌、VP与步骤游标作为同一事务提交；重复计划ApplyCardDisposition=false"
   ],
   "stop_conditions": [
-    "未知版本/政策/字段/能力kind或身份、无效来源、重复JSON键拒绝",
-    "重复/错序/缺失格子、未知/重复/遗漏能力引用、非法整数/位置/骰子范围拒绝",
-    "未实现普通尝试、事件推进与回合末决策，不以基础查询绕过该边界"
+    "未知配置/政策/来源、错误引用/字段/整数拒绝",
+    "计分牌、终点、当前尝试额度不足或目标OPS不足时拒绝且不Fork/掷骰",
+    "过期回合、同ID不同请求事实/不同CardDefinition对象、收据超限拒绝",
+    "错误随机副本/快照/骰点或随机计数溢出不发布计划；随机提供者仍是可信依赖",
+    "无完整外部用牌授权/效果政策时宿主不得把计划入口当玩家命令调用"
   ],
   "rule_sources": [
     {
@@ -149,6 +173,14 @@
   ],
   "tests": [
     {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceAttemptTests.cs",
+      "status": "passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceAttemptPlanTests.cs",
+      "status": "passed"
+    },
+    {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceAbilityTests.cs",
       "status": "passed"
     },
@@ -184,16 +216,16 @@
   ],
   "verification": {
     "implementation_tested": true,
-    "scope": "immutable-track-and-read-only-abilities-only",
-    "report": "Docs/Testing/space-track-foundation.validation.json",
-    "unity_editmode_total": 1280,
+    "scope": "track-abilities-and-trusted-ordinary-attempt-plans",
+    "report": "Docs/Testing/space-attempt-plans.validation.json",
+    "unity_editmode_total": 1376,
     "latest_design_report": "Docs/Design/opec-north-sea-batch1.validation.json",
     "player_rebuilt": false
   },
   "open_items": [
-    "普通尝试/随机数/次数/先后奖励/防重与事务接线",
-    "完整头条/回合末/NSO额度编排",
-    "其他太空事件策略及Scientist终点、OneSmallStep越终点待裁定边界"
+    "完整出牌授权/持牌/有效OPS层/活动限制和钩子/宿主牌区及VP原子提交",
+    "完整头条/回合末/NSO额度编排、尝试状态存档恢复",
+    "共享事件推进与到达记录政策；Scientist终点、OneSmallStep越终点待裁定"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:space-events-batch1:1",
