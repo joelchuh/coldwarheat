@@ -28,7 +28,7 @@ Spec：Docs/Wiki/turn-flow.md §7、risk-victory.md与已确认共享victory.jso
 - [x] RED测试Host固定身份/幂等/命令冲突、两身份查询一致且无牌名、Controller可切换查看、拒绝在行动中审核、实际12行动路线抵达审核入口。
 - [x] GREEN接线，面板始终从当前快照显示报告（切换身份/重发不会丢），独立TurnEndPlaytest构建；保留地图IMapView接口。
 - [x] 新模块JSON+catalog/index/Wiki/工作记录/validation；全量tests、metadata、source/payload hash、构建和尽可能真实鼠标结算。若固定发牌路线未能到达，记录限制，不偷偷改正式牌库。
-- [ ] 唯一独立整分支审查；Critical/Important单轮TDD修复，无复审，Minor记账；ff/main推送及远程核对。
+- [x] 唯一独立整分支审查；Critical/Important单轮TDD修复，无复审，Minor记账；ff/main推送及远程核对。
 
 ## Review Focus
 1. 军事净额跨20分与双方扣留的冲突优先级；应只按最终矩阵一次结束。
