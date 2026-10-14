@@ -1,6 +1,6 @@
 # 太空轨道与能力查询基础实现计划
 
-> executing-plans inline执行，一次整批独立审阅；用户持续优化/Git授权有效。开始前检查剩余额度，若已达10%停止。
+> executing-plans inline执行，一次整批独立审阅；用户持续优化/Git授权有效。开始前检查剩余额度，用户最新要求覆盖旧10%停止线：剩余约1%时使用一张已有Codex额度重置卡，兑换结果需重新查询验证。
 **Goal:** 把已有八格轨道和四项领先能力的共享数据转为可调用的纯C#定义及只读查询，供未来普通尝试/头条/回合调度使用。
 **Spec:** Docs/Wiki/space-race.md；Data/Rulesets/deluxe-2015/space-race.json。
 **Architecture:** 不可变SpaceRaceDefinition/SpaceTrackState，SpaceAbilityRules.Query返回当前能力值。严格LoadSubset装配。这里只计算位置派生事实，不提供玩家随意移动太空的命令。
@@ -18,17 +18,17 @@ SpaceTrackState保存同一Definition、双方合法位置；只读，没有Adva
 
 ## Task 1：纯定义与查询
 
-- [ ] Core/Rules/SpaceRaceDefinition.cs、SpaceTrackState.cs、SpaceAbilityRules.cs；EditMode/SpaceAbilityTests.cs先桩RED/GREEN。
-- [ ] 全9x9位置组合与双方对称查询，重点测试刚到/越过/对手追平/越过后均失效；多能力同时拥有；无领先能力时默认值。
-- [ ] 测试数据防御复制、唯一/连续位置与ID/能力引用、非法枚举/空/超限/越界、未知能力类型。
-- [ ] 不掷骰、不计VP、不消费卡牌/次数、不创建额外行动；结果只读。
+- [x] Core/Rules/SpaceRaceDefinition.cs、SpaceTrackState.cs、SpaceAbilityRules.cs；EditMode/SpaceAbilityTests.cs先桩RED/GREEN。
+- [x] 全9x9位置组合与双方对称查询，重点测试刚到/越过/对手追平/越过后均失效；多能力同时拥有；无领先能力时默认值。
+- [x] 测试数据防御复制、唯一/连续位置与ID/能力引用、非法枚举/空/超限/越界、未知能力类型。
+- [x] 不掷骰、不计VP、不消费卡牌/次数、不创建额外行动；结果只读。
 
 ## Task 2：共享数据加载与交付
 
-- [ ] Infrastructure/DataLoading/SpaceRaceDefinitionLoader.cs及测试；实际共享8格/4能力，损坏字段/类型/顺序/来源/政策/重复JSON/限额等拒绝；先RED/GREEN。
-- [ ] 同步space模块/data描述、catalog、Wiki和实际验证报告。描述明确普通尝试和事件推进仍不可调用。
+- [x] Infrastructure/DataLoading/SpaceRaceDefinitionLoader.cs及测试；实际共享8格/4能力，损坏字段/类型/顺序/来源/政策/重复JSON/限额等拒绝；先RED/GREEN。
+- [x] 同步space模块/data描述、catalog、Wiki和实际验证报告。描述明确普通尝试和事件推进仍不可调用。
 - [ ] 全量回归与正式metadata校验；整批审阅、一次修复轮、提交/push核验。
-- [ ] 不接Unity表现层，不重建播放器。
+- [x] 不接Unity表现层，不重建播放器。
 
 ## Review Focus
 

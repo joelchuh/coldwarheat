@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "data.space-race",
   "kind": "data",
-  "description": "基础太空轨道8格、普通尝试额度及4项领先能力；不启用Turn Zero可选轨道。",
+  "description": "基础太空8格、普通次数与4项领先能力的共享参数；SpaceRaceDefinitionLoader已验证装配及只读能力消费，普通尝试/奖励结算待实现。",
   "status": "ready",
   "dataset_id": "rules.deluxe2015.space-race",
   "entrypoints": [
@@ -22,9 +22,8 @@
     "cards.deluxe2015.definitions"
   ],
   "preconditions": [
-    "校验结构、版本、ID与领域约束",
-    "正式地图/卡牌已录入；强制校验引用，运行服务仍待实现",
-    "ready仅表示数据文件已存在"
+    "严格校验schema/content版本、已支持政策、来源、8格/4能力形状与领域约束",
+    "ready表示共享文件存在并已有基础定义消费者；不代表完整太空行动或规则包认证"
   ],
   "side_effects": [],
   "stop_conditions": [
@@ -59,6 +58,10 @@
   ],
   "tests": [
     {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceRaceLoaderTests.cs",
+      "status": "passed"
+    },
+    {
       "path": "Docs/Design/scoring-space.cases.json",
       "status": "planned"
     }
@@ -74,7 +77,9 @@
     ]
   },
   "verification": {
-    "checked_on": "2026-09-28",
-    "runtime_consumers_tested": false
+    "checked_on": "2026-10-14",
+    "runtime_consumers_tested": true,
+    "scope": "definition-loader-and-readonly-abilities",
+    "report": "Docs/Testing/space-track-foundation.validation.json"
   }
 }

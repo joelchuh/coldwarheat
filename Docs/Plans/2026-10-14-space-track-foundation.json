@@ -2,9 +2,34 @@
   "schema_version": 1,
   "id": "plan.space-track-foundation",
   "kind": "implementation-plan",
-  "status": "planned",
+  "status": "implemented-awaiting-review",
   "description": "共享太空轨道定义/双方位置/四种领先能力只读查询；普通尝试、骰子、奖励、事件推进与宿主留待后续。",
-  "entrypoints": [],
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceRaceDefinition.cs",
+      "symbol": "SpaceRaceDefinition"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceRaceDefinition.cs",
+      "symbol": "SpaceStepDefinition"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceRaceDefinition.cs",
+      "symbol": "SpaceAbilityDefinition"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceTrackState.cs",
+      "symbol": "SpaceTrackState"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAbilityRules.cs",
+      "symbol": "Query"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/SpaceRaceDefinitionLoader.cs",
+      "symbol": "LoadSubset"
+    }
+  ],
   "inputs": [
     "共享太空JSON",
     "可信双方位置"
@@ -16,11 +41,10 @@
     "module.space-race"
   ],
   "preconditions": [
-    "已授权持续工作",
-    "开始前剩余量高于10%"
+    "已授权持续工作；用户新要求覆盖旧10%停止线，剩余约1%时兑换一张已有额度卡并复核结果"
   ],
   "side_effects": [
-    "计划未来纯C#与测试/知识同步"
+    "新增纯C#源码、测试和知识库；不重建播放器"
   ],
   "stop_conditions": [
     "未知政策/形状/引用/位置拒绝"
@@ -30,6 +54,15 @@
       "path": "Docs/Wiki/space-race.md"
     }
   ],
-  "tests": [],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceAbilityTests.cs",
+      "status": "passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceRaceLoaderTests.cs",
+      "status": "passed"
+    }
+  ],
   "document": "Docs/Plans/2026-10-14-space-track-foundation.md"
 }

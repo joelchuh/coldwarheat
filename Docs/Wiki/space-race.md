@@ -1,14 +1,27 @@
-# 太空竞赛服务设计 v0.1
+# 太空竞赛：基础实现与后续设计
 
 > description: 查询太空尝试资格、8格轨道、先到/后到VP、4项领先能力、事件直接推进、额外行动与回合末弃牌。
-> 状态：2026-09-22设计；基础数据已核对，尚无C#实现或运行测试；逐卡特殊推进/限制仍需独立策略。
+> 状态：2026-10-14基础轨道与只读能力查询已实现，新增172项测试、全量1280项通过；普通尝试、推进奖励及逐卡策略仍待实现。播放器未重建。
 > 入口：[模块描述](../Descriptors/space-race.module.json)、[轨道参数](../../Data/Rulesets/deluxe-2015/space-race.json)、[验收案例](../Design/scoring-space.cases.json)。
+
+## 当前可调用子集
+
+先读模块JSON的entrypoints，再定位对应符号：
+
+- `SpaceRaceDefinition` / `SpaceStepDefinition` / `SpaceAbilityDefinition`（Core/Rules/SpaceRaceDefinition.cs）：防御复制、只读；校验连续位置、骰区间、唯一ID与能力引用。
+- `SpaceTrackState`：双方位置必须在同一轨道内，只有查询接口；并不证明已经完成推进或领取奖励。
+- `SpaceAbilityRules.Query`：每次由双方位置推导四项能力。本人超过里程碑但对方已追到时，能力仍失效。总行动轮额度无能力为null，交给回合模块提供普通额度。
+- `SpaceRaceDefinitionLoader.LoadSubset`（Infrastructure/DataLoading）：严格解析共享JSON和支持的配置形状；数值直接来自Data，输入源引用不等于可信RulePack认证。
+
+流程：共享JSON → 严格加载 → 不可变定义 + 双方可信位置 → Query → 只读能力值 → 后续头条/回合编排按阶段使用。
+
+本子集不会掷骰、消耗次数或卡牌、产生VP、允许弃牌或开启额外行动；下面这些流程仍是设计。测试文件为SpaceAbilityTests.cs（121项，含9×9位置组合）和SpaceRaceLoaderTests.cs（51项）；[实际报告](../Testing/space-track-foundation.validation.json)。
 
 ## 1. 模块选择与职责
 
 采用SpaceRaceService处理普通尝试和经授权的轨道推进；SpaceAbilityRules提供只读能力查询。回合、头条与出牌模块查询能力，不各自维护一份已获得奖励。相较在TurnFlow硬写所有太空条件，这样可以独立测试；相比动态脚本执行器，显式方法能清楚区分“出牌尝试”与“事件推进”。
 
-| 待实现入口 | 输入 → 输出 |
+| 接口（除Query外仍待实现） | 输入 → 输出 |
 |---|---|
 | SpaceRaceService.ValidateAttempt | 权威出牌上下文、当前格、卡牌有效OPS、已用次数及规则定义 → 资格与拒绝原因 |
 | SpaceRaceService.ResolveAttempt | 已验证尝试与注入随机源 → 骰子、成功/失败、轨道与奖励计划 |
