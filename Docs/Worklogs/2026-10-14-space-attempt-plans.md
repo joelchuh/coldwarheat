@@ -17,3 +17,11 @@ Task 2 RED: space-attempt-plan-red 1376总计/1305通过/71新增失败（NotImp
 Task 2代码: space-attempt-plan-green 1376/1376、0跳过、退出0；XML d7e77f30b61d0b23f6a2db32209449d9f87cfc8c808afea8b9882698904c7d09。新增96项测试，数据业务值未改，播放器未重建。已同步模块/数据JSON、Wiki、索引和README；metadata与最终审阅待完成。
 
 Task 2: complete。正式metadata 111描述/69数据/165词法符号/575引用/194文件通过，diff --check通过；全量Unity1376通过。整批独立审阅待完成。
+
+Final review: fresh gpt-6-astra reviewed c61cb41..166b54a，ready to merge，0 Critical/Important/Minor。五个输入摘要、四次XML及1376通过/零失败跳过一致，未重复运行Unity。
+Final Ruling: 持牌/阶段/中国牌/有效OPS/活动限制与钩子、用新ID重复同卡和陈旧计划拒绝交由未来权威宿主，符合纯计划范围；若误当玩家入口会绕过授权与版本，必须保持未接线状态。
+Final Ruling: 牌区/VP/游标/胜负提交继续待接，返回意图不能当作已完成行动；代价是本批尚不能在exe打出完整太空行动。
+Final Ruling: 完整存档恢复/目录对象重绑与事件推进/跳格到达奖励政策继续待设计接入；当前没有这些API，不推定普通计划适用。
+Final Ruling: IRandomProvider是可信依赖，检查不能阻止恶意隐藏共享可变状态；如未来接不可信插件必须另设边界。
+Final Ruling: 没有玩家界面改动或播放器重建；代价是当前exe不含本批服务。
+本地实现提交166b54a；审阅状态记录随后独立提交，按既有授权快进同步GitHub，远端结果由实际命令确认。
