@@ -63,6 +63,8 @@ namespace ColdWarStruggle.Editor
         public static void BuildChinaPlaytest()=>BuildAt("Builds/ChinaPlaytest","ColdWarStruggle China Playtest");
         [MenuItem("ColdWarStruggle/Build Turn End Playtest")]
         public static void BuildTurnEndPlaytest()=>BuildAt("Builds/TurnEndPlaytest","ColdWarStruggle Turn End Playtest");
+        [MenuItem("ColdWarStruggle/Build Continuous Turn Playtest")]
+        public static void BuildContinuousPlaytest()=>BuildAt("Builds/ContinuousPlaytest","ColdWarStruggle Continuous Playtest");
         static void BuildAt(string directory,string productName=null)
         {
             Prepare();Directory.CreateDirectory(directory);
@@ -99,6 +101,7 @@ namespace ColdWarStruggle.Editor
                     .WithPracticeRealignment(Read(root,"Data/Rulesets/deluxe-2015/realignment.json"))
                     .WithPracticeChina(Read(root,"Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json"),Read(root,"Docs/Contracts/persistent-effects-batch1.schema.json"))
                     .WithPracticeTurnEnd()
+                    .WithPracticeNextTurn()
                     .WithQuickStartScenario(Read(root,"Data/Demo/quick-start-scenario.json"));
             WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
             Directory.CreateDirectory(payload);

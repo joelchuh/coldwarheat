@@ -69,6 +69,9 @@ namespace ColdWarStruggle.Core
         internal GameState WithPractice(ActionPracticeState practice,OperationsContext operations,CardZones cards,RandomSnapshot random,IReadOnlyDictionary<CountryId,CountryState> countries=null,bool? ended=null)
             =>new GameState(Map,countries??Countries,operations,GameId,checked(Version+1),0,checked(EventSequence+1),ended??Ended,
                 influenceEvent:InfluenceEvent,turn:Turn,cards:cards,randomState:random,practice:practice);
+        internal GameState WithNextPracticeTurn(ActionPracticeState practice,OperationsContext operations,CardZones cards,RandomSnapshot random,GameTurnContext turn)
+            =>new GameState(Map,Countries,operations,GameId,checked(Version+1),0,checked(EventSequence+1),false,
+                turn:turn,cards:cards,randomState:random,practice:practice);
         internal GameState WithInfluenceEvent(InfluenceEventExecution execution)
             => new GameState(Map,Countries,Operations,GameId,Version,SpentOps,EventSequence,Ended,Cards==null?hands:null,execution,Turn,Deployment,Cards,RandomState,Practice);
         internal GameState WithDeployment(SetupDeploymentExecution deployment)

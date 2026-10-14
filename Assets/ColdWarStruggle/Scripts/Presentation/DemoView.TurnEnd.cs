@@ -7,12 +7,20 @@ namespace ColdWarStruggle.Presentation
     {
         void DrawTurnEndReport(PlayerViewSnapshot view)
         {
-            Text(972,366,262,245,controller.TurnEndMessage,small);
-            if(controller.LastCardResult?.Accepted==false)Text(972,610,262,30,ErrorText(controller.LastCardResult.Error),small);
+            Text(972,366,262,210,controller.TurnEndMessage,small);
+            if(view.Practice.NextTurnEnabled && !view.Practice.Winner.HasValue)
+            {
+                GUI.enabled=view.Practice.NextTurnAvailable;
+                if(Button(972,584,262,32,"下一回合（跳过头条）"))BeginNextTurn();
+                GUI.enabled=true;
+            }
+            if(controller.LastCardResult?.Accepted==false)Text(972,618,262,25,ErrorText(controller.LastCardResult.Error),small);
             GUI.enabled=controller.CanRetryCard;
             if(Button(972,646,262,27,"重发结算命令（幂等）"))RetryCard();
             GUI.enabled=true;
         }
+        async void BeginNextTurn()
+        { try { await controller.BeginNextTurnAsync(); } catch(Exception e) { fatal=e.Message;Debug.LogException(e); } }
         async void AssessTurnEnd()
         { try { await controller.AssessTurnEndAsync(); } catch(Exception e) { fatal=e.Message;Debug.LogException(e); } }
     }

@@ -6,7 +6,7 @@ namespace ColdWarStruggle.Core
     public enum RuleError { None, InvalidCommand, WrongGame, WrongActor, StaleVersion, StaleContext, ModeMismatch, UnknownCountry,
         IllegalTarget, InsufficientBudget, GameAlreadyEnded, NumericOverflow, CommandIdConflict,
         EventNotAvailable, EventAlreadyResolved, EventNotStarted, EventInProgress, StaleDecision, InvalidSelection, EventRequiresRuling, EventForbidden, InvalidDefinition, MissingTurnContext,
-        SetupNotActive, SetupInProgress, SetupComplete, InvalidSetupState, DuplicateCountry, InvalidAllocationAmount, OutsideSetupRegion, IncorrectAllocationTotal, CardNotOwned, UnsupportedCardAction, ActionNotReady, SpaceAttemptUnavailable, ActionSliceComplete, ChinaUnavailable, ScoringMustBePlayed }
+        SetupNotActive, SetupInProgress, SetupComplete, InvalidSetupState, DuplicateCountry, InvalidAllocationAmount, OutsideSetupRegion, IncorrectAllocationTotal, CardNotOwned, UnsupportedCardAction, ActionNotReady, SpaceAttemptUnavailable, ActionSliceComplete, ChinaUnavailable, ScoringMustBePlayed, TurnPreparationUnavailable }
     public sealed class InfluencePlaced
     {
         public CountryId Country { get; }

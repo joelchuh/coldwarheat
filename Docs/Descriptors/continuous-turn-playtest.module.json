@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "id": "module.continuous-turn-playtest",
+  "kind": "module",
+  "description": "有限连续回合试玩：审核通过后原子补牌、改善DEFCON、重置太空尝试并保持地图/VP/历史；跨回合行动ID唯一，仍显式跳过头条并拒绝未接期末能力。",
+  "status": "implemented-subset",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeNextTurnRules.cs",
+      "symbol": "CanBeginNextTurn"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeNextTurnRules.cs",
+      "symbol": "PlanNextTurn"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeNextTurnRules.cs",
+      "symbol": "PracticeSlotId"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeRiskState.cs",
+      "symbol": "BeginNextTurn"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/State/GameState.cs",
+      "symbol": "WithNextPracticeTurn"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.NextTurn.cs",
+      "symbol": "WithPracticeNextTurn"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Cards.cs",
+      "symbol": "BeginNextTurnAsync"
+    }
+  ],
+  "inputs": [
+    "固定身份无牌/无目标BeginNextTurn命令，当前版本由Host核对",
+    "全部普通行动完成且TurnEnd为Continue；无活动根/Resolving/事件/部署；军事已归零、China正面、有限OPS已到期"
+  ],
+  "outputs": [
+    "下一回合ChooseCard/苏联先手；成对新牌区/RNG，DEFCON改善、军事新Turn、太空尝试归零",
+    "公开资格/回合号/本人手牌与公共数量；不投影完整TurnDealPlan"
+  ],
+  "dependencies": [
+    "module.turn-deal",
+    "module.turn-end-playtest",
+    "module.turn-calendar",
+    "module.defcon",
+    "module.military-operations",
+    "module.space-race"
+  ],
+  "data_dependencies": [
+    "rules.deluxe2015.turn-flow",
+    "rules.deluxe2015.military-operations",
+    "cards.deluxe2015.definitions"
+  ],
+  "preconditions": [
+    "NextTurnEnabled显式启用且TurnEndEnabled；旧定义默认关闭",
+    "当前未终局且不是最后回合；无未接太空额外行动/期末弃牌能力"
+  ],
+  "side_effects": [
+    "纯Core候选由Host一次发布Turn/牌区/RNG/轨道/行动上下文/版本和事件序号",
+    "地图影响力/VP/China/历史收据保留；军事沿Reset结果不重用InitialEarned",
+    "全部出牌slot与OperationsId加入回合前缀，防止历史收据冲突"
+  ],
+  "stop_conditions": [
+    "未审核/早调用/活动根/非法身份或附带牌目标拒绝",
+    "末回合不建额外回合；未知额外行动/期末选择不跳过",
+    "过期/同ID异内容由Host拒绝，相同已接受命令返回原收据",
+    "数值溢出或补牌失败不发布任何部分；没有头条/最终计分/存档/联网"
+  ],
+  "rule_sources": [
+    {
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "sections": [
+        "4.1",
+        "4.3–4.5"
+      ],
+      "checked_on": "2026-10-14"
+    },
+    {
+      "path": "Docs/Architecture/continuous-turn-playtest.md",
+      "scope": "明确跳过头条的工程试玩，不冒称正式规则流程"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/NextTurnPlayTests.cs",
+      "status": "passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/NextTurnSessionTests.cs",
+      "status": "passed"
+    }
+  ],
+  "documentation": "Docs/Wiki/continuous-turn-playtest.md",
+  "verification": {
+    "report": "Docs/Testing/continuous-turn-playtest.validation.json",
+    "implementation_tested": true
+  }
+}

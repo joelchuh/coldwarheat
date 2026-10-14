@@ -25,3 +25,5 @@ flowchart LR
 代码入口：Core/Rules/PracticeTurnEndRules.cs的CanAssessTurnEnd/PlanTurnEnd；PracticeRiskState.WithTurnEnd；Application/Sessions/TurnEndView.cs；DemoController.AssessTurnEndAsync/TurnEndMessage；DemoView.TurnEnd.cs；DemoCatalog.WithPracticeTurnEnd。均位于Assets/ColdWarStruggle/Scripts，详见[JSON](../Descriptors/turn-end-playtest.module.json)。
 
 边界：没有头条、下一回合补牌/时代加入/最终计分、额外行动或太空回合末弃牌。清理只针对已实现的遏制与清洗回合OPS实例。太空位置/尝试、DEFCON、Turn、普通牌区均保留；下一回合协调器必须显式处理后续步骤。
+
+2026-10-14后续：[连续回合试玩](continuous-turn-playtest.md)将已审核Continue状态与补牌/DEFCON/太空重置接线；仍跳过头条并拒绝未接特殊能力/最终计分，具体构建状态见报告。

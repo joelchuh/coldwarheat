@@ -24,13 +24,13 @@ namespace ColdWarStruggle.Core
         static CardActionTransition PlanOpponentCoup(GameState state,PlayerSide side,CountryId target,OpponentOpsSequence sequence)
         {
             var error=CheckCoupTarget(state,side,sequence.Card,target);if(error!=RuleError.None)return new CardActionTransition(error);
-            var p=state.Practice;var quote=QuoteCard(state,side,sequence.Card,OpsValuePurpose.Coup);var slot="practice."+p.CompletedActions;
+            var p=state.Practice;var quote=QuoteCard(state,side,sequence.Card,OpsValuePurpose.Coup);var slot=PracticeSlotId(state);
             var request=new CoupAttemptRequest(slot,state.GameId,slot,sequence.Card.Value,state.Version,state.Turn.Number,target,side,p.Actor,quote.GeneralValue,quote.GeneralValue);
             var plan=CoupAttemptRules.PlanAttempt(p.Risk.BindCurrent(state),request,new Pcg32Random(state.RandomState));
             if(plan.AlreadyApplied)throw new InvalidOperationException("Action cursor does not match coup receipts.");
             var risk=p.Risk.After(plan,p.VpForUS);var terminal=risk.Result?.Outcome==VictoryOutcome.Finished;
             var next=new ActionPracticeState(p.Definition,terminal?ActionPracticeStage.Complete:ActionPracticeStage.ResolvingEvent,p.CompletedActions,sequence.Card,p.Space,p.VpForUS,risk,p.OpsEffects,sequence);
-            var ops=OperationsContext.FromRoundStart(state.GameId+".action."+p.CompletedActions,p.Actor,0,state.Map,plan.After.Countries,state.Operations.Costs);
+            var ops=OperationsContext.FromRoundStart(PracticeOperationsId(state,p.CompletedActions),p.Actor,0,state.Map,plan.After.Countries,state.Operations.Costs);
             var after=state.WithPractice(next,ops,state.Cards,plan.After.Random,plan.After.Countries,terminal);
             var done=terminal?new CardActionTransition(RuleError.None,after):AdvanceOpponentStep(after,CardResolutionStep.Operations);
             if(!done.Accepted)return done;
@@ -46,14 +46,14 @@ namespace ColdWarStruggle.Core
             {
                 var p=state.Practice;var printed=p.Definition.Cards.GetCard(card.Value);
                 var strength=QuoteCoupStrength(state,side,card.Value,target.Value);
-                var slot="practice."+p.CompletedActions;
+                var slot=PracticeSlotId(state);
                 var request=new CoupAttemptRequest(slot,state.GameId,slot,printed.Id.Value,state.Version,state.Turn.Number,target.Value,side,side,strength,strength);
                 var plan=CoupAttemptRules.PlanAttempt(p.Risk.BindCurrent(state),request,new Pcg32Random(state.RandomState));
                 if(plan.AlreadyApplied)throw new InvalidOperationException("Action cursor does not match coup receipts.");
                 var risk=p.Risk.After(plan,p.VpForUS);var nuclear=risk.Result?.Outcome==VictoryOutcome.Finished;
                 // Nuclear war interrupts the root: ordinary cards remain resolving; China has already transferred.
                 var next=nuclear?new ActionPracticeState(p.Definition,ActionPracticeStage.Complete,p.CompletedActions,card,p.Space,p.VpForUS,risk,p.OpsEffects):Next(p,p.Space,p.VpForUS,risk);
-                var ops=OperationsContext.FromRoundStart(state.GameId+".action."+next.CompletedActions,next.Actor,0,state.Map,plan.After.Countries,state.Operations.Costs);
+                var ops=OperationsContext.FromRoundStart(PracticeOperationsId(state,next.CompletedActions),next.Actor,0,state.Map,plan.After.Countries,state.Operations.Costs);
                 return new CardActionTransition(RuleError.None,state.WithPractice(next,ops,Move(state,card.Value,true,nuclear),plan.After.Random,plan.After.Countries,nuclear),coup:plan.Receipt);
             }
             catch(OverflowException) {return new CardActionTransition(RuleError.NumericOverflow);}

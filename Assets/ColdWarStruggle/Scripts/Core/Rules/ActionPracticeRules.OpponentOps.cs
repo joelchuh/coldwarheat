@@ -50,7 +50,7 @@ namespace ColdWarStruggle.Core
             var quote=QuoteCard(s,p.Actor,sequence.Card,realign?OpsValuePurpose.Realignment:OpsValuePurpose.Influence);
             var next=new ActionPracticeState(p.Definition,realign?ActionPracticeStage.Realigning:ActionPracticeStage.PlacingInfluence,p.CompletedActions,sequence.Card,p.Space,p.VpForUS,p.Risk,p.OpsEffects,sequence);
             if(!realign)return Commit(s,next,s.Cards,s.RandomState,quote.GeneralValue);
-            var ops=new OperationsContext(s.GameId+".action."+p.CompletedActions,p.Actor,quote.GeneralValue,Array.Empty<CountryId>(),OperationsMode.Realignment,s.Operations.Costs);
+            var ops=new OperationsContext(PracticeOperationsId(s,p.CompletedActions),p.Actor,quote.GeneralValue,Array.Empty<CountryId>(),OperationsMode.Realignment,s.Operations.Costs);
             return new CardActionTransition(RuleError.None,s.WithPractice(next,ops,s.Cards,s.RandomState));
         }
         public static RuleError CanChooseOpponentOperations(GameState s,PlayerSide side,OperationsMode mode)

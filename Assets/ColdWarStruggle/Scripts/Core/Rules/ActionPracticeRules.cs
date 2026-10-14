@@ -59,6 +59,7 @@ namespace ColdWarStruggle.Core
         public static CardActionTransition Plan(GameState state,PlayerSide side,CardActionKind kind,string actionId,CardId? card=null,CountryId? target=null)
         {
             if(kind==CardActionKind.AssessTurnEnd)return PlanTurnEnd(state,side,actionId,card,target);
+            if(kind==CardActionKind.BeginNextTurn)return PlanNextTurn(state,side,actionId,card,target);
             if(kind==CardActionKind.EventThenInfluence || kind==CardActionKind.InfluenceThenEvent || kind==CardActionKind.OpponentEventFirst || kind==CardActionKind.OpponentOpsFirst)return PlanOpponentInfluence(state,side,kind,actionId,card,target);
             if(kind==CardActionKind.UseOpponentInfluence || kind==CardActionKind.UseOpponentRealignment || kind==CardActionKind.UseOpponentCoup)return PlanOpponentOperations(state,side,kind,actionId,card,target);
             if(kind==CardActionKind.Realignment || kind==CardActionKind.RollRealignment || kind==CardActionKind.FinishRealignment)return PlanRealignment(state,side,kind,actionId,card,target);
@@ -97,7 +98,7 @@ namespace ColdWarStruggle.Core
                 }
                 var spaceQuote=QuoteCard(state,side,card.Value,OpsValuePurpose.Space);
                 // Scoped to the authoritative action slot, not a client supplied RNG or OPS value.
-                var request=SpaceAttemptRequest.FromQuote("practice."+p.CompletedActions,"practice."+p.CompletedActions,state.Turn.Number,spaceQuote);
+                var request=SpaceAttemptRequest.FromQuote(PracticeSlotId(state),PracticeSlotId(state),state.Turn.Number,spaceQuote);
                 var plan=SpaceAttemptRules.PlanAttempt(p.Space,request,new Pcg32Random(state.RandomState));
                 if(plan.AlreadyApplied || !plan.ApplyCardDisposition)throw new InvalidOperationException("Action cursor does not match space receipts.");
                 var vp=checked(p.VpForUS+plan.VpDeltaToApply);var risk=p.Risk;
@@ -119,7 +120,7 @@ namespace ColdWarStruggle.Core
         }
         static CardActionTransition Commit(GameState s,ActionPracticeState p,CardZones cards,RandomSnapshot random,int budget=0,SpaceAttemptReceipt receipt=null,RegionScoringResult scoring=null,OpsRegionalBudget regionalBudget=null)
         {
-            var ops=OperationsContext.FromRoundStart(s.GameId+".action."+p.CompletedActions,p.Actor,budget,s.Map,s.Countries,s.Operations.Costs,regionalBudget);
+            var ops=OperationsContext.FromRoundStart(PracticeOperationsId(s,p.CompletedActions),p.Actor,budget,s.Map,s.Countries,s.Operations.Costs,regionalBudget);
             return new CardActionTransition(RuleError.None,s.WithPractice(p,ops,cards,random,ended:p.Risk?.Result?.Outcome==VictoryOutcome.Finished),receipt,scoring:scoring);
         }
         static OpsRegionalBudget RegionalBudget(GameState state,OpsGeneralQuote quote)

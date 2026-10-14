@@ -139,7 +139,7 @@ namespace ColdWarStruggle.Presentation
             }
             else Text(972,681,266,62,"本方："+string.Join("、",view.OwnHand)+"\n对手："+view.OpponentHandCount+" 张（隐藏）",small);
             }
-            Text(28,786,1220,27,$"真实手牌 / 投放、政变、调整、太空、计分、十二事件、中国牌及对手事件＋三种OPS；完整回合待接。   版本 {view.Version} · 序号 {view.EventSequence}",small);
+            Text(28,786,1220,27,$"真实手牌 / 投放、政变、调整、太空、计分、十二事件、中国牌及对手事件＋三种OPS；跳过头条，特殊期末能力/最终计分待接。   版本 {view.Version} · 序号 {view.EventSequence}",small);
         }
         static string TurnText(GameTurnContext turn)
         {
@@ -155,6 +155,7 @@ namespace ColdWarStruggle.Presentation
             {
                 case RuleError.UnsupportedCardAction:return "此牌尚不支持这个用途。";
                 case RuleError.CardNotOwned:return "此牌不在当前操作方手中。";
+                case RuleError.TurnPreparationUnavailable:return "无法完成补牌或回合准备，局面未改变。";
                 case RuleError.ActionNotReady:return "请先完成当前阶段。";
                 case RuleError.SpaceAttemptUnavailable:return "OPS 不足或本回合太空次数已用完。";
                 case RuleError.ChinaUnavailable:return "中国牌为背面，本回合不能使用。";

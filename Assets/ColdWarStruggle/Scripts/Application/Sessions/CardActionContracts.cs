@@ -55,12 +55,14 @@ namespace ColdWarStruggle.Application
         public VictoryCheckpoint? EndReason { get; }
         public bool HasScoring { get; }
         public bool TurnEndEnabled { get; }
+        public bool NextTurnEnabled { get; }
+        public bool NextTurnAvailable { get; }
         public bool TurnEndAvailable { get; }
         public PublicTurnEnd TurnEnd { get; }
         public PublicOpponentOpsProgress OpponentOps { get; }
         public IReadOnlyList<PublicTurnOpsEffect> OpsEffects { get; }
-        internal PublicPracticeView(ActionPracticeState s,bool turnEndAvailable=false)
-        { TurnEndEnabled=s.Definition.TurnEndEnabled;TurnEndAvailable=turnEndAvailable;TurnEnd=s.TurnEnd==null?null:new PublicTurnEnd(s.TurnEnd);OpponentOps=s.OpponentOps==null?null:new PublicOpponentOpsProgress(s.OpponentOps);OpsEffects=Array.AsReadOnly(s.OpsEffects.Instances.Select(i=>new PublicTurnOpsEffect(i)).ToArray());Stage=s.Stage;Actor=s.Actor;Round=s.ActionRound;RoundLimit=s.Space.Turn.Parameters.NormalActionsPerSide;CompletedActions=s.CompletedActions;ActiveCard=s.ActiveCard;
+        internal PublicPracticeView(ActionPracticeState s,bool turnEndAvailable=false,bool nextTurnAvailable=false)
+        { NextTurnEnabled=s.Definition.NextTurnEnabled;NextTurnAvailable=nextTurnAvailable;TurnEndEnabled=s.Definition.TurnEndEnabled;TurnEndAvailable=turnEndAvailable;TurnEnd=s.TurnEnd==null?null:new PublicTurnEnd(s.TurnEnd);OpponentOps=s.OpponentOps==null?null:new PublicOpponentOpsProgress(s.OpponentOps);OpsEffects=Array.AsReadOnly(s.OpsEffects.Instances.Select(i=>new PublicTurnOpsEffect(i)).ToArray());Stage=s.Stage;Actor=s.Actor;Round=s.ActionRound;RoundLimit=s.Space.Turn.Parameters.NormalActionsPerSide;CompletedActions=s.CompletedActions;ActiveCard=s.ActiveCard;
           UsSpace=s.Space.Track.US;UssrSpace=s.Space.Track.USSR;UsAttempts=s.Space.UsAttempts;UssrAttempts=s.Space.UssrAttempts;VpForUS=s.VpForUS;Defcon=s.Risk?.Defcon.Level;UsMilitary=s.Risk?.Military.UsEarned;UssrMilitary=s.Risk?.Military.UssrEarned;Winner=s.Risk?.Result?.Winner;EndReason=s.Risk?.Result?.Checkpoint;HasScoring=s.Definition.Scoring!=null; }
     }
     public sealed class PublicSpaceResult

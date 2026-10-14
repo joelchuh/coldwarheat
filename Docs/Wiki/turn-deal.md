@@ -25,3 +25,5 @@ flowchart LR
 ```
 
 验证：`TurnDealTests`覆盖固定顺序、103牌目录、旧牌/弃牌边界、时代重复、超额/满额手牌、中国牌、Removed、Resolving、错误输入及随机失败；实际结果见[报告](../Testing/turn-deal.validation.json)。没有新增UI或独立播放器构建，不能把纯服务测试称为连续对局鼠标验收。
+
+2026-10-14后续：[连续回合试玩](continuous-turn-playtest.md)将已审核Continue状态与补牌/DEFCON/太空重置接线；仍跳过头条并拒绝未接特殊能力/最终计分，具体构建状态见报告。

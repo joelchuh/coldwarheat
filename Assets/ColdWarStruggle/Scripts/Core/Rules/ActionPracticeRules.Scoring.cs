@@ -13,7 +13,7 @@ namespace ColdWarStruggle.Core
             var error=CanPlay(state,side,card.Value,CardActionKind.Scoring);if(error!=RuleError.None)return new CardActionTransition(error);
             try
             {
-                var p=state.Practice;var printed=p.Definition.Cards.GetCard(card.Value);var slot="practice."+p.CompletedActions;
+                var p=state.Practice;var printed=p.Definition.Cards.GetCard(card.Value);var slot=PracticeSlotId(state);
                 var snapshot=new ScoringSnapshot(state.Map,state.GameId+"."+slot,state.Version,state.Countries,Array.Empty<string>());
                 var score=RegionScoringService.CalculateUnmodified(p.Definition.Scoring,snapshot,printed.ScoringRegion);
                 var decision=VictoryService.Evaluate(p.Risk.Definition.Victory,new ScoringResolvedEvidence(slot,printed.Id.Value,p.VpForUS,score));

@@ -34,6 +34,14 @@ namespace ColdWarStruggle.Core
                 || CoupReceipts.Values.Any(r=>r.Request.GameId!=state.GameId))throw new ArgumentException("Risk history belongs to another authority.");
             return new CoupAttemptState(state.GameId,state.Version,Definition.Coup,Defcon,Military,state.Countries,state.RandomState,Array.Empty<string>(),CoupReceipts);
         }
+        internal PracticeRiskState BeginNextTurn(GameTurnContext turn,DefconState defcon)
+        {
+            if(turn==null || defcon==null || (long)turn.Number!=(long)Military.Turn.Number+1 || Military.Assessment==null || Result!=null
+                || !ReferenceEquals(defcon.Definition,Definition.Defcon) || Military.UsEarned!=Definition.Military.ResetEarned || Military.UssrEarned!=Definition.Military.ResetEarned)
+                throw new ArgumentException("Expected an assessed continuing turn and matching DEFCON.");
+            var military=new MilitaryOperationsState(Definition.Military,turn,Military.UsEarned,Military.UssrEarned,Military.AppliedCredits,null);
+            return new PracticeRiskState(Definition,defcon,military,CoupReceipts);
+        }
         internal PracticeRiskState WithTurnEnd(MilitaryAssessmentPlan military,VictoryDecision decision)
         {
             if(military==null || decision==null || !ReferenceEquals(military.Before,Military) || military.AlreadyApplied || Result!=null

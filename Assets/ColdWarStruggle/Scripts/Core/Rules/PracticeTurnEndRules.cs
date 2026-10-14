@@ -25,6 +25,7 @@ namespace ColdWarStruggle.Core
             var p=state.Practice;if(p==null)return RuleError.ActionNotReady;
             if(!p.Definition.TurnEndEnabled)return RuleError.UnsupportedCardAction;
             if(p.TurnEnd!=null)return RuleError.ActionSliceComplete;
+            if(p.Definition.NextTurnEnabled && HasExtraActionAbility(p.Space.Track))return RuleError.UnsupportedCardAction;
             if(state.Deployment!=null)return RuleError.SetupInProgress;
             if(state.InfluenceEvent!=null)return RuleError.EventInProgress;
             if(p.Stage!=ActionPracticeStage.Complete || p.CompletedActions!=p.Space.Turn.Parameters.NormalActionsPerSide*2
