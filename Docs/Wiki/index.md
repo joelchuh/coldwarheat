@@ -4,6 +4,7 @@
 
 | 知识点 | description | 状态 | 入口 |
 |---|---|---|---|
+| 真实出牌行动试玩 | 查从真实手牌使用影响力/太空、牌去向与轨道、明确跳过头条边界 | 1599项回归；独立PlayableDemo | [playable-card-actions.md](playable-card-actions.md) |
 | 卡牌印刷静态目录 | 查103牌类型、ID/编号/时代查询、来源和冻结摘要；不执行事件 | 634项EditMode通过，完整规则包待实现 | [card-catalog.md](card-catalog.md) |
 | 卡牌效果引用索引 | 仅核对稳定效果ID存在性，不判断完整卡牌可执行 | 102个只读引用已接入两牌参数装配 | [card-effect-reference-index.md](card-effect-reference-index.md) |
 | 回合日历与权威时代 | 查共享时代表、不可变Turn及复制保持，区别于完整状态机 | 371回归通过；不自动推进阶段 | [turn-calendar.md](turn-calendar.md) |

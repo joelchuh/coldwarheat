@@ -75,7 +75,7 @@ namespace ColdWarStruggle.Presentation
             Styles();float scale=Math.Min(Screen.width/1280f,Screen.height/820f);
             GUI.matrix=Matrix4x4.TRS(new Vector3((Screen.width-1280*scale)/2,(Screen.height-820*scale)/2,0),Quaternion.identity,new Vector3(scale,scale,1));
             Block(new Rect(0,0,1280,820),Background);
-            Text(26,20,900,46,"COLD WAR / 冷战热斗 · 开局与规则 Demo",title);
+            Text(26,20,900,46,"COLD WAR / 冷战热斗 · 可出牌 Demo",title);
             Text(28,70,780,28,"单人双边测试  /  人工练习局面  /  世界地图占位，可更换画风",small);
             Text(820,70,434,28,captureStatus,small);
             if(fatal!=null) { Text(30,140,1180,400,"加载失败："+fatal);return; }
@@ -90,16 +90,17 @@ namespace ColdWarStruggle.Presentation
             if(Button(840,115,190,40,"操作方：美国")) { controller.SelectSide(PlayerSide.US);GUIUtility.ExitGUI(); }
             if(Button(1040,115,214,40,"操作方：苏联")) { controller.SelectSide(PlayerSide.USSR);GUIUtility.ExitGUI(); }
             var view=controller.ReadView();mapPresenter.Refresh();
+            if(view.Practice!=null && view.Deployment==null)DrawPracticeStatus(view);
             if(handPanelOpen && view.Cards!=null){DrawHandPanel(view);return;}
             Block(new Rect(26,177,250,600),Panel);Block(new Rect(294,177,640,600),Panel);Block(new Rect(952,177,302,600),Panel);
             Text(44,195,220,26,"当前测试局面",small);Text(44,226,214,60,scenarios[scenarioIndex].Title);
             Text(44,307,220,26,view.Deployment!=null?"当前部署方":view.Event==null?"规则要求的行动方":view.Event.Stage==InfluenceEventStage.AwaitingChoice?"规则要求的选择方":"事件触发方",small);
             Text(44,338,220,34,view.Deployment!=null?(view.Deployment.Owner.HasValue?Side(view.Deployment.Owner.Value):"部署已完成"):Side(view.Event==null?view.Actor:view.Event.Stage==InfluenceEventStage.AwaitingChoice?view.Event.Owner:view.Event.PhasingPlayer));
             Text(44,389,220,26,"你正在操作",small);Text(44,420,220,34,Side(controller.SelectedSide));
-            Text(44,455,220,27,view.Deployment!=null?"初始影响力部署练习":TurnText(view.Turn),small);
+            Text(44,455,220,27,view.Deployment!=null?"初始影响力部署练习":view.Practice!=null?$"行动试玩 {view.Practice.Round} / {view.Practice.RoundLimit}":TurnText(view.Turn),small);
             Text(44,485,220,26,view.Deployment!=null?"待分配部署额度":"剩余 OPS",small);
             Text(44,513,210,60,(view.Deployment!=null?view.Deployment.RequiredAmount-controller.DeploymentDraft.Sum(a=>a.Amount):view.RemainingOps).ToString(),large);
-            Text(44,594,208,150,view.Deployment!=null?"先苏联、后美国：\n1. 选国后用右侧 ±1 分配\n2. 用完额度后确认\n3. 按提示切换操作方\n草稿未确认不改变局面。\n"+(view.Cards!=null?"可先查看真实初始手牌。":"手牌只是示例，尚未发牌。"):view.Event==null?"试一试：\n1. 在默认目标投放 3 点\n2. 重发命令，观察不重复扣点\n3. 切换另一方，观察资格检查\n4. 重置后选择其他国家":"事件练习：\n1. 点击开始事件\n2. 按提示切换选择方\n3. 选国，按右侧提示编辑\n4. 确认后一次结算\n事件不消耗 OPS。",small);
+            Text(44,594,208,150,view.Deployment!=null?"先苏联、后美国：\n1. 选国后用右侧 ±1 分配\n2. 用完额度后确认\n3. 按提示切换操作方\n草稿未确认不改变局面。\n"+(view.Cards!=null?"可先查看真实初始手牌。":"手牌只是示例，尚未发牌。"):view.Practice!=null?"行动试玩：\n1. 打开手牌选择本方牌\n2. 选择影响力或太空\n3. 投放后明确结束行动\n4. 按提示切换操作方\n当前无头条、回合末或完整事件。":view.Event==null?"试一试：\n1. 在默认目标投放 3 点\n2. 重发命令，观察不重复扣点\n3. 切换另一方，观察资格检查\n4. 重置后选择其他国家":"事件练习：\n1. 点击开始事件\n2. 按提示切换选择方\n3. 选国，按右侧提示编辑\n4. 确认后一次结算\n事件不消耗 OPS。",small);
             Text(312,194,590,28,view.Event==null && view.Deployment==null?"国家面板  ·  绿色表示当前可投放目标":"国家面板  ·  绿色为合法选择，✓ 为草稿，确认后才结算",small);
             for(int i=0;i<regions.Length;i++)
                 if(Button(312+(i%3)*201,232+(i/3)*39,193,32,(regionIndex==i?"● ":"")+regionNames[i]))
@@ -111,6 +112,7 @@ namespace ColdWarStruggle.Presentation
             Text(972,329,262,28,"控制方："+(selectedCountry.Controller.HasValue?Side(selectedCountry.Controller.Value):"无"),small);
             if(view.Deployment!=null)DrawDeploymentControls(view);
             else if(view.Event!=null)DrawEventControls(view);
+            else if(view.Practice!=null)DrawPracticeControls(view);
             else
             {
             if(Button(972,374,262,43,"投放 1 点影响力"))Place(1);
@@ -129,7 +131,7 @@ namespace ColdWarStruggle.Presentation
             }
             else Text(972,681,266,62,"本方："+string.Join("、",view.OwnHand)+"\n对手："+view.OpponentHandCount+" 张（隐藏）",small);
             }
-            Text(28,786,1220,27,$"发牌 / 部署 / 普通影响力 / 八种事件练习；出牌、完整回合、计分和 AI 尚未接入。   版本 {view.Version} · 序号 {view.EventSequence}",small);
+            Text(28,786,1220,27,$"真实手牌 / 部署 / 影响力与太空行动试玩；完整头条、事件、回合末与 AI 尚未接入。   版本 {view.Version} · 序号 {view.EventSequence}",small);
         }
         static string TurnText(GameTurnContext turn)
         {
@@ -143,6 +145,11 @@ namespace ColdWarStruggle.Presentation
         {
             switch(error)
             {
+                case RuleError.UnsupportedCardAction:return "此牌事件/计分路径尚未接入。";
+                case RuleError.CardNotOwned:return "此牌不在当前操作方手中。";
+                case RuleError.ActionNotReady:return "请先完成当前阶段。";
+                case RuleError.SpaceAttemptUnavailable:return "OPS 不足或本回合太空次数已用完。";
+                case RuleError.ActionSliceComplete:return "本回合行动试玩已结束。";
                 case RuleError.WrongActor:return "当前操作方没有本次行动资格。";
                 case RuleError.IllegalTarget:return "该国不在行动开始时的可达范围。";
                 case RuleError.InsufficientBudget:return "剩余 OPS 不足，整条命令未执行。";

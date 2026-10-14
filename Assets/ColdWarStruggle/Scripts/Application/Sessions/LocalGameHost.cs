@@ -16,8 +16,10 @@ namespace ColdWarStruggle.Application
         {
             internal readonly SessionCommand Command;
             internal readonly PlayerCommandResult Placement;
+            internal readonly CardActionResult CardAction;
             internal readonly EventCommandResult Event;
             internal readonly DeploymentCommandResult Deployment;
+            internal CommandReceipt(CardActionCommand command,CardActionResult result) { Command=command;CardAction=result; }
             internal CommandReceipt(CommandEnvelope command,PlayerCommandResult result) { Command=command;Placement=result; }
             internal CommandReceipt(EventCommandEnvelope command,EventCommandResult result) { Command=command;Event=result; }
             internal CommandReceipt(DeploymentCommandEnvelope command,DeploymentCommandResult result) { Command=command;Deployment=result; }
@@ -43,6 +45,7 @@ namespace ColdWarStruggle.Application
             if(state.InfluenceEvent!=null && state.InfluenceEvent.Stage!=InfluenceEventStage.Resolved)return RuleError.EventInProgress;
             if(side!=state.Operations.Actor)return RuleError.WrongActor;
             if(state.Operations.Mode!=OperationsMode.Influence)return RuleError.ModeMismatch;
+            if(state.Practice!=null && state.Practice.Stage!=ActionPracticeStage.PlacingInfluence)return RuleError.ActionNotReady;
             return RuleError.None;
         }
         LegalTargetsResult Query(PlayerSide side,string contextId,long version)
@@ -155,6 +158,8 @@ namespace ColdWarStruggle.Application
             public PlayerSide Side { get; }
             internal PlayerSession(LocalGameHost host,PlayerSide side) { this.host=host;Side=side; }
             public PlayerViewSnapshot ReadView()=>host.Read(Side);
+            public CardActionOptions QueryCardActions()=>host.QueryCards(Side);
+            public Task<CardActionResult> SubmitCardActionAsync(CardActionCommand command,CancellationToken cancellationToken=default)=>host.SubmitCard(Side,command,cancellationToken);
             public LegalTargetsResult QueryInfluenceTargets(string contextId,long expectedVersion)=>host.Query(Side,contextId,expectedVersion);
             public Task<PlayerCommandResult> SubmitAsync(CommandEnvelope command,CancellationToken cancellationToken=default)=>host.Submit(Side,command,cancellationToken);
             public EventTargetsResult QueryEventTargets(string executionId,long expectedVersion)=>host.QueryEvent(Side,executionId,expectedVersion);

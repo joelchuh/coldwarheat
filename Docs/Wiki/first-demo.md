@@ -2,7 +2,9 @@
 
 description：运行单窗口双边测试，定位影响力规则、固定身份、幂等、数据加载及 Unity 构建入口。先读模块 JSON，再定位对应函数。
 
-状态：2026-10-13，真实 Unity 工程与 Windows 构建已建立；762 项 EditMode 测试通过。已通过游戏自身导出真实渲染并检查字体/布局；computer-use鼠标实测仍受窗口激活失败影响，不能把截图当成点击验收。
+当前新增：[真实出牌行动试玩](playable-card-actions.md)，独立PlayableDemo构建，1599项回归通过。下方FirstDemo路径与762项对应旧版诊断构建，保留为历史教程。
+
+历史状态：2026-10-13，真实 Unity 工程与 Windows 构建已建立；762 项 EditMode 测试通过。已通过游戏自身导出真实渲染并检查字体/布局；computer-use鼠标实测仍受窗口激活失败影响，不能把截图当成点击验收。
 
 ![发牌与部署实际运行画面](../Images/dealt-setup-demo.png)
 

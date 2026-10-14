@@ -6,13 +6,13 @@
 
 当前已进入**首批 Unity 原型实现阶段**。仓库已整理 84 个国家及邻接、103 张基础牌的印刷定义、初始布置、回合流程、行动、计分、胜负和分批卡牌事件设计。具体参数绑定与未确认边界见[正式数据索引](Docs/Wiki/map-card-data.md)及各牌的验证报告。
 
-已创建 Unity 6000.6.0f1 工程、纯 C# 规则核心和单窗口诊断 Demo，当前 **762 项真实 EditMode 测试通过**。Windows Demo现有13个练习，覆盖普通影响力、八种基础事件、初始部署及真实洗牌/发牌；默认进入“发牌与初始部署”，可查看双方实际手牌并在世界地图上部署。尚不能完整打一局：头条、出牌生命周期、完整回合和胜负仍待接入。102项效果绑定不等于102个已实现处理器。
+已创建 Unity 6000.6.0f1 工程、纯 C# 规则核心和单窗口 Demo，最新 **1599 项 EditMode 测试通过**。新版 [真实出牌行动试玩](Docs/Wiki/playable-card-actions.md) 位于 `E:\TwilightStruggle\Builds\PlayableDemo\ColdWarStruggleDemo.exe`：完成真实发牌/部署后，显式跳过头条，从本方手牌使用影响力或太空，观察牌去向、行动方、太空与VP更新。原十三练习仍保留，旧FirstDemo/PreviewDemo文件不自动更新。
 
-地图已经有可缩放/平移的[世界地图占位视图](Docs/Wiki/world-map-view.md)，并可切换卡片/列表；规则邻接、显示布局和美术分离，最终画风仍可更换。本机运行 `E:\TwilightStruggle\Builds\FirstDemo\ColdWarStruggleDemo.exe`，或从Unity菜单 **ColdWarStruggle → Play First Demo** 启动。旧PreviewDemo进程不会自动更新。操作与接口见[Demo说明](Docs/Wiki/first-demo.md)，实际测试、25份载荷与运行截图见[验证报告](Docs/Testing/dealt-setup-demo.validation.json)。截图验证渲染，不代替鼠标操作验收。
+![新版真实手牌界面](Docs/Images/playable-demo-hands.png)
 
-一个窗口共用一局权威状态，美苏两个固定身份会话。正常视图仅含自己的牌；单人测试通过显式只读观察入口查看双方，牌库顺序和随机状态不公开。当前固定发牌fixture用于复现，重置建立新GameId但恢复同一手牌；完整存档、联网与AI尚未实现。
+世界地图已含84国热点，可切World/Tiles/Table；规则邻接与画面分离。一个窗口共用权威局面与两个固定身份会话，正常视图只读自己的牌，测试观察可查看双方。重置新建GameId并使用固定测试发牌结果。当前未接完整头条、对手事件OPS、计分牌/中国牌、回合末、存档、联网或AI，不能完整打一局。102项效果绑定不等于102个已实现处理器。
 
-最新源码已加入[DEFCON、军事行动与基础胜负检查点](Docs/Wiki/risk-victory.md)，**1561项EditMode通过**；播放器仍为上述762项测试对应的Demo构建。完整事件VP、军事延后/双边扣留审核、核战责任及[六地区/东南亚基础计分](Docs/Wiki/region-scoring.md)已可纯计算，[太空轨道、领先能力与普通尝试计划](Docs/Wiki/space-race.md)、[通用OPS报价](Docs/Wiki/ops-general.md)及[政变基础计算与整体计划](Docs/Wiki/coup-attempts.md)已有实现；完整出牌、政变、最终计分、VP提交和整局胜负编排仍待接入。
+DEFCON、军事行动、基础胜负、地区计分与政变已有纯规则服务；本批只接通普通影响力和太空出牌。构建与28份载荷一致性已验证，手牌真实渲染已检查；computer-use窗口激活失败，鼠标流程仍未验收。见[验证报告](Docs/Testing/playable-card-actions.validation.json)。
 
 ## 已确认的工程原则
 

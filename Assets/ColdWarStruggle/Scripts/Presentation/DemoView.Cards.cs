@@ -20,11 +20,11 @@ namespace ColdWarStruggle.Presentation
         void DrawHandPanel(PlayerViewSnapshot view)
         {
             Block(new Rect(26,177,1228,600),Panel);
-            Text(48,192,750,38,"开局手牌 · 只读预览",new GUIStyle(title){fontSize=27});
+            Text(48,192,750,38,view.Practice!=null?"手牌 · 选择本方牌使用":"开局手牌 · 只读预览",new GUIStyle(title){fontSize=27});
             revealBoth=GUI.Toggle(new Rect(826,197,275,30),revealBoth," 观察双方（测试）",button);
             if(Button(1114,192,120,36,"返回局面")){handPanelOpen=false;GUIUtility.ExitGUI();}
             var frame=HandPanelFrame.Create(view,printedCards,names,revealBoth?controller.ReadBoth():null);
-            Text(48,234,1170,24,frame.IsObserver?"测试观察已开启：显示双方手牌。卡面为占位样式，出牌流程尚未接入。":"仅显示当前操作方的手牌。上方切换操作方后会重新读取该方视图。",small);
+            Text(48,234,1170,24,frame.IsObserver?"测试观察已开启：显示双方手牌；只能选择当前操作方自己的牌，切换身份后可操作另一方。":"仅显示当前操作方的手牌。上方切换操作方后会重新读取该方视图。",small);
             float height=frame.Rows.Sum(r=>32+Math.Max(1,(r.Cards.Count+7)/8)*184+18);
             handScroll=GUI.BeginScrollView(new Rect(44,259,1194,476),handScroll,new Rect(0,0,1168,Math.Max(476,height)));
             float rowY=0;
@@ -48,13 +48,18 @@ namespace ColdWarStruggle.Presentation
                     Text(x+10,y+79,118,32,card.Kind==CardKind.Scoring?"计分":$"OPS {card.PrintedOps}",opsStyle);
                     var affiliation=card.Affiliation switch {CardAffiliation.US=>"美国事件",CardAffiliation.USSR=>"苏联事件",CardAffiliation.Neutral=>"中立事件",_=>"地区计分"};
                     Text(x+10,y+115,118,25,affiliation,small);
-                    Text(x+10,y+145,118,22,card.RemoveAfterEvent?"★ 事件后移出":card.Kind==CardKind.Scoring?"计分牌":"事件牌",footStyle);
+                    if(view.Practice!=null && row.Side==view.Viewer)
+                    {
+                        if(Button(x+8,y+140,122,27,"选择这张牌"))
+                        { controller.SelectCard(card.Id);handPanelOpen=false;GUI.EndScrollView();GUIUtility.ExitGUI(); }
+                    }
+                    else Text(x+10,y+145,118,22,card.RemoveAfterEvent?"★ 事件后移出":card.Kind==CardKind.Scoring?"计分牌":"事件牌",footStyle);
                 }
                 rowY+=32+Math.Max(1,(row.Cards.Count+7)/8)*184+18;
             }
             GUI.EndScrollView();
-            Text(48,744,1172,26,$"此面板不修改手牌或局面；中国牌单独持有，不计入普通手牌。  版本 {frame.Version}",small);
-            Text(28,786,1220,27,"当前可查看发牌并完成初始部署；头条、出牌、完整回合和胜负流程仍待接入。",small);
+            Text(48,744,1172,26,$"选牌只改变本地意图，点击用途后才提交；中国牌单独持有，本批暂不可使用。  版本 {frame.Version}",small);
+            Text(28,786,1220,27,"行动试玩支持本方/中立牌投放影响力及普通牌太空；其他事件、计分和完整回合待接入。",small);
         }
     }
 }

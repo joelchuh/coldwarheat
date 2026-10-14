@@ -18,10 +18,11 @@ namespace ColdWarStruggle.Infrastructure
         public GameTurnContext Turn { get; }
         public SetupDeploymentDefinition DeploymentDefinition { get; }
         public InitialDealResult InitialCards { get; }
+        public ActionPracticeDefinition PracticeDefinition { get; }
         public IReadOnlyDictionary<CountryId,CountryState> Countries { get; }
         public IReadOnlyDictionary<PlayerSide,IReadOnlyList<string>> Hands { get; }
-        internal DemoScenario(string id,string title,PlayerSide actor,CountryId selected,int ops,IReadOnlyDictionary<CountryId,CountryState> countries,IReadOnlyDictionary<PlayerSide,IReadOnlyList<string>> hands,InfluenceEffectDefinition eventDefinition=null,GameTurnContext turn=null,SetupDeploymentDefinition deployment=null,InitialDealResult initialCards=null)
-        { Id=id;Title=title;Actor=actor;SelectedCountry=selected;Ops=ops;Countries=countries;Hands=hands;EventDefinition=eventDefinition;Turn=turn;DeploymentDefinition=deployment;InitialCards=initialCards; }
+        internal DemoScenario(string id,string title,PlayerSide actor,CountryId selected,int ops,IReadOnlyDictionary<CountryId,CountryState> countries,IReadOnlyDictionary<PlayerSide,IReadOnlyList<string>> hands,InfluenceEffectDefinition eventDefinition=null,GameTurnContext turn=null,SetupDeploymentDefinition deployment=null,InitialDealResult initialCards=null,ActionPracticeDefinition practice=null)
+        { Id=id;Title=title;Actor=actor;SelectedCountry=selected;Ops=ops;Countries=countries;Hands=hands;EventDefinition=eventDefinition;Turn=turn;DeploymentDefinition=deployment;InitialCards=initialCards;PracticeDefinition=practice; }
     }
     public sealed partial class DemoCatalog
     {
@@ -59,7 +60,7 @@ namespace ColdWarStruggle.Infrastructure
             var gameId="demo-"+Guid.NewGuid().ToString("N");
             var execution=s.EventDefinition==null?null:new InfluenceEventExecution(gameId+".event",s.EventDefinition,s.Actor,InfluenceEventPolicy.NoActiveInterference);
             var state=new GameState(Map,s.Countries,ctx,gameId,hands:s.Hands,influenceEvent:execution,turn:s.Turn,
-                cards:s.InitialCards?.Cards,randomState:s.InitialCards?.Random);
+                cards:s.InitialCards?.Cards,randomState:s.InitialCards?.Random,practice:s.PracticeDefinition==null?null:ActionPracticeState.Create(s.PracticeDefinition));
             if(s.DeploymentDefinition!=null)
             {
                 var started=InitialDeploymentFlow.Begin(state,s.DeploymentDefinition,gameId+".deployment");

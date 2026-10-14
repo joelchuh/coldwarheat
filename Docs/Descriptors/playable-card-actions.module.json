@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "id": "module.playable-card-actions",
+  "kind": "module",
+  "status": "implemented-subset",
+  "description": "真实手牌行动试玩：部署后显式跳过头条，支持本方/中立牌影响力与普通牌太空；原子更新牌区、RNG、VP、行动槽并保留固定身份与收据，完整回合和活动事件未接入。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeState.cs",
+      "symbol": "ActionPracticeDefinition"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeState.cs",
+      "symbol": "ActionPracticeState"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.cs",
+      "symbol": "CanPlay"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.cs",
+      "symbol": "Plan"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/CardActionContracts.cs",
+      "symbol": "CardActionCommand"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/CardActionContracts.cs",
+      "symbol": "PublicPracticeView"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/LocalGameHost.Cards.cs",
+      "symbol": "SubmitCard"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Cards.cs",
+      "symbol": "PlayCardAsync"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Actions.cs",
+      "symbol": "DrawPracticeControls"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.Actions.cs",
+      "symbol": "WithActionPractice"
+    }
+  ],
+  "inputs": [
+    "真实手牌、已完成部署、可信静态目录与共享OPS/太空/回合日历",
+    "固定身份命令仅提供牌ID/用途/版本；无客户端OPS或随机数"
+  ],
+  "outputs": [
+    "不可变完整下一GameState；手牌→结算区→弃牌；太空直接弃牌并提交RNG/轨道/VP",
+    "公共行动/太空结果投影与仅本方手牌选项，不暴露随机快照/牌库顺序"
+  ],
+  "dependencies": [
+    "module.local-session",
+    "module.card-zones",
+    "module.ops-general",
+    "module.space-race",
+    "module.influence-core",
+    "module.turn-calendar"
+  ],
+  "data_dependencies": [
+    "rules.deluxe2015.space-race",
+    "rules.deluxe2015.turn-flow",
+    "effects.deluxe2015.persistent_batch1",
+    "cards.deluxe2015.definitions"
+  ],
+  "preconditions": [
+    "单回合无活动效果的显式练习；首轮从已完成部署启动，不声称完整开局状态机"
+  ],
+  "side_effects": [
+    "纯规则只规划；LocalGameHost在锁内一次提交完整状态和收据；UI只编辑意图"
+  ],
+  "stop_conditions": [
+    "计分牌、中国牌、对手事件OPS暂拒绝；尚未接头条/完整事件/回合末",
+    "部署未完成、错误身份/版本、牌不在手、未完成影响力、太空不满足门槛/次数、命令冲突、行动上限"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/operations.md",
+      "scope": "普通影响力与OPS"
+    },
+    {
+      "path": "Docs/Wiki/space-race.md",
+      "scope": "普通太空子集"
+    },
+    {
+      "path": "Docs/Wiki/turn-flow.md",
+      "scope": "行动试玩按日历普通名额；不替代完整流程"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/ActionPracticeTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/ActionPracticeBoundaryTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/CardActionSessionTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayableDemoTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/playable-card-actions.md",
+  "verification": {
+    "report": "Docs/Testing/playable-card-actions.validation.json"
+  }
+}

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.demo-build",
   "kind": "module",
-  "description": "校验规则、十三练习与世界地图资源并同步25份运行载荷（23份JSON和2份许可/说明），生成含真实手牌预览的Windows Demo。",
+  "description": "校验并同步28份运行载荷（26 JSON和2许可/说明）；构建独立PlayableDemo真实手牌行动试玩，保留FirstDemo与PreviewDemo路径。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -24,14 +24,19 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
       "symbol": "BuildPreview"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "symbol": "BuildPlayable"
     }
   ],
   "inputs": [
-    "Data与Docs/Contracts中的23份JSON，以及Docs/References/ThirdParty中的Apache-2.0许可与PCG来源说明"
+    "26份共享JSON与两份第三方许可/说明；新增OPS参数/schema与太空定义，规则数值不复制到UI"
   ],
   "outputs": [
     "Assets/ColdWarStruggle/Scenes/FirstDemo.unity；Builds/FirstDemo/ColdWarStruggleDemo.exe与必要同目录运行文件",
-    "BuildPreview额外固定入口：Builds/PreviewDemo/ColdWarStruggleDemo.exe与必要运行文件，不接受外部任意输出路径。"
+    "BuildPreview额外固定入口：Builds/PreviewDemo/ColdWarStruggleDemo.exe与必要运行文件，不接受外部任意输出路径。",
+    "BuildPlayable: Builds/PlayableDemo/ColdWarStruggleDemo.exe"
   ],
   "dependencies": [
     "module.demo-presentation",
@@ -93,7 +98,7 @@
   "verification": {
     "checked_on": "2026-10-13",
     "report": "Docs/Testing/era-demo.validation.json",
-    "latest_report": "Docs/Testing/dealt-setup-demo.validation.json"
+    "latest_report": "Docs/Testing/playable-card-actions.validation.json"
   },
   "data_dependencies": [
     "rules.deluxe2015.influence_placement",

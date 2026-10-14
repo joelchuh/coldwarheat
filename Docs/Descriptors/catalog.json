@@ -34,7 +34,7 @@
     },
     {
       "id": "module.space-race",
-      "description": "太空轨道/领先能力及普通单格尝试计划已实现：目标OPS门槛、动态次数、随机副本、先后VP、重复保护和牌去向意图。持牌/阶段/有效OPS报价/活动限制、宿主提交和事件推进仍待接入。",
+      "description": "太空轨道/领先能力、普通尝试计划与报价已实现；无活动效果的真实手牌太空已接行动试玩，宿主原子提交牌区/RNG/VP/次数，完整事件推进与阶段编排待接入。",
       "status": "implemented-subset",
       "descriptor": "Docs/Descriptors/space-race.module.json"
     },
@@ -142,19 +142,19 @@
     },
     {
       "id": "module.local-session",
-      "description": "固定身份会话共用权威局面与收据；普通影响力、事件、部署及真实手牌投影已接入，测试观察不公开牌库或随机状态。",
+      "description": "固定身份会话共用权威局面与收据；已接影响力/事件/部署/真实手牌及行动试玩命令，太空提交牌区、RNG、VP和行动槽，普通视图不公开双方手牌或随机状态。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/local-session.module.json"
     },
     {
       "id": "module.demo-presentation",
-      "description": "单窗口十三练习：真实发牌/部署、普通影响力和八种事件；可替换地图与只读手牌面板共享固定身份投影，仍非完整对局。",
+      "description": "单窗口十三练习与真实出牌试玩：部署后显式跳过头条，点本方手牌选择影响力或太空，独立轨道面板和可替换地图；完整事件/回合末仍未接入。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/demo-presentation.module.json"
     },
     {
       "id": "module.demo-build",
-      "description": "校验规则、十三练习与世界地图资源并同步25份运行载荷（23份JSON和2份许可/说明），生成含真实手牌预览的Windows Demo。",
+      "description": "校验并同步28份运行载荷（26 JSON和2许可/说明）；构建独立PlayableDemo真实手牌行动试玩，保留FirstDemo与PreviewDemo路径。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/demo-build.module.json"
     },
@@ -223,6 +223,12 @@
       "description": "同一回合普通政变整体计划：显式门禁、军事信用、隔离掷骰、影响力和DEFCON组成不可变After；保存请求收据/版本/RNG防重，实际GameState提交与出牌授权待接。",
       "status": "implemented-subset",
       "descriptor": "Docs/Descriptors/coup-attempts.module.json"
+    },
+    {
+      "id": "module.playable-card-actions",
+      "description": "真实手牌行动试玩：部署后显式跳过头条，支持本方/中立牌影响力与普通牌太空；原子更新牌区、RNG、VP、行动槽并保留固定身份与收据，完整回合和活动事件未接入。",
+      "status": "implemented-subset",
+      "descriptor": "Docs/Descriptors/playable-card-actions.module.json"
     }
   ]
 }

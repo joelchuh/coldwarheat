@@ -31,6 +31,7 @@ namespace ColdWarStruggle.Presentation
             host=next;SelectedSide=side;SelectedCountry=country;generation++;legal=null;lastCommand=null;LastResult=null;
             ResetEventInteraction(true);
             ResetDeploymentInteraction(true);
+            ResetCardInteraction(true);
         }
         public void SelectSide(PlayerSide side)
         {
@@ -39,6 +40,7 @@ namespace ColdWarStruggle.Presentation
             SelectedSide=side;generation++;legal=null;LastResult=null;
             ResetEventInteraction(false);
             ResetDeploymentInteraction(false);
+            ResetCardInteraction(false);
         }
         public void SelectCountry(CountryId country)
         {

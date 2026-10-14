@@ -40,6 +40,7 @@ namespace ColdWarStruggle.Application
         public GameTurnContext Turn { get; }
         public PublicDeploymentView Deployment { get; }
         public PublicCardSummary Cards { get; }
+        public PublicPracticeView Practice { get; }
         internal PlayerViewSnapshot(GameState s,PlayerSide viewer)
         {
             GameId=s.GameId;Viewer=viewer;Version=s.Version;EventSequence=s.EventSequence;ContextId=s.Operations.Id;Actor=s.Operations.Actor;RemainingOps=s.Operations.Budget-s.SpentOps;
@@ -48,6 +49,7 @@ namespace ColdWarStruggle.Application
             Event=s.InfluenceEvent==null?null:new PublicEventView(s.InfluenceEvent);Turn=s.Turn;
             Deployment=s.Deployment==null?null:new PublicDeploymentView(s.Deployment);
             Cards=s.Cards==null?null:new PublicCardSummary(s.Cards);
+            Practice=s.Practice==null?null:new PublicPracticeView(s.Practice);
         }
     }
     public sealed class LocalTestSnapshot
@@ -80,6 +82,8 @@ namespace ColdWarStruggle.Application
     }
     public interface IGameSession
     {
+        CardActionOptions QueryCardActions();
+        Task<CardActionResult> SubmitCardActionAsync(CardActionCommand command,CancellationToken cancellationToken=default);
         PlayerSide Side { get; }
         PlayerViewSnapshot ReadView();
         LegalTargetsResult QueryInfluenceTargets(string contextId,long expectedVersion);

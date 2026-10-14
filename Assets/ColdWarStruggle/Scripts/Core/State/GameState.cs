@@ -24,13 +24,14 @@ namespace ColdWarStruggle.Core
         public GameTurnContext Turn { get; }
         public SetupDeploymentExecution Deployment { get; }
         public CardZones Cards { get; }
+        public ActionPracticeState Practice { get; }
         public RandomSnapshot RandomState { get; }
         public IReadOnlyDictionary<CountryId,CountryState> Countries { get; }
         readonly Dictionary<PlayerSide,IReadOnlyList<string>> hands=new Dictionary<PlayerSide,IReadOnlyList<string>>();
         public GameState(MapDefinition map, IReadOnlyDictionary<CountryId,CountryState> countries, OperationsContext context,
             string gameId="fixture", long version=0,int spentOps=0,long eventSequence=0,bool ended=false,
             IReadOnlyDictionary<PlayerSide,IReadOnlyList<string>> hands=null,InfluenceEventExecution influenceEvent=null,GameTurnContext turn=null,
-            SetupDeploymentExecution deployment=null,CardZones cards=null,RandomSnapshot randomState=null)
+            SetupDeploymentExecution deployment=null,CardZones cards=null,RandomSnapshot randomState=null,ActionPracticeState practice=null)
         {
             if(map==null || countries==null || context==null || string.IsNullOrWhiteSpace(gameId)) throw new ArgumentException("Missing state data.");
             if(version<0 || eventSequence<0 || spentOps<0 || spentOps>context.Budget) throw new ArgumentOutOfRangeException();
@@ -39,7 +40,8 @@ namespace ColdWarStruggle.Core
             if((cards==null)!=(randomState==null) || (cards!=null && hands!=null))
                 throw new ArgumentException("Cards and random state must be paired, without fixture hands.");
             Map=map;Operations=context;GameId=gameId;Version=version;SpentOps=spentOps;EventSequence=eventSequence;Ended=ended;
-            Cards=cards;RandomState=randomState;
+            Cards=cards;RandomState=randomState;Practice=practice;
+            if(practice!=null && (cards==null || turn==null || turn.Number!=practice.Space.Turn.Number))throw new ArgumentException("Practice requires real cards and the matching turn.");
             if(deployment!=null && !ReferenceEquals(map,deployment.Definition.Map))throw new ArgumentException("Deployment map mismatch.");
             InfluenceEvent=influenceEvent;Turn=turn;Deployment=deployment;
             Countries=new ReadOnlyDictionary<CountryId,CountryState>(countries.ToDictionary(x=>x.Key,x=>x.Value));
@@ -55,10 +57,13 @@ namespace ColdWarStruggle.Core
         public int GetInfluence(CountryId id,PlayerSide side) => Countries.TryGetValue(id,out var value)?value.For(side):throw new ArgumentException("Unknown country.");
         public IReadOnlyList<string> GetHand(PlayerSide side) => hands.TryGetValue(side,out var h)?h:throw new ArgumentOutOfRangeException(nameof(side));
         internal GameState Apply(IReadOnlyDictionary<CountryId,CountryState> countries,int spent,int count)
-            => new GameState(Map,countries,Operations,GameId,checked(Version+1),spent,checked(EventSequence+count),Ended,Cards==null?hands:null,InfluenceEvent,Turn,Deployment,Cards,RandomState);
+            => new GameState(Map,countries,Operations,GameId,checked(Version+1),spent,checked(EventSequence+count),Ended,Cards==null?hands:null,InfluenceEvent,Turn,Deployment,Cards,RandomState,Practice);
+        internal GameState WithPractice(ActionPracticeState practice,OperationsContext operations,CardZones cards,RandomSnapshot random)
+            =>new GameState(Map,Countries,operations,GameId,checked(Version+1),0,checked(EventSequence+1),Ended,
+                influenceEvent:InfluenceEvent,turn:Turn,cards:cards,randomState:random,practice:practice);
         internal GameState WithInfluenceEvent(InfluenceEventExecution execution)
-            => new GameState(Map,Countries,Operations,GameId,Version,SpentOps,EventSequence,Ended,Cards==null?hands:null,execution,Turn,Deployment,Cards,RandomState);
+            => new GameState(Map,Countries,Operations,GameId,Version,SpentOps,EventSequence,Ended,Cards==null?hands:null,execution,Turn,Deployment,Cards,RandomState,Practice);
         internal GameState WithDeployment(SetupDeploymentExecution deployment)
-            => new GameState(Map,Countries,Operations,GameId,Version,SpentOps,EventSequence,Ended,Cards==null?hands:null,InfluenceEvent,Turn,deployment,Cards,RandomState);
+            => new GameState(Map,Countries,Operations,GameId,Version,SpentOps,EventSequence,Ended,Cards==null?hands:null,InfluenceEvent,Turn,deployment,Cards,RandomState,Practice);
     }
 }
