@@ -36,6 +36,7 @@ namespace ColdWarStruggle.Bootstrap
                     .WithPracticeTurnEnd()
                     .WithPracticeNextTurn()
                     .WithQuickStartScenario(Read(root,"Data/Demo/quick-start-scenario.json"));
+                var displayNames=CatalogNamesLoader.Load(Read(root,"Data/Localization/zh-CN.catalog-names.json"),"zh-CN",catalog.Names.Keys);
                 var worldAssets=WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
 #else
                 string root=Path.Combine(UnityEngine.Application.streamingAssetsPath,"ColdWarStruggle");
@@ -57,13 +58,14 @@ namespace ColdWarStruggle.Bootstrap
                     .WithPracticeTurnEnd()
                     .WithPracticeNextTurn()
                     .WithQuickStartScenario(Read(root,"quick-start-scenario.json"));
+                var displayNames=CatalogNamesLoader.Load(Read(root,"names.zh-CN.json"),"zh-CN",catalog.Names.Keys);
                 var worldAssets=WorldMapAssets.Load(Read(root,"world-layout.json"),Read(root,"world-land.json"),catalog.Map);
 #endif
                 var mapKind=DemoLaunchOptions.MapKind(Environment.GetCommandLineArgs());
-                view.Initialize(new DemoController(catalog.CreateHost),catalog.Names,
+                view.Initialize(new DemoController(catalog.CreateHost),displayNames,
                     catalog.Scenarios.Select(s=>new DemoScenarioOption(s.Id,s.Title,s.Actor,s.SelectedCountry)).ToArray(),
                     DemoLaunchOptions.ScenarioIndex(Environment.GetCommandLineArgs(),catalog.Scenarios.Select(s=>s.Id).ToArray()),
-                    mapKind,worldAssets,DemoLaunchOptions.FocusSelected(Environment.GetCommandLineArgs(),mapKind),catalog.PrintedCards,DemoLaunchOptions.ShowHands(Environment.GetCommandLineArgs()));
+                    mapKind,worldAssets,DemoLaunchOptions.FocusSelected(Environment.GetCommandLineArgs(),mapKind),catalog.PrintedCards,DemoLaunchOptions.ShowHands(Environment.GetCommandLineArgs()),catalog.Names);
             }
             catch(Exception e) { view.ShowError(e.Message);Debug.LogException(e); }
         }

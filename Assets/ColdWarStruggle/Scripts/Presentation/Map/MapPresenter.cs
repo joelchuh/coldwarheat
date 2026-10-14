@@ -8,7 +8,7 @@ namespace ColdWarStruggle.Presentation
     public sealed class MapPresenter : IDisposable
     {
         readonly DemoController controller;
-        readonly IReadOnlyDictionary<string,string> names;
+        IReadOnlyDictionary<string,string> names;
         IMapView view;
         Action<MapIntent> handler;
         MapFrame frame;
@@ -19,6 +19,16 @@ namespace ColdWarStruggle.Presentation
         bool disposed;
         public MapPresenter(DemoController controller,IReadOnlyDictionary<string,string> names)
         { this.controller=controller??throw new ArgumentNullException(nameof(controller));this.names=names??throw new ArgumentNullException(nameof(names)); }
+        public void ReplaceNames(IReadOnlyDictionary<string,string> next)
+        {
+            ThrowIfDisposed();if(view==null)throw new InvalidOperationException("No map view attached.");
+            if(next==null)throw new ArgumentException("Missing display names.");
+            var snapshot=controller.ReadView();
+            var copy=next.ToDictionary(p=>p.Key,p=>p.Value,StringComparer.Ordinal);
+            if(snapshot.Countries.Any(c=>!copy.TryGetValue(c.Definition.Id.Value,out var value) || string.IsNullOrWhiteSpace(value)))throw new ArgumentException("Missing country display name.");
+            names=new System.Collections.ObjectModel.ReadOnlyDictionary<string,string>(copy);
+            try { Initialize(snapshot);Refresh(); } catch { Detach();throw; }
+        }
         public void Attach(IMapView next)
         {
             ThrowIfDisposed();if(next==null)throw new ArgumentNullException(nameof(next));if(ReferenceEquals(next,view))throw new ArgumentException("A map view is already attached.");

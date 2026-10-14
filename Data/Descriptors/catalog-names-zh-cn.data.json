@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "id": "data.catalog-names-zh-cn",
+  "kind": "data",
+  "description": "198项项目自译中文短名；84国、103牌、9地区和2超级大国，沿稳定ID查找，只用于显示，不是官方译文或规则正文。",
+  "status": "ready",
+  "dataset_id": "localization.zh_cn.catalog_names",
+  "content_version": "0.1.0",
+  "schema_path": null,
+  "entrypoints": [
+    {
+      "path": "Data/Localization/zh-CN.catalog-names.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "稳定ID；按description定位后仅读取所需记录/字段"
+  ],
+  "outputs": [
+    "只读静态定义与来源；不提供可执行效果"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "map.deluxe2015.world",
+    "cards.deluxe2015.definitions"
+  ],
+  "preconditions": [
+    "先校验结构、唯一ID、引用、来源与版本",
+    "ready仅代表数据文件可读取，不代表完整规则包可运行"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知ID、损坏引用或未支持版本",
+    "依赖Unresolved参数或planned处理器执行游戏",
+    "缺少setup或可运行规则服务时尝试开局"
+  ],
+  "rule_sources": [
+    {
+      "path": "Data/Localization/en-US.catalog-names.json",
+      "scope": "共享稳定键对应既有英文印刷短标题；中文由本项目自译，不新增规则事实。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/LocalizedNamesTests.cs",
+      "status": "passed"
+    }
+  ],
+  "documentation": "Docs/Wiki/localized-catalog-names.md",
+  "verification": {
+    "runtime_consumers_tested": true,
+    "report": "Docs/Testing/localized-catalog-names.validation.json"
+  },
+  "retrieval_hints": [
+    "entries[name_key]"
+  ]
+}

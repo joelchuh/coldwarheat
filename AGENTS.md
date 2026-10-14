@@ -679,3 +679,7 @@ TurnEndPlaytest已接全部普通行动后的无参数结算：军事净罚分/�
 ## 40. 连续回合有限试玩（2026-10-14）
 
 ContinuousPlaytest已接审核后的下一回合准备：改善DEFCON、重置军事/太空尝试、保留局面/历史、共享TurnDeal补牌和时代加入，再从苏联首行动继续。1991项回归通过；先读Docs/Wiki/continuous-turn-playtest.md及JSON。仍显式跳过头条，特殊太空额外行动/期末弃牌与最终计分边界停止，不宣称完整整局。构建/真实鼠标及审查见验证报告，第39节未接下一回合为历史状态。
+
+## 41. 中英文短名称试玩（2026-10-14）
+
+新增独立中文词典198键与名称切换：国家/卡牌显示经稳定ID绑定；默认中文可切英文，规则/牌区/身份/版本保持。2009项EditMode通过；先查Docs/Wiki/localized-catalog-names.md及JSON，构建/真实鼠标/审查以报告为准。中文是项目自译短名，不是官方译本或完整规则正文；LocalizedPlaytest保留ContinuousPlaytest的连续回合范围与限制。

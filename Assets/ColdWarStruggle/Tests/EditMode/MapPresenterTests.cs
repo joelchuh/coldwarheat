@@ -32,6 +32,21 @@ namespace ColdWarStruggle.Tests
             public MapIntent Click(CountryId id)=>new MapIntent(Frame.ContextId,Frame.Version,Frame.Sequence,Frame.InteractionKey,id);
             public void Send(CountryId id)=>handler?.Invoke(Click(id));
         }
+        [Test] public void Relabel_preserves_state_and_selection_but_retires_old_input()
+        {
+            var data=DemoTests.Catalog();var c=Ordinary();using var p=new MapPresenter(c,data.Names);var v=new Probe();p.Attach(v);var before=c.ReadView();var selected=c.SelectedCountry;var old=v.Click(MapViewTests.Angola);var oldContext=v.Context.Id;
+            var replacement=data.Names.ToDictionary(x=>x.Key,x=>"译名 "+x.Value);p.ReplaceNames(replacement);
+            Assert.That(v.Context.Id,Is.Not.EqualTo(oldContext));Assert.That(v.Context.Nodes.All(n=>n.Name==replacement[n.Id.Value]),Is.True);
+            Assert.That(c.ReadView().GameId,Is.EqualTo(before.GameId));Assert.That(c.ReadView().Version,Is.EqualTo(before.Version));Assert.That(c.ReadView().RemainingOps,Is.EqualTo(before.RemainingOps));Assert.That(c.SelectedCountry,Is.EqualTo(selected));
+            v.Captured(old);Assert.That(c.SelectedCountry,Is.EqualTo(selected));replacement["country.france"]="polluted";p.Refresh();Assert.That(v.Context.Nodes.Single(n=>n.Id.Equals(MapViewTests.France)).Name,Is.Not.EqualTo("polluted"));
+            v.Send(MapViewTests.Angola);Assert.That(c.SelectedCountry,Is.EqualTo(MapViewTests.Angola));
+        }
+        [Test] public void Invalid_relabel_keeps_current_context_and_disposed_presenter_rejects_it()
+        {
+            var c=Ordinary();var p=new MapPresenter(c,Names);var v=new Probe();p.Attach(v);var old=v.Context.Id;
+            Assert.Throws<ArgumentException>(()=>p.ReplaceNames(new Dictionary<string,string>()));Assert.That(v.Context.Id,Is.EqualTo(old));Assert.That(v.Disposed,Is.False);v.Send(MapViewTests.Angola);Assert.That(c.SelectedCountry,Is.EqualTo(MapViewTests.Angola));
+            p.Dispose();Assert.Throws<ObjectDisposedException>(()=>p.ReplaceNames(DemoTests.Catalog().Names));
+        }
         [Test] public void Swap_preserves_game_state_and_only_exposes_public_map_fields()
         {
             var c=Ordinary();var before=c.ReadView();using var p=new MapPresenter(c,Names);var a=new Probe();p.Attach(a);var old=a.Context.Id;var b=new Probe();p.Attach(b);

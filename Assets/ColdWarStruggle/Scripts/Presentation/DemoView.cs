@@ -34,14 +34,14 @@ namespace ColdWarStruggle.Presentation
         readonly string[] regions={"region.europe","region.asia","region.middle_east","region.africa","region.central_america","region.south_america"};
         readonly string[] regionNames={"欧洲","亚洲","中东","非洲","中美洲","南美洲"};
         static readonly Color Background=new Color(.035f,.057f,.095f),Panel=new Color(.075f,.105f,.15f),Muted=new Color(.58f,.66f,.76f),Ink=new Color(.91f,.94f,.98f),Blue=new Color(.32f,.64f,1f),Red=new Color(1f,.43f,.4f),Green=new Color(.36f,.83f,.65f);
-        public void Initialize(DemoController controller,IReadOnlyDictionary<string,string> names,IReadOnlyList<DemoScenarioOption> scenarios,int initialScenario=0,DiagnosticMapKind mapKind=DiagnosticMapKind.Tiles,WorldMapAssets worldAssets=null,bool focusSelected=false,CardCatalog printedCards=null,bool showHands=false)
+        public void Initialize(DemoController controller,IReadOnlyDictionary<string,string> names,IReadOnlyList<DemoScenarioOption> scenarios,int initialScenario=0,DiagnosticMapKind mapKind=DiagnosticMapKind.Tiles,WorldMapAssets worldAssets=null,bool focusSelected=false,CardCatalog printedCards=null,bool showHands=false,IReadOnlyDictionary<string,string> alternateNames=null)
         {
             if(focusSelected && mapKind!=DiagnosticMapKind.World)throw new ArgumentException("Selected focus requires the world view.");
             if(initialScenario<0 || initialScenario>=scenarios.Count)throw new ArgumentOutOfRangeException(nameof(initialScenario));
-            this.controller=controller;this.names=names;this.scenarios=scenarios;this.worldAssets=worldAssets;this.printedCards=printedCards;Reset(initialScenario);
+            this.controller=controller;this.names=names;this.scenarios=scenarios;this.worldAssets=worldAssets;this.printedCards=printedCards;ConfigureNameLanguages(alternateNames);Reset(initialScenario);
             if(showHands && (printedCards==null || controller.ReadView().Cards==null))throw new ArgumentException("Hand panel requires a real dealt scenario.");
             handPanelOpen=showHands;
-            mapPresenter?.Dispose();mapPresenter=new MapPresenter(controller,names);SwitchMap(mapKind);
+            mapPresenter?.Dispose();mapPresenter=new MapPresenter(controller,this.names);SwitchMap(mapKind);
             if(focusSelected && mapView is WorldMapView world)world.RequestCountryFocus(controller.SelectedCountry);
         }
         public void ShowError(string message) { fatal=message; }
@@ -89,6 +89,7 @@ namespace ColdWarStruggle.Presentation
             { SwitchMap(nextMap);GUIUtility.ExitGUI(); }
             if(Button(840,115,190,40,"操作方：美国")) { controller.SelectSide(PlayerSide.US);GUIUtility.ExitGUI(); }
             if(Button(1040,115,214,40,"操作方：苏联")) { controller.SelectSide(PlayerSide.USSR);GUIUtility.ExitGUI(); }
+            DrawNameLanguageButton();
             var view=controller.ReadView();mapPresenter.Refresh();
             if(view.Practice!=null && view.Deployment==null){DrawPracticeStatus(view);DrawOpsEffects(view.Practice);}
             if(handPanelOpen && view.Cards!=null){DrawHandPanel(view);return;}
@@ -113,7 +114,8 @@ namespace ColdWarStruggle.Presentation
                 { regionIndex=i;if(mapView is WorldMapView world)world.RequestRegionFocus(regions[i]); }
             bool scoringPreview=wideMap && view.Practice.HasScoring;
             if(scoringPreview)DrawScoringPreview(view,mapLeft,mapWidth);
-            mapView.Draw(new Rect(mapLeft+13,wideMap?(scoringPreview?311:280):321,mapWidth-26,wideMap?(scoringPreview?450:481):440),regions[regionIndex],label,small);
+            lastMapArea=new Rect(mapLeft+13,wideMap?(scoringPreview?311:280):321,mapWidth-26,wideMap?(scoringPreview?450:481):440);
+            mapView.Draw(lastMapArea,regions[regionIndex],label,small);
             var selectedCountry=view.Countries.First(c=>c.Definition.Id.Equals(controller.SelectedCountry));
             Text(972,195,262,26,"已选国家",small);Text(972,228,262,65,Name(controller.SelectedCountry),new GUIStyle(title){fontSize=24});
             Text(972,292,262,40,$"美国 {selectedCountry.US}   /   苏联 {selectedCountry.USSR}");

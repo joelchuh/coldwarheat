@@ -12,6 +12,7 @@
 | 国家、地区、邻接 | [world.json](../../Data/Maps/deluxe-2015/world.json) | countries按primary_region_id筛选；country_edges按端点筛选，查询时双向展开 |
 | 卡牌基础事实 | [cards.json](../../Data/Cards/deluxe-2015/cards.json) | cards按era或id筛选；中国牌kind=China单独读取 |
 | 英文短名称 | [名称字典](../../Data/Localization/en-US.catalog-names.json) | entries[name_key]；仅标题，rules_text_key正文尚未编写 |
+| 中文短名称 | [项目译名](../../Data/Localization/zh-CN.catalog-names.json) | 同一稳定键；项目自译短名，非官方规则全文，运行入口见[名称切换](localized-catalog-names.md) |
 
 ## 地区索引
 

@@ -65,6 +65,8 @@ namespace ColdWarStruggle.Editor
         public static void BuildTurnEndPlaytest()=>BuildAt("Builds/TurnEndPlaytest","ColdWarStruggle Turn End Playtest");
         [MenuItem("ColdWarStruggle/Build Continuous Turn Playtest")]
         public static void BuildContinuousPlaytest()=>BuildAt("Builds/ContinuousPlaytest","ColdWarStruggle Continuous Playtest");
+        [MenuItem("ColdWarStruggle/Build Localized Playtest")]
+        public static void BuildLocalizedPlaytest()=>BuildAt("Builds/LocalizedPlaytest","ColdWarStruggle Localized Playtest");
         static void BuildAt(string directory,string productName=null)
         {
             Prepare();Directory.CreateDirectory(directory);
@@ -103,6 +105,8 @@ namespace ColdWarStruggle.Editor
                     .WithPracticeTurnEnd()
                     .WithPracticeNextTurn()
                     .WithQuickStartScenario(Read(root,"Data/Demo/quick-start-scenario.json"));
+            CatalogNamesLoader.Load(Read(root,"Data/Localization/zh-CN.catalog-names.json"),"zh-CN",catalog.Names.Keys);
+            CatalogNamesLoader.Load(Read(root,"Data/Localization/en-US.catalog-names.json"),"en-US",catalog.Names.Keys);
             WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
             Directory.CreateDirectory(payload);
             Copy(root,"Data/Cards/deluxe-2015/defcon-vp-events.parameters.json",payload,"defcon-vp-events.parameters.json");Copy(root,"Docs/Contracts/defcon-vp-events.schema.json",payload,"defcon-vp-events.schema.json");
@@ -110,6 +114,7 @@ namespace ColdWarStruggle.Editor
             Copy(root,"Data/Maps/deluxe-2015/world.profile.json",payload,"world.profile.json");
             Copy(root,"Data/Demo/influence-scenarios.json",payload,"influence-scenarios.json");Copy(root,"Data/Rulesets/deluxe-2015/influence-placement.json",payload,"influence-placement.json");
             Copy(root,"Data/Localization/en-US.catalog-names.json",payload,"names.json");
+            Copy(root,"Data/Localization/zh-CN.catalog-names.json",payload,"names.zh-CN.json");
             Copy(root,"Data/Demo/event-scenarios.json",payload,"event-scenarios.json");
             Copy(root,"Data/Cards/deluxe-2015/early-influence-batch1.parameters.json",payload,"early-influence-batch1.parameters.json");
             Copy(root,"Docs/Contracts/early-influence-parameters.schema.json",payload,"early-influence-parameters.schema.json");

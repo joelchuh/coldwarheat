@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "id": "module.localized-catalog-names",
+  "kind": "module",
+  "description": "通过稳定ID读取中英文短名，地图和手牌可切换显示；只更新表现context，保持局面、隐私投影、选牌和世界视口。",
+  "status": "implemented-subset",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/CatalogNamesLoader.cs",
+      "symbol": "Load"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/Map/MapPresenter.cs",
+      "symbol": "ReplaceNames"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Localization.cs",
+      "symbol": "SwitchNameLanguage"
+    }
+  ],
+  "inputs": [
+    "显式en-US/zh-CN包、所需稳定ID集合",
+    "当前玩家快照与静态名称，不接受规则或私有牌区对象"
+  ],
+  "outputs": [
+    "只读名称字典",
+    "新地图显示context与相同牌局/版本/选择"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "localization.en_us.catalog_names",
+    "localization.zh_cn.catalog_names"
+  ],
+  "preconditions": [
+    "两种语言ID集合相同且当前地图/手牌名称完整",
+    "旧配置未提供备用包时不显示切换入口"
+  ],
+  "side_effects": [
+    "只刷新显示；不发布GameState、不提交命令、不推进随机",
+    "重建地图context使旧输入失效，保留世界视口与当前选择"
+  ],
+  "stop_conditions": [
+    "坏版本/locale/dataset、重复JSON属性、非字符串/空白/控制字符/超长标题和缺失ID拒绝",
+    "未知语言、空/重复请求ID、未挂载/已销毁的MapPresenter拒绝换名"
+  ],
+  "rule_sources": [
+    {
+      "path": "Data/Descriptors/catalog-names-zh-cn.data.json",
+      "scope": "项目自译短标题，不是官方中文规则"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/LocalizedNamesTests.cs",
+      "status": "passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/MapPresenterTests.cs",
+      "status": "passed"
+    }
+  ],
+  "documentation": "Docs/Wiki/localized-catalog-names.md",
+  "verification": {
+    "report": "Docs/Testing/localized-catalog-names.validation.json",
+    "implementation_tested": true
+  }
+}
