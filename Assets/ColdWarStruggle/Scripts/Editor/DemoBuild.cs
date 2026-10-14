@@ -52,6 +52,8 @@ namespace ColdWarStruggle.Editor
         [MenuItem("ColdWarStruggle/Build DEFCON Event Playtest")]
         public static void BuildDefconEventPlaytest()=>BuildAt("Builds/DefconEventPlaytest","ColdWarStruggle DEFCON Event Playtest");
         [MenuItem("ColdWarStruggle/Build OPS Event Playtest")]
+        public static void BuildRealignmentPlaytest()=>BuildAt("Builds/RealignmentPlaytest","ColdWarStruggle Realignment Playtest");
+        [MenuItem("ColdWarStruggle/Build OPS Event Playtest")]
         public static void BuildOpsEventPlaytest()=>BuildAt("Builds/OpsEventPlaytest","ColdWarStruggle OPS Event Playtest");
         static void BuildAt(string directory,string productName=null)
         {
@@ -86,6 +88,7 @@ namespace ColdWarStruggle.Editor
                     .WithPracticeInfluenceEvents(Read(root,"Data/Cards/deluxe-2015/early-influence-batch1.parameters.json"),Read(root,"Docs/Contracts/early-influence-parameters.schema.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch2.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch2.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
                     .WithPracticeDefconVpEvents(Read(root,"Data/Cards/deluxe-2015/defcon-vp-events.parameters.json"),Read(root,"Docs/Contracts/defcon-vp-events.schema.json"))
                     .WithPracticeTurnOpsEvents(Read(root,"Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json"),Read(root,"Docs/Contracts/persistent-effects-batch1.schema.json"))
+                    .WithPracticeRealignment(Read(root,"Data/Rulesets/deluxe-2015/realignment.json"))
                     .WithQuickStartScenario(Read(root,"Data/Demo/quick-start-scenario.json"));
             WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
             Directory.CreateDirectory(payload);
@@ -116,6 +119,7 @@ namespace ColdWarStruggle.Editor
             Copy(root,"Docs/Contracts/persistent-effects-batch1.schema.json",payload,"persistent-effects-batch1.schema.json");
             Copy(root,"Data/Rulesets/deluxe-2015/space-race.json",payload,"space-race.json");
             Copy(root,"Data/Rulesets/deluxe-2015/coup.json",payload,"coup.json");
+            Copy(root,"Data/Rulesets/deluxe-2015/realignment.json",payload,"realignment.json");
             Copy(root,"Data/Rulesets/deluxe-2015/defcon.json",payload,"defcon.json");
             Copy(root,"Data/Rulesets/deluxe-2015/military-operations.json",payload,"military-operations.json");
             Copy(root,"Data/Rulesets/deluxe-2015/victory.json",payload,"victory.json");

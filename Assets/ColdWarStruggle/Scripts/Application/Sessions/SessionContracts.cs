@@ -82,6 +82,7 @@ namespace ColdWarStruggle.Application
     }
     public interface IGameSession
     {
+        LegalTargetsResult QueryRealignmentTargets(string contextId,long expectedVersion);
         LegalTargetsResult QueryCoupTargets(CardId card,long expectedVersion);
         ScoringPreviewResult QueryScoringPreview(string region,long expectedVersion);
         CardActionOptions QueryCardActions();

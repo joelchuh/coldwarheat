@@ -26,7 +26,8 @@ namespace ColdWarStruggle.Core
             var error=Check(state,side);if(error!=RuleError.None)return error;
             if(state.Deployment!=null)return RuleError.SetupInProgress;
             if(state.Practice.Stage!=ActionPracticeStage.ChooseCard)return RuleError.ActionNotReady;
-            if(kind!=CardActionKind.Space && kind!=CardActionKind.Influence && kind!=CardActionKind.Coup && kind!=CardActionKind.Scoring && kind!=CardActionKind.Event)return RuleError.UnsupportedCardAction;
+            if(kind!=CardActionKind.Space && kind!=CardActionKind.Influence && kind!=CardActionKind.Coup && kind!=CardActionKind.Scoring && kind!=CardActionKind.Event && kind!=CardActionKind.Realignment)return RuleError.UnsupportedCardAction;
+            if(kind==CardActionKind.Realignment && state.Practice.Definition.Realignment==null)return RuleError.UnsupportedCardAction;
             if(kind==CardActionKind.Coup && state.Practice.Risk==null)return RuleError.UnsupportedCardAction;
             if(kind==CardActionKind.Scoring && state.Practice.Definition.Scoring==null)return RuleError.UnsupportedCardAction;
             if(!state.Cards.GetHand(side).Contains(card))return RuleError.CardNotOwned;
@@ -34,7 +35,7 @@ namespace ColdWarStruggle.Core
             if(kind==CardActionKind.Event)return definition.Kind==CardKind.Event && (state.Practice.Definition.InfluenceEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.DefconVpEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.TurnOpsEvents?.Effects.ContainsKey(card)==true)?RuleError.None:RuleError.UnsupportedCardAction;
             if(kind==CardActionKind.Scoring)return definition.Kind==CardKind.Scoring?RuleError.None:RuleError.UnsupportedCardAction;
             if(definition.Kind!=CardKind.Event)return RuleError.UnsupportedCardAction;
-            if(kind==CardActionKind.Influence || kind==CardActionKind.Coup)
+            if(kind==CardActionKind.Influence || kind==CardActionKind.Coup || kind==CardActionKind.Realignment)
             {
                 var opponent=side==PlayerSide.US?CardAffiliation.USSR:CardAffiliation.US;
                 return definition.Affiliation==opponent?RuleError.UnsupportedCardAction:RuleError.None;
@@ -45,6 +46,7 @@ namespace ColdWarStruggle.Core
         }
         public static CardActionTransition Plan(GameState state,PlayerSide side,CardActionKind kind,string actionId,CardId? card=null,CountryId? target=null)
         {
+            if(kind==CardActionKind.Realignment || kind==CardActionKind.RollRealignment || kind==CardActionKind.FinishRealignment)return PlanRealignment(state,side,kind,actionId,card,target);
             if(kind==CardActionKind.Event)return PlanEvent(state,side,actionId,card,target);
             if(kind==CardActionKind.Scoring)return PlanScoring(state,side,actionId,card,target);
             if(kind==CardActionKind.Coup)return PlanCoup(state,side,actionId,card,target);

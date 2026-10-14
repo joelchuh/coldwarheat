@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "id": "data.realignment",
+  "kind": "data",
+  "description": "普通政局调整的骰面、每掷OPS费用与三类修正；目标/邻接/控制/DEFCON从既有权威状态读取，不含事件骰修正。",
+  "status": "ready",
+  "dataset_id": "rules.deluxe2015.realignment",
+  "entrypoints": [
+    {
+      "path": "Data/Rulesets/deluxe-2015/realignment.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "受控Deluxe2015基础规则文件"
+  ],
+  "outputs": [
+    "只读RealignmentDefinition：骰面、OPS费用与三类加值"
+  ],
+  "dependencies": [],
+  "preconditions": [
+    "使用精确字段/profile/来源与领域校验，不能据来源元数据证明文件真实性"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知或缺失字段/重复JSON/不支持来源版本/非整数/无效范围"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "checked_on": "2026-10-14",
+      "sections": [
+        "2.1.5",
+        "6.0",
+        "6.2.1",
+        "6.2.2",
+        "6.2.3",
+        "8.1.5"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/RealignmentTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "validation": {
+    "schema_status": "无通用JSON Schema；严格字段及领域/引用加载器校验"
+  },
+  "verification": {
+    "runtime_consumers_tested": true,
+    "latest_report": "Docs/Testing/playable-realignment.validation.json"
+  }
+}

@@ -53,7 +53,7 @@ namespace ColdWarStruggle.Presentation
         public LegalTargetsResult LegalTargets()
         {
             var v=ReadView();var card=SelectedCard;if(legal==null || legal.Version!=v.Version || legal.Viewer!=SelectedSide || legal.ContextId!=v.ContextId)
-                legal=SelectingCoup && card.HasValue?Session.QueryCoupTargets(card.Value,v.Version):Session.QueryInfluenceTargets(v.ContextId,v.Version);
+                legal=v.Practice?.Stage==ActionPracticeStage.Realigning?Session.QueryRealignmentTargets(v.ContextId,v.Version):SelectingCoup && card.HasValue?Session.QueryCoupTargets(card.Value,v.Version):Session.QueryInfluenceTargets(v.ContextId,v.Version);
             return legal;
         }
         public async Task<PlayerCommandResult> SubmitAsync(int points)

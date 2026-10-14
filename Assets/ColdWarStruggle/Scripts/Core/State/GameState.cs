@@ -61,6 +61,9 @@ namespace ColdWarStruggle.Core
         public IReadOnlyList<string> GetHand(PlayerSide side) => hands.TryGetValue(side,out var h)?h:throw new ArgumentOutOfRangeException(nameof(side));
         internal GameState Apply(IReadOnlyDictionary<CountryId,CountryState> countries,int spent,int count)
             => new GameState(Map,countries,Operations,GameId,checked(Version+1),spent,checked(EventSequence+count),Ended,Cards==null?hands:null,InfluenceEvent,Turn,Deployment,Cards,RandomState,Practice);
+        internal GameState ApplyRealignment(IReadOnlyDictionary<CountryId,CountryState> countries,int spent,RandomSnapshot random)
+            =>new GameState(Map,countries,Operations,GameId,checked(Version+1),spent,checked(EventSequence+1),Ended,
+                influenceEvent:InfluenceEvent,turn:Turn,deployment:Deployment,cards:Cards,randomState:random,practice:Practice);
         internal GameState WithPractice(ActionPracticeState practice,OperationsContext operations,CardZones cards,RandomSnapshot random,IReadOnlyDictionary<CountryId,CountryState> countries=null,bool? ended=null)
             =>new GameState(Map,countries??Countries,operations,GameId,checked(Version+1),0,checked(EventSequence+1),ended??Ended,
                 influenceEvent:InfluenceEvent,turn:Turn,cards:cards,randomState:random,practice:practice);

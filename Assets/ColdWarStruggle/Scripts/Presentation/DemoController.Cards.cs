@@ -39,9 +39,11 @@ namespace ColdWarStruggle.Presentation
         }
         public Task<CardActionResult> PlayCardAsync(CardActionKind kind)
         {
-            if(kind!=CardActionKind.Influence && kind!=CardActionKind.Space && kind!=CardActionKind.Coup && kind!=CardActionKind.Scoring && kind!=CardActionKind.Event)throw new ArgumentException("A card use is required.");
+            if(kind!=CardActionKind.Influence && kind!=CardActionKind.Space && kind!=CardActionKind.Coup && kind!=CardActionKind.Scoring && kind!=CardActionKind.Event && kind!=CardActionKind.Realignment)throw new ArgumentException("A card use is required.");
             var card=SelectedCard??throw new InvalidOperationException("Select a card first.");return SendCard(kind,card,kind==CardActionKind.Coup?SelectedCountry:(CountryId?)null);
         }
+        public Task<CardActionResult> RollRealignmentAsync()=>SendCard(CardActionKind.RollRealignment,target:SelectedCountry);
+        public Task<CardActionResult> FinishRealignmentAsync()=>SendCard(CardActionKind.FinishRealignment);
         public Task<CardActionResult> StartPracticeAsync()=>SendCard(CardActionKind.StartPractice);
         public Task<CardActionResult> FinishInfluenceAsync()=>SendCard(CardActionKind.FinishInfluence);
         async Task<CardActionResult> SendCard(CardActionKind kind,CardId? card=null,CountryId? target=null)

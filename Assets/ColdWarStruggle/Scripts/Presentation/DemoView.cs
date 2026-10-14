@@ -107,7 +107,7 @@ namespace ColdWarStruggle.Presentation
             Text(44,513,210,60,(view.Deployment!=null?view.Deployment.RequiredAmount-controller.DeploymentDraft.Sum(a=>a.Amount):view.RemainingOps).ToString(),large);
             Text(44,594,208,150,view.Deployment!=null?"先苏联、后美国：\n1. 选国后用右侧 ±1 分配\n2. 用完额度后确认\n3. 按提示切换操作方\n草稿未确认不改变局面。\n"+(view.Cards!=null?"可先查看真实初始手牌。":"手牌只是示例，尚未发牌。"):view.Practice!=null?"行动试玩：\n1. 打开手牌选择本方牌\n2. 选择影响力或太空\n3. 投放后明确结束行动\n4. 按提示切换操作方\n当前无头条、回合末或完整事件。":view.Event==null?"试一试：\n1. 在默认目标投放 3 点\n2. 重发命令，观察不重复扣点\n3. 切换另一方，观察资格检查\n4. 重置后选择其他国家":"事件练习：\n1. 点击开始事件\n2. 按提示切换选择方\n3. 选国，按右侧提示编辑\n4. 确认后一次结算\n事件不消耗 OPS。",small);
             }
-            Text(mapLeft+18,194,mapWidth-36,28,controller.SelectingCoup?"政变目标 · 绿色为合法目标，选国后在右侧确认":view.Event==null && view.Deployment==null?"世界地图 · 绿色为可投放目标":"国家面板 · 绿色为合法选择，确认后才结算",small);
+            Text(mapLeft+18,194,mapWidth-36,28,view.Practice?.Stage==ActionPracticeStage.Realigning?"政局调整 · 绿色为合法目标，每次掷骰后可重新选国":controller.SelectingCoup?"政变目标 · 绿色为合法目标，选国后在右侧确认":view.Event==null && view.Deployment==null?"世界地图 · 绿色为可投放目标":"国家面板 · 绿色为合法选择，确认后才结算",small);
             for(int i=0;i<regions.Length;i++)
                 if(Button(mapLeft+18+(wideMap?i:i%3)*(wideMap?145:201),232+(wideMap?0:i/3)*39,wideMap?137:193,32,(regionIndex==i?"● ":"")+regionNames[i]))
                 { regionIndex=i;if(mapView is WorldMapView world)world.RequestRegionFocus(regions[i]); }

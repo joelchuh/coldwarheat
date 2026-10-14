@@ -33,6 +33,15 @@ namespace ColdWarStruggle.Presentation
                 Text(972,374,262,66,"行动已交给 "+Side(p.Actor)+"。\n当前操作方不能替对方出牌。",small);
                 if(Button(972,445,262,42,"切换至 "+Side(p.Actor))) {controller.SelectSide(p.Actor);GUIUtility.ExitGUI();}
             }
+            else if(p.Stage==ActionPracticeStage.Realigning)
+            {
+                Text(972,368,262,38,"调整："+CardTitle(p.ActiveCard.Value),small);
+                GUI.enabled=controller.LegalTargets().Targets.Contains(controller.SelectedCountry);
+                if(Button(972,410,262,39,"调整一次："+Name(controller.SelectedCountry)))RollRealignment();
+                GUI.enabled=true;
+                if(Button(972,457,262,39,view.RemainingOps==0?"结束调整并弃牌":$"结束调整（放弃 {view.RemainingOps} OPS）"))FinishRealignment();
+                Text(972,504,262,66,$"剩余 {view.RemainingOps} OPS；每次后可重选国家。\n双方各掷骰，自己也可能失去影响力。",small);
+            }
             else if(p.Stage==ActionPracticeStage.PlacingInfluence)
             {
                 Text(972,368,262,38,"使用："+CardTitle(p.ActiveCard.Value),small);
@@ -47,7 +56,7 @@ namespace ColdWarStruggle.Presentation
                 var selected=controller.SelectedCard;
                 if(!selected.HasValue)
                 {
-                    Text(972,374,262,59,"先从本方手牌选择一张牌，再决定用于影响力、政变、太空、计分或已支持事件。",small);
+                    Text(972,374,262,59,"先从本方手牌选择一张牌，再决定用于影响力、政变、调整、太空、计分或已支持事件。",small);
                     if(Button(972,440,262,43,"打开手牌 · 选择一张"))OpenCards();
                 }
                 else
@@ -79,13 +88,24 @@ namespace ColdWarStruggle.Presentation
                     var reason=option.Influence!=RuleError.None?"影响力："+ErrorText(option.Influence):"";
                     if(option.Space!=RuleError.None)reason+="\n太空："+ErrorText(option.Space);
                     if(!controller.SelectingCoup)
-                    { if(Button(972,500,262,32,"重新选牌"))OpenCards();Text(972,537,262,38,reason,small); }
+                    {
+                        GUI.enabled=option.Realignment==RuleError.None;
+                        if(Button(972,500,126,32,"政局调整"))UseCard(CardActionKind.Realignment);
+                        GUI.enabled=true;
+                        if(Button(1108,500,126,32,"重新选牌"))OpenCards();Text(972,537,262,38,reason,small);
+                    }
                     }
                 }
             }
             var result=controller.LastCardResult;
             string message="";
-            if(result?.ActivatedOpsEffect!=null)message="持续效果已生效\n"+OpsEffectSummary(result.ActivatedOpsEffect)+"\n本回合有效，弃牌或移出不取消。";
+            if(result?.Realignment!=null)
+            {
+                var r=result.Realignment;
+                message=$"美国 {r.UsRoll} + {r.US.Total} = {r.UsTotal}；苏联 {r.UssrRoll} + {r.USSR.Total} = {r.UssrTotal}\n";
+                message+=r.RemovedSide.HasValue?$"{Name(r.Target)}：{Side(r.RemovedSide.Value)}移除 {r.Removed}\n可重选目标，或结束调整。":$"{Name(r.Target)}：影响力无变化。\n本次仍消耗 OPS。";
+            }
+            else if(result?.ActivatedOpsEffect!=null)message="持续效果已生效\n"+OpsEffectSummary(result.ActivatedOpsEffect)+"\n本回合有效，弃牌或移出不取消。";
             else if(result?.DefconVpEvent!=null)
             {
                 var e=result.DefconVpEvent;
@@ -120,6 +140,10 @@ namespace ColdWarStruggle.Presentation
         { try { await controller.PlayCardAsync(kind); } catch(Exception e) { fatal=e.Message;Debug.LogException(e); } }
         async void FinishCard()
         { try { await controller.FinishInfluenceAsync(); } catch(Exception e) { fatal=e.Message;Debug.LogException(e); } }
+        async void RollRealignment()
+        { try { await controller.RollRealignmentAsync(); } catch(Exception e) { fatal=e.Message;Debug.LogException(e); } }
+        async void FinishRealignment()
+        { try { await controller.FinishRealignmentAsync(); } catch(Exception e) { fatal=e.Message;Debug.LogException(e); } }
         async void RetryCard()
         { try { await controller.RetryCardAsync(); } catch(Exception e) { fatal=e.Message;Debug.LogException(e); } }
     }

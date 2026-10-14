@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "id": "module.playable-realignment",
+  "kind": "module",
+  "status": "implemented-subset",
+  "description": "普通政局调整的纯计算、真实手牌OPS预算、逐次双骰与结束弃牌；公开修正/合法目标驱动可替换地图，特殊事件调整与骰干预未接。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/RealignmentRules.cs",
+      "symbol": "RealignmentRules"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Realignment.cs",
+      "symbol": "CanRollRealignment"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Realignment.cs",
+      "symbol": "CheckRealignmentTarget"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Realignment.cs",
+      "symbol": "PlanRealignment"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/CardActionContracts.cs",
+      "symbol": "PublicRealignmentResult"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/LocalGameHost.Cards.cs",
+      "symbol": "QueryRealignment"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/RealignmentDefinitionLoader.cs",
+      "symbol": "LoadSubset"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.Realignment.cs",
+      "symbol": "WithPracticeRealignment"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Cards.cs",
+      "symbol": "RollRealignmentAsync"
+    }
+  ],
+  "inputs": [
+    "权威地图/完整当前国家快照、DEFCON、实际操作方与规则定义",
+    "真实手牌开始/目标逐掷/结束命令，无客户端骰子或OPS"
+  ],
+  "outputs": [
+    "不可变双方修正与骰值、移除方/量；原子国家/预算/RNG/版本下一状态",
+    "本身份合法目标查询与公开结果，无种子或对方手牌"
+  ],
+  "dependencies": [
+    "module.playable-flat-ops-events",
+    "module.defcon"
+  ],
+  "data_dependencies": [
+    "rules.deluxe2015.realignment",
+    "map.deluxe2015.world",
+    "rules.deluxe2015.defcon"
+  ],
+  "preconditions": [
+    "普通己方或中立牌OPS；已支持Flat效果只改变初始预算",
+    "目标有对方影响力且符合DEFCON，无投放可达性要求；每次读当前邻控"
+  ],
+  "side_effects": [
+    "每次消耗一份规则费用；固定US再USSR双骰，仅移除低方影响力，平局仍付费",
+    "开始牌入Resolving，结束弃置并根+1；可放弃余量，不混用OPS用途"
+  ],
+  "stop_conditions": [
+    "阶段/身份/上下文/预算/目标不符不消费RNG；溢出不提交，同ID不同请求冲突",
+    "特殊免费事件调整、活动骰干预、中国牌和对手事件加OPS、完整回合均未接"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "checked_on": "2026-10-14",
+      "sections": [
+        "2.1.5",
+        "6.0",
+        "6.2.1",
+        "6.2.2",
+        "6.2.3",
+        "8.1.5"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/RealignmentTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayRealignmentTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayRealignmentCatalogTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/playable-realignment.md",
+  "verification": {
+    "report": "Docs/Testing/playable-realignment.validation.json"
+  }
+}

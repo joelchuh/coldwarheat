@@ -655,3 +655,7 @@ DefconEventPlaytest已接Duck and Cover / Nuclear Test Ban，支持十张直接E
 ## 34. 两张持续 OPS 事件试玩（2026-10-14）
 
 OpsEventPlaytest已接遏制政策/红色恐怖清洗的有限单回合持续实例，共十二张直接Event；统一报价影响投放、政变强度/军事与太空门槛，星号移出不取消效果。先读Docs/Wiki/playable-flat-ops-events.md及模块JSON。1768项回归、37份载荷及初始地图/手牌渲染已过；最终审查以工作记录为准。完整到期/取消/存档、地区奖励、对手Event加OPS/头条/回合末仍未接；动作Complete保持效果且不跨回合。鼠标及激活后/选牌结果面板视觉未验收。
+
+## 35. 普通政局调整试玩（2026-10-14）
+
+RealignmentPlaytest已接真实手牌普通调整：预算冻结、每次当前目标/邻控、固定美苏双骰、移除与明确结束弃牌。1815项回归通过，构建/审查以最新报告为准。先读Docs/Wiki/playable-realignment.md及模块/数据JSON；不增加军事/不降DEFCON，不要求投放可达；特殊事件调整、骰干预、中国牌/对手Event加OPS与完整回合未接。初始渲染不能替代调整面板/鼠标验收。

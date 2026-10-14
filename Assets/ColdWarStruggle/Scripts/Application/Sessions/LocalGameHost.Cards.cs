@@ -8,6 +8,15 @@ namespace ColdWarStruggle.Application
     public sealed partial class LocalGameHost
     {
         CardActionOptions QueryCards(PlayerSide side) { lock(gate)return new CardActionOptions(state,side); }
+        LegalTargetsResult QueryRealignment(PlayerSide side,string contextId,long version)
+        {
+            lock(gate)
+            {
+                var error=version!=state.Version?RuleError.StaleVersion:contextId!=state.Operations.Id?RuleError.StaleContext:ActionPracticeRules.CanRollRealignment(state,side);
+                var targets=error==RuleError.None?state.Map.Countries.Where(c=>ActionPracticeRules.CheckRealignmentTarget(state,side,c.Id)==RuleError.None).Select(c=>c.Id).ToArray():Array.Empty<CountryId>();
+                return new LegalTargetsResult(error,state.Version,side,state.Operations.Id,targets);
+            }
+        }
         LegalTargetsResult QueryCoup(PlayerSide side,CardId card,long version)
         {
             lock(gate)
@@ -35,7 +44,7 @@ namespace ColdWarStruggle.Application
                     if(!plan.Accepted)result=RejectCard(plan.Error,side);
                     else
                     {
-                        result=new CardActionResult(RuleError.None,new PlayerViewSnapshot(plan.NextState,side),plan.SpaceReceipt,plan.CoupReceipt,plan.ScoringResult,plan.EventTransition,plan.DefconVpEvent,plan.ActivatedOpsEffect);
+                        result=new CardActionResult(RuleError.None,new PlayerViewSnapshot(plan.NextState,side),plan.SpaceReceipt,plan.CoupReceipt,plan.ScoringResult,plan.EventTransition,plan.DefconVpEvent,plan.ActivatedOpsEffect,plan.Realignment);
                         state=plan.NextState;
                     }
                 }

@@ -182,3 +182,7 @@ INF-A/B、COUP-A/B、REAL-A 的基础期望依据本页规则摘要；其余是�
 [Reformer长期限制](late-influence-batch1.md)是独立事件政变门禁：实际苏联Actor不能在欧洲政变，免费不豁免；不扩展到调整、战争或美国政变。
 
 [LR1骰方修正与地区门禁](late-restrictions-batch1.md)只输出本来源贡献，普通/事件OPS继续组合预算、条约、DEFCON等完整合法性。
+
+## 普通政局调整已实现（2026-10-14）
+
+上述第9节是历史设计路径；实际可运行入口为[普通政局调整试玩](playable-realignment.md)及模块JSON，Core/Rules/RealignmentRules.Calculate与ActionPracticeRules.PlanRealignment，已接真实手牌/逐骰/预算/公开地图查询。特殊事件骰干预、免费授权及存档仍待接入。
