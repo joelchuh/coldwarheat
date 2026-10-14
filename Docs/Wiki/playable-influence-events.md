@@ -1,7 +1,7 @@
 # 真实手牌中的八张影响力事件
 
 > description: 查已实现影响力事件的真实出牌、受益方选择、星号去向、完成事务和Demo操作。
-> 状态：1691项回归与构建通过，初始地图/手牌渲染已检查；独立审查进行中，真实鼠标未验证。
+> 状态：1691项回归与构建通过，初始地图/手牌渲染已检查；独立审查无阻塞项，真实鼠标未验证。
 > 入口：[模块JSON](../Descriptors/playable-influence-events.module.json)、[八牌规则/旧服务](first-influence-events.md)。
 
 本批把已存在的处理器接入同一LocalGameHost和ActionPractice。事件定义来自early-influence-batch1/batch2参数与既有加载器，不复制每牌数值或在UI里写效果。PracticeInfluenceCatalog绑定同一Map/CardCatalog，核对CardId/EffectId/印刷阵营、已支持的纯影响力类型和地图引用；不能把仍未实现的任意效果当作空事件完成。
@@ -41,3 +41,5 @@
 ![真实手牌](../Images/playable-events-hands.png)
 
 证据：[验证报告](../Testing/playable-influence-events.validation.json)、[工作记录](../Worklogs/2026-10-14-playable-influence-events.md)。截图只证明初始渲染；程序化控制器/地图测试与真实鼠标验收分别记录。
+
+已记录非阻塞反馈问题：切换双方并重发事件起始命令时，历史待选收据可能显示“完成/0项变化”，不影响已结算权威状态；详见工作记录，后续完善收据提示。

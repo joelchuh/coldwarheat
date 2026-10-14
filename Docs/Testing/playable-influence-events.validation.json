@@ -3,7 +3,7 @@
   "id": "validation.playable-influence-events",
   "description": "八张影响力事件接真实手牌的TDD、构建、载荷、初始渲染和独立审查；选择鼠标流程单独标未验收。",
   "date": "2026-10-14",
-  "status": "tests-build-render-passed-review-pending-mouse-unverified",
+  "status": "tests-build-render-and-review-passed-mouse-unverified",
   "baseline_commit": "687912e12a7e69e52c3edd232d37e327b9c26f77",
   "runs": [
     {
@@ -529,8 +529,9 @@
       }
     ],
     "mouse_status": "unverified",
-    "mouse_reason": "Earlier fresh Playtest capture showed wallpaper and activation failed; no reliable mouse input. No new activation retry in this batch.",
-    "limitations": "Captures show initial action map and open 8+8 hands. They do not show selected Event button, pending choice, or prove mouse submission."
+    "mouse_reason": "Fresh EventPlaytest window id7342510 matched title/path; capture showed wallpaper, activation failed to activate captured window. No clicks performed.",
+    "limitations": "Captures show initial action map and open 8+8 hands. They do not show selected Event button, pending choice, or prove mouse submission.",
+    "interactive_process_started": 35444
   },
   "metadata_validation": {
     "status": "passed",
@@ -542,7 +543,15 @@
     "files_read": 228
   },
   "review": {
-    "status": "pending"
+    "status": "ready-to-merge",
+    "reviewed_head": "9a593246b3bf91b1ffcbef684f085b8889580dbc",
+    "critical": 0,
+    "important": 0,
+    "minor_deferred": [
+      "Historical AwaitingChoice startup receipt can be formatted as completed with zero changes after side switches/retry. Authoritative state stays correct."
+    ],
+    "independent_evidence": "Matched1691 XML,198 source hashes,35payloads,exe/buildlog; initial map/hands inspected. Git access denied in reviewer sandbox; fixed diff reviewed.",
+    "declined_rulings": "Docs/Worklogs/2026-10-14-playable-influence-events.md"
   },
   "scope": "Eight existing pure influence effects, direct Event use including opponent affiliation; no opponent-event plus OPS, persistent effects, headline/end-turn/save/full game."
 }
