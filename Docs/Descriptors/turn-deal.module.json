@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "id": "module.turn-deal",
+  "kind": "module",
+  "description": "纯规则补牌计划：复用回合手牌目标，普通旧牌先发完再洗弃牌，跨时代只混新牌与剩余牌库；保留中国牌/移出区，成对返回新牌区和随机状态。",
+  "status": "implemented-subset",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/TurnDealService.cs",
+      "symbol": "TurnDealService"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/TurnDealService.cs",
+      "symbol": "Plan"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/TurnDealService.cs",
+      "symbol": "TurnDealPlan"
+    }
+  ],
+  "inputs": [
+    "经审核CardCatalog与完整CardZones",
+    "可信TurnStart的GameTurnContext、显式IRandomProvider；HandTarget来自共享日历"
+  ],
+  "outputs": [
+    "权威私有TurnDealPlan：Before/Cards/Turn/Random、双方补牌数、时代加入标志和弃牌重洗数"
+  ],
+  "dependencies": [
+    "module.card-zones",
+    "module.turn-calendar",
+    "module.deterministic-random"
+  ],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "rules.deluxe2015.turn-flow"
+  ],
+  "preconditions": [
+    "调用方确认TurnStart且回合末/特殊选择已完成；此服务不授权跳回合",
+    "没有Resolving；目录与牌区匹配，目标时代连续",
+    "随机源Fork提供独立可推进副本；返回Cards/Random由宿主原子提交，完整私有计划不向客户端投影"
+  ],
+  "side_effects": [
+    "纯服务仅推进随机副本，不改原随机或输入牌区；无文件/UI/网络操作"
+  ],
+  "stop_conditions": [
+    "空输入、残留Resolving、错目录/时代跳跃/非首回合加入新时代拒绝",
+    "可用普通牌不足目标时整计划拒绝，未采用少发或虚构牌裁定",
+    "随机耗尽抛出，不发布半完成牌区",
+    "不执行DEFCON改善、太空计数重置、头条、命令去重或Turn推进"
+  ],
+  "rule_sources": [
+    {
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "sections": [
+        "4.1",
+        "4.3",
+        "4.3.1",
+        "4.4",
+        "4.5B"
+      ],
+      "checked_on": "2026-10-14"
+    },
+    {
+      "path": "Docs/Architecture/turn-deal-service.md",
+      "scope": "倒序Fisher–Yates、苏美交替、按需重洗和不足失败的工程契约，非额外官方裁定"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/TurnDealTests.cs",
+      "status": "14-passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/turn-deal.md",
+  "verification": {
+    "report": "Docs/Testing/turn-deal.validation.json",
+    "implementation_tested": true,
+    "ui": "No new UI; existing TurnEndPlaytest unchanged.",
+    "unity_editmode_total": 1974
+  }
+}
