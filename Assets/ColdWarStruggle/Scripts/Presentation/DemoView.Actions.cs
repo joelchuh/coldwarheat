@@ -12,13 +12,15 @@ namespace ColdWarStruggle.Presentation
         void DrawPracticeStatus(PlayerViewSnapshot view)
         {
             var p=view.Practice;
-            Block(new Rect(26,67,784,34),Background);
-            Text(28,70,780,28,$"行动试玩 {p.Round}/{p.RoundLimit}  |  VP（美+ / 苏−） {p.VpForUS}  |  太空 美 {p.UsSpace} / 苏 {p.UssrSpace}",small);
+            Block(new Rect(26,67,1228,38),Background);
+            Text(28,70,1220,30,$"{Side(p.Actor)} 行动 {p.Round}/{p.RoundLimit}  |  VP（美+ / 苏−）{p.VpForUS}  |  DEFCON {p.Defcon?.ToString()??"—"}  |  军事累计 美 {p.UsMilitary?.ToString()??"—"} / 苏 {p.UssrMilitary?.ToString()??"—"}  |  太空 美 {p.UsSpace} / 苏 {p.UssrSpace}",small);
         }
         void DrawPracticeControls(PlayerViewSnapshot view)
         {
             var p=view.Practice;
-            if(p.Stage==ActionPracticeStage.Complete)
+            if(p.Winner.HasValue)
+                Text(972,374,262,140,"核战结束 · "+Side(p.Winner.Value)+" 获胜。\n导致 DEFCON 降至 1 的行动方判负。\n可重置后尝试其他路线。",label);
+            else if(p.Stage==ActionPracticeStage.Complete)
                 Text(972,374,262,140,"本回合行动试玩已结束。\n回合末审核与下一回合尚未接入。可重置重新尝试不同路线。",label);
             else if(p.Actor!=view.Viewer)
             {
@@ -39,7 +41,7 @@ namespace ColdWarStruggle.Presentation
                 var selected=controller.SelectedCard;
                 if(!selected.HasValue)
                 {
-                    Text(972,374,262,59,"先从本方手牌选择一张牌，再决定用于影响力或太空。",small);
+                    Text(972,374,262,59,"先从本方手牌选择一张牌，再决定用于影响力、政变或太空。",small);
                     if(Button(972,440,262,43,"打开手牌 · 选择一张"))OpenCards();
                 }
                 else
@@ -51,20 +53,36 @@ namespace ColdWarStruggle.Presentation
                     GUI.enabled=option.Space==RuleError.None;
                     if(Button(1108,411,126,40,"送入太空"))UseCard(CardActionKind.Space);
                     GUI.enabled=true;
-                    if(Button(972,460,262,32,"重新选择手牌"))OpenCards();
+                    GUI.enabled=option.Coup==RuleError.None;
+                    if(Button(972,458,126,35,"选择政变目标")) {controller.SelectCoupUse();GUIUtility.ExitGUI();}
+                    GUI.enabled=true;
+                    if(Button(1108,458,126,35,"重新选牌"))OpenCards();
+                    if(controller.SelectingCoup)
+                    {
+                        GUI.enabled=controller.LegalTargets().Targets.Contains(controller.SelectedCountry);
+                        if(Button(972,500,262,36,"确认政变："+Name(controller.SelectedCountry)))UseCard(CardActionKind.Coup);
+                        GUI.enabled=true;
+                        var country=view.Countries.First(c=>c.Definition.Id.Equals(controller.SelectedCountry));
+                        if(p.Defcon==2 && country.Definition.Battleground)Text(972,538,262,36,"危险：战场政变会触发核战，当前行动方判负！",small);
+                    }
                     var reason=option.Influence!=RuleError.None?"影响力："+ErrorText(option.Influence):"";
                     if(option.Space!=RuleError.None)reason+="\n太空："+ErrorText(option.Space);
-                    Text(972,496,262,51,reason,small);
+                    if(!controller.SelectingCoup)Text(972,500,262,58,reason,small);
                 }
             }
             var result=controller.LastCardResult;
             string message="";
-            if(result!=null)message=!result.Accepted?ErrorText(result.Error):result.Space!=null
+            if(result?.Coup!=null)
+            {
+                var c=result.Coup;message=$"政变骰 {c.Roll} + OPS {c.Strength}，差额 {c.Margin}\n移除 {c.Removed} / 增加 {c.Added} · 军事 +{c.MilitaryCredit}";
+                if(c.DefconTo.HasValue)message+=$"\nDEFCON {c.DefconFrom} → {c.DefconTo}";
+            }
+            else if(result!=null)message=!result.Accepted?ErrorText(result.Error):result.Space!=null
                 ?$"太空骰 {result.Space.Roll} · {(result.Space.Success?"成功":"失败")}，轨道 {result.Space.From} → {result.Space.To}\nVP 变化 {result.Space.VpForUS:+0;-0;0}；牌已弃置。":"行动命令已接受。";
             if(controller.LastResult!=null)message=controller.LastResult.Accepted?"投放成功，费用："+string.Join(" + ",controller.LastResult.Costs):ErrorText(controller.LastResult.Error);
-            Text(972,550,262,53,message,small);
+            Text(972,578,262,65,message,small);
             GUI.enabled=controller.CanRetryCard;
-            if(Button(972,605,262,29,"重发出牌命令（幂等）"))RetryCard();
+            if(Button(972,646,262,27,"重发出牌命令（幂等）"))RetryCard();
             GUI.enabled=true;
         }
         async void StartCardPractice()

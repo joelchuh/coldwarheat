@@ -39,6 +39,7 @@ namespace ColdWarStruggle.Core
                 throw new ArgumentException("State must cover the map exactly.");
             if((cards==null)!=(randomState==null) || (cards!=null && hands!=null))
                 throw new ArgumentException("Cards and random state must be paired, without fixture hands.");
+            if(practice?.Risk!=null && !ReferenceEquals(map,practice.Risk.Definition.Defcon.Map))throw new ArgumentException("Practice risk map mismatch.");
             Map=map;Operations=context;GameId=gameId;Version=version;SpentOps=spentOps;EventSequence=eventSequence;Ended=ended;
             Cards=cards;RandomState=randomState;Practice=practice;
             if(practice!=null && (cards==null || turn==null || turn.Number!=practice.Space.Turn.Number))throw new ArgumentException("Practice requires real cards and the matching turn.");
@@ -58,8 +59,8 @@ namespace ColdWarStruggle.Core
         public IReadOnlyList<string> GetHand(PlayerSide side) => hands.TryGetValue(side,out var h)?h:throw new ArgumentOutOfRangeException(nameof(side));
         internal GameState Apply(IReadOnlyDictionary<CountryId,CountryState> countries,int spent,int count)
             => new GameState(Map,countries,Operations,GameId,checked(Version+1),spent,checked(EventSequence+count),Ended,Cards==null?hands:null,InfluenceEvent,Turn,Deployment,Cards,RandomState,Practice);
-        internal GameState WithPractice(ActionPracticeState practice,OperationsContext operations,CardZones cards,RandomSnapshot random)
-            =>new GameState(Map,Countries,operations,GameId,checked(Version+1),0,checked(EventSequence+1),Ended,
+        internal GameState WithPractice(ActionPracticeState practice,OperationsContext operations,CardZones cards,RandomSnapshot random,IReadOnlyDictionary<CountryId,CountryState> countries=null,bool? ended=null)
+            =>new GameState(Map,countries??Countries,operations,GameId,checked(Version+1),0,checked(EventSequence+1),ended??Ended,
                 influenceEvent:InfluenceEvent,turn:Turn,cards:cards,randomState:random,practice:practice);
         internal GameState WithInfluenceEvent(InfluenceEventExecution execution)
             => new GameState(Map,Countries,Operations,GameId,Version,SpentOps,EventSequence,Ended,Cards==null?hands:null,execution,Turn,Deployment,Cards,RandomState,Practice);

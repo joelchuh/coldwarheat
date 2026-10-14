@@ -6,13 +6,13 @@
 
 当前已进入**首批 Unity 原型实现阶段**。仓库已整理 84 个国家及邻接、103 张基础牌的印刷定义、初始布置、回合流程、行动、计分、胜负和分批卡牌事件设计。具体参数绑定与未确认边界见[正式数据索引](Docs/Wiki/map-card-data.md)及各牌的验证报告。
 
-已创建 Unity 6000.6.0f1 工程、纯 C# 规则核心和单窗口 Demo，最新 **1599 项 EditMode 测试通过**。新版 [真实出牌行动试玩](Docs/Wiki/playable-card-actions.md) 位于 `E:\TwilightStruggle\Builds\PlayableDemo\ColdWarStruggleDemo.exe`：完成真实发牌/部署后，显式跳过头条，从本方手牌使用影响力或太空，观察牌去向、行动方、太空与VP更新。原十三练习仍保留，旧FirstDemo/PreviewDemo文件不自动更新。
+已创建 Unity 6000.6.0f1 工程、纯 C# 规则核心和单窗口 Demo，最新 **1621 项 EditMode 测试通过**。新版[政变与风险试玩](Docs/Wiki/playable-coup-actions.md)位于 `E:\TwilightStruggle\Builds\RiskDemo\ColdWarStruggleDemo.exe`：完成真实发牌/部署后，显式跳过头条，用本方手牌投放影响力、政变或送太空，观察牌去向、行动方、DEFCON、军事累计、太空和VP。旧Demo文件不自动更新。
 
 ![新版真实手牌界面](Docs/Images/playable-demo-hands.png)
 
 世界地图已含84国热点，可切World/Tiles/Table；规则邻接与画面分离。一个窗口共用权威局面与两个固定身份会话，正常视图只读自己的牌，测试观察可查看双方。重置新建GameId并使用固定测试发牌结果。当前未接完整头条、对手事件OPS、计分牌/中国牌、回合末、存档、联网或AI，不能完整打一局；部分选牌路线会因余牌尚未支持而需要重置。102项效果绑定不等于102个已实现处理器。
 
-DEFCON、军事行动、基础胜负、地区计分与政变已有纯规则服务；本批只接通普通影响力和太空出牌。构建与28份载荷一致性已验证，手牌真实渲染已检查；computer-use窗口激活失败，鼠标流程仍未验收。见[验证报告](Docs/Testing/playable-card-actions.validation.json)。
+普通政变、DEFCON、军事累计和核战胜負已接入；地区计分等服务仍待编排，不能完整打一局。构建与32份载荷一致性已验证，真实部署渲染已检查；computer-use窗口仍报 `failed to activate captured window`，政变、大地图和鼠标出牌尚未验收。见[验证报告](Docs/Testing/playable-coup-actions.validation.json)。
 
 ## 已确认的工程原则
 

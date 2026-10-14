@@ -52,8 +52,8 @@ namespace ColdWarStruggle.Presentation
         public LocalTestSnapshot ReadBoth() => host.ReadLocalTestSnapshot();
         public LegalTargetsResult LegalTargets()
         {
-            var v=ReadView();if(legal==null || legal.Version!=v.Version || legal.Viewer!=SelectedSide || legal.ContextId!=v.ContextId)
-                legal=Session.QueryInfluenceTargets(v.ContextId,v.Version);
+            var v=ReadView();var card=SelectedCard;if(legal==null || legal.Version!=v.Version || legal.Viewer!=SelectedSide || legal.ContextId!=v.ContextId)
+                legal=SelectingCoup && card.HasValue?Session.QueryCoupTargets(card.Value,v.Version):Session.QueryInfluenceTargets(v.ContextId,v.Version);
             return legal;
         }
         public async Task<PlayerCommandResult> SubmitAsync(int points)

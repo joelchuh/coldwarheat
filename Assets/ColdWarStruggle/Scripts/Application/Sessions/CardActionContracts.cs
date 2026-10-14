@@ -8,9 +8,10 @@ namespace ColdWarStruggle.Application
     {
         public CardActionKind Kind { get; }
         public CardId? Card { get; }
-        public CardActionCommand(string id,string game,long version,CardActionKind kind,CardId? card=null):base(id,game,version)
-        { Kind=kind;Card=card; }
-        internal override bool SameContent(SessionCommand other)=>other is CardActionCommand c && c.GameId==GameId && c.ExpectedVersion==ExpectedVersion && c.Kind==Kind && Nullable.Equals(c.Card,Card);
+        public CountryId? Target { get; }
+        public CardActionCommand(string id,string game,long version,CardActionKind kind,CardId? card=null,CountryId? target=null):base(id,game,version)
+        { Kind=kind;Card=card;Target=target; }
+        internal override bool SameContent(SessionCommand other)=>other is CardActionCommand c && c.GameId==GameId && c.ExpectedVersion==ExpectedVersion && c.Kind==Kind && Nullable.Equals(c.Card,Card) && Nullable.Equals(c.Target,Target);
     }
     public sealed class PublicPracticeView
     {
@@ -25,9 +26,13 @@ namespace ColdWarStruggle.Application
         public int UsAttempts { get; }
         public int UssrAttempts { get; }
         public int VpForUS { get; }
+        public int? Defcon { get; }
+        public int? UsMilitary { get; }
+        public int? UssrMilitary { get; }
+        public PlayerSide? Winner { get; }
         internal PublicPracticeView(ActionPracticeState s)
         { Stage=s.Stage;Actor=s.Actor;Round=s.ActionRound;RoundLimit=s.Space.Turn.Parameters.NormalActionsPerSide;CompletedActions=s.CompletedActions;ActiveCard=s.ActiveCard;
-          UsSpace=s.Space.Track.US;UssrSpace=s.Space.Track.USSR;UsAttempts=s.Space.UsAttempts;UssrAttempts=s.Space.UssrAttempts;VpForUS=s.VpForUS; }
+          UsSpace=s.Space.Track.US;UssrSpace=s.Space.Track.USSR;UsAttempts=s.Space.UsAttempts;UssrAttempts=s.Space.UssrAttempts;VpForUS=s.VpForUS;Defcon=s.Risk?.Defcon.Level;UsMilitary=s.Risk?.Military.UsEarned;UssrMilitary=s.Risk?.Military.UssrEarned;Winner=s.Risk?.Result?.Winner; }
     }
     public sealed class PublicSpaceResult
     {
@@ -38,22 +43,40 @@ namespace ColdWarStruggle.Application
         public int VpForUS { get; }
         internal PublicSpaceResult(SpaceAttemptReceipt r) { Roll=r.Roll;Success=r.Success;From=r.FromPosition;To=r.ToPosition;VpForUS=r.NetVpForUS; }
     }
+    public sealed class PublicCoupResult
+    {
+        public CountryId Target { get; }
+        public int Roll { get; }
+        public int Strength { get; }
+        public long Margin { get; }
+        public int Removed { get; }
+        public int Added { get; }
+        public int MilitaryCredit { get; }
+        public int? DefconFrom { get; }
+        public int? DefconTo { get; }
+        public bool NuclearWar { get; }
+        internal PublicCoupResult(CoupAttemptReceipt r)
+        { Target=r.Request.Target;Roll=r.Calculation.Roll;Strength=r.Calculation.Strength;Margin=r.Calculation.Margin;Removed=r.Calculation.Removed;Added=r.Calculation.Added;
+          MilitaryCredit=r.MilitaryCredit.Amount;DefconFrom=r.DefconChange?.Before.Level;DefconTo=r.DefconChange?.After.Level;NuclearWar=r.DefconChange?.NuclearWar==true; }
+    }
     public sealed class CardActionResult
     {
         public RuleError Error { get; }
         public bool Accepted=>Error==RuleError.None;
         public PlayerViewSnapshot View { get; }
         public PublicSpaceResult Space { get; }
-        internal CardActionResult(RuleError error,PlayerViewSnapshot view,SpaceAttemptReceipt receipt=null)
-        { Error=error;View=view;Space=receipt==null?null:new PublicSpaceResult(receipt); }
+        public PublicCoupResult Coup { get; }
+        internal CardActionResult(RuleError error,PlayerViewSnapshot view,SpaceAttemptReceipt receipt=null,CoupAttemptReceipt coup=null)
+        { Error=error;View=view;Space=receipt==null?null:new PublicSpaceResult(receipt);Coup=coup==null?null:new PublicCoupResult(coup); }
     }
     public sealed class CardActionOption
     {
         public CardId Card { get; }
         public RuleError Influence { get; }
         public RuleError Space { get; }
+        public RuleError Coup { get; }
         internal CardActionOption(GameState s,PlayerSide side,CardId id)
-        { Card=id;Influence=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Influence);Space=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Space); }
+        { Card=id;Influence=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Influence);Space=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Space);Coup=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Coup); }
     }
     public sealed class CardActionOptions
     {

@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "id": "module.playable-coup-actions",
+  "kind": "module",
+  "status": "implemented-subset",
+  "description": "真实手牌普通政变接线：共享OPS报价、合法目标、军事累计、DEFCON/核战与牌区/RNG一次提交；RiskDemo扩大地图并显示风险轨道，无活动事件、头条或回合末。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeRiskState.cs",
+      "symbol": "BindCurrent"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Coup.cs",
+      "symbol": "PlanCoup"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Coup.cs",
+      "symbol": "CheckCoupTarget"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/LocalGameHost.Cards.cs",
+      "symbol": "QueryCoup"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/CardActionContracts.cs",
+      "symbol": "PublicCoupResult"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.Actions.cs",
+      "symbol": "WithPracticeRisk"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Cards.cs",
+      "symbol": "SelectCoupUse"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Actions.cs",
+      "symbol": "DrawPracticeControls"
+    }
+  ],
+  "inputs": [
+    "固定身份命令：牌ID、目标国家、版本；不得提交OPS/骰子/军事信用",
+    "GameState为国家与RNG唯一权威，Risk保存风险轨道和政变历史"
+  ],
+  "outputs": [
+    "整份不可变下一状态；普通完成弃牌与推进行动槽",
+    "核战即时结束、胜者投影；源卡留在结算区，根行动不继续完成",
+    "合法目标与公开政变结果，不含随机快照或秘密手牌"
+  ],
+  "dependencies": [
+    "module.playable-card-actions",
+    "module.coup-attempts",
+    "module.defcon",
+    "module.military-operations",
+    "module.victory"
+  ],
+  "data_dependencies": [
+    "rules.deluxe2015.coup",
+    "rules.deluxe2015.defcon",
+    "rules.deluxe2015.military-operations",
+    "rules.deluxe2015.victory",
+    "effects.deluxe2015.persistent_batch1"
+  ],
+  "preconditions": [
+    "单回合无活动效果的显式练习；首轮从已完成部署启动，不声称完整开局状态机"
+  ],
+  "side_effects": [
+    "纯规则只规划；LocalGameHost在锁内一次提交完整状态和收据；UI只编辑意图"
+  ],
+  "stop_conditions": [
+    "计分牌、中国牌、对手事件OPS暂拒绝；尚未接头条/完整事件/回合末",
+    "部署未完成、错误身份/版本、牌不在手、未完成影响力、太空不满足门槛/次数、命令冲突、行动上限"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/coup-attempts.md",
+      "scope": "基础政变、军事信用与DEFCON"
+    },
+    {
+      "path": "Docs/Wiki/risk-victory.md",
+      "scope": "核战由phasing方承担责任"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayCoupTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayCoupSessionTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayCoupCatalogTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/playable-coup-actions.md",
+  "verification": {
+    "report": "Docs/Testing/playable-coup-actions.validation.json"
+  }
+}

@@ -1,7 +1,7 @@
 using System;
 namespace ColdWarStruggle.Core
 {
-    public enum CardActionKind { StartPractice, Influence, Space, FinishInfluence }
+    public enum CardActionKind { StartPractice, Influence, Space, FinishInfluence, Coup }
     public enum ActionPracticeStage { AwaitingStart, ChooseCard, PlacingInfluence, Complete }
     // Explicit single-turn, no-active-effects practice. It is not the full turn coordinator.
     public sealed class ActionPracticeDefinition
@@ -10,8 +10,9 @@ namespace ColdWarStruggle.Core
         public OpsGeneralDefinition Ops { get; }
         public SpaceRaceDefinition Space { get; }
         public TurnCalendar Calendar { get; }
-        public ActionPracticeDefinition(CardCatalog cards,OpsGeneralDefinition ops,SpaceRaceDefinition space,TurnCalendar calendar)
-        { Cards=cards??throw new ArgumentNullException(nameof(cards));Ops=ops??throw new ArgumentNullException(nameof(ops));Space=space??throw new ArgumentNullException(nameof(space));Calendar=calendar??throw new ArgumentNullException(nameof(calendar)); }
+        public PracticeRiskDefinition Risk { get; }
+        public ActionPracticeDefinition(CardCatalog cards,OpsGeneralDefinition ops,SpaceRaceDefinition space,TurnCalendar calendar,PracticeRiskDefinition risk=null)
+        { Cards=cards??throw new ArgumentNullException(nameof(cards));Ops=ops??throw new ArgumentNullException(nameof(ops));Space=space??throw new ArgumentNullException(nameof(space));Calendar=calendar??throw new ArgumentNullException(nameof(calendar));Risk=risk; }
     }
     public sealed class ActionPracticeState
     {
@@ -23,13 +24,14 @@ namespace ColdWarStruggle.Core
         public CardId? ActiveCard { get; }
         public SpaceAttemptState Space { get; }
         public int VpForUS { get; }
-        internal ActionPracticeState(ActionPracticeDefinition definition,ActionPracticeStage stage,int completed,CardId? card,SpaceAttemptState space,int vp)
-        { Definition=definition;Stage=stage;CompletedActions=completed;ActiveCard=card;Space=space;VpForUS=vp; }
+        public PracticeRiskState Risk { get; }
+        internal ActionPracticeState(ActionPracticeDefinition definition,ActionPracticeStage stage,int completed,CardId? card,SpaceAttemptState space,int vp,PracticeRiskState risk=null)
+        { Definition=definition;Stage=stage;CompletedActions=completed;ActiveCard=card;Space=space;VpForUS=vp;Risk=risk; }
         public static ActionPracticeState Create(ActionPracticeDefinition definition)
         {
             if(definition==null)throw new ArgumentNullException(nameof(definition));
             return new ActionPracticeState(definition,ActionPracticeStage.AwaitingStart,0,null,
-                SpaceAttemptState.Create(new SpaceTrackState(definition.Space,definition.Space.InitialPosition,definition.Space.InitialPosition),definition.Calendar,1),0);
+                SpaceAttemptState.Create(new SpaceTrackState(definition.Space,definition.Space.InitialPosition,definition.Space.InitialPosition),definition.Calendar,1),definition.Risk?.Victory.InitialSignedVp??0,definition.Risk==null?null:PracticeRiskState.Create(definition.Risk,definition.Calendar.ForTurn(1)));
         }
     }
     public sealed class CardActionTransition
@@ -38,7 +40,8 @@ namespace ColdWarStruggle.Core
         public bool Accepted=>Error==RuleError.None;
         public GameState NextState { get; }
         public SpaceAttemptReceipt SpaceReceipt { get; }
-        internal CardActionTransition(RuleError error,GameState next=null,SpaceAttemptReceipt receipt=null)
-        { Error=error;NextState=next;SpaceReceipt=receipt; }
+        public CoupAttemptReceipt CoupReceipt { get; }
+        internal CardActionTransition(RuleError error,GameState next=null,SpaceAttemptReceipt receipt=null,CoupAttemptReceipt coup=null)
+        { Error=error;NextState=next;SpaceReceipt=receipt;CoupReceipt=coup; }
     }
 }

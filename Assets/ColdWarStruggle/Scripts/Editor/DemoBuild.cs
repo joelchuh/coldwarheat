@@ -41,6 +41,8 @@ namespace ColdWarStruggle.Editor
         public static void BuildPreview()=>BuildAt("Builds/PreviewDemo");
         [MenuItem("ColdWarStruggle/Build Playable Actions Demo")]
         public static void BuildPlayable()=>BuildAt("Builds/PlayableDemo");
+        [MenuItem("ColdWarStruggle/Build Risk Actions Demo")]
+        public static void BuildRisk()=>BuildAt("Builds/RiskDemo");
         static void BuildAt(string directory)
         {
             Prepare();Directory.CreateDirectory(directory);
@@ -62,7 +64,8 @@ namespace ColdWarStruggle.Editor
                 .WithEraScenarios(Read(root,"Data/Demo/era-scenarios.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch2.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch2.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"),Read(root,"Data/Rulesets/deluxe-2015/turn-flow.json"))
                     .WithDeploymentScenario(Read(root,"Data/Demo/deployment-scenario.json"),Read(root,"Data/Rulesets/deluxe-2015/setup.json"),Read(root,"Docs/Contracts/setup.schema.json"))
                     .WithInitialDealScenario(Read(root,"Data/Demo/initial-deal-scenario.json"),Read(root,"Data/Rulesets/deluxe-2015/setup.json"),Read(root,"Docs/Contracts/setup.schema.json"),Read(root,"Data/Rulesets/deluxe-2015/turn-flow.json"),printedCards,Read(root,"Data/Localization/en-US.catalog-names.json"))
-                    .WithActionPractice(Read(root,"Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json"),Read(root,"Docs/Contracts/persistent-effects-batch1.schema.json"),Read(root,"Data/Rulesets/deluxe-2015/space-race.json"),Read(root,"Data/Rulesets/deluxe-2015/turn-flow.json"));
+                    .WithActionPractice(Read(root,"Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json"),Read(root,"Docs/Contracts/persistent-effects-batch1.schema.json"),Read(root,"Data/Rulesets/deluxe-2015/space-race.json"),Read(root,"Data/Rulesets/deluxe-2015/turn-flow.json"))
+                    .WithPracticeRisk(Read(root,"Data/Rulesets/deluxe-2015/coup.json"),Read(root,"Data/Rulesets/deluxe-2015/defcon.json"),Read(root,"Data/Rulesets/deluxe-2015/military-operations.json"),Read(root,"Data/Rulesets/deluxe-2015/victory.json"));
             WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
             Directory.CreateDirectory(payload);
             Copy(root,"Data/Maps/deluxe-2015/world.json",payload,"world.json");Copy(root,"Docs/Contracts/map.schema.json",payload,"map.schema.json");
@@ -89,6 +92,10 @@ namespace ColdWarStruggle.Editor
             Copy(root,"Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json",payload,"persistent-effects-batch1.parameters.json");
             Copy(root,"Docs/Contracts/persistent-effects-batch1.schema.json",payload,"persistent-effects-batch1.schema.json");
             Copy(root,"Data/Rulesets/deluxe-2015/space-race.json",payload,"space-race.json");
+            Copy(root,"Data/Rulesets/deluxe-2015/coup.json",payload,"coup.json");
+            Copy(root,"Data/Rulesets/deluxe-2015/defcon.json",payload,"defcon.json");
+            Copy(root,"Data/Rulesets/deluxe-2015/military-operations.json",payload,"military-operations.json");
+            Copy(root,"Data/Rulesets/deluxe-2015/victory.json",payload,"victory.json");
             Copy(root,"Docs/References/ThirdParty/Apache-2.0.txt",payload,"Apache-2.0.txt");
             Copy(root,"Docs/References/ThirdParty/pcg32.md",payload,"pcg32-notice.md");
             AssetDatabase.Refresh();

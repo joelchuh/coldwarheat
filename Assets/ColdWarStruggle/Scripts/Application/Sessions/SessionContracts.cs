@@ -82,6 +82,7 @@ namespace ColdWarStruggle.Application
     }
     public interface IGameSession
     {
+        LegalTargetsResult QueryCoupTargets(CardId card,long expectedVersion);
         CardActionOptions QueryCardActions();
         Task<CardActionResult> SubmitCardActionAsync(CardActionCommand command,CancellationToken cancellationToken=default);
         PlayerSide Side { get; }
