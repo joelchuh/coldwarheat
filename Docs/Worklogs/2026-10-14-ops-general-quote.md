@@ -16,3 +16,10 @@ Task 2 RED: ops-general-loader-red 1452总计/1422通过/30新增失败（NotImp
 Task 2代码: ops-general-loader-green 1452/1452、0跳过、退出0；XML b834b5130f8c2bb970c54ec77d5057560c35b4348c1e93e5701d59789f86b327。新增76项，原共享业务参数/Schema未变；模块/数据消费描述、Wiki/索引和报告已同步。metadata及最终审阅待完成。
 
 Task 2: complete。metadata验证通过：112描述/catalog条目、69数据集、172 C#符号、576数据引用、197读取文件。准备固定提交范围的一次最终独立审阅。
+
+Final review: fresh gpt-6-astra reviewed 7cfdd93..ad040e0，ready to merge，0 Critical/Important/Minor；七份输入和GREEN XML摘要一致，1452通过、零失败/跳过。审阅基于固定diff和源码，无重复测试。
+Final Ruling: 地区奖励/花费历史及活动实例激活、到期、取消和重复继续待接；General结果仅在声明范围使用，错用会产生预算错误，因此不接完整地图OPS。
+Final Ruling: 可信Schema和来源元数据检查不是完整RulePack真实性认证；未来外部包接入前必须补强，当前仅加载受控文件。
+Final Ruling: 持牌/阶段/中国牌可用性与原子提交由未来宿主负责；FromQuote只绑定可信身份/牌/值，误当玩家入口会绕过授权。
+Final Ruling: 无UI改动/播放器重建，当前exe不含新增能力；独立审阅不重跑Unity/metadata，采用本次作者实际运行和摘要证据，代价为审阅者没有独立运行环境证据。
+Deferred minors: none。
