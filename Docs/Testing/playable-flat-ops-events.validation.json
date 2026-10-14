@@ -3,7 +3,7 @@
   "id": "validation.playable-flat-ops-events",
   "description": "两张有限回合Flat OPS事件的TDD、真实手牌、公开查询及独立构建证据；视觉与鼠标单独记录。",
   "date": "2026-10-14",
-  "status": "tests-build-render-passed-review-pending",
+  "status": "tests-build-render-and-review-passed-mouse-unverified",
   "baseline_commit": "1776206d564ee067a6e51e56f4588b8110161faa",
   "runs": [
     {
@@ -581,7 +581,19 @@
     "limitations": "Only initial no-effect map and 8+8 hands inspected. Current OPS appears for own hand; observer row keeps printed data. No activated-effect banner, selected-card/result panel or actual mouse event sequence accepted as visually verified."
   },
   "review": {
-    "status": "pending"
+    "status": "passed-no-findings",
+    "reviewed_head": "632ac8fa34d147446bace7cd615f72e064cd6973",
+    "critical": 0,
+    "important": 0,
+    "minor_deferred": 0,
+    "independent_evidence": "Fresh strongest reviewer matched214C#files,37payloadpairs,exe,buildlog,7XMLs and2images; final1768individualcases passed. Read full diff/source; directGitdenied.",
+    "declined_rulings": [
+      "Mouse/activated banner/selected result: onlyinitialrenders verified; not sold as mouse acceptance.",
+      "Full persistent/other events/turn flow excluded: runtime catalogs reject unsupported actions.",
+      "Fresh Unity rerun not performed: independently hashed existing final run; no C#changed after run.",
+      "Git/remote identity: parent owns exactSHA/status/ordinarypush and lsremote verification.",
+      "Prior deferred Minors remain distinct historical work, not new regressions."
+    ]
   },
   "scope": "Twelve direct Events, two bounded remainder-of-turn Flat modifiers; general quote shared across influence/coup/military/space. Full expiry/cancel/save/regional bonuses/opponent Event+OPS/headline/endturn excluded.",
   "metadata_validation": {
