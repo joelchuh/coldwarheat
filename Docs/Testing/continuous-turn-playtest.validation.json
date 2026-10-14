@@ -3,7 +3,7 @@
   "id": "validation.continuous-turn-playtest",
   "description": "连续回合试玩的分层验证",
   "baseline_commit": "2f55eb6afa440e57514a0311654f12873cc799dc",
-  "status": "tests-build-ui-passed-review-pending",
+  "status": "passed",
   "ui": {
     "status": "passed-bounded-route",
     "images": [
@@ -59,7 +59,12 @@
     "player_log_errors": []
   },
   "review": {
-    "status": "pending"
+    "status": "passed-no-blockers",
+    "reviewer": "review_continuous_turn",
+    "critical": 0,
+    "important": 0,
+    "minor": 1,
+    "minor_deferred": "太空额外行动导致不能审核时，按钮禁用但缺少具体原因；状态门禁正确，后续改善提示。"
   },
   "runs": [
     {
@@ -567,5 +572,6 @@
       }
     ],
     "log": "TestResults/continuous-turn-build.log"
-  }
+  },
+  "source_commit": "5f1d0f202492c041115482f29cdb6a6e2465d978"
 }

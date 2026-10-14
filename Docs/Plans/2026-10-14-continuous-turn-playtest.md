@@ -19,7 +19,7 @@ Global constraints：纯Core、共享日历/轨道参数、固定身份/版本/�
 - [x] RED默认真实12行动后审核→NextTurn，Host重发/冲突/过期与隐藏手牌，Controller报告和新回合字段；错误装配拒绝。
 - [x] GREEN接按钮“下一回合（跳过头条）”，顶栏回合号；旧配置不启用。BuildContinuousPlaytest输出Builds/ContinuousPlaytest独立产品名。
 - [x] 全量测试/metadata/源码与载荷Hash，独立Unity构建；尽可能真实鼠标12行动→审核→下一回合→操作；记录实际限制。
-- [ ] JSON描述、Wiki/索引/路线/README/AGENTS/工作记录/验证报告；唯一审查及必要一次TDD修复，ff/main推送核对。
+- [x] JSON描述、Wiki/索引/路线/README/AGENTS/工作记录/验证报告；唯一审查及必要一次TDD修复，ff/main推送核对。
 
 ## Review Focus
 1. 跨回合同一槽的太空/政变与军事信用ID冲突；需保留历史同时允许新行动。T1两条同槽回归。
