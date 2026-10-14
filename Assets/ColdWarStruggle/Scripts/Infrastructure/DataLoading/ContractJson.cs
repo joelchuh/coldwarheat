@@ -31,7 +31,7 @@ namespace ColdWarStruggle.Infrastructure
             CheckSchema(schema,schema,new HashSet<JObject>(),0,ref budget);
             ValidateNode(value,schema,schema,0,ref budget);
         }
-        static readonly string[] KnownKeywords={"$schema","$id","$defs","$ref","title","description","type","properties","required","additionalProperties","items","minItems","maxItems","minLength","minimum","maximum","pattern","const","enum","anyOf","oneOf","allOf","if","then","else","uniqueItems"};
+        static readonly string[] KnownKeywords={"$schema","$id","$defs","$ref","title","description","type","properties","required","additionalProperties","items","prefixItems","minItems","maxItems","minLength","minimum","maximum","pattern","const","enum","anyOf","oneOf","allOf","if","then","else","uniqueItems"};
         static readonly string[] KnownTypes={"null","object","array","string","boolean","integer"};
         static void CheckKeywordShapes(JObject schema)
         {
@@ -44,7 +44,9 @@ namespace ColdWarStruggle.Infrastructure
                 {
                     case "$schema": case "$id": case "$ref": case "title": case "description": case "pattern":
                         valid=v.Type==JTokenType.String;break;
-                    case "$defs": case "properties": case "items": case "if": case "then": case "else": valid=v is JObject;break;
+                    case "items": valid=v is JObject || v.Type==JTokenType.Boolean;break;
+                    case "prefixItems": valid=v is JArray prefix && prefix.Count>0 && prefix.All(x=>x is JObject);break;
+                    case "$defs": case "properties": case "if": case "then": case "else": valid=v is JObject;break;
                     case "additionalProperties": case "uniqueItems": valid=v.Type==JTokenType.Boolean;break;
                     case "required": valid=Strings(v) && ((JArray)v).Distinct(new JTokenEqualityComparer()).Count()==((JArray)v).Count;break;
                     case "anyOf": case "oneOf": case "allOf": valid=v is JArray alternatives && alternatives.Count>0 && alternatives.All(x=>x is JObject);break;
@@ -93,7 +95,7 @@ namespace ColdWarStruggle.Infrastructure
                         }
                 foreach(var keyword in new[]{"items","if","then","else"})
                     if(schema[keyword] is JObject child)CheckSchema(child,root,active,depth+1,ref budget);
-                foreach(var keyword in new[]{"anyOf","oneOf","allOf"})
+                foreach(var keyword in new[]{"anyOf","oneOf","allOf","prefixItems"})
                 if(schema[keyword] is JArray alternatives)
                     foreach(var item in alternatives)
                     {
@@ -155,7 +157,11 @@ namespace ColdWarStruggle.Infrastructure
             {
                 if(schema["minItems"]!=null && array.Count<(int)schema["minItems"] || schema["maxItems"]!=null && array.Count>(int)schema["maxItems"]) throw new ArgumentException("Array size.");
                 if((bool?)schema["uniqueItems"]==true && array.Distinct(new JTokenEqualityComparer()).Count()!=array.Count) throw new ArgumentException("Duplicate item.");
-                if(schema["items"] is JObject itemSchema) foreach(var item in array) ValidateNode(item,itemSchema,root,depth+1,ref budget);
+                var prefix=schema["prefixItems"] as JArray;var prefixCount=prefix?.Count??0;
+                for(int i=0;i<Math.Min(array.Count,prefixCount);i++)ValidateNode(array[i],(JObject)prefix[i],root,depth+1,ref budget);
+                if(schema["items"] is JObject itemSchema)
+                    for(int i=prefixCount;i<array.Count;i++)ValidateNode(array[i],itemSchema,root,depth+1,ref budget);
+                else if(schema["items"]?.Type==JTokenType.Boolean && !(bool)schema["items"] && array.Count>prefixCount)throw new ArgumentException("Unexpected array tail.");
             }
             if(value is JObject obj)
             {

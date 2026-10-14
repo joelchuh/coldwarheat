@@ -70,6 +70,19 @@ namespace ColdWarStruggle.Application
         internal PublicCardEventResult(InfluenceEventTransition transition)
         { var e=transition.NextState.InfluenceEvent;Card=new CardId(e.Definition.CardId);Stage=e.Stage;Outcome=e.Outcome;Changes=Array.AsReadOnly(transition.Changes.ToArray()); }
     }
+    public sealed class PublicDefconVpEventResult
+    {
+        public CardId Card { get; }
+        public int DefconFrom { get; }
+        public int DefconTo { get; }
+        public int VpForUS { get; }
+        public PlayerSide AwardSide { get; }
+        public int? Award { get; }
+        public bool Terminal { get; }
+        public IReadOnlyList<DefconVpStep> Steps { get; }
+        internal PublicDefconVpEventResult(DefconVpEventPlan p)
+        { Card=p.Effect.Card;DefconFrom=p.Before.Level;DefconTo=p.After.Level;VpForUS=checked(p.Decision.SignedVp-p.VpBefore);AwardSide=p.AwardSide;Award=p.Award;Terminal=p.Decision.Outcome==VictoryOutcome.Finished;Steps=Array.AsReadOnly(p.Steps.ToArray()); }
+    }
     public sealed class CardActionResult
     {
         public RuleError Error { get; }
@@ -79,8 +92,9 @@ namespace ColdWarStruggle.Application
         public PublicCoupResult Coup { get; }
         public PublicRegionScore Scoring { get; }
         public PublicCardEventResult Event { get; }
-        internal CardActionResult(RuleError error,PlayerViewSnapshot view,SpaceAttemptReceipt receipt=null,CoupAttemptReceipt coup=null,RegionScoringResult scoring=null,InfluenceEventTransition eventTransition=null)
-        { Event=eventTransition==null?null:new PublicCardEventResult(eventTransition);Scoring=scoring==null?null:new PublicRegionScore(scoring);Error=error;View=view;Space=receipt==null?null:new PublicSpaceResult(receipt);Coup=coup==null?null:new PublicCoupResult(coup); }
+        public PublicDefconVpEventResult DefconVpEvent { get; }
+        internal CardActionResult(RuleError error,PlayerViewSnapshot view,SpaceAttemptReceipt receipt=null,CoupAttemptReceipt coup=null,RegionScoringResult scoring=null,InfluenceEventTransition eventTransition=null,DefconVpEventPlan defconVpEvent=null)
+        { DefconVpEvent=defconVpEvent==null?null:new PublicDefconVpEventResult(defconVpEvent);Event=eventTransition==null?null:new PublicCardEventResult(eventTransition);Scoring=scoring==null?null:new PublicRegionScore(scoring);Error=error;View=view;Space=receipt==null?null:new PublicSpaceResult(receipt);Coup=coup==null?null:new PublicCoupResult(coup); }
     }
     public sealed class CardActionOption
     {

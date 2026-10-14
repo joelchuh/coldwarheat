@@ -10,6 +10,7 @@ namespace ColdWarStruggle.Core
             var error=CanPlay(state,side,card.Value,CardActionKind.Event);if(error!=RuleError.None)return new CardActionTransition(error);
             try
             {
+                if(state.Practice.Definition.DefconVpEvents?.Effects.TryGetValue(card.Value,out var trackEffect)==true)return PlanDefconVpEvent(state,side,trackEffect);
                 var p=state.Practice;var effect=p.Definition.InfluenceEvents.Effects[card.Value];
                 var pending=new ActionPracticeState(p.Definition,ActionPracticeStage.ResolvingEvent,p.CompletedActions,card,p.Space,p.VpForUS,p.Risk);
                 // Intermediate immutable states never leave the host's commit boundary.

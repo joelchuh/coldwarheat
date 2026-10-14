@@ -39,6 +39,11 @@ namespace ColdWarStruggle.Core
             if(decision==null || (decision.Outcome!=VictoryOutcome.Continue && decision.Outcome!=VictoryOutcome.Finished))throw new ArgumentException("Expected a closed ordinary victory decision.");
             return new PracticeRiskState(Definition,Defcon,Military,CoupReceipts,decision.Outcome==VictoryOutcome.Finished?decision:null);
         }
+        internal PracticeRiskState After(DefconVpEventPlan plan)
+        {
+            if(plan==null || !ReferenceEquals(plan.Before,Defcon) || !ReferenceEquals(plan.VictoryDefinition,Definition.Victory) || Result!=null)throw new ArgumentException("Event plan belongs to a different or ended risk state.");
+            return new PracticeRiskState(Definition,plan.After,Military,CoupReceipts,plan.Decision.Outcome==VictoryOutcome.Finished?plan.Decision:null);
+        }
         internal PracticeRiskState After(CoupAttemptPlan plan,int vp)
         {
             var result=plan.Receipt.DefconChange?.NuclearWar==true

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "module.playable-defcon-vp-events",
+  "kind": "module",
+  "status": "implemented-subset",
+  "description": "Duck and Cover与Nuclear Test Ban的顺序DEFCON/VP纯计划、终局截断及真实Event出牌接线；固定受益方/控制者与根核战责任分离，原子发布并保留既有历史。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/DefconVpEventDefinition.cs",
+      "symbol": "PracticeDefconVpCatalog"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/DefconVpEventService.cs",
+      "symbol": "Plan"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.DefconVpEvents.cs",
+      "symbol": "PlanDefconVpEvent"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DefconVpEventLoader.cs",
+      "symbol": "LoadImmediateSubset"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.DefconVpEvents.cs",
+      "symbol": "WithPracticeDefconVpEvents"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/CardActionContracts.cs",
+      "symbol": "PublicDefconVpEventResult"
+    }
+  ],
+  "inputs": [
+    "已校验的共享参数、当前DEFCON/VP与根Phasing/EffectController，无活动干预",
+    "既有CardActionCommand(Event)仅传真实手牌ID，不接受客户公式或目标等级"
+  ],
+  "outputs": [
+    "只读实际有序步骤、DEFCON变化、已执行或跳过的VP批次、胜负决定",
+    "完整下一状态与公开结果；终局保留Resolving源牌和根槽，非终局完成一次"
+  ],
+  "dependencies": [
+    "module.playable-influence-events",
+    "module.playable-coup-actions",
+    "module.bounded-json-contract"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.defcon_vp_events",
+    "cards.deluxe2015.definitions",
+    "rules.deluxe2015.defcon",
+    "rules.deluxe2015.victory"
+  ],
+  "preconditions": [
+    "早期两张即时事件，无活动持续效果；第三张How I Learned仍禁用",
+    "目录同Cards、Risk必需，与影响力目录ID互斥；输入已非终局"
+  ],
+  "side_effects": [
+    "Core纯计划；Host验证完全部步骤与卡牌去向后一次发布，不改变军事/RNG/国家/太空"
+  ],
+  "stop_conditions": [
+    "非法身份/阶段/持牌/版本/数据/溢出拒绝；核战或VP终局立即截断后续步骤",
+    "不接等待DEFCON选择、事件插入栈、头条、完整回合或对手Event加OPS"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/defcon-vp-events.md",
+      "scope": "既有三牌参数与DV1顺序；本批仅即时两牌，原子实践范围明确区别完整栈"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DefconVpEventTests.cs",
+      "status": "passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayDefconVpEventTests.cs",
+      "status": "passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayDefconVpCatalogTests.cs",
+      "status": "passed"
+    }
+  ],
+  "documentation": "Docs/Wiki/playable-defcon-vp-events.md",
+  "verification": {
+    "report": "Docs/Testing/playable-defcon-vp-events.validation.json"
+  }
+}

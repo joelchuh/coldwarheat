@@ -4,6 +4,8 @@
 
 | 知识点 | description | 状态 | 入口 |
 |---|---|---|---|
+| DEFCON与VP事件试玩 | 查Duck/Test Ban顺序、核战责任与终局截断 | DefconEventPlaytest；1729项测试，鼠标未验收 | [playable-defcon-vp-events.md](playable-defcon-vp-events.md) |
+| 有界JSON契约 | 查Schema支持边界、tuple与尾项验证 | 共享加载器基础服务 | [bounded-json-contract.md](bounded-json-contract.md) |
 | 真实出牌影响力事件 | 查八牌事件、受益方选择、星号去向与原子收尾 | EventPlaytest；1691项测试，鼠标未验收 | [playable-influence-events.md](playable-influence-events.md) |
 | 快速行动试玩 | 查示例部署、默认入口、真牌政变/计分和重置 | PlaytestDemo；证据见报告 | [quick-start-playtest.md](quick-start-playtest.md) |
 | 计分与公开预览 | 查七牌绑定、净VP/终局与不读手牌的地区预览 | 1648项回归；ScoringDemo | [playable-scoring-actions.md](playable-scoring-actions.md) |

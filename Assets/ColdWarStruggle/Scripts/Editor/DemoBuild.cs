@@ -49,6 +49,8 @@ namespace ColdWarStruggle.Editor
         public static void BuildPlaytest()=>BuildAt("Builds/PlaytestDemo","ColdWarStruggle Playtest");
         [MenuItem("ColdWarStruggle/Build Event Playtest")]
         public static void BuildEventPlaytest()=>BuildAt("Builds/EventPlaytest","ColdWarStruggle Event Playtest");
+        [MenuItem("ColdWarStruggle/Build DEFCON Event Playtest")]
+        public static void BuildDefconEventPlaytest()=>BuildAt("Builds/DefconEventPlaytest","ColdWarStruggle DEFCON Event Playtest");
         static void BuildAt(string directory,string productName=null)
         {
             Prepare();Directory.CreateDirectory(directory);
@@ -80,9 +82,11 @@ namespace ColdWarStruggle.Editor
                     .WithPracticeRisk(Read(root,"Data/Rulesets/deluxe-2015/coup.json"),Read(root,"Data/Rulesets/deluxe-2015/defcon.json"),Read(root,"Data/Rulesets/deluxe-2015/military-operations.json"),Read(root,"Data/Rulesets/deluxe-2015/victory.json"))
                     .WithPracticeScoring(Read(root,"Data/Rulesets/deluxe-2015/region-scoring.json"),Read(root,"Docs/Contracts/region-scoring-rules.schema.json"))
                     .WithPracticeInfluenceEvents(Read(root,"Data/Cards/deluxe-2015/early-influence-batch1.parameters.json"),Read(root,"Docs/Contracts/early-influence-parameters.schema.json"),Read(root,"Data/Cards/deluxe-2015/early-influence-batch2.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch2.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
+                    .WithPracticeDefconVpEvents(Read(root,"Data/Cards/deluxe-2015/defcon-vp-events.parameters.json"),Read(root,"Docs/Contracts/defcon-vp-events.schema.json"))
                     .WithQuickStartScenario(Read(root,"Data/Demo/quick-start-scenario.json"));
             WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
             Directory.CreateDirectory(payload);
+            Copy(root,"Data/Cards/deluxe-2015/defcon-vp-events.parameters.json",payload,"defcon-vp-events.parameters.json");Copy(root,"Docs/Contracts/defcon-vp-events.schema.json",payload,"defcon-vp-events.schema.json");
             Copy(root,"Data/Maps/deluxe-2015/world.json",payload,"world.json");Copy(root,"Docs/Contracts/map.schema.json",payload,"map.schema.json");
             Copy(root,"Data/Maps/deluxe-2015/world.profile.json",payload,"world.profile.json");
             Copy(root,"Data/Demo/influence-scenarios.json",payload,"influence-scenarios.json");Copy(root,"Data/Rulesets/deluxe-2015/influence-placement.json",payload,"influence-placement.json");

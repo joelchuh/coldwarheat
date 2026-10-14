@@ -79,7 +79,16 @@ namespace ColdWarStruggle.Presentation
             }
             var result=controller.LastCardResult;
             string message="";
-            if(result?.Event!=null)message=result.Event.Outcome==InfluenceEventStatus.ResolvedNoChange?"事件完成 · 影响力无需变化。":"事件完成 · 影响力变化 "+result.Event.Changes.Count+" 项。";
+            if(result?.DefconVpEvent!=null)
+            {
+                var e=result.DefconVpEvent;
+                message=string.Join("\n",e.Steps.Select(step=>step switch {
+                    DefconVpStep.DefconChanged=>$"DEFCON {e.DefconFrom} → {e.DefconTo}",
+                    DefconVpStep.VpBatchClosed=>$"{Side(e.AwardSide)}获得 {e.Award} VP",
+                    _=>"核战 · 后续步骤停止" }));
+                if(e.Terminal && !e.Steps.Contains(DefconVpStep.NuclearWarReached))message+="\n已达胜利条件 · 后续步骤停止";
+            }
+            else if(result?.Event!=null)message=result.Event.Outcome==InfluenceEventStatus.ResolvedNoChange?"事件完成 · 影响力无需变化。":"事件完成 · 影响力变化 "+result.Event.Changes.Count+" 项。";
             else if(result?.Scoring!=null)message="计分结果："+ScoringRegionName(result.Scoring.RegionId)+"\n"+ScoreSummary(result.Scoring);
             else if(result?.Coup!=null)
             {

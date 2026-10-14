@@ -43,3 +43,5 @@
 证据：[验证报告](../Testing/playable-influence-events.validation.json)、[工作记录](../Worklogs/2026-10-14-playable-influence-events.md)。截图只证明初始渲染；程序化控制器/地图测试与真实鼠标验收分别记录。
 
 已记录非阻塞反馈问题：切换双方并重发事件起始命令时，历史待选收据可能显示“完成/0项变化”，不影响已结算权威状态；详见工作记录，后续完善收据提示。
+
+2026-10-14运行进展：Duck and Cover / Nuclear Test Ban现已接真实手牌，How I Learned等级选择仍未实现。最新构建与运行边界见[DEFCON/VP试玩](playable-defcon-vp-events.md)，本页原批次证据保留。
