@@ -3,7 +3,7 @@
   "id": "validation.playable-realignment",
   "description": "普通政局调整的纯规则、真实出牌双骰/预算和公开地图接线TDD；构建、渲染与鼠标分开记录。",
   "date": "2026-10-14",
-  "status": "tests-build-render-passed-review-pending",
+  "status": "tests-build-render-reviewed-one-minor-mouse-unverified",
   "baseline_commit": "6b9b5460a9a2822578dba677f6c2aa4ab086c3c8",
   "runs": [
     {
@@ -602,11 +602,22 @@
       }
     ],
     "mouse_status": "unverified",
-    "mouse_reason": "Correct new executable/title selected. Native capture returned wallpaper; retry activation recorded separately. No clicks performed.",
+    "mouse_reason": "Correct executable/title selected, native capture returned wallpaper; refreshed selection activation failed: failed to activate captured window. No clicks performed.",
     "limitations": "Initial map and 8+8 hands only. Realignment selected-action panel/dice result not visually verified; controller/API integration covered in tests."
   },
   "review": {
-    "status": "pending"
+    "status": "no-blockers-one-minor-deferred",
+    "reviewed_head": "af420034a267da2428c9045579712b61e668f0ee",
+    "critical": 0,
+    "important": 0,
+    "minor_deferred": 1,
+    "minor": "Duplicate OPS MenuItem blocks realignment editor menu; executeMethod build succeeds. Prior worklog attempted-fix claim corrected.",
+    "independent_evidence": "1815 final XML/hash,221C#hashes,38payloadpairs,exe/buildmarker verified by fresh strongest reviewer; no Unity rerun.",
+    "declined_rulings": [
+      "Real mouse and selected/result panel visual acceptance remain unverified.",
+      "Prior productname/receipt/coverageMinors and fullturn/interventions/China/opponentOPS/freeactions outside scope.",
+      "Git inaccessible to reviewer; parent verifies local/remote."
+    ]
   },
   "metadata_validation": {
     "status": "passed",
