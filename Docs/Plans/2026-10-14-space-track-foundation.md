@@ -27,7 +27,7 @@ SpaceTrackState保存同一Definition、双方合法位置；只读，没有Adva
 
 - [x] Infrastructure/DataLoading/SpaceRaceDefinitionLoader.cs及测试；实际共享8格/4能力，损坏字段/类型/顺序/来源/政策/重复JSON/限额等拒绝；先RED/GREEN。
 - [x] 同步space模块/data描述、catalog、Wiki和实际验证报告。描述明确普通尝试和事件推进仍不可调用。
-- [ ] 全量回归与正式metadata校验；整批审阅、一次修复轮、提交/push核验。
+- [x] 全量回归与正式metadata校验；整批审阅通过（0 Critical/Important/Minor），本地提交完成；推送状态以工作记录及实际远程核验为准。
 - [x] 不接Unity表现层，不重建播放器。
 
 ## Review Focus
