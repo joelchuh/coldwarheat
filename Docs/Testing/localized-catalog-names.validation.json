@@ -3,7 +3,7 @@
   "id": "validation.localized-catalog-names",
   "description": "显示名称切换与词典边界分层验证",
   "baseline_commit": "fcde880ec203c6513f0b9e33397b10ed38f0a161",
-  "status": "tests-build-review-passed-ui-pending",
+  "status": "tests-build-review-passed-ui-partial",
   "runs": [
     {
       "run_id": "localized-names-red",
@@ -298,11 +298,38 @@
     "files_read": 274
   },
   "ui": {
-    "status": "blocked-window-activation",
+    "status": "map-language-switch-passed-hands-pending",
+    "checked_on": "2026-10-14",
+    "passed": [
+      "用户切前台后真实读取LocalizedPlaytest；中文伊朗、地图和顶部名称按钮可见，无缺字方框。",
+      "地图加号从1.0放大到1.4；点名称由中文切英文，伊朗显示Iran，再点回中文。",
+      "两次切换均保留相同地图中心、1.4倍缩放、选中伊朗；美1/苏0影响力、VP0、DEFCON5、太空0/0保持。",
+      "回合1、苏联行动1/6、普通手牌8/8、牌局版本4和序号22均保持。"
+    ],
+    "pending": [
+      "打开手牌后的中文牌名字形与长标题布局",
+      "选牌后切名保留已选卡的真实点击验收"
+    ],
     "error": "failed to activate captured window",
-    "images": [],
-    "note": "首次截图为桌面背景，未作为游戏截图；重新选择返回窗口并激活一次仍失败，已请求用户切到前台。 恢复会话后重新读取同一窗口仍仅有桌面背景；未点击未知画面。已告知用户可恢复操作。",
-    "player_log_errors": []
+    "note": "地图切换成功后打开手牌输入报错；重新选择返回窗口并激活一次仍失败。停止UI操作，告知用户可以恢复输入；未用旧坐标继续点击。",
+    "images": [
+      {
+        "path": "Docs/Images/localized-map-english.png",
+        "sha256": "3bae0f294b3b16731f38357e1af0fcbaef6d9076c276c7b5b42b3e83bec7c801",
+        "language": "en-US",
+        "capture_file": "20261014-123804-33e5cb478f3b46849963fa0d4051a3d2.png",
+        "source": "game F12 capture"
+      },
+      {
+        "path": "Docs/Images/localized-map-chinese.png",
+        "sha256": "8fe4d111c98ada05b5f0bf6e65c9d8b627eea178c7aa225c211e416c8d9cbec0",
+        "language": "zh-CN",
+        "capture_file": "20261014-123818-9195658f75da4100a624f439f36c5a0c.png",
+        "source": "game F12 capture"
+      }
+    ],
+    "player_log_errors": [],
+    "scope": "仅实际观察到的地图/名称按钮与公开状态通过，不外推所有卡牌标题、分辨率或特殊启动聚焦。"
   },
   "review": {
     "status": "passed-with-minor",
@@ -335,7 +362,7 @@
       }
     ],
     "evidence": "审阅精确patch、相关实现/依赖与测试；253源码哈希、39源/构建载荷和exe哈希复核一致；没有重跑测试或操作UI。",
-    "post_review_changes": "仅更新描述、试玩指引、验证结论及工作记录，无源码和数据载荷变更。"
+    "post_review_changes": "仅更新描述、试玩指引、验证结论及工作记录，无源码和数据载荷变更。 用户补充前台授权后完成地图名称切换实测，补两张游戏截图和分项UI证据；仍无源码变更。"
   },
   "build": {
     "status": "passed",

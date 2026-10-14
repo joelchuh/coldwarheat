@@ -7,3 +7,5 @@ T3 元数据：Data descriptor+目录，module descriptor+目录，Wiki/README/A
 Review Focus：中文只影响名字，不参与规则/actor/RNG；地区或卡名静态知识不泄露私有手牌；替换names失败不得部分更新/留下可用陈旧点击；MapPresenter上下文新建而game/selectedcard/draft/版本保持；世界地图Center/Zoom恢复避免语言切换跳回全图；真实中文长标题换行/按钮不遮挡；旧Initialize无alternateNames仍可用。
 
 执行结论：T1/T2代码及自动测试/构建完成，T3描述与唯一审查完成；视觉/按钮验收因窗口捕获失败保留未完成，详见验证报告。Minor登记后不在本批扩展修复范围。
+
+补测：地图名称按钮中文→EN→中文实测通过，1.4倍视口/伊朗/牌局版本保持；手牌标题及选牌保持仍因激活失败待验收。详见报告ui.passed/ui.pending。

@@ -22,3 +22,7 @@ Final: Ruling: 维持项目自译短名称，不作官方术语或完整翻译�
 Final: Ruling: 头条、未接事件、特殊回合末、最终计分、存档、联网与AI保持既有边界 — 本批只改变名称显示 — 尚不能完整打一局。
 
 构建description修正后metadata复核135描述/目录、73数据、294符号、628依赖、274文件通过。补中文试玩指引与经过ContinuousPlaytest实测的12行动路线，并明确该路线不等同于LocalizedPlaytest名称按钮已验收。常规Git授权仍有效，准备docs提交及ff/main推送。
+
+2026-10-14用户回复已切前台后补测：LocalizedPlaytest真实中文地图可读。放大1.0→1.4后中文→EN→中文，伊朗/Iran切换正确；视口、选中国家、美1苏0、VP0/DEFCON5/太空0、回合1苏联行动1/6、手牌8/8、版本4序号22均保持。两张游戏F12截图已保存Docs/Images并记录SHA256。
+
+打开手牌时再次failed to activate captured window，重新选择返回窗口并激活一次失败，停止输入并释放用户鼠标键盘。手牌标题/长名与选牌保持的真实UI仍待验收；此前“全部UI待验”历史结论更新为“地图切换通过，手牌待验”。Player.log没有Exception/Error/Assertion。源码未变，不重复运行2009项自动测试或构建。额度已到10%，本次仅保存证据及同步，不继续开发。
