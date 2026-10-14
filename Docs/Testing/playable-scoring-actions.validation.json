@@ -3,7 +3,7 @@
   "id": "validation.playable-scoring-actions",
   "description": "计分牌与公开地区预览的RED/GREEN、构建、渲染和独立审查证据；鼠标验证单列。",
   "date": "2026-10-14",
-  "status": "tests-and-build-passed-review-pending",
+  "status": "tests-build-and-independent-review-passed-mouse-unverified",
   "baseline_commit": "6c641c20c85e4cc61a38e0e3e7c0c7f7c648c04e",
   "runs": [
     {
@@ -507,7 +507,16 @@
     }
   },
   "review": {
-    "status": "pending"
+    "status": "ready-to-merge",
+    "reviewed_head": "dd87adc84f4d7f596c28387718b82fa360653c7c",
+    "critical": 0,
+    "important": 0,
+    "minor_deferred": [
+      "SEA public preview has no hand-independent UI entry; add with a future preview UI update.",
+      "Add terminal SEA and scoring-after-coup targeted preservation coverage in a later integration batch."
+    ],
+    "independent_evidence": "1648 passed, 0 skipped; XML SHA, all 190 source hashes and 34 payload hashes independently matched. No Unity rerun.",
+    "declined_rulings": "Docs/Worklogs/2026-10-14-playable-scoring-actions.md"
   },
   "scope": [
     "七种计分算法经真实手牌入口，当前默认早期发牌只能使用早期牌；中晚期由明确fixture验服务",

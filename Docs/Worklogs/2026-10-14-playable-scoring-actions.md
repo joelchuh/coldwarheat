@@ -21,3 +21,16 @@ T3 RED: playable-scoring-catalog-red 1645/1648,3 loader-stub failures,0 skipped,
 T3 GREEN: playable-scoring-catalog-green1648/1648,0 skipped,exit0,XMLaa7e125d83d4da394815590fc099c751f0c5c922343eba65793acbd694c14b08. BuildScoring exit0, FIRST_DEMO_BUILD_SUCCEEDED97466815;34 byte-equal payloads (32 JSON+2 notices). Actual hand capture exit0, visually inspected1280x820, screenshot in Docs/Images/scoring-demo-hands.png.
 Ruling: 用户已回复“已切到前台”，重新选择返回的RiskDemo窗口却短暂显示旧PlayableDemo画面；激活Risk/Playable继续failed to activate captured window，之后捕获是壁纸。停止输入，未执行任何点击。成本：计分按钮/地区预览/行动地图鼠标验收保留缺口；现有截图仅证明初始手牌渲染。
 T1/T2/T3 complete. T4 metadata and independent final review pending.
+
+Final: fresh whole-branch review dd87adc, 0 Critical/Important, 2 Minor deferred. Reviewer independently matched1648 tests/XML/190 source hashes/34 payloads. Metadata118 descriptors/118 catalog/70 datasets/209 symbols/594 data refs/221 files.
+Final: Ruling: SEA的无手牌UI预览入口延后到预览界面改进 — 早期Demo无该牌且查询API正确 — 成本：当前仅服务/选牌面板可访问SEA。
+Final: Ruling: 终局SEA和政变后计分历史的专项测试记为后续集成覆盖债 — 已检查实现正确，非阻塞 — 成本：两条组合暂未专测。
+Final: Ruling: 鼠标/行动地图验收保持未验证 — 激活工具失败且手牌截图不能替代 — 成本：交互问题可能需试玩反馈发现。
+Final: Ruling: 台湾/穿梭等活动修正不接本练习 — 当前命令不能引入效果且显式无活动状态 — 成本：不是完整计分规则。
+Final: Ruling: 一般事件、对手事件OPS、中国牌、头条和回合末按后续计划接线 — 超出当前计分批次 — 成本：暂不能完整对局。
+Final: Ruling: 七地区服务覆盖使用明示all-era测试fixture — 实际默认Early牌组不应伪加入中晚期牌 — 成本：默认不能试玩全部七张。
+Final: Ruling: 不保证任意手牌路线均可完成十二槽 — 未实现事件限制继承自前批 — 成本：可能提前无牌可用。
+Final: Ruling: 存档/回放及跨进程收据持久化延后 — 本批仅本地宿主事务 — 成本：退出无法继续。
+Final: Ruling: 不支持任意自定义工厂复用同GameId/version但换状态 — 生产工厂每局生成新ID — 成本：测试扩展须保持这一契约。
+Final: Ruling: 外部任意超长GameState标识不增加本批门禁 — 当前为受信任内部状态 — 成本：开放导入前需独立校验。
+T1/T2/T3/T4 complete; no fix pass required. Routine ff merge/push follows; remote SHA is checked separately.

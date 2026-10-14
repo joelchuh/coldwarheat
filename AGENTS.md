@@ -635,3 +635,7 @@ ADR-006-player-view-and-hidden-information.md
 ## 29. 政变与风险试玩（2026-10-14）
 
 RiskDemo已从真实手牌接普通政变、军事累计、DEFCON与核战胜负，行动阶段扩大地图；先读Docs/Wiki/playable-coup-actions.md及对应JSON。1621项回归和32份构建载荷通过，独立审查0阻塞项；鼠标/行动地图视觉未验收，初始部署截图不能替代。仍无活动效果、头条、计分用途或回合末；第28节是此前批次，后续按prototype-roadmap分批接线。
+
+## 30. 计分与行动试玩（2026-10-14）
+
+ScoringDemo已接七种印刷计分牌的无活动修正服务、公开地区预览及太空/计分VP终局。先读Docs/Wiki/playable-scoring-actions.md和JSON描述。1648项回归、34份构建载荷与独立审查通过；2项Minor见worklog。实际仅手牌渲染已验，鼠标/行动地图未验。当前仍是跳过头条的单回合练习；第29节的未接计分是历史状态。

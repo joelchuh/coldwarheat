@@ -22,6 +22,6 @@ Review focus: 计分和太空先把双方分数合成完整批次再判胜；Eur
 - [x] T1 ActionPracticeState.cs 增加可选计分定义；ActionPracticeRules.Scoring.cs 计算/终局计划；PracticeRiskState.cs 保留风险历史更新胜负；ActionPracticeRules.cs 共享牌去向与Space终局；GameState.cs绑定地图。PlayScoringTests.cs先RED再GREEN，run-unity-editmode唯一RunId；每轮检查真实XML。
 - [x] T2 ScoringContracts.cs公共DTO/预览；LocalGameHost.Scoring.cs读查询；CardActionContracts.cs/LocalGameHost.Cards.cs提交；DemoController.Scoring.cs缓存只读预览/使用计分牌。PlayScoringSessionTests.cs覆盖幂等/身份/隐私和副作用。
 - [x] T3 DemoCatalog.Actions.cs新增装配，DemoBootstrap/DemoBuild复制两份JSON并BuildScoring；DemoView.Scoring.cs展示预览/得分和准确终局原因；Catalog测试RED/GREEN，再完整构建。
-- [ ] T4 新模块JSON、Wiki、验证报告、worklog及当前阶段摘要。完整检查后固定diff交一次独立审查，常规快进/push并核对SHA。
+- [x] T4 新模块JSON、Wiki、验证报告、worklog及当前阶段摘要。完整检查后固定diff交一次独立审查，常规快进/push并核对SHA。
 
 继续沿用executing-plans，本人实现；仅批次最终一次独立review。计划任务实现可合并保存单次实现提交与后续审查记录提交，无额外用户批准节点。
