@@ -22,6 +22,13 @@ namespace ColdWarStruggle.Core
             Card = card ?? throw new ArgumentNullException(nameof(card));
             Id = id; SourceActionId = sourceActionId; TurnNumber = turnNumber; Actor = actor; EffectiveOps = effectiveOps;
         }
+        // Convenient trusted binding; ownership, phase and active restrictions remain host checks.
+        public static SpaceAttemptRequest FromQuote(string id,string sourceActionId,int turnNumber,OpsGeneralQuote quote)
+        {
+            if (quote==null) throw new ArgumentNullException(nameof(quote));
+            if (quote.Card==null || quote.Purpose!=OpsValuePurpose.Space) throw new ArgumentException("A real-card Space quote is required.");
+            return new SpaceAttemptRequest(id,sourceActionId,turnNumber,quote.Actor,quote.Card,quote.GeneralValue);
+        }
         internal bool SameFacts(SpaceAttemptRequest other) => other != null && Id == other.Id && SourceActionId == other.SourceActionId
             && TurnNumber == other.TurnNumber && Actor == other.Actor && ReferenceEquals(Card, other.Card) && EffectiveOps == other.EffectiveOps;
     }

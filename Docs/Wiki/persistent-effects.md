@@ -2,7 +2,7 @@
 
 description：按效果参数查本回合持续状态的生效、到期、取消，以及 OPS 的行动者归属、上下限和地区花费历史。首批为越南起义、遏制政策、红色恐怖／清洗。
 
-状态：规则设计与参数绑定；没有 C#、Unity 或可玩的效果处理器。入口：[模块描述](../Descriptors/active-effects.module.json) → [数据描述](../../Data/Descriptors/persistent-effects-batch1.data.json) → [唯一参数文件](../../Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json)。卡牌印刷 OPS 仍从 cards.json 读取，地区成员仍从 world.json 读取。
+状态：活动实例与地区奖励仍为设计；[通用Flat OPS报价](ops-general.md)已有C#和真实测试，三张牌的激活/到期处理器与完整宿主未实现。入口：[模块描述](../Descriptors/active-effects.module.json) → [数据描述](../../Data/Descriptors/persistent-effects-batch1.data.json) → [唯一参数文件](../../Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json)。卡牌印刷 OPS 仍从 cards.json 读取，地区成员仍从 world.json 读取。
 
 ## 三张牌与来源
 

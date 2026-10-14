@@ -30,7 +30,7 @@
 
 同ID同事实返回原收据，`VpDeltaToApply=0`、`ApplyCardDisposition=false`，随机前后均为当前快照，不能倒退到原收据时点。CardDefinition必须绑定同一对象；完整恢复功能须重绑批准目录，当前尚无该恢复入口。4096条收据是工程上限。
 
-本服务接受可信的正整数EffectiveOps，不自行计算通用修正/地区奖励，也不验证持牌、阶段、中国牌状态或活动拦截。调用方缺这些策略时不能放行完整玩家命令。普通带星牌的太空去向意图仍为Discard且不执行牌面事件；中国牌返回ChinaTransferRequired，转交与外部钩子并未实现。
+[通用OPS报价](ops-general.md)已实现；SpaceAttemptRequest.FromQuote只从真实卡Space报价取得Actor/Card/有效OPS。底层服务仍接受可信的正整数EffectiveOps，不自行计算通用修正/地区奖励，也不验证持牌、阶段、中国牌状态或活动拦截。调用方缺这些策略时不能放行完整玩家命令。普通带星牌的太空去向意图仍为Discard且不执行牌面事件；中国牌返回ChinaTransferRequired，转交与外部钩子并未实现。
 
 IRandomProvider必须守Capture只读/Fork独立契约；本实现拒绝相同实例、初态不一致、非法骰点及未推进快照，但不声称能防恶意共享隐藏状态的提供者。范围采用NextInt(min-1,max)+1，和普通[min,max]骰面一致；PCG拒绝采样可能消耗多次原始输出。
 

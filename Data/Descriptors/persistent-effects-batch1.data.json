@@ -4,12 +4,12 @@
     "版本匹配的参数、权威事件/行动上下文、静态地图和卡牌定义"
   ],
   "outputs": [
-    "拟定ActiveEffectInstance或OpsQuote；RequiresRuling不产生部分结果"
+    "已实现General OPS只读定义；活动实例与地区奖励仍为设计"
   ],
   "dependencies": [],
   "preconditions": [
-    "planned不是运行实现",
-    "权威事件控制者与实际OPS行动者已确定；静态定义只读"
+    "参数版本与可信Schema匹配；General政策已有消费者，不代表完整持续效果处理器实现",
+    "权威事件控制者/实际Actor与Flat条目来源由宿主验证"
   ],
   "side_effects": [],
   "stop_conditions": [
@@ -32,6 +32,14 @@
   ],
   "tests": [
     {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/OpsGeneralTests.cs",
+      "status": "passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/OpsGeneralLoaderTests.cs",
+      "status": "passed"
+    },
+    {
       "path": "Docs/Design/persistent-effects-batch1.cases.json",
       "status": "mixed-reference-and-planned"
     }
@@ -40,7 +48,7 @@
   "id": "data.persistent-effects-batch1",
   "kind": "data",
   "status": "ready",
-  "description": "持续效果首批：越南起义、遏制政策、红色恐怖／清洗的激活、回合末到期与OPS合并修正；另含中国牌地区奖励引用，运行处理器待实现。",
+  "description": "持续效果首批参数及ops_policy；General上下限/用途已有C#加载与报价消费者，地区奖励和三张牌的激活/到期处理器仍待实现。",
   "dataset_id": "effects.deluxe2015.persistent_batch1",
   "content_version": "0.1.0",
   "schema_path": "Docs/Contracts/persistent-effects-batch1.schema.json",
@@ -54,8 +62,10 @@
     "map.deluxe2015.world"
   ],
   "verification": {
-    "runtime_consumers_tested": false,
-    "report": "Docs/Design/persistent-effects-batch1.validation.json"
+    "runtime_consumers_tested": true,
+    "scope": "ops_policy-general-subset-only",
+    "report": "Docs/Testing/ops-general-quote.validation.json",
+    "latest_design_report": "Docs/Design/persistent-effects-batch1.validation.json"
   },
   "retrieval_hints": [
     "parameters按卡牌ID后缀查询；ops_policy只读共享上下限；source_bonuses按来源卡牌ID使用"

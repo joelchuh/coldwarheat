@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "id": "module.ops-general",
+  "kind": "module",
+  "status": "implemented-subset",
+  "description": "通用Flat OPS报价：按实际Actor合并后处理共享上下限，真实牌/视同牌来源分开，保留原始和修正明细；地区奖励/花费历史和活动实例生命周期待实现。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OpsGeneralRules.cs",
+      "symbol": "OpsGeneralDefinition"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OpsGeneralRules.cs",
+      "symbol": "OpsFlatModifier"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OpsGeneralRules.cs",
+      "symbol": "QuoteCard"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OpsGeneralRules.cs",
+      "symbol": "QuoteAsIfCard"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/OpsGeneralDefinitionLoader.cs",
+      "symbol": "LoadSubset"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAttemptState.cs",
+      "symbol": "FromQuote"
+    }
+  ],
+  "documentation": "Docs/Wiki/ops-general.md",
+  "inputs": [
+    "可信CardDefinition或已验证视同OPS来源、Actor/Purpose、显式Flat修正条目",
+    "共享ops_policy及可信persistent-effects-batch1 Schema；仅装配General子集"
+  ],
+  "outputs": [
+    "不可变OpsGeneralQuote：Definition/Card或AsIf来源/Actor/Purpose/Base/long总修正及Raw/GeneralValue/只读已应用条目",
+    "FromQuote只把真实卡Space报价转换为太空请求，不混入地区奖励或任意指定Actor"
+  ],
+  "dependencies": [
+    "module.card-catalog",
+    "module.space-race"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.persistent_batch1"
+  ],
+  "contract_dependencies": [
+    "urn:coldwarheat:contract:persistent-effects-batch1:1"
+  ],
+  "preconditions": [
+    "Flat贡献的激活/期限/来源与同效果重复政策由未来ActiveEffect层验证，条目不代表授权",
+    "对地图行动General只是通用部分，不能作为尚含地区条件的完整预算；保留Raw供后续组合，避免再次保底造成错误",
+    "AsIf仅支持Influence/Coup/Realignment，不能伪造Space或门槛判断需要的物理卡",
+    "工厂不替代持牌/阶段/中国牌/活动限制校验；既有int构造器保留为可信底层入口"
+  ],
+  "side_effects": [
+    "纯计算，无随机、状态/卡牌写入或I/O"
+  ],
+  "stop_conditions": [
+    "计分牌、非法Actor/用途/上下限、缺失/重复/超过128个条目拒绝",
+    "未知版本/Schema/政策/不完整用途/来源引用未Verified或字段类型错误拒绝",
+    "地区小值组合未获用户确认前不实现该分支；不据本模块自动叠加地区奖励"
+  ],
+  "rule_sources": [
+    {
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "checked_on": "2026-10-14",
+      "sections": [
+        "7.4",
+        "7.4.1",
+        "7.4.2",
+        "7.4.3"
+      ],
+      "pdf_pages": [
+        8
+      ]
+    },
+    {
+      "path": "Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json",
+      "json_pointer": "/ops_policy"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/OpsGeneralTests.cs",
+      "status": "passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/OpsGeneralLoaderTests.cs",
+      "status": "passed"
+    }
+  ],
+  "verification": {
+    "implementation_tested": true,
+    "scope": "general-flat-quote-and-space-factory",
+    "report": "Docs/Testing/ops-general-quote.validation.json",
+    "unity_editmode_total": 1452,
+    "player_rebuilt": false
+  },
+  "open_items": [
+    "地区条件/历史/奖励合并",
+    "真实ActiveEffect激活/到期/取消与同效果重复裁定",
+    "完整OPS/出牌/太空宿主授权与提交"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "plan.ops-general-quote",
+  "kind": "implementation-plan",
+  "status": "implemented-awaiting-review",
+  "description": "通用Flat OPS合并报价、共享政策加载和真实牌太空请求工厂；地区奖励与活动实例生命周期仍待实现。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OpsGeneralRules.cs",
+      "symbol": "OpsGeneralDefinition"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OpsGeneralRules.cs",
+      "symbol": "OpsFlatModifier"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OpsGeneralRules.cs",
+      "symbol": "QuoteCard"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OpsGeneralRules.cs",
+      "symbol": "QuoteAsIfCard"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/OpsGeneralDefinitionLoader.cs",
+      "symbol": "LoadSubset"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAttemptState.cs",
+      "symbol": "FromQuote"
+    }
+  ],
+  "inputs": [
+    "共享ops_policy",
+    "可信卡牌/视同值、Actor、Flat修正条目"
+  ],
+  "outputs": [
+    "不可变General报价",
+    "真实卡Space请求"
+  ],
+  "dependencies": [
+    "module.space-race"
+  ],
+  "preconditions": [
+    "已授权持续开发",
+    "地区小值解释未确认不实现该分支"
+  ],
+  "side_effects": [
+    "源码/测试/描述/知识库与Git；不重建播放器"
+  ],
+  "stop_conditions": [
+    "未知用途/配置/来源/重复条目拒绝"
+  ],
+  "rule_sources": [
+    {
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "sections": [
+        "7.4",
+        "7.4.1",
+        "7.4.2",
+        "7.4.3"
+      ],
+      "checked_on": "2026-10-14"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/OpsGeneralTests.cs",
+      "status": "passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/OpsGeneralLoaderTests.cs",
+      "status": "passed"
+    }
+  ],
+  "document": "Docs/Plans/2026-10-14-ops-general-quote.md"
+}
