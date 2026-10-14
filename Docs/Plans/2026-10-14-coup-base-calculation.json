@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "description": "无活动干预的基础政变目标门禁与可信已掷骰影响力计算；复用地图/DEFCON，共享骰子和稳定度系数，返回战场降级意图，完整命令/随机/军事/提交待接。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/CoupCalculation.cs",
+      "symbol": "CoupDefinition"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/CoupCalculation.cs",
+      "symbol": "CoupCalculation"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/CoupCalculation.cs",
+      "symbol": "CheckTarget"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/CoupCalculation.cs",
+      "symbol": "Calculate"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/CoupDefinitionLoader.cs",
+      "symbol": "LoadSubset"
+    }
+  ],
+  "inputs": [
+    "可信最终政变强度和已掷骰面值；Defcon绑定地图/当前目标影响力/Actor",
+    "显式活动效果ID快照，当前任何非空集合均阻止执行",
+    "共享coup.json受控规则子集"
+  ],
+  "outputs": [
+    "目标基础原因、不可变前后影响力、long差值、移除/新增量、战场降级意图"
+  ],
+  "dependencies": [
+    "module.defcon"
+  ],
+  "preconditions": [
+    "宿主先检查身份/阶段/预算/版本、收集真实效果再验证目标，之后才能记军事/取随机数",
+    "仅无干预基础政变；数值输入与空效果集合不是客户端授权",
+    "强度和军事信用分别计算，地区奖励不能只拿General报价替代最终预算"
+  ],
+  "side_effects": [
+    "纯计算；不读取或写入随机流、不提交游戏/DEFCON/军事/VP/卡牌或游标"
+  ],
+  "stop_conditions": [
+    "核战、地理禁止、无敌方影响力、未知国家/角色、非空活动效果",
+    "损坏定义/面值/强度/类型/版本/来源和影响力int溢出"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "checked_on": "2026-10-14",
+      "sections": [
+        "6.3.1",
+        "6.3.2",
+        "6.3.3",
+        "6.3.4"
+      ],
+      "pdf_pages": [
+        7
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/CoupCalculationTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/CoupLoaderTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "id": "plan.coup-base-calculation",
+  "kind": "plan",
+  "status": "implemented-awaiting-review",
+  "document": "Docs/Plans/2026-10-14-coup-base-calculation.md"
+}

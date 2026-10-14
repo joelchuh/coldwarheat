@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "id": "data.coup",
+  "kind": "data",
+  "description": "普通政变骰子最小/最大面值与稳定度乘数的共享参数；加载器验证固定profile与来源，基础计算消费，不含逐卡修正或军事信用。",
+  "status": "ready",
+  "dataset_id": "rules.deluxe2015.coup",
+  "entrypoints": [
+    {
+      "path": "Data/Rulesets/deluxe-2015/coup.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "受控Deluxe2015基础规则文件"
+  ],
+  "outputs": [
+    "只读CoupDefinition"
+  ],
+  "dependencies": [],
+  "preconditions": [
+    "使用精确字段/profile/来源与领域校验，不能据来源元数据证明文件真实性"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知或缺失字段/重复JSON/不支持来源版本/非整数/无效范围"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "checked_on": "2026-10-14",
+      "sections": [
+        "6.3.1",
+        "6.3.2",
+        "6.3.3",
+        "6.3.4"
+      ],
+      "pdf_pages": [
+        7
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/CoupCalculationTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/CoupLoaderTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "validation": {
+    "schema_status": "无通用JSON Schema；严格字段及领域/引用加载器校验"
+  },
+  "verification": {
+    "runtime_consumers_tested": true,
+    "latest_report": "Docs/Testing/coup-base-calculation.validation.json"
+  }
+}
