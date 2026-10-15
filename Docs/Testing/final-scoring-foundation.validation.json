@@ -83,16 +83,42 @@
       "unity_exit_code": 0,
       "xml_sha256": "96008bde2e844645e8b6acfdeb937ad9038cebe942165fe0a91365bcddaf8bef",
       "duration_ms": 73598
+    },
+    {
+      "run_id": "final-scoring-review-red",
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 2386,
+      "passed": 2380,
+      "failed": 6,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "21bf38e9d06915730b13b043aae69acf290c4382e24bbcb3307f56ef743998bd",
+      "duration_ms": 72492
+    },
+    {
+      "run_id": "final-scoring-review-green",
+      "status": "passed",
+      "error_code": null,
+      "total": 2386,
+      "passed": 2386,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "7fbb741ec8eb165dedfb158e4d01ef35310a7ae99da0dbb2f605aa4d645a91a4",
+      "duration_ms": 72844
     }
   ],
-  "final_native_run": "final-scoring-loader-green",
-  "new_tests": 60,
-  "core_tests": 26,
+  "final_native_run": "final-scoring-review-green",
+  "new_tests": 66,
+  "core_tests": 32,
   "loader_tests": 34,
   "source_files": [
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/FinalScoringDefinition.cs",
-      "sha256": "bb52a25cad23d76d4859ef7b1520fe4ed5224713268fdad9caca0a0259bf4ac4"
+      "sha256": "c75cd6a7e89a874e57b7fd9befdec829c5d1f0aec37db612888057688d98548e"
     },
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/FinalScoringService.cs",
@@ -116,7 +142,7 @@
     },
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/FinalScoringTests.cs",
-      "sha256": "c89dc784c88b3bef4b59bbe47d397e41ddc3b4578f54a06b2482808d8653ee60"
+      "sha256": "3ac706c8c3a9809d842a04927b8e5231e1d026a42d76c8fe6d75f938f87a115f"
     },
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/FinalScoringLoaderTests.cs",
@@ -166,7 +192,22 @@
     }
   ],
   "review": {
-    "status": "pending"
+    "status": "important-finding-fixed-by-red-green-tests",
+    "reviewer": "review_final_scoring_foundation",
+    "model": "gpt-6-astra",
+    "reviewed_head": "5ab6c0e31ec73d462b26dff855bc7dbed3878b3b",
+    "critical": 0,
+    "important": 1,
+    "minor": 0,
+    "fixed": 1,
+    "finding": "通用六区定义可替换欧洲而缺失欧洲控制；核心已锁基础六区ID",
+    "fix_test": "Custom_six_region_definition_cannot_replace_any_base_region (6 cases)",
+    "rerereview_performed": false,
+    "declined_to_judge": [
+      "最终宿主资格/原子提交/幂等",
+      "UI、动态计分效果、播放器实际行为"
+    ],
+    "disposition": "保留已披露范围；下一批独立实现并验收"
   },
   "build": {
     "performed": false,
@@ -178,5 +219,12 @@
     "最终欧洲控制没有净数字VP；Victory保留原VP并标明赢家",
     "共享JSON只做契约/来源引用核对，不声称认证任意外部输入",
     "不支持中国内战变体"
-  ]
+  ],
+  "metadata_validation": {
+    "status": "passed",
+    "descriptors": 143,
+    "symbols": 336,
+    "data_dependencies": 643,
+    "scope": "只读词法与引用验证，不代替原生测试"
+  }
 }

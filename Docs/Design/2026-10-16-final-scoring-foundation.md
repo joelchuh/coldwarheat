@@ -8,7 +8,7 @@
 
 选择内部计算全部地区，而不是接受调用方拼接的地区结果列表：同一快照、完整性和来源一致性由接口保证。也不逐个调用普通 VP 胜负检查点；否则中途越过20分会提前结束。
 
-- FinalScoringDefinition(regionDefinition, finalRegionIds, chinaCardId, chinaHolderVp)：复制最终地区列表，要求恰为基础规则的六个标准地区，无遗漏/重复/未知/SEA；中国牌ID必须为 card.china，奖励非负Int32。
+- FinalScoringDefinition(regionDefinition, finalRegionIds, chinaCardId, chinaHolderVp)：复制最终地区列表，要求恰为基础规则的六个固定标准地区ID，并与RegionDefinition集合一致，无遗漏/重复/未知/SEA；中国牌ID必须为 card.china，奖励非负Int32。
 - FinalScoringService.CalculateUnmodified(definition, snapshot, china)：同一地图与不可变快照计算所有地区；只读结果保留各区结果、SnapshotId/StateVersion、中国牌持有方与带符号奖励。拒绝任何尚无处理器的活动计分效果。
 - FinalScoringResult：内部构造，不允许外界提供部分/跨快照地区结果。欧洲Control有独立赢家和空NetVpForUS，不能伪装为数值；其他情况用long累计，再检查总净值Int32。
 - FinalScoringCompletedEvidence + VictoryCheckpoint.FinalScoringCompleted：VictoryService先检查批次前尚未达普通终局线；欧洲优先，其余一次合并原VP与最终净值；正为美国、负为苏联、零为Finished且Winner=null。欧洲胜利保留原VP，与已有欧洲计分语义一致。

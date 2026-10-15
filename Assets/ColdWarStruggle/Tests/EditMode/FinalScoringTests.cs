@@ -85,6 +85,24 @@ namespace ColdWarStruggle.Tests
             if(kind=="sea")ids[0]=region.WeightedRegionId;if(kind=="blank")ids[0]=" ";if(kind=="excess")ids.Add(ids[0]);
             Assert.Throws<ArgumentException>(()=>new FinalScoringDefinition(region,ids,new CardId("card.china"),1));
         }
+        [TestCase("region.europe")] [TestCase("region.asia")] [TestCase("region.africa")]
+        [TestCase("region.middle_east")] [TestCase("region.central_america")] [TestCase("region.south_america")]
+        public void Custom_six_region_definition_cannot_replace_any_base_region(string replaced)
+        {
+            var world=DefinitionTests.World();
+            string Rename(string id)=>id==replaced?"region.unknown":id;
+            var countries=world.Countries.Select(c=>new CountryDefinition(c.Id,c.Stability,Rename(c.Region),c.Battleground,c.Subregions.Select(Rename)));
+            var edges=world.Countries.SelectMany(c=>world.GetCountryNeighbors(c.Id).Where(n=>StringComparer.Ordinal.Compare(c.Id.Value,n.Value)<0)
+                .Select(n=>new KeyValuePair<CountryId,CountryId>(c.Id,n)));
+            var powers=new Dictionary<PlayerSide,IReadOnlyList<CountryId>>{{PlayerSide.US,world.GetSuperpowerNeighbors(PlayerSide.US)},{PlayerSide.USSR,world.GetSuperpowerNeighbors(PlayerSide.USSR)}};
+            var map=new MapDefinition(countries,edges,powers);
+            var tables=RegionScoringTests.Tables().Select(t=>new RegionScoreTable(Rename(t.Id),t.Presence,t.Domination,
+                t.Id==replaced && replaced=="region.europe"?(int?)9:t.Control));
+            // A generic region definition is valid, but must not become a Deluxe final-scoring definition.
+            var region=new RegionScoringDefinition(map,1,1,tables,"region.southeast_asia",Rename("region.asia"),RegionScoringTests.Weights(map));
+            Assert.That(region.Regions.Count,Is.EqualTo(6));
+            Assert.Throws<ArgumentException>(()=>new FinalScoringDefinition(region,region.Regions.Select(x=>x.Id),new CardId("card.china"),1));
+        }
         [Test] public void Invalid_definition_and_service_arguments_fail_closed()
         {
             var map=DefinitionTests.World();var region=RegionScoringTests.Definition(map);var ids=region.Regions.Select(x=>x.Id);var d=Definition(map);var s=RegionScoringTests.Snapshot(map,RegionScoringTests.Empty(map));
