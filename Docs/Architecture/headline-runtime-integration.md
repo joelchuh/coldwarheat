@@ -2,7 +2,7 @@
 
 description: 将既有头条设计映射到实际CardZones、ActionPractice和Session；区分已存在服务与尚未实现的编排。2026-10-15。
 
-状态：规划，未实现、未运行。用户继续开发授权有效；Unity当前许可证不可用，先完成接线审计。现有Demo仍跳过头条，不能因为本设计存在就改变对外能力说明。
+状态：完整编排仍规划；独立[头条基础服务](../Wiki/headline-foundation.md)已有保留区和选择源码及托管补充验证，尚未挂接游戏。用户继续开发授权有效；Unity当前许可证不可用，先完成接线审计。现有Demo仍跳过头条，不能因为本设计存在就改变对外能力说明。
 
 ## 用户体验目标
 
@@ -20,7 +20,7 @@ Defectors专门取消次序沿Docs/Wiki/defectors.md及其已核对参数/来源
 
 | 当前实现 | 接头条时必须处理 | 验收重点 |
 |---|---|---|
-| CardZones仅Hand/Resolving等七类实体分区，构造检查完整且唯一 | 增加按持有方存储的HeadlineReserved；所有牌区复制入口必须保留，旧调用默认空 | 两方至多一张、重复实体/中国牌/未来时代拒绝；Move/TurnDeal不能遗失保留牌 |
+| CardZones现已有按持有方的HeadlineReserved，构造检查完整且唯一 | 保留区纯服务已写，后续事件根/完整生命周期继续携带；旧调用默认空 | 两方至多一张、重复实体/中国牌/未来时代拒绝；Move/TurnDeal不能遗失保留牌 |
 | ActionPracticeState.Actor由CompletedActions奇偶推算 | 头条当前根单独记录PlayedBy；普通行动仍沿现有计数 | 美国先头条时不得伪增普通计数来换Actor；同一事件的Owner可与PlayedBy不同 |
 | CompleteEventAction和Next直接完成普通行动槽 | 抽出按根用途完成的单一入口，先分Headline与ActionRound，再复用牌去向 | 两张头条各自至多收尾一次，普通CompletedActions始终0，之后苏联行动1 |
 | 影响力事件完成断言ResolvingCards.Count==1 | 尚未轮到的另一头条留在Reserved，仅当前一张进Resolving | 等待选择期间不丢另一张；终局不继续下一张 |

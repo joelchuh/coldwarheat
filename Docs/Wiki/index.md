@@ -129,3 +129,5 @@
 - [中英文短名称](localized-catalog-names.md)：独立中文数据/稳定ID加载/地图与手牌切换；项目译名不等于规则全文本地化。
 
 - [头条运行时接线规划](../Architecture/headline-runtime-integration.md)：按当前CardZones/ActionPractice/Host定位缺口，先私有保留与排序，再事件根、UI和回合接入；仅planned，不是已实现模块。
+
+- [头条基础纯服务](headline-foundation.md)：保留牌区、秘密选择及太空先看后选投影；尚未挂Host/Demo，托管验证与Unity验收分开。

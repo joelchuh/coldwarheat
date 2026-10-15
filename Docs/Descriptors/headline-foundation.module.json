@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "id": "module.headline-foundation",
+  "kind": "module",
+  "status": "implemented-subset",
+  "description": "头条基础纯服务：每方秘密锁牌、太空先看后选与按身份投影已实现；不执行事件、不挂Host/Demo。普通排序待下一子批；当前仅托管补充验证。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineSelectionState.cs",
+      "symbol": "Begin"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineSelectionRules.cs",
+      "symbol": "PlanSelection"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineSelectionRules.cs",
+      "symbol": "CanChoose"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/HeadlineSelectionView.cs",
+      "symbol": "Create"
+    }
+  ],
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineOrderRules.cs",
+      "symbol": "BuildOrdinaryOrder"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/HeadlineParametersLoader.cs",
+      "symbol": "Load"
+    }
+  ],
+  "inputs": [
+    "可信CardCatalog与完整无Resolving/既有HeadlineReserved的CardZones",
+    "当前SpaceTrackState以及权威运行时支持牌集合；不是客户端可配置的覆盖声明",
+    "已绑定身份的选牌意图；真实GameId/Version/CommandId由后续Host接线负责"
+  ],
+  "outputs": [
+    "不可变新的选择状态与手牌→保留区；拒绝返回原权威状态及稳定错误码",
+    "HeadlineSelectionView只含自己的牌/候选、双方锁定标志及规则允许的对手牌"
+  ],
+  "dependencies": [
+    "module.card-zones",
+    "module.card-data",
+    "module.space-race"
+  ],
+  "data_dependencies": [
+    "cards.deluxe2015.definitions",
+    "rules.deluxe2015.space-race"
+  ],
+  "preconditions": [
+    "Begin由权威编排在头条收集入口调用；当前不负责GameState阶段合法性或认证",
+    "支持牌集合必须来自已注册运行时；不得把所有数据定义误当事件处理器"
+  ],
+  "side_effects": [
+    "纯服务无I/O/RNG/普通行动/VP/事件执行；输入集合复制",
+    "选择阶段冻结太空策略，双方齐备仅标Ready，不推进真实游戏"
+  ],
+  "stop_conditions": [
+    "不持有、未知牌、中国牌、不支持、已锁定、先看后选未到资格均拒绝",
+    "空候选明确不可选，不自动弃牌/跳过/判负",
+    "权威PlanSelection结果含完整秘密状态，不得序列化为客户端响应"
+  ],
+  "rule_sources": [
+    {
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "sections": [
+        "4.5C",
+        "6.4.4",
+        "9.5"
+      ],
+      "checked_on": "2026-10-15"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineCardZonesTests.cs",
+      "status": "managed-passed-unity-pending"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineSelectionTests.cs",
+      "status": "managed-passed-unity-pending"
+    }
+  ],
+  "documentation": "Docs/Wiki/headline-foundation.md",
+  "verification": {
+    "report": "Docs/Testing/headline-foundation.validation.json",
+    "unity": "pending-license"
+  }
+}

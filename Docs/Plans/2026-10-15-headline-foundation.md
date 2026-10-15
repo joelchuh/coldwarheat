@@ -40,10 +40,10 @@
 **Files:** 新增Core/Rules/HeadlineSelectionState.cs、HeadlineSelectionRules.cs，Application/Sessions/HeadlineSelectionView.cs，Tests/EditMode/HeadlineSelectionTests.cs及对应meta。
 **Interfaces:** HeadlineSelectionState.Begin(CardCatalog,CardZones,SpaceTrackState,IEnumerable<CardId> supportedCards)；HeadlineSelectionRules.PlanSelection(state,PlayerSide,CardId)返回Accepted/Error/State；HeadlineSelectionView.Create(state,viewer)返回自己的保留牌/候选、对手已锁定标志、允许可见的对手牌与Ready/CanChoose。
 
-- [ ] RED：普通两种提交次序、先方不可见/齐备同时可见、锁定不可重选、源不变；US/USSR太空领先及追平、先看后选提前提交拒绝；错误身份/不持有/不支持/中国牌/空候选；输入白名单复制、非法catalog/忙牌区拒绝；投影不可改集合。
-- [ ] GREEN：Begin冻结本阶段太空策略，只接受无现有保留/Resolving的完整牌区；支持集合验证；成功只手牌→保留区，返回新状态；不含卡牌的拒绝结果不推进任何字段。
-- [ ] 跑HeadlineSelectionTests及已有Session回归。Expected: 无隐私泄漏，旧会话未接线且保持行为。
-- [ ] 更新headline-foundation模块/知识摘要/工作日志并提交。
+- [x] RED：普通两种提交次序、先方不可见/齐备同时可见、锁定不可重选、源不变；US/USSR太空领先及追平、先看后选提前提交拒绝；错误身份/不持有/不支持/中国牌/空候选；输入白名单复制、非法catalog/忙牌区拒绝；投影不可改集合。
+- [x] GREEN：Begin冻结本阶段太空策略，只接受无现有保留/Resolving的完整牌区；支持集合验证；成功只手牌→保留区，返回新状态；不含卡牌的拒绝结果不推进任何字段。
+- [x] 跑HeadlineSelectionTests及已有Session回归。Expected: 无隐私泄漏，旧会话未接线且保持行为。
+- [x] 更新headline-foundation模块/知识摘要/工作日志并提交。
 
 ### Task 3: 参数加载与普通排序
 
