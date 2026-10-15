@@ -22,7 +22,7 @@ namespace ColdWarStruggle.Presentation
         IReadOnlyDictionary<string,string> names;
         IReadOnlyList<DemoScenarioOption> scenarios;
         int scenarioIndex,regionIndex;
-        bool revealBoth=true;
+        public bool TestObserverEnabled { get; set; }
         MapPresenter mapPresenter;
         DrawableMapView mapView;
         WorldMapAssets worldAssets;
@@ -135,8 +135,8 @@ namespace ColdWarStruggle.Presentation
             if(view.Cards!=null)DrawHandSummary(view);
             else
             {
-            revealBoth=GUI.Toggle(new Rect(972,642,264,28),revealBoth," 查看双方示例手牌",button);
-            if(revealBoth)
+            TestObserverEnabled=GUI.Toggle(new Rect(972,642,264,28),TestObserverEnabled," 查看双方示例手牌",button);
+            if(TestObserverEnabled)
             {
                 var both=controller.ReadBoth();Text(972,681,266,60,"美："+string.Join("、",both.USHand)+"\n苏："+string.Join("、",both.USSRHand),small);
             }

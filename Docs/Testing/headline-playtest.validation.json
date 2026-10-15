@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "description": "独立头条试玩分批证据，托管不替代原生/构建/UI。",
-  "status": "source-native-passed-review-pending",
+  "status": "source-reviewed-and-native-passed",
   "baseline_commit": "d0844da6b8637c0175cc3b6cdd334ec25644a848",
   "task1": {
     "new_tests": 17,
@@ -29,7 +29,7 @@
   "unity": {
     "status": "passed",
     "tests_executed": true,
-    "passed": 2319,
+    "passed": 2320,
     "failed": 0,
     "evidence": [
       {
@@ -67,13 +67,57 @@
         "passed": 2319,
         "failed": 0,
         "status": "passed"
+      },
+      {
+        "run_id": "headline-observer-red",
+        "summary": "TestResults/UnityRuns/headline-observer-red/summary.json",
+        "xml": "TestResults/UnityRuns/headline-observer-red/results.xml",
+        "sha256": "1943fa5c5321e2dd2fd2bda3b92223e09c04cacd97980e7d926482073121de4d",
+        "passed": 2319,
+        "failed": 1,
+        "status": "failed"
+      },
+      {
+        "run_id": "headline-observer-green",
+        "summary": "TestResults/UnityRuns/headline-observer-green/summary.json",
+        "xml": "TestResults/UnityRuns/headline-observer-green/results.xml",
+        "sha256": "92bf550ccb5455b42468a68ffd3cb23884e903d2d0f7ee23512b7507882d1a19",
+        "passed": 2320,
+        "failed": 0,
+        "status": "passed"
       }
     ]
   },
   "native_cases_excluded": 0,
-  "build": "not-run",
+  "build": {
+    "status": "pre-fix-build-passed-final-rebuild-pending",
+    "pre_fix_log": "TestResults/headline-playtest-build.log"
+  },
   "review": {
-    "status": "pending-whole-batch"
+    "status": "blocking-fix-verified",
+    "reviewed_head": "3dab1c43e4d814504c89660736b9a8151d4e63b1",
+    "critical": 0,
+    "important": 1,
+    "minor": 1,
+    "verified_source_hashes": 22,
+    "verified_xml_hashes": 12,
+    "fixed": [
+      {
+        "finding": "Default observer exposed first selected headline without explicit opt-in",
+        "test": "HeadlineViewPrivacyTests.Fresh_view_and_identity_switch_keep_first_headline_private_until_explicit_observation",
+        "red": "headline-observer-red:2319 passed/1 failed",
+        "green": "headline-observer-green:2320 passed/0 failed"
+      }
+    ],
+    "documentation_correction": "Wiki/current index/data description statuses synchronized under user-required workflow; historical batches retained with labels.",
+    "declined_to_judge": [
+      "Player build and artifact integrity: validate after final fix rebuild.",
+      "Actual mouse/render/scaling/cancel/next-turn UI: separately record actual evidence; no unit-test substitution.",
+      "Future remote delay/reorder/cancellation: not verified by synchronous LocalGameHost.",
+      "Unsupported events/no candidates/special end-turn/final scoring: explicit bounded demo, remain future work.",
+      "Network authentication/save/formal multiplayer: outside current local single-window scope.",
+      "User files/old players: preserve; verify only own new build."
+    ]
   },
   "task2": {
     "new_tests": 18,
@@ -159,7 +203,7 @@
     },
     {
       "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Cards.cs",
-      "sha256": "43764b4a8402d20f98c2f7ce053db909e364fbe6c407d75189514368bc32e97b"
+      "sha256": "6ac922821c348a7429e5c5043b10e4b44242bf9b165aa153348fd27b925d2166"
     },
     {
       "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.China.cs",
@@ -171,7 +215,7 @@
     },
     {
       "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Headlines.cs",
-      "sha256": "2cba7fc15929758600747d3f7d9aefc1aae0277072ae2e016a056d4c0836ded7"
+      "sha256": "d020b50ac7a61941cb21075efe69a8f37d443f17a9e29cabfddca99e1b57159e"
     },
     {
       "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.TurnEnd.cs",
@@ -179,7 +223,7 @@
     },
     {
       "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.cs",
-      "sha256": "f20b0b104116843784d3cdd7e7b795a12e5292a830ff5bb754ce50d5e19b82ee"
+      "sha256": "f52807d2af52952805c2affad9ae6ce6bb757ef73ac278cb9b9c663e0734e5c5"
     },
     {
       "path": "Assets/ColdWarStruggle/Scripts/Presentation/HeadlinePanelFrame.cs",
@@ -204,6 +248,14 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlinePlaytestEntryTests.cs",
       "sha256": "bb02c3d7fd3a129f6a49541751b995038983b9f72717210975231dc9c80d89a6"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineViewPrivacyTests.cs",
+      "sha256": "8382ee7c234887fd9d03a801fb7b584ac57c29ecb69d7f7e17a3aa51a15ccc16"
     }
-  ]
+  ],
+  "ui": {
+    "status": "pending",
+    "manual_plan": "Docs/Testing/headline-playtest-manual.md"
+  }
 }

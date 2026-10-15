@@ -136,8 +136,8 @@
 
 - [头条收集与本地会话](headline-session.md)：可选回合入口/权威牌区、Host/公开收据和选择继续已接，原生验收独立。
 
-- [已选叛逃者头条运行时](defectors-headline.md)：已选头条取消/弃牌/公开结果已实现，普通VP/嵌套未接，Unity待验。
+- [已选叛逃者头条运行时](defectors-headline.md)：已选头条取消/弃牌/公开结果已实现，普通VP/嵌套未接；原生已在头条试玩集成中通过。
 
-- [策略游戏工程参考与取舍](../Architecture/game-engineering-reference-notes.md)：Factorio确定性、Unity命令模式及本项目隐藏信息边界；[头条试玩接入草案](../Architecture/headline-playtest-integration-draft.md)尚未实现。
+- [策略游戏工程参考与取舍](../Architecture/game-engineering-reference-notes.md)：Factorio确定性、Unity命令模式及本项目隐藏信息边界；[头条试玩接入草案](../Architecture/headline-playtest-integration-draft.md)已由[实际接线](headline-playtest.md)接续。
 
-- [头条试玩接线](headline-playtest.md)：独立第15场景/只读启用标记已实现，界面和构建待接。
+- [头条试玩接线](headline-playtest.md)：第15场景/保密选择/地图UI与构建入口已接，原生通过；实际构建与鼠标状态见报告。

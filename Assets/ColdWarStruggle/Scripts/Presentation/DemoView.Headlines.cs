@@ -7,6 +7,7 @@ namespace ColdWarStruggle.Presentation
 {
     public sealed partial class DemoView
     {
+        public HeadlinePanelFrame ReadHeadlineFrame()=>HeadlinePanelFrame.Create(controller.ReadView(),names,TestObserverEnabled?controller.ReadBoth():null);
         void DrawHeadlineMapSummary(PlayerViewSnapshot view,float left,float width)
         {
             var f=HeadlinePanelFrame.Create(view,names);
@@ -15,7 +16,7 @@ namespace ColdWarStruggle.Presentation
         }
         void DrawHeadlineControls(PlayerViewSnapshot view)
         {
-            var f=HeadlinePanelFrame.Create(view,names,revealBoth?controller.ReadBoth():null);
+            var f=ReadHeadlineFrame();
             Text(972,366,262,112,f.Prompt+(f.ObserverLines.Count>0?"\n"+string.Join("\n",f.ObserverLines):""),small);
             var selected=controller.SelectedCard;var allowed=f.CanChoose && selected.HasValue && f.Candidates.Contains(selected.Value);
             Text(972,479,262,30,allowed?"已选："+CardTitle(selected.Value):f.CanChoose?"可选头条："+f.Candidates.Count+" 张":"本方暂不能继续选牌。",small);
