@@ -13,3 +13,5 @@ PublicHeadlineView公开OrderStrategy和CompletedRoots；秘密收集时strategy
 本批新增62项，最终2110项托管补充回归通过，160项原生相关测试另列。Unity已由用户登录打开，尚待关闭编辑器后完整原生验证；旧Demo和main未改，未构建或鼠标验收。证据见[报告](../Testing/defectors-headline.validation.json)，决策与任务记录见[工作日志](../Worklogs/2026-10-15-defectors-headline.md)。
 
 来源：既有[Defectors设计](defectors.md)、[运行规范](../Architecture/defectors-headline-runtime.md)、GMT FAQ v5 #103。普通USSR行动1VP和嵌套来源仍为后续批次。
+
+整批独立源码审查0 Critical/0 Important/0 Minor，11源码/10XML哈希吻合；仅批准源码检查点，不替代Unity、构建和鼠标验收。用户已打开工程但窗口自动关闭连续失败，原生测试等待其保存退出后运行。

@@ -137,3 +137,5 @@
 - [头条收集与本地会话](headline-session.md)：可选回合入口/权威牌区、Host/公开收据和选择继续已接，原生验收独立。
 
 - [已选叛逃者头条运行时](defectors-headline.md)：已选头条取消/弃牌/公开结果已实现，普通VP/嵌套未接，Unity待验。
+
+- [策略游戏工程参考与取舍](../Architecture/game-engineering-reference-notes.md)：Factorio确定性、Unity命令模式及本项目隐藏信息边界；[头条试玩接入草案](../Architecture/headline-playtest-integration-draft.md)尚未实现。

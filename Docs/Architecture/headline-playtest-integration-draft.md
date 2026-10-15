@@ -1,0 +1,17 @@
+# 头条可玩演示接入草案
+
+description: 将已实现的头条Host接现有单窗口双身份地图试玩；当前仅草案，未实现或验收，待当前分支审查和原生验证后实施。
+
+用户目标：单人测试可观察双方，但只能通过当前固定身份提交该方操作；每一回合经历真实选头条、揭示、事件/取消、普通行动、回合末和下一回合。保留已构建LocalizedPlaytest供回归对照，独立HeadlinesPlaytest输出。
+
+模块边界：Infrastructure组装可信HeadlineParameters和DefectorsHeadlineDefinition；Core继续裁决；Application向PublicPracticeView追加只读是否启用头条标记，用于开始/下一回合提示；Presentation控制器只提交HeadlineCommand，标题、顺序、取消与等待从PublicHeadlineView/Step生成，不能按卡名推断取消或绕过门禁。地图IMapView和国家规则不修改。
+
+Task1 组装：DemoCatalog新增WithHeadlinePractice(turnFlow,defectors,defectorsSchema)只用于已有完整ActionPractice场景，保持Risk/Scoring/Influence/FlatOps/China/TurnEnd/NextTurn绑定和StartupChoices。限定组合顺序避免其他旧With方法重新构造Definition时丢掉新可选字段；将顺序约束写测试与描述。输入文件由既有Data定义与验证复制到StreamingAssets。实际组合顺序需要读取Bootstrap和Build同步代码确认。
+
+Task2 控制器和纯显示模型：DemoController追加SelectHeadlineAsync/RetryHeadlineAsync，仅选当前手牌且依PublicHeadlineView.Selection.CanChoose/Candidates显示可用性，真正授权仍Host。收据按身份/局面管理，切身份后不能显示上一方私有快照。首张锁定不可修改，第二张选齐会自动结算；卡牌不可用明确说明未实现或当前不能选，不回退普通Event。纯HeadlinePanelFrame按稳定ID读取名字并显示只读结算行，等待Owner及普通行动入口。
+
+Task3 UI：收集状态优先于普通Actor提示；双方都可提交时不能被旧苏联Actor挡住。手牌面板只允许当前身份选择，观察者他方牌仍只读；收集阶段只有“选为头条”用途。揭示后显示成功/取消/等待，等待仍复用既有事件选择面板。行动完成标题/下一回合按钮使用启用标记，不再错误写“跳过头条”。视图/中英文切换不清掉锁定或提交两次。终局沿旧独立结果显示。
+
+验证：自动覆盖隐藏首牌、观察者只读、切身份不越权、选齐自动续行、重复/过期提交、等待Owner切换、下一回合再次收集以及旧禁用配置。真实Unity测试全部通过后构建新exe。鼠标验收至少一段完整头条→普通行动，和一条等待选择/取消fixture；fixture若必要用独立数据description标注，不能替换正式发牌。记录测试/构建/画面/鼠标四种证据。当前许可恢复待核验且interactiveEditor仍在运行。
+
+非本批：更多事件、嵌套、完整终局、存档、联网、最终美术。遇当前覆盖外候选导致无法继续时显示明确边界，不自动弃牌、不凭空生成替代手牌。先暴露并验证规则接线，再随用户体验反馈调整界面。

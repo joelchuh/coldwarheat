@@ -33,4 +33,5 @@ Base:a6162c9ee743cdf2dca8ebb71c4305221f02c8ce；branch feat/defectors-headline�
 - [x] Task1 定义/载入/队列
 - [x] Task2 核心结算
 - [x] Task3 会话投影实现与托管验证
-- [ ] 整批审查、原生复核与远程同步
+- [x] 整批源码审查；功能分支同步见最终远程核对
+- [ ] Unity原生复核（用户保存退出编辑器后）；新Demo/主线另行验收
