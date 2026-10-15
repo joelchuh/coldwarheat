@@ -11,11 +11,13 @@ namespace ColdWarStruggle.Tests
     {
         internal static CardId Id(string name)=>new CardId("card."+name);
         // Deliberate all-era/two-card hands fixture, not a production deal.
-        internal static GameState Prepared(string us="fidel",string su="romanian_abdication",bool enabled=true,bool handlers=true,bool earlyOnly=false)
+        internal static GameState Prepared(string us="fidel",string su="romanian_abdication",bool enabled=true,bool handlers=true,bool earlyOnly=false,int level=5,SpaceRaceDefinition space=null)
         {
             var s=PlayCoupTests.Prepared();var d=s.Practice.Definition;
             var scoring=RegionScoringDefinitionLoader.LoadSubset(File.ReadAllText(Path.Combine(DefinitionTests.Root,"Data/Rulesets/deluxe-2015/region-scoring.json")),File.ReadAllText(Path.Combine(DefinitionTests.Root,"Docs/Contracts/region-scoring-rules.schema.json")),s.Map);
-            var definition=new ActionPracticeDefinition(d.Cards,d.Ops,d.Space,d.Calendar,d.Risk,handlers?scoring:null,
+            var rd=d.Risk;var dc=rd.Defcon;
+            var risk=new PracticeRiskDefinition(rd.Coup,new DefconDefinition(dc.Map,level,dc.MaximumLevel,dc.NuclearLevel,dc.TurnStartImprovement,dc.BattlegroundCoupDegradation,dc.RestrictedActions,dc.BlockedRegions),rd.Military,rd.Victory);
+            var definition=new ActionPracticeDefinition(d.Cards,d.Ops,space??d.Space,d.Calendar,risk,handlers?scoring:null,
                 handlers?PlayInfluenceEventTests.Effects(s.Map,d.Cards):null,handlers?PlayDefconVpEventTests.Effects(d.Cards):null,
                 handlers?PlayTurnOpsEventTests.Effects(d.Cards):null,RealignmentTests.Definition(),
                 new ChinaCardDefinition(d.Cards,s.Map,ChinaCardPlayTests.China,new OpsRegionalBonus("china","region.asia",1)),true,true,

@@ -65,10 +65,12 @@ namespace ColdWarStruggle.Application
         public bool Accepted=>Error==RuleError.None;
         public PlayerViewSnapshot View { get; }
         public IReadOnlyList<InfluenceChanged> Changes { get; }
+        public IReadOnlyList<PublicHeadlineStep> HeadlineSteps { get; }
         public long? DecisionRequestedSequence { get; }
         public long? ResolutionSequence { get; }
-        internal EventCommandResult(RuleError error,PlayerViewSnapshot view,InfluenceEventTransition transition=null)
+        internal EventCommandResult(RuleError error,PlayerViewSnapshot view,InfluenceEventTransition transition=null,IReadOnlyList<HeadlineResolutionStep> headlineSteps=null)
         {
+            HeadlineSteps=Array.AsReadOnly((headlineSteps??Array.Empty<HeadlineResolutionStep>()).Select(step=>new PublicHeadlineStep(step)).ToArray());
             Error=error;View=view;EffectError=transition?.EffectError??InfluenceEventError.None;
             Changes=Array.AsReadOnly(transition?.Changes.ToArray()??Array.Empty<InfluenceChanged>());
             DecisionRequestedSequence=transition?.DecisionRequestedSequence;ResolutionSequence=transition?.ResolutionSequence;

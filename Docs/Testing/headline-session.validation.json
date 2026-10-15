@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "description": "头条收集/会话分批托管补充验证；Unity原生未执行。",
-  "status": "task2-managed-passed",
+  "status": "managed-passed-review-pending-unity-blocked",
   "baseline_commit": "0764085130af7434b1e5d5fb334c227b5dde45ec",
   "task1": {
     "new_tests": 18,
@@ -62,5 +62,91 @@
         "failed": 0
       }
     ]
-  }
+  },
+  "task3": {
+    "new_tests": 13,
+    "evidence": [
+      {
+        "path": "TestResults/HeadlineSession/headline-continuation-red.xml",
+        "sha256": "d42548a5ea3c481c804485b54207b1e0e223fba5016e147dfb01806ea3ed8f6a",
+        "passed": 9,
+        "failed": 4
+      },
+      {
+        "path": "TestResults/HeadlineSession/headline-continuation-green.xml",
+        "sha256": "8972d55873e975d115a2fab9c0130d591d329deb4f9f7b41dcdbdb45095fe5de",
+        "passed": 13,
+        "failed": 0
+      },
+      {
+        "path": "TestResults/HeadlineSession/headline-session-final.xml",
+        "sha256": "3dfec8a06c051d0b9fc7aaefa1b2b5bd70f9e0b90c82e90f40a12c91755be479",
+        "passed": 2048,
+        "failed": 0
+      }
+    ],
+    "red_note": "Four missing continuation behaviors failed; nine already-supported gates/integrations passed before changes. Not reported as 13 RED failures."
+  },
+  "totals": {
+    "new_tests": 49,
+    "supplemental_passed": 2048,
+    "failed": 0,
+    "skipped": 0,
+    "native_excluded": 160
+  },
+  "runner_scope": "Temporary .NET8/NUnit compiles actual sources/tests copies in one assembly; 3 existing fixture path substitutions as turn-end-feedback report; not asmdef/native/build proof.",
+  "source_hashes": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/EventSessionContracts.cs",
+      "sha256": "548d05c863873c7d6d9560adedb246dc2b0a5572744fdc9ef5ec1d9d702cd635"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/HeadlineSessionContracts.cs",
+      "sha256": "0a90db668925483367893ab0717996b6dcbb6dbbf804a9ab1503c8ad767f3323"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/LocalGameHost.Headlines.cs",
+      "sha256": "9fd2aadfbd7b1d50510fb972e76af4cb099f72ec953e6dfb4030a8ff55004583"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/LocalGameHost.cs",
+      "sha256": "bfbc29bdf4566e6c19641daabed698aad14fd132642caa16babae070357b9499"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/SessionContracts.cs",
+      "sha256": "4d691134488a9f8a4741034232cf66379a81a6f64476555ac701a3e1fb1eaf4c"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.cs",
+      "sha256": "b1e62fdc2cf945a2732685865a729a85ed48b088d3bd22c0d0c2591baa6c5c80"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeState.cs",
+      "sha256": "216d54efc9a87e9056bc1a25880bd10e59f2bb7cf8d08e0712e62e733285336a"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineFlowRules.cs",
+      "sha256": "6cf50d1375b34581b4047127cb15d60f11d8252cf144519b3c8552d66d7a0c9c"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeNextTurnRules.cs",
+      "sha256": "f28b989aabe2fd1edc46b2b8ea28527b80b209f0aa80da15073881fb4b3772a2"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/State/GameState.cs",
+      "sha256": "f03562bf7326a57e2076bbe22b1fabe64c87eb217daae1feac89f437b0f451d6"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineFlowTests.cs",
+      "sha256": "3565f1743f923b1213f66254ad0867e8ab56f7875a207046205f9dad082f4aad"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineSessionContinuationTests.cs",
+      "sha256": "1cf951c810b39b726bf1a4f6ae41de1faf0417ca32c1d4330b9e019d34272a8a"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineSessionTests.cs",
+      "sha256": "1256a1a48df323e56a96c7a58b223157c03357df40687ded0fcc0384e6a78510"
+    }
+  ]
 }

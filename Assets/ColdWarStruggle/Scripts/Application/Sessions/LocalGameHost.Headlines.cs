@@ -6,6 +6,18 @@ namespace ColdWarStruggle.Application
 {
     public sealed partial class LocalGameHost
     {
+        // Called only under the shared command gate, after identity/version/decision validation.
+        EventCommandResult CompleteHeadlineChoice(PlayerSide side,InfluenceEventTransition raw)
+        {
+            if(!raw.Accepted)return RejectEvent(raw.Error,side,raw);
+            var completed=HeadlineResolutionRules.CompleteChoice(raw);
+            // A successful effect draft may still fail during disposition or the following headline.
+            // In that case none of its changes or sequence markers describe committed events.
+            if(!completed.Accepted)return RejectEvent(completed.Error,side);
+            var result=new EventCommandResult(RuleError.None,new PlayerViewSnapshot(completed.NextState,side),raw,completed.Steps);
+            state=completed.NextState;
+            return result;
+        }
         HeadlineCommandResult RejectHeadline(RuleError error,PlayerSide side)=>new HeadlineCommandResult(error,new PlayerViewSnapshot(state,side));
         Task<HeadlineCommandResult> SubmitHeadline(PlayerSide side,HeadlineCommand command,CancellationToken token)
         {
