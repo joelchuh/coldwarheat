@@ -1,0 +1,22 @@
+# 头条地图试玩接线
+
+description: 承接d0844da源码检查点，把已实现的头条会话变成可操作的第15试玩场景；新功能未实现时不替换已有播放器。用户持续开发、单窗口双身份测试及常规Git授权继续有效。
+
+## 用户意图与实施边界
+用户要求可实际游玩的Demo、可更换画风的地图、共享数据/模块JSON与Wiki。此批沿用纯规则和已有地图，新增可操作头条流程；完整事件、最终计分、联网和存档仍未覆盖。已有用户持续实施授权，按既定inline TDD推进，不重复要求批准既有路线。原生测试需要无其他编辑器；用户已登录打开Unity，但窗口关闭自动化失败，等待手动保存退出，同时可继续不依赖Editor的代码。
+
+## 选择
+采用新增独立场景，保留旧14个练习：不会让旧quick_start暗中进入头条，也不在全部普通事件尚未支持时宣称完整游戏。复用真实发牌和既有示例部署；没有新增或替换卡牌数值，初始手牌与同源旧场景一致。默认新第15入口，以明确ID优先选择，可显式回到旧场景。
+
+## 数据与工厂
+新增Data/Demo/headline-scenario.json及Data/Descriptors/headline-scenario.data.json，内容只含fixture profile、id/title/source_scenario_id。WithHeadlineScenario(fixture,turnFlow,defectors,defectorsSchema)仅接受已有quick-start且NextTurn/TurnEnd已配置的源场景，克隆全部PracticeDefinition能力、初始牌和StartupChoices，增加HeadlineParameters/HeadlineDefectors。禁止重复、坏profile、未知字段、无源/非quick/已启用源。不复制部署或规则数值。结果验证CreateHost进入CollectingHeadline且原源仍ChooseCard。Bootstrap的Editor/播放器路径与DemoBuild验证链均在WithQuickStartScenario后加此新场景；旧14Scenario对象保持原样。新复制3个文件：fixture、defectors参数、schema；turn-flow已在载荷。
+
+## 会话到界面
+PublicPracticeView追加HeadlineEnabled只读bool供开始/下一回合文案选择，不暴露规则定义。HeadlinePanelFrame.Create(view,names,observer=null)是纯显示模型，取Selection可选/锁定/提示、公开排序/结果/等待Owner；observer可独立显示保留牌，但验证GameId/Version，与正常视图明确分离。显示结果只按真实Outcome，无卡名猜测。正常第一牌不得从图框/历史提示泄露。
+
+DemoController新增SubmitSelectedHeadlineAsync/RetryHeadlineAsync和独立收据字段；提交用Session及当前版本生成ID，选牌来自现有SelectedCard。切身份清LastHeadlineResult/选择，不回显上一方私有视图；重置清命令，epoch保护异步返回。正常重复命令只返回历史结果，不改变当前界面读取的权威版本。等待事件仍走现有SubmitEventAsync，返回HeadlineSteps可用于公共提示。
+
+UI的CollectingHeadline分支在普通Actor分支之前，按Selection.CanChoose显示本方可选牌；选中后明确确认“选为头条”，已锁定不可改选，对方未选时可切身份。观察他方牌只读。待选择优先复用旧事件面板，不能被头条面板遮挡。完成显示公开顺序/成功/取消后允许苏联行动。头部阶段、回合末提示和下一回合按钮按HeadlineEnabled改词；旧场景仍显示跳头条。所有视图切换不提交命令、不改变版本。
+
+## 发布验收
+新增BuildHeadlinesPlaytest独立目录/产品名，不覆盖LocalizedPlaytest。先完成TDD、元数据和整批独立审查；Unity全套原生、构建载荷/产物及真实鼠标四项分别记录。原生门禁未过不能合入main或声称新版可玩。人工至少验证真实开局双方选牌、等待/取消fixture、接普通行动及新回合再收集；如当前事件覆盖限制阻断路线需明确记录。
