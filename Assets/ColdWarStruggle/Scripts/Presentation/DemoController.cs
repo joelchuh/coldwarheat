@@ -32,6 +32,7 @@ namespace ColdWarStruggle.Presentation
             ResetEventInteraction(true);
             ResetDeploymentInteraction(true);
             ResetCardInteraction(true);
+            ResetHeadlineInteraction(true);
         }
         public void SelectSide(PlayerSide side)
         {
@@ -41,6 +42,7 @@ namespace ColdWarStruggle.Presentation
             ResetEventInteraction(false);
             ResetDeploymentInteraction(false);
             ResetCardInteraction(false);
+            ResetHeadlineInteraction(false);
         }
         public void SelectCountry(CountryId country)
         {

@@ -3,3 +3,5 @@
 Task1：17项新增行为RED全部失败，GREEN17通过，全部可用托管2127通过；编译0警告0错误。使用NextTurnSessionTests.Catalog完整链，因为较早QuickStartDemoTests.Catalog仅Scoring还无NextTurn；该任务所需源前提保持，不放宽生产校验。旧14对象/真实手牌/部署和所有能力引用测试通过，正常首张保密与两张结算后苏联第一行动已走实际Host。
 
 UI/Bootstrap尚未接，新播放器未构建；Unity互动编辑器仍运行，等待用户关闭以执行原生测试。
+
+Task2：最初17用例RED0/17；GREEN16/17发现CanChoose合并两种禁选原因。加入真实太空里程碑→次回合的等待保护测试，RED17/18仍复现无候选提示问题。新增只读WaitingForOpponentFirst后GREEN18/18，回归2145/2145。初次测试编译使用了错误fixture helper，已在行为RED前改正。用户确认保存关闭编辑器，零Unity进程后启动headline-presentation-native原生全套，结果待收集。

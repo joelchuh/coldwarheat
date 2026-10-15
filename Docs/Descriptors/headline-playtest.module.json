@@ -3,7 +3,7 @@
   "id": "module.headline-playtest",
   "kind": "module",
   "status": "implemented-subset",
-  "description": "头条试玩第15场景工厂与公开启用标记已实现，保留旧14场景和真实发牌/部署；显示模型、控制器、UI和构建接线尚待后续任务。",
+  "description": "头条第15场景、过滤显示模型与命令控制器已实现：保密/观察分离、锁定/等待/取消和幂等重发；UI与构建接线待Task3。",
   "entrypoints": [
     {
       "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.Headlines.cs",
@@ -12,6 +12,18 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/CardActionContracts.cs",
       "symbol": "HeadlineEnabled"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/HeadlinePanelFrame.cs",
+      "symbol": "Create"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Headlines.cs",
+      "symbol": "SubmitSelectedHeadlineAsync"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/HeadlineSelectionView.cs",
+      "symbol": "WaitingForOpponentFirst"
     }
   ],
   "inputs": [
@@ -45,6 +57,14 @@
   "tests": [
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineDemoCatalogTests.cs",
+      "status": "managed-passed-unity-pending"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlinePanelFrameTests.cs",
+      "status": "managed-passed-unity-pending"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineDemoControllerTests.cs",
       "status": "managed-passed-unity-pending"
     }
   ],

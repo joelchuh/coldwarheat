@@ -14,6 +14,7 @@ namespace ColdWarStruggle.Application
         public bool OpponentLocked { get; }
         public bool Ready { get; }
         public bool CanChoose { get; }
+        public bool WaitingForOpponentFirst { get; }
         public IReadOnlyList<CardId> Candidates { get; }
         HeadlineSelectionView(HeadlineSelectionState state,PlayerSide viewer)
         {
@@ -21,6 +22,7 @@ namespace ColdWarStruggle.Application
             OwnCard=state.Cards.GetHeadline(viewer);OwnLocked=OwnCard.HasValue;
             var opposing=state.Cards.GetHeadline(other);OpponentLocked=opposing.HasValue;
             Ready=state.Ready;CanChoose=HeadlineSelectionRules.CanChoose(state,viewer);
+            WaitingForOpponentFirst=state.ChoosesSecond==viewer && !OwnLocked && !OpponentLocked;
             OpponentCard=Ready || state.ChoosesSecond==viewer?opposing:null;
             Candidates=Array.AsReadOnly(CanChoose?state.Cards.GetHand(viewer).Where(id=>state.SupportedCards.Contains(id)).ToArray():Array.Empty<CardId>());
         }
