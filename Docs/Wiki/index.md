@@ -136,4 +136,4 @@
 
 - [头条收集与本地会话](headline-session.md)：可选回合入口/权威牌区、Host/公开收据和选择继续已接，原生验收独立。
 
-- [已选叛逃者头条运行时](defectors-headline.md)：定义/排序/取消记录已实现，物理结算和会话待接，Unity待验。
+- [已选叛逃者头条运行时](defectors-headline.md)：已选头条取消/弃牌/公开结果已实现，普通VP/嵌套未接，Unity待验。

@@ -32,4 +32,5 @@ Base:a6162c9ee743cdf2dca8ebb71c4305221f02c8ce；branch feat/defectors-headline�
 
 - [x] Task1 定义/载入/队列
 - [x] Task2 核心结算
-- [ ] Task3 会话投影/审查/同步
+- [x] Task3 会话投影实现与托管验证
+- [ ] 整批审查、原生复核与远程同步

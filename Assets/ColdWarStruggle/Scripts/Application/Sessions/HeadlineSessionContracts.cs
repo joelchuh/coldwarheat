@@ -17,6 +17,8 @@ namespace ColdWarStruggle.Application
         public HeadlineSelectionView Selection { get; }
         public IReadOnlyList<HeadlineOrderEntry> Order { get; }
         public int CompletedCount { get; }
+        public HeadlineOrderStrategy? OrderStrategy { get; }
+        public IReadOnlyList<HeadlineRootCompletion> CompletedRoots { get; }
         public PlayerSide? CurrentPlayedBy { get; }
         public PlayerSide? WaitingOwner { get; }
         internal PublicHeadlineView(GameState state,PlayerSide viewer)
@@ -24,6 +26,7 @@ namespace ColdWarStruggle.Application
             var p=state.Practice;
             Selection=p.HeadlineSelection==null?null:HeadlineSelectionView.Create(p.HeadlineSelection,viewer);
             Order=Array.AsReadOnly((p.Headline?.Order??Array.Empty<HeadlineOrderEntry>()).ToArray());
+            OrderStrategy=p.Headline?.OrderStrategy;CompletedRoots=Array.AsReadOnly((p.Headline?.CompletedRoots??Array.Empty<HeadlineRootCompletion>()).ToArray());
             CompletedCount=p.Headline?.CompletedCount??0;CurrentPlayedBy=p.Headline?.Current?.PlayedBy;
             WaitingOwner=p.HasPendingHeadline && state.InfluenceEvent?.Stage==InfluenceEventStage.AwaitingChoice?state.InfluenceEvent.Owner:(PlayerSide?)null;
             Status=Selection!=null?PublicHeadlineStatus.Collecting:p.Headline.IsComplete?PublicHeadlineStatus.Completed:
@@ -36,6 +39,7 @@ namespace ColdWarStruggle.Application
         public PlayerSide PlayedBy { get; }
         public bool WaitingForChoice { get; }
         public bool Terminal { get; }
+        public HeadlineRootCompletion Completion { get; }
         public PublicCardEventResult Event { get; }
         public PublicRegionScore Scoring { get; }
         public PublicDefconVpEventResult DefconVpEvent { get; }
@@ -43,6 +47,7 @@ namespace ColdWarStruggle.Application
         internal PublicHeadlineStep(HeadlineResolutionStep step)
         {
             var r=step.Result;Card=step.Card;PlayedBy=step.PlayedBy;Terminal=r.NextState.Ended;
+            Completion=r.NextState.Practice.Headline.CompletedRoots.SingleOrDefault(x=>x.Card.Equals(Card) && x.PlayedBy==PlayedBy);
             WaitingForChoice=r.NextState.InfluenceEvent?.Stage==InfluenceEventStage.AwaitingChoice;
             Event=r.EventTransition==null?null:new PublicCardEventResult(r.EventTransition);
             Scoring=r.ScoringResult==null?null:new PublicRegionScore(r.ScoringResult);

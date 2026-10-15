@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "description": "已选叛逃者头条分批托管补充验证；不替代Unity原生测试。",
-  "status": "task2-managed-passed",
+  "status": "managed-passed-review-pending",
   "baseline_commit": "a6162c9ee743cdf2dca8ebb71c4305221f02c8ce",
   "task1": {
     "new_tests": 30,
@@ -27,7 +27,7 @@
     ]
   },
   "unity": {
-    "status": "blocked-license",
+    "status": "recovery-reported-editor-close-pending",
     "tests_executed": false
   },
   "native_cases_excluded": 160,
@@ -58,5 +58,89 @@
       }
     ],
     "red_note": "2 pre-existing fail-closed cases already passed;18 missing behaviors failed. Test-only Application namespace import fixed before behavioral RED."
-  }
+  },
+  "task3": {
+    "new_tests": 12,
+    "evidence": [
+      {
+        "path": "TestResults/DefectorsHeadline/defectors-session-red.xml",
+        "sha256": "6894ad2aa17a18d5663b0e88f0618b2acb1c5522d491a3f6c3a9c13b1516b77c",
+        "passed": 0,
+        "failed": 12
+      },
+      {
+        "path": "TestResults/DefectorsHeadline/defectors-session-green.xml",
+        "sha256": "2dc843e02ab6fdbe249b8cfa39ec0dcce963e11931ed6e1ac2609118510627a6",
+        "passed": 11,
+        "failed": 1
+      },
+      {
+        "path": "TestResults/DefectorsHeadline/defectors-session-green-final.xml",
+        "sha256": "361719305e454f573d5a6c412c03d90f8f9a0e223a06f0ccb61a9192046584e3",
+        "passed": 12,
+        "failed": 0
+      },
+      {
+        "path": "TestResults/DefectorsHeadline/defectors-final.xml",
+        "sha256": "ac9c8eacab7273fcb34a59548e9ee5a1a45687e122b1cd241afe23d7094d8436",
+        "passed": 2110,
+        "failed": 0
+      }
+    ],
+    "test_correction": "Exact private DrawPile property assertion replaces substring that incorrectly matched public DrawPileCount."
+  },
+  "totals": {
+    "new_tests": 62,
+    "supplemental_passed": 2110,
+    "failed": 0,
+    "skipped": 0,
+    "native_excluded": 160
+  },
+  "runner_scope": "Temporary .NET8/NUnit single combined assembly; actual production sources and copied tests, 3 fixture path substitutions; not asmdef/native/build/UI proof.",
+  "source_hashes": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/HeadlineSessionContracts.cs",
+      "sha256": "7f444bf10530d553d73e335ba1372d2f51137c75aab9b14b7c12f8070073be7f"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Headlines.cs",
+      "sha256": "991b0af66ef35df34e3b3cb437838abd9ee1dd3b9c6f600074ff358c9839a3ad"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.cs",
+      "sha256": "9b0c75cae3f0af3b9d564ec903b78db1d16019d1352a6b64bd0e5c8e4ac2b84d"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeState.cs",
+      "sha256": "45286e1111b0cee54720de32941ab95b720f520ec736225dfe8c68baabc2f22b"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/DefectorsHeadlineDefinition.cs",
+      "sha256": "0266483e0b697e867cad0f62fd3bba3c57c7748d0b4c92082a8814d6f6a8024f"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionRules.cs",
+      "sha256": "38acf0c750e773f4b338eb42d47223379e4b807b15caaf79f2bd172cb68bcd63"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionState.cs",
+      "sha256": "bcee24babfd1ad653529815d579f01efc53fb8d245408088c248f53a95c39e69"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DefectorsHeadlineLoader.cs",
+      "sha256": "d5e67f5149b5a6953e025eb119ce6c89fb3d7be82fa9dc20d7f82ea41f72a499"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DefectorsHeadlineDefinitionTests.cs",
+      "sha256": "33fce5078a068a3fb06ab31d6fc972f28608f917f1d5b40f556341ef11676f63"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DefectorsHeadlineResolutionTests.cs",
+      "sha256": "ea8967b9ca435c6347e452a9c5e08b7a9d34fb223823cbbc44ca5da70a866b0e"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DefectorsHeadlineSessionTests.cs",
+      "sha256": "4ea2c792d67897e7a059ad1dfb5f814b81b2122c30be4ed47a4d6505f72e2673"
+    }
+  ]
 }

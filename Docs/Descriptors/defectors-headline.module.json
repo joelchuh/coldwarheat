@@ -3,7 +3,7 @@
   "id": "module.defectors-headline",
   "kind": "module",
   "status": "implemented-subset",
-  "description": "叛逃者已选头条核心取消已实现：US具名优先、USSR普通位置自取消、弃牌与失败原子性；公开完成记录待接，原生测试待许可复核。",
+  "description": "叛逃者已选头条有限实现：US优先取消、USSR按普通顺序自取消、原子弃牌、公开成功/取消记录及秘密/历史收据；普通VP/嵌套未接，旧Demo未启用。",
   "entrypoints": [
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/DefectorsHeadlineDefinition.cs",
@@ -24,6 +24,10 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionRules.cs",
       "symbol": "Begin"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/HeadlineSessionContracts.cs",
+      "symbol": "PublicHeadlineView"
     }
   ],
   "inputs": [
@@ -31,7 +35,8 @@
     "可信两张保留牌、当前Turn与可选Defectors绑定"
   ],
   "outputs": [
-    "只读排序/成功或取消记录；来源由当前根及已完成前缀推导"
+    "只读排序/成功或取消记录；来源由当前根及已完成前缀推导",
+    "PublicHeadlineView.OrderStrategy/CompletedRoots及PublicHeadlineStep.Completion；无权威状态"
   ],
   "dependencies": [
     "module.headline-resolution",
@@ -64,11 +69,15 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/DefectorsHeadlineResolutionTests.cs",
       "status": "managed-passed-unity-pending"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DefectorsHeadlineSessionTests.cs",
+      "status": "managed-passed-unity-pending"
     }
   ],
   "documentation": "Docs/Wiki/defectors-headline.md",
   "verification": {
     "report": "Docs/Testing/defectors-headline.validation.json",
-    "unity": "blocked-license"
+    "unity": "recovery-reported-native-pending"
   }
 }

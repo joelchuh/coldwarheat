@@ -1,11 +1,15 @@
 # 已选叛逃者头条运行时
 
-description: 已实现定义/载入/排序/完成记录，尚未接物理取消与会话。先读[模块JSON](../Descriptors/defectors-headline.module.json)，再按入口读取代码。
+description: 已实现US优先取消和USSR普通顺序自取消、共享弃牌与公开完成记录；普通VP/嵌套未接。先读[模块JSON](../Descriptors/defectors-headline.module.json)，再按入口读取函数。
 
-共享事实来自Data/Cards/deluxe-2015/defectors.parameters.json和印刷目录，不复制普通行动VP数值。CreateSelected只对US所选叛逃者提序；USSR自己选择保持普通排序。AdvanceAfterCancellation推导取消来源并写Cancelled，不是Resolved，也不自动改牌区。普通CreateOrdinary保持原义。
+共享事实来自Data/Cards/deluxe-2015/defectors.parameters.json及印刷目录；DefectorsHeadlineLoader严格校验完整契约、profile和所支持语义。ActionPracticeDefinition.HeadlineDefectors默认null，配置需同目录且无重复handler；只扩展头条支持集合，不扩展普通对手事件。
 
-流程：共享契约校验 → 同目录绑定 → 两张保留牌排序 → 精确当前根的Resolved/Cancelled只读记录。物理弃牌、宿主与公开记录为后续任务，普通VP和嵌套无实现。
+CreateSelected只对美国所选叛逃者提序；苏联自选仍按普通印刷值排序。CurrentCancellationSource从可信当前根和已完成前缀推导；AdvanceAfterCancellation写Cancelled，AdvanceAfterResolution写Resolved。记录和队列不可变，精确当前牌/方只能推进一次。游标推进不是物理去向的证明。
 
-30项新测试及2078项可用托管回归通过。Unity许可阻塞，160项原生相关测试未运行；无新构建或UI验收。详见[报告](../Testing/defectors-headline.validation.json)。
+实际流程：收集并保密 → 选齐后揭示排序 → US源成功并弃牌 → 待执行USSR根取消并弃牌（包括星号和计分牌）→ 苏联第一普通行动，普通行动计数仍0。USSR自选则在自己的普通顺位仅取消自己；US事件等待选择就等待，若首方终局保留当前Resolving和未来Reserved审计现场。共享Move/Commit处理牌区，后续技术失败不提交任何草稿。
 
-Task2已接：ActionPracticeDefinition.HeadlineDefectors仅扩展头条候选；同目录、重复handler校验；US源Resolved后取消苏方，USSR自选按普通次序Cancelled，使用共享Move/Commit完成弃牌。等待/终局保持审计现场，后续溢出整批无草稿。20项新增GREEN与2098项可用回归通过，公开Completion投影仍待Task3。
+PublicHeadlineView公开OrderStrategy和CompletedRoots；秘密收集时strategy=null、记录为空。PublicHeadlineStep.Completion从步骤结束的队列取对应根，等待和终局未完成根为null。取消不伪造成功事件摘要。现有Host门禁/锁/版本/幂等复用，历史结果不会覆盖当前状态，也不泄露后来的公开信息。
+
+本批新增62项，最终2110项托管补充回归通过，160项原生相关测试另列。Unity已由用户登录打开，尚待关闭编辑器后完整原生验证；旧Demo和main未改，未构建或鼠标验收。证据见[报告](../Testing/defectors-headline.validation.json)，决策与任务记录见[工作日志](../Worklogs/2026-10-15-defectors-headline.md)。
+
+来源：既有[Defectors设计](defectors.md)、[运行规范](../Architecture/defectors-headline-runtime.md)、GMT FAQ v5 #103。普通USSR行动1VP和嵌套来源仍为后续批次。
