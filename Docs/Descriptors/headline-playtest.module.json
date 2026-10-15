@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "id": "module.headline-playtest",
+  "kind": "module",
+  "status": "implemented-subset",
+  "description": "头条试玩第15场景工厂与公开启用标记已实现，保留旧14场景和真实发牌/部署；显示模型、控制器、UI和构建接线尚待后续任务。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.Headlines.cs",
+      "symbol": "WithHeadlineScenario"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/CardActionContracts.cs",
+      "symbol": "HeadlineEnabled"
+    }
+  ],
+  "inputs": [
+    "共享头条/叛逃者参数和独立fixture"
+  ],
+  "outputs": [
+    "保留原场景的新DemoCatalog；新Host在部署后进入CollectingHeadline"
+  ],
+  "dependencies": [
+    "module.headline-session",
+    "module.defectors-headline"
+  ],
+  "data_dependencies": [
+    "demo.headline_scenario"
+  ],
+  "preconditions": [
+    "源quick-start已有TurnEnd/NextTurn，绑定目录一致"
+  ],
+  "side_effects": [
+    "纯组装；尚未接Bootstrap/旧播放器"
+  ],
+  "stop_conditions": [
+    "重复/坏数据/错误源/缺少能力拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Architecture/headline-playtest-runtime.md",
+      "scope": "项目试玩场景；规则来自共享定义"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineDemoCatalogTests.cs",
+      "status": "managed-passed-unity-pending"
+    }
+  ],
+  "documentation": "Docs/Wiki/headline-playtest.md",
+  "verification": {
+    "report": "Docs/Testing/headline-playtest.validation.json"
+  }
+}

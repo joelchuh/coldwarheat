@@ -1,0 +1,5 @@
+# 头条试玩接线
+
+Task1：17项新增行为RED全部失败，GREEN17通过，全部可用托管2127通过；编译0警告0错误。使用NextTurnSessionTests.Catalog完整链，因为较早QuickStartDemoTests.Catalog仅Scoring还无NextTurn；该任务所需源前提保持，不放宽生产校验。旧14对象/真实手牌/部署和所有能力引用测试通过，正常首张保密与两张结算后苏联第一行动已走实际Host。
+
+UI/Bootstrap尚未接，新播放器未构建；Unity互动编辑器仍运行，等待用户关闭以执行原生测试。

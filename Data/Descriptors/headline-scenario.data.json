@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "data.demo-headline-scenario",
+  "kind": "data",
+  "status": "fixture",
+  "dataset_id": "demo.headline_scenario",
+  "description": "独立头条试玩入口，复用快速入口的真实发牌和示例部署；旧14场景保持，仅新增头条流程，非完整事件集。",
+  "entrypoints": [
+    {
+      "path": "Data/Demo/headline-scenario.json",
+      "symbol": "scenario"
+    }
+  ],
+  "inputs": [
+    "已有已配置NextTurn的quick-start源场景"
+  ],
+  "outputs": [
+    "第15个独立头条收集场景"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "demo.quick_start_scenario",
+    "effects.deluxe2015.defectors",
+    "rules.deluxe2015.turn-flow"
+  ],
+  "preconditions": [
+    "可信已有共享场景和规则定义",
+    "描述不授予执行权限"
+  ],
+  "side_effects": [
+    "组装时验证新的Host；不修改原14场景或牌库"
+  ],
+  "stop_conditions": [
+    "未知字段/profile/来源/重复ID/未配置下一回合拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Architecture/headline-playtest-runtime.md",
+      "scope": "项目试玩场景；规则来自共享定义"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineDemoCatalogTests.cs",
+      "status": "managed-passed-unity-pending"
+    }
+  ],
+  "documentation": "Docs/Wiki/headline-playtest.md",
+  "verification": {
+    "report": "Docs/Testing/headline-playtest.validation.json"
+  }
+}

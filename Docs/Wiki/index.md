@@ -139,3 +139,5 @@
 - [已选叛逃者头条运行时](defectors-headline.md)：已选头条取消/弃牌/公开结果已实现，普通VP/嵌套未接，Unity待验。
 
 - [策略游戏工程参考与取舍](../Architecture/game-engineering-reference-notes.md)：Factorio确定性、Unity命令模式及本项目隐藏信息边界；[头条试玩接入草案](../Architecture/headline-playtest-integration-draft.md)尚未实现。
+
+- [头条试玩接线](headline-playtest.md)：独立第15场景/只读启用标记已实现，界面和构建待接。
