@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "id": "module.headline-runtime",
+  "kind": "module",
+  "status": "planned",
+  "description": "查头条接入现有试玩的保留牌区、秘密选择、事件根责任、排序与Host/UI接口；当前仅接线规划，Demo仍跳过头条。",
+  "documentation": "Docs/Architecture/headline-runtime-integration.md",
+  "entrypoints": [],
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineSelectionRules.cs",
+      "symbol": "PlanSelection"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineOrderRules.cs",
+      "symbol": "Order"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionRules.cs",
+      "symbol": "Advance"
+    }
+  ],
+  "inputs": [
+    "共享turn-flow.headline参数、CardCatalog、当前牌区/太空能力及固定身份提交意图"
+  ],
+  "outputs": [
+    "计划中的不可变私有保留/选择状态、公开揭示顺序、当前事件根与正常行动继续点"
+  ],
+  "dependencies": [
+    "module.turn-flow",
+    "module.continuous-turn-playtest",
+    "module.card-zones",
+    "module.deterministic-random"
+  ],
+  "data_dependencies": [
+    "rules.deluxe2015.turn-flow"
+  ],
+  "preconditions": [
+    "Unity许可证恢复后先运行失败/成功回归；完整处理器与牌区接线前不启用试玩头条"
+  ],
+  "side_effects": [
+    "当前文档无运行副作用；未来提交仅由Host权威事务改变牌区、阶段和局面"
+  ],
+  "stop_conditions": [
+    "未知事件或嵌套来源不得当空事件；未授权身份、过期版本、终局和已有等待禁止依赖执行"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015.4.5C",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf"
+    }
+  ],
+  "tests": []
+}

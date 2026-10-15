@@ -87,12 +87,27 @@ namespace ColdWarStruggle.Presentation
         }
         public Task<CardActionResult> RollRealignmentAsync()=>SendCard(CardActionKind.RollRealignment,target:SelectedCountry);
         public Task<CardActionResult> FinishRealignmentAsync()=>SendCard(CardActionKind.FinishRealignment);
+        public string TurnEndPrompt
+        {
+            get
+            {
+                var p=ReadView().Practice;
+                if(p==null || p.Stage!=ActionPracticeStage.Complete || p.TurnEnd!=null || p.Winner.HasValue)return null;
+                if(!p.TurnEndEnabled)return "本回合行动试玩已结束。\n此旧练习未启用回合末审核。";
+                if(p.TurnEndAvailable)return "双方普通行动已结束。\n下一步：军事净罚分与扣留计分牌审核。";
+                if(p.TurnEndError==RuleError.UnsupportedCardAction)return "已到试玩边界：太空额外行动尚未接入。\n暂不能结算本回合。";
+                return "当前不能结算本回合，请先完成待处理行动。";
+            }
+        }
         public string TurnEndMessage
         {
             get
             {
                 var p=ReadView().Practice;var r=p?.TurnEnd;if(r==null)return null;
-                var continuation=p.NextTurnEnabled?(p.NextTurnAvailable?"可进入下一回合（跳过头条）。":"已到试玩边界：末回合或特殊能力。"):"试玩停在下一回合开始前。";
+                var continuation=!p.NextTurnEnabled?"试玩停在下一回合开始前。":p.NextTurnAvailable?"可进入下一回合（跳过头条）。":
+                    p.NextTurnError==RuleError.ActionSliceComplete?"已到试玩边界：最终计分尚未接入。":
+                    p.NextTurnError==RuleError.UnsupportedCardAction?"已到试玩边界：太空额外行动或回合末弃牌尚未接入。":
+                    "当前不能进入下一回合，请先完成待处理步骤。";
                 string SideName(PlayerSide? side)=>side==PlayerSide.US?"美国":side==PlayerSide.USSR?"苏联":"无";
                 return $"回合 {r.Turn} 结算 · 军事要求 {r.RequiredMilitary}\n美国累计 {r.UsEarned}，缺额 {r.UsShortfall}\n苏联累计 {r.UssrEarned}，缺额 {r.UssrShortfall}\n净 VP（美+）{r.VpDelta:+0;-0;0}：{r.BeforeVp} → {r.AfterVp}\n军事累计已归零。\n扣留计分牌：美{(r.UsHoldsScoring?"是":"否")} / 苏{(r.UssrHoldsScoring?"是":"否")}\n军事候选：{SideName(r.MilitaryCandidate)}\n"
                     +(r.Winner.HasValue?$"最终：{SideName(r.Winner)}获胜。\n终局停止翻面与效果清理。":$"尚未终局。中国牌{(r.ChinaFlipped?"已翻正":"保持正面")}。\n本回合 OPS 效果到期 {r.ExpiredOpsEffects} 项。\n{continuation}");

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.continuous-turn-playtest",
   "kind": "module",
-  "description": "有限连续回合试玩：审核通过后原子补牌、改善DEFCON、重置太空尝试并保持地图/VP/历史；跨回合行动ID唯一，仍显式跳过头条并拒绝未接期末能力。",
+  "description": "有限连续回合试玩：审核通过后原子补牌、改善DEFCON、重置太空尝试并保持地图/VP/历史；跨回合行动ID唯一，仍显式跳过头条并拒绝未接期末能力。 新源码保留回合末/下一回合拒绝原因并显示对应提示；此增量仅托管补充测试通过，Unity许可证阻断编辑器验收。",
   "status": "implemented-subset",
   "entrypoints": [
     {
@@ -32,6 +32,14 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Cards.cs",
       "symbol": "BeginNextTurnAsync"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/CardActionContracts.cs",
+      "symbol": "PublicPracticeView"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Cards.cs",
+      "symbol": "TurnEndPrompt"
     }
   ],
   "inputs": [
@@ -40,7 +48,8 @@
   ],
   "outputs": [
     "下一回合ChooseCard/苏联先手；成对新牌区/RNG，DEFCON改善、军事新Turn、太空尝试归零",
-    "公开资格/回合号/本人手牌与公共数量；不投影完整TurnDealPlan"
+    "公开资格/回合号/本人手牌与公共数量；不投影完整TurnDealPlan",
+    "公开TurnEndError/NextTurnError保留Core原因；可用布尔值由None派生，不含私有牌名"
   ],
   "dependencies": [
     "module.turn-deal",
@@ -92,11 +101,19 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/NextTurnSessionTests.cs",
       "status": "passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/TurnEndFeedbackTests.cs",
+      "status": "managed-passed-unity-pending"
     }
   ],
   "documentation": "Docs/Wiki/continuous-turn-playtest.md",
   "verification": {
     "report": "Docs/Testing/continuous-turn-playtest.validation.json",
-    "implementation_tested": true
+    "implementation_tested": true,
+    "feedback_increment": {
+      "report": "Docs/Testing/turn-end-feedback.validation.json",
+      "status": "managed-passed-unity-pending"
+    }
   }
 }

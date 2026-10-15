@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "description": "回合末提示源码增量的托管补充验证；不是Unity EditMode、播放器构建或鼠标验收。",
+  "status": "managed-passed-unity-blocked",
+  "baseline_commit": "0fc00330aee9f6a6902ccd688d521d3e35983a42",
+  "checked_on": "2026-10-15",
+  "unity_attempt": {
+    "run_id": "playtest-feedback-red",
+    "status": "TEST_REPORT_MISSING",
+    "editor_exit": 198,
+    "reason": "License access token unavailable; zero entitlements; no tests executed"
+  },
+  "managed_check": {
+    "sdk": "Unity bundled .NET SDK 8.0.318",
+    "framework": "net8.0",
+    "source_compilation": "All production sources compiled against installed Unity managed assemblies with zero warnings/errors; assembly boundaries combined for this supplemental run",
+    "runner": "Temporary NUnitTestAssemblyRunner in chat/work/managed-check, no downloaded dependencies",
+    "runner_sha256": "4a75cf04e991baaf89e75ed784357f01c6b2613da6b93cc94190090184fb3b80",
+    "project_sha256": "c3f24ba992e27e1a3837198cae50b5d7c50a7eb9750698f53fe916fe6294b6e0",
+    "test_adaptations": [
+      "DefinitionTests.cs",
+      "EraRemovalTests.cs",
+      "TurnCalendarTests.cs"
+    ],
+    "adaptation_scope": "Only UnityEngine.Application.dataPath replaced with actual project Assets path in scratch copies; production sources and checked-in test files not rewritten for runner",
+    "excluded_fixtures": [
+      "AllocationDemoCatalogTests",
+      "DemoBuildTests",
+      "DemoLaunchTests",
+      "DeploymentDemoTests",
+      "EraDemoTests",
+      "EventDemoCatalogTests",
+      "LocalizedNamesTests",
+      "MapLabelLayoutTests",
+      "MapViewportTests",
+      "WorldMapDataTests",
+      "WorldMapViewTests"
+    ],
+    "new_tests": 5,
+    "regression_passed": 1854,
+    "failed": 0,
+    "evidence": [
+      {
+        "path": "TestResults/ManagedFeedback/feedback-managed-red.xml",
+        "sha256": "14666451a222863aa89e968a7815585a1d99eedd7b99b3cd5a8c25f61d903f79",
+        "passed": 0,
+        "failed": 5
+      },
+      {
+        "path": "TestResults/ManagedFeedback/feedback-managed-green.xml",
+        "sha256": "e93b998b6292958c94ea17ed264db8212fc209938c72448fd4adfab499b5f0ac",
+        "passed": 5,
+        "failed": 0
+      },
+      {
+        "path": "TestResults/ManagedFeedback/feedback-final-managed.xml",
+        "sha256": "ded06b6c94b17d3750394a057b765d9e35b7c715e2402ebfafb54c16c5a45aa1",
+        "passed": 1854,
+        "failed": 0
+      },
+      {
+        "path": "TestResults/ManagedFeedback/feedback-checkpoint-managed.xml",
+        "sha256": "00f6a8cf43569626d2f824d7d1fb573447a63c803b0e631dd2f13fc5693215e5",
+        "passed": 1854,
+        "failed": 0,
+        "scope": "Final source after repository LF normalization"
+      }
+    ]
+  },
+  "source_hashes": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/CardActionContracts.cs",
+      "sha256": "a7645e311fa840c9912af0428acb90a538e13677039a611ff7d9c787e51ce2fa"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/SessionContracts.cs",
+      "sha256": "a95234bcc4eb15d1ee878a6375e91f0d01555a8e04fd782708fb62f46ca91d48"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Cards.cs",
+      "sha256": "2a8d9293d6f57be5b65e7931c553b78d987e985a6a9b2523513e11ba6eb34eea"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Actions.cs",
+      "sha256": "1bdf6678aad1f52a64fdc088f9a1ca4f38be754a0635d4876ed631ffec0372b4"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/TurnEndFeedbackTests.cs",
+      "sha256": "99400e74c1b09d9f4eae53c92a0a73106834833ecddb97cf52da88889d3a9fac"
+    }
+  ],
+  "review": {
+    "status": "passed",
+    "reviewer": "review_turn_end_feedback",
+    "critical": 0,
+    "important": 0,
+    "minor": 0,
+    "scope": "Independent read-only source/docs and evidence-hash review; no separate rerun",
+    "deferred_accepted": [
+      "Map focus unchanged and pending Unity",
+      "Full headline and special abilities/final scoring outside this increment",
+      "Unity/native/player acceptance remains blocked"
+    ]
+  },
+  "player_build": {
+    "status": "not-run-license-blocked",
+    "existing_localized_player_updated": false
+  },
+  "mouse_validation": {
+    "status": "not-run"
+  },
+  "deferred": [
+    "首次绘图前名称切换丢待聚焦请求；地图回归草稿保存在chat临时work目录，未提交为通过测试",
+    "头条阶段仅有接线审计规划，未新增可执行头条服务"
+  ],
+  "limitations": [
+    "No Unity native calls or Editor acceptance can be inferred from managed supplemental tests.",
+    "1854 is the selected managed subset, not a replacement count for the last 2009 passed Unity tests.",
+    "Map adapter supplemental probe failed at a native ECall boundary and is not counted as a game regression or passing evidence."
+  ]
+}

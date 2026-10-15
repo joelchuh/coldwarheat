@@ -29,7 +29,7 @@ namespace ColdWarStruggle.Presentation
                 Text(972,374,262,140,VictoryMessage(p),label);
             else if(p.Stage==ActionPracticeStage.Complete)
             {
-                Text(972,374,262,100,p.TurnEndEnabled?"双方行动已全部结束。\n下一步：军事净罚分与扣留计分牌审核。":"本回合行动试玩已结束。\n此旧练习未启用回合末审核。",small);
+                Text(972,374,262,100,controller.TurnEndPrompt,small);
                 GUI.enabled=p.TurnEndAvailable;
                 if(Button(972,485,262,42,"结算本回合"))AssessTurnEnd();
                 GUI.enabled=true;

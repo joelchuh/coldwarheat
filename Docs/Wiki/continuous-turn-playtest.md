@@ -28,3 +28,5 @@ flowchart LR
 ```
 
 测试包括真实默认12行动→审核→第二回合→新行动、两身份私有投影、重试与过期，以及跨回合相同槽的太空和政变收据。实际数量/构建/鼠标证据分别记录，不以单元测试代替视觉验收。
+
+2026-10-15源码增量：PublicPracticeView保留TurnEndError/NextTurnError，按钮仍以相同Core资格为准；TurnEndPrompt与TurnEndMessage分别说明额外行动、期末弃牌、最终计分边界。这里不新增任何回合末能力。五个新用例已在独立.NET 8托管环境完成RED→GREEN，相关托管回归通过；Unity许可证失效导致EditMode/新播放器/鼠标验收未运行，旧Localized播放器没有更新。见[增量验证](../Testing/turn-end-feedback.validation.json)。
