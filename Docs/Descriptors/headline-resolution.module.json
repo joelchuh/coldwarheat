@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "id": "module.headline-resolution",
+  "kind": "module",
+  "status": "implemented-subset",
+  "description": "有限头条结算的权威队列游标：冻结普通顺序、按回合/出牌方标识根并逐张推进；当前仅队列实现，事件执行与Host/UI待接。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionState.cs",
+      "symbol": "CreateOrdinary"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionState.cs",
+      "symbol": "AdvanceAfterResolution"
+    }
+  ],
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionRules.cs",
+      "symbol": "Begin"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionRules.cs",
+      "symbol": "Advance"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionRules.cs",
+      "symbol": "CompleteChoice"
+    }
+  ],
+  "inputs": [
+    "权威CardCatalog、恰好两张保留/空Resolving完整牌区、当前回合和共享头条参数",
+    "与Current匹配的出牌方/牌ID；只有编排确认效果与去向完成后才推进"
+  ],
+  "outputs": [
+    "只读两张普通顺序/当前根/完成计数；新游标保留原快照",
+    "CurrentResolutionId按回合与出牌方稳定生成，完成后Current与ID为空"
+  ],
+  "dependencies": [
+    "module.headline-foundation",
+    "module.turn-flow"
+  ],
+  "data_dependencies": [
+    "rules.deluxe2015.turn-flow",
+    "cards.deluxe2015.definitions"
+  ],
+  "preconditions": [
+    "纯游标不执行事件、不证明牌去向已处理，不独立授权阶段",
+    "CreateOrdinary排除特殊取消/优先；将来编排只接受已经实现的普通事件集合"
+  ],
+  "side_effects": [
+    "无I/O、RNG、地图、VP、OPS或行动计数修改"
+  ],
+  "stop_conditions": [
+    "不完整/忙牌区或目录不一致拒绝；错牌/错方/重复/已完成不推进"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Architecture/headline-runtime-integration.md",
+      "scope": "头条逐张结算与事件责任"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineResolutionStateTests.cs",
+      "status": "managed-passed-unity-pending"
+    }
+  ],
+  "documentation": "Docs/Wiki/headline-resolution.md",
+  "verification": {
+    "report": "Docs/Testing/headline-event-resolution.validation.json",
+    "unity": "blocked-license"
+  }
+}
