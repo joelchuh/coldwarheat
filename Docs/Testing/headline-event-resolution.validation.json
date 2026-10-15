@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "description": "有限头条事件根分批补充验证，Unity/播放器验收独立。",
-  "status": "in-progress",
+  "status": "managed-passed-review-pending-unity-blocked",
   "baseline_commit": "278ca1bf9f1a6244993dd5767f01786e2e6806c4",
   "task1": {
     "new_tests": 18,
@@ -50,7 +50,28 @@
     ]
   },
   "task3": {
-    "status": "planned"
+    "status": "managed-passed-review-pending",
+    "new_tests": 17,
+    "evidence": [
+      {
+        "path": "TestResults/HeadlineResolution/headline-choice-red.xml",
+        "sha256": "a3c359831e3f66abc18982fc90045e3a5833c7753ae1963d22cffb75fd536a19",
+        "passed": 0,
+        "failed": 17
+      },
+      {
+        "path": "TestResults/HeadlineResolution/headline-choice-green.xml",
+        "sha256": "478c9e8ecfca9256b24dbc6b379ca101fb4735dfb817575078863eac13653102",
+        "passed": 17,
+        "failed": 0
+      },
+      {
+        "path": "TestResults/HeadlineResolution/headline-resolution-final.xml",
+        "sha256": "233f4887438f049ddcce1ccad7c0623460fb94de5836e41bb3d68988a750864a",
+        "passed": 1999,
+        "failed": 0
+      }
+    ]
   },
   "unity": {
     "status": "blocked-license",
@@ -59,5 +80,85 @@
   "review": {
     "status": "pending-whole-branch"
   },
-  "runner_scope": "Temporary bundled .NET8/NUnit; same exclusions/fixtures substitutions as turn-end-feedback.validation.json; native Unity/asmdef/build not proven."
+  "runner_scope": "Temporary bundled .NET8/NUnit; same exclusions/fixtures substitutions as turn-end-feedback.validation.json; native Unity/asmdef/build not proven.",
+  "totals": {
+    "new_tests": 66,
+    "supplemental_passed": 1999,
+    "failed": 0,
+    "native_cases_excluded": 160,
+    "unity_tests_executed": false
+  },
+  "build": {
+    "status": "not-run",
+    "existing_player_updated": false
+  },
+  "mouse": {
+    "status": "not-run"
+  },
+  "source_hashes": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Coup.cs",
+      "sha256": "1eee4654d0e0e84f9d72065c1c1622f227f34076fede972600f4ad6f8389d954"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.DefconVpEvents.cs",
+      "sha256": "1978a725aab01e5f5333b5623eec752dfa3d63862825748122c9f3243a1cce0e"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Events.cs",
+      "sha256": "5a9d304e2d9d9fee4b986cb9f699ef34b9985f68076d810f123269c81683fbda"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Headlines.cs",
+      "sha256": "d73cf68e56f0a650d847b60eb48036751fb237a881a8ebe89668f64e84ce312a"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.OpponentOps.cs",
+      "sha256": "ea587bc265c97ae4e5753d6180f6e8bf918d197e803e57ead1d5892179af9d49"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Realignment.cs",
+      "sha256": "d493fbb9bfe224d56c638670048b6cb032f536c7d422be8e2584638b69bfc28c"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Scoring.cs",
+      "sha256": "8e89f2df9b1e945576ee043d70f52c58da4f173cb76556b6c095b2e0cfdc9a6d"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.TurnOpsEvents.cs",
+      "sha256": "f012e7082cb458d497442df858fb55d348fc2f6af5717699ce266d131229d106"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.cs",
+      "sha256": "7012f2ce5b380f633f4e8ae0956f70d61a3b7d1a441eee74b8943365ef52e491"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeState.cs",
+      "sha256": "445ba2fa075bd8a64569dd93518d58def5250097a3795341e5f612e0934cdaad"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionRules.cs",
+      "sha256": "1035d10a95c0c387ecab255f68eba3538bf32c57a4408e3cae4ac2e3a25d6063"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionState.cs",
+      "sha256": "224a22226286dbd8c678dda6c73211c6b76637e429df6732426c36a3f96de6a0"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeTurnEndRules.cs",
+      "sha256": "c96bdf234561c56d81757edbafd8d5b82d22c037ce9fcff1d0e1c0eb48cff194"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineChoiceTests.cs",
+      "sha256": "ddf2269db5e6eaa0cce5e618be3580f3865e86e419a69ef0aacf67b12e052230"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineResolutionStateTests.cs",
+      "sha256": "c4c20073f90c3f334ab7867ac19bcd1e6d8101f1a6abe4aab316a2679f6cc401"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineResolutionTests.cs",
+      "sha256": "7cfde91cb5768bb4566043e56e1c69146b07f40b33e5c7492bae4087e692fe92"
+    }
+  ]
 }

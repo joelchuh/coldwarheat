@@ -132,4 +132,4 @@
 
 - [头条基础纯服务](headline-foundation.md)：保留牌区、秘密选择、太空先看后选投影与普通印刷值排序；尚未挂Host/Demo，托管验证与Unity验收分开。
 
-- [有限头条事件结算](headline-resolution.md)：当前只实现队列与根游标，逐张事件/选择编排按计划继续；勿误认为已启用Demo头条。
+- [有限头条事件结算](headline-resolution.md)：普通队列、已支持事件、选择恢复和终局截断已实现；Host/UI待接，勿误认为已启用Demo头条。

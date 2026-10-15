@@ -21,6 +21,28 @@ namespace ColdWarStruggle.Core
     }
     public static class HeadlineResolutionRules
     {
+        // The host must publish only this final result, never the incoming effect-only draft.
+        // Host identity/version/idempotency gates still apply before the raw decision is produced.
+        public static HeadlineResolutionTransition CompleteChoice(InfluenceEventTransition transition)
+        {
+            if(transition==null)return new HeadlineResolutionTransition(RuleError.InvalidCommand);
+            if(!transition.Accepted)return new HeadlineResolutionTransition(transition.Error);
+            var s=transition.NextState;var error=CheckLive(s);
+            if(error!=RuleError.None)return new HeadlineResolutionTransition(error);
+            var p=s.Practice;var e=s.InfluenceEvent;
+            if(!p.HasPendingHeadline || p.Stage!=ActionPracticeStage.ResolvingEvent || e==null || e.Stage!=InfluenceEventStage.Resolved
+                || e.DecisionId==null || !e.DecisionSourceVersion.HasValue)return new HeadlineResolutionTransition(RuleError.ActionNotReady);
+            var entry=p.Headline.Current;
+            var done=ActionPracticeRules.CompleteEventAction(transition);
+            if(!done.Accepted)return new HeadlineResolutionTransition(done.Error);
+            var steps=new List<HeadlineResolutionStep>{new HeadlineResolutionStep(entry.Card,entry.PlayedBy,
+                new CardActionTransition(RuleError.None,done.NextState,eventTransition:transition))};
+            if(done.NextState.Ended || done.NextState.Practice.Headline.IsComplete)return new HeadlineResolutionTransition(RuleError.None,done.NextState,steps);
+            var following=Advance(done.NextState);
+            if(!following.Accepted)return new HeadlineResolutionTransition(following.Error);
+            steps.AddRange(following.Steps);
+            return new HeadlineResolutionTransition(RuleError.None,following.NextState,steps);
+        }
         public static IReadOnlyList<CardId> SupportedCards(ActionPracticeDefinition definition)
         {
             if(definition==null)throw new ArgumentNullException(nameof(definition));
