@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "description": "已选叛逃者头条分批托管补充验证；不替代Unity原生测试。",
-  "status": "task1-managed-passed",
+  "status": "task2-managed-passed",
   "baseline_commit": "a6162c9ee743cdf2dca8ebb71c4305221f02c8ce",
   "task1": {
     "new_tests": 30,
@@ -34,5 +34,29 @@
   "build": "not-run",
   "review": {
     "status": "pending-whole-batch"
+  },
+  "task2": {
+    "new_tests": 20,
+    "evidence": [
+      {
+        "path": "TestResults/DefectorsHeadline/defectors-resolution-red.xml",
+        "sha256": "a9e1df531bf9740cafe5f4a378f5c9f98ce596a8e3f154ffdb4ad69f08a3e473",
+        "passed": 2,
+        "failed": 18
+      },
+      {
+        "path": "TestResults/DefectorsHeadline/defectors-resolution-green.xml",
+        "sha256": "4b3a7b66ebcd862ef9b13a14ba1ba590f8f34ded3cfdf691ec83e1f077b4e629",
+        "passed": 20,
+        "failed": 0
+      },
+      {
+        "path": "TestResults/DefectorsHeadline/defectors-resolution-regression.xml",
+        "sha256": "2725a3ae539554263fc524dd262d38e585d8d4751159322dc41a24b2fb3273fe",
+        "passed": 2098,
+        "failed": 0
+      }
+    ],
+    "red_note": "2 pre-existing fail-closed cases already passed;18 missing behaviors failed. Test-only Application namespace import fixed before behavioral RED."
   }
 }

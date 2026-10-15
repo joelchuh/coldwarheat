@@ -118,8 +118,7 @@ namespace ColdWarStruggle.Core
             if(p.HasPendingHeadline)
             {
                 var queue=p.Headline.AdvanceAfterResolution(p.ActiveCard??p.Headline.Current.Card,p.Actor);
-                return new ActionPracticeState(p.Definition,queue.IsComplete?ActionPracticeStage.ChooseCard:ActionPracticeStage.HeadlineReady,
-                    p.CompletedActions,null,space,vp,risk??p.Risk,opsEffects??p.OpsEffects,headline:queue);
+                return AfterHeadline(p,queue,space,vp,risk,opsEffects);
             }
             var completed=checked(p.CompletedActions+1);
             var stage=completed==checked(p.Space.Turn.Parameters.NormalActionsPerSide*2)?ActionPracticeStage.Complete:ActionPracticeStage.ChooseCard;

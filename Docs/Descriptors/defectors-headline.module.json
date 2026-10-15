@@ -3,7 +3,7 @@
   "id": "module.defectors-headline",
   "kind": "module",
   "status": "implemented-subset",
-  "description": "叛逃者已选头条的定义/共享参数载入/优先排序及不可变完成记录已实现；核心取消、公开会话接线待后续任务，Unity原生待许可。",
+  "description": "叛逃者已选头条核心取消已实现：US具名优先、USSR普通位置自取消、弃牌与失败原子性；公开完成记录待接，原生测试待许可复核。",
   "entrypoints": [
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/DefectorsHeadlineDefinition.cs",
@@ -20,6 +20,10 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionState.cs",
       "symbol": "AdvanceAfterCancellation"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionRules.cs",
+      "symbol": "Begin"
     }
   ],
   "inputs": [
@@ -41,7 +45,7 @@
     "游标推进本身不是物理牌去向或效果执行的证明"
   ],
   "side_effects": [
-    "纯服务返回新队列，无宿主/旧Demo接线"
+    "纯服务返回草稿；可选可信定义接入头条收集和结算，旧Demo工厂未启用"
   ],
   "stop_conditions": [
     "错误profile/语义/目录/当前根/重复完成拒绝"
@@ -55,6 +59,10 @@
   "tests": [
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/DefectorsHeadlineDefinitionTests.cs",
+      "status": "managed-passed-unity-pending"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DefectorsHeadlineResolutionTests.cs",
       "status": "managed-passed-unity-pending"
     }
   ],

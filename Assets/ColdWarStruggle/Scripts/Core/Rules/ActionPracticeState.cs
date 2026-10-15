@@ -21,7 +21,8 @@ namespace ColdWarStruggle.Core
         public bool TurnEndEnabled { get; }
         public bool NextTurnEnabled { get; }
         public HeadlineOrderParameters HeadlineParameters { get; }
-        public ActionPracticeDefinition(CardCatalog cards,OpsGeneralDefinition ops,SpaceRaceDefinition space,TurnCalendar calendar,PracticeRiskDefinition risk=null,RegionScoringDefinition scoring=null,PracticeInfluenceCatalog influenceEvents=null,PracticeDefconVpCatalog defconVpEvents=null,PracticeTurnOpsCatalog turnOpsEvents=null,RealignmentDefinition realignment=null,ChinaCardDefinition china=null,bool turnEndEnabled=false,bool nextTurnEnabled=false,HeadlineOrderParameters headlineParameters=null)
+        public DefectorsHeadlineDefinition HeadlineDefectors { get; }
+        public ActionPracticeDefinition(CardCatalog cards,OpsGeneralDefinition ops,SpaceRaceDefinition space,TurnCalendar calendar,PracticeRiskDefinition risk=null,RegionScoringDefinition scoring=null,PracticeInfluenceCatalog influenceEvents=null,PracticeDefconVpCatalog defconVpEvents=null,PracticeTurnOpsCatalog turnOpsEvents=null,RealignmentDefinition realignment=null,ChinaCardDefinition china=null,bool turnEndEnabled=false,bool nextTurnEnabled=false,HeadlineOrderParameters headlineParameters=null,DefectorsHeadlineDefinition headlineDefectors=null)
         {
             if(influenceEvents!=null && (!ReferenceEquals(influenceEvents.Cards,cards) || (risk!=null && !ReferenceEquals(influenceEvents.Map,risk.Defcon.Map)) || (scoring!=null && !ReferenceEquals(influenceEvents.Map,scoring.Map))))throw new ArgumentException("Influence events must share the same cards and map.");
             if(scoring!=null && (risk==null || !ReferenceEquals(scoring.Map,risk.Defcon.Map)))throw new ArgumentException("Scoring needs risk rules bound to the same map.");
@@ -32,7 +33,8 @@ namespace ColdWarStruggle.Core
             if(china!=null && (!ReferenceEquals(china.Cards,cards) || risk!=null && !ReferenceEquals(china.Map,risk.Defcon.Map)))throw new ArgumentException("China rules must share the same cards and map.");
             if(nextTurnEnabled && !turnEndEnabled)throw new ArgumentException("Next turn requires turn-end assessment.");
             if(turnEndEnabled && (risk==null || china==null))throw new ArgumentException("Turn-end practice requires risk and China rules.");
-            HeadlineParameters=headlineParameters;NextTurnEnabled=nextTurnEnabled;TurnEndEnabled=turnEndEnabled;China=china;Realignment=realignment;TurnOpsEvents=turnOpsEvents;DefconVpEvents=defconVpEvents;InfluenceEvents=influenceEvents;Scoring=scoring;Cards=cards??throw new ArgumentNullException(nameof(cards));Ops=ops??throw new ArgumentNullException(nameof(ops));Space=space??throw new ArgumentNullException(nameof(space));Calendar=calendar??throw new ArgumentNullException(nameof(calendar));Risk=risk; }
+            if(headlineDefectors!=null && (!ReferenceEquals(headlineDefectors.Catalog,cards) || influenceEvents?.Effects.ContainsKey(headlineDefectors.Card)==true || defconVpEvents?.Effects.ContainsKey(headlineDefectors.Card)==true || turnOpsEvents?.Effects.ContainsKey(headlineDefectors.Card)==true))throw new ArgumentException("Headline Defectors requires same cards and disjoint handlers.");
+            HeadlineDefectors=headlineDefectors;HeadlineParameters=headlineParameters;NextTurnEnabled=nextTurnEnabled;TurnEndEnabled=turnEndEnabled;China=china;Realignment=realignment;TurnOpsEvents=turnOpsEvents;DefconVpEvents=defconVpEvents;InfluenceEvents=influenceEvents;Scoring=scoring;Cards=cards??throw new ArgumentNullException(nameof(cards));Ops=ops??throw new ArgumentNullException(nameof(ops));Space=space??throw new ArgumentNullException(nameof(space));Calendar=calendar??throw new ArgumentNullException(nameof(calendar));Risk=risk; }
     }
     public sealed class ActionPracticeState
     {
