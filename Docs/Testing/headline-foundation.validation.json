@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "description": "头条基础服务分批补充验证；尚未接Host/Demo或Unity验收。",
-  "status": "in-progress-managed-checks",
+  "status": "managed-passed-review-pending-unity-blocked",
   "baseline_commit": "76cb3bc33edfc1f81ead654dc75d177051c9baf7",
   "task1": {
     "status": "managed-passed-unity-pending",
@@ -52,7 +52,29 @@
     ]
   },
   "task3": {
-    "status": "planned"
+    "status": "managed-passed-unity-pending",
+    "new_tests": 36,
+    "evidence": [
+      {
+        "path": "TestResults/HeadlineFoundation/headline-order-red.xml",
+        "sha256": "3684347b551fc9420989b0e66e50ff3e502b036a5d78731f271615f1a62ab99c",
+        "passed": 0,
+        "failed": 36
+      },
+      {
+        "path": "TestResults/HeadlineFoundation/headline-foundation-green.xml",
+        "sha256": "63a3c33ffa0da45cb42e61717f39ab95b9b3d87c5e65732efcf70fe406f90234",
+        "passed": 1932,
+        "failed": 1
+      },
+      {
+        "path": "TestResults/HeadlineFoundation/headline-foundation-corrected.xml",
+        "sha256": "afef1355e50d6be1210c17a29c0830a77a1523d72ccda433815c69abf6224157",
+        "passed": 1933,
+        "failed": 0
+      }
+    ],
+    "corrected_test_assumption": "Canonical Nasser printed_ops is 1. The intermediate 1932/1 run failed due to expected 2 in the test; corrected expectation without changing production/data."
   },
   "unity": {
     "status": "blocked-license",
@@ -69,5 +91,74 @@
   "runner_scope": "Same temporary .NET8/NUnit supplemental runner and exclusions as turn-end-feedback.validation.json; neither native Unity nor assembly-boundary validation",
   "review": {
     "status": "pending-whole-branch"
+  },
+  "totals": {
+    "new_tests": 79,
+    "supplemental_passed": 1933,
+    "failed": 0,
+    "unity_editmode_executed": false
+  },
+  "source_hashes": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/HeadlineSelectionView.cs",
+      "sha256": "bc1280370a0ab3e6a6c33629a1efdd4f31b3e9697fe13584e4f006dddc553abf"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/CardZones.cs",
+      "sha256": "cd527102fb254f11875f10b297397f0091c280f39381434728e9bf7a53f820e0"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/TurnDealService.cs",
+      "sha256": "037cb7bbf1ba48b569926a4f853474e980f3c89aa6d92fcfc548ffdd4d0348c9"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.cs",
+      "sha256": "52175fadded82ff6f6e0e80255163261e4241539762c1ed2d86a651d5bf657ac"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ChinaCardRules.cs",
+      "sha256": "3ca893b356239d44e17a87309d10bcff181811f6fe115354b091181119906e57"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineOrderRules.cs",
+      "sha256": "799bb9156eddd9aacf4d9b7cdcfbabd892c4ba8090238469159e3515fa2e08ff"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineSelectionRules.cs",
+      "sha256": "05d3139fb2ea2a9d90ea862a894458491224f7450a3691b521b44978de44ac5b"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineSelectionState.cs",
+      "sha256": "c2ca2bddcbcad1be7a8acda3dbd9039ed2e8006e36b9046edfd82fdb3f466650"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeNextTurnRules.cs",
+      "sha256": "3ba01902796eda5b3d902c6cf3c59c887ba40c5c08521d72c92950d2eee15975"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeTurnEndRules.cs",
+      "sha256": "0d87cd8d38ba1a768e03b4ddbcf1bbdf2cebe9bdc0af167b181ae5d617c719fd"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/HeadlineParametersLoader.cs",
+      "sha256": "95816033f67f65e71ebfa8c979f2973ffd9d3bab94334f4d4bcc66e9e06cfb99"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineCardZonesTests.cs",
+      "sha256": "e29a4ad335d14656307032325ce8e2c267a01a3f8da63629d38412de9046941a"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineOrderTests.cs",
+      "sha256": "08b7f9272cfcaddc0afa91133bcc4191951b43e67ddcde8a155a9c4f32218812"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineSelectionTests.cs",
+      "sha256": "7850e6297f863488452b5148f5efbd3e250b3fc494ac7dd3d70c4c156bcec0d4"
+    }
+  ],
+  "hub_recovery": {
+    "status": "normal-launch-app-approval-timeout",
+    "auth_automation_attempted": false,
+    "license_recovered": false
   }
 }
