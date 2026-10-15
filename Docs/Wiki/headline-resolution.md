@@ -1,6 +1,6 @@
 # 有限头条事件结算
 
-> description: 查冻结队列、头条根责任与事件收尾的运行边界；游标和有限事件编排已实现，选择继续入口已实现，Host/UI尚未接。
+> description: 查冻结队列、头条根责任与事件收尾的运行边界；游标和有限事件编排已实现，选择继续入口已实现，Host已由[会话模块](headline-session.md)接入，UI未启用。
 
 先读[模块摘要](../Descriptors/headline-resolution.module.json)。CreateOrdinary要求双方已保留且无人正在Resolving，复核目录后冻结普通印刷值顺序；AdvanceAfterResolution仅接受当前牌与出牌方一次，不改变原快照。CurrentResolutionId按回合及出牌方区分，避免两张头条复用普通action0身份。
 
@@ -10,7 +10,7 @@ Begin只接受双方已保留、普通行动尚未开始的稳定权威状态，
 
 Actor在头条期间读取Current.PlayedBy；影响力Owner仍从事件定义读取，核战责任取出牌方。手牌、HeadlineReserved、Resolving三个实体来源在共享Move中区分，不把头条塞回手牌。当前步骤失败不返回任何同批成功草稿；CompleteChoice验证等待前已发布的前缀保持，而本次选择后失败不发布草稿。正常两张结束后苏联行动1，预算0；首张终局不执行后张。
 
-Task2新增31项先RED后GREEN，全部可用托管1982项通过。无Unity、构建或鼠标验收。源码含完整权威结果，只能由未来Host过滤投影，不作为可直接传输的响应。
+Task2新增31项先RED后GREEN，全部可用托管1982项通过。无Unity、构建或鼠标验收。源码含完整权威结果，只能由headline-session Host过滤投影，不作为可直接传输的响应。
 
 CompleteChoice只接受真正Resolved且带DecisionId/DecisionSourceVersion的头条选择结果，调用共享CompleteEventAction处理实体与当前根，再推进后续牌。普通事件、仍在等待、错误执行ID均拒绝。原始InfluenceEventTransition与步骤中的GameState是权威草稿，不能先发布再完成头条；纯服务不替代Host的版本/幂等门禁，拿旧快照重新规划不是被授权重放。
 
@@ -28,6 +28,8 @@ flowchart TD
  E -->|本次事务错误| I[无NextState，不发布草稿]
 ```
 
-最终新增18+31+17=66项按批RED→GREEN，全部可用托管1999项通过；Unity原生160项仍未运行。下一批才接秘密收集、Host命令/过滤/幂等与开局入口；这里没有偷偷启用旧Demo。
+最终新增18+31+17=66项按批RED→GREEN，全部可用托管1999项通过；Unity原生160项仍未运行。后续headline-session批次现已接秘密收集、Host命令/过滤/幂等与可选开局入口；这里没有偷偷启用旧Demo。
 
 源码检查点经整批独立审查无阻塞或Minor；16源码/8证据摘要一致。main与播放器仍等待Unity授权及原生门禁，审查不改变此限制。
+
+本页97/1982/1999为核心批次历史记录；当前会话批次49新增、2048托管补充通过，160项原生仍排除。详见[会话模块](headline-session.md)和其验证报告，不把历史Host未接状态当当前状态。

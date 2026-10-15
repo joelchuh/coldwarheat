@@ -2,21 +2,21 @@
   "schema_version": 1,
   "id": "module.headline-runtime",
   "kind": "module",
-  "status": "planned",
-  "description": "完整头条Host/UI与回合入口仍待接；独立秘密选择、普通排序及有限事件编排已在foundation/resolution模块实现，Demo仍跳过头条。",
+  "status": "implemented-subset",
+  "description": "有限头条基础、事件根、固定身份Host与可选回合入口已接；公开/秘密投影与选择继续可执行，UI未启用，真实Unity和播放器验收待许可。",
   "documentation": "Docs/Architecture/headline-runtime-integration.md",
-  "entrypoints": [],
-  "planned_entrypoints": [
+  "entrypoints": [
     {
-      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/LocalGameHost.cs",
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/SessionContracts.cs",
       "symbol": "SubmitHeadlineAsync"
     }
   ],
+  "planned_entrypoints": [],
   "inputs": [
     "共享turn-flow.headline参数、CardCatalog、当前牌区/太空能力及固定身份提交意图"
   ],
   "outputs": [
-    "计划中的不可变私有保留/选择状态、公开揭示顺序、当前事件根与正常行动继续点"
+    "不可变收集/公开顺序及事件根结果，Host过滤后的最终View和有界公开Steps"
   ],
   "dependencies": [
     "module.turn-flow",
@@ -24,7 +24,8 @@
     "module.card-zones",
     "module.deterministic-random",
     "module.headline-foundation",
-    "module.headline-resolution"
+    "module.headline-resolution",
+    "module.headline-session"
   ],
   "data_dependencies": [
     "rules.deluxe2015.turn-flow"
@@ -33,7 +34,7 @@
     "纯基础服务可用托管补充验证；真实试玩启用前必须恢复Unity许可并通过EditMode/构建/交互检查"
   ],
   "side_effects": [
-    "当前文档无运行副作用；未来提交仅由Host权威事务改变牌区、阶段和局面"
+    "Host成功事务一次提交最终状态；旧Demo工厂仍未启用，文档本身不授予执行权限"
   ],
   "stop_conditions": [
     "未知事件或嵌套来源不得当空事件；未授权身份、过期版本、终局和已有等待禁止依赖执行"
@@ -44,5 +45,10 @@
       "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf"
     }
   ],
-  "tests": []
+  "tests": [
+    {
+      "path": "Docs/Testing/headline-session.validation.json",
+      "status": "report"
+    }
+  ]
 }

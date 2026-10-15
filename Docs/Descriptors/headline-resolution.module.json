@@ -3,7 +3,7 @@
   "id": "module.headline-resolution",
   "kind": "module",
   "status": "implemented-subset",
-  "description": "有限头条核心编排：普通队列、计分/影响力/DEFCON/OPS复用、独立根责任、选择后原子继续和终局截断已实现；普通行动不消耗，Host/UI及原生验收待接。",
+  "description": "有限头条核心编排已实现：普通队列、既有效果、独立根责任、选择后原子继续和终局截断；Host由headline-session接入，UI和原生验收仍待完成。",
   "entrypoints": [
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionState.cs",
@@ -59,7 +59,7 @@
     "CreateOrdinary排除特殊取消/优先；将来编排只接受已经实现的普通事件集合"
   ],
   "side_effects": [
-    "纯规则只返回不可变事务草稿；Host尚未接线，不自动发布",
+    "纯规则只返回不可变事务草稿；Core不发布；headline-session Host只提交最终结果",
     "每张实际事件改变地图/轨道/效果和牌去向；普通CompletedActions始终0，显式操作预算0，RNG保持",
     "首张终局保留当前Resolving及后张Reserved；不强行清理或完成游标",
     "同回合Practice复制保留队列；下一回合入口重置，历史报告不重放事件"
