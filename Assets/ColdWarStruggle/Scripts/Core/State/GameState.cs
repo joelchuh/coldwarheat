@@ -44,6 +44,8 @@ namespace ColdWarStruggle.Core
             if(practice?.Definition.InfluenceEvents!=null && !ReferenceEquals(map,practice.Definition.InfluenceEvents.Map))throw new ArgumentException("Practice event map mismatch.");
             if(practice?.Risk!=null && !ReferenceEquals(map,practice.Risk.Definition.Defcon.Map))throw new ArgumentException("Practice risk map mismatch.");
             if(practice?.Definition.Scoring!=null && !ReferenceEquals(map,practice.Definition.Scoring.Map))throw new ArgumentException("Practice scoring map mismatch.");
+            if(practice?.HeadlineSelection!=null && (!ReferenceEquals(cards,practice.HeadlineSelection.Cards)
+                || influenceEvent!=null || deployment!=null || context.Budget!=0 || spentOps!=0))throw new ArgumentException("Headline collection must share the authoritative idle card snapshot.");
             Map=map;Operations=context;GameId=gameId;Version=version;SpentOps=spentOps;EventSequence=eventSequence;Ended=ended;
             Cards=cards;RandomState=randomState;Practice=practice;
             if(practice!=null && (cards==null || turn==null || turn.Number!=practice.Space.Turn.Number))throw new ArgumentException("Practice requires real cards and the matching turn.");

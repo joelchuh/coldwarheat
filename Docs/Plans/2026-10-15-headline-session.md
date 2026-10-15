@@ -41,6 +41,6 @@ Task1修改Core/Rules/ActionPracticeState.cs、ActionPracticeRules.cs、Practice
 
 ## 进度
 
-- [ ] Task1 收集与回合入口
+- [x] Task1 收集与回合入口
 - [ ] Task2 会话和公开投影
 - [ ] Task3 事件继续与跨回合、审查和同步

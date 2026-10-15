@@ -44,7 +44,7 @@ namespace ColdWarStruggle.Core
                 var deal=TurnDealService.Plan(p.Definition.Cards,state.Cards,nextTurn,new Pcg32Random(state.RandomState));
                 var next=new ActionPracticeState(p.Definition,ActionPracticeStage.ChooseCard,0,null,space,p.VpForUS,risk,TurnOpsEffectState.Create(nextTurn));
                 var ops=OperationsContext.FromRoundStart(state.GameId+".turn."+nextTurn.Number+".action.0",PlayerSide.USSR,0,state.Map,state.Countries,state.Operations.Costs);
-                return new CardActionTransition(RuleError.None,state.WithNextPracticeTurn(next,ops,deal.Cards,deal.Random,nextTurn));
+                return CollectHeadlinesIfEnabled(new CardActionTransition(RuleError.None,state.WithNextPracticeTurn(next,ops,deal.Cards,deal.Random,nextTurn)));
             }
             catch(OverflowException){return new CardActionTransition(RuleError.NumericOverflow);}
             catch(ArgumentException){return new CardActionTransition(RuleError.TurnPreparationUnavailable);}

@@ -3,7 +3,7 @@ using System.Linq;
 namespace ColdWarStruggle.Core
 {
     public enum CardActionKind { StartPractice, Influence, Space, FinishInfluence, Coup, Scoring, Event, Realignment, RollRealignment, FinishRealignment, EventThenInfluence, InfluenceThenEvent, OpponentEventFirst, OpponentOpsFirst, UseOpponentInfluence, UseOpponentRealignment, UseOpponentCoup, AssessTurnEnd, BeginNextTurn }
-    public enum ActionPracticeStage { AwaitingStart, ChooseCard, PlacingInfluence, Complete, ResolvingEvent, Realigning, ChoosingOperations, HeadlineReady }
+    public enum ActionPracticeStage { AwaitingStart, ChooseCard, PlacingInfluence, Complete, ResolvingEvent, Realigning, ChoosingOperations, HeadlineReady, CollectingHeadline }
     // Explicit single-turn practice with a bounded, typed set of supported events. Not the full turn coordinator.
     public sealed class ActionPracticeDefinition
     {
@@ -20,7 +20,8 @@ namespace ColdWarStruggle.Core
         public ChinaCardDefinition China { get; }
         public bool TurnEndEnabled { get; }
         public bool NextTurnEnabled { get; }
-        public ActionPracticeDefinition(CardCatalog cards,OpsGeneralDefinition ops,SpaceRaceDefinition space,TurnCalendar calendar,PracticeRiskDefinition risk=null,RegionScoringDefinition scoring=null,PracticeInfluenceCatalog influenceEvents=null,PracticeDefconVpCatalog defconVpEvents=null,PracticeTurnOpsCatalog turnOpsEvents=null,RealignmentDefinition realignment=null,ChinaCardDefinition china=null,bool turnEndEnabled=false,bool nextTurnEnabled=false)
+        public HeadlineOrderParameters HeadlineParameters { get; }
+        public ActionPracticeDefinition(CardCatalog cards,OpsGeneralDefinition ops,SpaceRaceDefinition space,TurnCalendar calendar,PracticeRiskDefinition risk=null,RegionScoringDefinition scoring=null,PracticeInfluenceCatalog influenceEvents=null,PracticeDefconVpCatalog defconVpEvents=null,PracticeTurnOpsCatalog turnOpsEvents=null,RealignmentDefinition realignment=null,ChinaCardDefinition china=null,bool turnEndEnabled=false,bool nextTurnEnabled=false,HeadlineOrderParameters headlineParameters=null)
         {
             if(influenceEvents!=null && (!ReferenceEquals(influenceEvents.Cards,cards) || (risk!=null && !ReferenceEquals(influenceEvents.Map,risk.Defcon.Map)) || (scoring!=null && !ReferenceEquals(influenceEvents.Map,scoring.Map))))throw new ArgumentException("Influence events must share the same cards and map.");
             if(scoring!=null && (risk==null || !ReferenceEquals(scoring.Map,risk.Defcon.Map)))throw new ArgumentException("Scoring needs risk rules bound to the same map.");
@@ -31,7 +32,7 @@ namespace ColdWarStruggle.Core
             if(china!=null && (!ReferenceEquals(china.Cards,cards) || risk!=null && !ReferenceEquals(china.Map,risk.Defcon.Map)))throw new ArgumentException("China rules must share the same cards and map.");
             if(nextTurnEnabled && !turnEndEnabled)throw new ArgumentException("Next turn requires turn-end assessment.");
             if(turnEndEnabled && (risk==null || china==null))throw new ArgumentException("Turn-end practice requires risk and China rules.");
-            NextTurnEnabled=nextTurnEnabled;TurnEndEnabled=turnEndEnabled;China=china;Realignment=realignment;TurnOpsEvents=turnOpsEvents;DefconVpEvents=defconVpEvents;InfluenceEvents=influenceEvents;Scoring=scoring;Cards=cards??throw new ArgumentNullException(nameof(cards));Ops=ops??throw new ArgumentNullException(nameof(ops));Space=space??throw new ArgumentNullException(nameof(space));Calendar=calendar??throw new ArgumentNullException(nameof(calendar));Risk=risk; }
+            HeadlineParameters=headlineParameters;NextTurnEnabled=nextTurnEnabled;TurnEndEnabled=turnEndEnabled;China=china;Realignment=realignment;TurnOpsEvents=turnOpsEvents;DefconVpEvents=defconVpEvents;InfluenceEvents=influenceEvents;Scoring=scoring;Cards=cards??throw new ArgumentNullException(nameof(cards));Ops=ops??throw new ArgumentNullException(nameof(ops));Space=space??throw new ArgumentNullException(nameof(space));Calendar=calendar??throw new ArgumentNullException(nameof(calendar));Risk=risk; }
     }
     public sealed class ActionPracticeState
     {
@@ -39,6 +40,7 @@ namespace ColdWarStruggle.Core
         public ActionPracticeStage Stage { get; }
         public int CompletedActions { get; }
         public HeadlineResolutionState Headline { get; }
+        public HeadlineSelectionState HeadlineSelection { get; }
         public bool HasPendingHeadline=>Headline!=null && !Headline.IsComplete;
         public PlayerSide Actor=>HasPendingHeadline?Headline.Current.PlayedBy:CompletedActions%2==0?PlayerSide.USSR:PlayerSide.US;
         public int ActionRound=>Math.Min(CompletedActions/2+1,Space.Turn.Parameters.NormalActionsPerSide);
@@ -49,7 +51,7 @@ namespace ColdWarStruggle.Core
         public TurnOpsEffectState OpsEffects { get; }
         public OpponentOpsSequence OpponentOps { get; }
         public PracticeTurnEndReceipt TurnEnd { get; }
-        internal ActionPracticeState(ActionPracticeDefinition definition,ActionPracticeStage stage,int completed,CardId? card,SpaceAttemptState space,int vp,PracticeRiskState risk=null,TurnOpsEffectState opsEffects=null,OpponentOpsSequence opponentOps=null,PracticeTurnEndReceipt turnEnd=null,HeadlineResolutionState headline=null)
+        internal ActionPracticeState(ActionPracticeDefinition definition,ActionPracticeStage stage,int completed,CardId? card,SpaceAttemptState space,int vp,PracticeRiskState risk=null,TurnOpsEffectState opsEffects=null,OpponentOpsSequence opponentOps=null,PracticeTurnEndReceipt turnEnd=null,HeadlineResolutionState headline=null,HeadlineSelectionState headlineSelection=null)
         {
             if(headline!=null && (headline.Turn.Number!=space.Turn.Number || headline.Turn.Era!=space.Turn.Era))throw new ArgumentException("Headline turn mismatch.");
             if(headline!=null && !headline.IsComplete && (completed!=0 || opponentOps!=null || turnEnd!=null
@@ -58,7 +60,11 @@ namespace ColdWarStruggle.Core
                     || stage==ActionPracticeStage.Complete && risk?.Result?.Outcome==VictoryOutcome.Finished && card.HasValue && card.Value.Equals(headline.Current.Card))))
                 throw new ArgumentException("Invalid pending headline root.");
             if(stage==ActionPracticeStage.HeadlineReady && (headline==null || headline.IsComplete))throw new ArgumentException("Headline boundary requires a pending root.");
-            Headline=headline;
+            if(headlineSelection!=null && (definition.HeadlineParameters==null || !ReferenceEquals(headlineSelection.Catalog,definition.Cards)
+                || headlineSelection.Ready || headline!=null || stage!=ActionPracticeStage.CollectingHeadline || completed!=0
+                || card.HasValue || opponentOps!=null || turnEnd!=null))throw new ArgumentException("Invalid headline collection.");
+            if(stage==ActionPracticeStage.CollectingHeadline && headlineSelection==null)throw new ArgumentException("Missing headline selection.");
+            HeadlineSelection=headlineSelection;Headline=headline;
             if(turnEnd!=null && (!definition.TurnEndEnabled || stage!=ActionPracticeStage.Complete || completed!=space.Turn.Parameters.NormalActionsPerSide*2 || card.HasValue || opponentOps!=null
                 || !ReferenceEquals(risk?.Military.Assessment,turnEnd.Assessment) || turnEnd.Decision.SignedVp!=vp
                 || (turnEnd.Decision.Outcome==VictoryOutcome.Finished?!ReferenceEquals(risk.Result,turnEnd.Decision):risk.Result!=null)))throw new ArgumentException("Turn-end receipt does not match the completed state.");

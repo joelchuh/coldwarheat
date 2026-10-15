@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "id": "module.headline-session",
+  "kind": "module",
+  "status": "implemented-subset",
+  "description": "头条收集与可选回合入口已实现，绑定权威牌区、第二次提交原子结算；玩家会话、过滤收据和选择继续待接。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineFlowRules.cs",
+      "symbol": "BeginCollection"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineFlowRules.cs",
+      "symbol": "Submit"
+    }
+  ],
+  "inputs": [
+    "可信ActionPracticeDefinition.HeadlineParameters；null保持旧试玩",
+    "固定身份门禁后的权威GameState/PlayerSide/CardId"
+  ],
+  "outputs": [
+    "不可变HeadlineResolutionTransition；失败无NextState/Steps",
+    "第二次选齐自动结算至等待/终局/普通行动"
+  ],
+  "dependencies": [
+    "module.headline-foundation",
+    "module.headline-resolution"
+  ],
+  "data_dependencies": [
+    "rules.deluxe2015.turn-flow"
+  ],
+  "preconditions": [
+    "只接受尚未开始普通行动的收集状态",
+    "选择和GameState使用同一CardZones引用，目录须同一实例"
+  ],
+  "side_effects": [
+    "纯服务返回草稿；旧Demo工厂未启用",
+    "初始/下一回合可选进入收集，复用原发牌准备且不二次补牌"
+  ],
+  "stop_conditions": [
+    "无处理器候选保持收集，不自动跳过",
+    "错身份/牌/重复/阶段/溢出拒绝，首张已提交锁牌前缀不变"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Architecture/headline-runtime-integration.md",
+      "scope": "秘密选择和根结算"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineFlowTests.cs",
+      "status": "managed-passed-unity-pending"
+    }
+  ],
+  "documentation": "Docs/Wiki/headline-session.md",
+  "verification": {
+    "report": "Docs/Testing/headline-session.validation.json",
+    "unity": "blocked-license"
+  }
+}

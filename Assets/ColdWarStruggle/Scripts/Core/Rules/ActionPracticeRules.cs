@@ -16,7 +16,7 @@ namespace ColdWarStruggle.Core
             if(s==null || (side!=PlayerSide.US && side!=PlayerSide.USSR))return RuleError.InvalidCommand;
             if(s.Ended)return RuleError.GameAlreadyEnded;
             if(s.Practice==null)return RuleError.ActionNotReady;
-            if(s.Cards.HeadlineReserved.Count!=0 || s.Practice.HasPendingHeadline)return RuleError.ActionNotReady;
+            if(s.Cards.HeadlineReserved.Count!=0 || s.Practice.HasPendingHeadline || s.Practice.HeadlineSelection!=null)return RuleError.ActionNotReady;
             if(s.Practice.Stage==ActionPracticeStage.Complete)return RuleError.ActionSliceComplete;
             if(side!=s.Practice.Actor)return RuleError.WrongActor;
             if(s.InfluenceEvent!=null)return RuleError.EventInProgress;
@@ -79,7 +79,7 @@ namespace ColdWarStruggle.Core
                     if(p.Stage!=ActionPracticeStage.AwaitingStart)return new CardActionTransition(RuleError.ActionNotReady);
                     if(state.Deployment==null || !state.Deployment.Complete)return new CardActionTransition(RuleError.SetupInProgress);
                     if(state.Cards.ResolvingCards.Count!=0)return new CardActionTransition(RuleError.ActionNotReady);
-                    return Commit(state,new ActionPracticeState(p.Definition,ActionPracticeStage.ChooseCard,0,null,p.Space,p.VpForUS,p.Risk,p.OpsEffects,headline:p.Headline),state.Cards,state.RandomState);
+                    return CollectHeadlinesIfEnabled(Commit(state,new ActionPracticeState(p.Definition,ActionPracticeStage.ChooseCard,0,null,p.Space,p.VpForUS,p.Risk,p.OpsEffects,headline:p.Headline),state.Cards,state.RandomState));
                 }
                 if(kind==CardActionKind.FinishInfluence)
                 {
