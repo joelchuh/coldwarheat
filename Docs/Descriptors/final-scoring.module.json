@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "module.final-scoring",
+  "kind": "module",
+  "description": "六地区与中国牌奖励的无修正最终汇总、欧洲优先和零分平局；纯计算接胜负检查点，宿主第10回合与UI待接。",
+  "status": "implemented",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/FinalScoringDefinition.cs",
+      "symbol": "FinalScoringDefinition"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/FinalScoringService.cs",
+      "symbol": "CalculateUnmodified"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/FinalScoringService.cs",
+      "symbol": "FinalScoringResult"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/VictoryEvidence.cs",
+      "symbol": "FinalScoringCompletedEvidence"
+    }
+  ],
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/FinalScoringDefinitionLoader.cs",
+      "symbol": "LoadSubset"
+    }
+  ],
+  "documentation": "Docs/Wiki/final-scoring.md",
+  "inputs": [
+    "同一规则地图的最终定义和ScoringSnapshot",
+    "同一局面版本的ChinaCardState；回合末资格由宿主确认",
+    "最终胜负证据包含仍未终局的BeforeSignedVp"
+  ],
+  "outputs": [
+    "六个只读地区结果、快照ID/版本、持有奖励和净VP或欧洲赢家",
+    "VictoryDecision：Finished，正美国负苏联；零时Winner=null表示平局"
+  ],
+  "dependencies": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/RegionScoringService.cs",
+      "relation": "复用标准地区计算"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/VictoryService.cs",
+      "relation": "统一最终检查点"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/CardZones.cs",
+      "relation": "中国牌独立实体及Owner"
+    }
+  ],
+  "data_dependencies": [
+    "rules.deluxe2015.region-scoring",
+    "cards.deluxe2015.scoring-parameters",
+    "cards.deluxe2015.definitions"
+  ],
+  "preconditions": [
+    "基础六区；不含中国内战变体",
+    "最终宿主尚待实现：必须完成第10回合期末/军事/扣留审核并绑定同一状态版本",
+    "同一Map实例；China独立持有者有效；无活动计分修正"
+  ],
+  "side_effects": [
+    "纯计算；不修改VP、地图、牌区、牌面或随机数"
+  ],
+  "stop_conditions": [
+    "漏/重/多/未知地区、SEA独立计分",
+    "空参数、跨地图、非法中国牌奖励",
+    "活动计分效果未有对应处理器",
+    "最终数值超过Int32或批次前已达普通终局线"
+  ],
+  "rule_sources": [
+    {
+      "id": "R2015",
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "checked_on": "2026-10-16",
+      "sections": [
+        "10.3.2"
+      ]
+    },
+    {
+      "id": "C-DELUXE-EN",
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "checked_on": "2026-10-16",
+      "card_numbers": [
+        6
+      ],
+      "scope": "PDF p2印刷卡图，译文不作为新规则"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/FinalScoringTests.cs",
+      "status": "26-passed"
+    }
+  ],
+  "verification": {
+    "native_validation": "2346/2346 passed; final-scoring-core-verified",
+    "host_integrated": false,
+    "player_rebuilt": false
+  },
+  "open_items": [
+    "正式加载器及参数schema本批Task2",
+    "第10回合宿主原子提交、幂等、结算画面",
+    "台湾决议等动态计分处理器"
+  ]
+}

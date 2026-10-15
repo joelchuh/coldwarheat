@@ -51,6 +51,13 @@ namespace ColdWarStruggle.Core
                     int scoringVp=checked(scoring.BeforeSignedVp+scoring.Result.NetVpForUS.Value);
                     var scoringWinner=Candidate(definition,scoringVp);
                     return new VictoryDecision(scoring,scoringVp,scoringWinner.HasValue?VictoryOutcome.Finished:VictoryOutcome.Continue,scoringWinner);
+                case FinalScoringCompletedEvidence final:
+                    RequireLiveScore(definition,final.BeforeSignedVp);
+                    if(final.Result.EuropeControlWinner.HasValue)
+                        return new VictoryDecision(final,final.BeforeSignedVp,VictoryOutcome.Finished,final.Result.EuropeControlWinner);
+                    int finalVp=checked(final.BeforeSignedVp+final.Result.NetVpForUS.Value);
+                    PlayerSide? finalWinner=finalVp>0?PlayerSide.US:finalVp<0?PlayerSide.USSR:(PlayerSide?)null;
+                    return new VictoryDecision(final,finalVp,VictoryOutcome.Finished,finalWinner);
                 case NuclearWarEvidence nuclear:
                     return new VictoryDecision(nuclear,nuclear.SignedVp,VictoryOutcome.Finished,
                         nuclear.Change.PhasingPlayer==PlayerSide.US?PlayerSide.USSR:PlayerSide.US);
@@ -61,7 +68,7 @@ namespace ColdWarStruggle.Core
             =>vp>=d.AutomaticVpThreshold?PlayerSide.US:vp<=-(long)d.AutomaticVpThreshold?PlayerSide.USSR:(PlayerSide?)null;
         static void RequireLiveScore(VictoryDefinition d,int vp)
         {
-            if(Candidate(d,vp).HasValue)throw new ArgumentException("An ordinary or military batch cannot start with an already terminal score.");
+            if(Candidate(d,vp).HasValue)throw new ArgumentException("A scoring or military batch cannot start with an already terminal score.");
         }
     }
 }

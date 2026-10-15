@@ -4,7 +4,7 @@ using System.Linq;
 namespace ColdWarStruggle.Core
 {
     public enum VictoryOutcome { Continue, Deferred, Finished, UnresolvedAdjudication }
-    public enum VictoryCheckpoint { VpBatchClosed, MilitaryAssessed, HeldScoringAudited, NuclearWarReached, ScoringResolved }
+    public enum VictoryCheckpoint { VpBatchClosed, MilitaryAssessed, HeldScoringAudited, NuclearWarReached, ScoringResolved, FinalScoringCompleted }
     internal static class VictoryGuard
     {
         internal static string Text(string value)

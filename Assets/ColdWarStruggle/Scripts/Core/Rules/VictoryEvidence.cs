@@ -63,4 +63,12 @@ namespace ColdWarStruggle.Core
         { BeforeSignedVp=before;Result=result??throw new ArgumentNullException(nameof(result)); }
     }
 
+    public sealed class FinalScoringCompletedEvidence : VictoryEvidence
+    {
+        public int BeforeSignedVp { get; }
+        public FinalScoringResult Result { get; }
+        public FinalScoringCompletedEvidence(string id,string source,int before,FinalScoringResult result):base(id,source,VictoryCheckpoint.FinalScoringCompleted)
+        { BeforeSignedVp=before;Result=result??throw new ArgumentNullException(nameof(result)); }
+    }
+
 }
