@@ -15,3 +15,29 @@ Task2：Begin/PlanSelection/CanChoose及应用层投影已实现；支持集合�
 Task3：共享参数加载与只读普通排序完成。36项RED全部失败于占位；首次整批1932过/1失败定位为测试误写纳赛尔OPS，按正式卡牌定义1修正后1933项全过，编译零警告/错误。印刷OPS与PlayedBy保留，计分/平手从数据读取，Defectors等特殊优先未冒充实现。测试证据和源码hash见验证报告。
 
 Unity Hub正常启动尝试因应用控制授权等待超时；没有自动操作登录/凭据/许可证。原有Unity exit198阻断仍在，未构建或覆盖Localized播放器。Task3整批独立审查及分支推送待完成。
+
+整批审查：review_headline_foundation审查76cb3bc..b876dcf，无Critical/Important/Minor；23个源码/证据hash一致。1933项托管通过，另160项未选原生案例不计入；未重新跑Unity。接受其七项范围排除，详见报告review.declined_accepted；后续实施负责接事件生命周期、Host与UI。源码分支可推送，main/播放器仍不具备验收条件。
+
+本批实施决定：现有持续开发与Git授权有效；缺少Bash时以同等任务brief/基线/RED-GREEN/ledger门禁替代包装命令，未新增永久脚本；沿E盘开发分支、保持原生验收；普通排序只作候选次序；旧流在保留区未空时拒绝推进；Hub控制超时不算许可恢复。这些决定若不适配后续完整流程，应修订相应接线与测试，不能绕过门禁。未延期代码Minor。
+
+<details><summary>实施记录存档</summary>
+
+```text
+# SDD ledger — plan: Docs/Plans/2026-10-15-headline-foundation.md
+Base: 76cb3bc33edfc1f81ead654dc75d177051c9baf7; branch feat/headline-foundation.
+Pre-flight: Task1 produces immutable HeadlineReserved/GetHeadline; Task2 consumes it without mutating original zones. Task3 consumes shared Catalog/IDs and parameters, not secret mutable state; special ordering remains outside it.
+Ruling: User ongoing development/Git authorization satisfies routine implementation decision; follow approved turn-flow spec and record new detailed plan without repeated permission gates.
+Ruling: No installed Bash; skill task-start/task-done shell wrappers cannot run natively. Use manual plan-specific briefs/base ledger and exact test evidence with same completion gates; do not install shell or create permanent workflow script for this one incident.
+Ruling: Single E project branch follows existing project practice; Unity build/license/asmdef/native verification pending, feature branch checkpoints only until that gate clears.
+Ruling: Pure selection service returns no full execution queue; ordinary sorter is explicitly conditional. This avoids silently implementing Defectors as an ordinary2OPS event.
+Task1: in progress.
+Task1 Ruling: add fail-closed guards at legacy Check/CanAssess/CanBegin boundaries while pending reserved cards exist; phase orchestration is not connected yet, so silently advancing would be unsafe. Pure China transfer retains entities, but does not itself authorize playing.
+Task 1: complete (76cb3bc..ad9b186400edb74e1682dd85bbe80650356c31d1; headline-zones-green.xml:1869 passed/0 failed; metadata136 passed). Task 2 base: ad9b186400edb74e1682dd85bbe80650356c31d1.
+Task 2: complete (ad9b186..1cc9dc7065c87c305b720e69065a7f41874b5e9c; headline-selection-red.xml:28 failed, green28 and selection-session-green191 passed; metadata137 passed). Task 3 base: 1cc9dc7065c87c305b720e69065a7f41874b5e9c.
+
+Task3: RED36 failed at stubs; first full run1932 passed/1 failed from test assuming Nasser printed OPS2. Verified canonical cards.json printed_ops1 and corrected test expectation only; headline-foundation-corrected.xml1933 passed/0 failed. Review/push pending.
+Ruling: Unity Hub normal launch app-approval timeout does not establish license recovery; keep native acceptance gate pending.
+
+Task3: source complete b876dcf; headline-foundation-corrected.xml1933/0, metadata137 passed; whole-branch review0/0/0.
+```
+</details>

@@ -53,7 +53,7 @@
 - [x] RED：大小值、平手按参数、双计分、计分对事件、读取实际数据0/US、定制参数证明数据驱动、双方阵营不改变PlayedBy；重复实体/China/未知ID拒绝；坏版本/重复JSON字段/未知排序/缺少或多余headline字段/浮点或越界整数/未知身份拒绝。
 - [x] GREEN：共享profile校验复用TurnCalendarLoader；只消费headline三个字段，不把普通OPS修正引入印刷排序。不执行Defectors/任何事件。
 - [x] 更新源码副本清单，运行全可用托管集合与metadata验证。Expected: 新增用例及旧1854托管集合均通过；Unity范围独立标待运行。
-- [ ] 独立整批代码审查，修复阻塞项，记录审查范围/源码hash/测试XML；提交并推送feat/headline-foundation，核对SHA，不合main、不构建假新版。
+- [x] 独立整批代码审查，修复阻塞项，记录审查范围/源码hash/测试XML；提交并推送feat/headline-foundation，核对SHA，不合main、不构建假新版。
 
 ## 验证命令与环境偏差
 
