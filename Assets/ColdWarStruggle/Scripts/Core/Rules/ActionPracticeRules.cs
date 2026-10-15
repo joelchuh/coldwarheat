@@ -16,6 +16,7 @@ namespace ColdWarStruggle.Core
             if(s==null || (side!=PlayerSide.US && side!=PlayerSide.USSR))return RuleError.InvalidCommand;
             if(s.Ended)return RuleError.GameAlreadyEnded;
             if(s.Practice==null)return RuleError.ActionNotReady;
+            if(s.Cards.HeadlineReserved.Count!=0)return RuleError.ActionNotReady;
             if(s.Practice.Stage==ActionPracticeStage.Complete)return RuleError.ActionSliceComplete;
             if(side!=s.Practice.Actor)return RuleError.WrongActor;
             if(s.InfluenceEvent!=null)return RuleError.EventInProgress;
@@ -151,7 +152,7 @@ namespace ColdWarStruggle.Core
             foreach(var side in new[]{PlayerSide.US,PlayerSide.USSR})hands.Add(side,cards.GetHand(side).Where(c=>!(fromHand && side==actor && c.Equals(id))).ToArray());
             return new CardZones(s.Practice.Definition.Cards,cards.DrawPile,hands,cards.EraReserve,
                 toResolving || remove?cards.DiscardPile:cards.DiscardPile.Concat(new[]{id}),remove?cards.RemovedCards.Concat(new[]{id}):cards.RemovedCards,
-                toResolving?cards.ResolvingCards.Concat(new[]{id}):cards.ResolvingCards.Where(c=>!c.Equals(id)),cards.China,cards.EnteredEras);
+                toResolving?cards.ResolvingCards.Concat(new[]{id}):cards.ResolvingCards.Where(c=>!c.Equals(id)),cards.China,cards.EnteredEras,cards.HeadlineReserved);
         }
     }
 }

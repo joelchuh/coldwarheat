@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.card-zones",
   "kind": "module",
-  "description": "不可变完整牌区、独立中国牌与确定性初始发牌；校验唯一位置/时代，读取setup共享引用，成对牌区/随机快照已接GameState及Demo。",
+  "description": "不可变完整牌区、独立中国牌与确定性初始发牌；校验唯一位置/时代，读取setup共享引用，成对牌区/随机快照已接GameState及Demo。 新源码增加每方一个秘密头条保留位及唯一分区检查，现仅托管验证；未接头条流程。",
   "status": "implemented-subset",
   "entrypoints": [
     {
@@ -28,6 +28,10 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/InitialDealDefinitionLoader.cs",
       "symbol": "LoadSubset"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/CardZones.cs",
+      "symbol": "GetHeadline"
     }
   ],
   "inputs": [
@@ -87,11 +91,16 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/InitialDealLoaderTests.cs",
       "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineCardZonesTests.cs",
+      "status": "managed-passed-unity-pending"
     }
   ],
   "documentation": "Docs/Wiki/card-zones.md",
   "verification": {
     "report": "Docs/Testing/initial-card-deal.validation.json",
-    "latest_report": "Docs/Testing/dealt-setup-demo.validation.json"
+    "latest_report": "Docs/Testing/dealt-setup-demo.validation.json",
+    "headline_increment": "Docs/Testing/headline-foundation.validation.json"
   }
 }

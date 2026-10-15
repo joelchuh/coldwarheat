@@ -23,6 +23,7 @@ namespace ColdWarStruggle.Core
             if(state==null || (side!=PlayerSide.US && side!=PlayerSide.USSR))return RuleError.InvalidCommand;
             if(state.Ended)return RuleError.GameAlreadyEnded;
             var p=state.Practice;if(p==null)return RuleError.ActionNotReady;
+            if(state.Cards.HeadlineReserved.Count!=0)return RuleError.ActionNotReady;
             if(!p.Definition.TurnEndEnabled)return RuleError.UnsupportedCardAction;
             if(p.TurnEnd!=null)return RuleError.ActionSliceComplete;
             if(p.Definition.NextTurnEnabled && HasExtraActionAbility(p.Space.Track))return RuleError.UnsupportedCardAction;
@@ -52,7 +53,7 @@ namespace ColdWarStruggle.Core
                 {
                     var hands=new Dictionary<PlayerSide,IReadOnlyList<CardId>>{{PlayerSide.US,cards.GetHand(PlayerSide.US)},{PlayerSide.USSR,cards.GetHand(PlayerSide.USSR)}};
                     cards=new CardZones(p.Definition.Cards,cards.DrawPile,hands,cards.EraReserve,cards.DiscardPile,cards.RemovedCards,cards.ResolvingCards,
-                        new ChinaCardState(cards.China.Id,cards.China.Owner,CardFace.FaceUp),cards.EnteredEras);
+                        new ChinaCardState(cards.China.Id,cards.China.Owner,CardFace.FaceUp),cards.EnteredEras,cards.HeadlineReserved);
                 }
                 var expired=continuing?p.OpsEffects.Instances.Count:0;
                 var effects=continuing?p.OpsEffects.Expire(state.Turn):p.OpsEffects;

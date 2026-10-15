@@ -31,7 +31,7 @@ namespace ColdWarStruggle.Core
             if(cards.China.Owner!=actor || cards.China.Face!=CardFace.FaceUp || !cards.China.Id.Equals(definition.Card))throw new ArgumentException("Only the face-up holder can use China.");
             var hands=new Dictionary<PlayerSide,IReadOnlyList<CardId>>{{PlayerSide.US,cards.GetHand(PlayerSide.US)},{PlayerSide.USSR,cards.GetHand(PlayerSide.USSR)}};
             return new CardZones(definition.Cards,cards.DrawPile,hands,cards.EraReserve,cards.DiscardPile,cards.RemovedCards,cards.ResolvingCards,
-                new ChinaCardState(definition.Card,actor==PlayerSide.US?PlayerSide.USSR:PlayerSide.US,CardFace.FaceDown),cards.EnteredEras);
+                new ChinaCardState(definition.Card,actor==PlayerSide.US?PlayerSide.USSR:PlayerSide.US,CardFace.FaceDown),cards.EnteredEras,cards.HeadlineReserved);
         }
     }
 }

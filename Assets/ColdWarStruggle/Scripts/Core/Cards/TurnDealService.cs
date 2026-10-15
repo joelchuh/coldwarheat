@@ -21,6 +21,7 @@ namespace ColdWarStruggle.Core
         public static TurnDealPlan Plan(CardCatalog catalog,CardZones cards,GameTurnContext turn,IRandomProvider random)
         {
             if (catalog == null || cards == null || turn == null || random == null) throw new ArgumentNullException();
+            if (cards.HeadlineReserved.Count != 0) throw new ArgumentException("Resolve all headlines before a turn deal.");
             if (cards.ResolvingCards.Count != 0) throw new ArgumentException("Resolve all cards before a turn deal.");
             // Revalidate the complete partition against this authority's catalog, before using any random output.
             var hands = new Dictionary<PlayerSide,IReadOnlyList<CardId>>
@@ -29,7 +30,7 @@ namespace ColdWarStruggle.Core
                 { PlayerSide.USSR, cards.GetHand(PlayerSide.USSR) }
             };
             new CardZones(catalog,cards.DrawPile,hands,cards.EraReserve,cards.DiscardPile,
-                cards.RemovedCards,cards.ResolvingCards,cards.China,cards.EnteredEras);
+                cards.RemovedCards,cards.ResolvingCards,cards.China,cards.EnteredEras,cards.HeadlineReserved);
             var lastEra = cards.EnteredEras[cards.EnteredEras.Count - 1];
             bool addEra = lastEra != turn.Era;
             if (addEra && ((int)turn.Era != (int)lastEra + 1 || turn.Number != turn.Parameters.FirstTurn))
@@ -72,7 +73,7 @@ namespace ColdWarStruggle.Core
             if (addEra) entered.Add(turn.Era);
             var remainingReserve = cards.EraReserve.Where(id => !addEra || catalog.GetCard(id).Era != turn.Era);
             var next = new CardZones(catalog,draw.Skip(cursor),nextHands,remainingReserve,discard,
-                cards.RemovedCards,cards.ResolvingCards,cards.China,entered);
+                cards.RemovedCards,cards.ResolvingCards,cards.China,entered,cards.HeadlineReserved);
             return new TurnDealPlan(cards,next,turn,working.Capture(),us.Count-hands[PlayerSide.US].Count,
                 su.Count-hands[PlayerSide.USSR].Count,addEra,reshuffles);
         }

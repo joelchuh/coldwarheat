@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 namespace ColdWarStruggle.Core
 {
@@ -25,11 +26,18 @@ namespace ColdWarStruggle.Core
         public IReadOnlyList<CardId> ResolvingCards { get; }
         public IReadOnlyList<GameEra> EnteredEras { get; }
         public ChinaCardState China { get; }
+        // Authority-only physical zone. Player visibility belongs to a filtered projection.
+        public IReadOnlyDictionary<PlayerSide,CardId> HeadlineReserved { get; }
+        public CardId? GetHeadline(PlayerSide side)
+        {
+            if(side!=PlayerSide.US && side!=PlayerSide.USSR)throw new ArgumentOutOfRangeException(nameof(side));
+            return HeadlineReserved.TryGetValue(side,out var id)?id:(CardId?)null;
+        }
         readonly IReadOnlyList<CardId> usHand;
         readonly IReadOnlyList<CardId> ussrHand;
         public CardZones(CardCatalog catalog,IEnumerable<CardId> drawPile,IReadOnlyDictionary<PlayerSide,IReadOnlyList<CardId>> hands,
             IEnumerable<CardId> reserve,IEnumerable<CardId> discard,IEnumerable<CardId> removed,IEnumerable<CardId> resolving,
-            ChinaCardState china,IEnumerable<GameEra> enteredEras)
+            ChinaCardState china,IEnumerable<GameEra> enteredEras,IReadOnlyDictionary<PlayerSide,CardId> headlineReserved=null)
         {
             if(catalog==null || china==null)throw new ArgumentNullException();
             if(catalog.Cards.Count(c=>c.Kind==CardKind.China)!=1 || catalog.GetCard(china.Id).Kind!=CardKind.China)
@@ -58,6 +66,12 @@ namespace ColdWarStruggle.Core
             }
             DrawPile=Copy(drawPile);usHand=Copy(hands[PlayerSide.US]);ussrHand=Copy(hands[PlayerSide.USSR]);
             EraReserve=Copy(reserve,true,true);DiscardPile=Copy(discard);RemovedCards=Copy(removed,sort:true);ResolvingCards=Copy(resolving);
+            var selected=headlineReserved?.Take(3).ToArray()??Array.Empty<KeyValuePair<PlayerSide,CardId>>();
+            if(selected.Length>2 || selected.Any(p=>p.Key!=PlayerSide.US && p.Key!=PlayerSide.USSR))
+                throw new ArgumentException("Invalid headline reservation owners.");
+            var headlines=selected.ToDictionary(p=>p.Key,p=>p.Value);
+            Copy(headlines.Values);
+            HeadlineReserved=new ReadOnlyDictionary<PlayerSide,CardId>(headlines);
             if(seen.Count!=catalog.Cards.Count)throw new ArgumentException("Card partition is incomplete.");
             China=china;EnteredEras=Array.AsReadOnly(eras);
         }

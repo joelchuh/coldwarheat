@@ -12,6 +12,7 @@ namespace ColdWarStruggle.Core
             if(state==null || (side!=PlayerSide.US && side!=PlayerSide.USSR))return RuleError.InvalidCommand;
             if(state.Ended)return RuleError.GameAlreadyEnded;
             var p=state.Practice;if(p==null)return RuleError.ActionNotReady;
+            if(state.Cards.HeadlineReserved.Count!=0)return RuleError.ActionNotReady;
             if(!p.Definition.NextTurnEnabled)return RuleError.UnsupportedCardAction;
             if(state.Deployment!=null)return RuleError.SetupInProgress;
             if(state.InfluenceEvent!=null)return RuleError.EventInProgress;

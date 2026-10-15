@@ -53,3 +53,5 @@ GameState已成对持有牌区与随机快照，拒绝与旧fixture手牌混用�
 2026-10-14运行时更新：[中国牌试玩](china-card-playtest.md)已接普通四用途/立即背面转交与[地区OPS预算](regional-ops-budget.md)；回合末翻面、事件转交、越南效果等仍按上述设计待接。该子集不代表完整回合编排。
 
 2026-10-14后续：[回合末试玩](turn-end-playtest.md)已接有限中国牌翻正；[补牌服务](turn-deal.md)新增时代加入与补牌纯计划。完整回合宿主仍未接，前文不存在时代方法为历史初始发牌批次范围。
+
+2026-10-15源码增量：CardZones新增HeadlineReserved与GetHeadline；构造时将每方至多一个保留实体纳入同一唯一/完整/时代校验，旧调用默认为空。权威牌区不是玩家投影，不能直接传给界面。旧重建入口保留实体；TurnDeal在触碰随机前拒绝未处理头条，旧ActionPractice的普通入口/期末审核/下一回合门禁停止。此处尚未建立秘密选择服务或挂接GameState/Host阶段。15个新用例与1869个托管集合通过，Unity/构建未验，见[分批报告](../Testing/headline-foundation.validation.json)。
