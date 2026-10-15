@@ -3,3 +3,5 @@
 description: 从0764085130af7434b1e5d5fb334c227b5dde45ec分出feat/headline-session，按三任务接入单个权威宿主，保留原生许可门禁。
 
 Task1核心收集完成。18项先RED；首次GREEN17/18失败来自全时代夹具错误进入第二回合，生产TurnDeal拒绝正确，改该夹具后18通过，整体可用补充2017通过。可选参数null保持旧行为；收集绑定牌区，第二次选择连同后续结算原子返回。下一回合仅补牌一次，完整队列清空。太空先看后选已由基础纯服务覆盖，端到端案例移到Task3。未恢复Unity许可，不重试Editor、不更新main/播放器。
+
+Task2完成固定身份SubmitHeadlineAsync、共享幂等缓存、PublicHeadlineView/Step和只读观察。18项RED→GREEN，整体2035补充通过，0失败/跳过；真实并发一成功一过期，JSON无对方秘密牌、无权威草稿。同批没有新增工作脚本或改规则裁定。

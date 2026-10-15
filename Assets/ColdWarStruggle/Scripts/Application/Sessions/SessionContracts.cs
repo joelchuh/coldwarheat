@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -42,8 +43,10 @@ namespace ColdWarStruggle.Application
         public PublicDeploymentView Deployment { get; }
         public PublicCardSummary Cards { get; }
         public PublicPracticeView Practice { get; }
+        public PublicHeadlineView Headline { get; }
         internal PlayerViewSnapshot(GameState s,PlayerSide viewer)
         {
+            Headline=s.Practice?.HeadlineSelection!=null || s.Practice?.Headline!=null?new PublicHeadlineView(s,viewer):null;
             RegionalOps=s.Operations.RegionalBudget==null?null:new PublicRegionalOps(s.Operations.RegionalBudget);
             GameId=s.GameId;Viewer=viewer;Version=s.Version;EventSequence=s.EventSequence;ContextId=s.Operations.Id;Actor=s.Operations.Actor;RemainingOps=s.Operations.Budget-s.SpentOps;
             Countries=Array.AsReadOnly(s.Map.Countries.Select(c=>new CountryView(c,s.Countries[c.Id])).ToArray());
@@ -59,8 +62,9 @@ namespace ColdWarStruggle.Application
         public PlayerViewSnapshot PublicView { get; }
         public IReadOnlyList<string> USHand { get; }
         public IReadOnlyList<string> USSRHand { get; }
+        public IReadOnlyDictionary<PlayerSide,CardId> ReservedHeadlines { get; }
         internal LocalTestSnapshot(GameState state)
-        { PublicView=new PlayerViewSnapshot(state,PlayerSide.US);USHand=Array.AsReadOnly(state.GetHand(PlayerSide.US).ToArray());USSRHand=Array.AsReadOnly(state.GetHand(PlayerSide.USSR).ToArray()); }
+        { ReservedHeadlines=new ReadOnlyDictionary<PlayerSide,CardId>(state.Cards?.HeadlineReserved.ToDictionary(x=>x.Key,x=>x.Value)??new Dictionary<PlayerSide,CardId>());PublicView=new PlayerViewSnapshot(state,PlayerSide.US);USHand=Array.AsReadOnly(state.GetHand(PlayerSide.US).ToArray());USSRHand=Array.AsReadOnly(state.GetHand(PlayerSide.USSR).ToArray()); }
     }
     public sealed class PlayerCommandResult
     {
@@ -84,6 +88,7 @@ namespace ColdWarStruggle.Application
     }
     public interface IGameSession
     {
+        Task<HeadlineCommandResult> SubmitHeadlineAsync(HeadlineCommand command,CancellationToken cancellationToken=default);
         LegalTargetsResult QueryRealignmentTargets(string contextId,long expectedVersion);
         LegalTargetsResult QueryCoupTargets(CardId card,long expectedVersion);
         ScoringPreviewResult QueryScoringPreview(string region,long expectedVersion);

@@ -3,7 +3,7 @@
   "id": "module.headline-session",
   "kind": "module",
   "status": "implemented-subset",
-  "description": "头条收集与可选回合入口已实现，绑定权威牌区、第二次提交原子结算；玩家会话、过滤收据和选择继续待接。",
+  "description": "头条收集、可选回合入口与固定身份会话已实现：秘密过滤、共享幂等、只读观察和有界公开结算摘要；等待选择继续接线待完成，UI未启用。",
   "entrypoints": [
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineFlowRules.cs",
@@ -12,6 +12,14 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineFlowRules.cs",
       "symbol": "Submit"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/SessionContracts.cs",
+      "symbol": "SubmitHeadlineAsync"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/HeadlineSessionContracts.cs",
+      "symbol": "HeadlineCommand"
     }
   ],
   "inputs": [
@@ -20,7 +28,9 @@
   ],
   "outputs": [
     "不可变HeadlineResolutionTransition；失败无NextState/Steps",
-    "第二次选齐自动结算至等待/终局/普通行动"
+    "第二次选齐自动结算至等待/终局/普通行动",
+    "公开HeadlineCommandResult/View/Steps；无原始GameState/牌库/RNG",
+    "本地只读观察可显式查看ReservedHeadlines，正常视图过滤私有牌"
   ],
   "dependencies": [
     "module.headline-foundation",
@@ -35,7 +45,8 @@
   ],
   "side_effects": [
     "纯服务返回草稿；旧Demo工厂未启用",
-    "初始/下一回合可选进入收集，复用原发牌准备且不二次补牌"
+    "初始/下一回合可选进入收集，复用原发牌准备且不二次补牌",
+    "Host共用gate和所有命令的收据字典；同内容返回历史结果不回写当前状态；过期拒绝缓存，须新ID重试"
   ],
   "stop_conditions": [
     "无处理器候选保持收集，不自动跳过",
@@ -50,6 +61,10 @@
   "tests": [
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineFlowTests.cs",
+      "status": "managed-passed-unity-pending"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineSessionTests.cs",
       "status": "managed-passed-unity-pending"
     }
   ],

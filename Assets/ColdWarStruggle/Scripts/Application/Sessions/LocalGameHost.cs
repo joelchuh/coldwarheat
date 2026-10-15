@@ -19,6 +19,8 @@ namespace ColdWarStruggle.Application
             internal readonly CardActionResult CardAction;
             internal readonly EventCommandResult Event;
             internal readonly DeploymentCommandResult Deployment;
+            internal readonly HeadlineCommandResult Headline;
+            internal CommandReceipt(HeadlineCommand command,HeadlineCommandResult result) { Command=command;Headline=result; }
             internal CommandReceipt(CardActionCommand command,CardActionResult result) { Command=command;CardAction=result; }
             internal CommandReceipt(CommandEnvelope command,PlayerCommandResult result) { Command=command;Placement=result; }
             internal CommandReceipt(EventCommandEnvelope command,EventCommandResult result) { Command=command;Event=result; }
@@ -158,6 +160,7 @@ namespace ColdWarStruggle.Application
             readonly LocalGameHost host;
             public PlayerSide Side { get; }
             internal PlayerSession(LocalGameHost host,PlayerSide side) { this.host=host;Side=side; }
+            public Task<HeadlineCommandResult> SubmitHeadlineAsync(HeadlineCommand command,CancellationToken cancellationToken=default)=>host.SubmitHeadline(Side,command,cancellationToken);
             public PlayerViewSnapshot ReadView()=>host.Read(Side);
             public LegalTargetsResult QueryRealignmentTargets(string contextId,long expectedVersion)=>host.QueryRealignment(Side,contextId,expectedVersion);
             public LegalTargetsResult QueryCoupTargets(CardId card,long expectedVersion)=>host.QueryCoup(Side,card,expectedVersion);
