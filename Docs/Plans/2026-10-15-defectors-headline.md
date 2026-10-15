@@ -30,6 +30,6 @@ Base:a6162c9ee743cdf2dca8ebb71c4305221f02c8ce；branch feat/defectors-headline�
 
 ## 进度
 
-- [ ] Task1 定义/载入/队列
+- [x] Task1 定义/载入/队列
 - [ ] Task2 核心结算
 - [ ] Task3 会话投影/审查/同步

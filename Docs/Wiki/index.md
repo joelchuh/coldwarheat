@@ -135,3 +135,5 @@
 - [有限头条事件结算](headline-resolution.md)：普通队列、已支持事件、选择恢复和终局截断已实现；Host/UI待接，勿误认为已启用Demo头条。
 
 - [头条收集与本地会话](headline-session.md)：可选回合入口/权威牌区、Host/公开收据和选择继续已接，原生验收独立。
+
+- [已选叛逃者头条运行时](defectors-headline.md)：定义/排序/取消记录已实现，物理结算和会话待接，Unity待验。

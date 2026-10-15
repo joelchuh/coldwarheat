@@ -2,7 +2,7 @@
 
 description：#103 的选中头条优先、苏方自取消、普通行动轮奖励及来源/去向/重放边界。
 
-状态：verified-subset正式设计；运行服务全部 planned。[描述](../../Data/Descriptors/defectors.data.json) → [参数](../../Data/Cards/deluxe-2015/defectors.parameters.json)、[契约](../Contracts/defectors.schema.json)、[案例](../Design/defectors.cases.json)。数据入口 symbol:null 是检索入口。[整合报告](../Design/defectors.validation.json)：169新＋3619旧＝3788离线检查；90 Bound/12 Unresolved，102处理器planned，游戏runtime0。
+状态：verified-subset正式设计；已选头条有限运行时正在实现，进度见[运行时知识点](defectors-headline.md)。以下离线设计的普通VP/嵌套等范围仍planned。[描述](../../Data/Descriptors/defectors.data.json) → [参数](../../Data/Cards/deluxe-2015/defectors.parameters.json)、[契约](../Contracts/defectors.schema.json)、[案例](../Design/defectors.cases.json)。数据入口 symbol:null 是检索入口。[整合报告](../Design/defectors.validation.json)：169新＋3619旧＝3788离线检查；90 Bound/12 Unresolved，102处理器planned，游戏runtime0。
 
 英文 #103 为 US 2 OPS、Early、非星号；印刷事实只读共享 cards。美国选作头条时，以具名 USSelectedDefectorsBeforeOrdinaryPrintedOpsOrder 策略先于普通 OPS 排序，取消仍待执行的苏方选中头条，包含计分牌。取消目标弃入 DiscardPile，即使原牌有星号；它没有成功事件事实。源 Defectors 本身成功、非星号弃牌。不能把取消当作目标事件成功后再移出。
 

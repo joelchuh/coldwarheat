@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "id": "module.defectors-headline",
+  "kind": "module",
+  "status": "implemented-subset",
+  "description": "叛逃者已选头条的定义/共享参数载入/优先排序及不可变完成记录已实现；核心取消、公开会话接线待后续任务，Unity原生待许可。",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/DefectorsHeadlineDefinition.cs",
+      "symbol": "DefectorsHeadlineDefinition"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DefectorsHeadlineLoader.cs",
+      "symbol": "Load"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionState.cs",
+      "symbol": "CreateSelected"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionState.cs",
+      "symbol": "AdvanceAfterCancellation"
+    }
+  ],
+  "inputs": [
+    "共享defectors参数、schema与同一CardCatalog",
+    "可信两张保留牌、当前Turn与可选Defectors绑定"
+  ],
+  "outputs": [
+    "只读排序/成功或取消记录；来源由当前根及已完成前缀推导"
+  ],
+  "dependencies": [
+    "module.headline-resolution",
+    "module.headline-session"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.defectors"
+  ],
+  "preconditions": [
+    "仅支持已核实selected-headline语义",
+    "游标推进本身不是物理牌去向或效果执行的证明"
+  ],
+  "side_effects": [
+    "纯服务返回新队列，无宿主/旧Demo接线"
+  ],
+  "stop_conditions": [
+    "错误profile/语义/目录/当前根/重复完成拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Architecture/defectors-headline-runtime.md",
+      "scope": "GMT FAQ v5 #103 已选头条子集"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DefectorsHeadlineDefinitionTests.cs",
+      "status": "managed-passed-unity-pending"
+    }
+  ],
+  "documentation": "Docs/Wiki/defectors-headline.md",
+  "verification": {
+    "report": "Docs/Testing/defectors-headline.validation.json",
+    "unity": "blocked-license"
+  }
+}
