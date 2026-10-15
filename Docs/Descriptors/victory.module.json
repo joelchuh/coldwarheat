@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.victory",
   "kind": "module",
-  "description": "已实现VP批次、军事候选延后、双方扣留矩阵、核战与地区检查点；试玩已接回合末审核及风险/地区/太空终局，最终计分和特殊卡终局未接。",
+  "description": "六类胜负证据：VP批次、军事延后、扣留审核、核战、地区与最终计分；最终正负零/欧洲优先已实现，最终宿主和特殊卡终局待接。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -44,17 +44,22 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/VictoryEvidence.cs",
       "symbol": "ScoringResolvedEvidence"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/VictoryEvidence.cs",
+      "symbol": "FinalScoringCompletedEvidence"
     }
   ],
   "documentation": "Docs/Wiki/risk-victory.md",
   "planned_entrypoints": [],
   "inputs": [
     "不可变VictoryDefinition",
-    "五种封闭类型证据之一；军事/DEFCON/地区证据来自实际只读计划或结果",
+    "六种封闭类型证据之一；军事/DEFCON/地区证据来自实际只读计划或结果",
     "权威双方是否扣留计分牌的布尔审核结果"
   ],
   "outputs": [
-    "只读VictoryDecision：绝对SignedVp、Continue/Deferred/Finished/UnresolvedAdjudication、赢家或军事Pending、来源与矩阵行ID"
+    "只读VictoryDecision：绝对SignedVp、Continue/Deferred/Finished/UnresolvedAdjudication、赢家或军事Pending、来源与矩阵行ID",
+    "最终计分零分为Finished且Winner=null；普通零分不因此终局"
   ],
   "dependencies": [
     {
@@ -68,6 +73,10 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/RegionScoringService.cs",
       "relation": "只读地区结果的净VP/欧洲信号"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/FinalScoringService.cs",
+      "relation": "同一快照完整六区与中国牌结果"
     }
   ],
   "data_dependencies": [
@@ -76,7 +85,7 @@
   "preconditions": [
     "调用方已确认检查点完整及规则资格",
     "服务只计算，不提交GameState；有限试玩宿主已接顺序/幂等/终局吸收，完整整局和存档另行实现",
-    "普通/军事/地区批次前VP必须在自动胜利线内；审核Pending须来自同一定义"
+    "普通/军事/地区/最终批次前VP必须在自动胜利线内；审核Pending须来自同一定义"
   ],
   "side_effects": [
     "纯计算，无状态写入、随机数、文件或UI依赖"
@@ -87,7 +96,7 @@
     "跨定义Pending",
     "整数溢出或批次前VP已到终局线",
     "未采用裁定返回UnresolvedAdjudication，无赢家；不当作平局",
-    "最终计分与特殊卡结束没有本批证据入口"
+    "特殊卡结束没有本批证据入口；最终计分宿主资格仍须调用方校验"
   ],
   "rule_sources": [
     {
@@ -191,15 +200,19 @@
     {
       "path": "Docs/Testing/region-scoring-core.validation.json",
       "status": "1106-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/FinalScoringTests.cs",
+      "status": "26-passed"
     }
   ],
   "verification": {
     "implementation_tested": true,
-    "scope": "五个基础检查点，含地区计分证据；不等于完整设计案例/宿主集成",
-    "report": "Docs/Testing/region-scoring-core.validation.json"
+    "scope": "六个基础检查点，包括完整最终汇总证据；宿主最终流程未接",
+    "report": "Docs/Testing/final-scoring-foundation.validation.json"
   },
   "open_items": [
-    "最终计分/特殊卡终局证据仍待实现",
+    "最终计分宿主未接；特殊卡终局证据仍待实现",
     "完整整局吸收态协调、保存恢复仍待接入；有限试玩已有固定身份、防重及VP/状态/游标原子提交",
     "完整RulePack版本摘要与来源批准仍待实现"
   ],

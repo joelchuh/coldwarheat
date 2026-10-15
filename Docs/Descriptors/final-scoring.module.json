@@ -20,9 +20,7 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/VictoryEvidence.cs",
       "symbol": "FinalScoringCompletedEvidence"
-    }
-  ],
-  "planned_entrypoints": [
+    },
     {
       "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/FinalScoringDefinitionLoader.cs",
       "symbol": "LoadSubset"
@@ -94,16 +92,25 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/FinalScoringTests.cs",
       "status": "26-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/FinalScoringLoaderTests.cs",
+      "status": "34-passed"
     }
   ],
   "verification": {
-    "native_validation": "2346/2346 passed; final-scoring-core-verified",
+    "native_validation": "2380/2380 passed; final-scoring-loader-green",
     "host_integrated": false,
-    "player_rebuilt": false
+    "player_rebuilt": false,
+    "report": "Docs/Testing/final-scoring-foundation.validation.json"
   },
   "open_items": [
-    "正式加载器及参数schema本批Task2",
     "第10回合宿主原子提交、幂等、结算画面",
     "台湾决议等动态计分处理器"
+  ],
+  "planned_entrypoints": [],
+  "contract_dependencies": [
+    "urn:coldwarheat:contract:region-scoring-rules:1",
+    "urn:coldwarheat:contract:scoring-card-parameters:2"
   ]
 }

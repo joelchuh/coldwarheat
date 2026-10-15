@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.region-scoring",
   "kind": "module",
-  "description": "已实现无干预的六地区/东南亚纯计分、实际档位查询；ScoringDemo经真实手牌接净VP/胜负与公开预览，台湾/穿梭及最终计分仍待接入。",
+  "description": "已实现六地区/东南亚无修正计分与实际档位查询；最终六区和中国牌汇总见module.final-scoring，普通试玩已接牌，动态计分效果待接。",
   "status": "implemented-subset",
   "entrypoints": [
     {
@@ -35,14 +35,6 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/RegionScoringService.cs",
       "symbol": "Calculate"
-    },
-    {
-      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/FinalScoringService.cs",
-      "symbol": "BuildPlan"
-    },
-    {
-      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/FinalScoringService.cs",
-      "symbol": "Summarize"
     },
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/Scoring/CardScoringService.cs",
@@ -173,8 +165,8 @@
     "runtime_report": "Docs/Testing/region-scoring-core.validation.json"
   },
   "open_items": [
-    "已绑定台湾决议/穿梭外交的真实实现；其余未设计修正",
-    "完整真实快照/事务/最终汇总与运行计分处理器"
+    "台湾决议/穿梭外交等动态计分实现",
+    "最终计分服务已有独立模块；第10回合宿主与UI待接"
   ],
   "contract_dependencies": [
     "urn:coldwarheat:contract:region-scoring-rules:1"

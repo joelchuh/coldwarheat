@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "id": "validation.final-scoring-foundation",
+  "description": "最终计分基础的原生测试、输入/源码摘要与宿主边界证据；不代表播放器最终计分已接。",
+  "checked_on": "2026-10-16",
+  "branch": "feat/final-scoring-foundation",
+  "base_commit": "361b0fcfd4e71a1b3f2399fc3c78f6757cadcf3f",
+  "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+  "native_runs": [
+    {
+      "run_id": "final-scoring-core-red",
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 2346,
+      "passed": 2320,
+      "failed": 26,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "cb0650c375910621770fe0dd1113bec2670f8e1be5bacb11c335b1b87cd1b628",
+      "duration_ms": 72452
+    },
+    {
+      "run_id": "final-scoring-core-green",
+      "status": "failed",
+      "error_code": "TEST_REPORT_MISSING",
+      "duration_ms": 3227
+    },
+    {
+      "run_id": "final-scoring-core-green-fixed",
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 2346,
+      "passed": 2345,
+      "failed": 1,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "1c20306dbaf566df9264a6090ce7eefedd0869e1756b2a1d89922790c5ba56df",
+      "duration_ms": 72066
+    },
+    {
+      "run_id": "final-scoring-core-verified",
+      "status": "passed",
+      "error_code": null,
+      "total": 2346,
+      "passed": 2346,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "4fd131ebd617dc86b82917d0f112cdc4a93ba2f475e9db5162765b5339659881",
+      "duration_ms": 69357
+    },
+    {
+      "run_id": "final-scoring-loader-red",
+      "status": "failed",
+      "error_code": "TEST_REPORT_MISSING",
+      "duration_ms": 4448
+    },
+    {
+      "run_id": "final-scoring-loader-red-fixed",
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 2380,
+      "passed": 2346,
+      "failed": 34,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "5068688a6d917b01ee70769095b48de353b513825ee14bb23f45fae4f32d784d",
+      "duration_ms": 72146
+    },
+    {
+      "run_id": "final-scoring-loader-green",
+      "status": "passed",
+      "error_code": null,
+      "total": 2380,
+      "passed": 2380,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "96008bde2e844645e8b6acfdeb937ad9038cebe942165fe0a91365bcddaf8bef",
+      "duration_ms": 73598
+    }
+  ],
+  "final_native_run": "final-scoring-loader-green",
+  "new_tests": 60,
+  "core_tests": 26,
+  "loader_tests": 34,
+  "source_files": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/FinalScoringDefinition.cs",
+      "sha256": "bb52a25cad23d76d4859ef7b1520fe4ed5224713268fdad9caca0a0259bf4ac4"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/FinalScoringService.cs",
+      "sha256": "83ba6c29c07f83a8164a3709fc9735063ee2e459c7e970106cea5a594ba85782"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/VictoryDefinition.cs",
+      "sha256": "3c226a6ae51d36f15063058f471de9492552ec3f84d5b449feb693c172002043"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/VictoryEvidence.cs",
+      "sha256": "56fe55153c0150599b83062b04d2f772af7d263db5a2a5004584fa5ae4a1aed4"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/VictoryService.cs",
+      "sha256": "b237137aaabc45235a1b78373b188b1dd335406cf58569518e00e21e7d4584ff"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/FinalScoringDefinitionLoader.cs",
+      "sha256": "e817d3360c594c60ff31814aa1552b600cccec459b73fef5e5876b8365662b4a"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/FinalScoringTests.cs",
+      "sha256": "c89dc784c88b3bef4b59bbe47d397e41ddc3b4578f54a06b2482808d8653ee60"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/FinalScoringLoaderTests.cs",
+      "sha256": "5ad0d83975d7bf37828af87e1f3fbc03bbbb111c22446beae8e787c99ad36ff6"
+    },
+    {
+      "path": "Docs/Contracts/scoring-card-parameters.schema.json",
+      "sha256": "07818a85d9ac7a93777b4193cc0554f5d88bbde808cae49aafb335b077d94b16"
+    }
+  ],
+  "shared_inputs": [
+    {
+      "path": "Data/Rulesets/deluxe-2015/region-scoring.json",
+      "sha256": "8fd3af02e967eea4663f79c921fec697ba66bda885c6f6cdfa34dfdb543bc526"
+    },
+    {
+      "path": "Docs/Contracts/region-scoring-rules.schema.json",
+      "sha256": "aa0df93364e939bd3c6a3b82f0f1f924b7a5312cf194e8044c6d5deb8f8b6dda"
+    },
+    {
+      "path": "Data/Rulesets/deluxe-2015/scoring-card-parameters.json",
+      "sha256": "15e4baf07c3cd69d5284397938052db8add0bdde2535023d81fe504c78082f4d"
+    },
+    {
+      "path": "Data/Maps/deluxe-2015/world.json",
+      "sha256": "6d4e20c674bd74d44cdb0f1ca66e8e960f125b3e45076d05307125a3c36ea45b"
+    },
+    {
+      "path": "Docs/Contracts/map.schema.json",
+      "sha256": "8d1c4ef9f7ebb34557bb53ab37a1c102b815dc748ae446e29b7400d5eb831be5"
+    },
+    {
+      "path": "Data/Maps/deluxe-2015/world.profile.json",
+      "sha256": "87388cb762d3134e684f2a8131fc8dfd6a32c18b3a7f7f281f6f866db82fe4da"
+    },
+    {
+      "path": "Data/Cards/deluxe-2015/cards.json",
+      "sha256": "f78907409a95986f651a1b21d333dafe280c78b8ad68be6d0fe0f894e1acffae"
+    },
+    {
+      "path": "Docs/Contracts/cards-v2.schema.json",
+      "sha256": "fb2170a3a4fd875a0e867a2ad3f97096c4d3cf6f52e2bfeca43d85b2a9e7c42d"
+    },
+    {
+      "path": "Data/Cards/deluxe-2015/cards.printed-profile.json",
+      "sha256": "ee050d54e877ec7088b3d90579735970e0d89845d10384d59d0901322ed69d7a"
+    }
+  ],
+  "review": {
+    "status": "pending"
+  },
+  "build": {
+    "performed": false,
+    "reason": "本批纯基础模块未接入播放器；沿用HeadlinesPlaytest，不把旧exe标为新功能已验收"
+  },
+  "limits": [
+    "第10回合宿主资格、事务、幂等与结果UI待接",
+    "所有活动计分修正当前拒绝，台湾决议/穿梭外交等待处理器",
+    "最终欧洲控制没有净数字VP；Victory保留原VP并标明赢家",
+    "共享JSON只做契约/来源引用核对，不声称认证任意外部输入",
+    "不支持中国内战变体"
+  ]
+}

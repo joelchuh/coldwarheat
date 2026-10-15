@@ -1,7 +1,7 @@
 # DEFCON、军事行动与胜负服务设计 v0.1
 
 > description: 定位 DEFCON 目标限制、核战责任、军事行动记账、回合末审核和终局检查点；包含双方面临扣留计分牌的裁定矩阵。
-> 状态：2026-10-13，DEFCON/军事行动及四类基础胜负检查点已实现并通过1009项回归；完整编排、最终计分及特殊卡终局仍待实现，完整规则包未实现。RV-H-11采用用户确认的新版条款优先，判USSR胜。
+> 状态：2026-10-16已有六类基础胜负证据，新增最终六区汇总后的欧洲优先/正负零判胜；见[最终模块](final-scoring.md)。最终宿主/特殊卡终局仍待接。RV-H-11采用用户确认的新版条款优先，判USSR胜。
 > 检索：[模块目录](../Descriptors/catalog.json) → 对应 description → 本文相关节 → planned_entrypoints。参数见[数据目录](../../Data/catalog.json)，案例见[risk-victory.cases.json](../Design/risk-victory.cases.json)。
 
 ## 1. 服务边界

@@ -1,7 +1,7 @@
 # 地区计分服务设计 v0.1
 
 > description: 查询国家控制、地区存在/支配/控制、战场与邻接奖励、东南亚特殊计分、最终六地区汇总和中国牌附加分的服务边界。
-> 状态：2026-10-14基础无修正C#服务已实现，1106项EditMode通过；完整最终汇总/动态修正/宿主仍待实现。下文完整设计接口与现有子集须区分，真实入口以模块JSON为准。
+> 状态：2026-10-16最终无修正汇总与胜负接缝已实现，见[最终模块](final-scoring.md)。动态修正、最终宿主/UI仍待接；历史批次记录不代表当前全量状态，入口以模块JSON为准。
 > 入口：[模块描述](../Descriptors/region-scoring.module.json)、[地区参数](../../Data/Rulesets/deluxe-2015/region-scoring.json)、[卡牌计分参数](../../Data/Rulesets/deluxe-2015/scoring-card-parameters.json)、[验收案例](../Design/scoring-space.cases.json)。
 
 ## 1. 选择与接口
@@ -120,3 +120,5 @@ ScoringSnapshot复制同一规则地图的全部国家，携带SnapshotId/StateV
 本批48个Core及49个加载/胜负接缝案例；中美洲净-4、东南亚净+1、总国/战场平手、控制无需非战场、重叠标签、欧洲独立信号和输入保护均有真实测试。详见[验证报告](../Testing/region-scoring-core.validation.json)。最终六区汇总、中国牌附加、动态效果、卡牌弃置、宿主提交/防重和UI接线仍待完成；未重建播放器。
 
 2026-10-14后续：[真实计分牌与公开预览](playable-scoring-actions.md)已接入手牌、净VP和终局，普通太空也接入VP判胜；本页此前未接线描述是历史批次。活动修正、头条/期末/最终计分仍未接。
+
+2026-10-16：原设计BuildPlan/Summarize未保留为公开API，实际使用[FinalScoringService.CalculateUnmodified](final-scoring.md)内部计算同一快照全部六区并加中国牌奖励，避免外部拼接不完整结果；最终证据已接VictoryService。头条计分也已在头条试玩接入；本页旧待接说明是历史记录。

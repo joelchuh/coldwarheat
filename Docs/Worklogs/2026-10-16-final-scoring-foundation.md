@@ -6,4 +6,4 @@
 
 原生RED：2346 total /2320 pass /26 fail；首次GREEN编译遇CardId没有!=运算符，改用Equals；随后2345/1，期望漏算古巴邻接美国，经正式地图核对修正测试（生产算法不改）；最终final-scoring-core-verified：2346/2346，0失败/跳过，Unity exit0，XML SHA256 4fd131ebd617dc86b82917d0f112cdc4a93ba2f475e9db5162765b5339659881。
 
-Task2数据加载与最终审查继续；尚未接第10回合宿主/事务/UI，未重建播放器。
+Task2已增加参数schema与正式加载器，34新增测试从RED转GREEN；final-scoring-loader-green全套2380/2380，Unity exit0。最终审查继续；尚未接第10回合宿主/事务/UI，未重建播放器。

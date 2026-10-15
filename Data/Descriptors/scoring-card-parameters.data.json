@@ -17,7 +17,12 @@
   "outputs": [
     "只读参数及来源"
   ],
-  "dependencies": [],
+  "dependencies": [
+    {
+      "path": "Docs/Contracts/scoring-card-parameters.schema.json",
+      "relation": "版本2结构与整数约束"
+    }
+  ],
   "data_dependencies": [
     "cards.deluxe2015.definitions"
   ],
@@ -60,19 +65,28 @@
     {
       "path": "Docs/Design/scoring-space.cases.json",
       "status": "planned"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/FinalScoringLoaderTests.cs",
+      "status": "34-passed"
     }
   ],
   "documentation": "Docs/Wiki/region-scoring.md",
   "validation": {
-    "schema_status": "通用JSON Schema尚未建立；使用字段、领域与引用断言",
+    "schema_status": "严格JSON结构已建，来源/目录与领域引用由FinalScoringDefinitionLoader验证",
     "constraints": [
       "卡牌ID唯一",
       "参数不可当成完整卡牌数据"
     ]
   },
   "verification": {
-    "checked_on": "2026-09-28",
-    "runtime_consumers_tested": false
+    "checked_on": "2026-10-16",
+    "runtime_consumers_tested": true,
+    "report": "Docs/Testing/final-scoring-foundation.validation.json",
+    "native_validation": "2380/2380 passed; final-scoring-loader-green"
   },
-  "content_version": "0.2.0"
+  "content_version": "0.2.0",
+  "contract_dependencies": [
+    "urn:coldwarheat:contract:scoring-card-parameters:2"
+  ]
 }
