@@ -16,7 +16,7 @@ namespace ColdWarStruggle.Core
             if(s==null || (side!=PlayerSide.US && side!=PlayerSide.USSR))return RuleError.InvalidCommand;
             if(s.Ended)return RuleError.GameAlreadyEnded;
             if(s.Practice==null)return RuleError.ActionNotReady;
-            if(s.Cards.HeadlineReserved.Count!=0)return RuleError.ActionNotReady;
+            if(s.Cards.HeadlineReserved.Count!=0 || s.Practice.HasPendingHeadline)return RuleError.ActionNotReady;
             if(s.Practice.Stage==ActionPracticeStage.Complete)return RuleError.ActionSliceComplete;
             if(side!=s.Practice.Actor)return RuleError.WrongActor;
             if(s.InfluenceEvent!=null)return RuleError.EventInProgress;
@@ -79,7 +79,7 @@ namespace ColdWarStruggle.Core
                     if(p.Stage!=ActionPracticeStage.AwaitingStart)return new CardActionTransition(RuleError.ActionNotReady);
                     if(state.Deployment==null || !state.Deployment.Complete)return new CardActionTransition(RuleError.SetupInProgress);
                     if(state.Cards.ResolvingCards.Count!=0)return new CardActionTransition(RuleError.ActionNotReady);
-                    return Commit(state,new ActionPracticeState(p.Definition,ActionPracticeStage.ChooseCard,0,null,p.Space,p.VpForUS,p.Risk,p.OpsEffects),state.Cards,state.RandomState);
+                    return Commit(state,new ActionPracticeState(p.Definition,ActionPracticeStage.ChooseCard,0,null,p.Space,p.VpForUS,p.Risk,p.OpsEffects,headline:p.Headline),state.Cards,state.RandomState);
                 }
                 if(kind==CardActionKind.FinishInfluence)
                 {
@@ -95,7 +95,7 @@ namespace ColdWarStruggle.Core
                     var quote=QuoteCard(state,side,card.Value,OpsValuePurpose.Influence);
                     var regional=RegionalBudget(state,quote);
                     var zones=Move(state,card.Value,true,true);
-                    return Commit(state,new ActionPracticeState(p.Definition,ActionPracticeStage.PlacingInfluence,p.CompletedActions,card,p.Space,p.VpForUS,p.Risk,p.OpsEffects),zones,state.RandomState,regional?.EffectiveBudget??quote.GeneralValue,regionalBudget:regional);
+                    return Commit(state,new ActionPracticeState(p.Definition,ActionPracticeStage.PlacingInfluence,p.CompletedActions,card,p.Space,p.VpForUS,p.Risk,p.OpsEffects,headline:p.Headline),zones,state.RandomState,regional?.EffectiveBudget??quote.GeneralValue,regionalBudget:regional);
                 }
                 var spaceQuote=QuoteCard(state,side,card.Value,OpsValuePurpose.Space);
                 // Scoped to the authoritative action slot, not a client supplied RNG or OPS value.
@@ -115,13 +115,19 @@ namespace ColdWarStruggle.Core
         }
         static ActionPracticeState Next(ActionPracticeState p,SpaceAttemptState space,int vp,PracticeRiskState risk=null,TurnOpsEffectState opsEffects=null)
         {
+            if(p.HasPendingHeadline)
+            {
+                var queue=p.Headline.AdvanceAfterResolution(p.ActiveCard??p.Headline.Current.Card,p.Actor);
+                return new ActionPracticeState(p.Definition,queue.IsComplete?ActionPracticeStage.ChooseCard:ActionPracticeStage.HeadlineReady,
+                    p.CompletedActions,null,space,vp,risk??p.Risk,opsEffects??p.OpsEffects,headline:queue);
+            }
             var completed=checked(p.CompletedActions+1);
             var stage=completed==checked(p.Space.Turn.Parameters.NormalActionsPerSide*2)?ActionPracticeStage.Complete:ActionPracticeStage.ChooseCard;
-            return new ActionPracticeState(p.Definition,stage,completed,null,space,vp,risk??p.Risk,opsEffects??p.OpsEffects);
+            return new ActionPracticeState(p.Definition,stage,completed,null,space,vp,risk??p.Risk,opsEffects??p.OpsEffects,headline:p.Headline);
         }
         static CardActionTransition Commit(GameState s,ActionPracticeState p,CardZones cards,RandomSnapshot random,int budget=0,SpaceAttemptReceipt receipt=null,RegionScoringResult scoring=null,OpsRegionalBudget regionalBudget=null)
         {
-            var ops=OperationsContext.FromRoundStart(PracticeOperationsId(s,p.CompletedActions),p.Actor,budget,s.Map,s.Countries,s.Operations.Costs,regionalBudget);
+            var ops=OperationsContext.FromRoundStart(p.HasPendingHeadline?s.GameId+"."+p.Headline.CurrentResolutionId:PracticeOperationsId(s,p.CompletedActions),p.Actor,budget,s.Map,s.Countries,s.Operations.Costs,regionalBudget);
             return new CardActionTransition(RuleError.None,s.WithPractice(p,ops,cards,random,ended:p.Risk?.Result?.Outcome==VictoryOutcome.Finished),receipt,scoring:scoring);
         }
         static OpsRegionalBudget RegionalBudget(GameState state,OpsGeneralQuote quote)
@@ -136,6 +142,7 @@ namespace ColdWarStruggle.Core
                 && state.Cards.China.Face==CardFace.FaceDown && state.Cards.China.Owner==(p.Actor==PlayerSide.US?PlayerSide.USSR:PlayerSide.US);
             return state.Cards.ResolvingCards.Count==1 && state.Cards.ResolvingCards.Contains(p.ActiveCard.Value);
         }
+        enum PhysicalCardSource { Hand, HeadlineReserved, Resolving }
         static CardZones Move(GameState s,CardId id,bool fromHand,bool toResolving,bool remove=false)
         {
             if(id.Equals(s.Cards.China.Id))
@@ -147,12 +154,16 @@ namespace ColdWarStruggle.Core
             }
             if(toResolving && remove)throw new ArgumentException("A card cannot resolve and be removed together.");
             var cards=s.Cards;var actor=s.Practice.Actor;
+            var source=fromHand?(s.Practice.HasPendingHeadline?PhysicalCardSource.HeadlineReserved:PhysicalCardSource.Hand):PhysicalCardSource.Resolving;
+            if(source==PhysicalCardSource.HeadlineReserved && (s.Practice.Stage!=ActionPracticeStage.HeadlineReady
+                || !s.Practice.Headline.Current.Card.Equals(id) || cards.GetHeadline(actor)?.Equals(id)!=true || cards.ResolvingCards.Count!=0))throw new ArgumentException("Missing current reserved headline.");
+            if(source==PhysicalCardSource.Hand && !cards.GetHand(actor).Contains(id))throw new ArgumentException("Missing physical hand card.");
             if(!fromHand && (cards.ResolvingCards.Count!=1 || !cards.ResolvingCards.Contains(id)))throw new InvalidOperationException("Missing active physical card.");
             var hands=new Dictionary<PlayerSide,IReadOnlyList<CardId>>();
-            foreach(var side in new[]{PlayerSide.US,PlayerSide.USSR})hands.Add(side,cards.GetHand(side).Where(c=>!(fromHand && side==actor && c.Equals(id))).ToArray());
+            foreach(var side in new[]{PlayerSide.US,PlayerSide.USSR})hands.Add(side,cards.GetHand(side).Where(c=>!(source==PhysicalCardSource.Hand && side==actor && c.Equals(id))).ToArray());
             return new CardZones(s.Practice.Definition.Cards,cards.DrawPile,hands,cards.EraReserve,
                 toResolving || remove?cards.DiscardPile:cards.DiscardPile.Concat(new[]{id}),remove?cards.RemovedCards.Concat(new[]{id}):cards.RemovedCards,
-                toResolving?cards.ResolvingCards.Concat(new[]{id}):cards.ResolvingCards.Where(c=>!c.Equals(id)),cards.China,cards.EnteredEras,cards.HeadlineReserved);
+                toResolving?cards.ResolvingCards.Concat(new[]{id}):cards.ResolvingCards.Where(c=>!c.Equals(id)),cards.China,cards.EnteredEras,source==PhysicalCardSource.HeadlineReserved?cards.HeadlineReserved.Where(x=>x.Key!=actor).ToDictionary(x=>x.Key,x=>x.Value):cards.HeadlineReserved);
         }
     }
 }

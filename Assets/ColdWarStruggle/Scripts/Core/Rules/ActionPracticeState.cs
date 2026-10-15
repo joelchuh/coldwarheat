@@ -3,7 +3,7 @@ using System.Linq;
 namespace ColdWarStruggle.Core
 {
     public enum CardActionKind { StartPractice, Influence, Space, FinishInfluence, Coup, Scoring, Event, Realignment, RollRealignment, FinishRealignment, EventThenInfluence, InfluenceThenEvent, OpponentEventFirst, OpponentOpsFirst, UseOpponentInfluence, UseOpponentRealignment, UseOpponentCoup, AssessTurnEnd, BeginNextTurn }
-    public enum ActionPracticeStage { AwaitingStart, ChooseCard, PlacingInfluence, Complete, ResolvingEvent, Realigning, ChoosingOperations }
+    public enum ActionPracticeStage { AwaitingStart, ChooseCard, PlacingInfluence, Complete, ResolvingEvent, Realigning, ChoosingOperations, HeadlineReady }
     // Explicit single-turn practice with a bounded, typed set of supported events. Not the full turn coordinator.
     public sealed class ActionPracticeDefinition
     {
@@ -38,7 +38,9 @@ namespace ColdWarStruggle.Core
         public ActionPracticeDefinition Definition { get; }
         public ActionPracticeStage Stage { get; }
         public int CompletedActions { get; }
-        public PlayerSide Actor=>CompletedActions%2==0?PlayerSide.USSR:PlayerSide.US;
+        public HeadlineResolutionState Headline { get; }
+        public bool HasPendingHeadline=>Headline!=null && !Headline.IsComplete;
+        public PlayerSide Actor=>HasPendingHeadline?Headline.Current.PlayedBy:CompletedActions%2==0?PlayerSide.USSR:PlayerSide.US;
         public int ActionRound=>Math.Min(CompletedActions/2+1,Space.Turn.Parameters.NormalActionsPerSide);
         public CardId? ActiveCard { get; }
         public SpaceAttemptState Space { get; }
@@ -47,8 +49,16 @@ namespace ColdWarStruggle.Core
         public TurnOpsEffectState OpsEffects { get; }
         public OpponentOpsSequence OpponentOps { get; }
         public PracticeTurnEndReceipt TurnEnd { get; }
-        internal ActionPracticeState(ActionPracticeDefinition definition,ActionPracticeStage stage,int completed,CardId? card,SpaceAttemptState space,int vp,PracticeRiskState risk=null,TurnOpsEffectState opsEffects=null,OpponentOpsSequence opponentOps=null,PracticeTurnEndReceipt turnEnd=null)
+        internal ActionPracticeState(ActionPracticeDefinition definition,ActionPracticeStage stage,int completed,CardId? card,SpaceAttemptState space,int vp,PracticeRiskState risk=null,TurnOpsEffectState opsEffects=null,OpponentOpsSequence opponentOps=null,PracticeTurnEndReceipt turnEnd=null,HeadlineResolutionState headline=null)
         {
+            if(headline!=null && (headline.Turn.Number!=space.Turn.Number || headline.Turn.Era!=space.Turn.Era))throw new ArgumentException("Headline turn mismatch.");
+            if(headline!=null && !headline.IsComplete && (completed!=0 || opponentOps!=null || turnEnd!=null
+                || !(stage==ActionPracticeStage.HeadlineReady && !card.HasValue
+                    || stage==ActionPracticeStage.ResolvingEvent && card.HasValue && card.Value.Equals(headline.Current.Card)
+                    || stage==ActionPracticeStage.Complete && risk?.Result?.Outcome==VictoryOutcome.Finished && card.HasValue && card.Value.Equals(headline.Current.Card))))
+                throw new ArgumentException("Invalid pending headline root.");
+            if(stage==ActionPracticeStage.HeadlineReady && (headline==null || headline.IsComplete))throw new ArgumentException("Headline boundary requires a pending root.");
+            Headline=headline;
             if(turnEnd!=null && (!definition.TurnEndEnabled || stage!=ActionPracticeStage.Complete || completed!=space.Turn.Parameters.NormalActionsPerSide*2 || card.HasValue || opponentOps!=null
                 || !ReferenceEquals(risk?.Military.Assessment,turnEnd.Assessment) || turnEnd.Decision.SignedVp!=vp
                 || (turnEnd.Decision.Outcome==VictoryOutcome.Finished?!ReferenceEquals(risk.Result,turnEnd.Decision):risk.Result!=null)))throw new ArgumentException("Turn-end receipt does not match the completed state.");

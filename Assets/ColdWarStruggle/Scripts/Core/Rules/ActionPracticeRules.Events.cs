@@ -8,15 +8,20 @@ namespace ColdWarStruggle.Core
         {
             if(string.IsNullOrWhiteSpace(actionId) || actionId.Length>128 || !card.HasValue || target.HasValue)return new CardActionTransition(RuleError.InvalidCommand);
             var error=CanPlay(state,side,card.Value,CardActionKind.Event);if(error!=RuleError.None)return new CardActionTransition(error);
+            return ResolveEventCard(state,side,card.Value);
+        }
+        // Shared effect entry after the caller has authorized its own card source and root.
+        internal static CardActionTransition ResolveEventCard(GameState state,PlayerSide side,CardId card)
+        {
             try
             {
-                if(state.Practice.Definition.TurnOpsEvents?.Effects.TryGetValue(card.Value,out var opsEffect)==true)return PlanTurnOpsEvent(state,side,opsEffect);
-                if(state.Practice.Definition.DefconVpEvents?.Effects.TryGetValue(card.Value,out var trackEffect)==true)return PlanDefconVpEvent(state,side,trackEffect);
-                var p=state.Practice;var effect=p.Definition.InfluenceEvents.Effects[card.Value];
-                var pending=new ActionPracticeState(p.Definition,ActionPracticeStage.ResolvingEvent,p.CompletedActions,card,p.Space,p.VpForUS,p.Risk,p.OpsEffects);
+                if(state.Practice.Definition.TurnOpsEvents?.Effects.TryGetValue(card,out var opsEffect)==true)return PlanTurnOpsEvent(state,side,opsEffect);
+                if(state.Practice.Definition.DefconVpEvents?.Effects.TryGetValue(card,out var trackEffect)==true)return PlanDefconVpEvent(state,side,trackEffect);
+                var p=state.Practice;var effect=p.Definition.InfluenceEvents.Effects[card];
+                var pending=new ActionPracticeState(p.Definition,ActionPracticeStage.ResolvingEvent,p.CompletedActions,card,p.Space,p.VpForUS,p.Risk,p.OpsEffects,headline:p.Headline);
                 // Intermediate immutable states never leave the host's commit boundary.
-                var prepared=Commit(state,pending,Move(state,card.Value,true,true),state.RandomState).NextState
-                    .WithInfluenceEvent(new InfluenceEventExecution("practice.event."+p.CompletedActions,effect,side,InfluenceEventPolicy.NoActiveInterference));
+                var prepared=Commit(state,pending,Move(state,card,true,true),state.RandomState).NextState
+                    .WithInfluenceEvent(new InfluenceEventExecution(EventResolutionId(state),effect,side,InfluenceEventPolicy.NoActiveInterference));
                 var raw=InfluenceEventFlow.Begin(prepared,side);var completed=CompleteEventAction(raw);
                 return completed.Accepted?new CardActionTransition(RuleError.None,completed.NextState,eventTransition:raw):new CardActionTransition(completed.Error);
             }
@@ -33,6 +38,7 @@ namespace ColdWarStruggle.Core
                 || e.Policy!=InfluenceEventPolicy.NoActiveInterference || p.Definition.InfluenceEvents==null
                 || !p.Definition.InfluenceEvents.Effects.TryGetValue(p.ActiveCard.Value,out var effect) || !ReferenceEquals(effect,e.Definition)
                 || s.Cards.ResolvingCards.Count!=1 || !s.Cards.ResolvingCards.Contains(p.ActiveCard.Value))return new InfluenceEventTransition(RuleError.InvalidDefinition);
+            if(p.HasPendingHeadline && e.Id!=EventResolutionId(s))return new InfluenceEventTransition(RuleError.InvalidDefinition);
             if(e.Stage==InfluenceEventStage.AwaitingChoice)return transition;
             if(e.Stage!=InfluenceEventStage.Resolved)return new InfluenceEventTransition(RuleError.EventNotStarted);
             try

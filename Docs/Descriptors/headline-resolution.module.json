@@ -3,7 +3,7 @@
   "id": "module.headline-resolution",
   "kind": "module",
   "status": "implemented-subset",
-  "description": "有限头条结算的权威队列游标：冻结普通顺序、按回合/出牌方标识根并逐张推进；当前仅队列实现，事件执行与Host/UI待接。",
+  "description": "有限头条事件编排：已保留双方牌按印刷顺序结算，复用计分/影响力/DEFCON/OPS服务，独立根责任、零普通行动、终局截断；等待选择的继续入口尚待接，Host/UI未启用。",
   "entrypoints": [
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionState.cs",
@@ -12,9 +12,7 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionState.cs",
       "symbol": "AdvanceAfterResolution"
-    }
-  ],
-  "planned_entrypoints": [
+    },
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionRules.cs",
       "symbol": "Begin"
@@ -25,20 +23,32 @@
     },
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionRules.cs",
+      "symbol": "SupportedCards"
+    }
+  ],
+  "planned_entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionRules.cs",
       "symbol": "CompleteChoice"
     }
   ],
   "inputs": [
     "权威CardCatalog、恰好两张保留/空Resolving完整牌区、当前回合和共享头条参数",
-    "与Current匹配的出牌方/牌ID；只有编排确认效果与去向完成后才推进"
+    "与Current匹配的出牌方/牌ID；只有编排确认效果与去向完成后才推进",
+    "已有真实Practice/牌区的GameState，双方已保留，普通行动未开始；非玩家SkipPhase接口"
   ],
   "outputs": [
     "只读两张普通顺序/当前根/完成计数；新游标保留原快照",
-    "CurrentResolutionId按回合与出牌方稳定生成，完成后Current与ID为空"
+    "CurrentResolutionId按回合与出牌方稳定生成，完成后Current与ID为空",
+    "权威HeadlineResolutionTransition包含NextState和有界逐牌Steps；完整状态不得直接序列化给玩家"
   ],
   "dependencies": [
     "module.headline-foundation",
-    "module.turn-flow"
+    "module.turn-flow",
+    "module.playable-influence-events",
+    "module.playable-defcon-vp-events",
+    "module.playable-flat-ops-events",
+    "module.playable-scoring-actions"
   ],
   "data_dependencies": [
     "rules.deluxe2015.turn-flow",
@@ -49,10 +59,15 @@
     "CreateOrdinary排除特殊取消/优先；将来编排只接受已经实现的普通事件集合"
   ],
   "side_effects": [
-    "无I/O、RNG、地图、VP、OPS或行动计数修改"
+    "纯规则只返回不可变事务草稿；Host尚未接线，不自动发布",
+    "每张实际事件改变地图/轨道/效果和牌去向；普通CompletedActions始终0，显式操作预算0，RNG保持",
+    "首张终局保留当前Resolving及后张Reserved；不强行清理或完成游标",
+    "同回合Practice复制保留队列；下一回合入口重置，历史报告不重放事件"
   ],
   "stop_conditions": [
-    "不完整/忙牌区或目录不一致拒绝；错牌/错方/重复/已完成不推进"
+    "不完整/忙牌区或目录不一致拒绝；错牌/错方/重复/已完成不推进",
+    "未知事件处理器在Begin前拒绝；等待选择停留不推进下一张",
+    "溢出或技术错误返回无NextState/无Steps，避免发布同批部分草稿"
   ],
   "rule_sources": [
     {
@@ -63,6 +78,10 @@
   "tests": [
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineResolutionStateTests.cs",
+      "status": "managed-passed-unity-pending"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineResolutionTests.cs",
       "status": "managed-passed-unity-pending"
     }
   ],

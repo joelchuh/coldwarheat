@@ -23,7 +23,7 @@ namespace ColdWarStruggle.Core
                 var legacy=kind==CardActionKind.EventThenInfluence || kind==CardActionKind.InfluenceThenEvent;
                 var sequence=OpponentOpsSequence.Create(card.Value,side,first?OpponentEventOrder.EventFirst:OpponentEventOrder.OperationsFirst,legacy?OperationsMode.Influence:(OperationsMode?)null);
                 var p=state.Practice;
-                var pending=new ActionPracticeState(p.Definition,ActionPracticeStage.ResolvingEvent,p.CompletedActions,card,p.Space,p.VpForUS,p.Risk,p.OpsEffects,sequence);
+                var pending=new ActionPracticeState(p.Definition,ActionPracticeStage.ResolvingEvent,p.CompletedActions,card,p.Space,p.VpForUS,p.Risk,p.OpsEffects,sequence,headline:p.Headline);
                 var prepared=Commit(state,pending,Move(state,card.Value,true,true),state.RandomState).NextState;
                 return sequence.CurrentStep==CardResolutionStep.Event?BeginOpponentEvent(prepared):BeginOpponentOperations(prepared,sequence);
             }
@@ -42,13 +42,13 @@ namespace ColdWarStruggle.Core
             // Quote and reachability are evaluated at the actual OPS-mode choice, after earlier effects.
             if(!sequence.Mode.HasValue)
             {
-                var pending=new ActionPracticeState(p.Definition,ActionPracticeStage.ChoosingOperations,p.CompletedActions,sequence.Card,p.Space,p.VpForUS,p.Risk,p.OpsEffects,sequence);
+                var pending=new ActionPracticeState(p.Definition,ActionPracticeStage.ChoosingOperations,p.CompletedActions,sequence.Card,p.Space,p.VpForUS,p.Risk,p.OpsEffects,sequence,headline:p.Headline);
                 return Commit(s,pending,s.Cards,s.RandomState);
             }
             if(sequence.Mode!=OperationsMode.Influence && sequence.Mode!=OperationsMode.Realignment)return new CardActionTransition(RuleError.InvalidDefinition);
             var realign=sequence.Mode==OperationsMode.Realignment;
             var quote=QuoteCard(s,p.Actor,sequence.Card,realign?OpsValuePurpose.Realignment:OpsValuePurpose.Influence);
-            var next=new ActionPracticeState(p.Definition,realign?ActionPracticeStage.Realigning:ActionPracticeStage.PlacingInfluence,p.CompletedActions,sequence.Card,p.Space,p.VpForUS,p.Risk,p.OpsEffects,sequence);
+            var next=new ActionPracticeState(p.Definition,realign?ActionPracticeStage.Realigning:ActionPracticeStage.PlacingInfluence,p.CompletedActions,sequence.Card,p.Space,p.VpForUS,p.Risk,p.OpsEffects,sequence,headline:p.Headline);
             if(!realign)return Commit(s,next,s.Cards,s.RandomState,quote.GeneralValue);
             var ops=new OperationsContext(PracticeOperationsId(s,p.CompletedActions),p.Actor,quote.GeneralValue,Array.Empty<CountryId>(),OperationsMode.Realignment,s.Operations.Costs);
             return new CardActionTransition(RuleError.None,s.WithPractice(next,ops,s.Cards,s.RandomState));
@@ -86,7 +86,7 @@ namespace ColdWarStruggle.Core
                 return Commit(s,Next(p,p.Space,p.VpForUS),Move(s,sequence.Card,false,false,sequence.EventOccurred && printed.RemoveAfterResolvedEvent),s.RandomState);
             }
             if(sequence.CurrentStep==CardResolutionStep.Operations)return BeginOpponentOperations(s,sequence);
-            var pending=new ActionPracticeState(p.Definition,ActionPracticeStage.ResolvingEvent,p.CompletedActions,sequence.Card,p.Space,p.VpForUS,p.Risk,p.OpsEffects,sequence);
+            var pending=new ActionPracticeState(p.Definition,ActionPracticeStage.ResolvingEvent,p.CompletedActions,sequence.Card,p.Space,p.VpForUS,p.Risk,p.OpsEffects,sequence,headline:p.Headline);
             return BeginOpponentEvent(Commit(s,pending,s.Cards,s.RandomState).NextState);
         }
         static CardActionTransition BeginOpponentEvent(GameState s)
@@ -103,7 +103,7 @@ namespace ColdWarStruggle.Core
             {
                 var plan=DefconVpEventService.Plan(track,p.Risk.Defcon,p.Risk.Definition.Victory,p.VpForUS,q.EventSide,p.Actor,"practice.event."+p.CompletedActions,DefconVpEventPolicy.NoActiveInterference);
                 var risk=p.Risk.After(plan);var terminal=risk.Result?.Outcome==VictoryOutcome.Finished;
-                var after=new ActionPracticeState(p.Definition,terminal?ActionPracticeStage.Complete:ActionPracticeStage.ResolvingEvent,p.CompletedActions,q.Card,p.Space,plan.Decision.SignedVp,risk,p.OpsEffects,q);
+                var after=new ActionPracticeState(p.Definition,terminal?ActionPracticeStage.Complete:ActionPracticeStage.ResolvingEvent,p.CompletedActions,q.Card,p.Space,plan.Decision.SignedVp,risk,p.OpsEffects,q,headline:p.Headline);
                 var committed=Commit(s,after,s.Cards,s.RandomState);
                 var done=terminal?committed:AdvanceOpponentStep(committed.NextState,CardResolutionStep.Event);
                 return done.Accepted?new CardActionTransition(RuleError.None,done.NextState,defconVpEvent:plan):done;
@@ -113,7 +113,7 @@ namespace ColdWarStruggle.Core
                 var activation=p.OpsEffects.Activate(flat,q.EventSide,"practice.event."+p.CompletedActions,checked(s.EventSequence+1),s.Turn);
                 if(!activation.Accepted)return new CardActionTransition(activation.Error);
                 if(activation.AlreadyApplied)return new CardActionTransition(RuleError.StaleContext);
-                var after=new ActionPracticeState(p.Definition,ActionPracticeStage.ResolvingEvent,p.CompletedActions,q.Card,p.Space,p.VpForUS,p.Risk,activation.After,q);
+                var after=new ActionPracticeState(p.Definition,ActionPracticeStage.ResolvingEvent,p.CompletedActions,q.Card,p.Space,p.VpForUS,p.Risk,activation.After,q,headline:p.Headline);
                 var committed=Commit(s,after,s.Cards,s.RandomState);var done=AdvanceOpponentStep(committed.NextState,CardResolutionStep.Event);
                 return done.Accepted?new CardActionTransition(RuleError.None,done.NextState,activatedOpsEffect:activation.Instance):done;
             }

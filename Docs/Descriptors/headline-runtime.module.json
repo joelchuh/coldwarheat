@@ -3,13 +3,13 @@
   "id": "module.headline-runtime",
   "kind": "module",
   "status": "planned",
-  "description": "查头条接入现有试玩的保留牌区、秘密选择、事件根责任、排序与Host/UI接口；当前仅接线规划，Demo仍跳过头条。",
+  "description": "完整头条Host/UI与回合入口仍待接；独立秘密选择、普通排序及有限事件编排已在foundation/resolution模块实现，Demo仍跳过头条。",
   "documentation": "Docs/Architecture/headline-runtime-integration.md",
   "entrypoints": [],
   "planned_entrypoints": [
     {
-      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/HeadlineResolutionRules.cs",
-      "symbol": "Advance"
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/LocalGameHost.cs",
+      "symbol": "SubmitHeadlineAsync"
     }
   ],
   "inputs": [
@@ -23,7 +23,8 @@
     "module.continuous-turn-playtest",
     "module.card-zones",
     "module.deterministic-random",
-    "module.headline-foundation"
+    "module.headline-foundation",
+    "module.headline-resolution"
   ],
   "data_dependencies": [
     "rules.deluxe2015.turn-flow"

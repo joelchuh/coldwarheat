@@ -41,7 +41,7 @@ namespace ColdWarStruggle.Core
                 {
                     var quote=QuoteCard(state,side,card.Value,OpsValuePurpose.Realignment);
                     var regional=RegionalBudget(state,quote);
-                    var next=new ActionPracticeState(p.Definition,ActionPracticeStage.Realigning,p.CompletedActions,card,p.Space,p.VpForUS,p.Risk,p.OpsEffects);
+                    var next=new ActionPracticeState(p.Definition,ActionPracticeStage.Realigning,p.CompletedActions,card,p.Space,p.VpForUS,p.Risk,p.OpsEffects,headline:p.Headline);
                     var ops=new OperationsContext(PracticeOperationsId(state,p.CompletedActions),side,regional?.EffectiveBudget??quote.GeneralValue,Array.Empty<CountryId>(),OperationsMode.Realignment,state.Operations.Costs,regional);
                     return new CardActionTransition(RuleError.None,state.WithPractice(next,ops,Move(state,card.Value,true,true),state.RandomState));
                 }

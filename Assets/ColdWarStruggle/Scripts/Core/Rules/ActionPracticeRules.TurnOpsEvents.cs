@@ -5,7 +5,7 @@ namespace ColdWarStruggle.Core
         static CardActionTransition PlanTurnOpsEvent(GameState state,PlayerSide side,TurnOpsEffectDefinition effect)
         {
             var p=state.Practice;
-            var activation=p.OpsEffects.Activate(effect,side,"practice.event."+p.CompletedActions,checked(state.EventSequence+1),state.Turn);
+            var activation=p.OpsEffects.Activate(effect,side,EventResolutionId(state),checked(state.EventSequence+1),state.Turn);
             if(!activation.Accepted)return new CardActionTransition(activation.Error);
             // The host owns duplicate command replay; an already-used root cursor must not dispose a second physical card.
             if(activation.AlreadyApplied)return new CardActionTransition(RuleError.StaleContext);
