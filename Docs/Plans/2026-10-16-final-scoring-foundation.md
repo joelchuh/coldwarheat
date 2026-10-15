@@ -42,6 +42,6 @@ Interfaces: LoadSubset(string regionJson,string regionSchema,string chinaJson,st
 ## Final whole-branch gate
 
 - [x] 发起一次新上下文完整分支审查；重要问题一轮RED/GREEN修复；记录所有裁决。
-- [ ] 保存worklog与真实证据，核对diff与用户未跟踪文件，推送命名分支并核对远端SHA。此次不重建播放器：可执行文件行为未接入新核心。
+- [x] 保存worklog与真实证据，核对diff与用户未跟踪文件，推送命名分支并核对远端SHA。此次不重建播放器：可执行文件行为未接入新核心。
 
 统一测试命令：& E:/TwilightStruggle/Tools/Scripts/run-unity-editmode.ps1 -ProjectRoot E:/TwilightStruggle -UnityEditor E:/unity6.6/6000.6.0f1/Editor/Unity.exe -RunId <above> -TimeoutSeconds 600。
