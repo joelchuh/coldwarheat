@@ -8,6 +8,14 @@ namespace ColdWarStruggle.Tests
 {
     public class DemoBuildTests
     {
+        [TestCase("Data/Demo/headline-scenario.json","headline-scenario.json")]
+        [TestCase("Data/Cards/deluxe-2015/defectors.parameters.json","defectors.parameters.json")]
+        [TestCase("Docs/Contracts/defectors.schema.json","defectors.schema.json")]
+        public void Headline_payload_matches_canonical_source(string source,string payload)
+        {
+            DemoBuild.SynchronizeData();var root=Path.GetFullPath(Path.Combine(UnityEngine.Application.dataPath,".."));
+            Assert.That(File.ReadAllBytes(Path.Combine(UnityEngine.Application.streamingAssetsPath,"ColdWarStruggle",payload)),Is.EqualTo(File.ReadAllBytes(Path.Combine(root,source))));
+        }
         [Test] public void Standard_build_has_a_data_preprocessor()
         {
             Assert.That(typeof(DemoBuild).Assembly.GetTypes().Any(t =>

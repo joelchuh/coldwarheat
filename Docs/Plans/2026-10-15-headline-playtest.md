@@ -21,3 +21,5 @@ RED→GREEN，完整可用托管回归；Expected全通过，metadata/diff0。�
 - [x] Task1 场景/配置
 - [x] Task2 模型/控制器
 - [ ] Task3 UI/构建/审查/同步
+
+Task3源码/UI接线已实现，2319全套原生通过；独立审查、构建和鼠标验证进行中。

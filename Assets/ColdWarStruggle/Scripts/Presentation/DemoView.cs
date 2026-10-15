@@ -75,7 +75,7 @@ namespace ColdWarStruggle.Presentation
             Styles();float scale=Math.Min(Screen.width/1280f,Screen.height/820f);
             GUI.matrix=Matrix4x4.TRS(new Vector3((Screen.width-1280*scale)/2,(Screen.height-820*scale)/2,0),Quaternion.identity,new Vector3(scale,scale,1));
             Block(new Rect(0,0,1280,820),Background);
-            Text(26,20,900,46,"COLD WAR / 冷战热斗 · 事件与行动 Demo",title);
+            Text(26,20,900,46,"COLD WAR / 冷战热斗 · 头条与行动 Demo",title);
             Text(28,70,780,28,"单人双边测试  /  人工练习局面  /  世界地图占位，可更换画风",small);
             Text(820,70,434,28,captureStatus,small);
             if(fatal!=null) { Text(30,140,1180,400,"加载失败："+fatal);return; }
@@ -106,9 +106,10 @@ namespace ColdWarStruggle.Presentation
             Text(44,455,220,27,view.Deployment!=null?"初始影响力部署练习":view.Practice!=null?$"行动试玩 {view.Practice.Round} / {view.Practice.RoundLimit}":TurnText(view.Turn),small);
             Text(44,485,220,26,view.Deployment!=null?"待分配部署额度":"剩余 OPS",small);
             Text(44,513,210,60,(view.Deployment!=null?view.Deployment.RequiredAmount-controller.DeploymentDraft.Sum(a=>a.Amount):view.RemainingOps).ToString(),large);
-            Text(44,594,208,150,view.Deployment!=null?"先苏联、后美国：\n1. 选国后用右侧 ±1 分配\n2. 用完额度后确认\n3. 按提示切换操作方\n草稿未确认不改变局面。\n"+(view.Cards!=null?"可先查看真实初始手牌。":"手牌只是示例，尚未发牌。"):view.Practice!=null?"行动试玩：\n1. 打开手牌选择本方牌\n2. 选择影响力或太空\n3. 投放后明确结束行动\n4. 按提示切换操作方\n当前无头条、回合末或完整事件。":view.Event==null?"试一试：\n1. 在默认目标投放 3 点\n2. 重发命令，观察不重复扣点\n3. 切换另一方，观察资格检查\n4. 重置后选择其他国家":"事件练习：\n1. 点击开始事件\n2. 按提示切换选择方\n3. 选国，按右侧提示编辑\n4. 确认后一次结算\n事件不消耗 OPS。",small);
+            Text(44,594,208,150,view.Deployment!=null?"先苏联、后美国：\n1. 选国后用右侧 ±1 分配\n2. 用完额度后确认\n3. 按提示切换操作方\n草稿未确认不改变局面。\n"+(view.Cards!=null?"可先查看真实初始手牌。":"手牌只是示例，尚未发牌。"):view.Practice!=null?"行动试玩：\n1. 打开手牌选择本方牌\n2. 选择影响力或太空\n3. 投放后明确结束行动\n4. 按提示切换操作方\n完整事件仍在逐步接入。":view.Event==null?"试一试：\n1. 在默认目标投放 3 点\n2. 重发命令，观察不重复扣点\n3. 切换另一方，观察资格检查\n4. 重置后选择其他国家":"事件练习：\n1. 点击开始事件\n2. 按提示切换选择方\n3. 选国，按右侧提示编辑\n4. 确认后一次结算\n事件不消耗 OPS。",small);
             }
-            Text(mapLeft+18,194,mapWidth-36,28,view.Practice?.Stage==ActionPracticeStage.Realigning?"政局调整 · 绿色为合法目标，每次掷骰后可重新选国":controller.SelectingCoup?"政变目标 · 绿色为合法目标，选国后在右侧确认":view.Event==null && view.Deployment==null?"世界地图 · 绿色为可投放目标":"国家面板 · 绿色为合法选择，确认后才结算",small);
+            if(view.Headline!=null)DrawHeadlineMapSummary(view,mapLeft,mapWidth);
+            else Text(mapLeft+18,194,mapWidth-36,28,view.Practice?.Stage==ActionPracticeStage.Realigning?"政局调整 · 绿色为合法目标，每次掷骰后可重新选国":controller.SelectingCoup?"政变目标 · 绿色为合法目标，选国后在右侧确认":view.Event==null && view.Deployment==null?"世界地图 · 绿色为可投放目标":"国家面板 · 绿色为合法选择，确认后才结算",small);
             for(int i=0;i<regions.Length;i++)
                 if(Button(mapLeft+18+(wideMap?i:i%3)*(wideMap?145:201),232+(wideMap?0:i/3)*39,wideMap?137:193,32,(regionIndex==i?"● ":"")+regionNames[i]))
                 { regionIndex=i;if(mapView is WorldMapView world)world.RequestRegionFocus(regions[i]); }
@@ -141,7 +142,7 @@ namespace ColdWarStruggle.Presentation
             }
             else Text(972,681,266,62,"本方："+string.Join("、",view.OwnHand)+"\n对手："+view.OpponentHandCount+" 张（隐藏）",small);
             }
-            Text(28,786,1220,27,$"真实手牌 / 投放、政变、调整、太空、计分、十二事件、中国牌及对手事件＋三种OPS；跳过头条，特殊期末能力/最终计分待接。   版本 {view.Version} · 序号 {view.EventSequence}",small);
+            Text(28,786,1220,27,$"真实手牌 / 事件与行动 / 中国牌 · {(view.Practice?.HeadlineEnabled==true?"已启用有限头条流程":"此入口跳过头条")}；特殊期末能力/最终计分待接。   版本 {view.Version} · 序号 {view.EventSequence}",small);
         }
         static string TurnText(GameTurnContext turn)
         {

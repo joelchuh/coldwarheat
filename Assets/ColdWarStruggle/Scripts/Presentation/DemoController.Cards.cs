@@ -104,7 +104,7 @@ namespace ColdWarStruggle.Presentation
             get
             {
                 var p=ReadView().Practice;var r=p?.TurnEnd;if(r==null)return null;
-                var continuation=!p.NextTurnEnabled?"试玩停在下一回合开始前。":p.NextTurnAvailable?"可进入下一回合（跳过头条）。":
+                var continuation=!p.NextTurnEnabled?"试玩停在下一回合开始前。":p.NextTurnAvailable?"可进入"+NextTurnButtonText+"。":
                     p.NextTurnError==RuleError.ActionSliceComplete?"已到试玩边界：最终计分尚未接入。":
                     p.NextTurnError==RuleError.UnsupportedCardAction?"已到试玩边界：太空额外行动或回合末弃牌尚未接入。":
                     "当前不能进入下一回合，请先完成待处理步骤。";

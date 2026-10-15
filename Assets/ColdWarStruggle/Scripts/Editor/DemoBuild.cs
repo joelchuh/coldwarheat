@@ -67,6 +67,8 @@ namespace ColdWarStruggle.Editor
         public static void BuildContinuousPlaytest()=>BuildAt("Builds/ContinuousPlaytest","ColdWarStruggle Continuous Playtest");
         [MenuItem("ColdWarStruggle/Build Localized Playtest")]
         public static void BuildLocalizedPlaytest()=>BuildAt("Builds/LocalizedPlaytest","ColdWarStruggle Localized Playtest");
+        [MenuItem("ColdWarStruggle/Build Headlines Playtest")]
+        public static void BuildHeadlinesPlaytest()=>BuildAt("Builds/HeadlinesPlaytest","ColdWarStruggle Headlines Playtest");
         static void BuildAt(string directory,string productName=null)
         {
             Prepare();Directory.CreateDirectory(directory);
@@ -104,11 +106,15 @@ namespace ColdWarStruggle.Editor
                     .WithPracticeChina(Read(root,"Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json"),Read(root,"Docs/Contracts/persistent-effects-batch1.schema.json"))
                     .WithPracticeTurnEnd()
                     .WithPracticeNextTurn()
-                    .WithQuickStartScenario(Read(root,"Data/Demo/quick-start-scenario.json"));
+                    .WithQuickStartScenario(Read(root,"Data/Demo/quick-start-scenario.json"))
+                    .WithHeadlineScenario(Read(root,"Data/Demo/headline-scenario.json"),Read(root,"Data/Rulesets/deluxe-2015/turn-flow.json"),Read(root,"Data/Cards/deluxe-2015/defectors.parameters.json"),Read(root,"Docs/Contracts/defectors.schema.json"));
             CatalogNamesLoader.Load(Read(root,"Data/Localization/zh-CN.catalog-names.json"),"zh-CN",catalog.Names.Keys);
             CatalogNamesLoader.Load(Read(root,"Data/Localization/en-US.catalog-names.json"),"en-US",catalog.Names.Keys);
             WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
             Directory.CreateDirectory(payload);
+            Copy(root,"Data/Demo/headline-scenario.json",payload,"headline-scenario.json");
+            Copy(root,"Data/Cards/deluxe-2015/defectors.parameters.json",payload,"defectors.parameters.json");
+            Copy(root,"Docs/Contracts/defectors.schema.json",payload,"defectors.schema.json");
             Copy(root,"Data/Cards/deluxe-2015/defcon-vp-events.parameters.json",payload,"defcon-vp-events.parameters.json");Copy(root,"Docs/Contracts/defcon-vp-events.schema.json",payload,"defcon-vp-events.schema.json");
             Copy(root,"Data/Maps/deluxe-2015/world.json",payload,"world.json");Copy(root,"Docs/Contracts/map.schema.json",payload,"map.schema.json");
             Copy(root,"Data/Maps/deluxe-2015/world.profile.json",payload,"world.profile.json");

@@ -5,3 +5,7 @@ Task1：17项新增行为RED全部失败，GREEN17通过，全部可用托管212
 UI/Bootstrap尚未接，新播放器未构建；Unity互动编辑器仍运行，等待用户关闭以执行原生测试。
 
 Task2：最初17用例RED0/17；GREEN16/17发现CanChoose合并两种禁选原因。加入真实太空里程碑→次回合的等待保护测试，RED17/18仍复现无候选提示问题。新增只读WaitingForOpponentFirst后GREEN18/18，回归2145/2145。初次测试编译使用了错误fixture helper，已在行为RED前改正。用户确认保存关闭编辑器，零Unity进程后启动headline-presentation-native原生全套，结果待收集。
+
+Task3：真实Unity RED2319项中2306通过/13失败（10入口新行为和3缺失载荷），显式旧入口用例在实现前已通过，作为兼容性保护。接线后GREEN2319/2319；额外检查发现China查询在头条仍有对象，界面禁止头条期间选择，最终原生回归正在执行。Unity工具会自行退出本次批处理进程，没有强制关闭用户编辑器。尚未构建或鼠标验收。
+
+最终原生headline-ui-final：2319/2319，0失败/跳过，Unity退出0；按真实XML保存哈希和变更源码哈希，先前160项原生排除已全部补验。metadata142描述/74数据集通过。用户打开/保存产生的ProjectSettings/PackageManagerSettings.asset及Assets/unity_baocun.meta保持原样，不混入功能提交。

@@ -13,7 +13,7 @@ namespace ColdWarStruggle.Presentation
         {
             var p=view.Practice;
             Block(new Rect(26,67,1228,38),Background);
-            Text(28,70,1220,30,$"回合 {view.Turn.Number} · "+(p.Stage==ActionPracticeStage.Complete?(p.TurnEnd!=null?"回合末审核完成":"本回合行动结束"):$"{Side(p.Actor)} 行动 {p.Round}/{p.RoundLimit}")+$"  |  VP（美+ / 苏−）{p.VpForUS}  |  DEFCON {p.Defcon?.ToString()??"—"}  |  军事累计 美 {p.UsMilitary?.ToString()??"—"} / 苏 {p.UssrMilitary?.ToString()??"—"}  |  太空 美 {p.UsSpace} / 苏 {p.UssrSpace}"+(view.Event?.Stage==InfluenceEventStage.AwaitingChoice?"  |  事件选择："+Side(view.Event.Owner):""),small);
+            Text(28,70,1220,30,$"回合 {view.Turn.Number} · "+controller.PracticePhaseText+$"  |  VP（美+ / 苏−）{p.VpForUS}  |  DEFCON {p.Defcon?.ToString()??"—"}  |  军事累计 美 {p.UsMilitary?.ToString()??"—"} / 苏 {p.UssrMilitary?.ToString()??"—"}  |  太空 美 {p.UsSpace} / 苏 {p.UssrSpace}"+(view.Event?.Stage==InfluenceEventStage.AwaitingChoice?"  |  事件选择："+Side(view.Event.Owner):""),small);
         }
         string OpsEffectSummary(PublicTurnOpsEffect effect)=>CardTitle(effect.Card)+" → "+Side(effect.AffectedSide)+$" {effect.Delta:+0;-0;0}";
         void DrawOpsEffects(PublicPracticeView practice)
@@ -24,6 +24,7 @@ namespace ColdWarStruggle.Presentation
         void DrawPracticeControls(PlayerViewSnapshot view)
         {
             var p=view.Practice;
+            if(p.Stage==ActionPracticeStage.CollectingHeadline){DrawHeadlineControls(view);return;}
             if(p.TurnEnd!=null) { DrawTurnEndReport(view);return; }
             if(p.Winner.HasValue)
                 Text(972,374,262,140,VictoryMessage(p),label);
@@ -140,8 +141,10 @@ namespace ColdWarStruggle.Presentation
             if(controller.LastResult!=null)message=controller.LastResult.Accepted?"投放成功，费用："+string.Join(" + ",controller.LastResult.Costs):ErrorText(controller.LastResult.Error);
             if(controller.LastEventResult!=null)message=controller.LastEventResult.Accepted?"事件选择完成 · 影响力变化 "+controller.LastEventResult.Changes.Count+" 项。":ErrorText(controller.LastEventResult.Error);
             Text(972,578,262,65,message,small);
-            GUI.enabled=controller.CanRetryCard;
-            if(Button(972,646,262,27,"重发出牌命令（幂等）"))RetryCard();
+            var retryHeadline=!controller.CanRetryCard && controller.CanRetryHeadline;
+            GUI.enabled=controller.CanRetryCard || retryHeadline;
+            if(Button(972,646,262,27,retryHeadline?"重发头条命令（幂等）":"重发出牌命令（幂等）"))
+            {if(retryHeadline)RetryHeadline();else RetryCard();}
             GUI.enabled=true;
         }
         async void StartCardPractice()

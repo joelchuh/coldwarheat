@@ -7,6 +7,25 @@ namespace ColdWarStruggle.Presentation
 {
     public sealed partial class DemoController
     {
+        public bool CanSelectHandCard(CardId card)
+        {
+            var v=ReadView();if(v.Practice==null || !v.OwnHand.Contains(card.Value))return false;
+            var selection=v.Headline?.Selection;
+            return selection==null || (selection.CanChoose && selection.Candidates.Contains(card));
+        }
+        public string NextTurnButtonText=>ReadView().Practice?.HeadlineEnabled==true?"下一回合（进入头条）":"下一回合（跳过头条）";
+        public string PracticePhaseText
+        {
+            get
+            {
+                var v=ReadView();var p=v.Practice;if(p==null)return "独立练习";
+                if(p.Winner.HasValue)return v.Headline?.Status==PublicHeadlineStatus.Terminal?"头条终局":"对局终局";
+                if(v.Headline?.Status==PublicHeadlineStatus.Collecting)return "头条选择 · 双方分别锁定";
+                if(v.Headline!=null && v.Headline.Status!=PublicHeadlineStatus.Completed)return "头条结算";
+                if(p.Stage==ActionPracticeStage.Complete)return p.TurnEnd!=null?"回合末审核完成":"本回合行动结束";
+                return (p.Actor==PlayerSide.US?"美国":"苏联")+$" 行动 {p.Round}/{p.RoundLimit}";
+            }
+        }
         HeadlineCommand lastHeadlineCommand;
         PlayerSide lastHeadlineSide;
         public HeadlineCommandResult LastHeadlineResult { get; private set; }

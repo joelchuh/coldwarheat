@@ -3,7 +3,7 @@
   "id": "module.headline-playtest",
   "kind": "module",
   "status": "implemented-subset",
-  "description": "头条第15场景、过滤显示模型与命令控制器已实现：保密/观察分离、锁定/等待/取消和幂等重发；UI与构建接线待Task3。",
+  "description": "独立头条试玩：第15场景、双边保密锁定/显式观察、顺序/取消/等待显示、地图选择与行动衔接；Editor和播放器共享数据。有限事件范围，最终计分仍待接。",
   "entrypoints": [
     {
       "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.Headlines.cs",
@@ -24,13 +24,25 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/HeadlineSelectionView.cs",
       "symbol": "WaitingForOpponentFirst"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Headlines.cs",
+      "symbol": "DrawHeadlineControls"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Headlines.cs",
+      "symbol": "CanSelectHandCard"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "symbol": "BuildHeadlinesPlaytest"
     }
   ],
   "inputs": [
     "共享头条/叛逃者参数和独立fixture"
   ],
   "outputs": [
-    "保留原场景的新DemoCatalog；新Host在部署后进入CollectingHeadline"
+    "新DemoCatalog和共享权威Host；过滤头条显示；独立HeadlinesPlaytest构建入口"
   ],
   "dependencies": [
     "module.headline-session",
@@ -43,10 +55,11 @@
     "源quick-start已有TurnEnd/NextTurn，绑定目录一致"
   ],
   "side_effects": [
-    "纯组装；尚未接Bootstrap/旧播放器"
+    "界面经固定身份命令提交；构建刷新生成载荷并写独立Builds/HeadlinesPlaytest"
   ],
   "stop_conditions": [
-    "重复/坏数据/错误源/缺少能力拒绝"
+    "重复/坏数据/错误源/缺少能力拒绝",
+    "无已实现候选/未接规则组合明确停止，禁止虚构效果"
   ],
   "rule_sources": [
     {
@@ -57,15 +70,23 @@
   "tests": [
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineDemoCatalogTests.cs",
-      "status": "managed-passed-unity-pending"
+      "status": "unity-passed"
     },
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlinePanelFrameTests.cs",
-      "status": "managed-passed-unity-pending"
+      "status": "unity-passed"
     },
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineDemoControllerTests.cs",
-      "status": "managed-passed-unity-pending"
+      "status": "unity-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlinePlaytestEntryTests.cs",
+      "status": "unity-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DemoBuildTests.cs",
+      "status": "unity-passed"
     }
   ],
   "documentation": "Docs/Wiki/headline-playtest.md",

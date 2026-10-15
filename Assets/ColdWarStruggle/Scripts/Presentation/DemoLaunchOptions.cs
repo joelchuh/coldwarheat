@@ -51,6 +51,7 @@ namespace ColdWarStruggle.Presentation
             var choices=args.Where(a=>a!=null && a.StartsWith(prefix,StringComparison.Ordinal)).ToArray();
             if(choices.Length==0)
             {
+                for(int i=0;i<knownIds.Count;i++)if(knownIds[i]=="demo.practice.headlines")return i;
                 for(int i=0;i<knownIds.Count;i++)if(knownIds[i]=="demo.practice.quick_start")return i;
                 for(int i=0;i<knownIds.Count;i++)if(knownIds[i]=="demo.setup.initial_deal")return i;
                 return 0;

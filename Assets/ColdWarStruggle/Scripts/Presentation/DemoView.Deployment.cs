@@ -11,9 +11,9 @@ namespace ColdWarStruggle.Presentation
         {
             if(view.Deployment.Complete && view.Practice!=null)
             {
-                Text(972,374,262,105,"部署完成。现在可进入行动试玩，练习真实手牌、影响力和太空。\n本入口明确跳过头条。",small);
-                if(Button(972,489,262,53,"苏联开始行动试玩\n（跳过头条）"))StartCardPractice();
-                Text(972,556,262,73,"当前未接完整事件/计分/回合末；对手事件用于 OPS 的路径暂时禁止。",small);
+                Text(972,374,262,105,view.Practice.HeadlineEnabled?"部署完成。双方分别选择并锁定头条，公开结算后进入行动轮。":"部署完成。可进入行动试玩，本入口明确跳过头条。",small);
+                if(Button(972,489,262,53,view.Practice.HeadlineEnabled?"开始头条选择":"苏联开始行动试玩\n（跳过头条）"))StartCardPractice();
+                Text(972,556,262,73,"当前只支持已接入的事件；特殊期末能力和最终计分待接。",small);
                 return;
             }
             var phase=view.Deployment;var q=controller.DeploymentTargets();var draft=controller.DeploymentDraft;

@@ -35,7 +35,8 @@ namespace ColdWarStruggle.Bootstrap
                     .WithPracticeChina(Read(root,"Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json"),Read(root,"Docs/Contracts/persistent-effects-batch1.schema.json"))
                     .WithPracticeTurnEnd()
                     .WithPracticeNextTurn()
-                    .WithQuickStartScenario(Read(root,"Data/Demo/quick-start-scenario.json"));
+                    .WithQuickStartScenario(Read(root,"Data/Demo/quick-start-scenario.json"))
+                    .WithHeadlineScenario(Read(root,"Data/Demo/headline-scenario.json"),Read(root,"Data/Rulesets/deluxe-2015/turn-flow.json"),Read(root,"Data/Cards/deluxe-2015/defectors.parameters.json"),Read(root,"Docs/Contracts/defectors.schema.json"));
                 var displayNames=CatalogNamesLoader.Load(Read(root,"Data/Localization/zh-CN.catalog-names.json"),"zh-CN",catalog.Names.Keys);
                 var worldAssets=WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
 #else
@@ -57,7 +58,8 @@ namespace ColdWarStruggle.Bootstrap
                     .WithPracticeChina(Read(root,"persistent-effects-batch1.parameters.json"),Read(root,"persistent-effects-batch1.schema.json"))
                     .WithPracticeTurnEnd()
                     .WithPracticeNextTurn()
-                    .WithQuickStartScenario(Read(root,"quick-start-scenario.json"));
+                    .WithQuickStartScenario(Read(root,"quick-start-scenario.json"))
+                    .WithHeadlineScenario(Read(root,"headline-scenario.json"),Read(root,"turn-flow.json"),Read(root,"defectors.parameters.json"),Read(root,"defectors.schema.json"));
                 var displayNames=CatalogNamesLoader.Load(Read(root,"names.zh-CN.json"),"zh-CN",catalog.Names.Keys);
                 var worldAssets=WorldMapAssets.Load(Read(root,"world-layout.json"),Read(root,"world-land.json"),catalog.Map);
 #endif

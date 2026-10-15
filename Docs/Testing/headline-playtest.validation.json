@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "description": "独立头条试玩分批证据，托管不替代原生/构建/UI。",
-  "status": "task2-managed-passed",
+  "status": "source-native-passed-review-pending",
   "baseline_commit": "d0844da6b8637c0175cc3b6cdd334ec25644a848",
   "task1": {
     "new_tests": 17,
@@ -27,10 +27,50 @@
     ]
   },
   "unity": {
-    "status": "running-headline-presentation-native",
-    "tests_executed": false
+    "status": "passed",
+    "tests_executed": true,
+    "passed": 2319,
+    "failed": 0,
+    "evidence": [
+      {
+        "run_id": "headline-presentation-native",
+        "summary": "TestResults/UnityRuns/headline-presentation-native/summary.json",
+        "xml": "TestResults/UnityRuns/headline-presentation-native/results.xml",
+        "sha256": "676921e19279ff0c585eab002e2efa241695f915e495970916cfe5f810934d49",
+        "passed": 2305,
+        "failed": 0,
+        "status": "passed"
+      },
+      {
+        "run_id": "headline-ui-red",
+        "summary": "TestResults/UnityRuns/headline-ui-red/summary.json",
+        "xml": "TestResults/UnityRuns/headline-ui-red/results.xml",
+        "sha256": "94430e88cdf1be55835b6c4d228a2c408f1211e6c0231169ff9ba049921a7efc",
+        "passed": 2306,
+        "failed": 13,
+        "status": "failed"
+      },
+      {
+        "run_id": "headline-ui-green",
+        "summary": "TestResults/UnityRuns/headline-ui-green/summary.json",
+        "xml": "TestResults/UnityRuns/headline-ui-green/results.xml",
+        "sha256": "9413c0aa80a79a6ad9104a62621ff2436c48d59b3034b360ed61ac797cd6fb07",
+        "passed": 2319,
+        "failed": 0,
+        "status": "passed"
+      },
+      {
+        "run_id": "headline-ui-final",
+        "summary": "TestResults/UnityRuns/headline-ui-final/summary.json",
+        "xml": "TestResults/UnityRuns/headline-ui-final/results.xml",
+        "sha256": "6c9683653829a8514c8fe7ac76c73b0e14c3b9b10840ee217716d0184bfdb69b",
+        "passed": 2319,
+        "failed": 0,
+        "status": "passed"
+      }
+    ]
   },
-  "native_cases_excluded": 160,
+  "native_cases_excluded": 0,
   "build": "not-run",
   "review": {
     "status": "pending-whole-batch"
@@ -69,5 +109,101 @@
         "failed": 0
       }
     ]
-  }
+  },
+  "task3": {
+    "new_tests": 14,
+    "red_new_passed": 1,
+    "red_new_failed": 13,
+    "note": "Explicit old entry behavior already passed; final native suite includes all new tests."
+  },
+  "source_hashes": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/CardActionContracts.cs",
+      "sha256": "1c94e8b7a52f49c4b4819fa5409a9abfdaf8c0ebe0920cd766dabb25ba929b16"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/HeadlineSelectionView.cs",
+      "sha256": "4f9ca032ef9896aa79b4b6c841bf4eac4bd8f0c3be0f97c69e8c38ebfdcaafc6"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Bootstrap/DemoBootstrap.cs",
+      "sha256": "aff1dede6a2bc7f516aed40aa36fbbc7c8dad568aabd2308c0394a0861407342"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "sha256": "7edfd58ea6d472a8dac1a107ed33ab3dd666ad23b633569e02566d0db61506d7"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.Headlines.cs",
+      "sha256": "2a5dea2902fc7de88f604f02486133be6e7dda90a0e985e6b4c4f67fc7cd2b7f"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Cards.cs",
+      "sha256": "7985b72c57179c8dfb6caf864d8c6c3bef3b4bddf860d324629e3afbf062b49d"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Headlines.cs",
+      "sha256": "47390a09a5a08efc845ad0d7a4e64710b69901757c7f273ed6c93178ae0572c9"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.cs",
+      "sha256": "38e8036a853db05a49ab805bedfcacb7453982ea1ac8c2a8ee75b8866f8c5a21"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoLaunchOptions.cs",
+      "sha256": "263f9324d4ba2c5a59bbb760f288e52a0cffafadc1e7f62cc4731fbc7e20ad45"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Actions.cs",
+      "sha256": "6d9c559b5c83807efea48d6fd320eec0f8223a200988767cb0fc8a6652dcb778"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Cards.cs",
+      "sha256": "43764b4a8402d20f98c2f7ce053db909e364fbe6c407d75189514368bc32e97b"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.China.cs",
+      "sha256": "55168ad5f52ec874d3c635104dbad3d41ea7f3e5f34c0b50acbf7a261ab1040b"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Deployment.cs",
+      "sha256": "79b7bf1cb54b5209563265ffda30afd6cb238d465a2c3cad37ad9283b1df9cb2"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Headlines.cs",
+      "sha256": "2cba7fc15929758600747d3f7d9aefc1aae0277072ae2e016a056d4c0836ded7"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.TurnEnd.cs",
+      "sha256": "79d17b1543cf5dcb132fec90c85cd2223bc843b2b80e2663ba609d3726ef5892"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.cs",
+      "sha256": "f20b0b104116843784d3cdd7e7b795a12e5292a830ff5bb754ce50d5e19b82ee"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/HeadlinePanelFrame.cs",
+      "sha256": "2d645c82ae17bafd304f990e1af4f787319a48e150680cadbb7d67958dfa9288"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DemoBuildTests.cs",
+      "sha256": "74f4bf196e85795dfddbf28864aa906d083488faa2cd4d9645e0ded73694515a"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineDemoCatalogTests.cs",
+      "sha256": "4b352f9636290021048f8f12546df128d8534b98972d14c54d5e9c8f3492ded1"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineDemoControllerTests.cs",
+      "sha256": "90cb594926a0b7d8d30e71fdf204da13fb50cd4570cc692917319ba44cb2e6c6"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlinePanelFrameTests.cs",
+      "sha256": "94d0e0d641e662e460ba1b83f412b031060118c0a2788112a8601b212a22062c"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlinePlaytestEntryTests.cs",
+      "sha256": "bb02c3d7fd3a129f6a49541751b995038983b9f72717210975231dc9c80d89a6"
+    }
+  ]
 }

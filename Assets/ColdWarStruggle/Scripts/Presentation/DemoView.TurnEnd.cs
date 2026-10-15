@@ -11,7 +11,7 @@ namespace ColdWarStruggle.Presentation
             if(view.Practice.NextTurnEnabled && !view.Practice.Winner.HasValue)
             {
                 GUI.enabled=view.Practice.NextTurnAvailable;
-                if(Button(972,584,262,32,"下一回合（跳过头条）"))BeginNextTurn();
+                if(Button(972,584,262,32,controller.NextTurnButtonText))BeginNextTurn();
                 GUI.enabled=true;
             }
             if(controller.LastCardResult?.Accepted==false)Text(972,618,262,25,ErrorText(controller.LastCardResult.Error),small);
