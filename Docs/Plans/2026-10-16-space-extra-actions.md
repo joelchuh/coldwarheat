@@ -16,9 +16,9 @@
 Files: Core/Rules/ActionRoundProgress.cs；Tests/EditMode/ActionRoundProgressTests.cs；Docs/Wiki/space-extra-actions.md、Descriptors/space-extra-actions.module.json。
 Interfaces: 按Spec的Create、CompleteRoot、DeclineRemaining、CanBegin、RemainingAllowance；状态从零开始且不可变。
 
-- [ ] 写可编译行为测试与最小stub，RunId extra-rounds-red，验证失败是行为而非编译。
-- [ ] 实现正常交替及可选额度调度；测试双方6/7/8总额、早期两个额外、晚期一个、获得/失去资格、错误身份/重复/跨定义、未完成根不变；RunId extra-rounds-green。
-- [ ] 同步Wiki/JSON/目录和真实验证记录，metadata/diff通过后提交。
+- [x] 写可编译行为测试与最小stub，RunId extra-rounds-red，验证失败是行为而非编译。
+- [x] 实现正常交替及可选额度调度；测试双方6/7/8总额、早期两个额外、晚期一个、获得/失去资格、错误身份/重复/跨定义、未完成根不变；RunId extra-rounds-green。
+- [x] 同步Wiki/JSON/目录和真实验证记录，metadata/diff通过后提交。
 
 ## Task 2: 真实根行动与宿主
 

@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "id": "module.space-extra-actions",
+  "kind": "module",
+  "description": "独立记录双方根行动次数，普通交替后按共享太空能力提供可选总额度；明确放弃不消耗行动。真实出牌接线进行中。",
+  "status": "implemented-foundation",
+  "documentation": "Docs/Wiki/space-extra-actions.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionRoundProgress.cs",
+      "symbol": "ActionRoundProgress"
+    }
+  ],
+  "inputs": [
+    "同回合GameTurnContext、共享SpaceRaceDefinition与最新轨道",
+    "当前根完成或未开始的可选名额放弃"
+  ],
+  "outputs": [
+    "不可变每方计数、当前方/轮、可选/完成状态"
+  ],
+  "dependencies": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAbilityRules.cs",
+      "relation": "动态总额度来源"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/State/TurnCalendar.cs",
+      "relation": "时代普通次数来源"
+    }
+  ],
+  "data_dependencies": [
+    "rules.deluxe2015.space-race"
+  ],
+  "preconditions": [
+    "协调器只对合法开始并完成的根调用CompleteRoot；头条和子步骤不计次"
+  ],
+  "side_effects": [
+    "返回新进度，不改轨道、卡牌、随机源或旧对象"
+  ],
+  "stop_conditions": [
+    "跨Space定义、无效身份、错误当前方、对普通名额放弃抛异常"
+  ],
+  "rule_sources": [
+    {
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "sections": [
+        "4.5D",
+        "6.4.4"
+      ],
+      "checked_on": "2026-10-16"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/ActionRoundProgressTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "open_items": [
+    "Task2真实根行动/China/结束接线",
+    "Task3人工场景/界面/Player"
+  ],
+  "verification": {
+    "report": "Docs/Testing/space-extra-actions.validation.json",
+    "native_validation": "2528/2528; extra-rounds-green"
+  }
+}

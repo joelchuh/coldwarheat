@@ -47,7 +47,7 @@ namespace ColdWarStruggle.Tests
             var c=Controller(SpaceEndTurnDiscardTests.Assessed(PlayerSide.USSR,10),PlayerSide.USSR);
             Assert.That(c.FinalScoringPrompt,Does.Contain("太空").And.Contain("选择"));Assert.That(c.ReadView().Practice.FinalScoringAvailable,Is.False);
             c.SelectCard(SpaceEndTurnDiscardTests.Held);if(discard)await c.DiscardSelectedHeldCardAsync();else await c.KeepHeldCardsAsync();
-            Assert.That(c.ReadView().Practice.FinalScoringAvailable,Is.True);Assert.That(c.FinalScoringPrompt,Does.Contain("六地区"));Assert.That((await c.CompleteFinalScoringAsync()).Accepted,Is.True);
+            Assert.That(c.ReadView().Practice.FinalScoringAvailable,Is.True);Assert.That(c.FinalScoringPrompt,Does.Contain("最终计分"));Assert.That((await c.CompleteFinalScoringAsync()).Accepted,Is.True);
             Assert.That(c.CanSelectHandCard(SpaceEndTurnDiscardTests.OtherHeld),Is.False);Assert.That(c.CanSelectChinaCard,Is.False);
         }
         [Test] public void Looking_at_map_does_not_change_pending_candidate_or_version()
