@@ -152,9 +152,10 @@ namespace ColdWarStruggle.Presentation
             DrawEmptyHandChoice(view);
             Text(972,578,262,65,message,small);
             var retryHeadline=!controller.CanRetryCard && controller.CanRetryHeadline;
-            GUI.enabled=controller.CanRetryCard || retryHeadline;
-            if(Button(972,646,262,27,retryHeadline?"重发头条命令（幂等）":"重发出牌命令（幂等）"))
-            {if(retryHeadline)RetryHeadline();else RetryCard();}
+            var retryEvent=!controller.CanRetryCard && !retryHeadline && controller.CanRetryEvent;
+            GUI.enabled=controller.CanRetryCard || retryHeadline || retryEvent;
+            if(Button(972,646,262,27,retryHeadline?"重发头条命令（幂等）":retryEvent?"重发事件命令（幂等）":"重发出牌命令（幂等）"))
+            {if(retryHeadline)RetryHeadline();else if(retryEvent)RetryEvent();else RetryCard();}
             GUI.enabled=true;
         }
         async void StartCardPractice()

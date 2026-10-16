@@ -22,6 +22,6 @@ flowchart LR
  G -->|否| I[历史提示/当前地图保持]
 ```
 
-只处理当前出牌回执的过期提示；不等于实现全局日志、存档或联网重连。测试覆盖真实独立红色政权完成后重发与待选择时重发，以及列表取消、重新开始、非法索引。自动测试、构建及鼠标验证见[验证记录](../Testing/demo-navigation-feedback.validation.json)。
+五年计划批次补入 `DemoController.EventResultHistoryMessage`，事件选择旧回执也会标注历史版本；无出牌/头条重发命令时，行动面板提供原事件命令重发入口。仍不等于实现全局日志、存档或联网重连，扩展证据见[五年计划验证报告](../Testing/five-year-plan-play.validation.json)。测试覆盖真实独立红色政权完成后重发与待选择时重发，以及列表取消、重新开始、非法索引。自动测试、构建及鼠标验证见[验证记录](../Testing/demo-navigation-feedback.validation.json)。
 
 [返回索引](index.md)
