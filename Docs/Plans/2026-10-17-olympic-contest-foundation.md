@@ -58,6 +58,6 @@ var change=DefconService.PlanChange(state.Defcon,DefconChangeKind.DegradeOne,roo
 var decision=change.NuclearWar?VictoryService.Evaluate(state.Victory,new NuclearWarEvidence(resolutionId,definition.EffectId,state.VpForUS,change)):live;
 ```
 - [x] 跑完整原生GREEN；同步Docs/Descriptors/olympic-contest-foundation.module.json、Wiki、Worklogs、Testing报告，注册目录；更新原奥运会数据描述中实现范围，不冒称完整卡牌已接。
-- [ ] 元数据与diff检查通过、源码提交后按executing-plans进行一次fresh只读整批审查，修必要项；推送feat/olympic-contest-foundation并核验远端SHA。Player沿用SpaceEventPlaytest。
+- [x] 元数据与diff检查通过、源码提交后按executing-plans进行一次fresh只读整批审查，修必要项；推送feat/olympic-contest-foundation并核验远端SHA。Player沿用SpaceEventPlaytest。
 
 原生命令：`Tools/Scripts/run-unity-editmode.ps1 -ProjectRoot E:/TwilightStruggle -UnityEditor E:/unity6.6/6000.6.0f1/Editor/Unity.exe -RunId <本步骤唯一ID> -TimeoutSeconds 600`。每轮结果如实保留，不用托管替代原生证据。计划自审已核对依赖、原子边界及未实现项；实现前确认NuclearWarEvidence构造签名。

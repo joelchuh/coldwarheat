@@ -1,7 +1,7 @@
 # 奥运会比赛与抵制基础
 
 > description: 按正式D6/卡牌参数计算比赛，独立fork双骰原子计划与抵制核战判断；供可信事件编排复用。
-> 当前：3299原生全通过（新增86），独立整批审查进行中。奥运会尚未进入玩家出牌流程。
+> 当前：3299原生全通过（新增86），独立整批审查通过（0 Critical/Important/Minor）。奥运会尚未进入玩家出牌流程。
 
 先读[模块JSON](../Descriptors/olympic-contest-foundation.module.json)，再定位所需函数。完整分支、来源与恢复设计在[奥运会知识](olympic-games.md)，本批[设计](../Architecture/olympic-contest-foundation.md)划定实际实现范围。
 

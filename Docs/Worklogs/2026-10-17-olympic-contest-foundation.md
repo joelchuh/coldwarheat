@@ -11,3 +11,5 @@ Ruling: 本批只落实独立规则基础，不实施旧完整设计中的摘要
 Task1 GREEN：3255/3255，零失败/跳过；共享D6严格加载、卡牌绑定、72骰组合与异常输入均通过。后续单对骰和抵制服务尚待Task2。
 
 Task2 RED：3299总数，旧3255通过、新44均NotImplemented失败、零跳过。实现后GREEN3299/3299、零跳过。每对独立fork、逐次游标检查、双方可能奖励预检、平手继续标志与抵制先DEFCON/核战后Offer已验证。测试中六种非法前提的异常断言收紧为ArgumentException/InvalidOperationException，避免泛Exception通过。
+
+独立只读整批审查 b4f9217..76dc60e：0 Critical、0 Important、0 Minor；4份XML、9份源码/测试及4份输入SHA全部一致，无弃置判断项。未重跑Unity或Player。正式范围仍是基础服务；下一批接来源/选择与玩家流程。
