@@ -18,9 +18,10 @@ namespace ColdWarStruggle.Infrastructure
                 ContractJson.Validate(root,contract);
                 if((int)root["schema_version"]!=1 || (string)root["dataset_id"]!="effects.deluxe2015.war_events_batch1" || (string)root["content_version"]!="0.1.0" || (string)root["ruleset_id"]!="ruleset.deluxe2015" || (string)root["scope"]!="release-candidate")throw new ArgumentException("Unsupported early-war profile.");
                 var expected=new Dictionary<string,string>(StringComparer.Ordinal){{"C-DELUXE-EN","https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf"},{"R2015","https://www.gmtgames.com/nnts/TS_Rules-2015.pdf"},{"F2010","https://www.gmtgames.com/nnts/FAQv5.pdf"},{"PROJECT-WAR1",null}};
+                var editions=new Dictionary<string,string>(StringComparer.Ordinal){{"C-DELUXE-EN","English Deluxe card images"},{"R2015","Deluxe rules 2015"},{"F2010","FAQ v5 2010, compatible Deluxe clarifications only"},{"PROJECT-WAR1","WAR1-ENGINEERING-01, 2026-10-05"}};
                 var sources=new HashSet<string>(StringComparer.Ordinal);
                 foreach(var s in root["source_catalog"])
-                    if(!sources.Add((string)s["id"]) || !expected.TryGetValue((string)s["id"],out var url) || (string)s["url"]!=url)throw new ArgumentException("Unknown, duplicate or mismatched war source.");
+                    if(!sources.Add((string)s["id"]) || !expected.TryGetValue((string)s["id"],out var url) || (string)s["url"]!=url || (string)s["edition"]!=editions[(string)s["id"]])throw new ArgumentException("Unknown, duplicate or mismatched war source.");
                 if(sources.Count!=expected.Count)throw new ArgumentException("Incomplete war sources.");
                 var p=root["war_policy"];
                 if((int)p["die_sides"]!=6 || (int)p["minimum_winning_result"]!=4 || (int)p["opponent_controlled_neighbor_penalty"]!=1 || !(bool)p["include_direct_superpower_neighbors"]

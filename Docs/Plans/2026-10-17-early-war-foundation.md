@@ -42,7 +42,7 @@
 
 ## 收尾
 
-- [ ] fresh-context只读整分支审查，修正Critical/Important；需要修补则RED→GREEN。
+- [x] fresh-context只读整分支审查，修正Critical/Important；需要修补则RED→GREEN。
 - [ ] 保存真实验证、来源与限制；推送feat/early-war-foundation并核对SHA。
 - [ ] 继续可玩接线设计，不停留于基础服务。
 

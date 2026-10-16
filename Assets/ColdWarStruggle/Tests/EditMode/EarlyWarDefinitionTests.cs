@@ -47,6 +47,11 @@ namespace ColdWarStruggle.Tests
             }
             Assert.That(()=>Load(r.ToString()),Throws.InstanceOf<ArgumentException>());
         }
+        [TestCase(0)][TestCase(1)][TestCase(2)][TestCase(3)] public void Source_edition_must_match_the_bound_profile(int index)
+        {
+            var r=JObject.Parse(Data());r["source_catalog"][index]["edition"]="First edition rules 2005";
+            Assert.That(()=>Load(r.ToString()),Throws.InstanceOf<ArgumentException>());
+        }
         [TestCase("die_sides")][TestCase("minimum_winning_result")][TestCase("opponent_controlled_neighbor_penalty")][TestCase("victory_vp")][TestCase("include_direct_superpower_neighbors")][TestCase("ops_modifiers_apply")][TestCase("capture")]
         public void Unsupported_policy_is_rejected_even_with_relaxed_schema(string field)
         {

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "validation.early-war-foundation",
   "description": "三牌参数/计算及单骰基础的原生验证记录",
-  "status": "native-passed-review-pending",
+  "status": "passed-foundation",
   "runs": [
     {
       "status": "failed",
@@ -83,6 +83,46 @@
       "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\early-war-service-green",
       "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\early-war-service-green\\results.xml",
       "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\early-war-service-green\\editor.log"
+    },
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 2989,
+      "passed": 2985,
+      "failed": 4,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "72c60659ad0443673db72ead8e7b28829b0ab23c89c6013c4e9ddac895a374aa",
+      "schema_version": 1,
+      "run_id": "early-war-source-edition-red",
+      "duration_ms": 114323,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\early-war-source-edition-red",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\early-war-source-edition-red\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\early-war-source-edition-red\\editor.log"
+    },
+    {
+      "status": "passed",
+      "error_code": null,
+      "total": 2989,
+      "passed": 2989,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "d5ee704c859e827943c963a1e9e499b400a232d92237d7aa7019e8016f3a9a08",
+      "schema_version": 1,
+      "run_id": "early-war-source-edition-green",
+      "duration_ms": 110315,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\early-war-source-edition-green",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\early-war-source-edition-green\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\early-war-source-edition-green\\editor.log"
     }
   ],
   "limitations": [
@@ -91,5 +131,14 @@
     "本批未重建Player，最新可运行仍为头条反馈修补版"
   ],
   "red_analysis": "36项新增全部因NotImplementedException失败，2918既有测试通过。",
-  "service_red_analysis": "31项新增失败：30项NotImplementedException，1项缺少完整国家/同地图校验；2954既有全部通过。"
+  "service_red_analysis": "31项新增失败：30项NotImplementedException，1项缺少完整国家/同地图校验；2954既有全部通过。",
+  "review": {
+    "base": "cc309fc2ca6580a05748d4b5290c8ba6b76787a6",
+    "head": "ecd126f7e32f8b4f667bfe05abe78272f9ecd67b",
+    "critical": 0,
+    "important": 0,
+    "minor": 1,
+    "resolution": "聚焦只读复核通过，剩余Critical/Important/Minor均0；四来源edition精确校验与原生RED/GREEN证据一致。"
+  },
+  "edition_red_analysis": "四个来源版本标签负例均因预期ArgumentException但未抛出而失败；2985既有通过。"
 }
