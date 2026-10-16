@@ -49,7 +49,7 @@ namespace ColdWarStruggle.Presentation
             eventCoupGame=null;eventCoupExecution=null;eventCoupMessage=null;
             if(result.Coup==null || result.Event?.Stage!=InfluenceEventStage.AwaitingChoice)return;
             var c=result.Coup;eventCoupGame=result.View.GameId;eventCoupExecution=result.View.Event.ExecutionId;
-            eventCoupMessage=$"政变骰 {c.Roll} / OPS {c.Strength} / 差额 {c.Margin}\n影响力 −{c.Removed}/+{c.Added} · 军事 +{c.MilitaryCredit}\n随后事件：等待受益方选择。";
+            eventCoupMessage=$"政变骰 {c.Roll} / OPS {c.Strength} / 差额 {c.Margin}\n影响力 −{c.Removed}/+{c.Added} · 军事 +{c.MilitaryCredit}\n"+(result.FiveYearPlan==null?"随后事件：等待受益方选择。":"五年计划：等待美国选择。");
         }
         public bool CanRetryCard=>lastCardCommand!=null && lastCardSide==SelectedSide;
         public CardActionOptions CardOptions()=>Session.QueryCardActions();

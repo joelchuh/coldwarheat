@@ -115,7 +115,8 @@ namespace ColdWarStruggle.Presentation
             }
             var result=controller.LastCardResult;
             string message="";
-            if(result?.Blockade!=null)message=BlockadeResultMessage(result.Blockade);
+            if(result?.FiveYearPlan!=null)message=FiveYearPlanResultMessage(result.FiveYearPlan)+FiveYearPlanChildDetail(result);
+            else if(result?.Blockade!=null)message=BlockadeResultMessage(result.Blockade);
             else if(result?.Realignment!=null)
             {
                 var r=result.Realignment;
@@ -141,10 +142,12 @@ namespace ColdWarStruggle.Presentation
             }
             else if(result!=null)message=!result.Accepted?ErrorText(result.Error):result.Space!=null
                 ?$"太空骰 {result.Space.Roll} · {(result.Space.Success?"成功":"失败")}，轨道 {result.Space.From} → {result.Space.To}\nVP 变化 {result.Space.VpForUS:+0;-0;0}；{(result.View.Practice.Winner.HasValue?"终局停止收尾":"行动结束，请查看牌区")}。":"行动命令已接受。";
-            if(result?.Coup!=null && (result.Event!=null || result.DefconVpEvent!=null || result.ActivatedOpsEffect!=null || result.Blockade!=null))message=CombinedCoupMessage(result);
+            if(result?.Coup!=null && (result.Event!=null || result.DefconVpEvent!=null || result.ActivatedOpsEffect!=null || result.Blockade!=null || result.FiveYearPlan!=null))message=CombinedCoupMessage(result);
             message=controller.CardResultHistoryMessage??message;
             if(controller.LastResult!=null)message=controller.LastResult.Accepted?"投放成功，费用："+string.Join(" + ",controller.LastResult.Costs):ErrorText(controller.LastResult.Error);
             if(controller.LastEventResult!=null)message=controller.LastEventResult.Accepted?"事件选择完成 · 影响力变化 "+controller.LastEventResult.Changes.Count+" 项。":ErrorText(controller.LastEventResult.Error);
+            if(controller.LastEventResult?.FiveYearPlan!=null)message=FiveYearPlanResultMessage(controller.LastEventResult.FiveYearPlan);
+            message=controller.EventResultHistoryMessage??message;
             DrawExtraActionChoice(view);
             DrawEmptyHandChoice(view);
             Text(972,578,262,65,message,small);

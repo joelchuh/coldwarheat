@@ -11,6 +11,7 @@ namespace ColdWarStruggle.Presentation
         void DrawEventControls(PlayerViewSnapshot view)
         {
             var execution=view.Event;var query=controller.EventTargets();var draft=controller.EventDraft;
+            var parent=view.FiveYearPlan==null?"":"五年计划 → "+CardTitle(view.FiveYearPlan.SelectedCard.Value)+"\n";
             if(execution.Stage==InfluenceEventStage.Ready)
                 Text(972,374,262,62,"这是预设的公开事件练习。\n由 "+Side(execution.PhasingPlayer)+" 开始。",small);
             else if(execution.Stage==InfluenceEventStage.Resolved)
@@ -28,7 +29,7 @@ namespace ColdWarStruggle.Presentation
                 GUI.enabled=true;
             }
             else
-                Text(972,366,262,75,query.Error==RuleError.WrongActor?"请切换至 "+Side(execution.Owner)+" 选择目标。":$"草稿 {draft.Count} / {query.RequiredTargets} 国\n"+string.Join("、",draft.Select(Name)),small);
+                Text(972,366,262,75,parent+(query.Error==RuleError.WrongActor?"请切换至 "+Side(execution.Owner)+" 选择目标。":$"草稿 {draft.Count} / {query.RequiredTargets} 国\n"+string.Join("、",draft.Select(Name))),small);
 
             if(execution.Stage==InfluenceEventStage.Ready)
             {
@@ -55,6 +56,8 @@ namespace ColdWarStruggle.Presentation
                 :!result.Accepted?"未执行："+ErrorText(result.Error)
                 :result.ResolutionSequence.HasValue?"完成收据 · 变化 "+result.Changes.Count+" 项\n序号 "+result.ResolutionSequence.Value
                 :"选择请求已建立。请按左侧提示操作。";
+            if(result?.FiveYearPlan!=null)message=FiveYearPlanResultMessage(result.FiveYearPlan);
+            message=controller.EventResultHistoryMessage??message;
             var coupMessage=controller.EventPanelCoupMessage;
             Text(972,574,262,62,coupMessage??message,small);
             if(coupMessage!=null && result!=null && !result.Accepted)Text(972,638,262,32,message,small);

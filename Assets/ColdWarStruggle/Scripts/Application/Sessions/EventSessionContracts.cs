@@ -60,6 +60,7 @@ namespace ColdWarStruggle.Application
     }
     public sealed class EventCommandResult
     {
+        public PublicFiveYearPlanResult FiveYearPlan { get; }
         public RuleError Error { get; }
         public InfluenceEventError EffectError { get; }
         public bool Accepted=>Error==RuleError.None;
@@ -71,6 +72,9 @@ namespace ColdWarStruggle.Application
         internal EventCommandResult(RuleError error,PlayerViewSnapshot view,InfluenceEventTransition transition=null,IReadOnlyList<HeadlineResolutionStep> headlineSteps=null)
         {
             HeadlineSteps=Array.AsReadOnly((headlineSteps??Array.Empty<HeadlineResolutionStep>()).Select(step=>new PublicHeadlineStep(step)).ToArray());
+            // Only the first step belongs to this choice; later headlines have separate receipts.
+            var fiveYear=transition?.FiveYearPlanResult??headlineSteps?.FirstOrDefault()?.Result.FiveYearPlanResult;
+            FiveYearPlan=fiveYear==null?null:new PublicFiveYearPlanResult(fiveYear);
             Error=error;View=view;EffectError=transition?.EffectError??InfluenceEventError.None;
             Changes=Array.AsReadOnly(transition?.Changes.ToArray()??Array.Empty<InfluenceChanged>());
             DecisionRequestedSequence=transition?.DecisionRequestedSequence;ResolutionSequence=transition?.ResolutionSequence;

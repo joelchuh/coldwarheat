@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.five-year-plan-play",
   "kind": "module",
-  "description": "五年计划可玩续接：父根绑定、已支持US子事件与原子去向；直接根已通过2856项原生回归，对手/头条/会话/Demo待接。",
+  "description": "五年计划可玩续接：一次权威抽样、美国子事件、直接/对手OPS/头条返回；窄公开摘要与第24人工练习已接入，整批验证中。",
   "status": "implemented-subset",
   "documentation": "Docs/Wiki/five-year-plan-play.md",
   "entrypoints": [
@@ -17,6 +17,22 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/FiveYearPlanExecution.cs",
       "symbol": "FiveYearPlanExecution"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/FiveYearPlanContracts.cs",
+      "symbol": "PublicFiveYearPlanResult"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.OpponentOps.cs",
+      "symbol": "BeginOpponentEvent"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.FiveYearPlan.cs",
+      "symbol": "WithFiveYearPlanScenario"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.FiveYearPlan.cs",
+      "symbol": "FiveYearPlanResultMessage"
     }
   ],
   "inputs": [
@@ -31,13 +47,14 @@
     "module.opponent-ops-modes"
   ],
   "data_dependencies": [
-    "effects.deluxe2015.hand_events_batch1"
+    "effects.deluxe2015.hand_events_batch1",
+    "demo.five_year_plan_scenario"
   ],
   "preconditions": [
     "全US候选处理器已真实装配；只接当前纯影响力、DEFCON/VP和单回合OPS服务"
   ],
   "side_effects": [
-    "Core生成草稿，未完成会话接线；不提前公开隐藏Selection"
+    "权威Host原子发布草稿；公开摘要仅复制父牌、抽中牌、根责任方和结果"
   ],
   "stop_conditions": [
     "缺处理器、异目录/牌区/随机/根绑定、错误选择、数值溢出"
@@ -52,10 +69,22 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/FiveYearPlanPlayTests.cs",
       "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/FiveYearPlanFlowTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/FiveYearPlanSessionTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/FiveYearPlanScenarioTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "verification": {
-    "status": "in-progress",
+    "status": "native-passed-player-pending",
     "report": "Docs/Testing/five-year-plan-play.validation.json"
   }
 }

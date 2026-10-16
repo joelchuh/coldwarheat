@@ -1,9 +1,41 @@
 # 五年计划可玩续接
 
-> description: 父根与US子事件的权威返回点、一次抽样与终局截断；当前分批实现中。
+> description: 一次抽样、父根与美国子事件的返回点、窄公开摘要和第24人工练习；构建与真实UI验收以验证报告为准。
 
-先查[模块JSON](../Descriptors/five-year-plan-play.module.json)，再查[方案](../Architecture/five-year-plan-play.md)和[计划](../Plans/2026-10-17-five-year-plan-play.md)。基础选牌与正式装载见[基础模块](five-year-plan-foundation.md)。
+先查[模块JSON](../Descriptors/five-year-plan-play.module.json)，再按其中的符号读取代码。基础选牌算法及正式参数装载见[基础模块](five-year-plan-foundation.md)；本批不新增卡文解释。[方案](../Architecture/five-year-plan-play.md)、[实施计划](../Plans/2026-10-17-five-year-plan-play.md)、[验证报告](../Testing/five-year-plan-play.validation.json)分别说明边界、任务和实际证据。
 
-直接Event入口2856项原生回归已通过：FiveYearPlanExecution保留真实父根与已经接受的Selection，ActiveCard与Actor保持父根，子事件ID独立。纯影响力/DEFCON/单回合OPS复用既有服务；空手与非US/计分普通弃置，US事件等待选择或结算；正常先处理子牌再处理父牌，终局保留父子实体作审计。内部Selection含隐藏牌区，绝不能直接投影给玩家。
+## 运行路径
 
-尚未完成对手OPS入口、头条能力注册/摘要、会话公共摘要、构建与第24练习。此前封锁Player不包含本牌的新流程。实际阶段见[验证报告](../Testing/five-year-plan-play.validation.json)。
+```mermaid
+flowchart TD
+ A[真实出牌或头条入口] --> B[保留五年计划父根与原责任方]
+ B --> C[预检全部可能美国子事件处理器]
+ C --> D[权威抽样一次]
+ D --> E{路线}
+ E -->|空手或非美国牌| F[完成父事件]
+ E -->|美国事件| G[复用影响力 / DEFCON VP / 回合OPS服务]
+ G -->|等待选择| H[美国通过原会话提交选择]
+ H --> G
+ G -->|正常完成| I[先处置子牌，再返回父根]
+ I --> F
+ F --> J[直接行动 / 原OPS序列 / 头条下一项]
+ G -->|终局| K[停止后续步骤，保留父子实体供审计]
+```
+
+`FiveYearPlanExecution`保留真实父根与已接受的选择。`ActiveCard`与`Actor`仍是父牌和根责任方；子事件有独立执行ID，选择权为美国。子事件不创建新行动名额，也不给额外印刷OPS。正常完成依印刷星号处理子牌，再按直接、对手OPS或头条返回原流程；父五年计划进入弃牌。核战责任继承父根。后续收尾失败只丢弃本次草稿，不撤销之前已经接受的抽样命令。
+
+## 会话与界面
+
+`PublicFiveYearPlanResult`只复制父牌、抽中牌、根责任方与结果四个值。内部Selection含隐藏牌区与随机快照，不能传给玩家。等待快照可跨身份显示已抽中的牌，但只有美国会话可以选择目标。CardAction、EventCommand和HeadlineStep都保留对应摘要；政变后接事件仍有两份结果。
+
+重复父命令返回原抽样结果，重复选择返回原选择结果，不重复消耗随机数或推进名额。旧结果对应版本落后于当前局面时，界面显示“历史事件结果”。换身份清除未确认草稿；重置人工场景清除命令重试入口。
+
+## 第24练习
+
+数据入口：[场景描述](../../Data/Descriptors/five-year-plan-scenario.data.json)。苏联持五年计划与独立红色政权，原牌移入结算区后只有一个抽样候选，专门保证能稳定体验子事件选择；这不是自然发牌或随机分布演示。南斯拉夫美1苏3，选择后美方追平至3。可直接发动，也可用对手事件先行路线后返回原OPS。前23个练习保留；地图接口与规则核心无依赖。
+
+## 范围和验证
+
+已接子服务为当前登记的纯影响力、DEFCON/VP和回合OPS。马歇尔计划、北约、CIA等未装配美国处理器仍在抽样前返回不支持；不能据此声称完整牌库可玩或经过生产联网隐私审计。没有新增正式存档、任意层数事件解释器或美术资源。
+
+Core、流程、会话与场景的四组测试入口见模块JSON；测试报告保存每轮实际计数和XML摘要，包括编译失败及夹具修正。原生测试、构建、载荷一致性、真实鼠标与分支审查分别验收，不能相互替代。此前BlockadePlaytest不包含本牌新流程。

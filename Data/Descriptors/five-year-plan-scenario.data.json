@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "data.demo-five-year-plan-scenario",
+  "kind": "data",
+  "dataset_id": "demo.five_year_plan_scenario",
+  "status": "fixture",
+  "description": "五年计划第2回合人工局面：唯一抽样候选独立红色政权，稳定练习美国响应及原行动返回；不代表自然发牌。",
+  "entrypoints": [
+    {
+      "path": "Data/Demo/five-year-plan-scenario.json",
+      "symbol": "scenario"
+    }
+  ],
+  "inputs": [
+    "已配置最终计分源场景和共享印刷牌库"
+  ],
+  "outputs": [
+    "第24个五年计划子事件人工试玩"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "demo.final_scoring_scenario",
+    "cards.deluxe2015.definitions",
+    "effects.deluxe2015.hand_events_batch1"
+  ],
+  "preconditions": [
+    "明确人工fixture，不冒充自然对局历史"
+  ],
+  "side_effects": [
+    "新Host在内存中创建人工局面；不改变源场景"
+  ],
+  "stop_conditions": [
+    "未知字段、错误源/父牌、不支持的子事件、重复/跨时代牌、非合法目标或无可见变化"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/five-year-plan-play.md",
+      "scope": "人工试玩设计"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/FiveYearPlanScenarioTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/five-year-plan-play.md",
+  "verification": {
+    "status": "native-passed-player-pending",
+    "report": "Docs/Testing/five-year-plan-play.validation.json"
+  }
+}

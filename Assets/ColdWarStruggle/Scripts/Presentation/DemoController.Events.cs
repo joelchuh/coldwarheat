@@ -10,6 +10,15 @@ namespace ColdWarStruggle.Presentation
     public sealed partial class DemoController
     {
         public EventCommandResult LastEventResult { get; private set; }
+        public string EventResultHistoryMessage
+        {
+            get
+            {
+                var receipt=LastEventResult?.View;if(receipt==null)return null;var current=ReadView();
+                return receipt.GameId==current.GameId && receipt.Version==current.Version?null
+                    :$"历史事件结果（当时 v{receipt.Version}）\n当前 v{current.Version}；重发不会重复结算。";
+            }
+        }
         readonly List<CountryId> eventDraft=new List<CountryId>();
         EventCommandEnvelope lastEventCommand;
         PlayerSide lastEventSide;

@@ -44,7 +44,9 @@ namespace ColdWarStruggle.Bootstrap
                     .WithIndependentReds(Read(root,"Data/Cards/deluxe-2015/early-influence-batch3.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch3.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
                     .WithIndependentRedsScenario(Read(root,"Data/Demo/independent-reds-scenario.json"))
                     .WithBlockade(Read(root,"Data/Cards/deluxe-2015/hand-events-batch1.parameters.json"),Read(root,"Docs/Contracts/hand-events-batch1.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
-                    .WithBlockadeScenario(Read(root,"Data/Demo/blockade-scenario.json"));
+                    .WithBlockadeScenario(Read(root,"Data/Demo/blockade-scenario.json"))
+                    .WithFiveYearPlan(Read(root,"Data/Cards/deluxe-2015/hand-events-batch1.parameters.json"),Read(root,"Docs/Contracts/hand-events-batch1.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
+                    .WithFiveYearPlanScenario(Read(root,"Data/Demo/five-year-plan-scenario.json"));
                 var displayNames=CatalogNamesLoader.Load(Read(root,"Data/Localization/zh-CN.catalog-names.json"),"zh-CN",catalog.Names.Keys);
                 var worldAssets=WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
 #else
@@ -75,7 +77,9 @@ namespace ColdWarStruggle.Bootstrap
                     .WithIndependentReds(Read(root,"early-influence-batch3.parameters.json"),Read(root,"early-influence-batch3.schema.json"),Read(root,"cards.json"))
                     .WithIndependentRedsScenario(Read(root,"independent-reds-scenario.json"))
                     .WithBlockade(Read(root,"hand-events-batch1.parameters.json"),Read(root,"hand-events-batch1.schema.json"),Read(root,"cards.json"))
-                    .WithBlockadeScenario(Read(root,"blockade-scenario.json"));
+                    .WithBlockadeScenario(Read(root,"blockade-scenario.json"))
+                    .WithFiveYearPlan(Read(root,"hand-events-batch1.parameters.json"),Read(root,"hand-events-batch1.schema.json"),Read(root,"cards.json"))
+                    .WithFiveYearPlanScenario(Read(root,"five-year-plan-scenario.json"));
                 var displayNames=CatalogNamesLoader.Load(Read(root,"names.zh-CN.json"),"zh-CN",catalog.Names.Keys);
                 var worldAssets=WorldMapAssets.Load(Read(root,"world-layout.json"),Read(root,"world-land.json"),catalog.Map);
 #endif

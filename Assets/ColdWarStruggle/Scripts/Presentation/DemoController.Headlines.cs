@@ -23,6 +23,7 @@ namespace ColdWarStruggle.Presentation
                 if(p.FinalScoring!=null)return FinalScoringPanelFrame.Create(p.FinalScoring).Outcome;
                 if(v.SpaceDiscard?.Status==SpaceEndTurnDiscardStatus.Pending)return "太空弃牌 · "+(v.SpaceDiscard.Owner==PlayerSide.US?"美国":"苏联")+"选择";
                 if(p.Winner.HasValue)return v.Headline?.Status==PublicHeadlineStatus.Terminal?"头条终局":"对局终局";
+                if(v.FiveYearPlan?.Outcome==FiveYearPlanOutcome.AwaitingUsEvent)return "五年计划 · 等待美国选择";
                 if(v.Blockade!=null)return "封锁 · 等待"+(v.Blockade.Owner==PlayerSide.US?"美国":"苏联")+"回应";
                 if(v.Headline?.Status==PublicHeadlineStatus.Collecting)return "头条选择 · 双方分别锁定";
                 if(v.Headline!=null && v.Headline.Status!=PublicHeadlineStatus.Completed)return "头条结算";

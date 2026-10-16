@@ -17,3 +17,11 @@ Task2第一次GREEN 2872/2867/5失败，全部头条夹具SetupInProgress；原�
 有效头条RED five-year-headline-red：2872/2867/5，修复部署后均到达头条卡支持拒绝；恢复两处头条接线，运行最终流程GREEN。
 
 Task2 complete: five-year-flow-green2 2872/2872, zero skipped, exit0; XML c3a55f9676214267022d350b5f43f7078da7f87eff836af03cc029f80b67d3f0. Headline true RED verified UnsupportedCardAction after fixture correction. Task3 session/projection/scenario next.
+
+Task3 session RED 2888/2872/16: 15 missing public projection failures; stale-decision case additionally had incorrect expected StaleContext (existing API returns StaleDecision), will correct fixture after current GREEN exits. No rule API change. Public DTO contains four scalars only. Ruling: use a clearly artificial single-candidate lesson to reliably exercise US choice; multi-candidate randomness remains covered by Core tests, not inferred from this demo.
+
+Session GREEN 2888/2887/1 only the known fixture error; corrected StaleDecision. Demo RED first attempt compile-blocked by test reading internal TurnEndSetup; assert public Turn preservation instead, no visibility relaxation. True scenario RED2 follows.
+
+Demo RED2: 2908/2888/20; all session tests now pass; 19 scenario tests reach NotImplemented stub and one history message test detects null result. Implemented narrow four-scalar projection, strict fixture, definition preservation, UI parent/child feedback and historical event receipt notice. Player payload and Bootstrap now include 24th lesson; native GREEN running.
+
+Task3 native GREEN 2908/2908 zero skipped exit0 XMLcec18fcc772f8c3f2b3f64ca1bdcca5fdb2dd920bffa5d5cdb73cd6d994b83af. Metadata159/159/81/399/684/360 passed. Afterwards UI-only formatter preserves child DEFCON/VP and active OPS detail alongside parent summary; validate compilation with Player build, core unchanged. Whole-branch review and build/UI next.

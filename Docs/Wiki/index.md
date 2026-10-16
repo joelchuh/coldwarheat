@@ -152,7 +152,7 @@
 
 - [封锁手牌基础](blockade-hand-discard.md)：普通手牌有效OPS门槛、无事件弃置与严格定义装载；私有回应/UI待接。
 
-- [封锁对局接线](blockade-play.md)：权威私有等待、弃牌/清西德与原根/头条续接；Core通过，会话/UI在做。
+- [封锁对局接线](blockade-play.md)：权威私有等待、弃牌/清西德与原根/头条续接；2772项原生及独立Player鼠标验证，见报告。
 
 - [五年计划随机弃牌基础](five-year-plan-foundation.md)：权威内部选择/牌区交接，接线边界和真实验证状态。
 

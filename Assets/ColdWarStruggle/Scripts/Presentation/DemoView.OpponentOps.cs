@@ -34,6 +34,12 @@ namespace ColdWarStruggle.Presentation
         {
             var c=result.Coup;
             var message=$"政变骰 {c.Roll} / OPS {c.Strength} / 差额 {c.Margin}\n影响力 −{c.Removed}/+{c.Added} · 军事 +{c.MilitaryCredit}\n";
+            if(result.FiveYearPlan!=null)
+            {
+                var f=result.FiveYearPlan;var name=f.SelectedCard.HasValue?CardTitle(f.SelectedCard.Value):"无手牌";
+                var progress=f.Outcome==FiveYearPlanOutcome.AwaitingUsEvent?"等待美国":f.Outcome==FiveYearPlanOutcome.Discarded?"弃置":f.Outcome==FiveYearPlanOutcome.Interrupted?"终局":"完成";
+                return message+"五年计划 → "+name+" · "+progress+FiveYearPlanChildDetail(result);
+            }
             if(result.Blockade!=null)return message+(result.Blockade.Outcome==BlockadeOutcome.AwaitingChoice
                 ?"封锁：等待"+(result.Blockade.Owner==PlayerSide.US?"美国":"苏联")+"回应。"
                 :"封锁："+Name(result.Blockade.FallbackCountry)+(result.Blockade.Owner==PlayerSide.US?"美方":"苏方")+"影响力清零。");

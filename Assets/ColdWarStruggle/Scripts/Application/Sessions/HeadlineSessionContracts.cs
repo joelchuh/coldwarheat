@@ -35,6 +35,7 @@ namespace ColdWarStruggle.Application
     }
     public sealed class PublicHeadlineStep
     {
+        public PublicFiveYearPlanResult FiveYearPlan { get; }
         public PublicBlockadeResult Blockade { get; }
         public CardId Card { get; }
         public PlayerSide PlayedBy { get; }
@@ -47,7 +48,7 @@ namespace ColdWarStruggle.Application
         public PublicTurnOpsEffect ActivatedOpsEffect { get; }
         internal PublicHeadlineStep(HeadlineResolutionStep step)
         {
-            var r=step.Result;Card=step.Card;PlayedBy=step.PlayedBy;Terminal=r.NextState.Ended;
+            var r=step.Result;FiveYearPlan=r.FiveYearPlanResult==null?null:new PublicFiveYearPlanResult(r.FiveYearPlanResult);Card=step.Card;PlayedBy=step.PlayedBy;Terminal=r.NextState.Ended;
             Completion=r.NextState.Practice.Headline.CompletedRoots.SingleOrDefault(x=>x.Card.Equals(Card) && x.PlayedBy==PlayedBy);
             WaitingForChoice=r.NextState.InfluenceEvent?.Stage==InfluenceEventStage.AwaitingChoice || r.NextState.Practice.Blockade!=null;
             Blockade=r.BlockadeResult==null?null:new PublicBlockadeResult(r.BlockadeResult);

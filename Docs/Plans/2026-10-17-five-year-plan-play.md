@@ -32,10 +32,10 @@ Interfaces: BeginFiveYearPlan(state, alreadyResolving) used by both ordinary and
 ### Task 3: 会话、数据与Demo
 Files: Application/Sessions/CardActionContracts.cs, EventSessionContracts.cs, HeadlineSessionContracts.cs, LocalGameHost.Cards.cs, LocalGameHost.Headlines.cs, public view wiring; Infrastructure/DataLoading/DemoCatalog.FiveYearPlan.cs; Presentation/DemoController*, DemoView* relevant result functions; existing Editor/DemoBuild.cs and Bootstrap payload assembly; Data/Demo/five-year-plan-scenario.json, Data/Descriptors/five-year-plan-scenario.data.json, Data/catalog.json; Tests/EditMode/FiveYearPlanSessionTests.cs, FiveYearPlanScenarioTests.cs (+meta).
 Interfaces: narrow PublicFiveYearPlanResult and pending view; WithFiveYearPlan / WithFiveYearPlanScenario using existing hand-event JSON/Schema; isolated BuildFiveYearPlanPlaytest, scenario demo.practice.five_year_plan.
-- [ ] Locate exact current filenames/functions through descriptors and rg before edits; register exact paths in ledger.
-- [ ] Native RED for fixed identity, stale/duplicate/conflict and no second random, public data, result wrappers, strict artificial scenario, preservation through definition factories.
-- [ ] Implement session projection/summary, canonical scenario loader, scenario picker, child/root feedback and payload/build binding; retain old 23 entries.
-- [ ] Native GREEN + metadata/diff checks; update module/data JSON, Wiki/flow/worklog/report.
+- [x] Locate exact current filenames/functions through descriptors and rg before edits; register exact paths in ledger.
+- [x] Native RED for fixed identity, stale/duplicate/conflict and no second random, public data, result wrappers, strict artificial scenario, preservation through definition factories.
+- [x] Implement session projection/summary, canonical scenario loader, scenario picker, child/root feedback and payload/build binding; retain old 23 entries.
+- [x] Native GREEN + metadata/diff checks; update module/data JSON, Wiki/flow/worklog/report.
 - [ ] Commit source; fresh read-only whole-branch review, fix any Important with regression RED→GREEN.
 - [ ] Build Player from checked source, validate byte-exact payloads; real UI exercise random-child choice, side switch, retry, root return, map switch, reset. Report limits precisely.
 - [ ] Commit evidence, push feature branch and verify remote SHA. Continue next useful batch while user allowance remains.
