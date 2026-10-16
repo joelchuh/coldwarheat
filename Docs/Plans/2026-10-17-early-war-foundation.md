@@ -43,7 +43,7 @@
 ## 收尾
 
 - [x] fresh-context只读整分支审查，修正Critical/Important；需要修补则RED→GREEN。
-- [ ] 保存真实验证、来源与限制；推送feat/early-war-foundation并核对SHA。
-- [ ] 继续可玩接线设计，不停留于基础服务。
+- [x] 保存真实验证、来源与限制；推送feat/early-war-foundation并核对SHA。
+- [x] 继续可玩接线设计，不停留于基础服务。
 
 运行：`Tools/Scripts/run-unity-editmode.ps1 -ProjectRoot E:/TwilightStruggle -UnityEditor E:/unity6.6/6000.6.0f1/Editor/Unity.exe -RunId <本批唯一ID> -TimeoutSeconds 600`。运行期间不改C#。Meta使用`Tools/Scripts/validate-project-metadata.py`。
