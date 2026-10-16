@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "id": "module.blockade-play",
+  "kind": "module",
+  "description": "封锁权威等待/弃牌或西德移除、原根和头条续接；当前Core已实现，会话私有投影和Demo接线正在进行。",
+  "status": "implemented-subset",
+  "documentation": "Docs/Wiki/blockade-play.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/BlockadeDecision.cs",
+      "symbol": "BlockadeDecision"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Blockade.cs",
+      "symbol": "CanRespondToBlockade"
+    }
+  ],
+  "inputs": [
+    "绑定同一Map/Cards/Ops的BlockadeDefinition、权威GameState、固定身份响应意图"
+  ],
+  "outputs": [
+    "私有候选等待或原子事件结果、原行动/头条续接"
+  ],
+  "dependencies": [
+    "module.blockade-hand-discard",
+    "module.playable-card-actions",
+    "module.headline-resolution"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.hand_events_batch1"
+  ],
+  "preconditions": [
+    "US拥有响应权，候选与GameId/Version/牌区/当前效果/回合一致",
+    "普通响应先通过宿主命令门禁"
+  ],
+  "side_effects": [
+    "接受后弃选牌或清西德US；原卡移出并续接原根；不新增随机或行动"
+  ],
+  "stop_conditions": [
+    "非法/过期/越权选择不fallback",
+    "数字溢出或后继头条失败不发布中间状态"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/hand-events-batch1.md",
+      "scope": "既有已核对规则与封锁数据"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/BlockadePlayTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "verification": {
+    "status": "in-progress",
+    "report": "Docs/Testing/blockade-play.validation.json",
+    "native_validation": "Core 2734/2734, blockade-play-core-green; session/UI pending"
+  }
+}

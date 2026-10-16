@@ -93,6 +93,7 @@ namespace ColdWarStruggle.Core
         {
             if(!ValidOpponentRoot(s) || s.Practice.OpponentOps.CurrentStep!=CardResolutionStep.Event || s.Practice.Stage!=ActionPracticeStage.ResolvingEvent)return new CardActionTransition(RuleError.InvalidDefinition);
             var p=s.Practice;var q=p.OpponentOps;
+            if(p.Definition.Blockade?.Card.Id.Equals(q.Card)==true)return BeginBlockade(s,true);
             if(p.Definition.InfluenceEvents?.Effects.TryGetValue(q.Card,out var influence)==true)
             {
                 var prepared=s.WithInfluenceEvent(new InfluenceEventExecution("practice.event."+p.CompletedActions,influence,p.Actor,InfluenceEventPolicy.NoActiveInterference));

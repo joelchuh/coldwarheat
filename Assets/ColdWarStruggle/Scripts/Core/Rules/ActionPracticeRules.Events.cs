@@ -15,6 +15,7 @@ namespace ColdWarStruggle.Core
         {
             try
             {
+                if(state.Practice.Definition.Blockade?.Card.Id.Equals(card)==true)return BeginBlockade(state,false);
                 if(state.Practice.Definition.TurnOpsEvents?.Effects.TryGetValue(card,out var opsEffect)==true)return PlanTurnOpsEvent(state,side,opsEffect);
                 if(state.Practice.Definition.DefconVpEvents?.Effects.TryGetValue(card,out var trackEffect)==true)return PlanDefconVpEvent(state,side,trackEffect);
                 var p=state.Practice;var effect=p.Definition.InfluenceEvents.Effects[card];

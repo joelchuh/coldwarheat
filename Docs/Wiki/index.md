@@ -151,3 +151,5 @@
 - [练习列表与历史提示](demo-navigation-feedback.md)：滚动选场景、取消保持对局、旧出牌回执显示边界；验证记录持续更新。
 
 - [封锁手牌基础](blockade-hand-discard.md)：普通手牌有效OPS门槛、无事件弃置与严格定义装载；私有回应/UI待接。
+
+- [封锁对局接线](blockade-play.md)：权威私有等待、弃牌/清西德与原根/头条续接；Core通过，会话/UI在做。

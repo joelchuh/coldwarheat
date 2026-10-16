@@ -44,6 +44,9 @@ namespace ColdWarStruggle.Core
             if(practice?.Definition.InfluenceEvents!=null && !ReferenceEquals(map,practice.Definition.InfluenceEvents.Map))throw new ArgumentException("Practice event map mismatch.");
             if(practice?.Risk!=null && !ReferenceEquals(map,practice.Risk.Definition.Defcon.Map))throw new ArgumentException("Practice risk map mismatch.");
             if(practice?.Definition.Scoring!=null && !ReferenceEquals(map,practice.Definition.Scoring.Map))throw new ArgumentException("Practice scoring map mismatch.");
+            if(practice?.Definition.Blockade!=null && (!ReferenceEquals(map,practice.Definition.Blockade.Map) || !ReferenceEquals(cards?.Catalog,practice.Definition.Cards)))throw new ArgumentException("Blockade map or cards mismatch.");
+            if(practice?.Blockade!=null && (!ReferenceEquals(cards,practice.Blockade.Cards) || !ReferenceEquals(practice.OpsEffects,practice.Blockade.OpsEffects)
+                || influenceEvent!=null || deployment!=null || context.Budget!=0 || spentOps!=0))throw new ArgumentException("Blockade response must share the idle authoritative context.");
             if(practice?.HeadlineSelection!=null && (!ReferenceEquals(cards,practice.HeadlineSelection.Cards)
                 || influenceEvent!=null || deployment!=null || context.Budget!=0 || spentOps!=0))throw new ArgumentException("Headline collection must share the authoritative idle card snapshot.");
             Map=map;Operations=context;GameId=gameId;Version=version;SpentOps=spentOps;EventSequence=eventSequence;Ended=ended;

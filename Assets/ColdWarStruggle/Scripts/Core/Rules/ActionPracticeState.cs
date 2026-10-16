@@ -2,11 +2,12 @@ using System;
 using System.Linq;
 namespace ColdWarStruggle.Core
 {
-    public enum CardActionKind { StartPractice, Influence, Space, FinishInfluence, Coup, Scoring, Event, Realignment, RollRealignment, FinishRealignment, EventThenInfluence, InfluenceThenEvent, OpponentEventFirst, OpponentOpsFirst, UseOpponentInfluence, UseOpponentRealignment, UseOpponentCoup, AssessTurnEnd, BeginNextTurn, FinalScoring, DiscardHeldCard, KeepHeldCards, DeclineExtraActions, SkipEmptyHand }
+    public enum CardActionKind { StartPractice, Influence, Space, FinishInfluence, Coup, Scoring, Event, Realignment, RollRealignment, FinishRealignment, EventThenInfluence, InfluenceThenEvent, OpponentEventFirst, OpponentOpsFirst, UseOpponentInfluence, UseOpponentRealignment, UseOpponentCoup, AssessTurnEnd, BeginNextTurn, FinalScoring, DiscardHeldCard, KeepHeldCards, DeclineExtraActions, SkipEmptyHand, DiscardForBlockade, DeclineBlockade }
     public enum ActionPracticeStage { AwaitingStart, ChooseCard, PlacingInfluence, Complete, ResolvingEvent, Realigning, ChoosingOperations, HeadlineReady, CollectingHeadline }
     // Explicit single-turn practice with a bounded, typed set of supported events. Not the full turn coordinator.
     public sealed class ActionPracticeDefinition
     {
+        public BlockadeDefinition Blockade { get; }
         public CardCatalog Cards { get; }
         public OpsGeneralDefinition Ops { get; }
         public SpaceRaceDefinition Space { get; }
@@ -23,8 +24,11 @@ namespace ColdWarStruggle.Core
         public HeadlineOrderParameters HeadlineParameters { get; }
         public DefectorsHeadlineDefinition HeadlineDefectors { get; }
         public FinalScoringDefinition FinalScoring { get; }
-        public ActionPracticeDefinition(CardCatalog cards,OpsGeneralDefinition ops,SpaceRaceDefinition space,TurnCalendar calendar,PracticeRiskDefinition risk=null,RegionScoringDefinition scoring=null,PracticeInfluenceCatalog influenceEvents=null,PracticeDefconVpCatalog defconVpEvents=null,PracticeTurnOpsCatalog turnOpsEvents=null,RealignmentDefinition realignment=null,ChinaCardDefinition china=null,bool turnEndEnabled=false,bool nextTurnEnabled=false,HeadlineOrderParameters headlineParameters=null,DefectorsHeadlineDefinition headlineDefectors=null,FinalScoringDefinition finalScoring=null)
+        public ActionPracticeDefinition(CardCatalog cards,OpsGeneralDefinition ops,SpaceRaceDefinition space,TurnCalendar calendar,PracticeRiskDefinition risk=null,RegionScoringDefinition scoring=null,PracticeInfluenceCatalog influenceEvents=null,PracticeDefconVpCatalog defconVpEvents=null,PracticeTurnOpsCatalog turnOpsEvents=null,RealignmentDefinition realignment=null,ChinaCardDefinition china=null,bool turnEndEnabled=false,bool nextTurnEnabled=false,HeadlineOrderParameters headlineParameters=null,DefectorsHeadlineDefinition headlineDefectors=null,FinalScoringDefinition finalScoring=null,BlockadeDefinition blockade=null)
         {
+            if(blockade!=null && (risk==null || !ReferenceEquals(blockade.Cards,cards) || !ReferenceEquals(blockade.Ops,ops) || !ReferenceEquals(blockade.Map,risk.Defcon.Map)
+                || influenceEvents?.Effects.ContainsKey(blockade.Card.Id)==true || defconVpEvents?.Effects.ContainsKey(blockade.Card.Id)==true
+                || turnOpsEvents?.Effects.ContainsKey(blockade.Card.Id)==true || headlineDefectors?.Card.Equals(blockade.Card.Id)==true))throw new ArgumentException("Blockade must share exact definitions and a unique handler.");
             if(influenceEvents!=null && (!ReferenceEquals(influenceEvents.Cards,cards) || (risk!=null && !ReferenceEquals(influenceEvents.Map,risk.Defcon.Map)) || (scoring!=null && !ReferenceEquals(influenceEvents.Map,scoring.Map))))throw new ArgumentException("Influence events must share the same cards and map.");
             if(scoring!=null && (risk==null || !ReferenceEquals(scoring.Map,risk.Defcon.Map)))throw new ArgumentException("Scoring needs risk rules bound to the same map.");
             if(scoring!=null && cards!=null && cards.Cards.Where(c=>c.Kind==CardKind.Scoring).Any(c=>c.ScoringRegion!=scoring.WeightedRegionId && !scoring.Regions.Any(r=>r.Id==c.ScoringRegion)))throw new ArgumentException("Unknown printed scoring region.");
@@ -36,10 +40,11 @@ namespace ColdWarStruggle.Core
             if(nextTurnEnabled && !turnEndEnabled)throw new ArgumentException("Next turn requires turn-end assessment.");
             if(turnEndEnabled && (risk==null || china==null))throw new ArgumentException("Turn-end practice requires risk and China rules.");
             if(headlineDefectors!=null && (!ReferenceEquals(headlineDefectors.Catalog,cards) || influenceEvents?.Effects.ContainsKey(headlineDefectors.Card)==true || defconVpEvents?.Effects.ContainsKey(headlineDefectors.Card)==true || turnOpsEvents?.Effects.ContainsKey(headlineDefectors.Card)==true))throw new ArgumentException("Headline Defectors requires same cards and disjoint handlers.");
-            FinalScoring=finalScoring;HeadlineDefectors=headlineDefectors;HeadlineParameters=headlineParameters;NextTurnEnabled=nextTurnEnabled;TurnEndEnabled=turnEndEnabled;China=china;Realignment=realignment;TurnOpsEvents=turnOpsEvents;DefconVpEvents=defconVpEvents;InfluenceEvents=influenceEvents;Scoring=scoring;Cards=cards??throw new ArgumentNullException(nameof(cards));Ops=ops??throw new ArgumentNullException(nameof(ops));Space=space??throw new ArgumentNullException(nameof(space));Calendar=calendar??throw new ArgumentNullException(nameof(calendar));Risk=risk; }
+            Blockade=blockade;FinalScoring=finalScoring;HeadlineDefectors=headlineDefectors;HeadlineParameters=headlineParameters;NextTurnEnabled=nextTurnEnabled;TurnEndEnabled=turnEndEnabled;China=china;Realignment=realignment;TurnOpsEvents=turnOpsEvents;DefconVpEvents=defconVpEvents;InfluenceEvents=influenceEvents;Scoring=scoring;Cards=cards??throw new ArgumentNullException(nameof(cards));Ops=ops??throw new ArgumentNullException(nameof(ops));Space=space??throw new ArgumentNullException(nameof(space));Calendar=calendar??throw new ArgumentNullException(nameof(calendar));Risk=risk; }
     }
     public sealed class ActionPracticeState
     {
+        public BlockadeDecision Blockade { get; }
         public ActionPracticeDefinition Definition { get; }
         public ActionPracticeStage Stage { get; }
         public int CompletedActions => Rounds.TotalCompleted;
@@ -58,7 +63,7 @@ namespace ColdWarStruggle.Core
         public PracticeTurnEndReceipt TurnEnd { get; }
         public PracticeFinalScoringReceipt FinalScoring { get; }
         public SpaceEndTurnDiscardState SpaceDiscard { get; }
-        internal ActionPracticeState(ActionPracticeDefinition definition,ActionPracticeStage stage,int completed,CardId? card,SpaceAttemptState space,int vp,PracticeRiskState risk=null,TurnOpsEffectState opsEffects=null,OpponentOpsSequence opponentOps=null,PracticeTurnEndReceipt turnEnd=null,HeadlineResolutionState headline=null,HeadlineSelectionState headlineSelection=null,PracticeFinalScoringReceipt finalScoring=null,SpaceEndTurnDiscardState spaceDiscard=null,ActionRoundProgress rounds=null)
+        internal ActionPracticeState(ActionPracticeDefinition definition,ActionPracticeStage stage,int completed,CardId? card,SpaceAttemptState space,int vp,PracticeRiskState risk=null,TurnOpsEffectState opsEffects=null,OpponentOpsSequence opponentOps=null,PracticeTurnEndReceipt turnEnd=null,HeadlineResolutionState headline=null,HeadlineSelectionState headlineSelection=null,PracticeFinalScoringReceipt finalScoring=null,SpaceEndTurnDiscardState spaceDiscard=null,ActionRoundProgress rounds=null,BlockadeDecision blockade=null)
         {
             if(rounds==null && completed!=0)throw new ArgumentException("Existing root progress must be carried explicitly.");
             Rounds=rounds??ActionRoundProgress.Create(space.Turn,definition.Space);
@@ -90,7 +95,9 @@ namespace ColdWarStruggle.Core
             {
                 if(SpaceEndTurnDiscardState.QueryOwner(space.Track,out var owner)!=RuleError.None || owner!=spaceDiscard?.Owner)throw new ArgumentException("Missing or foreign space discard decision.");
             }
-            SpaceDiscard=spaceDiscard;FinalScoring=finalScoring;TurnEnd=turnEnd;OpponentOps=opponentOps;Definition=definition;Stage=stage;ActiveCard=card;Space=space;VpForUS=vp;Risk=risk;OpsEffects=opsEffects??TurnOpsEffectState.Create(space.Turn); }
+            if(blockade!=null && (!ReferenceEquals(blockade.Definition,definition.Blockade) || stage!=ActionPracticeStage.ResolvingEvent
+                || !card.HasValue || !card.Value.Equals(blockade.Definition.Card.Id) || turnEnd!=null || headlineSelection!=null))throw new ArgumentException("Invalid blockade root.");
+            Blockade=blockade;SpaceDiscard=spaceDiscard;FinalScoring=finalScoring;TurnEnd=turnEnd;OpponentOps=opponentOps;Definition=definition;Stage=stage;ActiveCard=card;Space=space;VpForUS=vp;Risk=risk;OpsEffects=opsEffects??TurnOpsEffectState.Create(space.Turn); }
         // Trusted scenario initialization only: no completed actions or fabricated audit history.
         public static ActionPracticeState CreateAtTurn(ActionPracticeDefinition definition,int turnNumber,int initialVp,SpaceTrackState initialTrack=null)
         {
@@ -111,6 +118,8 @@ namespace ColdWarStruggle.Core
     }
     public sealed class CardActionTransition
     {
+        public BlockadeResolutionResult BlockadeResult { get; }
+        public System.Collections.Generic.IReadOnlyList<HeadlineResolutionStep> HeadlineSteps { get; }
         public RuleError Error { get; }
         public bool Accepted=>Error==RuleError.None;
         public GameState NextState { get; }
@@ -121,7 +130,7 @@ namespace ColdWarStruggle.Core
         public DefconVpEventPlan DefconVpEvent { get; }
         public TurnOpsEffectInstance ActivatedOpsEffect { get; }
         public RealignmentCalculation Realignment { get; }
-        internal CardActionTransition(RuleError error,GameState next=null,SpaceAttemptReceipt receipt=null,CoupAttemptReceipt coup=null,RegionScoringResult scoring=null,InfluenceEventTransition eventTransition=null,DefconVpEventPlan defconVpEvent=null,TurnOpsEffectInstance activatedOpsEffect=null,RealignmentCalculation realignment=null)
-        { Realignment=realignment;ActivatedOpsEffect=activatedOpsEffect;DefconVpEvent=defconVpEvent;EventTransition=eventTransition;ScoringResult=scoring;Error=error;NextState=next;SpaceReceipt=receipt;CoupReceipt=coup; }
+        internal CardActionTransition(RuleError error,GameState next=null,SpaceAttemptReceipt receipt=null,CoupAttemptReceipt coup=null,RegionScoringResult scoring=null,InfluenceEventTransition eventTransition=null,DefconVpEventPlan defconVpEvent=null,TurnOpsEffectInstance activatedOpsEffect=null,RealignmentCalculation realignment=null,BlockadeResolutionResult blockadeResult=null,System.Collections.Generic.IReadOnlyList<HeadlineResolutionStep> headlineSteps=null)
+        { BlockadeResult=blockadeResult;HeadlineSteps=Array.AsReadOnly((headlineSteps??Array.Empty<HeadlineResolutionStep>()).ToArray());Realignment=realignment;ActivatedOpsEffect=activatedOpsEffect;DefconVpEvent=defconVpEvent;EventTransition=eventTransition;ScoringResult=scoring;Error=error;NextState=next;SpaceReceipt=receipt;CoupReceipt=coup; }
     }
 }

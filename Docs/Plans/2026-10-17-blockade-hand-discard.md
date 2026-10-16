@@ -47,6 +47,6 @@ Interfaces: `Load(json,schema,map,cards,ops,knownEffectIds) : BlockadeDefinition
 - [x] 完整 Schema 和已知版本/语义/引用校验；只绑定 blockade 参数；不接其旁边的五年计划。
 - [x] 跑绿灯，写模块 JSON、Wiki、工作记录与验证报告；元数据/差异检查。
 - [x] 新鲜只读独立审查，Critical/Important/Minor 均0。
-- [ ] 提交/推送核对 SHA（以 Git 命令实际结果为准）。
+- [x] 提交/推送核对 SHA：e1001a4e185db5839d5c4142f4e5be8a63a27503 与远程 feat/blockade-hand-discard 一致。
 
 下一批：显式手牌回应状态、固定身份命令、按玩家过滤的候选、头条/对手事件续接及 Demo。不得直接用公开国家选择状态装私有手牌。

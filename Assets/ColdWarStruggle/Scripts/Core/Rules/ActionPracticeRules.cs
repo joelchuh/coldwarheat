@@ -19,7 +19,7 @@ namespace ColdWarStruggle.Core
             if(s.Cards.HeadlineReserved.Count!=0 || s.Practice.HasPendingHeadline || s.Practice.HeadlineSelection!=null)return RuleError.ActionNotReady;
             if(s.Practice.Stage==ActionPracticeStage.Complete)return RuleError.ActionSliceComplete;
             if(side!=s.Practice.Actor)return RuleError.WrongActor;
-            if(s.InfluenceEvent!=null)return RuleError.EventInProgress;
+            if(s.InfluenceEvent!=null || s.Practice.Blockade!=null)return RuleError.EventInProgress;
             return RuleError.None;
         }
         public static RuleError CanPlay(GameState state,PlayerSide side,CardId card,CardActionKind kind)
@@ -41,7 +41,7 @@ namespace ColdWarStruggle.Core
             }
             if(!state.Cards.GetHand(side).Contains(card))return RuleError.CardNotOwned;
             var definition=state.Practice.Definition.Cards.GetCard(card);
-            if(kind==CardActionKind.Event)return definition.Kind==CardKind.Event && (state.Practice.Definition.InfluenceEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.DefconVpEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.TurnOpsEvents?.Effects.ContainsKey(card)==true)?RuleError.None:RuleError.UnsupportedCardAction;
+            if(kind==CardActionKind.Event)return definition.Kind==CardKind.Event && (state.Practice.Definition.InfluenceEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.DefconVpEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.TurnOpsEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.Blockade?.Card.Id.Equals(card)==true)?RuleError.None:RuleError.UnsupportedCardAction;
             if(kind==CardActionKind.Scoring)return definition.Kind==CardKind.Scoring?RuleError.None:RuleError.UnsupportedCardAction;
             if(definition.Kind!=CardKind.Event)return RuleError.UnsupportedCardAction;
             if(kind==CardActionKind.Influence || kind==CardActionKind.Coup || kind==CardActionKind.Realignment)
@@ -59,6 +59,7 @@ namespace ColdWarStruggle.Core
         }
         public static CardActionTransition Plan(GameState state,PlayerSide side,CardActionKind kind,string actionId,CardId? card=null,CountryId? target=null)
         {
+            if(kind==CardActionKind.DiscardForBlockade || kind==CardActionKind.DeclineBlockade)return PlanBlockadeResponse(state,side,kind,actionId,card,target);
             if(kind==CardActionKind.SkipEmptyHand)return PlanSkipEmptyHand(state,side,actionId,card,target);
             if(kind==CardActionKind.DeclineExtraActions)return PlanDeclineExtraActions(state,side,actionId,card,target);
             if(kind==CardActionKind.DiscardHeldCard || kind==CardActionKind.KeepHeldCards)return PlanSpaceDiscard(state,side,kind,actionId,card,target);
