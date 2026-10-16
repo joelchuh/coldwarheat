@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "module.empty-hand-actions",
+  "kind": "module",
+  "description": "零普通手牌可跳过当前普通行动名额；中国牌自愿保留，固定身份和不可变进度防止绕过待处理事件、额外行动或未实现卡牌。",
+  "status": "implemented",
+  "documentation": "Docs/Wiki/empty-hand-actions.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeEmptyHandRules.cs",
+      "symbol": "CanSkipEmptyHand"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionRoundProgress.cs",
+      "symbol": "SkipOrdinarySlot"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.EmptyHand.cs",
+      "symbol": "WithEmptyHandScenario"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.EmptyHand.cs",
+      "symbol": "SkipEmptyHandAsync"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.EmptyHand.cs",
+      "symbol": "DrawEmptyHandChoice"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "symbol": "BuildEmptyHandPlaytest"
+    }
+  ],
+  "inputs": [
+    "固定身份、当前普通行动名额和真实空手牌区"
+  ],
+  "outputs": [
+    "接受/稳定错误码、新状态及下一行动方"
+  ],
+  "dependencies": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.cs",
+      "relation": "共享门禁和原子发布"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/SessionContracts.cs",
+      "relation": "按身份投影资格"
+    }
+  ],
+  "data_dependencies": [
+    "rules.deluxe2015.turn-flow",
+    "demo.empty_hand_scenario"
+  ],
+  "preconditions": [
+    "ChooseCard、零普通手牌、没有待处理根/事件/头条/部署/审核"
+  ],
+  "side_effects": [
+    "一个普通名额被消耗；卡牌、中国牌、国家、随机和风险不变"
+  ],
+  "stop_conditions": [
+    "有任何普通牌、错误身份、可选额外名额、未完成出牌、过期版本或溢出"
+  ],
+  "rule_sources": [
+    {
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "sections": [
+        "4.5D",
+        "5.1",
+        "9.8"
+      ],
+      "checked_on": "2026-10-17"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/EmptyHandActionTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/EmptyHandDemoTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "verification": {
+    "native_validation": "2600/2600; empty-ui-green",
+    "player_validation": "pending"
+  }
+}

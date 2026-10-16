@@ -19,8 +19,9 @@ namespace ColdWarStruggle.Presentation
         void DrawOpsEffects(PublicPracticeView practice)
         {
             var text=practice.OpsEffects.Count==0?"本回合持续 OPS：无":"本回合持续 OPS："+string.Join("；",practice.OpsEffects.Select(OpsEffectSummary))+"  ·  回合末到期";
-            if(practice.IsExtraAction)text=$"已行动 美 {practice.UsCompletedActions} / 苏 {practice.UssrCompletedActions} · "+text;
-            Text(28,155,practice.IsExtraAction?920:1220,22,text,new GUIStyle(small){fontSize=12});
+            var hasChoice=practice.IsExtraAction || practice.CanSkipEmptyHand;
+            if(hasChoice)text=$"已用名额 美 {practice.UsCompletedActions} / 苏 {practice.UssrCompletedActions} · "+text;
+            Text(28,155,hasChoice?920:1220,22,text,new GUIStyle(small){fontSize=12});
         }
         void DrawPracticeControls(PlayerViewSnapshot view)
         {
@@ -65,7 +66,7 @@ namespace ColdWarStruggle.Presentation
                 var selected=controller.SelectedCard;
                 if(!selected.HasValue)
                 {
-                    Text(972,374,262,59,"先从本方手牌选择一张牌，再决定用于影响力、政变、调整、太空、计分或已支持事件。",small);
+                    Text(972,374,262,59,controller.CanSkipEmptyHand?"普通手牌已用尽。可用上方按钮跳过本次行动；中国牌仍可自愿选择。":"先从本方手牌选择一张牌，再决定用于影响力、政变、调整、太空、计分或已支持事件。",small);
                     if(Button(972,440,262,43,"打开手牌 · 选择一张"))OpenCards();
                 }
                 else
@@ -142,6 +143,7 @@ namespace ColdWarStruggle.Presentation
             if(controller.LastResult!=null)message=controller.LastResult.Accepted?"投放成功，费用："+string.Join(" + ",controller.LastResult.Costs):ErrorText(controller.LastResult.Error);
             if(controller.LastEventResult!=null)message=controller.LastEventResult.Accepted?"事件选择完成 · 影响力变化 "+controller.LastEventResult.Changes.Count+" 项。":ErrorText(controller.LastEventResult.Error);
             DrawExtraActionChoice(view);
+            DrawEmptyHandChoice(view);
             Text(972,578,262,65,message,small);
             var retryHeadline=!controller.CanRetryCard && controller.CanRetryHeadline;
             GUI.enabled=controller.CanRetryCard || retryHeadline;

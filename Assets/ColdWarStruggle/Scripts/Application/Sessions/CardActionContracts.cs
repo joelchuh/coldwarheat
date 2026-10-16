@@ -45,6 +45,8 @@ namespace ColdWarStruggle.Application
         public int UsCompletedActions { get; }
         public int UssrCompletedActions { get; }
         public bool IsExtraAction { get; }
+        public RuleError SkipEmptyHandError { get; }
+        public bool CanSkipEmptyHand => SkipEmptyHandError==RuleError.None;
         public RuleError DeclineExtraActionsError { get; }
         public bool CanDeclineExtraActions => DeclineExtraActionsError==RuleError.None;
         public CardId? ActiveCard { get; }
@@ -73,8 +75,8 @@ namespace ColdWarStruggle.Application
         public PublicTurnEnd TurnEnd { get; }
         public PublicOpponentOpsProgress OpponentOps { get; }
         public IReadOnlyList<PublicTurnOpsEffect> OpsEffects { get; }
-        internal PublicPracticeView(ActionPracticeState s,RuleError turnEndError,RuleError nextTurnError,RuleError finalScoringError,RuleError declineExtraActionsError)
-        { DeclineExtraActionsError=declineExtraActionsError;UsCompletedActions=s.Rounds.CompletedFor(PlayerSide.US);UssrCompletedActions=s.Rounds.CompletedFor(PlayerSide.USSR);IsExtraAction=s.Rounds.IsOptional && s.Risk?.Result?.Outcome!=VictoryOutcome.Finished;FinalScoringEnabled=s.Definition.FinalScoring!=null;FinalScoringError=finalScoringError;FinalScoring=s.FinalScoring==null?null:new PublicFinalScoring(s.FinalScoring);HeadlineEnabled=s.Definition.HeadlineParameters!=null;NextTurnEnabled=s.Definition.NextTurnEnabled;NextTurnError=nextTurnError;TurnEndEnabled=s.Definition.TurnEndEnabled;TurnEndError=turnEndError;TurnEnd=s.TurnEnd==null?null:new PublicTurnEnd(s.TurnEnd);OpponentOps=s.OpponentOps==null?null:new PublicOpponentOpsProgress(s.OpponentOps);OpsEffects=Array.AsReadOnly(s.OpsEffects.Instances.Select(i=>new PublicTurnOpsEffect(i)).ToArray());Stage=s.Stage;Actor=s.Actor;Round=s.ActionRound;RoundLimit=Math.Max(s.ActionRound,Math.Max(s.Space.Turn.Parameters.NormalActionsPerSide,SpaceAbilityRules.Query(s.Space.Track,s.Actor).ActionRoundAllowance??0));CompletedActions=s.CompletedActions;ActiveCard=s.ActiveCard;
+        internal PublicPracticeView(ActionPracticeState s,RuleError turnEndError,RuleError nextTurnError,RuleError finalScoringError,RuleError declineExtraActionsError,RuleError skipEmptyHandError)
+        { SkipEmptyHandError=skipEmptyHandError;DeclineExtraActionsError=declineExtraActionsError;UsCompletedActions=s.Rounds.CompletedFor(PlayerSide.US);UssrCompletedActions=s.Rounds.CompletedFor(PlayerSide.USSR);IsExtraAction=s.Rounds.IsOptional && s.Risk?.Result?.Outcome!=VictoryOutcome.Finished;FinalScoringEnabled=s.Definition.FinalScoring!=null;FinalScoringError=finalScoringError;FinalScoring=s.FinalScoring==null?null:new PublicFinalScoring(s.FinalScoring);HeadlineEnabled=s.Definition.HeadlineParameters!=null;NextTurnEnabled=s.Definition.NextTurnEnabled;NextTurnError=nextTurnError;TurnEndEnabled=s.Definition.TurnEndEnabled;TurnEndError=turnEndError;TurnEnd=s.TurnEnd==null?null:new PublicTurnEnd(s.TurnEnd);OpponentOps=s.OpponentOps==null?null:new PublicOpponentOpsProgress(s.OpponentOps);OpsEffects=Array.AsReadOnly(s.OpsEffects.Instances.Select(i=>new PublicTurnOpsEffect(i)).ToArray());Stage=s.Stage;Actor=s.Actor;Round=s.ActionRound;RoundLimit=Math.Max(s.ActionRound,Math.Max(s.Space.Turn.Parameters.NormalActionsPerSide,SpaceAbilityRules.Query(s.Space.Track,s.Actor).ActionRoundAllowance??0));CompletedActions=s.CompletedActions;ActiveCard=s.ActiveCard;
           UsSpace=s.Space.Track.US;UssrSpace=s.Space.Track.USSR;UsAttempts=s.Space.UsAttempts;UssrAttempts=s.Space.UssrAttempts;VpForUS=s.VpForUS;Defcon=s.Risk?.Defcon.Level;UsMilitary=s.Risk?.Military.UsEarned;UssrMilitary=s.Risk?.Military.UssrEarned;Winner=s.Risk?.Result?.Winner;EndReason=s.Risk?.Result?.Checkpoint;HasScoring=s.Definition.Scoring!=null; }
     }
     public sealed class PublicSpaceResult

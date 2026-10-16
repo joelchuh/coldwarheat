@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "data.demo-empty-hand-scenario",
+  "kind": "data",
+  "dataset_id": "demo.empty_hand_scenario",
+  "status": "fixture",
+  "description": "第2回合末人工空手入口：复用源地图和普通行动牌，苏联保留正面中国牌，美国剩一张；准备动作经规则执行。",
+  "entrypoints": [
+    {
+      "path": "Data/Demo/empty-hand-scenario.json",
+      "symbol": "scenario"
+    }
+  ],
+  "inputs": [
+    "已配置最终计分源场景和共享印刷牌库"
+  ],
+  "outputs": [
+    "独立近回合末人工场景"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "demo.final_scoring_scenario",
+    "cards.deluxe2015.definitions",
+    "rules.deluxe2015.turn-flow"
+  ],
+  "preconditions": [
+    "明确人工fixture，不冒充自然对局历史"
+  ],
+  "side_effects": [
+    "新Host在内存中执行准备行动；不改变源场景"
+  ],
+  "stop_conditions": [
+    "未知字段/重复ID/错误源/非法回合/非法剩余实体"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Plans/2026-10-17-empty-hand-actions.md",
+      "scope": "人工试玩设计"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/EmptyHandDemoTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/empty-hand-actions.md",
+  "verification": {
+    "native_validation": "2600/2600; empty-ui-green",
+    "player_validation": "pending"
+  }
+}

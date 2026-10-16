@@ -39,7 +39,8 @@ namespace ColdWarStruggle.Bootstrap
                     .WithHeadlineScenario(Read(root,"Data/Demo/headline-scenario.json"),Read(root,"Data/Rulesets/deluxe-2015/turn-flow.json"),Read(root,"Data/Cards/deluxe-2015/defectors.parameters.json"),Read(root,"Docs/Contracts/defectors.schema.json"))
                     .WithFinalScoringScenario(Read(root,"Data/Demo/final-scoring-scenario.json"),Read(root,"Data/Rulesets/deluxe-2015/region-scoring.json"),Read(root,"Docs/Contracts/region-scoring-rules.schema.json"),Read(root,"Data/Rulesets/deluxe-2015/scoring-card-parameters.json"),Read(root,"Docs/Contracts/scoring-card-parameters.schema.json"))
                     .WithSpaceDiscardScenarios(Read(root,"Data/Demo/space-end-turn-discard-scenarios.json"))
-                    .WithSpaceExtraScenarios(Read(root,"Data/Demo/space-extra-action-scenarios.json"));
+                    .WithSpaceExtraScenarios(Read(root,"Data/Demo/space-extra-action-scenarios.json"))
+                    .WithEmptyHandScenario(Read(root,"Data/Demo/empty-hand-scenario.json"));
                 var displayNames=CatalogNamesLoader.Load(Read(root,"Data/Localization/zh-CN.catalog-names.json"),"zh-CN",catalog.Names.Keys);
                 var worldAssets=WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
 #else
@@ -65,7 +66,8 @@ namespace ColdWarStruggle.Bootstrap
                     .WithHeadlineScenario(Read(root,"headline-scenario.json"),Read(root,"turn-flow.json"),Read(root,"defectors.parameters.json"),Read(root,"defectors.schema.json"))
                     .WithFinalScoringScenario(Read(root,"final-scoring-scenario.json"),Read(root,"region-scoring.json"),Read(root,"region-scoring-rules.schema.json"),Read(root,"scoring-card-parameters.json"),Read(root,"scoring-card-parameters.schema.json"))
                     .WithSpaceDiscardScenarios(Read(root,"space-end-turn-discard-scenarios.json"))
-                    .WithSpaceExtraScenarios(Read(root,"space-extra-action-scenarios.json"));
+                    .WithSpaceExtraScenarios(Read(root,"space-extra-action-scenarios.json"))
+                    .WithEmptyHandScenario(Read(root,"empty-hand-scenario.json"));
                 var displayNames=CatalogNamesLoader.Load(Read(root,"names.zh-CN.json"),"zh-CN",catalog.Names.Keys);
                 var worldAssets=WorldMapAssets.Load(Read(root,"world-layout.json"),Read(root,"world-land.json"),catalog.Map);
 #endif

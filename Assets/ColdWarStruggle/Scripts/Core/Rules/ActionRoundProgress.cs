@@ -1,7 +1,7 @@
 using System;
 namespace ColdWarStruggle.Core
 {
-    // Counts completed root actions only. Card eligibility and in-flight root ownership belong to the coordinator.
+    // Counts consumed slots: completed roots or authorized ordinary empty-hand skips. The coordinator validates cards and in-flight ownership.
     public sealed class ActionRoundProgress
     {
         readonly int usCompleted,ussrCompleted;
@@ -48,6 +48,14 @@ namespace ColdWarStruggle.Core
             ValidateTrack(track);ValidateSide(side);
             if(CurrentActor!=side || !IsOptional)throw new InvalidOperationException("Only an unstarted optional slot can be declined.");
             return Schedule(track,usCompleted,ussrCompleted,usDeclined||side==PlayerSide.US,ussrDeclined||side==PlayerSide.USSR);
+        }
+        // Eligibility belongs to the coordinator; an optional slot must use DeclineRemaining instead.
+        public ActionRoundProgress SkipOrdinarySlot(SpaceTrackState track,PlayerSide side)
+        {
+            ValidateTrack(track);ValidateSide(side);
+            if(CurrentActor!=side || IsOptional)throw new InvalidOperationException("Only the current ordinary slot can be skipped.");
+            return Schedule(track,side==PlayerSide.US?checked(usCompleted+1):usCompleted,
+                side==PlayerSide.USSR?checked(ussrCompleted+1):ussrCompleted,usDeclined,ussrDeclined);
         }
         ActionRoundProgress Schedule(SpaceTrackState track,int us,int su,bool declinedUs,bool declinedSu)
         {
