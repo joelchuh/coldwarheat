@@ -2,7 +2,7 @@
 
 description：查捕获纳粹科学家的一格事件推进、普通尝试隔离、正常奖励/领先能力和终点待裁定。
 
-状态2026-10-17：#18参数与[单格基础纯计划](space-event-foundation.md)已实现，3142原生测试通过；玩家授权/VP牌区提交与UI待接。以下详细编排中未落地部分仍是设计。[描述](../../Data/Descriptors/space-events-batch1.data.json)→[参数](../../Data/Cards/deluxe-2015/space-events-batch1.parameters.json)、[Schema](../Contracts/space-events-batch1.schema.json)、[案例](../Design/space-solidarity-events.cases.json)、[验证](../Design/space-solidarity-events.validation.json)。
+状态2026-10-17：#18参数与[单格基础纯计划](space-event-foundation.md)已实现；[真实手牌/头条和公共结果](space-event-play.md)已接，3213原生测试通过，Player/审查见实现报告。以下详细编排中未落地部分仍是设计。[描述](../../Data/Descriptors/space-events-batch1.data.json)→[参数](../../Data/Cards/deluxe-2015/space-events-batch1.parameters.json)、[Schema](../Contracts/space-events-batch1.schema.json)、[案例](../Design/space-solidarity-events.cases.json)、[验证](../Design/space-solidarity-events.validation.json)。
 
 原设计接口名SpaceRaceService.PlanEventAdvance尚未作为类落地；当前基础使用SpaceEventRules.PlanAdvance，未来宿主经可信ResolutionFrame取EffectController作为受益方，不接受客户端自报轨道/奖励；中立事件控制方也不能一律替换为根行动者。事件推进一格，不查普通OPS门槛、不掷骰，不增加或归零普通AttemptsUsedThisTurn；即使本回合普通额度已用完也可事件推进。一般EventAttempt/Headline合法性仍由出牌编排验证。
 

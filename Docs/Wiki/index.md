@@ -4,6 +4,7 @@
 
 | 知识点 | description | 状态 | 入口 |
 |---|---|---|---|
+| 太空事件试玩 | 查Scientist手牌/头条、公共能力变化、四人工练习与终点待裁定 | 验收见报告 | [space-event-play.md](space-event-play.md) |
 | 回合末结算试玩 | 查军事净罚分、扣留审计矩阵、中国牌翻面与公开结算报告 | 有限单回合；验证见报告 | [turn-end-playtest.md](turn-end-playtest.md) |
 | 对手事件＋投放 | 查两种顺序、选择者与根操作方、一次移牌和终局截断 | 有限二步试玩；见验证报告 | [opponent-event-influence.md](opponent-event-influence.md) |
 | 普通政局调整试玩 | 查真实牌预算、逐次双骰、动态修正与地图目标 | RealignmentPlaytest；验证见报告 | [playable-realignment.md](playable-realignment.md) |

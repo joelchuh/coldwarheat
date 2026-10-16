@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "id": "data.demo-space-event-scenarios",
+  "kind": "data",
+  "dataset_id": "demo.space_event_scenarios",
+  "status": "fixture",
+  "description": "四个第2回合人工太空事件练习：首到、后到、能力格和终点待裁定；位置与手牌独立存储，奖励仍取正式轨道。",
+  "entrypoints": [
+    {
+      "path": "Data/Demo/space-event-scenarios.json",
+      "symbol": "scenarios"
+    }
+  ],
+  "inputs": [
+    "已注册Scientist的最终计分源场景；统一地图/牌库/回合参数"
+  ],
+  "outputs": [
+    "第28至31人工练习；美国入口通过真实苏联OPS动作交棒"
+  ],
+  "dependencies": [
+    "module.space-event-play"
+  ],
+  "data_dependencies": [
+    "demo.final_scoring_scenario",
+    "effects.deluxe2015.space_events_batch1",
+    "rules.deluxe2015.space-race"
+  ],
+  "preconditions": [
+    "scope=fixture、Turn2、无历史外部效果；手牌数量按回合目标限制仅用于本练习"
+  ],
+  "side_effects": [
+    "创建独立内存Host，不改正式开局或旧场景"
+  ],
+  "stop_conditions": [
+    "非法位置/重复牌/未知字段/错误预备行动/终局初始VP/无来源拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Architecture/space-event-play.md",
+      "scope": "人工局面与规则数据分离"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceEventDemoTests.cs",
+      "status": "native-passed"
+    }
+  ],
+  "documentation": "Docs/Wiki/space-event-play.md",
+  "verification": {
+    "status": "native-passed-review-build-pending",
+    "report": "Docs/Testing/space-event-play.validation.json"
+  }
+}

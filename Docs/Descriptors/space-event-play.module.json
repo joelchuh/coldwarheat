@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "id": "module.space-event-play",
+  "kind": "module",
+  "status": "implemented-subset",
+  "description": "Scientist真实手牌/头条太空事件：一次轨道/VP/牌区提交、终点待裁定、公共能力变化与四个独立人工练习；验收状态见报告。",
+  "documentation": "Docs/Wiki/space-event-play.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.SpaceEvent.cs",
+      "symbol": "PlanSpaceEvent"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.SpaceEvent.cs",
+      "symbol": "SpaceEventHeadlineCandidates"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/SpaceEventContracts.cs",
+      "symbol": "PublicSpaceEventResult"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.SpaceEvent.cs",
+      "symbol": "SpaceEventResultMessage"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.SpaceEvent.cs",
+      "symbol": "WithSpaceEvents"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.SpaceEvent.cs",
+      "symbol": "WithSpaceEventScenarios"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "symbol": "BuildSpaceEventPlaytest"
+    }
+  ],
+  "inputs": [
+    "现有固定身份Event/Headline命令；权威真实手牌/保留头条与共享SpaceEventDefinition"
+  ],
+  "outputs": [
+    "新轨道/分数/牌去向/根进度，公共推进与双方能力前后摘要"
+  ],
+  "dependencies": [
+    "module.space-event-foundation",
+    "module.headline-resolution",
+    "module.demo-result-reader"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.space_events_batch1",
+    "rules.deluxe2015.space-race",
+    "cards.deluxe2015.definitions",
+    "demo.space_event_scenarios"
+  ],
+  "preconditions": [
+    "必须经现有身份/版本/牌源/阶段门禁；不是任意推进轨道命令",
+    "无未实现外部事件干预；注册使用同一Cards/Space/Risk"
+  ],
+  "side_effects": [
+    "Host一次提交；纯计划不修改源状态；UI仅公共投影",
+    "构建产生忽略的StreamingAssets与独立Player"
+  ],
+  "stop_conditions": [
+    "终点新事件EventRequiresRuling，合法OPS仍可用",
+    "错误身份/旧版本/冲突请求拒绝；终局留Resolving并停止后续根",
+    "fixture未知字段、错误来源/牌/位置/行动预备拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Architecture/space-event-play.md",
+      "scope": "真实出牌/头条/能力/终局接线与明确边界"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceEventPlayTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceEventHeadlineTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceEventSessionTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceEventPresentationTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceEventDemoTests.cs",
+      "status": "native-passed"
+    }
+  ],
+  "verification": {
+    "status": "native-passed-review-build-pending",
+    "report": "Docs/Testing/space-event-play.validation.json"
+  }
+}

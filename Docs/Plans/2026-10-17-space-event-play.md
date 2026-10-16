@@ -69,8 +69,8 @@ Assert.That(first.SpaceEvent.AwardVp,Is.EqualTo(2));
 **Modify:** Infrastructure/DataLoading下所有复制ActionPracticeDefinition的DemoCatalog.*.cs保留SpaceEvent；Editor/DemoBuild.cs、Bootstrap/DemoBootstrap.cs；Docs与Data目录索引。C#路径统一Assets/ColdWarStruggle/Scripts。
 **Interfaces:** `DemoCatalog.WithSpaceEvents(parameters,schema,cardReferences)`、`WithSpaceEventScenarios(fixture)`、`DemoBuild.BuildSpaceEventPlaytest()`。
 
-- [ ] 写严格fixture/方法链与真实事件测试RED：首到、后到、能力格、终点，未知字段/非法位置/重复牌/错误来源/错误Actor预备动作拒绝。
-- [ ] 加参数注册与四场景；源Data取得规则数据不复制奖励。所有已有复制点新增spaceEvent:d.SpaceEvent或相应位置参数。Builder和Bootstrap同时加载三新载荷。
+- [x] 写严格fixture/方法链与真实事件测试RED：首到、后到、能力格、终点，未知字段/非法位置/重复牌/错误来源/错误Actor预备动作拒绝。
+- [x] 加参数注册与四场景；源Data取得规则数据不复制奖励。所有已有复制点新增spaceEvent:d.SpaceEvent或相应位置参数。Builder和Bootstrap同时加载三新载荷。
 ```csharp
 catalog.WithSpaceEvents(parameters,schema,cardReferences).WithSpaceEventScenarios(fixtures);
 ```
