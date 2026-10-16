@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "description": "太空回合末弃牌分批验证；仅列实际运行证据，Player待构建。",
-  "status": "in-progress",
+  "description": "太空回合末弃牌：原生测试、独立审查、Player构建及真实鼠标验收证据。",
+  "status": "passed",
   "base_commit": "e8f48fdc9896c000b66ff75fa55e8e1915f78d67",
   "runs": [
     {
@@ -180,12 +180,59 @@
     }
   ],
   "player": {
-    "status": "not-built"
+    "status": "built-and-launched",
+    "path": "Builds/SpaceDiscardPlaytest/ColdWarStruggleDemo.exe",
+    "source_base_commit": "f95f14b5c1f37d9fb55a4f5928574d0e22e0cc94",
+    "source_delta": "Only three display strings shortened after native UI exposed clipping; committed with this report.",
+    "build_exit_code": 0,
+    "build_size_bytes": 97744213,
+    "log": "TestResults/space-discard-playtest-layout-build.log",
+    "payload_count": 46,
+    "payload_byte_comparison": "46/46 passed"
   },
   "native_ui": {
-    "status": "not-verified"
+    "status": "passed-scoped",
+    "tool": "computer-use @oai/sky",
+    "default": "scene15/18, Chinese, private hand; test observer off",
+    "discard_path": "scene17: audit v30, USSR cannot see US candidates; switchUS/read2/selectSuez stays30; discard v31 hand1/discard15/removed0/VP2; retry stays31; next turn10 v32 bothhands9, track6/4",
+    "keep_path": "scene18 audit30, keep31 hands2/1 discard14; final32 VP1 USwin. Rechecked after text-only rebuild.",
+    "visual_fix": "Three-line intro clipped within55px; final continuation wrapped past210px; scene18 title wrapped. Shortened only text; rendered pending and keep panels now complete.",
+    "map_view_switch": "Final report to map, then World to Tiles; VP1/version32/sequence32 unchanged.",
+    "screenshots": [
+      {
+        "path": "Docs/Images/space-discard-pending.png",
+        "sha256": "e951677c2243fb8096d521cc530f699c3cd28495e11bf466207caeccb70c20f3",
+        "source": "Unity F12 game-only capture"
+      },
+      {
+        "path": "Docs/Images/space-discard-keep.png",
+        "sha256": "62fe42071538b97dbe8d392cfc8782793b2b5fb73d0b33c8b2e1786f8c1b1818",
+        "source": "Unity F12 game-only capture"
+      }
+    ],
+    "limitations": [
+      "Special fixture skips headlines and prior turns/space history.",
+      "Not full-game or all-cards acceptance.",
+      "Version2510 native suite predates final three string-only changes; rebuilt Player compilation and rendered checks validate those changes."
+    ]
   },
   "core": "2468/2468 passed,0 skipped; new25 tests plus updated existing gates",
   "data": "2496/2496 passed; new28 data/continuation tests",
-  "presentation": "2510/2510 passed; new14 tests. Subsequent pixel-only spacing adjustment awaits built UI verification."
+  "presentation": "2510/2510 passed; new14 tests. Subsequent pixel-only spacing adjustment awaits built UI verification.",
+  "review": {
+    "reviewer": "review_space_end_discard",
+    "critical": 0,
+    "important": 0,
+    "minor": 1,
+    "deferred": [
+      "DemoView.cs map footer still says special end-turn abilities pending; update to distinguish implemented discard versus pending extra actions in later UI batch."
+    ]
+  },
+  "metadata": {
+    "status": "passed",
+    "descriptors": 146,
+    "datasets": 76,
+    "csharp_symbols_checked": 354,
+    "data_dependencies_checked": 652
+  }
 }

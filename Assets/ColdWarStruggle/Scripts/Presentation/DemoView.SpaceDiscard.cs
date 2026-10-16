@@ -10,7 +10,7 @@ namespace ColdWarStruggle.Presentation
         {
             var choice=view.SpaceDiscard;var audit=view.Practice.TurnEnd;
             Text(972,366,262,27,"太空奖励 · "+Side(choice.Owner),label);
-            Text(972,400,262,55,$"军事／扣留审核已通过。\n军事净 VP {audit.VpDelta:+0;-0;0}。\n可弃一张手牌，或保留全部。",small);
+            Text(972,400,262,55,$"审核通过，军事净 VP {audit.VpDelta:+0;-0;0}。\n可弃一张手牌，或保留全部。",small);
             var selected=controller.SelectedCard;
             Text(972,460,262,40,choice.CanChoose?(selected.HasValue?"所选："+CardTitle(selected.Value):"请先打开手牌选择一张。")
                 :"等待 "+Side(choice.Owner)+" 决定。\n对方候选牌保持隐藏。",small);

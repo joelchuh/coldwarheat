@@ -83,8 +83,8 @@ Assert.That(await controller.RetryCardAsync(),Is.SameAs(r));
 - [x] RunId space-discard-ui-red。Expected: 新行为失败。
 - [x] 实现私有候选/非拥有者等待；手牌弹层仅候选可选；新按钮发既有命令；拒绝和保留不暴露手牌；对局阶段提示及未支持第8格原因明确。新增一份canonical载荷，Editor/Player同链。
 - [x] RunId space-discard-ui-green。Expected: 全套通过；元数据和diff检查。
-- [ ] 一次全分支审查，重要项一轮修复与RED/GREEN；归档裁定。源码冻结后构建独立Player、载荷字节核验。
-- [ ] 真鼠标：场景17审核→切拥有者→选弃→重发→下一回合；场景18审核→保留→最终。核验默认观察关闭、对手候选不显示、地图切换保留状态。游戏F12截图。
-- [ ] Wiki/JSON/工作记录/源码及证据哈希；提交推送功能分支并ls-remote核对。
+- [x] 一次全分支审查，重要项一轮修复与RED/GREEN；归档裁定。源码冻结后构建独立Player、载荷字节核验。
+- [x] 真鼠标：场景17审核→切拥有者→选弃→重发→下一回合；场景18审核→保留→最终。核验默认观察关闭、对手候选不显示、地图切换保留状态。游戏F12截图。
+- [x] Wiki/JSON/工作记录/源码及证据哈希；提交推送功能分支并ls-remote核对。
 
 原生验证统一：`& ./Tools/Scripts/run-unity-editmode.ps1 -ProjectRoot E:/TwilightStruggle -UnityEditor E:/unity6.6/6000.6.0f1/Editor/Unity.exe -RunId <above> -TimeoutSeconds 600`。每次新目录，核验XML与exit；仅源码变化/失败才重跑，不重复消耗。
