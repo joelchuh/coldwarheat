@@ -1,10 +1,10 @@
 # 早期战争可玩接线
 
-> description: 三张早期战争已接真实手牌、OPS、头条、会话与可替换地图；27场景Player已构建并验收四种战争结果，多头条摘要审查修复已通过3081测试，最终构建继续。
+> description: 三张早期战争已接真实手牌、OPS、头条、会话与可替换地图；27场景Player已构建并验收四种战争结果，3081测试、58载荷、Windows实机与独立审查全部通过。
 
 先读[模块JSON](../Descriptors/early-war-play.module.json)再按entrypoints定位函数。规则算术和共享数据见[战争基础](early-war-foundation.md)，本模块只负责编排和提交边界。
 
-当前接口包括ActionPracticeDefinition.Wars、WarDecision/CanResolveWar、直接BeginWar/CompleteWar。固定两牌直接结算；印巴目标待选不消费随机/军事，不推进根。待选绑定game/version、turn、实体Cards、Random和原国家局面。确认后国家/军事/VP/random统一提交；终局不完成根，非终局按星号移出或弃置。对手OPS/头条、公开DTO、地图确认和三个人工场景均已接线。完整原生3081通过；构建源94f4f35，58载荷字节一致，实机四种战争胜败已验收，后续修复须重新构建。
+当前接口包括ActionPracticeDefinition.Wars、WarDecision/CanResolveWar、直接BeginWar/CompleteWar。固定两牌直接结算；印巴目标待选不消费随机/军事，不推进根。待选绑定game/version、turn、实体Cards、Random和原国家局面。确认后国家/军事/VP/random统一提交；终局不完成根，非终局按星号移出或弃置。对手OPS/头条、公开DTO、地图确认和三个人工场景均已接线。完整原生3081通过；最终构建源20273fe，58载荷字节一致；初版四种战争胜败实机验收，最终版朝鲜路径复查通过。成品在Builds/WarPlaytest/ColdWarStruggleDemo.exe。
 
 流程：事件意图→固定目标或待选国家→WarEventService→PracticeRisk.After→国家/随机统一Commit→终局或实体牌处置/Next。对手OPS/头条继续原根；公开DTO不把基础WarEventState传给客户端。以下Task记录是开发历史，以本段和验证报告最新状态为准。
 

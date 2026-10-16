@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "validation.early-war-play",
   "description": "三张早期战争可玩接线原生与Player验证，分任务记录真实证据",
-  "status": "native-passed-final-build-review-pending",
+  "status": "passed",
   "runs": [
     {
       "status": "failed",
@@ -207,7 +207,7 @@
   ],
   "red_analysis": "27个新增失败：26个直接路径未支持导致UnsupportedCardAction，1个缺少定义绑定校验；2989既有通过。",
   "limitations": [
-    "纯规则/会话/地图/27场景3081原生通过；初次Player四种战争鼠标验收通过，审查修复后最终构建继续。",
+    "三人工场景共四种结果实机点击通过；最终重建仅复查单场朝鲜。多头条/OPS/终局路径由3081原生测试覆盖，未逐一鼠标复现。",
     "封闭运行集无CampDavid/FlowerPower或外部状态导入，不把NoActiveInterference当通用事实推导"
   ],
   "attempts": [
@@ -276,7 +276,34 @@
     "minor": 1,
     "important_finding": "同次头条包含两个战争或五年计划与战争时，只保留最后摘要，首个结算细节不可见",
     "minor_finding": "Wiki首段仍是Task1历史状态",
-    "resolution": "已实现有序只读摘要集合及共用实际面板组合；四项回归RED→GREEN，3081全过；Wiki当前摘要已修正，等待聚焦复核。"
+    "resolution": "两项均经独立聚焦复核关闭；无新增问题。",
+    "focused_head": "20273fe3ccc557d0fea872ba05042e50488847cf",
+    "remaining": {
+      "critical": 0,
+      "important": 0,
+      "minor": 0
+    }
   },
-  "multiple_headline_red_analysis": "3081/3077/4：两个战争组合仅显示第二场，五年计划+战争组合缺少五年计划摘要。混合测试同时修正为使用夹具提供的英文卡名；失败中的五年计划摘要缺失独立成立。"
+  "multiple_headline_red_analysis": "3081/3077/4：两个战争组合仅显示第二场，五年计划+战争组合缺少五年计划摘要。混合测试同时修正为使用夹具提供的英文卡名；失败中的五年计划摘要缺失独立成立。",
+  "player_final": {
+    "source_commit": "20273fe3ccc557d0fea872ba05042e50488847cf",
+    "build_exit_code": 0,
+    "path": "Builds/WarPlaytest/ColdWarStruggleDemo.exe",
+    "build_log": "TestResults/war-playtest-final-build.log",
+    "payload_report": "TestResults/war-playtest-final-payload.json",
+    "payload_count": 58,
+    "all_payloads_match": true,
+    "assemblies": {
+      "ColdWarStruggle.Application.dll": "5fd8dbbfe4fb52595b942270800dcd7967394d029168accf3442993083035a51",
+      "ColdWarStruggle.Bootstrap.dll": "3967e61b3e13d31fc3081170f7b1330df0717c4e669dc81444073ae12c07056d",
+      "ColdWarStruggle.Core.dll": "ffe8dabd7ddf7ece1fbec14331d36c8a46742249a4130b6886dd19e9661a9b9d",
+      "ColdWarStruggle.Infrastructure.dll": "f53ecf625bef8070a4966cabf51f632583c28cbc1db8c502ad1a28f220a0d5c5",
+      "ColdWarStruggle.Presentation.dll": "7e1f4bf2806f2228765505ae9da83a4436c70ca11db2c6ef59cc770ab9ab34ab"
+    },
+    "ui_smoke": "实际选择朝鲜战争并发动，韩国美0苏4、苏军事2、VP-2，版本4/序号4；完整四分支人工验收见player_initial",
+    "ui_log": "TestResults/war-player-final.log",
+    "ui_exception_count": 0,
+    "capture": "TestResults/war-ui/final-korean.png",
+    "capture_sha256": "4b958bb6adbd58b02366b2c70a4ec1928cc20aa42a942982d2090016031a0867"
+  }
 }
