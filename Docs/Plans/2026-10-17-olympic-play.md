@@ -31,25 +31,25 @@
 **Modify:** Core/Rules/ActionPracticeState.cs、ActionPracticeRules.cs、ActionPracticeRules.Events.cs、PracticeRiskState.cs（同Scripts根）。
 **Interfaces:** ActionPracticeDefinition追加`OlympicGamesDefinition olympic=null`；State追加`OlympicPracticeExecution olympic=null`；新增命令Kind。`CanRespondToOlympic(GameState,PlayerSide)`与`PlanOlympicContinuation(GameState)`；CardActionTransition追加OlympicPracticeResult。
 
-- [ ] 编写接口stub及测试：双方真实手牌开始、对手身份、错kind/额外payload、源牌唯一、跨局/错VP/随机/根/版本、比赛正常/VP终局、平手续跑不能重选、源状态不变；正常根和头条拒绝边界。
+- [x] 编写接口stub及测试：双方真实手牌开始、对手身份、错kind/额外payload、源牌唯一、跨局/错VP/随机/根/版本、比赛正常/VP终局、平手续跑不能重选、源状态不变；正常根和头条拒绝边界。
 ```csharp
 var begin=ActionPracticeRules.Plan(s,s.Practice.Actor,CardActionKind.Event,"play",Card);
 Assert.That(begin.NextState.Cards.ResolvingCards.Single(),Is.EqualTo(Card));
 Assert.That(begin.NextState.Practice.CompletedActions,Is.EqualTo(s.Practice.CompletedActions));
 ```
-- [ ] 原生RED（唯一RunId），Expected：新功能用例失败，原3362不回退。
-- [ ] 实现真实绑定wrapper、开始/回应/内部一对、风险更新和正常完成；待OPS保留选择Stage，具体用途Task2实现；头条SupportedCards不添加Olympic。
+- [x] 原生RED（唯一RunId），Expected：新功能用例失败，原3362不回退。
+- [x] 实现真实绑定wrapper、开始/回应/内部一对、风险更新和正常完成；待OPS保留选择Stage，具体用途Task2实现；头条SupportedCards不添加Olympic。
 ```csharp
 var nextFlow=OlympicResolutionRules.Respond(flow,side,flow.DecisionId,flow.Revision,branch,new Pcg32Random(state.RandomState));
 // Build complete immutable next state and result before exposing any draft.
 ```
-- [ ] 原生GREEN，零失败/跳过，记录测试/XML/源码并提交。
+- [x] 原生GREEN，零失败/跳过，记录测试/XML/源码并提交。
 
 ## Task 2 — 抵制三种OPS与单根收尾
 
 **Create:** Core/Rules/ActionPracticeRules.OlympicOps.cs；Tests/EditMode/OlympicOperationsTests.cs。
-**Modify:** ActionPracticeRules.cs、ActionPracticeRules.Coup.cs、ActionPracticeRules.Realignment.cs、OlympicPracticeExecution.cs（同路径根）。
-**Interfaces:** `CanChooseOlympicOperations(GameState,PlayerSide,OperationsMode)`、`QuoteOlympicOperations(GameState,PlayerSide,OpsValuePurpose)`；新增UseOlympicInfluence/UseOlympicRealignment/UseOlympicCoup/DeclineOlympicOperations；FinishInfluence/FinishRealignment优先完成Olympic父事件。
+**Modify:** ActionPracticeRules.cs、ActionPracticeRules.Coup.cs、ActionPracticeRules.Realignment.cs、OlympicPracticeExecution.cs、InfluenceRules.cs（同路径根）。
+**Interfaces:** `CanChooseOlympicOperations(GameState,PlayerSide,OperationsMode)`、`QuoteOlympicOperations(GameState,PlayerSide,OpsValuePurpose)`、`CanContinueOlympicOperations(GameState,PlayerSide,OperationsMode)`；新增UseOlympicInfluence/UseOlympicRealignment/UseOlympicCoup/DeclineOlympicOperations；FinishInfluence/FinishRealignment优先完成Olympic父事件。
 
 - [ ] RED测试：抵制DEFCON2核战/存活、错误方/模式重复/陈旧状态、基值4与印刷2区分、清洗及正修正封顶、无中国bonus、固定根可达性/当前费用、投放与调整多次/Finish、政变军事与核战、无额外手牌/槽。
 ```csharp

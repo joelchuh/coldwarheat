@@ -59,6 +59,15 @@ namespace ColdWarStruggle.Core
                 || !ReferenceEquals(plan.Before.Victory,Definition.Victory))throw new ArgumentException("War plan belongs to a different or ended risk state.");
             return new PracticeRiskState(Definition,plan.After.Defcon,plan.After.Military,CoupReceipts,plan.Decision.Outcome==VictoryOutcome.Finished?plan.Decision:null);
         }
+        internal PracticeRiskState AfterOlympic(OlympicEventState before,OlympicEventState after,VictoryDecision decision)
+        {
+            if(before==null || after==null || decision==null || Result!=null || !ReferenceEquals(before.Defcon,Defcon)
+                || !ReferenceEquals(before.Victory,Definition.Victory) || !ReferenceEquals(before.Definition,after.Definition)
+                || !ReferenceEquals(before.Victory,after.Victory) || !ReferenceEquals(after.Defcon.Definition,Definition.Defcon)
+                || after.VpForUS!=decision.SignedVp || decision.Outcome!=VictoryOutcome.Continue && decision.Outcome!=VictoryOutcome.Finished)
+                throw new ArgumentException("Olympic plan belongs to another or ended risk state.");
+            return new PracticeRiskState(Definition,after.Defcon,Military,CoupReceipts,decision.Outcome==VictoryOutcome.Finished?decision:null);
+        }
         internal PracticeRiskState After(DefconVpEventPlan plan)
         {
             if(plan==null || !ReferenceEquals(plan.Before,Defcon) || !ReferenceEquals(plan.VictoryDefinition,Definition.Victory) || Result!=null)throw new ArgumentException("Event plan belongs to a different or ended risk state.");
