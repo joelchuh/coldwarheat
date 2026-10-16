@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.final-scoring",
   "kind": "module",
-  "description": "六地区与中国牌奖励的无修正最终汇总、欧洲优先和零分平局；纯计算接胜负检查点，宿主第10回合与UI待接。",
+  "description": "六区最终汇总、中国牌奖励与终局判定；第10回合审核后的权威命令、防重和公开报告已接，Demo界面待接。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -24,6 +24,18 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/FinalScoringDefinitionLoader.cs",
       "symbol": "LoadSubset"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeFinalScoringRules.cs",
+      "symbol": "CanCompleteFinalScoring"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeState.cs",
+      "symbol": "CreateAtTurn"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/FinalScoringView.cs",
+      "symbol": "PublicFinalScoring"
     }
   ],
   "documentation": "Docs/Wiki/final-scoring.md",
@@ -57,11 +69,12 @@
   ],
   "preconditions": [
     "基础六区；不含中国内战变体",
-    "最终宿主尚待实现：必须完成第10回合期末/军事/扣留审核并绑定同一状态版本",
+    "FinalScoring命令仅第10回合完成全部行动、军事/扣留审核、无待处理根和未支持太空能力时允许",
     "同一Map实例；China独立持有者有效；无活动计分修正"
   ],
   "side_effects": [
-    "纯计算；不修改VP、地图、牌区、牌面或随机数"
+    "CalculateUnmodified为纯计算",
+    "FinalScoring命令一次发布VP/Ended/收据/版本；不修改牌区、RNG或地图"
   ],
   "stop_conditions": [
     "漏/重/多/未知地区、SEA独立计分",
@@ -96,16 +109,24 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/FinalScoringLoaderTests.cs",
       "status": "34-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/FinalScoringPlayTests.cs",
+      "status": "19-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/FinalScoringSessionTests.cs",
+      "status": "3-passed"
     }
   ],
   "verification": {
-    "native_validation": "2386/2386 passed; final-scoring-review-green",
-    "host_integrated": false,
+    "native_validation": "2408/2408 passed; final-play-core-green",
+    "host_integrated": true,
     "player_rebuilt": false,
-    "report": "Docs/Testing/final-scoring-foundation.validation.json"
+    "report": "Docs/Testing/final-scoring-playtest.validation.json"
   },
   "open_items": [
-    "第10回合宿主原子提交、幂等、结算画面",
+    "最终计分练习数据与结算界面",
     "台湾决议等动态计分处理器"
   ],
   "planned_entrypoints": [],

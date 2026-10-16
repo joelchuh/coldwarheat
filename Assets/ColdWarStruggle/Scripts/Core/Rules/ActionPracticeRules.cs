@@ -61,6 +61,7 @@ namespace ColdWarStruggle.Core
         {
             if(kind==CardActionKind.AssessTurnEnd)return PlanTurnEnd(state,side,actionId,card,target);
             if(kind==CardActionKind.BeginNextTurn)return PlanNextTurn(state,side,actionId,card,target);
+            if(kind==CardActionKind.FinalScoring)return PlanFinalScoring(state,side,actionId,card,target);
             if(kind==CardActionKind.EventThenInfluence || kind==CardActionKind.InfluenceThenEvent || kind==CardActionKind.OpponentEventFirst || kind==CardActionKind.OpponentOpsFirst)return PlanOpponentInfluence(state,side,kind,actionId,card,target);
             if(kind==CardActionKind.UseOpponentInfluence || kind==CardActionKind.UseOpponentRealignment || kind==CardActionKind.UseOpponentCoup)return PlanOpponentOperations(state,side,kind,actionId,card,target);
             if(kind==CardActionKind.Realignment || kind==CardActionKind.RollRealignment || kind==CardActionKind.FinishRealignment)return PlanRealignment(state,side,kind,actionId,card,target);
@@ -77,7 +78,8 @@ namespace ColdWarStruggle.Core
                 if(kind==CardActionKind.StartPractice)
                 {
                     if(p.Stage!=ActionPracticeStage.AwaitingStart)return new CardActionTransition(RuleError.ActionNotReady);
-                    if(state.Deployment==null || !state.Deployment.Complete)return new CardActionTransition(RuleError.SetupInProgress);
+                    // Later-turn scenarios are initialized explicitly; turn one still requires completed deployment.
+                    if(state.Deployment==null?state.Turn.Number==1:!state.Deployment.Complete)return new CardActionTransition(RuleError.SetupInProgress);
                     if(state.Cards.ResolvingCards.Count!=0)return new CardActionTransition(RuleError.ActionNotReady);
                     return CollectHeadlinesIfEnabled(Commit(state,new ActionPracticeState(p.Definition,ActionPracticeStage.ChooseCard,0,null,p.Space,p.VpForUS,p.Risk,p.OpsEffects,headline:p.Headline),state.Cards,state.RandomState));
                 }
