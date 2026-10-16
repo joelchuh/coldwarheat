@@ -41,6 +41,7 @@ namespace ColdWarStruggle.Core
             }
             if(!state.Cards.GetHand(side).Contains(card))return RuleError.CardNotOwned;
             var definition=state.Practice.Definition.Cards.GetCard(card);
+            if(kind==CardActionKind.Event && state.Practice.Definition.SpaceEvent?.Card.Id.Equals(card)==true)return CheckSpaceEvent(state,side,card);
             if(kind==CardActionKind.Event)return definition.Kind==CardKind.Event && (state.Practice.Definition.InfluenceEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.DefconVpEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.TurnOpsEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.Blockade?.Card.Id.Equals(card)==true || state.Practice.Definition.FiveYearPlan?.Card.Id.Equals(card)==true || state.Practice.Definition.Wars?.Effects.ContainsKey(card)==true)?RuleError.None:RuleError.UnsupportedCardAction;
             if(kind==CardActionKind.Scoring)return definition.Kind==CardKind.Scoring?RuleError.None:RuleError.UnsupportedCardAction;
             if(definition.Kind!=CardKind.Event)return RuleError.UnsupportedCardAction;

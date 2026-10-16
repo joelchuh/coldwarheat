@@ -29,14 +29,14 @@
 **Modify:** Core/Rules/ActionPracticeState.cs（Definition可选spaceEvent参数/SpaceEvent属性及Transition可选spaceEvent结果）；ActionPracticeRules.cs的CanPlay；ActionPracticeRules.Events.cs的派发；HeadlineResolutionRules.cs支持表；HeadlineFlowRules.cs选择前过滤终点实体牌。全部路径前缀Assets/ColdWarStruggle/Scripts/。
 **Interfaces:** `CheckSpaceEvent(GameState, PlayerSide, CardId)`返回RuleError；`PlanSpaceEvent(GameState,PlayerSide)`返回CardActionTransition；`SpaceEventHeadlineCandidates(GameState,IReadOnlyList<CardId>)`返回经过权威持牌/终点检查的支持集合。
 
-- [ ] 写可编译接口与真实Core失败测试并运行原生RED：双方首/后奖励、普通次数已用、无随机、星号、终局、终点、正常OPS/Space、ID/回合、头条/取消/继续。
+- [x] 写可编译接口与真实Core失败测试并运行原生RED：双方首/后奖励、普通次数已用、无随机、星号、终局、终点、正常OPS/Space、ID/回合、头条/取消/继续。
 ```csharp
 var result=ActionPracticeRules.Plan(state,side,CardActionKind.Event,"event",scientist);
 Assert.That(result.NextState.Practice.Space.AttemptsFor(side),Is.EqualTo(beforeCount));
 Assert.That(result.NextState.Cards.RemovedCards,Has.Member(scientist));
 Pcg32RandomTests.Same(state.RandomState,result.NextState.RandomState);
 ```
-- [ ] 实现基础计划和现有胜负/Next/Move组合，来源ID使用头条CurrentResolutionId或带Turn的PracticeSlotId。终点从CanPlay和运行时都返回EventRequiresRuling；候选过滤只看权威真实持牌者。
+- [x] 实现基础计划和现有胜负/Next/Move组合，来源ID使用头条CurrentResolutionId或带Turn的PracticeSlotId。终点从CanPlay和运行时都返回EventRequiresRuling；候选过滤只看权威真实持牌者。
 ```csharp
 var plan=SpaceEventRules.PlanAdvance(p.Space,request);
 var award=plan.Receipt.AwardVp;
@@ -44,7 +44,7 @@ var decision=VictoryService.Evaluate(p.Risk.Definition.Victory,
     new ClosedVpBatchEvidence(request.Id,definition.EffectId,p.VpForUS,
         side==PlayerSide.US?award:0,side==PlayerSide.USSR?award:0));
 ```
-- [ ] 全部原生通过后记录结果并提交Task1。
+- [x] 全部原生通过后记录结果并提交Task1。
 
 ## Task 2 — 固定会话与结果显示
 

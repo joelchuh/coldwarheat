@@ -15,6 +15,7 @@ namespace ColdWarStruggle.Core
         {
             try
             {
+                if(state.Practice.Definition.SpaceEvent?.Card.Id.Equals(card)==true)return PlanSpaceEvent(state,side);
                 if(state.Practice.Definition.Wars?.Effects.ContainsKey(card)==true)return BeginWar(state,card,false);
                 if(state.Practice.Definition.FiveYearPlan?.Card.Id.Equals(card)==true)return BeginFiveYearPlan(state,false);
                 if(state.Practice.Definition.Blockade?.Card.Id.Equals(card)==true)return BeginBlockade(state,false);

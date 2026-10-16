@@ -23,7 +23,7 @@ namespace ColdWarStruggle.Core
                 || state.Cards.ResolvingCards.Count!=0)return new HeadlineResolutionTransition(RuleError.ActionNotReady);
             try
             {
-                var selection=HeadlineSelectionState.Begin(p.Definition.Cards,state.Cards,p.Space.Track,HeadlineResolutionRules.SupportedCards(p.Definition));
+                var selection=HeadlineSelectionState.Begin(p.Definition.Cards,state.Cards,p.Space.Track,ActionPracticeRules.SpaceEventHeadlineCandidates(state,HeadlineResolutionRules.SupportedCards(p.Definition)));
                 return new HeadlineResolutionTransition(RuleError.None,Draft(state,selection));
             }
             catch(OverflowException){return new HeadlineResolutionTransition(RuleError.NumericOverflow);}

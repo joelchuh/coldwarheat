@@ -7,6 +7,7 @@ namespace ColdWarStruggle.Core
     // Explicit single-turn practice with a bounded, typed set of supported events. Not the full turn coordinator.
     public sealed class ActionPracticeDefinition
     {
+        public SpaceEventDefinition SpaceEvent { get; }
         public WarEventCatalog Wars { get; }
         public FiveYearPlanDefinition FiveYearPlan { get; }
         public BlockadeDefinition Blockade { get; }
@@ -26,8 +27,13 @@ namespace ColdWarStruggle.Core
         public HeadlineOrderParameters HeadlineParameters { get; }
         public DefectorsHeadlineDefinition HeadlineDefectors { get; }
         public FinalScoringDefinition FinalScoring { get; }
-        public ActionPracticeDefinition(CardCatalog cards,OpsGeneralDefinition ops,SpaceRaceDefinition space,TurnCalendar calendar,PracticeRiskDefinition risk=null,RegionScoringDefinition scoring=null,PracticeInfluenceCatalog influenceEvents=null,PracticeDefconVpCatalog defconVpEvents=null,PracticeTurnOpsCatalog turnOpsEvents=null,RealignmentDefinition realignment=null,ChinaCardDefinition china=null,bool turnEndEnabled=false,bool nextTurnEnabled=false,HeadlineOrderParameters headlineParameters=null,DefectorsHeadlineDefinition headlineDefectors=null,FinalScoringDefinition finalScoring=null,BlockadeDefinition blockade=null,FiveYearPlanDefinition fiveYearPlan=null,WarEventCatalog wars=null)
+        public ActionPracticeDefinition(CardCatalog cards,OpsGeneralDefinition ops,SpaceRaceDefinition space,TurnCalendar calendar,PracticeRiskDefinition risk=null,RegionScoringDefinition scoring=null,PracticeInfluenceCatalog influenceEvents=null,PracticeDefconVpCatalog defconVpEvents=null,PracticeTurnOpsCatalog turnOpsEvents=null,RealignmentDefinition realignment=null,ChinaCardDefinition china=null,bool turnEndEnabled=false,bool nextTurnEnabled=false,HeadlineOrderParameters headlineParameters=null,DefectorsHeadlineDefinition headlineDefectors=null,FinalScoringDefinition finalScoring=null,BlockadeDefinition blockade=null,FiveYearPlanDefinition fiveYearPlan=null,WarEventCatalog wars=null,SpaceEventDefinition spaceEvent=null)
         {
+            if(spaceEvent!=null && (risk==null || !ReferenceEquals(spaceEvent.Cards,cards) || !ReferenceEquals(spaceEvent.Track,space)
+                || influenceEvents?.Effects.ContainsKey(spaceEvent.Card.Id)==true || defconVpEvents?.Effects.ContainsKey(spaceEvent.Card.Id)==true
+                || turnOpsEvents?.Effects.ContainsKey(spaceEvent.Card.Id)==true || headlineDefectors?.Card.Equals(spaceEvent.Card.Id)==true
+                || blockade?.Card.Id.Equals(spaceEvent.Card.Id)==true || fiveYearPlan?.Card.Id.Equals(spaceEvent.Card.Id)==true
+                || wars?.Effects.ContainsKey(spaceEvent.Card.Id)==true))throw new ArgumentException("Space event requires shared cards, track, risk and a unique handler.");
             if(wars!=null && (risk==null || !ReferenceEquals(wars.Cards,cards) || !ReferenceEquals(wars.Map,risk.Defcon.Map)
                 || wars.Effects.Keys.Any(id=>influenceEvents?.Effects.ContainsKey(id)==true || defconVpEvents?.Effects.ContainsKey(id)==true
                     || turnOpsEvents?.Effects.ContainsKey(id)==true || headlineDefectors?.Card.Equals(id)==true || blockade?.Card.Id.Equals(id)==true || fiveYearPlan?.Card.Id.Equals(id)==true)))throw new ArgumentException("Wars require shared risk, map, cards and unique handlers.");
@@ -48,7 +54,7 @@ namespace ColdWarStruggle.Core
             if(nextTurnEnabled && !turnEndEnabled)throw new ArgumentException("Next turn requires turn-end assessment.");
             if(turnEndEnabled && (risk==null || china==null))throw new ArgumentException("Turn-end practice requires risk and China rules.");
             if(headlineDefectors!=null && (!ReferenceEquals(headlineDefectors.Catalog,cards) || influenceEvents?.Effects.ContainsKey(headlineDefectors.Card)==true || defconVpEvents?.Effects.ContainsKey(headlineDefectors.Card)==true || turnOpsEvents?.Effects.ContainsKey(headlineDefectors.Card)==true))throw new ArgumentException("Headline Defectors requires same cards and disjoint handlers.");
-            Wars=wars;FiveYearPlan=fiveYearPlan;Blockade=blockade;FinalScoring=finalScoring;HeadlineDefectors=headlineDefectors;HeadlineParameters=headlineParameters;NextTurnEnabled=nextTurnEnabled;TurnEndEnabled=turnEndEnabled;China=china;Realignment=realignment;TurnOpsEvents=turnOpsEvents;DefconVpEvents=defconVpEvents;InfluenceEvents=influenceEvents;Scoring=scoring;Cards=cards??throw new ArgumentNullException(nameof(cards));Ops=ops??throw new ArgumentNullException(nameof(ops));Space=space??throw new ArgumentNullException(nameof(space));Calendar=calendar??throw new ArgumentNullException(nameof(calendar));Risk=risk; }
+            SpaceEvent=spaceEvent;Wars=wars;FiveYearPlan=fiveYearPlan;Blockade=blockade;FinalScoring=finalScoring;HeadlineDefectors=headlineDefectors;HeadlineParameters=headlineParameters;NextTurnEnabled=nextTurnEnabled;TurnEndEnabled=turnEndEnabled;China=china;Realignment=realignment;TurnOpsEvents=turnOpsEvents;DefconVpEvents=defconVpEvents;InfluenceEvents=influenceEvents;Scoring=scoring;Cards=cards??throw new ArgumentNullException(nameof(cards));Ops=ops??throw new ArgumentNullException(nameof(ops));Space=space??throw new ArgumentNullException(nameof(space));Calendar=calendar??throw new ArgumentNullException(nameof(calendar));Risk=risk; }
     }
     public sealed class ActionPracticeState
     {
@@ -132,6 +138,7 @@ namespace ColdWarStruggle.Core
     }
     public sealed class CardActionTransition
     {
+        public SpaceEventPlan SpaceEventResult { get; }
         public WarEventPlan WarResult { get; }
         public FiveYearPlanResult FiveYearPlanResult { get; }
         public BlockadeResolutionResult BlockadeResult { get; }
@@ -146,7 +153,7 @@ namespace ColdWarStruggle.Core
         public DefconVpEventPlan DefconVpEvent { get; }
         public TurnOpsEffectInstance ActivatedOpsEffect { get; }
         public RealignmentCalculation Realignment { get; }
-        internal CardActionTransition(RuleError error,GameState next=null,SpaceAttemptReceipt receipt=null,CoupAttemptReceipt coup=null,RegionScoringResult scoring=null,InfluenceEventTransition eventTransition=null,DefconVpEventPlan defconVpEvent=null,TurnOpsEffectInstance activatedOpsEffect=null,RealignmentCalculation realignment=null,BlockadeResolutionResult blockadeResult=null,System.Collections.Generic.IReadOnlyList<HeadlineResolutionStep> headlineSteps=null,FiveYearPlanResult fiveYearPlanResult=null,WarEventPlan warResult=null)
-        { WarResult=warResult;FiveYearPlanResult=fiveYearPlanResult;BlockadeResult=blockadeResult;HeadlineSteps=Array.AsReadOnly((headlineSteps??Array.Empty<HeadlineResolutionStep>()).ToArray());Realignment=realignment;ActivatedOpsEffect=activatedOpsEffect;DefconVpEvent=defconVpEvent;EventTransition=eventTransition;ScoringResult=scoring;Error=error;NextState=next;SpaceReceipt=receipt;CoupReceipt=coup; }
+        internal CardActionTransition(RuleError error,GameState next=null,SpaceAttemptReceipt receipt=null,CoupAttemptReceipt coup=null,RegionScoringResult scoring=null,InfluenceEventTransition eventTransition=null,DefconVpEventPlan defconVpEvent=null,TurnOpsEffectInstance activatedOpsEffect=null,RealignmentCalculation realignment=null,BlockadeResolutionResult blockadeResult=null,System.Collections.Generic.IReadOnlyList<HeadlineResolutionStep> headlineSteps=null,FiveYearPlanResult fiveYearPlanResult=null,WarEventPlan warResult=null,SpaceEventPlan spaceEventResult=null)
+        { SpaceEventResult=spaceEventResult;WarResult=warResult;FiveYearPlanResult=fiveYearPlanResult;BlockadeResult=blockadeResult;HeadlineSteps=Array.AsReadOnly((headlineSteps??Array.Empty<HeadlineResolutionStep>()).ToArray());Realignment=realignment;ActivatedOpsEffect=activatedOpsEffect;DefconVpEvent=defconVpEvent;EventTransition=eventTransition;ScoringResult=scoring;Error=error;NextState=next;SpaceReceipt=receipt;CoupReceipt=coup; }
     }
 }
