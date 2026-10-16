@@ -11,3 +11,9 @@ Pre-flight: Task2消费Task1的OlympicResolution与ContinueOne，签名一致；
 Task1 RED：3346总数，3299旧测试通过，47新测试全部NotImplementedException失败，零跳过。XML 32e326ad1eb5938ea44687a11509914724a0250bc89d52ed63ea9894b1dd145e。实现了唯一正式结算牌绑定、正常根/头条角色边界、对手选择、第一对原子计划、不可变历史、旧令牌拒绝、抵制等待及明确放弃，正在原生GREEN。
 
 Task1 complete：3346/3346原生GREEN，零失败/跳过；XML ab772ff9839cf6fc792832f7476bf51aad0ba38078a5d89c67d62554b6180f30，源码及运行证据见Testing报告。
+
+Task2开始：16项行为测试覆盖分片1/3一致、惰性工厂、提前dispose、预算和阶段拒绝、后对失败恢复、坏工厂、取样前版本溢出与40次平手跨14片完成。原生RED运行中。
+
+Task2 RED：3362总数，3346旧测试通过，16新测试均NotImplemented失败、零跳过；XML a5d203377a6efae9e3cf9d2e897f11e3333d104cb8ba9ccd245fc1c6c4b7cac7。实现惰性每对yield、显式参数门禁、工厂调用前版本/轮次预检，不捕获或伪造异常结果。
+
+Task2 complete：3362/3362原生GREEN、零失败/跳过，XML 9cc78cd4c061c95d9ecc9489e41115efeb824e85f837258567d2ea6a2f6461ea。元数据171描述/171入口/83数据集/443符号/719数据依赖通过。没有改正式数据或既有Player。待一次fresh整批只读审查。

@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "id": "module.olympic-resolution-flow",
+  "kind": "module",
+  "status": "implemented-internal-subset",
+  "description": "奥运会可信内存编排：绑定结算牌、对手分支、平手令牌与逐对惰性片段；不含GameState/Host/OPS执行或存档。",
+  "documentation": "Docs/Wiki/olympic-resolution-flow.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OlympicResolutionRules.cs",
+      "symbol": "Begin"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OlympicResolutionRules.cs",
+      "symbol": "Respond"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OlympicResolutionRules.cs",
+      "symbol": "ContinueOne"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OlympicResolutionRules.cs",
+      "symbol": "DeclineOperations"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OlympicContinuationRunner.cs",
+      "symbol": "PlanSlice"
+    }
+  ],
+  "inputs": [
+    "共享正式OlympicEventState与唯一结算中的CardZones、可信来源角色/游戏/根/版本",
+    "已绑定响应身份、当前decisionId/revision或内部对象令牌；随机快照工厂和正数片段预算"
+  ],
+  "outputs": [
+    "不可变选择/继续/OPS等待/完成状态，逐对只读历史链与共享胜负判断",
+    "惰性完整快照序列；调用方须逐个原子提交，本函数没有外部提交"
+  ],
+  "dependencies": [
+    "module.olympic-contest-foundation"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.olympic_games",
+    "rules.deluxe2015.standard-dice",
+    "cards.deluxe2015.definitions",
+    "rules.deluxe2015.defcon",
+    "rules.deluxe2015.victory"
+  ],
+  "preconditions": [
+    "仅可信父事件；真实GameState/帧/触发资格仍由父编排验证，物理分区不能授予玩家权限",
+    "正常根/本牌头条Sponsor与rootPhasing一致；特殊嵌套拒绝",
+    "PlanSlice每次yield后先提交，再请求下一对；玩家不能调用内部续跑"
+  ],
+  "side_effects": [
+    "无外部写入；PlanPair只消耗独立随机fork；工厂在每次MoveNext中被调用"
+  ],
+  "stop_conditions": [
+    "错误身份/决策/版本/来源/旧令牌/阶段/溢出拒绝；原输入保持不变",
+    "续跑异常向上传递；已经返回的完整快照不回滚，当前失败对无输出",
+    "Completed不能重新选择/继续；抵制后的Offer不等于已执行OPS"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Architecture/olympic-resolution-flow.md",
+      "scope": "当前内存实现与完整持久化/宿主设计之间的边界"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/OlympicResolutionTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/OlympicContinuationTests.cs",
+      "status": "native-passed"
+    }
+  ],
+  "verification": {
+    "status": "native-passed-review-pending",
+    "report": "Docs/Testing/olympic-resolution-flow.validation.json"
+  }
+}

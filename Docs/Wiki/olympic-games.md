@@ -2,7 +2,7 @@
 
 description：查主办方与对手分支选择、平手强制重掷的双骰收据链、有限执行片段，以及抵制先降DEFCON再可选普通OPS的顺序。
 
-当前2026-10-17：[比赛与抵制基础](olympic-contest-foundation.md)已实现并通过3299原生测试，完整玩家事件处理器仍planned。下述选择/摘要链/OPS/牌去向为完整设计，不能视为本批已有代码。原设计记录2026-10-12：#20单牌参数设计。按[数据描述](../../Data/Descriptors/olympic-games.data.json)→[参数](../../Data/Cards/deluxe-2015/olympic-games.parameters.json)→[Schema](../Contracts/olympic-games.schema.json)→[案例](../Design/olympic-games.cases.json)检索。本批不依赖其他未发布批次的数据，也不报告全局绑定或旧回归数量。
+当前2026-10-17：[比赛与抵制基础](olympic-contest-foundation.md)已实现并通过3299原生测试，[内存选择/续跑组件](olympic-resolution-flow.md)也已实现并通过3362原生测试；完整玩家事件处理器仍planned。下述选择/摘要链/OPS/牌去向为完整设计，不能视为本批已有代码。原设计记录2026-10-12：#20单牌参数设计。按[数据描述](../../Data/Descriptors/olympic-games.data.json)→[参数](../../Data/Cards/deluxe-2015/olympic-games.parameters.json)→[Schema](../Contracts/olympic-games.schema.json)→[案例](../Design/olympic-games.cases.json)检索。本批不依赖其他未发布批次的数据，也不报告全局绑定或旧回归数量。
 
 ## 来源与角色
 

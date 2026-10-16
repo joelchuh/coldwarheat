@@ -48,7 +48,7 @@ var pair=OlympicEventService.PlanPair(state.Current,state.Sponsor,state.Resoluti
 **Files:** 新建 Scripts/Core/Rules/OlympicContinuationRunner.cs、Tests/EditMode/OlympicContinuationTests.cs；Docs/Descriptors/olympic-resolution-flow.module.json、Wiki/olympic-resolution-flow.md、Testing/olympic-resolution-flow.validation.json、Worklogs/2026-10-17-olympic-resolution-flow.md，更新两个目录入口。
 **Interfaces:** `PlanSlice(OlympicResolution,int maxPairs,Func<RandomSnapshot,IRandomProvider>) : IEnumerable<OlympicResolution>`。
 
-- [ ] stub + 测试片段1/3一致、工厂输入逐次游标、无提前取样/提前dispose、预算零/负、完成后不续跑、错误工厂/后对异常保留前对。
+- [x] stub + 测试片段1/3一致、工厂输入逐次游标、无提前取样/提前dispose、预算零/负、完成后不续跑、错误工厂/后对异常保留前对。
 ```csharp
 using(var e=OlympicContinuationRunner.PlanSlice(tie,3,factory).GetEnumerator()) {
  Assert.That(factoryCalls,Is.Zero);
@@ -56,7 +56,7 @@ using(var e=OlympicContinuationRunner.PlanSlice(tie,3,factory).GetEnumerator()) 
  Assert.That(factoryCalls,Is.EqualTo(1));
 }
 ```
-- [ ] 原生 RED 后实现显式参数预检和私有 iterator，每次 yield 一个 ContinueOne；核对不暗中吞异常。
+- [x] 原生 RED 后实现显式参数预检和私有 iterator，每次 yield 一个 ContinueOne；核对不暗中吞异常。
 ```csharp
 for(var i=0;i<maxPairs && current.Stage==OlympicResolutionStage.Rolling;i++) {
  var next=OlympicResolutionRules.ContinueOne(current,current.Continuation,factory(current.Current.Random));

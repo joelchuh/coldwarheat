@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "validation.olympic-resolution-flow",
   "description": "对手选择/内存分支锁/惰性续跑的分批原生验证；未接GameState与Host。",
-  "status": "task1-passed-task2-pending",
+  "status": "native-passed-review-pending",
   "baseline_commit": "ca2cb102ed8f4fdcf3fbe72b8583f8cde14d0948",
   "runs": [
     {
@@ -44,15 +44,75 @@
       "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\olympic-resolution-flow-green",
       "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\olympic-resolution-flow-green\\results.xml",
       "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\olympic-resolution-flow-green\\editor.log"
+    },
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 3362,
+      "passed": 3346,
+      "failed": 16,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "a5d203377a6efae9e3cf9d2e897f11e3333d104cb8ba9ccd245fc1c6c4b7cac7",
+      "schema_version": 1,
+      "run_id": "olympic-continuation-slice-red",
+      "duration_ms": 168528,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\olympic-continuation-slice-red",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\olympic-continuation-slice-red\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\olympic-continuation-slice-red\\editor.log"
+    },
+    {
+      "status": "passed",
+      "error_code": null,
+      "total": 3362,
+      "passed": 3362,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "9cc78cd4c061c95d9ecc9489e41115efeb824e85f837258567d2ea6a2f6461ea",
+      "schema_version": 1,
+      "run_id": "olympic-continuation-slice-green",
+      "duration_ms": 162361,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\olympic-continuation-slice-green",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\olympic-continuation-slice-green\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\olympic-continuation-slice-green\\editor.log"
     }
   ],
   "source_sha256": {
     "Assets/ColdWarStruggle/Scripts/Core/Rules/OlympicResolution.cs": "ad73cc77fb6be02ab31c527f800c0faf0d32d15e8fe06f62deb78a201bd4e195",
     "Assets/ColdWarStruggle/Scripts/Core/Rules/OlympicResolutionRules.cs": "67e49368375f5267c898f5ca64ac76365cb9fa12e515472919d542924b9695ac",
-    "Assets/ColdWarStruggle/Tests/EditMode/OlympicResolutionTests.cs": "382347224f05906fa20001b7899f6da6730ba18ed41e15cc46729132ff0be994"
+    "Assets/ColdWarStruggle/Tests/EditMode/OlympicResolutionTests.cs": "382347224f05906fa20001b7899f6da6730ba18ed41e15cc46729132ff0be994",
+    "Assets/ColdWarStruggle/Scripts/Core/Rules/OlympicContinuationRunner.cs": "bb1d300364e70cff88bc5470c78b885bd15526d99784b81fc938b9a69232ee9a",
+    "Assets/ColdWarStruggle/Tests/EditMode/OlympicContinuationTests.cs": "b683df8eb30f409298c071521859d8497eca647293cb75e78eb059669a243dc5"
   },
   "review": {
     "status": "pending"
   },
-  "player": "unchanged-space-event-playtest"
+  "player": "unchanged-space-event-playtest",
+  "input_sha256": {
+    "Data/Cards/deluxe-2015/olympic-games.parameters.json": "380d6c8fdef851ae9c7e5ac2d01d780c60930417a47ec49021f2883ce7b54d9d",
+    "Docs/Contracts/olympic-games.schema.json": "6ae4166fe364d77fa0f2349c01cefd493740b5792a3f94037d9c4a2708d8bbb6",
+    "Data/Rulesets/deluxe-2015/standard-dice.json": "c84d14b827bd71d5575a22d6e2c52e18caaffcaeeb5f8e53f16352bdcec8f54a",
+    "Docs/Contracts/standard-dice.schema.json": "1e784c58d6ab8ed3d8bd2f8588e310f2502b61f62ace2bdb3161d87f42bffb26"
+  },
+  "coverage": [
+    "真实目录/唯一Resolving、正常根/头条、非live/错身份/ID/版本/枚举拒绝",
+    "首对故障保留选择，平手清玩家决策并固定分支，旧/跨事件令牌拒绝",
+    "双方比赛VP/核战终局、抵制后显式放弃保留降级",
+    "片段1/3一致、逐次游标、dispose不取样、后对失败保留旧快照、工厂异常向上传递",
+    "40次连续平手分14片完成，无规则次数上限；版本溢出在工厂/fork前拒绝"
+  ],
+  "limitations": [
+    "可信纯内存组件，GameState/帧授权、Host幂等、事件OPS执行和UI尚未接入",
+    "只读链和对象令牌不等于可序列化SHA恢复链；枚举器只产出计划，调用方负责逐对提交",
+    "无Player变更；不声明奥运会可玩，源牌/根收尾属于后续集成"
+  ]
 }

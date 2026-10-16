@@ -56,6 +56,7 @@
 | OPEC与北海石油 | 查七国控制VP、永久阻止、回合额度与太空名额合并 | 2牌参数Bound；未知重复/迟到来源待核，待实现 | [opec-north-sea-batch1.md](opec-north-sea-batch1.md) |
 | 战争游戏 | 查三选择、DEFCON前提、完整VP批次与立即结束 | 1牌参数Bound；恰零结束判平局已确认，待实现 | [wargames.md](wargames.md) |
 | 中国牌事件转交 | 查持有者分支、面向、VP/亚洲奖励及独立牌区 | 3牌参数Bound；运行服务待实现 | [china-transfer-batch1.md](china-transfer-batch1.md) |
+| 奥运会选择与续跑 | 查对手分支锁、单对令牌、惰性片段与原子边界 | 内存组件；验收见报告，尚未接玩家入口 | [olympic-resolution-flow.md](olympic-resolution-flow.md) |
 | 奥运会规则基础 | 查正式D6/卡牌绑定、双骰比赛与抵制核战纯计划 | 3299原生通过；未接玩家流程 | [olympic-contest-foundation.md](olympic-contest-foundation.md) |
 | 奥运会 | 查对手分支、平局强制重掷、内部续跑与抵制后普通OPS | 1牌参数Bound；计算基础已实现，完整玩家事件待接 | [olympic-games.md](olympic-games.md) |
 | 晚期影响力第一批 | 查铁娘子/改革者/海军营房/潘兴II及长期禁止、VP先行 | 4牌参数Bound；Marine短缺解释已确认，待实现 | [late-influence-batch1.md](late-influence-batch1.md) |
