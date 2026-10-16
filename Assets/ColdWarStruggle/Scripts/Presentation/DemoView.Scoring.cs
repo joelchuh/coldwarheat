@@ -14,7 +14,7 @@ namespace ColdWarStruggle.Presentation
         {
             var preview=controller.ScoringPreview(regions[regionIndex]);
             Text(left+18,270,width-36,33,preview.Error==RuleError.None
-                ?ScoringRegionName(preview.Score.RegionId)+"公开预览："+ScoreSummary(preview.Score)+"（出牌时复核）"
+                ?ScoringRegionName(preview.Score.RegionId)+"公开预览："+ScoreSummary(preview.Score)+(view.Practice?.EndReason!=null?"（终局复盘）":"（出牌时复核）")
                 :"计分预览："+ErrorText(preview.Error),small);
         }
         void DrawScoringChoice(CardId card)

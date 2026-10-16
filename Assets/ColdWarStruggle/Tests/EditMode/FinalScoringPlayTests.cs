@@ -7,12 +7,12 @@ namespace ColdWarStruggle.Tests
 {
     public class FinalScoringPlayTests
     {
-        internal static ActionPracticeDefinition Definition(ActionPracticeDefinition d,bool enabled=true,int chinaVp=1,SpaceRaceDefinition space=null)
-            =>new ActionPracticeDefinition(d.Cards,d.Ops,space??d.Space,d.Calendar,d.Risk,d.Scoring,d.InfluenceEvents,d.DefconVpEvents,d.TurnOpsEvents,d.Realignment,d.China,true,true,
+        internal static ActionPracticeDefinition Definition(ActionPracticeDefinition d,bool enabled=true,int chinaVp=1,SpaceRaceDefinition space=null,bool nextTurn=true)
+            =>new ActionPracticeDefinition(d.Cards,d.Ops,space??d.Space,d.Calendar,d.Risk,d.Scoring,d.InfluenceEvents,d.DefconVpEvents,d.TurnOpsEvents,d.Realignment,d.China,true,nextTurn,
                 finalScoring:enabled?FinalScoringTests.Definition(d.Scoring.Map,chinaVp,d.Scoring):null);
-        internal static GameState Ready(int vp=0,int turn=10,bool enabled=true,int chinaVp=1,PlayerSide china=PlayerSide.US,SpaceRaceDefinition space=null)
+        internal static GameState Ready(int vp=0,int turn=10,bool enabled=true,int chinaVp=1,PlayerSide china=PlayerSide.US,SpaceRaceDefinition space=null,bool nextTurn=true)
         {
-            var baseState=NextTurnPlayTests.Ready();var d=Definition(baseState.Practice.Definition,enabled,chinaVp,space);
+            var baseState=NextTurnPlayTests.Ready();var d=Definition(baseState.Practice.Definition,enabled,chinaVp,space,nextTurn);
             var p=ActionPracticeState.CreateAtTurn(d,turn,vp);var board=RegionScoringTests.Empty(baseState.Map);
             var hands=new Dictionary<PlayerSide,IReadOnlyList<CardId>>();var used=new HashSet<CardId>();
             foreach(var side in new[]{PlayerSide.USSR,PlayerSide.US})
@@ -61,6 +61,29 @@ namespace ColdWarStruggle.Tests
             Assert.That(Finish(Ready()).Error,Is.EqualTo(RuleError.ActionNotReady));Assert.That(Finish(Complete(Ready())).Error,Is.EqualTo(RuleError.ActionNotReady));
             Assert.That(Finish(NextTurnPlayTests.Apply(Complete(Ready(turn:9)),CardActionKind.AssessTurnEnd)).Error,Is.EqualTo(RuleError.ActionNotReady));
             Assert.That(Finish(NextTurnPlayTests.Apply(Complete(Ready(enabled:false)),CardActionKind.AssessTurnEnd)).Error,Is.EqualTo(RuleError.UnsupportedCardAction));
+        }
+        [TestCase(SpaceAbilityKind.EndTurnDiscardMaximum,true)]
+        [TestCase(SpaceAbilityKind.EndTurnDiscardMaximum,false)]
+        [TestCase(SpaceAbilityKind.ActionRoundAllowance,true)]
+        [TestCase(SpaceAbilityKind.ActionRoundAllowance,false)]
+        public void Final_scoring_cannot_bypass_unhandled_space_entitlements(SpaceAbilityKind kind,bool nextTurn)
+        {
+            var space=new SpaceRaceDefinition(0,1,1,1,new[]{new SpaceStepDefinition("one",1,1,1,1,0,0,"ability")},new[]{new SpaceAbilityDefinition("ability",kind,kind==SpaceAbilityKind.ActionRoundAllowance?8:1)});
+            var s=PlayTurnOpsEventTests.Give(Ready(space:space,nextTurn:nextTurn),PlayerSide.USSR,"card.olympic_games");
+            s=NextTurnPlayTests.Apply(s,CardActionKind.Space,"card.olympic_games");s=Complete(s);
+            if(kind==SpaceAbilityKind.ActionRoundAllowance)
+            {
+                Assert.That(ActionPracticeRules.CanAssessTurnEnd(s,PlayerSide.US),Is.EqualTo(RuleError.UnsupportedCardAction));
+                Assert.That(Finish(s).Error,Is.EqualTo(RuleError.ActionNotReady));
+            }
+            else
+            {
+                s=NextTurnPlayTests.Apply(s,CardActionKind.AssessTurnEnd);
+                Assert.That(Finish(s).Error,Is.EqualTo(RuleError.UnsupportedCardAction));
+            }
+            var version=s.Version;var cards=s.Cards;var random=s.RandomState;
+            var rejected=Finish(s);Assert.That(rejected.Accepted,Is.False);Assert.That(rejected.NextState,Is.Null);
+            Assert.That(s.Version,Is.EqualTo(version));Assert.That(s.Cards,Is.SameAs(cards));Assert.That(s.RandomState,Is.SameAs(random));Assert.That(s.Practice.FinalScoring,Is.Null);
         }
         [Test] public void Invalid_identity_or_command_payload_never_reaches_calculator()
         {

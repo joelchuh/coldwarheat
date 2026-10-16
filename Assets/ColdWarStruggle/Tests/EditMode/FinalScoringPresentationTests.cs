@@ -17,12 +17,12 @@ namespace ColdWarStruggle.Tests
         [TestCase(-2,"苏联获胜")][TestCase(-1,"平局")][TestCase(0,"美国获胜")]
         public async Task Frame_and_status_distinguish_all_terminal_results(int vp,string expected)
         {
-            var c=Controller(FinalScoringPlayTests.Assessed(vp));Assert.That(c.FinalScoringPrompt,Does.Contain("最终计分"));Assert.That(c.TurnEndMessage,Does.Not.Contain("最终计分尚未接入"));
+            var held=new CardId("card.duck_and_cover");var c=Controller(PlayTurnOpsEventTests.Give(FinalScoringPlayTests.Assessed(vp),PlayerSide.US,held.Value));Assert.That(c.CanSelectHandCard(held),Is.True);Assert.That(c.FinalScoringPrompt,Does.Contain("最终计分"));Assert.That(c.TurnEndMessage,Does.Not.Contain("最终计分尚未接入"));
             var r=await c.CompleteFinalScoringAsync();Assert.That(r.Accepted,Is.True);var f=FinalScoringPanelFrame.Create(c.ReadView().Practice.FinalScoring);
             Assert.That(f.Outcome,Does.Contain(expected));Assert.That(c.PracticePhaseText,Does.Contain(expected));Assert.That(f.Equation,Does.Contain((vp+1).ToString()));
             Assert.That(f.Rows.Count,Is.EqualTo(6));Assert.That(f.Rows.Select(x=>x.Label),Is.EquivalentTo(new[]{"欧洲","亚洲","中东","非洲","中美洲","南美洲"}));
             Assert.That(f.Rows.All(x=>x.Net=="0"),Is.True);Assert.That(f.ChinaLine,Does.Contain("美国").And.Contain("+1"));Assert.That(c.TurnEndMessage,Does.Not.Contain("尚未终局").And.Not.Contain("可进入"));
-            Assert.That(await c.RetryCardAsync(),Is.SameAs(r));var version=c.ReadView().Version;
+            Assert.That(await c.RetryCardAsync(),Is.SameAs(r));var version=c.ReadView().Version;Assert.That(c.CanSelectHandCard(held),Is.False,"Terminal hand must not invite another play.");
             c.SelectSide(PlayerSide.USSR);Assert.That(c.LastCardResult,Is.Null);Assert.That(FinalScoringPanelFrame.Create(c.ReadView().Practice.FinalScoring).Outcome,Is.EqualTo(f.Outcome));Assert.That(c.ReadView().Version,Is.EqualTo(version));
             Assert.Throws<NotSupportedException>(()=>((IList<FinalScoringRow>)f.Rows).Clear());
         }

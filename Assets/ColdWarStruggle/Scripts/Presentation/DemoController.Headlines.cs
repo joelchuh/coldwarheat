@@ -9,7 +9,7 @@ namespace ColdWarStruggle.Presentation
     {
         public bool CanSelectHandCard(CardId card)
         {
-            var v=ReadView();if(v.Practice==null || !v.OwnHand.Contains(card.Value))return false;
+            var v=ReadView();if(v.Practice==null || v.Practice.EndReason.HasValue || !v.OwnHand.Contains(card.Value))return false;
             var selection=v.Headline?.Selection;
             return selection==null || (selection.CanChoose && selection.Candidates.Contains(card));
         }

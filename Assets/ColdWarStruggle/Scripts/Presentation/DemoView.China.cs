@@ -16,7 +16,7 @@ namespace ColdWarStruggle.Presentation
         void DrawChinaSelector(PlayerViewSnapshot view,float x,float y,float width,float height)
         {
             var china=view.Cards.China;var option=controller.CardOptions().China;
-            var selectable=(view.Headline==null || view.Headline.Status==PublicHeadlineStatus.Completed) && option!=null && china.Owner==view.Viewer && china.Face==CardFace.FaceUp;
+            var selectable=view.Practice?.EndReason==null && (view.Headline==null || view.Headline.Status==PublicHeadlineStatus.Completed) && option!=null && china.Owner==view.Viewer && china.Face==CardFace.FaceUp;
             GUI.enabled=selectable;
             if(Button(x,y,width,height,"中国牌 · "+Side(china.Owner)+(china.Face==CardFace.FaceUp?" 正面":" 背面")+(selectable?" · 选择":"")))
             {controller.SelectCard(china.Id);handPanelOpen=false;GUIUtility.ExitGUI();}
