@@ -28,20 +28,20 @@
 **Files:** 新建 Scripts/Core/Rules/OlympicResolution.cs、OlympicResolutionRules.cs（位于 Assets/ColdWarStruggle）；Tests/EditMode/OlympicResolutionTests.cs（同根）。
 **Interfaces:** `Begin(OlympicEventState,CardZones,string gameId,string resolutionId,long revision,OlympicSourceKind,PlayerSide sponsor,PlayerSide rootPhasing)`；`Respond(OlympicResolution,PlayerSide,string decisionId,long expectedRevision,OlympicBranch,IRandomProvider)`；`ContinueOne(OlympicResolution,OlympicContinuation,IRandomProvider)`；`DeclineOperations(OlympicResolution,PlayerSide,long)`。
 
-- [ ] 写 stub 和真实测试；正式定义/完整牌区初始化，测试状态/错误输入/两角色/首对故障/连续平手/核战和 VP/放弃/溢出。
+- [x] 写 stub 和真实测试；正式定义/完整牌区初始化，测试状态/错误输入/两角色/首对故障/连续平手/核战和 VP/放弃/溢出。
 ```csharp
 var first=OlympicResolutionRules.Respond(start,PlayerSide.USSR,start.DecisionId,7,OlympicBranch.Participate,random);
 Assert.That(first.Stage,Is.EqualTo(OlympicResolutionStage.Rolling));
 Assert.That(first.PendingOwner,Is.Null);
 Assert.That(first.LastPair.RoundIndex,Is.EqualTo(1));
 ```
-- [ ] 运行原生 RED，Expected：新测试因 NotImplemented 失败，旧3299通过。
-- [ ] 实现内部构造只读链与令牌，Begin 门禁，Respond/ContinueOne/DeclineOperations 纯计划。checked(revision+1) 必须先于取样。
+- [x] 运行原生 RED，Expected：新测试因 NotImplemented 失败，旧3299通过。
+- [x] 实现内部构造只读链与令牌，Begin 门禁，Respond/ContinueOne/DeclineOperations 纯计划。checked(revision+1) 必须先于取样。
 ```csharp
 var revision=checked(state.Revision+1);
 var pair=OlympicEventService.PlanPair(state.Current,state.Sponsor,state.ResolutionId,OlympicInterferencePolicy.NoActiveInterference,random);
 ```
-- [ ] 完整原生 GREEN，Expected：零失败/跳过；记录证据并提交 Task1。
+- [x] 完整原生 GREEN，Expected：零失败/跳过；记录证据并提交 Task1。
 
 ## Task 2 — 有限惰性继续片段
 
