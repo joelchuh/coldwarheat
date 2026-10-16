@@ -9,3 +9,5 @@ Task1：新增审核后不可变决策，绑定轨道/审核/牌区，固定身�
 后续：Task2两个明确人工场景，Task3私有按钮/独立Player/最终审查/真实鼠标验收。未声称已完成整局或所有卡牌。
 
 Task1提交540367e已推送且ls-remote核对。Task2新增共享DemoTurnEndSetup/CreateTurnEndFixture、差异数据及两个入口，旧16对象保留。RED新增28项失败；实施后两项断言错误将参数越界子类排除，修正为ArgumentException家族后，space-discard-data-green2原生2496/2496、0跳过，XML06f18f7125d7db763041d338fb947ac4e9286a3c31532e75e85b52b4f6b1ad9f。元数据146描述/76数据通过。数据只在Data/catalog登记；误加Docs目录项已纠正。
+
+Task3控制器/私有手牌按钮/阶段文字与两端装配完成。RED新增14项中13失败、1已有默认选项通过；首次GREEN无XML因替换误入头条提交函数导致编译错误，已定位删除错误插入。space-discard-ui-green2原生2510/2510，0跳过，XMLef65a294f2af261a1069ec74ba189819d261dc5b2f4ac68356cf7c44239725c4。随后只调整面板像素间距使错误提示不盖住重发按钮，待构建真实检查。元数据146描述/76数据通过。下一步一次新上下文审查、独立构建、实际鼠标两路线。

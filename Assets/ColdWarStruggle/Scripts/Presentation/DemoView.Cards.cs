@@ -22,7 +22,7 @@ namespace ColdWarStruggle.Presentation
         void DrawHandPanel(PlayerViewSnapshot view)
         {
             Block(new Rect(26,177,1228,600),Panel);
-            Text(48,192,750,38,view.Headline?.Selection!=null?"手牌 · 选择本方头条":view.Practice!=null?"手牌 · 选择本方牌使用":"开局手牌 · 只读预览",new GUIStyle(title){fontSize=27});
+            Text(48,192,750,38,view.SpaceDiscard?.Status==SpaceEndTurnDiscardStatus.Pending?"手牌 · 太空奖励：选择一张弃牌":view.Headline?.Selection!=null?"手牌 · 选择本方头条":view.Practice!=null?"手牌 · 选择本方牌使用":"开局手牌 · 只读预览",new GUIStyle(title){fontSize=27});
             TestObserverEnabled=GUI.Toggle(new Rect(826,197,275,30),TestObserverEnabled," 观察双方（测试）",button);
             if(Button(1114,192,120,36,"返回局面")){handPanelOpen=false;GUIUtility.ExitGUI();}
             var frame=HandPanelFrame.Create(view,printedCards,names,TestObserverEnabled?controller.ReadBoth():null);
@@ -56,7 +56,7 @@ namespace ColdWarStruggle.Presentation
                     if(view.Practice!=null && row.Side==view.Viewer)
                     {
                         var selectable=controller.CanSelectHandCard(card.Id);GUI.enabled=selectable;
-                        if(Button(x+8,y+140,122,27,selectable?"选择这张牌":view.Headline?.Selection?.OwnLocked==true?"头条已锁定":view.Headline?.Selection?.WaitingForOpponentFirst==true?"等待对方先选":"未接头条效果"))
+                        if(Button(x+8,y+140,122,27,selectable?"选择这张牌":view.Headline?.Selection?.OwnLocked==true?"头条已锁定":view.Headline?.Selection?.WaitingForOpponentFirst==true?"等待对方先选":view.Practice.EndReason.HasValue?"终局只读":view.SpaceDiscard!=null?"当前不可选择":"未接头条效果"))
                         { controller.SelectCard(card.Id);handPanelOpen=false;GUI.EndScrollView();GUI.enabled=true;GUIUtility.ExitGUI(); }
                         GUI.enabled=true;
                     }
@@ -67,7 +67,7 @@ namespace ColdWarStruggle.Presentation
             GUI.EndScrollView();
             DrawChinaSelector(view,48,744,500,28);
             Text(562,744,656,28,$"使用后立即背面交给对方；普通手牌数量不含中国牌。  版本 {frame.Version}",small);
-            Text(28,786,1220,27,view.Headline?.Selection!=null?"头条：只可选择已接入效果的本方牌；选择后返回地图确认锁定。计分牌按头条结算，中国牌不能作为头条。":"行动支持投放、政变、调整、太空、计分及已接事件；最终计分已接入支持的完整流程入口；特殊期末能力待接。",small);
+            Text(28,786,1220,27,view.SpaceDiscard?.Status==SpaceEndTurnDiscardStatus.Pending?"太空奖励：可选一张普通手牌弃掉，或保留全部；选牌后返回右侧确认。弃牌不触发事件，中国牌不能弃。":view.Headline?.Selection!=null?"头条：只可选择已接入效果的本方牌；选择后返回地图确认锁定。计分牌按头条结算，中国牌不能作为头条。":"行动支持投放、政变、调整、太空、计分及已接事件；最终计分已接入支持的完整流程入口；太空期末弃牌已接入，额外行动待接。",small);
         }
     }
 }

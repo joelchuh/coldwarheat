@@ -71,7 +71,7 @@ Files: 新Presentation/DemoController.SpaceDiscard.cs、DemoView.SpaceDiscard.cs
 
 Interfaces: DiscardSelectedHeldCardAsync() / KeepHeldCardsAsync()→Task<CardActionResult>；DrawSpaceDiscardControls；DemoBuild.BuildSpaceDiscardPlaytest输出Builds/SpaceDiscardPlaytest。
 
-- [ ] 写控制器两选择、选牌资格/身份切换/普通终局只读、next/final按钮边界、Editor/Player载荷测试。
+- [x] 写控制器两选择、选牌资格/身份切换/普通终局只读、next/final按钮边界、Editor/Player载荷测试。
 ```csharp
 controller.SelectSide(owner);
 controller.SelectCard(candidate);
@@ -80,9 +80,9 @@ Assert.That(r.Accepted,Is.True);
 Assert.That(controller.ReadView().SpaceDiscard.Status,Is.EqualTo(SpaceEndTurnDiscardStatus.Discarded));
 Assert.That(await controller.RetryCardAsync(),Is.SameAs(r));
 ```
-- [ ] RunId space-discard-ui-red。Expected: 新行为失败。
-- [ ] 实现私有候选/非拥有者等待；手牌弹层仅候选可选；新按钮发既有命令；拒绝和保留不暴露手牌；对局阶段提示及未支持第8格原因明确。新增一份canonical载荷，Editor/Player同链。
-- [ ] RunId space-discard-ui-green。Expected: 全套通过；元数据和diff检查。
+- [x] RunId space-discard-ui-red。Expected: 新行为失败。
+- [x] 实现私有候选/非拥有者等待；手牌弹层仅候选可选；新按钮发既有命令；拒绝和保留不暴露手牌；对局阶段提示及未支持第8格原因明确。新增一份canonical载荷，Editor/Player同链。
+- [x] RunId space-discard-ui-green。Expected: 全套通过；元数据和diff检查。
 - [ ] 一次全分支审查，重要项一轮修复与RED/GREEN；归档裁定。源码冻结后构建独立Player、载荷字节核验。
 - [ ] 真鼠标：场景17审核→切拥有者→选弃→重发→下一回合；场景18审核→保留→最终。核验默认观察关闭、对手候选不显示、地图切换保留状态。游戏F12截图。
 - [ ] Wiki/JSON/工作记录/源码及证据哈希；提交推送功能分支并ls-remote核对。

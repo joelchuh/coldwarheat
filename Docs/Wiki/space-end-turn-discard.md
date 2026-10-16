@@ -25,3 +25,9 @@ CreateAtTurn的可选initialTrack仅用于可信人工场景；必须使用同�
 [差异数据description](../../Data/Descriptors/space-end-turn-discard-scenarios.data.json)定位两个人工Late场景。WithSpaceDiscardScenarios在WithFinalScoringScenario后追加，不替换原16对象。共享CreateTurnEndFixture复用源地图、初始VP、中国牌和14张行动牌；新增普通保留牌只从源牌库移动，准备过程跳过HeldCards并通过真实Start/Influence/Finish命令到Version29。无太空尝试或随机数消耗，不表示已经获得对应奖励历史。
 
 场景17为美国太空6/苏联4、回合9；场景18为美国4/苏联6、回合10。前者弃牌后可到第10回合，后者保留后可最终计分。源场景明确跳过头条，不能将这个专项练习当作完整对局。严格限制为Late时代、恰有一方弃牌能力、无额外行动能力，以及不同的普通保留牌；计分牌/中国牌/非源牌库牌拒绝。本批新增28项，原生2496/2496通过，0失败/跳过；界面及构建待Task3。
+
+## 表现层
+
+DemoController.SpaceDiscard将确认弃牌/保留发给现有固定身份会话，不持有或修改Core。CanSelectHandCard只准拥有者选择当前候选；旧版本选牌自动失效；选择已完成或终局后不可再选牌。中国牌选择资格抽到CanSelectChinaCard供同一按钮复用，保持普通阶段行为。选国、换地图和语言不提交规则状态。
+
+右侧DrawSpaceDiscardControls显示审核通过、拥有者和两个明确选择；对方只有等待提示与切身份按钮。手牌窗口复用既有私有展示，观察模式默认关闭。Editor/Player加载链同步添加同一差异JSON；BuildSpaceDiscardPlaytest输出独立Builds/SpaceDiscardPlaytest，旧Player不覆盖。UI/控制器新增14项，原生2510/2510通过，0跳过；独立审查与构建/鼠标验收仍待完成。

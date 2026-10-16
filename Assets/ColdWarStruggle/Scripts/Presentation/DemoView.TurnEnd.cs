@@ -8,6 +8,7 @@ namespace ColdWarStruggle.Presentation
     {
         void DrawTurnEndReport(PlayerViewSnapshot view)
         {
+            if(view.SpaceDiscard?.Status==SpaceEndTurnDiscardStatus.Pending){DrawSpaceDiscardControls(view);return;}
             if(view.Practice.FinalScoring!=null){DrawFinalScoringControls(view);return;}
             Text(972,366,262,210,controller.TurnEndMessage,small);
             if(view.Practice.FinalScoringEnabled && view.Turn.Number==10 && !view.Practice.EndReason.HasValue)

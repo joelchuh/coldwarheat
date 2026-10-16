@@ -110,9 +110,10 @@ namespace ColdWarStruggle.Presentation
                     p.NextTurnError==RuleError.ActionSliceComplete?"已到试玩边界：最终计分尚未接入。":
                     p.NextTurnError==RuleError.UnsupportedCardAction?"已到试玩边界：太空额外行动或其他未支持奖励尚未接入。":
                     "当前不能进入下一回合，请先完成待处理步骤。";
+                var spaceResult=choice==null || choice.Status==SpaceEndTurnDiscardStatus.Pending?"":choice.Status==SpaceEndTurnDiscardStatus.Discarded?"太空奖励：已弃一张，不触发事件。\n":choice.Status==SpaceEndTurnDiscardStatus.Declined?"太空奖励：保留全部手牌。\n":"太空奖励：无普通手牌可弃。\n";
                 string SideName(PlayerSide? side)=>side==PlayerSide.US?"美国":side==PlayerSide.USSR?"苏联":"无";
                 return $"回合 {r.Turn} 结算 · 军事要求 {r.RequiredMilitary}\n美国累计 {r.UsEarned}，缺额 {r.UsShortfall}\n苏联累计 {r.UssrEarned}，缺额 {r.UssrShortfall}\n净 VP（美+）{r.VpDelta:+0;-0;0}：{r.BeforeVp} → {r.AfterVp}\n军事累计已归零。\n扣留计分牌：美{(r.UsHoldsScoring?"是":"否")} / 苏{(r.UssrHoldsScoring?"是":"否")}\n军事候选：{SideName(r.MilitaryCandidate)}\n"
-                    +(r.Winner.HasValue?$"最终：{SideName(r.Winner)}获胜。\n终局停止翻面与效果清理。":$"尚未终局。中国牌{(r.ChinaFlipped?"已翻正":"保持正面")}。\n本回合 OPS 效果到期 {r.ExpiredOpsEffects} 项。\n{continuation}");
+                    +(r.Winner.HasValue?$"最终：{SideName(r.Winner)}获胜。\n终局停止翻面与效果清理。":$"尚未终局。中国牌{(r.ChinaFlipped?"已翻正":"保持正面")}。\n本回合 OPS 效果到期 {r.ExpiredOpsEffects} 项。\n{spaceResult}{continuation}");
             }
         }
         public Task<CardActionResult> BeginNextTurnAsync()=>SendCard(CardActionKind.BeginNextTurn);
