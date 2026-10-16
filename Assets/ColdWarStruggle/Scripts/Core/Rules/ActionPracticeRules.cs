@@ -59,6 +59,7 @@ namespace ColdWarStruggle.Core
         }
         public static CardActionTransition Plan(GameState state,PlayerSide side,CardActionKind kind,string actionId,CardId? card=null,CountryId? target=null)
         {
+            if(kind==CardActionKind.DiscardHeldCard || kind==CardActionKind.KeepHeldCards)return PlanSpaceDiscard(state,side,kind,actionId,card,target);
             if(kind==CardActionKind.AssessTurnEnd)return PlanTurnEnd(state,side,actionId,card,target);
             if(kind==CardActionKind.BeginNextTurn)return PlanNextTurn(state,side,actionId,card,target);
             if(kind==CardActionKind.FinalScoring)return PlanFinalScoring(state,side,actionId,card,target);

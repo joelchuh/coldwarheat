@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "id": "module.space-end-turn-discard",
+  "kind": "module",
+  "description": "按太空领先能力在军事/扣留审核后提供一次私有弃一张或保留选择；完成后放行下一回合/最终计分，卡牌不触发事件。",
+  "status": "implemented",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceEndTurnDiscardState.cs",
+      "symbol": "SpaceEndTurnDiscardState"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeSpaceDiscardRules.cs",
+      "symbol": "CanResolveSpaceDiscard"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeState.cs",
+      "symbol": "CreateAtTurn"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/SpaceEndTurnDiscardView.cs",
+      "symbol": "PublicSpaceEndTurnDiscard"
+    }
+  ],
+  "documentation": "Docs/Wiki/space-end-turn-discard.md",
+  "inputs": [
+    "完成普通行动且已通过军事/扣留审核的权威状态",
+    "固定身份会话的 DiscardHeldCard(card) 或 KeepHeldCards 命令"
+  ],
+  "outputs": [
+    "Pending/Declined/Discarded/NoCards 不可变收据",
+    "仅拥有者可见的待选候选；实际弃牌后公开该牌 ID"
+  ],
+  "dependencies": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAbilityRules.cs",
+      "relation": "复用共享能力查询，追平即失去能力"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeTurnEndRules.cs",
+      "relation": "军事和扣留审核先于弃牌"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/LocalGameHost.cs",
+      "relation": "固定身份/版本/命令 ID 去重"
+    }
+  ],
+  "data_dependencies": [
+    "rules.deluxe2015.space-race"
+  ],
+  "preconditions": [
+    "正式能力最多弃一张；第8格额外行动仍未接入",
+    "收据、轨道、牌区和回合参数必须与当前状态一致"
+  ],
+  "side_effects": [
+    "弃牌只移动一张普通手牌至弃牌堆；保留不改牌区",
+    "两种选择各一次增加版本/序号；不执行事件、不掷骰、不占动作"
+  ],
+  "stop_conditions": [
+    "待决策不能越过下一回合/最终计分",
+    "对方身份、非法候选、陈旧绑定、重复已决策、新版本/序号溢出拒绝",
+    "计分牌扣留已终局时无弃牌选择；中国牌不在候选"
+  ],
+  "rule_sources": [
+    {
+      "url": "https://www.gmtgames.com/nnts/TS_Rules-2015.pdf",
+      "sections": [
+        "4.5",
+        "6.4.4"
+      ],
+      "checked_on": "2026-10-16"
+    },
+    {
+      "url": "https://www.gmtgames.com/nnts/FAQv5.pdf",
+      "sections": [
+        "6.4"
+      ],
+      "checked_on": "2026-10-16",
+      "scope": "多牌时选择一张；扣留计分牌判负先于弃牌。其他旧版胜负条款不覆盖已确认2015规则。"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceEndTurnDiscardTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceEndTurnDiscardSessionTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "verification": {
+    "report": "Docs/Testing/space-end-turn-discard.validation.json",
+    "player_rebuilt": false,
+    "native_validation": "2468/2468 passed; space-discard-core-green2"
+  },
+  "open_items": [
+    "两个人工练习入口、控制器与UI尚待本批后续任务",
+    "第8格额外行动和太空卡牌事件另批推进"
+  ]
+}

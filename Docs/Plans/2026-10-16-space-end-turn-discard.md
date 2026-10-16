@@ -21,11 +21,13 @@
 
 ## Task 1: 权威决策和私有投影
 
+执行调整：将 Task2 的可信 initialTrack 初始化接口提前至此，供行为测试使用；不开放内部状态构造器。
+
 Files: 新Core/Rules/SpaceEndTurnDiscardState.cs、PracticeSpaceDiscardRules.cs，Application/Sessions/SpaceEndTurnDiscardView.cs；修改ActionPracticeState.cs/Rules.cs、PracticeTurnEndRules.cs、PracticeNextTurnRules.cs、PracticeFinalScoringRules.cs、SessionContracts.cs；Tests/EditMode/SpaceEndTurnDiscardTests.cs、SpaceEndTurnDiscardSessionTests.cs。
 
 Interfaces: SpaceEndTurnDiscardStatus{Pending,Declined,Discarded,NoCards}；ActionPracticeState.SpaceDiscard；ActionPracticeRules.CanResolveSpaceDiscard(GameState,PlayerSide)→RuleError；CardActionKind.DiscardHeldCard/KeepHeldCards；PlayerViewSnapshot.SpaceDiscard→PublicSpaceEndTurnDiscard(Owner,Status,CanChoose,Candidates,DiscardedCard,DecisionId)。
 
-- [ ] 写行为测试和最小可编译接口，正式轨道6/4在可信测试内部初始化，完成真实14行动后审核。测试断言：
+- [x] 写行为测试和最小可编译接口，正式轨道6/4在可信测试内部初始化，完成真实14行动后审核。测试断言：
 ```csharp
 var s=Assessed(PlayerSide.US); // 两张Event留手，正式space6领先
 Assert.That(s.Practice.SpaceDiscard.Status,Is.EqualTo(SpaceEndTurnDiscardStatus.Pending));
@@ -37,13 +39,13 @@ Assert.That(r.NextState.Practice.TurnEnd,Is.SameAs(s.Practice.TurnEnd));
 Assert.That(r.NextState.RandomState,Is.SameAs(s.RandomState));
 ```
 覆盖双方/保留/无牌/失去领先/星号及对手事件无效果/计分先终局/国家Target与非法ID/候选陈旧/溢出/只允许一次；宿主重发与隐私。旧“不支持弃牌”测试改为“待选择不得越过”。
-- [ ] RunId space-discard-core-red。Expected: 新行为断言失败，无编译错误；保存XML原因。
-- [ ] 实现ForAudit与Bind校验；PlanDiscard检查所有事实后新CardZones或保留同实例，创建已决策状态并Commit；更新两个完成门禁，最终提交保留已完成决策。Public候选按viewer过滤：
+- [x] RunId space-discard-core-red。Expected: 新行为断言失败，无编译错误；保存XML原因。
+- [x] 实现ForAudit与Bind校验；PlanDiscard检查所有事实后新CardZones或保留同实例，创建已决策状态并Commit；更新两个完成门禁，最终提交保留已完成决策。Public候选按viewer过滤：
 ```csharp
 Candidates=Array.AsReadOnly(canChoose?state.Candidates.ToArray():Array.Empty<CardId>());
 ```
-- [ ] RunId space-discard-core-green。Expected:全套0失败/跳过；检查隐私与幂等。
-- [ ] 新增模块JSON/目录登记与Wiki、验证报告、日志；元数据通过，提交。
+- [x] RunId space-discard-core-green。Expected:全套0失败/跳过；检查隐私与幂等。
+- [x] 新增模块JSON/目录登记与Wiki、验证报告、日志；元数据通过，提交。
 
 ## Task 2: 共享初态与两条练习入口
 

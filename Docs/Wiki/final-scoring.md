@@ -58,3 +58,5 @@ flowchart LR
 打开 `Builds/FinalScoringPlaytest/ColdWarStruggleDemo.exe`；默认第15个头条场景，点一次“下一个”进入第16个最终计分人工练习。依次“结算本回合”→“执行最终计分”，当前示例审核VP2、欧洲−1、中美洲−1、其他四区0、中国牌美国+1，最终VP1美国获胜。重发仍版本31/序号31；地图、国家名和身份切换均不改变局面。终局普通手牌与中国牌选择禁用，地图仅查看/复盘。
 
 源码构建点 `a0f7f40`；45份构建载荷逐字节一致；[验证报告](../Testing/final-scoring-playtest.validation.json)保存27份源码哈希、XML和构建日志哈希及截图。[结算画面](../Images/final-scoring-report.png) / [只读地图](../Images/final-scoring-readonly-map.png)。真实鼠标只覆盖本示例美国胜，苏联胜/零分平局/欧洲控制由原生测试覆盖，不扩称整局或全卡牌验收。
+
+2026-10-16更新：[太空期末弃牌](space-end-turn-discard.md)已接Core/固定身份会话。军事与扣留审核后生成私有选择，处理后才允许下一回合或最终计分；第8格额外行动仍未接。新界面/Player尚待本批后续，历史验收数仅代表各自构建。

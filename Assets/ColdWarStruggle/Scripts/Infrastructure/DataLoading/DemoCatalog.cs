@@ -62,8 +62,9 @@ namespace ColdWarStruggle.Infrastructure
             var ctx=OperationsContext.FromRoundStart(s.Id+".ops",s.Actor,s.Ops,Map,s.Countries,costs);
             var gameId="demo-"+Guid.NewGuid().ToString("N");
             var execution=s.EventDefinition==null?null:new InfluenceEventExecution(gameId+".event",s.EventDefinition,s.Actor,InfluenceEventPolicy.NoActiveInterference);
-            var state=new GameState(Map,s.Countries,ctx,gameId,hands:s.Hands,influenceEvent:execution,turn:s.Turn,
-                cards:s.InitialCards?.Cards,randomState:s.InitialCards?.Random,practice:s.PracticeDefinition==null?null:ActionPracticeState.Create(s.PracticeDefinition));
+            var practice=s.PracticeDefinition==null?null:ActionPracticeState.Create(s.PracticeDefinition);
+            var state=new GameState(Map,s.Countries,ctx,gameId,hands:s.Hands,influenceEvent:execution,turn:practice?.Space.Turn??s.Turn,
+                cards:s.InitialCards?.Cards,randomState:s.InitialCards?.Random,practice:practice);
             if(s.DeploymentDefinition!=null)
             {
                 var started=InitialDeploymentFlow.Begin(state,s.DeploymentDefinition,gameId+".deployment");

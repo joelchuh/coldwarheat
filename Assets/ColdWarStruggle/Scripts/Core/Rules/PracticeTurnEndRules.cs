@@ -27,6 +27,7 @@ namespace ColdWarStruggle.Core
             if(!p.Definition.TurnEndEnabled)return RuleError.UnsupportedCardAction;
             if(p.TurnEnd!=null)return RuleError.ActionSliceComplete;
             if((p.Definition.NextTurnEnabled || p.Definition.FinalScoring!=null) && HasExtraActionAbility(p.Space.Track))return RuleError.UnsupportedCardAction;
+            if(SpaceEndTurnDiscardState.QueryOwner(p.Space.Track,out _)!=RuleError.None)return RuleError.UnsupportedCardAction;
             if(state.Deployment!=null)return RuleError.SetupInProgress;
             if(state.InfluenceEvent!=null)return RuleError.EventInProgress;
             if(p.Stage!=ActionPracticeStage.Complete || p.CompletedActions!=p.Space.Turn.Parameters.NormalActionsPerSide*2
@@ -58,7 +59,7 @@ namespace ColdWarStruggle.Core
                 var expired=continuing?p.OpsEffects.Instances.Count:0;
                 var effects=continuing?p.OpsEffects.Expire(state.Turn):p.OpsEffects;
                 var receipt=new PracticeTurnEndReceipt(military.Assessment,p.VpForUS,us,su,pending.Candidate,decision,flip,expired);
-                var next=new ActionPracticeState(p.Definition,ActionPracticeStage.Complete,p.CompletedActions,null,p.Space,decision.SignedVp,risk,effects,turnEnd:receipt,headline:p.Headline);
+                var next=new ActionPracticeState(p.Definition,ActionPracticeStage.Complete,p.CompletedActions,null,p.Space,decision.SignedVp,risk,effects,turnEnd:receipt,headline:p.Headline,spaceDiscard:SpaceEndTurnDiscardState.ForAudit(p.Space.Track,receipt,cards,p.Definition.Cards,state.Turn.Number));
                 return Commit(state,next,cards,state.RandomState);
             }
             catch(OverflowException) { return new CardActionTransition(RuleError.NumericOverflow); }

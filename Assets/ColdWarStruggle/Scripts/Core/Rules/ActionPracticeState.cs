@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 namespace ColdWarStruggle.Core
 {
-    public enum CardActionKind { StartPractice, Influence, Space, FinishInfluence, Coup, Scoring, Event, Realignment, RollRealignment, FinishRealignment, EventThenInfluence, InfluenceThenEvent, OpponentEventFirst, OpponentOpsFirst, UseOpponentInfluence, UseOpponentRealignment, UseOpponentCoup, AssessTurnEnd, BeginNextTurn, FinalScoring }
+    public enum CardActionKind { StartPractice, Influence, Space, FinishInfluence, Coup, Scoring, Event, Realignment, RollRealignment, FinishRealignment, EventThenInfluence, InfluenceThenEvent, OpponentEventFirst, OpponentOpsFirst, UseOpponentInfluence, UseOpponentRealignment, UseOpponentCoup, AssessTurnEnd, BeginNextTurn, FinalScoring, DiscardHeldCard, KeepHeldCards }
     public enum ActionPracticeStage { AwaitingStart, ChooseCard, PlacingInfluence, Complete, ResolvingEvent, Realigning, ChoosingOperations, HeadlineReady, CollectingHeadline }
     // Explicit single-turn practice with a bounded, typed set of supported events. Not the full turn coordinator.
     public sealed class ActionPracticeDefinition
@@ -56,7 +56,8 @@ namespace ColdWarStruggle.Core
         public OpponentOpsSequence OpponentOps { get; }
         public PracticeTurnEndReceipt TurnEnd { get; }
         public PracticeFinalScoringReceipt FinalScoring { get; }
-        internal ActionPracticeState(ActionPracticeDefinition definition,ActionPracticeStage stage,int completed,CardId? card,SpaceAttemptState space,int vp,PracticeRiskState risk=null,TurnOpsEffectState opsEffects=null,OpponentOpsSequence opponentOps=null,PracticeTurnEndReceipt turnEnd=null,HeadlineResolutionState headline=null,HeadlineSelectionState headlineSelection=null,PracticeFinalScoringReceipt finalScoring=null)
+        public SpaceEndTurnDiscardState SpaceDiscard { get; }
+        internal ActionPracticeState(ActionPracticeDefinition definition,ActionPracticeStage stage,int completed,CardId? card,SpaceAttemptState space,int vp,PracticeRiskState risk=null,TurnOpsEffectState opsEffects=null,OpponentOpsSequence opponentOps=null,PracticeTurnEndReceipt turnEnd=null,HeadlineResolutionState headline=null,HeadlineSelectionState headlineSelection=null,PracticeFinalScoringReceipt finalScoring=null,SpaceEndTurnDiscardState spaceDiscard=null)
         {
             if(headline!=null && (headline.Turn.Number!=space.Turn.Number || headline.Turn.Era!=space.Turn.Era))throw new ArgumentException("Headline turn mismatch.");
             if(headline!=null && !headline.IsComplete && (completed!=0 || opponentOps!=null || turnEnd!=null
@@ -78,15 +79,22 @@ namespace ColdWarStruggle.Core
                 || finalScoring.Decision.Checkpoint!=VictoryCheckpoint.FinalScoringCompleted || finalScoring.Decision.Outcome!=VictoryOutcome.Finished
                 || !ReferenceEquals(finalScoring.Result.Definition,definition.FinalScoring) || !ReferenceEquals(risk?.Result,finalScoring.Decision)))
                 throw new ArgumentException("Final receipt must extend the continuing turn-end audit with one terminal decision.");
-            FinalScoring=finalScoring;TurnEnd=turnEnd;OpponentOps=opponentOps;Definition=definition;Stage=stage;CompletedActions=completed;ActiveCard=card;Space=space;VpForUS=vp;Risk=risk;OpsEffects=opsEffects??TurnOpsEffectState.Create(space.Turn); }
+            if(spaceDiscard!=null && (turnEnd?.Decision.Outcome!=VictoryOutcome.Continue || !ReferenceEquals(spaceDiscard.Track,space.Track)
+                || !ReferenceEquals(spaceDiscard.Audit,turnEnd) || finalScoring!=null && spaceDiscard.Status==SpaceEndTurnDiscardStatus.Pending))throw new ArgumentException("Discard decision must extend this audit and track.");
+            if(turnEnd?.Decision.Outcome==VictoryOutcome.Continue)
+            {
+                if(SpaceEndTurnDiscardState.QueryOwner(space.Track,out var owner)!=RuleError.None || owner!=spaceDiscard?.Owner)throw new ArgumentException("Missing or foreign space discard decision.");
+            }
+            SpaceDiscard=spaceDiscard;FinalScoring=finalScoring;TurnEnd=turnEnd;OpponentOps=opponentOps;Definition=definition;Stage=stage;CompletedActions=completed;ActiveCard=card;Space=space;VpForUS=vp;Risk=risk;OpsEffects=opsEffects??TurnOpsEffectState.Create(space.Turn); }
         // Trusted scenario initialization only: no completed actions or fabricated audit history.
-        public static ActionPracticeState CreateAtTurn(ActionPracticeDefinition definition,int turnNumber,int initialVp)
+        public static ActionPracticeState CreateAtTurn(ActionPracticeDefinition definition,int turnNumber,int initialVp,SpaceTrackState initialTrack=null)
         {
             if(definition==null)throw new ArgumentNullException(nameof(definition));
             var turn=definition.Calendar.ForTurn(turnNumber);
             if(definition.Risk==null?initialVp!=0:initialVp<=-(long)definition.Risk.Victory.AutomaticVpThreshold || initialVp>=definition.Risk.Victory.AutomaticVpThreshold)
                 throw new ArgumentOutOfRangeException(nameof(initialVp));
-            var space=SpaceAttemptState.Create(new SpaceTrackState(definition.Space,definition.Space.InitialPosition,definition.Space.InitialPosition),definition.Calendar,turnNumber);
+            if(initialTrack!=null && !ReferenceEquals(initialTrack.Definition,definition.Space))throw new ArgumentException("Initial space track must use the shared definition.");
+            var space=SpaceAttemptState.Create(initialTrack??new SpaceTrackState(definition.Space,definition.Space.InitialPosition,definition.Space.InitialPosition),definition.Calendar,turnNumber);
             return new ActionPracticeState(definition,ActionPracticeStage.AwaitingStart,0,null,space,initialVp,
                 definition.Risk==null?null:PracticeRiskState.Create(definition.Risk,space.Turn));
         }

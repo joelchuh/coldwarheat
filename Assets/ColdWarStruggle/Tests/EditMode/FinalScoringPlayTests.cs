@@ -78,8 +78,9 @@ namespace ColdWarStruggle.Tests
             }
             else
             {
+                s=PlayTurnOpsEventTests.Give(s,PlayerSide.USSR,"card.blockade");
                 s=NextTurnPlayTests.Apply(s,CardActionKind.AssessTurnEnd);
-                Assert.That(Finish(s).Error,Is.EqualTo(RuleError.UnsupportedCardAction));
+                Assert.That(Finish(s).Error,Is.EqualTo(RuleError.ActionNotReady));
             }
             var version=s.Version;var cards=s.Cards;var random=s.RandomState;
             var rejected=Finish(s);Assert.That(rejected.Accepted,Is.False);Assert.That(rejected.NextState,Is.Null);

@@ -30,11 +30,11 @@ namespace ColdWarStruggle.Tests
             Assert.That(c.TurnEndPrompt,Does.Contain("军事").And.Contain("扣留计分牌"));
             Assert.That(Controller(NextTurnPlayTests.Ready()).TurnEndPrompt,Is.Null);
         }
-        [Test] public void Unimplemented_end_turn_discard_is_named_after_successful_assessment()
+        [Test] public void Pending_end_turn_discard_is_named_after_successful_assessment()
         {
             var s=NextTurnPlayTests.Apply(SpaceBoundary(SpaceAbilityKind.EndTurnDiscardMaximum),CardActionKind.AssessTurnEnd);var c=Controller(s);
-            Assert.That(c.ReadView().Practice.NextTurnAvailable,Is.False);Assert.That(c.ReadView().Practice.NextTurnError,Is.EqualTo(RuleError.UnsupportedCardAction));
-            Assert.That(c.TurnEndMessage,Does.Contain("太空").And.Contain("回合末弃牌").And.Contain("尚未接入"));
+            Assert.That(c.ReadView().Practice.NextTurnAvailable,Is.False);Assert.That(c.ReadView().Practice.NextTurnError,Is.EqualTo(RuleError.ActionNotReady));
+            Assert.That(c.TurnEndMessage,Does.Contain("太空").And.Contain("回合末弃牌").And.Contain("等待"));
         }
         [Test] public void Final_calendar_turn_reports_missing_final_scoring_instead_of_generic_boundary()
         {

@@ -39,9 +39,7 @@ namespace ColdWarStruggle.Core
                 || p.Risk.Military.UsEarned!=p.Risk.Definition.Military.ResetEarned || p.Risk.Military.UssrEarned!=p.Risk.Definition.Military.ResetEarned
                 || !new[]{GameEra.Early,GameEra.Mid,GameEra.Late}.All(state.Cards.EnteredEras.Contains)
                 || new[]{PlayerSide.US,PlayerSide.USSR}.Any(sideId=>state.Cards.GetHand(sideId).Any(id=>p.Definition.Cards.GetCard(id).Kind==CardKind.Scoring)))return RuleError.StaleContext;
-            if(HasExtraActionAbility(p.Space.Track) || SpaceAbilityRules.Query(p.Space.Track,PlayerSide.US).EndTurnDiscardMaximum>0
-                || SpaceAbilityRules.Query(p.Space.Track,PlayerSide.USSR).EndTurnDiscardMaximum>0)return RuleError.UnsupportedCardAction;
-            return RuleError.None;
+            return SpaceDiscardContinuationError(state);
         }
         static CardActionTransition PlanFinalScoring(GameState state,PlayerSide side,string actionId,CardId? card,CountryId? target)
         {
@@ -56,7 +54,7 @@ namespace ColdWarStruggle.Core
                 var decision=VictoryService.Evaluate(p.Risk.Definition.Victory,new FinalScoringCompletedEvidence(id,"R2015.10.3.2",p.VpForUS,result));
                 var receipt=new PracticeFinalScoringReceipt(p.VpForUS,result,decision);
                 var next=new ActionPracticeState(p.Definition,ActionPracticeStage.Complete,p.CompletedActions,null,p.Space,decision.SignedVp,
-                    p.Risk.WithVictory(decision),p.OpsEffects,turnEnd:p.TurnEnd,headline:p.Headline,finalScoring:receipt);
+                    p.Risk.WithVictory(decision),p.OpsEffects,turnEnd:p.TurnEnd,headline:p.Headline,finalScoring:receipt,spaceDiscard:p.SpaceDiscard);
                 return Commit(state,next,state.Cards,state.RandomState);
             }
             catch(OverflowException){return new CardActionTransition(RuleError.NumericOverflow);}

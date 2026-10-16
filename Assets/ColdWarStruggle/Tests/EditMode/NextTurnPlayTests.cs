@@ -74,7 +74,7 @@ namespace ColdWarStruggle.Tests
             var space=new SpaceRaceDefinition(0,1,1,1,new[]{new SpaceStepDefinition("one",1,1,1,1,0,0,"ability")},new[]{new SpaceAbilityDefinition("ability",kind,kind==SpaceAbilityKind.ActionRoundAllowance?8:1)});
             var s=PlayTurnOpsEventTests.Give(Ready(space:space),PlayerSide.USSR,"card.olympic_games");s=Apply(s,CardActionKind.Space,"card.olympic_games");s=Complete(s);
             if(kind==SpaceAbilityKind.ActionRoundAllowance)Assert.That(ActionPracticeRules.CanAssessTurnEnd(s,PlayerSide.US),Is.EqualTo(RuleError.UnsupportedCardAction));
-            else {s=Apply(s,CardActionKind.AssessTurnEnd);Assert.That(Next(s).Error,Is.EqualTo(RuleError.UnsupportedCardAction));}
+            else {s=Apply(s,CardActionKind.AssessTurnEnd);Assert.That(Next(s).Error,Is.EqualTo(RuleError.ActionNotReady));}
         }
         [Test] public void Insufficient_available_cards_reject_whole_preparation_and_preserve_snapshot()
         {

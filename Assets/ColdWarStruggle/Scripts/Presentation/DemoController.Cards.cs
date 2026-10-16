@@ -105,9 +105,10 @@ namespace ColdWarStruggle.Presentation
             {
                 var p=ReadView().Practice;var r=p?.TurnEnd;if(r==null)return null;
                 if(p.FinalScoring!=null)return $"回合 {r.Turn} 审核已完成。\n军事净罚分 {r.VpDelta:+0;-0;0}：{r.BeforeVp} → {r.AfterVp}。\n最终计分已完成，详见六地区明细。";
-                var continuation=p.FinalScoringEnabled && ReadView().Turn.Number==10?FinalScoringPrompt:!p.NextTurnEnabled?"试玩停在下一回合开始前。":p.NextTurnAvailable?"可进入"+NextTurnButtonText+"。":
+                var choice=ReadView().SpaceDiscard;
+                var continuation=choice?.Status==SpaceEndTurnDiscardStatus.Pending?"等待"+(choice.Owner==PlayerSide.US?"美国":"苏联")+"选择太空回合末弃牌或保留。":p.FinalScoringEnabled && ReadView().Turn.Number==10?FinalScoringPrompt:!p.NextTurnEnabled?"试玩停在下一回合开始前。":p.NextTurnAvailable?"可进入"+NextTurnButtonText+"。":
                     p.NextTurnError==RuleError.ActionSliceComplete?"已到试玩边界：最终计分尚未接入。":
-                    p.NextTurnError==RuleError.UnsupportedCardAction?"已到试玩边界：太空额外行动或回合末弃牌尚未接入。":
+                    p.NextTurnError==RuleError.UnsupportedCardAction?"已到试玩边界：太空额外行动或其他未支持奖励尚未接入。":
                     "当前不能进入下一回合，请先完成待处理步骤。";
                 string SideName(PlayerSide? side)=>side==PlayerSide.US?"美国":side==PlayerSide.USSR?"苏联":"无";
                 return $"回合 {r.Turn} 结算 · 军事要求 {r.RequiredMilitary}\n美国累计 {r.UsEarned}，缺额 {r.UsShortfall}\n苏联累计 {r.UssrEarned}，缺额 {r.UssrShortfall}\n净 VP（美+）{r.VpDelta:+0;-0;0}：{r.BeforeVp} → {r.AfterVp}\n军事累计已归零。\n扣留计分牌：美{(r.UsHoldsScoring?"是":"否")} / 苏{(r.UssrHoldsScoring?"是":"否")}\n军事候选：{SideName(r.MilitaryCandidate)}\n"

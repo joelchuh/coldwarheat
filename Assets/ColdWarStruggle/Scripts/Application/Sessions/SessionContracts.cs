@@ -44,8 +44,10 @@ namespace ColdWarStruggle.Application
         public PublicCardSummary Cards { get; }
         public PublicPracticeView Practice { get; }
         public PublicHeadlineView Headline { get; }
+        public PublicSpaceEndTurnDiscard SpaceDiscard { get; }
         internal PlayerViewSnapshot(GameState s,PlayerSide viewer)
         {
+            SpaceDiscard=s.Practice?.SpaceDiscard==null?null:new PublicSpaceEndTurnDiscard(s,viewer);
             Headline=s.Practice?.HeadlineSelection!=null || s.Practice?.Headline!=null?new PublicHeadlineView(s,viewer):null;
             RegionalOps=s.Operations.RegionalBudget==null?null:new PublicRegionalOps(s.Operations.RegionalBudget);
             GameId=s.GameId;Viewer=viewer;Version=s.Version;EventSequence=s.EventSequence;ContextId=s.Operations.Id;Actor=s.Operations.Actor;RemainingOps=s.Operations.Budget-s.SpentOps;

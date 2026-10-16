@@ -25,9 +25,7 @@ namespace ColdWarStruggle.Core
                 || p.Risk.Military.UsEarned!=p.Risk.Definition.Military.ResetEarned
                 || p.Risk.Military.UssrEarned!=p.Risk.Definition.Military.ResetEarned)return RuleError.StaleContext;
             if(state.Turn.Number>=p.Definition.Calendar.LastTurn)return RuleError.ActionSliceComplete;
-            if(HasExtraActionAbility(p.Space.Track) || SpaceAbilityRules.Query(p.Space.Track,PlayerSide.US).EndTurnDiscardMaximum>0
-                || SpaceAbilityRules.Query(p.Space.Track,PlayerSide.USSR).EndTurnDiscardMaximum>0)return RuleError.UnsupportedCardAction;
-            return RuleError.None;
+            return SpaceDiscardContinuationError(state);
         }
         static CardActionTransition PlanNextTurn(GameState state,PlayerSide side,string actionId,CardId? card,CountryId? target)
         {
