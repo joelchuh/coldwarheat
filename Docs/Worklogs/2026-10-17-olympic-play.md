@@ -15,3 +15,5 @@ Task1 complete：3386/3386原生GREEN，零失败/跳过，XML 61615f9ca4a635951
 Task2 complete：新增29例。首次运行因测试误用internal构造器未产XML，已改为真实出牌激活效果；不计有效RED。有效RED 3415/3386/29，其中25个stub未实现、4个旧政变查询拒绝事件授权。初次GREEN 3408/3415，7例揭示模式选择后的上下文匹配仍保留等待阶段；补齐进行中模式/预算对象绑定。最终GREEN 3415/3415，零失败/跳过，XML 545ae89e77a3a4bd1fcbc5edc487f36d93bcd6c10f0d6c03646e541b9dd21580。
 
 三OPS复用已完成：QuoteAsIfCard、固定根可达性/当前费用、普通调整骰、政变/军事与核战；Finish只完成一次原根。四种跨上下文测试覆盖game/version/random/source；内部封闭的VP/风险/根状态不能通过公开测试构造器任意变造，本批不虚称逐项伪造测试已覆盖。地图fixture按正式邻接确认Angola→Botswana→Zimbabwe，额外Italy影响力用于验证France费用变化。Task3宿主投影/界面/装配/Player待完成。
+
+Task3会话子批已验证：RED 3428/3415/13（11个未实现、1个查询无事件预算、1个内部身份异常类型未实现），GREEN 3428/3428，零失败/跳过；XML 70dcdb61d8d2a1b0f1489f6f7684f673b7a5763b6d7295c9861e1eed23f3f605。公开DTO、Host单对pump、控制器选择/重发/用途与界面接线已实现；ActualPlayer仍未构建和操作，不把界面代码通过编译当成目视验收。结果投影从最终PlayerView取DEFCON/终局，避免抵制后政变仍显示旧Flow的DEFCON。下一步四个共享fixture、生产装配保留、元数据与独立Player。

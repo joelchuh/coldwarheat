@@ -37,6 +37,7 @@ namespace ColdWarStruggle.Presentation
                 if(Button(972,485,262,42,"结算本回合"))AssessTurnEnd();
                 GUI.enabled=true;
             }
+            else if(view.Olympic!=null && !view.Olympic.Mode.HasValue)DrawOlympicControls(view);
             else if(view.War!=null)DrawWarControls(view);
             else if(view.Blockade!=null)DrawBlockadeControls(view);
             else if(p.Actor!=view.Viewer)
@@ -129,7 +130,8 @@ namespace ColdWarStruggle.Presentation
         {
             var result=controller.LastCardResult;
             string message="";
-            if(result?.SpaceEvent!=null)message=SpaceEventResultMessage(result.SpaceEvent);
+            if(result?.Olympic!=null)message=OlympicResultMessage(result);
+            else if(result?.SpaceEvent!=null)message=SpaceEventResultMessage(result.SpaceEvent);
             else if(result?.War!=null)message=WarResultMessage(result.War);
             else if(result?.FiveYearPlan!=null)message=FiveYearPlanResultMessage(result.FiveYearPlan)+FiveYearPlanChildDetail(result);
             else if(result?.Blockade!=null)message=BlockadeResultMessage(result.Blockade);

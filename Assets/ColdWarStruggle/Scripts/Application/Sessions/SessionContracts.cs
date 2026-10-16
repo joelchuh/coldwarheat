@@ -27,6 +27,7 @@ namespace ColdWarStruggle.Application
     }
     public sealed class PlayerViewSnapshot
     {
+        public PublicOlympicView Olympic { get; }
         public PublicWarView War { get; }
         public PublicFiveYearPlanResult FiveYearPlan { get; }
         public PublicBlockadeView Blockade { get; }
@@ -50,6 +51,7 @@ namespace ColdWarStruggle.Application
         public PublicSpaceEndTurnDiscard SpaceDiscard { get; }
         internal PlayerViewSnapshot(GameState s,PlayerSide viewer)
         {
+            Olympic=s.Practice?.Olympic==null?null:new PublicOlympicView(s,viewer);
             War=s.Practice?.War==null?null:new PublicWarView(s,viewer);
             FiveYearPlan=s.Practice?.FiveYearPlan==null?null:new PublicFiveYearPlanResult(s.Practice.FiveYearPlan,s.Ended);
             Blockade=s.Practice?.Blockade==null?null:new PublicBlockadeView(s,viewer);

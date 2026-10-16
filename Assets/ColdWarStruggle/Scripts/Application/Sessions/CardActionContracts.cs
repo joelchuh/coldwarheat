@@ -141,6 +141,7 @@ namespace ColdWarStruggle.Application
     }
     public sealed class CardActionResult
     {
+        public PublicOlympicResult Olympic { get; }
         public PublicSpaceEventResult SpaceEvent { get; }
         public PublicWarResult War { get; }
         public PublicFiveYearPlanResult FiveYearPlan { get; }
@@ -156,8 +157,8 @@ namespace ColdWarStruggle.Application
         public PublicDefconVpEventResult DefconVpEvent { get; }
         public PublicTurnOpsEffect ActivatedOpsEffect { get; }
         public PublicRealignmentResult Realignment { get; }
-        internal CardActionResult(RuleError error,PlayerViewSnapshot view,SpaceAttemptReceipt receipt=null,CoupAttemptReceipt coup=null,RegionScoringResult scoring=null,InfluenceEventTransition eventTransition=null,DefconVpEventPlan defconVpEvent=null,TurnOpsEffectInstance activatedOpsEffect=null,RealignmentCalculation realignment=null,BlockadeResolutionResult blockadeResult=null,IReadOnlyList<HeadlineResolutionStep> headlineSteps=null,FiveYearPlanResult fiveYearPlanResult=null,WarEventPlan warResult=null,SpaceEventPlan spaceEventResult=null)
-        { SpaceEvent=spaceEventResult==null?null:new PublicSpaceEventResult(spaceEventResult);War=warResult==null?null:new PublicWarResult(warResult);FiveYearPlan=fiveYearPlanResult==null?null:new PublicFiveYearPlanResult(fiveYearPlanResult);Blockade=blockadeResult==null?null:new PublicBlockadeResult(blockadeResult);HeadlineSteps=Array.AsReadOnly((headlineSteps??Array.Empty<HeadlineResolutionStep>()).Select(step=>new PublicHeadlineStep(step)).ToArray());Realignment=realignment==null?null:new PublicRealignmentResult(realignment);ActivatedOpsEffect=activatedOpsEffect==null?null:new PublicTurnOpsEffect(activatedOpsEffect);DefconVpEvent=defconVpEvent==null?null:new PublicDefconVpEventResult(defconVpEvent);Event=eventTransition==null?null:new PublicCardEventResult(eventTransition);Scoring=scoring==null?null:new PublicRegionScore(scoring);Error=error;View=view;Space=receipt==null?null:new PublicSpaceResult(receipt);Coup=coup==null?null:new PublicCoupResult(coup); }
+        internal CardActionResult(RuleError error,PlayerViewSnapshot view,SpaceAttemptReceipt receipt=null,CoupAttemptReceipt coup=null,RegionScoringResult scoring=null,InfluenceEventTransition eventTransition=null,DefconVpEventPlan defconVpEvent=null,TurnOpsEffectInstance activatedOpsEffect=null,RealignmentCalculation realignment=null,BlockadeResolutionResult blockadeResult=null,IReadOnlyList<HeadlineResolutionStep> headlineSteps=null,FiveYearPlanResult fiveYearPlanResult=null,WarEventPlan warResult=null,SpaceEventPlan spaceEventResult=null,OlympicPracticeResult olympicResult=null)
+        { Olympic=olympicResult==null?null:new PublicOlympicResult(olympicResult,view);SpaceEvent=spaceEventResult==null?null:new PublicSpaceEventResult(spaceEventResult);War=warResult==null?null:new PublicWarResult(warResult);FiveYearPlan=fiveYearPlanResult==null?null:new PublicFiveYearPlanResult(fiveYearPlanResult);Blockade=blockadeResult==null?null:new PublicBlockadeResult(blockadeResult);HeadlineSteps=Array.AsReadOnly((headlineSteps??Array.Empty<HeadlineResolutionStep>()).Select(step=>new PublicHeadlineStep(step)).ToArray());Realignment=realignment==null?null:new PublicRealignmentResult(realignment);ActivatedOpsEffect=activatedOpsEffect==null?null:new PublicTurnOpsEffect(activatedOpsEffect);DefconVpEvent=defconVpEvent==null?null:new PublicDefconVpEventResult(defconVpEvent);Event=eventTransition==null?null:new PublicCardEventResult(eventTransition);Scoring=scoring==null?null:new PublicRegionScore(scoring);Error=error;View=view;Space=receipt==null?null:new PublicSpaceResult(receipt);Coup=coup==null?null:new PublicCoupResult(coup); }
     }
     public sealed class CardActionOption
     {
@@ -197,10 +198,11 @@ namespace ColdWarStruggle.Application
         internal PendingOperationsOptions(GameState state,PlayerSide side)
         {
             Card=state.Practice.ActiveCard.Value;
-            Influence=ActionPracticeRules.CanChooseOpponentOperations(state,side,OperationsMode.Influence);
-            Coup=ActionPracticeRules.CanChooseOpponentOperations(state,side,OperationsMode.Coup);
-            Realignment=ActionPracticeRules.CanChooseOpponentOperations(state,side,OperationsMode.Realignment);
-            if(Influence==RuleError.None)CurrentOps=ActionPracticeRules.QuoteCard(state,side,Card,OpsValuePurpose.Influence).GeneralValue;
+            var olympic=state.Practice.Olympic!=null;
+            Influence=olympic?ActionPracticeRules.CanChooseOlympicOperations(state,side,OperationsMode.Influence):ActionPracticeRules.CanChooseOpponentOperations(state,side,OperationsMode.Influence);
+            Coup=olympic?ActionPracticeRules.CanChooseOlympicOperations(state,side,OperationsMode.Coup):ActionPracticeRules.CanChooseOpponentOperations(state,side,OperationsMode.Coup);
+            Realignment=olympic?ActionPracticeRules.CanChooseOlympicOperations(state,side,OperationsMode.Realignment):ActionPracticeRules.CanChooseOpponentOperations(state,side,OperationsMode.Realignment);
+            if(Influence==RuleError.None)CurrentOps=(olympic?ActionPracticeRules.QuoteOlympicOperations(state,side,OpsValuePurpose.Influence):ActionPracticeRules.QuoteCard(state,side,Card,OpsValuePurpose.Influence)).GeneralValue;
         }
     }
     public sealed class PublicCoupQuote
