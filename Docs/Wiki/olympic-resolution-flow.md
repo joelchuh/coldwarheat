@@ -1,7 +1,7 @@
 # 奥运会选择与续跑
 
 > description: 可信父事件使用的内存状态组件，固定对手选择，按完整双骰分片继续；不等于玩家可调用处理器。
-> 当前：3362项原生全通过（本批新增63），独立整批审查进行中。
+> 当前：3362项原生全通过（本批新增63），独立整批审查通过（0 Critical/Important/Minor）。
 
 先读[JSON描述](../Descriptors/olympic-resolution-flow.module.json)，再按函数定位代码。数值与双骰原子计算复用[基础模块](olympic-contest-foundation.md)。
 

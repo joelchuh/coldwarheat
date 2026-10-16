@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "validation.olympic-resolution-flow",
   "description": "对手选择/内存分支锁/惰性续跑的分批原生验证；未接GameState与Host。",
-  "status": "native-passed-review-pending",
+  "status": "passed",
   "baseline_commit": "ca2cb102ed8f4fdcf3fbe72b8583f8cde14d0948",
   "runs": [
     {
@@ -94,7 +94,18 @@
     "Assets/ColdWarStruggle/Tests/EditMode/OlympicContinuationTests.cs": "b683df8eb30f409298c071521859d8497eca647293cb75e78eb059669a243dc5"
   },
   "review": {
-    "status": "pending"
+    "status": "passed",
+    "head": "7b972782f16cbef08839d4144ec2ac712ad02447",
+    "base": "ca2cb102ed8f4fdcf3fbe72b8583f8cde14d0948",
+    "critical": 0,
+    "important": 0,
+    "minor": 0,
+    "evidence": "Five source, four input and four XML hashes verified; 47/16 RED failures are intended NotImplemented cases; no native rerun",
+    "scope_rulings": [
+      "GameState/frame authorization, Host dedup, OPS execution, UI and source/root completion remain explicitly deferred.",
+      "Serialized recovery/digest chains remain excluded from this pure-memory component.",
+      "Player unchanged; no runtime behavior claimed."
+    ]
   },
   "player": "unchanged-space-event-playtest",
   "input_sha256": {

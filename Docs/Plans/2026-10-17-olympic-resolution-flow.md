@@ -63,6 +63,6 @@ for(var i=0;i<maxPairs && current.Stage==OlympicResolutionStage.Rolling;i++) {
  yield return next; current=next;
 }
 ```
-- [ ] 原生 GREEN、元数据验证及diff检查；记录源码/输入/XML SHA，提交；一次 fresh 只读整批审查；修必要项后推送并核验远端。
+- [x] 原生 GREEN、元数据验证及diff检查；记录源码/输入/XML SHA，提交；一次 fresh 只读整批审查；修必要项后推送并核验远端。
 
 验证命令：Tools/Scripts/run-unity-editmode.ps1 -ProjectRoot E:/TwilightStruggle -UnityEditor E:/unity6.6/6000.6.0f1/Editor/Unity.exe -RunId <唯一ID> -TimeoutSeconds 600。沿用既有原生运行器，不另造测试工作流。自审：Task2只消费Task1定义和ContinueOne；未发现接口冲突。
