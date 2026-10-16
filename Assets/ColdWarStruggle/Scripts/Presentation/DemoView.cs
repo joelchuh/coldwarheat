@@ -143,7 +143,7 @@ namespace ColdWarStruggle.Presentation
             }
             else Text(972,681,266,62,"本方："+string.Join("、",view.OwnHand)+"\n对手："+view.OpponentHandCount+" 张（隐藏）",small);
             }
-            Text(28,786,1220,27,$"真实手牌 / 事件与行动 / 中国牌 · {(view.Practice?.HeadlineEnabled==true?"已启用有限头条流程":"此入口跳过头条")}；{(view.Practice?.FinalScoringEnabled==true?"已接最终计分":"此入口未启用最终计分")}；特殊期末能力待接。   版本 {view.Version} · 序号 {view.EventSequence}",small);
+            Text(28,786,1220,27,$"手牌与行动试玩 · {(view.Practice?.HeadlineEnabled==true?"已启用有限头条流程":"此入口跳过头条")}；{(view.Practice?.FinalScoringEnabled==true?"已接最终计分":"此入口未启用最终计分")}；太空额外行动/弃牌已接。   版本 {view.Version} · 序号 {view.EventSequence}",small);
         }
         static string TurnText(GameTurnContext turn)
         {

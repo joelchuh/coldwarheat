@@ -34,7 +34,7 @@ Interfaces: ActionPracticeState.Rounds；DeclineExtraActions；CanDeclineExtraAc
 Files: Infrastructure数据装配、Data/Demo额外行动fixture与描述、Presentation控制器/面板、Bootstrap/Editor构建；相关EditMode测试。
 Interfaces: WithSpaceExtraScenarios使用第2回合美国领先、第10回合苏联领先；复用源地图与按时代筛过的普通行动牌，重建合法时代牌区。已有ChooseCard面板+明确放弃按钮（放在结果区，不遮手牌/重发）；独立Builds/SpaceExtraPlaytest。
 
-- [ ] 写fixture/控制器测试，RunId extra-ui-red；实现并RunId extra-ui-green。
+- [x] 写fixture/控制器测试，RunId extra-ui-red；实现并RunId extra-ui-green。
 - [ ] 一次新上下文全分支审查；重要项一轮RED/GREEN修复；元数据/diff/构建/载荷字节核对。
 - [ ] 实际鼠标：额外正常出牌、放弃、重复命令、军事审核/弃牌/下一回合或最终；F12游戏截图及日志检查。
 - [ ] 更新Wiki、JSON、工作记录和验证证据；提交/push功能分支，核对远端SHA。

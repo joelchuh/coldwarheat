@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "id": "data.demo-space-extra-action-scenarios",
+  "kind": "data",
+  "status": "fixture",
+  "dataset_id": "demo.space_extra_action_scenarios",
+  "description": "人工第2/10回合太空额外行动入口：独占太空8格，复用源地图与普通行动牌，按时代重建手牌/牌库/储备，经真实普通行动后提供出牌或放弃。",
+  "entrypoints": [
+    {
+      "path": "Data/Demo/space-extra-action-scenarios.json",
+      "symbol": "scenarios"
+    }
+  ],
+  "inputs": [
+    "已有最终计分人工场景和同定义太空轨道"
+  ],
+  "outputs": [
+    "第19/20两个独立人工入口，原18场景对象不变"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "demo.final_scoring_scenario",
+    "rules.deluxe2015.space-race",
+    "cards.deluxe2015.definitions"
+  ],
+  "preconditions": [
+    "可信已有共享场景和规则定义",
+    "描述不授予执行权限"
+  ],
+  "side_effects": [
+    "在新内存Host中运行普通行动；不修改源场景和磁盘存档"
+  ],
+  "stop_conditions": [
+    "未知字段/重复ID/无独占额外能力/非法回合",
+    "持有牌重复/未来时代/计分或中国牌/非源可用实体"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Design/2026-10-16-space-extra-actions.md",
+      "scope": "人工fixture，不伪造过去太空尝试"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceExtraDemoEntryTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/space-extra-actions.md",
+  "verification": {
+    "report": "Docs/Testing/space-extra-actions.validation.json",
+    "native_validation": "2567/2567; extra-ui-green"
+  }
+}

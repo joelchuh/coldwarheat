@@ -8,7 +8,7 @@
 
 ## 权威流程
 
-`AssessTurnEnd → ForAudit → Pending → DiscardHeldCard / KeepHeldCards → Discarded / Declined → BeginNextTurn / FinalScoring`。无牌为NoCards，终局或无能力时不建立选择。第8格额外行动仍拒绝，不能假定已完成。
+`AssessTurnEnd → ForAudit → Pending → DiscardHeldCard / KeepHeldCards → Discarded / Declined → BeginNextTurn / FinalScoring`。无牌为NoCards，终局或无能力时不建立选择。第8格额外行动现由[行动进度模块](space-extra-actions.md)接管；Rounds未完成不得提前审核。旧Player能力以各自构建报告为准。
 
 SpaceEndTurnDiscardState绑定原审核、轨道和当前牌区实例；任何替换牌区都使旧决策失效。拥有者由能力确定，可以不同于普通Actor。下一回合清除旧决策，最终计分保留已完成收据供复盘。两种决策不动VP、地图、RNG、军事或动作数，弃牌一次只改变牌区，版本和序号各增加一次。
 

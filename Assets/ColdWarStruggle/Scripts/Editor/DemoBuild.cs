@@ -73,6 +73,8 @@ namespace ColdWarStruggle.Editor
         public static void BuildFinalScoringPlaytest()=>BuildAt("Builds/FinalScoringPlaytest","ColdWarStruggle Final Scoring Playtest");
         [MenuItem("ColdWarStruggle/Build Space Discard Playtest")]
         public static void BuildSpaceDiscardPlaytest()=>BuildAt("Builds/SpaceDiscardPlaytest","ColdWarStruggle Space Discard Playtest");
+        [MenuItem("ColdWarStruggle/Build Space Extra Playtest")]
+        public static void BuildSpaceExtraPlaytest()=>BuildAt("Builds/SpaceExtraPlaytest","ColdWarStruggle Space Extra Playtest");
         static void BuildAt(string directory,string productName=null)
         {
             Prepare();Directory.CreateDirectory(directory);
@@ -113,12 +115,14 @@ namespace ColdWarStruggle.Editor
                     .WithQuickStartScenario(Read(root,"Data/Demo/quick-start-scenario.json"))
                     .WithHeadlineScenario(Read(root,"Data/Demo/headline-scenario.json"),Read(root,"Data/Rulesets/deluxe-2015/turn-flow.json"),Read(root,"Data/Cards/deluxe-2015/defectors.parameters.json"),Read(root,"Docs/Contracts/defectors.schema.json"))
                     .WithFinalScoringScenario(Read(root,"Data/Demo/final-scoring-scenario.json"),Read(root,"Data/Rulesets/deluxe-2015/region-scoring.json"),Read(root,"Docs/Contracts/region-scoring-rules.schema.json"),Read(root,"Data/Rulesets/deluxe-2015/scoring-card-parameters.json"),Read(root,"Docs/Contracts/scoring-card-parameters.schema.json"))
-                    .WithSpaceDiscardScenarios(Read(root,"Data/Demo/space-end-turn-discard-scenarios.json"));
+                    .WithSpaceDiscardScenarios(Read(root,"Data/Demo/space-end-turn-discard-scenarios.json"))
+                    .WithSpaceExtraScenarios(Read(root,"Data/Demo/space-extra-action-scenarios.json"));
             CatalogNamesLoader.Load(Read(root,"Data/Localization/zh-CN.catalog-names.json"),"zh-CN",catalog.Names.Keys);
             CatalogNamesLoader.Load(Read(root,"Data/Localization/en-US.catalog-names.json"),"en-US",catalog.Names.Keys);
             WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
             Directory.CreateDirectory(payload);
             Copy(root,"Data/Demo/space-end-turn-discard-scenarios.json",payload,"space-end-turn-discard-scenarios.json");
+            Copy(root,"Data/Demo/space-extra-action-scenarios.json",payload,"space-extra-action-scenarios.json");
             Copy(root,"Data/Demo/final-scoring-scenario.json",payload,"final-scoring-scenario.json");
             Copy(root,"Data/Rulesets/deluxe-2015/scoring-card-parameters.json",payload,"scoring-card-parameters.json");
             Copy(root,"Docs/Contracts/scoring-card-parameters.schema.json",payload,"scoring-card-parameters.schema.json");

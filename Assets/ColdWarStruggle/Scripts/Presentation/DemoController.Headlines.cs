@@ -26,7 +26,7 @@ namespace ColdWarStruggle.Presentation
                 if(v.Headline?.Status==PublicHeadlineStatus.Collecting)return "头条选择 · 双方分别锁定";
                 if(v.Headline!=null && v.Headline.Status!=PublicHeadlineStatus.Completed)return "头条结算";
                 if(p.Stage==ActionPracticeStage.Complete)return p.TurnEnd!=null?"回合末审核完成":"本回合行动结束";
-                return (p.Actor==PlayerSide.US?"美国":"苏联")+$" 行动 {p.Round}/{p.RoundLimit}";
+                return (p.Actor==PlayerSide.US?"美国":"苏联")+(p.IsExtraAction?" 太空额外":" 行动")+$" {p.Round}/{p.RoundLimit}";
             }
         }
         HeadlineCommand lastHeadlineCommand;

@@ -140,7 +140,7 @@ namespace ColdWarStruggle.Presentation
             if(result?.Coup!=null && (result.Event!=null || result.DefconVpEvent!=null || result.ActivatedOpsEffect!=null))message=CombinedCoupMessage(result);
             if(controller.LastResult!=null)message=controller.LastResult.Accepted?"投放成功，费用："+string.Join(" + ",controller.LastResult.Costs):ErrorText(controller.LastResult.Error);
             if(controller.LastEventResult!=null)message=controller.LastEventResult.Accepted?"事件选择完成 · 影响力变化 "+controller.LastEventResult.Changes.Count+" 项。":ErrorText(controller.LastEventResult.Error);
-            Text(972,578,262,65,message,small);
+            if(!DrawExtraActionChoice(view))Text(972,578,262,65,message,small);
             var retryHeadline=!controller.CanRetryCard && controller.CanRetryHeadline;
             GUI.enabled=controller.CanRetryCard || retryHeadline;
             if(Button(972,646,262,27,retryHeadline?"重发头条命令（幂等）":"重发出牌命令（幂等）"))

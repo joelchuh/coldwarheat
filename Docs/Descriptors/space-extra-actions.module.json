@@ -17,6 +17,22 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/CardActionContracts.cs",
       "symbol": "PublicPracticeView"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.SpaceExtra.cs",
+      "symbol": "WithSpaceExtraScenarios"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.SpaceExtra.cs",
+      "symbol": "DeclineExtraActionsAsync"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.SpaceExtra.cs",
+      "symbol": "DrawExtraActionChoice"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "symbol": "BuildSpaceExtraPlaytest"
     }
   ],
   "inputs": [
@@ -37,7 +53,8 @@
     }
   ],
   "data_dependencies": [
-    "rules.deluxe2015.space-race"
+    "rules.deluxe2015.space-race",
+    "demo.space_extra_action_scenarios"
   ],
   "preconditions": [
     "协调器只对合法开始并完成的根调用CompleteRoot；头条和子步骤不计次"
@@ -70,14 +87,22 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceExtraActionSessionTests.cs",
       "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceExtraDemoEntryTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceExtraPresentationTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "open_items": [
-    "Task3人工场景/界面/Player",
+    "新Player构建/真实点击/整批审查待完成",
     "普通无牌跳过、北海油田等其他额外行动来源"
   ],
   "verification": {
     "report": "Docs/Testing/space-extra-actions.validation.json",
-    "native_validation": "2546/2546; extra-play-green3"
+    "native_validation": "2567/2567; extra-ui-green"
   }
 }
