@@ -15,7 +15,7 @@ namespace ColdWarStruggle.Tests
             var influence=d.InfluenceEvents??PlayInfluenceEventTests.Effects(d.Risk.Defcon.Map,d.Cards);
             if(!influence.Effects.ContainsKey(Id("independent_reds")))influence=new PracticeInfluenceCatalog(influence.Map,d.Cards,influence.Effects.Values.Append(
                 IndependentRedsCatalogLoader.Load(IndependentRedsCatalogTests.Data(),IndependentRedsCatalogTests.Schema(),influence.Map,BudgetedRemovalCatalogTests.KnownEffects)));
-            return new ActionPracticeDefinition(d.Cards,d.Ops,d.Space,d.Calendar,d.Risk,d.Scoring,influence,d.DefconVpEvents??PlayDefconVpEventTests.Effects(d.Cards),d.TurnOpsEvents??PlayTurnOpsEventTests.Effects(d.Cards),d.Realignment,d.China,d.TurnEndEnabled,d.NextTurnEnabled,d.HeadlineParameters,d.HeadlineDefectors,d.FinalScoring,d.Blockade,
+            return new ActionPracticeDefinition(d.Cards,d.Ops,d.Space,d.Calendar,d.Risk,d.Scoring,influence,d.DefconVpEvents??PlayDefconVpEventTests.Effects(d.Cards),d.TurnOpsEvents??PlayTurnOpsEventTests.Effects(d.Cards),d.Realignment??RealignmentTests.Definition(),d.China,d.TurnEndEnabled,d.NextTurnEnabled,d.HeadlineParameters,d.HeadlineDefectors,d.FinalScoring,d.Blockade,
                 FiveYearPlanDefinitionLoader.Load(BlockadeDefinitionTests.Data(),BlockadeDefinitionTests.Schema(),d.Cards,BudgetedRemovalCatalogTests.KnownEffects));
         }
         internal static GameState Ready(string child="independent_reds",PlayerSide actor=PlayerSide.USSR,int level=5,int vp=0,bool emptyBoard=false)

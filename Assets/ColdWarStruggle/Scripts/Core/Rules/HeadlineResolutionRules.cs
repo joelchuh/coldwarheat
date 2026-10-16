@@ -36,7 +36,7 @@ namespace ColdWarStruggle.Core
             var done=ActionPracticeRules.CompleteEventAction(transition);
             if(!done.Accepted)return new HeadlineResolutionTransition(done.Error);
             var steps=new List<HeadlineResolutionStep>{new HeadlineResolutionStep(entry.Card,entry.PlayedBy,
-                new CardActionTransition(RuleError.None,done.NextState,eventTransition:transition))};
+                new CardActionTransition(RuleError.None,done.NextState,eventTransition:transition,fiveYearPlanResult:done.FiveYearPlanResult))};
             if(done.NextState.Ended || done.NextState.Practice.Headline.IsComplete)return new HeadlineResolutionTransition(RuleError.None,done.NextState,steps);
             var following=Advance(done.NextState);
             if(!following.Accepted)return new HeadlineResolutionTransition(following.Error);
@@ -49,7 +49,7 @@ namespace ColdWarStruggle.Core
             var supported=definition.Cards.Cards.Where(c=>c.Kind==CardKind.Scoring && definition.Scoring!=null
                 || c.Kind==CardKind.Event && (definition.InfluenceEvents?.Effects.ContainsKey(c.Id)==true
                     || definition.DefconVpEvents?.Effects.ContainsKey(c.Id)==true || definition.TurnOpsEvents?.Effects.ContainsKey(c.Id)==true
-                    || definition.HeadlineDefectors?.Card.Equals(c.Id)==true || definition.Blockade?.Card.Id.Equals(c.Id)==true));
+                    || definition.HeadlineDefectors?.Card.Equals(c.Id)==true || definition.Blockade?.Card.Id.Equals(c.Id)==true || definition.FiveYearPlan?.Card.Id.Equals(c.Id)==true));
             return Array.AsReadOnly(supported.Select(c=>c.Id).OrderBy(id=>id.Value,StringComparer.Ordinal).ToArray());
         }
         static RuleError CheckLive(GameState state)

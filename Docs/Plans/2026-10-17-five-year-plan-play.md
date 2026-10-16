@@ -25,9 +25,9 @@ Interfaces: optional ActionPracticeDefinition.fiveYearPlan; optional ActionPract
 ### Task 2: 对手序列与头条
 Files: Core/Rules/ActionPracticeRules.OpponentOps.cs, ActionPracticeRules.Coup.cs, HeadlineResolutionRules.cs; Tests/EditMode/FiveYearPlanFlowTests.cs (+meta), prior task entry guards if required.
 Interfaces: BeginFiveYearPlan(state, alreadyResolving) used by both ordinary and opponent entry; FinishFiveYearPlan returns existing Next/AdvanceOpponentStep; Headline CompleteChoice forwards child result; SupportedCards includes configured parent.
-- [ ] Native RED covering event-first/OPS-first, Influence/Realignment/Coup wrappers, terminal cutoff, headline current/second slot and next-failure rollback, returned receipts.
-- [ ] Integrate existing source guards and result wrappers without relaxing unrelated one-card guards.
-- [ ] Native GREEN; record root/zone/random assertions.
+- [x] Native RED covering event-first/OPS-first, Influence/Realignment/Coup wrappers, terminal cutoff, headline current/second slot and next-failure rollback, returned receipts.
+- [x] Integrate existing source guards and result wrappers without relaxing unrelated one-card guards.
+- [x] Native GREEN; record root/zone/random assertions.
 
 ### Task 3: 会话、数据与Demo
 Files: Application/Sessions/CardActionContracts.cs, EventSessionContracts.cs, HeadlineSessionContracts.cs, LocalGameHost.Cards.cs, LocalGameHost.Headlines.cs, public view wiring; Infrastructure/DataLoading/DemoCatalog.FiveYearPlan.cs; Presentation/DemoController*, DemoView* relevant result functions; existing Editor/DemoBuild.cs and Bootstrap payload assembly; Data/Demo/five-year-plan-scenario.json, Data/Descriptors/five-year-plan-scenario.data.json, Data/catalog.json; Tests/EditMode/FiveYearPlanSessionTests.cs, FiveYearPlanScenarioTests.cs (+meta).
