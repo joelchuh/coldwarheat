@@ -36,8 +36,8 @@ Interfaces: narrow PublicFiveYearPlanResult and pending view; WithFiveYearPlan /
 - [x] Native RED for fixed identity, stale/duplicate/conflict and no second random, public data, result wrappers, strict artificial scenario, preservation through definition factories.
 - [x] Implement session projection/summary, canonical scenario loader, scenario picker, child/root feedback and payload/build binding; retain old 23 entries.
 - [x] Native GREEN + metadata/diff checks; update module/data JSON, Wiki/flow/worklog/report.
-- [ ] Commit source; fresh read-only whole-branch review, fix any Important with regression RED→GREEN.
-- [ ] Build Player from checked source, validate byte-exact payloads; real UI exercise random-child choice, side switch, retry, root return, map switch, reset. Report limits precisely.
+- [x] Commit source; fresh read-only whole-branch review, fix any Important with regression RED→GREEN.
+- [x] Build Player from checked source, validate byte-exact payloads; real UI exercise random-child choice, side switch, retry, root return, map switch, reset. Report limits precisely.
 - [ ] Commit evidence, push feature branch and verify remote SHA. Continue next useful batch while user allowance remains.
 
 Native: Tools/Scripts/run-unity-editmode.ps1 -ProjectRoot E:/TwilightStruggle -UnityEditor E:/unity6.6/6000.6.0f1/Editor/Unity.exe -RunId unique-five-year-play-id -TimeoutSeconds 600.

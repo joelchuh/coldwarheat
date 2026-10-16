@@ -14,6 +14,8 @@
 
 新增[封锁可玩接线](Docs/Wiki/blockade-play.md)：美国私有弃牌或清除西德影响力，支持原行动/对手OPS/头条续接。最新入口 `Builds/BlockadePlaytest/ColdWarStruggleDemo.exe`，顶部目录第23练习；2772项原生测试、独立审查、54份载荷和直接事件鼠标验收通过，详细边界见[报告](Docs/Testing/blockade-play.validation.json)。
 
+新增[五年计划子事件续接](Docs/Wiki/five-year-plan-play.md)：一次抽样后执行已支持的美国事件，正确返回直接行动、对手OPS或头条。最新入口 `Builds/FiveYearPlanPlaytest/ColdWarStruggleDemo.exe`，顶部目录第24练习；2908项原生测试、55份载荷与直接/先事件后OPS鼠标验收通过。瞬时头条子事件提示有一项已记录Minor，详见[报告](Docs/Testing/five-year-plan-play.validation.json)。
+
 世界地图含84国热点，可切 World/Tiles/Table；规则邻接、显示坐标和画风分离。一个窗口共用权威局面与两个固定身份会话；普通视图只读自己的手牌，显式测试观察可查看双方。重置创建新局并使用确定性测试发牌。**仍是有限可玩原型**：大部分事件和跨卡效果、正式存档/回放、联网与 AI 尚未接入，余牌未支持时可能无法继续，不能据数据定义数量宣称完整游戏。
 
 以下为历史头条试玩截图，不代表最终地图风格：

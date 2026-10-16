@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "validation.five-year-plan-play",
   "description": "五年计划实际事件续接、会话与Demo的分批原生验证",
-  "status": "native-passed-player-pending",
+  "status": "passed-subset-with-minor",
   "runs": [
     {
       "status": "failed",
@@ -256,16 +256,87 @@
   "limitations": [
     "仅支持已注册的纯影响力、DEFCON/VP、回合OPS美国子事件，未知处理器抽样前拒绝",
     "人工练习只有一个抽样候选，保证稳定展示美国响应；不代表自然发牌",
-    "独立Player构建、真实UI与整批审查仍待验证",
-    "未新增正式存档或生产联网实现"
+    "未新增正式存档或生产联网实现",
+    "独立审查一项Minor：瞬时头条子事件摘要尚未显示，排入后续反馈改进"
   ],
   "metadata": {
     "status": "passed",
     "descriptors": 159,
     "catalog_entries": 159,
     "datasets": 81,
-    "csharp_symbols_checked": 399,
+    "csharp_symbols_checked": 400,
     "data_dependencies_checked": 684,
     "files_read": 360
+  },
+  "build": {
+    "exit_code": 0,
+    "source": "57c6cdf635de1428fe2f1c0a9bb9e010f8ae24fc",
+    "log": "TestResults/five-year-final-build.log"
+  },
+  "payload": {
+    "status": "passed",
+    "count": 55,
+    "source": "57c6cdf635de1428fe2f1c0a9bb9e010f8ae24fc",
+    "executable_sha256": "a4c71b1bfc3e42d02f2f129fe04adef3ebf2343a662884e4b99598e9dfc90e7d",
+    "managed_assemblies": {
+      "ColdWarStruggle.Application.dll": "4e33762b10c8d4226e801817d4c3ae331eb4974c0da4a5c70571ea6d85db697b",
+      "ColdWarStruggle.Bootstrap.dll": "fed089c2791031ec44a10330aa115c0bc8c5af1f47cd128976434e0264f8759e",
+      "ColdWarStruggle.Core.dll": "ba66c11fd21f777b184da7645d69153074fa2751670e850bfc1c8a6dc6b44407",
+      "ColdWarStruggle.Infrastructure.dll": "63d6562b8e215d2fda0eb4bb13c19db84ec8d81c8a03730d0898459c1ffb54b1",
+      "ColdWarStruggle.Presentation.dll": "418bc7cdccc1541cf7d058d36b52545a6da78f6703c618e3553a219a0aadad7f"
+    }
+  },
+  "review": {
+    "base": "556c484f32b8aa87f56e3981902162a8c116c856",
+    "head": "4970906911cc6697ba99fdef8ceb8a1e466c0af7",
+    "additional_ui_fix": "57c6cdf635de1428fe2f1c0a9bb9e010f8ae24fc",
+    "critical": 0,
+    "important": 0,
+    "minor": 1,
+    "finding": "无需选择的头条五年计划子事件虽有公开Steps结果，当前界面没有呈现子牌摘要；下一反馈批次处理",
+    "independent_evidence": "XML hash/counts and editor exit0 checked; 74 cases across four new test classes; no Unity rerun"
+  },
+  "ui": {
+    "status": "passed-direct-and-event-first",
+    "build": "Builds/FiveYearPlanPlaytest/ColdWarStruggleDemo.exe",
+    "checks": [
+      "直接发动：苏联等待美国 v4/序号4；美国选择南斯拉夫，变为3/3并进入美国行动 v7/序号8",
+      "父命令重发：显示原v4历史收据，当前v7/序号8保持；切Tiles同局面",
+      "最终57c6cdf：先事件后OPS，子事件完成仍苏联；事件重发按钮可用，v7/序号8保持",
+      "返回原3OPS，向南斯拉夫投放1后苏联4，结束余2OPS，仅进入美国第1行动；v10/序号11",
+      "美国重发旧选择：历史v7/当前v10提示，苏联影响力4保持",
+      "重置恢复v1/序号1和美1苏3，重试入口清除；24个练习目录保留原入口"
+    ],
+    "captures": [
+      {
+        "path": "TestResults/five-year-ui/child-complete-v7.png",
+        "sha256": "bc6e6a8d08f4bd5a1468ff0bbd585aba9264bf168526356ae1f1ca0de992e012"
+      },
+      {
+        "path": "TestResults/five-year-ui/event-retry-v7.png",
+        "sha256": "c89d89043385b3cb493d7761834063384f4ece09105d46e9810d501270c3f5cb"
+      },
+      {
+        "path": "TestResults/five-year-ui/historical-event-v10.png",
+        "sha256": "d5baad5e5a8908e94ba3774fa222d1c3ab3ed0a5500b986ebfc3cd26160e54fb"
+      },
+      {
+        "path": "TestResults/five-year-ui/parent-retry-tiles-v7.png",
+        "sha256": "499abc0160066bef0a4d59013d58cfcc015ae4b4e92ec01fc3bb5da11f5f5447"
+      },
+      {
+        "path": "TestResults/five-year-ui/waiting-v4.png",
+        "sha256": "e6f09bd9e167265f2d0bf6f99fb7f4025e1c5f7ebf436b36daf1d35d23e462fa"
+      }
+    ],
+    "logs": [
+      "TestResults/five-year-player.log",
+      "TestResults/five-year-final-player.log"
+    ],
+    "managed_exceptions": 0,
+    "limitations": [
+      "头条特殊组合与政变加轨道反馈矩阵有自动测试/代码检查，未逐个实际鼠标验证",
+      "瞬时头条子牌摘要有一项Minor显示缺口，未影响规则与公开结果"
+    ]
   }
 }
