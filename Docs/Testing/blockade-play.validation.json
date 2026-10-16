@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "validation.blockade-play",
   "description": "封锁对局接线的分阶段原生、构建和实际交互证据",
-  "status": "in-progress",
+  "status": "passed",
   "runs": [
     {
       "status": "failed",
@@ -240,24 +240,30 @@
     }
   ],
   "limitations": [
-    "2772项原生通过；最终仅缩短按钮/第三行提示文案，构建编译与复核待完成",
-    "c31d68f构建与直接封锁UI已通过；修复后必须重建，不能把旧Player冒称新源码",
-    "首轮头条测试部署丢失、首次green头条优先方设置错误，均修正fixture，不改正式顺序规则",
-    "Demo首轮因测试误用接口未编译，修正测试后17项真实功能红灯"
+    "仍为有限试玩，其他手牌事件/存档/联网/完整整局未实现",
+    "2772项规则测试后仅缩短两处中文；构建编译与直接回应按钮实看通过，政变组合提示未单独鼠标验证",
+    "历史红灯中的fixture/编译准备错误和真实行为失败分别记录于runs与工作记录"
   ],
   "build": {
     "exit_code": 0,
-    "log": "E:/TwilightStruggle/TestResults/blockade-build.log",
-    "source": "c31d68f2b2d5b50cd43a663adbb933c9c6ca76ec"
+    "log": "E:/TwilightStruggle/TestResults/blockade-final-build.log",
+    "source": "74ff5fbeb1151320dd88a3401e9c5189c901011f"
   },
   "payload": {
     "status": "passed",
     "count": 54,
-    "source": "c31d68f2b2d5b50cd43a663adbb933c9c6ca76ec",
-    "executable_sha256": "a4c71b1bfc3e42d02f2f129fe04adef3ebf2343a662884e4b99598e9dfc90e7d"
+    "source": "74ff5fbeb1151320dd88a3401e9c5189c901011f",
+    "executable_sha256": "a4c71b1bfc3e42d02f2f129fe04adef3ebf2343a662884e4b99598e9dfc90e7d",
+    "managed_assemblies": {
+      "ColdWarStruggle.Application.dll": "8f018de7872eeeaca19a634ef360adb73129caff479f98044b0147995c41e0b7",
+      "ColdWarStruggle.Bootstrap.dll": "f36ed24ce45c6defd781280bda5e836040e59b1a6ad4daedbcdcc2f13908d7fc",
+      "ColdWarStruggle.Core.dll": "a248e4d65192745ba93ad3d011fa9ea3f1784573bffc98bcee107722cd7d0346",
+      "ColdWarStruggle.Infrastructure.dll": "fa7efd30f0a99c50f0de1717c60f37cd409fad451460e86e97ab751633320972",
+      "ColdWarStruggle.Presentation.dll": "28b76be47795c5a3ec50e903821a803fca5e15a8429145d259718f3a3e92c32f"
+    }
   },
   "ui": {
-    "status": "passed-on-source-c31d68f",
+    "status": "passed-direct-event-branches",
     "build": "Builds/BlockadePlaytest/ColdWarStruggleDemo.exe",
     "checks": [
       "USSR触发后无候选/数量，明确等待美国",
@@ -286,7 +292,17 @@
     "warnings": [
       "D3D12 info queue query 0x80004002启动警告；后续渲染与输入正常"
     ],
-    "note": "本批UI已关闭；审查后政变组合反馈仍待修复和重建"
+    "note": "直接事件两分支与重发在c31d68f验证；74ff5fb复验等待/候选/Decline和新按钮。政变组合回执有宿主测试，组合提示未做实际鼠标专门路线。",
+    "final_build_recheck": {
+      "source": "74ff5fbeb1151320dd88a3401e9c5189c901011f",
+      "checks": [
+        "实际选封锁→苏联等待→美国候选",
+        "缩短后的Decline按钮完整可见",
+        "Decline后西德0/2、v5序号6"
+      ],
+      "capture": "TestResults/blockade-ui/final-us-choice.png",
+      "log": "TestResults/blockade-final-player.log"
+    }
   },
   "review": {
     "base": "e1001a4e185db5839d5c4142f4e5be8a63a27503",
@@ -295,6 +311,11 @@
     "important": 1,
     "minor": 0,
     "finding": "Coup包装遗漏BlockadeResult与组合提示，修复进行中",
-    "fix": "政变透传BlockadeResult与HeadlineSteps，组合提示保留政变和封锁；有/无候选+核战测试已通过，复核待完成"
+    "fix": "政变透传BlockadeResult与HeadlineSteps，组合提示保留政变和封锁；有/无候选+核战测试已通过，复核待完成",
+    "fixed_head": "74ff5fbeb1151320dd88a3401e9c5189c901011f",
+    "unresolved_critical": 0,
+    "unresolved_important": 0,
+    "unresolved_minor": 0,
+    "status": "passed-after-fix"
   }
 }

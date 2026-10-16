@@ -106,7 +106,7 @@
     },
     {
       "id": "module.hand-events",
-      "description": "手牌事件服务：私有阈值候选/弃牌、随机单牌收据与US事件子帧路由；不负责直接执行子牌事件或修改玩家快照。 CIA/Lone一次当前手牌私有历史快照与原收据重放。 LH1整批无放回随机弃牌、Ames选择与当前私有查询；旧收据不刷新。 LADC1复用Blockade有效OPS阈值/弃牌资格；报价按US实际修正，候选和数量私有。 AN1先锁定US完整弃牌集合再补等量，零选择不抽牌；洗牌与RNG待实现。 已实现的封锁资格/无事件弃置与定义装载基础见 module.blockade-hand-discard；本广义服务和完整回应仍planned。",
+      "description": "手牌事件服务：私有阈值候选/弃牌、随机单牌收据与US事件子帧路由；不负责直接执行子牌事件或修改玩家快照。 CIA/Lone一次当前手牌私有历史快照与原收据重放。 LH1整批无放回随机弃牌、Ames选择与当前私有查询；旧收据不刷新。 LADC1复用Blockade有效OPS阈值/弃牌资格；报价按US实际修正，候选和数量私有。 AN1先锁定US完整弃牌集合再补等量，零选择不抽牌；洗牌与RNG待实现。 已实现的封锁资格/无事件弃置与定义装载基础见 module.blockade-hand-discard；封锁完整回应已由module.blockade-play接入，本广义手牌服务仍planned。",
       "status": "planned",
       "descriptor": "Docs/Descriptors/hand-events.module.json"
     },
@@ -400,14 +400,14 @@
     },
     {
       "id": "module.blockade-hand-discard",
-      "description": "封锁基础：普通手牌有效OPS阈值筛选、无事件弃置和严格定义装载；尚未接私有回应会话/UI。",
+      "description": "封锁基础：普通手牌有效OPS阈值筛选、无事件弃置和严格定义装载；完整回应与Demo由module.blockade-play接入。",
       "status": "implemented",
       "descriptor": "Docs/Descriptors/blockade-hand-discard.module.json"
     },
     {
       "id": "module.blockade-play",
-      "description": "封锁权威回应、私有手牌候选、弃牌/清除影响力和原根/头条续接；Demo第23练习接线，构建交互验收待完成。",
-      "status": "implemented-subset",
+      "description": "封锁私有US弃牌/西德清除、原行动与头条续接、固定身份/幂等和第23个可玩练习；地图独立消费快照。",
+      "status": "implemented",
       "descriptor": "Docs/Descriptors/blockade-play.module.json"
     }
   ]

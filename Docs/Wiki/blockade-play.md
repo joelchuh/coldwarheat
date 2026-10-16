@@ -2,7 +2,7 @@
 
 > description: 等待US私有弃牌、接受后续接原出牌根与头条；候选绑定和事务失败边界。
 
-状态：Core、会话投影和控制器已通过2749项原生测试；Demo第23练习正在验证，尚未交付本批Player。先读[模块JSON](../Descriptors/blockade-play.module.json)。
+状态：已通过2772项原生测试、独立审查和BlockadePlaytest构建（54份载荷一致）。直接事件两分支/重发/身份隔离/地图切换已实际验收；政变组合回执经过宿主测试，未单独鼠标验证其组合提示。先读[模块JSON](../Descriptors/blockade-play.module.json)。
 
 ## Core流程
 
@@ -31,3 +31,9 @@ flowchart LR
 `PublicBlockadeView`只给回应方候选，`PublicBlockadeResult`仅含已接受结果。`PublicCardSummary.DiscardPile`复制公共弃牌实体ID，旧回执仍保留旧列表。控制器复用固定身份SendCard与幂等缓存，换身份清选牌，换局清命令。
 
 `DemoCatalog.WithBlockade`装配共享定义；`WithBlockadeScenario`读取独立fixture并完整划分早期/后续牌区。人工第2回合美国有马歇尔计划、独立红色政权、亚洲计分，西德美5苏2，苏联持封锁。右侧面板先处理回应再检查根行动方；候选列表和放弃操作都提交权威命令。地图只消费快照，布局与画风可替换。
+
+## 当前入口
+
+`Builds/BlockadePlaytest/ColdWarStruggleDemo.exe`，顶部练习目录选第23项“封锁 · 私有弃牌人工局面”。苏联发动封锁→按提示切美国→选合格牌并确认，或明确不弃牌。可以重置练习另一分支；固定身份共享一个局面。原有22项入口保留。
+
+审查修正了先政变后封锁时遗漏公开结果的问题，组合结果保留两次结算说明；核战终止时不再触发封锁。结果、当前局面和历史收据仍分开。
