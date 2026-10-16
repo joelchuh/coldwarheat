@@ -37,6 +37,7 @@ namespace ColdWarStruggle.Presentation
                 if(Button(972,485,262,42,"结算本回合"))AssessTurnEnd();
                 GUI.enabled=true;
             }
+            else if(view.War!=null)DrawWarControls(view);
             else if(view.Blockade!=null)DrawBlockadeControls(view);
             else if(p.Actor!=view.Viewer)
             {
@@ -127,7 +128,8 @@ namespace ColdWarStruggle.Presentation
         {
             var result=controller.LastCardResult;
             string message="";
-            if(result?.FiveYearPlan!=null)message=FiveYearPlanResultMessage(result.FiveYearPlan)+FiveYearPlanChildDetail(result);
+            if(result?.War!=null)message=WarResultMessage(result.War);
+            else if(result?.FiveYearPlan!=null)message=FiveYearPlanResultMessage(result.FiveYearPlan)+FiveYearPlanChildDetail(result);
             else if(result?.Blockade!=null)message=BlockadeResultMessage(result.Blockade);
             else if(result?.Realignment!=null)
             {
@@ -154,13 +156,13 @@ namespace ColdWarStruggle.Presentation
             }
             else if(result!=null)message=!result.Accepted?ErrorText(result.Error):result.Space!=null
                 ?$"太空骰 {result.Space.Roll} · {(result.Space.Success?"成功":"失败")}，轨道 {result.Space.From} → {result.Space.To}\nVP 变化 {result.Space.VpForUS:+0;-0;0}；{(result.View.Practice.Winner.HasValue?"终局停止收尾":"行动结束，请查看牌区")}。":"行动命令已接受。";
-            if(result?.Coup!=null && (result.Event!=null || result.DefconVpEvent!=null || result.ActivatedOpsEffect!=null || result.Blockade!=null || result.FiveYearPlan!=null))message=CombinedCoupMessage(result);
+            if(result?.Coup!=null && (result.Event!=null || result.DefconVpEvent!=null || result.ActivatedOpsEffect!=null || result.Blockade!=null || result.FiveYearPlan!=null || result.War!=null))message=CombinedCoupMessage(result);
             message=controller.CardResultHistoryMessage??message;
             if(controller.LastResult!=null)message=controller.LastResult.Accepted?"投放成功，费用："+string.Join(" + ",controller.LastResult.Costs):ErrorText(controller.LastResult.Error);
             if(controller.LastEventResult!=null)message=controller.LastEventResult.Accepted?"事件选择完成 · 影响力变化 "+controller.LastEventResult.Changes.Count+" 项。":ErrorText(controller.LastEventResult.Error);
             if(controller.LastEventResult?.FiveYearPlan!=null)message=FiveYearPlanResultMessage(controller.LastEventResult.FiveYearPlan);
             if(result?.Accepted!=false && controller.LastResult?.Accepted!=false && controller.LastEventResult?.Accepted!=false)
-                message=ReadHeadlineFiveYearPlanFeedback()??message;
+                message=ReadHeadlineWarFeedback()??ReadHeadlineFiveYearPlanFeedback()??message;
             message=controller.EventResultHistoryMessage??message;
             return message;
         }

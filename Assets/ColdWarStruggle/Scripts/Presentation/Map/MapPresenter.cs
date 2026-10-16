@@ -66,6 +66,10 @@ namespace ColdWarStruggle.Presentation
                 var q=controller.DeploymentTargets();
                 if(q.Error==RuleError.None && q.Version==snapshot.Version && q.Viewer==snapshot.Viewer && q.ExecutionId==snapshot.Deployment.ExecutionId && q.DecisionId==snapshot.Deployment.DecisionId)permitted=q.Targets;
             }
+            else if(snapshot.War!=null)
+            {
+                if(snapshot.War.CanChoose)permitted=snapshot.War.Candidates;
+            }
             else if(snapshot.Event==null)
             {
                 var q=controller.LegalTargets();
@@ -97,6 +101,7 @@ namespace ColdWarStruggle.Presentation
         static string Token(string value)=>value==null?"-1:":value.Length+":"+value;
         static string Interaction(PlayerViewSnapshot snapshot)=>snapshot.Deployment!=null?
             "deployment"+Token(snapshot.Deployment.ExecutionId)+Token(snapshot.Deployment.StageIndex.ToString(System.Globalization.CultureInfo.InvariantCulture))+Token(snapshot.Deployment.DecisionId)
+            :snapshot.War!=null?"war"+Token(snapshot.War.DecisionId)
             :snapshot.Event==null?"ops"+Token(snapshot.ContextId)
             :"event"+Token(snapshot.Event.ExecutionId)+Token(snapshot.Event.Stage.ToString())+Token(snapshot.Event.DecisionId);
         void Detach()

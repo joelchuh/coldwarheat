@@ -5,27 +5,28 @@ namespace ColdWarStruggle.Presentation
 {
     public sealed partial class DemoController
     {
-        PublicHeadlineStep fiveYearHeadline;
-        string fiveYearHeadlineGame;
-        long fiveYearHeadlineVersion=-1;
-        public PublicHeadlineStep CurrentFiveYearHeadline
+        PublicHeadlineStep headlineFeedback;
+        string headlineFeedbackGame;
+        long headlineFeedbackVersion=-1;
+        public PublicHeadlineStep CurrentFiveYearHeadline=>CurrentHeadlineFeedback?.FiveYearPlan!=null?CurrentHeadlineFeedback:null;
+        PublicHeadlineStep CurrentHeadlineFeedback
         {
             get
             {
-                if(fiveYearHeadline==null)return null;
+                if(headlineFeedback==null)return null;
                 var current=ReadView();
-                return current.GameId==fiveYearHeadlineGame && current.Version==fiveYearHeadlineVersion?fiveYearHeadline:null;
+                return current.GameId==headlineFeedbackGame && current.Version==headlineFeedbackVersion?headlineFeedback:null;
             }
         }
         void RememberHeadlineFeedback(PlayerViewSnapshot receipt,IReadOnlyList<PublicHeadlineStep> steps)
         {
-            var step=steps?.LastOrDefault(s=>s.FiveYearPlan!=null);if(step==null)return;
+            var step=steps?.LastOrDefault(s=>s.FiveYearPlan!=null || s.War!=null);if(step==null)return;
             var current=ReadView();
             // A successful retry can return an older receipt; never restore its waiting state.
             if(receipt.GameId!=current.GameId || receipt.Version!=current.Version)return;
-            fiveYearHeadline=step;fiveYearHeadlineGame=receipt.GameId;fiveYearHeadlineVersion=receipt.Version;
+            headlineFeedback=step;headlineFeedbackGame=receipt.GameId;headlineFeedbackVersion=receipt.Version;
         }
         void ClearHeadlineFeedback()
-        {fiveYearHeadline=null;fiveYearHeadlineGame=null;fiveYearHeadlineVersion=-1;}
+        {headlineFeedback=null;headlineFeedbackGame=null;headlineFeedbackVersion=-1;}
     }
 }

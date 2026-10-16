@@ -141,6 +141,7 @@ namespace ColdWarStruggle.Application
     }
     public sealed class CardActionResult
     {
+        public PublicWarResult War { get; }
         public PublicFiveYearPlanResult FiveYearPlan { get; }
         public PublicBlockadeResult Blockade { get; }
         public IReadOnlyList<PublicHeadlineStep> HeadlineSteps { get; }
@@ -154,8 +155,8 @@ namespace ColdWarStruggle.Application
         public PublicDefconVpEventResult DefconVpEvent { get; }
         public PublicTurnOpsEffect ActivatedOpsEffect { get; }
         public PublicRealignmentResult Realignment { get; }
-        internal CardActionResult(RuleError error,PlayerViewSnapshot view,SpaceAttemptReceipt receipt=null,CoupAttemptReceipt coup=null,RegionScoringResult scoring=null,InfluenceEventTransition eventTransition=null,DefconVpEventPlan defconVpEvent=null,TurnOpsEffectInstance activatedOpsEffect=null,RealignmentCalculation realignment=null,BlockadeResolutionResult blockadeResult=null,IReadOnlyList<HeadlineResolutionStep> headlineSteps=null,FiveYearPlanResult fiveYearPlanResult=null)
-        { FiveYearPlan=fiveYearPlanResult==null?null:new PublicFiveYearPlanResult(fiveYearPlanResult);Blockade=blockadeResult==null?null:new PublicBlockadeResult(blockadeResult);HeadlineSteps=Array.AsReadOnly((headlineSteps??Array.Empty<HeadlineResolutionStep>()).Select(step=>new PublicHeadlineStep(step)).ToArray());Realignment=realignment==null?null:new PublicRealignmentResult(realignment);ActivatedOpsEffect=activatedOpsEffect==null?null:new PublicTurnOpsEffect(activatedOpsEffect);DefconVpEvent=defconVpEvent==null?null:new PublicDefconVpEventResult(defconVpEvent);Event=eventTransition==null?null:new PublicCardEventResult(eventTransition);Scoring=scoring==null?null:new PublicRegionScore(scoring);Error=error;View=view;Space=receipt==null?null:new PublicSpaceResult(receipt);Coup=coup==null?null:new PublicCoupResult(coup); }
+        internal CardActionResult(RuleError error,PlayerViewSnapshot view,SpaceAttemptReceipt receipt=null,CoupAttemptReceipt coup=null,RegionScoringResult scoring=null,InfluenceEventTransition eventTransition=null,DefconVpEventPlan defconVpEvent=null,TurnOpsEffectInstance activatedOpsEffect=null,RealignmentCalculation realignment=null,BlockadeResolutionResult blockadeResult=null,IReadOnlyList<HeadlineResolutionStep> headlineSteps=null,FiveYearPlanResult fiveYearPlanResult=null,WarEventPlan warResult=null)
+        { War=warResult==null?null:new PublicWarResult(warResult);FiveYearPlan=fiveYearPlanResult==null?null:new PublicFiveYearPlanResult(fiveYearPlanResult);Blockade=blockadeResult==null?null:new PublicBlockadeResult(blockadeResult);HeadlineSteps=Array.AsReadOnly((headlineSteps??Array.Empty<HeadlineResolutionStep>()).Select(step=>new PublicHeadlineStep(step)).ToArray());Realignment=realignment==null?null:new PublicRealignmentResult(realignment);ActivatedOpsEffect=activatedOpsEffect==null?null:new PublicTurnOpsEffect(activatedOpsEffect);DefconVpEvent=defconVpEvent==null?null:new PublicDefconVpEventResult(defconVpEvent);Event=eventTransition==null?null:new PublicCardEventResult(eventTransition);Scoring=scoring==null?null:new PublicRegionScore(scoring);Error=error;View=view;Space=receipt==null?null:new PublicSpaceResult(receipt);Coup=coup==null?null:new PublicCoupResult(coup); }
     }
     public sealed class CardActionOption
     {

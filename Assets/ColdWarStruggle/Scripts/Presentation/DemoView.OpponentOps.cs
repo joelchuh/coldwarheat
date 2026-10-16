@@ -34,6 +34,7 @@ namespace ColdWarStruggle.Presentation
         {
             var c=result.Coup;
             var message=$"政变骰 {c.Roll} / OPS {c.Strength} / 差额 {c.Margin}\n影响力 −{c.Removed}/+{c.Added} · 军事 +{c.MilitaryCredit}\n";
+            if(result.War!=null)return message+WarResultMessage(result.War);
             if(result.FiveYearPlan!=null)
             {
                 var f=result.FiveYearPlan;var name=f.SelectedCard.HasValue?CardTitle(f.SelectedCard.Value):"无手牌";

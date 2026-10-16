@@ -11,3 +11,5 @@ Task1已实现ActionPracticeDefinition.Wars、WarDecision/CanResolveWar、直接
 证据见[验证报告](../Testing/early-war-play.validation.json)，开发路径见[计划](../Plans/2026-10-17-early-war-play.md)。
 
 Task2完成：对手事件先后OPS、政变两回执、核战停止、头条等待/继续/取消/终局及跨回合同槽信用均通过。新增18项，首次internal夹具编译失败已用真实回合流程替换，不计为RED；有效RED16项均未支持，GREEN3034/3034、0跳过、exit0，XML SHA fc10ed1f414f5b5db8b58b5680445863c103189207245250be7f5b738a923fc4。会话/Player接线继续。
+
+Task3A：会话公开DTO、重发/错身份/冲突、地图替换及中文战争反馈通过。RED3052/3034/18，GREEN3052/3052、0跳过、exit0、SHA9f034e36d3935f13576215b85e7d0ce6554d101d2c06409685bb0cce34beba02。公开头条缓存统一按最后一个有摘要的步骤选择，并保留原五年计划接口。后续补战争后继续待选时的事件面板显示、三人工场景和Player，不把这一阶段声明成构建完成。

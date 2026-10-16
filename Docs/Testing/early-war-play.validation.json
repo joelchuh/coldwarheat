@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "validation.early-war-play",
   "description": "三张早期战争可玩接线原生与Player验证，分任务记录真实证据",
-  "status": "task2-passed",
+  "status": "task3-session-map-passed",
   "runs": [
     {
       "status": "failed",
@@ -83,11 +83,51 @@
       "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-play-continuation-green",
       "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-play-continuation-green\\results.xml",
       "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-play-continuation-green\\editor.log"
+    },
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 3052,
+      "passed": 3034,
+      "failed": 18,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "6d1cf82a41806b19e891575d8c65340a9624ee3fafd32d0f492cc99a72e33918",
+      "schema_version": 1,
+      "run_id": "war-session-map-red",
+      "duration_ms": 121043,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-session-map-red",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-session-map-red\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-session-map-red\\editor.log"
+    },
+    {
+      "status": "passed",
+      "error_code": null,
+      "total": 3052,
+      "passed": 3052,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "9f034e36d3935f13576215b85e7d0ce6554d101d2c06409685bb0cce34beba02",
+      "schema_version": 1,
+      "run_id": "war-session-map-green",
+      "duration_ms": 123876,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-session-map-green",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-session-map-green\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-session-map-green\\editor.log"
     }
   ],
   "red_analysis": "27个新增失败：26个直接路径未支持导致UnsupportedCardAction，1个缺少定义绑定校验；2989既有通过。",
   "limitations": [
-    "Core直接/OPS/头条接线已通过，会话/地图/Player仍继续。",
+    "Core、会话/地图交互及普通战争反馈已通过；人工场景/构建及战争后继续选择的事件面板反馈继续。",
     "封闭运行集无CampDavid/FlowerPower或外部状态导入，不把NoActiveInterference当通用事实推导"
   ],
   "attempts": [
@@ -106,5 +146,6 @@
       "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-play-continuation-red\\editor.log"
     }
   ],
-  "continuation_red_analysis": "首次夹具调用internal构造器编译失败，不计业务RED；改用公开开局和完整回合接口。有效RED3034/3018/16均UnsupportedCardAction；核战截断和跨回合同槽两项已通过。GREEN3034全过。"
+  "continuation_red_analysis": "首次夹具调用internal构造器编译失败，不计业务RED；改用公开开局和完整回合接口。有效RED3034/3018/16均UnsupportedCardAction；核战截断和跨回合同槽两项已通过。GREEN3034全过。",
+  "session_map_red_analysis": "18新增失败均为公开投影/地图高亮/阶段或反馈缺失，3034既有通过；GREEN3052全过。"
 }

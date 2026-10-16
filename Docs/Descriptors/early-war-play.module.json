@@ -3,7 +3,7 @@
   "id": "module.early-war-play",
   "kind": "module",
   "status": "implemented-subset",
-  "description": "早期战争真实出牌接线：固定战争、印巴待选、对手OPS及头条续接已原生通过；会话/地图与新版Player继续。",
+  "description": "早期战争Core、OPS/头条、固定会话与地图确认/公开结算已原生通过；人工场景和Windows Player构建继续。",
   "documentation": "Docs/Wiki/early-war-play.md",
   "entrypoints": [
     {
@@ -17,6 +17,18 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/WarDecision.cs",
       "symbol": "Matches"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/WarContracts.cs",
+      "symbol": "PublicWarResult"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.War.cs",
+      "symbol": "ConfirmWarAsync"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.War.cs",
+      "symbol": "ReadHeadlineWarFeedback"
     }
   ],
   "inputs": [
@@ -59,10 +71,18 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/WarContinuationTests.cs",
       "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/WarSessionTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/WarPresentationTests.cs",
+      "status": "native-passed"
     }
   ],
   "verification": {
-    "status": "task2-passed",
+    "status": "task3-session-map-passed",
     "report": "Docs/Testing/early-war-play.validation.json"
   }
 }
