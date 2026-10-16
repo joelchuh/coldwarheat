@@ -2,7 +2,7 @@
 
 > description: 先查权威能力，后在PCG快照上选牌；保留父源并返回子事件交接，不是可玩接线。
 
-状态：基础实现与正式装载完成，2834项原生回归通过；待整批审查。先查[模块JSON](../Descriptors/five-year-plan-foundation.module.json)，再按入口读取所需函数。[方案](../Architecture/five-year-plan-foundation.md)与[计划](../Plans/2026-10-17-five-year-plan-foundation.md)限定本批范围。
+状态：基础实现与正式装载完成，2834项原生回归通过；独立整批审查无Critical/Important/Minor。先查[模块JSON](../Descriptors/five-year-plan-foundation.module.json)，再按入口读取所需函数。[方案](../Architecture/five-year-plan-foundation.md)与[计划](../Plans/2026-10-17-five-year-plan-foundation.md)限定本批范围。
 
 FiveYearPlanDefinition绑定真实印刷目录与已Bound参数引用。FiveYearPlanRules.Plan要求本牌在唯一Resolving源位置，只从苏联普通手牌选候选。所有可能US事件预先得到权威能力覆盖，否则整份计划在随机之前拒绝。能力集合不能由UI提交，未来调用方必须以实际已注册处理器生成。
 

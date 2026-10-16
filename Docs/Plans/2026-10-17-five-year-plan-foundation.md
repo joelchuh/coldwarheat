@@ -44,7 +44,7 @@ Interfaces: FiveYearPlanDefinitionLoader.Load(string json,string schema,CardCata
 ### Task 3: 索引、证据与交付
 Files: Docs/Descriptors/five-year-plan-foundation.module.json, Docs/Wiki/five-year-plan-foundation.md, Docs/Worklogs/2026-10-17-five-year-plan-foundation.md, Docs/Testing/five-year-plan-foundation.validation.json and catalog/Wiki links.
 - [x] 写description/精确入口/数据依赖/flow/未实现边界，保存红绿证据。
-- [ ] 原生与元数据/diff checks通过，提交，fresh只读整批审查并修复。
+- [x] 原生与元数据/diff checks通过，提交，fresh只读整批审查并修复。
 - [ ] 推送feat/five-year-plan-foundation并核对远程；再继续实际子事件续接，不把此基础当可玩五年计划。
 
 Native command: Tools/Scripts/run-unity-editmode.ps1 -ProjectRoot E:/TwilightStruggle -UnityEditor E:/unity6.6/6000.6.0f1/Editor/Unity.exe -RunId unique-five-year-id -TimeoutSeconds600. 只在无Unity进程时修改C#；测试运行时不编辑编译输入。
