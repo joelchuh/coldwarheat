@@ -91,7 +91,7 @@
 | 政变基础计算 | 目标门禁、共享骰子/稳定度系数、影响力与战场意图 | C#基础子集；完整命令待接 | [coup-calculation.md](coup-calculation.md) |
 | 政变整体计划 | 军事/随机/影响力/DEFCON一体结果、收据防重与版本 | C#已验证；宿主待接 | [coup-attempts.md](coup-attempts.md) |
 | 太空期末弃牌 | 查私有候选、弃/留命令、审核绑定和继续门禁 | Core/会话2468测试通过；UI待接 | [space-end-turn-discard.md](space-end-turn-discard.md) |
-| 太空额外行动 | 查双方根计数、普通交替后的动态总额度与明确放弃 | 规则/UI已接；Player验收中 | [space-extra-actions.md](space-extra-actions.md) |
+| 太空额外行动 | 查双方根计数、普通交替后的动态总额度与明确放弃 | 2567原生测试；独立Player与真实点击已验 | [space-extra-actions.md](space-extra-actions.md) |
 | 太空竞赛 | 查找8格门槛、先后奖励、领先能力、事件推进与回合衔接 | 轨道/领先能力/普通尝试计划已实现；宿主待接 | [space-race.md](space-race.md) |
 | 地图与卡牌数据契约 | 查找正式数据字段、邻接、三类卡牌、效果注册、Schema及加载门禁 | 契约与正式印刷定义已建立；服务待实现 | [map-card-contracts.md](map-card-contracts.md) |
 | 正式地图与卡牌数据 | 按地区查84国与邻接，按时代查103张基础牌及效果待实现边界 | 静态定义已录入；不是可运行规则包 | [map-card-data.md](map-card-data.md) |

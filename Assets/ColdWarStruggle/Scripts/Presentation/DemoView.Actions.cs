@@ -19,7 +19,8 @@ namespace ColdWarStruggle.Presentation
         void DrawOpsEffects(PublicPracticeView practice)
         {
             var text=practice.OpsEffects.Count==0?"本回合持续 OPS：无":"本回合持续 OPS："+string.Join("；",practice.OpsEffects.Select(OpsEffectSummary))+"  ·  回合末到期";
-            Text(28,155,1220,22,text,new GUIStyle(small){fontSize=12});
+            if(practice.IsExtraAction)text=$"已行动 美 {practice.UsCompletedActions} / 苏 {practice.UssrCompletedActions} · "+text;
+            Text(28,155,practice.IsExtraAction?920:1220,22,text,new GUIStyle(small){fontSize=12});
         }
         void DrawPracticeControls(PlayerViewSnapshot view)
         {
@@ -43,7 +44,7 @@ namespace ColdWarStruggle.Presentation
             else if(p.Stage==ActionPracticeStage.ChoosingOperations)DrawOpponentOperations(view);
             else if(p.Stage==ActionPracticeStage.Realigning)
             {
-                Text(972,368,262,38,"调整："+CardTitle(p.ActiveCard.Value)+"\n"+RemainingOpsText(view),small);
+                Text(972,360,262,46,"调整："+CardTitle(p.ActiveCard.Value)+"\n"+RemainingOpsText(view),small);
                 GUI.enabled=controller.LegalTargets().Targets.Contains(controller.SelectedCountry);
                 if(Button(972,410,262,39,"调整一次："+Name(controller.SelectedCountry)))RollRealignment();
                 GUI.enabled=true;
@@ -52,7 +53,7 @@ namespace ColdWarStruggle.Presentation
             }
             else if(p.Stage==ActionPracticeStage.PlacingInfluence)
             {
-                Text(972,368,262,38,"使用："+CardTitle(p.ActiveCard.Value)+"\n"+RemainingOpsText(view),small);
+                Text(972,360,262,46,"使用："+CardTitle(p.ActiveCard.Value)+"\n"+RemainingOpsText(view),small);
                 GUI.enabled=controller.LegalTargets().Targets.Contains(controller.SelectedCountry);
                 if(Button(972,410,262,39,"投放 1 点影响力"))Place(1);
                 GUI.enabled=true;
@@ -99,7 +100,7 @@ namespace ColdWarStruggle.Presentation
                     }
                     var reason=opponent?"对手牌：先选顺序，到OPS步骤再选用途。":option.Influence!=RuleError.None?"影响力："+ErrorText(option.Influence):"";
                     if(option.RegionalMaximum.HasValue && option.Influence==RuleError.None)reason=$"全用于亚洲最多 {option.RegionalMaximum} OPS；太空仍 {option.CurrentOps}。";
-                    if(option.Space!=RuleError.None)reason+="\n太空："+ErrorText(option.Space);
+                    if(option.Space!=RuleError.None)reason+=(reason.Length==0?"":"\n")+"太空："+ErrorText(option.Space);
                     if(!controller.SelectingCoup)
                     {
                         GUI.enabled=option.Realignment==RuleError.None;
@@ -140,7 +141,8 @@ namespace ColdWarStruggle.Presentation
             if(result?.Coup!=null && (result.Event!=null || result.DefconVpEvent!=null || result.ActivatedOpsEffect!=null))message=CombinedCoupMessage(result);
             if(controller.LastResult!=null)message=controller.LastResult.Accepted?"投放成功，费用："+string.Join(" + ",controller.LastResult.Costs):ErrorText(controller.LastResult.Error);
             if(controller.LastEventResult!=null)message=controller.LastEventResult.Accepted?"事件选择完成 · 影响力变化 "+controller.LastEventResult.Changes.Count+" 项。":ErrorText(controller.LastEventResult.Error);
-            if(!DrawExtraActionChoice(view))Text(972,578,262,65,message,small);
+            DrawExtraActionChoice(view);
+            Text(972,578,262,65,message,small);
             var retryHeadline=!controller.CanRetryCard && controller.CanRetryHeadline;
             GUI.enabled=controller.CanRetryCard || retryHeadline;
             if(Button(972,646,262,27,retryHeadline?"重发头条命令（幂等）":"重发出牌命令（幂等）"))

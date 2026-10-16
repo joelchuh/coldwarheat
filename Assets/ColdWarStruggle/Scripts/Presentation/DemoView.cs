@@ -161,7 +161,7 @@ namespace ColdWarStruggle.Presentation
                 case RuleError.CardNotOwned:return "此牌不在当前操作方手中。";
                 case RuleError.TurnPreparationUnavailable:return "无法完成补牌或回合准备，局面未改变。";
                 case RuleError.ActionNotReady:return "请先完成当前阶段。";
-                case RuleError.SpaceAttemptUnavailable:return "OPS 不足或本回合太空次数已用完。";
+                case RuleError.SpaceAttemptUnavailable:return "当前轨道、OPS 或次数不允许尝试。";
                 case RuleError.ChinaUnavailable:return "中国牌为背面，本回合不能使用。";
                 case RuleError.ScoringMustBePlayed:return "剩余行动须留给手中计分牌，不能使用中国牌。";
                 case RuleError.ActionSliceComplete:return "本回合行动试玩已结束。";

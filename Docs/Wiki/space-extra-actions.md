@@ -2,7 +2,7 @@
 
 Description：先查 ActionRoundProgress 的双方独立根计数、可选总额度和放弃，再定位真实出牌接线。
 
-基础模块、真实根行动、两个人工入口及界面已接入；2567项原生测试通过。独立Player构建/实际点击/整批审查待完成，旧Player未更新。描述：Docs/Descriptors/space-extra-actions.module.json。
+基础模块、真实根行动、两个人工入口及界面已接入；2567项原生测试通过。独立SpaceExtraPlaytest构建、47份载荷和两条实际鼠标路线已通过；审查0阻塞、1个显示Minor已修复并复看。其他旧Player未更新。描述：Docs/Descriptors/space-extra-actions.module.json。
 
 ## 规则与流程
 
@@ -28,4 +28,6 @@ ActionPracticeState.Rounds贯穿头条/事件/OPS/结束克隆，非零历史缺
 
 WithSpaceExtraScenarios在18入口后追加第19（第2回合美8/苏4）和第20（第10回合美4/苏8）。来源地图与普通手牌不复制到JSON；从源手牌取时代普通额度，额外持有牌须来自源牌库且符合时代，重新按Era划分手牌/牌库/储备。CreateTurnEndFixture经真实普通出牌到v25或v29，只停在可选名额前。初始太空轨道是人工配置，没有捏造奖励/随机历史。
 
-DemoController.SpaceExtra发送现有固定身份命令。DrawExtraActionChoice在右侧结果区提供计数/放弃，选择牌即走既有用途按钮；只有尚未出牌的可选槽能放弃。PracticePhaseText区分太空额外7/8、8/8。地图和手牌观察接口不变。Editor/Player装配同一JSON，BuildSpaceExtraPlaytest输出独立Builds/SpaceExtraPlaytest。
+DemoController.SpaceExtra发送现有固定身份命令。DrawExtraActionChoice在顶部状态条右侧提供放弃，已行动计数在OPS摘要前，原结果区保持可见，选择牌即走既有用途按钮；只有尚未出牌的可选槽能放弃。PracticePhaseText区分太空额外7/8、8/8。地图和手牌观察接口不变。Editor/Player装配同一JSON，BuildSpaceExtraPlaytest输出独立Builds/SpaceExtraPlaytest。
+
+真实验收：早期投放+事件完成两个额外根→第3回合补牌；晚期放弃→审核→保留手牌→最终美国VP1胜出。幂等重发与错误身份按钮已核对。最后四处纯显示改动后重新编译Player并实测，不重复未变规则的全套测试。详细截图/日志路径和限制见验证JSON。
