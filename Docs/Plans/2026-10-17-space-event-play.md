@@ -76,4 +76,4 @@ catalog.WithSpaceEvents(parameters,schema,cardReferences).WithSpaceEventScenario
 ```
 - [x] 新模块/数据JSON、Wiki/工作日志与验证报告完成；完整Unity回归、元数据与diff验证通过，提交后fresh只读整批审查，修必要问题。
 - [x] 构建独立SpaceEventPlaytest，逐项对照所有Copy载荷；记录源提交与Managed DLL SHA。用computer-use操作首到/后到/能力/终点，保存F12图和运行日志。未验收项目按实际记录。
-- [ ] 提交证据，推送feature分支并ls-remote核对；继续下一项已授权规则工作。
+- [x] 提交证据，推送feature分支并ls-remote核对；继续下一项已授权规则工作。
