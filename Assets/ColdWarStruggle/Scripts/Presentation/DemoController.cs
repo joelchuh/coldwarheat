@@ -33,6 +33,7 @@ namespace ColdWarStruggle.Presentation
             ResetDeploymentInteraction(true);
             ResetCardInteraction(true);
             ResetHeadlineInteraction(true);
+            ClearHeadlineFeedback();
         }
         public void SelectSide(PlayerSide side)
         {

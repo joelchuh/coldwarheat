@@ -138,14 +138,14 @@ namespace ColdWarStruggle.Presentation
             var command=new CardActionCommand(Guid.NewGuid().ToString("N"),v.GameId,v.Version,kind,card,target);
             lastCardCommand=command;lastCardSide=SelectedSide;
             var result=await session.SubmitCardActionAsync(command);
-            if(epoch==generation) { LastCardResult=result;RememberEventCoup(result);LastResult=null;legal=null;if(result.Accepted){selectedCard=null;SelectingCoup=false;ResetEventInteraction(false);}MarkInteractionChanged(); }
+            if(epoch==generation) { LastCardResult=result;RememberEventCoup(result);LastResult=null;legal=null;if(result.Accepted){RememberHeadlineFeedback(result.View,result.HeadlineSteps);selectedCard=null;SelectingCoup=false;ResetEventInteraction(false);}MarkInteractionChanged(); }
             return result;
         }
         public async Task<CardActionResult> RetryCardAsync()
         {
             if(!CanRetryCard)throw new InvalidOperationException("No card command for this identity.");
             var epoch=generation;var result=await Session.SubmitCardActionAsync(lastCardCommand);
-            if(epoch==generation)LastCardResult=result;return result;
+            if(epoch==generation){LastCardResult=result;if(result.Accepted)RememberHeadlineFeedback(result.View,result.HeadlineSteps);}return result;
         }
         void ResetCardInteraction(bool clearReceipt)
         { SelectingCoup=false;legal=null;selectedCard=null;selectedCardGame=null;LastCardResult=null;if(clearReceipt){lastCardCommand=null;eventCoupGame=null;eventCoupExecution=null;eventCoupMessage=null;}MarkInteractionChanged(); }

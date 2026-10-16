@@ -57,9 +57,10 @@ namespace ColdWarStruggle.Presentation
                 :result.ResolutionSequence.HasValue?"完成收据 · 变化 "+result.Changes.Count+" 项\n序号 "+result.ResolutionSequence.Value
                 :"选择请求已建立。请按左侧提示操作。";
             if(result?.FiveYearPlan!=null)message=FiveYearPlanResultMessage(result.FiveYearPlan);
+            if(result?.Accepted!=false)message=ReadHeadlineFiveYearPlanFeedback()??message;
             message=controller.EventResultHistoryMessage??message;
             var coupMessage=controller.EventPanelCoupMessage;
-            Text(972,574,262,62,coupMessage??message,small);
+            DrawFeedback(574,62,coupMessage??message);
             if(coupMessage!=null && result!=null && !result.Accepted)Text(972,638,262,32,message,small);
         }
         async void BeginEvent() { try { await controller.BeginEventAsync(); } catch(Exception e) { fatal=e.Message;Debug.LogException(e); } }

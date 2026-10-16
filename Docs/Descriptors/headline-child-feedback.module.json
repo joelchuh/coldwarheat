@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "id": "module.headline-child-feedback",
+  "kind": "module",
+  "description": "五年计划公开头条子事件反馈：按GameId/Version显示最新摘要，切身份保留，旧重试与重置隔离；即时/续接反馈和长结果区修补中。",
+  "status": "in-progress",
+  "documentation": "Docs/Wiki/headline-child-feedback.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.HeadlineFeedback.cs",
+      "symbol": "CurrentFiveYearHeadline"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.FiveYearPlan.cs",
+      "symbol": "ReadHeadlineFiveYearPlanFeedback"
+    }
+  ],
+  "inputs": [
+    "固定会话已接受的PublicHeadlineStep与当前玩家视图版本"
+  ],
+  "outputs": [
+    "当前公开头条子牌、结果及DEFCON/OPS文字"
+  ],
+  "dependencies": [
+    "module.five-year-plan-play",
+    "module.demo-navigation-feedback"
+  ],
+  "data_dependencies": [],
+  "preconditions": [
+    "只记忆已公开Steps；不缓存完整命令回执或私人手牌视图"
+  ],
+  "side_effects": [
+    "仅表现层公开摘要及滚动位置"
+  ],
+  "stop_conditions": [
+    "旧版本、异局或尚未揭示时不显示为当前摘要"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Worklogs/2026-10-17-headline-child-feedback.md",
+      "scope": "独立审查的表现层遗漏，不改游戏规则"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HeadlineChildFeedbackTests.cs",
+      "status": "in-progress"
+    }
+  ],
+  "verification": {
+    "status": "in-progress",
+    "report": "Docs/Testing/headline-child-feedback.validation.json"
+  }
+}

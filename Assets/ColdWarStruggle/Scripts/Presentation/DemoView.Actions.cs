@@ -147,10 +147,13 @@ namespace ColdWarStruggle.Presentation
             if(controller.LastResult!=null)message=controller.LastResult.Accepted?"投放成功，费用："+string.Join(" + ",controller.LastResult.Costs):ErrorText(controller.LastResult.Error);
             if(controller.LastEventResult!=null)message=controller.LastEventResult.Accepted?"事件选择完成 · 影响力变化 "+controller.LastEventResult.Changes.Count+" 项。":ErrorText(controller.LastEventResult.Error);
             if(controller.LastEventResult?.FiveYearPlan!=null)message=FiveYearPlanResultMessage(controller.LastEventResult.FiveYearPlan);
+            if(result?.Accepted!=false && controller.LastResult?.Accepted!=false && controller.LastEventResult?.Accepted!=false)
+                message=ReadHeadlineFiveYearPlanFeedback()??message;
+            message=controller.CardResultHistoryMessage??message;
             message=controller.EventResultHistoryMessage??message;
             DrawExtraActionChoice(view);
             DrawEmptyHandChoice(view);
-            Text(972,578,262,65,message,small);
+            DrawFeedback(578,65,message);
             var retryHeadline=!controller.CanRetryCard && controller.CanRetryHeadline;
             var retryEvent=!controller.CanRetryCard && !retryHeadline && controller.CanRetryEvent;
             GUI.enabled=controller.CanRetryCard || retryHeadline || retryEvent;

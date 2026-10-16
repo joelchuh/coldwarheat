@@ -81,7 +81,7 @@ namespace ColdWarStruggle.Presentation
             if(epoch==generation)
             {
                 LastEventResult=result;legal=null;eventTargets=null;
-                if(result.Accepted){selectedCard=null;SelectingCoup=false;}
+                if(result.Accepted){RememberHeadlineFeedback(result.View,result.HeadlineSteps);selectedCard=null;SelectingCoup=false;}
                 EnsureDraftContext(ReadView());
             }
             return result;
@@ -90,7 +90,7 @@ namespace ColdWarStruggle.Presentation
         {
             if(!CanRetryEvent)throw new InvalidOperationException("No event command for this side.");
             var epoch=generation;var result=await Session.SubmitEventAsync(lastEventCommand);
-            if(epoch==generation)LastEventResult=result;
+            if(epoch==generation){LastEventResult=result;if(result.Accepted)RememberHeadlineFeedback(result.View,result.HeadlineSteps);}
             return result;
         }
     }

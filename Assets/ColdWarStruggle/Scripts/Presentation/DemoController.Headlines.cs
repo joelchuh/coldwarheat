@@ -46,7 +46,7 @@ namespace ColdWarStruggle.Presentation
             if(epoch==generation)
             {
                 LastHeadlineResult=result;LastResult=null;LastCardResult=null;legal=null;
-                if(result.Accepted){selectedCard=null;SelectingCoup=false;ResetEventInteraction(false);}
+                if(result.Accepted){RememberHeadlineFeedback(result.View,result.Steps);selectedCard=null;SelectingCoup=false;ResetEventInteraction(false);}
                 MarkInteractionChanged();
             }
             return result;
@@ -55,7 +55,7 @@ namespace ColdWarStruggle.Presentation
         {
             if(!CanRetryHeadline)throw new InvalidOperationException("No headline command for this identity.");
             var epoch=generation;var result=await Session.SubmitHeadlineAsync(lastHeadlineCommand);
-            if(epoch==generation){LastHeadlineResult=result;MarkInteractionChanged();}return result;
+            if(epoch==generation){LastHeadlineResult=result;if(result.Accepted)RememberHeadlineFeedback(result.View,result.Steps);MarkInteractionChanged();}return result;
         }
         void ResetHeadlineInteraction(bool clearReceipt)
         {LastHeadlineResult=null;if(clearReceipt)lastHeadlineCommand=null;}

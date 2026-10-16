@@ -1,14 +1,33 @@
 using ColdWarStruggle.Core;
 using ColdWarStruggle.Application;
+using UnityEngine;
 namespace ColdWarStruggle.Presentation
 {
     public sealed partial class DemoView
     {
-        string FiveYearPlanChildDetail(CardActionResult result)
+        public string ReadHeadlineFiveYearPlanFeedback()
         {
-            var track=result.DefconVpEvent;
+            var step=controller.CurrentFiveYearHeadline;
+            return step==null?null:"头条 · "+FiveYearPlanResultMessage(step.FiveYearPlan)+FiveYearPlanChildDetail(step.DefconVpEvent,step.ActivatedOpsEffect);
+        }
+        string FiveYearPlanChildDetail(CardActionResult result)
+            =>FiveYearPlanChildDetail(result.DefconVpEvent,result.ActivatedOpsEffect);
+        string FiveYearPlanChildDetail(PublicDefconVpEventResult track,PublicTurnOpsEffect effect)
+        {
             if(track!=null)return $"\nDEFCON {track.DefconFrom}→{track.DefconTo} · VP {track.VpForUS:+0;-0;0}";
-            return result.ActivatedOpsEffect==null?"":"\n"+OpsEffectSummary(result.ActivatedOpsEffect);
+            return effect==null?"":"\n"+OpsEffectSummary(effect);
+        }
+        Vector2 feedbackScroll;
+        string feedbackText;
+        void DrawFeedback(float y,float height,string message)
+        {
+            message=message??"";
+            if(feedbackText!=message){feedbackText=message;feedbackScroll=Vector2.zero;}
+            var content=new GUIContent(message);
+            var contentHeight=Mathf.Max(height,small.CalcHeight(content,240));
+            feedbackScroll=GUI.BeginScrollView(new Rect(972,y,262,height),feedbackScroll,new Rect(0,0,240,contentHeight));
+            GUI.Label(new Rect(0,0,240,contentHeight),content,small);
+            GUI.EndScrollView();
         }
         string FiveYearPlanResultMessage(PublicFiveYearPlanResult result)
         {

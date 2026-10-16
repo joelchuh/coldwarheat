@@ -157,3 +157,5 @@
 - [五年计划随机弃牌基础](five-year-plan-foundation.md)：权威内部选择/牌区交接，接线边界和真实验证状态。
 
 - [五年计划可玩续接](five-year-plan-play.md)：父子事件与原流程返回，分批实现与验证状态。
+
+- [头条子事件结果提示](headline-child-feedback.md)：即时/续接的公开子牌反馈及版本边界；修补与验证状态。
