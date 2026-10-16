@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "id": "module.demo-navigation-feedback",
+  "kind": "module",
+  "description": "练习列表的打开/取消/重建与历史出牌收据提示；只消费当前目录和玩家视图，不改变规则或缓存收据。",
+  "status": "implemented",
+  "documentation": "Docs/Wiki/demo-navigation-feedback.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Scenarios.cs",
+      "symbol": "OpenScenarioPicker"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Scenarios.cs",
+      "symbol": "CancelScenarioPicker"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Scenarios.cs",
+      "symbol": "SelectScenario"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Scenarios.cs",
+      "symbol": "DrawScenarioPicker"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Cards.cs",
+      "symbol": "CardResultHistoryMessage"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "symbol": "BuildPracticeBrowserPlaytest"
+    }
+  ],
+  "inputs": [
+    "已验证场景目录、固定身份控制器、历史命令回执和当前玩家视图"
+  ],
+  "outputs": [
+    "有界滚动练习列表、明确的历史结果提示"
+  ],
+  "dependencies": [
+    "module.demo-presentation"
+  ],
+  "preconditions": [
+    "Demo 已初始化；选择入口必须先打开列表"
+  ],
+  "side_effects": [
+    "选择场景调用原 LoadScenario 创建新宿主；打开/取消只改表现状态"
+  ],
+  "stop_conditions": [
+    "未初始化或非法索引拒绝，不重置对局"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Worklogs/2026-10-17-demo-navigation-feedback.md",
+      "scope": "实际复现与表现层工程约定；不修改游戏规则"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/DemoNavigationFeedbackTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "verification": {
+    "report": "Docs/Testing/demo-navigation-feedback.validation.json",
+    "status": "in-progress",
+    "native_validation": "2655/2655; navigation-feedback-green"
+  }
+}

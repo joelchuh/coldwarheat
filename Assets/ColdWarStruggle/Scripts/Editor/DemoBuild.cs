@@ -79,6 +79,8 @@ namespace ColdWarStruggle.Editor
         public static void BuildEmptyHandPlaytest()=>BuildAt("Builds/EmptyHandPlaytest","ColdWarStruggle Empty Hand Playtest");
         [MenuItem("ColdWarStruggle/Build Independent Reds Playtest")]
         public static void BuildIndependentRedsPlaytest()=>BuildAt("Builds/IndependentRedsPlaytest","ColdWarStruggle Independent Reds Playtest");
+        [MenuItem("ColdWarStruggle/Build Practice Browser Playtest")]
+        public static void BuildPracticeBrowserPlaytest()=>BuildAt("Builds/PracticeBrowserPlaytest","ColdWarStruggle Practice Browser Playtest");
         static void BuildAt(string directory,string productName=null)
         {
             Prepare();Directory.CreateDirectory(directory);
