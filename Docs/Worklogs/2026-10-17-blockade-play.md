@@ -29,3 +29,5 @@ c31d68f已推送核对；Player exit0、54份载荷一致。实际鼠标完成SU
 审查补测2772中2项红灯，均为政变后的Blockade回执null；核战截断案例通过。修复包装及组合反馈后2772/2772，零跳过exit0，SHA c1c8eaa4585ef0f622561a884c0a28bc0b5d6c73d30f3d075e4d7d376cf25f0c。随后仅缩短组合第三行和Decline按钮文案防窄栏裁切，交构建编译/真实UI校验；不重跑与文案无关的完整规则回归。
 
 修复提交74ff5fb同席只读复核无未解决Critical/Important/Minor。最终重建exit0、54载荷逐字节一致；记录游戏程序集Hash，不以通用Unity exe Hash识别代码版本。实际复验最终候选/Decline按钮完整显示、清除后0/2与v5序号6；未声称鼠标覆盖政变组合反馈。继续推进五年计划基础。
+
+本批最终文档提交670c19a9adc2944b3258433b0e248b4f2d63bee3已推送feat/blockade-play，ls-remote与HEAD核对一致。完成原计划，转入后续基础批次。
