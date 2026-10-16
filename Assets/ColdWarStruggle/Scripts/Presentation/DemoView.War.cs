@@ -10,8 +10,8 @@ namespace ColdWarStruggle.Presentation
     {
         public string ReadHeadlineWarFeedback()
         {
-            var step=controller.CurrentWarHeadline;
-            return step==null?null:"头条 · "+WarResultMessage(step.War);
+            var steps=controller.CurrentHeadlineFeedback.Where(s=>s.War!=null).ToArray();
+            return steps.Length==0?null:string.Join("\n\n",steps.Select(HeadlineStepFeedback));
         }
         string WarResultMessage(PublicWarResult war)
         {

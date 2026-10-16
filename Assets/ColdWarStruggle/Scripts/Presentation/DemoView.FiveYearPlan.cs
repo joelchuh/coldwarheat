@@ -8,7 +8,7 @@ namespace ColdWarStruggle.Presentation
         public string ReadHeadlineFiveYearPlanFeedback()
         {
             var step=controller.CurrentFiveYearHeadline;
-            return step==null?null:"头条 · "+FiveYearPlanResultMessage(step.FiveYearPlan)+FiveYearPlanChildDetail(step.DefconVpEvent,step.ActivatedOpsEffect);
+            return step==null?null:HeadlineStepFeedback(step);
         }
         string FiveYearPlanChildDetail(CardActionResult result)
             =>FiveYearPlanChildDetail(result.DefconVpEvent,result.ActivatedOpsEffect);

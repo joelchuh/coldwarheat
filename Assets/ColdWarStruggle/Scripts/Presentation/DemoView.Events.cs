@@ -65,7 +65,7 @@ namespace ColdWarStruggle.Presentation
                 :result.ResolutionSequence.HasValue?"完成收据 · 变化 "+result.Changes.Count+" 项\n序号 "+result.ResolutionSequence.Value
                 :"选择请求已建立。请按左侧提示操作。";
             if(result?.FiveYearPlan!=null)message=FiveYearPlanResultMessage(result.FiveYearPlan);
-            if(result?.Accepted!=false)message=ReadHeadlineWarFeedback()??ReadHeadlineFiveYearPlanFeedback()??message;
+            if(result?.Accepted!=false)message=ReadHeadlineFeedback()??message;
             message=controller.EventResultHistoryMessage??message;
             return message;
         }

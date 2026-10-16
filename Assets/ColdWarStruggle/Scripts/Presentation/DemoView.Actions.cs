@@ -162,7 +162,7 @@ namespace ColdWarStruggle.Presentation
             if(controller.LastEventResult!=null)message=controller.LastEventResult.Accepted?"事件选择完成 · 影响力变化 "+controller.LastEventResult.Changes.Count+" 项。":ErrorText(controller.LastEventResult.Error);
             if(controller.LastEventResult?.FiveYearPlan!=null)message=FiveYearPlanResultMessage(controller.LastEventResult.FiveYearPlan);
             if(result?.Accepted!=false && controller.LastResult?.Accepted!=false && controller.LastEventResult?.Accepted!=false)
-                message=ReadHeadlineWarFeedback()??ReadHeadlineFiveYearPlanFeedback()??message;
+                message=ReadHeadlineFeedback()??message;
             message=controller.EventResultHistoryMessage??message;
             return message;
         }

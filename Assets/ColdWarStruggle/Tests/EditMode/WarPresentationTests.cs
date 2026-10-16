@@ -77,6 +77,31 @@ namespace ColdWarStruggle.Tests
             using var f=new Fixture(WarContinuationTests.Headlines("korean_war","truman_doctrine"),PlayerSide.US);await f.Headlines("korean_war","truman_doctrine");Assert.That(f.Controller.ReadView().Event,Is.Not.Null);
             Assert.That(f.View.ReadEventFeedback(),Does.Contain("头条").And.Contain("战争").And.Contain("军事 +2"));
         }
+        [TestCase("korean_war")][TestCase("indo_pakistani_war")]
+        public async Task Both_war_headlines_remain_in_actual_feedback_in_execution_order(string first)
+        {
+            using var f=new Fixture(WarContinuationTests.Headlines(first,"arab_israeli_war"),PlayerSide.US);
+            await f.Headlines(first,"arab_israeli_war");var c=f.Controller;
+            if(first=="indo_pakistani_war"){c.SelectSide(PlayerSide.US);Assert.That((await c.ConfirmWarAsync()).Accepted,Is.True);}
+            var names=HeadlineDemoCatalogTests.Catalog().Names;var a=names[Id(first).Value];var b=names[Id("arab_israeli_war").Value];
+            var text=f.View.ReadPracticeFeedback();Assert.That(text,Does.Contain(a).And.Contain(b));Assert.That(text.IndexOf(a,StringComparison.Ordinal),Is.LessThan(text.IndexOf(b,StringComparison.Ordinal)));
+            Assert.That(text.Split(new[]{"军事 +2"},StringSplitOptions.None).Length-1,Is.EqualTo(2));
+            c.SelectSide(PlayerSide.USSR);await c.RetryHeadlineAsync();Assert.That(f.View.ReadPracticeFeedback(),Is.EqualTo(text));
+            Assert.That((await c.SkipEmptyHandAsync()).Accepted,Is.True);Assert.That(f.View.ReadHeadlineWarFeedback(),Is.Null);
+            await c.RetryHeadlineAsync();Assert.That(f.View.ReadHeadlineWarFeedback(),Is.Null);
+        }
+        [TestCase("containment")][TestCase(null)]
+        public async Task Five_year_plan_and_war_share_one_ordered_feedback_in_both_panels(string child)
+        {
+            var s=FiveYearPlanFlowTests.HeadlinePrepared("five_year_plan","korean_war",child);
+            s=new GameState(s.Map,s.Countries,s.Operations,s.GameId,s.Version,s.SpentOps,s.EventSequence,turn:s.Turn,deployment:s.Deployment,cards:s.Cards,randomState:s.RandomState,practice:ActionPracticeState.Create(WarPlayTests.Bind(s.Practice.Definition)));
+            using var f=new Fixture(HeadlineFlowTests.Start(s),PlayerSide.US);await f.Headlines("five_year_plan","korean_war");
+            var warName=HeadlineDemoCatalogTests.Catalog().Names[Id("korean_war").Value];
+            var text=f.View.ReadPracticeFeedback();Assert.That(text,Does.Contain("五年计划").And.Contain(warName).And.Contain("军事 +2"));
+            Assert.That(text.IndexOf("五年计划",StringComparison.Ordinal),Is.LessThan(text.IndexOf(warName,StringComparison.Ordinal)));
+            Assert.That(f.View.ReadEventFeedback(),Is.EqualTo(text));
+            Assert.That(f.Controller.CurrentFiveYearHeadline,Is.Not.Null);Assert.That(f.Controller.CurrentWarHeadline,Is.Not.Null);
+        }
         [Test] public async Task Completed_war_headline_feedback_is_not_overwritten_by_old_pending_retry()
         {
             using var f=new Fixture(WarContinuationTests.Headlines("indo_pakistani_war","fidel"),PlayerSide.US);await f.Headlines("indo_pakistani_war","fidel");var c=f.Controller;Assert.That(c.ReadView().War,Is.Not.Null);c.SelectSide(PlayerSide.US);var done=await c.ConfirmWarAsync();Assert.That(done.Accepted,Is.True);var text=f.View.ReadHeadlineWarFeedback();Assert.That(text,Does.Contain("胜利").And.Contain("VP"));Assert.That(f.View.ReadPracticeFeedback(),Is.EqualTo(text));

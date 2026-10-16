@@ -3,7 +3,7 @@
   "id": "module.early-war-play",
   "kind": "module",
   "status": "implemented-subset",
-  "description": "早期三战争的真实手牌/OPS/头条、固定会话、地图目标确认和三人工场景；3077原生通过，Windows构建与整批审查进行中。",
+  "description": "早期三战争手牌/OPS/头条、固定会话、地图确认和三人工场景；3081测试通过，多头条摘要修复，最终Player核验中。",
   "documentation": "Docs/Wiki/early-war-play.md",
   "entrypoints": [
     {
@@ -37,6 +37,10 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
       "symbol": "BuildWarPlaytest"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.HeadlineFeedback.cs",
+      "symbol": "ReadHeadlineFeedback"
     }
   ],
   "inputs": [
@@ -95,7 +99,7 @@
     }
   ],
   "verification": {
-    "status": "native-passed-build-review-pending",
+    "status": "native-passed-final-build-review-pending",
     "report": "Docs/Testing/early-war-play.validation.json"
   }
 }

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "validation.early-war-play",
   "description": "三张早期战争可玩接线原生与Player验证，分任务记录真实证据",
-  "status": "native-passed-build-review-pending",
+  "status": "native-passed-final-build-review-pending",
   "runs": [
     {
       "status": "failed",
@@ -163,11 +163,51 @@
       "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-demo-fixtures-green",
       "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-demo-fixtures-green\\results.xml",
       "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-demo-fixtures-green\\editor.log"
+    },
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 3081,
+      "passed": 3077,
+      "failed": 4,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "89baa2eb0e1636ad4ab862fbf41ecb0e40d74a446497f23ea679a29bf3c1f05b",
+      "schema_version": 1,
+      "run_id": "war-multiple-headline-red",
+      "duration_ms": 118310,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-multiple-headline-red",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-multiple-headline-red\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-multiple-headline-red\\editor.log"
+    },
+    {
+      "status": "passed",
+      "error_code": null,
+      "total": 3081,
+      "passed": 3081,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "54f721476ae7580d1b9e5026245cc2951e93ce808f8d7188843ec360761c6ec0",
+      "schema_version": 1,
+      "run_id": "war-multiple-headline-green",
+      "duration_ms": 126143,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-multiple-headline-green",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-multiple-headline-green\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-multiple-headline-green\\editor.log"
     }
   ],
   "red_analysis": "27个新增失败：26个直接路径未支持导致UnsupportedCardAction，1个缺少定义绑定校验；2989既有通过。",
   "limitations": [
-    "纯规则/会话/地图/27场景已原生验证；Windows Player构建、鼠标验收和整批审查继续。",
+    "纯规则/会话/地图/27场景3081原生通过；初次Player四种战争鼠标验收通过，审查修复后最终构建继续。",
     "封闭运行集无CampDavid/FlowerPower或外部状态导入，不把NoActiveInterference当通用事实推导"
   ],
   "attempts": [
@@ -188,5 +228,55 @@
   ],
   "continuation_red_analysis": "首次夹具调用internal构造器编译失败，不计业务RED；改用公开开局和完整回合接口。有效RED3034/3018/16均UnsupportedCardAction；核战截断和跨回合同槽两项已通过。GREEN3034全过。",
   "session_map_red_analysis": "18新增失败均为公开投影/地图高亮/阶段或反馈缺失，3034既有通过；GREEN3052全过。",
-  "fixture_red_analysis": "25新增失败：24项NotImplementedException，1项真实事件面板缺失战争反馈；3052既有通过。GREEN3077全过。"
+  "fixture_red_analysis": "25新增失败：24项NotImplementedException，1项真实事件面板缺失战争反馈；3052既有通过。GREEN3077全过。",
+  "player_initial": {
+    "source_commit": "94f4f357a9a105772812c0d6a17e3d649a500dc0",
+    "path": "Builds/WarPlaytest/ColdWarStruggleDemo.exe",
+    "build_exit_code": 0,
+    "build_log": "TestResults/war-playtest-build.log",
+    "payload_report": "TestResults/war-playtest-payload.json",
+    "payload_count": 58,
+    "all_payloads_match": true,
+    "ui_log": "TestResults/war-player-korean.log",
+    "ui_exception_count": 0,
+    "captures": [
+      {
+        "path": "TestResults/war-ui/korean-win-scrolled.png",
+        "sha256": "83bc79c5f095caa372c062a1ca59b579e233a8650e0ba4f7c76f141f379b52d5"
+      },
+      {
+        "path": "TestResults/war-ui/arab-failure.png",
+        "sha256": "0d218755bf0216b42ccf3df00f24fafe394e43416537f5073fbc38ea74e2a6db"
+      },
+      {
+        "path": "TestResults/war-ui/indo-india-win.png",
+        "sha256": "d556d315f98147cdc577f25f4f7ca9620154228160b66d39610e9fa628eff0ae"
+      },
+      {
+        "path": "TestResults/war-ui/indo-pakistan-failure.png",
+        "sha256": "345459a6762548894e5b4563300e0455963dd7f55871fbb9a514f47268a92395"
+      }
+    ],
+    "observed": [
+      "朝鲜胜利：韩国美3→0/苏1→4，苏军事2，VP-2；结果区滚动可见完整奖励",
+      "阿以失败：骰4-控制2=2，以色列美4苏0不变，苏军事2，VP0",
+      "印巴印度胜利：骰4-0=4，美2→0/苏1→3，苏军事2，VP-2",
+      "印巴巴基斯坦失败：地图改选不推进版本；确认后骰4-阿富汗控制1=3，美2苏1不变，苏军事2，VP0"
+    ],
+    "not_manually_tested": [
+      "头条和对手OPS续接由原生自动测试覆盖，未逐一鼠标复现"
+    ]
+  },
+  "review": {
+    "base": "f2faf6c7f7bd95f7fc69776fb5df477d0ba8cb61",
+    "head": "94f4f357a9a105772812c0d6a17e3d649a500dc0",
+    "agent": "review_early_war_play",
+    "critical": 0,
+    "important": 1,
+    "minor": 1,
+    "important_finding": "同次头条包含两个战争或五年计划与战争时，只保留最后摘要，首个结算细节不可见",
+    "minor_finding": "Wiki首段仍是Task1历史状态",
+    "resolution": "已实现有序只读摘要集合及共用实际面板组合；四项回归RED→GREEN，3081全过；Wiki当前摘要已修正，等待聚焦复核。"
+  },
+  "multiple_headline_red_analysis": "3081/3077/4：两个战争组合仅显示第二场，五年计划+战争组合缺少五年计划摘要。混合测试同时修正为使用夹具提供的英文卡名；失败中的五年计划摘要缺失独立成立。"
 }

@@ -16,6 +16,6 @@ namespace ColdWarStruggle.Presentation
             if(!CanConfirmWar)throw new InvalidOperationException("Only the live owner may confirm a current war target.");
             return SendCard(CardActionKind.ResolveWar,target:SelectedCountry);
         }
-        public PublicHeadlineStep CurrentWarHeadline=>CurrentHeadlineFeedback?.War!=null?CurrentHeadlineFeedback:null;
+        public PublicHeadlineStep CurrentWarHeadline=>CurrentHeadlineFeedback.LastOrDefault(s=>s.War!=null);
     }
 }
