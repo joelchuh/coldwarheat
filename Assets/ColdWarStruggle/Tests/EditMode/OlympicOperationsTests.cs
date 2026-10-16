@@ -123,6 +123,32 @@ namespace ColdWarStruggle.Tests
             Assert.That(InfluenceRules.PlanPlacement(forged,forgedOps,new[]{C("angola")}).Error,Is.EqualTo(RuleError.StaleContext));Assert.That(Use(forged,CardActionKind.FinishInfluence).Error,Is.EqualTo(RuleError.StaleContext));
             Assert.That(ActionPracticeRules.CanContinueOlympicOperations(s,PlayerSide.US,OperationsMode.Influence),Is.EqualTo(RuleError.WrongActor));
         }
+        [TestCase(OperationsMode.Influence,"spent")][TestCase(OperationsMode.Realignment,"spent")]
+        [TestCase(OperationsMode.Influence,"version")][TestCase(OperationsMode.Realignment,"version")]
+        [TestCase(OperationsMode.Influence,"random")][TestCase(OperationsMode.Realignment,"random")]
+        [TestCase(OperationsMode.Influence,"board")][TestCase(OperationsMode.Realignment,"board")]
+        [TestCase(OperationsMode.Influence,"sequence")][TestCase(OperationsMode.Realignment,"sequence")]
+        public void Active_ops_reject_reconstructed_progress_without_advancing_the_bound_snapshot(OperationsMode mode,string fault)
+        {
+            var s=Use(Pending(),mode==OperationsMode.Influence?CardActionKind.UseOlympicInfluence:CardActionKind.UseOlympicRealignment).NextState;
+            s=mode==OperationsMode.Influence?InfluenceRules.PlanPlacement(s,s.Operations,new[]{C("angola")}).NextState:Use(s,CardActionKind.RollRealignment,C("angola")).NextState;
+            Assert.That(s,Is.Not.Null);Assert.That(s.SpentOps,Is.EqualTo(1));
+            var board=s.Countries.ToDictionary(x=>x.Key,x=>x.Value);
+            if(fault=="board")board[C("botswana")]=new CountryState(9,9);
+            var forged=new GameState(s.Map,board,s.Operations,s.GameId,fault=="version"?s.Version+100:s.Version,
+                fault=="spent"?0:s.SpentOps,fault=="sequence"?s.EventSequence+1:s.EventSequence,turn:s.Turn,cards:s.Cards,
+                randomState:fault=="random"?OlympicPlayTests.Dice(1,1):s.RandomState,practice:s.Practice);
+            Assert.That(ActionPracticeRules.CanContinueOlympicOperations(forged,s.Practice.Actor,mode),Is.EqualTo(RuleError.StaleContext));
+            if(mode==OperationsMode.Influence)
+            {
+                var rejected=InfluenceRules.PlanPlacement(forged,forged.Operations,new[]{C("angola")});
+                Assert.That(rejected.Error,Is.EqualTo(RuleError.StaleContext));Assert.That(rejected.NextState,Is.Null);
+            }
+            else Assert.That(Use(forged,CardActionKind.RollRealignment,C("angola")).Error,Is.EqualTo(RuleError.StaleContext));
+            Assert.That(Use(forged,mode==OperationsMode.Influence?CardActionKind.FinishInfluence:CardActionKind.FinishRealignment).Error,Is.EqualTo(RuleError.StaleContext));
+            Assert.That(ActionPracticeRules.CanContinueOlympicOperations(s,s.Practice.Actor,mode),Is.EqualTo(RuleError.None));
+            Assert.That(s.SpentOps,Is.EqualTo(1));
+        }
         [Test] public void Context_and_quote_require_pending_boycott_and_map_mode()
         {
             Assert.That(ActionPracticeRules.CanChooseOlympicOperations(null,PlayerSide.US,OperationsMode.Influence),Is.EqualTo(RuleError.InvalidCommand));

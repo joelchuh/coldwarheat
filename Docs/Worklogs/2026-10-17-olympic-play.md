@@ -19,3 +19,10 @@ Task2 complete：新增29例。首次运行因测试误用internal构造器未�
 Task3会话子批已验证：RED 3428/3415/13（11个未实现、1个查询无事件预算、1个内部身份异常类型未实现），GREEN 3428/3428，零失败/跳过；XML 70dcdb61d8d2a1b0f1489f6f7684f673b7a5763b6d7295c9861e1eed23f3f605。公开DTO、Host单对pump、控制器选择/重发/用途与界面接线已实现；ActualPlayer仍未构建和操作，不把界面代码通过编译当成目视验收。结果投影从最终PlayerView取DEFCON/终局，避免抵制后政变仍显示旧Flow的DEFCON。下一步四个共享fixture、生产装配保留、元数据与独立Player。
 
 Task3装配子批：19个fixture/装配用例RED均NotImplemented；首GREEN 3446/3447，回归发现War注册复制遗漏Olympic，修复后3447/3447，零失败/跳过。XML b1225ce859b026ce01fb8ff0d139b73ec286421fd212f250afa90ea1fb095771。早期到头条装配、后期IndependentReds/Blockade/FYP/War/SpaceEvent均保留Olympic；人工DEFCON在场景定义中单独绑定，正式限制参数保持。新增JSON摘要/Wiki/入口和构建配置，未新增脚本。审查及独立Player待完成。
+
+
+整批 fresh 审查（2036360..a7ad17c）发现1项Important、0 Critical/Minor：选定投放/调整用途后，wrapper允许任意更高版本、范围内SpentOps及调整RNG，公开构造GameState可保留原Practice/Operations却替换进度。固定玩家会话不能提交任意GameState，但这违反本批明确的伪造上下文约束。接受修正：绑定当前版本、事件序号、已花点数、地图与RNG，每次合法普通投放/调整原子推进绑定。增加两模式×五种篡改的10例，先跑RED；不修改正式规则解释。此为一次审查后的定向修复，非新功能或第二轮全量审查。
+
+实际Player（源码a7ad17c）已构建，66份StreamingAssets与源字节一致。已鼠标验证美国主办+2 VP、苏联主办-2 VP、美国参赛命令重发不重复结算，以及DEFCON2由美国抵制苏联主办后核战、判苏联负；F12截图保存在本地DemoCaptures。三OPS将在修复后最终Player继续验收。平手续跑目前为自动测试证据，不冒称实际窗口已跑到平手。
+
+审查修复完成：RED 3457/3448/9（投放RNG替换原本已拒绝，其余9例复现缺口）；GREEN 3457/3457，零失败/跳过/不确定，XML 1fb89b3e95d11815c283ec16df40affef9d414c511c14355f5035c06c4a35135。GameState普通OPS提交同步构造新的Olympic wrapper；原根可达性快照保持固定，当前快照仅用于授权核对。审查Important已用定向回归关闭；未声称再次独立审查。最终Player重建与OPS鼠标验收继续。

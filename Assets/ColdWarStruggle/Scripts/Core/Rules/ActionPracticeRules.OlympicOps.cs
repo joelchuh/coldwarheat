@@ -46,7 +46,7 @@ namespace ColdWarStruggle.Core
                 var ops=mode==OperationsMode.Influence
                     ?OperationsContext.FromRoundStart(PracticeOperationsId(state,p.CompletedActions)+".olympic",side,quote.GeneralValue,state.Map,execution.RootCountries,state.Operations.Costs)
                     :new OperationsContext(PracticeOperationsId(state,p.CompletedActions)+".olympic",side,quote.GeneralValue,Array.Empty<CountryId>(),OperationsMode.Realignment,state.Operations.Costs);
-                var next=new ActionPracticeState(p.Definition,mode==OperationsMode.Influence?ActionPracticeStage.PlacingInfluence:ActionPracticeStage.Realigning,p.CompletedActions,p.ActiveCard,p.Space,p.VpForUS,p.Risk,p.OpsEffects,rounds:p.Rounds,headline:p.Headline,olympic:execution.WithOperations(ops));
+                var next=new ActionPracticeState(p.Definition,mode==OperationsMode.Influence?ActionPracticeStage.PlacingInfluence:ActionPracticeStage.Realigning,p.CompletedActions,p.ActiveCard,p.Space,p.VpForUS,p.Risk,p.OpsEffects,rounds:p.Rounds,headline:p.Headline,olympic:execution.WithOperations(state,ops));
                 return new CardActionTransition(RuleError.None,state.WithPractice(next,ops,state.Cards,state.RandomState));
             }
             catch(OverflowException){return new CardActionTransition(RuleError.NumericOverflow);}

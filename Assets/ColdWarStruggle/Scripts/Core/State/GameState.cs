@@ -69,10 +69,19 @@ namespace ColdWarStruggle.Core
         public int GetInfluence(CountryId id,PlayerSide side) => Countries.TryGetValue(id,out var value)?value.For(side):throw new ArgumentException("Unknown country.");
         public IReadOnlyList<string> GetHand(PlayerSide side) => hands.TryGetValue(side,out var h)?h:throw new ArgumentOutOfRangeException(nameof(side));
         internal GameState Apply(IReadOnlyDictionary<CountryId,CountryState> countries,int spent,int count,OperationsContext operations=null)
-            => new GameState(Map,countries,operations??Operations,GameId,checked(Version+1),spent,checked(EventSequence+count),Ended,Cards==null?hands:null,InfluenceEvent,Turn,Deployment,Cards,RandomState,Practice);
+            => new GameState(Map,countries,operations??Operations,GameId,checked(Version+1),spent,checked(EventSequence+count),Ended,Cards==null?hands:null,InfluenceEvent,Turn,Deployment,Cards,RandomState,PracticeAfterOperations(countries,spent,RandomState,count,operations??Operations));
         internal GameState ApplyRealignment(IReadOnlyDictionary<CountryId,CountryState> countries,int spent,RandomSnapshot random,OperationsContext operations=null)
             =>new GameState(Map,countries,operations??Operations,GameId,checked(Version+1),spent,checked(EventSequence+1),Ended,
-                influenceEvent:InfluenceEvent,turn:Turn,deployment:Deployment,cards:Cards,randomState:random,practice:Practice);
+                influenceEvent:InfluenceEvent,turn:Turn,deployment:Deployment,cards:Cards,randomState:random,practice:PracticeAfterOperations(countries,spent,random,1,operations??Operations));
+        ActionPracticeState PracticeAfterOperations(IReadOnlyDictionary<CountryId,CountryState> countries,int spent,RandomSnapshot random,int count,OperationsContext operations)
+        {
+            var p=Practice;
+            if(p?.Olympic?.Mode.HasValue!=true)return p;
+            if(!ReferenceEquals(Operations,operations))throw new ArgumentException("Olympic OPS context cannot change during an operation.");
+            var execution=p.Olympic.AdvanceOperations(this,countries,spent,random,count);
+            return new ActionPracticeState(p.Definition,p.Stage,p.CompletedActions,p.ActiveCard,p.Space,p.VpForUS,p.Risk,p.OpsEffects,
+                p.OpponentOps,p.TurnEnd,p.Headline,p.HeadlineSelection,p.FinalScoring,p.SpaceDiscard,p.Rounds,p.Blockade,p.FiveYearPlan,p.War,execution);
+        }
         internal GameState WithPractice(ActionPracticeState practice,OperationsContext operations,CardZones cards,RandomSnapshot random,IReadOnlyDictionary<CountryId,CountryState> countries=null,bool? ended=null)
             =>new GameState(Map,countries??Countries,operations,GameId,checked(Version+1),0,checked(EventSequence+1),ended??Ended,
                 influenceEvent:InfluenceEvent,turn:Turn,cards:cards,randomState:random,practice:practice);
