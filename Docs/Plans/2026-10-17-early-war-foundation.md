@@ -36,9 +36,9 @@
 
 创建Core/Rules/WarEventService.cs及.meta；Tests/EditMode/WarEventServiceTests.cs。消费Task1 Catalog/Calculation。
 
-- [ ] 写完整上下文、阻止、随机独立性、军事/VP、非法/溢出与PCG重放测试，原生RED。
-- [ ] 实现WarEventState/WarEventPlan和Plan；原生GREEN。原始状态与random不变，只有After可由未来宿主提交。
-- [ ] 文档明确权威policy/幂等/父帧尚未接线；元数据检查、提交。
+- [x] 写完整上下文、阻止、随机独立性、军事/VP、非法/溢出与PCG重放测试，原生RED。
+- [x] 实现WarEventState/WarEventPlan和Plan；原生GREEN。原始状态与random不变，只有After可由未来宿主提交。
+- [x] 文档明确权威policy/幂等/父帧尚未接线；元数据检查、提交。
 
 ## 收尾
 

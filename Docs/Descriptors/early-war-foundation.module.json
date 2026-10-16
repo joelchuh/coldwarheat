@@ -2,8 +2,8 @@
   "schema_version": 1,
   "id": "module.early-war-foundation",
   "kind": "module",
-  "status": "in-progress",
-  "description": "三张早期战争的正式参数加载、目标与控制修正、影响力转移和单骰军事/VP原子结果；基础实现中，尚未接玩家命令。",
+  "status": "implemented-foundation",
+  "description": "三张早期战争的正式参数加载、目标与控制修正、影响力转移和单骰军事/VP原子结果；纯C#基础已测试，尚未接玩家命令。",
   "documentation": "Docs/Wiki/early-war-foundation.md",
   "entrypoints": [
     {
@@ -17,6 +17,10 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/WarEventRules.cs",
       "symbol": "QueryTargets"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/WarEventService.cs",
+      "symbol": "Plan"
     }
   ],
   "inputs": [
@@ -24,7 +28,7 @@
     "未来服务读取权威随机快照及经过验证的干预政策"
   ],
   "outputs": [
-    "只读三牌Catalog、候选目标和WarCalculation；单骰计划待下一任务"
+    "只读三牌Catalog、候选目标、WarCalculation及WarEventPlan"
   ],
   "dependencies": [
     "module.war-events",
@@ -41,8 +45,8 @@
     "rules.deluxe2015.victory"
   ],
   "preconditions": [
-    "加载/纯计算已验证；单骰事务实现中，不可作为可玩处理器注册",
-    "数据来源/版本/引用完整；客户端不提供骰点或干预政策"
+    "完整同地图局面、活的VP/DEFCON、未审核军事与匹配随机快照",
+    "数据来源/版本/引用完整；干预政策由可信规则提供，客户端不提供骰点或政策"
   ],
   "side_effects": [
     "基础算法只返回不可变计划，不写GameState或消耗外部随机游标"
@@ -64,10 +68,14 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/WarCalculationTests.cs",
       "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/WarEventServiceTests.cs",
+      "status": "native-passed"
     }
   ],
   "verification": {
-    "status": "in-progress",
+    "status": "native-passed-review-pending",
     "report": "Docs/Testing/early-war-foundation.validation.json"
   }
 }

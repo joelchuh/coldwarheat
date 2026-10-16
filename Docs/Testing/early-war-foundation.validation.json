@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "validation.early-war-foundation",
   "description": "三牌参数/计算及单骰基础的原生验证记录",
-  "status": "in-progress",
+  "status": "native-passed-review-pending",
   "runs": [
     {
       "status": "failed",
@@ -43,11 +43,53 @@
       "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\early-war-calculation-green",
       "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\early-war-calculation-green\\results.xml",
       "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\early-war-calculation-green\\editor.log"
+    },
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 2985,
+      "passed": 2954,
+      "failed": 31,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "4abcd3203fa058807d0486d96fa6d860252bf8d7c1406f0e9418ccd848172a4c",
+      "schema_version": 1,
+      "run_id": "early-war-service-red",
+      "duration_ms": 119750,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\early-war-service-red",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\early-war-service-red\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\early-war-service-red\\editor.log"
+    },
+    {
+      "status": "passed",
+      "error_code": null,
+      "total": 2985,
+      "passed": 2985,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "921258b8654cb4c537103b3eaf135659ee3d9ae830adfa56ad31672d97b91a5e",
+      "schema_version": 1,
+      "run_id": "early-war-service-green",
+      "duration_ms": 114484,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\early-war-service-green",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\early-war-service-green\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\early-war-service-green\\editor.log"
     }
   ],
   "limitations": [
-    "Task1正式加载/计算2954项通过；Task2单骰事务尚未实现",
-    "没有玩家命令、头条、父事件或Player入口"
+    "纯服务基础不提供玩家命令、会话幂等、头条/父事件或Player入口",
+    "NoActiveInterference与CampDavidPreventsArabIsraeli为可信内部前提，未实现活动效果/成功事件事实系统",
+    "本批未重建Player，最新可运行仍为头条反馈修补版"
   ],
-  "red_analysis": "36项新增全部因NotImplementedException失败，2918既有测试通过。"
+  "red_analysis": "36项新增全部因NotImplementedException失败，2918既有测试通过。",
+  "service_red_analysis": "31项新增失败：30项NotImplementedException，1项缺少完整国家/同地图校验；2954既有全部通过。"
 }
