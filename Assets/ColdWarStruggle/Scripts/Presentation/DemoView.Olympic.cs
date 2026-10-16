@@ -54,7 +54,7 @@ namespace ColdWarStruggle.Presentation
                 text+=$"\n第 {pair.Round} 对：美国骰 {pair.UsRoll} → {pair.UsTotal}；苏联骰 {pair.UssrRoll} → {pair.UssrTotal}";
                 text+=pair.Winner.HasValue?$"\n{Side(pair.Winner.Value)}胜出，获得 {pair.AwardVp} VP。":"\n平手，自动继续比赛。";
             }
-            if(o.Branch==OlympicBranch.Boycott)text+=$"\n抵制：DEFCON {o.DefconBefore} → {o.DefconAfter}";
+            if(o.Branch==OlympicBranch.Boycott)text+="\n"+(result.Coup==null?"抵制":"抵制与政变合计")+$"：DEFCON {o.DefconBefore} → {o.DefconAfter}";
             if(result.Coup!=null){var c=result.Coup;text+=$"\n政变骰 {c.Roll} / OPS {c.Strength} / 差额 {c.Margin}；军事 +{c.MilitaryCredit}";}
             if(o.Outcome==OlympicPracticeOutcome.AwaitingChoice)text+="\n等待对手选择参赛或抵制。";
             if(o.Outcome==OlympicPracticeOutcome.AwaitingOperations)text+="\n等待主办方选择 OPS 用途。";
