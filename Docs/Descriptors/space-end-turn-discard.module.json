@@ -20,6 +20,14 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/SpaceEndTurnDiscardView.cs",
       "symbol": "PublicSpaceEndTurnDiscard"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.SpaceDiscard.cs",
+      "symbol": "WithSpaceDiscardScenarios"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.TurnEndFixture.cs",
+      "symbol": "CreateTurnEndFixture"
     }
   ],
   "documentation": "Docs/Wiki/space-end-turn-discard.md",
@@ -46,7 +54,8 @@
     }
   ],
   "data_dependencies": [
-    "rules.deluxe2015.space-race"
+    "rules.deluxe2015.space-race",
+    "demo.space_end_turn_discard_scenarios"
   ],
   "preconditions": [
     "正式能力最多弃一张；第8格额外行动仍未接入",
@@ -87,12 +96,16 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceEndTurnDiscardSessionTests.cs",
       "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceDiscardDemoEntryTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "verification": {
     "report": "Docs/Testing/space-end-turn-discard.validation.json",
     "player_rebuilt": false,
-    "native_validation": "2468/2468 passed; space-discard-core-green2"
+    "native_validation": "2496/2496 passed; space-discard-data-green2"
   },
   "open_items": [
     "两个人工练习入口、控制器与UI尚待本批后续任务",

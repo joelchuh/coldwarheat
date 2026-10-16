@@ -19,3 +19,9 @@ SpaceEndTurnDiscardState绑定原审核、轨道和当前牌区实例；任何�
 CreateAtTurn的可选initialTrack仅用于可信人工场景；必须使用同一个SpaceRaceDefinition。它不产生尝试、随机历史或太空奖励VP，也不是存档恢复。DemoCatalog初态使用Practice携带的回合对象，避免规则日历与场景日历独立加载造成不同引用。
 
 当前Core/会话代码已接入，原生2468/2468通过，0失败/跳过（新25项）。练习数据、完整按钮与独立Player仍待后续任务；不能把旧Player当作本批已构建成果。验证记录见[报告](../Testing/space-end-turn-discard.validation.json)，[计划](../Plans/2026-10-16-space-end-turn-discard.md)记录剩余工作。
+
+## 练习数据接线
+
+[差异数据description](../../Data/Descriptors/space-end-turn-discard-scenarios.data.json)定位两个人工Late场景。WithSpaceDiscardScenarios在WithFinalScoringScenario后追加，不替换原16对象。共享CreateTurnEndFixture复用源地图、初始VP、中国牌和14张行动牌；新增普通保留牌只从源牌库移动，准备过程跳过HeldCards并通过真实Start/Influence/Finish命令到Version29。无太空尝试或随机数消耗，不表示已经获得对应奖励历史。
+
+场景17为美国太空6/苏联4、回合9；场景18为美国4/苏联6、回合10。前者弃牌后可到第10回合，后者保留后可最终计分。源场景明确跳过头条，不能将这个专项练习当作完整对局。严格限制为Late时代、恰有一方弃牌能力、无额外行动能力，以及不同的普通保留牌；计分牌/中国牌/非源牌库牌拒绝。本批新增28项，原生2496/2496通过，0失败/跳过；界面及构建待Task3。

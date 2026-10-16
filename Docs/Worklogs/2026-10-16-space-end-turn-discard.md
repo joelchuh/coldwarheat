@@ -7,3 +7,5 @@ Task1：新增审核后不可变决策，绑定轨道/审核/牌区，固定身�
 先2468项中27行为失败，实施后发现3项回归：默认场景日历来源不同、参数校验先后顺序、旧UI预期。逐项查明并修复后space-discard-core-green2为2468/2468，0跳过，exit0；XML及完整运行摘要见验证报告。元数据145描述/75数据校验通过，diff检查无错误。无新持久工作脚本。
 
 后续：Task2两个明确人工场景，Task3私有按钮/独立Player/最终审查/真实鼠标验收。未声称已完成整局或所有卡牌。
+
+Task1提交540367e已推送且ls-remote核对。Task2新增共享DemoTurnEndSetup/CreateTurnEndFixture、差异数据及两个入口，旧16对象保留。RED新增28项失败；实施后两项断言错误将参数越界子类排除，修正为ArgumentException家族后，space-discard-data-green2原生2496/2496、0跳过，XML06f18f7125d7db763041d338fb947ac4e9286a3c31532e75e85b52b4f6b1ad9f。元数据146描述/76数据通过。数据只在Data/catalog登记；误加Docs目录项已纠正。

@@ -53,7 +53,7 @@ Files: 提取Infrastructure/DataLoading/DemoCatalog.TurnEndFixture.cs；新增De
 
 Interfaces: CreateAtTurn(definition,turnNumber,initialVp,SpaceTrackState initialTrack=null)；internal DemoTurnEndSetup(Turn,InitialVp,Cards,Random,InitialTrack,HeldCards)；WithSpaceDiscardScenarios(string fixture)→新DemoCatalog；共享CreateTurnEndFixture(scene)执行真实普通行动。
 
-- [ ] 写可信初始轨道同定义/零历史、保留16对象及原第16v29、两新场景合法/保留牌不消耗、无随机消耗、双方路径与非法fixture测试。
+- [x] 写可信初始轨道同定义/零历史、保留16对象及原第16v29、两新场景合法/保留牌不消耗、无随机消耗、双方路径与非法fixture测试。
 ```csharp
 var c=FinalScoringDemoEntryTests.Catalog().WithSpaceDiscardScenarios(json);
 Assert.That(c.Scenarios.Count,Is.EqualTo(18));
@@ -61,9 +61,9 @@ var h=c.CreateHost("demo.practice.space_discard.next");
 Assert.That(h.UsSession.ReadView().Version,Is.EqualTo(29));
 Assert.That(h.UsSession.ReadView().Practice.UsSpace,Is.EqualTo(6));
 ```
-- [ ] RunId space-discard-data-red。Expected: 新行为失败。
-- [ ] 装配两条Late人工场景：引用原final场景地图/动作牌，只从DrawPile补ordinary保留牌。字段严格、重复/未知ID/错误时代/跨定义/能力不足/带计分或China/源不存在全部拒绝；原16不变。
-- [ ] RunId space-discard-data-green。Expected:全套通过；数据/模块目录与Wiki同步，提交。
+- [x] RunId space-discard-data-red。Expected: 新行为失败。
+- [x] 装配两条Late人工场景：引用原final场景地图/动作牌，只从DrawPile补ordinary保留牌。字段严格、重复/未知ID/错误时代/跨定义/能力不足/带计分或China/源不存在全部拒绝；原16不变。
+- [x] RunId space-discard-data-green。Expected:全套通过；数据/模块目录与Wiki同步，提交。
 
 ## Task 3: 选择面板与独立Player
 

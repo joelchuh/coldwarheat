@@ -6,15 +6,6 @@ using ColdWarStruggle.Core;
 using Newtonsoft.Json.Linq;
 namespace ColdWarStruggle.Infrastructure
 {
-    internal sealed class DemoFinalScoringSetup
-    {
-        internal int Turn { get; }
-        internal int InitialVp { get; }
-        internal CardZones Cards { get; }
-        internal RandomSnapshot Random { get; }
-        internal DemoFinalScoringSetup(int turn,int vp,CardZones cards,RandomSnapshot random)
-        { Turn=turn;InitialVp=vp;Cards=cards;Random=random; }
-    }
     public sealed partial class DemoCatalog
     {
         public DemoCatalog WithFinalScoringScenario(string fixture,string regionJson,string regionSchema,string chinaJson,string chinaSchema)
@@ -23,7 +14,7 @@ namespace ColdWarStruggle.Infrastructure
             if(Int(data,"schema_version")!=1 || Text(data,"dataset_id")!="demo.final_scoring_scenario" || Text(data,"scope")!="fixture")throw new ArgumentException("Final scoring demo must be an explicit fixture.");
             var row=Object(data["scenario"],"id title source_scenario_id turn_number initial_vp selected_country china_owner china_face influence hands");
             var id=Text(row,"id");var title=Text(row,"title");var sourceId=Text(row,"source_scenario_id");var source=Scenarios.SingleOrDefault(s=>s.Id==sourceId);var d=source?.PracticeDefinition;
-            if(id.Length>128 || title.Length>160 || Scenarios.Any(s=>s.Id==id || s.FinalSetup!=null || s.PracticeDefinition?.FinalScoring!=null)
+            if(id.Length>128 || title.Length>160 || Scenarios.Any(s=>s.Id==id || s.TurnEndSetup!=null || s.PracticeDefinition?.FinalScoring!=null)
                 || source?.InitialCards==null || source.StartupChoices==null || d?.Scoring==null || d.HeadlineParameters==null
                 || !d.TurnEndEnabled || !d.NextTurnEnabled || !ReferenceEquals(d.Cards,PrintedCards))throw new ArgumentException("Expected configured headline source and a new fixture ID.");
             var final=FinalScoringDefinitionLoader.LoadBound(regionJson,regionSchema,chinaJson,chinaSchema,d.Scoring,d.Cards);
@@ -61,32 +52,13 @@ namespace ColdWarStruggle.Infrastructure
             var china=new ChinaCardState(final.ChinaCardId,Side(Text(row,"china_owner")),face);
             var cards=new CardZones(d.Cards,d.Cards.Cards.Where(c=>c.Kind!=CardKind.China && !used.Contains(c.Id)).Select(c=>c.Id),hands,
                 System.Array.Empty<CardId>(),System.Array.Empty<CardId>(),System.Array.Empty<CardId>(),System.Array.Empty<CardId>(),china,new[]{GameEra.Early,GameEra.Mid,GameEra.Late});
-            var setup=new DemoFinalScoringSetup(turn,vp,cards,source.InitialCards.Random);
+            var setup=new DemoTurnEndSetup(turn,vp,cards,source.InitialCards.Random);
             var normal=new DemoScenario(source.Id,source.Title,source.Actor,source.SelectedCountry,source.Ops,source.Countries,source.Hands,source.EventDefinition,
                 source.Turn,source.DeploymentDefinition,source.InitialCards,Definition(true),source.StartupChoices);
-            var scene=new DemoScenario(id,title,PlayerSide.USSR,selected,0,new ReadOnlyDictionary<CountryId,CountryState>(countries),null,turn:turnContext,practice:definition,finalSetup:setup);
+            var scene=new DemoScenario(id,title,PlayerSide.USSR,selected,0,new ReadOnlyDictionary<CountryId,CountryState>(countries),null,turn:turnContext,practice:definition,turnEndSetup:setup);
             var result=new DemoCatalog(Map,costs,Scenarios.Select(s=>ReferenceEquals(s,source)?normal:s).Concat(new[]{scene}),Names.ToDictionary(x=>x.Key,x=>x.Value,StringComparer.Ordinal),PrintedCards);
             if(!result.CreateHost(id).UsSession.ReadView().Practice.TurnEndAvailable)throw new ArgumentException("Fixture did not reach a valid turn-end boundary.");
             return result;
-        }
-        GameState CreateFinalScoringFixture(DemoScenario scene)
-        {
-            var setup=scene.FinalSetup;var p=ActionPracticeState.CreateAtTurn(scene.PracticeDefinition,setup.Turn,setup.InitialVp);
-            var gameId="demo-final-"+Guid.NewGuid().ToString("N");var ops=OperationsContext.FromRoundStart(gameId+".setup",PlayerSide.USSR,0,Map,scene.Countries,costs);
-            var state=new GameState(Map,scene.Countries,ops,gameId,turn:p.Space.Turn,cards:setup.Cards,randomState:setup.Random,practice:p);
-            GameState Apply(CardActionKind kind,CardId? card=null)
-            {
-                var plan=ActionPracticeRules.Plan(state,state.Practice.Actor,kind,"fixture-"+state.Version,card);
-                if(!plan.Accepted)throw new ArgumentException("Invalid final fixture action: "+plan.Error);
-                return plan.NextState;
-            }
-            state=Apply(CardActionKind.StartPractice);
-            while(state.Practice.CompletedActions<p.Space.Turn.Parameters.NormalActionsPerSide*2)
-            {
-                state=Apply(CardActionKind.Influence,state.Cards.GetHand(state.Practice.Actor).First());
-                state=Apply(CardActionKind.FinishInfluence);
-            }
-            return state;
         }
     }
 }

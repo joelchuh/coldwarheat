@@ -20,11 +20,11 @@ namespace ColdWarStruggle.Infrastructure
         public InitialDealResult InitialCards { get; }
         public ActionPracticeDefinition PracticeDefinition { get; }
         internal IReadOnlyList<DemoDeploymentChoice> StartupChoices { get; }
-        internal DemoFinalScoringSetup FinalSetup { get; }
+        internal DemoTurnEndSetup TurnEndSetup { get; }
         public IReadOnlyDictionary<CountryId,CountryState> Countries { get; }
         public IReadOnlyDictionary<PlayerSide,IReadOnlyList<string>> Hands { get; }
-        internal DemoScenario(string id,string title,PlayerSide actor,CountryId selected,int ops,IReadOnlyDictionary<CountryId,CountryState> countries,IReadOnlyDictionary<PlayerSide,IReadOnlyList<string>> hands,InfluenceEffectDefinition eventDefinition=null,GameTurnContext turn=null,SetupDeploymentDefinition deployment=null,InitialDealResult initialCards=null,ActionPracticeDefinition practice=null,IEnumerable<DemoDeploymentChoice> startupChoices=null,DemoFinalScoringSetup finalSetup=null)
-        { FinalSetup=finalSetup;Id=id;Title=title;Actor=actor;SelectedCountry=selected;Ops=ops;Countries=countries;Hands=hands;EventDefinition=eventDefinition;Turn=turn;DeploymentDefinition=deployment;InitialCards=initialCards;PracticeDefinition=practice;StartupChoices=startupChoices==null?null:System.Array.AsReadOnly(startupChoices.ToArray()); }
+        internal DemoScenario(string id,string title,PlayerSide actor,CountryId selected,int ops,IReadOnlyDictionary<CountryId,CountryState> countries,IReadOnlyDictionary<PlayerSide,IReadOnlyList<string>> hands,InfluenceEffectDefinition eventDefinition=null,GameTurnContext turn=null,SetupDeploymentDefinition deployment=null,InitialDealResult initialCards=null,ActionPracticeDefinition practice=null,IEnumerable<DemoDeploymentChoice> startupChoices=null,DemoTurnEndSetup turnEndSetup=null)
+        { TurnEndSetup=turnEndSetup;Id=id;Title=title;Actor=actor;SelectedCountry=selected;Ops=ops;Countries=countries;Hands=hands;EventDefinition=eventDefinition;Turn=turn;DeploymentDefinition=deployment;InitialCards=initialCards;PracticeDefinition=practice;StartupChoices=startupChoices==null?null:System.Array.AsReadOnly(startupChoices.ToArray()); }
     }
     public sealed partial class DemoCatalog
     {
@@ -58,7 +58,7 @@ namespace ColdWarStruggle.Infrastructure
         public LocalGameHost CreateHost(string scenarioId)
         {
             var s=Scenarios.FirstOrDefault(x=>x.Id==scenarioId)??throw new ArgumentException("Unknown scenario.");
-            if(s.FinalSetup!=null)return new LocalGameHost(CreateFinalScoringFixture(s),true);
+            if(s.TurnEndSetup!=null)return new LocalGameHost(CreateTurnEndFixture(s),true);
             var ctx=OperationsContext.FromRoundStart(s.Id+".ops",s.Actor,s.Ops,Map,s.Countries,costs);
             var gameId="demo-"+Guid.NewGuid().ToString("N");
             var execution=s.EventDefinition==null?null:new InfluenceEventExecution(gameId+".event",s.EventDefinition,s.Actor,InfluenceEventPolicy.NoActiveInterference);
