@@ -59,6 +59,19 @@ namespace ColdWarStruggle.Tests
             using var f=new Fixture("containment");await f.Open();var c=f.Controller;Assert.That(c.CurrentFiveYearHeadline,Is.Not.Null);Assert.That((await c.SkipEmptyHandAsync()).Accepted,Is.True);Assert.That(c.CurrentFiveYearHeadline,Is.Null);Assert.That(f.View.ReadHeadlineFiveYearPlanFeedback(),Is.Null);
             await c.RetryHeadlineAsync();Assert.That(c.CurrentFiveYearHeadline,Is.Null);Assert.That(f.View.ReadHeadlineFiveYearPlanFeedback(),Is.Null);
         }
+        [Test] public async Task Current_child_completion_is_not_hidden_by_older_parent_card_receipt()
+        {
+            var state=FiveYearPlanPlayTests.Ready(actor:PlayerSide.US);var controller=new DemoController(_=>new LocalGameHost(state,true));var go=new GameObject("current-child-feedback");
+            try
+            {
+                var view=go.AddComponent<DemoView>();view.Initialize(controller,HeadlineDemoCatalogTests.Catalog().Names,new[]{new DemoScenarioOption("fixture","fixture",PlayerSide.US,C("yugoslavia"))},printedCards:state.Cards.Catalog);
+                controller.SelectCard(Id("five_year_plan"));Assert.That((await controller.PlayCardAsync(CardActionKind.Event)).Accepted,Is.True);
+                Assert.That(controller.ToggleEventTarget(C("yugoslavia")),Is.True);Assert.That((await controller.ConfirmEventAsync()).Accepted,Is.True);
+                Assert.That(controller.LastCardResult.View.Version,Is.LessThan(controller.LastEventResult.View.Version));
+                Assert.That(view.ReadPracticeFeedback(),Does.Contain("子事件完成").And.Not.Contain("历史"));
+            }
+            finally{UnityEngine.Object.DestroyImmediate(go);}
+        }
         [Test] public async Task Secret_first_headline_and_reset_have_no_child_feedback()
         {
             using var f=new Fixture();var c=f.Controller;c.SelectCard(Id("five_year_plan"));await c.SubmitSelectedHeadlineAsync();Assert.That(c.CurrentFiveYearHeadline,Is.Null);Assert.That(f.View.ReadHeadlineFiveYearPlanFeedback(),Is.Null);

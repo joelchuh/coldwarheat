@@ -113,6 +113,18 @@ namespace ColdWarStruggle.Presentation
                     }
                 }
             }
+            DrawExtraActionChoice(view);
+            DrawEmptyHandChoice(view);
+            DrawFeedback(578,65,ReadPracticeFeedback());
+            var retryHeadline=!controller.CanRetryCard && controller.CanRetryHeadline;
+            var retryEvent=!controller.CanRetryCard && !retryHeadline && controller.CanRetryEvent;
+            GUI.enabled=controller.CanRetryCard || retryHeadline || retryEvent;
+            if(Button(972,646,262,27,retryHeadline?"重发头条命令（幂等）":retryEvent?"重发事件命令（幂等）":"重发出牌命令（幂等）"))
+            {if(retryHeadline)RetryHeadline();else if(retryEvent)RetryEvent();else RetryCard();}
+            GUI.enabled=true;
+        }
+        public string ReadPracticeFeedback()
+        {
             var result=controller.LastCardResult;
             string message="";
             if(result?.FiveYearPlan!=null)message=FiveYearPlanResultMessage(result.FiveYearPlan)+FiveYearPlanChildDetail(result);
@@ -149,17 +161,8 @@ namespace ColdWarStruggle.Presentation
             if(controller.LastEventResult?.FiveYearPlan!=null)message=FiveYearPlanResultMessage(controller.LastEventResult.FiveYearPlan);
             if(result?.Accepted!=false && controller.LastResult?.Accepted!=false && controller.LastEventResult?.Accepted!=false)
                 message=ReadHeadlineFiveYearPlanFeedback()??message;
-            message=controller.CardResultHistoryMessage??message;
             message=controller.EventResultHistoryMessage??message;
-            DrawExtraActionChoice(view);
-            DrawEmptyHandChoice(view);
-            DrawFeedback(578,65,message);
-            var retryHeadline=!controller.CanRetryCard && controller.CanRetryHeadline;
-            var retryEvent=!controller.CanRetryCard && !retryHeadline && controller.CanRetryEvent;
-            GUI.enabled=controller.CanRetryCard || retryHeadline || retryEvent;
-            if(Button(972,646,262,27,retryHeadline?"重发头条命令（幂等）":retryEvent?"重发事件命令（幂等）":"重发出牌命令（幂等）"))
-            {if(retryHeadline)RetryHeadline();else if(retryEvent)RetryEvent();else RetryCard();}
-            GUI.enabled=true;
+            return message;
         }
         async void StartCardPractice()
         {
