@@ -2,7 +2,7 @@
 
 Description：先查 ActionRoundProgress 的双方独立根计数、可选总额度和放弃，再定位真实出牌接线。
 
-当前仅基础模块实现，Task2真实根行动与Task3界面尚在接入，旧Player未更新。描述：Docs/Descriptors/space-extra-actions.module.json。
+基础模块和真实根行动已接入；2546项原生测试通过。Task3界面与独立Player尚在制作，旧Player未更新。描述：Docs/Descriptors/space-extra-actions.module.json。
 
 ## 规则与流程
 
@@ -17,3 +17,9 @@ Create → 按 CurrentActor 执行根行动 → CompleteRoot(最新轨道) → �
 - Tests/EditMode/ActionRoundProgressTests.cs：正常交替、双方额外、总额度、获得/失去、放弃、身份与绑定。
 
 设计见 Docs/Design/2026-10-16-space-extra-actions.md；验证见 Docs/Testing/space-extra-actions.validation.json；后续工作见 Docs/Plans/2026-10-16-space-extra-actions.md。
+
+## 真实事务接线
+
+ActionPracticeState.Rounds贯穿头条/事件/OPS/结束克隆，非零历史缺失进度立即拒绝。ActionPracticeRules.Next只在根结束调用CompleteRoot；CanPlay在ChooseCard检查当前能力；China资格按当前方RemainingAllowance。DeclineExtraActions只在可选ChooseCard接受，卡牌/随机/地图均不变。PublicPracticeView只投影双方已完成次数和按viewer计算的放弃资格；手牌走原隐私边界。回合末/下一回合/最终计分都要求Rounds完成，下一回合新建零历史。
+
+测试：SpaceExtraActionPlayTests和SpaceExtraActionSessionTests覆盖双方、早晚期、事件子步、China与计分保留、终局、审核/弃牌/后续、身份/版本/幂等/溢出。

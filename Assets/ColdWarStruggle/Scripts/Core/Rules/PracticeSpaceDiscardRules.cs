@@ -11,7 +11,6 @@ namespace ColdWarStruggle.Core
             if(!ReferenceEquals(p.Space.Track.Definition,p.Definition.Space) || !ReferenceEquals(p.Space.Calendar,p.Definition.Calendar)
                 || !ReferenceEquals(s.Turn.Parameters,p.Definition.Calendar.ForTurn(s.Turn.Number).Parameters)
                 || !ReferenceEquals(s.Turn.Parameters,p.Space.Turn.Parameters) || !ReferenceEquals(s.Turn.Parameters,p.Risk.Military.Turn.Parameters))return RuleError.StaleContext;
-            if(HasExtraActionAbility(p.Space.Track))return RuleError.UnsupportedCardAction;
             var error=SpaceEndTurnDiscardState.QueryOwner(p.Space.Track,out var owner);if(error!=RuleError.None)return error;
             var choice=p.SpaceDiscard;
             if(!owner.HasValue)return choice==null?RuleError.None:RuleError.StaleContext;
@@ -32,7 +31,7 @@ namespace ColdWarStruggle.Core
             var error=SpaceDiscardBindingError(state);if(error!=RuleError.None)return error;
             if(state.Deployment!=null)return RuleError.SetupInProgress;
             if(state.InfluenceEvent!=null)return RuleError.EventInProgress;
-            if(p.Stage!=ActionPracticeStage.Complete || p.CompletedActions!=state.Turn.Parameters.NormalActionsPerSide*2 || p.ActiveCard.HasValue
+            if(p.Stage!=ActionPracticeStage.Complete || !p.Rounds.IsComplete || p.ActiveCard.HasValue
                 || p.OpponentOps!=null || p.HeadlineSelection!=null || p.HasPendingHeadline || state.Cards.ResolvingCards.Count!=0 || state.Cards.HeadlineReserved.Count!=0)return RuleError.ActionNotReady;
             if(p.FinalScoring!=null || p.Risk.Result!=null || !ReferenceEquals(p.Risk.Military.Assessment,p.TurnEnd.Assessment)
                 || p.VpForUS!=p.TurnEnd.Decision.SignedVp || p.OpsEffects.Instances.Count!=0 || state.Cards.China.Face!=CardFace.FaceUp
@@ -59,7 +58,7 @@ namespace ColdWarStruggle.Core
                     cards=new CardZones(p.Definition.Cards,cards.DrawPile,hands,cards.EraReserve,cards.DiscardPile.Append(card.Value),cards.RemovedCards,cards.ResolvingCards,cards.China,cards.EnteredEras,cards.HeadlineReserved);
                 }
                 var next=new ActionPracticeState(p.Definition,p.Stage,p.CompletedActions,null,p.Space,p.VpForUS,p.Risk,p.OpsEffects,
-                    turnEnd:p.TurnEnd,headline:p.Headline,spaceDiscard:choice.Resolve(card,cards));
+                    turnEnd:p.TurnEnd,rounds:p.Rounds,headline:p.Headline,spaceDiscard:choice.Resolve(card,cards));
                 return Commit(state,next,cards,state.RandomState);
             }
             catch(OverflowException){return new CardActionTransition(RuleError.NumericOverflow);}

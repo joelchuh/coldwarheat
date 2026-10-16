@@ -2,13 +2,21 @@
   "schema_version": 1,
   "id": "module.space-extra-actions",
   "kind": "module",
-  "description": "独立记录双方根行动次数，普通交替后按共享太空能力提供可选总额度；明确放弃不消耗行动。真实出牌接线进行中。",
-  "status": "implemented-foundation",
+  "description": "双方独立根计数与太空额外总额度，真实出牌及明确放弃接固定身份命令；中国牌、军事/扣留审核、太空弃牌和后续回合共享进度。",
+  "status": "implemented",
   "documentation": "Docs/Wiki/space-extra-actions.md",
   "entrypoints": [
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionRoundProgress.cs",
       "symbol": "ActionRoundProgress"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeExtraActionRules.cs",
+      "symbol": "CanDeclineExtraActions"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/CardActionContracts.cs",
+      "symbol": "PublicPracticeView"
     }
   ],
   "inputs": [
@@ -54,14 +62,22 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/ActionRoundProgressTests.cs",
       "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceExtraActionPlayTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceExtraActionSessionTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "open_items": [
-    "Task2真实根行动/China/结束接线",
-    "Task3人工场景/界面/Player"
+    "Task3人工场景/界面/Player",
+    "普通无牌跳过、北海油田等其他额外行动来源"
   ],
   "verification": {
     "report": "Docs/Testing/space-extra-actions.validation.json",
-    "native_validation": "2528/2528; extra-rounds-green"
+    "native_validation": "2546/2546; extra-play-green3"
   }
 }

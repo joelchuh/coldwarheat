@@ -73,7 +73,7 @@ namespace ColdWarStruggle.Tests
             s=NextTurnPlayTests.Apply(s,CardActionKind.Space,"card.olympic_games");s=Complete(s);
             if(kind==SpaceAbilityKind.ActionRoundAllowance)
             {
-                Assert.That(ActionPracticeRules.CanAssessTurnEnd(s,PlayerSide.US),Is.EqualTo(RuleError.UnsupportedCardAction));
+                Assert.That(ActionPracticeRules.CanAssessTurnEnd(s,PlayerSide.US),Is.EqualTo(RuleError.ActionNotReady));
                 Assert.That(Finish(s).Error,Is.EqualTo(RuleError.ActionNotReady));
             }
             else

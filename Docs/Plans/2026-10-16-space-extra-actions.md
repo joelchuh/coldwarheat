@@ -25,14 +25,14 @@ Interfaces: 按Spec的Create、CompleteRoot、DeclineRemaining、CanBegin、Rema
 Files: ActionPracticeState、所有ActionPracticeRules及Headline/TurnEnd/NextTurn/FinalScoring/SpaceDiscard克隆；Application/SessionContracts；Core新PracticeExtraActionRules；Tests/EditMode/SpaceExtraActionPlayTests与SessionTests。
 Interfaces: ActionPracticeState.Rounds；DeclineExtraActions；CanDeclineExtraActions；public每方次数/optional/可放弃。沿用固定身份CardActionCommand。
 
-- [ ] 测试普通完成→拥有者可选出牌/放弃、子事件仅根计次、China剩余额度、终局截断、下一回合重置、审核不得越过额外名额；旧Unsupported断言更新。RunId extra-play-red。
-- [ ] 全部克隆携带进度，Next统一CompleteRoot，普通出牌校验新槽，结束门禁改为进度完成。RunId extra-play-green。
-- [ ] 宿主重复ID/旧版本/冲突/错误身份/overflow及公开无泄露；文档与提交。
+- [x] 测试普通完成→拥有者可选出牌/放弃、子事件仅根计次、China剩余额度、终局截断、下一回合重置、审核不得越过额外名额；旧Unsupported断言更新。RunId extra-play-red。
+- [x] 全部克隆携带进度，Next统一CompleteRoot，普通出牌校验新槽，结束门禁改为进度完成。RunId extra-play-green。
+- [x] 宿主重复ID/旧版本/冲突/错误身份/overflow及公开无泄露；文档与提交。
 
 ## Task 3: 可玩的人工场景与独立Player
 
 Files: Infrastructure数据装配、Data/Demo额外行动fixture与描述、Presentation控制器/面板、Bootstrap/Editor构建；相关EditMode测试。
-Interfaces: 早期两额外/晚期一额外场景；已有ChooseCard面板+明确放弃按钮；独立Builds/SpaceExtraPlaytest。
+Interfaces: WithSpaceExtraScenarios使用第2回合美国领先、第10回合苏联领先；复用源地图与按时代筛过的普通行动牌，重建合法时代牌区。已有ChooseCard面板+明确放弃按钮（放在结果区，不遮手牌/重发）；独立Builds/SpaceExtraPlaytest。
 
 - [ ] 写fixture/控制器测试，RunId extra-ui-red；实现并RunId extra-ui-green。
 - [ ] 一次新上下文全分支审查；重要项一轮RED/GREEN修复；元数据/diff/构建/载荷字节核对。

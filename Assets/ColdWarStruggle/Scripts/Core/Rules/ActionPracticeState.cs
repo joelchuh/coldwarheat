@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 namespace ColdWarStruggle.Core
 {
-    public enum CardActionKind { StartPractice, Influence, Space, FinishInfluence, Coup, Scoring, Event, Realignment, RollRealignment, FinishRealignment, EventThenInfluence, InfluenceThenEvent, OpponentEventFirst, OpponentOpsFirst, UseOpponentInfluence, UseOpponentRealignment, UseOpponentCoup, AssessTurnEnd, BeginNextTurn, FinalScoring, DiscardHeldCard, KeepHeldCards }
+    public enum CardActionKind { StartPractice, Influence, Space, FinishInfluence, Coup, Scoring, Event, Realignment, RollRealignment, FinishRealignment, EventThenInfluence, InfluenceThenEvent, OpponentEventFirst, OpponentOpsFirst, UseOpponentInfluence, UseOpponentRealignment, UseOpponentCoup, AssessTurnEnd, BeginNextTurn, FinalScoring, DiscardHeldCard, KeepHeldCards, DeclineExtraActions }
     public enum ActionPracticeStage { AwaitingStart, ChooseCard, PlacingInfluence, Complete, ResolvingEvent, Realigning, ChoosingOperations, HeadlineReady, CollectingHeadline }
     // Explicit single-turn practice with a bounded, typed set of supported events. Not the full turn coordinator.
     public sealed class ActionPracticeDefinition
@@ -42,12 +42,13 @@ namespace ColdWarStruggle.Core
     {
         public ActionPracticeDefinition Definition { get; }
         public ActionPracticeStage Stage { get; }
-        public int CompletedActions { get; }
+        public int CompletedActions => Rounds.TotalCompleted;
+        public ActionRoundProgress Rounds { get; }
         public HeadlineResolutionState Headline { get; }
         public HeadlineSelectionState HeadlineSelection { get; }
         public bool HasPendingHeadline=>Headline!=null && !Headline.IsComplete;
-        public PlayerSide Actor=>HasPendingHeadline?Headline.Current.PlayedBy:CompletedActions%2==0?PlayerSide.USSR:PlayerSide.US;
-        public int ActionRound=>Math.Min(CompletedActions/2+1,Space.Turn.Parameters.NormalActionsPerSide);
+        public PlayerSide Actor=>HasPendingHeadline?Headline.Current.PlayedBy:Rounds.CurrentActor??PlayerSide.USSR;
+        public int ActionRound=>Rounds.Round;
         public CardId? ActiveCard { get; }
         public SpaceAttemptState Space { get; }
         public int VpForUS { get; }
@@ -57,8 +58,12 @@ namespace ColdWarStruggle.Core
         public PracticeTurnEndReceipt TurnEnd { get; }
         public PracticeFinalScoringReceipt FinalScoring { get; }
         public SpaceEndTurnDiscardState SpaceDiscard { get; }
-        internal ActionPracticeState(ActionPracticeDefinition definition,ActionPracticeStage stage,int completed,CardId? card,SpaceAttemptState space,int vp,PracticeRiskState risk=null,TurnOpsEffectState opsEffects=null,OpponentOpsSequence opponentOps=null,PracticeTurnEndReceipt turnEnd=null,HeadlineResolutionState headline=null,HeadlineSelectionState headlineSelection=null,PracticeFinalScoringReceipt finalScoring=null,SpaceEndTurnDiscardState spaceDiscard=null)
+        internal ActionPracticeState(ActionPracticeDefinition definition,ActionPracticeStage stage,int completed,CardId? card,SpaceAttemptState space,int vp,PracticeRiskState risk=null,TurnOpsEffectState opsEffects=null,OpponentOpsSequence opponentOps=null,PracticeTurnEndReceipt turnEnd=null,HeadlineResolutionState headline=null,HeadlineSelectionState headlineSelection=null,PracticeFinalScoringReceipt finalScoring=null,SpaceEndTurnDiscardState spaceDiscard=null,ActionRoundProgress rounds=null)
         {
+            if(rounds==null && completed!=0)throw new ArgumentException("Existing root progress must be carried explicitly.");
+            Rounds=rounds??ActionRoundProgress.Create(space.Turn,definition.Space);
+            if(Rounds.TotalCompleted!=completed || Rounds.Turn.Number!=space.Turn.Number || !ReferenceEquals(Rounds.Turn.Parameters,space.Turn.Parameters)
+                || !ReferenceEquals(Rounds.SpaceDefinition,space.Track.Definition) || !ReferenceEquals(Rounds.SpaceDefinition,definition.Space))throw new ArgumentException("Action progress binding mismatch.");
             if(headline!=null && (headline.Turn.Number!=space.Turn.Number || headline.Turn.Era!=space.Turn.Era))throw new ArgumentException("Headline turn mismatch.");
             if(headline!=null && !headline.IsComplete && (completed!=0 || opponentOps!=null || turnEnd!=null
                 || !(stage==ActionPracticeStage.HeadlineReady && !card.HasValue
@@ -71,7 +76,7 @@ namespace ColdWarStruggle.Core
                 || card.HasValue || opponentOps!=null || turnEnd!=null))throw new ArgumentException("Invalid headline collection.");
             if(stage==ActionPracticeStage.CollectingHeadline && headlineSelection==null)throw new ArgumentException("Missing headline selection.");
             HeadlineSelection=headlineSelection;Headline=headline;
-            if(turnEnd!=null && (!definition.TurnEndEnabled || stage!=ActionPracticeStage.Complete || completed!=space.Turn.Parameters.NormalActionsPerSide*2 || card.HasValue || opponentOps!=null
+            if(turnEnd!=null && (!definition.TurnEndEnabled || stage!=ActionPracticeStage.Complete || !Rounds.IsComplete || card.HasValue || opponentOps!=null
                 || !ReferenceEquals(risk?.Military.Assessment,turnEnd.Assessment)
                 || (finalScoring==null && (turnEnd.Decision.SignedVp!=vp || (turnEnd.Decision.Outcome==VictoryOutcome.Finished?!ReferenceEquals(risk.Result,turnEnd.Decision):risk.Result!=null)))))throw new ArgumentException("Turn-end receipt does not match the completed state.");
             if(finalScoring!=null && (definition.FinalScoring==null || turnEnd==null || turnEnd.Decision.Outcome!=VictoryOutcome.Continue
@@ -85,7 +90,7 @@ namespace ColdWarStruggle.Core
             {
                 if(SpaceEndTurnDiscardState.QueryOwner(space.Track,out var owner)!=RuleError.None || owner!=spaceDiscard?.Owner)throw new ArgumentException("Missing or foreign space discard decision.");
             }
-            SpaceDiscard=spaceDiscard;FinalScoring=finalScoring;TurnEnd=turnEnd;OpponentOps=opponentOps;Definition=definition;Stage=stage;CompletedActions=completed;ActiveCard=card;Space=space;VpForUS=vp;Risk=risk;OpsEffects=opsEffects??TurnOpsEffectState.Create(space.Turn); }
+            SpaceDiscard=spaceDiscard;FinalScoring=finalScoring;TurnEnd=turnEnd;OpponentOps=opponentOps;Definition=definition;Stage=stage;ActiveCard=card;Space=space;VpForUS=vp;Risk=risk;OpsEffects=opsEffects??TurnOpsEffectState.Create(space.Turn); }
         // Trusted scenario initialization only: no completed actions or fabricated audit history.
         public static ActionPracticeState CreateAtTurn(ActionPracticeDefinition definition,int turnNumber,int initialVp,SpaceTrackState initialTrack=null)
         {

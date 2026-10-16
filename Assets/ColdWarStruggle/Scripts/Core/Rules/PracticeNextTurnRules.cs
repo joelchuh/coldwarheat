@@ -5,8 +5,6 @@ namespace ColdWarStruggle.Core
     {
         static string PracticeSlotId(GameState s)=>"practice.turn."+s.Turn.Number+".action."+s.Practice.CompletedActions;
         static string PracticeOperationsId(GameState s,int completed)=>s.GameId+".turn."+s.Turn.Number+".action."+completed;
-        static bool HasExtraActionAbility(SpaceTrackState track)=>SpaceAbilityRules.Query(track,PlayerSide.US).ActionRoundAllowance.HasValue
-            || SpaceAbilityRules.Query(track,PlayerSide.USSR).ActionRoundAllowance.HasValue;
         public static RuleError CanBeginNextTurn(GameState state,PlayerSide side)
         {
             if(state==null || (side!=PlayerSide.US && side!=PlayerSide.USSR))return RuleError.InvalidCommand;
@@ -17,7 +15,7 @@ namespace ColdWarStruggle.Core
             if(state.Deployment!=null)return RuleError.SetupInProgress;
             if(state.InfluenceEvent!=null)return RuleError.EventInProgress;
             if(p.Stage!=ActionPracticeStage.Complete || p.TurnEnd?.Decision.Outcome!=VictoryOutcome.Continue
-                || p.CompletedActions!=state.Turn.Parameters.NormalActionsPerSide*2 || p.ActiveCard.HasValue
+                || !p.Rounds.IsComplete || p.ActiveCard.HasValue
                 || p.OpponentOps!=null || state.Cards.ResolvingCards.Count!=0)return RuleError.ActionNotReady;
             if(p.Risk.Result!=null || !ReferenceEquals(p.Risk.Military.Assessment,p.TurnEnd.Assessment)
                 || p.Risk.Military.Turn.Number!=state.Turn.Number || p.Space.Turn.Number!=state.Turn.Number

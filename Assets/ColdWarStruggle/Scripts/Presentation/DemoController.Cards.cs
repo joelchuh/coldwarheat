@@ -92,10 +92,11 @@ namespace ColdWarStruggle.Presentation
             get
             {
                 var p=ReadView().Practice;
+                if(p?.IsExtraAction==true)return "太空额外行动：可继续出牌，或放弃剩余名额。\n完成后再审核军事与扣留计分牌。";
                 if(p==null || p.Stage!=ActionPracticeStage.Complete || p.TurnEnd!=null || p.Winner.HasValue)return null;
                 if(!p.TurnEndEnabled)return "本回合行动试玩已结束。\n此旧练习未启用回合末审核。";
-                if(p.TurnEndAvailable)return "双方普通行动已结束。\n下一步：军事净罚分与扣留计分牌审核。";
-                if(p.TurnEndError==RuleError.UnsupportedCardAction)return "已到试玩边界：太空额外行动尚未接入。\n暂不能结算本回合。";
+                if(p.TurnEndAvailable)return "双方行动已结束。\n下一步：军事净罚分与扣留计分牌审核。";
+                if(p.TurnEndError==RuleError.UnsupportedCardAction)return "存在尚未支持的回合末能力。\n暂不能结算本回合。";
                 return "当前不能结算本回合，请先完成待处理行动。";
             }
         }

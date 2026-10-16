@@ -27,7 +27,7 @@ namespace ColdWarStruggle.Core
             if(!ReferenceEquals(state.Turn.Parameters,p.Definition.Calendar.ForTurn(state.Turn.Number).Parameters)
                 || !ReferenceEquals(state.Turn.Parameters,p.Space.Turn.Parameters)
                 || !ReferenceEquals(state.Turn.Parameters,p.Risk.Military.Turn.Parameters))return RuleError.StaleContext;
-            if(p.Stage!=ActionPracticeStage.Complete || p.CompletedActions!=state.Turn.Parameters.NormalActionsPerSide*2
+            if(p.Stage!=ActionPracticeStage.Complete || !p.Rounds.IsComplete
                 || p.TurnEnd?.Decision.Outcome!=VictoryOutcome.Continue || p.ActiveCard.HasValue || p.OpponentOps!=null
                 || p.HeadlineSelection!=null || p.HasPendingHeadline || state.Cards.HeadlineReserved.Count!=0
                 || state.Cards.ResolvingCards.Count!=0)return RuleError.ActionNotReady;
@@ -54,7 +54,7 @@ namespace ColdWarStruggle.Core
                 var decision=VictoryService.Evaluate(p.Risk.Definition.Victory,new FinalScoringCompletedEvidence(id,"R2015.10.3.2",p.VpForUS,result));
                 var receipt=new PracticeFinalScoringReceipt(p.VpForUS,result,decision);
                 var next=new ActionPracticeState(p.Definition,ActionPracticeStage.Complete,p.CompletedActions,null,p.Space,decision.SignedVp,
-                    p.Risk.WithVictory(decision),p.OpsEffects,turnEnd:p.TurnEnd,headline:p.Headline,finalScoring:receipt,spaceDiscard:p.SpaceDiscard);
+                    p.Risk.WithVictory(decision),p.OpsEffects,turnEnd:p.TurnEnd,rounds:p.Rounds,headline:p.Headline,finalScoring:receipt,spaceDiscard:p.SpaceDiscard);
                 return Commit(state,next,state.Cards,state.RandomState);
             }
             catch(OverflowException){return new CardActionTransition(RuleError.NumericOverflow);}

@@ -17,11 +17,11 @@ namespace ColdWarStruggle.Tests
         static DemoController Controller(GameState state,PlayerSide side=PlayerSide.US)
         {var host=new LocalGameHost(state,true);var c=new DemoController(_=>host);c.LoadScenario("feedback",side,ChinaCardPlayTests.C("iran"));return c;}
         [TestCase(PlayerSide.US)][TestCase(PlayerSide.USSR)]
-        public void Extra_action_block_explains_disabled_assessment_without_exposing_hand(PlayerSide side)
+        public void Extra_action_choice_explains_pending_assessment_without_exposing_hand(PlayerSide side)
         {
             var s=SpaceBoundary(SpaceAbilityKind.ActionRoundAllowance);var c=Controller(s,side);var v=c.ReadView();
-            Assert.That(v.Practice.TurnEndAvailable,Is.False);Assert.That(v.Practice.TurnEndError,Is.EqualTo(RuleError.UnsupportedCardAction));
-            Assert.That(c.TurnEndPrompt,Does.Contain("太空").And.Contain("额外行动").And.Contain("尚未接入"));
+            Assert.That(v.Practice.TurnEndAvailable,Is.False);Assert.That(v.Practice.TurnEndError,Is.EqualTo(RuleError.ActionNotReady));
+            Assert.That(c.TurnEndPrompt,Does.Contain("太空").And.Contain("额外行动").And.Contain("放弃"));
             Assert.That(v.OwnHand,Is.EqualTo(s.GetHand(side)));Assert.That(v.Version,Is.EqualTo(s.Version));
         }
         [Test] public void Available_assessment_and_unfinished_actions_have_distinct_prompts()

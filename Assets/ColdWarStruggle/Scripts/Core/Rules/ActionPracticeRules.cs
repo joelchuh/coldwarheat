@@ -27,7 +27,7 @@ namespace ColdWarStruggle.Core
             if(kind==CardActionKind.EventThenInfluence || kind==CardActionKind.InfluenceThenEvent || kind==CardActionKind.OpponentEventFirst || kind==CardActionKind.OpponentOpsFirst)return CanPlayOpponentOps(state,side,card);
             var error=Check(state,side);if(error!=RuleError.None)return error;
             if(state.Deployment!=null)return RuleError.SetupInProgress;
-            if(state.Practice.Stage!=ActionPracticeStage.ChooseCard)return RuleError.ActionNotReady;
+            if(state.Practice.Stage!=ActionPracticeStage.ChooseCard || !state.Practice.Rounds.CanBegin(state.Practice.Space.Track,side))return RuleError.ActionNotReady;
             if(kind!=CardActionKind.Space && kind!=CardActionKind.Influence && kind!=CardActionKind.Coup && kind!=CardActionKind.Scoring && kind!=CardActionKind.Event && kind!=CardActionKind.Realignment)return RuleError.UnsupportedCardAction;
             if(kind==CardActionKind.Realignment && state.Practice.Definition.Realignment==null)return RuleError.UnsupportedCardAction;
             if(kind==CardActionKind.Coup && state.Practice.Risk==null)return RuleError.UnsupportedCardAction;
@@ -35,7 +35,7 @@ namespace ColdWarStruggle.Core
             if(card.Equals(state.Cards.China.Id))
             {
                 if(kind!=CardActionKind.Influence && kind!=CardActionKind.Coup && kind!=CardActionKind.Realignment && kind!=CardActionKind.Space)return RuleError.UnsupportedCardAction;
-                var eligibility=ChinaCardRules.CanUse(state.Practice.Definition.China,state.Cards,side,state.Practice.Space.Turn.Parameters.NormalActionsPerSide-state.Practice.CompletedActions/2);
+                var eligibility=ChinaCardRules.CanUse(state.Practice.Definition.China,state.Cards,side,state.Practice.Rounds.RemainingAllowance(state.Practice.Space.Track,side));
                 if(eligibility!=RuleError.None)return eligibility;
                 return kind==CardActionKind.Space?CanUseSpace(state,side,card):RuleError.None;
             }
@@ -59,6 +59,7 @@ namespace ColdWarStruggle.Core
         }
         public static CardActionTransition Plan(GameState state,PlayerSide side,CardActionKind kind,string actionId,CardId? card=null,CountryId? target=null)
         {
+            if(kind==CardActionKind.DeclineExtraActions)return PlanDeclineExtraActions(state,side,actionId,card,target);
             if(kind==CardActionKind.DiscardHeldCard || kind==CardActionKind.KeepHeldCards)return PlanSpaceDiscard(state,side,kind,actionId,card,target);
             if(kind==CardActionKind.AssessTurnEnd)return PlanTurnEnd(state,side,actionId,card,target);
             if(kind==CardActionKind.BeginNextTurn)return PlanNextTurn(state,side,actionId,card,target);
@@ -82,7 +83,7 @@ namespace ColdWarStruggle.Core
                     // Later-turn scenarios are initialized explicitly; turn one still requires completed deployment.
                     if(state.Deployment==null?state.Turn.Number==1:!state.Deployment.Complete)return new CardActionTransition(RuleError.SetupInProgress);
                     if(state.Cards.ResolvingCards.Count!=0)return new CardActionTransition(RuleError.ActionNotReady);
-                    return CollectHeadlinesIfEnabled(Commit(state,new ActionPracticeState(p.Definition,ActionPracticeStage.ChooseCard,0,null,p.Space,p.VpForUS,p.Risk,p.OpsEffects,headline:p.Headline),state.Cards,state.RandomState));
+                    return CollectHeadlinesIfEnabled(Commit(state,new ActionPracticeState(p.Definition,ActionPracticeStage.ChooseCard,0,null,p.Space,p.VpForUS,p.Risk,p.OpsEffects,rounds:p.Rounds,headline:p.Headline),state.Cards,state.RandomState));
                 }
                 if(kind==CardActionKind.FinishInfluence)
                 {
@@ -98,7 +99,7 @@ namespace ColdWarStruggle.Core
                     var quote=QuoteCard(state,side,card.Value,OpsValuePurpose.Influence);
                     var regional=RegionalBudget(state,quote);
                     var zones=Move(state,card.Value,true,true);
-                    return Commit(state,new ActionPracticeState(p.Definition,ActionPracticeStage.PlacingInfluence,p.CompletedActions,card,p.Space,p.VpForUS,p.Risk,p.OpsEffects,headline:p.Headline),zones,state.RandomState,regional?.EffectiveBudget??quote.GeneralValue,regionalBudget:regional);
+                    return Commit(state,new ActionPracticeState(p.Definition,ActionPracticeStage.PlacingInfluence,p.CompletedActions,card,p.Space,p.VpForUS,p.Risk,p.OpsEffects,rounds:p.Rounds,headline:p.Headline),zones,state.RandomState,regional?.EffectiveBudget??quote.GeneralValue,regionalBudget:regional);
                 }
                 var spaceQuote=QuoteCard(state,side,card.Value,OpsValuePurpose.Space);
                 // Scoped to the authoritative action slot, not a client supplied RNG or OPS value.
@@ -123,9 +124,9 @@ namespace ColdWarStruggle.Core
                 var queue=p.Headline.AdvanceAfterResolution(p.ActiveCard??p.Headline.Current.Card,p.Actor);
                 return AfterHeadline(p,queue,space,vp,risk,opsEffects);
             }
-            var completed=checked(p.CompletedActions+1);
-            var stage=completed==checked(p.Space.Turn.Parameters.NormalActionsPerSide*2)?ActionPracticeStage.Complete:ActionPracticeStage.ChooseCard;
-            return new ActionPracticeState(p.Definition,stage,completed,null,space,vp,risk??p.Risk,opsEffects??p.OpsEffects,headline:p.Headline);
+            var rounds=p.Rounds.CompleteRoot(space.Track,p.Actor);
+            var stage=rounds.IsComplete?ActionPracticeStage.Complete:ActionPracticeStage.ChooseCard;
+            return new ActionPracticeState(p.Definition,stage,rounds.TotalCompleted,null,space,vp,risk??p.Risk,opsEffects??p.OpsEffects,rounds:rounds,headline:p.Headline);
         }
         static CardActionTransition Commit(GameState s,ActionPracticeState p,CardZones cards,RandomSnapshot random,int budget=0,SpaceAttemptReceipt receipt=null,RegionScoringResult scoring=null,OpsRegionalBudget regionalBudget=null)
         {

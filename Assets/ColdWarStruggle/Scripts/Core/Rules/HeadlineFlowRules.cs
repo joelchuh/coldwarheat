@@ -49,7 +49,7 @@ namespace ColdWarStruggle.Core
         {
             var p=state.Practice;
             var next=new ActionPracticeState(p.Definition,selection.Ready?ActionPracticeStage.ChooseCard:ActionPracticeStage.CollectingHeadline,
-                0,null,p.Space,p.VpForUS,p.Risk,p.OpsEffects,headlineSelection:selection.Ready?null:selection);
+                0,null,p.Space,p.VpForUS,p.Risk,p.OpsEffects,rounds:p.Rounds,headlineSelection:selection.Ready?null:selection);
             var ops=OperationsContext.FromRoundStart(state.GameId+".turn."+state.Turn.Number+".headline-selection",PlayerSide.USSR,0,state.Map,state.Countries,state.Operations.Costs);
             return state.WithPractice(next,ops,selection.Cards,state.RandomState);
         }
