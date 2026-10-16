@@ -33,6 +33,8 @@ namespace ColdWarStruggle.Core
             if(state.Ended) return Reject(RuleError.GameAlreadyEnded);
             if(state.Deployment!=null)return Reject(RuleError.SetupInProgress);
             if(state.InfluenceEvent!=null && state.InfluenceEvent.Stage!=InfluenceEventStage.Resolved)return Reject(RuleError.EventInProgress);
+            if(state.Practice?.Olympic!=null)
+            {var error=ActionPracticeRules.CanContinueOlympicOperations(state,state.Operations.Actor,OperationsMode.Influence);if(error!=RuleError.None)return Reject(error);}
             if(!ReferenceEquals(context,state.Operations)) return Reject(RuleError.StaleContext);
             if(context.Mode!=OperationsMode.Influence) return Reject(RuleError.ModeMismatch);
             var working=state.Countries.ToDictionary(x=>x.Key,x=>x.Value);

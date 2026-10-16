@@ -19,7 +19,9 @@ namespace ColdWarStruggle.Core
             if(s.Cards.HeadlineReserved.Count!=0 || s.Practice.HasPendingHeadline || s.Practice.HeadlineSelection!=null)return RuleError.ActionNotReady;
             if(s.Practice.Stage==ActionPracticeStage.Complete)return RuleError.ActionSliceComplete;
             if(side!=s.Practice.Actor)return RuleError.WrongActor;
-            if(s.InfluenceEvent!=null || s.Practice.Blockade!=null || s.Practice.FiveYearPlan!=null || s.Practice.War!=null || s.Practice.Olympic!=null)return RuleError.EventInProgress;
+            if(s.InfluenceEvent!=null || s.Practice.Blockade!=null || s.Practice.FiveYearPlan!=null || s.Practice.War!=null)return RuleError.EventInProgress;
+            if(s.Practice.Olympic!=null)return s.Practice.Olympic.Mode.HasValue
+                ?CanContinueOlympicOperations(s,side,s.Practice.Olympic.Mode.Value):RuleError.EventInProgress;
             return RuleError.None;
         }
         public static RuleError CanPlay(GameState state,PlayerSide side,CardId card,CardActionKind kind)
@@ -60,6 +62,7 @@ namespace ColdWarStruggle.Core
         }
         public static CardActionTransition Plan(GameState state,PlayerSide side,CardActionKind kind,string actionId,CardId? card=null,CountryId? target=null)
         {
+            if(kind==CardActionKind.UseOlympicInfluence || kind==CardActionKind.UseOlympicRealignment || kind==CardActionKind.UseOlympicCoup || kind==CardActionKind.DeclineOlympicOperations)return PlanOlympicOperations(state,side,kind,actionId,card,target);
             if(kind==CardActionKind.ParticipateOlympic || kind==CardActionKind.BoycottOlympic)return PlanOlympicResponse(state,side,kind,actionId,card,target);
             if(kind==CardActionKind.ResolveWar)return PlanWarResponse(state,side,actionId,card,target);
             if(kind==CardActionKind.DiscardForBlockade || kind==CardActionKind.DeclineBlockade)return PlanBlockadeResponse(state,side,kind,actionId,card,target);
@@ -93,6 +96,7 @@ namespace ColdWarStruggle.Core
                 if(kind==CardActionKind.FinishInfluence)
                 {
                     if(state.Deployment!=null || p.Stage!=ActionPracticeStage.PlacingInfluence)return new CardActionTransition(RuleError.ActionNotReady);
+                    if(p.Olympic!=null)return FinishOlympicRoot(state,p.Olympic.Flow,OlympicPracticeOutcome.OperationsCompleted);
                     if(p.OpponentOps!=null)return AdvanceOpponentStep(state,CardResolutionStep.Operations);
                     var zones=Move(state,p.ActiveCard.Value,false,false);
                     return Commit(state,Next(p,p.Space,p.VpForUS),zones,state.RandomState);

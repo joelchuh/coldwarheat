@@ -51,17 +51,17 @@ var nextFlow=OlympicResolutionRules.Respond(flow,side,flow.DecisionId,flow.Revis
 **Modify:** ActionPracticeRules.cs、ActionPracticeRules.Coup.cs、ActionPracticeRules.Realignment.cs、OlympicPracticeExecution.cs、InfluenceRules.cs（同路径根）。
 **Interfaces:** `CanChooseOlympicOperations(GameState,PlayerSide,OperationsMode)`、`QuoteOlympicOperations(GameState,PlayerSide,OpsValuePurpose)`、`CanContinueOlympicOperations(GameState,PlayerSide,OperationsMode)`；新增UseOlympicInfluence/UseOlympicRealignment/UseOlympicCoup/DeclineOlympicOperations；FinishInfluence/FinishRealignment优先完成Olympic父事件。
 
-- [ ] RED测试：抵制DEFCON2核战/存活、错误方/模式重复/陈旧状态、基值4与印刷2区分、清洗及正修正封顶、无中国bonus、固定根可达性/当前费用、投放与调整多次/Finish、政变军事与核战、无额外手牌/槽。
+- [x] RED测试：抵制DEFCON2核战/存活、错误方/模式重复/陈旧状态、基值4与印刷2区分、清洗及正修正封顶、无中国bonus、固定根可达性/当前费用、投放与调整多次/Finish、政变军事与核战、无额外手牌/槽。
 ```csharp
 var ops=ActionPracticeRules.QuoteOlympicOperations(boycott,actor,OpsValuePurpose.Influence);
 Assert.That(ops.GeneralValue,Is.EqualTo(4));
 Assert.That(ops.Card,Is.Null);
 ```
-- [ ] 原生RED后实现模式锁与共享算法调用；增加Olympic上下文门禁但保留已有普通/对手OPS行为。
+- [x] 原生RED后实现模式锁与共享算法调用；增加Olympic上下文门禁但保留已有普通/对手OPS行为。
 ```csharp
 var quote=OpsGeneralRules.QuoteAsIfCard(d.Ops,d.Olympic.EffectId,d.Olympic.BoycottBaseOps,actor,purpose,p.OpsEffects.GetModifiers(state.Turn));
 ```
-- [ ] 原生GREEN并提交；纯组件仍只用于真实父编排，不从UI直接调用。
+- [x] 原生GREEN并提交；纯组件仍只用于真实父编排，不从UI直接调用。
 
 ## Task 3 — 宿主、界面与独立试玩
 

@@ -46,7 +46,7 @@ namespace ColdWarStruggle.Core
                     return new CardActionTransition(RuleError.None,state.WithPractice(next,ops,Move(state,card.Value,true,true),state.RandomState));
                 }
                 if(kind==CardActionKind.FinishRealignment)
-                    return p.OpponentOps!=null?AdvanceOpponentStep(state,CardResolutionStep.Operations):Commit(state,Next(p,p.Space,p.VpForUS),Move(state,p.ActiveCard.Value,false,false),state.RandomState);
+                    return p.Olympic!=null?FinishOlympicRoot(state,p.Olympic.Flow,OlympicPracticeOutcome.OperationsCompleted):p.OpponentOps!=null?AdvanceOpponentStep(state,CardResolutionStep.Operations):Commit(state,Next(p,p.Space,p.VpForUS),Move(state,p.ActiveCard.Value,false,false),state.RandomState);
                 error=CheckRealignmentTarget(state,side,target.Value);if(error!=RuleError.None)return new CardActionTransition(error);
                 var definition=p.Definition.Realignment;var operations=state.Operations;
                 if(operations.RegionalBudget!=null)

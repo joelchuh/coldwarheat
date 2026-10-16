@@ -6,7 +6,7 @@ namespace ColdWarStruggle.Core
         public static RuleError CheckCoupCard(GameState state,PlayerSide side,CardId card)
         {
             if(state?.Practice?.Stage!=ActionPracticeStage.ChoosingOperations)return CanPlay(state,side,card,CardActionKind.Coup);
-            var error=CanChooseOpponentOperations(state,side,OperationsMode.Coup);if(error!=RuleError.None)return error;
+            var error=state.Practice.Olympic!=null?CanChooseOlympicOperations(state,side,OperationsMode.Coup):CanChooseOpponentOperations(state,side,OperationsMode.Coup);if(error!=RuleError.None)return error;
             return state.Practice.ActiveCard.Value.Equals(card)?RuleError.None:RuleError.CardNotOwned;
         }
         public static RuleError CheckCoupTarget(GameState state,PlayerSide side,CardId card,CountryId target)
@@ -18,7 +18,7 @@ namespace ColdWarStruggle.Core
         public static int QuoteCoupStrength(GameState state,PlayerSide side,CardId card,CountryId target)
         {
             if(CheckCoupTarget(state,side,card,target)!=RuleError.None)throw new ArgumentException("A legal coup target is required.");
-            var quote=QuoteCard(state,side,card,OpsValuePurpose.Coup);
+            var quote=state.Practice.Olympic!=null?QuoteOlympicOperations(state,side,OpsValuePurpose.Coup):QuoteCard(state,side,card,OpsValuePurpose.Coup);
             return RegionalBudget(state,quote)?.BudgetFor(target)??quote.GeneralValue;
         }
         static CardActionTransition PlanOpponentCoup(GameState state,PlayerSide side,CountryId target,OpponentOpsSequence sequence)

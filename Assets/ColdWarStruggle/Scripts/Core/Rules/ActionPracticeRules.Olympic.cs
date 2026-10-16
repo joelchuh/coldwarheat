@@ -11,7 +11,7 @@ namespace ColdWarStruggle.Core
             if(state.Deployment!=null)return RuleError.SetupInProgress;
             if(state.InfluenceEvent!=null)return RuleError.EventInProgress;
             var execution=state.Practice?.Olympic;if(execution==null)return RuleError.ActionNotReady;
-            if(!execution.Matches(state) || execution.Flow.ResolutionId!=OlympicResolutionId(state) || state.Operations.Budget!=0 || state.SpentOps!=0)
+            if(!execution.Matches(state) || execution.Flow.ResolutionId!=OlympicResolutionId(state) || (!execution.Mode.HasValue && (state.Operations.Budget!=0 || state.SpentOps!=0)))
                 return RuleError.StaleContext;
             return RuleError.None;
         }
