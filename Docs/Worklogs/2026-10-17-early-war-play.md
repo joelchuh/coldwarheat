@@ -3,3 +3,5 @@
 > description: 基础审查完成后继续真实手牌/选择/头条/地图与Player。
 
 基础分支已同步f2faf6c7f7bd95f7fc69776fb5df477d0ba8cb61，ls-remote一致，2989通过。当前feat/early-war-play，复用用户明确指定Unity工程，保留两项用户文件。设计与计划已自检，按自主授权在当前会话逐项执行。Task1先写编译接口及回归测试。
+
+Task1完成：RED3016/2989/27，26未支持动作+1缺定义校验；GREEN3016/3016、0跳过、exit0，SHA2f7b90ed24eb103472b370f7bdadc9afe666f8fd7c666b578c4f82393ad67321。新增27项覆盖直接出牌/待选/终局/上下文。任务2继续对手OPS与头条，未构建Player。

@@ -27,7 +27,7 @@
 **Files:** 新增Core/Rules/WarDecision.cs、ActionPracticeRules.War.cs、Tests/EditMode/WarPlayTests.cs及.meta；修改ActionPracticeState.cs、ActionPracticeRules.cs/Events.cs、PracticeRiskState.cs。
 **Interfaces:** Definition.Wars、State.War、CardActionKind.ResolveWar、Transition.WarResult；CanResolveWar(GameState,PlayerSide)→RuleError，BeginWar(GameState,CardId,bool)→CardActionTransition，WarEventService.Plan已有签名不变。Commit追加可选countries，确保OPS可达性用更新后局面。
 
-- [ ] 写可编译接口和测试，真实RED：
+- [x] 写可编译接口和测试，真实RED：
 ```csharp
 var before=Ready("indo_pakistani_war");
 var waiting=Play(before);
@@ -37,8 +37,8 @@ var result=ActionPracticeRules.Plan(waiting.NextState,PlayerSide.USSR,CardAction
 Assert.That(result.NextState.Practice.Risk.Military.UssrEarned,Is.EqualTo(2));
 ```
 覆盖固定牌胜败/星号、双方印巴双目标、DEFCON2空白、终局±19、溢出及错目标/身份/版本/牌引用/board/random，验证输入不变。
-- [ ] 实现定义绑定、pending上下文、原子结算；先后OP/头条接线留给Task2但不注册未实现入口。
-- [ ] 完整GREEN、元数据、diff；更新module JSON/Wiki/worklog/report后提交。
+- [x] 实现定义绑定、pending上下文、原子结算；先后OP/头条接线留给Task2但不注册未实现入口。
+- [x] 完整GREEN、元数据、diff；更新module JSON/Wiki/worklog/report后提交。
 
 ## Task 2 — 对手OPS与头条延续
 

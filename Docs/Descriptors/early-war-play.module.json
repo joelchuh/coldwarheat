@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "id": "module.early-war-play",
+  "kind": "module",
+  "status": "implemented-subset",
+  "description": "早期战争真实出牌接线：直接固定战争与印巴目标待选已原生通过，OPS/头条/会话/地图接线按计划继续，尚无新版Player。",
+  "documentation": "Docs/Wiki/early-war-play.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.War.cs",
+      "symbol": "CanResolveWar"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.War.cs",
+      "symbol": "CompleteWar"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/WarDecision.cs",
+      "symbol": "Matches"
+    }
+  ],
+  "inputs": [
+    "固定身份、真实卡牌/目标意图与权威GameState；不接受客户端骰/政策"
+  ],
+  "outputs": [
+    "待选WarDecision或原子国家/军事/VP/随机结果及真实卡牌去向"
+  ],
+  "dependencies": [
+    "module.early-war-foundation",
+    "module.headline-resolution",
+    "module.five-year-plan-play"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.war_events_batch1",
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world"
+  ],
+  "preconditions": [
+    "当前封闭支持事件集合，不能产生Camp David/Flower Power事实；不导入外部存档",
+    "同Catalog/Map/Risk与当前turn/version/card/random绑定"
+  ],
+  "side_effects": [
+    "规则只产生不可变草案；宿主接线后统一提交"
+  ],
+  "stop_conditions": [
+    "错身份/版本/目标/局面、未知政策、溢出、终局"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Architecture/early-war-play.md",
+      "scope": "已确认三牌规则与权威接线边界"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/WarPlayTests.cs",
+      "status": "native-passed"
+    }
+  ],
+  "verification": {
+    "status": "task1-passed",
+    "report": "Docs/Testing/early-war-play.validation.json"
+  }
+}

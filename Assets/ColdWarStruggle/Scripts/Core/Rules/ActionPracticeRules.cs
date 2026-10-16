@@ -19,7 +19,7 @@ namespace ColdWarStruggle.Core
             if(s.Cards.HeadlineReserved.Count!=0 || s.Practice.HasPendingHeadline || s.Practice.HeadlineSelection!=null)return RuleError.ActionNotReady;
             if(s.Practice.Stage==ActionPracticeStage.Complete)return RuleError.ActionSliceComplete;
             if(side!=s.Practice.Actor)return RuleError.WrongActor;
-            if(s.InfluenceEvent!=null || s.Practice.Blockade!=null || s.Practice.FiveYearPlan!=null)return RuleError.EventInProgress;
+            if(s.InfluenceEvent!=null || s.Practice.Blockade!=null || s.Practice.FiveYearPlan!=null || s.Practice.War!=null)return RuleError.EventInProgress;
             return RuleError.None;
         }
         public static RuleError CanPlay(GameState state,PlayerSide side,CardId card,CardActionKind kind)
@@ -41,7 +41,7 @@ namespace ColdWarStruggle.Core
             }
             if(!state.Cards.GetHand(side).Contains(card))return RuleError.CardNotOwned;
             var definition=state.Practice.Definition.Cards.GetCard(card);
-            if(kind==CardActionKind.Event)return definition.Kind==CardKind.Event && (state.Practice.Definition.InfluenceEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.DefconVpEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.TurnOpsEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.Blockade?.Card.Id.Equals(card)==true || state.Practice.Definition.FiveYearPlan?.Card.Id.Equals(card)==true)?RuleError.None:RuleError.UnsupportedCardAction;
+            if(kind==CardActionKind.Event)return definition.Kind==CardKind.Event && (state.Practice.Definition.InfluenceEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.DefconVpEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.TurnOpsEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.Blockade?.Card.Id.Equals(card)==true || state.Practice.Definition.FiveYearPlan?.Card.Id.Equals(card)==true || state.Practice.Definition.Wars?.Effects.ContainsKey(card)==true)?RuleError.None:RuleError.UnsupportedCardAction;
             if(kind==CardActionKind.Scoring)return definition.Kind==CardKind.Scoring?RuleError.None:RuleError.UnsupportedCardAction;
             if(definition.Kind!=CardKind.Event)return RuleError.UnsupportedCardAction;
             if(kind==CardActionKind.Influence || kind==CardActionKind.Coup || kind==CardActionKind.Realignment)
@@ -59,6 +59,7 @@ namespace ColdWarStruggle.Core
         }
         public static CardActionTransition Plan(GameState state,PlayerSide side,CardActionKind kind,string actionId,CardId? card=null,CountryId? target=null)
         {
+            if(kind==CardActionKind.ResolveWar)return PlanWarResponse(state,side,actionId,card,target);
             if(kind==CardActionKind.DiscardForBlockade || kind==CardActionKind.DeclineBlockade)return PlanBlockadeResponse(state,side,kind,actionId,card,target);
             if(kind==CardActionKind.SkipEmptyHand)return PlanSkipEmptyHand(state,side,actionId,card,target);
             if(kind==CardActionKind.DeclineExtraActions)return PlanDeclineExtraActions(state,side,actionId,card,target);
@@ -130,10 +131,11 @@ namespace ColdWarStruggle.Core
             var stage=rounds.IsComplete?ActionPracticeStage.Complete:ActionPracticeStage.ChooseCard;
             return new ActionPracticeState(p.Definition,stage,rounds.TotalCompleted,null,space,vp,risk??p.Risk,opsEffects??p.OpsEffects,rounds:rounds,headline:p.Headline);
         }
-        static CardActionTransition Commit(GameState s,ActionPracticeState p,CardZones cards,RandomSnapshot random,int budget=0,SpaceAttemptReceipt receipt=null,RegionScoringResult scoring=null,OpsRegionalBudget regionalBudget=null)
+        static CardActionTransition Commit(GameState s,ActionPracticeState p,CardZones cards,RandomSnapshot random,int budget=0,SpaceAttemptReceipt receipt=null,RegionScoringResult scoring=null,OpsRegionalBudget regionalBudget=null,IReadOnlyDictionary<CountryId,CountryState> countries=null)
         {
-            var ops=OperationsContext.FromRoundStart(p.HasPendingHeadline?s.GameId+"."+p.Headline.CurrentResolutionId:PracticeOperationsId(s,p.CompletedActions),p.Actor,budget,s.Map,s.Countries,s.Operations.Costs,regionalBudget);
-            return new CardActionTransition(RuleError.None,s.WithPractice(p,ops,cards,random,ended:p.Risk?.Result?.Outcome==VictoryOutcome.Finished),receipt,scoring:scoring);
+            var board=countries??s.Countries;
+            var ops=OperationsContext.FromRoundStart(p.HasPendingHeadline?s.GameId+"."+p.Headline.CurrentResolutionId:PracticeOperationsId(s,p.CompletedActions),p.Actor,budget,s.Map,board,s.Operations.Costs,regionalBudget);
+            return new CardActionTransition(RuleError.None,s.WithPractice(p,ops,cards,random,countries:board,ended:p.Risk?.Result?.Outcome==VictoryOutcome.Finished),receipt,scoring:scoring);
         }
         static OpsRegionalBudget RegionalBudget(GameState state,OpsGeneralQuote quote)
         {
