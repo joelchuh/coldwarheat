@@ -44,4 +44,4 @@ candidate_bytes = json.dumps(candidate, ensure_ascii=False, indent=2).encode('ut
 validation = metadata.validate(str(root), byte_overrides={catalog_relative: candidate_bytes})
 ```
 - [x] 运行新工具测试和既有48项校验器回归；保留实际结果与临时fixture，不删除测试产物。运行真实项目预览并确认Git无意外修改。
-- [ ] 为工具/测试配套JSON描述、共享数据依赖、Wiki流程、工作日志和验证报告；元数据与diff通过后提交，fresh只读审查，修复必要问题，推送并ls-remote核对。源码只涉及Python和文档，不重复运行未改变的Unity测试。
+- [x] 为工具/测试配套JSON描述、共享数据依赖、Wiki流程、工作日志和验证报告；元数据与diff通过后提交，fresh只读审查，修复必要问题，推送并ls-remote核对。源码只涉及Python和文档，不重复运行未改变的Unity测试。

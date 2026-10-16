@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "validation.catalog-entry-sync",
   "description": "单条目录同步的真实CLI、文件系统故障注入和共享验证器回归证据",
-  "status": "tests-passed-review-pending",
+  "status": "passed-reviewed",
   "runs": [
     {
       "label": "initial-red",
@@ -92,5 +92,29 @@
       "csharp_symbols": 420,
       "data_dependencies": 699
     }
+  },
+  "review": {
+    "base": "99efc8f33333c1a406e78e1ad716dfb1f5212052",
+    "head": "8760acc86e2de62b718c5326a89b6019629404de",
+    "agent": "review_catalog_sync",
+    "critical": 0,
+    "important": 0,
+    "minor": 0,
+    "independent_checks": [
+      "complete source/tests review",
+      "all 3 source hashes and 6 evidence hashes",
+      "real project unchanged preview",
+      "diff check"
+    ],
+    "not_run": [
+      "test suites",
+      "Unity"
+    ],
+    "excluded": [
+      "hostile concurrent paths/hard links",
+      "unrelated concurrent file edits",
+      "power loss durability beyond file fsync/replace",
+      "gameplay and remote Git"
+    ]
   }
 }
