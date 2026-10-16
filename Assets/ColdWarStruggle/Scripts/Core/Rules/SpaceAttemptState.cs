@@ -62,15 +62,19 @@ namespace ColdWarStruggle.Core
         public int UsAttempts { get; }
         public int UssrAttempts { get; }
         public IReadOnlyDictionary<string, SpaceAttemptReceipt> Receipts { get; }
-        internal SpaceAttemptState(SpaceTrackState track, TurnCalendar calendar, GameTurnContext turn, int us, int ussr, IReadOnlyDictionary<string, SpaceAttemptReceipt> receipts)
+        public IReadOnlyDictionary<string, SpaceEventReceipt> EventReceipts { get; }
+        internal const int MaximumReceipts = 4096;
+        internal int ReceiptCount => Receipts.Count + EventReceipts.Count;
+        internal SpaceAttemptState(SpaceTrackState track, TurnCalendar calendar, GameTurnContext turn, int us, int ussr, IReadOnlyDictionary<string, SpaceAttemptReceipt> receipts, IReadOnlyDictionary<string, SpaceEventReceipt> eventReceipts)
         {
             Track = track; Calendar = calendar; Turn = turn; UsAttempts = us; UssrAttempts = ussr;
             Receipts = new ReadOnlyDictionary<string, SpaceAttemptReceipt>(receipts.ToDictionary(p => p.Key, p => p.Value, StringComparer.Ordinal));
+            EventReceipts = new ReadOnlyDictionary<string, SpaceEventReceipt>(eventReceipts.ToDictionary(p => p.Key, p => p.Value, StringComparer.Ordinal));
         }
         public static SpaceAttemptState Create(SpaceTrackState track, TurnCalendar calendar, int turnNumber)
         {
             if (track == null || calendar == null) throw new ArgumentNullException();
-            return new SpaceAttemptState(track, calendar, calendar.ForTurn(turnNumber), 0, 0, new Dictionary<string, SpaceAttemptReceipt>());
+            return new SpaceAttemptState(track, calendar, calendar.ForTurn(turnNumber), 0, 0, new Dictionary<string, SpaceAttemptReceipt>(), new Dictionary<string, SpaceEventReceipt>());
         }
         public int AttemptsFor(PlayerSide side) => side switch
         {

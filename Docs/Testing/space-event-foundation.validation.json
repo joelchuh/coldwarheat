@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "id": "validation.space-event-foundation",
+  "description": "正式参数加载、事件/普通共享单格推进与幂等基础的原生验证",
+  "status": "native-passed-review-pending",
+  "baseline_commit": "62429328d1603f5f8d7cccb1adb3494d8680e66c",
+  "runs": [
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 3142,
+      "passed": 3087,
+      "failed": 55,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "6dc7816ac57d8b3d788c99365bfed174be6fb143f35a9a6447a57307ba9be531",
+      "schema_version": 1,
+      "run_id": "space-event-foundation-red",
+      "duration_ms": 139299,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\space-event-foundation-red",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\space-event-foundation-red\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\space-event-foundation-red\\editor.log"
+    },
+    {
+      "status": "passed",
+      "error_code": null,
+      "total": 3142,
+      "passed": 3142,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "7caa754e7249f4b2718c68548b67fe372dc30801a081f8fdaa5e4fa8b8767f6c",
+      "schema_version": 1,
+      "run_id": "space-event-foundation-green",
+      "duration_ms": 144790,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\space-event-foundation-green",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\space-event-foundation-green\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\space-event-foundation-green\\editor.log"
+    }
+  ],
+  "source_sha256": {
+    "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAdvanceRules.cs": "93ad12b424de3d2f4aea4301cfaa67f79949898c35a820036fef46105b053bc1",
+    "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceEventDefinition.cs": "540750a9755e3f95b5a996e508346053699b90b7e4554dae99cf0ec9d960a2ef",
+    "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceEventState.cs": "e2ce7de467f5f8db3b57b50c658c25a76d75d04a959e49cceda0729d4ef2fda6",
+    "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceEventRules.cs": "761d980537285f610ccc45bc81836db89071f99fcd6525d4e796ec9c6fb03850",
+    "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAttemptState.cs": "a68f3995774b6915521bb8fb6b0fccdf0ea07009f60cf8d783236af2ca9da79f",
+    "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAttemptRules.cs": "64555499808b372e2fee3aa863d0f016eea36b53765d81fceddf3e6823ca498c",
+    "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/SpaceEventDefinitionLoader.cs": "5c71d9f9466966d7ace8f12a6dcbe0725207e1a656eaa199dabac2b2d4fe4756",
+    "Assets/ColdWarStruggle/Tests/EditMode/SpaceEventFoundationTests.cs": "d407603f2657b308c5e7f003b772eae2fcc56e111f51a263fabe17ddf997ef3e",
+    "Assets/ColdWarStruggle/Tests/EditMode/SpaceEventDefinitionTests.cs": "ff6de3d5f3709e04a64ba1634ef25fe42a9fbaa5048f4118e18f7f2cb158bf61"
+  },
+  "failure_analysis": "RED55均为新增接口未实现/缺验证，旧3087通过；实现后3142全通过，无跳过。",
+  "limitations": [
+    "尚未接玩家命令、全局VP/牌区/胜负提交或头条/UI",
+    "终点新事件保持RequiresRuling，不默认完成",
+    "基础层本批没有重建Player",
+    "存档恢复与完整外部事件授权未实现"
+  ]
+}

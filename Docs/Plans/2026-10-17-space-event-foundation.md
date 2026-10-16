@@ -32,7 +32,7 @@
 
 **Interfaces:** `SpaceEventDefinition(cards,track,cardId,effectId,advanceSteps)`；`SpaceEventRequest(id,sourceActionId,turnNumber,beneficiary,definition)`；`SpaceEventRules.QueryEligibility(state,request)`；`SpaceEventRules.PlanAdvance(state,request)`；`SpaceAdvanceRules.CalculateSingleStep(track,beneficiary)`。
 
-- [ ] 写最小可编译接口桩和真实测试，运行原生RED。测试用正式轨道、手核奖励表，不由被测函数生成预期；一组完整双方/先后/目标表及故障边界。
+- [x] 写最小可编译接口桩和真实测试，运行原生RED。测试用正式轨道、手核奖励表，不由被测函数生成预期；一组完整双方/先后/目标表及故障边界。
 ```csharp
 var plan = SpaceEventRules.PlanAdvance(state, request);
 Assert.That(plan.After.Track.US, Is.EqualTo(1));
@@ -42,7 +42,7 @@ var retry = SpaceEventRules.PlanAdvance(plan.After, request);
 Assert.That(retry.After, Is.SameAs(plan.After));
 Assert.That(retry.VpDeltaToApply, Is.Zero);
 ```
-- [ ] 实现共享计算、定义与严格加载、两类收据保留、事件幂等与终点边界。普通成功改调用共用计算，失败逻辑保持。
+- [x] 实现共享计算、定义与严格加载、两类收据保留、事件幂等与终点边界。普通成功改调用共用计算，失败逻辑保持。
 ```csharp
 if (state.EventReceipts.TryGetValue(request.Id, out var prior)) {
     if (!prior.Request.SameFacts(request)) throw new ArgumentException("Conflicting space event ID.");
@@ -50,5 +50,5 @@ if (state.EventReceipts.TryGetValue(request.Id, out var prior)) {
 }
 var advance = SpaceAdvanceRules.CalculateSingleStep(state.Track, request.Beneficiary);
 ```
-- [ ] 运行Tools/Scripts/run-unity-editmode.ps1，实际全部通过后记录测试XML/SHA与源提交；修复真实失败，不把编译失败当规则RED。
+- [x] 运行Tools/Scripts/run-unity-editmode.ps1，实际全部通过后记录测试XML/SHA与源提交；修复真实失败，不把编译失败当规则RED。
 - [ ] 更新模块JSON、Wiki/工作记录与验证报告；运行元数据与diff检查、提交；fresh只读审查并修必要问题；推送分支并ls-remote核对。基础层本批不重建未接入该功能的Player。

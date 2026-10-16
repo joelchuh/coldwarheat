@@ -1,7 +1,7 @@
 # 太空竞赛：基础实现与后续设计
 
 > description: 查询太空尝试资格、8格轨道、先到/后到VP、4项领先能力、事件直接推进、额外行动与回合末弃牌。
-> 状态：2026-10-14轨道/能力及普通单格尝试纯计划已实现，全量1376项通过；完整用牌/VP宿主、存档恢复与事件推进待实现。播放器未重建。
+> 当前：普通用牌/轨道能力已接已有试玩；2026-10-17新增[单格事件基础](space-event-foundation.md)，普通成功与事件共用计算，3142原生回归通过；事件玩家接线与存档恢复待实现。下文各日期测试数是历史批次证据。
 > 入口：[模块描述](../Descriptors/space-race.module.json)、[轨道参数](../../Data/Rulesets/deluxe-2015/space-race.json)、[验收案例](../Design/scoring-space.cases.json)。
 
 ## 当前可调用子集
@@ -155,3 +155,5 @@ flowchart TD
 无活动干预的普通手牌太空已通过 [ActionPracticeRules](playable-card-actions.md) 接至宿主与UI，持牌/固定身份/版本/报价及牌去向、随机数、VP、行动槽原子提交。此接线仅显式练习，完整头条、太空事件和后续回合仍未实现。
 
 2026-10-16更新：[太空期末弃牌](space-end-turn-discard.md)已接Core/固定身份会话。军事与扣留审核后生成私有选择，处理后才允许下一回合或最终计分；第8格已接[太空额外行动](space-extra-actions.md)的独立根计数、出牌/放弃、China资格与回合结束门禁；新Player验收见该模块报告，历史验收数仅代表各自构建。
+
+2026-10-17：SpaceAttemptState新增EventReceipts；PlanAttempt与BeginNextTurn都保留它，同ID跨普通/事件拒绝。成功普通尝试复用SpaceAdvanceRules.CalculateSingleStep。实际事件接口见[单格事件基础](space-event-foundation.md)，通用多格SpaceRaceService仍为设计。

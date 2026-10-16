@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "id": "module.space-event-foundation",
+  "kind": "module",
+  "status": "implemented-foundation",
+  "description": "Scientist单格太空事件纯计划与普通成功尝试共用推进/奖励；保留次数及双类收据、终点待裁定；3142原生测试通过，玩家接线待完成。",
+  "documentation": "Docs/Wiki/space-event-foundation.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAdvanceRules.cs",
+      "symbol": "CalculateSingleStep"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceEventDefinition.cs",
+      "symbol": "SpaceEventDefinition"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceEventState.cs",
+      "symbol": "SpaceEventRequest"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceEventRules.cs",
+      "symbol": "QueryEligibility"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceEventRules.cs",
+      "symbol": "PlanAdvance"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/SpaceEventDefinitionLoader.cs",
+      "symbol": "Load"
+    }
+  ],
+  "inputs": [
+    "正式参数/schema、批准CardCatalog、同一SpaceRaceDefinition、可信回合/受益方与来源ID"
+  ],
+  "outputs": [
+    "不可变SpaceEventPlan，原状态/新状态/收据/待应用VP；无随机与普通次数消耗"
+  ],
+  "dependencies": [
+    "module.space-race"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.space_events_batch1",
+    "rules.deluxe2015.space-race",
+    "cards.deluxe2015.definitions"
+  ],
+  "preconditions": [
+    "仅供可信事件编排，调用方负责持牌/阶段/身份/事件授权；不是玩家移动命令",
+    "定义与状态使用同一轨道对象；合法回合；只支持已核实单格政策"
+  ],
+  "side_effects": [
+    "纯计算不改源状态；宿主必须另行原子提交轨道、VP、卡牌与胜负"
+  ],
+  "stop_conditions": [
+    "终点新事件RequiresRuling；错误回合/轨道/来源/跨类型ID/冲突ID或未支持参数拒绝",
+    "普通与事件共用4096收据工程上限；旧回合请求拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Architecture/space-event-foundation.md",
+      "scope": "规则依据、可信边界和终点未裁定"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceEventFoundationTests.cs",
+      "status": "28-native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceEventDefinitionTests.cs",
+      "status": "27-native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/SpaceAttemptPlanTests.cs",
+      "status": "regression-passed"
+    }
+  ],
+  "verification": {
+    "status": "native-passed-review-pending",
+    "report": "Docs/Testing/space-event-foundation.validation.json"
+  }
+}

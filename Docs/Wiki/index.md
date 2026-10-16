@@ -68,7 +68,7 @@
 | 后续回合修正蓝图 | 查此前接口与重复停止的研究记录 | 历史蓝图，已由本批契约展开 | [历史蓝图](turn-modifiers-next.md) · [当前契约](persistent-effects-batch2.md) |
 | 中期影响力第二批 | 查解放神学额度/穆斯林8国名单/南非分支邻国 | 3牌参数Bound；待实现 | [mid-influence-batch2.md](mid-influence-batch2.md) |
 | 国家指标VP事件 | 查Kitchen/进步联盟/里根对实际局面的计数与VP | 3牌参数Bound；待实现 | [country-metric-vp-events.md](country-metric-vp-events.md) |
-| 事件太空首批 | 查Scientist一格推进、奖励/能力和终点待裁定 | 1牌参数Bound；待实现 | [space-events-batch1.md](space-events-batch1.md) |
+| 事件太空首批 | 查Scientist一格推进、奖励/能力和终点待裁定 | 参数与基础纯计划已实现；玩家接线待完成 | [space-events-batch1.md](space-events-batch1.md) |
 | 教皇／团结工会链 | 查Poland影响力及成功来源关联的活动许可 | 2牌参数Bound；短缺待裁定 | [solidarity-chain.md](solidarity-chain.md) |
 | 中期影响力第一批 | 查葡萄牙/阿连德/萨达特/OAS固定目标、清除和中南美额度 | 4牌参数Bound；C#待实现 | [mid-influence-batch1.md](mid-influence-batch1.md) |
 | DEFCON与VP顺序事件 | 查鸭子/核禁/停止忧虑的先后、根核战责任、动态VP与直接固定军事 | 3牌参数Bound；C#待实现 | [defcon-vp-events.md](defcon-vp-events.md) |
@@ -167,3 +167,5 @@
 - [结果阅读页](demo-result-reader.md)：展开当前公开结果，大字号与滚动阅读；上下文失效隔离与验证状态见描述。
 
 - [单条目录摘要同步](catalog-entry-sync.md)：指定描述的catalog预览与双SHA原子同步；数据status独立，完整验证后才写入。
+
+- [单格太空事件基础](space-event-foundation.md)：共享普通/事件奖励、保留次数与收据，3142原生测试；终点待裁定，Host/UI待接。

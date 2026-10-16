@@ -2,9 +2,9 @@
 
 description：查捕获纳粹科学家的一格事件推进、普通尝试隔离、正常奖励/领先能力和终点待裁定。
 
-状态2026-10-06：#18参数Bound，C#待实现。[描述](../../Data/Descriptors/space-events-batch1.data.json)→[参数](../../Data/Cards/deluxe-2015/space-events-batch1.parameters.json)、[Schema](../Contracts/space-events-batch1.schema.json)、[案例](../Design/space-solidarity-events.cases.json)、[验证](../Design/space-solidarity-events.validation.json)。
+状态2026-10-17：#18参数与[单格基础纯计划](space-event-foundation.md)已实现，3142原生测试通过；玩家授权/VP牌区提交与UI待接。以下详细编排中未落地部分仍是设计。[描述](../../Data/Descriptors/space-events-batch1.data.json)→[参数](../../Data/Cards/deluxe-2015/space-events-batch1.parameters.json)、[Schema](../Contracts/space-events-batch1.schema.json)、[案例](../Design/space-solidarity-events.cases.json)、[验证](../Design/space-solidarity-events.validation.json)。
 
-采用既有SpaceRaceService.PlanEventAdvance，经可信ResolutionFrame取EffectController作为受益方，不接受客户端自报轨道/奖励；中立事件控制方也不能一律替换为根行动者。事件推进一格，不查普通OPS门槛、不掷骰，不增加或归零普通AttemptsUsedThisTurn；即使本回合普通额度已用完也可事件推进。一般EventAttempt/Headline合法性仍由出牌编排验证。
+原设计接口名SpaceRaceService.PlanEventAdvance尚未作为类落地；当前基础使用SpaceEventRules.PlanAdvance，未来宿主经可信ResolutionFrame取EffectController作为受益方，不接受客户端自报轨道/奖励；中立事件控制方也不能一律替换为根行动者。事件推进一格，不查普通OPS门槛、不掷骰，不增加或归零普通AttemptsUsedThisTurn；即使本回合普通额度已用完也可事件推进。一般EventAttempt/Headline合法性仍由出牌编排验证。
 
 轨道终点、目标格、先到/后到VP及能力只查rules.deluxe2015.space-race，参数不复制8格数据。位置0至倒数第1格：计算下一格、按对手到达顺序发正常目标奖励、根据双方新位置刷新领先能力。获得第二次尝试不是把已有次数清零；新头条策略只影响未建立的选择组；第8格追加名额仍由原调度器决定，事件本身不插入立即根行动。双方相同格按实际先后记录，不发两个先到奖。
 
