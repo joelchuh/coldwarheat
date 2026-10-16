@@ -15,6 +15,7 @@ namespace ColdWarStruggle.Core
         {
             try
             {
+                if(state.Practice.Definition.FiveYearPlan?.Card.Id.Equals(card)==true)return BeginFiveYearPlan(state,false);
                 if(state.Practice.Definition.Blockade?.Card.Id.Equals(card)==true)return BeginBlockade(state,false);
                 if(state.Practice.Definition.TurnOpsEvents?.Effects.TryGetValue(card,out var opsEffect)==true)return PlanTurnOpsEvent(state,side,opsEffect);
                 if(state.Practice.Definition.DefconVpEvents?.Effects.TryGetValue(card,out var trackEffect)==true)return PlanDefconVpEvent(state,side,trackEffect);
@@ -34,6 +35,7 @@ namespace ColdWarStruggle.Core
         {
             if(transition==null)return new InfluenceEventTransition(RuleError.InvalidCommand);
             if(!transition.Accepted || transition.NextState.Practice==null)return transition;
+            if(transition.NextState.Practice.FiveYearPlan!=null)return CompleteFiveYearPlanInfluence(transition);
             var s=transition.NextState;var p=s.Practice;var e=s.InfluenceEvent;
             if(p.Stage!=ActionPracticeStage.ResolvingEvent || !p.ActiveCard.HasValue || e==null || e.PhasingPlayer!=p.Actor
                 || e.Policy!=InfluenceEventPolicy.NoActiveInterference || p.Definition.InfluenceEvents==null

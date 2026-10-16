@@ -18,9 +18,9 @@
 ### Task 1: 直接根和三类US子事件
 Files: Core/Rules/FiveYearPlanExecution.cs, ActionPracticeRules.FiveYearPlan.cs, ActionPracticeState.cs, ActionPracticeRules.cs, ActionPracticeRules.Events.cs; Core/State/GameState.cs, Core/Effects/InfluenceEventFlow.cs; Tests/EditMode/FiveYearPlanPlayTests.cs (+meta).
 Interfaces: optional ActionPracticeDefinition.fiveYearPlan; optional ActionPracticeState.fiveYearPlan; FiveYearPlanExecution authoritative immutable root/selection; FiveYearPlanResult narrow selected/outcome; CardActionTransition.FiveYearPlanResult and InfluenceEventTransition.FiveYearPlanResult. Existing Plan(Event) enters BeginFiveYearPlan; CompleteEventAction routes pending child into CompleteFiveYearPlanInfluence.
-- [ ] Stubs + true state fixtures; native RED for direct roots, discards, US waiting/no-change, turn-OPS, DEFCON/VP, terminal, preflight, stale/overflow boundaries.
-- [ ] Implement capability derivation, start/context binding, child adapter dispatch, atomic completion/terminal; do not overwrite parent Actor/ActiveCard.
-- [ ] Native GREEN whole suite; evidence and ledger.
+- [x] Stubs + true state fixtures; native RED for direct roots, discards, US waiting/no-change, turn-OPS, DEFCON/VP, terminal, preflight, stale/overflow boundaries.
+- [x] Implement capability derivation, start/context binding, child adapter dispatch, atomic completion/terminal; do not overwrite parent Actor/ActiveCard.
+- [x] Native GREEN whole suite; evidence and ledger.
 
 ### Task 2: 对手序列与头条
 Files: Core/Rules/ActionPracticeRules.OpponentOps.cs, ActionPracticeRules.Coup.cs, HeadlineResolutionRules.cs; Tests/EditMode/FiveYearPlanFlowTests.cs (+meta), prior task entry guards if required.

@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "id": "module.five-year-plan-play",
+  "kind": "module",
+  "description": "五年计划可玩续接：父根绑定、已支持US子事件与原子去向；直接根已通过2856项原生回归，对手/头条/会话/Demo待接。",
+  "status": "implemented-subset",
+  "documentation": "Docs/Wiki/five-year-plan-play.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.FiveYearPlan.cs",
+      "symbol": "BeginFiveYearPlan"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.FiveYearPlan.cs",
+      "symbol": "CompleteFiveYearPlanInfluence"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/FiveYearPlanExecution.cs",
+      "symbol": "FiveYearPlanExecution"
+    }
+  ],
+  "inputs": [
+    "已授权真实出牌/父根、权威配置和完整不可变状态；US选择沿用EventCommand"
+  ],
+  "outputs": [
+    "一次选牌结果、绑定父根的子等待或一次完成；终局保留父子Resolving"
+  ],
+  "dependencies": [
+    "module.five-year-plan-foundation",
+    "module.playable-influence-events",
+    "module.opponent-ops-modes"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.hand_events_batch1"
+  ],
+  "preconditions": [
+    "全US候选处理器已真实装配；只接当前纯影响力、DEFCON/VP和单回合OPS服务"
+  ],
+  "side_effects": [
+    "Core生成草稿，未完成会话接线；不提前公开隐藏Selection"
+  ],
+  "stop_conditions": [
+    "缺处理器、异目录/牌区/随机/根绑定、错误选择、数值溢出"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/hand-events-batch1.md",
+      "scope": "已确认五年计划卡文与HC1工程约定"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/FiveYearPlanPlayTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "verification": {
+    "status": "in-progress",
+    "report": "Docs/Testing/five-year-plan-play.validation.json"
+  }
+}

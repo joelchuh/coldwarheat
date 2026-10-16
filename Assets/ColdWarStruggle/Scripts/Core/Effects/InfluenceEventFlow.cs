@@ -6,6 +6,7 @@ namespace ColdWarStruggle.Core
 {
     public sealed class InfluenceEventTransition
     {
+        public FiveYearPlanResult FiveYearPlanResult { get; }
         public RuleError Error { get; }
         public InfluenceEventError EffectError { get; }
         public bool Accepted=>Error==RuleError.None;
@@ -14,9 +15,9 @@ namespace ColdWarStruggle.Core
         public long? DecisionRequestedSequence { get; }
         public long? ResolutionSequence { get; }
         internal InfluenceEventTransition(RuleError error,InfluenceEventError effectError=InfluenceEventError.None,
-            GameState next=null,IEnumerable<InfluenceChanged> changes=null,long? decision=null,long? resolution=null)
+            GameState next=null,IEnumerable<InfluenceChanged> changes=null,long? decision=null,long? resolution=null,FiveYearPlanResult fiveYearPlanResult=null)
         {
-            Error=error;EffectError=effectError;NextState=next;Changes=Array.AsReadOnly((changes??Enumerable.Empty<InfluenceChanged>()).ToArray());
+            FiveYearPlanResult=fiveYearPlanResult;Error=error;EffectError=effectError;NextState=next;Changes=Array.AsReadOnly((changes??Enumerable.Empty<InfluenceChanged>()).ToArray());
             DecisionRequestedSequence=decision;ResolutionSequence=resolution;
         }
     }
