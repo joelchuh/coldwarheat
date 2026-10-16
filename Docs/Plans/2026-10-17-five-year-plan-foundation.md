@@ -30,9 +30,9 @@ FiveYearPlanSelection FiveYearPlanRules.Plan(FiveYearPlanDefinition definition,C
 enum FiveYearPlanRoute { EmptyHand, Discarded, AwaitingUsEvent }
 // selection: Before, Cards, RandomBefore, RandomAfter, SelectedCard?, Route
 ```
-- [ ] 写最小编译接口与真实全牌区/PCG用例，原生红灯。
-- [ ] 实现严格定义绑定、唯一父源、支持US集合预检、稳定排序和独立抽样、只移动选中牌；输出只读计划。
-- [ ] 全原生绿灯：断言空/单/三阵营/计分、两种手牌顺序相同选牌、所有非候选区域保持、拒绝/溢出不变。
+- [x] 写最小编译接口与真实全牌区/PCG用例，原生红灯。
+- [x] 实现严格定义绑定、唯一父源、支持US集合预检、稳定排序和独立抽样、只移动选中牌；输出只读计划。
+- [x] 全原生绿灯：断言空/单/三阵营/计分、两种手牌顺序相同选牌、所有非候选区域保持、拒绝/溢出不变。
 
 ### Task 2: 正式装载与复用
 Files: Scripts/Infrastructure/DataLoading/HandEventContract.cs, FiveYearPlanDefinitionLoader.cs, existing BlockadeDefinitionLoader.cs; Tests/EditMode/FiveYearPlanDefinitionTests.cs.
