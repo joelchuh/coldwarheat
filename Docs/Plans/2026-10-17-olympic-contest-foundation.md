@@ -28,18 +28,18 @@
 **Create:** Assets/ColdWarStruggle/Scripts/Core/Rules/StandardDieDefinition.cs、OlympicGamesDefinition.cs、OlympicContestRules.cs；Infrastructure/DataLoading/StandardDieDefinitionLoader.cs、OlympicGamesDefinitionLoader.cs（同Scripts根）；Assets/ColdWarStruggle/Tests/EditMode/OlympicDefinitionTests.cs、OlympicContestTests.cs。
 **Interfaces:** `StandardDieDefinitionLoader.Load(string,string)`；`OlympicGamesDefinitionLoader.Load(string,string,CardCatalog,StandardDieDefinition,IReadOnlyCollection<string>)`；`OlympicContestRules.Calculate(OlympicGamesDefinition,PlayerSide,int,int)`。
 
-- [ ] 编写可编译接口stub与真实测试，跑原生RED：正式加载、schema弱化后值/类型错误、空引用、双方所有骰组合、原骰范围、总数不封顶。
+- [x] 编写可编译接口stub与真实测试，跑原生RED：正式加载、schema弱化后值/类型错误、空引用、双方所有骰组合、原骰范围、总数不封顶。
 ```csharp
 var result=OlympicContestRules.Calculate(definition,PlayerSide.US,6,6);
 Assert.That(result.UsTotal,Is.EqualTo(8));
 Assert.That(result.Winner,Is.EqualTo(PlayerSide.US));
 ```
-- [ ] 实现只读定义、严格加载与数学比较。数据事实保持共享；比较对US/SU分别加SponsorModifier，Tie时Winner空、Award为TieVp。
+- [x] 实现只读定义、严格加载与数学比较。数据事实保持共享；比较对US/SU分别加SponsorModifier，Tie时Winner空、Award为TieVp。
 ```csharp
 var us=checked(usRoll+(sponsor==PlayerSide.US?definition.SponsorModifier:0));
 var su=checked(ussrRoll+(sponsor==PlayerSide.USSR?definition.SponsorModifier:0));
 ```
-- [ ] 完整原生GREEN后记录工作日志/验证报告、源码SHA并提交。
+- [x] 完整原生GREEN后记录工作日志/验证报告、源码SHA并提交。
 
 ## Task 2 — 双骰与抵制原子计划
 
