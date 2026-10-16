@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "id": "data.demo-olympic-scenarios",
+  "kind": "data",
+  "dataset_id": "demo.olympic_scenarios",
+  "status": "fixture",
+  "description": "四个第2回合人工奥运会练习：美苏主办比赛、抵制核战与地图OPS；手牌/影响力/DEFCON独立存储，奖励读取正式定义。",
+  "entrypoints": [
+    {
+      "path": "Data/Demo/olympic-scenarios.json",
+      "symbol": "scenarios"
+    }
+  ],
+  "inputs": [
+    "已注册奥运会的最终计分源场景；共享地图/卡牌/回合定义"
+  ],
+  "outputs": [
+    "第32至35人工练习；美国入口先通过真实苏联OPS预备行动交棒"
+  ],
+  "dependencies": [
+    "module.olympic-play"
+  ],
+  "data_dependencies": [
+    "demo.final_scoring_scenario",
+    "effects.deluxe2015.olympic_games",
+    "rules.deluxe2015.standard-dice"
+  ],
+  "preconditions": [
+    "scope=fixture、Turn2、合法非核战初始DEFCON；不代表自然开局"
+  ],
+  "side_effects": [
+    "创建独立内存Host，不改正式开局或旧场景"
+  ],
+  "stop_conditions": [
+    "未知字段、错误来源/牌/影响力/DEFCON、重复牌或国家、错误预备动作拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Architecture/olympic-play.md",
+      "scope": "人工局面与正式业务数值分离"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/OlympicDemoTests.cs",
+      "status": "native-passed"
+    }
+  ],
+  "documentation": "Docs/Wiki/olympic-play.md",
+  "verification": {
+    "status": "native-passed-player-pending",
+    "report": "Docs/Testing/olympic-play.validation.json"
+  }
+}

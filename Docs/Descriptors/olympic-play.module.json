@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "id": "module.olympic-play",
+  "kind": "module",
+  "status": "implemented-subset",
+  "description": "正常手牌奥运会试玩：对手参赛/抵制、逐对自动续跑、抵制三OPS与单根收尾；四人工局面，头条/特殊嵌套和存档未接入。",
+  "documentation": "Docs/Wiki/olympic-play.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Olympic.cs",
+      "symbol": "CanRespondToOlympic"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Olympic.cs",
+      "symbol": "PlanOlympicContinuation"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.OlympicOps.cs",
+      "symbol": "CanChooseOlympicOperations"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.OlympicOps.cs",
+      "symbol": "CanContinueOlympicOperations"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.OlympicOps.cs",
+      "symbol": "QuoteOlympicOperations"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/LocalGameHost.Olympic.cs",
+      "symbol": "AdvanceInternalOlympic"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/OlympicContracts.cs",
+      "symbol": "PublicOlympicResult"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Olympic.cs",
+      "symbol": "RespondOlympicAsync"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.Olympic.cs",
+      "symbol": "WithOlympicEvents"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.Olympic.cs",
+      "symbol": "WithOlympicScenarios"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "symbol": "BuildOlympicPlaytest"
+    }
+  ],
+  "inputs": [
+    "固定身份会话Event/奥运会响应/OPS用途命令；真实权威GameState、正式卡牌/共享骰/规则参数"
+  ],
+  "outputs": [
+    "公开主办方/等待方/最新双骰/结果；实际地图、风险、VP、牌区和一个原根完成"
+  ],
+  "dependencies": [
+    "module.olympic-resolution-flow",
+    "module.olympic-contest-foundation",
+    "module.demo-result-reader"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.olympic_games",
+    "rules.deluxe2015.standard-dice",
+    "cards.deluxe2015.definitions",
+    "demo.olympic_scenarios"
+  ],
+  "preconditions": [
+    "正常ActionRound真实手牌；同一目录/风险定义；无未实现外部骰子干预",
+    "抵制三OPS由当前父上下文授权，UI不能提供预算或骰子；无地区奖励处理器"
+  ],
+  "side_effects": [
+    "Host在完整计划及公开结果构建后提交；平手每次内部pump一对，旧响应幂等",
+    "构建生成忽略的StreamingAssets与独立OlympicPlaytest，不覆盖旧Player"
+  ],
+  "stop_conditions": [
+    "错误身份、版本、来源或模式拒绝；核战/VP终局保留Resolving审计且不推进原根",
+    "本牌头条/特殊嵌套及持久化/网络未支持；不把内存Flow当持久存档",
+    "fixture非明确人工局面、非法牌/DEFCON/影响力/预备步骤拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Architecture/olympic-play.md",
+      "scope": "真实手牌与OPS父编排、公开会话及明确边界"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/OlympicPlayTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/OlympicOperationsTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/OlympicSessionTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/OlympicPresentationTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/OlympicDemoTests.cs",
+      "status": "native-passed"
+    }
+  ],
+  "verification": {
+    "status": "native-passed-player-pending",
+    "report": "Docs/Testing/olympic-play.validation.json"
+  }
+}

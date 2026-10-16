@@ -69,14 +69,14 @@ var quote=OpsGeneralRules.QuoteAsIfCard(d.Ops,d.Olympic.EffectId,d.Olympic.Boyco
 **Modify:** SessionContracts.cs、CardActionContracts.cs、LocalGameHost.Cards.cs；DemoController.Cards.cs、DemoView.Actions.cs；各DemoCatalog定义复制入口；Editor/DemoBuild.cs、Bootstrap/DemoBootstrap.cs；Data/catalog.json、Docs/Descriptors/catalog.json、Docs/Wiki/index.md、Docs/Wiki/prototype-roadmap.md（以实际存在入口定位）。
 **Interfaces:** `LocalGameHost.AdvanceInternalOlympic(PlayerSide viewer)`只在可信Host提供，不进入IGameSession；公开OlympicView/Result；控制器`RespondOlympicAsync(bool participate)`/`ChooseOlympicOperationsAsync(OperationsMode)`/`DeclineOlympicOperationsAsync()`/`AdvanceInternalOlympic()`；装配`WithOlympicEvents(parameters,schema,die,dieSchema,cardReferences)`与`WithOlympicScenarios(fixture)`；构建`BuildOlympicPlaytest`。
 
-- [ ] 写真实Host/控制器/装配行为测试与stub：身份切换、重复/冲突/旧版本、先前回执在内部继续后不重掷、DTO不泄漏、OPSquery预算一致、两方响应、错误fixture、所有复制路径保留定义。
+- [x] 写真实Host/控制器/装配行为测试与stub：身份切换、重复/冲突/旧版本、先前回执在内部继续后不重掷、DTO不泄漏、OPSquery预算一致、两方响应、错误fixture、所有复制路径保留定义。
 ```csharp
 var first=await opponent.SubmitCardActionAsync(command);
 host.AdvanceInternalOlympic(PlayerSide.US);
 var retry=await opponent.SubmitCardActionAsync(command);
 Assert.That(retry,Is.SameAs(first));
 ```
-- [ ] 原生RED后接公共DTO、可信单对pump、UI分支/用途/结果说明。新增fixture只含人工局面与稳定ID，正式数值从共享定义获取。
+- [x] 原生RED后接公共DTO、可信单对pump、UI分支/用途/结果说明。新增fixture只含人工局面与稳定ID，正式数值从共享定义获取。
 - [ ] 原生GREEN；元数据与diff检查，更新报告/JSON/Wiki；提交后一次fresh整批只读审查。
 - [ ] 构建Builds/OlympicPlaytest；比较全部StreamingAssets源字节及Managed程序集SHA，记录构建log；工具可用时实际检查参赛/抵制核战及三OPS、重发/身份切换，保存实际截图与限制。必要修复后相关回归。
 - [ ] 常规精确暂存提交/push并ls-remote核验，旧Player保留；如未完成UI验收不得标为全部通过。

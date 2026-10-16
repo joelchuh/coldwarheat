@@ -5,7 +5,7 @@
 
 先读[JSON描述](../Descriptors/olympic-resolution-flow.module.json)，再按函数定位代码。数值与双骰原子计算复用[基础模块](olympic-contest-foundation.md)。
 
-`Begin`要求正式定义与CardZones使用同一目录，唯一Resolving牌为奥运会，VP/DEFCON仍可继续。当前只支持普通根/本牌头条，Sponsor=rootPhasing；对手成为PendingOwner。真实持牌、GameState/帧与触发权限必须由后续父适配器验证，不能让客户端直接调用本接口。
+`Begin`要求正式定义与CardZones使用同一目录，唯一Resolving牌为奥运会，VP/DEFCON仍可继续。当前只支持普通根/本牌头条，Sponsor=rootPhasing；对手成为PendingOwner。正常手牌的真实持牌、GameState根和触发权限由[试玩父适配器](olympic-play.md)验证；头条和特殊嵌套仍须未来适配器，不能让客户端直接调用本接口。
 
 ```mermaid
 flowchart TD

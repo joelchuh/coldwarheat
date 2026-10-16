@@ -50,7 +50,9 @@ namespace ColdWarStruggle.Bootstrap
                     .WithEarlyWars(Read(root,"Data/Cards/deluxe-2015/war-events-batch1.parameters.json"),Read(root,"Docs/Contracts/war-events-batch1.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
                     .WithEarlyWarScenarios(Read(root,"Data/Demo/early-war-scenarios.json"))
                     .WithSpaceEvents(Read(root,"Data/Cards/deluxe-2015/space-events-batch1.parameters.json"),Read(root,"Docs/Contracts/space-events-batch1.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
-                    .WithSpaceEventScenarios(Read(root,"Data/Demo/space-event-scenarios.json"));
+                    .WithSpaceEventScenarios(Read(root,"Data/Demo/space-event-scenarios.json"))
+                    .WithOlympicEvents(Read(root,"Data/Cards/deluxe-2015/olympic-games.parameters.json"),Read(root,"Docs/Contracts/olympic-games.schema.json"),Read(root,"Data/Rulesets/deluxe-2015/standard-dice.json"),Read(root,"Docs/Contracts/standard-dice.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
+                    .WithOlympicScenarios(Read(root,"Data/Demo/olympic-scenarios.json"));
                 var displayNames=CatalogNamesLoader.Load(Read(root,"Data/Localization/zh-CN.catalog-names.json"),"zh-CN",catalog.Names.Keys);
                 var worldAssets=WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
 #else
@@ -87,7 +89,9 @@ namespace ColdWarStruggle.Bootstrap
                     .WithEarlyWars(Read(root,"war-events-batch1.parameters.json"),Read(root,"war-events-batch1.schema.json"),Read(root,"cards.json"))
                     .WithEarlyWarScenarios(Read(root,"early-war-scenarios.json"))
                     .WithSpaceEvents(Read(root,"space-events-batch1.parameters.json"),Read(root,"space-events-batch1.schema.json"),Read(root,"cards.json"))
-                    .WithSpaceEventScenarios(Read(root,"space-event-scenarios.json"));
+                    .WithSpaceEventScenarios(Read(root,"space-event-scenarios.json"))
+                    .WithOlympicEvents(Read(root,"olympic-games.parameters.json"),Read(root,"olympic-games.schema.json"),Read(root,"standard-dice.json"),Read(root,"standard-dice.schema.json"),Read(root,"cards.json"))
+                    .WithOlympicScenarios(Read(root,"olympic-scenarios.json"));
                 var displayNames=CatalogNamesLoader.Load(Read(root,"names.zh-CN.json"),"zh-CN",catalog.Names.Keys);
                 var worldAssets=WorldMapAssets.Load(Read(root,"world-layout.json"),Read(root,"world-land.json"),catalog.Map);
 #endif

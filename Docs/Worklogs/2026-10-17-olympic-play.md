@@ -17,3 +17,5 @@ Task2 complete：新增29例。首次运行因测试误用internal构造器未�
 三OPS复用已完成：QuoteAsIfCard、固定根可达性/当前费用、普通调整骰、政变/军事与核战；Finish只完成一次原根。四种跨上下文测试覆盖game/version/random/source；内部封闭的VP/风险/根状态不能通过公开测试构造器任意变造，本批不虚称逐项伪造测试已覆盖。地图fixture按正式邻接确认Angola→Botswana→Zimbabwe，额外Italy影响力用于验证France费用变化。Task3宿主投影/界面/装配/Player待完成。
 
 Task3会话子批已验证：RED 3428/3415/13（11个未实现、1个查询无事件预算、1个内部身份异常类型未实现），GREEN 3428/3428，零失败/跳过；XML 70dcdb61d8d2a1b0f1489f6f7684f673b7a5763b6d7295c9861e1eed23f3f605。公开DTO、Host单对pump、控制器选择/重发/用途与界面接线已实现；ActualPlayer仍未构建和操作，不把界面代码通过编译当成目视验收。结果投影从最终PlayerView取DEFCON/终局，避免抵制后政变仍显示旧Flow的DEFCON。下一步四个共享fixture、生产装配保留、元数据与独立Player。
+
+Task3装配子批：19个fixture/装配用例RED均NotImplemented；首GREEN 3446/3447，回归发现War注册复制遗漏Olympic，修复后3447/3447，零失败/跳过。XML b1225ce859b026ce01fb8ff0d139b73ec286421fd212f250afa90ea1fb095771。早期到头条装配、后期IndependentReds/Blockade/FYP/War/SpaceEvent均保留Olympic；人工DEFCON在场景定义中单独绑定，正式限制参数保持。新增JSON摘要/Wiki/入口和构建配置，未新增脚本。审查及独立Player待完成。

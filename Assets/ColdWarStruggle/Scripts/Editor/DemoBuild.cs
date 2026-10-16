@@ -91,6 +91,8 @@ namespace ColdWarStruggle.Editor
         public static void BuildResultReaderPlaytest()=>BuildAt("Builds/ResultReaderPlaytest","ColdWarStruggle Result Reader Playtest");
         [MenuItem("ColdWarStruggle/Build Space Event Playtest")]
         public static void BuildSpaceEventPlaytest()=>BuildAt("Builds/SpaceEventPlaytest","ColdWarStruggle Space Event Playtest");
+        [MenuItem("ColdWarStruggle/Build Olympic Playtest")]
+        public static void BuildOlympicPlaytest()=>BuildAt("Builds/OlympicPlaytest","ColdWarStruggle Olympic Playtest");
         static void BuildAt(string directory,string productName=null)
         {
             Prepare();Directory.CreateDirectory(directory);
@@ -143,7 +145,9 @@ namespace ColdWarStruggle.Editor
                     .WithEarlyWars(Read(root,"Data/Cards/deluxe-2015/war-events-batch1.parameters.json"),Read(root,"Docs/Contracts/war-events-batch1.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
                     .WithEarlyWarScenarios(Read(root,"Data/Demo/early-war-scenarios.json"))
                     .WithSpaceEvents(Read(root,"Data/Cards/deluxe-2015/space-events-batch1.parameters.json"),Read(root,"Docs/Contracts/space-events-batch1.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
-                    .WithSpaceEventScenarios(Read(root,"Data/Demo/space-event-scenarios.json"));
+                    .WithSpaceEventScenarios(Read(root,"Data/Demo/space-event-scenarios.json"))
+                    .WithOlympicEvents(Read(root,"Data/Cards/deluxe-2015/olympic-games.parameters.json"),Read(root,"Docs/Contracts/olympic-games.schema.json"),Read(root,"Data/Rulesets/deluxe-2015/standard-dice.json"),Read(root,"Docs/Contracts/standard-dice.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
+                    .WithOlympicScenarios(Read(root,"Data/Demo/olympic-scenarios.json"));
             CatalogNamesLoader.Load(Read(root,"Data/Localization/zh-CN.catalog-names.json"),"zh-CN",catalog.Names.Keys);
             CatalogNamesLoader.Load(Read(root,"Data/Localization/en-US.catalog-names.json"),"en-US",catalog.Names.Keys);
             WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
@@ -155,6 +159,11 @@ namespace ColdWarStruggle.Editor
             Copy(root,"Data/Demo/blockade-scenario.json",payload,"blockade-scenario.json");
             Copy(root,"Data/Demo/five-year-plan-scenario.json",payload,"five-year-plan-scenario.json");
             Copy(root,"Data/Demo/space-event-scenarios.json",payload,"space-event-scenarios.json");
+            Copy(root,"Data/Demo/olympic-scenarios.json",payload,"olympic-scenarios.json");
+            Copy(root,"Data/Cards/deluxe-2015/olympic-games.parameters.json",payload,"olympic-games.parameters.json");
+            Copy(root,"Docs/Contracts/olympic-games.schema.json",payload,"olympic-games.schema.json");
+            Copy(root,"Data/Rulesets/deluxe-2015/standard-dice.json",payload,"standard-dice.json");
+            Copy(root,"Docs/Contracts/standard-dice.schema.json",payload,"standard-dice.schema.json");
             Copy(root,"Data/Cards/deluxe-2015/space-events-batch1.parameters.json",payload,"space-events-batch1.parameters.json");
             Copy(root,"Docs/Contracts/space-events-batch1.schema.json",payload,"space-events-batch1.schema.json");
             Copy(root,"Data/Demo/early-war-scenarios.json",payload,"early-war-scenarios.json");

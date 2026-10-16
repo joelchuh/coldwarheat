@@ -41,7 +41,7 @@ namespace ColdWarStruggle.Presentation
             if(controller.SelectingCoup)
             {
                 GUI.enabled=controller.LegalTargets().Targets.Contains(controller.SelectedCountry);
-                if(Button(972,504,262,35,"确认政变："+Name(controller.SelectedCountry)))UseOlympicOperations(OperationsMode.Coup);GUI.enabled=true;
+                if(Button(972,504,262,35,(view.Practice.Defcon==2 && view.Countries.First(c=>c.Definition.Id.Equals(controller.SelectedCountry)).Definition.Battleground?"核战政变：":"确认政变：")+Name(controller.SelectedCountry)))UseOlympicOperations(OperationsMode.Coup);GUI.enabled=true;
             }
             else Text(972,504,262,30,"开始一种用途后不能混用。",small);
             if(Button(972,545,262,32,"放弃这次事件 OPS"))DeclineOlympic();
