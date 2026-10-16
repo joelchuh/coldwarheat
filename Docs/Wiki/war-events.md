@@ -4,6 +4,8 @@
 > 状态：2026-10-05，3牌参数Bound；全项目28 Bound / 74 Unresolved，102个处理器均planned，C#/Unity尚未实现。
 > 入口：[参数描述](../../Data/Descriptors/war-events-batch1.data.json)、[参数](../../Data/Cards/deluxe-2015/war-events-batch1.parameters.json)、[模块描述](../Descriptors/war-events.module.json)、[Schema](../Contracts/war-events-batch1.schema.json)、[案例](../Design/war-events-batch1.cases.json)、[验证](../Design/war-events-batch1.validation.json)。
 
+2026-10-17运行增量：三牌参数加载和纯计算已有[运行基础](early-war-foundation.md)，2954项原生通过；下文为原设计快照，完整出牌/事实/父帧处理仍待接。
+
 ## 本批三张牌
 
 | 卡牌 | 事件受益方 | 被攻击国 | 单骰扣减 |

@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "id": "module.early-war-foundation",
+  "kind": "module",
+  "status": "in-progress",
+  "description": "三张早期战争的正式参数加载、目标与控制修正、影响力转移和单骰军事/VP原子结果；基础实现中，尚未接玩家命令。",
+  "documentation": "Docs/Wiki/early-war-foundation.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/EarlyWarDefinitionLoader.cs",
+      "symbol": "Load"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/WarEventRules.cs",
+      "symbol": "Calculate"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/WarEventRules.cs",
+      "symbol": "QueryTargets"
+    }
+  ],
+  "inputs": [
+    "正式战争参数/schema、MapDefinition/CardCatalog、可信效果身份与国家局面",
+    "未来服务读取权威随机快照及经过验证的干预政策"
+  ],
+  "outputs": [
+    "只读三牌Catalog、候选目标和WarCalculation；单骰计划待下一任务"
+  ],
+  "dependencies": [
+    "module.war-events",
+    "module.military-operations",
+    "module.victory",
+    "module.map-data",
+    "module.deterministic-random"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.war_events_batch1",
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world",
+    "rules.deluxe2015.military-operations",
+    "rules.deluxe2015.victory"
+  ],
+  "preconditions": [
+    "加载/纯计算已验证；单骰事务实现中，不可作为可玩处理器注册",
+    "数据来源/版本/引用完整；客户端不提供骰点或干预政策"
+  ],
+  "side_effects": [
+    "基础算法只返回不可变计划，不写GameState或消耗外部随机游标"
+  ],
+  "stop_conditions": [
+    "未知战争、错误目标/身份/数据、缺国家、溢出、未知干预、终局"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Architecture/early-war-foundation.md",
+      "scope": "已确认规则、内部政策边界及原子规划职责"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/EarlyWarDefinitionTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/WarCalculationTests.cs",
+      "status": "native-passed"
+    }
+  ],
+  "verification": {
+    "status": "in-progress",
+    "report": "Docs/Testing/early-war-foundation.validation.json"
+  }
+}
