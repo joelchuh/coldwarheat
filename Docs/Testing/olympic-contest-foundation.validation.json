@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "validation.olympic-contest-foundation",
   "description": "标准D6/Olympic参数、双骰比赛与抵制原子计划分批原生证据；未接玩家流程。",
-  "status": "definition-passed-service-pending",
+  "status": "native-passed-review-pending",
   "baseline_commit": "b4f92178318a8b6fe5e3b0cb970fafe5c029cbac",
   "runs": [
     {
@@ -44,6 +44,46 @@
       "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\olympic-foundation-definition-green",
       "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\olympic-foundation-definition-green\\results.xml",
       "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\olympic-foundation-definition-green\\editor.log"
+    },
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 3299,
+      "passed": 3255,
+      "failed": 44,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "05dcc43204fd1e926ecba9baa1aca53266a390271f6cd0d79e94b667c6e971f8",
+      "schema_version": 1,
+      "run_id": "olympic-foundation-service-red",
+      "duration_ms": 166036,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\olympic-foundation-service-red",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\olympic-foundation-service-red\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\olympic-foundation-service-red\\editor.log"
+    },
+    {
+      "status": "passed",
+      "error_code": null,
+      "total": 3299,
+      "passed": 3299,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "93db4390ed6659791541fd26b1f409a08bf53bcfeffa442a0bac9c522a078cee",
+      "schema_version": 1,
+      "run_id": "olympic-foundation-service-green",
+      "duration_ms": 159777,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\olympic-foundation-service-green",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\olympic-foundation-service-green\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\olympic-foundation-service-green\\editor.log"
     }
   ],
   "source_sha256": {
@@ -53,7 +93,9 @@
     "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/StandardDieDefinitionLoader.cs": "6dbf4edf4fe1cea47b1434f11f8374980faf6a71dece527c8c2b8e26d271bb1c",
     "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/OlympicGamesDefinitionLoader.cs": "2491f7814eb09c92b664c749c02bceaf1a0652d8428d908ac6740d8c92c18a52",
     "Assets/ColdWarStruggle/Tests/EditMode/OlympicDefinitionTests.cs": "2857a1ef45216818826644464e87282ff9405a01fe9b9c090f53111ee264530f",
-    "Assets/ColdWarStruggle/Tests/EditMode/OlympicContestTests.cs": "60ac4b7590af28aab9777181deaeb067480125136ae7f44a79a113a0bc6b91d4"
+    "Assets/ColdWarStruggle/Tests/EditMode/OlympicContestTests.cs": "60ac4b7590af28aab9777181deaeb067480125136ae7f44a79a113a0bc6b91d4",
+    "Assets/ColdWarStruggle/Scripts/Core/Rules/OlympicEventService.cs": "c8e89f1cf89632dd345347fce22a38a954b80d9fd77f67b7a52fd93f7ec6cc92",
+    "Assets/ColdWarStruggle/Tests/EditMode/OlympicEventServiceTests.cs": "2c3876734f98a5050ab4d2f07a4f3c5d943e636199e19e9059e7bff49db9f423"
   },
   "review": {
     "status": "pending"
@@ -61,5 +103,19 @@
   "player": "unchanged-space-event-playtest",
   "limitations": [
     "仅可信规则计算；完整来源/分支选择/收据/继续/OPS尚未接入。"
-  ]
+  ],
+  "coverage": [
+    "正式Olympic/D6严格加载与印刷卡绑定",
+    "双方全部72原骰组合及原骰范围/总数不封顶",
+    "单对双骰原子计划、第二骰故障及逐次游标/stream验证",
+    "先前平手的已提交快照保留与真实PCG重建",
+    "双方比赛胜利、抵制四种Sponsor/root身份与无后续OPS",
+    "未支持干预/非法/终局/溢出拒绝且无外部状态修改"
+  ],
+  "input_sha256": {
+    "Data/Cards/deluxe-2015/olympic-games.parameters.json": "380d6c8fdef851ae9c7e5ac2d01d780c60930417a47ec49021f2883ce7b54d9d",
+    "Docs/Contracts/olympic-games.schema.json": "6ae4166fe364d77fa0f2349c01cefd493740b5792a3f94037d9c4a2708d8bbb6",
+    "Data/Rulesets/deluxe-2015/standard-dice.json": "c84d14b827bd71d5575a22d6e2c52e18caaffcaeeb5f8e53f16352bdcec8f54a",
+    "Docs/Contracts/standard-dice.schema.json": "1e784c58d6ab8ed3d8bd2f8588e310f2502b61f62ace2bdb3161d87f42bffb26"
+  }
 }

@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "id": "module.olympic-contest-foundation",
+  "kind": "module",
+  "status": "implemented-foundation",
+  "description": "Olympic Games正式D6/参数、双骰比赛与抵制核战纯计划；一次处理一对平手，不接玩家选择或执行OPS。",
+  "documentation": "Docs/Wiki/olympic-contest-foundation.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/StandardDieDefinitionLoader.cs",
+      "symbol": "Load"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/OlympicGamesDefinitionLoader.cs",
+      "symbol": "Load"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OlympicContestRules.cs",
+      "symbol": "Calculate"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OlympicEventService.cs",
+      "symbol": "PlanPair"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OlympicEventService.cs",
+      "symbol": "PlanBoycott"
+    }
+  ],
+  "inputs": [
+    "正式奥运会/D6参数和schema、真实CardCatalog、可信Sponsor/rootPhasing、活的DEFCON/VP与匹配随机快照",
+    "已由上层确认无相关干预；身份/牌源/分支/幂等授权须由未来父编排提供"
+  ],
+  "outputs": [
+    "只读定义、OlympicContestResult、不可变双骰或抵制计划；非终局抵制给参数提议，不是OPS授权"
+  ],
+  "dependencies": [
+    "module.defcon",
+    "module.victory",
+    "module.deterministic-random"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.olympic_games",
+    "rules.deluxe2015.standard-dice",
+    "cards.deluxe2015.definitions",
+    "rules.deluxe2015.defcon",
+    "rules.deluxe2015.victory"
+  ],
+  "preconditions": [
+    "仅可信内部基础服务，禁止直接暴露为玩家命令",
+    "父编排负责每对原子提交、收据/分支锁/平手内部续跑及停止；本服务不保存回合状态"
+  ],
+  "side_effects": [
+    "无外部状态修改；只消费独立随机fork，抵制不抽骰"
+  ],
+  "stop_conditions": [
+    "非法参数/混型/未知干预/身份/终局/溢出/随机不匹配或不前进拒绝",
+    "OG1-OPEN-01不在本批自动裁定；Offer不能绕过OPS起点、修正或目标检查"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Architecture/olympic-contest-foundation.md",
+      "scope": "基础规则、完整事件设计的实现子集与未授权边界"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/OlympicDefinitionTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/OlympicContestTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/OlympicEventServiceTests.cs",
+      "status": "native-passed"
+    }
+  ],
+  "verification": {
+    "status": "native-passed-review-pending",
+    "report": "Docs/Testing/olympic-contest-foundation.validation.json"
+  }
+}

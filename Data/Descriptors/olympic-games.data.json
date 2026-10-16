@@ -3,7 +3,7 @@
   "id": "data.olympic-games",
   "kind": "data",
   "status": "ready",
-  "description": "Olympic Games单牌：对手分支决定、强制重掷双骰链与抵制DEFCON后普通OPS；纯设计，运行未实现。",
+  "description": "Olympic Games对手分支与抵制OPS设计；正式D6/比赛/抵制核战基础已实现，玩家选择、收据链与OPS执行未接。",
   "dataset_id": "effects.deluxe2015.olympic_games",
   "content_version": "0.1.0",
   "schema_path": "Docs/Contracts/olympic-games.schema.json",
@@ -34,7 +34,7 @@
     "map.deluxe2015.world"
   ],
   "preconditions": [
-    "数据ready；运行入口为空，处理器planned",
+    "正式参数已供olympic-contest-foundation消费；完整运行处理器仍planned",
     "来源/身份/阶段/牌区/规则版本及相关效果先验证；平手继续由内部编排，不是玩家重新选择"
   ],
   "side_effects": [],
@@ -75,8 +75,10 @@
     }
   ],
   "verification": {
-    "runtime_consumers_tested": false,
-    "report": "Docs/Design/olympic-games.validation.json"
+    "runtime_consumers_tested": true,
+    "report": "Docs/Design/olympic-games.validation.json",
+    "implementation_report": "Docs/Testing/olympic-contest-foundation.validation.json",
+    "tested_scope": "正式参数与D6加载、单对比赛/VP/抵制核战纯计划；不含来源/分支/链/OPS执行"
   },
   "retrieval_hints": [
     "先parameters/olympic_games选分支，平局恢复读receipt_policy和scheduler_policy",

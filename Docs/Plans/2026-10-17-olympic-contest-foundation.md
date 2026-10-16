@@ -46,18 +46,18 @@ var su=checked(ussrRoll+(sponsor==PlayerSide.USSR?definition.SponsorModifier:0))
 **Create:** Assets/ColdWarStruggle/Scripts/Core/Rules/OlympicEventService.cs；Assets/ColdWarStruggle/Tests/EditMode/OlympicEventServiceTests.cs。
 **Interfaces:** `OlympicEventState`、`OlympicPairPlan`、`OlympicBoycottPlan`、`OlympicOperationsOffer`；`PlanPair(state,sponsor,resolutionId,OlympicInterferencePolicy,IRandomProvider)`和`PlanBoycott(state,sponsor,rootPhasing,resolutionId,OlympicInterferencePolicy)`。
 
-- [ ] 先写RED：双方主办/赢家/终局/平手、完整双骰提交、每次游标验证、第二骰故障源RNG不动、PCG重建、抵制四角色核战和存活Offer、无抽骰、未知干预/终局/溢出拒绝。
+- [x] 先写RED：双方主办/赢家/终局/平手、完整双骰提交、每次游标验证、第二骰故障源RNG不动、PCG重建、抵制四角色核战和存活Offer、无抽骰、未知干预/终局/溢出拒绝。
 ```csharp
 var plan=OlympicEventService.PlanPair(state,PlayerSide.US,"pair",OlympicInterferencePolicy.NoActiveInterference,random);
 Pcg32RandomTests.Same(state.Random,random.Capture());
 Assert.That(plan.After.Defcon,Is.SameAs(state.Defcon));
 ```
-- [ ] 实现预检、独立fork两次取样、Calculate与ClosedVpBatchEvidence；PlanBoycott复用DefconService和NuclearWarEvidence，Offer只携带参数。
+- [x] 实现预检、独立fork两次取样、Calculate与ClosedVpBatchEvidence；PlanBoycott复用DefconService和NuclearWarEvidence，Offer只携带参数。
 ```csharp
 var change=DefconService.PlanChange(state.Defcon,DefconChangeKind.DegradeOne,rootPhasing);
 var decision=change.NuclearWar?VictoryService.Evaluate(state.Victory,new NuclearWarEvidence(resolutionId,definition.EffectId,state.VpForUS,change)):live;
 ```
-- [ ] 跑完整原生GREEN；同步Docs/Descriptors/olympic-contest-foundation.module.json、Wiki、Worklogs、Testing报告，注册目录；更新原奥运会数据描述中实现范围，不冒称完整卡牌已接。
+- [x] 跑完整原生GREEN；同步Docs/Descriptors/olympic-contest-foundation.module.json、Wiki、Worklogs、Testing报告，注册目录；更新原奥运会数据描述中实现范围，不冒称完整卡牌已接。
 - [ ] 元数据与diff检查通过、源码提交后按executing-plans进行一次fresh只读整批审查，修必要项；推送feat/olympic-contest-foundation并核验远端SHA。Player沿用SpaceEventPlaytest。
 
 原生命令：`Tools/Scripts/run-unity-editmode.ps1 -ProjectRoot E:/TwilightStruggle -UnityEditor E:/unity6.6/6000.6.0f1/Editor/Unity.exe -RunId <本步骤唯一ID> -TimeoutSeconds 600`。每轮结果如实保留，不用托管替代原生证据。计划自审已核对依赖、原子边界及未实现项；实现前确认NuclearWarEvidence构造签名。
