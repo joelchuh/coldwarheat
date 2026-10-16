@@ -1,7 +1,7 @@
 # 奥运会正常手牌试玩
 
 > description: 查真实奥运会出牌、参赛/抵制、自动平手续跑、三种事件OPS、固定身份回执与四个人工练习。
-> 当前：3457项原生测试通过；独立Player构建、实际界面验收及整批审查进行中，详见[验证报告](../Testing/olympic-play.validation.json)。
+> 当前：3457项原生测试通过；独立Player/66载荷与规定范围的实际点击已验，审查1项Important经修复回归关闭，详见[验证报告](../Testing/olympic-play.validation.json)。
 
 先读[模块JSON](../Descriptors/olympic-play.module.json)或[练习数据JSON描述](../../Data/Descriptors/olympic-scenarios.data.json)，再按entrypoints定位所需函数；数字来自共享奥运会参数、D6、OPS、DEFCON/军事/胜负定义。地图通过现有IMapView/玩家快照/命令接口，无奥运会专用国家显示算法。
 
@@ -32,3 +32,5 @@ flowchart TD
 边界：首批仅普通行动轮，本牌头条/特殊嵌套未注册（OG1-OPEN-01保留）；Linked Flow仅内存历史，完整来源摘要链/序列化恢复/网络尚未实现；普通OPS/太空仍按本牌印刷值，只有抵制授权使用事件基值。当前活动修正是已实现的普通Flat OPS效果。
 
 验证入口：OlympicPlayTests（24）、OlympicOperationsTests（39）、OlympicSessionTests与OlympicPresentationTests（13）、OlympicDemoTests（19）。共95个新增用例；RED/GREEN、源码/数据SHA、Player证据与审查范围统一记录在报告。规范见[设计](../Architecture/olympic-play.md)、[计划](../Plans/2026-10-17-olympic-play.md)与[工作记录](../Worklogs/2026-10-17-olympic-play.md)。
+
+本地运行：`Builds/OlympicPlaytest/ColdWarStruggleDemo.exe --demo-scenario=demo.practice.olympic_boycott_ops --demo-map=world --demo-hands=open`。练习32–35为本批人工局面；默认仍为原头条入口。双方主办比赛、抵制核战、连续投放/调整与政变核战及重发已分构建实测，详情见报告。平手自动续跑、明确放弃与非核战事件政变未单独鼠标验收，已有原生/控制器测试。

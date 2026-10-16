@@ -77,8 +77,8 @@ var retry=await opponent.SubmitCardActionAsync(command);
 Assert.That(retry,Is.SameAs(first));
 ```
 - [x] 原生RED后接公共DTO、可信单对pump、UI分支/用途/结果说明。新增fixture只含人工局面与稳定ID，正式数值从共享定义获取。
-- [ ] 原生GREEN；元数据与diff检查，更新报告/JSON/Wiki；提交后一次fresh整批只读审查。
-- [ ] 构建Builds/OlympicPlaytest；比较全部StreamingAssets源字节及Managed程序集SHA，记录构建log；工具可用时实际检查参赛/抵制核战及三OPS、重发/身份切换，保存实际截图与限制。必要修复后相关回归。
+- [x] 原生GREEN；元数据与diff检查，更新报告/JSON/Wiki；提交后一次fresh整批只读审查。
+- [x] 构建Builds/OlympicPlaytest；比较全部StreamingAssets源字节及Managed程序集SHA，记录构建log；工具可用时实际检查参赛/抵制核战及三OPS、重发/身份切换，保存实际截图与限制。必要修复后相关回归。
 - [ ] 常规精确暂存提交/push并ls-remote核验，旧Player保留；如未完成UI验收不得标为全部通过。
 
 Native run: Tools/Scripts/run-unity-editmode.ps1 -ProjectRoot E:/TwilightStruggle -UnityEditor E:/unity6.6/6000.6.0f1/Editor/Unity.exe -RunId <unique> -TimeoutSeconds 600。运行Unity时不编辑C#/输入。每任务记录工作日志，后续发现的签名/边界差异以Ruling明确更新。
