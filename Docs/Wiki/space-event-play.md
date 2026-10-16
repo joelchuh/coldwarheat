@@ -1,7 +1,7 @@
 # Scientist太空事件试玩
 
 > description: 真实手牌/头条发动Scientist，查看一次轨道/奖励与双方能力变化；终点未知分支仍待裁定。
-> 当前：源码已接，3213项原生测试全通过；独立审查和Player验收进行中，尚未交付新可执行版。
+> 当前：3213项原生测试全通过；独立审查0遗留，SpaceEventPlaytest构建及四个练习实测通过。
 
 先读[模块JSON](../Descriptors/space-event-play.module.json)，按entrypoints定位实现；纯推进与加载复用[基础](space-event-foundation.md)。[设计](../Architecture/space-event-play.md)和[计划](../Plans/2026-10-17-space-event-play.md)记录边界。
 
@@ -11,6 +11,6 @@
 
 公共结果只含卡牌、受益方、位置、奖励和双方能力前后值，无GameState/随机源/牌库。重复命令返回原收据；旧收据不能把旧头条等待状态带回当前界面。混合战争/太空头条同批摘要都保留，展开阅读不执行命令。
 
-人工数据见[数据描述](../../Data/Descriptors/space-event-scenarios.data.json)：第28首到、第29后到、第30能力格、第31终点待裁定；四个都是第2回合fixture，非自然开局。美国入口通过真实苏联OPS行动交棒。所有奖励继续读取正式太空轨道，不复制到练习文件。终点Event停止，OPS仍可用。
+人工数据见[数据描述](../../Data/Descriptors/space-event-scenarios.data.json)：第28首到、第29后到、第30能力格、第31终点待裁定；四个都是第2回合fixture，非自然开局。美国入口通过真实苏联OPS行动交棒。所有奖励继续读取正式太空轨道，不复制到练习文件。终点Event停止，按钮和原因显示待裁定，OPS仍可用且已实测投放并交棒。
 
 规则、视图和地图仍独立。新构建目标为Builds/SpaceEventPlaytest/ColdWarStruggleDemo.exe；旧ResultReaderPlaytest不自动更新。详细原生、构建载荷、源码/Managed哈希、鼠标验收和审查结果见[验证报告](../Testing/space-event-play.validation.json)。完整外部事件干预、保存恢复、联网及完整整局仍未实现。

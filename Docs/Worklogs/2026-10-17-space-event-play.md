@@ -13,3 +13,5 @@ Task2：会话/结果显示RED3183/3174/9，均为未投影结果或缺太空摘
 Task3：26项新fixture测试RED均NotImplementedException。首轮实现只剩越界异常的精确类型断言失败（实际已正确拒绝）；修测试为ArgumentException类型族后3213/3213、零跳过。四场景、方法链复制及两条Bootstrap/Builder链已接；元数据169描述/83数据集通过。源码提交后进行一次fresh整批只读审查和独立Player构建，随后实机验收。
 
 独立审查初次0 Critical/Important、1 Minor：终点事件误写未接入且原因漏项。实机复现后仅修展示，复审0遗留；完整回归3213/3213。首次构建3242bc3的61载荷逐字节一致，首到/后到/能力与重发实测通过，随后重建提示修正版。
+
+最终Player源d26e2bbe4001d18236658d9f1b6f282b451e152d，61载荷字节一致；两次构建的Core/Application/Infrastructure/Bootstrap DLL相同，只有Presentation因提示修改更新。首到/后到/能力/重发在初版验收，终点提示及投放→结束交棒在修正版验收，五张F12图留TestResults并记录SHA；不宣称鼠标覆盖头条/VP终局。运行日志仅D3D12调试队列查询提示，无托管异常。旧ResultReaderPlaytest保留，验收进程已关闭。
