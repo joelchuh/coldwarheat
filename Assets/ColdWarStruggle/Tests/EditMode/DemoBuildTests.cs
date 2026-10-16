@@ -11,7 +11,10 @@ namespace ColdWarStruggle.Tests
         [TestCase("Data/Demo/headline-scenario.json","headline-scenario.json")]
         [TestCase("Data/Cards/deluxe-2015/defectors.parameters.json","defectors.parameters.json")]
         [TestCase("Docs/Contracts/defectors.schema.json","defectors.schema.json")]
-        public void Headline_payload_matches_canonical_source(string source,string payload)
+        [TestCase("Data/Demo/independent-reds-scenario.json","independent-reds-scenario.json")]
+        [TestCase("Data/Cards/deluxe-2015/early-influence-batch3.parameters.json","early-influence-batch3.parameters.json")]
+        [TestCase("Docs/Contracts/early-influence-batch3.schema.json","early-influence-batch3.schema.json")]
+        public void Playable_payload_matches_canonical_source(string source,string payload)
         {
             DemoBuild.SynchronizeData();var root=Path.GetFullPath(Path.Combine(UnityEngine.Application.dataPath,".."));
             Assert.That(File.ReadAllBytes(Path.Combine(UnityEngine.Application.streamingAssetsPath,"ColdWarStruggle",payload)),Is.EqualTo(File.ReadAllBytes(Path.Combine(root,source))));

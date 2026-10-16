@@ -1,7 +1,8 @@
 # 早期影响力事件：第三批
 
 > description: 查询独立红色政权的名单与追平算法、经互会的敌控过滤与不同国家放置，以及零变化、选择归属和跨卡边界。
-> 状态：2026-09-30，2牌基础设计；参数绑定不等于C#实现。截至本批三批共10牌Bound、92个非中国牌Unresolved；最新数量见[数据索引](map-card-data.md)，102个处理器均planned。
+> 2026-10-17：独立红色政权运行时已实现，见[实现与验证](independent-reds.md)；经互会未接。
+> 原设计状态：2026-09-30，2牌基础设计；参数绑定不等于C#实现。截至本批三批共10牌Bound、92个非中国牌Unresolved；最新数量见[数据索引](map-card-data.md)，102个处理器均planned。
 > 入口：[参数描述](../../Data/Descriptors/early-influence-batch3.data.json)、[参数](../../Data/Cards/deluxe-2015/early-influence-batch3.parameters.json)、[Schema](../Contracts/early-influence-batch3.schema.json)、[模块](../Descriptors/influence-events.module.json)、[案例](../Design/early-influence-batch3.cases.json)、[验证](../Design/early-influence-batch3.validation.json)。
 
 ## 范围与复用
@@ -48,7 +49,7 @@
 
 ## 统一选择、事务和画面边界
 
-两种模板均复用CountrySelectionRules.ValidateSelection与InfluenceMutation.BuildPlan，不新建逐卡MonoBehaviour。具名InfluenceEventResolver.Resolve负责选模板、参数类型、活动效果策略与选择归属；所有符号仍为planned_entrypoints，无可调用C#。
+两种模板均复用CountrySelectionRules.ValidateSelection与InfluenceMutation.BuildPlan，不新建逐卡MonoBehaviour。具名InfluenceEventResolver.Resolve负责选模板、参数类型、活动效果策略与选择归属；此处为原始设计命名；独立红色政权已由 MatchOpponentInfluenceEffect / InfluenceEventRules / InfluenceMutation 实现，实际入口见[运行时](independent-reds.md)；经互会仍是设计。
 
 ResolveDecisionCommand只接收DecisionId与CountryId列表，不能附加自报受益方、稳定度、控制权或增加量。验证会话身份、CommandId、ExpectedStateVersion、DecisionRevision、帧步骤、目标存在、去重、数量及合法集合后，才生成完整计划。错误或过期响应整条拒绝，不部分加点；金额由核心计算。
 

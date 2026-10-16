@@ -20,6 +20,9 @@ namespace ColdWarStruggle.Core
             IEnumerable<CountryId> candidates;int required=0;
             switch(definition)
             {
+                case MatchOpponentInfluenceEffect match:
+                    if(match.Countries.Any(c=>!state.Map.Contains(c)))return Stop(InfluenceEventStatus.Rejected,InfluenceEventError.InvalidDefinition);
+                    candidates=match.Countries;required=1;break;
                 case BudgetedRemovalEffect budget:
                     return BudgetedRemovalRules.Query(state,budget);
                 case EraCountryRemovalEffect eraRemoval:
@@ -77,6 +80,8 @@ namespace ColdWarStruggle.Core
                 var opponent=definition.Beneficiary==PlayerSide.US?PlayerSide.USSR:PlayerSide.US;
                 switch(definition)
                 {
+                    case MatchOpponentInfluenceEffect _:
+                        work.MatchOpponentByAdding(selection.Targets[0],definition.Beneficiary);break;
                     case EraCountryRemovalEffect eraRemoval:
                         if(query.RequiredTargets>0)
                             foreach(var country in selection.Targets.OrderBy(c=>c.Value,StringComparer.Ordinal))

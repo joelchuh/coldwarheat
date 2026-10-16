@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "data.demo-independent-reds-scenario",
+  "kind": "data",
+  "dataset_id": "demo.independent_reds_scenario",
+  "status": "fixture",
+  "description": "独立红色政权第2回合人工局面：五国分别提供追平、领先、零值、相等边界；真实早期牌区重建。",
+  "entrypoints": [
+    {
+      "path": "Data/Demo/independent-reds-scenario.json",
+      "symbol": "scenario"
+    }
+  ],
+  "inputs": [
+    "已配置最终计分源场景和共享印刷牌库"
+  ],
+  "outputs": [
+    "独立红色政权人工事件试玩场景"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "demo.final_scoring_scenario",
+    "cards.deluxe2015.definitions",
+    "effects.deluxe2015.early_influence_batch3"
+  ],
+  "preconditions": [
+    "明确人工fixture，不冒充自然对局历史"
+  ],
+  "side_effects": [
+    "新Host在内存中创建人工局面；不改变源场景"
+  ],
+  "stop_conditions": [
+    "未知字段/重复ID/错误源/非法时代或实体/五国数据缺失或重复"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/independent-reds.md",
+      "scope": "人工试玩设计"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/IndependentRedsPlayTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/independent-reds.md",
+  "verification": {
+    "native_validation": "2648/2648; reds-payload-green",
+    "player_validation": "pending"
+  }
+}

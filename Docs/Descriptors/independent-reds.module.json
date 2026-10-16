@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "id": "module.independent-reds",
+  "kind": "module",
+  "description": "五国选一、只补正差额的独立红色政权；共享不可变追平效果和真实手牌/对手OPS/头条选择流程。",
+  "status": "implemented",
+  "documentation": "Docs/Wiki/independent-reds.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/MatchOpponentInfluenceEffect.cs",
+      "symbol": "MatchOpponentInfluenceEffect"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceMutation.cs",
+      "symbol": "MatchOpponentByAdding"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/IndependentRedsCatalogLoader.cs",
+      "symbol": "Load"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.IndependentReds.cs",
+      "symbol": "WithIndependentReds"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.IndependentReds.cs",
+      "symbol": "WithIndependentRedsScenario"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "symbol": "BuildIndependentRedsPlaytest"
+    }
+  ],
+  "inputs": [
+    "已验证正式参数、权威局面、美国会话提交的一国选择"
+  ],
+  "outputs": [
+    "正差额变更或合法零变化；星号去向与父流程继续"
+  ],
+  "dependencies": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventRules.cs",
+      "relation": "共享选择、验证和原子计划"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeInfluenceCatalog.cs",
+      "relation": "显式出牌事件注册"
+    }
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.early_influence_batch3",
+    "cards.deluxe2015.definitions",
+    "demo.independent_reds_scenario"
+  ],
+  "preconditions": [
+    "正式名单全部在地图；已注册事件；合法身份和版本"
+  ],
+  "side_effects": [
+    "只增加美国正差额；事件发生后的实体去向由公共流程处理"
+  ],
+  "stop_conditions": [
+    "未知数据/未知活动效果/错误身份或目标/过期版本/溢出"
+  ],
+  "rule_sources": [
+    {
+      "url": "https://www.gmtgames.com/nnts/TS_Cards_Deluxe.pdf",
+      "scope": "英文卡图第4页 #22；依据既有已核对设计"
+    },
+    {
+      "path": "Docs/Wiki/early-influence-batch3.md",
+      "scope": "名单、加法追平与合法零变化解释"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/MatchOpponentInfluenceTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/IndependentRedsCatalogTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/IndependentRedsPlayTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "verification": {
+    "native_validation": "2648/2648; reds-payload-green",
+    "player_validation": "pending"
+  }
+}

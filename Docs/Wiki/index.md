@@ -145,3 +145,5 @@
 - [策略游戏工程参考与取舍](../Architecture/game-engineering-reference-notes.md)：Factorio确定性、Unity命令模式及本项目隐藏信息边界；[头条试玩接入草案](../Architecture/headline-playtest-integration-draft.md)已由[实际接线](headline-playtest.md)接续。
 
 - [头条试玩接线](headline-playtest.md)：第15场景/保密选择/地图UI与构建入口已接，原生通过；实际构建与鼠标状态见报告。
+
+- [独立红色政权运行时](independent-reds.md)：五国选一、只补正差额；事件/对手OPS/头条复用同一选择机制，新增人工试玩入口。

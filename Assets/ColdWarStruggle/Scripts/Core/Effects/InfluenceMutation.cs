@@ -49,6 +49,11 @@ namespace ColdWarStruggle.Core
             long needed = (long)Get(country, other) + source.Map.GetCountry(country).Stability;
             Set(country, side, checked((int)Math.Max(Get(country, side), needed)));
         }
+        public void MatchOpponentByAdding(CountryId country, PlayerSide side)
+        {
+            var other=side==PlayerSide.US?PlayerSide.USSR:PlayerSide.US;
+            Set(country,side,Math.Max(Get(country,side),Get(country,other)));
+        }
         public InfluenceEventPlan Complete(InfluenceEffectDefinition definition)
         {
             // The final event is resolution itself, including a zero-change resolution.

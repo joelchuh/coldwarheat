@@ -21,3 +21,5 @@ UI/fixture：empty-ui-red 2595通过/5项预期失败；empty-ui-green 2600/2600
 初次后台隐藏启动无可操作窗口；已确认测试EXE路径后关闭该测试进程，应用控制正常启动成功。路线路径Player日志无游戏Exception；D3D12 InfoQueue启动诊断不影响这些已验路线。测试Player验后关闭，Hub保留。提示文本不影响规则，未为此重复完整回归。
 
 下一步接独立红色政权与可复用追平效果。常规Git同步将在本批证据提交后核对远端SHA。
+
+已上传并核对 origin/feat/empty-hand-actions = 649c955129bb042c9dd5ad09721922e0c802ff37；收尾状态随下一批提交保存。
