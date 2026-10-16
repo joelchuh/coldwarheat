@@ -66,7 +66,7 @@ namespace ColdWarStruggle.Presentation
                 var selected=controller.SelectedCard;
                 if(!selected.HasValue)
                 {
-                    Text(972,374,262,59,controller.CanSkipEmptyHand?"普通手牌已用尽。可用上方按钮跳过本次行动；中国牌仍可自愿选择。":"先从本方手牌选择一张牌，再决定用于影响力、政变、调整、太空、计分或已支持事件。",small);
+                    Text(972,374,262,59,controller.CanSkipEmptyHand?"普通手牌已用尽，可用上方按钮跳过本次行动。如持有可用中国牌，仍可自愿使用。":"先从本方手牌选择一张牌，再决定用于影响力、政变、调整、太空、计分或已支持事件。",small);
                     if(Button(972,440,262,43,"打开手牌 · 选择一张"))OpenCards();
                 }
                 else

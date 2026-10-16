@@ -2,7 +2,7 @@
 
 Description：定位零普通手牌时的跳过门禁、中国牌自愿使用、双方名额推进与人工试玩入口。
 
-当前状态：Core/session、界面和人工入口已实现，empty-ui-green 的2600项原生测试通过；Player待验。计划见 Docs/Plans/2026-10-17-empty-hand-actions.md；摘要入口 Docs/Descriptors/empty-hand-actions.module.json。
+当前状态：Core/session、界面和人工入口已实现，empty-ui-green 的2600项原生测试通过；48份构建载荷一致，实际点击已验空手跳过→回合审核→第三回合，以及空手时主动使用中国牌。计划见 Docs/Plans/2026-10-17-empty-hand-actions.md；摘要入口 Docs/Descriptors/empty-hand-actions.module.json；证据见 Docs/Testing/empty-hand-actions.validation.json。
 
 ## 规则边界
 
