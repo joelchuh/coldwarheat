@@ -9,3 +9,5 @@ Task1已实现ActionPracticeDefinition.Wars、WarDecision/CanResolveWar、直接
 流程：事件意图→固定目标或待选国家→WarEventService→PracticeRisk.After→国家/随机统一Commit→终局或实体牌处置/Next。对手OPS/头条和会话公开DTO由后续任务继续，不把基础WarEventState传给客户端。
 
 证据见[验证报告](../Testing/early-war-play.validation.json)，开发路径见[计划](../Plans/2026-10-17-early-war-play.md)。
+
+Task2完成：对手事件先后OPS、政变两回执、核战停止、头条等待/继续/取消/终局及跨回合同槽信用均通过。新增18项，首次internal夹具编译失败已用真实回合流程替换，不计为RED；有效RED16项均未支持，GREEN3034/3034、0跳过、exit0，XML SHA fc10ed1f414f5b5db8b58b5680445863c103189207245250be7f5b738a923fc4。会话/Player接线继续。

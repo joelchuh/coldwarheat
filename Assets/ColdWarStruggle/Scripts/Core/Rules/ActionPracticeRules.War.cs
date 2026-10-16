@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Collections.Generic;
 namespace ColdWarStruggle.Core
 {
     public static partial class ActionPracticeRules
@@ -51,7 +52,20 @@ namespace ColdWarStruggle.Core
             if(string.IsNullOrWhiteSpace(actionId) || actionId.Length>128 || card.HasValue || !target.HasValue)return new CardActionTransition(RuleError.InvalidCommand);
             var error=CanResolveWar(state,side);if(error!=RuleError.None)return new CardActionTransition(error);
             if(!state.Practice.War.Candidates.Contains(target.Value))return new CardActionTransition(RuleError.InvalidSelection);
-            try {return CompleteWar(state,target.Value);}
+            try
+            {
+                var done=CompleteWar(state,target.Value);
+                if(!done.Accepted || !state.Practice.HasPendingHeadline)return done;
+                var entry=state.Practice.Headline.Current;
+                var steps=new List<HeadlineResolutionStep>{new HeadlineResolutionStep(entry.Card,entry.PlayedBy,done)};var next=done.NextState;
+                if(!next.Ended && next.Practice.HasPendingHeadline)
+                {
+                    var following=HeadlineResolutionRules.Advance(next);
+                    if(!following.Accepted)return new CardActionTransition(following.Error);
+                    next=following.NextState;steps.AddRange(following.Steps);
+                }
+                return new CardActionTransition(RuleError.None,next,headlineSteps:steps,warResult:done.WarResult);
+            }
             catch(OverflowException){return new CardActionTransition(RuleError.NumericOverflow);}
             catch(ArgumentException){return new CardActionTransition(RuleError.InvalidDefinition);}
             catch(InvalidOperationException){return new CardActionTransition(RuleError.InvalidDefinition);}
@@ -65,7 +79,8 @@ namespace ColdWarStruggle.Core
             var risk=p.Risk.After(plan);var terminal=plan.Decision.Outcome==VictoryOutcome.Finished;
             var next=new ActionPracticeState(p.Definition,terminal?ActionPracticeStage.Complete:ActionPracticeStage.ResolvingEvent,p.CompletedActions,card,p.Space,plan.After.VpForUS,risk,p.OpsEffects,p.OpponentOps,rounds:p.Rounds,headline:p.Headline);
             var current=Commit(state,next,state.Cards,plan.After.Random,countries:plan.After.Countries).NextState;
-            var done=terminal?new CardActionTransition(RuleError.None,current):Commit(current,Next(next,next.Space,next.VpForUS),Move(current,card,false,false,p.Definition.Cards.GetCard(card).RemoveAfterResolvedEvent),current.RandomState);
+            var done=terminal?new CardActionTransition(RuleError.None,current):p.OpponentOps!=null?AdvanceOpponentStep(current,CardResolutionStep.Event)
+                :Commit(current,Next(next,next.Space,next.VpForUS),Move(current,card,false,false,p.Definition.Cards.GetCard(card).RemoveAfterResolvedEvent),current.RandomState);
             return done.Accepted?new CardActionTransition(RuleError.None,done.NextState,warResult:plan):done;
         }
     }

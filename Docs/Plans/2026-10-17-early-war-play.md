@@ -45,14 +45,14 @@ Assert.That(result.NextState.Practice.Risk.Military.UssrEarned,Is.EqualTo(2));
 **Files:** 修改ActionPracticeRules.OpponentOps.cs/Coup.cs/War.cs、HeadlineResolutionRules.cs；新增Tests/EditMode/WarContinuationTests.cs及.meta。
 **Interfaces:** BeginOpponentEvent分派Wars；SupportedCards加入Wars；Advance在War待选停下；ResolveWar响应返回HeadlineSteps并一次性继续后续头条；Coup回执携带WarResult。
 
-- [ ] 写RED：US打苏联战争先事件或先OPS，固定军事归SU，根只完成一次；先政变核战0战争；战争VP终局停止OPS。头条印巴待选→后续影响力待选→两个根完成且行动数0；Defectors取消战争0骰。普通/头条ID含turn，跨回合同槽不冲突。后续头条溢出拒绝且原state/random/信用不变。
+- [x] 写RED：US打苏联战争先事件或先OPS，固定军事归SU，根只完成一次；先政变核战0战争；战争VP终局停止OPS。头条印巴待选→后续影响力待选→两个根完成且行动数0；Defectors取消战争0骰。普通/头条ID含turn，跨回合同槽不冲突。后续头条溢出拒绝且原state/random/信用不变。
 ```csharp
 var result=ActionPracticeRules.Plan(ready,PlayerSide.US,CardActionKind.OpponentEventFirst,"root",Id("korean_war"));
 Assert.That(result.WarResult.Calculation.Beneficiary,Is.EqualTo(PlayerSide.USSR));
 Assert.That(result.NextState.Practice.CompletedActions,Is.EqualTo(ready.Practice.CompletedActions));
 Assert.That(result.NextState.Practice.Stage,Is.EqualTo(ActionPracticeStage.ChoosingOperations));
 ```
-- [ ] 实现上述路径，保持共享WarService唯一计算；GREEN、记录并提交。
+- [x] 实现上述路径，保持共享WarService唯一计算；GREEN、记录并提交。
 
 ## Task 3 — 会话、地图与可试玩构建
 

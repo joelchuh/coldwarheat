@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "validation.early-war-play",
   "description": "三张早期战争可玩接线原生与Player验证，分任务记录真实证据",
-  "status": "task1-passed",
+  "status": "task2-passed",
   "runs": [
     {
       "status": "failed",
@@ -43,11 +43,68 @@
       "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-play-direct-green",
       "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-play-direct-green\\results.xml",
       "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-play-direct-green\\editor.log"
+    },
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 3034,
+      "passed": 3018,
+      "failed": 16,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "a2bcd29109f41ce9399e1901f34424c0665366f8464d1f5e4ece47c5d55e41d4",
+      "schema_version": 1,
+      "run_id": "war-play-continuation-red-2",
+      "duration_ms": 115331,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-play-continuation-red-2",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-play-continuation-red-2\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-play-continuation-red-2\\editor.log"
+    },
+    {
+      "status": "passed",
+      "error_code": null,
+      "total": 3034,
+      "passed": 3034,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "fc10ed1f414f5b5db8b58b5680445863c103189207245250be7f5b738a923fc4",
+      "schema_version": 1,
+      "run_id": "war-play-continuation-green",
+      "duration_ms": 113901,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-play-continuation-green",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-play-continuation-green\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-play-continuation-green\\editor.log"
     }
   ],
   "red_analysis": "27个新增失败：26个直接路径未支持导致UnsupportedCardAction，1个缺少定义绑定校验；2989既有通过。",
   "limitations": [
-    "当前仅直接规则接线，OPS/头条/会话/地图继续；未重建Player",
+    "Core直接/OPS/头条接线已通过，会话/地图/Player仍继续。",
     "封闭运行集无CampDavid/FlowerPower或外部状态导入，不把NoActiveInterference当通用事实推导"
-  ]
+  ],
+  "attempts": [
+    {
+      "status": "failed",
+      "error_code": "TEST_REPORT_MISSING",
+      "timed_out": false,
+      "schema_version": 1,
+      "run_id": "war-play-continuation-red",
+      "duration_ms": 4491,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-play-continuation-red",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-play-continuation-red\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\war-play-continuation-red\\editor.log"
+    }
+  ],
+  "continuation_red_analysis": "首次夹具调用internal构造器编译失败，不计业务RED；改用公开开局和完整回合接口。有效RED3034/3018/16均UnsupportedCardAction；核战截断和跨回合同槽两项已通过。GREEN3034全过。"
 }

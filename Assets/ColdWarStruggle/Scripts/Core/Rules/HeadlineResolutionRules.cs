@@ -49,7 +49,7 @@ namespace ColdWarStruggle.Core
             var supported=definition.Cards.Cards.Where(c=>c.Kind==CardKind.Scoring && definition.Scoring!=null
                 || c.Kind==CardKind.Event && (definition.InfluenceEvents?.Effects.ContainsKey(c.Id)==true
                     || definition.DefconVpEvents?.Effects.ContainsKey(c.Id)==true || definition.TurnOpsEvents?.Effects.ContainsKey(c.Id)==true
-                    || definition.HeadlineDefectors?.Card.Equals(c.Id)==true || definition.Blockade?.Card.Id.Equals(c.Id)==true || definition.FiveYearPlan?.Card.Id.Equals(c.Id)==true));
+                    || definition.HeadlineDefectors?.Card.Equals(c.Id)==true || definition.Blockade?.Card.Id.Equals(c.Id)==true || definition.FiveYearPlan?.Card.Id.Equals(c.Id)==true || definition.Wars?.Effects.ContainsKey(c.Id)==true));
             return Array.AsReadOnly(supported.Select(c=>c.Id).OrderBy(id=>id.Value,StringComparer.Ordinal).ToArray());
         }
         static RuleError CheckLive(GameState state)
@@ -96,7 +96,7 @@ namespace ColdWarStruggle.Core
                     var result=ActionPracticeRules.ResolveCurrentHeadline(current);
                     if(!result.Accepted)return new HeadlineResolutionTransition(result.Error);
                     steps.Add(new HeadlineResolutionStep(entry.Card,entry.PlayedBy,result));current=result.NextState;
-                    if(current.Ended || current.InfluenceEvent?.Stage==InfluenceEventStage.AwaitingChoice || current.Practice.Blockade!=null)
+                    if(current.Ended || current.InfluenceEvent?.Stage==InfluenceEventStage.AwaitingChoice || current.Practice.Blockade!=null || current.Practice.War!=null)
                         return new HeadlineResolutionTransition(RuleError.None,current,steps);
                     if(current.Practice.Headline==null || current.Practice.Headline.CompletedCount!=queue.CompletedCount+1)
                         return new HeadlineResolutionTransition(RuleError.InvalidDefinition);
