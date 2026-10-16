@@ -7,9 +7,9 @@ namespace ColdWarStruggle.Tests
     public class SpaceEventHeadlineTests
     {
         internal const string Scientist="captured_nazi_scientist";
-        internal static GameState Ready(string us=Scientist,string su="fidel",int usPosition=0,int suPosition=0,int vp=0,bool collecting=true)
+        internal static GameState Ready(string us=Scientist,string su="fidel",int usPosition=0,int suPosition=0,int vp=0,bool collecting=true,bool wars=false)
         {
-            var s=DefectorsHeadlineResolutionTests.Prepared(us,su,collecting:collecting);var d=SpaceEventPlayTests.Bind(s.Practice.Definition);
+            var s=DefectorsHeadlineResolutionTests.Prepared(us,su,collecting:collecting);var d=SpaceEventPlayTests.Bind(wars?WarPlayTests.Bind(s.Practice.Definition):s.Practice.Definition);
             var p=ActionPracticeState.CreateAtTurn(d,1,vp,new SpaceTrackState(d.Space,usPosition,suPosition));
             s=new GameState(s.Map,s.Countries,s.Operations,s.GameId,s.Version,s.SpentOps,s.EventSequence,turn:s.Turn,deployment:s.Deployment,cards:s.Cards,randomState:s.RandomState,practice:p);
             return HeadlineFlowTests.Start(s);
@@ -34,6 +34,17 @@ namespace ColdWarStruggle.Tests
         {
             var s=Ready(usPosition:3,suPosition:0);var r=WarContinuationTests.SubmitBoth(s,Scientist,"fidel");Assert.That(r.NextState.Practice.Headline.IsComplete,Is.True);Assert.That(r.NextState.Practice.HeadlineSelection,Is.Null);Assert.That(SpaceAbilityRules.Query(r.NextState.Practice.Space.Track,PlayerSide.US).OpponentRevealsHeadlineFirst,Is.True);
             var other=Ready(suPosition:8);Assert.That(other.Practice.HeadlineSelection.SupportedCards,Has.Member(SpaceEventPlayTests.Card));
+        }
+        [Test] public void Scientist_headline_victory_stops_second_reserved_card()
+        {
+            var r=WarContinuationTests.SubmitBoth(Ready(Scientist,"truman_doctrine",vp:19),Scientist,"truman_doctrine");
+            Assert.That(r.NextState.Ended,Is.True);Assert.That(r.Steps.Count,Is.EqualTo(1));Assert.That(r.NextState.Practice.VpForUS,Is.EqualTo(21));Assert.That(r.NextState.Cards.GetHeadline(PlayerSide.USSR),Is.EqualTo(WarPlayTests.Id("truman_doctrine")));Assert.That(r.NextState.Practice.Headline.CompletedCount,Is.Zero);
+        }
+        [Test] public void Trusted_reserved_terminal_event_is_rechecked_and_does_not_publish_prior_draft()
+        {
+            var s=Ready(usPosition:8,collecting:false);var q=HeadlineSelectionState.Begin(s.Cards.Catalog,s.Cards,s.Practice.Space.Track,new[]{SpaceEventPlayTests.Card,WarPlayTests.Id("fidel")});
+            q=HeadlineSelectionRules.PlanSelection(q,PlayerSide.USSR,WarPlayTests.Id("fidel")).State;q=HeadlineSelectionRules.PlanSelection(q,PlayerSide.US,SpaceEventPlayTests.Card).State;
+            s=PlayInfluenceEventTests.Copy(s,cards:q.Cards);var r=HeadlineResolutionTests.Begin(s);Assert.That(r.Error,Is.EqualTo(RuleError.EventRequiresRuling));Assert.That(r.NextState,Is.Null);Assert.That(r.Steps,Is.Empty);Assert.That(s.Cards.HeadlineReserved.Count,Is.EqualTo(2));Assert.That(s.Practice.Space.EventReceipts,Is.Empty);
         }
     }
 }

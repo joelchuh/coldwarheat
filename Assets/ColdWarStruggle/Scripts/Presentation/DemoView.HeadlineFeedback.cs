@@ -11,7 +11,7 @@ namespace ColdWarStruggle.Presentation
             return steps.Count==0?null:string.Join("\n\n",steps.Select(HeadlineStepFeedback));
         }
         string HeadlineStepFeedback(PublicHeadlineStep step)
-            =>"头条 · "+(step.War!=null?WarResultMessage(step.War):
+            =>"头条 · "+(step.SpaceEvent!=null?SpaceEventResultMessage(step.SpaceEvent):step.War!=null?WarResultMessage(step.War):
                 FiveYearPlanResultMessage(step.FiveYearPlan)+FiveYearPlanChildDetail(step.DefconVpEvent,step.ActivatedOpsEffect));
     }
 }

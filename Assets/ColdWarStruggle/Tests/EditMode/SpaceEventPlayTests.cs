@@ -74,5 +74,13 @@ namespace ColdWarStruggle.Tests
         }
         [TestCase(2)][TestCase(3)] public void Receipt_source_contains_turn_and_action_slot(int turn)
         {var r=Play(Ready(turn:turn));Assert.That(r.Accepted,Is.True,r.Error.ToString());Assert.That(r.SpaceEventResult.Receipt.Request.SourceActionId,Does.Contain("turn."+turn+".action.0"));}
+        [TestCase(true)][TestCase(false)] public void Event_reaching_eight_updates_actual_action_scheduler(bool first)
+        {
+            var s=Ready(us:first?0:8,su:7);var r=Play(s);Assert.That(r.Accepted,Is.True,r.Error.ToString());s=r.NextState;
+            while(s.Practice.CompletedActions<12)
+            {s=PlayTurnOpsEventTests.Give(s,s.Practice.Actor,"card.olympic_games");s=Pass(s,"card.olympic_games");}
+            Assert.That(s.Practice.Rounds.IsComplete,Is.EqualTo(!first));
+            if(first){Assert.That(s.Practice.Rounds.IsOptional,Is.True);Assert.That(s.Practice.Actor,Is.EqualTo(PlayerSide.USSR));}
+        }
     }
 }

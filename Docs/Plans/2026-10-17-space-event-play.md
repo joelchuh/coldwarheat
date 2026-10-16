@@ -52,7 +52,7 @@ var decision=VictoryService.Evaluate(p.Risk.Definition.Victory,
 **Modify:** Application/Sessions/CardActionContracts.cs、LocalGameHost.Cards.cs、HeadlineSessionContracts.cs；Presentation/DemoController.HeadlineFeedback.cs、DemoView.HeadlineFeedback.cs、DemoView.Actions.cs。均沿现有Assets/ColdWarStruggle根。
 **Interfaces:** `PublicSpaceEventResult(SpaceEventPlan)`内部投影，公开Card/Beneficiary/From/To/FirstArrival/Award/VpForUS/双方BeforeAbilities与AfterAbilities；CardActionResult.SpaceEvent和PublicHeadlineStep.SpaceEvent；`DemoView.SpaceEventResultMessage`内部纯文本。
 
-- [ ] 真实Host/Controller测试先RED：固定双方、重复原收据、冲突/过期、两种头条混合、旧版本摘要、展开不执行。不能以纯DTO构造替代命令验证。
+- [x] 真实Host/Controller测试先RED：固定双方、重复原收据、冲突/过期、两种头条混合、旧版本摘要、展开不执行。不能以纯DTO构造替代命令验证。
 ```csharp
 var first=await session.SubmitCardActionAsync(command);
 var retry=await session.SubmitCardActionAsync(command);
@@ -60,8 +60,8 @@ Assert.That(retry,Is.SameAs(first));
 Assert.That(first.SpaceEvent.AwardVp,Is.EqualTo(2));
 ```
 已核对 Application/Sessions/SessionContracts.cs 的 IGameSession.SubmitCardActionAsync 契约，沿用已有会话。
-- [ ] 从CardActionTransition和HeadlineResolutionStep传递公共结果。头条集合包含SpaceEvent；结果描述使用已有本地化名称/Side与结果页，不增加规则计算。
-- [ ] 完整回归通过后记录与提交Task2。
+- [x] 从CardActionTransition和HeadlineResolutionStep传递公共结果。头条集合包含SpaceEvent；结果描述使用已有本地化名称/Side与结果页，不增加规则计算。
+- [x] 完整回归通过后记录与提交Task2。
 
 ## Task 3 — 人工练习、描述与Player
 

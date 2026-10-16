@@ -128,7 +128,8 @@ namespace ColdWarStruggle.Presentation
         {
             var result=controller.LastCardResult;
             string message="";
-            if(result?.War!=null)message=WarResultMessage(result.War);
+            if(result?.SpaceEvent!=null)message=SpaceEventResultMessage(result.SpaceEvent);
+            else if(result?.War!=null)message=WarResultMessage(result.War);
             else if(result?.FiveYearPlan!=null)message=FiveYearPlanResultMessage(result.FiveYearPlan)+FiveYearPlanChildDetail(result);
             else if(result?.Blockade!=null)message=BlockadeResultMessage(result.Blockade);
             else if(result?.Realignment!=null)

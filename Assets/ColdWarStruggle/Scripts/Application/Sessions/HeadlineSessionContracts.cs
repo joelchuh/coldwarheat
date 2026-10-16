@@ -35,6 +35,7 @@ namespace ColdWarStruggle.Application
     }
     public sealed class PublicHeadlineStep
     {
+        public PublicSpaceEventResult SpaceEvent { get; }
         public PublicWarResult War { get; }
         public PublicFiveYearPlanResult FiveYearPlan { get; }
         public PublicBlockadeResult Blockade { get; }
@@ -49,7 +50,7 @@ namespace ColdWarStruggle.Application
         public PublicTurnOpsEffect ActivatedOpsEffect { get; }
         internal PublicHeadlineStep(HeadlineResolutionStep step)
         {
-            var r=step.Result;War=r.WarResult==null?null:new PublicWarResult(r.WarResult);FiveYearPlan=r.FiveYearPlanResult==null?null:new PublicFiveYearPlanResult(r.FiveYearPlanResult);Card=step.Card;PlayedBy=step.PlayedBy;Terminal=r.NextState.Ended;
+            var r=step.Result;SpaceEvent=r.SpaceEventResult==null?null:new PublicSpaceEventResult(r.SpaceEventResult);War=r.WarResult==null?null:new PublicWarResult(r.WarResult);FiveYearPlan=r.FiveYearPlanResult==null?null:new PublicFiveYearPlanResult(r.FiveYearPlanResult);Card=step.Card;PlayedBy=step.PlayedBy;Terminal=r.NextState.Ended;
             Completion=r.NextState.Practice.Headline.CompletedRoots.SingleOrDefault(x=>x.Card.Equals(Card) && x.PlayedBy==PlayedBy);
             WaitingForChoice=r.NextState.InfluenceEvent?.Stage==InfluenceEventStage.AwaitingChoice || r.NextState.Practice.Blockade!=null || r.NextState.Practice.War!=null;
             Blockade=r.BlockadeResult==null?null:new PublicBlockadeResult(r.BlockadeResult);
