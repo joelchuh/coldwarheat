@@ -50,16 +50,34 @@ namespace ColdWarStruggle.Tests
             finally{UnityEngine.Object.DestroyImmediate(go);}
         }
 
-        [TestCase(false)][TestCase(true)] public void Choosing_a_practice_starts_fresh_and_clears_old_commands_even_for_same_scene(bool same)
+        [TestCase(false)][TestCase(true)] public async Task Choosing_a_practice_starts_fresh_and_clears_old_commands_even_for_same_scene(bool same)
         {
             var d=IndependentRedsPlayTests.Catalog();var c=Controller(d);var go=new GameObject("picker-test");
             try
             {
                 var v=Initialize(go,c,d);c.SelectCard(Reds);var old=c.ReadView().GameId;
+                Assert.That((await c.PlayCardAsync(CardActionKind.Event)).Accepted,Is.True);
+                Assert.That(c.CanRetryCard,Is.True);Assert.That(c.LastCardResult,Is.Not.Null);
                 v.OpenScenarioPicker();int target=same?d.Scenarios.Count-1:0;v.SelectScenario(target);
                 Assert.That(v.IsScenarioPickerOpen,Is.False);Assert.That(c.ReadView().GameId,Is.Not.EqualTo(old));
                 Assert.That(c.SelectedCard,Is.Null);Assert.That(c.CanRetryCard,Is.False);Assert.That(c.SelectedCountry,Is.EqualTo(d.Scenarios[target].SelectedCountry));
+                Assert.That(c.LastCardResult,Is.Null);Assert.That(c.CardResultHistoryMessage,Is.Null);
                 Assert.That(c.SelectedSide,Is.EqualTo(d.Scenarios[target].Actor));Assert.That(c.ReadView().Practice!=null,Is.EqualTo(same));
+            }
+            finally{UnityEngine.Object.DestroyImmediate(go);}
+        }
+
+        [Test] public async Task Cancelling_preserves_a_pending_event_draft_without_resolving_it()
+        {
+            var d=IndependentRedsPlayTests.Catalog();var c=Controller(d);var go=new GameObject("picker-draft-test");
+            try
+            {
+                var v=Initialize(go,c,d);c.SelectCard(Reds);Assert.That((await c.PlayCardAsync(CardActionKind.Event)).Accepted,Is.True);
+                c.SelectSide(PlayerSide.US);Assert.That(c.ToggleEventTarget(Romania),Is.True);var before=c.ReadView();
+                v.OpenScenarioPicker();v.CancelScenarioPicker();
+                Assert.That(c.EventDraft,Is.EqualTo(new[]{Romania}));Assert.That(c.CanConfirmEvent,Is.True);
+                Assert.That(c.ReadView().GameId,Is.EqualTo(before.GameId));Assert.That(c.ReadView().Version,Is.EqualTo(before.Version));
+                Assert.That(c.ReadView().Countries.Single(x=>x.Definition.Id.Equals(Romania)).US,Is.EqualTo(1));
             }
             finally{UnityEngine.Object.DestroyImmediate(go);}
         }
