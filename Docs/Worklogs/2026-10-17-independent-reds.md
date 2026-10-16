@@ -11,3 +11,7 @@ reds-core-red首次没有XML：新增测试中的NUnit Using重载不明确，�
 reds-core-red-verified：2629项/28个新增预期失败；reds-core-green：2629/2629。reds-play-red首次是测试编译错误（缺构造参数、错误属性名），不计行为RED；修正后的reds-play-red-verified：2645项/11个接线与fixture预期失败；reds-play-green：2645/2645，exit0、零跳过。全部摘要及XML哈希将归档到验证JSON。
 
 构建载荷测试reds-payload-red为2648项/3个预期缺文件失败；接入Editor/Player/标准构建后reds-payload-green：2648/2648，exit0、零跳过。元数据152描述/79数据集/373符号通过。构建和真实Player验收仍待进行。
+
+独立审查review_independent_reds：0 Critical/Important/Minor。源码f90dd083构建exit0，51份载荷逐字节一致。真实Player走通罗马尼亚1/4→4/4、星号移出、美国下一行动；重发保持v5/seq6；重置后保加利亚6/2保持，零变化仍移出且继续。World/Tiles选择一致。两张F12证据与哈希归档；Player.log未见异常，测试窗口已关闭。
+
+实际观察到既有体验问题：重复原出牌命令回放历史收据时，只显示“等待事件受益方完成选择”，虽状态并未回滚，却容易误解。下一批先修正历史收据提示并改善直接进入练习的入口，再推进封锁等私有手牌回应。
