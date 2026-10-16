@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "validation.demo-result-reader",
   "description": "结果阅读页的原生回归与Player真实点击证据",
-  "status": "native-passed-player-pending",
+  "status": "passed",
   "runs": [
     {
       "status": "failed",
@@ -76,7 +76,44 @@
       "事件面板政变摘要及拒绝消息沿用原显示组合"
     ],
     "limitations": [
-      "尚未进行Player点击和文字布局验收"
+      "长结果滚动、两头条和子事件草稿路径仅由原生逻辑测试/绘制审阅覆盖，未逐个鼠标复现"
+    ]
+  },
+  "player": {
+    "source_commit": "942f4b239d3dc1611e9f1f27bbfa461f6dd04bc9",
+    "path": "Builds/ResultReaderPlaytest/ColdWarStruggleDemo.exe",
+    "build_exit_code": 0,
+    "build_log": "TestResults/result-reader-build.log",
+    "payload_report": "TestResults/result-reader-payload.json",
+    "payload_count": 58,
+    "all_payloads_match": true,
+    "assemblies": {
+      "ColdWarStruggle.Application.dll": "5fd8dbbfe4fb52595b942270800dcd7967394d029168accf3442993083035a51",
+      "ColdWarStruggle.Bootstrap.dll": "31eda7be52f1dc2204010e6201d5be7b97ec4d929a5b5d24761260fa9bdc7b8e",
+      "ColdWarStruggle.Core.dll": "ffe8dabd7ddf7ece1fbec14331d36c8a46742249a4130b6886dd19e9661a9b9d",
+      "ColdWarStruggle.Infrastructure.dll": "f53ecf625bef8070a4966cabf51f632583c28cbc1db8c502ad1a28f220a0d5c5",
+      "ColdWarStruggle.Presentation.dll": "f9cf0cd7cc60bf29584994dfe2849331cf84bd78a4008312f27ab037d8f141bf"
+    },
+    "ui_log": "TestResults/result-reader-player.log",
+    "ui_exception_count": 0,
+    "captures": [
+      {
+        "path": "TestResults/result-reader-ui/expanded-war.png",
+        "sha256": "36bf2b49d6500b7ae7ff6038eb95c60cc48047fdd33a92e4ff9ea0b8f92ad87f"
+      },
+      {
+        "path": "TestResults/result-reader-ui/returned-same-state.png",
+        "sha256": "db35d9dcb2ccb31432deffb4bb43f3828138b2b30b21f901d73a3a8ce33711fd"
+      }
+    ],
+    "observed": [
+      "朝鲜战争实际出牌，地图美0苏4/苏军事2/VP-2",
+      "展开结果显示完整战争算术/控制来源/国家变化/军事与VP，无裁切",
+      "关闭按钮返回后仍版本4/序号4，奖励未重复",
+      "再次打开并Escape返回同一局面"
+    ],
+    "not_manually_tested": [
+      "长结果滚动、两头条和子事件草稿路径仅由原生逻辑测试/绘制审阅覆盖，未逐个鼠标复现"
     ]
   }
 }

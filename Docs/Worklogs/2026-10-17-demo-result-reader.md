@@ -11,3 +11,5 @@
 RED3087/3081/6均缺少打开能力；首次GREEN3087/3085/2为测试错误假设身份切换保留普通反馈，查ResetCardInteraction确认其主动清空LastCardResult。修正测试流程而不改变既有产品语义，第二轮GREEN进行中。
 
 第二轮GREEN3087/3087、0跳过、exit0，SHA d56b042db4b694e65b1ae5905b4beef3f930dcb4ddcde2186a621ae31387c1a9。内联检查只读绑定和OnGUI优先返回；开始构建独立ResultReaderPlaytest，不覆盖WarPlaytest。
+
+源942f4b2构建exit0，58载荷一致；实际朝鲜战争→展开→关闭→再次展开→Escape，明细完整可读，回到地图仍v4/seq4、苏军事2/VP-2。F12两图与程序日志无异常，见验证报告。完成内联审查/元数据后提交推送，后续继续早期卡牌及重复工作流工具。
