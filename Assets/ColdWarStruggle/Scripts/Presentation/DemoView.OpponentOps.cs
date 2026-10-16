@@ -34,6 +34,9 @@ namespace ColdWarStruggle.Presentation
         {
             var c=result.Coup;
             var message=$"政变骰 {c.Roll} / OPS {c.Strength} / 差额 {c.Margin}\n影响力 −{c.Removed}/+{c.Added} · 军事 +{c.MilitaryCredit}\n";
+            if(result.Blockade!=null)return message+(result.Blockade.Outcome==BlockadeOutcome.AwaitingChoice
+                ?"封锁：等待"+(result.Blockade.Owner==PlayerSide.US?"美国":"苏联")+"回应。"
+                :"封锁："+Name(result.Blockade.FallbackCountry)+(result.Blockade.Owner==PlayerSide.US?"美方":"苏方")+"影响力清零。");
             if(result.DefconVpEvent!=null)
             {
                 var e=result.DefconVpEvent;return message+$"事件 DEFCON {e.DefconFrom}→{e.DefconTo}"+(e.Terminal?" · 终局":" · VP "+e.VpForUS.ToString("+0;-0;0"));

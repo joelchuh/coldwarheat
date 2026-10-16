@@ -197,12 +197,104 @@
       "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\blockade-demo-green",
       "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\blockade-demo-green\\results.xml",
       "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\blockade-demo-green\\editor.log"
+    },
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 2772,
+      "passed": 2770,
+      "failed": 2,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "152e940e51852177522d831eea1b945abb676a7e70afdb8df99bf0871a934d76",
+      "schema_version": 1,
+      "run_id": "blockade-review-red",
+      "duration_ms": 96092,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\blockade-review-red",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\blockade-review-red\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\blockade-review-red\\editor.log"
+    },
+    {
+      "status": "passed",
+      "error_code": null,
+      "total": 2772,
+      "passed": 2772,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "c1c8eaa4585ef0f622561a884c0a28bc0b5d6c73d30f3d075e4d7d376cf25f0c",
+      "schema_version": 1,
+      "run_id": "blockade-review-green",
+      "duration_ms": 94733,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\blockade-review-green",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\blockade-review-green\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\blockade-review-green\\editor.log"
     }
   ],
   "limitations": [
-    "2769项原生回归通过；独立审查与Player/真实UI待验",
-    "未构建Player或进行本批鼠标验证",
+    "2772项原生通过；最终仅缩短按钮/第三行提示文案，构建编译与复核待完成",
+    "c31d68f构建与直接封锁UI已通过；修复后必须重建，不能把旧Player冒称新源码",
     "首轮头条测试部署丢失、首次green头条优先方设置错误，均修正fixture，不改正式顺序规则",
     "Demo首轮因测试误用接口未编译，修正测试后17项真实功能红灯"
-  ]
+  ],
+  "build": {
+    "exit_code": 0,
+    "log": "E:/TwilightStruggle/TestResults/blockade-build.log",
+    "source": "c31d68f2b2d5b50cd43a663adbb933c9c6ca76ec"
+  },
+  "payload": {
+    "status": "passed",
+    "count": 54,
+    "source": "c31d68f2b2d5b50cd43a663adbb933c9c6ca76ec",
+    "executable_sha256": "a4c71b1bfc3e42d02f2f129fe04adef3ebf2343a662884e4b99598e9dfc90e7d"
+  },
+  "ui": {
+    "status": "passed-on-source-c31d68f",
+    "build": "Builds/BlockadePlaytest/ColdWarStruggleDemo.exe",
+    "checks": [
+      "USSR触发后无候选/数量，明确等待美国",
+      "US选择马歇尔计划弃牌，西德5/2保持，弃1移1，v4序号4",
+      "重发弃牌保持v4序号4和牌区",
+      "重置后Decline西德0/2，手牌3保持，弃0移1，v5序号6",
+      "切换卡片地图保持v5序号6/西德0/2",
+      "23场景目录保留原21/22入口"
+    ],
+    "captures": [
+      {
+        "path": "TestResults/blockade-ui/decline-v5.png",
+        "sha256": "0c9f6de48d7b49fcd31ba09b3f622dcd60bcad042d88fe8cab38320dc2cb7add"
+      },
+      {
+        "path": "TestResults/blockade-ui/discard-retry-v4.png",
+        "sha256": "58e78b864e1f17e606688b8a974881688c989879e743d33cde9e46cfb3798397"
+      },
+      {
+        "path": "TestResults/blockade-ui/ussr-waiting.png",
+        "sha256": "ac0e65970176d92b03bd7812cd98c7c21976ade5fc0d50f3e0cb46bd01f9d39c"
+      }
+    ],
+    "log": "TestResults/blockade-player.log",
+    "managed_exceptions": 0,
+    "warnings": [
+      "D3D12 info queue query 0x80004002启动警告；后续渲染与输入正常"
+    ],
+    "note": "本批UI已关闭；审查后政变组合反馈仍待修复和重建"
+  },
+  "review": {
+    "base": "e1001a4e185db5839d5c4142f4e5be8a63a27503",
+    "head": "c31d68f2b2d5b50cd43a663adbb933c9c6ca76ec",
+    "critical": 0,
+    "important": 1,
+    "minor": 0,
+    "finding": "Coup包装遗漏BlockadeResult与组合提示，修复进行中",
+    "fix": "政变透传BlockadeResult与HeadlineSteps，组合提示保留政变和封锁；有/无候选+核战测试已通过，复核待完成"
+  }
 }

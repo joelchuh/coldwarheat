@@ -14,6 +14,25 @@ namespace ColdWarStruggle.Tests
         static CardId Id(string n)=>BlockadePlayTests.Id(n);
         static CardActionCommand Command(IGameSession s,CardActionKind kind,CardId? card=null,string id="command")
         {var v=s.ReadView();return new CardActionCommand(id,v.GameId,v.Version,kind,card);}
+        [TestCase(true)][TestCase(false)] public async Task Coup_then_blockade_preserves_both_public_receipts_and_retry(bool eligible)
+        {
+            var h=new LocalGameHost(BlockadePlayTests.Ready(PlayerSide.US,eligible),true);var session=h.UsSession;
+            Assert.That((await session.SubmitCardActionAsync(Command(session,CardActionKind.OpponentOpsFirst,Id("blockade"),"root"))).Accepted,Is.True);
+            var v=session.ReadView();var command=new CardActionCommand("coup",v.GameId,v.Version,CardActionKind.UseOpponentCoup,target:BlockadePlayTests.West);
+            var result=await session.SubmitCardActionAsync(command);Assert.That(result.Accepted,Is.True);Assert.That(result.Coup,Is.Not.Null);Assert.That(result.Blockade,Is.Not.Null);
+            Assert.That(result.Blockade.Outcome,Is.EqualTo(eligible?BlockadeOutcome.AwaitingChoice:BlockadeOutcome.InfluenceRemoved));
+            Assert.That(result.View.Countries.Single(x=>x.Definition.Id.Equals(BlockadePlayTests.West)).US,Is.EqualTo(eligible?5:0));
+            Assert.That(result.View.Practice.CompletedActions,Is.EqualTo(eligible?1:2));var version=result.View.Version;var sequence=result.View.EventSequence;
+            Assert.That(await session.SubmitCardActionAsync(command),Is.SameAs(result));Assert.That(session.ReadView().Version,Is.EqualTo(version));Assert.That(session.ReadView().EventSequence,Is.EqualTo(sequence));
+        }
+        [Test] public async Task Nuclear_coup_never_opens_blockade_or_removes_its_fallback_influence()
+        {
+            var s=BlockadePlayTests.Ready(PlayerSide.US,level:2);var board=s.Countries.ToDictionary(x=>x.Key,x=>x.Value);var target=new CountryId("country.angola");board[target]=new CountryState(0,2);s=PlayScoringTests.Replace(s,board);
+            var h=new LocalGameHost(s,true);var session=h.UsSession;Assert.That((await session.SubmitCardActionAsync(Command(session,CardActionKind.OpponentOpsFirst,Id("blockade"),"root"))).Accepted,Is.True);
+            var v=session.ReadView();var result=await session.SubmitCardActionAsync(new CardActionCommand("nuclear",v.GameId,v.Version,CardActionKind.UseOpponentCoup,target:target));
+            Assert.That(result.Accepted,Is.True);Assert.That(result.Coup,Is.Not.Null);Assert.That(result.Blockade,Is.Null);Assert.That(result.View.Blockade,Is.Null);Assert.That(result.View.Practice.Winner,Is.EqualTo(PlayerSide.USSR));
+            Assert.That(result.View.Countries.Single(x=>x.Definition.Id.Equals(BlockadePlayTests.West)).US,Is.EqualTo(5));Assert.That(result.View.Practice.CompletedActions,Is.EqualTo(1));Assert.That(result.View.Cards.ResolvingCount,Is.EqualTo(1));Assert.That(result.View.Cards.RemovedCount,Is.Zero);
+        }
         static async Task<LocalGameHost> Pending()
         {var h=new LocalGameHost(BlockadePlayTests.Ready(),true);Assert.That((await h.UssrSession.SubmitCardActionAsync(Command(h.UssrSession,CardActionKind.Event,Id("blockade"),"root"))).Accepted,Is.True);return h;}
         [Test] public async Task Only_US_sees_current_candidates_and_public_waiting_receipt_has_no_hand_leak()

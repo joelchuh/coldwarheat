@@ -27,7 +27,7 @@ namespace ColdWarStruggle.Presentation
             GUI.enabled=controller.CanDiscardForBlockade;
             if(Button(972,497,262,33,"确认弃掉所选牌"))RespondToBlockade(true);
             GUI.enabled=true;
-            if(Button(972,536,262,35,"不弃牌 · 清除"+Name(choice.FallbackCountry)+Side(choice.Owner)))RespondToBlockade(false);
+            if(Button(972,536,262,35,"不弃牌 · "+Name(choice.FallbackCountry)+(choice.Owner==PlayerSide.US?"美方":"苏方")+"影响力清零"))RespondToBlockade(false);
         }
         string BlockadeResultMessage(PublicBlockadeResult result)=>result.Outcome switch
         {

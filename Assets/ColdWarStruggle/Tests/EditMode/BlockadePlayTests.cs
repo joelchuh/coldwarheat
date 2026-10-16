@@ -15,9 +15,13 @@ namespace ColdWarStruggle.Tests
             var map=d.Risk.Defcon.Map;var effect=BlockadeDefinitionLoader.Load(BlockadeDefinitionTests.Data(),BlockadeDefinitionTests.Schema(),map,d.Cards,d.Ops,BudgetedRemovalCatalogTests.KnownEffects);
             return new ActionPracticeDefinition(d.Cards,d.Ops,d.Space,d.Calendar,d.Risk,d.Scoring,d.InfluenceEvents??PlayInfluenceEventTests.Effects(map,d.Cards),d.DefconVpEvents,d.TurnOpsEvents??PlayTurnOpsEventTests.Effects(d.Cards),d.Realignment,d.China,d.TurnEndEnabled,d.NextTurnEnabled,d.HeadlineParameters,d.HeadlineDefectors,d.FinalScoring,blockade:effect);
         }
-        internal static GameState Ready(PlayerSide actor=PlayerSide.USSR,bool eligible=true,int west=5)
+        internal static GameState Ready(PlayerSide actor=PlayerSide.USSR,bool eligible=true,int west=5,int level=5)
         {
-            var s=PlayScoringTests.Ready("card.blockade",configure:Bind);
+            var s=PlayScoringTests.Ready("card.blockade",configure:d=>
+            {
+                var f=d.Risk.Defcon;var risk=new PracticeRiskDefinition(d.Risk.Coup,new DefconDefinition(f.Map,level,f.MaximumLevel,f.NuclearLevel,f.TurnStartImprovement,f.BattlegroundCoupDegradation,f.RestrictedActions,f.BlockedRegions),d.Risk.Military,d.Risk.Victory);
+                return Bind(new ActionPracticeDefinition(d.Cards,d.Ops,d.Space,d.Calendar,risk,d.Scoring));
+            });
             var us=new List<CardId>{Id("independent_reds"),Id("asia_scoring")};if(eligible)us.Add(Id("marshall_plan"));if(actor==PlayerSide.US)us.Add(Id("blockade"));
             var su=new List<CardId>{Id("olympic_games")};if(actor==PlayerSide.USSR)su.Add(Id("blockade"));
             var hands=new Dictionary<PlayerSide,IReadOnlyList<CardId>>{{PlayerSide.US,us},{PlayerSide.USSR,su}};var used=us.Concat(su).ToHashSet();
