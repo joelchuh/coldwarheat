@@ -42,11 +42,13 @@ Interfaces: WithFinalScoringScenario(fixture,regionJson,regionSchema,chinaJson,c
 
 Files: Presentation/DemoController.FinalScoring.cs、DemoView.FinalScoring.cs（新）；现有Cards/TurnEnd面板接线；Bootstrap/DemoBootstrap.cs、Editor/DemoBuild.cs；Tests/EditMode/FinalScoringPresentationTests.cs；Docs各描述/Wiki/报告。
 Interfaces: CompleteFinalScoringAsync()复用SendCard；FinalScoringPanelFrame或公开结果到展示文本；DemoBuild.BuildFinalScoringPlaytest。
-- [ ] 写终局正负零/欧洲、按钮资格、重发/切身份、场景入口和构建载荷测试。
-- [ ] RunId final-play-ui-red。Expected:新增失败。
-- [ ] 实现、RunId final-play-ui-green；Expected:全套通过。
-- [ ] 一次独立完整审查，重要项一轮RED/GREEN修复；完成元数据与源码哈希。
-- [ ] 构建独立Player并验证载荷，执行真实点击审核→最终计分→重发→切图/切名。不能控制窗口时保留构建并如实标未验收，不重复问用户常规批准。
-- [ ] Wiki/JSON/worklog与Git推送/远端SHA核对，保留已知用户文件。
+- [x] 写终局正负零/欧洲、按钮资格、重发/切身份、场景入口和构建载荷测试。
+- [x] RunId final-play-ui-red。Expected:新增失败。
+- [x] 实现、RunId final-play-ui-green；Expected:全套通过。
+- [x] 一次独立完整审查，重要项一轮RED/GREEN修复；完成元数据与源码哈希。
+- [x] 构建独立Player并验证载荷，执行真实点击审核→最终计分→重发→切图/切名。不能控制窗口时保留构建并如实标未验收，不重复问用户常规批准。
+- [x] Wiki/JSON/worklog与Git推送/远端SHA核对，保留已知用户文件。
 
 每次原生命令：& Tools/Scripts/run-unity-editmode.ps1 -ProjectRoot E:/TwilightStruggle -UnityEditor E:/unity6.6/6000.6.0f1/Editor/Unity.exe -RunId <上述> -TimeoutSeconds600。每项GREEN均对照XML/退出码，不重复无意义全套。
+
+验收落点：源码a0f7f40已push并ls-remote一致；最终报告/docs随收尾提交同步。完整证据与审查裁定见工作记录。

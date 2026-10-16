@@ -1,7 +1,7 @@
 # 最终计分
 
 > description: 读六区最终汇总、中国牌持有奖励、欧洲优先与零分平局接口；与真实第10回合命令/UI边界分开。
-> 当前：核心、正式加载、宿主、场景与界面2439项原生回归通过；新Player构建与鼠标验收待完成。
+> 当前：核心、正式加载、宿主、场景与界面2443项原生回归通过；独立FinalScoringPlaytest已构建并完成鼠标验收。
 
 先看[模块JSON](../Descriptors/final-scoring.module.json)，按entrypoints读需要的函数；规则依据与设计见[设计](../Design/2026-10-16-final-scoring-foundation.md)。
 
@@ -23,7 +23,7 @@ flowchart LR
 
 ## 接入边界
 
-纯服务不检查回合号/用户身份，不提交状态或移动卡牌；`CanCompleteFinalScoring`已验证第10回合全部普通行动、军事/扣留审核、太空边界及同一回合参数；`CardActionKind.FinalScoring`经LocalGameHost提交，保存原TurnEnd报告并一次发布最终收据/VP/Ended。重发同ID返回原收据；旧版本、重复新ID和数值溢出均不再计分。任何活动计分修正均拒绝，不能把台湾决议等默默忽略。源码已接最终计分按钮，旧Headlines Player未更新；独立FinalScoringPlaytest构建/鼠标验收另记，不因此声称所有事件与完整10回合已可玩。
+纯服务不检查回合号/用户身份，不提交状态或移动卡牌；`CanCompleteFinalScoring`已验证第10回合全部普通行动、军事/扣留审核、太空边界及同一回合参数；`CardActionKind.FinalScoring`经LocalGameHost提交，保存原TurnEnd报告并一次发布最终收据/VP/Ended。重发同ID返回原收据；旧版本、重复新ID和数值溢出均不再计分。任何活动计分修正均拒绝，不能把台湾决议等默默忽略。独立FinalScoringPlaytest已接最终计分按钮并完成构建/鼠标验收，旧Headlines Player仍保留；不因此声称所有事件与完整10回合已可玩。
 
 测试入口：FinalScoringTests.cs（完整地区/SEA/所有权/正负零/欧洲/越线反转/不可变/输入保护/溢出）；FinalScoringLoaderTests.cs覆盖正式数据、共享参数读取与严格校验。计划见[任务清单](../Plans/2026-10-16-final-scoring-foundation.md)。
 
@@ -51,4 +51,10 @@ flowchart LR
 
 `CompleteFinalScoringAsync`复用固定身份SendCard与generation隔离。`FinalScoringPanelFrame`从公开报告生成六区基础/战场/邻接分项、净分、中国牌奖励和最终公式；欧洲直接获胜保留原VP、净分不伪造，零分显示平局。`DemoView.FinalScoring`提供地图区明细页和右侧摘要，固定状态栏继续显示VP/DEFCON/军事/太空，切图和中英文名称不写规则状态。新报告可返回终局地图、重发命令和切身份查看；新场景默认观察仍关闭。
 
-`BuildFinalScoringPlaytest`输出独立Builds/FinalScoringPlaytest；Editor和Player接相同正式JSON，新增3项载荷由既有SynchronizeData验证复制。本批9项展示测试已通过，实际构建/UI验收仍需另证据。
+`BuildFinalScoringPlaytest`输出独立Builds/FinalScoringPlaytest；Editor和Player接相同正式JSON，新增3项载荷由既有SynchronizeData验证复制。本批9项展示测试已通过，另外补4项特殊太空门禁回归；最终2443项原生测试通过。实际构建/UI证据见下。
+
+## 已验收的试玩入口
+
+打开 `Builds/FinalScoringPlaytest/ColdWarStruggleDemo.exe`；默认第15个头条场景，点一次“下一个”进入第16个最终计分人工练习。依次“结算本回合”→“执行最终计分”，当前示例审核VP2、欧洲−1、中美洲−1、其他四区0、中国牌美国+1，最终VP1美国获胜。重发仍版本31/序号31；地图、国家名和身份切换均不改变局面。终局普通手牌与中国牌选择禁用，地图仅查看/复盘。
+
+源码构建点 `a0f7f40`；45份构建载荷逐字节一致；[验证报告](../Testing/final-scoring-playtest.validation.json)保存27份源码哈希、XML和构建日志哈希及截图。[结算画面](../Images/final-scoring-report.png) / [只读地图](../Images/final-scoring-readonly-map.png)。真实鼠标只覆盖本示例美国胜，苏联胜/零分平局/欧洲控制由原生测试覆盖，不扩称整局或全卡牌验收。

@@ -85,8 +85,8 @@
 | 初始布置与开局 | 查固定影响力、自由部署、私有初始手牌、轨道引用、幂等与首回合衔接 | 真实发牌/部署地图练习已实现；完整开局阶段衔接待接入 | [setup.md](setup.md) |
 | 回合与出牌状态机 | 查找阶段转换、头条保密、事件/OPS 顺序、卡牌去向和读档继续位置 | v0.2 编排设计；待实现 | [turn-flow.md](turn-flow.md) |
 | 风险与胜负服务 | 查找 DEFCON 限制与责任、军事净结算、胜负检查点及扣留计分牌矩阵 | DEFCON/军事及六类基础胜负检查点已实现；完整编排待接入 | [risk-victory.md](risk-victory.md) |
-| 地区计分与最终汇总 | 查找六地区档位、东南亚权重、最终完整性和中国牌附加分 | 基础计分和最终汇总已实现；最终宿主待接 | [region-scoring.md](region-scoring.md) |
-| 最终计分 | 查六区+中国牌、欧洲优先、零分平局、宿主与独立练习/面板 | 原生2439通过；新Player待构建验收 | [final-scoring.md](final-scoring.md) |
+| 地区计分与最终汇总 | 查找六地区档位、东南亚权重、最终完整性和中国牌附加分 | 基础/最终计分与宿主/面板已实现；动态修正待接 | [region-scoring.md](region-scoring.md) |
+| 最终计分 | 查六区+中国牌、欧洲优先、零分平局、宿主与独立练习/面板 | 原生2443通过；独立Player/真实点击已验 | [final-scoring.md](final-scoring.md) |
 | 通用 OPS 报价 | 查Actor归属、Flat合并/上下限、真实牌/视同来源与太空工厂 | General子集已实现；地区与活动实例待接 | [ops-general.md](ops-general.md) |
 | 政变基础计算 | 目标门禁、共享骰子/稳定度系数、影响力与战场意图 | C#基础子集；完整命令待接 | [coup-calculation.md](coup-calculation.md) |
 | 政变整体计划 | 军事/随机/影响力/DEFCON一体结果、收据防重与版本 | C#已验证；宿主待接 | [coup-attempts.md](coup-attempts.md) |

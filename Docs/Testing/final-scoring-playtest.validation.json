@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "description": "最终计分试玩接线分阶段验证；未完成阶段明确标记。",
-  "status": "in-progress",
+  "description": "最终计分试玩：原生2443项、独立审查、构建45份载荷与真实鼠标流程证据。",
+  "status": "passed-with-explicit-scope",
   "base_commit": "93a072ec0dba5a6194043bfbc97c5a6ee4ac2f9c",
   "core": {
     "red": "final-play-core-red: 2386 passed,22 failed,0 skipped,exit2",
@@ -19,6 +19,507 @@
     "green": "final-play-ui-green: 2439 passed,0 failed,0 skipped,exit0",
     "xml_sha256": "dadb70614bc050a140d3be9ace5ee3461d48d7b861e8ee8e9f76462f099390b1"
   },
-  "player": "not-built",
-  "native_ui": "not-verified"
+  "player": {
+    "status": "built-and-native-ui-verified",
+    "exe": "Builds/FinalScoringPlaytest/ColdWarStruggleDemo.exe",
+    "exe_sha256": "a4c71b1bfc3e42d02f2f129fe04adef3ebf2343a662884e4b99598e9dfc90e7d",
+    "exit_code": 0,
+    "build_log": "TestResults/final-scoring-playtest-build-final.log",
+    "build_log_sha256": "e74962221b232c7f15b197ec71d2aa4a3a06a78d504edbf820291ab14a13f11b",
+    "payloads_checked": 45
+  },
+  "native_ui": {
+    "status": "verified",
+    "source_commit": "a0f7f405962cfb425ac00fb929b0d33639eccb03",
+    "capture_method": "Unity DemoCapture F12 (game frame only)",
+    "captures": [
+      {
+        "path": "Docs/Images/final-scoring-report.png",
+        "sha256": "cddd3874ac832851e2fcc6ccfdf32c793cc1cb6313bb617017c52cd1b8d77793"
+      },
+      {
+        "path": "Docs/Images/final-scoring-readonly-map.png",
+        "sha256": "d7cb50bba5127106c6ac351e3043ccb00725d21b9d4d0771160e5daf7d6cc7fc"
+      }
+    ],
+    "steps": [
+      "默认第15场景/观察关闭；切第16场景为v29/seq29/VP2",
+      "审核为v30/seq30，中国牌翻正，军事净0",
+      "最终为v31/seq31/VP1，美国胜；欧洲-1/中美洲-1/其余0/中国牌+1",
+      "重发仍v31/seq31/VP1",
+      "返回地图：终局只读提示；切US后中国牌禁用",
+      "地图World到卡片、中文到EN、切身份，均保持v31/seq31/VP1"
+    ]
+  },
+  "source_commit": "a0f7f405962cfb425ac00fb929b0d33639eccb03",
+  "source_hashes": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/CardActionContracts.cs",
+      "sha256": "cf2ddf5bfab1c956bf06d64131b2e766b502960892ceb44df7fec80fdb692f65"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/FinalScoringView.cs",
+      "sha256": "da7d75fa4779765e1b88f89a84545a1400f6d18fbb1c8d8c9e3095923f757ecf"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/SessionContracts.cs",
+      "sha256": "00acea64cd3b7571ec4dc0a27370ee095167a296b33fd0bd44d6f31c193106e4"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Bootstrap/DemoBootstrap.cs",
+      "sha256": "71abfe1d032ab4e526fe1eaf19515ddb3c1dbbdc816e4cac3de4db7e2ea35f7f"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.cs",
+      "sha256": "a17689a06f3d08f4ba41a05d477e8a7e4c74a03665f9922ee6aea322d04c7a36"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeState.cs",
+      "sha256": "3b2bf579f9d135595a399e12a7c1aa1bf2ca14c4bfa7fac71f519274848788ee"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeFinalScoringRules.cs",
+      "sha256": "f42983db7d2420c52566ec1ba8f2f12136ac39fe5a1e5b484fcf646e96aac36a"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeTurnEndRules.cs",
+      "sha256": "d6eb34d82606ed3438c97b59b404a91fd575f9013e42989294a3035313e4490d"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "sha256": "3b73d491f35e70684a22181a2699853efe35b5b5ccaa0f857f9facdb5414fe84"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.FinalScoring.cs",
+      "sha256": "2ba1dd6883f1e7a05801e972faca8df290f6e7d88506b570e1ec7ae022943055"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.cs",
+      "sha256": "681d55c121fd196b03bd8f002b4f118a25faaaa0288a334d9517632472448556"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/FinalScoringDefinitionLoader.cs",
+      "sha256": "1800177e25e0073af2eb8dc96e16e081cf9240af6d516ae50bb4c20da681b1d2"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Cards.cs",
+      "sha256": "2c1688b0be369d36746de33600ea42e7d522879a5e243a010cfc2b9c47e2713c"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.FinalScoring.cs",
+      "sha256": "0f9b5b5882bb1772b381fff907c7e7b75e00fa083abeb59018e01d56d1535fc4"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Headlines.cs",
+      "sha256": "4f1e7c7996f471b629edd8a317f001f38039e1c4b2dce0f7476edefd18f77b11"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Cards.cs",
+      "sha256": "5ca07aef5d4898753c7f34c37cc7af56bde04a7d7e03a8234b7fe6b8bc5e6e1b"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.China.cs",
+      "sha256": "2bd4d92e5226417c13053805550d4e423e7c3389c3ad4142f79e0272cd96db8e"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.FinalScoring.cs",
+      "sha256": "b16032ddda4789cd2ef89f363b14d1dc079327abfd2d874b9a8910f978fc16e2"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Scoring.cs",
+      "sha256": "522a432474f7caeff808bb2bb412ab14ee32a15ad13605ef8033dee84285eeb8"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.TurnEnd.cs",
+      "sha256": "1a46a76d0a35358d00d2d7a6b363b1db53f5f542bb19a455641da5694eb2a7cd"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.cs",
+      "sha256": "bc4960934f9d99eda22bb4edfb50eb18671ad4199aa3ef8d1f9e49011848c039"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/FinalScoringPanelFrame.cs",
+      "sha256": "5722d386157308624288bb6828df468190bc01d966ab564d0de40c654d266a73"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/FinalScoringDemoEntryTests.cs",
+      "sha256": "7d2223eb3f9886108e717f0a1f130cbc8d299a10bcaba65730e176498014a62f"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/FinalScoringPlayTests.cs",
+      "sha256": "61b0bb4a9b658768fb98fa3f3ef4144a831095dbc6e85f9d894255f7a74b3017"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/FinalScoringPresentationTests.cs",
+      "sha256": "a14d2493d0d5b9ae2a0bb0c15d7f1f0bf5ac53c78690b4770d47e6a606efebdb"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/FinalScoringSessionTests.cs",
+      "sha256": "341c7008ed34a8f35513ef5351b17223a327af5fde19b86edece29c03727d31e"
+    },
+    {
+      "path": "Data/Demo/final-scoring-scenario.json",
+      "sha256": "e8a83665ad03b9cc6dac3f2239fce18801652516d0dbfdb0c54a9470e5bdb9ae"
+    }
+  ],
+  "native_runs": [
+    {
+      "run_id": "final-play-core-red",
+      "passed": 2386,
+      "failed": 22,
+      "skipped": 0,
+      "exit_code": 2,
+      "xml": "TestResults/UnityRuns/final-play-core-red/results.xml",
+      "xml_sha256": "83c853c76e70d1a5b2ff761ac1ff78db6e8d14a8169ecfe5c7313d9829fd562b"
+    },
+    {
+      "run_id": "final-play-core-green",
+      "passed": 2408,
+      "failed": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "xml": "TestResults/UnityRuns/final-play-core-green/results.xml",
+      "xml_sha256": "70cea00948876dc53e5e4d5f662518b6316e294a4c2230e2c39b9dcf8682dfed"
+    },
+    {
+      "run_id": "final-play-data-red-fixed",
+      "passed": 2408,
+      "failed": 22,
+      "skipped": 0,
+      "exit_code": 2,
+      "xml": "TestResults/UnityRuns/final-play-data-red-fixed/results.xml",
+      "xml_sha256": "98902771e9e815ebbc6f9b195e9b3cf6c3b17d6d0f9f29e3d8afad82c0d0e621"
+    },
+    {
+      "run_id": "final-play-data-green",
+      "passed": 2430,
+      "failed": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "xml": "TestResults/UnityRuns/final-play-data-green/results.xml",
+      "xml_sha256": "a947c4168f2b8da87dbc6ea509f106cd9c1bb47f3cbeb624856e63160d6dc680"
+    },
+    {
+      "run_id": "final-play-ui-red",
+      "passed": 2431,
+      "failed": 8,
+      "skipped": 0,
+      "exit_code": 2,
+      "xml": "TestResults/UnityRuns/final-play-ui-red/results.xml",
+      "xml_sha256": "e5511d6e4b530f1948cfbd138bf0b2d7bea3aaca7db2e175b98e9a1a01c9cb9c"
+    },
+    {
+      "run_id": "final-play-ui-green",
+      "passed": 2439,
+      "failed": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "xml": "TestResults/UnityRuns/final-play-ui-green/results.xml",
+      "xml_sha256": "dadb70614bc050a140d3be9ace5ee3461d48d7b861e8ee8e9f76462f099390b1"
+    },
+    {
+      "run_id": "final-play-acceptance-red",
+      "passed": 2440,
+      "failed": 3,
+      "skipped": 0,
+      "exit_code": 2,
+      "xml": "TestResults/UnityRuns/final-play-acceptance-red/results.xml",
+      "xml_sha256": "45dda2c9d170c47f74a1531875d9c5f365233673f9c7f8025a7b521b922da92c"
+    },
+    {
+      "run_id": "final-play-acceptance-green",
+      "passed": 2443,
+      "failed": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "xml": "TestResults/UnityRuns/final-play-acceptance-green/results.xml",
+      "xml_sha256": "b5c8d665a2f3e080b0cffa0e8816f1cf9453db427c1ff0065143a98bf3f997e0"
+    }
+  ],
+  "build_inputs": [
+    {
+      "source": "Data/Demo/final-scoring-scenario.json",
+      "payload": "final-scoring-scenario.json",
+      "sha256": "e8a83665ad03b9cc6dac3f2239fce18801652516d0dbfdb0c54a9470e5bdb9ae",
+      "built_sha256": "e8a83665ad03b9cc6dac3f2239fce18801652516d0dbfdb0c54a9470e5bdb9ae"
+    },
+    {
+      "source": "Data/Rulesets/deluxe-2015/scoring-card-parameters.json",
+      "payload": "scoring-card-parameters.json",
+      "sha256": "15e4baf07c3cd69d5284397938052db8add0bdde2535023d81fe504c78082f4d",
+      "built_sha256": "15e4baf07c3cd69d5284397938052db8add0bdde2535023d81fe504c78082f4d"
+    },
+    {
+      "source": "Docs/Contracts/scoring-card-parameters.schema.json",
+      "payload": "scoring-card-parameters.schema.json",
+      "sha256": "07818a85d9ac7a93777b4193cc0554f5d88bbde808cae49aafb335b077d94b16",
+      "built_sha256": "07818a85d9ac7a93777b4193cc0554f5d88bbde808cae49aafb335b077d94b16"
+    },
+    {
+      "source": "Data/Demo/headline-scenario.json",
+      "payload": "headline-scenario.json",
+      "sha256": "f82c9d4f9d7ff98dea2536c0506ef52182fee5bb3ef6745e0cd94a3d72452a28",
+      "built_sha256": "f82c9d4f9d7ff98dea2536c0506ef52182fee5bb3ef6745e0cd94a3d72452a28"
+    },
+    {
+      "source": "Data/Cards/deluxe-2015/defectors.parameters.json",
+      "payload": "defectors.parameters.json",
+      "sha256": "9554a1d6a268fa3dd9053c840b2dfec19a42f0c9b601377f5b73fdbabe00c5a8",
+      "built_sha256": "9554a1d6a268fa3dd9053c840b2dfec19a42f0c9b601377f5b73fdbabe00c5a8"
+    },
+    {
+      "source": "Docs/Contracts/defectors.schema.json",
+      "payload": "defectors.schema.json",
+      "sha256": "4bd44307d06b7e7043249aa9749822eb2496af4896d2b7bd707689bb05b68a5e",
+      "built_sha256": "4bd44307d06b7e7043249aa9749822eb2496af4896d2b7bd707689bb05b68a5e"
+    },
+    {
+      "source": "Data/Cards/deluxe-2015/defcon-vp-events.parameters.json",
+      "payload": "defcon-vp-events.parameters.json",
+      "sha256": "34513fee769c23a7961a86678cba480a8b294367914e65d418d8b79b7df50233",
+      "built_sha256": "34513fee769c23a7961a86678cba480a8b294367914e65d418d8b79b7df50233"
+    },
+    {
+      "source": "Docs/Contracts/defcon-vp-events.schema.json",
+      "payload": "defcon-vp-events.schema.json",
+      "sha256": "6a958885d717d7d0f6a76b478fc35106624a22fadef6f4940c3082ce21a5ea6a",
+      "built_sha256": "6a958885d717d7d0f6a76b478fc35106624a22fadef6f4940c3082ce21a5ea6a"
+    },
+    {
+      "source": "Data/Maps/deluxe-2015/world.json",
+      "payload": "world.json",
+      "sha256": "6d4e20c674bd74d44cdb0f1ca66e8e960f125b3e45076d05307125a3c36ea45b",
+      "built_sha256": "6d4e20c674bd74d44cdb0f1ca66e8e960f125b3e45076d05307125a3c36ea45b"
+    },
+    {
+      "source": "Docs/Contracts/map.schema.json",
+      "payload": "map.schema.json",
+      "sha256": "8d1c4ef9f7ebb34557bb53ab37a1c102b815dc748ae446e29b7400d5eb831be5",
+      "built_sha256": "8d1c4ef9f7ebb34557bb53ab37a1c102b815dc748ae446e29b7400d5eb831be5"
+    },
+    {
+      "source": "Data/Maps/deluxe-2015/world.profile.json",
+      "payload": "world.profile.json",
+      "sha256": "87388cb762d3134e684f2a8131fc8dfd6a32c18b3a7f7f281f6f866db82fe4da",
+      "built_sha256": "87388cb762d3134e684f2a8131fc8dfd6a32c18b3a7f7f281f6f866db82fe4da"
+    },
+    {
+      "source": "Data/Demo/influence-scenarios.json",
+      "payload": "influence-scenarios.json",
+      "sha256": "9c98cb7f8e18047127fe4f06bf9b65c29387be0c948724ae87f6d76e6ebc3ad7",
+      "built_sha256": "9c98cb7f8e18047127fe4f06bf9b65c29387be0c948724ae87f6d76e6ebc3ad7"
+    },
+    {
+      "source": "Data/Rulesets/deluxe-2015/influence-placement.json",
+      "payload": "influence-placement.json",
+      "sha256": "2762acfc9e3578668a43d6f0429252dc5deba326a1eb3f3de0c983aeb6374d72",
+      "built_sha256": "2762acfc9e3578668a43d6f0429252dc5deba326a1eb3f3de0c983aeb6374d72"
+    },
+    {
+      "source": "Data/Localization/en-US.catalog-names.json",
+      "payload": "names.json",
+      "sha256": "ff6cac31cd15e03f78d792843d86bc2c90f2aaa8465ba89e3829ad3d3c6cd29a",
+      "built_sha256": "ff6cac31cd15e03f78d792843d86bc2c90f2aaa8465ba89e3829ad3d3c6cd29a"
+    },
+    {
+      "source": "Data/Localization/zh-CN.catalog-names.json",
+      "payload": "names.zh-CN.json",
+      "sha256": "0b423df2bec0b70beace339b5d3fa626856854a827f1aafb49d6c2d332276714",
+      "built_sha256": "0b423df2bec0b70beace339b5d3fa626856854a827f1aafb49d6c2d332276714"
+    },
+    {
+      "source": "Data/Demo/event-scenarios.json",
+      "payload": "event-scenarios.json",
+      "sha256": "f61eba670a44e1a62af8e27f9e9998835b4ed49763c9df0cd284a7c375be9c87",
+      "built_sha256": "f61eba670a44e1a62af8e27f9e9998835b4ed49763c9df0cd284a7c375be9c87"
+    },
+    {
+      "source": "Data/Cards/deluxe-2015/early-influence-batch1.parameters.json",
+      "payload": "early-influence-batch1.parameters.json",
+      "sha256": "909e9ffe13437623f5c9e055d45b7273dce9afe04de50881a6e207aa14166e75",
+      "built_sha256": "909e9ffe13437623f5c9e055d45b7273dce9afe04de50881a6e207aa14166e75"
+    },
+    {
+      "source": "Docs/Contracts/early-influence-parameters.schema.json",
+      "payload": "early-influence-parameters.schema.json",
+      "sha256": "fe280aa3deddafc7df7fdbf0e38ce60e4d9e43b823a6f638e5ac98361c39488c",
+      "built_sha256": "fe280aa3deddafc7df7fdbf0e38ce60e4d9e43b823a6f638e5ac98361c39488c"
+    },
+    {
+      "source": "Data/Demo/allocation-scenarios.json",
+      "payload": "allocation-scenarios.json",
+      "sha256": "c6e8fc82bccd58ba7a5a3f2852a3f25eafca748678434e15ee57698baf0ba89f",
+      "built_sha256": "c6e8fc82bccd58ba7a5a3f2852a3f25eafca748678434e15ee57698baf0ba89f"
+    },
+    {
+      "source": "Data/Cards/deluxe-2015/early-influence-batch2.parameters.json",
+      "payload": "early-influence-batch2.parameters.json",
+      "sha256": "262233f5cf49d4395da558cb58e431310a082dd41cfe8ab17ad911694b6b8677",
+      "built_sha256": "262233f5cf49d4395da558cb58e431310a082dd41cfe8ab17ad911694b6b8677"
+    },
+    {
+      "source": "Docs/Contracts/early-influence-batch2.schema.json",
+      "payload": "early-influence-batch2.schema.json",
+      "sha256": "fe0565f06ae134ac8c8011744b1765391c4f601ce5bff3c2812cf04c830e5903",
+      "built_sha256": "fe0565f06ae134ac8c8011744b1765391c4f601ce5bff3c2812cf04c830e5903"
+    },
+    {
+      "source": "Data/Cards/deluxe-2015/cards.json",
+      "payload": "cards.json",
+      "sha256": "f78907409a95986f651a1b21d333dafe280c78b8ad68be6d0fe0f894e1acffae",
+      "built_sha256": "f78907409a95986f651a1b21d333dafe280c78b8ad68be6d0fe0f894e1acffae"
+    },
+    {
+      "source": "Data/Demo/era-scenarios.json",
+      "payload": "era-scenarios.json",
+      "sha256": "fcc14bb72385a6e95ebf45cbcf6e7946e2b00960782c15e742b240519de1d971",
+      "built_sha256": "fcc14bb72385a6e95ebf45cbcf6e7946e2b00960782c15e742b240519de1d971"
+    },
+    {
+      "source": "Data/Rulesets/deluxe-2015/turn-flow.json",
+      "payload": "turn-flow.json",
+      "sha256": "257b1cb35040e6bcab177ab23ea9122dc28921b1cb1c0661a540498a44017562",
+      "built_sha256": "257b1cb35040e6bcab177ab23ea9122dc28921b1cb1c0661a540498a44017562"
+    },
+    {
+      "source": "Data/Presentation/world-layout.json",
+      "payload": "world-layout.json",
+      "sha256": "5a63e8eec07b7963fa5822bde7c61aee0aafb6f8e07808aec3dec60d3cc99caf",
+      "built_sha256": "5a63e8eec07b7963fa5822bde7c61aee0aafb6f8e07808aec3dec60d3cc99caf"
+    },
+    {
+      "source": "Data/Presentation/world-land.json",
+      "payload": "world-land.json",
+      "sha256": "65d0fc54f9ce2d83567ab9b4081a9735f4c19c67feb1436eb284b9cd2aa1cfc1",
+      "built_sha256": "65d0fc54f9ce2d83567ab9b4081a9735f4c19c67feb1436eb284b9cd2aa1cfc1"
+    },
+    {
+      "source": "Data/Demo/deployment-scenario.json",
+      "payload": "deployment-scenario.json",
+      "sha256": "633b3763f93ce2887e125f252633aeb45ff3f1984d854fac5494f00cb2a32c67",
+      "built_sha256": "633b3763f93ce2887e125f252633aeb45ff3f1984d854fac5494f00cb2a32c67"
+    },
+    {
+      "source": "Data/Rulesets/deluxe-2015/setup.json",
+      "payload": "setup.json",
+      "sha256": "46b278c265b4bee2ef308960ff3146ad0752a8df5a30699843fb7d37910dc46c",
+      "built_sha256": "46b278c265b4bee2ef308960ff3146ad0752a8df5a30699843fb7d37910dc46c"
+    },
+    {
+      "source": "Docs/Contracts/setup.schema.json",
+      "payload": "setup.schema.json",
+      "sha256": "7da157035f9ad7b6897d3f5c4c067f9e8b7b652f2fc07eda0ffb030f5d2d7d65",
+      "built_sha256": "7da157035f9ad7b6897d3f5c4c067f9e8b7b652f2fc07eda0ffb030f5d2d7d65"
+    },
+    {
+      "source": "Data/Demo/initial-deal-scenario.json",
+      "payload": "initial-deal-scenario.json",
+      "sha256": "354b6bfca643ba7604c64fe88037556ba2bad48e07507b6cb08ea3536e78b465",
+      "built_sha256": "354b6bfca643ba7604c64fe88037556ba2bad48e07507b6cb08ea3536e78b465"
+    },
+    {
+      "source": "Data/Demo/quick-start-scenario.json",
+      "payload": "quick-start-scenario.json",
+      "sha256": "cfe07cdfb9198fcd4b2e6e60d3dda8cd1b789c58750dc7e475e8ded0ef9a4796",
+      "built_sha256": "cfe07cdfb9198fcd4b2e6e60d3dda8cd1b789c58750dc7e475e8ded0ef9a4796"
+    },
+    {
+      "source": "Docs/Contracts/cards-v2.schema.json",
+      "payload": "cards-v2.schema.json",
+      "sha256": "fb2170a3a4fd875a0e867a2ad3f97096c4d3cf6f52e2bfeca43d85b2a9e7c42d",
+      "built_sha256": "fb2170a3a4fd875a0e867a2ad3f97096c4d3cf6f52e2bfeca43d85b2a9e7c42d"
+    },
+    {
+      "source": "Data/Cards/deluxe-2015/cards.printed-profile.json",
+      "payload": "cards.printed-profile.json",
+      "sha256": "ee050d54e877ec7088b3d90579735970e0d89845d10384d59d0901322ed69d7a",
+      "built_sha256": "ee050d54e877ec7088b3d90579735970e0d89845d10384d59d0901322ed69d7a"
+    },
+    {
+      "source": "Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json",
+      "payload": "persistent-effects-batch1.parameters.json",
+      "sha256": "ce047e7abddc2662602bb7e967990131298f6895268c6d0e8c7e1a682ce42333",
+      "built_sha256": "ce047e7abddc2662602bb7e967990131298f6895268c6d0e8c7e1a682ce42333"
+    },
+    {
+      "source": "Docs/Contracts/persistent-effects-batch1.schema.json",
+      "payload": "persistent-effects-batch1.schema.json",
+      "sha256": "ded1fe1b98c123e7b3ba19f2a34a6cb21964fcee899ee6458d4c1139cd8c530a",
+      "built_sha256": "ded1fe1b98c123e7b3ba19f2a34a6cb21964fcee899ee6458d4c1139cd8c530a"
+    },
+    {
+      "source": "Data/Rulesets/deluxe-2015/space-race.json",
+      "payload": "space-race.json",
+      "sha256": "aae654ef0b3cb858e2cec175c0506be6d4f615c45f5755b60999c445433a1d67",
+      "built_sha256": "aae654ef0b3cb858e2cec175c0506be6d4f615c45f5755b60999c445433a1d67"
+    },
+    {
+      "source": "Data/Rulesets/deluxe-2015/coup.json",
+      "payload": "coup.json",
+      "sha256": "72fc647270ed0067fde4f6b59f4edef1bae957750d83ef3de63aa9b89d98848b",
+      "built_sha256": "72fc647270ed0067fde4f6b59f4edef1bae957750d83ef3de63aa9b89d98848b"
+    },
+    {
+      "source": "Data/Rulesets/deluxe-2015/realignment.json",
+      "payload": "realignment.json",
+      "sha256": "3fede376309d463ca29ba4c69c6b1cde10580eb097a90360371ed730bb31ea5b",
+      "built_sha256": "3fede376309d463ca29ba4c69c6b1cde10580eb097a90360371ed730bb31ea5b"
+    },
+    {
+      "source": "Data/Rulesets/deluxe-2015/defcon.json",
+      "payload": "defcon.json",
+      "sha256": "e9a842358cc3f772cfcba0e7f307fb6d8fe26b812aa5e303ea046bf618565eba",
+      "built_sha256": "e9a842358cc3f772cfcba0e7f307fb6d8fe26b812aa5e303ea046bf618565eba"
+    },
+    {
+      "source": "Data/Rulesets/deluxe-2015/military-operations.json",
+      "payload": "military-operations.json",
+      "sha256": "0b00fa575def470d5e96032b00ce0ad614d29ea837cf1dd2196cab0017d08c37",
+      "built_sha256": "0b00fa575def470d5e96032b00ce0ad614d29ea837cf1dd2196cab0017d08c37"
+    },
+    {
+      "source": "Data/Rulesets/deluxe-2015/victory.json",
+      "payload": "victory.json",
+      "sha256": "f8566187874ff89c181b7c0c6cb46048788f7558fa5d9326273e64306d4a8624",
+      "built_sha256": "f8566187874ff89c181b7c0c6cb46048788f7558fa5d9326273e64306d4a8624"
+    },
+    {
+      "source": "Data/Rulesets/deluxe-2015/region-scoring.json",
+      "payload": "region-scoring.json",
+      "sha256": "8fd3af02e967eea4663f79c921fec697ba66bda885c6f6cdfa34dfdb543bc526",
+      "built_sha256": "8fd3af02e967eea4663f79c921fec697ba66bda885c6f6cdfa34dfdb543bc526"
+    },
+    {
+      "source": "Docs/Contracts/region-scoring-rules.schema.json",
+      "payload": "region-scoring-rules.schema.json",
+      "sha256": "aa0df93364e939bd3c6a3b82f0f1f924b7a5312cf194e8044c6d5deb8f8b6dda",
+      "built_sha256": "aa0df93364e939bd3c6a3b82f0f1f924b7a5312cf194e8044c6d5deb8f8b6dda"
+    },
+    {
+      "source": "Docs/References/ThirdParty/Apache-2.0.txt",
+      "payload": "Apache-2.0.txt",
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+      "built_sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+    },
+    {
+      "source": "Docs/References/ThirdParty/pcg32.md",
+      "payload": "pcg32-notice.md",
+      "sha256": "8a7e1ec958c8585655aca84318fa4794fdff8d2b9dd6cf6fc1b84ec37bb55fb5",
+      "built_sha256": "8a7e1ec958c8585655aca84318fa4794fdff8d2b9dd6cf6fc1b84ec37bb55fb5"
+    }
+  ],
+  "review": {
+    "base": "93a072ec0dba5a6194043bfbc97c5a6ee4ac2f9c",
+    "head": "6614a1944c29be5100e8837a7ffd8a3185a462a3",
+    "critical": 0,
+    "important": 0,
+    "minor": 1,
+    "resolution": "Added four unsupported-space entitlement cases; native pass. One observed terminal UI fix followed RED/GREEN and rebuilt Player; no second review."
+  },
+  "limitations": [
+    "人工第10回合场景并不代表完整玩过九回合",
+    "动态计分效果、特殊太空期末流程与未实现卡牌仍不可用",
+    "美国胜之外的最终分支由原生测试覆盖，未声称全部真实鼠标跑过",
+    "exe只是Unity启动器；完整重建来源由source_commit、源码/载荷/日志哈希记录"
+  ]
 }
