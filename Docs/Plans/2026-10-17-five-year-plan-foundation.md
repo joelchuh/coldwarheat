@@ -37,13 +37,13 @@ enum FiveYearPlanRoute { EmptyHand, Discarded, AwaitingUsEvent }
 ### Task 2: 正式装载与复用
 Files: Scripts/Infrastructure/DataLoading/HandEventContract.cs, FiveYearPlanDefinitionLoader.cs, existing BlockadeDefinitionLoader.cs; Tests/EditMode/FiveYearPlanDefinitionTests.cs.
 Interfaces: FiveYearPlanDefinitionLoader.Load(string json,string schema,CardCatalog cards,IReadOnlyCollection<string> knownEffectIds). Internal HandEventContract.Load(json,schema,branch) returns validated JObject branch, including exact profile and evidence-set checks.
-- [ ] 写正式数据正例及身份/语义/来源/重复/未知/未核实/错误schema和印刷绑定变异红灯。
-- [ ] 提取共同装载，保持Blockade行为和异常类别；五年计划逐项约束语义后构建定义。
-- [ ] 全原生绿灯并跑元数据，不改正式参数的历史说明。
+- [x] 写正式数据正例及身份/语义/来源/重复/未知/未核实/错误schema和印刷绑定变异红灯。
+- [x] 提取共同装载，保持Blockade行为和异常类别；五年计划逐项约束语义后构建定义。
+- [x] 全原生绿灯并跑元数据，不改正式参数的历史说明。
 
 ### Task 3: 索引、证据与交付
 Files: Docs/Descriptors/five-year-plan-foundation.module.json, Docs/Wiki/five-year-plan-foundation.md, Docs/Worklogs/2026-10-17-five-year-plan-foundation.md, Docs/Testing/five-year-plan-foundation.validation.json and catalog/Wiki links.
-- [ ] 写description/精确入口/数据依赖/flow/未实现边界，保存红绿证据。
+- [x] 写description/精确入口/数据依赖/flow/未实现边界，保存红绿证据。
 - [ ] 原生与元数据/diff checks通过，提交，fresh只读整批审查并修复。
 - [ ] 推送feat/five-year-plan-foundation并核对远程；再继续实际子事件续接，不把此基础当可玩五年计划。
 

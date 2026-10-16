@@ -25,3 +25,5 @@ flowchart LR
 本批不新增工作脚本；测试路径和真实验证报告由模块 JSON 定位。
 
 实际证据：[验证报告](../Testing/blockade-hand-discard.validation.json)；新增21项手牌资格/弃置案例及31项封锁定义案例。不把自动测试当作界面验收。
+
+2026-10-17装载复用：BlockadeDefinitionLoader与FiveYearPlanDefinitionLoader共用内部HandEventContract的profile/来源/Verified引用验证；两者继续分别约束分支业务语义。后续回归见[五年计划基础](five-year-plan-foundation.md)。

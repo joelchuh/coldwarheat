@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "id": "module.five-year-plan-foundation",
+  "kind": "module",
+  "description": "五年计划确定性手牌抽样与US子事件交接计划、正式数据装载；权威内部使用，会话/Demo尚未接通。",
+  "status": "implemented-subset",
+  "documentation": "Docs/Wiki/five-year-plan-foundation.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/FiveYearPlanDefinition.cs",
+      "symbol": "FiveYearPlanDefinition"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/FiveYearPlanRules.cs",
+      "symbol": "Plan"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/FiveYearPlanDefinitionLoader.cs",
+      "symbol": "Load"
+    }
+  ],
+  "inputs": [
+    "同一印刷Catalog的唯一本牌Resolving源、完整不可变牌区、PCG快照、权威US处理器能力集合"
+  ],
+  "outputs": [
+    "仅权威使用的Before/Cards/RandomBefore/RandomAfter/SelectedCard/Route计划"
+  ],
+  "dependencies": [
+    "module.blockade-hand-discard"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.hand_events_batch1",
+    "cards.deluxe2015.definitions"
+  ],
+  "preconditions": [
+    "所有可能的US事件候选都已在权威能力集合中；调用方负责真实处理器注册"
+  ],
+  "side_effects": [
+    "不修改输入；返回选中牌移动后的牌区与随机快照；不执行子事件或推进根"
+  ],
+  "stop_conditions": [
+    "错catalog/原牌位置、无处理器、无效能力集合、随机计数溢出均拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/hand-events-batch1.md",
+      "scope": "既有已核实五年计划规则与HC1工程约定"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/FiveYearPlanRulesTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/FiveYearPlanDefinitionTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "verification": {
+    "status": "passed-native-review-pending",
+    "report": "Docs/Testing/five-year-plan-foundation.validation.json",
+    "native_validation": "2834/2834; five-year-loader-green; zero skipped; Unity exit 0"
+  }
+}

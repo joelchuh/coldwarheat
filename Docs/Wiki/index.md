@@ -74,7 +74,7 @@
 | DEFCON与VP顺序事件 | 查鸭子/核禁/停止忧虑的先后、根核战责任、动态VP与直接固定军事 | 3牌参数Bound；C#待实现 | [defcon-vp-events.md](defcon-vp-events.md) |
 | 七张计分牌绑定 | 查CardId/RegionId直接绑定、标准/SEA算法、头条/强制弃牌与去向 | 7牌参数Bound；C#待实现 | [scoring-cards.md](scoring-cards.md) |
 | 动态计分效果 | 查台湾战场/中国取消、穿梭选国/邻接/Control与一次消费 | 2牌参数Bound，C#待实现 | [scoring-effects-batch1.md](scoring-effects-batch1.md) |
-| 手牌事件与子事件 | 查封锁阈值弃牌、五年计划随机弃牌/US子帧、保密与回放边界 | 2牌参数Bound，C#待实现 | [hand-events-batch1.md](hand-events-batch1.md) |
+| 手牌事件与子事件 | 查封锁阈值弃牌、五年计划随机弃牌/US子帧、保密与回放边界 | 封锁已可玩；五年计划基础已实现，子事件待接 | [hand-events-batch1.md](hand-events-batch1.md) |
 | 影响力迁移 | 查去斯大林化来源/目的分配、守恒、零迁移与重叠待裁定 | 1牌已知参数Bound，C#待实现 | [influence-relocation.md](influence-relocation.md) |
 | 持续规则设计批次 | 查当前进行批次、后续队列、逐批验证/Git收尾和未实施边界 | 设计队列；运行进度另见Demo | [rules-design-roadmap.json](../Design/rules-design-roadmap.json) |
 | 战争事件第二批 | 查Brush稳定度与北约保护、超级大国邻接、两伊目标及共享结算 | 2牌参数绑定；五张战争参数齐备，C#待实现 | [war-events-batch2.md](war-events-batch2.md) |
@@ -153,3 +153,5 @@
 - [封锁手牌基础](blockade-hand-discard.md)：普通手牌有效OPS门槛、无事件弃置与严格定义装载；私有回应/UI待接。
 
 - [封锁对局接线](blockade-play.md)：权威私有等待、弃牌/清西德与原根/头条续接；Core通过，会话/UI在做。
+
+- [五年计划随机弃牌基础](five-year-plan-foundation.md)：权威内部选择/牌区交接，接线边界和真实验证状态。
