@@ -67,7 +67,7 @@ namespace ColdWarStruggle.Presentation
             GUI.EndScrollView();
             DrawChinaSelector(view,48,744,500,28);
             Text(562,744,656,28,$"使用后立即背面交给对方；普通手牌数量不含中国牌。  版本 {frame.Version}",small);
-            Text(28,786,1220,27,view.Headline?.Selection!=null?"头条：只可选择已接入效果的本方牌；选择后返回地图确认锁定。计分牌按头条结算，中国牌不能作为头条。":"行动支持投放、政变、调整、太空、计分及已接事件；特殊期末能力和最终计分待接。",small);
+            Text(28,786,1220,27,view.Headline?.Selection!=null?"头条：只可选择已接入效果的本方牌；选择后返回地图确认锁定。计分牌按头条结算，中国牌不能作为头条。":"行动支持投放、政变、调整、太空、计分及已接事件；最终计分已接入支持的完整流程入口；特殊期末能力待接。",small);
         }
     }
 }

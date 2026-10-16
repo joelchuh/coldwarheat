@@ -19,6 +19,7 @@ namespace ColdWarStruggle.Presentation
             get
             {
                 var v=ReadView();var p=v.Practice;if(p==null)return "独立练习";
+                if(p.FinalScoring!=null)return FinalScoringPanelFrame.Create(p.FinalScoring).Outcome;
                 if(p.Winner.HasValue)return v.Headline?.Status==PublicHeadlineStatus.Terminal?"头条终局":"对局终局";
                 if(v.Headline?.Status==PublicHeadlineStatus.Collecting)return "头条选择 · 双方分别锁定";
                 if(v.Headline!=null && v.Headline.Status!=PublicHeadlineStatus.Completed)return "头条结算";

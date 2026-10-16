@@ -49,7 +49,7 @@ namespace ColdWarStruggle.Presentation
         void Reset(int index)
         {
             var s=scenarios[index];controller.LoadScenario(s.Id,s.Actor,s.SelectedCountry);scenarioIndex=index;
-            handPanelOpen=false;handScroll=Vector2.zero;
+            handPanelOpen=false;handScroll=Vector2.zero;finalReportOpen=false;
             var region=controller.ReadView().Countries.First(c=>c.Definition.Id.Equals(s.SelectedCountry)).Definition.Region;
             regionIndex=Math.Max(0,System.Array.IndexOf(regions,region));
         }
@@ -75,7 +75,7 @@ namespace ColdWarStruggle.Presentation
             Styles();float scale=Math.Min(Screen.width/1280f,Screen.height/820f);
             GUI.matrix=Matrix4x4.TRS(new Vector3((Screen.width-1280*scale)/2,(Screen.height-820*scale)/2,0),Quaternion.identity,new Vector3(scale,scale,1));
             Block(new Rect(0,0,1280,820),Background);
-            Text(26,20,900,46,"COLD WAR / 冷战热斗 · 头条与行动 Demo",title);
+            Text(26,20,900,46,"COLD WAR / 冷战热斗 · 对局流程 Demo",title);
             Text(28,70,780,28,"单人双边测试  /  人工练习局面  /  世界地图占位，可更换画风",small);
             Text(820,70,434,28,captureStatus,small);
             if(fatal!=null) { Text(30,140,1180,400,"加载失败："+fatal);return; }
@@ -93,6 +93,7 @@ namespace ColdWarStruggle.Presentation
             var view=controller.ReadView();mapPresenter.Refresh();
             if(view.Practice!=null && view.Deployment==null){DrawPracticeStatus(view);DrawOpsEffects(view.Practice);}
             if(handPanelOpen && view.Cards!=null){DrawHandPanel(view);return;}
+            if(finalReportOpen && view.Practice?.FinalScoring!=null){DrawFinalScoringScreen(view);return;}
             bool wideMap=view.Practice!=null && view.Deployment==null;
             float mapLeft=wideMap?26:294,mapWidth=wideMap?908:640;
             Block(new Rect(mapLeft,177,mapWidth,600),Panel);Block(new Rect(952,177,302,600),Panel);
@@ -142,7 +143,7 @@ namespace ColdWarStruggle.Presentation
             }
             else Text(972,681,266,62,"本方："+string.Join("、",view.OwnHand)+"\n对手："+view.OpponentHandCount+" 张（隐藏）",small);
             }
-            Text(28,786,1220,27,$"真实手牌 / 事件与行动 / 中国牌 · {(view.Practice?.HeadlineEnabled==true?"已启用有限头条流程":"此入口跳过头条")}；特殊期末能力/最终计分待接。   版本 {view.Version} · 序号 {view.EventSequence}",small);
+            Text(28,786,1220,27,$"真实手牌 / 事件与行动 / 中国牌 · {(view.Practice?.HeadlineEnabled==true?"已启用有限头条流程":"此入口跳过头条")}；{(view.Practice?.FinalScoringEnabled==true?"已接最终计分":"此入口未启用最终计分")}；特殊期末能力待接。   版本 {view.Version} · 序号 {view.EventSequence}",small);
         }
         static string TurnText(GameTurnContext turn)
         {

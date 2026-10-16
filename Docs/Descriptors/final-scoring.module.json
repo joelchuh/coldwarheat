@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.final-scoring",
   "kind": "module",
-  "description": "六区最终汇总、中国牌奖励、权威第10回合终局及公开报告；正式共享参数和独立人工练习已接，Demo界面待接。",
+  "description": "六区/中国牌最终计分、权威第10回合终局、公开六区面板与独立JSON练习；规则与显示分离，特殊计分修正仍未接入。",
   "status": "implemented",
   "entrypoints": [
     {
@@ -44,6 +44,22 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.FinalScoring.cs",
       "symbol": "WithFinalScoringScenario"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.FinalScoring.cs",
+      "symbol": "CompleteFinalScoringAsync"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/FinalScoringPanelFrame.cs",
+      "symbol": "FinalScoringPanelFrame"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.FinalScoring.cs",
+      "symbol": "DrawFinalScoringScreen"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "symbol": "BuildFinalScoringPlaytest"
     }
   ],
   "documentation": "Docs/Wiki/final-scoring.md",
@@ -130,16 +146,20 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/FinalScoringDemoEntryTests.cs",
       "status": "22-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/FinalScoringPresentationTests.cs",
+      "status": "9-passed"
     }
   ],
   "verification": {
-    "native_validation": "2430/2430 passed; final-play-data-green",
+    "native_validation": "2439/2439 passed; final-play-ui-green",
     "host_integrated": true,
     "player_rebuilt": false,
     "report": "Docs/Testing/final-scoring-playtest.validation.json"
   },
   "open_items": [
-    "可视结算面板与新Player构建",
+    "独立Player构建与鼠标验收待本批后续完成",
     "台湾决议等动态计分处理器"
   ],
   "planned_entrypoints": [],

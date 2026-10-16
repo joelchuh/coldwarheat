@@ -1,5 +1,6 @@
 using System;
 using ColdWarStruggle.Application;
+using ColdWarStruggle.Core;
 using UnityEngine;
 namespace ColdWarStruggle.Presentation
 {
@@ -7,8 +8,15 @@ namespace ColdWarStruggle.Presentation
     {
         void DrawTurnEndReport(PlayerViewSnapshot view)
         {
+            if(view.Practice.FinalScoring!=null){DrawFinalScoringControls(view);return;}
             Text(972,366,262,210,controller.TurnEndMessage,small);
-            if(view.Practice.NextTurnEnabled && !view.Practice.Winner.HasValue)
+            if(view.Practice.FinalScoringEnabled && view.Turn.Number==10 && !view.Practice.EndReason.HasValue)
+            {
+                GUI.enabled=view.Practice.FinalScoringAvailable;
+                if(Button(972,584,262,32,"执行最终计分"))CompleteFinalScoring();
+                GUI.enabled=true;
+            }
+            else if(view.Practice.NextTurnEnabled && !view.Practice.EndReason.HasValue)
             {
                 GUI.enabled=view.Practice.NextTurnAvailable;
                 if(Button(972,584,262,32,controller.NextTurnButtonText))BeginNextTurn();

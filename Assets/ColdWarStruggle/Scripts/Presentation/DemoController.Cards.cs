@@ -104,7 +104,8 @@ namespace ColdWarStruggle.Presentation
             get
             {
                 var p=ReadView().Practice;var r=p?.TurnEnd;if(r==null)return null;
-                var continuation=!p.NextTurnEnabled?"试玩停在下一回合开始前。":p.NextTurnAvailable?"可进入"+NextTurnButtonText+"。":
+                if(p.FinalScoring!=null)return $"回合 {r.Turn} 审核已完成。\n军事净罚分 {r.VpDelta:+0;-0;0}：{r.BeforeVp} → {r.AfterVp}。\n最终计分已完成，详见六地区明细。";
+                var continuation=p.FinalScoringEnabled && ReadView().Turn.Number==10?FinalScoringPrompt:!p.NextTurnEnabled?"试玩停在下一回合开始前。":p.NextTurnAvailable?"可进入"+NextTurnButtonText+"。":
                     p.NextTurnError==RuleError.ActionSliceComplete?"已到试玩边界：最终计分尚未接入。":
                     p.NextTurnError==RuleError.UnsupportedCardAction?"已到试玩边界：太空额外行动或回合末弃牌尚未接入。":
                     "当前不能进入下一回合，请先完成待处理步骤。";
