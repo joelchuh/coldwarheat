@@ -2,6 +2,8 @@
 
 description：查询私有弃牌阈值、权威随机弃牌、US事件子帧及公开信息/牌区/恢复边界。
 
+2026-10-17 实现进展：[封锁手牌基础](blockade-hand-discard.md)加入有效OPS筛选、普通事件牌无事件弃置和封锁定义装载，2708项原生测试通过；封锁完整回应/回退/UI及五年计划仍待实现。以下为原设计批次的历史库存和离线验证记录，不代表当前运行时统计。
+
 状态2026-10-06：#10/#5参数Bound；累计35 Bound / 67 Unresolved，102处理器planned，C#/Unity未实现。[JSON描述](../../Data/Descriptors/hand-events-batch1.data.json)→[参数](../../Data/Cards/deluxe-2015/hand-events-batch1.parameters.json)、[Schema](../Contracts/hand-events-batch1.schema.json)、[案例](../Design/hand-events-batch1.cases.json)、[报告](../Design/hand-events-batch1.validation.json)；[模块描述](../Descriptors/hand-events.module.json)。
 
 ## 封锁：美国选择，弃牌或承受移除

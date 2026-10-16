@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "id": "module.blockade-hand-discard",
+  "kind": "module",
+  "description": "封锁基础：普通手牌有效OPS阈值筛选、无事件弃置和严格定义装载；尚未接私有回应会话/UI。",
+  "status": "implemented",
+  "documentation": "Docs/Wiki/blockade-hand-discard.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/HandDiscardRules.cs",
+      "symbol": "QualifyingCards"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Cards/HandDiscardRules.cs",
+      "symbol": "DiscardEventCard"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/BlockadeDefinitionLoader.cs",
+      "symbol": "Load"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/BlockadeDefinition.cs",
+      "symbol": "BlockadeDefinition"
+    }
+  ],
+  "inputs": [
+    "权威CardZones、Owner、共享OPS定义/已知修正、正式手牌事件参数"
+  ],
+  "outputs": [
+    "只读私有资格报价、新牌区、不可变封锁定义"
+  ],
+  "dependencies": [
+    "module.ops-general"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.hand_events_batch1",
+    "effects.deluxe2015.persistent_batch1",
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world"
+  ],
+  "preconditions": [
+    "只有授权权威规则调用；报价不是玩家投影",
+    "调用方提供完整已知当前普通OPS修正"
+  ],
+  "side_effects": [
+    "纯查询/不可变新牌区，不修改原状态或消耗随机"
+  ],
+  "stop_conditions": [
+    "无效上下文、错误牌区或身份、坏来源/引用、OPS用途不支持"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/hand-events-batch1.md",
+      "scope": "封锁弃牌与有效OPS；R2015 §5.4/7.4/9.5/9.8及已核对卡文"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/HandDiscardRulesTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/BlockadeDefinitionTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "verification": {
+    "status": "passed",
+    "report": "Docs/Testing/blockade-hand-discard.validation.json",
+    "native_validation": "2708/2708; blockade-foundation-final; zero skipped, Unity exit 0"
+  }
+}

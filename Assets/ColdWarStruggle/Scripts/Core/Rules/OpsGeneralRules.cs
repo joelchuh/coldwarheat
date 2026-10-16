@@ -73,14 +73,18 @@ namespace ColdWarStruggle.Core
         }
         static OpsGeneralQuote Quote(OpsGeneralDefinition definition,CardDefinition card,string source,int basis,PlayerSide actor,OpsValuePurpose purpose,IEnumerable<OpsFlatModifier> modifiers)
         {
+            return new OpsGeneralQuote(definition,card,source,actor,purpose,basis,ValidateContext(definition,actor,purpose,modifiers));
+        }
+        // Shared by batch queries, including an empty hand: validation must not depend on finding a card.
+        internal static OpsFlatModifier[] ValidateContext(OpsGeneralDefinition definition,PlayerSide actor,OpsValuePurpose purpose,IEnumerable<OpsFlatModifier> modifiers)
+        {
             if (definition == null || modifiers == null) throw new ArgumentNullException();
             OpsGeneralGuard.Side(actor);
             if (!definition.FlatPurposes.Contains(purpose)) throw new ArgumentException("Unsupported general OPS purpose.");
             var copy=modifiers.Take(129).ToArray();
             if (copy.Length > 128 || copy.Any(m=>m==null) || copy.Select(m=>m.Id).Distinct(StringComparer.Ordinal).Count()!=copy.Length)
                 throw new ArgumentException("Invalid or duplicate OPS contributions.");
-            var applied=copy.Where(m=>m.AffectedSide==actor).OrderBy(m=>m.Id,StringComparer.Ordinal).ToArray();
-            return new OpsGeneralQuote(definition,card,source,actor,purpose,basis,applied);
+            return copy.Where(m=>m.AffectedSide==actor).OrderBy(m=>m.Id,StringComparer.Ordinal).ToArray();
         }
     }
 }

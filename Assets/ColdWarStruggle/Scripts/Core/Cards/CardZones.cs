@@ -19,6 +19,7 @@ namespace ColdWarStruggle.Core
     }
     public sealed class CardZones
     {
+        public CardCatalog Catalog { get; }
         public IReadOnlyList<CardId> DrawPile { get; }
         public IReadOnlyList<CardId> EraReserve { get; }
         public IReadOnlyList<CardId> DiscardPile { get; }
@@ -40,6 +41,7 @@ namespace ColdWarStruggle.Core
             ChinaCardState china,IEnumerable<GameEra> enteredEras,IReadOnlyDictionary<PlayerSide,CardId> headlineReserved=null)
         {
             if(catalog==null || china==null)throw new ArgumentNullException();
+            Catalog=catalog;
             if(catalog.Cards.Count(c=>c.Kind==CardKind.China)!=1 || catalog.GetCard(china.Id).Kind!=CardKind.China)
                 throw new ArgumentException("Catalog requires the separate China card.");
             var eras=enteredEras?.Take(4).ToArray();
