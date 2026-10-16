@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "data.demo-final-scoring-scenario",
+  "kind": "data",
+  "status": "fixture",
+  "dataset_id": "demo.final_scoring_scenario",
+  "description": "第10回合人工最终计分练习，地图/手牌/持有者来自此JSON；经14次真实普通行动准备，随后需玩家执行军事审核与最终计分。",
+  "entrypoints": [
+    {
+      "path": "Data/Demo/final-scoring-scenario.json",
+      "symbol": "scenario"
+    }
+  ],
+  "inputs": [
+    "已配置头条/下一回合的源场景及共享地区/中国牌奖励规则"
+  ],
+  "outputs": [
+    "第16个独立最终计分练习，并给原头条场景装配最终定义"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "demo.headline_scenario",
+    "rules.deluxe2015.region-scoring",
+    "cards.deluxe2015.scoring-parameters"
+  ],
+  "preconditions": [
+    "可信已有共享场景和规则定义",
+    "描述不授予执行权限"
+  ],
+  "side_effects": [
+    "在独立内存Host中执行14行动；不会改变原源目录或磁盘存档"
+  ],
+  "stop_conditions": [
+    "非第10回合、未知/重复国家或牌、对手/计分手牌、规则错配、已终局VP拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Design/2026-10-16-final-scoring-playtest.md",
+      "scope": "明确人工fixture，不代表实际九回合历史"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/FinalScoringDemoEntryTests.cs",
+      "status": "22-passed"
+    }
+  ],
+  "documentation": "Docs/Wiki/final-scoring.md",
+  "verification": {
+    "report": "Docs/Testing/final-scoring-playtest.validation.json"
+  }
+}

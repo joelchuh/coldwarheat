@@ -1,7 +1,7 @@
 # 最终计分
 
 > description: 读六区最终汇总、中国牌持有奖励、欧洲优先与零分平局接口；与真实第10回合命令/UI边界分开。
-> 当前：核心、正式加载与宿主接线2408项原生回归通过；练习入口/UI尚待本批后续实现。
+> 当前：核心、正式加载、宿主与独立场景2430项原生回归通过；UI/新Player尚待本批后续实现。
 
 先看[模块JSON](../Descriptors/final-scoring.module.json)，按entrypoints读需要的函数；规则依据与设计见[设计](../Design/2026-10-16-final-scoring-foundation.md)。
 
@@ -40,3 +40,9 @@ flowchart LR
 `PublicPracticeView.FinalScoring`仅暴露六区公开结果、前后VP、中国牌归属/奖励及赢家，不包含牌库/随机数/规则实例。零分使用IsDraw，不依赖Winner非空判断游戏是否结束。`ActionPracticeState.CreateAtTurn`只建立可信测试场景的起始状态，没有已完成动作或审核历史；第2回合以后可显式StartPractice，第1回合仍必须完成部署。它不是存档恢复接口。
 
 本批Task1新增22项，原生2408/2408、0跳过。后续场景/界面证据逐项写入本批验证报告，不能沿用基础批次结果宣称新Player通过。
+
+## 独立练习装配
+
+`WithFinalScoringScenario`最后装配，保留原14场景对象，为原头条场景复制并保留全部能力后补充FinalScoring，再附加第16个人工场景。`LoadBound`逐项比较通用计分参数（包括SEA权重），复用已有RegionScoringDefinition引用，防止普通/最终计分各持一份不一致定义。
+
+[场景描述](../../Data/Descriptors/final-scoring-scenario.data.json)定位JSON。fixture显式声明第10回合、地图影响力、初始VP、中国牌和14张普通手牌；组装校验后用StartPractice及14次Influence/FinishInfluence真实命令准备到Version29、尚未审核。没有伪造军事收据或最终结果，不代表真实玩过九回合。此场景不用太空/掷骰，不消耗RNG。

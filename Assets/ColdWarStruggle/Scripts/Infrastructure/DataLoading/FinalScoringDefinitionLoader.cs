@@ -7,6 +7,17 @@ namespace ColdWarStruggle.Infrastructure
 {
     public static class FinalScoringDefinitionLoader
     {
+        public static FinalScoringDefinition LoadBound(string regionJson,string regionSchema,string chinaJson,string chinaSchema,RegionScoringDefinition shared,CardCatalog cards)
+        {
+            if(shared==null)throw new ArgumentNullException(nameof(shared));
+            var loaded=LoadSubset(regionJson,regionSchema,chinaJson,chinaSchema,shared.Map,cards);var d=loaded.RegionDefinition;
+            if(d.BattlegroundBonus!=shared.BattlegroundBonus || d.EnemyAdjacencyBonus!=shared.EnemyAdjacencyBonus
+                || d.WeightedRegionId!=shared.WeightedRegionId || d.WeightedParentId!=shared.WeightedParentId
+                || !d.Regions.Select(x=>(x.Id,x.Presence,x.Domination,x.Control)).SequenceEqual(shared.Regions.Select(x=>(x.Id,x.Presence,x.Domination,x.Control)))
+                || d.CountryWeights.Count!=shared.CountryWeights.Count || d.CountryWeights.Any(x=>!shared.CountryWeights.TryGetValue(x.Key,out var weight) || weight!=x.Value))
+                throw new ArgumentException("Final and ordinary scoring must use equivalent shared parameters.");
+            return new FinalScoringDefinition(shared,loaded.RegionIds,loaded.ChinaCardId,loaded.ChinaHolderVp);
+        }
         // Schemas are trusted repository contracts. Source references are checked, not authenticated.
         public static FinalScoringDefinition LoadSubset(string regionJson,string regionSchema,string chinaJson,string chinaSchema,MapDefinition map,CardCatalog cards)
         {

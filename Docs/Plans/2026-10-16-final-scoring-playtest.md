@@ -33,10 +33,10 @@ Interfaces: ActionPracticeRules.CanCompleteFinalScoring(GameState,PlayerSide)→
 
 Files: Infrastructure/DataLoading/DemoCatalog.FinalScoring.cs（新）和DemoCatalog.cs、必要FinalScoringDefinitionLoader绑定重载；Data/Demo/final-scoring-scenario.json与Data/Descriptors；Tests/EditMode/FinalScoringDemoEntryTests.cs。
 Interfaces: WithFinalScoringScenario(fixture,regionJson,regionSchema,chinaJson,chinaSchema)→新DemoCatalog；DemoScenario显式fixture配置；CreateHost准备14合法行动后待审核。
-- [ ] 先写正式载荷/保留15场景/定义共享/fixture非法输入/可到终局测试。
-- [ ] RunId final-play-data-red。Expected:新增失败。
-- [ ] 实现最小装配与fixture，数字从JSON读取，校验规则和场景身份。
-- [ ] RunId final-play-data-green。Expected:全套通过；元数据验证通过；提交。
+- [x] 先写正式载荷/保留15场景/定义共享/fixture非法输入/可到终局测试。
+- [x] RunId final-play-data-red。Expected:新增失败。
+- [x] 实现最小装配与fixture，数字从JSON读取，校验规则和场景身份。
+- [x] RunId final-play-data-green。Expected:全套通过；元数据验证通过；提交。
 
 ## Task 3: 控制器、固定面板、构建与交互
 
