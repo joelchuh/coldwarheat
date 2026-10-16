@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "validation.headline-child-feedback",
   "description": "修复瞬时头条子事件摘要与长反馈区的验证",
-  "status": "native-passed-player-pending",
+  "status": "passed-subset",
   "runs": [
     {
       "status": "failed",
@@ -43,10 +43,101 @@
       "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\headline-child-feedback-green",
       "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\headline-child-feedback-green\\results.xml",
       "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\headline-child-feedback-green\\editor.log"
+    },
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 2918,
+      "passed": 2917,
+      "failed": 1,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "990c4d628bf00bef0f22d3994b67d9a53fda2ed5dcb7465905d7344939dda52a",
+      "schema_version": 1,
+      "run_id": "headline-feedback-priority-red",
+      "duration_ms": 109489,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\headline-feedback-priority-red",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\headline-feedback-priority-red\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\headline-feedback-priority-red\\editor.log"
+    },
+    {
+      "status": "passed",
+      "error_code": null,
+      "total": 2918,
+      "passed": 2918,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "57372d1b749f509968cdfa37a8081f20cd9ba56b5836c9b977a93ab49786301c",
+      "schema_version": 1,
+      "run_id": "headline-feedback-priority-green",
+      "duration_ms": 104751,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\headline-feedback-priority-green",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\headline-feedback-priority-green\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\headline-feedback-priority-green\\editor.log"
     }
   ],
   "limitations": [
-    "构建、鼠标和修复复核待完成"
+    "瞬时头条及前序选择后续接路径由真实控制器/视图自动测试覆盖，未逐一鼠标重演",
+    "已按字体测高增加GUI滚动；本次鼠标流程正文未超过容器，未宣称所有超长组合已手动滚动验收",
+    "仍为有限事件Demo，不是完整整局"
   ],
-  "red_analysis": "9个失败均因尚未实现的公开反馈返回null；其中两项Does.Contain(null)由NUnit报告集合参数异常，无规则/夹具失败。"
+  "red_analysis": "9个失败均因尚未实现的公开反馈返回null；其中两项Does.Contain(null)由NUnit报告集合参数异常，无规则/夹具失败。",
+  "build": {
+    "source": "d2791a413924a316865476f091711cc35a954cbc",
+    "exit_code": 0,
+    "log": "TestResults/headline-feedback-final-build.log"
+  },
+  "payload": {
+    "source": "d2791a413924a316865476f091711cc35a954cbc",
+    "count": 55,
+    "status": "passed",
+    "managed_assemblies": {
+      "ColdWarStruggle.Application.dll": "4e33762b10c8d4226e801817d4c3ae331eb4974c0da4a5c70571ea6d85db697b",
+      "ColdWarStruggle.Bootstrap.dll": "8fc0b1ae4053ee7f6b548d6be2d76328d503f457c1d3dfa0fb73458eaff45428",
+      "ColdWarStruggle.Core.dll": "ba66c11fd21f777b184da7645d69153074fa2751670e850bfc1c8a6dc6b44407",
+      "ColdWarStruggle.Infrastructure.dll": "63d6562b8e215d2fda0eb4bb13c19db84ec8d81c8a03730d0898459c1ffb54b1",
+      "ColdWarStruggle.Presentation.dll": "6561eee6dfcaf3ad8b41e342482472247737d9d2e721fad4c291013de4b72516"
+    }
+  },
+  "metadata": {
+    "status": "passed",
+    "descriptors": 160,
+    "catalog_entries": 160,
+    "datasets": 81,
+    "csharp_symbols_checked": 403,
+    "data_dependencies_checked": 684,
+    "files_read": 362
+  },
+  "review": {
+    "base": "720db538026ac09c3e40af8a74ecd9753dab7796",
+    "final_head": "d2791a413924a316865476f091711cc35a954cbc",
+    "critical": 0,
+    "important": 0,
+    "minor": 0,
+    "scope": "原审查席定向复核：瞬时/前序选择续接头条漏显，以及旧父牌历史收据覆盖当前子事件提示均解决；独立核对实际XML/SHA/exit0，不重跑Unity。"
+  },
+  "ui": {
+    "status": "passed-observed-flow",
+    "build": "Builds/FiveYearPlanPlaytest/ColdWarStruggleDemo.exe",
+    "checks": [
+      "第24人工场景先OPS/政变：掷1、3OPS、差额-2，军事苏联3；五年计划随后等待美国，v7/seq7",
+      "切美国选南斯拉夫确认：影响力美3/苏3，v10/seq11，进入美国第1行动；实际反馈显示抽中独立红色政权及子事件完成",
+      "更新后的动作/事件反馈区正常显示，未与按钮重叠"
+    ],
+    "capture": {
+      "path": "TestResults/headline-feedback-ui/child-complete-v10.png",
+      "sha256": "5e0b9d387f55bb22b5a88ce6af2bdfb92112234c84b72562cc8e13395da46587"
+    },
+    "log": "TestResults/headline-feedback-final-player.log",
+    "managed_exceptions": 0
+  }
 }
