@@ -1,0 +1,13 @@
+# Demo 结果阅读页工作记录
+
+> description: 改善战争/事件结算阅读空间；只读界面生命周期和验证证据。
+
+用户要求持续自主开发。上一批实际点击发现右侧结果区只能显示少量明细，虽可滚动但不便阅读。本批为bounded表现层修改：共用结果区增加“展开结果”，大字号独立阅读页，关闭或Escape返回原局面；不新增规则或历史存档。沿用用户自主决定授权，不重复等待设计批准。
+
+先写6项真实会话回归：阅读/关闭不重新结算、同版本重发保持内容、更换身份/同GameId与Version重建隔离、新行动关闭旧结果、两战争头条完整显示、子事件目标草稿不丢失。界面不存权威状态；打开时仅绑定ViewGeneration/GameId/Version，内容读取已有公开反馈。阅读页优先于顶部操作和地图绘制，避免鼠标穿透；切场景自动失效。
+
+源分支从已同步54df1d35创建feat/demo-result-reader；保留WarPlaytest已验证成品，新增ResultReaderPlaytest构建入口。当前等待RED结果，之后实现并完成原生/元数据/实际点击验证与Git同步。
+
+RED3087/3081/6均缺少打开能力；首次GREEN3087/3085/2为测试错误假设身份切换保留普通反馈，查ResetCardInteraction确认其主动清空LastCardResult。修正测试流程而不改变既有产品语义，第二轮GREEN进行中。
+
+第二轮GREEN3087/3087、0跳过、exit0，SHA d56b042db4b694e65b1ae5905b4beef3f930dcb4ddcde2186a621ae31387c1a9。内联检查只读绑定和OnGUI优先返回；开始构建独立ResultReaderPlaytest，不覆盖WarPlaytest。

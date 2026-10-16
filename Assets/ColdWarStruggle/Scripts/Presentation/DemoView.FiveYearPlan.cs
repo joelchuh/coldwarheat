@@ -17,18 +17,6 @@ namespace ColdWarStruggle.Presentation
             if(track!=null)return $"\nDEFCON {track.DefconFrom}→{track.DefconTo} · VP {track.VpForUS:+0;-0;0}";
             return effect==null?"":"\n"+OpsEffectSummary(effect);
         }
-        Vector2 feedbackScroll;
-        string feedbackText;
-        void DrawFeedback(float y,float height,string message)
-        {
-            message=message??"";
-            if(feedbackText!=message){feedbackText=message;feedbackScroll=Vector2.zero;}
-            var content=new GUIContent(message);
-            var contentHeight=Mathf.Max(height,small.CalcHeight(content,240));
-            feedbackScroll=GUI.BeginScrollView(new Rect(972,y,262,height),feedbackScroll,new Rect(0,0,240,contentHeight));
-            GUI.Label(new Rect(0,0,240,contentHeight),content,small);
-            GUI.EndScrollView();
-        }
         string FiveYearPlanResultMessage(PublicFiveYearPlanResult result)
         {
             if(result.Outcome==FiveYearPlanOutcome.NoCard)return "五年计划：苏联已无手牌。\n事件完成，未进行抽样。";

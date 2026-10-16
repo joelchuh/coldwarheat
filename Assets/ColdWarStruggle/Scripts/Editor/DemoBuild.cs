@@ -87,6 +87,8 @@ namespace ColdWarStruggle.Editor
         public static void BuildFiveYearPlanPlaytest()=>BuildAt("Builds/FiveYearPlanPlaytest","ColdWarStruggle Five Year Plan Playtest");
         [MenuItem("ColdWarStruggle/Build War Playtest")]
         public static void BuildWarPlaytest()=>BuildAt("Builds/WarPlaytest","ColdWarStruggle War Playtest");
+        [MenuItem("ColdWarStruggle/Build Result Reader Playtest")]
+        public static void BuildResultReaderPlaytest()=>BuildAt("Builds/ResultReaderPlaytest","ColdWarStruggle Result Reader Playtest");
         static void BuildAt(string directory,string productName=null)
         {
             Prepare();Directory.CreateDirectory(directory);

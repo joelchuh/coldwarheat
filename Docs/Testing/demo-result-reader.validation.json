@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "id": "validation.demo-result-reader",
+  "description": "结果阅读页的原生回归与Player真实点击证据",
+  "status": "native-passed-player-pending",
+  "runs": [
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 3087,
+      "passed": 3081,
+      "failed": 6,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "674609a8ecded24789721dabbaa22f955442eff8e7e55f86e1294e31697fe4d7",
+      "schema_version": 1,
+      "run_id": "feedback-reader-red",
+      "duration_ms": 128590,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\feedback-reader-red",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\feedback-reader-red\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\feedback-reader-red\\editor.log"
+    },
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 3087,
+      "passed": 3085,
+      "failed": 2,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "24a3e391acc7edd86fe9b5446ae90be3f0055e2425a42f4186d395f2362cfca6",
+      "schema_version": 1,
+      "run_id": "feedback-reader-green",
+      "duration_ms": 122249,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\feedback-reader-green",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\feedback-reader-green\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\feedback-reader-green\\editor.log"
+    },
+    {
+      "status": "passed",
+      "error_code": null,
+      "total": 3087,
+      "passed": 3087,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "d56b042db4b694e65b1ae5905b4beef3f930dcb4ddcde2186a621ae31387c1a9",
+      "schema_version": 1,
+      "run_id": "feedback-reader-green-2",
+      "duration_ms": 120526,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\feedback-reader-green-2",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\feedback-reader-green-2\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\feedback-reader-green-2\\editor.log"
+    }
+  ],
+  "red_analysis": "3087总计，既有3081通过；新增6项均因尚无打开能力返回false而失败，无编译错误。",
+  "first_green_analysis": "3087/3085/2，两个测试错误假设切换身份后普通反馈仍存在；ResetCardInteraction(false)实际清LastCardResult。修正测试：切回原身份后真实重发恢复当前收据；版本失效用同身份印巴确认，生产代码不变。",
+  "review": {
+    "kind": "inline-bounded-change",
+    "checked": [
+      "实际OnGUI入口在顶部操作/手牌/地图绘制前返回，避免输入穿透",
+      "只保存generation/game/version和滚动位置，读取既有公开反馈",
+      "Reset关闭、身份切换与重建隔离、同版本重发与新版本失效由真实会话测试验证",
+      "事件面板政变摘要及拒绝消息沿用原显示组合"
+    ],
+    "limitations": [
+      "尚未进行Player点击和文字布局验收"
+    ]
+  }
+}

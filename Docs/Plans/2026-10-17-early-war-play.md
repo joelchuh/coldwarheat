@@ -68,6 +68,8 @@ Assert.That(JsonConvert.SerializeObject(once.War),Does.Not.Contain("Random"));
 ```
 - [x] 实现公开DTO、命令按钮/地图选择、中文反馈、严格fixture及构建载荷；GREEN后补元数据验证。
 - [x] 构建WarPlaytest；核对Copy载荷与Managed hash，真实鼠标逐场景运行、日志无新异常、F12留证据。实际未测路径在report标明。
-- [ ] 更新描述/Wiki/工作记录、diff检查、提交；fresh整分支只读审查，必要修复RED/GREEN；推送并ls-remote核对。
+- [x] 更新描述/Wiki/工作记录、diff检查、提交；fresh整分支只读审查，必要修复RED/GREEN；推送并ls-remote核对。
+
+远端feat/early-war-play与本地54df1d35cce7fb966eb2ed5c4cd7a7f890e89317一致；后续结果阅读页在新分支推进。
 
 原生命令：`Tools/Scripts/run-unity-editmode.ps1 -ProjectRoot E:/TwilightStruggle -UnityEditor E:/unity6.6/6000.6.0f1/Editor/Unity.exe -RunId <独立阶段名> -TimeoutSeconds 600`。元数据使用Tools/Scripts/validate-project-metadata.py。

@@ -49,7 +49,7 @@ namespace ColdWarStruggle.Presentation
         void Reset(int index)
         {
             var s=scenarios[index];controller.LoadScenario(s.Id,s.Actor,s.SelectedCountry);scenarioIndex=index;
-            handPanelOpen=false;handScroll=Vector2.zero;finalReportOpen=false;IsScenarioPickerOpen=false;
+            handPanelOpen=false;handScroll=Vector2.zero;finalReportOpen=false;IsScenarioPickerOpen=false;CloseFeedback();
             var region=controller.ReadView().Countries.First(c=>c.Definition.Id.Equals(s.SelectedCountry)).Definition.Region;
             regionIndex=Math.Max(0,System.Array.IndexOf(regions,region));
         }
@@ -80,6 +80,7 @@ namespace ColdWarStruggle.Presentation
             Text(820,70,434,28,captureStatus,small);
             if(fatal!=null) { Text(30,140,1180,400,"加载失败："+fatal);return; }
             if(controller==null) { Text(30,140,800,60,"正在读取演示数据…");return; }
+            if(IsFeedbackReaderOpen){DrawFeedbackReader();return;}
             if(IsScenarioPickerOpen){DrawScenarioPicker();return;}
             if(Button(26,115,90,40,"上一个")) { Reset((scenarioIndex+scenarios.Count-1)%scenarios.Count);GUIUtility.ExitGUI(); }
             if(Button(126,115,348,40,$"练习 {scenarioIndex+1} / {scenarios.Count}  ·  "+scenarios[scenarioIndex].Title+"  ▾")){OpenScenarioPicker();GUIUtility.ExitGUI();}
