@@ -28,6 +28,7 @@ namespace ColdWarStruggle.Core
     public sealed class BlockadeResolutionResult
     {
         public CardId Card { get; }
+        public CountryId FallbackCountry { get; }
         public PlayerSide Owner { get; }
         public string DecisionId { get; }
         public BlockadeOutcome Outcome { get; }
@@ -35,7 +36,7 @@ namespace ColdWarStruggle.Core
         public IReadOnlyList<InfluenceChanged> Changes { get; }
         internal BlockadeResolutionResult(BlockadeDecision choice,BlockadeOutcome outcome,CardId? discarded=null,IReadOnlyList<InfluenceChanged> changes=null)
         {
-            Card=choice.Definition.Card.Id;Owner=choice.Owner;DecisionId=choice.Id;Outcome=outcome;DiscardedCard=discarded;
+            Card=choice.Definition.Card.Id;FallbackCountry=choice.Definition.FallbackCountry;Owner=choice.Owner;DecisionId=choice.Id;Outcome=outcome;DiscardedCard=discarded;
             Changes=Array.AsReadOnly((changes??Array.Empty<InfluenceChanged>()).ToArray());
         }
     }

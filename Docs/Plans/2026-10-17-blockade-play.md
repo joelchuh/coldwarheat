@@ -45,16 +45,16 @@ Files: 新 Application/Sessions/BlockadeView.cs；修改 SessionContracts.cs、C
 
 Interfaces: `PlayerViewSnapshot.Blockade` 包含Owner/CanChoose/DecisionId和仅US可见候选CardId+EffectiveOps；公开结果只包含已接受弃牌/西德实际变化，零候选明示完成；PublicCardSummary.DiscardPile使双方能查询已公开弃牌，不公开牌库；`DemoController.DiscardForBlockadeAsync(CardId)`/`DeclineBlockadeAsync()`。
 
-- [ ] 红灯：私有候选、跨身份尝试、旧版本/换局、同命令重放、冲突ID、切换身份清旧选择。
-- [ ] 使用已有固定身份命令宿主投影、收据缓存和SendCard控制器，不新增客户端可信状态。
-- [ ] 完成公开头条步骤结果和当前状态分离，原生回归。
+- [x] 红灯：私有候选、跨身份尝试、旧版本/换局、同命令重放、冲突ID、切换身份清旧选择。
+- [x] 使用已有固定身份命令宿主投影、收据缓存和SendCard控制器，不新增客户端可信状态。
+- [x] 完成公开头条步骤结果和当前状态分离，原生回归。
 
 ### Task 3: Demo与交付
 
 Files: 新 Data/Demo/blockade-scenario.json 及数据描述；新 Infrastructure/DataLoading/DemoCatalog.Blockade.cs；修改所有ActionPracticeDefinition重建点传递Blockade、DemoBootstrap/Editor构建载荷；新 Presentation/DemoView.Blockade.cs；新增Demo接线测试、模块JSON/Wiki/工作记录/验证报告。
 
-- [ ] 固定人工练习：美国含足门槛与不足门槛牌，西德双方均有影响力；场景标fixture。
-- [ ] 先验接线与坏数据红灯，再实现绑定/载荷/私有面板，既有目录功能保持。
+- [x] 固定人工练习：美国含足门槛与不足门槛牌，西德双方均有影响力；场景标fixture。
+- [x] 先验接线与坏数据红灯，再实现绑定/载荷/私有面板，既有目录功能保持。
 - [ ] 全原生测试与元数据检查、独立只读审查、提交源码。
 - [ ] 构建独立BlockadePlaytest，校验实际载荷，真实窗口检查弃牌、Decline、身份隔离与重发。
 - [ ] 记录真实限制与证据，Git推送并核对远程；继续后续有用批次。

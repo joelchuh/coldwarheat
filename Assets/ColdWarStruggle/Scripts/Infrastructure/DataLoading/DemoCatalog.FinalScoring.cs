@@ -19,7 +19,7 @@ namespace ColdWarStruggle.Infrastructure
                 || !d.TurnEndEnabled || !d.NextTurnEnabled || !ReferenceEquals(d.Cards,PrintedCards))throw new ArgumentException("Expected configured headline source and a new fixture ID.");
             var final=FinalScoringDefinitionLoader.LoadBound(regionJson,regionSchema,chinaJson,chinaSchema,d.Scoring,d.Cards);
             ActionPracticeDefinition Definition(bool headline)=>new ActionPracticeDefinition(d.Cards,d.Ops,d.Space,d.Calendar,d.Risk,d.Scoring,d.InfluenceEvents,d.DefconVpEvents,d.TurnOpsEvents,d.Realignment,d.China,
-                d.TurnEndEnabled,d.NextTurnEnabled,headline?d.HeadlineParameters:null,headline?d.HeadlineDefectors:null,final);
+                d.TurnEndEnabled,d.NextTurnEnabled,headline?d.HeadlineParameters:null,headline?d.HeadlineDefectors:null,final,blockade:d.Blockade);
             var turn=Int(row,"turn_number");var vp=Int(row,"initial_vp");var selected=new CountryId(Text(row,"selected_country"));
             if(turn!=10 || !Map.Contains(selected))throw new ArgumentException("Final fixture requires turn ten and a known selection.");
             var definition=Definition(false);

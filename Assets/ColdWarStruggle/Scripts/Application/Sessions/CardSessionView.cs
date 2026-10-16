@@ -6,6 +6,8 @@ namespace ColdWarStruggle.Application
 {
     public sealed class PublicCardSummary
     {
+        // Public information after an accepted discard; draw pile identities remain hidden.
+        public IReadOnlyList<CardId> DiscardPile { get; }
         public int DrawPileCount { get; }
         public int EraReserveCount { get; }
         public int DiscardCount { get; }
@@ -16,6 +18,7 @@ namespace ColdWarStruggle.Application
         internal PublicCardSummary(CardZones cards)
         {
             if(cards==null)throw new ArgumentNullException(nameof(cards));
+            DiscardPile=Array.AsReadOnly(cards.DiscardPile.ToArray());
             DrawPileCount=cards.DrawPile.Count;EraReserveCount=cards.EraReserve.Count;DiscardCount=cards.DiscardPile.Count;
             RemovedCount=cards.RemovedCards.Count;ResolvingCount=cards.ResolvingCards.Count;China=cards.China;
             EnteredEras=Array.AsReadOnly(cards.EnteredEras.ToArray());

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "data.demo-blockade-scenario",
+  "kind": "data",
+  "dataset_id": "demo.blockade_scenario",
+  "status": "fixture",
+  "description": "封锁第2回合人工局面：苏联原牌、美国合格/低OPS/计分牌；西德初始美5苏2。门槛与目标从正式定义取得。",
+  "entrypoints": [
+    {
+      "path": "Data/Demo/blockade-scenario.json",
+      "symbol": "scenario"
+    }
+  ],
+  "inputs": [
+    "已配置最终计分源场景和共享印刷牌库"
+  ],
+  "outputs": [
+    "封锁人工事件试玩场景"
+  ],
+  "dependencies": [],
+  "data_dependencies": [
+    "demo.final_scoring_scenario",
+    "cards.deluxe2015.definitions",
+    "effects.deluxe2015.hand_events_batch1"
+  ],
+  "preconditions": [
+    "明确人工fixture，不冒充自然对局历史"
+  ],
+  "side_effects": [
+    "新Host在内存中创建人工局面；不改变源场景"
+  ],
+  "stop_conditions": [
+    "未知字段、重复/不可用牌、错误源、无合格候选或非法影响力"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/blockade-play.md",
+      "scope": "人工试玩设计"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/BlockadeDemoTests.cs",
+      "status": "passed-unity-editmode"
+    }
+  ],
+  "documentation": "Docs/Wiki/blockade-play.md",
+  "verification": {
+    "native_validation": "2769/2769; blockade-demo-green; exit0; zero skipped",
+    "player_validation": "pending"
+  }
+}

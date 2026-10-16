@@ -15,3 +15,11 @@ Task 1 修正部署fixture后的红灯20项均为封锁未支持。首次实施�
 Task 2 接口决定：增加 PublicCardSummary.DiscardPile 的只读公开ID列表，使对手在接受弃牌后能看到被弃牌；依据既有已核对FAQ的弃牌堆公开条款。仍不公开牌库顺序/对手手牌；旧收据保持当时的公开弃牌列表。新增专门测试，避免仅在响应者回执里可见。
 
 Core最终2734/2734，零跳过、exit0，XML SHA256 21d7e35a5c64673dc7a2f8b09f2aaa08ea7d37f5fa5739b5c03271fc62625504。26项新增Core案例通过。接着做会话/投影，尚未构建Player。
+
+Core源码提交93fe66025ad3a67e476c8b6098a947ca28a9df70已推送feat/blockade-play，并通过ls-remote与本地HEAD核对一致。整批独立审查留到会话/UI完成后统一进行，未宣称已通过本批审查。Task2已写私有候选、公开弃牌、收据幂等/冲突、头条后继失败回滚和控制器身份切换测试，正在原生红灯轮。
+
+Task2原生红灯2749中15新用例失败；实际接线后2749/2749，零跳过、exit0，SHA256 326b7503ce5e4d81e44dcf6a11ed396b026e284675597a3d2f2505c39e80a638。会话私有候选、公开已弃牌、旧收据和头条后继失败原子回滚通过；开始Task3 Demo。
+
+Task3首次运行因测试误用Controller.View与内部TurnEndSetup未编译；修正测试为ReadView并移除越层属性断言。真正红灯2766中17项全为未实现接口，既有2749通过。实现独立数据练习、数据载荷、私有面板；检查时发现PublicHeadlineView.WaitingOwner漏接Blockade，已修复并加回归。
+
+Task3源码回归2769/2769，零跳过、exit0，XML SHA256 84561d38f32b9ee1b35c7ef33347d83342e060ab7e7aa0ceb2989a7b5b53cd47。待独立审查与Player/真实UI；没有把测试通过当作窗口验收。

@@ -81,6 +81,8 @@ namespace ColdWarStruggle.Editor
         public static void BuildIndependentRedsPlaytest()=>BuildAt("Builds/IndependentRedsPlaytest","ColdWarStruggle Independent Reds Playtest");
         [MenuItem("ColdWarStruggle/Build Practice Browser Playtest")]
         public static void BuildPracticeBrowserPlaytest()=>BuildAt("Builds/PracticeBrowserPlaytest","ColdWarStruggle Practice Browser Playtest");
+        [MenuItem("ColdWarStruggle/Build Blockade Playtest")]
+        public static void BuildBlockadePlaytest()=>BuildAt("Builds/BlockadePlaytest","ColdWarStruggle Blockade Playtest");
         static void BuildAt(string directory,string productName=null)
         {
             Prepare();Directory.CreateDirectory(directory);
@@ -125,7 +127,9 @@ namespace ColdWarStruggle.Editor
                     .WithSpaceExtraScenarios(Read(root,"Data/Demo/space-extra-action-scenarios.json"))
                     .WithEmptyHandScenario(Read(root,"Data/Demo/empty-hand-scenario.json"))
                     .WithIndependentReds(Read(root,"Data/Cards/deluxe-2015/early-influence-batch3.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch3.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
-                    .WithIndependentRedsScenario(Read(root,"Data/Demo/independent-reds-scenario.json"));
+                    .WithIndependentRedsScenario(Read(root,"Data/Demo/independent-reds-scenario.json"))
+                    .WithBlockade(Read(root,"Data/Cards/deluxe-2015/hand-events-batch1.parameters.json"),Read(root,"Docs/Contracts/hand-events-batch1.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
+                    .WithBlockadeScenario(Read(root,"Data/Demo/blockade-scenario.json"));
             CatalogNamesLoader.Load(Read(root,"Data/Localization/zh-CN.catalog-names.json"),"zh-CN",catalog.Names.Keys);
             CatalogNamesLoader.Load(Read(root,"Data/Localization/en-US.catalog-names.json"),"en-US",catalog.Names.Keys);
             WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
@@ -134,6 +138,9 @@ namespace ColdWarStruggle.Editor
             Copy(root,"Data/Demo/space-extra-action-scenarios.json",payload,"space-extra-action-scenarios.json");
             Copy(root,"Data/Demo/empty-hand-scenario.json",payload,"empty-hand-scenario.json");
             Copy(root,"Data/Demo/independent-reds-scenario.json",payload,"independent-reds-scenario.json");
+            Copy(root,"Data/Demo/blockade-scenario.json",payload,"blockade-scenario.json");
+            Copy(root,"Data/Cards/deluxe-2015/hand-events-batch1.parameters.json",payload,"hand-events-batch1.parameters.json");
+            Copy(root,"Docs/Contracts/hand-events-batch1.schema.json",payload,"hand-events-batch1.schema.json");
             Copy(root,"Data/Cards/deluxe-2015/early-influence-batch3.parameters.json",payload,"early-influence-batch3.parameters.json");
             Copy(root,"Docs/Contracts/early-influence-batch3.schema.json",payload,"early-influence-batch3.schema.json");
             Copy(root,"Data/Demo/final-scoring-scenario.json",payload,"final-scoring-scenario.json");

@@ -54,7 +54,7 @@ namespace ColdWarStruggle.Application
                     if(!plan.Accepted)result=RejectCard(plan.Error,side);
                     else
                     {
-                        result=new CardActionResult(RuleError.None,new PlayerViewSnapshot(plan.NextState,side),plan.SpaceReceipt,plan.CoupReceipt,plan.ScoringResult,plan.EventTransition,plan.DefconVpEvent,plan.ActivatedOpsEffect,plan.Realignment);
+                        result=new CardActionResult(RuleError.None,new PlayerViewSnapshot(plan.NextState,side),plan.SpaceReceipt,plan.CoupReceipt,plan.ScoringResult,plan.EventTransition,plan.DefconVpEvent,plan.ActivatedOpsEffect,plan.Realignment,plan.BlockadeResult,plan.HeadlineSteps);
                         state=plan.NextState;
                     }
                 }

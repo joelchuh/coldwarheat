@@ -16,7 +16,7 @@ namespace ColdWarStruggle.Infrastructure
                 || !d.TurnEndEnabled || !d.NextTurnEnabled || !ReferenceEquals(d.Cards,PrintedCards))
                 throw new ArgumentException("Headline demo requires a configured quick start and a new scenario ID.");
             var parameters=HeadlineParametersLoader.Load(turnFlow);var special=DefectorsHeadlineLoader.Load(defectors,defectorsSchema,d.Cards);
-            var definition=new ActionPracticeDefinition(d.Cards,d.Ops,d.Space,d.Calendar,d.Risk,d.Scoring,d.InfluenceEvents,d.DefconVpEvents,d.TurnOpsEvents,d.Realignment,d.China,d.TurnEndEnabled,d.NextTurnEnabled,parameters,special);
+            var definition=new ActionPracticeDefinition(d.Cards,d.Ops,d.Space,d.Calendar,d.Risk,d.Scoring,d.InfluenceEvents,d.DefconVpEvents,d.TurnOpsEvents,d.Realignment,d.China,d.TurnEndEnabled,d.NextTurnEnabled,parameters,special,blockade:d.Blockade);
             var scene=new DemoScenario(id,title,source.Actor,source.SelectedCountry,source.Ops,source.Countries,source.Hands,source.EventDefinition,
                 source.Turn,source.DeploymentDefinition,source.InitialCards,definition,source.StartupChoices);
             var result=new DemoCatalog(Map,costs,Scenarios.Concat(new[]{scene}),Names.ToDictionary(x=>x.Key,x=>x.Value,StringComparer.Ordinal),PrintedCards);

@@ -14,6 +14,9 @@ namespace ColdWarStruggle.Tests
         [TestCase("Data/Demo/independent-reds-scenario.json","independent-reds-scenario.json")]
         [TestCase("Data/Cards/deluxe-2015/early-influence-batch3.parameters.json","early-influence-batch3.parameters.json")]
         [TestCase("Docs/Contracts/early-influence-batch3.schema.json","early-influence-batch3.schema.json")]
+        [TestCase("Data/Demo/blockade-scenario.json","blockade-scenario.json")]
+        [TestCase("Data/Cards/deluxe-2015/hand-events-batch1.parameters.json","hand-events-batch1.parameters.json")]
+        [TestCase("Docs/Contracts/hand-events-batch1.schema.json","hand-events-batch1.schema.json")]
         public void Playable_payload_matches_canonical_source(string source,string payload)
         {
             DemoBuild.SynchronizeData();var root=Path.GetFullPath(Path.Combine(UnityEngine.Application.dataPath,".."));

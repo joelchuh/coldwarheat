@@ -22,7 +22,7 @@ namespace ColdWarStruggle.Presentation
         void DrawHandPanel(PlayerViewSnapshot view)
         {
             Block(new Rect(26,177,1228,600),Panel);
-            Text(48,192,750,38,view.SpaceDiscard?.Status==SpaceEndTurnDiscardStatus.Pending?"手牌 · 太空奖励：选择一张弃牌":view.Headline?.Selection!=null?"手牌 · 选择本方头条":view.Practice!=null?"手牌 · 选择本方牌使用":"开局手牌 · 只读预览",new GUIStyle(title){fontSize=27});
+            Text(48,192,750,38,view.Blockade!=null?"手牌 · 封锁回应（在右侧面板确认）":view.SpaceDiscard?.Status==SpaceEndTurnDiscardStatus.Pending?"手牌 · 太空奖励：选择一张弃牌":view.Headline?.Selection!=null?"手牌 · 选择本方头条":view.Practice!=null?"手牌 · 选择本方牌使用":"开局手牌 · 只读预览",new GUIStyle(title){fontSize=27});
             TestObserverEnabled=GUI.Toggle(new Rect(826,197,275,30),TestObserverEnabled," 观察双方（测试）",button);
             if(Button(1114,192,120,36,"返回局面")){handPanelOpen=false;GUIUtility.ExitGUI();}
             var frame=HandPanelFrame.Create(view,printedCards,names,TestObserverEnabled?controller.ReadBoth():null);

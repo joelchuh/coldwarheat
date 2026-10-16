@@ -27,6 +27,7 @@ namespace ColdWarStruggle.Application
     }
     public sealed class PlayerViewSnapshot
     {
+        public PublicBlockadeView Blockade { get; }
         public string GameId { get; }
         public PlayerSide Viewer { get; }
         public long Version { get; }
@@ -47,6 +48,7 @@ namespace ColdWarStruggle.Application
         public PublicSpaceEndTurnDiscard SpaceDiscard { get; }
         internal PlayerViewSnapshot(GameState s,PlayerSide viewer)
         {
+            Blockade=s.Practice?.Blockade==null?null:new PublicBlockadeView(s,viewer);
             SpaceDiscard=s.Practice?.SpaceDiscard==null?null:new PublicSpaceEndTurnDiscard(s,viewer);
             Headline=s.Practice?.HeadlineSelection!=null || s.Practice?.Headline!=null?new PublicHeadlineView(s,viewer):null;
             RegionalOps=s.Operations.RegionalBudget==null?null:new PublicRegionalOps(s.Operations.RegionalBudget);

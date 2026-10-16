@@ -28,13 +28,14 @@ namespace ColdWarStruggle.Application
             Order=Array.AsReadOnly((p.Headline?.Order??Array.Empty<HeadlineOrderEntry>()).ToArray());
             OrderStrategy=p.Headline?.OrderStrategy;CompletedRoots=Array.AsReadOnly((p.Headline?.CompletedRoots??Array.Empty<HeadlineRootCompletion>()).ToArray());
             CompletedCount=p.Headline?.CompletedCount??0;CurrentPlayedBy=p.Headline?.Current?.PlayedBy;
-            WaitingOwner=p.HasPendingHeadline && state.InfluenceEvent?.Stage==InfluenceEventStage.AwaitingChoice?state.InfluenceEvent.Owner:(PlayerSide?)null;
+            WaitingOwner=!p.HasPendingHeadline?null:p.Blockade!=null?p.Blockade.Owner:state.InfluenceEvent?.Stage==InfluenceEventStage.AwaitingChoice?state.InfluenceEvent.Owner:(PlayerSide?)null;
             Status=Selection!=null?PublicHeadlineStatus.Collecting:p.Headline.IsComplete?PublicHeadlineStatus.Completed:
                 state.Ended?PublicHeadlineStatus.Terminal:PublicHeadlineStatus.Resolving;
         }
     }
     public sealed class PublicHeadlineStep
     {
+        public PublicBlockadeResult Blockade { get; }
         public CardId Card { get; }
         public PlayerSide PlayedBy { get; }
         public bool WaitingForChoice { get; }
@@ -48,7 +49,8 @@ namespace ColdWarStruggle.Application
         {
             var r=step.Result;Card=step.Card;PlayedBy=step.PlayedBy;Terminal=r.NextState.Ended;
             Completion=r.NextState.Practice.Headline.CompletedRoots.SingleOrDefault(x=>x.Card.Equals(Card) && x.PlayedBy==PlayedBy);
-            WaitingForChoice=r.NextState.InfluenceEvent?.Stage==InfluenceEventStage.AwaitingChoice;
+            WaitingForChoice=r.NextState.InfluenceEvent?.Stage==InfluenceEventStage.AwaitingChoice || r.NextState.Practice.Blockade!=null;
+            Blockade=r.BlockadeResult==null?null:new PublicBlockadeResult(r.BlockadeResult);
             Event=r.EventTransition==null?null:new PublicCardEventResult(r.EventTransition);
             Scoring=r.ScoringResult==null?null:new PublicRegionScore(r.ScoringResult);
             DefconVpEvent=r.DefconVpEvent==null?null:new PublicDefconVpEventResult(r.DefconVpEvent);

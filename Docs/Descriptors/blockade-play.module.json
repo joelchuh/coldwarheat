@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.blockade-play",
   "kind": "module",
-  "description": "封锁权威等待/弃牌或西德移除、原根和头条续接；当前Core已实现，会话私有投影和Demo接线正在进行。",
+  "description": "封锁权威回应、私有手牌候选、弃牌/清除影响力和原根/头条续接；Demo第23练习接线，构建交互验收待完成。",
   "status": "implemented-subset",
   "documentation": "Docs/Wiki/blockade-play.md",
   "entrypoints": [
@@ -13,6 +13,22 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Blockade.cs",
       "symbol": "CanRespondToBlockade"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/BlockadeView.cs",
+      "symbol": "PublicBlockadeView"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Blockade.cs",
+      "symbol": "DiscardForBlockadeAsync"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.Blockade.cs",
+      "symbol": "WithBlockadeScenario"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Blockade.cs",
+      "symbol": "DrawBlockadeControls"
     }
   ],
   "inputs": [
@@ -27,7 +43,8 @@
     "module.headline-resolution"
   ],
   "data_dependencies": [
-    "effects.deluxe2015.hand_events_batch1"
+    "effects.deluxe2015.hand_events_batch1",
+    "demo.blockade_scenario"
   ],
   "preconditions": [
     "US拥有响应权，候选与GameId/Version/牌区/当前效果/回合一致",
@@ -50,11 +67,19 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/BlockadePlayTests.cs",
       "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/BlockadeSessionTests.cs",
+      "status": "passed-unity-editmode"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/BlockadeDemoTests.cs",
+      "status": "passed-unity-editmode"
     }
   ],
   "verification": {
     "status": "in-progress",
     "report": "Docs/Testing/blockade-play.validation.json",
-    "native_validation": "Core 2734/2734, blockade-play-core-green; session/UI pending"
+    "native_validation": "2769/2769; blockade-demo-green; exit0; zero skipped"
   }
 }

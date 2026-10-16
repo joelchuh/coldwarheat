@@ -37,6 +37,7 @@ namespace ColdWarStruggle.Presentation
                 if(Button(972,485,262,42,"结算本回合"))AssessTurnEnd();
                 GUI.enabled=true;
             }
+            else if(view.Blockade!=null)DrawBlockadeControls(view);
             else if(p.Actor!=view.Viewer)
             {
                 Text(972,374,262,66,"行动已交给 "+Side(p.Actor)+"。\n当前操作方不能替对方出牌。",small);
@@ -114,7 +115,8 @@ namespace ColdWarStruggle.Presentation
             }
             var result=controller.LastCardResult;
             string message="";
-            if(result?.Realignment!=null)
+            if(result?.Blockade!=null)message=BlockadeResultMessage(result.Blockade);
+            else if(result?.Realignment!=null)
             {
                 var r=result.Realignment;
                 message=$"美国 {r.UsRoll} + {r.US.Total} = {r.UsTotal}；苏联 {r.UssrRoll} + {r.USSR.Total} = {r.UssrTotal}\n";
