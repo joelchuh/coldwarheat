@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "id": "validation.catalog-entry-sync",
+  "description": "单条目录同步的真实CLI、文件系统故障注入和共享验证器回归证据",
+  "status": "tests-passed-review-pending",
+  "runs": [
+    {
+      "label": "initial-red",
+      "status": "failed",
+      "total": 26,
+      "passed": 2,
+      "failed": 24,
+      "report": "TestResults/catalog-sync/initial-red.json",
+      "sha256": "2c8cdff7f8b9020fd662ab5e9523593192ff21e434c6075dc0474dc74d74fb8a",
+      "fixture_root": "C:\\Users\\JC\\AppData\\Local\\Temp\\coldwarheat-catalog-sync-tests-4v477jqi"
+    },
+    {
+      "label": "encoding-failed",
+      "status": "failed",
+      "total": 26,
+      "passed": 22,
+      "failed": 4,
+      "report": "TestResults/catalog-sync/encoding-failed.json",
+      "sha256": "d29a53631628d603578de2a6ed88690696dac6698fd237ba839679160d184766",
+      "fixture_root": "C:\\Users\\JC\\AppData\\Local\\Temp\\coldwarheat-catalog-sync-tests-ijwi313a"
+    },
+    {
+      "label": "first-green",
+      "status": "passed",
+      "total": 31,
+      "passed": 31,
+      "failed": 0,
+      "report": "TestResults/catalog-sync/first-green.json",
+      "sha256": "c0e85f4db8e113d82fd8dcf6403bc44da2d2327fee11e87f90a9677d105227a9",
+      "fixture_root": "C:\\Users\\JC\\AppData\\Local\\Temp\\coldwarheat-catalog-sync-tests-k91u_w8v"
+    },
+    {
+      "label": "candidate-red",
+      "status": "failed",
+      "total": 35,
+      "passed": 31,
+      "failed": 4,
+      "report": "TestResults/catalog-sync/candidate-red.json",
+      "sha256": "0412a8188680c27f764e1ce457fb2c95a919e9f8b860ba7af20f63796c156c37",
+      "fixture_root": "C:\\Users\\JC\\AppData\\Local\\Temp\\coldwarheat-catalog-sync-tests-p1cg2eif"
+    },
+    {
+      "label": "candidate-green",
+      "status": "passed",
+      "total": 35,
+      "passed": 35,
+      "failed": 0,
+      "report": "TestResults/catalog-sync/candidate-green.json",
+      "sha256": "67731414f8b5e924fe5ff2e803bebb88965a4782247363a724eb0a8533c43eb9",
+      "fixture_root": "C:\\Users\\JC\\AppData\\Local\\Temp\\coldwarheat-catalog-sync-tests-49wa95rm"
+    },
+    {
+      "label": "validator-regression",
+      "status": "passed",
+      "total": 48,
+      "passed": 48,
+      "failed": 0,
+      "report": "TestResults/catalog-sync/validator-regression.json",
+      "sha256": "920c10e7176f09f1ad9fd1280a800a47ed9d0919eaf2fc134f5c605cf3ea0b56",
+      "fixture_root": "C:\\Users\\JC\\AppData\\Local\\Temp\\coldwarheat-metadata-tests-7c4clk9b"
+    }
+  ],
+  "failure_analysis": [
+    "首RED26/2/24均缺少同步实现；已有CLI参数两项通过",
+    "首次实现26/22/4，Windows子进程GBK stdout无法编码✓，固定新CLI stdout为UTF-8后31全过",
+    "候选SHA四项RED35/31/4复现预览后内容可变化；加双SHA绑定后35全过"
+  ],
+  "source_sha256": {
+    "Tools/Scripts/sync-catalog-entry.py": "05e6c56adb7e85b273f2d1b98c57925b184dfcd73222d89a80ae48e152473b66",
+    "Tools/Scripts/validate-project-metadata.py": "3a5084178b8dbae2bc1c4b1d0d99d37c2582c157f0a066548db6eac6f9059e5f",
+    "Tools/Tests/sync-catalog-entry.tests.py": "c400efb95971778c6e86d0b40a7073a10691abb7da4b28c081dca05e9aa13e03"
+  },
+  "limitations": [
+    "不同类型测试计数不合并为Unity游戏测试",
+    "稳定文件前提；不提供恶意并发替换/硬链接沙箱",
+    "缺条目/错误ID/其它未同步描述会阻止写入，不自动修复整库"
+  ],
+  "real_project": {
+    "unchanged_preview": "Docs/Descriptors/early-war-play.module.json",
+    "written_descriptor": "Tools/Descriptors/sync-catalog-entry.script.json",
+    "catalog_sha256_before": "55a2e92b0d828b37f8bf6ab90e3a640b58e7a8c12a9eea23f00c21990b1dc2fe",
+    "catalog_sha256_after": "5a9fbc574229831ce0571a57e606b2e13ec1f4ad8c62543cb91ec7c36ce248ae",
+    "status": "preview-inspected-then-updated",
+    "validation": {
+      "descriptors": 166,
+      "datasets": 82,
+      "csharp_symbols": 420,
+      "data_dependencies": 699
+    }
+  }
+}

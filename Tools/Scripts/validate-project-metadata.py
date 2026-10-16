@@ -77,8 +77,9 @@ def check_depth(value, maximum):
             stack.extend((v, depth+1) for v in node)
 
 class Reader:
-    def __init__(self, root):
+    def __init__(self, root, byte_overrides=None):
         self.root, self.read_files = root, set()
+        self.byte_overrides = dict(byte_overrides or {})
 
     def bytes(self, relative, maximum):
         p = child(self.root, relative)
@@ -88,6 +89,13 @@ class Reader:
             fail("FILE_TOO_LARGE", relative)
         with p.open("rb") as stream:
             data = stream.read(maximum+1)
+        if len(data) > maximum:
+            fail("FILE_TOO_LARGE", relative)
+        if relative in self.byte_overrides:
+            candidate = self.byte_overrides[relative]
+            if not isinstance(candidate, bytes):
+                fail("INVALID_OVERRIDE", relative)
+            data = candidate
         if len(data) > maximum:
             fail("FILE_TOO_LARGE", relative)
         self.read_files.add(relative)
@@ -133,9 +141,9 @@ def configuration(reader):
         fail("INVALID_CONFIG", "Duplicate group")
     return c
 
-def validate(root_value):
+def validate(root_value, byte_overrides=None):
     root = project_root(root_value)
-    reader = Reader(root)
+    reader = Reader(root, byte_overrides)
     config = configuration(reader)
     limits = config["limits"]
     load = lambda path: reader.json(path,limits["max_json_bytes"],limits["max_depth"])

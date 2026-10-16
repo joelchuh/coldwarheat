@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "id": "script.sync-catalog-entry.tests",
+  "kind": "script",
+  "status": "ready",
+  "description": "单条catalog同步35项回归：真实CLI预览/双SHA写入/幂等/错误拒绝，实际Junction、原子写失败与输入变化故障注入；保留临时fixture与summary。",
+  "documentation": "Docs/Wiki/catalog-entry-sync.md",
+  "entrypoints": [
+    {
+      "path": "Tools/Tests/sync-catalog-entry.tests.py",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "已安装Python3.11+；从自身仓库读取共享配置和workflow-policy"
+  ],
+  "outputs": [
+    "stdout完整JSON计数/逐例结果；临时根summary.json与fixture保留"
+  ],
+  "dependencies": [
+    "script.sync-catalog-entry"
+  ],
+  "data_dependencies": [
+    "workflow.metadata_validation"
+  ],
+  "preconditions": [
+    "可写本机临时目录；Windows实际Junction检查需系统PowerShell"
+  ],
+  "side_effects": [
+    "只在新临时根创建fixture和Junction；故障注入清理仅被测脚本自己的临时文件",
+    "不改变工程catalog，不执行fixture中的描述入口"
+  ],
+  "stop_conditions": [
+    "任一断言/子进程/链接创建失败退出1，不用跳过冒充通过"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Architecture/catalog-entry-sync.md",
+      "scope": "预览/更新边界"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Docs/Testing/catalog-entry-sync.validation.json",
+      "status": "35-passed"
+    }
+  ],
+  "verification": {
+    "status": "passed",
+    "report": "Docs/Testing/catalog-entry-sync.validation.json"
+  },
+  "scriptification_evidence": {
+    "condition": "repeated_workflow",
+    "observed_occurrences": 3,
+    "expected_future_reuse": true,
+    "stable_inputs_outputs_and_steps": true,
+    "contexts": [
+      {
+        "worklog": "Docs/Worklogs/2026-10-17-headline-child-feedback.md"
+      },
+      {
+        "worklog": "Docs/Worklogs/2026-10-17-early-war-play.md"
+      },
+      {
+        "worklog": "Docs/Worklogs/2026-10-17-demo-result-reader.md"
+      }
+    ]
+  }
+}

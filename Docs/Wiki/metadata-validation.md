@@ -36,3 +36,5 @@ python Tools/Tests/validate-project-metadata.tests.py
 每次创建新临时fixture根，执行48个真实子进程/文件系统案例并保留summary和全部产物。不删除任何目录。另有本批两次真实NTFS Junction检查，分别验证根目录和入口路径绕路拒绝；这两项不冒称由上述Python测试创建。详细证据见[报告](../Testing/metadata-validator.validation.json)。
 
 脚本化依据为deterministic-random、initial-card-deal、dealt-setup-demo、defcon-core、military-core、victory-core六个独立批次；具体Worklog入口在工具JSON。满足用户至少三次且将复用的要求。每批更新描述后运行本工具，再运行该批真正需要的游戏/脚本测试，随后审阅与授权Git同步。
+
+描述维护需要同步既有目录摘要时，可用[单条同步工具](catalog-entry-sync.md)。原校验CLI仍只读；新工具借内部byte_overrides验证候选，独立完成受约束写入。

@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "id": "script.sync-catalog-entry",
+  "kind": "script",
+  "status": "ready",
+  "description": "预览并同步一个已登记描述的catalog摘要与适用状态；全库候选校验、原文件及候选内容双SHA绑定和原子替换，保留Data业务状态；35项测试通过，审查待完成。",
+  "documentation": "Docs/Wiki/catalog-entry-sync.md",
+  "entrypoints": [
+    {
+      "path": "Tools/Scripts/sync-catalog-entry.py",
+      "symbol": "synchronize"
+    }
+  ],
+  "inputs": [
+    "--project-root本地绝对根、--descriptor根内既有描述；默认预览",
+    "写入额外需要--write、--expected-catalog-sha、--expected-candidate-sha，均取当前预览"
+  ],
+  "outputs": [
+    "UTF-8 JSON：preview/unchanged/updated，双SHA、字段变化、完整候选校验结果",
+    "失败退出1及有界error_code；不会提交Git或执行描述入口"
+  ],
+  "dependencies": [
+    "script.validate-project-metadata"
+  ],
+  "data_dependencies": [
+    "workflow.metadata_validation"
+  ],
+  "preconditions": [
+    "项目路径/输入在运行期间稳定且无链接；已唯一登记、ID/kind与共享配置一致",
+    "当前任务已授权对应描述维护；JSON description不是执行授权"
+  ],
+  "side_effects": [
+    "仅--write且两个SHA匹配时原子替换一个catalog；短暂创建并清理本工具同目录临时文件",
+    "发生变化时统一UTF-8/LF/两空格；无差异不改文件字节"
+  ],
+  "stop_conditions": [
+    "身份/目录/入口/数据依赖错误、其它未同步元数据、路径/大小/重复键异常、SHA不符或写前输入变化时停止"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Architecture/catalog-entry-sync.md",
+      "scope": "工程流程与写入边界"
+    },
+    {
+      "path": "Docs/Workflow/workflow-policy.json",
+      "scope": ">=3次固定复用与共享数据约定"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Tools/Tests/sync-catalog-entry.tests.py",
+      "status": "35-passed"
+    },
+    {
+      "path": "Tools/Tests/validate-project-metadata.tests.py",
+      "status": "48-passed"
+    }
+  ],
+  "verification": {
+    "status": "tests-passed-review-pending",
+    "report": "Docs/Testing/catalog-entry-sync.validation.json"
+  },
+  "runtime": {
+    "python_minimum": "3.11",
+    "dependencies": "standard-library-only"
+  },
+  "scriptification_evidence": {
+    "condition": "repeated_workflow",
+    "observed_occurrences": 3,
+    "expected_future_reuse": true,
+    "stable_inputs_outputs_and_steps": true,
+    "contexts": [
+      {
+        "worklog": "Docs/Worklogs/2026-10-17-headline-child-feedback.md"
+      },
+      {
+        "worklog": "Docs/Worklogs/2026-10-17-early-war-play.md"
+      },
+      {
+        "worklog": "Docs/Worklogs/2026-10-17-demo-result-reader.md"
+      }
+    ]
+  }
+}

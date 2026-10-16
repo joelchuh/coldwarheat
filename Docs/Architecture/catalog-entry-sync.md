@@ -4,7 +4,7 @@
 
 用户要求固定且重复至少三次的流程脚本化，并通过JSON description渐进定位。headline-child-feedback、early-war-play、demo-result-reader三批均手工复制description/status；本次战争批次实际出现catalog摘要不一致，说明此流程应固定。三个目录、ID字段和Data独立status语义已经保存在Tools/Configuration/metadata-validation.json，继续复用，不另建静态映射。
 
-采用独立sync-catalog-entry.py与既有只读校验器组合。默认预览输出选中catalog、描述、条目ID、基础SHA、字段差异和候选SHA；--write必须给--expected-catalog-sha，与当前文件字节匹配才可能写入。只支持已唯一登记、ID与kind正确的一个描述，模块/脚本同步description和status，数据只同步description，保留业务status。缺条目、重复登记、身份错配不能自动修复。
+采用独立sync-catalog-entry.py与既有只读校验器组合。默认预览输出选中catalog、描述、条目ID、基础SHA、字段差异和候选SHA；--write必须给--expected-catalog-sha与--expected-candidate-sha，与当前文件字节匹配才可能写入。只支持已唯一登记、ID与kind正确的一个描述，模块/脚本同步description和status，数据只同步description，保留业务status。缺条目、重复登记、身份错配不能自动修复。
 
 候选目录在内存替换后必须通过完整validate-project-metadata校验，包括其它目录、字段、入口和数据依赖。为此给Reader/validate追加仅内部可用的byte_overrides参数，原CLI仍只读且接口不变。同步脚本从自身同目录导入固定校验器，不导入JSON给出的入口，不运行Git/网络/游戏。完整校验出现其它异常时零写入。
 

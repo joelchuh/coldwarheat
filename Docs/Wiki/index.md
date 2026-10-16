@@ -165,3 +165,5 @@
 - [早期战争可玩接线](early-war-play.md)：三牌手牌/OPS/头条、公开会话和地图确认已运行；Player四种结果已验收，审查修复与当前证据见模块JSON。
 
 - [结果阅读页](demo-result-reader.md)：展开当前公开结果，大字号与滚动阅读；上下文失效隔离与验证状态见描述。
+
+- [单条目录摘要同步](catalog-entry-sync.md)：指定描述的catalog预览与双SHA原子同步；数据status独立，完整验证后才写入。
