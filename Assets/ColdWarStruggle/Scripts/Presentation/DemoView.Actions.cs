@@ -91,7 +91,7 @@ namespace ColdWarStruggle.Presentation
                     { if(opponent)UseCard(CardActionKind.OpponentOpsFirst);else {controller.SelectCoupUse();GUIUtility.ExitGUI();} }
                     GUI.enabled=true;
                     GUI.enabled=option.Event==RuleError.None;
-                    if(Button(1108,458,126,35,option.Event==RuleError.None?"发动事件":selected.Value.Equals(view.Cards.China.Id)?"中国牌无事件":"事件未接入"))UseCard(CardActionKind.Event);
+                    if(Button(1108,458,126,35,option.Event==RuleError.None?"发动事件":option.Event==RuleError.EventRequiresRuling?"事件待裁定":selected.Value.Equals(view.Cards.China.Id)?"中国牌无事件":"事件未接入"))UseCard(CardActionKind.Event);
                     GUI.enabled=true;
                     if(controller.SelectingCoup)
                     {
@@ -104,6 +104,7 @@ namespace ColdWarStruggle.Presentation
                     var reason=opponent?"对手牌：先选顺序，到OPS步骤再选用途。":option.Influence!=RuleError.None?"影响力："+ErrorText(option.Influence):"";
                     if(option.RegionalMaximum.HasValue && option.Influence==RuleError.None)reason=$"全用于亚洲最多 {option.RegionalMaximum} OPS；太空仍 {option.CurrentOps}。";
                     if(option.Space!=RuleError.None)reason+=(reason.Length==0?"":"\n")+"太空："+ErrorText(option.Space);
+                    if(option.Event==RuleError.EventRequiresRuling)reason="事件：待裁定，当前无法发动。\n仍可选择可用的 OPS 用途。";
                     if(!controller.SelectingCoup)
                     {
                         GUI.enabled=option.Realignment==RuleError.None;
