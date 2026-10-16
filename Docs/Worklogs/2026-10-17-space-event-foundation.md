@@ -11,3 +11,5 @@ Ruling: 既有SpaceRaceService是设计名，实际增加SpaceEventRules和Space
 Task1进行中：已写接口桩和正式数据/实际普通尝试交错测试。原生RED运行中；没有把编译错误当成规则失败。
 
 Task1：RED3142/3087/55、exit2，55均新增基础/加载未实现；GREEN3142/3142、0失败跳过、exit0。普通成功与事件共享计算，双类收据跨普通操作/回合保留；终点新请求拒绝而已成功原ID仍幂等。尚未接玩家Host，未重建Player。报告保存原生XML SHA及源码SHA，进入元数据验证/提交/独立审查。
+
+整批独立审查发现宽松schema下1项Important：JToken强转吞掉小数和错误类型。8个新增测试先实际失败，再改精确JSON类型检查；最终3150/3150、零跳过。复审无剩余Critical/Important/Minor；报告保存两轮测试及最新源码哈希。随后常规提交并推送，远端SHA在终端单独核验。

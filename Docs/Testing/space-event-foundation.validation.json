@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "validation.space-event-foundation",
   "description": "正式参数加载、事件/普通共享单格推进与幂等基础的原生验证",
-  "status": "native-passed-review-pending",
+  "status": "passed-reviewed",
   "baseline_commit": "62429328d1603f5f8d7cccb1adb3494d8680e66c",
   "runs": [
     {
@@ -44,6 +44,46 @@
       "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\space-event-foundation-green",
       "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\space-event-foundation-green\\results.xml",
       "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\space-event-foundation-green\\editor.log"
+    },
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 3150,
+      "passed": 3142,
+      "failed": 8,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "a53e7b28099840caa83ad4303266c8b06921c7565c929425af39729b213d83ff",
+      "schema_version": 1,
+      "run_id": "space-event-json-types-red",
+      "duration_ms": 121354,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\space-event-json-types-red",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\space-event-json-types-red\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\space-event-json-types-red\\editor.log"
+    },
+    {
+      "status": "passed",
+      "error_code": null,
+      "total": 3150,
+      "passed": 3150,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "39afaa2796ebcbdf4f32346d5b8c7c075fc903fe7d468011b2d5220d7324b28c",
+      "schema_version": 1,
+      "run_id": "space-event-json-types-green",
+      "duration_ms": 122247,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\space-event-json-types-green",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\space-event-json-types-green\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\space-event-json-types-green\\editor.log"
     }
   ],
   "source_sha256": {
@@ -53,15 +93,21 @@
     "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceEventRules.cs": "761d980537285f610ccc45bc81836db89071f99fcd6525d4e796ec9c6fb03850",
     "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAttemptState.cs": "a68f3995774b6915521bb8fb6b0fccdf0ea07009f60cf8d783236af2ca9da79f",
     "Assets/ColdWarStruggle/Scripts/Core/Rules/SpaceAttemptRules.cs": "64555499808b372e2fee3aa863d0f016eea36b53765d81fceddf3e6823ca498c",
-    "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/SpaceEventDefinitionLoader.cs": "5c71d9f9466966d7ace8f12a6dcbe0725207e1a656eaa199dabac2b2d4fe4756",
+    "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/SpaceEventDefinitionLoader.cs": "e5b9c956f98230b4c20773337e4d88a3cb7e17e95f33b400b215c1b0a9a66542",
     "Assets/ColdWarStruggle/Tests/EditMode/SpaceEventFoundationTests.cs": "d407603f2657b308c5e7f003b772eae2fcc56e111f51a263fabe17ddf997ef3e",
-    "Assets/ColdWarStruggle/Tests/EditMode/SpaceEventDefinitionTests.cs": "ff6de3d5f3709e04a64ba1634ef25fe42a9fbaa5048f4118e18f7f2cb158bf61"
+    "Assets/ColdWarStruggle/Tests/EditMode/SpaceEventDefinitionTests.cs": "5f1f968661b22b5b2bac97f3efecb8e8dc7a5ada3a2bb31368f82fae8dca4a09"
   },
-  "failure_analysis": "RED55均为新增接口未实现/缺验证，旧3087通过；实现后3142全通过，无跳过。",
+  "failure_analysis": "RED55均为新增接口未实现/缺验证，旧3087通过；实现后3142全通过，无跳过。 独立审查发现宽松schema下类型强转；新增8例RED3150/3142/8，严格类型校验后GREEN3150/3150。",
   "limitations": [
     "尚未接玩家命令、全局VP/牌区/胜负提交或头条/UI",
     "终点新事件保持RequiresRuling，不默认完成",
     "基础层本批没有重建Player",
     "存档恢复与完整外部事件授权未实现"
-  ]
+  ],
+  "review": {
+    "reviewer": "review_space_event_foundation",
+    "initial": "1 Important: coercible JSON types",
+    "resolution": "Exact token types before conversion; eight actual RED/GREEN regressions. Focused re-review: zero remaining findings. Reviewer did not rerun Unity; parent verified GREEN summary/XML.",
+    "reviewed_source_commit": "2ec9ff87f7d6e59ee6cf65bb399e3f634143c666"
+  }
 }

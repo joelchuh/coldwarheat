@@ -51,4 +51,4 @@ if (state.EventReceipts.TryGetValue(request.Id, out var prior)) {
 var advance = SpaceAdvanceRules.CalculateSingleStep(state.Track, request.Beneficiary);
 ```
 - [x] 运行Tools/Scripts/run-unity-editmode.ps1，实际全部通过后记录测试XML/SHA与源提交；修复真实失败，不把编译失败当规则RED。
-- [ ] 更新模块JSON、Wiki/工作记录与验证报告；运行元数据与diff检查、提交；fresh只读审查并修必要问题；推送分支并ls-remote核对。基础层本批不重建未接入该功能的Player。
+- [x] 更新模块JSON、Wiki/工作记录与验证报告；运行元数据与diff检查、提交；fresh只读审查并修必要问题；推送分支并ls-remote核对。基础层本批不重建未接入该功能的Player。

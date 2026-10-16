@@ -1,7 +1,7 @@
 # 单格太空事件基础
 
 > description: 事件直接推进与普通尝试共用奖励计算，保留次数、历史、幂等及终点待裁定。
-> 2026-10-17：基础已实现，3142项原生测试通过；尚未接玩家命令。
+> 2026-10-17：基础已实现，3150项原生测试通过；尚未接玩家命令。
 
 边界与流程见[设计](../Architecture/space-event-foundation.md)、[计划](../Plans/2026-10-17-space-event-foundation.md)。正式参数沿用[事件太空](space-events-batch1.md)，轨道值沿用[太空竞赛](space-race.md)。
 
@@ -13,4 +13,6 @@
 
 已在终点的新事件保持TerminalRequiresRuling，零修改；到终点的原请求仍可幂等重试。此拒绝不是“无变化事件已完成”，不移出卡牌。完整玩家授权、牌区/分数提交、头条和界面将在下一批接入。
 
-测试28项基础+27项加载，完整回归3142/3142，RED/GREEN和源SHA见[验证报告](../Testing/space-event-foundation.validation.json)。旧设计中的SpaceRaceService.PlanEventAdvance不是已有类，实际接口为本模块的SpaceEventRules.PlanAdvance。
+测试28项基础+35项加载，完整回归3150/3150，RED/GREEN和源SHA见[验证报告](../Testing/space-event-foundation.validation.json)。旧设计中的SpaceRaceService.PlanEventAdvance不是已有类，实际接口为本模块的SpaceEventRules.PlanAdvance。
+
+严格加载拒绝数值、布尔和版本的类型强转；独立审查发现并修复1项Important，聚焦复审无剩余发现。

@@ -48,6 +48,20 @@ namespace ColdWarStruggle.Tests
             var s=JObject.Parse(Schema());((JObject)s["$defs"]["captured_nazi_scientist"]["properties"][field]).Remove("const");
             Assert.That(()=>Load(r.ToString(),s.ToString()),Throws.InstanceOf<ArgumentException>());
         }
+        [TestCase("advance_steps","1.4")][TestCase("advance_steps","\"1\"")]
+        [TestCase("ordinary_attempt_consumption","0.4")][TestCase("ordinary_attempt_consumption","\"0\"")]
+        [TestCase("requires_ordinary_ops_qualification","0")][TestCase("requires_ordinary_ops_qualification","\"false\"")]
+        [TestCase("schema_version","1.4")][TestCase("schema_version","\"1\"")]
+        public void Relaxed_schema_cannot_coerce_wrong_json_types_into_supported_values(string field,string value)
+        {
+            var r=JObject.Parse(Data());var s=JObject.Parse(Schema());
+            var profile=field=="schema_version";
+            var target=profile?r:(JObject)r["parameters"]["captured_nazi_scientist"];
+            var properties=profile?s["properties"]:s["$defs"]["captured_nazi_scientist"]["properties"];
+            ((JObject)properties[field]).Remove("const");
+            target[field]=JToken.Parse(value);
+            Assert.That(()=>Load(r.ToString(),s.ToString()),Throws.InstanceOf<ArgumentException>());
+        }
         [TestCase("missing")][TestCase("affiliation")][TestCase("removal")][TestCase("binding")][TestCase("ops")]
         public void Incorrect_card_binding_cannot_supply_event(string defect)
         {
