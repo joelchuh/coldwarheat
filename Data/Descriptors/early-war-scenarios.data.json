@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "id": "data.demo-early-war-scenarios",
+  "kind": "data",
+  "dataset_id": "demo.early_war_scenarios",
+  "status": "fixture",
+  "description": "三张早期战争的第2回合人工局面：固定种子展示胜败、控制修正和印巴双目标；非自然开局，规则奖励仍取正式战争参数。",
+  "entrypoints": [
+    {
+      "path": "Data/Demo/early-war-scenarios.json",
+      "symbol": "scenarios"
+    }
+  ],
+  "inputs": [
+    "已配置Wars的最终计分源场景及共享规则地图/牌库"
+  ],
+  "outputs": [
+    "第25至27人工练习，未列国家影响力为零，真实CardZones分区"
+  ],
+  "dependencies": [
+    "module.early-war-play"
+  ],
+  "data_dependencies": [
+    "demo.final_scoring_scenario",
+    "effects.deluxe2015.war_events_batch1",
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world"
+  ],
+  "preconditions": [
+    "scope=fixture，第2回合开始，无先前活动事件事实"
+  ],
+  "side_effects": [
+    "内存新Host；不改变原场景或正式开局"
+  ],
+  "stop_conditions": [
+    "未知字段/来源/国家/目标、重复牌或国家、跨时代牌、重复场景、终局VP、负随机种子"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Architecture/early-war-play.md",
+      "scope": "人工练习与权威规则分离"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/WarDemoTests.cs",
+      "status": "native-passed"
+    }
+  ],
+  "documentation": "Docs/Wiki/early-war-play.md",
+  "verification": {
+    "status": "native-passed",
+    "report": "Docs/Testing/early-war-play.validation.json"
+  }
+}

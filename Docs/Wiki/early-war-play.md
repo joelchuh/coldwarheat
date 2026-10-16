@@ -13,3 +13,5 @@ Task1已实现ActionPracticeDefinition.Wars、WarDecision/CanResolveWar、直接
 Task2完成：对手事件先后OPS、政变两回执、核战停止、头条等待/继续/取消/终局及跨回合同槽信用均通过。新增18项，首次internal夹具编译失败已用真实回合流程替换，不计为RED；有效RED16项均未支持，GREEN3034/3034、0跳过、exit0，XML SHA fc10ed1f414f5b5db8b58b5680445863c103189207245250be7f5b738a923fc4。会话/Player接线继续。
 
 Task3A：会话公开DTO、重发/错身份/冲突、地图替换及中文战争反馈通过。RED3052/3034/18，GREEN3052/3052、0跳过、exit0、SHA9f034e36d3935f13576215b85e7d0ce6554d101d2c06409685bb0cce34beba02。公开头条缓存统一按最后一个有摘要的步骤选择，并保留原五年计划接口。后续补战争后继续待选时的事件面板显示、三人工场景和Player，不把这一阶段声明成构建完成。
+
+Task3B：三个共享JSON人工场景、严格加载、复制定义保留Wars及Editor/Player载荷接线完成；事件面板实际调用ReadEventFeedback，战争后继续待选也可读结果。RED3077/3052/25（24未实现、1缺显示），GREEN3077/3077、0跳过、exit0、SHA da4708181351267af4909253df8f72a2d6ca4b4d2cf9b907e63a99e675e22b00。原场景24个保留，加3个共27。种子42/stream54首骰4，朝鲜成功、阿以两修正失败、印度成功/巴基斯坦一修正失败均由真实命令确认。Windows构建和人工验收继续。

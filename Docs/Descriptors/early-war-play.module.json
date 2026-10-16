@@ -3,7 +3,7 @@
   "id": "module.early-war-play",
   "kind": "module",
   "status": "implemented-subset",
-  "description": "早期战争Core、OPS/头条、固定会话与地图确认/公开结算已原生通过；人工场景和Windows Player构建继续。",
+  "description": "早期三战争的真实手牌/OPS/头条、固定会话、地图目标确认和三人工场景；3077原生通过，Windows构建与整批审查进行中。",
   "documentation": "Docs/Wiki/early-war-play.md",
   "entrypoints": [
     {
@@ -29,6 +29,14 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.War.cs",
       "symbol": "ReadHeadlineWarFeedback"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.War.cs",
+      "symbol": "WithEarlyWarScenarios"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "symbol": "BuildWarPlaytest"
     }
   ],
   "inputs": [
@@ -45,7 +53,8 @@
   "data_dependencies": [
     "effects.deluxe2015.war_events_batch1",
     "cards.deluxe2015.definitions",
-    "map.deluxe2015.world"
+    "map.deluxe2015.world",
+    "demo.early_war_scenarios"
   ],
   "preconditions": [
     "当前封闭支持事件集合，不能产生Camp David/Flower Power事实；不导入外部存档",
@@ -79,10 +88,14 @@
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/WarPresentationTests.cs",
       "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/WarDemoTests.cs",
+      "status": "native-passed"
     }
   ],
   "verification": {
-    "status": "task3-session-map-passed",
+    "status": "native-passed-build-review-pending",
     "report": "Docs/Testing/early-war-play.validation.json"
   }
 }

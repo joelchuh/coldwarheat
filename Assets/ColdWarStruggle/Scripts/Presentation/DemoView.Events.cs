@@ -52,16 +52,22 @@ namespace ColdWarStruggle.Presentation
             if(Button(972,531,262,33,"重发上次事件命令"))RetryEvent();
             GUI.enabled=true;
             var result=controller.LastEventResult;
+            var message=ReadEventFeedback();
+            var coupMessage=controller.EventPanelCoupMessage;
+            DrawFeedback(574,62,coupMessage??message);
+            if(coupMessage!=null && result!=null && !result.Accepted)Text(972,638,262,32,message,small);
+        }
+        public string ReadEventFeedback()
+        {
+            var result=controller.LastEventResult;
             var message=result==null?"点选只是草稿；确认后才修改局面。"
                 :!result.Accepted?"未执行："+ErrorText(result.Error)
                 :result.ResolutionSequence.HasValue?"完成收据 · 变化 "+result.Changes.Count+" 项\n序号 "+result.ResolutionSequence.Value
                 :"选择请求已建立。请按左侧提示操作。";
             if(result?.FiveYearPlan!=null)message=FiveYearPlanResultMessage(result.FiveYearPlan);
-            if(result?.Accepted!=false)message=ReadHeadlineFiveYearPlanFeedback()??message;
+            if(result?.Accepted!=false)message=ReadHeadlineWarFeedback()??ReadHeadlineFiveYearPlanFeedback()??message;
             message=controller.EventResultHistoryMessage??message;
-            var coupMessage=controller.EventPanelCoupMessage;
-            DrawFeedback(574,62,coupMessage??message);
-            if(coupMessage!=null && result!=null && !result.Accepted)Text(972,638,262,32,message,small);
+            return message;
         }
         async void BeginEvent() { try { await controller.BeginEventAsync(); } catch(Exception e) { fatal=e.Message;Debug.LogException(e); } }
         async void ConfirmEvent() { try { await controller.ConfirmEventAsync(); } catch(Exception e) { fatal=e.Message;Debug.LogException(e); } }

@@ -59,14 +59,14 @@ Assert.That(result.NextState.Practice.Stage,Is.EqualTo(ActionPracticeStage.Choos
 **Files:** 新增Application/Sessions/WarContracts.cs、Presentation/DemoController.War.cs和DemoView.War.cs、Infrastructure/DataLoading/DemoCatalog.War.cs及Tests/EditMode/WarSessionTests.cs、WarPresentationTests.cs、WarDemoTests.cs/.meta。修改SessionContracts/CardActionContracts/HeadlineSessionContracts/LocalGameHost.Cards、Map/MapPresenter、DemoView控制分派与反馈、DemoController.HeadlineFeedback、各DemoCatalog定义复制工厂、Bootstrap/DemoBootstrap、Editor/DemoBuild。
 新增Data/Demo/early-war-scenarios.json及Data/Descriptors对应description与catalog。使用既有最终计分场景的可信规则和随机快照构造人工turn2局面，三张战争各一个场景；所有战争数值仍读正式参数。
 
-- [ ] 先写可编译接口和RED：会话重复命令same receipt、冲突/旧版/错身份零变更，公开战争数据不含随机/牌库，Coup+War两回执、头条等待Owner；地图仅当前owner两目标高亮，替换视图旧intent无效，确认用真实命令；反馈读取实际绘制helper且版本绑定。Demo装配三场景、定义引用保留、非法fixture拒绝、每场景能真实完成战争。
+- [x] 先写可编译接口和RED：会话重复命令same receipt、冲突/旧版/错身份零变更，公开战争数据不含随机/牌库，Coup+War两回执、头条等待Owner；地图仅当前owner两目标高亮，替换视图旧intent无效，确认用真实命令；反馈读取实际绘制helper且版本绑定。Demo装配三场景、定义引用保留、非法fixture拒绝、每场景能真实完成战争。
 ```csharp
 var once=await session.SubmitCardActionAsync(command);
 Assert.That(await session.SubmitCardActionAsync(command),Is.SameAs(once));
 Assert.That(session.ReadView().Version,Is.EqualTo(once.View.Version));
 Assert.That(JsonConvert.SerializeObject(once.War),Does.Not.Contain("Random"));
 ```
-- [ ] 实现公开DTO、命令按钮/地图选择、中文反馈、严格fixture及构建载荷；GREEN后补元数据验证。
+- [x] 实现公开DTO、命令按钮/地图选择、中文反馈、严格fixture及构建载荷；GREEN后补元数据验证。
 - [ ] 构建WarPlaytest；核对Copy载荷与Managed hash，真实鼠标逐场景运行、日志无新异常、F12留证据。实际未测路径在report标明。
 - [ ] 更新描述/Wiki/工作记录、diff检查、提交；fresh整分支只读审查，必要修复RED/GREEN；推送并ls-remote核对。
 

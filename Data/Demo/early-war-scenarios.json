@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "dataset_id": "demo.early_war_scenarios",
+  "description": "三张早期战争的第2回合人工局面；未列国家影响力为零，固定随机种子用于重复练习，不代表自然开局或真实历史。战争奖励读取正式共享参数。",
+  "scope": "fixture",
+  "source_scenario_id": "demo.practice.final_scoring",
+  "turn_number": 2,
+  "initial_vp": 0,
+  "random_seed": 42,
+  "random_stream": 54,
+  "scenarios": [
+    {
+      "id": "demo.practice.korean_war",
+      "title": "朝鲜战争 · 影响力转移人工局面",
+      "card": "card.korean_war",
+      "selected_country": "country.south_korea",
+      "us_hand": ["card.olympic_games", "card.duck_and_cover"],
+      "ussr_hand": ["card.korean_war", "card.fidel"],
+      "influence": [{"country_id": "country.south_korea", "us": 3, "ussr": 1}]
+    },
+    {
+      "id": "demo.practice.arab_israeli_war",
+      "title": "阿以战争 · 控制修正人工局面",
+      "card": "card.arab_israeli_war",
+      "selected_country": "country.israel",
+      "us_hand": ["card.olympic_games", "card.duck_and_cover"],
+      "ussr_hand": ["card.arab_israeli_war", "card.fidel"],
+      "influence": [
+        {"country_id": "country.israel", "us": 4, "ussr": 0},
+        {"country_id": "country.egypt", "us": 2, "ussr": 0}
+      ]
+    },
+    {
+      "id": "demo.practice.indo_pakistani_war",
+      "title": "印巴战争 · 地图选目标人工局面",
+      "card": "card.indo_pakistani_war",
+      "selected_country": "country.india",
+      "us_hand": ["card.olympic_games", "card.duck_and_cover"],
+      "ussr_hand": ["card.indo_pakistani_war", "card.fidel"],
+      "influence": [
+        {"country_id": "country.india", "us": 2, "ussr": 1},
+        {"country_id": "country.pakistan", "us": 2, "ussr": 1},
+        {"country_id": "country.afghanistan", "us": 2, "ussr": 0}
+      ]
+    }
+  ]
+}

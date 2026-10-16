@@ -18,7 +18,7 @@ namespace ColdWarStruggle.Infrastructure
                 {
                     var blockade=BlockadeDefinitionLoader.Load(parameters,schema,Map,d.Cards,d.Ops,known);
                     replacement=new ActionPracticeDefinition(d.Cards,d.Ops,d.Space,d.Calendar,d.Risk,d.Scoring,d.InfluenceEvents,d.DefconVpEvents,d.TurnOpsEvents,d.Realignment,d.China,
-                        d.TurnEndEnabled,d.NextTurnEnabled,d.HeadlineParameters,d.HeadlineDefectors,d.FinalScoring,blockade,d.FiveYearPlan);
+                        d.TurnEndEnabled,d.NextTurnEnabled,d.HeadlineParameters,d.HeadlineDefectors,d.FinalScoring,blockade,d.FiveYearPlan,d.Wars);
                     replacements.Add(d,replacement);
                 }
                 return new DemoScenario(s.Id,s.Title,s.Actor,s.SelectedCountry,s.Ops,s.Countries,s.Hands,s.EventDefinition,s.Turn,s.DeploymentDefinition,s.InitialCards,replacement,s.StartupChoices,s.TurnEndSetup);
