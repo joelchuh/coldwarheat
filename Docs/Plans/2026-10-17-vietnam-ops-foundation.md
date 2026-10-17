@@ -17,6 +17,6 @@ Sources: existing persistent-effects Wiki/parameters; official GMT 2015 rule7.4 
 ## Task1 — fixed grant and regional turn effect foundation
 Create Core/Effects/AddFixedInfluenceEffect.cs, Infrastructure/DataLoading/VietnamRevoltsDefinitionLoader.cs, Tests/EditMode/VietnamOpsFoundationTests.cs (+metas); extend Core/Effects/InfluenceEventRules.cs and Core/Rules/TurnOpsEffects.cs. Document descriptor/Wiki/report/worklog/catalog/index.
 - [x] Tests first with compile-only stubs: strict data bindings/source/type/profile, amount mutation, constructor restrictions, grant/overflow/gates/immutability, fixed USSR independent of controller, Flat separation, actor/turn boundary, retries/conflicts/repeat, China+SEA accepted-prefix budgets; native RED.
-- [ ] Implement bounded core and loader; native GREEN; metadata/diff checks; commit; one read-only review.
+- [x] Implement bounded core and loader; native GREEN; metadata/diff checks; commit; one read-only review.
 - [ ] Record evidence/limits and push/verify remote. No Player rebuild: runtime catalog intentionally remains disabled. Continue real-session integration next.
 Validation: Tools/Scripts/run-unity-editmode.ps1 -ProjectRoot E:/TwilightStruggle -UnityEditor E:/unity6.6/6000.6.0f1/Editor/Unity.exe -RunId <unique> -TimeoutSeconds600; inspect XML. Do not edit C# or loaded data during Unity run.

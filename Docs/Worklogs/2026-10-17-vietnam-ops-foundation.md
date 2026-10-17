@@ -18,3 +18,16 @@ GREEN-2 3791/3791、0跳过/不确定，XML a6001632513badda5602c854d4f7e2b5a132
 定向RED证据边界：初次一次性命令在报告解析前异常，未输出Unity子进程退出码；以XML的一项真实失败为证，报告将unity_exit_code留空，不采用补读helper所传数值冒充实测退出码。全量运行仍使用原脚本保存实际退出码。
 
 最终GREEN-3：3792/3792，0跳过/不确定，Unity退出0，166137ms，XML 4fa6e0648712c2e6e1a70c8209b40e84fc2651bbf5ebf148d993c28ab00aab1d。48项新增测试通过。待整批独立审查；不构建Player，因为运行目录仍明确拒绝此地区类型。
+
+Task1: complete (c9702a1..79cc5f9), run-unity-editmode.ps1 run vietnam-foundation-green-3 →3792/3792. Metadata184描述/88数据/481符号/747依赖/429文件；diff --check通过。
+Final review: review_vietnam_foundation，gpt-6-astra/high，只读整批。0 Critical/0 Important；1 Minor为Wiki状态仍写GREEN运行，父任务在审查返回前已独立修正，未增加审查修复轮。无待办minor。审查者独立核对现有XML及hash，不冒称重新跑测试。
+Final: Ruling: 实际Vietnam注册/实体处置 — 本批目录继续拒绝，下一批明确启用 — 若误用将无法出牌，不会半接入。
+Final: Ruling: 加点与激活原子合成 — 本批仅不可变基础，下一批必须同一Host发布 — 不可声称已有完整卡事件。
+Final: Ruling: 普通/对手/事件OPS实际消费 — 下一批统一接线 — 当前Player没有越南奖励。
+Final: Ruling: 头条、混合收据、Demo体验 — 后续集成并验证 — 本批不能作为可玩验收。
+Final: Ruling: Player打包与真实点击 — 未改运行注册，沿用此前Demo且不重建 — 无新Player证据。
+Final: Ruling: 更广泛持续效果/取消 — 超出本回合地区模型 — 新效果须新契约与测试。
+Final: Ruling: 新resolution重复同效果同方 — 维持RequiresRuling — 不能自动叠加或刷新。
+Final: Ruling: 小值保底官方解释 — 保留已确认项目解释身份，不另造官方裁定 — 与不同平台解释可能不一致。
+目录维护首次同时改两个descriptor触发CATALOG_MISMATCH，未写目录；恢复未同步者并按单条preview/hash/write顺序完成，未改业务数据。
+Git: 按用户既有授权push特性分支，不合并main；不动两项用户未跟踪文件。执行环境无Bash时以原生Git/Python留相同计划/工作记录/审查diff，未新增工作流脚本。
