@@ -21,7 +21,7 @@ namespace ColdWarStruggle.Tests
         internal static GameState Ready(string card="card.fidel")=>PlayScoringTests.Ready(card,configure:d=>new ActionPracticeDefinition(d.Cards,d.Ops,d.Space,d.Calendar,d.Risk,d.Scoring,Effects(d.Risk.Defcon.Map,d.Cards)));
         internal static CardActionTransition Play(GameState s,string card)=>ActionPracticeRules.Plan(s,s.Practice.Actor,CardActionKind.Event,"event",new CardId(card));
         internal static GameState Copy(GameState s,IReadOnlyDictionary<CountryId,CountryState> countries=null,long? version=null,long? sequence=null,CardZones cards=null)
-            =>new GameState(s.Map,countries??s.Countries,s.Operations,s.GameId,version??s.Version,s.SpentOps,sequence??s.EventSequence,s.Ended,influenceEvent:s.InfluenceEvent,turn:s.Turn,deployment:s.Deployment,cards:cards??s.Cards,randomState:s.RandomState,practice:s.Practice);
+            =>new GameState(s.Map,countries??s.Countries,s.Operations,s.GameId,version??s.Version,s.SpentOps,sequence??s.EventSequence,s.Ended,influenceEvent:s.InfluenceEvent,turn:s.Turn,deployment:s.Deployment,cards:cards??s.Cards,randomState:s.RandomState,practice:s.Practice,japanPact:s.JapanPact);
         static void Completed(GameState before,GameState after,string card)
         {
             var id=new CardId(card);Assert.That(after.InfluenceEvent,Is.Null);Assert.That(after.Practice.CompletedActions,Is.EqualTo(before.Practice.CompletedActions+1));Assert.That(after.Cards.ResolvingCards,Is.Empty);

@@ -24,6 +24,7 @@ namespace ColdWarStruggle.Core
         {
             var error=CanRollRealignment(state,side);if(error!=RuleError.None)return error;
             if(!state.Countries.TryGetValue(target,out var country))return RuleError.UnknownCountry;
+            error=CheckJapanPactTarget(state,side,target,TreatyAction.Realignment);if(error!=RuleError.None)return error;
             if(state.Operations.RegionalBudget!=null && !state.Operations.RegionalBudget.TrySpend(target,state.Practice.Definition.Realignment.OpsCostPerRoll,out _))return RuleError.InsufficientBudget;
             // Supported Flat effects have already set the roll budget; there are no registered die interventions.
             return RealignmentRules.CheckTarget(state.Practice.Risk.Defcon,target,country,side,Array.Empty<string>())==RealignmentTargetReason.Allowed?RuleError.None:RuleError.IllegalTarget;

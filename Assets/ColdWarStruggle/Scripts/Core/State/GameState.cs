@@ -13,6 +13,7 @@ namespace ColdWarStruggle.Core
     }
     public sealed class GameState
     {
+        public JapanPactState JapanPact { get; }
         public MapDefinition Map { get; }
         public OperationsContext Operations { get; }
         public string GameId { get; }
@@ -31,7 +32,7 @@ namespace ColdWarStruggle.Core
         public GameState(MapDefinition map, IReadOnlyDictionary<CountryId,CountryState> countries, OperationsContext context,
             string gameId="fixture", long version=0,int spentOps=0,long eventSequence=0,bool ended=false,
             IReadOnlyDictionary<PlayerSide,IReadOnlyList<string>> hands=null,InfluenceEventExecution influenceEvent=null,GameTurnContext turn=null,
-            SetupDeploymentExecution deployment=null,CardZones cards=null,RandomSnapshot randomState=null,ActionPracticeState practice=null)
+            SetupDeploymentExecution deployment=null,CardZones cards=null,RandomSnapshot randomState=null,ActionPracticeState practice=null,JapanPactState japanPact=null)
         {
             if(map==null || countries==null || context==null || string.IsNullOrWhiteSpace(gameId)) throw new ArgumentException("Missing state data.");
             if(context.RegionalBudget!=null && (!ReferenceEquals(context.RegionalBudget.Map,map) || context.RegionalBudget.Spent!=spentOps))throw new ArgumentException("Regional history must match the map and spent OPS.");
@@ -51,8 +52,13 @@ namespace ColdWarStruggle.Core
                 || influenceEvent!=null || deployment!=null || context.Budget!=0 || spentOps!=0))throw new ArgumentException("Blockade response must share the idle authoritative context.");
             if(practice?.HeadlineSelection!=null && (!ReferenceEquals(cards,practice.HeadlineSelection.Cards)
                 || influenceEvent!=null || deployment!=null || context.Budget!=0 || spentOps!=0))throw new ArgumentException("Headline collection must share the authoritative idle card snapshot.");
+            if(practice?.Definition.JapanPact!=null && japanPact==null)throw new ArgumentException("Registered Japan pact requires explicit authoritative state.");
+            if(japanPact!=null && (japanPact.GameId!=gameId || !ReferenceEquals(japanPact.Definition.Map,map)
+                || practice!=null && !ReferenceEquals(japanPact.Definition,practice.Definition.JapanPact)
+                || japanPact.Instance!=null && (japanPact.Instance.SourceVersion>=version || japanPact.Instance.ActivationSequence>eventSequence)))
+                throw new ArgumentException("Japan pact must match the committed game, definition and timeline.");
             Map=map;Operations=context;GameId=gameId;Version=version;SpentOps=spentOps;EventSequence=eventSequence;Ended=ended;
-            Cards=cards;RandomState=randomState;Practice=practice;
+            Cards=cards;RandomState=randomState;Practice=practice;JapanPact=japanPact;
             if(practice!=null && (cards==null || turn==null || turn.Number!=practice.Space.Turn.Number))throw new ArgumentException("Practice requires real cards and the matching turn.");
             if(deployment!=null && !ReferenceEquals(map,deployment.Definition.Map))throw new ArgumentException("Deployment map mismatch.");
             InfluenceEvent=influenceEvent;Turn=turn;Deployment=deployment;
@@ -69,10 +75,10 @@ namespace ColdWarStruggle.Core
         public int GetInfluence(CountryId id,PlayerSide side) => Countries.TryGetValue(id,out var value)?value.For(side):throw new ArgumentException("Unknown country.");
         public IReadOnlyList<string> GetHand(PlayerSide side) => hands.TryGetValue(side,out var h)?h:throw new ArgumentOutOfRangeException(nameof(side));
         internal GameState Apply(IReadOnlyDictionary<CountryId,CountryState> countries,int spent,int count,OperationsContext operations=null)
-            => new GameState(Map,countries,operations??Operations,GameId,checked(Version+1),spent,checked(EventSequence+count),Ended,Cards==null?hands:null,InfluenceEvent,Turn,Deployment,Cards,RandomState,PracticeAfterOperations(countries,spent,RandomState,count,operations??Operations));
+            => new GameState(Map,countries,operations??Operations,GameId,checked(Version+1),spent,checked(EventSequence+count),Ended,Cards==null?hands:null,InfluenceEvent,Turn,Deployment,Cards,RandomState,PracticeAfterOperations(countries,spent,RandomState,count,operations??Operations),JapanPact);
         internal GameState ApplyRealignment(IReadOnlyDictionary<CountryId,CountryState> countries,int spent,RandomSnapshot random,OperationsContext operations=null)
             =>new GameState(Map,countries,operations??Operations,GameId,checked(Version+1),spent,checked(EventSequence+1),Ended,
-                influenceEvent:InfluenceEvent,turn:Turn,deployment:Deployment,cards:Cards,randomState:random,practice:PracticeAfterOperations(countries,spent,random,1,operations??Operations));
+                influenceEvent:InfluenceEvent,turn:Turn,deployment:Deployment,cards:Cards,randomState:random,practice:PracticeAfterOperations(countries,spent,random,1,operations??Operations),japanPact:JapanPact);
         ActionPracticeState PracticeAfterOperations(IReadOnlyDictionary<CountryId,CountryState> countries,int spent,RandomSnapshot random,int count,OperationsContext operations)
         {
             var p=Practice;
@@ -81,15 +87,15 @@ namespace ColdWarStruggle.Core
             return new ActionPracticeState(p.Definition,p.Stage,p.CompletedActions,p.ActiveCard,p.Space,p.VpForUS,p.Risk,p.OpsEffects,
                 p.OpponentOps,p.TurnEnd,p.Headline,p.HeadlineSelection,p.FinalScoring,p.SpaceDiscard,p.Rounds,p.Blockade,p.FiveYearPlan,p.War,execution);
         }
-        internal GameState WithPractice(ActionPracticeState practice,OperationsContext operations,CardZones cards,RandomSnapshot random,IReadOnlyDictionary<CountryId,CountryState> countries=null,bool? ended=null)
+        internal GameState WithPractice(ActionPracticeState practice,OperationsContext operations,CardZones cards,RandomSnapshot random,IReadOnlyDictionary<CountryId,CountryState> countries=null,bool? ended=null,JapanPactState japanPact=null)
             =>new GameState(Map,countries??Countries,operations,GameId,checked(Version+1),0,checked(EventSequence+1),ended??Ended,
-                influenceEvent:InfluenceEvent,turn:Turn,cards:cards,randomState:random,practice:practice);
+                influenceEvent:InfluenceEvent,turn:Turn,cards:cards,randomState:random,practice:practice,japanPact:japanPact??JapanPact);
         internal GameState WithNextPracticeTurn(ActionPracticeState practice,OperationsContext operations,CardZones cards,RandomSnapshot random,GameTurnContext turn)
             =>new GameState(Map,Countries,operations,GameId,checked(Version+1),0,checked(EventSequence+1),false,
-                turn:turn,cards:cards,randomState:random,practice:practice);
+                turn:turn,cards:cards,randomState:random,practice:practice,japanPact:JapanPact);
         internal GameState WithInfluenceEvent(InfluenceEventExecution execution)
-            => new GameState(Map,Countries,Operations,GameId,Version,SpentOps,EventSequence,Ended,Cards==null?hands:null,execution,Turn,Deployment,Cards,RandomState,Practice);
+            => new GameState(Map,Countries,Operations,GameId,Version,SpentOps,EventSequence,Ended,Cards==null?hands:null,execution,Turn,Deployment,Cards,RandomState,Practice,JapanPact);
         internal GameState WithDeployment(SetupDeploymentExecution deployment)
-            => new GameState(Map,Countries,Operations,GameId,Version,SpentOps,EventSequence,Ended,Cards==null?hands:null,InfluenceEvent,Turn,deployment,Cards,RandomState,Practice);
+            => new GameState(Map,Countries,Operations,GameId,Version,SpentOps,EventSequence,Ended,Cards==null?hands:null,InfluenceEvent,Turn,deployment,Cards,RandomState,Practice,JapanPact);
     }
 }

@@ -49,8 +49,10 @@ namespace ColdWarStruggle.Application
         public PublicPracticeView Practice { get; }
         public PublicHeadlineView Headline { get; }
         public PublicSpaceEndTurnDiscard SpaceDiscard { get; }
+        public PublicJapanPactEffect JapanPact { get; }
         internal PlayerViewSnapshot(GameState s,PlayerSide viewer)
         {
+            JapanPact=s.JapanPact?.Instance==null?null:new PublicJapanPactEffect(s.JapanPact.Instance);
             Olympic=s.Practice?.Olympic==null?null:new PublicOlympicView(s,viewer);
             War=s.Practice?.War==null?null:new PublicWarView(s,viewer);
             FiveYearPlan=s.Practice?.FiveYearPlan==null?null:new PublicFiveYearPlanResult(s.Practice.FiveYearPlan,s.Ended);

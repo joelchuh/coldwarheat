@@ -7,6 +7,7 @@ namespace ColdWarStruggle.Core
     // Explicit single-turn practice with a bounded, typed set of supported events. Not the full turn coordinator.
     public sealed class ActionPracticeDefinition
     {
+        public JapanPactDefinition JapanPact { get; }
         public OlympicGamesDefinition Olympic { get; }
         public SpaceEventDefinition SpaceEvent { get; }
         public WarEventCatalog Wars { get; }
@@ -28,7 +29,7 @@ namespace ColdWarStruggle.Core
         public HeadlineOrderParameters HeadlineParameters { get; }
         public DefectorsHeadlineDefinition HeadlineDefectors { get; }
         public FinalScoringDefinition FinalScoring { get; }
-        public ActionPracticeDefinition(CardCatalog cards,OpsGeneralDefinition ops,SpaceRaceDefinition space,TurnCalendar calendar,PracticeRiskDefinition risk=null,RegionScoringDefinition scoring=null,PracticeInfluenceCatalog influenceEvents=null,PracticeDefconVpCatalog defconVpEvents=null,PracticeTurnOpsCatalog turnOpsEvents=null,RealignmentDefinition realignment=null,ChinaCardDefinition china=null,bool turnEndEnabled=false,bool nextTurnEnabled=false,HeadlineOrderParameters headlineParameters=null,DefectorsHeadlineDefinition headlineDefectors=null,FinalScoringDefinition finalScoring=null,BlockadeDefinition blockade=null,FiveYearPlanDefinition fiveYearPlan=null,WarEventCatalog wars=null,SpaceEventDefinition spaceEvent=null,OlympicGamesDefinition olympic=null)
+        public ActionPracticeDefinition(CardCatalog cards,OpsGeneralDefinition ops,SpaceRaceDefinition space,TurnCalendar calendar,PracticeRiskDefinition risk=null,RegionScoringDefinition scoring=null,PracticeInfluenceCatalog influenceEvents=null,PracticeDefconVpCatalog defconVpEvents=null,PracticeTurnOpsCatalog turnOpsEvents=null,RealignmentDefinition realignment=null,ChinaCardDefinition china=null,bool turnEndEnabled=false,bool nextTurnEnabled=false,HeadlineOrderParameters headlineParameters=null,DefectorsHeadlineDefinition headlineDefectors=null,FinalScoringDefinition finalScoring=null,BlockadeDefinition blockade=null,FiveYearPlanDefinition fiveYearPlan=null,WarEventCatalog wars=null,SpaceEventDefinition spaceEvent=null,OlympicGamesDefinition olympic=null,JapanPactDefinition japanPact=null)
         {
             if(olympic!=null && (risk==null || !ReferenceEquals(olympic.Cards,cards)
                 || influenceEvents?.Effects.ContainsKey(olympic.Card.Id)==true || defconVpEvents?.Effects.ContainsKey(olympic.Card.Id)==true
@@ -36,7 +37,13 @@ namespace ColdWarStruggle.Core
                 || blockade?.Card.Id.Equals(olympic.Card.Id)==true || fiveYearPlan?.Card.Id.Equals(olympic.Card.Id)==true
                 || wars?.Effects.ContainsKey(olympic.Card.Id)==true || spaceEvent?.Card.Id.Equals(olympic.Card.Id)==true))
                 throw new ArgumentException("Olympic event requires shared cards, risk and a unique handler.");
-            Olympic=olympic;
+            if(japanPact!=null && (risk==null || !ReferenceEquals(japanPact.Cards,cards) || !ReferenceEquals(japanPact.Map,risk.Defcon.Map)
+                || influenceEvents?.Effects.ContainsKey(japanPact.Card)==true || defconVpEvents?.Effects.ContainsKey(japanPact.Card)==true
+                || turnOpsEvents?.Effects.ContainsKey(japanPact.Card)==true || headlineDefectors?.Card.Equals(japanPact.Card)==true
+                || blockade?.Card.Id.Equals(japanPact.Card)==true || fiveYearPlan?.Card.Id.Equals(japanPact.Card)==true
+                || wars?.Effects.ContainsKey(japanPact.Card)==true || spaceEvent?.Card.Id.Equals(japanPact.Card)==true || olympic?.Card.Id.Equals(japanPact.Card)==true))
+                throw new ArgumentException("Japan pact requires shared cards, map, risk and a unique handler.");
+            Olympic=olympic;JapanPact=japanPact;
             if(spaceEvent!=null && (risk==null || !ReferenceEquals(spaceEvent.Cards,cards) || !ReferenceEquals(spaceEvent.Track,space)
                 || influenceEvents?.Effects.ContainsKey(spaceEvent.Card.Id)==true || defconVpEvents?.Effects.ContainsKey(spaceEvent.Card.Id)==true
                 || turnOpsEvents?.Effects.ContainsKey(spaceEvent.Card.Id)==true || headlineDefectors?.Card.Equals(spaceEvent.Card.Id)==true
@@ -166,9 +173,10 @@ namespace ColdWarStruggle.Core
         public RegionScoringResult ScoringResult { get; }
         public InfluenceEventTransition EventTransition { get; }
         public DefconVpEventPlan DefconVpEvent { get; }
+        public JapanPactInstance ActivatedJapanPact { get; }
         public TurnOpsEffectInstance ActivatedOpsEffect { get; }
         public RealignmentCalculation Realignment { get; }
-        internal CardActionTransition(RuleError error,GameState next=null,SpaceAttemptReceipt receipt=null,CoupAttemptReceipt coup=null,RegionScoringResult scoring=null,InfluenceEventTransition eventTransition=null,DefconVpEventPlan defconVpEvent=null,TurnOpsEffectInstance activatedOpsEffect=null,RealignmentCalculation realignment=null,BlockadeResolutionResult blockadeResult=null,System.Collections.Generic.IReadOnlyList<HeadlineResolutionStep> headlineSteps=null,FiveYearPlanResult fiveYearPlanResult=null,WarEventPlan warResult=null,SpaceEventPlan spaceEventResult=null,OlympicPracticeResult olympicResult=null)
-        { OlympicResult=olympicResult;SpaceEventResult=spaceEventResult;WarResult=warResult;FiveYearPlanResult=fiveYearPlanResult;BlockadeResult=blockadeResult;HeadlineSteps=Array.AsReadOnly((headlineSteps??Array.Empty<HeadlineResolutionStep>()).ToArray());Realignment=realignment;ActivatedOpsEffect=activatedOpsEffect;DefconVpEvent=defconVpEvent;EventTransition=eventTransition;ScoringResult=scoring;Error=error;NextState=next;SpaceReceipt=receipt;CoupReceipt=coup; }
+        internal CardActionTransition(RuleError error,GameState next=null,SpaceAttemptReceipt receipt=null,CoupAttemptReceipt coup=null,RegionScoringResult scoring=null,InfluenceEventTransition eventTransition=null,DefconVpEventPlan defconVpEvent=null,TurnOpsEffectInstance activatedOpsEffect=null,RealignmentCalculation realignment=null,BlockadeResolutionResult blockadeResult=null,System.Collections.Generic.IReadOnlyList<HeadlineResolutionStep> headlineSteps=null,FiveYearPlanResult fiveYearPlanResult=null,WarEventPlan warResult=null,SpaceEventPlan spaceEventResult=null,OlympicPracticeResult olympicResult=null,JapanPactInstance activatedJapanPact=null)
+        { ActivatedJapanPact=activatedJapanPact;OlympicResult=olympicResult;SpaceEventResult=spaceEventResult;WarResult=warResult;FiveYearPlanResult=fiveYearPlanResult;BlockadeResult=blockadeResult;HeadlineSteps=Array.AsReadOnly((headlineSteps??Array.Empty<HeadlineResolutionStep>()).ToArray());Realignment=realignment;ActivatedOpsEffect=activatedOpsEffect;DefconVpEvent=defconVpEvent;EventTransition=eventTransition;ScoringResult=scoring;Error=error;NextState=next;SpaceReceipt=receipt;CoupReceipt=coup; }
     }
 }

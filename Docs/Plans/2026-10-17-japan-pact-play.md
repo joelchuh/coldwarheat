@@ -26,10 +26,10 @@ Spec: Docs/Architecture/japan-pact-play.md.
 Files: Core/State/GameState.cs; Core/Rules/ActionPracticeState.cs; new Core/Rules/ActionPracticeRules.JapanPact.cs; existing direct/opponent/FiveYearPlan/headline/coup/realignment routes and transition carriers. Infrastructure/DataLoading/DemoCatalog.JapanPact.cs plus exact registration-preserving clone sites and two initial-state factories. Application public snapshot/result/headline contracts and host carrier. Tests/EditMode/JapanPactPlayTests.cs plus necessary fixture-copy helpers.
 Interfaces: consumes JapanPactDefinitionLoader.Load, JapanPactState.Create/Activate, InfluenceEventFlow. Produces optional ActionPracticeDefinition.JapanPact and GameState.JapanPact; CardActionTransition.ActivatedJapanPact; PublicJapanPactEffect in view/result; WithJapanPact(parameters,schema) explicit factory.
 
-- [ ] Write compile-only API additions and tests first: direct both actors and zero grant; grant/final overflow; wrong/stale/repeat/replay; both opponent orders (including pre-event Japan coup); headlines and FiveYearPlan child; protected ordinary/China/opponent/Olympic coup/adjustment and unchanged RNG/risk; legal influence/US/elsewhere; copies through next turn; invalid temporal and definition binding.
-- [ ] Run native japan-play-core-red. Expected new assertion failures, no old regression.
-- [ ] Implement private grant→activation→parent publication; pass pact through central constructors; add target checks and public receipt carriers. Example invariant: `active.SourceVersion < version && active.ActivationSequence <= eventSequence`. `Commit(..., japanPact:activation.After)` is the only new publication path.
-- [ ] Run full native japan-play-core-green; metadata/diff check, update docs, commit tested Core/Host.
+- [x] Write compile-only API additions and tests first: direct both actors and zero grant; grant/final overflow; wrong/stale/repeat/replay; both opponent orders (including pre-event Japan coup); headlines and FiveYearPlan child; protected ordinary/China/opponent/Olympic coup/adjustment and unchanged RNG/risk; legal influence/US/elsewhere; copies through next turn; invalid temporal and definition binding.
+- [x] Run native japan-play-core-red. Expected new assertion failures, no old regression.
+- [x] Implement private grant→activation→parent publication; pass pact through central constructors; add target checks and public receipt carriers. Example invariant: `active.SourceVersion < version && active.ActivationSequence <= eventSequence`. `Commit(..., japanPact:activation.After)` is the only new publication path.
+- [x] Run full native japan-play-core-green; metadata/diff check, update docs, commit tested Core/Host.
 
 ## Task2 — fixture, presentation and delivery
 

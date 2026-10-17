@@ -64,7 +64,7 @@ namespace ColdWarStruggle.Infrastructure
             var execution=s.EventDefinition==null?null:new InfluenceEventExecution(gameId+".event",s.EventDefinition,s.Actor,InfluenceEventPolicy.NoActiveInterference);
             var practice=s.PracticeDefinition==null?null:ActionPracticeState.Create(s.PracticeDefinition);
             var state=new GameState(Map,s.Countries,ctx,gameId,hands:s.Hands,influenceEvent:execution,turn:practice?.Space.Turn??s.Turn,
-                cards:s.InitialCards?.Cards,randomState:s.InitialCards?.Random,practice:practice);
+                cards:s.InitialCards?.Cards,randomState:s.InitialCards?.Random,practice:practice,japanPact:practice?.Definition.JapanPact==null?null:JapanPactState.Create(practice.Definition.JapanPact,gameId));
             if(s.DeploymentDefinition!=null)
             {
                 var started=InitialDeploymentFlow.Begin(state,s.DeploymentDefinition,gameId+".deployment");

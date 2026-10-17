@@ -13,6 +13,7 @@ namespace ColdWarStruggle.Core
         {
             var error=CheckCoupCard(state,side,card);if(error!=RuleError.None)return error;
             if(!state.Countries.TryGetValue(target,out var country))return RuleError.UnknownCountry;
+            error=CheckJapanPactTarget(state,side,target,TreatyAction.Coup);if(error!=RuleError.None)return error;
             return CoupRules.CheckTarget(state.Practice.Risk.Defcon,target,country,side,Array.Empty<string>())==CoupTargetReason.Allowed?RuleError.None:RuleError.IllegalTarget;
         }
         public static int QuoteCoupStrength(GameState state,PlayerSide side,CardId card,CountryId target)
@@ -35,7 +36,7 @@ namespace ColdWarStruggle.Core
             var done=terminal?new CardActionTransition(RuleError.None,after):AdvanceOpponentStep(after,CardResolutionStep.Operations);
             if(!done.Accepted)return done;
             // A coup and its following event may both finish in this command. Preserve both receipts.
-            return new CardActionTransition(RuleError.None,done.NextState,coup:plan.Receipt,eventTransition:done.EventTransition,defconVpEvent:done.DefconVpEvent,activatedOpsEffect:done.ActivatedOpsEffect,blockadeResult:done.BlockadeResult,headlineSteps:done.HeadlineSteps,fiveYearPlanResult:done.FiveYearPlanResult,warResult:done.WarResult);
+            return new CardActionTransition(RuleError.None,done.NextState,coup:plan.Receipt,eventTransition:done.EventTransition,defconVpEvent:done.DefconVpEvent,activatedOpsEffect:done.ActivatedOpsEffect,blockadeResult:done.BlockadeResult,headlineSteps:done.HeadlineSteps,fiveYearPlanResult:done.FiveYearPlanResult,warResult:done.WarResult,activatedJapanPact:done.ActivatedJapanPact);
         }
         static CardActionTransition PlanCoup(GameState state,PlayerSide side,string actionId,CardId? card,CountryId? target)
         {

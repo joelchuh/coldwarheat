@@ -48,6 +48,7 @@ namespace ColdWarStruggle.Application
         public PublicRegionScore Scoring { get; }
         public PublicDefconVpEventResult DefconVpEvent { get; }
         public PublicTurnOpsEffect ActivatedOpsEffect { get; }
+        public PublicJapanPactEffect ActivatedJapanPact { get; }
         internal PublicHeadlineStep(HeadlineResolutionStep step)
         {
             var r=step.Result;SpaceEvent=r.SpaceEventResult==null?null:new PublicSpaceEventResult(r.SpaceEventResult);War=r.WarResult==null?null:new PublicWarResult(r.WarResult);FiveYearPlan=r.FiveYearPlanResult==null?null:new PublicFiveYearPlanResult(r.FiveYearPlanResult);Card=step.Card;PlayedBy=step.PlayedBy;Terminal=r.NextState.Ended;
@@ -57,6 +58,7 @@ namespace ColdWarStruggle.Application
             Event=r.EventTransition==null?null:new PublicCardEventResult(r.EventTransition);
             Scoring=r.ScoringResult==null?null:new PublicRegionScore(r.ScoringResult);
             DefconVpEvent=r.DefconVpEvent==null?null:new PublicDefconVpEventResult(r.DefconVpEvent);
+            ActivatedJapanPact=r.ActivatedJapanPact==null?null:new PublicJapanPactEffect(r.ActivatedJapanPact);
             ActivatedOpsEffect=r.ActivatedOpsEffect==null?null:new PublicTurnOpsEffect(r.ActivatedOpsEffect);
         }
     }

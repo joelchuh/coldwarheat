@@ -44,7 +44,7 @@ namespace ColdWarStruggle.Core
             if(!state.Cards.GetHand(side).Contains(card))return RuleError.CardNotOwned;
             var definition=state.Practice.Definition.Cards.GetCard(card);
             if(kind==CardActionKind.Event && state.Practice.Definition.SpaceEvent?.Card.Id.Equals(card)==true)return CheckSpaceEvent(state,side,card);
-            if(kind==CardActionKind.Event)return definition.Kind==CardKind.Event && (state.Practice.Definition.InfluenceEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.DefconVpEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.TurnOpsEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.Blockade?.Card.Id.Equals(card)==true || state.Practice.Definition.FiveYearPlan?.Card.Id.Equals(card)==true || state.Practice.Definition.Wars?.Effects.ContainsKey(card)==true || state.Practice.Definition.Olympic?.Card.Id.Equals(card)==true)?RuleError.None:RuleError.UnsupportedCardAction;
+            if(kind==CardActionKind.Event)return definition.Kind==CardKind.Event && (state.Practice.Definition.InfluenceEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.DefconVpEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.TurnOpsEvents?.Effects.ContainsKey(card)==true || state.Practice.Definition.Blockade?.Card.Id.Equals(card)==true || state.Practice.Definition.FiveYearPlan?.Card.Id.Equals(card)==true || state.Practice.Definition.Wars?.Effects.ContainsKey(card)==true || state.Practice.Definition.Olympic?.Card.Id.Equals(card)==true || state.Practice.Definition.JapanPact?.Card.Equals(card)==true)?RuleError.None:RuleError.UnsupportedCardAction;
             if(kind==CardActionKind.Scoring)return definition.Kind==CardKind.Scoring?RuleError.None:RuleError.UnsupportedCardAction;
             if(definition.Kind!=CardKind.Event)return RuleError.UnsupportedCardAction;
             if(kind==CardActionKind.Influence || kind==CardActionKind.Coup || kind==CardActionKind.Realignment)
@@ -137,11 +137,11 @@ namespace ColdWarStruggle.Core
             var stage=rounds.IsComplete?ActionPracticeStage.Complete:ActionPracticeStage.ChooseCard;
             return new ActionPracticeState(p.Definition,stage,rounds.TotalCompleted,null,space,vp,risk??p.Risk,opsEffects??p.OpsEffects,rounds:rounds,headline:p.Headline);
         }
-        static CardActionTransition Commit(GameState s,ActionPracticeState p,CardZones cards,RandomSnapshot random,int budget=0,SpaceAttemptReceipt receipt=null,RegionScoringResult scoring=null,OpsRegionalBudget regionalBudget=null,IReadOnlyDictionary<CountryId,CountryState> countries=null)
+        static CardActionTransition Commit(GameState s,ActionPracticeState p,CardZones cards,RandomSnapshot random,int budget=0,SpaceAttemptReceipt receipt=null,RegionScoringResult scoring=null,OpsRegionalBudget regionalBudget=null,IReadOnlyDictionary<CountryId,CountryState> countries=null,JapanPactState japanPact=null)
         {
             var board=countries??s.Countries;
             var ops=OperationsContext.FromRoundStart(p.HasPendingHeadline?s.GameId+"."+p.Headline.CurrentResolutionId:PracticeOperationsId(s,p.CompletedActions),p.Actor,budget,s.Map,board,s.Operations.Costs,regionalBudget);
-            return new CardActionTransition(RuleError.None,s.WithPractice(p,ops,cards,random,countries:board,ended:p.Risk?.Result?.Outcome==VictoryOutcome.Finished),receipt,scoring:scoring);
+            return new CardActionTransition(RuleError.None,s.WithPractice(p,ops,cards,random,countries:board,ended:p.Risk?.Result?.Outcome==VictoryOutcome.Finished,japanPact:japanPact),receipt,scoring:scoring);
         }
         // Read-only projection of the same budget used by execution; use an authoritative general quote.
         public static OpsRegionalBudget PreviewRegionalOperations(GameState state,OpsGeneralQuote quote)=>RegionalBudget(state,quote);

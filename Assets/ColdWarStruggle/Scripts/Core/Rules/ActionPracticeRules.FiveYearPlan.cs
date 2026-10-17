@@ -7,7 +7,7 @@ namespace ColdWarStruggle.Core
     {
         static IReadOnlyCollection<CardId> SupportedFiveYearPlanChildren(ActionPracticeDefinition d)=>d.Cards.Cards
             .Where(c=>c.Kind==CardKind.Event && c.Affiliation==CardAffiliation.US
-                && (d.InfluenceEvents?.Effects.ContainsKey(c.Id)==true || d.DefconVpEvents?.Effects.ContainsKey(c.Id)==true || d.TurnOpsEvents?.Effects.ContainsKey(c.Id)==true))
+                && (d.InfluenceEvents?.Effects.ContainsKey(c.Id)==true || d.DefconVpEvents?.Effects.ContainsKey(c.Id)==true || d.TurnOpsEvents?.Effects.ContainsKey(c.Id)==true || d.JapanPact?.Card.Equals(c.Id)==true))
             .Select(c=>c.Id).ToArray();
         static ActionPracticeState FiveYearState(ActionPracticeState p,FiveYearPlanExecution execution,PracticeRiskState risk=null,int? vp=null,TurnOpsEffectState ops=null,bool terminal=false)
             =>new ActionPracticeState(p.Definition,terminal?ActionPracticeStage.Complete:ActionPracticeStage.ResolvingEvent,p.CompletedActions,p.Definition.FiveYearPlan.Card.Id,
@@ -25,6 +25,7 @@ namespace ColdWarStruggle.Core
                 var started=Commit(prepared,FiveYearState(prepared.Practice,execution),selection.Cards,selection.RandomAfter).NextState;
                 if(selection.Route!=FiveYearPlanRoute.AwaitingUsEvent)return FinishFiveYearPlan(started);
                 var child=selection.SelectedCard.Value;var current=started.Practice;
+                if(p.Definition.JapanPact?.Card.Equals(child)==true)return PlanFiveYearJapanPact(started,execution);
                 if(p.Definition.InfluenceEvents?.Effects.TryGetValue(child,out var influence)==true)
                 {
                     var raw=InfluenceEventFlow.Begin(started.WithInfluenceEvent(new InfluenceEventExecution(execution.ChildResolutionId,influence,p.Actor,InfluenceEventPolicy.NoActiveInterference)),p.Actor);

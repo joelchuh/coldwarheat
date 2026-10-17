@@ -24,7 +24,7 @@ namespace ColdWarStruggle.Infrastructure
             var prepared=setup.OrdinaryActionsToPrepare??p.Space.Turn.Parameters.NormalActionsPerSide*2;
             if(prepared<0 || prepared>p.Space.Turn.Parameters.NormalActionsPerSide*2)throw new ArgumentException("Fixture preparation exceeds ordinary slots.");
             var gameId="demo-turn-end-"+Guid.NewGuid().ToString("N");var ops=OperationsContext.FromRoundStart(gameId+".setup",PlayerSide.USSR,0,Map,scene.Countries,costs);
-            var state=new GameState(Map,scene.Countries,ops,gameId,turn:p.Space.Turn,cards:setup.Cards,randomState:setup.Random,practice:p);
+            var state=new GameState(Map,scene.Countries,ops,gameId,turn:p.Space.Turn,cards:setup.Cards,randomState:setup.Random,practice:p,japanPact:p.Definition.JapanPact==null?null:JapanPactState.Create(p.Definition.JapanPact,gameId));
             GameState Apply(CardActionKind kind,CardId? card=null)
             {
                 var plan=ActionPracticeRules.Plan(state,state.Practice.Actor,kind,"fixture-"+state.Version,card);

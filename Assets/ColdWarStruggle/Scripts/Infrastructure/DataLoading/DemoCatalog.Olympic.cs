@@ -20,7 +20,7 @@ namespace ColdWarStruggle.Infrastructure
                 {
                     var definition=OlympicGamesDefinitionLoader.Load(parameters,schema,d.Cards,dice,known);
                     replacement=new ActionPracticeDefinition(d.Cards,d.Ops,d.Space,d.Calendar,d.Risk,d.Scoring,d.InfluenceEvents,d.DefconVpEvents,d.TurnOpsEvents,d.Realignment,d.China,
-                        d.TurnEndEnabled,d.NextTurnEnabled,d.HeadlineParameters,d.HeadlineDefectors,d.FinalScoring,d.Blockade,d.FiveYearPlan,d.Wars,d.SpaceEvent,definition);
+                        d.TurnEndEnabled,d.NextTurnEnabled,d.HeadlineParameters,d.HeadlineDefectors,d.FinalScoring,d.Blockade,d.FiveYearPlan,d.Wars,d.SpaceEvent,definition,d.JapanPact);
                     replacements.Add(d,replacement);
                 }
                 return new DemoScenario(s.Id,s.Title,s.Actor,s.SelectedCountry,s.Ops,s.Countries,s.Hands,s.EventDefinition,s.Turn,s.DeploymentDefinition,s.InitialCards,replacement,s.StartupChoices,s.TurnEndSetup);
@@ -63,7 +63,7 @@ namespace ColdWarStruggle.Infrastructure
                     new[]{GameEra.Early,GameEra.Mid,GameEra.Late}.Where(e=>e<=turn.Era));
                 // Fixture-only initial track; preserve every formal restriction and event definition.
                 var f=d.Risk.Defcon;var risk=new PracticeRiskDefinition(d.Risk.Coup,new DefconDefinition(f.Map,level,f.MaximumLevel,f.NuclearLevel,f.TurnStartImprovement,f.BattlegroundCoupDegradation,f.RestrictedActions,f.BlockedRegions),d.Risk.Military,d.Risk.Victory);
-                var definition=new ActionPracticeDefinition(d.Cards,d.Ops,d.Space,d.Calendar,risk,d.Scoring,d.InfluenceEvents,d.DefconVpEvents,d.TurnOpsEvents,d.Realignment,d.China,d.TurnEndEnabled,d.NextTurnEnabled,d.HeadlineParameters,d.HeadlineDefectors,d.FinalScoring,d.Blockade,d.FiveYearPlan,d.Wars,d.SpaceEvent,d.Olympic);
+                var definition=new ActionPracticeDefinition(d.Cards,d.Ops,d.Space,d.Calendar,risk,d.Scoring,d.InfluenceEvents,d.DefconVpEvents,d.TurnOpsEvents,d.Realignment,d.China,d.TurnEndEnabled,d.NextTurnEnabled,d.HeadlineParameters,d.HeadlineDefectors,d.FinalScoring,d.Blockade,d.FiveYearPlan,d.Wars,d.SpaceEvent,d.Olympic,d.JapanPact);
                 var fresh=new DemoTurnEndSetup(number,vp,cards,random,ordinaryActionsToPrepare:prepared);
                 scenes.Add(new DemoScenario(id,title,actor,selected,0,new ReadOnlyDictionary<CountryId,CountryState>(board),null,turn:turn,practice:definition,turnEndSetup:fresh));
             }

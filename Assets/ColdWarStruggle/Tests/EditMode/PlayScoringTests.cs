@@ -26,11 +26,11 @@ namespace ColdWarStruggle.Tests
             var cards=new CardZones(d.Cards,d.Cards.Cards.Where(c=>c.Kind!=CardKind.China && !used.Contains(c.Id)).Select(c=>c.Id),hands,
                 Array.Empty<CardId>(),Array.Empty<CardId>(),Array.Empty<CardId>(),Array.Empty<CardId>(),s.Cards.China,new[]{GameEra.Early,GameEra.Mid,GameEra.Late});
             var state=new GameState(s.Map,empty?RegionScoringTests.Empty(s.Map):s.Countries,s.Operations,s.GameId,s.Version,s.SpentOps,s.EventSequence,
-                turn:s.Turn,deployment:s.Deployment,cards:cards,randomState:s.RandomState,practice:p);
+                turn:s.Turn,deployment:s.Deployment,cards:cards,randomState:s.RandomState,practice:p,japanPact:p.Definition.JapanPact==null?null:JapanPactState.Create(p.Definition.JapanPact,s.GameId));
             return ActionPracticeRules.Plan(state,PlayerSide.USSR,CardActionKind.StartPractice,"start").NextState;
         }
         internal static GameState Replace(GameState s,IReadOnlyDictionary<CountryId,CountryState> countries=null,RandomSnapshot random=null,long? version=null,long? sequence=null)
-            =>new GameState(s.Map,countries??s.Countries,s.Operations,s.GameId,version??s.Version,s.SpentOps,sequence??s.EventSequence,turn:s.Turn,cards:s.Cards,randomState:random??s.RandomState,practice:s.Practice);
+            =>new GameState(s.Map,countries??s.Countries,s.Operations,s.GameId,version??s.Version,s.SpentOps,sequence??s.EventSequence,turn:s.Turn,cards:s.Cards,randomState:random??s.RandomState,practice:s.Practice,japanPact:s.JapanPact);
         internal static CardActionTransition Score(GameState s,string id)=>ActionPracticeRules.Plan(s,s.Practice.Actor,CardActionKind.Scoring,"score",new CardId(id));
         [TestCase("europe")] [TestCase("asia")] [TestCase("middle_east")] [TestCase("africa")] [TestCase("central_america")] [TestCase("south_america")] [TestCase("southeast_asia")]
         public void Every_scoring_card_uses_its_region_and_zero_net_still_completes(string region)
