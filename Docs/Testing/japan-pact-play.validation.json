@@ -49,7 +49,15 @@
     "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\japan-play-demo-green-2\\results.xml",
     "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\japan-play-demo-green-2\\editor.log"
   },
-  "review": "pending",
+  "review": {
+    "base": "0e26bbdaf5a64fffb5908a4d089854d3c6604dfc",
+    "head": "d7e3cf5ccefa80f5cbab568a0e1444a085edc278",
+    "reviewer": "review_japan_play",
+    "critical": 0,
+    "important": 0,
+    "minor": 1,
+    "minor_deferred": "Internal WithPractice explicit inactive replacement can clear active pact; no current command caller supplies it."
+  },
   "build": "pending",
   "demo_red": {
     "status": "failed",
@@ -70,5 +78,34 @@
     "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\japan-play-demo-red-2",
     "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\japan-play-demo-red-2\\results.xml",
     "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\japan-play-demo-red-2\\editor.log"
+  },
+  "manual": {
+    "status": "passed-limited-with-hint-followup",
+    "captures": [
+      {
+        "path": "TestResults/japan-pact-result.png",
+        "sha256": "0d58595b643e4c86cd648b93d0d52f4ecc90e3f58eb078e9687e9f2053edceb3"
+      },
+      {
+        "path": "TestResults/japan-pact-coup-blocked-before-hint.png",
+        "sha256": "5755318cd30a0464d6cafb3a9611850fe5b294fbb4caf18dda8e144bd920b229"
+      },
+      {
+        "path": "TestResults/japan-pact-adjustment-blocked.png",
+        "sha256": "3ec809c339e1b397e31321f7bf364699ba79e9c6ca7f93342b413a4b3df2268f"
+      }
+    ],
+    "route": [
+      "fixture40 US1/SU3 Japan",
+      "SU direct pact US1->7 / SU3 unchanged; permanent notice and expanded grant",
+      "US ordinary influence action completed with unused1 OPS",
+      "SU Olympic ordinary coup: Japan disabled; click leaves v5/seq6 and risk unchanged; Angola selectable",
+      "SU Olympic realignment: Japan disabled; click keeps2 OPS/v6/seq7",
+      "Angola realignment executes tie4/4, remaining1 OPS/v7/seq8"
+    ],
+    "limits": [
+      "Other card routes and cross-turn covered by native tests, not this mouse route",
+      "Blocked ordinary coup reason existed in public API but was hidden in drawing branch; one-line display followup pending rebuild"
+    ]
   }
 }

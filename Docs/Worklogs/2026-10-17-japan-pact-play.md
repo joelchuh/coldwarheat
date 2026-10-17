@@ -21,3 +21,10 @@ Task2 RED japan-play-demo-red-2: 3952 total / 3936 pass / 16 new Demo/Presentati
 Task2 first GREEN: 3951/3952. Headline assertion counted the country in both permanent summary and influence detail; production emitted one grant. Tightened assertion to the exact country+US change-row prefix, preserving the intended no-duplicate-grant check.
 
 Task2 implementation complete: japan-play-demo-green-2 3952/3952, Unity0,180536ms, XML8798af265d01ae4572125c9d56c3347b789d2a3e5bed2d1343e194ce1686d443. One fresh whole-branch review, independent build and limited native UI remain.
+
+Final review: review_japan_play, base0e26bbd..d7e3cf5; 0 Critical / 0 Important / 1 Minor, source ready. Independently read matching3952 XML.
+Final: minor (deferred): GameState.WithPractice internal explicit inactive same-definition state can replace an active pact. Current commands never supply it; future internal callers should be guarded and tested before cancellation/import expansion.
+Final: Ruling: Actual Player/layout/mouse acceptance set aside by reviewer is verified by parent — build exit0,74 payloads/832454 bytes, direct event and protected/allowed target interaction observed — limited route does not prove every card/UI branch.
+Final: Ruling: NATO/cancellation/save-import/later interactions remain excluded — registered Japan-only slice is explicit, no whole-game claim — those future services need their own lifecycle tests.
+Native UI: ordinary coup and adjustment Japan disabled with unchanged state/OPS; Angola adjustment rolled4/4 and spent1 OPS. Grant1->7 with SU3 retained and expanded permanent explanation observed. F12 captures copied with SHA into validation. No Error/Exception observed in player log.
+Ruling: Fix ordinary coup rejection hint hidden by the drawing branch with one display-only call — source/public preview already tested, actual UI exposed the missing render — verification is build plus repeat mouse rendering; no new mirror test/full-suite rerun for this reversible low-impact layout correction, per developer test guidance.3952 suite applies to pre-followup source d7e3cf5.

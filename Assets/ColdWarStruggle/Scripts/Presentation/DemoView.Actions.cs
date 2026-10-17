@@ -133,6 +133,7 @@ namespace ColdWarStruggle.Presentation
                         GUI.enabled=true;
                         if(Button(1108,500,126,32,"重新选牌"))OpenCards();DrawCardReason(reason);
                     }
+                    else if(coupQuote?.Error==RuleError.EventForbidden)DrawCardReason(reason);
                     }
                 }
             }
