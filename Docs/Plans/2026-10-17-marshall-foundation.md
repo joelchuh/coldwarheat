@@ -23,22 +23,22 @@ Spec: Docs/Architecture/marshall-foundation.md.
 Files: modify Core/Effects/InfluenceEffectDefinition.cs and InfluenceEventRules.cs; create Infrastructure/DataLoading/MarshallPlanInfluenceLoader.cs, Tests/EditMode/MarshallFoundationTests.cs; corresponding module/Wiki/report/worklog, catalog entry.
 Interfaces: new enum InfluenceCandidateShortagePolicy { RequiresRuling, SelectAllAvailable }; AddToDistinctCountriesEffect optional last parameter shortagePolicy=RequiresRuling and property ShortagePolicy. MarshallPlanInfluenceLoader.Load(string json,string schema,MapDefinition map,CardCatalog cards) returns AddToDistinctCountriesEffect. Existing Query/Plan and InfluenceEventFlow.Begin/Resolve remain callers.
 
-- [ ] Add tests plus compile-only API skeleton. Cases: formal profile/binding and tampered data; all shortage counts0..8; formal western membership; complete positive choices; rejected invalid inputs; shared guardrails and overflow; Flow no-choice/US-owner response and replay; defaults and unknown enum.
+- [x] Add tests plus compile-only API skeleton. Cases: formal profile/binding and tampered data; all shortage counts0..8; formal western membership; complete positive choices; rejected invalid inputs; shared guardrails and overflow; Flow no-choice/US-owner response and replay; defaults and unknown enum.
 ```csharp
 var q=InfluenceEventRules.Query(state,effect,InfluenceEventPolicy.NoActiveInterference);
 Assert.That(q.RequiredTargets,Is.EqualTo(Math.Min(7,legalCount)));
 var zero=InfluenceEventRules.Plan(noLegalState,effect,null,InfluenceEventPolicy.NoActiveInterference);
 Assert.That(zero.Status,Is.EqualTo(InfluenceEventStatus.ResolvedNoChange));
 ```
-- [ ] Run Tools/Scripts/run-unity-editmode.ps1 -ProjectRoot E:/TwilightStruggle -UnityEditor E:/unity6.6/6000.6.0f1/Editor/Unity.exe -RunId marshall-foundation-red -TimeoutSeconds 600. Expected new failing assertions; no old regressions.
-- [ ] Implement strict loader and opt-in query; planner skips nonexistent target list only when required=0.
+- [x] Run Tools/Scripts/run-unity-editmode.ps1 -ProjectRoot E:/TwilightStruggle -UnityEditor E:/unity6.6/6000.6.0f1/Editor/Unity.exe -RunId marshall-foundation-red -TimeoutSeconds 600. Expected new failing assertions; no old regressions.
+- [x] Implement strict loader and opt-in query; planner skips nonexistent target list only when required=0.
 ```csharp
 if(union.Length<add.TargetCount && add.ShortagePolicy==InfluenceCandidateShortagePolicy.RequiresRuling)
     return Stop(InfluenceEventStatus.RequiresRuling,InfluenceEventError.CandidateShortage);
 candidates=union;required=Math.Min(add.TargetCount,union.Length);
 // Add branch: when required>0 use validated selection; otherwise no mutation.
 ```
-- [ ] Run same native command with marshall-foundation-green. Expected full pass. Validate metadata, diff, commit source/evidence.
+- [x] Run same native command with marshall-foundation-green. Expected full pass. Validate metadata, diff, commit source/evidence.
 - [ ] One fresh whole-branch review; Critical/Important one RED→GREEN fix pass/full suite; Minor ledger. Push feature branch and verify exact remote SHA. No Player build because no registered runtime change.
 
 Self-review: one deliverable, no task interface conflicts; all five review classes have named test cases; source/data/UI boundaries explicit.

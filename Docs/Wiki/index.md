@@ -4,6 +4,7 @@
 
 | 知识点 | description | 状态 | 入口 |
 |---|---|---|---|
+| 马歇尔影响力基础 | 查显式短缺策略、严格绑定、美国选国及零候选完成；真实事件未注册 | 基础验证见报告 | [marshall-foundation.md](marshall-foundation.md) |
 | 影响力迁移接线 | 查双向分配、守恒事务、去斯大林化与待裁定重叠 | 核心通过；会话/地图接线中 | [influence-relocation-play.md](influence-relocation-play.md) |
 | Player载荷构建与核验 | 查共享66文件映射、受限生成复制、只读CLI/JSON证据与边界 | 验证见报告 | [player-payload-verification.md](player-payload-verification.md) |
 | 奥运会手牌试玩 | 查对手选择、逐对自动继续、抵制三OPS与四人工局面 | 原生通过；Player验收见报告 | [olympic-play.md](olympic-play.md) |

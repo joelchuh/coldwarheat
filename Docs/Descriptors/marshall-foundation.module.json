@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "id": "module.marshall-foundation",
+  "kind": "module",
+  "status": "implemented",
+  "description": "马歇尔计划影响力基础：显式短缺策略、西欧非苏控候选、美国完整选择及零候选无变化完成；不注册真实出牌，不包含北约成功事实。",
+  "documentation": "Docs/Wiki/marshall-foundation.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/MarshallPlanInfluenceLoader.cs",
+      "symbol": "Load"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEffectDefinition.cs",
+      "symbol": "InfluenceCandidateShortagePolicy"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventRules.cs",
+      "symbol": "Query"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventRules.cs",
+      "symbol": "Plan"
+    }
+  ],
+  "inputs": [
+    "正式alliance_prerequisites参数/schema，MapDefinition与CardCatalog；权威GameState及完整美国选国响应"
+  ],
+  "outputs": [
+    "只读AddToDistinctCountriesEffect；选国查询或原子影响力候选/一次无变化完成"
+  ],
+  "dependencies": [
+    "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventFlow.cs",
+    "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceMutation.cs",
+    "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/ContractJson.cs"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.alliance_prerequisites",
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world"
+  ],
+  "preconditions": [
+    "仅明确信任的无相关干预环境；真实出牌必须后续与成功事件事实及牌去向一起原子提交"
+  ],
+  "side_effects": [
+    "返回不可变候选，原状态/手牌/OPS/随机数不变；无自动运行时注册"
+  ],
+  "stop_conditions": [
+    "未知来源/语义/印刷绑定、错误拥有者/版本/数量/重复/非法国家、溢出；未知干预继续RequiresRuling"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/alliance-prerequisites.md",
+      "scope": "Deluxe #23；用户确认AP1-RULING-01，默认策略不外推其他牌"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/MarshallFoundationTests.cs",
+      "status": "native-passed"
+    }
+  ],
+  "verification": {
+    "status": "native-passed-review-pending",
+    "report": "Docs/Testing/marshall-foundation.validation.json",
+    "native_editmode_passed": 4006
+  },
+  "flow": [
+    "共享参数→严格Loader→显式短缺Definition",
+    "当前控制/子区→合法集合与min目标数",
+    "零候选直接Plan完成；正候选固定US完整选择→副本加点→原子候选",
+    "后续完整事件宿主需另接永久成功事实；当前Demo保持未注册"
+  ]
+}

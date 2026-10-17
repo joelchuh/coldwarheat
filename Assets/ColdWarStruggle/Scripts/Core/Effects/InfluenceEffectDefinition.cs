@@ -45,6 +45,7 @@ namespace ColdWarStruggle.Core
         }
     }
 
+    public enum InfluenceCandidateShortagePolicy { RequiresRuling, SelectAllAvailable }
     public enum InfluenceControlFilter { Any, NotOpponentControlled }
     public sealed class AddToDistinctCountriesEffect : InfluenceEffectDefinition
     {
@@ -52,14 +53,16 @@ namespace ColdWarStruggle.Core
         public int TargetCount { get; }
         public int Amount { get; }
         public InfluenceControlFilter ControlFilter { get; }
-        public AddToDistinctCountriesEffect(string card, string effect, PlayerSide beneficiary, IEnumerable<string> regions, int targetCount, int amount, InfluenceControlFilter controlFilter=InfluenceControlFilter.Any) : base(card, effect, beneficiary)
+        public InfluenceCandidateShortagePolicy ShortagePolicy { get; }
+        public AddToDistinctCountriesEffect(string card, string effect, PlayerSide beneficiary, IEnumerable<string> regions, int targetCount, int amount, InfluenceControlFilter controlFilter=InfluenceControlFilter.Any, InfluenceCandidateShortagePolicy shortagePolicy=InfluenceCandidateShortagePolicy.RequiresRuling) : base(card, effect, beneficiary)
         {
             var copy = regions?.ToArray();
             if (copy == null || copy.Length == 0 || copy.Any(string.IsNullOrWhiteSpace) || copy.Distinct(StringComparer.Ordinal).Count() != copy.Length)
                 throw new ArgumentException("Invalid regions.");
             if (targetCount < 1 || targetCount > InfluenceEventSelection.MaxTargets || amount < 1) throw new ArgumentOutOfRangeException();
             if (controlFilter != InfluenceControlFilter.Any && controlFilter != InfluenceControlFilter.NotOpponentControlled) throw new ArgumentOutOfRangeException(nameof(controlFilter));
-            Regions = Array.AsReadOnly(copy); TargetCount = targetCount; Amount = amount; ControlFilter=controlFilter;
+            if (shortagePolicy != InfluenceCandidateShortagePolicy.RequiresRuling && shortagePolicy != InfluenceCandidateShortagePolicy.SelectAllAvailable) throw new ArgumentOutOfRangeException(nameof(shortagePolicy));
+            Regions = Array.AsReadOnly(copy); TargetCount = targetCount; Amount = amount; ControlFilter=controlFilter; ShortagePolicy=shortagePolicy;
         }
     }
 }

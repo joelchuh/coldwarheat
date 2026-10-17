@@ -48,7 +48,7 @@
   "id": "data.alliance-prerequisites",
   "kind": "data",
   "status": "ready",
-  "description": "马歇尔计划与华沙条约：西欧非苏控不同国家放置、东欧移除/额度二选一、受益方选择与成功事件记录；参数设计，C#待实现。",
+  "description": "马歇尔计划与华沙条约共享参数：西欧非苏控选国、东欧移除/额度二选一与成功事实引用；马歇尔影响力基础已实现，完整事件/华沙运行时仍待接。",
   "dataset_id": "effects.deluxe2015.alliance_prerequisites",
   "content_version": "0.1.0",
   "schema_path": "Docs/Contracts/alliance-prerequisites.schema.json",
@@ -69,5 +69,10 @@
   "retrieval_hints": [
     "按parameters.card ID后缀读；先branch ID再读对应字段",
     "前置成功判据引用条约数据，不复制北约OR关系或成功outcome常量"
-  ]
+  ],
+  "implementation_scope": {
+    "marshall_influence": "module.marshall-foundation",
+    "successful_event_facts": "planned",
+    "warsaw_runtime": "planned"
+  }
 }

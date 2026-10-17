@@ -9,3 +9,9 @@ Source check: official GMT PDF/2015 rules opened; browser text exposes adjacent 
 Task1 in progress: native RED then implementation/green/review.
 
 RED preflight: assertion treated dictionary entries as definitions (CS1061), so no tests ran. Corrected it to ContainsKey(CardId), preserving the intended no-registration assertion.
+
+Task1 RED marshall-foundation-red-2: 4006 total /3965 passed /41 failed, all new MarshallFoundationTests; old3952 pass. XML7a31b572b999ddce17f13f90b798a1b0b597b754b1f415f22a86b794cd6394b6, Unity2,184711ms. Thirteen new cases already exercised existing selection/atomic safeguards. Implemented strict loader and opt-in policy plus zero-count planner path.
+
+First GREEN 4005/4006: formal profile test reached the no-registration assertion and dereferenced the scoring-only fixture's deliberately null InfluenceEvents. Ruling: use existing PlayInfluenceEventTests.Ready registered influence fixture for this assertion — it tests real absence from a nonempty catalog — production rule/loader unchanged.
+
+Task1 implementation complete: marshall-foundation-green-2 4006/4006,0 skipped,Unity0,185458ms,XML692709fcaf666b64d760cbce378aa84fc9afcf28ebe201686115c3203f31a843. Metadata190 descriptors/90 datasets passed before final evidence-only edits. One whole-branch review remains; no Player rebuild or live-card exposure.

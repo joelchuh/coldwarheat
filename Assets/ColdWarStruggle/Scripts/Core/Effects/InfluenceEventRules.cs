@@ -57,8 +57,9 @@ namespace ColdWarStruggle.Core
                         .Where(c=>add.ControlFilter==InfluenceControlFilter.Any
                             || ControlRules.GetController(state.Countries[c.Id].US,state.Countries[c.Id].USSR,c.Stability)!=opponent)
                         .Select(c=>c.Id).Distinct().ToArray();
-                    if(union.Length<add.TargetCount)return Stop(InfluenceEventStatus.RequiresRuling,InfluenceEventError.CandidateShortage);
-                    candidates=union;required=add.TargetCount;break;
+                    if(union.Length<add.TargetCount && add.ShortagePolicy==InfluenceCandidateShortagePolicy.RequiresRuling)
+                        return Stop(InfluenceEventStatus.RequiresRuling,InfluenceEventError.CandidateShortage);
+                    candidates=union;required=Math.Min(add.TargetCount,union.Length);break;
                 default:return Stop(InfluenceEventStatus.Rejected,InfluenceEventError.InvalidDefinition);
             }
             return new InfluenceEventQuery(required==0?InfluenceEventStatus.Ready:InfluenceEventStatus.AwaitingChoice,
@@ -117,6 +118,7 @@ namespace ColdWarStruggle.Core
                     case RemoveFromUncontrolledEffect _:
                         if(query.RequiredTargets>0)work.RemoveAll(selection.Targets[0],opponent);break;
                     case AddToDistinctCountriesEffect add:
+                        if(query.RequiredTargets==0)break;
                         IEnumerable<CountryId> targets=selection.Targets;
                         if(add.ControlFilter!=InfluenceControlFilter.Any)targets=targets.OrderBy(c=>c.Value,StringComparer.Ordinal);
                         foreach(var country in targets)work.Add(country,definition.Beneficiary,add.Amount);break;
