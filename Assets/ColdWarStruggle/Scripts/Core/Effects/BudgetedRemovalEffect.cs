@@ -28,7 +28,7 @@ namespace ColdWarStruggle.Core
         }
     }
 
-    public enum InfluenceDecisionKind { None, CountrySet, Allocation }
+    public enum InfluenceDecisionKind { None, CountrySet, Allocation, Relocation }
 
     public readonly struct InfluenceAllocation
     {

@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "id": "module.influence-relocation-play",
+  "kind": "module",
+  "description": "De-Stalinization迁移核心：双分配守恒、一次提交、零迁移及同国重叠待裁定；正式参数严格装载，玩家会话与地图接线进行中。",
+  "status": "implemented-subset",
+  "documentation": "Docs/Wiki/influence-relocation-play.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/InfluenceRelocationDefinitionLoader.cs",
+      "symbol": "Load"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventPlan.cs",
+      "symbol": "Relocate"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventRules.cs",
+      "symbol": "Query"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventRules.cs",
+      "symbol": "Plan"
+    }
+  ],
+  "inputs": [
+    "权威GameState、可信RelocateOwnInfluenceEffect与完整双列表",
+    "已知活动干预策略；认证Owner和源状态版本"
+  ],
+  "outputs": [
+    "不可变来源/目的容量或只读完整迁移计划",
+    "ResolvedChange/ResolvedNoChange、拒绝或RequiresRuling及稳定错误"
+  ],
+  "dependencies": [
+    "module.influence-event-planners",
+    "module.influence-event-sessions"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.influence_relocation",
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world"
+  ],
+  "preconditions": [
+    "规则配置从已核对数据装载；Core不接受客户端覆盖上限/Owner",
+    "尚未注册PracticeInfluenceCatalog；不要将基础计划当可玩接线"
+  ],
+  "side_effects": [
+    "纯计划只创建新状态；拒绝/溢出不发布工作副本"
+  ],
+  "stop_conditions": [
+    "未知干预、部署或终局、错误Owner/过期版本/非法分配",
+    "同国来源与目的重叠待裁定；不净额抵销"
+  ],
+  "rule_sources": [
+    {
+      "path": "Data/Cards/deluxe-2015/influence-relocation.parameters.json",
+      "scope": "既有DS1明确规则与待裁定边界"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/InfluenceRelocationRulesTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/InfluenceRelocationDefinitionTests.cs",
+      "status": "native-passed"
+    }
+  ],
+  "verification": {
+    "report": "Docs/Testing/influence-relocation-play.validation.json"
+  }
+}

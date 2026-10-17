@@ -20,6 +20,7 @@ namespace ColdWarStruggle.Core
             IEnumerable<CountryId> candidates;int required=0;
             switch(definition)
             {
+                case RelocateOwnInfluenceEffect relocation:return InfluenceRelocationRules.Query(state,relocation);
                 case MatchOpponentInfluenceEffect match:
                     if(match.Countries.Any(c=>!state.Map.Contains(c)))return Stop(InfluenceEventStatus.Rejected,InfluenceEventError.InvalidDefinition);
                     candidates=match.Countries;required=1;break;
@@ -59,6 +60,7 @@ namespace ColdWarStruggle.Core
             InfluenceEventPlan Reject(InfluenceEventError error)
                 => new InfluenceEventPlan(InfluenceEventStatus.Rejected,error,definition,state);
             if(query.Error!=InfluenceEventError.None)return new InfluenceEventPlan(query.Status,query.Error,definition,state);
+            if(definition is RelocateOwnInfluenceEffect relocation)return InfluenceRelocationRules.Plan(state,relocation,selection,query);
             if(query.Status==InfluenceEventStatus.AwaitingChoice)
             {
                 if(selection==null)return new InfluenceEventPlan(InfluenceEventStatus.AwaitingChoice,InfluenceEventError.None,definition,state);

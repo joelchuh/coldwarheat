@@ -6,7 +6,7 @@ namespace ColdWarStruggle.Core
 {
     public enum InfluenceEventPolicy { Unknown, NoActiveInterference, Forbidden }
     public enum InfluenceEventStatus { Ready, AwaitingChoice, ResolvedChange, ResolvedNoChange, Rejected, RequiresRuling, Blocked }
-    public enum InfluenceEventError { None, InvalidDefinition, InvalidSelection, WrongDecisionOwner, StaleSelection, NumericOverflow, GameAlreadyEnded, InterferenceUnknown, CandidateShortage, Forbidden, MissingTurnContext, SetupInProgress }
+    public enum InfluenceEventError { None, InvalidDefinition, InvalidSelection, WrongDecisionOwner, StaleSelection, NumericOverflow, GameAlreadyEnded, InterferenceUnknown, CandidateShortage, Forbidden, MissingTurnContext, SetupInProgress, RelocationOverlap }
 
     public sealed class InfluenceEventSelection
     {
@@ -16,6 +16,16 @@ namespace ColdWarStruggle.Core
         public IReadOnlyList<CountryId> Targets { get; }
         public InfluenceDecisionKind Kind { get; }
         public IReadOnlyList<InfluenceAllocation> Allocations { get; }
+        public IReadOnlyList<InfluenceAllocation> Sources { get; }
+        public IReadOnlyList<InfluenceAllocation> Destinations { get; }
+        public static InfluenceEventSelection Relocate(PlayerSide owner,long sourceVersion,IEnumerable<InfluenceAllocation> sources,IEnumerable<InfluenceAllocation> destinations)
+            =>new InfluenceEventSelection(owner,sourceVersion,sources,destinations);
+        private InfluenceEventSelection(PlayerSide owner,long sourceVersion,IEnumerable<InfluenceAllocation> sources,IEnumerable<InfluenceAllocation> destinations)
+        {
+            Owner=owner;SourceVersion=sourceVersion;Kind=InfluenceDecisionKind.Relocation;
+            Sources=sources==null?null:Array.AsReadOnly(sources.Take(MaxTargets+1).ToArray());
+            Destinations=destinations==null?null:Array.AsReadOnly(destinations.Take(MaxTargets+1).ToArray());
+        }
         public InfluenceEventSelection(PlayerSide owner, long sourceVersion, IEnumerable<CountryId> targets)
         {
             Owner = owner; SourceVersion = sourceVersion;
@@ -42,6 +52,17 @@ namespace ColdWarStruggle.Core
         public InfluenceDecisionKind Kind { get; }
         public int RequiredAmount { get; }
         public IReadOnlyList<InfluenceAllocation> Capacities { get; }
+        public int MaximumAmount { get; }
+        public IReadOnlyList<InfluenceAllocation> SourceCapacities { get; }=Array.AsReadOnly(Array.Empty<InfluenceAllocation>());
+        public IReadOnlyList<InfluenceAllocation> DestinationCapacities { get; }=Array.AsReadOnly(Array.Empty<InfluenceAllocation>());
+        internal InfluenceEventQuery(PlayerSide owner,long version,int maximum,IEnumerable<InfluenceAllocation> sources,IEnumerable<InfluenceAllocation> destinations)
+        {
+            Owner=owner;SourceVersion=version;MaximumAmount=maximum;Kind=InfluenceDecisionKind.Relocation;
+            SourceCapacities=Array.AsReadOnly(sources.ToArray());DestinationCapacities=Array.AsReadOnly(destinations.ToArray());
+            Status=SourceCapacities.Count==0?InfluenceEventStatus.Ready:InfluenceEventStatus.AwaitingChoice;
+            LegalCountries=Array.AsReadOnly(SourceCapacities.Concat(DestinationCapacities).Select(a=>a.Country).Distinct().OrderBy(c=>c.Value,StringComparer.Ordinal).ToArray());
+            Capacities=Array.AsReadOnly(Array.Empty<InfluenceAllocation>());
+        }
         internal InfluenceEventQuery(InfluenceEventStatus status, InfluenceEventError error, PlayerSide owner, long version, int required, IEnumerable<CountryId> countries)
         {
             Status = status; Error = error; Owner = owner; SourceVersion = version; RequiredTargets = required;

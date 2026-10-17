@@ -26,9 +26,9 @@
 Create under Assets/ColdWarStruggle/Scripts: Core/Effects/RelocateOwnInfluenceEffect.cs, Core/Effects/InfluenceRelocationRules.cs, Infrastructure/DataLoading/InfluenceRelocationDefinitionLoader.cs; matching .meta. Tests/EditMode/InfluenceRelocationRulesTests.cs and InfluenceRelocationDefinitionTests.cs.
 Modify Core/Effects/BudgetedRemovalEffect.cs(enum only), InfluenceEventPlan.cs(immutable selection/query), InfluenceEventRules.cs(dispatch and shared guard).
 APIs: RelocateOwnInfluenceEffect.MaximumTotal/PerDestinationCap; InfluenceEventSelection.Relocate(owner,version,sources,destinations); Query.SourceCapacities/DestinationCapacities/MaximumAmount; use existing InfluenceEventPlan/InfluenceMutation.
-- [ ] Stub/new tests: legal 0/1/4, multi-source, US-controlled source, nonadjacent destination, caps, duplicate/null/negative/missing/US-control, overlap RequiresRuling, immutable input/query/result, deterministic sorted changes, unknown policy/ended/setup/owner/version, numeric/version/sequence overflow and zero-source.
-- [ ] Loader formal data, changed semantics/version/references/unknown keys; fixture values not copied to product.
-- [ ] Native RED; implement and native GREEN; source hashes/ledger, commit.
+- [x] Stub/new tests: legal 0/1/4, multi-source, US-controlled source, nonadjacent destination, caps, duplicate/null/negative/missing/US-control, overlap RequiresRuling, immutable input/query/result, deterministic sorted changes, unknown policy/ended/setup/owner/version, numeric/version/sequence overflow and zero-source.
+- [x] Loader formal data, changed semantics/version/references/unknown keys; fixture values not copied to product.
+- [x] Native RED; implement and native GREEN; source hashes/ledger, commit.
 
 ## Task2 — event/session integration
 Modify InfluenceEventFlow.ResolveRelocation/shared resolve, Application/Sessions/EventSessionContracts.cs and LocalGameHost.cs, Core/Rules/PracticeInfluenceCatalog.cs. Add Tests/EditMode/InfluenceRelocationPlayTests.cs and InfluenceRelocationSessionTests.cs.
