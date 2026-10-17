@@ -4,18 +4,27 @@ using System.Collections.ObjectModel;
 using System.Linq;
 namespace ColdWarStruggle.Core
 {
-    public enum TurnOpsAffectedSide { US, OpponentOfController }
-    // This bounded model expresses only remainder-of-turn flat modifiers, not arbitrary persistent effects.
+    public enum TurnOpsAffectedSide { US, OpponentOfController, USSR }
+    // This bounded model expresses remainder-of-turn flat or regional modifiers, not arbitrary persistent effects.
     public sealed class TurnOpsEffectDefinition
     {
         public CardId Card { get; }
         public string EffectId { get; }
         public TurnOpsAffectedSide AffectedSide { get; }
         public int Delta { get; }
+        public OpsRegionalBonus RegionalBonus { get; }
+        public AddFixedInfluenceEffect ImmediateInfluence { get; }
+        public TurnOpsEffectDefinition(CardId card,string effectId,OpsRegionalBonus regional,AddFixedInfluenceEffect immediate)
+        {
+            if(string.IsNullOrWhiteSpace(card.Value) || string.IsNullOrWhiteSpace(effectId) || effectId.Length>128 || effectId!=effectId.Trim()
+                || regional==null || immediate==null || regional.Id!=effectId || immediate.CardId!=card.Value || immediate.EffectId!=effectId
+                || immediate.Beneficiary!=PlayerSide.USSR)throw new ArgumentException("Invalid regional turn OPS definition.");
+            Card=card;EffectId=effectId;AffectedSide=TurnOpsAffectedSide.USSR;Delta=regional.Delta;RegionalBonus=regional;ImmediateInfluence=immediate;
+        }
         public TurnOpsEffectDefinition(CardId card,string effectId,TurnOpsAffectedSide affectedSide,int delta)
         {
             if(string.IsNullOrWhiteSpace(card.Value) || string.IsNullOrWhiteSpace(effectId) || effectId.Length>128 || effectId!=effectId.Trim()
-                || !Enum.IsDefined(typeof(TurnOpsAffectedSide),affectedSide) || (affectedSide==TurnOpsAffectedSide.US?delta<=0:delta>=0))throw new ArgumentException("Invalid flat turn OPS definition.");
+                || (affectedSide!=TurnOpsAffectedSide.US && affectedSide!=TurnOpsAffectedSide.OpponentOfController) || (affectedSide==TurnOpsAffectedSide.US?delta<=0:delta>=0))throw new ArgumentException("Invalid flat turn OPS definition.");
             Card=card;EffectId=effectId;AffectedSide=affectedSide;Delta=delta;
         }
     }
@@ -27,7 +36,7 @@ namespace ColdWarStruggle.Core
         {
             if(cards==null || effects==null)throw new ArgumentNullException();
             var list=effects.Take(3).ToArray();
-            if(list.Length<1 || list.Length>2 || list.Any(e=>e==null) || list.Select(e=>e.Card).Distinct().Count()!=list.Length)throw new ArgumentException("Invalid flat OPS catalog.");
+            if(list.Length<1 || list.Length>2 || list.Any(e=>e==null || e.RegionalBonus!=null) || list.Select(e=>e.Card).Distinct().Count()!=list.Length)throw new ArgumentException("Invalid flat OPS catalog.");
             foreach(var e in list)
             {
                 var printed=cards.GetCard(e.Card);var name=e.AffectedSide==TurnOpsAffectedSide.US?"containment":"red_scare_purge";
@@ -47,7 +56,7 @@ namespace ColdWarStruggle.Core
         public long ActivationSequence { get; }
         public string ExpiryBoundary => "ExpireAndReset";
         internal TurnOpsEffectInstance(TurnOpsEffectDefinition definition,string resolution,PlayerSide controller,int turn,long sequence)
-        { Definition=definition;ResolutionId=resolution;Controller=controller;Turn=turn;ActivationSequence=sequence;AffectedSide=definition.AffectedSide==TurnOpsAffectedSide.US?PlayerSide.US:controller==PlayerSide.US?PlayerSide.USSR:PlayerSide.US; }
+        { Definition=definition;ResolutionId=resolution;Controller=controller;Turn=turn;ActivationSequence=sequence;AffectedSide=definition.AffectedSide==TurnOpsAffectedSide.US?PlayerSide.US:definition.AffectedSide==TurnOpsAffectedSide.USSR?PlayerSide.USSR:controller==PlayerSide.US?PlayerSide.USSR:PlayerSide.US; }
     }
     public sealed class TurnOpsActivation
     {
@@ -86,10 +95,16 @@ namespace ColdWarStruggle.Core
             if(!Matches(currentTurn))throw new ArgumentException("Cannot expire another turn's effects.");
             return Create(currentTurn);
         }
+        public IReadOnlyList<OpsRegionalBonus> GetRegionalBonuses(GameTurnContext currentTurn,PlayerSide actor)
+        {
+            if(!Matches(currentTurn))throw new ArgumentException("Turn effects require explicit expiry before changing turn.");
+            if(actor!=PlayerSide.US && actor!=PlayerSide.USSR)throw new ArgumentOutOfRangeException(nameof(actor));
+            return Array.AsReadOnly(Instances.Where(i=>i.AffectedSide==actor && i.Definition.RegionalBonus!=null).Select(i=>i.Definition.RegionalBonus).ToArray());
+        }
         public IReadOnlyList<OpsFlatModifier> GetModifiers(GameTurnContext currentTurn)
         {
             if(!Matches(currentTurn))throw new ArgumentException("Turn effects require explicit expiry before changing turn.");
-            return Array.AsReadOnly(Instances.Select(i=>new OpsFlatModifier(i.Definition.EffectId+":"+i.AffectedSide,i.AffectedSide,i.Definition.Delta)).ToArray());
+            return Array.AsReadOnly(Instances.Where(i=>i.Definition.RegionalBonus==null).Select(i=>new OpsFlatModifier(i.Definition.EffectId+":"+i.AffectedSide,i.AffectedSide,i.Definition.Delta)).ToArray());
         }
     }
 }

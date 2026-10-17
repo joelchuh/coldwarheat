@@ -1,0 +1,20 @@
+# 越南起义运行基础工作记录
+
+description：记录固定国家增加与回合地区修正的测试、实现及后续接线边界。
+
+上批结果明细c9702a16e231ffec90f875169a387d3e421a3980已push并核对远程；3744原生/70载荷/独立审查/迁移明细鼠标通过。
+brainstorming/writing-plans/executing-plans：按用户自主继续要求，先实现可测试的共享能力，再真实接线。未重复征求例行批准。
+Ruling: 本批保持Flat目录不接受Vietnam，先交付可复用定义/状态/固定加点；理由是避免现有即时处理器仅激活却漏加越南影响力，代价是完成下一批接线前不能从手牌使用本事件。
+Ruling: 小值合并后保底沿用用户确认PE-INTERPRETATION-01（1−1+1=1），不冒称官方专门案例；官方R2015§7.4支持合并与中国牌组合，§7.4.3事件OPS后批一并接入，代价是仍需明确标注解释来源。
+
+接线预检（未实施）：普通Influence/Realignment与普通Coup已有RegionalBudget入口，但OpponentOps与Olympic事件OPS仍只用GeneralValue，下一批必须一起消费实例；否则越南只在部分用途生效。固定加点可通过InfluenceEventFlow.Begin形成公开收据，在父事务内清除临时执行后与Activate一起提交，复用现有EventTransition传播。表现层ActivatedOpsEffect分支及混合头条要同时显示即时变化与地区条件，不能把地区+1标成无条件+1。五年计划仅触发美国子牌，Vietnam为苏联牌，不人为扩展此子事件目录。
+
+RED vietnam-foundation-red：3789/3746通过/43失败；45新增中的2个正数构造门禁已通过，43均本批尚未实现。XML f3521915bdb781ff28a440be13e8ad84b15161b11293b0f9e707a57b61b8c74b。实现前补两项既有共同门禁/Flow覆盖：setup与ended、root US执行但收益SU且不产生选择。随后实现固定加点switch和严格装载，扩展回合地区实例筛选；不改Flat目录或接线。
+
+首次GREEN未运行测试：测试夹具调用了内部WithInfluenceEvent，CS1061，报告TEST_REPORT_MISSING。按编译日志改为public GameState构造夹具，不扩大Core访问权限、不计为规则失败或通过。
+
+GREEN-2 3791/3791、0跳过/不确定，XML a6001632513badda5602c854d4f7e2b5a132091968e4a29343c73276e57c67ef。继续检查目录边界发现旧Flat目录仅按AffectedSide导出名字，可误接挂清洗ID的区域类型；新增定向原生RED 1/0通过/1失败，明确no exception thrown，XML a8142d48d4c147b86fba9373b12aacebfc0cf823b7edcdde1aa6499e5773a6d9。用已有预检/XML读取helper一次性缩小testFilter；首次报告解析因ExpectedFilter需类前缀而非完整方法名返回UNEXPECTED_TEST_CASE，检查XML后按类前缀读取，未重跑或改变证据。随后仅在旧目录增加RegionalBonus非空拒绝；完整GREEN重新运行。
+
+定向RED证据边界：初次一次性命令在报告解析前异常，未输出Unity子进程退出码；以XML的一项真实失败为证，报告将unity_exit_code留空，不采用补读helper所传数值冒充实测退出码。全量运行仍使用原脚本保存实际退出码。
+
+最终GREEN-3：3792/3792，0跳过/不确定，Unity退出0，166137ms，XML 4fa6e0648712c2e6e1a70c8209b40e84fc2651bbf5ebf148d993c28ab00aab1d。48项新增测试通过。待整批独立审查；不构建Player，因为运行目录仍明确拒绝此地区类型。

@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "id": "module.vietnam-ops-foundation",
+  "kind": "module",
+  "status": "implemented",
+  "description": "已验证的固定国家加点与越南地区回合OPS贡献基础；3792项原生回归通过，正式出牌/头条/Demo待接。",
+  "documentation": "Docs/Wiki/vietnam-ops-foundation.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/AddFixedInfluenceEffect.cs",
+      "symbol": "AddFixedInfluenceEffect"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/TurnOpsEffects.cs",
+      "symbol": "GetRegionalBonuses"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/VietnamRevoltsDefinitionLoader.cs",
+      "symbol": "Load"
+    }
+  ],
+  "inputs": [
+    "已校验持久参数/正式地图与印刷牌目录；权威回合、事件控制者与实际OPS Actor"
+  ],
+  "outputs": [
+    "固定加点事务计划；不可变地区贡献定义和筛选列表"
+  ],
+  "dependencies": [
+    "module.playable-flat-ops-events",
+    "module.regional-ops-budget"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.persistent_batch1",
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world"
+  ],
+  "preconditions": [
+    "不将基础定义视为已接真实事件；普通Flat目录仍拒绝本牌"
+  ],
+  "side_effects": [
+    "Plan只返回不可变候选，未由UI提交"
+  ],
+  "stop_conditions": [
+    "未知绑定/来源/语义、错误Actor/跨回合、重复新激活或溢出明确拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/persistent-effects.md",
+      "scope": "官方R2015§7.4及用户确认PE-INTERPRETATION-01；本批仅基础"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/VietnamOpsFoundationTests.cs",
+      "status": "passed"
+    }
+  ],
+  "verification": {
+    "report": "Docs/Testing/vietnam-ops-foundation.validation.json"
+  }
+}

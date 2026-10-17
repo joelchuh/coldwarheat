@@ -33,6 +33,9 @@ namespace ColdWarStruggle.Core
                     var removedSide=eraRemoval.Beneficiary==PlayerSide.US?PlayerSide.USSR:PlayerSide.US;
                     var positive=eraRegion.Where(c=>state.GetInfluence(c.Id,removedSide)>0).Select(c=>c.Id).ToArray();
                     candidates=positive;required=Math.Min(eraRemoval.TargetCount,positive.Length);break;
+                case AddFixedInfluenceEffect fixedGrant:
+                    if(!state.Map.Contains(fixedGrant.Country))return Stop(InfluenceEventStatus.Rejected,InfluenceEventError.InvalidDefinition);
+                    candidates=new[]{fixedGrant.Country};break;
                 case ClearThenControlEffect clear:
                     if(!state.Map.Contains(clear.Country))return Stop(InfluenceEventStatus.Rejected,InfluenceEventError.InvalidDefinition);
                     candidates=new[]{clear.Country};break;
@@ -98,6 +101,8 @@ namespace ColdWarStruggle.Core
                             foreach(var allocation in selection.Allocations.OrderBy(a=>a.Country.Value,StringComparer.Ordinal))
                                 work.RemoveExact(allocation.Country,opponent,allocation.Amount);
                         break;
+                    case AddFixedInfluenceEffect fixedGrant:
+                        work.Add(fixedGrant.Country,definition.Beneficiary,fixedGrant.Amount);break;
                     case ClearThenControlEffect clear:
                         work.RemoveAll(clear.Country,opponent);
                         work.EnsureControlByAdding(clear.Country,definition.Beneficiary);break;
