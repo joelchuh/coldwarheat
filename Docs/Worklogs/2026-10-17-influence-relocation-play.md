@@ -10,3 +10,9 @@ Ruling: 继续既有DS1-OVERLAP待裁定；支持不同国家的正常迁移与�
 任务计划与边界见Docs/Plans/2026-10-17-influence-relocation-play.md和Docs/Architecture/influence-relocation-play.md。Task1开始；旧3518测试作为本批基线。
 
 Task1：首轮仅因NUnit断言重载编译失败，没有测试执行，修正测试调用后重跑。实际RED3584/3518/66，66项均NotImplementedException；XMLa4bd1da64c9a7bb38dae094636ea75cf76e24bfaa909825636aea72f58d0adcd。实现有界双列表、不可变查询、排序守恒事务与严格参数装载后，GREEN3584/3584、零跳过/不确定，XMLede41d762dc1903fdc297539496fcc660616d9552821c4fe82ee2d0ddd9f1009。工作副本溢出不发布；零/少量/四点、控制条件、重叠、所有者、版本、非法条目和参数引用均覆盖。仍未注册真实手牌；Task2接线随后进行。
+
+Task1 Git：f26e6262cbec0cb137ca8160b1395b0e3e22bdc0已push至feat/influence-relocation，ls-remote一致；尚未整批审查/构建，保持分支。Task2新增真实手牌两方/零迁移、六种事件/OPS顺序组合、双头条归属、最终普通槽、收尾溢出，以及会话身份/双列表幂等/坏信封测试。先验证未注册/未接通时的失败，再接宿主。
+
+Task2：RED3617/3584/33，失败为未注册迁移效果。首次接线后3615/3617通过；两项头条测试重建GameState漏传已完成Deployment，触发正确SetupInProgress门禁。修正fixture保留raw.Deployment，保持产品前置门禁，重跑待结果。
+
+Task2 complete：native3617/3617，零跳过，XML6aa57bc7b1f32b9a57b6a72f35c41456610fe43b21c20e8c572c3d4e371e98f6；玩家会话和真实牌区完成。美国出牌仍由苏联选择，头条与双顺序三种OPS共用既有收尾；两个完整分配共同参与幂等比较。运行命令同Task1，RunId influence-relocation-session-green-v2。Task3随后接地图。

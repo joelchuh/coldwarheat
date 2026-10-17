@@ -22,6 +22,7 @@ namespace ColdWarStruggle.Core
                     || printed.Affiliation!=(effect.Beneficiary==PlayerSide.US?CardAffiliation.US:CardAffiliation.USSR))throw new ArgumentException("Effect does not match the printed pure influence event.");
                 bool Region(string id)=>map.GetCountriesInRegion(id).Count>0;
                 var valid=effect switch {
+                    RelocateOwnInfluenceEffect _=>true,
                     MatchOpponentInfluenceEffect e=>e.Countries.All(map.Contains),
                     ClearThenControlEffect e=>map.Contains(e.Country),
                     AddThenRemoveFractionEffect e=>map.Contains(e.Country),

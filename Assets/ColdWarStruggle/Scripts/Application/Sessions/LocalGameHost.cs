@@ -114,14 +114,17 @@ namespace ColdWarStruggle.Application
         static bool ValidEventEnvelope(EventCommandEnvelope command)
         {
             if(!ValidEnvelope(command) || string.IsNullOrWhiteSpace(command.ExecutionId) || command.ExecutionId.Length>128
-                || command.Targets.Count>InfluenceEventSelection.MaxTargets || command.Allocations.Count>InfluenceEventSelection.MaxTargets)return false;
+                || command.Targets.Count>InfluenceEventSelection.MaxTargets || command.Allocations.Count>InfluenceEventSelection.MaxTargets
+                || command.Sources==null || command.Destinations==null
+                || command.Sources.Count>InfluenceEventSelection.MaxTargets || command.Destinations.Count>InfluenceEventSelection.MaxTargets)return false;
             if(command.Kind==EventCommandKind.Begin)
-                return command.DecisionId==null && command.Targets.Count==0 && command.Allocations.Count==0;
+                return command.DecisionId==null && command.Targets.Count==0 && command.Allocations.Count==0 && command.Sources.Count==0 && command.Destinations.Count==0;
             if(string.IsNullOrWhiteSpace(command.DecisionId) || command.DecisionId.Length>256)return false;
             switch(command.Kind)
             {
-                case EventCommandKind.Resolve:return command.Targets.Count>0 && command.Allocations.Count==0;
-                case EventCommandKind.ResolveAllocation:return command.Targets.Count==0 && command.Allocations.Count>0;
+                case EventCommandKind.Resolve:return command.Targets.Count>0 && command.Allocations.Count==0 && command.Sources.Count==0 && command.Destinations.Count==0;
+                case EventCommandKind.ResolveAllocation:return command.Targets.Count==0 && command.Allocations.Count>0 && command.Sources.Count==0 && command.Destinations.Count==0;
+                case EventCommandKind.ResolveRelocation:return command.Targets.Count==0 && command.Allocations.Count==0;
                 default:return false;
             }
         }
@@ -142,6 +145,7 @@ namespace ColdWarStruggle.Application
                 {
                     var transition=command.Kind==EventCommandKind.Begin?InfluenceEventFlow.Begin(state,side)
                         :command.Kind==EventCommandKind.ResolveAllocation?InfluenceEventFlow.ResolveAllocation(state,side,command.DecisionId,command.Allocations)
+                        :command.Kind==EventCommandKind.ResolveRelocation?InfluenceEventFlow.ResolveRelocation(state,side,command.DecisionId,command.Sources,command.Destinations)
                         :InfluenceEventFlow.Resolve(state,side,command.DecisionId,command.Targets);
                     if(state.Practice?.HasPendingHeadline==true)result=CompleteHeadlineChoice(side,transition);
                     else

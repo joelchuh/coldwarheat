@@ -26,16 +26,16 @@
 Create under Assets/ColdWarStruggle/Scripts: Core/Effects/RelocateOwnInfluenceEffect.cs, Core/Effects/InfluenceRelocationRules.cs, Infrastructure/DataLoading/InfluenceRelocationDefinitionLoader.cs; matching .meta. Tests/EditMode/InfluenceRelocationRulesTests.cs and InfluenceRelocationDefinitionTests.cs.
 Modify Core/Effects/BudgetedRemovalEffect.cs(enum only), InfluenceEventPlan.cs(immutable selection/query), InfluenceEventRules.cs(dispatch and shared guard).
 APIs: RelocateOwnInfluenceEffect.MaximumTotal/PerDestinationCap; InfluenceEventSelection.Relocate(owner,version,sources,destinations); Query.SourceCapacities/DestinationCapacities/MaximumAmount; use existing InfluenceEventPlan/InfluenceMutation.
-- [x] Stub/new tests: legal 0/1/4, multi-source, US-controlled source, nonadjacent destination, caps, duplicate/null/negative/missing/US-control, overlap RequiresRuling, immutable input/query/result, deterministic sorted changes, unknown policy/ended/setup/owner/version, numeric/version/sequence overflow and zero-source.
+- [x] Stub/new tests: legal 0/1/4, multi-source, US-controlled source, nonadjacent destination, caps, duplicate/null/negative/missing/US-control, overlap RequiresRuling, immutable input/query/result, deterministic sorted changes, unknown policy/ended/owner/version（setup沿用类型分发前的现有共享门禁回归）, numeric/version/sequence overflow and zero-source.
 - [x] Loader formal data, changed semantics/version/references/unknown keys; fixture values not copied to product.
 - [x] Native RED; implement and native GREEN; source hashes/ledger, commit.
 
 ## Task2 — event/session integration
 Modify InfluenceEventFlow.ResolveRelocation/shared resolve, Application/Sessions/EventSessionContracts.cs and LocalGameHost.cs, Core/Rules/PracticeInfluenceCatalog.cs. Add Tests/EditMode/InfluenceRelocationPlayTests.cs and InfluenceRelocationSessionTests.cs.
 APIs: fixed-identity EventCommandEnvelope.Relocate with both copied lists, EventTargetsResult matching bounded projection.
-- [ ] Direct USSR and US events, empty completion, both opponent-OPS orders/modes, headline, one star/root, final ordinary slot, atomic overflow; native RED/GREEN.
-- [ ] Session wrong identity/version/execution/decision, same ID same/different source/destination, rejected choice keeps hand/resolving/countries, no observer private information leak; native RED/GREEN as one task batch.
-- [ ] Commit verified task and ledger. Existing generic flow continues root/heads; no extra parallel context.
+- [x] Direct USSR and US events, empty completion, both opponent-OPS orders/modes, headline, one star/root, final ordinary slot, atomic overflow; native RED/GREEN.
+- [x] Session wrong identity/version/execution/decision, same ID same/different source/destination, rejected choice keeps hand/resolving/countries, no observer private information leak; native RED/GREEN as one task batch.
+- [x] Commit verified task and ledger. Existing generic flow continues root/heads; no extra parallel context.
 
 ## Task3 — playable map draft and packaging
 Create Infrastructure/DataLoading/DemoCatalog.Relocation.cs; Presentation/DemoController.Relocation.cs and DemoView.Relocation.cs; Data/Demo/relocation-scenarios.json; tests InfluenceRelocationDemoTests.cs. Modify DemoController.Events.cs, DemoView.Events.cs and existing map selection/highlight hooks by exact symbol discovery; existing Bootstrap/Editor registration. Build target RelocationPlaytest.

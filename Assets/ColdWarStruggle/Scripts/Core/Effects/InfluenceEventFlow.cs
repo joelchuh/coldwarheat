@@ -56,15 +56,19 @@ namespace ColdWarStruggle.Core
             =>ResolveSelected(state,actor,decisionId,targets,null,InfluenceDecisionKind.CountrySet);
         public static InfluenceEventTransition ResolveAllocation(GameState state,PlayerSide actor,string decisionId,IReadOnlyList<InfluenceAllocation> allocations)
             =>ResolveSelected(state,actor,decisionId,null,allocations,InfluenceDecisionKind.Allocation);
+        public static InfluenceEventTransition ResolveRelocation(GameState state,PlayerSide actor,string decisionId,IReadOnlyList<InfluenceAllocation> sources,IReadOnlyList<InfluenceAllocation> destinations)
+            =>ResolveSelected(state,actor,decisionId,null,null,InfluenceDecisionKind.Relocation,sources,destinations);
         static InfluenceEventTransition ResolveSelected(GameState state,PlayerSide actor,string decisionId,
-            IReadOnlyList<CountryId> targets,IReadOnlyList<InfluenceAllocation> allocations,InfluenceDecisionKind kind)
+            IReadOnlyList<CountryId> targets,IReadOnlyList<InfluenceAllocation> allocations,InfluenceDecisionKind kind,
+            IReadOnlyList<InfluenceAllocation> sources=null,IReadOnlyList<InfluenceAllocation> destinations=null)
         {
             var error=Check(state);if(error!=RuleError.None)return new InfluenceEventTransition(error);
             var execution=state.InfluenceEvent;
             if(execution.Stage!=InfluenceEventStage.AwaitingChoice)return new InfluenceEventTransition(RuleError.EventNotStarted);
             if(actor!=execution.Owner)return new InfluenceEventTransition(RuleError.WrongActor);
             if(decisionId!=execution.DecisionId || state.Version!=execution.DecisionSourceVersion)return new InfluenceEventTransition(RuleError.StaleDecision);
-            var selection=kind==InfluenceDecisionKind.Allocation?InfluenceEventSelection.Allocate(actor,state.Version,allocations)
+            var selection=kind==InfluenceDecisionKind.Relocation?InfluenceEventSelection.Relocate(actor,state.Version,sources,destinations)
+                :kind==InfluenceDecisionKind.Allocation?InfluenceEventSelection.Allocate(actor,state.Version,allocations)
                 :new InfluenceEventSelection(actor,state.Version,targets);
             var plan=InfluenceEventRules.Plan(state,execution.Definition,selection,execution.Policy);
             return plan.Resolved?Complete(execution,plan):new InfluenceEventTransition(MapError(plan.Error),plan.Error);
@@ -92,7 +96,7 @@ namespace ColdWarStruggle.Core
                 case InfluenceEventError.StaleSelection:return RuleError.StaleVersion;
                 case InfluenceEventError.NumericOverflow:return RuleError.NumericOverflow;
                 case InfluenceEventError.GameAlreadyEnded:return RuleError.GameAlreadyEnded;
-                case InfluenceEventError.InterferenceUnknown:case InfluenceEventError.CandidateShortage:return RuleError.EventRequiresRuling;
+                case InfluenceEventError.InterferenceUnknown:case InfluenceEventError.CandidateShortage:case InfluenceEventError.RelocationOverlap:return RuleError.EventRequiresRuling;
                 case InfluenceEventError.Forbidden:return RuleError.EventForbidden;
                 default:return RuleError.InvalidCommand;
             }

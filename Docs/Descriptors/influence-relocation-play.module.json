@@ -21,6 +21,14 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventRules.cs",
       "symbol": "Plan"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventFlow.cs",
+      "symbol": "ResolveRelocation"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/EventSessionContracts.cs",
+      "symbol": "Relocate"
     }
   ],
   "inputs": [
@@ -42,7 +50,7 @@
   ],
   "preconditions": [
     "规则配置从已核对数据装载；Core不接受客户端覆盖上限/Owner",
-    "尚未注册PracticeInfluenceCatalog；不要将基础计划当可玩接线"
+    "已注册PracticeInfluenceCatalog并接会话；地图表现层待接。"
   ],
   "side_effects": [
     "纯计划只创建新状态；拒绝/溢出不发布工作副本"
@@ -64,6 +72,14 @@
     },
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/InfluenceRelocationDefinitionTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/InfluenceRelocationPlayTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/InfluenceRelocationSessionTests.cs",
       "status": "native-passed"
     }
   ],
