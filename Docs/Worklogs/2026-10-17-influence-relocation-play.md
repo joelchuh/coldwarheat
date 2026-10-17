@@ -20,3 +20,15 @@ Task2 complete：native3617/3617，零跳过，XML6aa57bc7b1f32b9a57b6a72f35c414
 Task2 Git：58faeb4a78f751929a6791e0a378243a8cdc295d已push并核对远端一致。Task3 RED3643/3617/26均NotImplemented；已接双草稿/动态地图目标、两种fixture、Bootstrap与3项共享Player映射。GREEN运行中，不将源码接线视为试玩通过。
 
 Task3 native complete：3643/3643、零跳过，XMLc682bdd9cb79595a63de61b18c2898e0b76080de8656f66c8fe9e82068d6f398（influence-relocation-demo-green）。26项覆盖保留旧机制、严格fixture、双草稿不改权威/失效/守恒/身份/重发及地图切换。参数仅description更新运行导航，业务值未改；Build验证仍会读取最终文件。既有描述用双SHA目录同步脚本更新，新fixture描述与catalog同时登记。下一步整批独立审查与新Player。
+
+Task3代码cbdd279da2b4c92f19c39953a5158db7c0271b22已push、远端一致。因既有Bash不可用，本次用一次性Python调用git log/stat/diff --unified=8产生TestResults/influence-relocation-review.diff，独立审查已分发，未重复建脚本。新RelocationPlaytest从该提交构建exit0，69载荷810517字节、5Managed全部只读核验通过，报告SHA36057c04a2b75904826a352620cccdea84ad2caaf0336f93b3f3bdd52576283d。
+
+实际UI：已启动第36个迁移人工局面，Windows更新弹窗遮挡并提示09:14重启；仅尝试激活游戏后仍遮挡，不操作系统更新。尚未执行任何游戏点击，迁移/零迁移/重发鼠标验收保持未完成，不能用3643自动测试代替。所有源码已远端保存；继续不依赖界面的工作。
+
+Final review：review_relocation_play独立只读04c892c..cbdd279，无Critical/Important；未重复执行测试/构建。
+Final: minor (deferred): DemoView.Relocation.cs:30的36px反馈区域扣31px标题后仅5px正文，且未组合政变摘要；展开结果页可读，本批记录为非阻断待办。
+Final: Ruling: 官方同国重叠裁定未由审查员重新判断 — 继续既有RequiresRuling — 若将来确认合法，需补该分支。
+Final: Ruling: 实际鼠标/渲染验收未由审查员判断 — Windows更新弹窗阻挡，保留未完成，不冒称实机通过 — 风险为实际交互尚待检查。
+Final: Ruling: 构建正确性未由审查员独立重跑 — 采用本批父任务exit0及69载荷/5程序集只读报告 — 它不证明可信来源链或游戏界面正确。
+
+后续先独立推进经互会运行基础；本批鼠标验收与Minor保留，不把整个Task3标完成。

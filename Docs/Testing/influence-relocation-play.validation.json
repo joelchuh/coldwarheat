@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "validation.influence-relocation-play",
   "description": "影响力迁移核心、会话和地图分层验收，按实际证据记录。",
-  "status": "native-passed-review-player-pending",
+  "status": "native-build-reviewed-ui-pending",
   "baseline_commit": "04c892c2a79f86efb05c4bbd4248b5fe5457a8d7",
   "runs": [
     {
@@ -165,14 +165,44 @@
     }
   ],
   "review": {
-    "status": "not-yet-run"
+    "status": "completed",
+    "base": "04c892c2a79f86efb05c4bbd4248b5fe5457a8d7",
+    "head": "cbdd279da2b4c92f19c39953a5158db7c0271b22",
+    "package": "TestResults/influence-relocation-review.diff",
+    "reviewer": "review_relocation_play",
+    "critical": 0,
+    "important": 0,
+    "minor": 1,
+    "minor_findings": [
+      {
+        "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Relocation.cs",
+        "line": 30,
+        "description": "Collapsed feedback leaves only5px text height and omits common coup summary; expanded reader available.",
+        "status": "deferred"
+      }
+    ]
   },
   "player": {
-    "status": "not-built"
+    "status": "built-payload-verified-ui-blocked",
+    "path": "Builds/RelocationPlaytest/ColdWarStruggleDemo.exe",
+    "source_commit": "cbdd279da2b4c92f19c39953a5158db7c0271b22",
+    "build_log": "TestResults/influence-relocation-build.log",
+    "build_exit_code": 0,
+    "verification": "TestResults/influence-relocation-build-verification.json",
+    "verification_sha256": "36057c04a2b75904826a352620cccdea84ad2caaf0336f93b3f3bdd52576283d",
+    "payload_count": 69,
+    "payload_bytes": 810517,
+    "managed_assemblies": 5,
+    "ui": {
+      "status": "blocked-by-windows-update-dialog",
+      "observed": "Launched relocation USSR fixture with hands open; Windows update dialog overlays game and announces restart at 09:14. Game activation did not clear overlay; no Windows update settings changed. No gameplay clicks performed.",
+      "player_log": "TestResults/influence-relocation-player.log"
+    }
   },
   "limitations": [
     "DS1-OVERLAP仍待裁定；不把同国往返默认为合法或官方禁止。",
-    "真实界面鼠标操作与独立Player构建待验收；原生测试不能替代它们。"
+    "Windows更新弹窗阻挡鼠标验收；真实迁移/零迁移/重发仍待完成。构建核验不证明界面流程。",
+    "简短反馈区域高度不足且未组合政变摘要；可展开结果页阅读，Minor待后续界面整理。"
   ],
   "source_sha256": {
     "Assets/ColdWarStruggle/Scripts/Core/Effects/RelocateOwnInfluenceEffect.cs": "94e53c5cad41402ab170a54acd955ed028598daf2ea7e916d3d6031a25ea4a8f",
