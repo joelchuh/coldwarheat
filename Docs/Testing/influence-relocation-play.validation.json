@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "validation.influence-relocation-play",
   "description": "影响力迁移核心、会话和地图分层验收，按实际证据记录。",
-  "status": "core-session-passed-map-pending",
+  "status": "native-passed-review-player-pending",
   "baseline_commit": "04c892c2a79f86efb05c4bbd4248b5fe5457a8d7",
   "runs": [
     {
@@ -121,6 +121,47 @@
       "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\influence-relocation-session-green-v2",
       "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\influence-relocation-session-green-v2\\results.xml",
       "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\influence-relocation-session-green-v2\\editor.log"
+    },
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 3643,
+      "passed": 3617,
+      "failed": 26,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "8c5dbf8d7a5eecea4a5512215b839596f44ade6c151c705a328428e6017aad13",
+      "schema_version": 1,
+      "run_id": "influence-relocation-demo-red",
+      "duration_ms": 180857,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\influence-relocation-demo-red",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\influence-relocation-demo-red\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\influence-relocation-demo-red\\editor.log",
+      "note": "26 new demo cases all fail with NotImplementedException at missing binding; 3617 existing cases pass."
+    },
+    {
+      "status": "passed",
+      "error_code": null,
+      "total": 3643,
+      "passed": 3643,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "c682bdd9cb79595a63de61b18c2898e0b76080de8656f66c8fe9e82068d6f398",
+      "schema_version": 1,
+      "run_id": "influence-relocation-demo-green",
+      "duration_ms": 170366,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\influence-relocation-demo-green",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\influence-relocation-demo-green\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\influence-relocation-demo-green\\editor.log"
     }
   ],
   "review": {
@@ -131,7 +172,7 @@
   },
   "limitations": [
     "DS1-OVERLAP仍待裁定；不把同国往返默认为合法或官方禁止。",
-    "规则与固定身份会话已接通；地图草稿/实际Player仍待完成。"
+    "真实界面鼠标操作与独立Player构建待验收；原生测试不能替代它们。"
   ],
   "source_sha256": {
     "Assets/ColdWarStruggle/Scripts/Core/Effects/RelocateOwnInfluenceEffect.cs": "94e53c5cad41402ab170a54acd955ed028598daf2ea7e916d3d6031a25ea4a8f",
@@ -142,13 +183,24 @@
     "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/InfluenceRelocationDefinitionLoader.cs": "18e3d8454ca025da403e66dbf7ed500f736952ea59ea1911fe50276cfaeffb9c",
     "Assets/ColdWarStruggle/Tests/EditMode/InfluenceRelocationRulesTests.cs": "ea269d8d159509fb78bb633fad2cf37fcee79fcfd22cb27734bfd138564bf47f",
     "Assets/ColdWarStruggle/Tests/EditMode/InfluenceRelocationDefinitionTests.cs": "bfe3728fe53f4df30f57cd084b1eea02397a96228a3eb94840d3a582ca64bee2",
-    "Data/Cards/deluxe-2015/influence-relocation.parameters.json": "2f5f773943c703376298a9348d756f5736844502e3307d0edf1fe8f31a09a7f7",
+    "Data/Cards/deluxe-2015/influence-relocation.parameters.json": "c5f57e2bd090c729b095028122117eb94181ad5338df233da2b6fe880a839771",
     "Docs/Contracts/influence-relocation.schema.json": "d70be5abe7492310737ebcca57d3b563dd1c786074674a4728d2af083aaacba0",
     "Assets/ColdWarStruggle/Scripts/Application/Sessions/EventSessionContracts.cs": "d1899dfddb33362f96529cc781391a2a71132e8b3afe85f46b7b7b86e6f55797",
     "Assets/ColdWarStruggle/Scripts/Application/Sessions/LocalGameHost.cs": "916537fd7a7d3f1cb634740725f18e843d866a0d639601e0bc27c1e56cbf7a53",
     "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventFlow.cs": "184202337c6471e195a872cc820dc4c0420e1555b4a4ec9b4b167eccd818e386",
     "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeInfluenceCatalog.cs": "6ac55a40702a19b9592e1f40ef1ed5b6dcae353195c3897366a4fa9b9013406f",
     "Assets/ColdWarStruggle/Tests/EditMode/InfluenceRelocationPlayTests.cs": "dc42ab0c61ec008eb457ec6770ff874fcad7cb7ab5f4d969b3e99af0a46e4725",
-    "Assets/ColdWarStruggle/Tests/EditMode/InfluenceRelocationSessionTests.cs": "669ba2702f147b3e876d24288a51ad1e789b29dc194ac89c2aacdc71428ae4d3"
+    "Assets/ColdWarStruggle/Tests/EditMode/InfluenceRelocationSessionTests.cs": "669ba2702f147b3e876d24288a51ad1e789b29dc194ac89c2aacdc71428ae4d3",
+    "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.Relocation.cs": "e38c1ced145764813887bd4b072c6c732bafb204fc32a14bdd0320b0e6b7f586",
+    "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Relocation.cs": "8301f98f66427d40a3d4be4366c751be49fc873fb28db6ae68350ef31279d937",
+    "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Relocation.cs": "1f27dc11a39adad318ffbea75f1689c376f97fc41b58eabe121b5db9a7a9d4ef",
+    "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Events.cs": "3526467a4734dbd9c9159315f1e3105b8c426aa47a011afadb825ff01278cd0f",
+    "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Events.cs": "6af6f50fc226cc59dac78a4296704639df9ba4528eafb0b218191f791ac5caa3",
+    "Assets/ColdWarStruggle/Scripts/Presentation/Map/MapPresenter.cs": "5c73938e0fb1789838250f20acdbed93bac555de4bebf38e0028959e8ed40297",
+    "Assets/ColdWarStruggle/Scripts/Bootstrap/DemoBootstrap.cs": "99f04aa9d01f71991b5463fe87fdc7f6a2bee7991e1ad4574d2f97084a077efc",
+    "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs": "ef83f0cd15d4774512ba6088d452694c30a6db03afac3dfe9105e27fc9982b45",
+    "Assets/ColdWarStruggle/Tests/EditMode/InfluenceRelocationDemoTests.cs": "b9761dd9fbdebdda727e4a2af8630c08d3c360a4bea1170f1180dd5375d0db6a",
+    "Tools/Configuration/player-payloads.json": "bb63b8307fcd91ac9b02e6bb0e2a7423337064d0d63aa8569cee4a5c84fa20b4",
+    "Data/Demo/relocation-scenarios.json": "4023555b0d89dfcfa7735e28086d33c3fa598b94efa5efca576464da6e7874c3"
   }
 }

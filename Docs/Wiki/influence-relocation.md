@@ -2,7 +2,9 @@
 
 description：查询De-Stalinization的苏联选择、来源/目的分配、总量守恒与同国移出移入待裁定。
 
-状态2026-10-06：#33已知参数Bound；全项目33 Bound / 69 Unresolved，102处理器planned，无C#/Unity。入口：[JSON描述](../../Data/Descriptors/influence-relocation.data.json) → [参数](../../Data/Cards/deluxe-2015/influence-relocation.parameters.json)、[Schema](../Contracts/influence-relocation.schema.json)、[案例](../Design/influence-relocation.cases.json)、[验证](../Design/influence-relocation.validation.json)；[影响力模块](../Descriptors/influence-events.module.json)。
+当前运行入口见[可玩迁移模块](influence-relocation-play.md)；以下保留设计时点记录，不能作为最新运行状态。
+
+历史状态2026-10-06：#33已知参数Bound；全项目33 Bound / 69 Unresolved，102处理器planned，无C#/Unity。入口：[JSON描述](../../Data/Descriptors/influence-relocation.data.json) → [参数](../../Data/Cards/deluxe-2015/influence-relocation.parameters.json)、[Schema](../Contracts/influence-relocation.schema.json)、[案例](../Design/influence-relocation.cases.json)、[验证](../Design/influence-relocation.validation.json)；[影响力模块](../Descriptors/influence-events.module.json)。
 
 苏联选择自己的最多4点迁移至非美国控制国家，每个目的国新加最多2。来源可任意地区有苏联影响力的国家；来源可以是US控制国，不能用US影响力支付。目的国不需已有苏联影响力或普通OPS邻接，费用不是敌控双倍，不能移入超级大国/未启用中国内战。Owner固定USSR；美国OPS触发此牌仍由苏联选择，根行动者不改变。
 

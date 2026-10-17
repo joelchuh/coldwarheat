@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "dataset_id": "demo.relocation_scenarios",
+  "description": "两个第2回合人工迁移练习：苏联直接事件及美国打牌后的苏联选择；局面与手牌为fixture，数量上限来自共享规则。",
+  "scope": "fixture",
+  "source_scenario_id": "demo.practice.final_scoring",
+  "turn_number": 2,
+  "initial_vp": 0,
+  "random_seed": 42,
+  "random_stream": 54,
+  "scenarios": [
+    {
+      "id": "demo.practice.relocation_ussr",
+      "title": "去斯大林化 · 苏联直接事件人工局面",
+      "actor": "USSR",
+      "card": "card.de_stalinization",
+      "selected_country": "country.poland",
+      "ordinary_actions_to_prepare": 0,
+      "us_hand": [
+        "card.captured_nazi_scientist",
+        "card.duck_and_cover"
+      ],
+      "ussr_hand": [
+        "card.de_stalinization",
+        "card.fidel"
+      ],
+      "influence": [
+        {
+          "country_id": "country.poland",
+          "us": 0,
+          "ussr": 4
+        },
+        {
+          "country_id": "country.romania",
+          "us": 1,
+          "ussr": 2
+        },
+        {
+          "country_id": "country.angola",
+          "us": 3,
+          "ussr": 3
+        },
+        {
+          "country_id": "country.cuba",
+          "us": 3,
+          "ussr": 0
+        }
+      ]
+    },
+    {
+      "id": "demo.practice.relocation_us",
+      "title": "去斯大林化 · 美国出牌、苏联选择人工局面",
+      "actor": "US",
+      "card": "card.de_stalinization",
+      "selected_country": "country.poland",
+      "ordinary_actions_to_prepare": 1,
+      "us_hand": [
+        "card.de_stalinization",
+        "card.duck_and_cover"
+      ],
+      "ussr_hand": [
+        "card.captured_nazi_scientist",
+        "card.fidel"
+      ],
+      "influence": [
+        {
+          "country_id": "country.poland",
+          "us": 0,
+          "ussr": 4
+        },
+        {
+          "country_id": "country.romania",
+          "us": 1,
+          "ussr": 2
+        },
+        {
+          "country_id": "country.angola",
+          "us": 3,
+          "ussr": 3
+        },
+        {
+          "country_id": "country.cuba",
+          "us": 3,
+          "ussr": 0
+        }
+      ]
+    }
+  ]
+}

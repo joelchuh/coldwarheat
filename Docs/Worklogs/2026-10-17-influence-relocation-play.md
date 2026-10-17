@@ -16,3 +16,7 @@ Task1 Git：f26e6262cbec0cb137ca8160b1395b0e3e22bdc0已push至feat/influence-rel
 Task2：RED3617/3584/33，失败为未注册迁移效果。首次接线后3615/3617通过；两项头条测试重建GameState漏传已完成Deployment，触发正确SetupInProgress门禁。修正fixture保留raw.Deployment，保持产品前置门禁，重跑待结果。
 
 Task2 complete：native3617/3617，零跳过，XML6aa57bc7b1f32b9a57b6a72f35c41456610fe43b21c20e8c572c3d4e371e98f6；玩家会话和真实牌区完成。美国出牌仍由苏联选择，头条与双顺序三种OPS共用既有收尾；两个完整分配共同参与幂等比较。运行命令同Task1，RunId influence-relocation-session-green-v2。Task3随后接地图。
+
+Task2 Git：58faeb4a78f751929a6791e0a378243a8cdc295d已push并核对远端一致。Task3 RED3643/3617/26均NotImplemented；已接双草稿/动态地图目标、两种fixture、Bootstrap与3项共享Player映射。GREEN运行中，不将源码接线视为试玩通过。
+
+Task3 native complete：3643/3643、零跳过，XMLc682bdd9cb79595a63de61b18c2898e0b76080de8656f66c8fe9e82068d6f398（influence-relocation-demo-green）。26项覆盖保留旧机制、严格fixture、双草稿不改权威/失效/守恒/身份/重发及地图切换。参数仅description更新运行导航，业务值未改；Build验证仍会读取最终文件。既有描述用双SHA目录同步脚本更新，新fixture描述与catalog同时登记。下一步整批独立审查与新Player。

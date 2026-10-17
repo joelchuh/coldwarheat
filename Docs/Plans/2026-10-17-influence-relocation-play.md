@@ -39,8 +39,8 @@ APIs: fixed-identity EventCommandEnvelope.Relocate with both copied lists, Event
 
 ## Task3 — playable map draft and packaging
 Create Infrastructure/DataLoading/DemoCatalog.Relocation.cs; Presentation/DemoController.Relocation.cs and DemoView.Relocation.cs; Data/Demo/relocation-scenarios.json; tests InfluenceRelocationDemoTests.cs. Modify DemoController.Events.cs, DemoView.Events.cs and existing map selection/highlight hooks by exact symbol discovery; existing Bootstrap/Editor registration. Build target RelocationPlaytest.
-- [ ] Register bound effect in existing practice definitions, strict independent fixture scenarios; test copied configuration retains existing mechanics.
-- [ ] Source/destination draft tabs, caps, balanced-confirm, explicit zero, no authority writes before confirm, context invalidation/clear/retry/map interface; RED/GREEN.
-- [ ] Add three player payload mappings via shared manifest; keep old payloads; add module/data descriptors, three catalogs as applicable, Wiki/index/worklog/report. Existing parameter description status updated without rewriting historical rule claims.
+- [x] Register bound effect in existing practice definitions, strict independent fixture scenarios; test copied configuration retains existing mechanics.
+- [x] Source/destination draft tabs, caps, balanced-confirm, explicit zero, no authority writes before confirm, context invalidation/clear/retry/map interface; RED/GREEN.
+- [x] Add three player payload mappings via shared manifest; keep old payloads; add module/data descriptors, three catalogs as applicable, Wiki/index/worklog/report. Existing parameter description status updated without rewriting historical rule claims.
 - [ ] One fresh whole-branch review with focus above; Important one directed RED/GREEN fix pass. Record Minor decisions; no blind second review.
 - [ ] Build unique Player after final source commit; readonly payload verifier, actual mouse full relocation and zero/replay; distinguish UI/native coverage. Metadata verification, commit/push/ls-remote, next task.

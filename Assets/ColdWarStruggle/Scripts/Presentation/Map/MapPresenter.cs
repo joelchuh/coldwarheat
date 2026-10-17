@@ -78,7 +78,8 @@ namespace ColdWarStruggle.Presentation
             else
             {
                 var q=controller.EventTargets();
-                if(q.Error==RuleError.None && q.Version==snapshot.Version && q.Viewer==snapshot.Viewer && q.ExecutionId==snapshot.Event.ExecutionId && q.DecisionId==snapshot.Event.DecisionId)permitted=q.Targets;
+                if(q.Error==RuleError.None && q.Version==snapshot.Version && q.Viewer==snapshot.Viewer && q.ExecutionId==snapshot.Event.ExecutionId && q.DecisionId==snapshot.Event.DecisionId)
+                    permitted=q.Kind==InfluenceDecisionKind.Relocation?controller.RelocationMapTargets():q.Targets;
             }
             var allowed=new HashSet<CountryId>(permitted);
             var draft=new HashSet<CountryId>(snapshot.Deployment!=null?controller.DeploymentDraft.Select(a=>a.Country):controller.EventDraft);

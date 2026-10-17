@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "module.influence-relocation-play",
   "kind": "module",
-  "description": "De-Stalinization迁移核心：双分配守恒、一次提交、零迁移及同国重叠待裁定；正式参数严格装载，玩家会话与地图接线进行中。",
+  "description": "De-Stalinization双分配原子迁移：固定苏联选择、真实出牌/头条/OPS、双草稿与地图切换；同国重叠待裁定，运行验证及Player状态见报告。",
   "status": "implemented-subset",
   "documentation": "Docs/Wiki/influence-relocation-play.md",
   "entrypoints": [
@@ -29,6 +29,22 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/EventSessionContracts.cs",
       "symbol": "Relocate"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.Relocation.cs",
+      "symbol": "WithInfluenceRelocation"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.Relocation.cs",
+      "symbol": "WithRelocationScenarios"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Relocation.cs",
+      "symbol": "ChangeRelocation"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoController.Relocation.cs",
+      "symbol": "RelocationMapTargets"
     }
   ],
   "inputs": [
@@ -46,11 +62,12 @@
   "data_dependencies": [
     "effects.deluxe2015.influence_relocation",
     "cards.deluxe2015.definitions",
-    "map.deluxe2015.world"
+    "map.deluxe2015.world",
+    "demo.relocation_scenarios"
   ],
   "preconditions": [
     "规则配置从已核对数据装载；Core不接受客户端覆盖上限/Owner",
-    "已注册PracticeInfluenceCatalog并接会话；地图表现层待接。"
+    "PracticeInfluenceCatalog注册迁移；UI只能编辑草稿，完整双列表提交到固定身份会话。"
   ],
   "side_effects": [
     "纯计划只创建新状态；拒绝/溢出不发布工作副本"
@@ -80,6 +97,10 @@
     },
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/InfluenceRelocationSessionTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/InfluenceRelocationDemoTests.cs",
       "status": "native-passed"
     }
   ],

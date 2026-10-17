@@ -11,6 +11,8 @@ namespace ColdWarStruggle.Presentation
         void DrawEventControls(PlayerViewSnapshot view)
         {
             var execution=view.Event;var query=controller.EventTargets();var draft=controller.EventDraft;
+            if(execution.Stage==InfluenceEventStage.AwaitingChoice && query.Error==RuleError.None && query.Kind==InfluenceDecisionKind.Relocation)
+            {DrawRelocationControls(query);return;}
             var parent=view.FiveYearPlan==null?"":"五年计划 → "+CardTitle(view.FiveYearPlan.SelectedCard.Value)+"\n";
             if(execution.Stage==InfluenceEventStage.Ready)
                 Text(972,374,262,62,"这是预设的公开事件练习。\n由 "+Side(execution.PhasingPlayer)+" 开始。",small);

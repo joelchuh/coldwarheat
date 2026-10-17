@@ -32,20 +32,20 @@ namespace ColdWarStruggle.Presentation
             get
             {
                 var q=EventTargets();if(q.Error!=RuleError.None)return false;
-                return q.Kind==InfluenceDecisionKind.Allocation?q.RequiredAmount>0 && allocationDraft.Values.Sum(v=>(long)v)==q.RequiredAmount
+                return q.Kind==InfluenceDecisionKind.Relocation?CanConfirmRelocation(q):q.Kind==InfluenceDecisionKind.Allocation?q.RequiredAmount>0 && allocationDraft.Values.Sum(v=>(long)v)==q.RequiredAmount
                     :q.Kind==InfluenceDecisionKind.CountrySet && q.RequiredTargets>0 && eventDraft.Count==q.RequiredTargets;
             }
         }
         public IReadOnlyList<CountryId> EventDraft
-        { get { EnsureDraftContext(ReadView());return Array.AsReadOnly(eventDraft.Concat(allocationDraft.Keys.OrderBy(c=>c.Value,StringComparer.Ordinal)).ToArray()); } }
+        { get { EnsureDraftContext(ReadView());return Array.AsReadOnly(eventDraft.Concat(allocationDraft.Keys.Concat(relocationSources.Keys).Concat(relocationDestinations.Keys).OrderBy(c=>c.Value,StringComparer.Ordinal)).Distinct().ToArray()); } }
         void EnsureDraftContext(PlayerViewSnapshot view)
         {
             if(draftGame==view.GameId && draftVersion==view.Version && draftSide==SelectedSide && draftDecision==view.Event?.DecisionId)return;
-            eventDraft.Clear();allocationDraft.Clear();eventTargets=null;draftGame=view.GameId;draftVersion=view.Version;draftSide=SelectedSide;draftDecision=view.Event?.DecisionId;MarkInteractionChanged();
+            eventDraft.Clear();allocationDraft.Clear();ClearRelocationDraft();eventTargets=null;draftGame=view.GameId;draftVersion=view.Version;draftSide=SelectedSide;draftDecision=view.Event?.DecisionId;MarkInteractionChanged();
         }
         void ResetEventInteraction(bool clearReceipt)
         {
-            eventDraft.Clear();allocationDraft.Clear();eventTargets=null;draftGame=null;draftVersion=-1;draftDecision=null;LastEventResult=null;MarkInteractionChanged();
+            eventDraft.Clear();allocationDraft.Clear();ClearRelocationDraft();eventTargets=null;draftGame=null;draftVersion=-1;draftDecision=null;LastEventResult=null;MarkInteractionChanged();
             if(clearReceipt)lastEventCommand=null;
         }
         public EventTargetsResult EventTargets()
@@ -63,16 +63,18 @@ namespace ColdWarStruggle.Presentation
         public void ClearEventDraft()
         {
             EnsureDraftContext(ReadView());
-            if(eventDraft.Count==0 && allocationDraft.Count==0)return;
-            eventDraft.Clear();allocationDraft.Clear();MarkInteractionChanged();
+            if(eventDraft.Count==0 && allocationDraft.Count==0 && relocationSources.Count==0 && relocationDestinations.Count==0 && !relocationEditingDestinations)return;
+            eventDraft.Clear();allocationDraft.Clear();ClearRelocationDraft();MarkInteractionChanged();
         }
         public Task<EventCommandResult> BeginEventAsync()=>SubmitEvent(EventCommandKind.Begin);
-        public Task<EventCommandResult> ConfirmEventAsync()=>SubmitEvent(EventTargets().Kind==InfluenceDecisionKind.Allocation?EventCommandKind.ResolveAllocation:EventCommandKind.Resolve);
+        public Task<EventCommandResult> ConfirmEventAsync()=>SubmitEvent(EventTargets().Kind==InfluenceDecisionKind.Relocation?EventCommandKind.ResolveRelocation:EventTargets().Kind==InfluenceDecisionKind.Allocation?EventCommandKind.ResolveAllocation:EventCommandKind.Resolve);
         async Task<EventCommandResult> SubmitEvent(EventCommandKind kind)
         {
             var view=ReadView();EnsureDraftContext(view);
             var id=Guid.NewGuid().ToString("N");
-            var command=kind==EventCommandKind.ResolveAllocation?
+            var command=kind==EventCommandKind.ResolveRelocation?
+                EventCommandEnvelope.Relocate(id,view.GameId,view.Version,view.Event?.ExecutionId,view.Event?.DecisionId,RelocationSourceDraft,RelocationDestinationDraft)
+                :kind==EventCommandKind.ResolveAllocation?
                 EventCommandEnvelope.Allocate(id,view.GameId,view.Version,view.Event?.ExecutionId,view.Event?.DecisionId,AllocationDraft)
                 :new EventCommandEnvelope(id,view.GameId,view.Version,kind,view.Event?.ExecutionId,
                 kind==EventCommandKind.Resolve?view.Event?.DecisionId:null,kind==EventCommandKind.Resolve?eventDraft:null);

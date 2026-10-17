@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "id": "data.demo-relocation-scenarios",
+  "kind": "data",
+  "dataset_id": "demo.relocation_scenarios",
+  "status": "fixture",
+  "description": "两个第2回合人工迁移练习：苏联直接事件及美国出牌后苏联选择；手牌/影响力独立保存，上限读取正式迁移定义。",
+  "entrypoints": [
+    {
+      "path": "Data/Demo/relocation-scenarios.json",
+      "symbol": "scenarios"
+    }
+  ],
+  "inputs": [
+    "已注册迁移事件的最终计分源场景；共享地图/卡牌/回合定义"
+  ],
+  "outputs": [
+    "第36、37人工练习；美国入口先通过真实苏联OPS预备行动交棒"
+  ],
+  "dependencies": [
+    "module.influence-relocation-play"
+  ],
+  "data_dependencies": [
+    "demo.final_scoring_scenario",
+    "effects.deluxe2015.influence_relocation"
+  ],
+  "preconditions": [
+    "scope=fixture、Turn2；不代表自然开局"
+  ],
+  "side_effects": [
+    "创建独立内存Host，不改正式开局或旧场景"
+  ],
+  "stop_conditions": [
+    "未知字段、错误来源/牌/影响力、重复牌或国家、错误预备动作拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Architecture/influence-relocation-play.md",
+      "scope": "人工局面与正式业务数值分离"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/InfluenceRelocationDemoTests.cs",
+      "status": "native-passed"
+    }
+  ],
+  "documentation": "Docs/Wiki/influence-relocation-play.md",
+  "verification": {
+    "status": "native-passed-player-pending",
+    "report": "Docs/Testing/influence-relocation-play.validation.json"
+  }
+}

@@ -95,6 +95,8 @@ namespace ColdWarStruggle.Editor
         public static void BuildOlympicPlaytest()=>BuildAt("Builds/OlympicPlaytest","ColdWarStruggle Olympic Playtest");
         [MenuItem("ColdWarStruggle/Build Payload Manifest Playtest")]
         public static void BuildPayloadManifestPlaytest()=>BuildAt("Builds/PayloadManifestPlaytest","ColdWarStruggle Payload Manifest Playtest");
+        [MenuItem("ColdWarStruggle/Build Relocation Playtest")]
+        public static void BuildRelocationPlaytest()=>BuildAt("Builds/RelocationPlaytest","ColdWarStruggle Relocation Playtest");
         static void BuildAt(string directory,string productName=null)
         {
             Prepare();Directory.CreateDirectory(directory);
@@ -148,7 +150,9 @@ namespace ColdWarStruggle.Editor
                     .WithSpaceEvents(Read(root,"Data/Cards/deluxe-2015/space-events-batch1.parameters.json"),Read(root,"Docs/Contracts/space-events-batch1.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
                     .WithSpaceEventScenarios(Read(root,"Data/Demo/space-event-scenarios.json"))
                     .WithOlympicEvents(Read(root,"Data/Cards/deluxe-2015/olympic-games.parameters.json"),Read(root,"Docs/Contracts/olympic-games.schema.json"),Read(root,"Data/Rulesets/deluxe-2015/standard-dice.json"),Read(root,"Docs/Contracts/standard-dice.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
-                    .WithOlympicScenarios(Read(root,"Data/Demo/olympic-scenarios.json"));
+                    .WithOlympicScenarios(Read(root,"Data/Demo/olympic-scenarios.json"))
+                    .WithInfluenceRelocation(Read(root,"Data/Cards/deluxe-2015/influence-relocation.parameters.json"),Read(root,"Docs/Contracts/influence-relocation.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
+                    .WithRelocationScenarios(Read(root,"Data/Demo/relocation-scenarios.json"));
             CatalogNamesLoader.Load(Read(root,"Data/Localization/zh-CN.catalog-names.json"),"zh-CN",catalog.Names.Keys);
             CatalogNamesLoader.Load(Read(root,"Data/Localization/en-US.catalog-names.json"),"en-US",catalog.Names.Keys);
             WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
