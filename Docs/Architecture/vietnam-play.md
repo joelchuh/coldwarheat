@@ -23,4 +23,6 @@ OPS分两层：普通报价保留Flat修正，地区预算再合并实际Actor�
 
 公开PublicTurnOpsEffect仅增加可空Region ID；UI从显示名字典取地区名称，未参与裁决。Demo的world/tiles等画风接口保持原状。Data/Demo/vietnam-scenario.json是人工练习；加点/奖励数值不从fixture推导，也不复制进工作脚本。
 
+出牌前预览同样调用Core的PreviewRegionalOperations共享工厂，Application仅投影PublicRegionalOps。CardActionOption与PendingOperationsOptions保留普通CurrentOps，并分别公开条件最大值与地区ID；中国牌兼容RegionalMaximum字段。ReadOperationsPreview在政变模式直接读取权威SelectedCoupQuote，其他用途显示普通值与条件最大值；不会把地区奖励塞入太空报价或在UI自行加算。
+
 未扩展：五年计划的美国子牌资格、其它尚未实现事件OPS、重复新resolution激活的裁定。测试和实际Player验收状态以Docs/Testing/vietnam-play.validation.json为准。

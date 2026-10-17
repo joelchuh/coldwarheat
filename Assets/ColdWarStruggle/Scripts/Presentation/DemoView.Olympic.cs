@@ -16,7 +16,7 @@ namespace ColdWarStruggle.Presentation
         void DrawOlympicControls(PlayerViewSnapshot view)
         {
             var o=view.Olympic;
-            Text(972,360,262,46,"奥运会 · 主办方："+Side(o.Sponsor),small);
+            Text(972,360,262,26,"奥运会 · 主办方："+Side(o.Sponsor),small);
             if(o.WaitingForInternal)
             {Text(972,411,262,120,"双方平手，正在继续比赛。\n由规则宿主自动掷骰，无需点击。",small);return;}
             if(o.PendingOwner!=view.Viewer)
@@ -34,17 +34,17 @@ namespace ColdWarStruggle.Presentation
                 if(view.Practice.Defcon==2)Text(972,553,262,33,"抵制将触发核战，主办方判负。",small);return;
             }
             var options=controller.CardOptions().PendingOperations;
-            Text(972,389,262,24,$"抵制已结算 · 当前 {options.CurrentOps} OPS",small);
-            GUI.enabled=options.Influence==RuleError.None;if(Button(972,419,126,37,"投放影响力"))UseOlympicOperations(OperationsMode.Influence);
-            GUI.enabled=options.Realignment==RuleError.None;if(Button(1108,419,126,37,"政局调整"))UseOlympicOperations(OperationsMode.Realignment);
-            GUI.enabled=options.Coup==RuleError.None;if(Button(972,463,262,35,"选择政变目标")){controller.SelectCoupUse();GUIUtility.ExitGUI();}GUI.enabled=true;
+            Text(972,389,262,48,ReadOperationsPreview(),small);
+            GUI.enabled=options.Influence==RuleError.None;if(Button(972,439,126,32,"投放影响力"))UseOlympicOperations(OperationsMode.Influence);
+            GUI.enabled=options.Realignment==RuleError.None;if(Button(1108,439,126,32,"政局调整"))UseOlympicOperations(OperationsMode.Realignment);
+            GUI.enabled=options.Coup==RuleError.None;if(Button(972,475,262,32,"选择政变目标")){controller.SelectCoupUse();GUIUtility.ExitGUI();}GUI.enabled=true;
             if(controller.SelectingCoup)
             {
                 GUI.enabled=controller.LegalTargets().Targets.Contains(controller.SelectedCountry);
-                if(Button(972,504,262,35,(view.Practice.Defcon==2 && view.Countries.First(c=>c.Definition.Id.Equals(controller.SelectedCountry)).Definition.Battleground?"核战政变：":"确认政变：")+Name(controller.SelectedCountry)))UseOlympicOperations(OperationsMode.Coup);GUI.enabled=true;
+                if(Button(972,511,262,32,(view.Practice.Defcon==2 && view.Countries.First(c=>c.Definition.Id.Equals(controller.SelectedCountry)).Definition.Battleground?"核战政变：":"确认政变：")+Name(controller.SelectedCountry)))UseOlympicOperations(OperationsMode.Coup);GUI.enabled=true;
             }
-            else Text(972,504,262,30,"开始一种用途后不能混用。",small);
-            if(Button(972,545,262,32,"放弃这次事件 OPS"))DeclineOlympic();
+            else Text(972,511,262,30,"开始一种用途后不能混用。",small);
+            if(Button(972,547,262,30,"放弃这次事件 OPS"))DeclineOlympic();
         }
         string OlympicResultMessage(CardActionResult result)
         {

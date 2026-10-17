@@ -7,28 +7,42 @@ namespace ColdWarStruggle.Presentation
 {
     public sealed partial class DemoView
     {
+        public string ReadOperationsPreview()
+        {
+            var coup=controller.SelectedCoupQuote;
+            if(coup!=null)return coup.Error==RuleError.None?$"政变 OPS {coup.Strength} · 军事 +{coup.MilitaryCredit}":"请选择合法政变目标。";
+            var options=controller.CardOptions();var selected=controller.SelectedCard;var ordinary=options.PendingOperations?.CurrentOps??(selected.HasValue?options.Find(selected.Value)?.CurrentOps:null);
+            var condition=ReadRegionalOperationsHint();return ordinary.HasValue?$"普通 OPS {ordinary}"+(condition.Length==0?"":"\n"+condition):"";
+        }
+        public string ReadRegionalOperationsHint()
+        {
+            var options=controller.CardOptions();var selected=controller.SelectedCard;var b=options.PendingOperations?.RegionalOps??(selected.HasValue?options.Find(selected.Value)?.RegionalOps:null);
+            if(b==null || b.EligibleRegions.Count==0)return "";
+            return "全部目标位于"+string.Join("、",b.EligibleRegions.Select(r=>names.TryGetValue(r,out var label)?label:ScoringRegionName(r)))+$"：最多 {b.Total} OPS";
+        }
         void DrawOpponentOperations(PlayerViewSnapshot view)
         {
             var p=view.Practice;var options=controller.CardOptions().PendingOperations;
-            Text(972,365,262,44,CardTitle(p.ActiveCard.Value)+$"\n现在选择 OPS 用途 · {options.CurrentOps} 点",small);
+            Text(972,365,262,22,CardTitle(p.ActiveCard.Value),small);
+            Text(972,389,262,48,ReadOperationsPreview(),small);
             GUI.enabled=options.Influence==RuleError.None;
-            if(Button(972,411,126,38,"投放影响力"))UseOpponentOperations(OperationsMode.Influence);
+            if(Button(972,439,126,32,"投放影响力"))UseOpponentOperations(OperationsMode.Influence);
             GUI.enabled=options.Realignment==RuleError.None;
-            if(Button(1108,411,126,38,"政局调整"))UseOpponentOperations(OperationsMode.Realignment);
+            if(Button(1108,439,126,32,"政局调整"))UseOpponentOperations(OperationsMode.Realignment);
             GUI.enabled=options.Coup==RuleError.None;
-            if(Button(972,457,262,36,"选择政变目标")){controller.SelectCoupUse();GUIUtility.ExitGUI();}
+            if(Button(972,475,262,32,"选择政变目标")){controller.SelectCoupUse();GUIUtility.ExitGUI();}
             GUI.enabled=true;
             string hint=p.OpponentOps.EventOccurred?"对手事件已结算；完成OPS后换方。":"完成OPS后仍须结算对手事件。";
             if(controller.SelectingCoup)
             {
                 var targets=controller.LegalTargets();GUI.enabled=targets.Error==RuleError.None && targets.Targets.Contains(controller.SelectedCountry);
-                if(Button(972,500,262,36,"确认政变："+Name(controller.SelectedCountry)))UseOpponentOperations(OperationsMode.Coup);
+                if(Button(972,511,262,32,"确认政变："+Name(controller.SelectedCountry)))UseOpponentOperations(OperationsMode.Coup);
                 GUI.enabled=true;
                 if(targets.Targets.Count==0)hint="当前没有合法政变目标，可改选上方用途。";
                 else if(p.Defcon==2 && view.Countries.First(c=>c.Definition.Id.Equals(controller.SelectedCountry)).Definition.Battleground)hint="危险：战场政变触发核战，行动方判负！";
             }
-            else Text(972,500,262,32,"选定并开始一种用途后，本次不能混用。",small);
-            Text(972,538,262,38,hint,small);
+            else Text(972,511,262,32,"选定并开始一种用途后，本次不能混用。",small);
+            Text(972,545,262,32,hint,new GUIStyle(small){fontSize=12});
         }
         string CombinedCoupMessage(CardActionResult result)
         {

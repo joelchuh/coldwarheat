@@ -163,6 +163,7 @@ namespace ColdWarStruggle.Application
     }
     public sealed class CardActionOption
     {
+        public PublicRegionalOps RegionalOps { get; }
         public int? PrintedOps { get; }
         public int? RegionalMaximum { get; }
         public int? CurrentOps { get; }
@@ -184,13 +185,14 @@ namespace ColdWarStruggle.Application
             {
                 var printed=s.Practice.Definition.Cards.GetCard(id);PrintedOps=printed.PrintedOps;
                 if(printed.PrintedOps.HasValue)
-                { var quote=ActionPracticeRules.QuoteCard(s,side,id,OpsValuePurpose.Influence);CurrentOps=quote.GeneralValue;FlatModifierTotal=quote.ModifierTotal;if(s.Practice.Definition.China is ChinaCardDefinition china && id.Equals(china.Card))RegionalMaximum=new OpsRegionalBudget(s.Map,quote,new[]{china.Bonus}).EffectiveBudget; }
+                { var quote=ActionPracticeRules.QuoteCard(s,side,id,OpsValuePurpose.Influence);CurrentOps=quote.GeneralValue;FlatModifierTotal=quote.ModifierTotal;var regional=ActionPracticeRules.PreviewRegionalOperations(s,quote);if(regional!=null){RegionalOps=new PublicRegionalOps(regional);RegionalMaximum=RegionalOps.Total;} }
             }
             OpponentEventFirst=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.OpponentEventFirst);OpponentOpsFirst=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.OpponentOpsFirst);
             EventThenInfluence=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.EventThenInfluence);InfluenceThenEvent=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.InfluenceThenEvent);Realignment=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Realignment);Event=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Event);Card=id;Influence=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Influence);Space=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Space);Coup=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Coup);Scoring=ActionPracticeRules.CanPlay(s,side,id,CardActionKind.Scoring); }
     }
     public sealed class PendingOperationsOptions
     {
+        public PublicRegionalOps RegionalOps { get; }
         public CardId Card { get; }
         public int? CurrentOps { get; }
         public RuleError Influence { get; }
@@ -203,7 +205,7 @@ namespace ColdWarStruggle.Application
             Influence=olympic?ActionPracticeRules.CanChooseOlympicOperations(state,side,OperationsMode.Influence):ActionPracticeRules.CanChooseOpponentOperations(state,side,OperationsMode.Influence);
             Coup=olympic?ActionPracticeRules.CanChooseOlympicOperations(state,side,OperationsMode.Coup):ActionPracticeRules.CanChooseOpponentOperations(state,side,OperationsMode.Coup);
             Realignment=olympic?ActionPracticeRules.CanChooseOlympicOperations(state,side,OperationsMode.Realignment):ActionPracticeRules.CanChooseOpponentOperations(state,side,OperationsMode.Realignment);
-            if(Influence==RuleError.None)CurrentOps=(olympic?ActionPracticeRules.QuoteOlympicOperations(state,side,OpsValuePurpose.Influence):ActionPracticeRules.QuoteCard(state,side,Card,OpsValuePurpose.Influence)).GeneralValue;
+            if(Influence==RuleError.None){var quote=olympic?ActionPracticeRules.QuoteOlympicOperations(state,side,OpsValuePurpose.Influence):ActionPracticeRules.QuoteCard(state,side,Card,OpsValuePurpose.Influence);CurrentOps=quote.GeneralValue;var regional=ActionPracticeRules.PreviewRegionalOperations(state,quote);if(regional!=null)RegionalOps=new PublicRegionalOps(regional);}
         }
     }
     public sealed class PublicCoupQuote

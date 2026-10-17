@@ -43,5 +43,25 @@ namespace ColdWarStruggle.Tests
             using var f=new Fixture(HeadlineFlowTests.Start(prepared),PlayerSide.US);var c=f.Controller;c.SelectCard(new CardId("card.containment"));await c.SubmitSelectedHeadlineAsync();c.SelectSide(PlayerSide.USSR);c.SelectCard(VietnamPlayTests.Card);Assert.That((await c.SubmitSelectedHeadlineAsync()).Accepted,Is.True);
             var text=f.View.ReadPracticeFeedback();Assert.That(c.CurrentHeadlineFeedback.Count,Is.EqualTo(2));Assert.That(text,Does.Contain("全部目标").And.Contain("美国 US").And.Contain("越南测试"));Assert.That(text.Split(new[]{"越南测试 ·"},StringSplitOptions.None).Length-1,Is.EqualTo(1));
         }
+        [Test] public void China_preview_combines_both_regions_without_changing_ordinary_quote_or_state()
+        {
+            using var f=new Fixture(VietnamPlayTests.Activated(),PlayerSide.USSR);var c=f.Controller;c.SelectCard(ChinaCardPlayTests.China);var before=c.ReadView();var option=c.CardOptions().China;
+            Assert.That(option.CurrentOps,Is.EqualTo(4));Assert.That(option.RegionalMaximum,Is.EqualTo(6));Assert.That(option.RegionalOps.EligibleRegions,Is.EquivalentTo(new[]{"region.asia","region.southeast_asia"}));
+            Assert.That(f.View.ReadOperationsPreview(),Does.Contain("普通 OPS 4"));Assert.That(f.View.ReadRegionalOperationsHint(),Does.Contain("东南亚测试").And.Contain("最多 6 OPS").And.Contain("全部目标"));
+            Assert.That(c.ReadView().Version,Is.EqualTo(before.Version));Assert.That(c.ReadView().EventSequence,Is.EqualTo(before.EventSequence));
+            c.SelectSide(PlayerSide.US);Assert.That(c.CardOptions().China.RegionalOps.EligibleRegions,Is.EquivalentTo(new[]{"region.asia"}));
+        }
+        [TestCase(false,"thailand",4)][TestCase(false,"angola",3)][TestCase(true,"thailand",5)][TestCase(true,"angola",4)]
+        public async Task Pending_preview_and_selected_coup_agree_with_execution(bool olympic,string target,int expected)
+        {
+            var card=olympic?OlympicPlayTests.Card:new CardId("card.containment");var s=PlayTurnOpsEventTests.Give(VietnamPlayTests.Activated(),PlayerSide.USSR,card.Value);
+            s=olympic?OlympicPlayTests.Respond(OlympicPlayTests.Play(s).NextState,false).NextState:ActionPracticeRules.Plan(s,PlayerSide.USSR,CardActionKind.OpponentEventFirst,"preview",card).NextState;
+            using var f=new Fixture(s,PlayerSide.USSR);var c=f.Controller;var options=c.CardOptions().PendingOperations;var ordinary=olympic?4:3;
+            Assert.That(options.CurrentOps,Is.EqualTo(ordinary));Assert.That(options.RegionalOps,Is.Not.Null);Assert.That(options.RegionalOps.Total,Is.EqualTo(ordinary+1));
+            Assert.That(f.View.ReadOperationsPreview(),Does.Contain("普通 OPS "+ordinary).And.Contain("东南亚测试").And.Contain("最多 "+(ordinary+1)+" OPS"));
+            c.SelectCoupUse();c.SelectCountry(VietnamPlayTests.C(target));var before=c.ReadView();var quote=c.SelectedCoupQuote;
+            Assert.That(f.View.ReadOperationsPreview(),Does.Contain("政变 OPS "+expected).And.Contain("军事 +"+expected));Assert.That(quote.Strength,Is.EqualTo(expected));Assert.That(c.ReadView().Version,Is.EqualTo(before.Version));
+            var r=olympic?await c.ChooseOlympicOperationsAsync(OperationsMode.Coup):await c.ChooseOpponentOperationsAsync(OperationsMode.Coup);Assert.That(r.Accepted,Is.True,r.Error.ToString());Assert.That(r.Coup.Strength,Is.EqualTo(quote.Strength));
+        }
     }
 }

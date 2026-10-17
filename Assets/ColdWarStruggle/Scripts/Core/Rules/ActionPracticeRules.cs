@@ -143,6 +143,8 @@ namespace ColdWarStruggle.Core
             var ops=OperationsContext.FromRoundStart(p.HasPendingHeadline?s.GameId+"."+p.Headline.CurrentResolutionId:PracticeOperationsId(s,p.CompletedActions),p.Actor,budget,s.Map,board,s.Operations.Costs,regionalBudget);
             return new CardActionTransition(RuleError.None,s.WithPractice(p,ops,cards,random,countries:board,ended:p.Risk?.Result?.Outcome==VictoryOutcome.Finished),receipt,scoring:scoring);
         }
+        // Read-only projection of the same budget used by execution; use an authoritative general quote.
+        public static OpsRegionalBudget PreviewRegionalOperations(GameState state,OpsGeneralQuote quote)=>RegionalBudget(state,quote);
         static OpsRegionalBudget RegionalBudget(GameState state,OpsGeneralQuote quote)
         {
             var china=state.Practice.Definition.China;

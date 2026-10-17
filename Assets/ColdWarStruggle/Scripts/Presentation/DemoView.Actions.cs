@@ -109,7 +109,7 @@ namespace ColdWarStruggle.Presentation
                         if(p.Defcon==2 && country.Definition.Battleground)Text(972,538,262,36,"危险：战场政变会触发核战，当前行动方判负！",small);
                     }
                     var reason=opponent?"对手牌：先选顺序，到OPS步骤再选用途。":option.Influence!=RuleError.None?"影响力："+ErrorText(option.Influence):"";
-                    if(option.RegionalMaximum.HasValue && option.Influence==RuleError.None)reason=$"全用于亚洲最多 {option.RegionalMaximum} OPS；太空仍 {option.CurrentOps}。";
+                    if(option.RegionalMaximum.HasValue && option.Influence==RuleError.None)reason=ReadRegionalOperationsHint();
                     if(option.Space!=RuleError.None)reason+=(reason.Length==0?"":"\n")+"太空："+ErrorText(option.Space);
                     if(option.Event==RuleError.EventRequiresRuling)reason="事件：待裁定，当前无法发动。\n仍可选择可用的 OPS 用途。";
                     if(!controller.SelectingCoup)

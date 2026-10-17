@@ -3,7 +3,7 @@
   "id": "validation.vietnam-play",
   "description": "真实越南事件/条件OPS与Demo逐批验证；只将实际运行结果标为通过。",
   "baseline_commit": "1137f63a57dce3164171698c4f57c22071e3cc5c",
-  "status": "native-passed-build-review-pending",
+  "status": "review-fix-validation-pending",
   "runs": [
     {
       "status": "failed",
@@ -117,6 +117,50 @@
       "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\vietnam-play-demo-green",
       "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\vietnam-play-demo-green\\results.xml",
       "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\vietnam-play-demo-green\\editor.log"
+    },
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 3840,
+      "passed": 3835,
+      "failed": 5,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "0477efaf9b2d61de028ba0bee12c0a5d2d3476bf146e93d2fcbdae776bee26f7",
+      "schema_version": 1,
+      "run_id": "vietnam-preview-review-red",
+      "duration_ms": 184307,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\vietnam-preview-review-red",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\vietnam-preview-review-red\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\vietnam-preview-review-red\\editor.log"
+    }
+  ],
+  "review": {
+    "base": "1137f63a57dce3164171698c4f57c22071e3cc5c",
+    "head": "26fe56a34092683367497436873e58a23f2da882",
+    "critical": 0,
+    "important": 1,
+    "minor": 0,
+    "finding": "Pre-confirmation regional OPS projection omits Vietnam; fixing in one pass",
+    "rulings": "Docs/Worklogs/2026-10-17-vietnam-play.md"
+  },
+  "superseded_build": {
+    "source": "26fe56a34092683367497436873e58a23f2da882",
+    "verification": "TestResults/vietnam-play-build-verification.json",
+    "verification_sha256": "6dbd76f74768ad7b77ea86c0132564789fc1e81f238575c881156110b2bea263",
+    "initial_invalid_invocation": "Absolute player/log paths rejected; rerun with repository-relative arguments passed."
+  },
+  "manual_checks": [
+    {
+      "source": "26fe56a34092683367497436873e58a23f2da882",
+      "path": "Direct Soviet Vietnam event, expanded receipt, switch to US",
+      "result": "Vietnam 0 to 2; removed 1; version3 sequence4; SEA conditional label visible",
+      "capture": "TestResults/vietnam-event-feedback.png",
+      "sha256": "7988b4d662a2f69c1d0214f8a73e281c92422887f7c12048b102e716e239bd1d"
     }
   ]
 }
