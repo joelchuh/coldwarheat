@@ -13,10 +13,10 @@ Spec: Docs/Architecture/event-fact-state.md. Pure state binding only; no Host/ca
 ## Task1 — bind and preserve
 Interfaces: GameState.EventFacts readonly EventFactLedger; optional final constructor eventFacts=null; internal WithEventFacts(EventFactLedger) returns same state for identity retry, otherwise copy with no new version/sequence and only validated one-append history. All six existing copy methods preserve EventFacts.
 Files: Core/State/GameState.cs; Tests/EditMode/EventFactStateTests.cs +meta; module JSON, Wiki/catalog, report and ledger.
-- [ ] Write genuine-flow fixture plus invalid-binding/timeline/replacement tests and six copy-path tests; compile-only property/optional parameter/WithEventFacts stub.
-- [ ] Run native event-fact-state-red, expect only new failures, old4050 pass.
-- [ ] Implement constructor invariants, append-only helper and all copy preservation.
-- [ ] Native event-fact-state-green passes; metadata/diff, evidence, scoped commit.
+- [x] Write genuine-flow fixture plus invalid-binding/timeline/replacement tests and six copy-path tests; compile-only property/optional parameter/WithEventFacts stub.
+- [x] Run native event-fact-state-red, expect only new failures, old4050 pass.
+- [x] Implement constructor invariants, append-only helper and all copy preservation.
+- [x] Native event-fact-state-green passes; metadata/diff, evidence, scoped commit.
 - [ ] One whole-branch read-only review; significant fixes one RED→GREEN pass if needed, minors ledger; push feature branch and verify remote SHA.
 
 Tests directly exercise internal copy helpers via bounded reflection; production contains no reflection. Use public InfluenceEventFlow to generate actual fact receipts, not synthetic successes. No new implicit known-empty migration.

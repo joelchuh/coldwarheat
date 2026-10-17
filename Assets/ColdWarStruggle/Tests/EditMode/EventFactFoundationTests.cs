@@ -13,13 +13,13 @@ namespace ColdWarStruggle.Tests
         static CardId Card(string n)=>new CardId("card."+n);
         static string Data()=>PlayInfluenceEventTests.Read("Data/Cards/deluxe-2015/treaty-protection.parameters.json");
         static string Schema()=>PlayInfluenceEventTests.Read("Docs/Contracts/treaty-protection.schema.json");
-        static InfluenceEventFactDefinition Definition(string json=null,string schema=null)
+        internal static InfluenceEventFactDefinition Definition(string json=null,string schema=null)
         {
             var map=DefinitionTests.World();var cards=CardCatalogLoaderTests.Load();
             var effect=MarshallPlanInfluenceLoader.Load(PlayInfluenceEventTests.Read("Data/Cards/deluxe-2015/alliance-prerequisites.parameters.json"),PlayInfluenceEventTests.Read("Docs/Contracts/alliance-prerequisites.schema.json"),map,cards);
             return EventFactDefinitionLoader.Load(json??Data(),schema??Schema(),map,cards,new[]{effect});
         }
-        static GameState Board(InfluenceEventFactDefinition d,int legal=8,string game="facts",long version=3,long sequence=7,string id="resolution.1",MapDefinition map=null,CardCatalog cards=null,InfluenceEffectDefinition effect=null)
+        internal static GameState Board(InfluenceEventFactDefinition d,int legal=8,string game="facts",long version=3,long sequence=7,string id="resolution.1",MapDefinition map=null,CardCatalog cards=null,InfluenceEffectDefinition effect=null)
         {
             map??=d.Map;cards??=d.Cards;effect??=d.Effects[Card("marshall_plan")];var countries=map.Countries.ToDictionary(c=>c.Id,c=>new CountryState(0,0));
             var west=map.GetCountriesInRegion("region.western_europe").OrderBy(c=>c.Id.Value,StringComparer.Ordinal).ToArray();
@@ -28,7 +28,7 @@ namespace ColdWarStruggle.Tests
                 cards:FiveYearPlanRulesTests.Zones(cards,Array.Empty<string>(),parentResolving:false),randomState:FiveYearPlanRulesTests.Random(),
                 influenceEvent:new InfluenceEventExecution(id,effect,PlayerSide.USSR,InfluenceEventPolicy.NoActiveInterference));
         }
-        static InfluenceEventTransition Complete(GameState state)
+        internal static InfluenceEventTransition Complete(GameState state)
         {
             var t=InfluenceEventFlow.Begin(state,PlayerSide.USSR);Assert.That(t.Accepted,Is.True,t.Error.ToString());
             if(t.NextState.InfluenceEvent.Stage==InfluenceEventStage.AwaitingChoice)

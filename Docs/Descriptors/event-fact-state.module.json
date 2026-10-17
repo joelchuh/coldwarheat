@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "id": "module.event-fact-state",
+  "kind": "module",
+  "status": "implemented",
+  "description": "成功事件账本的权威GameState绑定、六条复制路径保留和单次追加门禁；旧状态null不推定已知空，尚未注册马歇尔真实出牌或北约。",
+  "documentation": "Docs/Wiki/event-fact-state.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/State/GameState.cs",
+      "symbol": "GameState"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/State/GameState.cs",
+      "symbol": "EventFacts"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/State/GameState.cs",
+      "symbol": "WithEventFacts"
+    }
+  ],
+  "inputs": [
+    "明确配置或缺失的EventFactLedger；同一game/map/cards与已提交状态水位"
+  ],
+  "outputs": [
+    "携带原账本或一次合法追加的不可变GameState"
+  ],
+  "dependencies": [
+    "Assets/ColdWarStruggle/Scripts/Core/Effects/EventFactLedger.cs",
+    "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventFactDefinition.cs"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.treaty_protection"
+  ],
+  "preconditions": [
+    "真实牌区与账本定义同一目录；历史完整性由可信初始化明确提供；内部追加基于引擎完成记录"
+  ],
+  "side_effects": [
+    "只返回新状态，账本附着不递增版本/序号；所有既有复制路径保留原账本"
+  ],
+  "stop_conditions": [
+    "跨game/map/catalog、未来版本/序号、历史清空/替换/批量追加、修改historyKnown、未配置状态通过复制启用"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Architecture/event-fact-state.md",
+      "scope": "工程状态与事务边界；规则来源沿用event-fact-foundation"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/EventFactStateTests.cs",
+      "status": "native-passed"
+    }
+  ],
+  "verification": {
+    "status": "native-passed-review-pending",
+    "report": "Docs/Testing/event-fact-state.validation.json",
+    "native_editmode_passed": 4076
+  },
+  "flow": [
+    "明确账本→构造时校验权威与水位",
+    "操作/回合/选择/部署复制→保留同一账本",
+    "已有记录→精确前缀的一次追加→同水位状态副本",
+    "后续真实事件宿主负责影响力/记录/牌去向同事务发布"
+  ]
+}
