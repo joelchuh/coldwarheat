@@ -23,10 +23,10 @@
 ## Task1 — 单源清单与构建复制
 Create Tools/Configuration/player-payloads.json、Docs/Contracts/player-payloads.schema.json、Infrastructure/DataLoading/PlayerPayloadManifest.cs、PlayerPayloadPublisher.cs、Tests/EditMode/PlayerPayloadManifestTests.cs、PlayerPayloadPublisherTests.cs（C#均Assets/ColdWarStruggle下）。Modify Scripts/Editor/DemoBuild.cs。
 Interfaces: PlayerPayloadManifest.Load(string json).Entries；PlayerPayloadPublisher.Synchronize(string projectRoot)。
-- [ ] 从现存66条Copy提取清单，一次性核对完整映射不变；先写stub/真实解析与文件系统测试。
-- [ ] 原生RED：新测试因stub失败，旧3457保持。
-- [ ] 实现不可变描述和预检复制；保留DemoBuild业务验证，新增BuildPayloadManifestPlaytest独立目标。
-- [ ] 原生GREEN，保存XML和本任务源码SHA，提交。
+- [x] 从现存66条Copy提取清单，一次性核对完整映射不变；先写stub/真实解析与文件系统测试。
+- [x] 原生RED：新测试因stub失败，旧3457保持。
+- [x] 实现不可变描述和预检复制；保留DemoBuild业务验证，新增BuildPayloadManifestPlaytest独立目标。
+- [x] 原生GREEN，保存XML和本任务源码SHA，提交。
 
 ## Task2 — 只读核验脚本
 Create Tools/Configuration/player-verification.json、Tools/Scripts/verify-player-payloads.py、Tools/Tests/verify-player-payloads.tests.py；配套Tools/Descriptors两份script JSON、Data/Descriptors两份data JSON、Docs/Descriptors模块JSON、Docs/Wiki/player-payload-verification.md、Docs/Testing/player-payload-verification.validation.json；更新三catalog及Wiki/index。

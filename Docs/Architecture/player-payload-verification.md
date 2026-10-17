@@ -8,7 +8,7 @@
 
 Infrastructure新增PlayerPayloadManifest.Load(json)，返回不可变Entries(Source,Destination)。PlayerPayloadPublisher.Synchronize(projectRoot)先读取清单、预检所有源及目标，再复制到固定Assets/StreamingAssets/ColdWarStruggle。源每份<=64MiB，总预读<=256MiB；读前后核对长度/mtime，不允许输入并发变化。所有既有路径组件拒绝reparse/symlink；目标目录缺失可创建，既有未登记载荷拒绝（Unity .meta独立忽略），不删除旧文件。源数据全部读取成功后才开始写；磁盘写失败仍可能留部分生成文件，明确失败且不得构建/验收，重新运行相同清单可重试。只写与源不同的生成目标。DemoBuild保留现有完整业务验证，只替换66条Copy为Publisher调用。清单改变不自动授予任何规则审批。
 
-只读Tools/Scripts/verify-player-payloads.py接受--project-root绝对可信根、--player-directory项目相对子目录、--build-log项目相对日志。从共享清单读取映射，从Tools/Configuration/player-verification.json读取本项目exe/data/StreamingAssets/程序集名及成功标记/文件界限；输出stdout JSON，成功0/错误1，不自动保存、修复、删除、运行Unity/Player/Git或联网。拒绝所有读取路径中的链接/重解析点、越界、缺失/重复/大小写冲突、超限、额外载荷、源/构建字节不一致、缺程序集或日志无成功标记。哈希使用有界流式读取，检查读前后元数据稳定；每份源/目标SHA一致后输出映射和哈希、exe/程序集/log/清单/策略SHA。
+只读Tools/Scripts/verify-player-payloads.py接受--project-root绝对可信根、--player-directory项目Builds/下相对子目录、--build-log项目TestResults/下相对日志。从共享清单读取映射，从Tools/Configuration/player-verification.json读取本项目exe/data/StreamingAssets/程序集名及成功标记/文件界限；输出stdout JSON，成功0/错误1，不自动保存、修复、删除、运行Unity/Player/Git或联网。拒绝所有读取路径中的链接/重解析点、越界、缺失/重复/大小写冲突、超限、额外载荷、源/构建字节不一致、缺程序集或日志无成功标记。哈希使用有界流式读取，检查读前后元数据稳定；每份源/目标SHA一致后输出映射和哈希、exe/程序集/log/清单/策略SHA。
 
 日志标记和文件哈希只能证明当前读取文件符合该清单，不能独立证明二进制由某Git提交构建、无恶意代码或游戏正确；报告不猜source_commit。构建调用方记录真实提交、构建过程和实窗证据。明确稳定输入假设，不宣称抵抗恶意并发换链。
 
