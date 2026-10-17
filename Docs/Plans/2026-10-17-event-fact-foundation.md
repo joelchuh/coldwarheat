@@ -40,6 +40,6 @@ if(version<=lastVersion || sequence<=lastSequence)return new EventFactRecording(
 // Query success from a witnessed fact; otherwise absence requires known history AND complete requested coverage.
 ```
 - [x] Full native event-fact-green; expected full pass, metadata/diff valid; update evidence and commit.
-- [ ] One whole-branch review; one RED→GREEN/full-suite significant fix pass if needed; Minor ledger; routine feature push and exact remote check.
+- [x] One whole-branch review; one RED→GREEN/full-suite significant fix pass if needed; Minor ledger; routine feature push and exact remote check.
 
 Self-review: one task, no shared task interface conflicts. Five review concerns have explicit tests. Boundary never promises runtime event registration, save import, NATO or visual acceptance.
