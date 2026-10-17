@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "validation.influence-relocation-play",
   "description": "影响力迁移核心、会话和地图分层验收，按实际证据记录。",
-  "status": "native-build-reviewed-ui-pending",
+  "status": "native-build-reviewed-ui-smoke-passed",
   "baseline_commit": "04c892c2a79f86efb05c4bbd4248b5fe5457a8d7",
   "runs": [
     {
@@ -183,7 +183,7 @@
     ]
   },
   "player": {
-    "status": "built-payload-verified-ui-blocked",
+    "status": "built-payload-verified-ui-smoke-passed",
     "path": "Builds/RelocationPlaytest/ColdWarStruggleDemo.exe",
     "source_commit": "cbdd279da2b4c92f19c39953a5158db7c0271b22",
     "build_log": "TestResults/influence-relocation-build.log",
@@ -194,14 +194,29 @@
     "payload_bytes": 810517,
     "managed_assemblies": 5,
     "ui": {
-      "status": "blocked-by-windows-update-dialog",
-      "observed": "Launched relocation USSR fixture with hands open; Windows update dialog overlays game and announces restart at 09:14. Game activation did not clear overlay; no Windows update settings changed. No gameplay clicks performed.",
-      "player_log": "TestResults/influence-relocation-player.log"
+      "status": "smoke-passed",
+      "observed": "2026-10-17 09:19–09:23 overlay absent without changing Windows settings. Real mouse: USSR event, Poland source1 / India destination1; confirmation updates Poland4→3, India0→1, current actorUS and v5/seq7; original card-command retry keeps board/version. Reset artificial lesson, explicit zero migration completes with Poland4, change-count0, actorUS, v5/seq5. Expanded result reader currently shows count only.",
+      "player_log": "TestResults/influence-relocation-player.log",
+      "evidence": [
+        {
+          "path": "TestResults/relocation-transfer-ui.png",
+          "sha256": "50d330c51fac6e6625928cf90ee3ff4e4a63b902230cf67df6fa86df244de321"
+        },
+        {
+          "path": "TestResults/relocation-zero-ui.png",
+          "sha256": "a4fee097bc824425a0d203b29857c36ecbaaf22db74b8282b6db1c53ddbaa07b"
+        }
+      ],
+      "not_exercised": [
+        "US-root scene mouse input",
+        "event-choice retry button after completion (host/controller covered by native tests)",
+        "map style switch during migration (native covered)"
+      ]
     }
   },
   "limitations": [
     "DS1-OVERLAP仍待裁定；不把同国往返默认为合法或官方禁止。",
-    "Windows更新弹窗阻挡鼠标验收；真实迁移/零迁移/重发仍待完成。构建核验不证明界面流程。",
+    "真实苏联迁移、零迁移和原出牌命令重发已验收；美国根场景、选择命令重发和换地图仅原生测试覆盖。",
     "简短反馈区域高度不足且未组合政变摘要；可展开结果页阅读，Minor待后续界面整理。"
   ],
   "source_sha256": {

@@ -15,3 +15,12 @@ Task1 RED: comecon-core-red 3684/3657/27，0跳过，XML SHA d83a09db688d75f8739
 
 Task1 GREEN: comecon-core-green 3684/3684，0失败/跳过/不确定，162937ms，XML db469309c5d6d93692b4f222494a702da64a01e3712704f0c8580ea457088ac6。41新增核心/装载用例；旧Any行为与既有3643测试保持通过。新模式稳定排序，所有数量仍从参数读取。
 Ruling: Task1部署门禁复用既有共享回归，本批新增验证未知干预/终局；不为无改动门禁重复夹具，代价为单卡部署专项覆盖暂未增加。
+
+Task1 checkpoint d6355b80d94825cbf14fd3d0c2fdd041f253f411已push，ls-remote与HEAD一致。元数据181描述/87数据/471符号/741依赖通过。Task2在此BASE开始，完整出牌、会话及Demo测试与stub已写，等待首次原生运行。
+
+Task2 RED: comecon-play-red 3728/3711/17，44新增中27既有通用生命周期/会话分支已通过；17 Demo stub明确NotImplemented，XML ded9502d1590fa408df67f3c34458dba4d0c712789e9beface0b534ca03b2e0c。无需新增逐卡Host，接线复用CountrySet。
+
+Task2 GREEN: comecon-play-green 3728/3728，0失败/跳过，173526ms，XML 852f6a4f035f5ddabdd4adb8549b08bc967f5157909eb51591447fb30261ffc9。85项本批新增全部通过。GREEN后修正Editor新增方法插入导致的菜单属性挂接，恢复迁移菜单并单独注册经互会菜单；只影响编辑器入口，由下一次原生构建编译并执行，不重复全套规则测试。
+Ruling: OPS已接受放置后把合法国家减至3，FinishInfluence返回RequiresRuling且保留已接受前缀与Resolving根；不提供自创裁定/回滚已接受操作，代价是该未决边界当前不能继续。
+Ruling: 原Unity目录及功能分支继续使用；新Player独立目录保留旧构建，用户未跟踪文件不纳入提交。代价为目录占用，利于恢复。
+补验收旧迁移Player：系统遮挡自行消失，已记录苏联实际迁移/零迁移/原出牌重发；没有修改OS安全或更新设置。

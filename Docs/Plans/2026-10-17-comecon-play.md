@@ -26,12 +26,12 @@
 Modify Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEffectDefinition.cs (InfluenceControlFilter, AddToDistinctCountriesEffect.ControlFilter optional final constructor arg), InfluenceEventRules.cs (query filter, deterministic filtered changes). Create Infrastructure/DataLoading/ComeconDefinitionLoader.cs and Tests/EditMode/ComeconRulesTests.cs, ComeconDefinitionTests.cs plus .meta.
 - [x] Tests: non-US control eligibility, dual subregions, no OPS/DEFCON/adjacency costs, count/distinctness, conservation of US, fixed benefit/owner/version, shortage0–3, unknown interference, setup/ended, default Any and unknown filter, duplicate regions, numeric/version/sequence overflow, stable input order; RED.
 - [x] Loader rejects altered identity/profile/filter/shortage/region/refs/unknown keys and accepts real data. Implement minimal behavior; native full GREEN.
-- [ ] Record hashes/ledger, metadata, commit and push verified checkpoint.
+- [x] Record hashes/ledger, metadata, commit and push verified checkpoint.
 
 ## Task2 — card lifecycle and playable fixture
 Create Infrastructure/DataLoading/DemoCatalog.Comecon.cs; Tests/EditMode/ComeconPlayTests.cs and ComeconDemoTests.cs; Data/Demo/comecon-scenario.json and description. Modify Bootstrap/DemoBootstrap.cs, Editor/DemoBuild.cs, shared Tools/Configuration/player-payloads.json. Reuse existing controller CountrySet; no new UI layout.
-- [ ] Tests: direct actors/US choice identity, OPS orders/modes, headlines, star/root once, shortage unchanged zones/rollback, stale/different-command replay, factory preserve prior features, strict fixture, map/controller four-country confirmation; RED/GREEN.
-- [ ] Register WithComecon/WithComeconScenario; BuildComeconPlaytest,70 payloads; Wiki/module/data/catalog/report update.
+- [x] Tests: direct actors/US choice identity, OPS orders/modes, headlines, star/root once, shortage unchanged zones/rollback, stale/different-command replay, factory preserve prior features, strict fixture, map/controller four-country confirmation; RED/GREEN.
+- [x] Register WithComecon/WithComeconScenario; BuildComeconPlaytest,70 payloads; Wiki/module/data/catalog/report update.
 - [ ] Fresh whole-branch review; Important one RED/GREEN fix pass, record Minor. Build from source commit, verify payloads, real mouse if available; record OS blockage honestly.
 - [ ] Commit/push/ls-remote. Continue next independent useful batch while retaining incomplete UI checks.
 

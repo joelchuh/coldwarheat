@@ -54,7 +54,9 @@ namespace ColdWarStruggle.Bootstrap
                     .WithOlympicEvents(Read(root,"Data/Cards/deluxe-2015/olympic-games.parameters.json"),Read(root,"Docs/Contracts/olympic-games.schema.json"),Read(root,"Data/Rulesets/deluxe-2015/standard-dice.json"),Read(root,"Docs/Contracts/standard-dice.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
                     .WithOlympicScenarios(Read(root,"Data/Demo/olympic-scenarios.json"))
                     .WithInfluenceRelocation(Read(root,"Data/Cards/deluxe-2015/influence-relocation.parameters.json"),Read(root,"Docs/Contracts/influence-relocation.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
-                    .WithRelocationScenarios(Read(root,"Data/Demo/relocation-scenarios.json"));
+                    .WithRelocationScenarios(Read(root,"Data/Demo/relocation-scenarios.json"))
+                    .WithComecon(Read(root,"Data/Cards/deluxe-2015/early-influence-batch3.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch3.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
+                    .WithComeconScenario(Read(root,"Data/Demo/comecon-scenario.json"));
                 var displayNames=CatalogNamesLoader.Load(Read(root,"Data/Localization/zh-CN.catalog-names.json"),"zh-CN",catalog.Names.Keys);
                 var worldAssets=WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
 #else
@@ -95,7 +97,9 @@ namespace ColdWarStruggle.Bootstrap
                     .WithOlympicEvents(Read(root,"olympic-games.parameters.json"),Read(root,"olympic-games.schema.json"),Read(root,"standard-dice.json"),Read(root,"standard-dice.schema.json"),Read(root,"cards.json"))
                     .WithOlympicScenarios(Read(root,"olympic-scenarios.json"))
                     .WithInfluenceRelocation(Read(root,"influence-relocation.parameters.json"),Read(root,"influence-relocation.schema.json"),Read(root,"cards.json"))
-                    .WithRelocationScenarios(Read(root,"relocation-scenarios.json"));
+                    .WithRelocationScenarios(Read(root,"relocation-scenarios.json"))
+                    .WithComecon(Read(root,"early-influence-batch3.parameters.json"),Read(root,"early-influence-batch3.schema.json"),Read(root,"cards.json"))
+                    .WithComeconScenario(Read(root,"comecon-scenario.json"));
                 var displayNames=CatalogNamesLoader.Load(Read(root,"names.zh-CN.json"),"zh-CN",catalog.Names.Keys);
                 var worldAssets=WorldMapAssets.Load(Read(root,"world-layout.json"),Read(root,"world-land.json"),catalog.Map);
 #endif

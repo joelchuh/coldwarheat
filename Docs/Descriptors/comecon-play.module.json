@@ -3,7 +3,7 @@
   "id": "module.comecon-play",
   "kind": "module",
   "description": "经互会复用不同国家放置并按受益方过滤敌控国家；数量来自共享参数，短缺保持待裁定。运行与Demo状态见报告。",
-  "status": "in-progress",
+  "status": "implemented-subset",
   "documentation": "Docs/Wiki/comecon-play.md",
   "entrypoints": [
     {
@@ -17,6 +17,14 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventRules.cs",
       "symbol": "Plan"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.Comecon.cs",
+      "symbol": "WithComecon"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.Comecon.cs",
+      "symbol": "WithComeconScenario"
     }
   ],
   "inputs": [
@@ -32,7 +40,8 @@
   "data_dependencies": [
     "effects.deluxe2015.early_influence_batch3",
     "cards.deluxe2015.definitions",
-    "map.deluxe2015.world"
+    "map.deluxe2015.world",
+    "demo.comecon_scenario"
   ],
   "preconditions": [
     "活动干预已知；固定受益方与选择身份，表现层不覆盖数量或控制权"
@@ -57,6 +66,18 @@
     },
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/ComeconDefinitionTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/ComeconPlayTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/ComeconSessionTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/ComeconDemoTests.cs",
       "status": "native-passed"
     }
   ],
