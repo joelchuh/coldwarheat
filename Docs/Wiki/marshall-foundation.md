@@ -11,3 +11,5 @@ RequiresRuling 是旧消费者默认策略。马歇尔显式采用用户AP1-RULI
 本模块仅是影响力基础，未加入Demo真实手牌注册、牌去向、EventFactLedger或北约保护。后续需将完整马歇尔事件的成功事实与影响力同一事务提交，才能解除正常出牌“不支持”边界。华沙事件保持待实现。地图表现可继续替换。
 
 设计：Docs/Architecture/marshall-foundation.md；计划：Docs/Plans/2026-10-17-marshall-foundation.md；过程：Docs/Worklogs/2026-10-17-marshall-foundation.md。
+
+验收：源码e8095b8，4006/4006原生EditMode通过，独立审查无Critical/Important/Minor；JSON链接校验190描述/90数据集通过。该批不改Host/UI，沿用已验收的JapanPactPlaytest供测试，马歇尔完整事件仍待接。

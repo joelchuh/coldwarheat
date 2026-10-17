@@ -39,6 +39,6 @@ candidates=union;required=Math.Min(add.TargetCount,union.Length);
 // Add branch: when required>0 use validated selection; otherwise no mutation.
 ```
 - [x] Run same native command with marshall-foundation-green. Expected full pass. Validate metadata, diff, commit source/evidence.
-- [ ] One fresh whole-branch review; Critical/Important one RED→GREEN fix pass/full suite; Minor ledger. Push feature branch and verify exact remote SHA. No Player build because no registered runtime change.
+- [x] One fresh whole-branch review; Critical/Important one RED→GREEN fix pass/full suite; Minor ledger. Push feature branch and verify exact remote SHA. No Player build because no registered runtime change.
 
 Self-review: one deliverable, no task interface conflicts; all five review classes have named test cases; source/data/UI boundaries explicit.

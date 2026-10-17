@@ -15,3 +15,9 @@ Task1 RED marshall-foundation-red-2: 4006 total /3965 passed /41 failed, all new
 First GREEN 4005/4006: formal profile test reached the no-registration assertion and dereferenced the scoring-only fixture's deliberately null InfluenceEvents. Ruling: use existing PlayInfluenceEventTests.Ready registered influence fixture for this assertion — it tests real absence from a nonempty catalog — production rule/loader unchanged.
 
 Task1 implementation complete: marshall-foundation-green-2 4006/4006,0 skipped,Unity0,185458ms,XML692709fcaf666b64d760cbce378aa84fc9afcf28ebe201686115c3203f31a843. Metadata190 descriptors/90 datasets passed before final evidence-only edits. One whole-branch review remains; no Player rebuild or live-card exposure.
+
+Final review: review_marshall_foundation,1e90a3a..e8095b8,0 Critical/0 Important/0 Minor. Reviewer independently checked matching4006 XML and diff hygiene; no mutation or Unity rerun.
+Final: Ruling: Full success facts/NATO/card lifecycle/Warsaw remain deferred — current pure-event catalog rejects the persistent-reminder card — enabling it later requires a separate atomic host integration and tests.
+Final: Ruling: No Player rebuild/mouse check for this foundation-only change — no host registration or presentation changed — actual UI acceptance must happen when the future playable batch is built.
+Final: Ruling: Retain documented official rule/previous verification and explicit user AP1-RULING-01 as authority — reviewer did not independently certify those historic observations, and this batch introduces no new interpretation — source uncertainty would require revisiting only affected rule branches.
+Task1 complete: implementation/sourcee8095b8, full4006 native tests and final review passed. Routine feature-branch push follows; no merge to main.
