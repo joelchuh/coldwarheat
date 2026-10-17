@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "data.player-verification",
+  "kind": "data",
+  "description": "Player核验工程策略：exe/data/载荷/Managed路径、五个项目程序集、成功标记与有硬上限的读取限额。",
+  "status": "ready",
+  "documentation": "Docs/Wiki/player-payload-verification.md",
+  "entrypoints": [
+    {
+      "path": "Tools/Configuration/player-verification.json",
+      "symbol": null
+    }
+  ],
+  "inputs": [],
+  "outputs": [
+    "封闭schema1工程策略；非规则常量"
+  ],
+  "dependencies": [
+    "script.verify-player-payloads",
+    "module.player-payload-verification"
+  ],
+  "data_dependencies": [],
+  "preconditions": [
+    "可信本地绝对工程根，非盘根/UNC；所有路径无符号链接/重解析点；调用期间输入稳定",
+    "描述用于发现与定位，不授予执行权限"
+  ],
+  "side_effects": [],
+  "stop_conditions": [
+    "未知/重复字段、错误版本/类型、超限、缺失、越界、链接、数据不匹配或读取期间变化时停止；不自动修复"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Workflow/workflow-policy.json",
+      "scope": "项目工程约定；不是桌游规则"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Tools/Tests/verify-player-payloads.tests.py",
+      "status": "68-passed"
+    },
+    {
+      "path": "Docs/Testing/player-payload-verification.validation.json",
+      "status": "report"
+    }
+  ],
+  "verification": {
+    "report": "Docs/Testing/player-payload-verification.validation.json"
+  },
+  "dataset_id": "workflow.player_verification"
+}

@@ -4,6 +4,7 @@
 
 | 知识点 | description | 状态 | 入口 |
 |---|---|---|---|
+| Player载荷构建与核验 | 查共享66文件映射、受限生成复制、只读CLI/JSON证据与边界 | 验证见报告 | [player-payload-verification.md](player-payload-verification.md) |
 | 奥运会手牌试玩 | 查对手选择、逐对自动继续、抵制三OPS与四人工局面 | 原生通过；Player验收见报告 | [olympic-play.md](olympic-play.md) |
 | 太空事件试玩 | 查Scientist手牌/头条、公共能力变化、四人工练习与终点待裁定 | 验收见报告 | [space-event-play.md](space-event-play.md) |
 | 回合末结算试玩 | 查军事净罚分、扣留审计矩阵、中国牌翻面与公开结算报告 | 有限单回合；验证见报告 | [turn-end-playtest.md](turn-end-playtest.md) |

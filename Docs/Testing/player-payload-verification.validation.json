@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "validation.player-payload-verification",
   "description": "共享播放器清单、预检复制与只读验收工具的分层验证；按实际运行记录。",
-  "status": "manifest-native-passed-script-pending",
+  "status": "native-and-cli-passed-review-build-pending",
   "baseline_commit": "ad696b09913b6fa5223a678a2fa00398c0a8ec00",
   "runs": [
     {
@@ -64,6 +64,46 @@
       "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\player-payload-manifest-green-v2",
       "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\player-payload-manifest-green-v2\\results.xml",
       "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\player-payload-manifest-green-v2\\editor.log"
+    },
+    {
+      "status": "failed",
+      "error_code": "UNITY_EXIT_NONZERO",
+      "total": 3512,
+      "passed": 3506,
+      "failed": 6,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 2,
+      "xml_sha256": "c912890ac76f6cf1aec9dde5c3089f41d9c4c5eccf36b61d4cc1b4b65a508ad0",
+      "schema_version": 1,
+      "run_id": "player-payload-json-parity-red",
+      "duration_ms": 152213,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\player-payload-json-parity-red",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\player-payload-json-parity-red\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\player-payload-json-parity-red\\editor.log"
+    },
+    {
+      "status": "passed",
+      "error_code": null,
+      "total": 3513,
+      "passed": 3513,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "1e745eceda4877552335dab1ada891bcf372edc8c93e6e6b1f89568df90ea507",
+      "schema_version": 1,
+      "run_id": "player-payload-json-parity-green",
+      "duration_ms": 155629,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\player-payload-json-parity-green",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\player-payload-json-parity-green\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\player-payload-json-parity-green\\editor.log"
     }
   ],
   "migration": {
@@ -338,7 +378,24 @@
     "manifest_sha256": "6deb583c757d67a466f29272f98a31111a2136bb5dc37e5635a6ea4264f660ca"
   },
   "script_tests": {
-    "status": "not-run"
+    "red": {
+      "artifact": "TestResults/player-payload-cli-red.json",
+      "sha256": "e5190bb81237449d43f2169ff8c7c43edfee401f0d9d215109074ea9ab528c1f",
+      "status": "failed",
+      "total": 68,
+      "passed": 0,
+      "failed": 68,
+      "fixture_root": "C:\\Users\\JC\\AppData\\Local\\Temp\\coldwarheat-player-verifier-wgs3at7s"
+    },
+    "green": {
+      "artifact": "TestResults/player-payload-cli-green.json",
+      "sha256": "c3cd151473dc5b0dab24e296d885cc62c816765abec16c21fa1a64a0123c906d",
+      "status": "passed",
+      "total": 68,
+      "passed": 68,
+      "failed": 0,
+      "fixture_root": "C:\\Users\\JC\\AppData\\Local\\Temp\\coldwarheat-player-verifier-83pd9yk1"
+    }
   },
   "review": {
     "status": "pending"
@@ -352,12 +409,22 @@
     "生成复制先预检后写，但磁盘写失败可留部分生成文件，不宣称文件系统事务。"
   ],
   "source_sha256": {
-    "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/PlayerPayloadManifest.cs": "1fbf5a6976768b3e4fef95c674b61d24a086b2ed2a6109afe8afbf02efc4e00c",
+    "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/PlayerPayloadManifest.cs": "c160917330ff59cd72288ba1295827aee98cdbd15ad6fc2442ef3fbd99dd3897",
     "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/PlayerPayloadPublisher.cs": "a305c9ab818d5b03dd949398a2c79e03f366ac16ed0b7d997799ef6bf6cc10dd",
     "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs": "06e528d8de70f89c5f8af2298e3837e799b35a3b7340a9750cab190d5fc5fabf",
-    "Assets/ColdWarStruggle/Tests/EditMode/PlayerPayloadManifestTests.cs": "c16fbd3e43e6b6ba20a3011d902d2c2cafecb05123f91e443ed171d1c258f58d",
+    "Assets/ColdWarStruggle/Tests/EditMode/PlayerPayloadManifestTests.cs": "c764523a76e06e35763d28e294a449738d381c12ff601f0cf93f338050e48386",
     "Assets/ColdWarStruggle/Tests/EditMode/PlayerPayloadPublisherTests.cs": "a90f0033cd0064eeb3cca7aa9625b89cc8e5fd5cb78f9f4edf95f77b010ac2a3",
     "Tools/Configuration/player-payloads.json": "6deb583c757d67a466f29272f98a31111a2136bb5dc37e5635a6ea4264f660ca",
-    "Docs/Contracts/player-payloads.schema.json": "e6dacc6d92148eef0af038abaeb800b81dbed1f2b982b8489faf5115e4a38b5e"
+    "Docs/Contracts/player-payloads.schema.json": "e6dacc6d92148eef0af038abaeb800b81dbed1f2b982b8489faf5115e4a38b5e",
+    "Tools/Scripts/verify-player-payloads.py": "6fe4a7553fab3cef0081f4987e8223214c529accc770cff2985ba58bff1c2f17",
+    "Tools/Tests/verify-player-payloads.tests.py": "9a413a95604bcc8fd52c97ad10bcba29f3ed89171d9410c0bbfaa76fd9712b15",
+    "Tools/Configuration/player-verification.json": "2c391c0479fb354788ff68eb90e7c9d30752f6469bc923687bdbe35d1181a5ac"
+  },
+  "existing_player_check": {
+    "artifact": "TestResults/player-payload-existing-olympic.json",
+    "sha256": "5b761dd33d7b1385e48ee15fb159660132d7a4915a0d90a99a7ee24cb26faf8d",
+    "status": "passed",
+    "payload_count": 66,
+    "note": "Existing Olympic build; not a new manifest-driven build."
   }
 }

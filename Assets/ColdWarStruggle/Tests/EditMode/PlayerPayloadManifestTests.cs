@@ -62,6 +62,27 @@ namespace ColdWarStruggle.Tests
         [TestCase("CON.txt")][TestCase("LPT9.txt")][TestCase("x:y.json")][TestCase(" value.json")]
         public void Destination_is_safe_flat_filename(string path)
         {var j=Sample();j["entries"][0]["destination"]=path;Assert.Throws<ArgumentException>(()=>PlayerPayloadManifest.Load(j.ToString()));}
+        [TestCase("trailing-object")][TestCase("trailing-array")][TestCase("single-quotes")]
+        [TestCase("unquoted-property")][TestCase("leading-zero")][TestCase("hex")]
+        public void Nonstandard_json_dialects_cannot_disagree_with_the_python_consumer(string dialect)
+        {
+            var text=Sample().ToString(Newtonsoft.Json.Formatting.None);
+            switch(dialect)
+            {
+                case "trailing-object":text=text.Substring(0,text.Length-1)+",}";break;
+                case "trailing-array":text=text.Replace("}]","},]");break;
+                case "single-quotes":text=text.Replace('"','\'');break;
+                case "unquoted-property":text=text.Replace("\"schema_version\"","schema_version");break;
+                case "leading-zero":text=text.Replace("\"schema_version\":1","\"schema_version\":01");break;
+                case "hex":text=text.Replace("\"schema_version\":1","\"schema_version\":0x1");break;
+            }
+            Assert.Throws<ArgumentException>(()=>PlayerPayloadManifest.Load(text));
+        }
+        [Test] public void Quoted_description_punctuation_and_escapes_remain_valid_json()
+        {
+            var sample=Sample();sample["description"]="quoted \"name\" \\ path,} ,] ' 中文\nnext";
+            Assert.That(PlayerPayloadManifest.Load(sample.ToString()).Entries.Count,Is.EqualTo(1));
+        }
         [Test] public void Duplicate_keys_comments_trailing_roots_and_size_limit_are_rejected()
         {
             var text=Sample().ToString(Newtonsoft.Json.Formatting.None);

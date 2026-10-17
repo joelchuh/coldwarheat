@@ -15,3 +15,11 @@ Task1 RED：3503/3457/46，46项均为NotImplementedException，旧3457无回退
 Ruling: 核验CLI将播放器限定在Builds/子目录、构建日志限定在TestResults/子路径，避免将源目录当作构建副本自比或扩张到无关目录；现有全部Player符合此约定，代价是任意外部构建需先纳入项目标准目录。只读工具不推断源码提交。
 
 Task1完成：3506/3506原生通过，零失败/跳过/不确定；49个新用例（其中3个真实Windows junction）通过。XML1177ca873342dcb814b5821779307d56aa75ce1eb704a0ab61f5bac87640bb7e。清单与旧Copy 66条映射完全对应；实际Player尚待新核验脚本落地后一并构建验收。
+
+Task2 CLI：真实68例先在stub全部RED，再实现全部GREEN。三处真实junction、实际读期间修改故障注入、只读重复执行均覆盖；临时fixture保留。已有Olympic Player用新工具核验66份通过（非新构建证明），报告TestResults/player-payload-existing-olympic.json，SHA5b761dd33d7b1385e48ee15fb159660132d7a4915a0d90a99a7ee24cb26faf8d。
+
+跨消费端边界：发现Json.NET接受Python拒绝的尾逗号/单引号/无引号属性/前导零/十六进制。6例原生RED（3512/3506/6），XMLc912890ac76f6cf1aec9dde5c3089f41d9c4c5eccf36b61d4cc1b4b65a508ad0；增加严格词法过滤，结构与重复键仍由原解析器检查；额外正例保留描述内标点/转义/中文。最终GREEN另记。
+
+新增五份描述和三catalog登记；元数据178描述/86数据集/457 C#入口/732数据依赖通过。所有脚本依赖共享数据ID；未新增技能或泛化执行器。
+
+最终Task2原生GREEN：3513/3513，零失败/跳过/不确定；XML1e745eceda4877552335dab1ada891bcf372edc8c93e6e6b1f89568df90ea507。仅新增7个跨消费端语法检查（6负1正），未修改游戏规则。下一步整批fresh审查与新Player构建。

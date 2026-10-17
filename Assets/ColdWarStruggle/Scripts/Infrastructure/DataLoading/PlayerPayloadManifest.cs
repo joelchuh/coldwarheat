@@ -21,6 +21,24 @@ namespace ColdWarStruggle.Infrastructure
         PlayerPayloadManifest(IEnumerable<PlayerPayloadEntry> entries){Entries=Array.AsReadOnly(entries.ToArray());}
         static readonly Regex Segment=new Regex(@"\A[A-Za-z0-9][A-Za-z0-9._-]{0,127}\z",RegexOptions.CultureInvariant,TimeSpan.FromSeconds(1));
         static readonly HashSet<string> Devices=new HashSet<string>(new[]{"CON","PRN","AUX","NUL"},StringComparer.OrdinalIgnoreCase);
+        // Json.NET accepts JavaScript extensions. Restrict the wire syntax before
+        // its structural parser so the build and Python verifier share JSON input.
+        static readonly Regex JsonLexeme=new Regex(
+            "\\G(?:[ \\t\\r\\n]+|[{}\\[\\]:,]|\"(?:[^\"\\\\\\x00-\\x1F]|\\\\(?:[\"\\\\/bfnrt]|u[0-9A-Fa-f]{4}))*\"|(?:-?(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?(?:[eE][+-]?[0-9]+)?|true|false|null)(?=[ \\t\\r\\n,}\\]:]|$))",
+            RegexOptions.CultureInvariant,TimeSpan.FromSeconds(1));
+        static void RequireJsonSyntax(string json)
+        {
+            string previous=null;
+            for(var position=0;position<json.Length;)
+            {
+                var token=JsonLexeme.Match(json,position);
+                if(!token.Success)throw new ArgumentException("Nonstandard JSON syntax rejected.");
+                var value=token.Value;position+=token.Length;
+                if(value[0]==' ' || value[0]=='\t' || value[0]=='\r' || value[0]=='\n')continue;
+                if(previous=="," && (value=="}" || value=="]"))throw new ArgumentException("Trailing JSON comma rejected.");
+                previous=value;
+            }
+        }
         static string Text(JToken value)
         {if(value?.Type!=JTokenType.String || string.IsNullOrWhiteSpace((string)value))throw new ArgumentException("Nonempty text required.");return (string)value;}
         static void Fields(JObject value,params string[] names)
@@ -40,6 +58,7 @@ namespace ColdWarStruggle.Infrastructure
         public static PlayerPayloadManifest Load(string json)
         {
             if(json==null || Encoding.UTF8.GetByteCount(json)>MaximumJsonBytes)throw new ArgumentException("Manifest size limit.");
+            RequireJsonSyntax(json);
             try
             {
                 using(var reader=new JsonTextReader(new StringReader(json)){MaxDepth=16,DateParseHandling=DateParseHandling.None})

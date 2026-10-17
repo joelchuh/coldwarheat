@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "id": "script.verify-player-payloads.tests",
+  "kind": "script",
+  "description": "真实CLI与文件系统回归播放器核验：68例覆盖只读、坏配置/路径/字节/限额、实际junction及读取变化；保留新建临时fixture。",
+  "status": "ready",
+  "documentation": "Docs/Wiki/player-payload-verification.md",
+  "entrypoints": [
+    {
+      "path": "Tools/Tests/verify-player-payloads.tests.py",
+      "symbol": null
+    }
+  ],
+  "inputs": [
+    "可信脚本、现存配置；Windows与可写临时目录"
+  ],
+  "outputs": [
+    "stdout JSON结果及fixture_root；该新临时根summary.json"
+  ],
+  "dependencies": [
+    "script.verify-player-payloads",
+    "Python standard library"
+  ],
+  "data_dependencies": [
+    "workflow.player_payloads",
+    "workflow.player_verification"
+  ],
+  "preconditions": [
+    "可信本地绝对工程根，非盘根/UNC；所有路径无符号链接/重解析点；调用期间输入稳定",
+    "描述用于发现与定位，不授予执行权限"
+  ],
+  "side_effects": [
+    "在新自有临时根创建/改写合成文件，启动固定Python CLI；保留全部产物",
+    "三项真实junction使用隐藏cmd执行固定mklink /J，目标仅自有临时fixture",
+    "缺失测试只重命名已核实在临时根内的单文件；不删除、不联网、不运行Unity/Git"
+  ],
+  "stop_conditions": [
+    "未知/重复字段、错误版本/类型、超限、缺失、越界、链接、数据不匹配或读取期间变化时停止；不自动修复"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Workflow/workflow-policy.json",
+      "scope": "项目工程约定；不是桌游规则"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Tools/Tests/verify-player-payloads.tests.py",
+      "status": "68-passed"
+    },
+    {
+      "path": "Docs/Testing/player-payload-verification.validation.json",
+      "status": "report"
+    }
+  ],
+  "verification": {
+    "report": "Docs/Testing/player-payload-verification.validation.json"
+  },
+  "runtime": {
+    "python_minimum": "3.11",
+    "tested_platform": "Windows"
+  },
+  "scriptification_evidence": {
+    "condition": "repeated_workflow",
+    "observed_occurrences": 3,
+    "expected_future_reuse": true,
+    "stable_inputs_outputs_and_steps": true,
+    "contexts": [
+      {
+        "worklog": "Docs/Worklogs/2026-10-17-early-war-play.md",
+        "payloads": 58
+      },
+      {
+        "worklog": "Docs/Worklogs/2026-10-17-space-event-play.md",
+        "payloads": 61
+      },
+      {
+        "worklog": "Docs/Worklogs/2026-10-17-olympic-play.md",
+        "payloads": 66
+      }
+    ],
+    "scope_note": "三个独立功能批次的真实Player验收；同一批重试不重复计数。测试入口与该正式脚本共同维护。"
+  }
+}

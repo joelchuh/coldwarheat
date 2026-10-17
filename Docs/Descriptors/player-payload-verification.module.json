@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "id": "module.player-payload-verification",
+  "kind": "module",
+  "description": "共享Player载荷契约：严格JSON不可变映射、全部预检后复制生成数据、独立只读Player核验；保留旧构建与业务验证。",
+  "status": "ready",
+  "documentation": "Docs/Wiki/player-payload-verification.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/PlayerPayloadManifest.cs",
+      "symbol": "Load"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/PlayerPayloadPublisher.cs",
+      "symbol": "Synchronize"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "symbol": "BuildPayloadManifestPlaytest"
+    }
+  ],
+  "inputs": [
+    "清单JSON或可信本地工程根"
+  ],
+  "outputs": [
+    "不可变映射；受限生成目录；Player验收证据"
+  ],
+  "dependencies": [
+    "script.verify-player-payloads"
+  ],
+  "data_dependencies": [
+    "workflow.player_payloads",
+    "workflow.player_verification"
+  ],
+  "preconditions": [
+    "可信本地绝对工程根，非盘根/UNC；所有路径无符号链接/重解析点；调用期间输入稳定",
+    "描述用于发现与定位，不授予执行权限"
+  ],
+  "side_effects": [
+    "Synchronize只写Assets/StreamingAssets/ColdWarStruggle内清单目标；不删除文件，.meta保留",
+    "预检成功后逐文件写，磁盘故障可留下部分生成文件；不是文件系统事务",
+    "Editor构建入口生成独立Builds/PayloadManifestPlaytest；不影响旧OlympicPlaytest"
+  ],
+  "stop_conditions": [
+    "未知/重复字段、错误版本/类型、超限、缺失、越界、链接、数据不匹配或读取期间变化时停止；不自动修复"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Workflow/workflow-policy.json",
+      "scope": "项目工程约定；不是桌游规则"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayerPayloadManifestTests.cs",
+      "status": "native-report"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/PlayerPayloadPublisherTests.cs",
+      "status": "native-report"
+    },
+    {
+      "path": "Tools/Tests/verify-player-payloads.tests.py",
+      "status": "68-passed"
+    }
+  ],
+  "verification": {
+    "report": "Docs/Testing/player-payload-verification.validation.json"
+  }
+}
