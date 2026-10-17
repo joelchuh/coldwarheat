@@ -16,7 +16,9 @@ namespace ColdWarStruggle.Presentation
             if(step.War!=null)return "头条 · "+WarResultMessage(step.War);
             if(step.FiveYearPlan!=null)
                 return "头条 · "+FiveYearPlanResultMessage(step.FiveYearPlan)+FiveYearPlanChildDetail(step.DefconVpEvent,step.ActivatedOpsEffect)
+                    +(step.ActivatedJapanPact==null?"":"\n"+JapanPactSummary(step.ActivatedJapanPact))
                     +(step.Event?.Stage==ColdWarStruggle.Core.InfluenceEventStage.Resolved?"\n"+InfluenceEventMessage(step.Event):"");
+            if(step.ActivatedJapanPact!=null)return "头条 · "+JapanPactEventMessage(step.ActivatedJapanPact,step.Event);
             if(step.ActivatedOpsEffect!=null)return "头条 · "+TurnOpsEventMessage(step.ActivatedOpsEffect,step.Event);
             return "头条 · "+CardTitle(step.Card)+"\n"+InfluenceEventMessage(step.Event);
         }

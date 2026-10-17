@@ -2,8 +2,8 @@
   "schema_version": 1,
   "id": "module.japan-pact-play",
   "kind": "module",
-  "status": "in-progress",
-  "description": "美日安保真实出牌集成：GameState永久状态、直接/对手顺序/头条/五年计划、统一政变与调整门禁及公开回执；当前验证中，独立Demo待完成。",
+  "status": "implemented",
+  "description": "美日安保真实出牌、永久跨回合状态、两种对手顺序/头条/五年计划、统一政变调整保护与第40人工练习；3952原生测试通过，构建/审查以报告为准。",
   "documentation": "Docs/Wiki/japan-pact-play.md",
   "entrypoints": [
     {
@@ -25,13 +25,21 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Application/Sessions/PublicJapanPactEffect.cs",
       "symbol": "PublicJapanPactEffect"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.JapanPact.cs",
+      "symbol": "ReadPermanentEffectsSummary"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "symbol": "BuildJapanPactPlaytest"
     }
   ],
   "inputs": [
-    "正式0.1.0条约参数及schema、同一MapDefinition/CardCatalog；权威GameState、gameId、事件控制者/实际行动者、结算ID和操作/目标"
+    "已注册的ActionPracticeDefinition与显式JapanPactState；权威Host身份/版本命令，正式地图、卡牌和条约参数"
   ],
   "outputs": [
-    "AddToControl影响力事务候选；带参数摘要/源序号的永久条约候选；NoTreatyBlock/BlockedByTreaty/InvalidContext"
+    "原子影响力与条约激活、牌去向及行动推进；公共长期状态、加点/激活组合回执与合法目标"
   ],
   "dependencies": [
     "module.japan-pact-foundation"
@@ -39,13 +47,14 @@
   "data_dependencies": [
     "effects.deluxe2015.treaty_protection",
     "cards.deluxe2015.definitions",
-    "map.deluxe2015.world"
+    "map.deluxe2015.world",
+    "demo.japan_pact_scenario"
   ],
   "preconditions": [
-    "使用权威单调状态版本；永久实例与加点/牌去向必须由后续宿主原子提交；NoTreatyBlock不是整体合法性"
+    "相同game/map/card定义；活跃实例源版本早于已提交版本，激活序号不晚于当前事件序号"
   ],
   "side_effects": [
-    "只返回不可变候选与只读查询；不直接提交GameState、消耗随机数或修改UI"
+    "成功Host命令一次发布新状态；私有失败候选不改变牌区、随机数或OPS"
   ],
   "stop_conditions": [
     "未知参数/绑定/来源/Actor/操作；地图或game不匹配、开局/终局、溢出、同ID冲突或新ID重复激活"
@@ -59,16 +68,24 @@
   "tests": [
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/JapanPactPlayTests.cs",
-      "status": "native-red-observed"
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/JapanPactDemoTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/JapanPactPresentationTests.cs",
+      "status": "native-passed"
     }
   ],
   "verification": {
     "report": "Docs/Testing/japan-pact-play.validation.json"
   },
   "flow": [
-    "正式JSON→严格Loader→有界Definition",
-    "AddToControl→InfluenceEventRules/Flow→私有候选",
-    "JapanPactState.Activate→永久状态候选",
-    "Evaluate→条约门禁；基础/DEFCON/预算须另外验证"
+    "玩家意图→Host身份/版本/去重→ActionPracticeRules",
+    "PrepareJapanPactEvent→私有加点→激活→Commit及父流程完成",
+    "GameState六个复制入口保留永久实例→跨回合不清除",
+    "共享Coup/Realignment门禁→公开目标/回执→可替换地图表现"
   ]
 }

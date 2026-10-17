@@ -10,7 +10,7 @@ namespace ColdWarStruggle.Presentation
         public string ReadOperationsPreview()
         {
             var coup=controller.SelectedCoupQuote;
-            if(coup!=null)return coup.Error==RuleError.None?$"政变 OPS {coup.Strength} · 军事 +{coup.MilitaryCredit}":"请选择合法政变目标。";
+            if(coup!=null)return coup.Error==RuleError.None?$"政变 OPS {coup.Strength} · 军事 +{coup.MilitaryCredit}":coup.Error==RuleError.EventForbidden?ErrorText(coup.Error):"请选择合法政变目标。";
             var options=controller.CardOptions();var selected=controller.SelectedCard;var ordinary=options.PendingOperations?.CurrentOps??(selected.HasValue?options.Find(selected.Value)?.CurrentOps:null);
             var condition=ReadRegionalOperationsHint();return ordinary.HasValue?$"普通 OPS {ordinary}"+(condition.Length==0?"":"\n"+condition):"";
         }
@@ -62,6 +62,7 @@ namespace ColdWarStruggle.Presentation
             {
                 var e=result.DefconVpEvent;return message+$"事件 DEFCON {e.DefconFrom}→{e.DefconTo}"+(e.Terminal?" · 终局":" · VP "+e.VpForUS.ToString("+0;-0;0"));
             }
+            if(result.ActivatedJapanPact!=null)return message+JapanPactEventMessage(result.ActivatedJapanPact,result.Event);
             if(result.ActivatedOpsEffect!=null)return message+TurnOpsEventMessage(result.ActivatedOpsEffect,result.Event);
             return message+"随后"+InfluenceEventMessage(result.Event);
         }

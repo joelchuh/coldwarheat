@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "id": "data.demo-japan-pact-scenario",
+  "kind": "data",
+  "dataset_id": "demo.japan_pact_scenario",
+  "status": "fixture",
+  "description": "第2回合美日安保人工练习：真实手牌发动、补足美国控制日本并验证长期禁止苏联政变/调整；局面与手牌为fixture，正式效果来自共享条约定义。",
+  "entrypoints": [
+    {
+      "path": "Data/Demo/japan-pact-scenario.json",
+      "symbol": "scenarios"
+    }
+  ],
+  "inputs": [
+    "已注册美日安保的最终计分源场景、共享地图/卡牌/回合定义"
+  ],
+  "outputs": [
+    "第40人工练习；实际出牌后验证永久目标保护"
+  ],
+  "dependencies": [
+    "module.japan-pact-play"
+  ],
+  "data_dependencies": [
+    "demo.final_scoring_scenario",
+    "effects.deluxe2015.treaty_protection"
+  ],
+  "preconditions": [
+    "scope=fixture、Turn2；不代表自然开局"
+  ],
+  "side_effects": [
+    "创建独立内存Host，不改正式开局或旧场景"
+  ],
+  "stop_conditions": [
+    "未知字段、错误来源/牌/影响力、重复牌或国家、错误预备动作拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Architecture/japan-pact-play.md",
+      "scope": "人工局面与正式规则分离"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/JapanPactDemoTests.cs",
+      "status": "native-passed"
+    }
+  ],
+  "documentation": "Docs/Wiki/japan-pact-play.md",
+  "verification": {
+    "status": "native-passed-build-pending",
+    "report": "Docs/Testing/japan-pact-play.validation.json"
+  }
+}

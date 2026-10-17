@@ -15,3 +15,9 @@ Fixture correction initially used an internal ActionPracticeState constructor un
 Task1 green-3: same 3934/3935; revised fixture attempted StartPractice after losing completed deployment, so setup guard rejected and a missing assertion caused NullReference in Give. Final fixture keeps the already started Ready practice and replaces only test card zones/random with InitialDealService output before playing pact. Production behavior unchanged.
 
 Task1: complete; native japan-play-core-green-4 3935/3935, Unity0, 178236ms, XML cae1bc063b7be131e58ce87579e00dacc29a23f2c29705638804035f5503aa5d; metadata 188 descriptors / 89 datasets passed. Task2 begins from this tested Core/Host/catalog state.
+Task2 RED preflight: NUnit Does.Not.Contain selected a string-only overload for CountryId; replaced with collection Has.No.Member / Has.Member. No tests ran in initial compile-failure attempt.
+
+Task2 RED japan-play-demo-red-2: 3952 total / 3936 pass / 16 new Demo/Presentation failures; registration-preservation test already passes Task1. XML 2c285b515d2dba75e00e8b4f47a872c631fa332e27d26d69426fa1e7f9a2775e. Added closed fixture loader, public permanent feedback, combined receipts, explicit bootstrap/build registration and 74-entry payload manifest.
+Task2 first GREEN: 3951/3952. Headline assertion counted the country in both permanent summary and influence detail; production emitted one grant. Tightened assertion to the exact country+US change-row prefix, preserving the intended no-duplicate-grant check.
+
+Task2 implementation complete: japan-play-demo-green-2 3952/3952, Unity0,180536ms, XML8798af265d01ae4572125c9d56c3347b789d2a3e5bed2d1343e194ce1686d443. One fresh whole-branch review, independent build and limited native UI remain.

@@ -12,6 +12,7 @@ namespace ColdWarStruggle.Presentation
         }
         string FiveYearPlanChildDetail(CardActionResult result)
             =>FiveYearPlanChildDetail(result.DefconVpEvent,result.ActivatedOpsEffect)
+                +(result.ActivatedJapanPact==null?"":"\n"+JapanPactSummary(result.ActivatedJapanPact))
                 +(result.Event?.Stage==InfluenceEventStage.Resolved?"\n"+InfluenceEventMessage(result.Event):"");
         string FiveYearPlanChildDetail(PublicDefconVpEventResult track,PublicTurnOpsEffect effect)
         {

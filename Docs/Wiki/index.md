@@ -182,6 +182,8 @@
 
 - [越南起义运行基础](vietnam-ops-foundation.md)：固定国家加点及独立地区贡献；真实出牌待后批接线，见模块JSON。
 
-- [越南起义真实出牌与条件OPS](vietnam-play.md)：先查module.vietnam-play，Core已验证、Demo接线中。
+- [越南起义真实出牌与条件OPS](vietnam-play.md)：先查module.vietnam-play，有限Player验收及后续滚动修补见报告。
 
-- [美日安保运行基础](japan-pact-foundation.md)：严格参数、补足控制和永久条约纯查询；真实出牌待接。
+- [美日安保运行基础](japan-pact-foundation.md)：严格参数、补足控制和永久条约纯查询；可玩接线见下一项。
+
+- [美日安保真实出牌](japan-pact-play.md)：永久状态、原子结算和统一目标保护；试玩、测试、构建与审查见模块JSON。

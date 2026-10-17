@@ -95,6 +95,8 @@ namespace ColdWarStruggle.Editor
         public static void BuildOlympicPlaytest()=>BuildAt("Builds/OlympicPlaytest","ColdWarStruggle Olympic Playtest");
         [MenuItem("ColdWarStruggle/Build Payload Manifest Playtest")]
         public static void BuildPayloadManifestPlaytest()=>BuildAt("Builds/PayloadManifestPlaytest","ColdWarStruggle Payload Manifest Playtest");
+        [MenuItem("ColdWarStruggle/Build Japan Pact Playtest")]
+        public static void BuildJapanPactPlaytest()=>BuildAt("Builds/JapanPactPlaytest","ColdWarStruggle Japan Pact Playtest");
         [MenuItem("ColdWarStruggle/Build Vietnam Playtest")]
         public static void BuildVietnamPlaytest()=>BuildAt("Builds/VietnamPlaytest","ColdWarStruggle Vietnam Playtest");
         [MenuItem("ColdWarStruggle/Build Influence Feedback Playtest")]
@@ -162,7 +164,9 @@ namespace ColdWarStruggle.Editor
                     .WithComecon(Read(root,"Data/Cards/deluxe-2015/early-influence-batch3.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch3.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
                     .WithComeconScenario(Read(root,"Data/Demo/comecon-scenario.json"))
                     .WithVietnamRevolts(Read(root,"Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json"),Read(root,"Docs/Contracts/persistent-effects-batch1.schema.json"))
-                    .WithVietnamScenario(Read(root,"Data/Demo/vietnam-scenario.json"));
+                    .WithVietnamScenario(Read(root,"Data/Demo/vietnam-scenario.json"))
+                    .WithJapanPact(Read(root,"Data/Cards/deluxe-2015/treaty-protection.parameters.json"),Read(root,"Docs/Contracts/treaty-protection.schema.json"))
+                    .WithJapanPactScenario(Read(root,"Data/Demo/japan-pact-scenario.json"));
             CatalogNamesLoader.Load(Read(root,"Data/Localization/zh-CN.catalog-names.json"),"zh-CN",catalog.Names.Keys);
             CatalogNamesLoader.Load(Read(root,"Data/Localization/en-US.catalog-names.json"),"en-US",catalog.Names.Keys);
             WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);

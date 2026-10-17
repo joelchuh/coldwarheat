@@ -33,9 +33,11 @@ namespace ColdWarStruggle.Presentation
         }
         string TurnOpsEventMessage(PublicTurnOpsEffect effect,PublicCardEventResult grant)
             =>"持续效果已生效\n"+OpsEffectSummary(effect)+"\n本回合有效，弃牌或移出不取消。"+(grant==null?"":"\n"+InfluenceEventMessage(grant));
-        void DrawOpsEffects(PublicPracticeView practice)
+        void DrawOpsEffects(PlayerViewSnapshot view)
         {
+            var practice=view.Practice;
             var text=practice.OpsEffects.Count==0?"本回合持续 OPS：无":"本回合持续 OPS："+string.Join("；",practice.OpsEffects.Select(OpsEffectSummary))+"  ·  回合末到期";
+            var permanent=ReadPermanentEffectsSummary();if(permanent.Length>0)text=permanent+"  |  "+text;
             var hasChoice=practice.IsExtraAction || practice.CanSkipEmptyHand;
             if(hasChoice)text=$"已用名额 美 {practice.UsCompletedActions} / 苏 {practice.UssrCompletedActions} · "+text;
             Text(28,155,hasChoice?920:1220,22,text,new GUIStyle(small){fontSize=12});
@@ -123,6 +125,7 @@ namespace ColdWarStruggle.Presentation
                     if(option.RegionalMaximum.HasValue && option.Influence==RuleError.None)reason=ReadRegionalOperationsHint();
                     if(option.Space!=RuleError.None)reason+=(reason.Length==0?"":"\n")+"太空："+ErrorText(option.Space);
                     if(option.Event==RuleError.EventRequiresRuling)reason="事件：待裁定，当前无法发动。\n仍可选择可用的 OPS 用途。";
+                    if(controller.SelectingCoup && coupQuote?.Error==RuleError.EventForbidden)reason=ErrorText(coupQuote.Error);
                     if(!controller.SelectingCoup)
                     {
                         GUI.enabled=option.Realignment==RuleError.None;
@@ -158,6 +161,7 @@ namespace ColdWarStruggle.Presentation
                 message=$"美国 {r.UsRoll} + {r.US.Total} = {r.UsTotal}；苏联 {r.UssrRoll} + {r.USSR.Total} = {r.UssrTotal}\n";
                 message+=r.RemovedSide.HasValue?$"{Name(r.Target)}：{Side(r.RemovedSide.Value)}移除 {r.Removed}\n可重选目标，或结束调整。":$"{Name(r.Target)}：影响力无变化。\n本次仍消耗 OPS。";
             }
+            else if(result?.ActivatedJapanPact!=null)message=JapanPactEventMessage(result.ActivatedJapanPact,result.Event);
             else if(result?.ActivatedOpsEffect!=null)message=TurnOpsEventMessage(result.ActivatedOpsEffect,result.Event);
             else if(result?.DefconVpEvent!=null)
             {

@@ -93,7 +93,7 @@ namespace ColdWarStruggle.Presentation
             if(Button(1040,115,214,40,"操作方：苏联")) { controller.SelectSide(PlayerSide.USSR);GUIUtility.ExitGUI(); }
             DrawNameLanguageButton();
             var view=controller.ReadView();mapPresenter.Refresh();
-            if(view.Practice!=null && view.Deployment==null){DrawPracticeStatus(view);DrawOpsEffects(view.Practice);}
+            if(view.Practice!=null && view.Deployment==null){DrawPracticeStatus(view);DrawOpsEffects(view);}
             if(handPanelOpen && view.Cards!=null){DrawHandPanel(view);return;}
             if(finalReportOpen && view.Practice?.FinalScoring!=null){DrawFinalScoringScreen(view);return;}
             bool wideMap=view.Practice!=null && view.Deployment==null;
@@ -177,7 +177,7 @@ namespace ColdWarStruggle.Presentation
                 case RuleError.InvalidSelection:return "须提交完整、不同且合法的目标集合。";
                 case RuleError.StaleDecision:return "选择请求已过期，请刷新局面。";
                 case RuleError.EventRequiresRuling:return "此组合缺少已确认规则，停止结算。";
-                case RuleError.EventForbidden:return "当前规则禁止该事件。";
+                case RuleError.EventForbidden:return "该操作受持续效果限制。";
                 case RuleError.MissingTurnContext:return "缺少当前回合信息，无法结算时代事件。";
                 case RuleError.SetupInProgress:return "当前处于初始部署，不能执行普通行动。";
                 case RuleError.SetupNotActive:return "当前练习没有初始部署。";

@@ -58,7 +58,9 @@ namespace ColdWarStruggle.Bootstrap
                     .WithComecon(Read(root,"Data/Cards/deluxe-2015/early-influence-batch3.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch3.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
                     .WithComeconScenario(Read(root,"Data/Demo/comecon-scenario.json"))
                     .WithVietnamRevolts(Read(root,"Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json"),Read(root,"Docs/Contracts/persistent-effects-batch1.schema.json"))
-                    .WithVietnamScenario(Read(root,"Data/Demo/vietnam-scenario.json"));
+                    .WithVietnamScenario(Read(root,"Data/Demo/vietnam-scenario.json"))
+                    .WithJapanPact(Read(root,"Data/Cards/deluxe-2015/treaty-protection.parameters.json"),Read(root,"Docs/Contracts/treaty-protection.schema.json"))
+                    .WithJapanPactScenario(Read(root,"Data/Demo/japan-pact-scenario.json"));
                 var displayNames=CatalogNamesLoader.Load(Read(root,"Data/Localization/zh-CN.catalog-names.json"),"zh-CN",catalog.Names.Keys);
                 var worldAssets=WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
 #else
@@ -103,7 +105,9 @@ namespace ColdWarStruggle.Bootstrap
                     .WithComecon(Read(root,"early-influence-batch3.parameters.json"),Read(root,"early-influence-batch3.schema.json"),Read(root,"cards.json"))
                     .WithComeconScenario(Read(root,"comecon-scenario.json"))
                     .WithVietnamRevolts(Read(root,"persistent-effects-batch1.parameters.json"),Read(root,"persistent-effects-batch1.schema.json"))
-                    .WithVietnamScenario(Read(root,"vietnam-scenario.json"));
+                    .WithVietnamScenario(Read(root,"vietnam-scenario.json"))
+                    .WithJapanPact(Read(root,"treaty-protection.parameters.json"),Read(root,"treaty-protection.schema.json"))
+                    .WithJapanPactScenario(Read(root,"japan-pact-scenario.json"));
                 var displayNames=CatalogNamesLoader.Load(Read(root,"names.zh-CN.json"),"zh-CN",catalog.Names.Keys);
                 var worldAssets=WorldMapAssets.Load(Read(root,"world-layout.json"),Read(root,"world-land.json"),catalog.Map);
 #endif
