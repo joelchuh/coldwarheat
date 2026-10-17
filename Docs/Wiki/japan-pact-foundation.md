@@ -2,7 +2,7 @@
 
 description：定位补足控制的通用影响力效果、美日条约严格装载、永久实例候选与纯保护查询；出牌和地图展示尚未接入。
 
-状态：3902项原生测试通过，独立审查进行中；不能作为试玩功能。入口：[模块描述](../Descriptors/japan-pact-foundation.module.json)；完整两牌设计仍见 [treaty-protection.md](treaty-protection.md)。
+状态：3902项原生测试通过，独立审查无阻塞项，1项Minor测试覆盖建议已记录；不能作为试玩功能。入口：[模块描述](../Descriptors/japan-pact-foundation.module.json)；完整两牌设计仍见 [treaty-protection.md](treaty-protection.md)。
 
 ## 数据与职责
 
