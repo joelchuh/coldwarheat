@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "id": "module.event-fact-foundation",
+  "kind": "module",
+  "status": "implemented",
+  "description": "已完成影响力事件的不可变成功账本：显式覆盖与已知/未知历史、全量校验ANY查询、精确重试及顺序冲突；尚未接GameState、真实出牌或北约。",
+  "documentation": "Docs/Wiki/event-fact-foundation.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventFactDefinition.cs",
+      "symbol": "InfluenceEventFactDefinition"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/EventFactDefinitionLoader.cs",
+      "symbol": "Load"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/EventFactLedger.cs",
+      "symbol": "Create"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/EventFactLedger.cs",
+      "symbol": "RecordCompleted"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/EventFactLedger.cs",
+      "symbol": "EvaluateAny"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/EventFactLedger.cs",
+      "symbol": "HasSuccessfulEvent"
+    }
+  ],
+  "inputs": [
+    "正式treaty_protection/event_fact_policy与schema；同一地图、卡牌目录和明确覆盖的效果实例；已完成引擎InfluenceEventTransition"
+  ],
+  "outputs": [
+    "不可变EventFactRecording与SuccessfulEventFact；Satisfied/NotSatisfied/RequiresRuling/Rejected查询"
+  ],
+  "dependencies": [
+    "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventFlow.cs",
+    "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventExecution.cs",
+    "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/ContractJson.cs"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.treaty_protection",
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world"
+  ],
+  "preconditions": [
+    "historyKnown必须由可信新局/迁移明确指定；宿主后续将After与父事件同事务发布，UI不能自行声明成功"
+  ],
+  "side_effects": [
+    "只返回账本副本；不递增版本/序号，不消耗随机数、不移牌、不自动注册事件"
+  ],
+  "stop_conditions": [
+    "未完成/拒绝的事件、错误game/map/catalog/效果实例、成功结果与收据不符、重复ID冲突、乱序、新旧历史不明"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/treaty-protection.md",
+      "scope": "R2015 §5.2；零变化成功仍满足前置，但牌区不等于事件历史"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/EventFactFoundationTests.cs",
+      "status": "native-passed"
+    }
+  ],
+  "verification": {
+    "status": "native-passed-review-pending",
+    "report": "Docs/Testing/event-fact-foundation.validation.json",
+    "native_editmode_passed": 4050
+  },
+  "flow": [
+    "正式策略→严格Loader→绑定明确覆盖集",
+    "已完成引擎结果→权限/身份/阶段/结算水位→幂等或不可变追加",
+    "先验证完整查询→成功见证或已知覆盖内否定→其余RequiresRuling",
+    "未来宿主原子发布；本批不改变Player能力"
+  ]
+}
