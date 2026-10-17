@@ -23,3 +23,7 @@ Task2 CLI：真实68例先在stub全部RED，再实现全部GREEN。三处真实
 新增五份描述和三catalog登记；元数据178描述/86数据集/457 C#入口/732数据依赖通过。所有脚本依赖共享数据ID；未新增技能或泛化执行器。
 
 最终Task2原生GREEN：3513/3513，零失败/跳过/不确定；XML1e745eceda4877552335dab1ada891bcf372edc8c93e6e6b1f89568df90ea507。仅新增7个跨消费端语法检查（6负1正），未修改游戏规则。下一步整批fresh审查与新Player构建。
+
+Task2实际独立构建：来源2b73bd9c3640061150ec6ac7a56a1ae814923aee，BuildPayloadManifestPlaytest退出0/成功标记；新工具验证66载荷共799650字节、五个项目程序集、exe与日志通过，证据SHAab0c3f7b9180242472cf1f1c368c883420f3973b76e41896e136dd4baf989814。保留OlympicPlaytest。只改工程构建工具，本批不重做游戏鼠标验收，不把此核验当作UI证明。
+
+整批fresh审查ad696b0..2b73bd9（gpt-6-astra/high）：1 Important目标.meta可覆盖Unity metadata；1 Minor description的UTF-16/码点长度不一致。均采纳。定向RED3518/3514/4，CLI72/70/2；统一拒绝.meta后缀并按Unicode码点计数，GREEN原生3518/3518（XML8272f7f0ecd1f96854d13e23dc6fbc1917327407ba78298ab17a9160e3bc3493）、CLI72/72（SHA27cae910fc86c02f992cb725644dabe01abcdbd7555c79d859400ba3291effcd）。正式66映射不变；元数据描述已用现有双SHA单条同步工具更新。一次修复遍，不再做第二次盲审；下一步以修复提交重建并保存新核验。

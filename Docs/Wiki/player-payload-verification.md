@@ -22,7 +22,7 @@ python -B Tools/Scripts/verify-player-payloads.py --project-root E:/TwilightStru
 
 清单只记录来源路径/目标文件名；例如本地化源文件可映射为 `names.json`。新增正式载荷只更新这一份清单，仍由现有业务加载器校验规则含义。工程核验策略单独保存文件名、程序集和读取限额，不把这些值散落到每个工作脚本。
 
-清单为封闭schema1，最多1MiB/256项/16层；路径仅允许已批准的数据/契约/第三方声明目录，拒绝重复键、大小写碰撞、绝对路径、设备名与重解析点。C#和Python均拒绝非标准JSON扩展。
+清单为封闭schema1，最多1MiB/256项/16层；路径仅允许已批准的数据/契约/第三方声明目录，拒绝重复键、大小写碰撞、绝对路径、设备名与重解析点。C#和Python均拒绝非标准JSON扩展；description上限512个Unicode码点。目标名的.meta后缀（不分大小写）保留给Unity，不能登记为载荷。
 
 生成目录固定为 `Assets/StreamingAssets/ColdWarStruggle`。已有未知文件/目录使复制停止，Unity `.meta` 保留；没有自动删除。全部读取预检先于写入，但写磁盘失败仍可留下部分生成文件，需修复后重新构建。
 

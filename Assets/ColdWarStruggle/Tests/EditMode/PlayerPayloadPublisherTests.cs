@@ -43,6 +43,17 @@ namespace ColdWarStruggle.Tests
             var root=Fixture();using(var f=File.OpenWrite(Path.Combine(root,"Data/value.json")))f.SetLength(64L*1024*1024+1);
             Assert.Throws<IOException>(()=>PlayerPayloadPublisher.Synchronize(root));Assert.That(File.Exists(Target(root)),Is.False);
         }
+        [Test] public void Manifest_cannot_replace_Unity_metadata_or_change_earlier_payload()
+        {
+            var root=Fixture();Directory.CreateDirectory(Path.GetDirectoryName(Target(root)));
+            File.WriteAllText(Target(root),"old payload");File.WriteAllText(Target(root)+".meta","unity metadata");
+            File.WriteAllText(Path.Combine(root,"Data/other.json"),"replacement");
+            var j=PlayerPayloadManifestTests.Sample();((JArray)j["entries"]).Add(new JObject{["source"]="Data/other.json",["destination"]="value.json.META"});
+            File.WriteAllText(Path.Combine(root,"Tools/Configuration/player-payloads.json"),j.ToString());
+            Assert.Throws<ArgumentException>(()=>PlayerPayloadPublisher.Synchronize(root));
+            Assert.That(File.ReadAllText(Target(root)+".meta"),Is.EqualTo("unity metadata"));
+            Assert.That(File.ReadAllText(Target(root)),Is.EqualTo("old payload"));
+        }
         [TestCase("root")][TestCase("source")][TestCase("target")]
         public void Existing_windows_junction_in_read_or_write_path_is_rejected(string where)
         {

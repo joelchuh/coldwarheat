@@ -60,8 +60,16 @@ namespace ColdWarStruggle.Tests
         {var j=Sample();j["entries"][0]["source"]=path;Assert.Throws<ArgumentException>(()=>PlayerPayloadManifest.Load(j.ToString()));}
         [TestCase("sub/value.json")][TestCase("..")] [TestCase("value.json.")]
         [TestCase("CON.txt")][TestCase("LPT9.txt")][TestCase("x:y.json")][TestCase(" value.json")]
+        [TestCase("value.json.meta")][TestCase("value.json.META")]
         public void Destination_is_safe_flat_filename(string path)
         {var j=Sample();j["entries"][0]["destination"]=path;Assert.Throws<ArgumentException>(()=>PlayerPayloadManifest.Load(j.ToString()));}
+        [TestCase(512,true)][TestCase(513,false)]
+        public void Description_length_counts_unicode_code_points_like_the_python_consumer(int count,bool accepted)
+        {
+            var j=Sample();j["description"]=string.Concat(Enumerable.Repeat("\U0001F30D",count));
+            if(accepted)Assert.That(PlayerPayloadManifest.Load(j.ToString()).Entries.Count,Is.EqualTo(1));
+            else Assert.Throws<ArgumentException>(()=>PlayerPayloadManifest.Load(j.ToString()));
+        }
         [TestCase("trailing-object")][TestCase("trailing-array")][TestCase("single-quotes")]
         [TestCase("unquoted-property")][TestCase("leading-zero")][TestCase("hex")]
         public void Nonstandard_json_dialects_cannot_disagree_with_the_python_consumer(string dialect)

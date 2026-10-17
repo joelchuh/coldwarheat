@@ -123,6 +123,21 @@ check("duplicate destination ignoring case", lambda: mutate_json(MANIFEST,
     lambda j: j["entries"].append({"source": "Data/third.bin", "destination": "VALUE.BIN"}), "DUPLICATE_ENTRY"))
 check("unknown entry field", lambda: mutate_json(MANIFEST,
     lambda j: j["entries"][0].update({"execute": True}), "INVALID_MANIFEST"))
+for value in ["value.json.meta", "value.json.META"]:
+    check("Unity metadata target reserved " + value, lambda v=value: mutate_json(MANIFEST,
+        lambda j: j["entries"][0].update({"destination": v}), "INVALID_PATH"))
+def unicode_description(count, accepted):
+    root = fixture()
+    data = json.loads((root / MANIFEST).read_text(encoding="utf-8"))
+    data["description"] = "\U0001f30d" * count
+    write(root, MANIFEST, data)
+    if accepted:
+        code, report = invoke(root)
+        assert code == 0 and report["status"] == "passed", report
+    else:
+        expect(root, "INVALID_MANIFEST")
+check("description 512 Unicode code points accepted", lambda: unicode_description(512, True))
+check("description 513 Unicode code points rejected", lambda: unicode_description(513, False))
 for value in ["../value.bin", "Data/../value.bin", "Data//value.bin", "C:/value.bin", "//server/value.bin",
               "Data\\value.bin", "Data/value.bin.", "Data/value.bin ", "Data/CON.txt", "Data/COM1.txt",
               "Data/x:y.bin", "Tools/secret.bin", "Docs/secret.bin"]:

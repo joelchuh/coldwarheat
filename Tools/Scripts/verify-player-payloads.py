@@ -138,6 +138,8 @@ def manifest(evidence):
         _paths.fields(row, ("source", "destination"), "INVALID_MANIFEST")
         source = relative(row["source"], source=True)
         target = relative(row["destination"], flat=True)
+        if target.lower().endswith(".meta"):
+            fail("INVALID_PATH", "Unity metadata filenames are reserved")
         if source.casefold() in sources or target.casefold() in targets:
             fail("DUPLICATE_ENTRY", "Manifest source or destination collision")
         sources.add(source.casefold()); targets.add(target.casefold())

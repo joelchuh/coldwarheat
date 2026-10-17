@@ -41,12 +41,20 @@ namespace ColdWarStruggle.Infrastructure
         }
         static string Text(JToken value)
         {if(value?.Type!=JTokenType.String || string.IsNullOrWhiteSpace((string)value))throw new ArgumentException("Nonempty text required.");return (string)value;}
+        static int CodePointCount(string value)
+        {
+            var count=0;
+            for(var i=0;i<value.Length;i++,count++)
+                if(char.IsHighSurrogate(value[i]) && i+1<value.Length && char.IsLowSurrogate(value[i+1]))i++;
+            return count;
+        }
         static void Fields(JObject value,params string[] names)
         {if(value==null || !new HashSet<string>(value.Properties().Select(x=>x.Name),StringComparer.Ordinal).SetEquals(names))throw new ArgumentException("Unexpected manifest fields.");}
         internal static void SafePath(string path,bool source)
         {
             var segments=path.Split('/');
             if(!source && segments.Length!=1)throw new ArgumentException("Destination must be a flat filename.");
+            if(!source && path.EndsWith(".meta",StringComparison.OrdinalIgnoreCase))throw new ArgumentException("Unity metadata filenames are reserved.");
             foreach(var part in segments)
             {
                 if(!Segment.IsMatch(part) || part.EndsWith(".",StringComparison.Ordinal))throw new ArgumentException("Unsafe manifest path.");
@@ -66,7 +74,7 @@ namespace ColdWarStruggle.Infrastructure
             }
             catch(JsonException e){throw new ArgumentException("Invalid manifest JSON.",e);}
             var root=ContractJson.Parse(json) as JObject;Fields(root,"schema_version","dataset_id","description","entries");
-            if(root["schema_version"].Type!=JTokenType.Integer || root["schema_version"].ToString()!="1" || Text(root["dataset_id"])!="workflow.player_payloads" || Text(root["description"]).Length>512)throw new ArgumentException("Invalid manifest identity.");
+            if(root["schema_version"].Type!=JTokenType.Integer || root["schema_version"].ToString()!="1" || Text(root["dataset_id"])!="workflow.player_payloads" || CodePointCount(Text(root["description"]))>512)throw new ArgumentException("Invalid manifest identity.");
             var rows=root["entries"] as JArray;if(rows==null || rows.Count<1 || rows.Count>256)throw new ArgumentException("Manifest entry count.");
             var sources=new HashSet<string>(StringComparer.OrdinalIgnoreCase);var targets=new HashSet<string>(StringComparer.OrdinalIgnoreCase);var entries=new List<PlayerPayloadEntry>();
             foreach(var value in rows)
