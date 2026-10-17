@@ -181,3 +181,5 @@
 - [影响力事件结果明细](influence-result-details.md)：公开收据的前后数值、头条/子事件与历史上下文；实现和验收状态见模块JSON。
 
 - [越南起义运行基础](vietnam-ops-foundation.md)：固定国家加点及独立地区贡献；真实出牌待后批接线，见模块JSON。
+
+- [越南起义真实出牌与条件OPS](vietnam-play.md)：先查module.vietnam-play，Core已验证、Demo接线中。

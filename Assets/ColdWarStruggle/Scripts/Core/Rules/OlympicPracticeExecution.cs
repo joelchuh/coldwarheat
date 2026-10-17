@@ -32,17 +32,26 @@ namespace ColdWarStruggle.Core
         internal OlympicPracticeExecution WithOperations(GameState before,OperationsContext operations)
         {
             if(!Matches(before) || Mode.HasValue || Flow.Stage!=OlympicResolutionStage.AwaitingOperations || operations==null
-                || operations.Actor!=Flow.Sponsor || operations.RegionalBudget!=null
+                || operations.Actor!=Flow.Sponsor || operations.RegionalBudget?.HasTargets==true || (operations.RegionalBudget?.Spent??0)!=0
                 || (operations.Mode!=OperationsMode.Influence && operations.Mode!=OperationsMode.Realignment))throw new ArgumentException("Invalid Olympic operations binding.");
             return new OlympicPracticeExecution(this,operations,before,before.Countries,0,before.RandomState,1);
         }
         // Only the trusted ordinary OPS transition advances this immutable authority binding.
         internal OlympicPracticeExecution AdvanceOperations(GameState before,IReadOnlyDictionary<CountryId,CountryState> countries,
-            int spent,RandomSnapshot random,int eventCount)
+            int spent,RandomSnapshot random,int eventCount,OperationsContext operations)
         {
-            if(!Mode.HasValue || !Matches(before) || spent<=before.SpentOps || spent>Operations.Budget || eventCount<=0
+            if(!Mode.HasValue || !Matches(before) || spent<=before.SpentOps || operations==null || spent>operations.Budget || !ValidProgressContext(operations,spent) || eventCount<=0
                 || (Mode==OperationsMode.Influence && !ReferenceEquals(random,before.RandomState)))throw new ArgumentException("Invalid Olympic operations progress.");
-            return new OlympicPracticeExecution(this,Operations,before,countries,spent,random,eventCount);
+            return new OlympicPracticeExecution(this,operations,before,countries,spent,random,eventCount);
+        }
+        bool ValidProgressContext(OperationsContext after,int spent)
+        {
+            if(Operations.RegionalBudget==null)return ReferenceEquals(after,Operations);
+            var old=Operations.RegionalBudget;var next=after.RegionalBudget;
+            return next!=null && after.Id==Operations.Id && after.Actor==Operations.Actor && after.Mode==Operations.Mode
+                && ReferenceEquals(after.Costs,Operations.Costs) && after.Reachable.SequenceEqual(Operations.Reachable)
+                && ReferenceEquals(next.Map,old.Map) && ReferenceEquals(next.Quote,old.Quote) && next.Spent==spent
+                && next.EligibleBonuses.All(old.EligibleBonuses.Contains);
         }
         internal bool Matches(GameState state)
         {

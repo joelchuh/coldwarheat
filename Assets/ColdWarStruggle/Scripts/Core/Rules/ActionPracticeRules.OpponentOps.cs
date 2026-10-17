@@ -49,8 +49,9 @@ namespace ColdWarStruggle.Core
             var realign=sequence.Mode==OperationsMode.Realignment;
             var quote=QuoteCard(s,p.Actor,sequence.Card,realign?OpsValuePurpose.Realignment:OpsValuePurpose.Influence);
             var next=new ActionPracticeState(p.Definition,realign?ActionPracticeStage.Realigning:ActionPracticeStage.PlacingInfluence,p.CompletedActions,sequence.Card,p.Space,p.VpForUS,p.Risk,p.OpsEffects,sequence,rounds:p.Rounds,headline:p.Headline);
-            if(!realign)return Commit(s,next,s.Cards,s.RandomState,quote.GeneralValue);
-            var ops=new OperationsContext(PracticeOperationsId(s,p.CompletedActions),p.Actor,quote.GeneralValue,Array.Empty<CountryId>(),OperationsMode.Realignment,s.Operations.Costs);
+            var regional=RegionalBudget(s,quote);
+            if(!realign)return Commit(s,next,s.Cards,s.RandomState,regional?.EffectiveBudget??quote.GeneralValue,regionalBudget:regional);
+            var ops=new OperationsContext(PracticeOperationsId(s,p.CompletedActions),p.Actor,regional?.EffectiveBudget??quote.GeneralValue,Array.Empty<CountryId>(),OperationsMode.Realignment,s.Operations.Costs,regional);
             return new CardActionTransition(RuleError.None,s.WithPractice(next,ops,s.Cards,s.RandomState));
         }
         public static RuleError CanChooseOpponentOperations(GameState s,PlayerSide side,OperationsMode mode)
@@ -113,12 +114,11 @@ namespace ColdWarStruggle.Core
             }
             if(p.Definition.TurnOpsEvents?.Effects.TryGetValue(q.Card,out var flat)==true)
             {
-                var activation=p.OpsEffects.Activate(flat,q.EventSide,"practice.event."+p.CompletedActions,checked(s.EventSequence+1),s.Turn);
-                if(!activation.Accepted)return new CardActionTransition(activation.Error);
-                if(activation.AlreadyApplied)return new CardActionTransition(RuleError.StaleContext);
+                var error=PrepareTurnOpsEvent(s,q.EventSide,flat,"practice.event."+p.CompletedActions,out var candidate,out var activation,out var grant);
+                if(error!=RuleError.None)return new CardActionTransition(error);
                 var after=new ActionPracticeState(p.Definition,ActionPracticeStage.ResolvingEvent,p.CompletedActions,q.Card,p.Space,p.VpForUS,p.Risk,activation.After,q,rounds:p.Rounds,headline:p.Headline);
-                var committed=Commit(s,after,s.Cards,s.RandomState);var done=AdvanceOpponentStep(committed.NextState,CardResolutionStep.Event);
-                return done.Accepted?new CardActionTransition(RuleError.None,done.NextState,activatedOpsEffect:activation.Instance):done;
+                var committed=Commit(candidate,after,candidate.Cards,candidate.RandomState);var done=AdvanceOpponentStep(committed.NextState,CardResolutionStep.Event);
+                return done.Accepted?new CardActionTransition(RuleError.None,done.NextState,eventTransition:grant,activatedOpsEffect:activation.Instance):done;
             }
             return new CardActionTransition(RuleError.UnsupportedCardAction);
         }

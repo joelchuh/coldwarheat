@@ -77,8 +77,7 @@ namespace ColdWarStruggle.Core
         {
             var p=Practice;
             if(p?.Olympic?.Mode.HasValue!=true)return p;
-            if(!ReferenceEquals(Operations,operations))throw new ArgumentException("Olympic OPS context cannot change during an operation.");
-            var execution=p.Olympic.AdvanceOperations(this,countries,spent,random,count);
+            var execution=p.Olympic.AdvanceOperations(this,countries,spent,random,count,operations);
             return new ActionPracticeState(p.Definition,p.Stage,p.CompletedActions,p.ActiveCard,p.Space,p.VpForUS,p.Risk,p.OpsEffects,
                 p.OpponentOps,p.TurnEnd,p.Headline,p.HeadlineSelection,p.FinalScoring,p.SpaceDiscard,p.Rounds,p.Blockade,p.FiveYearPlan,p.War,execution);
         }

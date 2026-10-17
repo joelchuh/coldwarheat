@@ -32,6 +32,17 @@ namespace ColdWarStruggle.Core
     {
         public CardCatalog Cards { get; }
         public IReadOnlyDictionary<CardId,TurnOpsEffectDefinition> Effects { get; }
+        // The legacy constructor stays flat-only. Regional handlers require this explicit registration.
+        public PracticeTurnOpsCatalog WithVietnam(TurnOpsEffectDefinition effect)=>new PracticeTurnOpsCatalog(this,effect);
+        PracticeTurnOpsCatalog(PracticeTurnOpsCatalog existing,TurnOpsEffectDefinition effect)
+        {
+            if(effect==null || effect.Card.Value!="card.vietnam_revolts" || effect.EffectId!="effect.vietnam_revolts"
+                || effect.AffectedSide!=TurnOpsAffectedSide.USSR || effect.RegionalBonus?.Region!="region.southeast_asia"
+                || effect.ImmediateInfluence?.Country.Value!="country.vietnam" || existing.Effects.ContainsKey(effect.Card))throw new ArgumentException("Invalid Vietnam registration.");
+            var printed=existing.Cards.GetCard(effect.Card);
+            if(printed.Kind!=CardKind.Event || printed.Affiliation!=CardAffiliation.USSR || printed.Effect?.EffectId!=effect.EffectId)throw new ArgumentException("Invalid Vietnam printed binding.");
+            Cards=existing.Cards;Effects=new ReadOnlyDictionary<CardId,TurnOpsEffectDefinition>(existing.Effects.Values.Append(effect).ToDictionary(e=>e.Card));
+        }
         public PracticeTurnOpsCatalog(CardCatalog cards,IEnumerable<TurnOpsEffectDefinition> effects)
         {
             if(cards==null || effects==null)throw new ArgumentNullException();

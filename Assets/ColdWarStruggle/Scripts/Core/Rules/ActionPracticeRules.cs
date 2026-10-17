@@ -146,7 +146,9 @@ namespace ColdWarStruggle.Core
         static OpsRegionalBudget RegionalBudget(GameState state,OpsGeneralQuote quote)
         {
             var china=state.Practice.Definition.China;
-            return china!=null && quote.Card!=null && quote.Card.Id.Equals(china.Card)?new OpsRegionalBudget(state.Map,quote,new[]{china.Bonus}):null;
+            var bonuses=state.Practice.OpsEffects.GetRegionalBonuses(state.Turn,quote.Actor).ToList();
+            if(china!=null && quote.Card!=null && quote.Card.Id.Equals(china.Card))bonuses.Add(china.Bonus);
+            return bonuses.Count==0?null:new OpsRegionalBudget(state.Map,quote,bonuses);
         }
         static bool HasActivePhysicalCard(GameState state)
         {

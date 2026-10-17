@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "id": "module.vietnam-play",
+  "kind": "module",
+  "status": "in-progress",
+  "description": "真实越南事件与普通/对手/Olympic地区OPS已通过3822项原生测试；Demo注册、条件提示与Player待接。",
+  "documentation": "Docs/Wiki/vietnam-play.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/TurnOpsEffects.cs",
+      "symbol": "WithVietnam"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.TurnOpsEvents.cs",
+      "symbol": "PrepareTurnOpsEvent"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.cs",
+      "symbol": "RegionalBudget"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OlympicPracticeExecution.cs",
+      "symbol": "ValidProgressContext"
+    }
+  ],
+  "inputs": [
+    "已校验持久参数/正式地图与印刷牌目录；权威回合、事件控制者与实际OPS Actor"
+  ],
+  "outputs": [
+    "原子固定加点与地区效果收据；跨受支持OPS路径的条件预算"
+  ],
+  "dependencies": [
+    "module.vietnam-ops-foundation",
+    "module.regional-ops-budget"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.persistent_batch1",
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world"
+  ],
+  "preconditions": [
+    "权威Host与显式WithVietnam注册；Demo待接"
+  ],
+  "side_effects": [
+    "成功Host提交更新一次权威状态，失败候选不发布"
+  ],
+  "stop_conditions": [
+    "未知绑定/来源/语义、错误Actor/跨回合、重复新激活或溢出明确拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/persistent-effects.md",
+      "scope": "官方R2015§7.4及用户确认PE-INTERPRETATION-01；本批仅基础"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/VietnamPlayTests.cs",
+      "status": "passed"
+    }
+  ],
+  "verification": {
+    "report": "Docs/Testing/vietnam-play.validation.json"
+  }
+}

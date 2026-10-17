@@ -24,8 +24,8 @@ namespace ColdWarStruggle.Core
         static CardActionTransition PlanOpponentCoup(GameState state,PlayerSide side,CountryId target,OpponentOpsSequence sequence)
         {
             var error=CheckCoupTarget(state,side,sequence.Card,target);if(error!=RuleError.None)return new CardActionTransition(error);
-            var p=state.Practice;var quote=QuoteCard(state,side,sequence.Card,OpsValuePurpose.Coup);var slot=PracticeSlotId(state);
-            var request=new CoupAttemptRequest(slot,state.GameId,slot,sequence.Card.Value,state.Version,state.Turn.Number,target,side,p.Actor,quote.GeneralValue,quote.GeneralValue);
+            var p=state.Practice;var strength=QuoteCoupStrength(state,side,sequence.Card,target);var slot=PracticeSlotId(state);
+            var request=new CoupAttemptRequest(slot,state.GameId,slot,sequence.Card.Value,state.Version,state.Turn.Number,target,side,p.Actor,strength,strength);
             var plan=CoupAttemptRules.PlanAttempt(p.Risk.BindCurrent(state),request,new Pcg32Random(state.RandomState));
             if(plan.AlreadyApplied)throw new InvalidOperationException("Action cursor does not match coup receipts.");
             var risk=p.Risk.After(plan,p.VpForUS);var terminal=risk.Result?.Outcome==VictoryOutcome.Finished;

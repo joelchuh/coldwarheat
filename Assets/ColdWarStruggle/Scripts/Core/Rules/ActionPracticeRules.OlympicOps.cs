@@ -43,9 +43,10 @@ namespace ColdWarStruggle.Core
                     return FinishOlympicRoot(state,OlympicResolutionRules.DeclineOperations(execution.Flow,side,execution.Flow.Revision),OlympicPracticeOutcome.OperationsDeclined);
                 if(mode==OperationsMode.Coup)return PlanOlympicCoup(state,side,target.Value);
                 var quote=QuoteOlympicOperations(state,side,mode==OperationsMode.Influence?OpsValuePurpose.Influence:OpsValuePurpose.Realignment);
+                var regional=RegionalBudget(state,quote);
                 var ops=mode==OperationsMode.Influence
-                    ?OperationsContext.FromRoundStart(PracticeOperationsId(state,p.CompletedActions)+".olympic",side,quote.GeneralValue,state.Map,execution.RootCountries,state.Operations.Costs)
-                    :new OperationsContext(PracticeOperationsId(state,p.CompletedActions)+".olympic",side,quote.GeneralValue,Array.Empty<CountryId>(),OperationsMode.Realignment,state.Operations.Costs);
+                    ?OperationsContext.FromRoundStart(PracticeOperationsId(state,p.CompletedActions)+".olympic",side,regional?.EffectiveBudget??quote.GeneralValue,state.Map,execution.RootCountries,state.Operations.Costs,regional)
+                    :new OperationsContext(PracticeOperationsId(state,p.CompletedActions)+".olympic",side,regional?.EffectiveBudget??quote.GeneralValue,Array.Empty<CountryId>(),OperationsMode.Realignment,state.Operations.Costs,regional);
                 var next=new ActionPracticeState(p.Definition,mode==OperationsMode.Influence?ActionPracticeStage.PlacingInfluence:ActionPracticeStage.Realigning,p.CompletedActions,p.ActiveCard,p.Space,p.VpForUS,p.Risk,p.OpsEffects,rounds:p.Rounds,headline:p.Headline,olympic:execution.WithOperations(state,ops));
                 return new CardActionTransition(RuleError.None,state.WithPractice(next,ops,state.Cards,state.RandomState));
             }
@@ -63,8 +64,8 @@ namespace ColdWarStruggle.Core
         {
             var p=state.Practice;var flow=p.Olympic.Flow;
             var error=CheckCoupTarget(state,side,p.ActiveCard.Value,target);if(error!=RuleError.None)return new CardActionTransition(error);
-            var quote=QuoteOlympicOperations(state,side,OpsValuePurpose.Coup);var slot=PracticeSlotId(state);
-            var request=new CoupAttemptRequest(slot+".olympic.coup",state.GameId,slot,p.Definition.Olympic.EffectId,state.Version,state.Turn.Number,target,side,flow.RootPhasing,quote.GeneralValue,quote.GeneralValue);
+            var strength=QuoteCoupStrength(state,side,p.ActiveCard.Value,target);var slot=PracticeSlotId(state);
+            var request=new CoupAttemptRequest(slot+".olympic.coup",state.GameId,slot,p.Definition.Olympic.EffectId,state.Version,state.Turn.Number,target,side,flow.RootPhasing,strength,strength);
             var plan=CoupAttemptRules.PlanAttempt(p.Risk.BindCurrent(state),request,new Pcg32Random(state.RandomState));
             if(plan.AlreadyApplied)throw new InvalidOperationException("Olympic root already spent coup authorization.");
             var risk=p.Risk.After(plan,p.VpForUS);var terminal=risk.Result?.Outcome==VictoryOutcome.Finished;
