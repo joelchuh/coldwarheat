@@ -35,4 +35,4 @@ Interfaces: CLI --project-root ROOT --player-directory REL --build-log REL；std
 - [x] GREEN，复用既有元数据工具并更新description、工作记录、报告；不新增通用任务运行器。
 - [x] 一名fresh整批审查；Important一次定向RED/GREEN修复，无第二轮盲审。
 - [x] 全量原生通过后独立构建，用新脚本核验实际载荷/程序集/log；记录构建提交和实际限制。
-- [ ] 精确提交/push/ls-remote验证，进入下一卡牌任务。
+- [x] 精确提交/push/ls-remote验证，进入下一卡牌任务。
