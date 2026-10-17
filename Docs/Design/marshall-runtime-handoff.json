@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "kind": "design-handoff",
+  "status": "planned",
+  "description": "下一批马歇尔真实出牌接线：复用已验证的影响力、成功账本和GameState保留，补注册门禁、原子完成、对手顺序/头条/五年计划和后续Demo验收。当前不可视为已实现。",
+  "architecture": "Docs/Architecture/marshall-runtime-integration-draft.md",
+  "implemented_dependencies": [
+    "Docs/Descriptors/marshall-foundation.module.json",
+    "Docs/Descriptors/event-fact-foundation.module.json",
+    "Docs/Descriptors/event-fact-state.module.json"
+  ],
+  "next_reads": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/PracticeInfluenceCatalog.cs",
+      "symbols": [
+        "PracticeInfluenceCatalog"
+      ],
+      "purpose": "新增明确覆盖定义与Marshall专用持续提示门禁，其他持续牌保持拒绝"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/State/GameState.cs",
+      "symbols": [
+        "GameState",
+        "WithEventFacts"
+      ],
+      "purpose": "注册时必须显式同一定义账本；保留六条复制路径与单次追加约束"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.Events.cs",
+      "symbols": [
+        "CompleteEventAction"
+      ],
+      "purpose": "原子事件完成前追加已覆盖事实，等待选择不记录"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/ActionPracticeRules.FiveYearPlan.cs",
+      "symbols": [
+        "CompleteFiveYearPlanInfluence",
+        "SupportedFiveYearPlanChildren"
+      ],
+      "purpose": "子事件完成也记录；父子回返和随机前支持检查"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/EventFactLedger.cs",
+      "symbols": [
+        "RecordCompleted"
+      ],
+      "purpose": "先前Minor：实例覆盖检查应先于不可信CardId构造，补真实Flow回归"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.cs",
+      "symbols": [
+        "CreateHost"
+      ],
+      "purpose": "后续Player接线的新局账本初始化"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.TurnEndFixture.cs",
+      "symbols": [
+        "CreateTurnEndFixture"
+      ],
+      "purpose": "人工期末场景也需明确账本，已核实CreateTurnEndFixture入口"
+    }
+  ],
+  "validation": [
+    "先RED后GREEN；真实直接/对手两序/头条/FiveYearPlan路径",
+    "未知/等待/失败不产生成功；零合法国仍无变化成功",
+    "溢出完整回滚；同command重放仅一次",
+    "全量原生测试、元数据、一次独立审查；Player另行构建与实机验收"
+  ],
+  "not_implemented": [
+    "Marshall runtime registration",
+    "NATO runtime",
+    "Warsaw runtime",
+    "save/import history migration"
+  ],
+  "latest_player": "Builds/JapanPactPlaytest/ColdWarStruggleDemo.exe"
+}
