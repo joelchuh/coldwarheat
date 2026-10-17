@@ -7,6 +7,17 @@ namespace ColdWarStruggle.Presentation
 {
     public sealed partial class DemoView
     {
+        Vector2 cardReasonScroll;
+        string cardReasonText;
+        void DrawCardReason(string reason)
+        {
+            if(cardReasonText!=reason){cardReasonText=reason;cardReasonScroll=Vector2.zero;}
+            if(string.IsNullOrEmpty(reason))return;
+            var content=new GUIContent(reason);
+            var height=Mathf.Max(38,small.CalcHeight(content,240));
+            cardReasonScroll=GUI.BeginScrollView(new Rect(972,537,262,38),cardReasonScroll,new Rect(0,0,240,height));
+            GUI.Label(new Rect(0,0,240,height),content,small);GUI.EndScrollView();
+        }
         string CardTitle(CardId id)=>names.TryGetValue(id.Value,out var text)?text:id.Value;
         void OpenCards() { handPanelOpen=true;handScroll=Vector2.zero; }
         void DrawPracticeStatus(PlayerViewSnapshot view)
@@ -117,7 +128,7 @@ namespace ColdWarStruggle.Presentation
                         GUI.enabled=option.Realignment==RuleError.None;
                         if(Button(972,500,126,32,"政局调整"))UseCard(CardActionKind.Realignment);
                         GUI.enabled=true;
-                        if(Button(1108,500,126,32,"重新选牌"))OpenCards();Text(972,537,262,38,reason,small);
+                        if(Button(1108,500,126,32,"重新选牌"))OpenCards();DrawCardReason(reason);
                     }
                     }
                 }
