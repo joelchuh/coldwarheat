@@ -25,4 +25,4 @@ Ruling: Keep flat constructor closed and add explicit WithVietnam registration â
 
 Base1137f63a57dce3164171698c4f57c22071e3cc5c; branch feat/vietnam-play.
 
-Task1 Core implementation/testing complete: 3822/3822; Task2 pending. Whole-branch review after Task2.
+Task1/Task2 complete: final3840/3840; one review Important fixed, final Player71 payloads and limited real clicks passed. Delivery branch feat/vietnam-play; remote SHA verified separately after docs commit.

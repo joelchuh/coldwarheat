@@ -3,7 +3,7 @@
   "id": "validation.vietnam-play",
   "description": "真实越南事件/条件OPS与Demo逐批验证；只将实际运行结果标为通过。",
   "baseline_commit": "1137f63a57dce3164171698c4f57c22071e3cc5c",
-  "status": "review-fix-validation-pending",
+  "status": "passed-reviewed-built-limited-manual",
   "runs": [
     {
       "status": "failed",
@@ -137,6 +137,26 @@
       "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\vietnam-preview-review-red",
       "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\vietnam-preview-review-red\\results.xml",
       "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\vietnam-preview-review-red\\editor.log"
+    },
+    {
+      "status": "passed",
+      "error_code": null,
+      "total": 3840,
+      "passed": 3840,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "unity_exit_code": 0,
+      "xml_sha256": "d75322c1c0dc8622d4d0fcac3aa56230ee877eade62e11438a6c99ccc3098227",
+      "schema_version": 1,
+      "run_id": "vietnam-preview-review-green",
+      "duration_ms": 180478,
+      "project": "E:\\TwilightStruggle",
+      "unity_version": "6000.6.0f1_f7f8ed4d1e24",
+      "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
+      "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\vietnam-preview-review-green",
+      "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\vietnam-preview-review-green\\results.xml",
+      "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\vietnam-preview-review-green\\editor.log"
     }
   ],
   "review": {
@@ -145,8 +165,9 @@
     "critical": 0,
     "important": 1,
     "minor": 0,
-    "finding": "Pre-confirmation regional OPS projection omits Vietnam; fixing in one pass",
-    "rulings": "Docs/Worklogs/2026-10-17-vietnam-play.md"
+    "finding": "Pre-confirmation regional OPS projection omitted Vietnam; fixed in 77aac8d.",
+    "rulings": "Docs/Worklogs/2026-10-17-vietnam-play.md",
+    "resolution": "Fixed via 5 failing-before/passing-after cases plus full 3840 native suite; no second review."
   },
   "superseded_build": {
     "source": "26fe56a34092683367497436873e58a23f2da882",
@@ -161,6 +182,58 @@
       "result": "Vietnam 0 to 2; removed 1; version3 sequence4; SEA conditional label visible",
       "capture": "TestResults/vietnam-event-feedback.png",
       "sha256": "7988b4d662a2f69c1d0214f8a73e281c92422887f7c12048b102e716e239bd1d"
+    },
+    {
+      "source": "77aac8d3d2f7b6a2551a4bbe2e06ef3758f22b2d",
+      "path": "vietnam-china-combined-preview",
+      "result": "China ordinary4 / SEA+Asia maximum6 visible after Vietnam event.",
+      "capture": "TestResults/vietnam-china-combined-preview.png",
+      "sha256": "b0416812fdd55eaa0421c4c8ee6430a304e6fbfe3da804d98e2fa79eff0deb04"
+    },
+    {
+      "source": "77aac8d3d2f7b6a2551a4bbe2e06ef3758f22b2d",
+      "path": "vietnam-china-forfeited-bonus",
+      "result": "Vietnam +1 then Japan +1 forfeits SEA; returning Vietnam keeps only Asia, remaining2/total5.",
+      "capture": "TestResults/vietnam-china-forfeited-bonus.png",
+      "sha256": "924bd1db2bbd99cfb526bbd4b0f5c39b89c64f8601c23a08d79e4a1e7315dfca"
+    },
+    {
+      "source": "77aac8d3d2f7b6a2551a4bbe2e06ef3758f22b2d",
+      "path": "vietnam-olympic-conditional-preview",
+      "result": "Purge active: Olympic ordinary3 / SEA conditional maximum4; all controls visible.",
+      "capture": "TestResults/vietnam-olympic-conditional-preview.png",
+      "sha256": "d31a7786971416d35665002e217c68e99e51cadfea3c661f067d6c3cd8a500bd"
+    },
+    {
+      "source": "77aac8d3d2f7b6a2551a4bbe2e06ef3758f22b2d",
+      "path": "vietnam-olympic-coup-result",
+      "result": "Angola quote3/military3 matched actual die4/strength3/result5; US1->0, USSR1->5, military0->3, DEFCON4->3.",
+      "capture": "TestResults/vietnam-olympic-coup-result.png",
+      "sha256": "c1f8377af2b3427aefa4905a9cdc03f5051e668f7b9b51a4201ac3400d409f8f"
     }
-  ]
+  ],
+  "source_commit": "77aac8d3d2f7b6a2551a4bbe2e06ef3758f22b2d",
+  "post_test_change": "Coordinates/font sizing only; final Player compilation and pending-panel visual acceptance passed.",
+  "build": {
+    "status": "passed",
+    "player_directory": "Builds/VietnamPlaytest",
+    "build_log": "TestResults/vietnam-play-build-final.log",
+    "manifest_sha256": "9b46ff1716727003ad97af1c93c95be75ff4f769f6a503337d90723c82021ab2",
+    "payload_count": 71,
+    "payload_bytes": 813501,
+    "source": "77aac8d3d2f7b6a2551a4bbe2e06ef3758f22b2d",
+    "verification": "TestResults/vietnam-play-build-final-verification.json",
+    "verification_sha256": "daba28122a367cedd3259c426e0501bf9824a1e62ad9a75f185a4fa77fd5afce",
+    "executable_sha256": "a4c71b1bfc3e42d02f2f129fe04adef3ebf2343a662884e4b99598e9dfc90e7d",
+    "build_log_sha256": "02cca28849552512a7ffda30affae895d8462a87d10d7624487f8042e52c1a91"
+  },
+  "manual_limits": [
+    "Final Player: direct Vietnam, China influence region transitions, Purge and Olympic boycott/coup tested. Opponent-event and headlines covered by native tests, not separate UI clicks.",
+    "Ordinary selected-card reason box can clip combined regional/Space explanations; tracked as next bounded UI fix."
+  ],
+  "player_log": {
+    "path": "TestResults/vietnam-play-final-player.log",
+    "sha256": "ccc7552a81fde0a25fe180ef904affa71fabab93eda7673933abfd1f4ae01466",
+    "exception_or_error_matches": 0
+  }
 }
