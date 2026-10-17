@@ -1,7 +1,7 @@
 # 早期影响力事件：第三批
 
 > description: 查询独立红色政权的名单与追平算法、经互会的敌控过滤与不同国家放置，以及零变化、选择归属和跨卡边界。
-> 2026-10-17：独立红色政权运行时已实现，见[实现与验证](independent-reds.md)；经互会未接。
+> 2026-10-17：独立红色政权运行时已实现，见[实现与验证](independent-reds.md)；经互会亦已接入，见[运行与验证](comecon-play.md)，不足4国仍待裁定。
 > 原设计状态：2026-09-30，2牌基础设计；参数绑定不等于C#实现。截至本批三批共10牌Bound、92个非中国牌Unresolved；最新数量见[数据索引](map-card-data.md)，102个处理器均planned。
 > 入口：[参数描述](../../Data/Descriptors/early-influence-batch3.data.json)、[参数](../../Data/Cards/deluxe-2015/early-influence-batch3.parameters.json)、[Schema](../Contracts/early-influence-batch3.schema.json)、[模块](../Descriptors/influence-events.module.json)、[案例](../Design/early-influence-batch3.cases.json)、[验证](../Design/early-influence-batch3.validation.json)。
 

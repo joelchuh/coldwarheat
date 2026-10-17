@@ -2,8 +2,8 @@
   "schema_version": 1,
   "id": "module.vietnam-play",
   "kind": "module",
-  "status": "in-progress",
-  "description": "真实越南事件与普通/对手/Olympic地区OPS已通过3822项原生测试；Demo注册、条件提示与Player待接。",
+  "status": "implemented",
+  "description": "越南真实事件与全部已支持地图OPS来源的地区预算、公开条件/加点反馈和第39人工练习；3835项原生通过，Player验收见报告。",
   "documentation": "Docs/Wiki/vietnam-play.md",
   "entrypoints": [
     {
@@ -21,6 +21,18 @@
     {
       "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/OlympicPracticeExecution.cs",
       "symbol": "ValidProgressContext"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/DemoCatalog.Vietnam.cs",
+      "symbol": "WithVietnamRevolts"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Presentation/DemoView.Actions.cs",
+      "symbol": "TurnOpsEventMessage"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Editor/DemoBuild.cs",
+      "symbol": "BuildVietnamPlaytest"
     }
   ],
   "inputs": [
@@ -36,10 +48,11 @@
   "data_dependencies": [
     "effects.deluxe2015.persistent_batch1",
     "cards.deluxe2015.definitions",
-    "map.deluxe2015.world"
+    "map.deluxe2015.world",
+    "demo.vietnam_scenario"
   ],
   "preconditions": [
-    "权威Host与显式WithVietnam注册；Demo待接"
+    "权威Host与显式WithVietnam注册；未知事件交互仍按既有门禁拒绝"
   ],
   "side_effects": [
     "成功Host提交更新一次权威状态，失败候选不发布"
@@ -56,7 +69,15 @@
   "tests": [
     {
       "path": "Assets/ColdWarStruggle/Tests/EditMode/VietnamPlayTests.cs",
-      "status": "passed"
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/VietnamPresentationTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/VietnamDemoTests.cs",
+      "status": "native-passed"
     }
   ],
   "verification": {

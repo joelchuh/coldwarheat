@@ -17,6 +17,7 @@ namespace ColdWarStruggle.Presentation
             if(step.FiveYearPlan!=null)
                 return "头条 · "+FiveYearPlanResultMessage(step.FiveYearPlan)+FiveYearPlanChildDetail(step.DefconVpEvent,step.ActivatedOpsEffect)
                     +(step.Event?.Stage==ColdWarStruggle.Core.InfluenceEventStage.Resolved?"\n"+InfluenceEventMessage(step.Event):"");
+            if(step.ActivatedOpsEffect!=null)return "头条 · "+TurnOpsEventMessage(step.ActivatedOpsEffect,step.Event);
             return "头条 · "+CardTitle(step.Card)+"\n"+InfluenceEventMessage(step.Event);
         }
     }

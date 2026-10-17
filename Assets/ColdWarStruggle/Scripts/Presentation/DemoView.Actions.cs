@@ -15,7 +15,13 @@ namespace ColdWarStruggle.Presentation
             Block(new Rect(26,67,1228,38),Background);
             Text(28,70,1220,30,$"回合 {view.Turn.Number} · "+controller.PracticePhaseText+$"  |  VP（美+ / 苏−）{p.VpForUS}  |  DEFCON {p.Defcon?.ToString()??"—"}  |  军事累计 美 {p.UsMilitary?.ToString()??"—"} / 苏 {p.UssrMilitary?.ToString()??"—"}  |  太空 美 {p.UsSpace} / 苏 {p.UssrSpace}"+(view.Event?.Stage==InfluenceEventStage.AwaitingChoice?"  |  事件选择："+Side(view.Event.Owner):""),small);
         }
-        string OpsEffectSummary(PublicTurnOpsEffect effect)=>CardTitle(effect.Card)+" → "+Side(effect.AffectedSide)+$" {effect.Delta:+0;-0;0}";
+        string OpsEffectSummary(PublicTurnOpsEffect effect)
+        {
+            var text=CardTitle(effect.Card)+" → "+Side(effect.AffectedSide)+$" {effect.Delta:+0;-0;0}";
+            return effect.Region==null?text:text+"（本次行动全部目标位于"+(names.TryGetValue(effect.Region,out var region)?region:effect.Region)+"）";
+        }
+        string TurnOpsEventMessage(PublicTurnOpsEffect effect,PublicCardEventResult grant)
+            =>"持续效果已生效\n"+OpsEffectSummary(effect)+"\n本回合有效，弃牌或移出不取消。"+(grant==null?"":"\n"+InfluenceEventMessage(grant));
         void DrawOpsEffects(PublicPracticeView practice)
         {
             var text=practice.OpsEffects.Count==0?"本回合持续 OPS：无":"本回合持续 OPS："+string.Join("；",practice.OpsEffects.Select(OpsEffectSummary))+"  ·  回合末到期";
@@ -141,7 +147,7 @@ namespace ColdWarStruggle.Presentation
                 message=$"美国 {r.UsRoll} + {r.US.Total} = {r.UsTotal}；苏联 {r.UssrRoll} + {r.USSR.Total} = {r.UssrTotal}\n";
                 message+=r.RemovedSide.HasValue?$"{Name(r.Target)}：{Side(r.RemovedSide.Value)}移除 {r.Removed}\n可重选目标，或结束调整。":$"{Name(r.Target)}：影响力无变化。\n本次仍消耗 OPS。";
             }
-            else if(result?.ActivatedOpsEffect!=null)message="持续效果已生效\n"+OpsEffectSummary(result.ActivatedOpsEffect)+"\n本回合有效，弃牌或移出不取消。";
+            else if(result?.ActivatedOpsEffect!=null)message=TurnOpsEventMessage(result.ActivatedOpsEffect,result.Event);
             else if(result?.DefconVpEvent!=null)
             {
                 var e=result.DefconVpEvent;

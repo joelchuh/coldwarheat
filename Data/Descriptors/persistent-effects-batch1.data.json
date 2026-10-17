@@ -4,7 +4,7 @@
     "版本匹配的参数、权威事件/行动上下文、静态地图和卡牌定义"
   ],
   "outputs": [
-    "General OPS与Flat激活参数；越南固定加点/地区回合贡献定义"
+    "General OPS、Flat与越南地区回合贡献及固定加点定义"
   ],
   "dependencies": [],
   "preconditions": [
@@ -46,13 +46,17 @@
     {
       "path": "Docs/Design/persistent-effects-batch1.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/VietnamPlayTests.cs",
+      "status": "native-passed"
     }
   ],
   "documentation": "Docs/Wiki/persistent-effects.md",
   "id": "data.persistent-effects-batch1",
   "kind": "data",
   "status": "ready",
-  "description": "持续效果参数与共享OPS政策；General/遏制/清洗及回合清理已有消费者；越南严格装载和地区实例基础已验证，真实出牌接线待完成。",
+  "description": "越南、遏制与清洗参数及共享OPS政策；三牌真实事件、回合清理与全部已支持地图OPS来源已接；1−1+1=1沿用用户确认解释。",
   "dataset_id": "effects.deluxe2015.persistent_batch1",
   "content_version": "0.1.0",
   "schema_path": "Docs/Contracts/persistent-effects-batch1.schema.json",
@@ -67,11 +71,12 @@
   ],
   "verification": {
     "runtime_consumers_tested": true,
-    "scope": "ops_policy-general-subset-only",
+    "scope": "supported-flat-and-vietnam-regional-map-ops",
     "report": "Docs/Testing/ops-general-quote.validation.json",
     "latest_design_report": "Docs/Design/persistent-effects-batch1.validation.json",
     "latest_adoption_report": "Docs/Testing/regional-ops-floor-adoption.validation.json",
-    "vietnam_foundation_report": "Docs/Testing/vietnam-ops-foundation.validation.json"
+    "vietnam_foundation_report": "Docs/Testing/vietnam-ops-foundation.validation.json",
+    "vietnam_play_report": "Docs/Testing/vietnam-play.validation.json"
   },
   "retrieval_hints": [
     "parameters按卡牌ID后缀查询；ops_policy只读共享上下限；source_bonuses按来源卡牌ID使用"
@@ -94,7 +99,7 @@
         "path": "Docs/Design/persistent-effects-batch1.cases.json",
         "id": "PE1-O19"
       },
-      "runtime_status": "regional-budget-and-turn-foundation-tested-real-vietnam-integration-pending"
+      "runtime_status": "adopted-tested-in-real-vietnam-action"
     }
   ]
 }

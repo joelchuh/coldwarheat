@@ -56,7 +56,9 @@ namespace ColdWarStruggle.Bootstrap
                     .WithInfluenceRelocation(Read(root,"Data/Cards/deluxe-2015/influence-relocation.parameters.json"),Read(root,"Docs/Contracts/influence-relocation.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
                     .WithRelocationScenarios(Read(root,"Data/Demo/relocation-scenarios.json"))
                     .WithComecon(Read(root,"Data/Cards/deluxe-2015/early-influence-batch3.parameters.json"),Read(root,"Docs/Contracts/early-influence-batch3.schema.json"),Read(root,"Data/Cards/deluxe-2015/cards.json"))
-                    .WithComeconScenario(Read(root,"Data/Demo/comecon-scenario.json"));
+                    .WithComeconScenario(Read(root,"Data/Demo/comecon-scenario.json"))
+                    .WithVietnamRevolts(Read(root,"Data/Cards/deluxe-2015/persistent-effects-batch1.parameters.json"),Read(root,"Docs/Contracts/persistent-effects-batch1.schema.json"))
+                    .WithVietnamScenario(Read(root,"Data/Demo/vietnam-scenario.json"));
                 var displayNames=CatalogNamesLoader.Load(Read(root,"Data/Localization/zh-CN.catalog-names.json"),"zh-CN",catalog.Names.Keys);
                 var worldAssets=WorldMapAssets.Load(Read(root,"Data/Presentation/world-layout.json"),Read(root,"Data/Presentation/world-land.json"),catalog.Map);
 #else
@@ -99,7 +101,9 @@ namespace ColdWarStruggle.Bootstrap
                     .WithInfluenceRelocation(Read(root,"influence-relocation.parameters.json"),Read(root,"influence-relocation.schema.json"),Read(root,"cards.json"))
                     .WithRelocationScenarios(Read(root,"relocation-scenarios.json"))
                     .WithComecon(Read(root,"early-influence-batch3.parameters.json"),Read(root,"early-influence-batch3.schema.json"),Read(root,"cards.json"))
-                    .WithComeconScenario(Read(root,"comecon-scenario.json"));
+                    .WithComeconScenario(Read(root,"comecon-scenario.json"))
+                    .WithVietnamRevolts(Read(root,"persistent-effects-batch1.parameters.json"),Read(root,"persistent-effects-batch1.schema.json"))
+                    .WithVietnamScenario(Read(root,"vietnam-scenario.json"));
                 var displayNames=CatalogNamesLoader.Load(Read(root,"names.zh-CN.json"),"zh-CN",catalog.Names.Keys);
                 var worldAssets=WorldMapAssets.Load(Read(root,"world-layout.json"),Read(root,"world-land.json"),catalog.Map);
 #endif

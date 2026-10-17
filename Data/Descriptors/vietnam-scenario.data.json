@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "id": "data.demo-vietnam-scenario",
+  "kind": "data",
+  "dataset_id": "demo.vietnam_scenario",
+  "status": "fixture",
+  "description": "第2回合越南人工练习：苏联越南手牌与正面中国牌，用于即时加点、东南亚条件OPS和地区切换；正式数值来自共享参数。",
+  "entrypoints": [
+    {
+      "path": "Data/Demo/vietnam-scenario.json",
+      "symbol": "scenarios"
+    }
+  ],
+  "inputs": [
+    "已注册越南的最终计分源场景、共享地图/卡牌/回合定义；显式中国牌fixture归属与朝向"
+  ],
+  "outputs": [
+    "第39人工练习；支持真实出牌与后续中国牌预算对比"
+  ],
+  "dependencies": [
+    "module.vietnam-play"
+  ],
+  "data_dependencies": [
+    "demo.final_scoring_scenario",
+    "effects.deluxe2015.persistent_batch1"
+  ],
+  "preconditions": [
+    "scope=fixture、Turn2；不代表自然开局"
+  ],
+  "side_effects": [
+    "创建独立内存Host，不改正式开局或旧场景"
+  ],
+  "stop_conditions": [
+    "未知字段、错误来源/牌/影响力、重复牌或国家、错误预备动作拒绝"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Architecture/vietnam-play.md",
+      "scope": "人工局面与正式规则数据分离"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/VietnamDemoTests.cs",
+      "status": "native-passed"
+    }
+  ],
+  "documentation": "Docs/Wiki/vietnam-play.md",
+  "verification": {
+    "status": "native-passed-build-ui-pending",
+    "report": "Docs/Testing/vietnam-play.validation.json"
+  }
+}

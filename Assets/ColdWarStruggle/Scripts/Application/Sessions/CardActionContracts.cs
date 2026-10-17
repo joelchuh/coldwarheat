@@ -15,13 +15,14 @@ namespace ColdWarStruggle.Application
     }
     public sealed class PublicTurnOpsEffect
     {
+        public string Region { get; }
         public CardId Card { get; }
         public string EffectId { get; }
         public PlayerSide AffectedSide { get; }
         public int Delta { get; }
         public int Turn { get; }
         public string ExpiryBoundary { get; }
-        internal PublicTurnOpsEffect(TurnOpsEffectInstance instance) { Card=instance.Definition.Card;EffectId=instance.Definition.EffectId;AffectedSide=instance.AffectedSide;Delta=instance.Definition.Delta;Turn=instance.Turn;ExpiryBoundary=instance.ExpiryBoundary; }
+        internal PublicTurnOpsEffect(TurnOpsEffectInstance instance) { Region=instance.Definition.RegionalBonus?.Region;Card=instance.Definition.Card;EffectId=instance.Definition.EffectId;AffectedSide=instance.AffectedSide;Delta=instance.Definition.Delta;Turn=instance.Turn;ExpiryBoundary=instance.ExpiryBoundary; }
     }
     public sealed class PublicOpponentOpsProgress
     {

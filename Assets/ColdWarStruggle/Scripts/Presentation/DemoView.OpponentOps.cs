@@ -48,7 +48,7 @@ namespace ColdWarStruggle.Presentation
             {
                 var e=result.DefconVpEvent;return message+$"事件 DEFCON {e.DefconFrom}→{e.DefconTo}"+(e.Terminal?" · 终局":" · VP "+e.VpForUS.ToString("+0;-0;0"));
             }
-            if(result.ActivatedOpsEffect!=null)return message+"持续OPS已生效："+Side(result.ActivatedOpsEffect.AffectedSide);
+            if(result.ActivatedOpsEffect!=null)return message+TurnOpsEventMessage(result.ActivatedOpsEffect,result.Event);
             return message+"随后"+InfluenceEventMessage(result.Event);
         }
         async void UseOpponentOperations(OperationsMode mode)
