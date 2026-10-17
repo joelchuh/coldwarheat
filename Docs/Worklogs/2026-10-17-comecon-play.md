@@ -24,3 +24,13 @@ Task2 GREEN: comecon-play-green 3728/3728，0失败/跳过，173526ms，XML 852f
 Ruling: OPS已接受放置后把合法国家减至3，FinishInfluence返回RequiresRuling且保留已接受前缀与Resolving根；不提供自创裁定/回滚已接受操作，代价是该未决边界当前不能继续。
 Ruling: 原Unity目录及功能分支继续使用；新Player独立目录保留旧构建，用户未跟踪文件不纳入提交。代价为目录占用，利于恢复。
 补验收旧迁移Player：系统遮挡自行消失，已记录苏联实际迁移/零迁移/原出牌重发；没有修改OS安全或更新设置。
+
+Build source 97f45fa1ccd9d1885a42c8f35c25759c2b0a3825，BuildComeconPlaytest exit0及成功标记；70载荷811910bytes/5程序集通过，核验SHA c6369aa88d75f5a871e970c6351028305e110f5985d5102c69951222a2baf796。一次fresh reviewer review_comecon_play已派发，使用Bash不可用时的一次性git log/stat/diff包；不新增未经复用判断的工作流脚本。
+
+Task2 live acceptance: source97f45fa Player，真实鼠标经互会牌→发动→定位波兰。匈牙利US4/SU0敌控不能入草稿；四国Poland/Czechoslovakia/Austria/Romania逐一选定，1–3不可确认，4可确认；确认前局面不变，确认后SU分别5/1/1/3、US原值保留、actorUS、v5/seq9、移出1。原出牌命令重发无重复变化。F12应用截图与SHA见report。美国根/头条/OPS/选择重发为原生覆盖，未冒充鼠标验收。
+Final review: review_comecon_play，a4920a1..97f45fa；0Critical/0Important/0新增Minor，XML独立读到3728通过。
+Final: Ruling: reviewer不裁决EI3-RULING-01；继续明确RequiresRuling并保留已接受OPS前缀，未给用户未确认的新规则。代价是此边界不能继续对局，后续需裁定和测试。
+Final: Ruling: reviewer不验真实Player；由父任务实际鼠标及F12证据补齐有限路径，其他仅原生覆盖。代价是未点击路径仍可能有布局问题。
+Final: Ruling: reviewer不独立重复构建/编辑器菜单；本任务exit0/标记/70载荷证明当前构建，未声称可复现构建或GUI菜单点击。代价是将来环境漂移需重新构建核验。
+Final: Ruling: 既有迁移反馈Minor不纳入经互会审查修补；本批已补鼠标且保留已知可读性缺陷。代价是等待时简短反馈仍难读，后续表现层工作处理。
+Final: Ruling: 存档/联网/NATO等不在本批；不把经互会接线当完整游戏。代价是完整对局仍有未实现事件和长期功能。

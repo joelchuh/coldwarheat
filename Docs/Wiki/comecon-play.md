@@ -2,7 +2,7 @@
 
 description：先定位共享参数、控制过滤、完整事件事务和实际验收状态。
 
-先读 `Docs/Descriptors/comecon-play.module.json`，再按入口读取所需函数。核心及数据装载新增41项，真实出牌/会话/Demo再新增44项；3728原生全量回归通过，审查与Player验收分别见报告。正式数据沿用 `effects.deluxe2015.early_influence_batch3`；原规则设计见 [早期第三批](early-influence-batch3.md)。
+先读 `Docs/Descriptors/comecon-play.module.json`，再按入口读取所需函数。核心及数据装载新增41项，真实出牌/会话/Demo再新增44项；3728原生全量回归通过，独立源码审查无Critical/Important/新增Minor，Player70载荷及真实苏联四国选择/确认/原出牌重发已验收。美国根/OPS/头条与选择重发仅原生覆盖，见报告。正式数据沿用 `effects.deluxe2015.early_influence_batch3`；原规则设计见 [早期第三批](early-influence-batch3.md)。
 
 flow：ComeconDefinitionLoader.Load → AddToDistinctCountriesEffect.ControlFilter → InfluenceEventRules.Query按当前权威控制筛选东欧 → 固定苏联提交四个不同国家 → Plan完整校验并在副本各加一点 → 既有事件/根行动/牌区收尾。
 

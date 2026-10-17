@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "validation.comecon-play",
   "description": "经互会规则、出牌、Demo与构建分别记录实际验收证据。",
-  "status": "native-passed-review-build-pending",
+  "status": "native-build-reviewed-ui-smoke-passed",
   "baseline_commit": "a4920a1faaab11ff22dc6d4eb7c856b6209a1dc0",
   "runs": [
     {
@@ -107,5 +107,46 @@
   },
   "verification_notes": [
     "After native GREEN, corrected only Editor MenuItem associations for Comecon/Relocation; game code unchanged. New build will compile and exercise BuildComeconPlaytest."
-  ]
+  ],
+  "player": {
+    "status": "built-payload-verified-ui-smoke-passed",
+    "path": "Builds/ComeconPlaytest/ColdWarStruggleDemo.exe",
+    "source_commit": "97f45fa1ccd9d1885a42c8f35c25759c2b0a3825",
+    "build_exit_code": 0,
+    "build_log": "TestResults/comecon-play-build.log",
+    "verification": "TestResults/comecon-play-build-verification.json",
+    "verification_sha256": "c6369aa88d75f5a871e970c6351028305e110f5985d5102c69951222a2baf796",
+    "payload_count": 70,
+    "payload_bytes": 811910,
+    "managed_assemblies": 5,
+    "ui": {
+      "status": "smoke-passed",
+      "observed": "Real mouse: scenario38, select Comecon card and event; zoom to Poland; US-controlled Hungary click leaves draft0; choose Poland/Czechoslovakia/Austria/Romania, confirmation disabled for1–3 and enabled at4. Before confirm authoritative board unchanged. Confirm yields SU Poland4→5, Czechoslovakia0→1, Austria0→1, Romania2→3, actorUS, v5/seq9, removed count1. Original card-command retry preserves board/version.",
+      "player_log": "TestResults/comecon-play-player.log",
+      "evidence": [
+        {
+          "path": "TestResults/comecon-draft-ui.png",
+          "sha256": "0b394ec2bba81db7482df230d2087faf19c9da3ef1281be965dc5f8172a3b4f6"
+        },
+        {
+          "path": "TestResults/comecon-result-ui.png",
+          "sha256": "8194774731dc9deb23f6417d65697acfc76c585454b731ae4c7a4ae283090931"
+        }
+      ],
+      "not_exercised": [
+        "US-root/headline/OPS paths by real mouse (native tests cover)",
+        "event-choice replay UI after completion (native tests cover)"
+      ]
+    }
+  },
+  "review": {
+    "status": "completed",
+    "reviewer": "review_comecon_play",
+    "base": "a4920a1faaab11ff22dc6d4eb7c856b6209a1dc0",
+    "head": "97f45fa1ccd9d1885a42c8f35c25759c2b0a3825",
+    "package": "TestResults/comecon-play-review.diff",
+    "critical": 0,
+    "important": 0,
+    "minor": 0
+  }
 }
