@@ -49,7 +49,7 @@ namespace ColdWarStruggle.Presentation
                 var e=result.DefconVpEvent;return message+$"事件 DEFCON {e.DefconFrom}→{e.DefconTo}"+(e.Terminal?" · 终局":" · VP "+e.VpForUS.ToString("+0;-0;0"));
             }
             if(result.ActivatedOpsEffect!=null)return message+"持续OPS已生效："+Side(result.ActivatedOpsEffect.AffectedSide);
-            return message+(result.Event.Stage==InfluenceEventStage.AwaitingChoice?"随后事件：等待受益方选择。":"随后事件：已完成。");
+            return message+"随后"+InfluenceEventMessage(result.Event);
         }
         async void UseOpponentOperations(OperationsMode mode)
         {try {await controller.ChooseOpponentOperationsAsync(mode);}catch(Exception e){fatal=e.Message;Debug.LogException(e);}}

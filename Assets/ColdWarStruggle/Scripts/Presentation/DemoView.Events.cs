@@ -62,11 +62,7 @@ namespace ColdWarStruggle.Presentation
         public string ReadEventFeedback()
         {
             var result=controller.LastEventResult;
-            var message=result==null?"点选只是草稿；确认后才修改局面。"
-                :!result.Accepted?"未执行："+ErrorText(result.Error)
-                :result.ResolutionSequence.HasValue?"完成收据 · 变化 "+result.Changes.Count+" 项\n序号 "+result.ResolutionSequence.Value
-                :"选择请求已建立。请按左侧提示操作。";
-            if(result?.FiveYearPlan!=null)message=FiveYearPlanResultMessage(result.FiveYearPlan);
+            var message=result==null?"点选只是草稿；确认后才修改局面。":InfluenceChoiceMessage(result);
             if(result?.Accepted!=false)message=ReadHeadlineFeedback()??message;
             message=controller.EventResultHistoryMessage??message;
             return message;

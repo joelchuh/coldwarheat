@@ -151,7 +151,7 @@ namespace ColdWarStruggle.Presentation
                     _=>"核战 · 后续步骤停止" }));
                 if(e.Terminal && !e.Steps.Contains(DefconVpStep.NuclearWarReached))message+="\n已达胜利条件 · 后续步骤停止";
             }
-            else if(result?.Event!=null)message=result.Event.Stage==InfluenceEventStage.AwaitingChoice?"等待事件受益方完成选择。":result.Event.Outcome==InfluenceEventStatus.ResolvedNoChange?"事件完成 · 影响力无需变化。":"事件完成 · 影响力变化 "+result.Event.Changes.Count+" 项。";
+            else if(result?.Event!=null)message=InfluenceEventMessage(result.Event);
             else if(result?.Scoring!=null)message="计分结果："+ScoringRegionName(result.Scoring.RegionId)+"\n"+ScoreSummary(result.Scoring);
             else if(result?.Coup!=null)
             {
@@ -163,8 +163,7 @@ namespace ColdWarStruggle.Presentation
             if(result?.Coup!=null && (result.Event!=null || result.DefconVpEvent!=null || result.ActivatedOpsEffect!=null || result.Blockade!=null || result.FiveYearPlan!=null || result.War!=null))message=CombinedCoupMessage(result);
             message=controller.CardResultHistoryMessage??message;
             if(controller.LastResult!=null)message=controller.LastResult.Accepted?"投放成功，费用："+string.Join(" + ",controller.LastResult.Costs):ErrorText(controller.LastResult.Error);
-            if(controller.LastEventResult!=null)message=controller.LastEventResult.Accepted?"事件选择完成 · 影响力变化 "+controller.LastEventResult.Changes.Count+" 项。":ErrorText(controller.LastEventResult.Error);
-            if(controller.LastEventResult?.FiveYearPlan!=null)message=FiveYearPlanResultMessage(controller.LastEventResult.FiveYearPlan);
+            if(controller.LastEventResult!=null)message=InfluenceChoiceMessage(controller.LastEventResult);
             if(result?.Accepted!=false && controller.LastResult?.Accepted!=false && controller.LastEventResult?.Accepted!=false)
                 message=ReadHeadlineFeedback()??message;
             message=controller.EventResultHistoryMessage??message;

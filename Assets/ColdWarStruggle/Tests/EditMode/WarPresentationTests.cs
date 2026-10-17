@@ -69,8 +69,8 @@ namespace ColdWarStruggle.Tests
         }
         [Test] public async Task Instant_headline_feedback_survives_identity_change_and_is_hidden_after_later_action()
         {
-            using var f=new Fixture(WarContinuationTests.Headlines("korean_war","fidel"),PlayerSide.US);await f.Headlines("korean_war","fidel");var c=f.Controller;Assert.That(c.CurrentWarHeadline,Is.Not.Null);var text=f.View.ReadHeadlineWarFeedback();Assert.That(text,Does.Contain("头条").And.Contain("骰").And.Contain("军事 +2"));Assert.That(f.View.ReadPracticeFeedback(),Is.EqualTo(text));
-            c.SelectSide(PlayerSide.US);Assert.That(f.View.ReadHeadlineWarFeedback(),Is.EqualTo(text));c.SelectSide(PlayerSide.USSR);Assert.That((await c.SkipEmptyHandAsync()).Accepted,Is.True);Assert.That(c.CurrentWarHeadline,Is.Null);await c.RetryHeadlineAsync();Assert.That(f.View.ReadHeadlineWarFeedback(),Is.Null);
+            using var f=new Fixture(WarContinuationTests.Headlines("korean_war","fidel"),PlayerSide.US);await f.Headlines("korean_war","fidel");var c=f.Controller;Assert.That(c.CurrentWarHeadline,Is.Not.Null);var text=f.View.ReadHeadlineWarFeedback();Assert.That(text,Does.Contain("头条").And.Contain("骰").And.Contain("军事 +2"));var combined=f.View.ReadPracticeFeedback();Assert.That(combined,Does.StartWith(text).And.Contain("Cuba · 苏联 USSR 0 → 3 (+3)"));
+            c.SelectSide(PlayerSide.US);Assert.That(f.View.ReadHeadlineWarFeedback(),Is.EqualTo(text));Assert.That(f.View.ReadPracticeFeedback(),Is.EqualTo(combined));c.SelectSide(PlayerSide.USSR);Assert.That((await c.SkipEmptyHandAsync()).Accepted,Is.True);Assert.That(c.CurrentWarHeadline,Is.Null);await c.RetryHeadlineAsync();Assert.That(f.View.ReadHeadlineWarFeedback(),Is.Null);
         }
         [Test] public async Task War_headline_feedback_stays_visible_while_next_event_waits_for_country_choice()
         {
@@ -104,8 +104,8 @@ namespace ColdWarStruggle.Tests
         }
         [Test] public async Task Completed_war_headline_feedback_is_not_overwritten_by_old_pending_retry()
         {
-            using var f=new Fixture(WarContinuationTests.Headlines("indo_pakistani_war","fidel"),PlayerSide.US);await f.Headlines("indo_pakistani_war","fidel");var c=f.Controller;Assert.That(c.ReadView().War,Is.Not.Null);c.SelectSide(PlayerSide.US);var done=await c.ConfirmWarAsync();Assert.That(done.Accepted,Is.True);var text=f.View.ReadHeadlineWarFeedback();Assert.That(text,Does.Contain("胜利").And.Contain("VP"));Assert.That(f.View.ReadPracticeFeedback(),Is.EqualTo(text));
-            c.SelectSide(PlayerSide.USSR);await c.RetryHeadlineAsync();Assert.That(f.View.ReadHeadlineWarFeedback(),Is.EqualTo(text));Assert.That(c.ReadView().War,Is.Null);
+            using var f=new Fixture(WarContinuationTests.Headlines("indo_pakistani_war","fidel"),PlayerSide.US);await f.Headlines("indo_pakistani_war","fidel");var c=f.Controller;Assert.That(c.ReadView().War,Is.Not.Null);c.SelectSide(PlayerSide.US);var done=await c.ConfirmWarAsync();Assert.That(done.Accepted,Is.True);var text=f.View.ReadHeadlineWarFeedback();Assert.That(text,Does.Contain("胜利").And.Contain("VP"));var combined=f.View.ReadPracticeFeedback();Assert.That(combined,Does.StartWith(text).And.Contain("Cuba · 苏联 USSR 0 → 3 (+3)"));
+            c.SelectSide(PlayerSide.USSR);await c.RetryHeadlineAsync();Assert.That(f.View.ReadHeadlineWarFeedback(),Is.EqualTo(text));Assert.That(f.View.ReadPracticeFeedback(),Is.EqualTo(combined));Assert.That(c.ReadView().War,Is.Null);
         }
     }
 }

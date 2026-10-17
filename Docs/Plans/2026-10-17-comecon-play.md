@@ -33,6 +33,6 @@ Create Infrastructure/DataLoading/DemoCatalog.Comecon.cs; Tests/EditMode/Comecon
 - [x] Tests: direct actors/US choice identity, OPS orders/modes, headlines, star/root once, shortage unchanged zones/rollback, stale/different-command replay, factory preserve prior features, strict fixture, map/controller four-country confirmation; RED/GREEN.
 - [x] Register WithComecon/WithComeconScenario; BuildComeconPlaytest,70 payloads; Wiki/module/data/catalog/report update.
 - [x] Fresh whole-branch review; Important one RED/GREEN fix pass, record Minor. Build from source commit, verify payloads, real mouse if available; record OS blockage honestly.
-- [ ] Commit/push/ls-remote. Continue next independent useful batch while retaining incomplete UI checks.
+- [x] Commit/push/ls-remote. Continue next independent useful batch while retaining incomplete UI checks.
 
 Native command: Tools/Scripts/run-unity-editmode.ps1 -ProjectRoot E:/TwilightStruggle -UnityEditor E:/unity6.6/6000.6.0f1/Editor/Unity.exe -RunId <unique> -TimeoutSeconds600; expected full XML passing with no skipped/inconclusive. Review package uses one-off git log/stat/diff if Bash remains unavailable.

@@ -21,7 +21,7 @@ namespace ColdWarStruggle.Presentation
         }
         void RememberHeadlineFeedback(PlayerViewSnapshot receipt,IReadOnlyList<PublicHeadlineStep> steps)
         {
-            var summaries=steps?.Where(s=>s.FiveYearPlan!=null || s.War!=null || s.SpaceEvent!=null).ToArray();if(summaries==null || summaries.Length==0)return;
+            var summaries=steps?.Where(s=>s.FiveYearPlan!=null || s.War!=null || s.SpaceEvent!=null || s.Event!=null).ToArray();if(summaries==null || summaries.Length==0)return;
             var current=ReadView();
             // A successful retry can return an older receipt; never restore its waiting state.
             if(receipt.GameId!=current.GameId || receipt.Version!=current.Version)return;

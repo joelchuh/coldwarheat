@@ -11,3 +11,5 @@
 绿色原生：feedback-reader-green-2，3087/3087、0跳过、exit0，XML SHA d56b042db4b694e65b1ae5905b4beef3f930dcb4ddcde2186a621ae31387c1a9。阅读页优先于常规操作绘制；关闭/Escape仅改变表现状态。
 
 可运行成品：E:/TwilightStruggle/Builds/ResultReaderPlaytest/ColdWarStruggleDemo.exe，源942f4b2；58载荷字节一致。真实界面已验证朝鲜战争完整明细以及两种关闭方式不改版本/奖励。长内容滚动与混合头条未逐个鼠标复现，边界见报告。
+
+2026-10-17新增[影响力事件结果明细](influence-result-details.md)：读取公开Before/After而非当前棋盘，按同批执行顺序显示多个头条；历史/失败提示优先。迁移面板复用ReadVisibleFeedback保留政变摘要和拒绝提示；独立构建及实际验收见该批报告。

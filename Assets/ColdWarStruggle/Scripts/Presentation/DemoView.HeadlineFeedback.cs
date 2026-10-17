@@ -11,7 +11,13 @@ namespace ColdWarStruggle.Presentation
             return steps.Count==0?null:string.Join("\n\n",steps.Select(HeadlineStepFeedback));
         }
         string HeadlineStepFeedback(PublicHeadlineStep step)
-            =>"头条 · "+(step.SpaceEvent!=null?SpaceEventResultMessage(step.SpaceEvent):step.War!=null?WarResultMessage(step.War):
-                FiveYearPlanResultMessage(step.FiveYearPlan)+FiveYearPlanChildDetail(step.DefconVpEvent,step.ActivatedOpsEffect));
+        {
+            if(step.SpaceEvent!=null)return "头条 · "+SpaceEventResultMessage(step.SpaceEvent);
+            if(step.War!=null)return "头条 · "+WarResultMessage(step.War);
+            if(step.FiveYearPlan!=null)
+                return "头条 · "+FiveYearPlanResultMessage(step.FiveYearPlan)+FiveYearPlanChildDetail(step.DefconVpEvent,step.ActivatedOpsEffect)
+                    +(step.Event?.Stage==ColdWarStruggle.Core.InfluenceEventStage.Resolved?"\n"+InfluenceEventMessage(step.Event):"");
+            return "头条 · "+CardTitle(step.Card)+"\n"+InfluenceEventMessage(step.Event);
+        }
     }
 }

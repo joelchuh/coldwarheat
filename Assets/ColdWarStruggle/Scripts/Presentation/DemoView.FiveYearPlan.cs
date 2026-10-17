@@ -11,7 +11,8 @@ namespace ColdWarStruggle.Presentation
             return step==null?null:HeadlineStepFeedback(step);
         }
         string FiveYearPlanChildDetail(CardActionResult result)
-            =>FiveYearPlanChildDetail(result.DefconVpEvent,result.ActivatedOpsEffect);
+            =>FiveYearPlanChildDetail(result.DefconVpEvent,result.ActivatedOpsEffect)
+                +(result.Event?.Stage==InfluenceEventStage.Resolved?"\n"+InfluenceEventMessage(result.Event):"");
         string FiveYearPlanChildDetail(PublicDefconVpEventResult track,PublicTurnOpsEffect effect)
         {
             if(track!=null)return $"\nDEFCON {track.DefconFrom}→{track.DefconTo} · VP {track.VpForUS:+0;-0;0}";

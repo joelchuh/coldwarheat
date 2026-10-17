@@ -95,6 +95,8 @@ namespace ColdWarStruggle.Editor
         public static void BuildOlympicPlaytest()=>BuildAt("Builds/OlympicPlaytest","ColdWarStruggle Olympic Playtest");
         [MenuItem("ColdWarStruggle/Build Payload Manifest Playtest")]
         public static void BuildPayloadManifestPlaytest()=>BuildAt("Builds/PayloadManifestPlaytest","ColdWarStruggle Payload Manifest Playtest");
+        [MenuItem("ColdWarStruggle/Build Influence Feedback Playtest")]
+        public static void BuildInfluenceFeedbackPlaytest()=>BuildAt("Builds/InfluenceFeedbackPlaytest","ColdWarStruggle Influence Feedback Playtest");
         [MenuItem("ColdWarStruggle/Build Comecon Playtest")]
         public static void BuildComeconPlaytest()=>BuildAt("Builds/ComeconPlaytest","ColdWarStruggle Comecon Playtest");
         [MenuItem("ColdWarStruggle/Build Relocation Playtest")]
