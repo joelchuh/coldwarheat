@@ -34,5 +34,5 @@ Interfaces: CLI --project-root ROOT --player-directory REL --build-log REL；std
 - [x] 先写CLI stub和真实临时文件成功/坏路径/JSON/超限/错字节/缺文件/多文件/日志/程序集/实际junction测试；保存fixture，RED后实现。
 - [x] GREEN，复用既有元数据工具并更新description、工作记录、报告；不新增通用任务运行器。
 - [x] 一名fresh整批审查；Important一次定向RED/GREEN修复，无第二轮盲审。
-- [ ] 全量原生通过后独立构建，用新脚本核验实际载荷/程序集/log；记录构建提交和实际限制。
+- [x] 全量原生通过后独立构建，用新脚本核验实际载荷/程序集/log；记录构建提交和实际限制。
 - [ ] 精确提交/push/ls-remote验证，进入下一卡牌任务。

@@ -13,7 +13,7 @@ description：定位构建所需的数据映射、生成复制和只读验收；
 调用示例（可信工程终端）：
 
 ```text
-python -B Tools/Scripts/verify-player-payloads.py --project-root E:/TwilightStruggle --player-directory Builds/PayloadManifestPlaytest --build-log TestResults/player-payload-manifest-build.log
+python -B Tools/Scripts/verify-player-payloads.py --project-root E:/TwilightStruggle --player-directory Builds/PayloadManifestPlaytest --build-log TestResults/player-payload-manifest-fixed-build.log
 ```
 
 成功退出0，失败退出1。脚本不写报告；调用方保存输出。测试入口 `Tools/Tests/verify-player-payloads.tests.py` 会创建并保留独立临时样本，副作用见其描述。

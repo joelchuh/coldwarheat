@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "validation.player-payload-verification",
   "description": "共享播放器清单、预检复制与只读验收工具的分层验证；按实际运行记录。",
-  "status": "review-fixed-rebuild-pending",
+  "status": "passed-recorded-scope",
   "baseline_commit": "ad696b09913b6fa5223a678a2fa00398c0a8ec00",
   "runs": [
     {
@@ -480,22 +480,22 @@
   },
   "player": {
     "status": "built-and-verified",
-    "source_commit": "2b73bd9c3640061150ec6ac7a56a1ae814923aee",
+    "source_commit": "14f650383ea3ca99bc2bf7dd5016309ad52efa6e",
     "build_entry": "ColdWarStruggle.Editor.DemoBuild.BuildPayloadManifestPlaytest",
-    "evidence": "TestResults/player-payload-manifest-build-verification.json",
-    "evidence_sha256": "ab0c3f7b9180242472cf1f1c368c883420f3973b76e41896e136dd4baf989814",
+    "evidence": "TestResults/player-payload-manifest-fixed-build-verification.json",
+    "evidence_sha256": "d91e2c1df11ca9aa64787c13847ffec708b6cea966dcdb9cff332e3fb5aee1cb",
     "payload_count": 66,
     "payload_bytes": 799650,
     "executable_sha256": "a4c71b1bfc3e42d02f2f129fe04adef3ebf2343a662884e4b99598e9dfc90e7d",
     "managed_sha256": {
       "ColdWarStruggle.Application.dll": "4fdfacb697842f360d03b2ebbb087b612b3ca40d77d14a6ee1355385a6dfeedb",
-      "ColdWarStruggle.Bootstrap.dll": "b97c8973242cab4baee58f147c5ded1f56f8557e7a46597639acd7824fd373ae",
+      "ColdWarStruggle.Bootstrap.dll": "0925b8af75e9394323c637a8f451b2449ad1450a12fc7fab8f66f1a3f8dbb93b",
       "ColdWarStruggle.Core.dll": "79e01b0ce34365d02574e372fdde47fd60017b97639c374a5f24ce1103cd4b6f",
-      "ColdWarStruggle.Infrastructure.dll": "04b916de4dad12cf8b5f16474d9b92ab8088183e2fb49a802eb7e1faceb5b517",
+      "ColdWarStruggle.Infrastructure.dll": "e5e3f19fabe429274419182e0751b8e79d7d704e7aca94aa6411eb105bce8840",
       "ColdWarStruggle.Presentation.dll": "b3dab46e28ac0ef1631342f89a6b9e8682562a863da91e7e5df5ad8057fe183b"
     },
-    "build_log": "TestResults/player-payload-manifest-build.log",
-    "build_log_sha256": "1ea915d56d0daf9cf129807989ffd2bf7f3086bee4d309f86bb73ba3d5ae6285",
+    "build_log": "TestResults/player-payload-manifest-fixed-build.log",
+    "build_log_sha256": "141d852983b69e4b8f016ac1e2428698229d5f02574bdeeb1f3edf941a125b2a",
     "ui_acceptance": "not-repeated; this batch changes build/tooling only; prior Olympic UI evidence retained"
   },
   "limitations": [
@@ -521,5 +521,25 @@
     "status": "passed",
     "payload_count": 66,
     "note": "Existing Olympic build; not a new manifest-driven build."
+  },
+  "previous_player": {
+    "status": "built-and-verified",
+    "source_commit": "2b73bd9c3640061150ec6ac7a56a1ae814923aee",
+    "build_entry": "ColdWarStruggle.Editor.DemoBuild.BuildPayloadManifestPlaytest",
+    "evidence": "TestResults/player-payload-manifest-build-verification.json",
+    "evidence_sha256": "ab0c3f7b9180242472cf1f1c368c883420f3973b76e41896e136dd4baf989814",
+    "payload_count": 66,
+    "payload_bytes": 799650,
+    "executable_sha256": "a4c71b1bfc3e42d02f2f129fe04adef3ebf2343a662884e4b99598e9dfc90e7d",
+    "managed_sha256": {
+      "ColdWarStruggle.Application.dll": "4fdfacb697842f360d03b2ebbb087b612b3ca40d77d14a6ee1355385a6dfeedb",
+      "ColdWarStruggle.Bootstrap.dll": "b97c8973242cab4baee58f147c5ded1f56f8557e7a46597639acd7824fd373ae",
+      "ColdWarStruggle.Core.dll": "79e01b0ce34365d02574e372fdde47fd60017b97639c374a5f24ce1103cd4b6f",
+      "ColdWarStruggle.Infrastructure.dll": "04b916de4dad12cf8b5f16474d9b92ab8088183e2fb49a802eb7e1faceb5b517",
+      "ColdWarStruggle.Presentation.dll": "b3dab46e28ac0ef1631342f89a6b9e8682562a863da91e7e5df5ad8057fe183b"
+    },
+    "build_log": "TestResults/player-payload-manifest-build.log",
+    "build_log_sha256": "1ea915d56d0daf9cf129807989ffd2bf7f3086bee4d309f86bb73ba3d5ae6285",
+    "ui_acceptance": "not-repeated; this batch changes build/tooling only; prior Olympic UI evidence retained"
   }
 }
