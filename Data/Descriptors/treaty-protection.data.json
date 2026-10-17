@@ -46,7 +46,7 @@
   "id": "data.treaty-protection",
   "kind": "data",
   "status": "ready",
-  "description": "北约与美日安保：前置事件成功记录、跨回合保护、动态控制权、法国/西德例外与日本加至控制；仅参数/接缝设计，处理器待实现。",
+  "description": "北约与美日安保正式参数；日本分支已由module.japan-pact-foundation严格装载和原生验证，北约及实际出牌接线仍未实现。",
   "dataset_id": "effects.deluxe2015.treaty_protection",
   "content_version": "0.1.0",
   "schema_path": "Docs/Contracts/treaty-protection.schema.json",
@@ -61,8 +61,10 @@
     "cards.deluxe2015.definitions"
   ],
   "verification": {
-    "runtime_consumers_tested": false,
-    "report": "Docs/Design/treaty-protection.validation.json"
+    "runtime_consumers_tested": true,
+    "report": "Docs/Design/treaty-protection.validation.json",
+    "runtime_scope": "Japan foundation only; no card dispatch, NATO or UI",
+    "runtime_report": "Docs/Testing/japan-pact-foundation.validation.json"
   },
   "retrieval_hints": [
     "parameters按card ID后缀读取；日本稳定度查询world.json，不重复常量4",

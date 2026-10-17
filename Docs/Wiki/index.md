@@ -46,7 +46,7 @@
 | 早期影响力事件第二批 | 查总额度/每国上限、东欧动荡时代量、铁娘子禁止与用户确认的短缺策略 | 三牌规划/宿主/UI已实现；含时代对照 | [early-influence-batch2.md](early-influence-batch2.md) |
 | 早期影响力事件第三批 | 查独立红色政权追平、经互会敌控筛选与候选不足边界 | 2牌参数已绑定；C#待实现 | [early-influence-batch3.md](early-influence-batch3.md) |
 | 持续效果与OPS修正 | 查激活/到期/取消、行动者归属、地区奖励与三牌参数 | 设计与参数；C#待实现 | [persistent-effects.md](persistent-effects.md) |
-| 条约保护与前置事件 | 查北约/美日安保、动态控制、法国西德例外、DEFCON接缝与事件成功记录 | 2牌参数绑定；C#待实现 | [treaty-protection.md](treaty-protection.md) |
+| 条约保护与前置事件 | 查北约/美日安保、动态控制、法国西德例外、DEFCON接缝与事件成功记录 | 日本基础已实现；北约/宿主待接 | [treaty-protection.md](treaty-protection.md) |
 | 战争牌持续与取消 | 查Flower使用资格/待裁定时机、戴维营固定收益、邪恶帝国取消与阻止 | 3牌参数Bound；C#待实现，钩子边界待裁定 | [war-card-hooks.md](war-card-hooks.md) |
 | DEFCON事件与政变干预 | 查古巴危机解除/责任、核潜艇原因豁免、SALT取回和ABM普通OPS授权 | 4牌参数Bound；C#待实现 | [defcon-events-batch1.md](defcon-events-batch1.md) |
 | Ask Not换手牌 | 查先弃后抽、牌堆重洗与隐私边界 | 1牌参数Bound；抽牌服务待实现 | [ask-not.md](ask-not.md) |
@@ -183,3 +183,5 @@
 - [越南起义运行基础](vietnam-ops-foundation.md)：固定国家加点及独立地区贡献；真实出牌待后批接线，见模块JSON。
 
 - [越南起义真实出牌与条件OPS](vietnam-play.md)：先查module.vietnam-play，Core已验证、Demo接线中。
+
+- [美日安保运行基础](japan-pact-foundation.md)：严格参数、补足控制和永久条约纯查询；真实出牌待接。

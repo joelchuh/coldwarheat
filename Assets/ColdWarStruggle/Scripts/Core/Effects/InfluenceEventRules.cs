@@ -36,6 +36,9 @@ namespace ColdWarStruggle.Core
                 case AddFixedInfluenceEffect fixedGrant:
                     if(!state.Map.Contains(fixedGrant.Country))return Stop(InfluenceEventStatus.Rejected,InfluenceEventError.InvalidDefinition);
                     candidates=new[]{fixedGrant.Country};break;
+                case AddToControlInfluenceEffect control:
+                    if(!state.Map.Contains(control.Country))return Stop(InfluenceEventStatus.Rejected,InfluenceEventError.InvalidDefinition);
+                    candidates=new[]{control.Country};break;
                 case ClearThenControlEffect clear:
                     if(!state.Map.Contains(clear.Country))return Stop(InfluenceEventStatus.Rejected,InfluenceEventError.InvalidDefinition);
                     candidates=new[]{clear.Country};break;
@@ -103,6 +106,8 @@ namespace ColdWarStruggle.Core
                         break;
                     case AddFixedInfluenceEffect fixedGrant:
                         work.Add(fixedGrant.Country,definition.Beneficiary,fixedGrant.Amount);break;
+                    case AddToControlInfluenceEffect control:
+                        work.EnsureControlByAdding(control.Country,definition.Beneficiary);break;
                     case ClearThenControlEffect clear:
                         work.RemoveAll(clear.Country,opponent);
                         work.EnsureControlByAdding(clear.Country,definition.Beneficiary);break;

@@ -2,7 +2,7 @@
 
 description：查询条约的前置事件成功记录、跨回合保护、当前控制权、法国／西德例外、日本补至控制，以及与基础合法性和DEFCON门禁的衔接。
 
-状态：2026-10-05规则设计与2牌参数绑定，C#待实现。入口：[模块描述](../Descriptors/action-restrictions.module.json) → [数据描述](../../Data/Descriptors/treaty-protection.data.json) → [唯一参数](../../Data/Cards/deluxe-2015/treaty-protection.parameters.json)。复用[持续效果生命周期](persistent-effects.md)，增加永久条约模板；UI通过稳定ID展示说明、保护标记及阻止原因。
+状态：2026-10-17已实现[美日安保独立基础](japan-pact-foundation.md)，3902项原生测试通过；实际出牌与宿主尚未接入，北约/聚合限制仍为设计。以下未特别说明的广义服务均是原设计。入口：[模块描述](../Descriptors/action-restrictions.module.json) → [数据描述](../../Data/Descriptors/treaty-protection.data.json) → [唯一参数](../../Data/Cards/deluxe-2015/treaty-protection.parameters.json)。复用[持续效果生命周期](persistent-effects.md)，增加永久条约模板；UI通过稳定ID展示说明、保护标记及阻止原因。
 
 ## 两张牌及核对范围
 

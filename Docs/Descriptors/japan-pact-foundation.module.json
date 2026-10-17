@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "id": "module.japan-pact-foundation",
+  "kind": "module",
+  "status": "implemented",
+  "description": "美日安保基础：通用补足控制影响力、严格条约参数装载、不可变永久状态候选及实际Actor保护查询；真实出牌/跨回合宿主和Demo尚未接入。",
+  "documentation": "Docs/Wiki/japan-pact-foundation.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/AddToControlInfluenceEffect.cs",
+      "symbol": "AddToControlInfluenceEffect"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/JapanPactDefinitionLoader.cs",
+      "symbol": "Load"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/JapanPactState.cs",
+      "symbol": "Activate"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Rules/JapanPactRules.cs",
+      "symbol": "Evaluate"
+    }
+  ],
+  "inputs": [
+    "正式0.1.0条约参数及schema、同一MapDefinition/CardCatalog；权威GameState、gameId、事件控制者/实际行动者、结算ID和操作/目标"
+  ],
+  "outputs": [
+    "AddToControl影响力事务候选；带参数摘要/源序号的永久条约候选；NoTreatyBlock/BlockedByTreaty/InvalidContext"
+  ],
+  "dependencies": [
+    "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventRules.cs",
+    "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventFlow.cs",
+    "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/ContractJson.cs"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.treaty_protection",
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world"
+  ],
+  "preconditions": [
+    "使用权威单调状态版本；永久实例与加点/牌去向必须由后续宿主原子提交；NoTreatyBlock不是整体合法性"
+  ],
+  "side_effects": [
+    "只返回不可变候选与只读查询；不直接提交GameState、消耗随机数或修改UI"
+  ],
+  "stop_conditions": [
+    "未知参数/绑定/来源/Actor/操作；地图或game不匹配、开局/终局、溢出、同ID冲突或新ID重复激活"
+  ],
+  "rule_sources": [
+    {
+      "path": "Docs/Wiki/treaty-protection.md",
+      "scope": "GMT Deluxe #27及R2015 §2.1.7/§7.3；无新增解释"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/JapanPactFoundationTests.cs",
+      "status": "passed"
+    }
+  ],
+  "verification": {
+    "report": "Docs/Testing/japan-pact-foundation.validation.json",
+    "native_editmode_passed": 3902
+  },
+  "flow": [
+    "正式JSON→严格Loader→有界Definition",
+    "AddToControl→InfluenceEventRules/Flow→私有候选",
+    "JapanPactState.Activate→永久状态候选",
+    "Evaluate→条约门禁；基础/DEFCON/预算须另外验证"
+  ]
+}
