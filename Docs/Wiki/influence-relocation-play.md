@@ -12,4 +12,4 @@ description：查完整来源/目的分配、迁移守恒、角色与地图草�
 
 表现flow：WithInfluenceRelocation/WithRelocationScenarios → DemoController.Relocation查询容量并维护两份本地字典 → RelocationMapTargets按编辑阶段高亮 → ConfirmEventAsync提交完整双列表。旧CountrySet/Allocation入口保持原语义。新构建方法BuildRelocationPlaytest；共享Player映射新增三个文件，总69项。
 
-实际鼠标已验证苏联完整迁移、零迁移和原出牌命令重发；美国根场景/选择重发/地图切换仍仅原生覆盖。当前未完成：迁移面板简短反馈高度不足（独立审查Minor，可用展开结果页）。旧Player不含本批；新入口Builds/RelocationPlaytest，来源cbdd279。
+实际鼠标已验证苏联完整迁移、零迁移和原出牌命令重发；美国根场景/选择重发/地图切换仍仅原生覆盖。历史Minor：迁移面板简短反馈高度不足，已在后续[结果明细](influence-result-details.md)批修复并完成实际等待布局/明细验收；原RelocationPlaytest构建仍保留旧布局。旧Player不含本批；新入口Builds/RelocationPlaytest，来源cbdd279。

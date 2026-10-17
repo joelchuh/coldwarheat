@@ -29,7 +29,7 @@
 Files: new Presentation/DemoView.InfluenceFeedback.cs +meta, Tests/EditMode/InfluenceFeedbackTests.cs +meta; modify DemoView.Actions.cs, DemoView.Events.cs, DemoView.HeadlineFeedback.cs, DemoController.HeadlineFeedback.cs, DemoView.Relocation.cs, Editor/DemoBuild.cs. Update demo-result-reader descriptor/Wiki, new details descriptor/Wiki/report and catalog.
 - [x] Tests before implementation: immediate multi-change/selection/migration/zero, both sides and change signs, no waiting completion, historical retry/failed/identity/scene invalidation, names switch and fallback, two headlines/mixed child, reader leaves state and drafts unchanged; native RED.
 - [x] Implement minimal shared formatter and append at correct receipt boundary; extend supported public headline summaries; native GREEN, inspect failures.
-- [ ] Layout/BuildInfluenceFeedbackPlaytest registration, metadata/ledger, source commit. Independent reviewer once; Important one RED/GREEN fix pass.
+- [x] Layout/BuildInfluenceFeedbackPlaytest registration, metadata/ledger, source commit. Independent reviewer once; Important one RED/GREEN fix pass.
 - [ ] Build independent Player with existing70 payloads, verify; real event/relocation result reader and waiting layout; capture/hash evidence. Commit/push/remote verify and continue useful work.
 
 Native: Tools/Scripts/run-unity-editmode.ps1 -ProjectRoot E:/TwilightStruggle -UnityEditor E:/unity6.6/6000.6.0f1/Editor/Unity.exe -RunId <unique> -TimeoutSeconds600. Do not edit C# or loaded data during runs.

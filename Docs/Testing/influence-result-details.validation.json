@@ -3,7 +3,7 @@
   "id": "validation.influence-result-details",
   "description": "公开事件收据明细、上下文隔离、真实阅读面板的证据。",
   "baseline_commit": "cbe8ca28c96820772411439007df68b51064d9b8",
-  "status": "native-passed-build-review-ui-pending",
+  "status": "native-build-reviewed-ui-smoke-passed",
   "runs": [
     {
       "id": "influence-feedback-red",
@@ -55,5 +55,60 @@
       "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\influence-feedback-green-2\\results.xml",
       "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\influence-feedback-green-2\\editor.log"
     }
-  ]
+  ],
+  "build": {
+    "source_commit": "e5301aca973755ef0d301ae4d120f2753d2603f9",
+    "entrypoint": "ColdWarStruggle.Editor.DemoBuild.BuildInfluenceFeedbackPlaytest",
+    "player": "Builds/InfluenceFeedbackPlaytest/ColdWarStruggleDemo.exe",
+    "exit_code": 0,
+    "log": "TestResults/influence-feedback-build.log",
+    "marker_size": 98120829,
+    "verification_report": "TestResults/influence-feedback-build-verification.json",
+    "verification_sha256": "cf2f75979c321f02d7d9215d6081fac8246c57d5501b785623d3c80eb3e5624d",
+    "payload_count": 70,
+    "payload_bytes": 811910,
+    "managed_count": 5,
+    "provenance_limit": "Manifest byte checks are separate from recorded source commit; not trusted build provenance."
+  },
+  "review": {
+    "reviewer": "review_influence_feedback",
+    "base": "cbe8ca28c96820772411439007df68b51064d9b8",
+    "head": "e5301aca973755ef0d301ae4d120f2753d2603f9",
+    "critical": 0,
+    "important": 0,
+    "minor": 0,
+    "read_only": true,
+    "declined_to_judge": [
+      "Actual Player rendering, clipping, scrolling and mouse usability; parent acceptance separately."
+    ]
+  },
+  "ui": {
+    "local_time": "2026-10-17 09:47–09:49 Asia/Shanghai",
+    "scenario": "demo.practice.relocation_ussr",
+    "actual_mouse_paths": [
+      "Waiting layout: totals/phase/confirm/clear/retry, explanatory text and result button visible without overlap.",
+      "Poland source +1; India destination +1; confirm: USSR Poland 4→3 and India 0→1 in public receipt order.",
+      "Open expanded reader: country/side/before/after/signed delta legible; Escape returns unchanged version5/sequence7 and India1.",
+      "Reset fixture; explicit empty no-transfer; reader says completed and influence unchanged; board Poland4 and version5/sequence5."
+    ],
+    "images": [
+      {
+        "path": "TestResults/influence-feedback-waiting-ui.png",
+        "sha256": "c7495f995ca95e413e86cf9abfe4e456413bcdaf57d10b54f28eff5d47ee3cfe"
+      },
+      {
+        "path": "TestResults/influence-feedback-details-ui.png",
+        "sha256": "94c93a0f370774e21c074f3b87f80d71d23633b01747c7280d5b4d713074dc68"
+      },
+      {
+        "path": "TestResults/influence-feedback-zero-ui.png",
+        "sha256": "cf788394e608bf8103d72276b7f3ac1161a2cd31e348672c00604fe005e84543"
+      }
+    ],
+    "limits": [
+      "Mixed headline, Five-Year Plan, localization, stale replay and failures covered by native tests, not separately clicked in this Player.",
+      "Long receipt scrolling and prior-coup waiting panel not individually mouse exercised; shared reader/source geometry reviewed.",
+      "Smoke acceptance is at the observed window size, not all resolutions."
+    ]
+  }
 }
