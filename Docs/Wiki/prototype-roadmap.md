@@ -81,4 +81,4 @@
 
 2026-10-17美日安保独立基础已通过3902项原生测试，见[japan-pact-foundation](japan-pact-foundation.md)。下一批接实际出牌原子事务、永久状态跨回合保留，以及政变/调整目标门禁；当前Player尚无该事件。
 
-2026-10-17 美日安保真实出牌：Core/Host3935项通过，Demo/独立构建验证中。按 [模块描述](../Descriptors/japan-pact-play.module.json) 定位；北约、取消和正式存档仍未接入。
+2026-10-17 美日安保真实出牌已验收：3952项原生测试、独立构建74份载荷与有限真实点击通过；后续一行提示修补另经构建/实机验证。按 [模块描述](../Descriptors/japan-pact-play.module.json) 定位；北约、取消和正式存档仍未接入。

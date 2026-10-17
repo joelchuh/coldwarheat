@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "native-passed-review-build-pending",
+  "status": "passed-reviewed-built-limited-manual",
   "base_commit": "0e26bbdaf5a64fffb5908a4d089854d3c6604dfc",
   "core_red": {
     "run_id": "japan-play-core-red-2",
@@ -47,7 +47,9 @@
     "policy_sha256": "477c62095c3498045fdbc07a0a53fd1384615e264ae2de96780446fbe336b99e",
     "output_directory": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\japan-play-demo-green-2",
     "xml": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\japan-play-demo-green-2\\results.xml",
-    "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\japan-play-demo-green-2\\editor.log"
+    "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\japan-play-demo-green-2\\editor.log",
+    "source_commit": "d7e3cf5ccefa80f5cbab568a0e1444a085edc278",
+    "limitation": "Full native suite predates the one-line coup hint render correction; followup uses build and actual UI verification, with no rules change."
   },
   "review": {
     "base": "0e26bbdaf5a64fffb5908a4d089854d3c6604dfc",
@@ -58,7 +60,25 @@
     "minor": 1,
     "minor_deferred": "Internal WithPractice explicit inactive replacement can clear active pact; no current command caller supplies it."
   },
-  "build": "pending",
+  "build": {
+    "status": "passed",
+    "source_commit": "6c96dc0cd26f6680703bbee53f08b62925863963",
+    "player_directory": "Builds/JapanPactPlaytest",
+    "verification_report": "TestResults/japan-pact-hint-verification.json",
+    "verification_sha256": "4044d30ed3b6bcfb934db516c18d1a87abbcc2800facfb5fe8bb15ef6339fa61",
+    "payload_count": 74,
+    "payload_bytes": 832454,
+    "unity_exit_code": 0,
+    "executable_sha256": "a4c71b1bfc3e42d02f2f129fe04adef3ebf2343a662884e4b99598e9dfc90e7d",
+    "managed_sha256": {
+      "ColdWarStruggle.Application.dll": "73868513028ab0da1e148d2b46c851bab45f400611364531825c168e1b6a58a6",
+      "ColdWarStruggle.Bootstrap.dll": "6bf43ae94174d356aaed339be91e995a64ccbd6ca1aa75ff644671302b41ccce",
+      "ColdWarStruggle.Core.dll": "506530f7af14dade23986d137894a42c6054f14fefdb6d76b7036d06d07772d3",
+      "ColdWarStruggle.Infrastructure.dll": "564e02a059b486bd6d5716c3ad89b27116ff9770f0fd9c110032d30fa9ccf380",
+      "ColdWarStruggle.Presentation.dll": "b5b30a3d1d452ee0c66c5af64bc9f524b2163862176e317060c13ce9166a525a"
+    },
+    "build_log_sha256": "332433b9ab2776b5f529325740b76baa0f5f63ca3d9e5a9d53968042e0e51391"
+  },
   "demo_red": {
     "status": "failed",
     "error_code": "UNITY_EXIT_NONZERO",
@@ -80,7 +100,7 @@
     "log": "E:\\TwilightStruggle\\TestResults\\UnityRuns\\japan-play-demo-red-2\\editor.log"
   },
   "manual": {
-    "status": "passed-limited-with-hint-followup",
+    "status": "passed-limited",
     "captures": [
       {
         "path": "TestResults/japan-pact-result.png",
@@ -93,6 +113,10 @@
       {
         "path": "TestResults/japan-pact-adjustment-blocked.png",
         "sha256": "3ec809c339e1b397e31321f7bf364699ba79e9c6ca7f93342b413a4b3df2268f"
+      },
+      {
+        "path": "TestResults/japan-pact-coup-hint.png",
+        "sha256": "f67174a643974882c8ee9c55f991d83d7bd0013fa1d8bbcf29f9e7a4417e9057"
       }
     ],
     "route": [
@@ -105,7 +129,15 @@
     ],
     "limits": [
       "Other card routes and cross-turn covered by native tests, not this mouse route",
-      "Blocked ordinary coup reason existed in public API but was hidden in drawing branch; one-line display followup pending rebuild"
-    ]
+      "Limited manual paths do not constitute full game acceptance."
+    ],
+    "initial_route_source": "d7e3cf5ccefa80f5cbab568a0e1444a085edc278",
+    "followup": {
+      "source_commit": "6c96dc0cd26f6680703bbee53f08b62925863963",
+      "route": "Repeated fixture40 pact -> US unused influence action -> SU Olympic ordinary coup at Japan: disabled confirmation and visible persistent-effect rejection reason; version5/sequence6 unchanged.",
+      "log": "TestResults/japan-pact-hint-interaction.log",
+      "status": "passed",
+      "player_closed": true
+    }
   }
 }

@@ -11,3 +11,5 @@
 计划：Docs/Plans/2026-10-17-japan-pact-play.md；工作记录：Docs/Worklogs/2026-10-17-japan-pact-play.md；验证：Docs/Testing/japan-pact-play.validation.json。
 
 试玩路径：选择第40练习 → 苏联发动美日安保 → 日本美国影响力1→7、苏联保留3 → 美国进行普通行动 → 苏联用奥运会牌选日本政变/调整应被拒绝，安哥拉仍按普通条件可选。可从事件前选择OPS优先，对比条约尚未生效时的日本目标。
+
+交付：Builds/JapanPactPlaytest/ColdWarStruggleDemo.exe。已验 direct补点/永久提示、日本政变及调整禁用、安哥拉调整仍可执行。3952项原生测试对应d7e3cf5；随后6c96dc0仅补普通政变禁令的可见原因，已重新构建并实际点击验证。独立审查0 Critical/0 Important/1 Minor，内部显式替换保护的后续加固见工作记录。

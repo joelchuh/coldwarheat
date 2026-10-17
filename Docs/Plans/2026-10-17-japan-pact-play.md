@@ -36,9 +36,9 @@ Interfaces: consumes JapanPactDefinitionLoader.Load, JapanPactState.Create/Activ
 Files: Data/Demo/japan-pact-scenario.json + Data/Descriptors/japan-pact-scenario.data.json; DemoCatalog.JapanPact.cs fixture loader; Presentation bootstrap/build/action/feedback; Application projection as needed; Tests/EditMode/JapanPactDemoTests.cs and JapanPactPresentationTests.cs; module/Wiki/catalog/worklog/report.
 Interfaces: consumes Task1 public active pact/activation receipt and authoritative target eligibility; produces explicit fixture, independent JapanPactPlaytest build and readable permanent/target feedback.
 
-- [ ] Tests first for explicit scenario registration, public permanent status, zero-change combined receipt, headline/FiveYearPlan/coup propagation and fixture payload list. Run japan-play-demo-red expecting new display/registration assertions.
-- [ ] Implement fixture data and strict parser, shared loader registration, UI explanations and build entry. UI uses public target checks; no local Japanese protection rule.
-- [ ] Full native japan-play-demo-green, metadata/diff; commit. One fresh whole-branch review; fix Critical/Important in one RED→GREEN pass with full suite; ledger Minor.
-- [ ] Build independent Player, verify manifest/payload digests, perform limited actual interaction when available; record exact exercised paths/limits. Push feature branch and verify remote SHA.
+- [x] Tests first for explicit scenario registration, public permanent status, zero-change combined receipt, headline/FiveYearPlan/coup propagation and fixture payload list. Run japan-play-demo-red expecting new display/registration assertions.
+- [x] Implement fixture data and strict parser, shared loader registration, UI explanations and build entry. UI uses public target checks; no local Japanese protection rule.
+- [x] Full native japan-play-demo-green, metadata/diff; commit. One fresh whole-branch review; fix Critical/Important in one RED→GREEN pass with full suite; ledger Minor.
+- [x] Build independent Player, verify manifest/payload digests, perform limited actual interaction when available; record exact exercised paths/limits. Push feature branch and verify remote SHA.
 
 Self-review: two tasks share only named public state/receipt/catalog APIs; state ownership and permanent lifecycle agree; five review classes map to tests. No claim of full event coverage or final visual design.
