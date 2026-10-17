@@ -42,13 +42,17 @@
     {
       "path": "Docs/Design/early-influence-batch3.cases.json",
       "status": "mixed-reference-and-planned"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/ComeconDefinitionTests.cs",
+      "status": "native-passed"
     }
   ],
   "documentation": "Docs/Wiki/early-influence-batch3.md",
   "id": "data.early-influence-batch3",
   "kind": "data",
   "status": "ready",
-  "description": "早期影响力第三批：独立红色政权只增加至追平对方、经互会排除敌控国家后的不同国家放置；数据与规则设计，C#待实现。",
+  "description": "早期影响力第三批共享参数：独立红色政权增加至追平对方，经互会向非敌控东欧不同国家放置；两者C#核心已绑定，经互会完整出牌接线状态见运行报告。",
   "dataset_id": "effects.deluxe2015.early_influence_batch3",
   "content_version": "0.1.0",
   "schema_path": "Docs/Contracts/early-influence-batch3.schema.json",
@@ -56,17 +60,21 @@
     {
       "path": "Data/Cards/deluxe-2015/early-influence-batch3.parameters.json",
       "symbol": null
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/ComeconDefinitionLoader.cs",
+      "symbol": "Load"
     }
   ],
   "data_dependencies": [
     "map.deluxe2015.world"
   ],
   "verification": {
-    "runtime_consumers_tested": false,
-    "report": "Docs/Design/early-influence-batch3.validation.json"
+    "runtime_consumers_tested": true,
+    "report": "Docs/Testing/comecon-play.validation.json"
   },
   "retrieval_hints": [
     "parameters按card ID后缀查询；卡牌定义通过JSON Pointer引用唯一参数",
-    "先读模板description，再按Wiki拟定入口定位实现；当前entrypoints无C#"
+    "经互会运行见module.comecon-play；IndependentRedsCatalogLoader只读取匹配效果"
   ]
 }

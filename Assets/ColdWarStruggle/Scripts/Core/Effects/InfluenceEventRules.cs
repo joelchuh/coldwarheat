@@ -46,7 +46,11 @@ namespace ColdWarStruggle.Core
                     candidates=uncontrolled;required=uncontrolled.Length==0?0:1;break;
                 case AddToDistinctCountriesEffect add:
                     if(add.Regions.Any(r=>state.Map.GetCountriesInRegion(r).Count==0))return Stop(InfluenceEventStatus.Rejected,InfluenceEventError.InvalidDefinition);
-                    var union=add.Regions.SelectMany(r=>state.Map.GetCountriesInRegion(r)).Select(c=>c.Id).Distinct().ToArray();
+                    var opponent=add.Beneficiary==PlayerSide.US?PlayerSide.USSR:PlayerSide.US;
+                    var union=add.Regions.SelectMany(r=>state.Map.GetCountriesInRegion(r))
+                        .Where(c=>add.ControlFilter==InfluenceControlFilter.Any
+                            || ControlRules.GetController(state.Countries[c.Id].US,state.Countries[c.Id].USSR,c.Stability)!=opponent)
+                        .Select(c=>c.Id).Distinct().ToArray();
                     if(union.Length<add.TargetCount)return Stop(InfluenceEventStatus.RequiresRuling,InfluenceEventError.CandidateShortage);
                     candidates=union;required=add.TargetCount;break;
                 default:return Stop(InfluenceEventStatus.Rejected,InfluenceEventError.InvalidDefinition);
@@ -103,7 +107,9 @@ namespace ColdWarStruggle.Core
                     case RemoveFromUncontrolledEffect _:
                         if(query.RequiredTargets>0)work.RemoveAll(selection.Targets[0],opponent);break;
                     case AddToDistinctCountriesEffect add:
-                        foreach(var country in selection.Targets)work.Add(country,definition.Beneficiary,add.Amount);break;
+                        IEnumerable<CountryId> targets=selection.Targets;
+                        if(add.ControlFilter!=InfluenceControlFilter.Any)targets=targets.OrderBy(c=>c.Value,StringComparer.Ordinal);
+                        foreach(var country in targets)work.Add(country,definition.Beneficiary,add.Amount);break;
                 }
                 return work.Complete(definition);
             }

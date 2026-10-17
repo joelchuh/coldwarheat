@@ -45,18 +45,21 @@ namespace ColdWarStruggle.Core
         }
     }
 
+    public enum InfluenceControlFilter { Any, NotOpponentControlled }
     public sealed class AddToDistinctCountriesEffect : InfluenceEffectDefinition
     {
         public IReadOnlyList<string> Regions { get; }
         public int TargetCount { get; }
         public int Amount { get; }
-        public AddToDistinctCountriesEffect(string card, string effect, PlayerSide beneficiary, IEnumerable<string> regions, int targetCount, int amount) : base(card, effect, beneficiary)
+        public InfluenceControlFilter ControlFilter { get; }
+        public AddToDistinctCountriesEffect(string card, string effect, PlayerSide beneficiary, IEnumerable<string> regions, int targetCount, int amount, InfluenceControlFilter controlFilter=InfluenceControlFilter.Any) : base(card, effect, beneficiary)
         {
             var copy = regions?.ToArray();
             if (copy == null || copy.Length == 0 || copy.Any(string.IsNullOrWhiteSpace) || copy.Distinct(StringComparer.Ordinal).Count() != copy.Length)
                 throw new ArgumentException("Invalid regions.");
             if (targetCount < 1 || targetCount > InfluenceEventSelection.MaxTargets || amount < 1) throw new ArgumentOutOfRangeException();
-            Regions = Array.AsReadOnly(copy); TargetCount = targetCount; Amount = amount;
+            if (controlFilter != InfluenceControlFilter.Any && controlFilter != InfluenceControlFilter.NotOpponentControlled) throw new ArgumentOutOfRangeException(nameof(controlFilter));
+            Regions = Array.AsReadOnly(copy); TargetCount = targetCount; Amount = amount; ControlFilter=controlFilter;
         }
     }
 }

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "id": "module.comecon-play",
+  "kind": "module",
+  "description": "经互会复用不同国家放置并按受益方过滤敌控国家；数量来自共享参数，短缺保持待裁定。运行与Demo状态见报告。",
+  "status": "in-progress",
+  "documentation": "Docs/Wiki/comecon-play.md",
+  "entrypoints": [
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Infrastructure/DataLoading/ComeconDefinitionLoader.cs",
+      "symbol": "Load"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventRules.cs",
+      "symbol": "Query"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Scripts/Core/Effects/InfluenceEventRules.cs",
+      "symbol": "Plan"
+    }
+  ],
+  "inputs": [
+    "权威GameState、共享数据绑定的AddToDistinctCountriesEffect与当前选择版本"
+  ],
+  "outputs": [
+    "只读合法国家或完整原子影响力计划、稳定拒绝错误"
+  ],
+  "dependencies": [
+    "module.influence-event-planners",
+    "module.influence-event-sessions"
+  ],
+  "data_dependencies": [
+    "effects.deluxe2015.early_influence_batch3",
+    "cards.deluxe2015.definitions",
+    "map.deluxe2015.world"
+  ],
+  "preconditions": [
+    "活动干预已知；固定受益方与选择身份，表现层不覆盖数量或控制权"
+  ],
+  "side_effects": [
+    "纯计划返回新状态；失败不发布副本"
+  ],
+  "stop_conditions": [
+    "少于四个合法国家为EI3-RULING-01，不套用其他牌短缺解释",
+    "未知干预、部署未完、终局、错误身份/版本/目标、溢出"
+  ],
+  "rule_sources": [
+    {
+      "path": "Data/Cards/deluxe-2015/early-influence-batch3.parameters.json",
+      "scope": "经互会已核对参数与未决短缺"
+    }
+  ],
+  "tests": [
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/ComeconRulesTests.cs",
+      "status": "native-passed"
+    },
+    {
+      "path": "Assets/ColdWarStruggle/Tests/EditMode/ComeconDefinitionTests.cs",
+      "status": "native-passed"
+    }
+  ],
+  "verification": {
+    "report": "Docs/Testing/comecon-play.validation.json"
+  }
+}

@@ -175,3 +175,5 @@
 - [单条目录摘要同步](catalog-entry-sync.md)：指定描述的catalog预览与双SHA原子同步；数据status独立，完整验证后才写入。
 
 - [单格太空事件基础](space-event-foundation.md)：共享普通/事件奖励、保留次数与收据，3142原生测试；终点待裁定，Host/UI待接。
+
+- [经互会可玩接线](comecon-play.md)：复用不同国家放置及敌控过滤；核心与真实出牌接线进行中，短缺待裁定，验收状态见模块JSON。
